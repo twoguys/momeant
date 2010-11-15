@@ -1,0 +1,48 @@
+!!!
+%html{html_attrs('en')}
+  %head
+    %meta{ :content => "text/html; charset=utf-8", "http-equiv" => "Content-Type" }
+    %meta{ :name => "Description", "http-equiv" => "Description", :content => "" }
+    %meta{ :name => "Keywords", "http-equiv" => "Keywords", :content => "" }
+    %link{ :id => 'favicon', :href => '/images/favicon.png', :rel => 'icon', :type => 'image/x-icon' }/
+    %title
+      Momeant
+      
+    = javascript_include_tag "jquery-1.4.3.min", "jquery-ui-1.8.6.min", "jquery.maskedinput-1.2.2.min", "underscore-min", "application"
+    / [if lt IE 9]
+      = javascript_include_tag "http://html5shiv.googlecode.com/svn/trunk/html5.js"
+    
+    = stylesheet_link_tag "jquery-ui-1.8.6", "fonts", "reset", "styles"
+    
+    /[if lt IE 7]
+      = stylesheet_link_tag "ie"
+
+    = yield :head
+    
+  %body
+    #wrap
+      #main.clearfix
+        %header
+          .insides
+            %h1= link_to("Momeant", root_path, :id => "logo")
+          #user-nav
+            - if user_signed_in?
+              Signed in as #{current_user.email}
+              = link_to("Sign out", destroy_user_session_path)
+            - else
+              = link_to("Sign up", new_user_registration_path)
+              = link_to("Sign in", new_user_session_path)
+            
+            = yield :header
+            
+        #mid
+          .insides
+            = render "layouts/flash", :flash => flash
+            = yield
+
+    #footer
+      .insides
+        Copyright © 2010 - Momeant
+
+    =# render "analytics"
+    = yield :javascript
