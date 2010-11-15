@@ -8,4 +8,5 @@ gem 'pg'
 group :test do
   gem 'shoulda'
   gem 'coulda'
+  gem 'factory_girl'
 end
