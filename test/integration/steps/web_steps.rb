@@ -14,8 +14,23 @@ module WebSteps
   
   def then_i_should_be_on_page(named_path)
     Then "I should be on the #{named_path} page" do
-      page_url = polymorphic_url("#{named_path}")
-      assert_equal page_url, current_url
+      page_url = polymorphic_path("#{named_path}")
+      assert_equal page_url, current_path
+    end
+  end
+  
+  def then_i_should_see_flash(level, message)
+    And "I should see the flash #{level} '#{message}'" do
+      assert find("#flash").find(".#{level}").has_content? message
+    end
+  end
+  
+  def given_im_signed_in_as(user)
+    Given "I'm signed in as #{user.email}" do
+      visit new_user_session_path
+      fill_in "user_email", :with => user.email
+      fill_in "user_password", :with => "password"
+      click_button "Sign in"
     end
   end
 end

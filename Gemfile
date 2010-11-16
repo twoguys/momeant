@@ -12,5 +12,6 @@ group :test do
   gem 'shoulda'
   gem 'coulda'
   gem 'factory_girl'
-  gem 'webrat'
+  gem 'capybara'
+  gem 'launchy'
 end
