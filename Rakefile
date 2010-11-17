@@ -3,5 +3,6 @@
 
 require File.expand_path('../config/application', __FILE__)
 require 'rake'
+require 'coulda/tasks'
 
 Repo::Application.load_tasks
