@@ -1,5 +1,9 @@
 require File.expand_path('../boot', __FILE__)
 
+# Load ENV vars
+heroku_env = File.expand_path('config/heroku_env.rb')
+load(heroku_env) if File.exists?(heroku_env)
+
 require 'rails/all'
 
 # If you have a Gemfile, require the gems listed there, including any gems
