@@ -15,3 +15,13 @@ Factory.define :email_confirmed_user, :parent => :user do |user|
   user.confirmation_token     nil
   user.confirmed_at           Time.now - 1.day
 end
+
+Factory.define :creator, :parent => :email_confirmed_user do |creator|
+  creator.first_name          'Creator'
+  creator.type                'Creator'
+end
+
+Factory.define :admin, :parent => :email_confirmed_user do |admin|
+  admin.first_name            'Admin'
+  admin.is_admin              'true'
+end

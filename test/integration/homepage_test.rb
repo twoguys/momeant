@@ -1,7 +1,6 @@
 require File.expand_path('../test_helper', File.dirname(__FILE__))
 
 Feature "A user should be able to see the home page" do
-  extend WebSteps
 
   in_order_to "find out about Momeant"
   as_a "user"

@@ -1,0 +1,14 @@
+%h1 Invite a Creator
+
+= form_for @invitation do |form|
+  
+  %fieldset
+    %ul
+      
+      %li
+        = form.label :invitee_email, "Email address"
+        = form.text_field :invitee_email
+      
+      %li
+        = form.hidden_field :invited_as
+        = form.submit "Invite Creator"

@@ -1,0 +1,3 @@
+class Creator < User
+  
+end

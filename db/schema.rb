@@ -10,12 +10,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101117153126) do
+ActiveRecord::Schema.define(:version => 20101117194927) do
+
+  create_table "invitations", :force => true do |t|
+    t.integer  "inviter_id"
+    t.boolean  "accepted",      :default => false
+    t.string   "invited_as"
+    t.string   "invitee_email"
+    t.string   "token"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email"
-    t.string   "encrypted_password",   :limit => 128, :default => "", :null => false
-    t.string   "password_salt",                       :default => "", :null => false
+    t.string   "encrypted_password",   :limit => 128, :default => "",    :null => false
+    t.string   "password_salt",                       :default => "",    :null => false
     t.string   "reset_password_token"
     t.string   "remember_token"
     t.datetime "remember_created_at"
@@ -36,6 +46,8 @@ ActiveRecord::Schema.define(:version => 20101117153126) do
     t.string   "avatar_file_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_udpated_at"
+    t.string   "type"
+    t.boolean  "is_admin",                            :default => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

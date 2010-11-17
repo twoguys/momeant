@@ -17,6 +17,7 @@ end
 
 class ActionController::IntegrationTest
   include Capybara
+  extend WebSteps
 end
 
 class ActionController::TestCase

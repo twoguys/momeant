@@ -1,7 +1,6 @@
 require File.expand_path('../test_helper', File.dirname(__FILE__))
 
 Feature "A user should be able to sign up, sign in and sign out" do
-  extend WebSteps
 
   in_order_to "have an account"
   as_a "user"
@@ -64,10 +63,10 @@ Feature "A user should be able to sign up, sign in and sign out" do
       visit "/users/confirmation?confirmation_token=#{@user.confirmation_token}"
     end
     
-    then_i_should_be_on_page(:home)
+    then_i_should_be_on_page :home
     
     And "I should see my username and a sign out link" do
-      assert page.has_content?(@user.username)
+      assert page.has_content? @user.username
       assert find_link("Sign out").visible?
     end
   end
@@ -77,18 +76,12 @@ Feature "A user should be able to sign up, sign in and sign out" do
       @user = Factory(:email_confirmed_user)
     end
     
-    when_i_visit_page(:new_user_session)
+    given_im_signed_in_as :user
     
-    And "I fill out and submit the form" do
-      fill_in "user_email", :with => @user.email
-      fill_in "user_password", :with => "password"
-      click_button "Sign in"
-    end
-    
-    then_i_should_be_on_page(:home)
+    then_i_should_be_on_page :home
     
     And "I should see my username and a sign out link" do
-      assert page.has_content?(@user.username)
+      assert page.has_content? @user.username
       assert find_link("Sign out").visible?
     end
   end

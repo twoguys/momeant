@@ -25,9 +25,10 @@ module WebSteps
     end
   end
   
-  def given_im_signed_in_as(user)
-    Given "I'm signed in as #{user.email}" do
+  def given_im_signed_in_as(var_name)
+    Given "I'm signed in as a #{var_name}" do
       visit new_user_session_path
+      user = instance_variable_get("@#{var_name}")
       fill_in "user_email", :with => user.email
       fill_in "user_password", :with => "password"
       click_button "Sign in"

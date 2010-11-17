@@ -9,6 +9,8 @@ gem 'devise'
 gem 'haml'
 gem 'aws-s3'
 gem 'paperclip'
+gem 'inherited_resources'
+gem 'cancan'
 
 group :test do
   gem 'shoulda'
