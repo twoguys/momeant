@@ -7,6 +7,8 @@ gem 'pg'
 
 gem 'devise'
 gem 'haml'
+gem 'aws-s3'
+gem 'paperclip'
 
 group :test do
   gem 'shoulda'

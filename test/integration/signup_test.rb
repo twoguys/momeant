@@ -36,6 +36,7 @@ Feature "A user should be able to sign up, sign in and sign out" do
       fill_in "user_email", :with => "a@a.com"
       fill_in "user_password", :with => "password"
       fill_in "user_password_confirmation", :with => "password"
+      attach_file "user_avatar", File.join(Rails.root, "test/assets", "avatar.png")
       click_button "Sign up"
     end
     
@@ -45,6 +46,10 @@ Feature "A user should be able to sign up, sign in and sign out" do
     
     And "A user should exist in the database" do
       assert_equal User.where(:email => "a@a.com").count, 1
+    end
+    
+    And "The user should have an avatar image" do
+      assert_match /^http:\/\/s3.amazonaws.com/, User.where(:email => "a@a.com").first.avatar.url
     end
   end
   
