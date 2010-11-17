@@ -6,7 +6,7 @@ Feature "A creator or admin (user types) should be able to invite new creators" 
   as_a "creator or admin"
   i_want_to "be able to invite new people or existing users to be creators"
   
-  Scenario "Inviting a non-existent user by email" do
+  Scenario "Inviting a non-existent user to be a creator by email" do
     Given "An email address does not exist in the system" do
       @invitee_email = "bob@example.com"
       assert User.where(:email => @invitee_email).empty?
@@ -34,5 +34,9 @@ Feature "A creator or admin (user types) should be able to invite new creators" 
     And "An invitation should be created" do
       assert_not_nil Invitation.where(:invitee_email => @invitee_email, :inviter_id => @creator.id).first
     end
+  end
+  
+  Scenario "Inviting an existing user to be a creator" do
+    
   end
 end
