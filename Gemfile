@@ -18,4 +18,8 @@ group :test do
   gem 'factory_girl'
   gem 'capybara'
   gem 'launchy'
+  gem 'autotest-rails-pure'
+  gem 'autotest-fsevent'
+  gem 'autotest-growl'
+  gem 'redgreen'
 end
