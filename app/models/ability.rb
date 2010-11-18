@@ -8,6 +8,7 @@ class Ability
       can :manage, :all
     elsif user.is_a?(Creator)
       can [:invite_creator, :create, :show, :index], Invitation
+      can :manage, Story
     else
       can [:create, :show, :index], Invitation
     end
