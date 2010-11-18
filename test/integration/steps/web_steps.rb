@@ -12,9 +12,12 @@ module WebSteps
     end
   end
   
-  def then_i_should_be_on_page(named_path)
+  def then_i_should_be_on_page(named_path, eval_block = false, &block)
     Then "I should be on the #{named_path} page" do
-      page_url = polymorphic_path("#{named_path}")
+      if block_given?
+        args = eval_block ? eval(block.call) : block.call
+      end
+      page_url = send("#{named_path}_path", args)
       assert_equal page_url, current_path
     end
   end

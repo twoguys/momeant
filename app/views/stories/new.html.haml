@@ -1,0 +1,26 @@
+%h2 Create a Story
+
+= form_for(@story) do |form|
+  
+  %fieldset
+    %ul
+      
+      %li
+        = form.label :title
+        = form.text_field :title
+        
+      %li
+        = form.label :excerpt
+        = form.text_field :excerpt
+      
+      %li.topics
+        %h3 Topics
+        - @topics.each_index do |index|
+          = check_box_tag "topic#{index}", @topics[index]
+      
+      %li
+        = form.label :price
+        = form.text_field :price
+      
+      %li.submit
+        = form.submit "Create Story"

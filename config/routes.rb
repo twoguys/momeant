@@ -8,6 +8,12 @@ Repo::Application.routes.draw do
     end
   end
   match 'invites/:token',       :to => 'invitations#accept',          :as => :accept_invitation
+  
+  resources :stories do
+    member do
+      get :preview
+    end
+  end
 
   match '/',                    :to => 'stories#index',               :as => 'home'
   root :to => "stories#index"
