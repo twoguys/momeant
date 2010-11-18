@@ -33,7 +33,8 @@ Feature "A Creator or Admin should be able to invite new creators" do
       end
     
       And "An invitation should be created" do
-        assert_not_nil Invitation.where(:invitee_email => @invitee_email, :inviter_id => instance_variable_get("@#{user_type}").id).first
+        inviter = instance_variable_get("@#{user_type}")
+        assert_not_nil Invitation.where(:invitee_email => @invitee_email,:inviter_id => inviter.id).first
       end
     end
   end

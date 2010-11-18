@@ -9,7 +9,7 @@ class StoriesController < ApplicationController
   def create
     @story = Story.new(params[:story])
     attach_topics
-    if current_user.stories << story
+    if current_user.stories << @story
       redirect_to preview_story_path(@story), :notice => "Great story!"
     else
       get_topics

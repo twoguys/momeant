@@ -9,6 +9,7 @@ Feature "A Creator can create a story" do
   Scenario "A Creator creates a new story" do
     Given "A creator exists" do
       @creator = Factory(:creator)
+      assert @creator.is_a?(Creator)
     end
     Given "A topic exists" do
       @topic = Factory(:topic)
@@ -32,6 +33,7 @@ Feature "A Creator can create a story" do
       assert page.has_content? "Little Red Riding Hood"
       assert page.has_content? "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor."
       assert page.has_content? @topic.name
+      assert @creator.stories.include?(Story.last)
     end
   end
   
