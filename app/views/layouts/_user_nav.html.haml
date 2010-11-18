@@ -4,6 +4,7 @@
       = link_to("New Story", new_story_path)
       |
       = link_to("My Stories", stories_path)
+      |
     - if can? :invite_creator, Invitation
       = link_to("Invite a Creator", invite_creator_invitations_path)
     Signed in as #{current_user.username}

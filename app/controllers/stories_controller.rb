@@ -1,5 +1,5 @@
 class StoriesController < ApplicationController
-  before_filter :authenticate_user!, :except => [:index]
+  before_filter :authenticate_user!
   before_filter :get_topics, :only => [:new]
   
   def new
@@ -9,7 +9,7 @@ class StoriesController < ApplicationController
   def create
     @story = Story.new(params[:story])
     attach_topics
-    if @story.save
+    if current_user.stories << story
       redirect_to preview_story_path(@story), :notice => "Great story!"
     else
       get_topics
@@ -22,7 +22,7 @@ class StoriesController < ApplicationController
   end
   
   def index
-    @stories = Story.all
+    @stories = current_user.stories
   end
   
   private

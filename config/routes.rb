@@ -15,7 +15,7 @@ Repo::Application.routes.draw do
     end
   end
 
-  match '/',                    :to => 'stories#index',               :as => 'home'
-  root :to => "stories#index"
+  match '/',                    :to => 'home#index',               :as => 'home'
+  root :to => "home#index"
   
 end
