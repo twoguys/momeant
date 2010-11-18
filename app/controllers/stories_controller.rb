@@ -8,9 +8,11 @@ class StoriesController < ApplicationController
   
   def create
     @story = Story.new(params[:story])
+    attach_topics
     if @story.save
       redirect_to preview_story_path(@story), :notice => "Great story!"
     else
+      get_topics
       render "new"
     end
   end
@@ -25,7 +27,14 @@ class StoriesController < ApplicationController
   
   private
     def get_topics
-      @topics = TOPICS
+      @topics = Topic.all
+    end
+    
+    def attach_topics
+      topic_ids = params[:topics]
+      if topic_ids
+        @story.topics << Topic.where("id IN (#{topic_ids.keys.join(',')})")
+      end
     end
   
 end

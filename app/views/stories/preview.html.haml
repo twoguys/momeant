@@ -7,3 +7,7 @@
     %span.title= @story.title
 
   .excerpt= @story.excerpt
+  
+  %ul.topics
+    %h3 Topics
+    = @story.topics.map{|t| t.name}.join(', ')

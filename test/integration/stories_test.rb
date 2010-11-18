@@ -10,6 +10,9 @@ Feature "A Creator can create a story" do
     Given "A creator exists" do
       @creator = Factory(:creator)
     end
+    Given "A topic exists" do
+      @topic = Factory(:topic)
+    end
     
     given_im_signed_in_as(:creator)
     
@@ -18,7 +21,7 @@ Feature "A Creator can create a story" do
     And "I fill out and submit the form" do
       fill_in "story_title", :with => "Little Red Riding Hood"
       fill_in "story_excerpt", :with => "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor."
-      find(".topics").find("input").click
+      check "topics_#{@topic.id}"
       fill_in "story_price", :with => "0.50"
       click_button "Create Story"
     end
@@ -28,6 +31,7 @@ Feature "A Creator can create a story" do
     And "I should see my story information" do
       assert page.has_content? "Little Red Riding Hood"
       assert page.has_content? "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor."
+      assert page.has_content? @topic.name
     end
   end
   

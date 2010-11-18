@@ -16,10 +16,10 @@
       %li.topics
         %h3 Topics
         %ul
-          - @topics.each_index do |index|
+          - @topics.each do |topic|
             %li.topic
-              = check_box_tag "topic#{index}", @topics[index]
-              = @topics[index]
+              = check_box_tag "topics[#{topic.id}]", 1, @story.topics.include?(topic)
+              = topic.name
       
       %li
         = form.label :price

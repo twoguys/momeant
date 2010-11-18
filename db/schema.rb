@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101118052050) do
+ActiveRecord::Schema.define(:version => 20101118135101) do
 
   create_table "invitations", :force => true do |t|
     t.integer  "inviter_id"
@@ -27,6 +27,17 @@ ActiveRecord::Schema.define(:version => 20101118052050) do
     t.text     "excerpt"
     t.float    "price"
     t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "stories_topics", :id => false, :force => true do |t|
+    t.integer "story_id"
+    t.integer "topic_id"
+  end
+
+  create_table "topics", :force => true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
