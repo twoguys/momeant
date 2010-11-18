@@ -7,6 +7,10 @@ Feature "A user should be able to see the home page" do
   i_want_to "visit the homepage"
 
   Scenario "Visting the homepage when not logged in" do
+    Given "There are a few stories" do
+      @story1 = Factory(:story)
+      @story2 = Factory(:story)
+    end
 
     when_i_visit_page(:home)
     
@@ -16,6 +20,11 @@ Feature "A user should be able to see the home page" do
     
     And "I should see an editorial section" do
       assert page.has_selector? "section#editorial"
+    end
+    
+    And "I should see a list of public stories (thumbnails)" do
+      assert page.has_content? @story1.title
+      assert page.has_content? @story2.title
     end
   end
   

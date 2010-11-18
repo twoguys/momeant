@@ -2,3 +2,8 @@
 
 %section#editorial
   %h2 Editorial section
+
+%section#story-stream
+  %h2 Stories
+  %ul.stories
+    = render :partial => "home/story_preview", :collection => @stories, :as => :story
