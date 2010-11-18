@@ -11,6 +11,7 @@ gem 'aws-s3'
 gem 'paperclip'
 gem 'inherited_resources'
 gem 'cancan'
+gem 'ruby-prof'
 
 group :test do
   gem 'shoulda'
