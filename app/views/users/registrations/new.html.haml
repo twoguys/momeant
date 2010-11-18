@@ -1,5 +1,6 @@
 %h2 Sign up
 
+- resource ||= @user
 = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:multipart => true}) do |f|
   = devise_error_messages!
   
@@ -19,7 +20,7 @@
         = f.password_field :password
 
       %li
-        = f.label :password_confirmation
+        = f.label :password_confirmation, "Password (again)"
         = f.password_field :password_confirmation
       
       %li

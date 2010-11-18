@@ -4,7 +4,7 @@ Feature "A creator or admin (user types) should be able to invite new creators" 
 
   in_order_to "have more content creators"
   as_a "creator or admin"
-  i_want_to "be able to invite new people or existing users to be creators"
+  i_want_to "be able to invite new people to become creators"
   
   Scenario "Inviting a non-existent user to be a creator by email" do
     Given "An email address does not exist in the system" do
@@ -26,7 +26,7 @@ Feature "A creator or admin (user types) should be able to invite new creators" 
     end
     
     Then "An email should be sent to the invitee's address" do
-      invite_email = ActionMailer::Base.deliveries.first
+      invite_email = ActionMailer::Base.deliveries.last
       assert_equal invite_email.subject, "You have been invited to be a Creator on Momeant"
       assert_equal invite_email.to[0], @invitee_email
     end
@@ -36,7 +36,28 @@ Feature "A creator or admin (user types) should be able to invite new creators" 
     end
   end
   
-  Scenario "Inviting an existing user to be a creator" do
+  Scenario "Accepting an invite via the link in an email" do
+    Given "An invite exists for a non-existent user" do
+      @invite = Factory(:invitation)
+    end
     
+    When "I visit the invite link in my email" do
+      visit accept_invitation_url(@invite.token)
+    end
+    
+    then_i_should_be_on_page(:new_user_registration)
+    
+    And "I fill out the form fields and submit the form" do
+      fill_in "user_email", :with => "new_creator@example.com"
+      fill_in "user_password", :with => "password"
+      fill_in "user_password_confirmation", :with => "password"
+      attach_file "user_avatar", File.join(Rails.root, "test/assets", "avatar.png")
+      click_button "Sign up"
+    end
+    
+    Then "The initee should now be a creator and the invite should be marked as accepted" do
+      assert_not_nil Creator.where(:email => "new_creator@example.com").first
+      assert Invitation.find(@invite.id).accepted?
+    end
   end
 end
