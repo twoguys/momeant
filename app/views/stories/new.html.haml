@@ -15,8 +15,11 @@
       
       %li.topics
         %h3 Topics
-        - @topics.each_index do |index|
-          = check_box_tag "topic#{index}", @topics[index]
+        %ul
+          - @topics.each_index do |index|
+            %li.topic
+              = check_box_tag "topic#{index}", @topics[index]
+              = @topics[index]
       
       %li
         = form.label :price
