@@ -5,11 +5,6 @@ class CreateTopics < ActiveRecord::Migration
 
       t.timestamps
     end
-    
-    Topic.create(:name => "Fashion")
-    Topic.create(:name => "Design")
-    Topic.create(:name => "Photography")
-    Topic.create(:name => "Life")
   end
 
   def self.down
