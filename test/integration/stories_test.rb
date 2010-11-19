@@ -37,4 +37,18 @@ Feature "A Creator can create a story" do
     end
   end
   
+  Scenario "A regular user (non-Creator) tries to access the new story page" do
+    Given "A regular user" do
+      @user = Factory(:email_confirmed_user)
+    end
+    
+    given_im_signed_in_as(:user)
+    
+    when_i_visit_page(:new_story)
+    
+    then_i_should_be_on_page(:home)
+    
+    then_i_should_see_flash(:alert, "You are not authorized to access this page.")
+  end
+  
 end
