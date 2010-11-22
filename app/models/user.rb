@@ -37,6 +37,7 @@ class User < ActiveRecord::Base
       self.decrement!(:money_available, story.price)
       story.user.increment!(:credits, story.price)
     end
+    story.increment!(:purchased_count)
     return Purchase.create(:amount => story.price, :story_id => story.id, :payer_id => self.id, :payee_id => story.user_id)
   end
 end

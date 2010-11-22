@@ -49,6 +49,12 @@ Feature "A user can acquire a story" do
     And "The story creator should have one more sale" do
       assert_equal @story.user.sales.count, @original_creator_sales_count + 1
     end
+
+    And "The story's purchased_count is incremented by one" do
+      original_count = @story.purchased_count
+      @story = Story.find(@story.id)
+      assert_equal @story.purchased_count, original_count + 1
+    end
     
     when_i_visit_page(:library)
     
@@ -63,8 +69,6 @@ Feature "A user can acquire a story" do
     Given "An existing user with money deposited and non-free story" do
       @user = Factory(:user_with_money)
       @story = Factory(:story)
-      @users_original_money_available = @user.money_available
-      @creators_original_credits = @story.user.credits
     end
     
     given_im_signed_in_as(:user)
@@ -94,15 +98,23 @@ Feature "A user can acquire a story" do
     end
     
     And "My available money should be decremented the cost of the story" do
+      users_original_money_available = @user.money_available
       # grab the user out of the DB again to refresh money available
       @user = User.find(@user.id)
-      assert_equal @user.money_available, @users_original_money_available - @story.price
+      assert_equal @user.money_available, users_original_money_available - @story.price
     end
     
     And "The Creator's credits should be incremented the cost of the story" do
+      creators_original_credits = @story.user.credits
       # grab the creator out of the DB to refresh their credits
       @creator = Creator.find(@story.user_id)
-      assert_equal @creator.credits, @creators_original_credits + @story.price
+      assert_equal @creator.credits, creators_original_credits + @story.price
+    end
+    
+    And "The story's purchased_count is incremented by one" do
+      original_count = @story.purchased_count
+      @story = Story.find(@story.id)
+      assert_equal @story.purchased_count, original_count + 1
     end
   end
   
