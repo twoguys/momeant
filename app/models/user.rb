@@ -26,8 +26,14 @@ class User < ActiveRecord::Base
     "#{self.first_name} #{self.last_name}"
   end
   
+  def can_afford?(amount)
+    self.money_available >= amount
+  end
+  
   def purchase(story)
-    Purchase.create(:amount => story.price, :story_id => story.id, :payer_id => self.id, :payee_id => story.user_id)
+    return false if !self.can_afford?(story.price)
     
+    self.decrement!(:money_available, story.price) unless story.free?
+    return Purchase.create(:amount => story.price, :story_id => story.id, :payer_id => self.id, :payee_id => story.user_id)
   end
 end

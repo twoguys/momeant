@@ -21,3 +21,7 @@ end
 Factory.define :free_story, :parent => :story do |story|
   story.price       0.0
 end
+
+Factory.define :crazy_expensive_story, :parent => :story do |story|
+  story.price       1000.0  # that @%$# is ballin'
+end

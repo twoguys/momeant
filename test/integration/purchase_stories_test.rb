@@ -1,5 +1,7 @@
 require File.expand_path('../test_helper', File.dirname(__FILE__))
 
+include ActionView::Helpers::NumberHelper
+
 Feature "A user can acquire a story" do
 
   in_order_to "get access to Momeant stories"
@@ -57,10 +59,11 @@ Feature "A user can acquire a story" do
     end
   end
   
-  Scenario "A user purchases a non-free story" do
+  Scenario "A user purchases a non-free story that they can afford" do
     Given "An existing user with money deposited and non-free story" do
       @user = Factory(:user_with_money)
       @story = Factory(:story)
+      @users_original_money_available = @user.money_available
     end
     
     given_im_signed_in_as(:user)
@@ -89,8 +92,37 @@ Feature "A user can acquire a story" do
       assert page.has_content? @story.excerpt
     end
     
-    And "I"
+    And "My available money should be decremented the cost of the story" do
+      # grab the user out of the DB again to refresh money available
+      @user = User.find(@user.id)
+      assert_equal @user.money_available, @users_original_money_available - @story.price
+    end
+  end
+  
+  Scenario "A user views a story they can't afford" do
+    Given "An existing user with money deposited and a story that's too expensive" do
+      @user = Factory(:user_with_money)
+      @story = Factory(:crazy_expensive_story)
+    end
     
+    given_im_signed_in_as(:user)
+
+    When "I visit the story preview page" do
+      visit preview_story_path(@story)
+    end
+    
+    Then "I should see the story's cost and a link to buy it" do
+      assert page.find('.price').has_content? number_to_currency(@story.price)
+      assert page.find('.price').find('a.buy-it').has_content? "purchase"
+    end
+    
+    When "I click the acquire link" do
+      click_link("purchase")
+    end
+    
+    then_i_should_be_on_page(:deposits)
+    
+    then_i_should_see_flash(:alert, "You need to deposit more money in order to purchase that story.")
   end
   
 end

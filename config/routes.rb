@@ -14,6 +14,8 @@ Repo::Application.routes.draw do
     get :purchase, :on => :member
   end
   match '/library',             :to => 'stories#library',           :as => :library
+  
+  resources :deposits
 
   match '/',                    :to => 'home#index',                :as => :home
   root :to => "home#index"

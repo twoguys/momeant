@@ -39,7 +39,7 @@ class StoriesController < ApplicationController
       elsif current_user.purchase(@story)
         redirect_to @story, :notice => "This story is now in your library."
       else
-        redirect_to preview_story(@story), :alert => "Sorry, you do not have enough money."
+        redirect_to deposits_path, :alert => "You need to deposit more money in order to purchase that story."
       end
     else
       redirect_to home_path, :alert => "Sorry, that story does not exist."
