@@ -1,3 +1,3 @@
 class Creator < User
-  has_many :stories, :foreign_key => "user_id"
+  has_many :created_stories, :foreign_key => "user_id", :class_name => "Story"
 end

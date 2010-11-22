@@ -16,3 +16,7 @@ Factory.define :story do |story|
   story.price       0.50
   story.topics      { [Factory(:topic), Factory(:topic)] }
 end
+
+Factory.define :free_story, :parent => :story do |story|
+  story.price       0.0
+end

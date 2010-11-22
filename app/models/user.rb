@@ -1,5 +1,8 @@
 class User < ActiveRecord::Base
   
+  has_many :purchases
+  has_many :stories, :through => :purchases
+  
   validates_uniqueness_of :username
   
   has_attached_file :avatar,

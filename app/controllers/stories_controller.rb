@@ -1,7 +1,16 @@
 class StoriesController < ApplicationController
   before_filter :authenticate_user!
   load_and_authorize_resource
+  before_filter :find_story, :only => [:preview, :purchase, :show]
   before_filter :get_topics, :only => [:new]
+  
+  def index
+    @stories = Story.all
+  end
+  
+  def library
+    @stories = current_user.stories
+  end
   
   def new
     @story = Story.new
@@ -10,7 +19,7 @@ class StoriesController < ApplicationController
   def create
     @story = Story.new(params[:story])
     attach_topics
-    if current_user.stories << @story
+    if current_user.created_stories << @story
       redirect_to preview_story_path(@story), :notice => "Great story!"
     else
       get_topics
@@ -19,14 +28,31 @@ class StoriesController < ApplicationController
   end
   
   def preview
-    @story = Story.find(params[:id])
   end
   
-  def index
-    @stories = current_user.stories
+  def purchase
+    if @story
+      if @story.free?
+        current_user.stories << @story unless current_user.stories.include?(@story)
+        redirect_to @story, :notice => "This story is now in your library."
+      else
+        redirect_to home_path, :alert => "Purchasing non-free stories is not yet ready."
+        # future purchase logic here
+      end
+    else
+      redirect_to home_path, :alert => "Sorry, that story does not exist."
+    end
+  end
+  
+  def show
   end
   
   private
+  
+    def find_story
+      @story = Story.find(params[:id])
+    end
+    
     def get_topics
       @topics = Topic.all
     end

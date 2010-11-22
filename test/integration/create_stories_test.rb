@@ -33,7 +33,7 @@ Feature "A Creator can create a story" do
       assert page.has_content? "Little Red Riding Hood"
       assert page.has_content? "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor."
       assert page.has_content? @topic.name
-      assert @creator.stories.include?(Story.last)
+      assert @creator.created_stories.include?(Story.last)
     end
   end
   

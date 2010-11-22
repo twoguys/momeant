@@ -8,3 +8,15 @@
   %ul.topics
     %h3 Topics
     = @story.topics.map{|t| t.name}.join(', ')
+    
+  .price
+    - if current_user.stories.include?(@story)
+      .value owned
+      = link_to("view", @story)
+    - else
+      - if @story.free?
+        .value free
+        = link_to("acquire", purchase_story_path(@story), :class => "buy-it")
+      - else
+        .value= number_to_currency(@story.price)
+        = link_to("buy", purchase_story_path(@story), :class => "buy-it")

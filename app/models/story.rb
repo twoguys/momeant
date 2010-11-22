@@ -5,4 +5,8 @@ class Story < ActiveRecord::Base
   validates :title, :presence => true, :length => (2..256)
   validates :excerpt, :length => (2..1024)
   validates :price, :format => /[0-9.,]+/
+  
+  def free?
+    self.price == 0
+  end
 end
