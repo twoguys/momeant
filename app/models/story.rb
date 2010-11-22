@@ -2,6 +2,8 @@ class Story < ActiveRecord::Base
   belongs_to :user
   has_and_belongs_to_many :topics
   has_many :purchases
+  has_many :bookmarks
+  has_many :users_who_bookmarked, :through => :bookmarks, :source => :user
     
   validates :title, :presence => true, :length => (2..256)
   validates :excerpt, :length => (2..1024)

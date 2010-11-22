@@ -10,8 +10,12 @@ Repo::Application.routes.draw do
   match 'invites/:token',       :to => 'invitations#accept',        :as => :accept_invitation
   
   resources :stories do
-    get :preview, :on => :member
-    get :purchase, :on => :member
+    member do
+      get :preview
+      get :purchase
+      get :bookmark
+    end
+    get :bookmarked, :on => :collection
   end
   match '/library',             :to => 'stories#library',           :as => :library
   

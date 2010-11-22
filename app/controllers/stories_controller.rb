@@ -1,7 +1,7 @@
 class StoriesController < ApplicationController
   before_filter :authenticate_user!
   load_and_authorize_resource
-  before_filter :find_story, :only => [:preview, :purchase, :show]
+  before_filter :find_story, :only => [:preview, :purchase, :bookmark, :show]
   before_filter :get_topics, :only => [:new]
   
   def index
@@ -44,6 +44,15 @@ class StoriesController < ApplicationController
     else
       redirect_to home_path, :alert => "Sorry, that story does not exist."
     end
+  end
+  
+  def bookmark
+    Bookmark.create(:story_id => @story.id, :user_id => current_user.id)
+    redirect_to preview_story_path(@story), :notice => "Story bookmarked."
+  end
+  
+  def bookmarked
+    @bookmarks = current_user.bookmarks
   end
   
   def show

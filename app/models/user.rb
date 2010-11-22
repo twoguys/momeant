@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   has_many :purchases, :foreign_key => :payer_id
   has_many :stories, :through => :purchases, :foreign_key => :payer_id
+  has_many :bookmarks
+  has_many :bookmarked_stories, :through => :bookmarks, :source => :story
   
   validates_uniqueness_of :username
   
