@@ -7,13 +7,8 @@ Feature "A Creator can create a story" do
   i_want_to "create momeant stories"
   
   Scenario "A Creator creates a new story" do
-    Given "A creator exists" do
-      @creator = Factory(:creator)
-      assert @creator.is_a?(Creator)
-    end
-    Given "A topic exists" do
-      @topic = Factory(:topic)
-    end
+    given_a(:creator)
+    given_a(:topic)
     
     given_im_signed_in_as(:creator)
     
@@ -38,11 +33,9 @@ Feature "A Creator can create a story" do
   end
   
   Scenario "A regular user (non-Creator) tries to access the new story page" do
-    Given "A regular user" do
-      @user = Factory(:email_confirmed_user)
-    end
+    given_a(:email_confirmed_user)
     
-    given_im_signed_in_as(:user)
+    given_im_signed_in_as(:email_confirmed_user)
     
     when_i_visit_page(:new_story)
     

@@ -53,9 +53,8 @@ Feature "A user should be able to sign up, sign in and sign out" do
   end
   
   Scenario "Visiting the signup confirmation link" do
-    
+    given_a(:user)
     Given "The user has not confirmed their email" do
-      @user = Factory(:user)
       @user.update_attribute(:confirmation_token, "fake_token")
     end
     
@@ -72,28 +71,22 @@ Feature "A user should be able to sign up, sign in and sign out" do
   end
   
   Scenario "Signing in" do
-    Given "An existing user" do
-      @user = Factory(:email_confirmed_user)
-    end
+    given_a(:email_confirmed_user)
     
-    given_im_signed_in_as :user
+    given_im_signed_in_as :email_confirmed_user
     
     then_i_should_be_on_page :home
     
     And "I should see my username and a sign out link" do
-      assert page.has_content? @user.username
+      assert page.has_content? @email_confirmed_user.username
       assert find_link("Sign out").visible?
     end
   end
   
   Scenario "Signing out" do
-    Given "A signed in user" do
-      @user = Factory(:email_confirmed_user)
-      visit new_user_session_path
-      fill_in "user_email", :with => @user.email
-      fill_in "user_password", :with => "password"
-      click_button "Sign in"
-    end
+    given_a(:email_confirmed_user)
+    
+    given_im_signed_in_as(:email_confirmed_user)
     
     When "I click the signout link" do
       click_link "Sign out"

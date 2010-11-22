@@ -40,12 +40,10 @@ Feature "A Creator or Admin should be able to invite new creators" do
   end
   
   Scenario "Accepting an invite via the link in an email" do
-    Given "An invite exists for a non-existent user" do
-      @invite = Factory(:invitation)
-    end
+    given_a(:invitation)
     
     When "I visit the invite link in my email" do
-      visit accept_invitation_url(@invite.token)
+      visit accept_invitation_url(@invitation.token)
     end
     
     then_i_should_be_on_page(:new_user_registration)
@@ -60,7 +58,7 @@ Feature "A Creator or Admin should be able to invite new creators" do
     
     Then "The initee should now be a creator and the invite should be marked as accepted" do
       assert_not_nil Creator.where(:email => "new_creator@example.com").first
-      assert Invitation.find(@invite.id).accepted?
+      assert Invitation.find(@invitation.id).accepted?
     end
   end
 end

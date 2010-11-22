@@ -35,4 +35,10 @@ module WebSteps
       click_button "Sign in"
     end
   end
+  
+  def given_a(model_type)
+    Given "A #{model_type.to_s.gsub("_"," ")}" do
+      instance_variable_set("@#{model_type}", Factory(model_type))
+    end
+  end
 end
