@@ -64,6 +64,7 @@ Feature "A user can acquire a story" do
       @user = Factory(:user_with_money)
       @story = Factory(:story)
       @users_original_money_available = @user.money_available
+      @creators_original_credits = @story.user.credits
     end
     
     given_im_signed_in_as(:user)
@@ -96,6 +97,12 @@ Feature "A user can acquire a story" do
       # grab the user out of the DB again to refresh money available
       @user = User.find(@user.id)
       assert_equal @user.money_available, @users_original_money_available - @story.price
+    end
+    
+    And "The Creator's credits should be incremented the cost of the story" do
+      # grab the creator out of the DB to refresh their credits
+      @creator = Creator.find(@story.user_id)
+      assert_equal @creator.credits, @creators_original_credits + @story.price
     end
   end
   

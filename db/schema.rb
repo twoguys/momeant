@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101122201653) do
+ActiveRecord::Schema.define(:version => 20101122205123) do
 
   create_table "invitations", :force => true do |t|
     t.integer  "inviter_id"
@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(:version => 20101122201653) do
     t.string   "type"
     t.boolean  "is_admin",                            :default => false
     t.float    "money_available",                     :default => 0.0
+    t.float    "credits",                             :default => 0.0
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
