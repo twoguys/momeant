@@ -10,7 +10,9 @@
     = @story.topics.map{|t| t.name}.join(', ')
     
   .price
-    - if current_user.stories.include?(@story)
+    - if @story.user == current_user
+      .value yours
+    - elsif current_user.stories.include?(@story)
       .value owned
       = link_to("view", @story)
     - else

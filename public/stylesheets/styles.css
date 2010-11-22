@@ -18,7 +18,7 @@ a, a:visited {
 /* Layout */
 header .insides, #mid .insides, #footer .insides {
   width: 960px;
-  padding: 10px 0;
+  padding: 10px 0 0;
   margin: 0 auto;
   position: relative; }
 
@@ -37,16 +37,49 @@ header .insides, #mid .insides, #footer .insides {
   height: 50px;
   clear: both; }
 
-/* Wrapper styles */
+/* Overall app layout styles */
 header #logo {
   font-size: 2.5em; }
 header #user-nav {
   padding: 5px 0;
   border-top: 1px dotted #cccccc;
   border-bottom: 1px dotted #cccccc; }
+  header #user-nav a {
+    margin-right: 10px; }
+
+/* Flash notices */
+#flash {
+  width: 960px;
+  margin: 0 auto 10px;
+  text-align: center;
+  color: black;
+  font-weight: bold;
+  text-shadow: 0 1px 1px white; }
+  #flash div {
+    padding: 5px 0;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px; }
+  #flash .notice {
+    background-color: #eaf5e9;
+    color: #006702;
+    border: 1px solid #bdd7bc; }
+  #flash .alert {
+    background-color: #f5dbda;
+    color: #990402;
+    border: 1px solid #d1b2b2; }
 
 /* Form styles */
 form label {
   width: 120px;
   display: block;
   float: left; }
+
+/* Stories */
+.story-preview .price {
+  background: white;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  padding: 5px;
+  display: inline-block; }
