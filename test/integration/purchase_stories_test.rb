@@ -27,7 +27,6 @@ Feature "A user can acquire a story" do
       click_link("acquire")
     end
     
-    #then_i_should_be_on_page(:story) { @story }
     Then "I should be on the story view page" do
       assert_equal story_path(@story), current_path
     end

@@ -13,6 +13,8 @@ class Ability
       can [:create, :show, :index], Invitation
       can [:preview, :purchase, :library], Story
       can :show, Story do |story|
+        Rails.logger.info "------------"
+        Rails.logger.info user.stories.inspect
         user.stories.include?(story)
       end
     end
