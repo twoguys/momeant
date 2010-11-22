@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101122165826) do
+ActiveRecord::Schema.define(:version => 20101122193724) do
 
   create_table "invitations", :force => true do |t|
     t.integer  "inviter_id"
@@ -18,14 +18,6 @@ ActiveRecord::Schema.define(:version => 20101122165826) do
     t.string   "invited_as"
     t.string   "invitee_email"
     t.string   "token"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "purchases", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "story_id"
-    t.float    "cost"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -48,6 +40,16 @@ ActiveRecord::Schema.define(:version => 20101122165826) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "transactions", :force => true do |t|
+    t.integer  "story_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.float    "amount"
+    t.integer  "payee_id"
+    t.integer  "payer_id"
+    t.string   "type"
   end
 
   create_table "users", :force => true do |t|

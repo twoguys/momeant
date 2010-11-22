@@ -1,4 +1,3 @@
-class Purchase < ActiveRecord::Base
-  belongs_to :user
+class Purchase < Transaction
   belongs_to :story
 end

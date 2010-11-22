@@ -36,12 +36,10 @@ class StoriesController < ApplicationController
         redirect_to @story, :notice => "You created this story silly, you don't need to purchase it!"
       elsif current_user.stories.include?(@story)
         redirect_to @story, :notice => "You already own this story, silly!"
-      elsif @story.free?
-        Purchase.create(:cost => @story.price, :story_id => @story.id, :user_id => current_user.id)
+      elsif current_user.purchase(@story)
         redirect_to @story, :notice => "This story is now in your library."
-      else  
-        # future purchase logic here
-        redirect_to home_path, :alert => "Purchasing non-free stories is not yet ready."
+      else
+        redirect_to preview_story(@story), :alert => "Sorry, you do not have enough money."
       end
     else
       redirect_to home_path, :alert => "Sorry, that story does not exist."

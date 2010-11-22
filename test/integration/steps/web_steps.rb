@@ -2,7 +2,7 @@ module WebSteps
 
   def when_i_visit_page(named_path, eval_block = false, &block)
     When "I visit the #{named_path} page" do
-      if block
+      if block_given?
         args = eval_block ? eval(block.call) : block.call
       end
       page_url = send("#{named_path}_path", args)

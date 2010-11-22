@@ -1,7 +1,6 @@
 class User < ActiveRecord::Base
-  
-  has_many :purchases
-  has_many :stories, :through => :purchases
+  has_many :purchases, :foreign_key => :payer_id
+  has_many :stories, :through => :purchases, :foreign_key => :payer_id
   
   validates_uniqueness_of :username
   
@@ -25,5 +24,10 @@ class User < ActiveRecord::Base
   
   def name
     "#{self.first_name} #{self.last_name}"
+  end
+  
+  def purchase(story)
+    Purchase.create(:amount => story.price, :story_id => story.id, :payer_id => self.id, :payee_id => story.user_id)
+    
   end
 end
