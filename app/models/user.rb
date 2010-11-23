@@ -42,4 +42,8 @@ class User < ActiveRecord::Base
     story.increment!(:purchased_count)
     return Purchase.create(:amount => story.price, :story_id => story.id, :payer_id => self.id, :payee_id => story.user_id)
   end
+  
+  def has_bookmarked?(story)
+    !Bookmark.where(:user_id => self.id, :story_id => story).empty?
+  end
 end

@@ -13,7 +13,8 @@ Repo::Application.routes.draw do
     member do
       get :preview
       get :purchase
-      get :bookmark
+      post :bookmark
+      post :unbookmark
     end
     get :bookmarked, :on => :collection
   end
