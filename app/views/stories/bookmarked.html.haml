@@ -4,5 +4,5 @@
   %ul
     - @bookmarks.each do |bookmark|
       %li.bookmark
-        %span.story= link_to(bookmark.story.title, bookmark.story)
+        %span.story= link_to(bookmark.story.title, preview_story_path(bookmark.story))
         %span.date #{time_ago_in_words(bookmark.created_at)} ago

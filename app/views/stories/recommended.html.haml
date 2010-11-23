@@ -11,5 +11,5 @@
   %ul
     - @recommendations.each do |recommendation|
       %li.recommendation
-        %span.story= link_to(recommendation.story.title, recommendation.story)
+        %span.story= link_to(recommendation.story.title, preview_story_path(recommendation.story))
         %span.date #{time_ago_in_words(recommendation.created_at)} ago
