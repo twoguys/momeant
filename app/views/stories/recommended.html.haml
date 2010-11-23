@@ -1,0 +1,8 @@
+.recommendations
+  %h1 Your Recommended Stories
+  
+  %ul
+    - @recommendations.each do |recommendation|
+      %li.recommendation
+        %span.story= link_to(recommendation.story.title, recommendation.story)
+        %span.date #{time_ago_in_words(recommendation.created_at)} ago

@@ -1,8 +1,8 @@
 .bookmarks
-  %h1 Your Bookmarks
+  %h1 Your Bookmarked Stories
   
   %ul
     - @bookmarks.each do |bookmark|
       %li.bookmark
         %span.story= link_to(bookmark.story.title, bookmark.story)
-        %span.date= time_ago_in_words(bookmark.created_at)
+        %span.date #{time_ago_in_words(bookmark.created_at)} ago

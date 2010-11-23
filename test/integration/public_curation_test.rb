@@ -33,6 +33,14 @@ Feature "A user wants to publicly curate for others" do
     And "the user should be in the story's users who recommended" do
       assert @story.users_who_recommended.include?(@email_confirmed_user)
     end
+    
+    when_i_visit_page(:recommended_stories)
+    
+    then_i_should_be_on_page(:recommended_stories)
+    
+    And "I should see a link to my recommended story" do
+      assert page.find_link(@story.title).visible?
+    end
   end
   
   Scenario "A user unrecommends a story they previously recommended" do

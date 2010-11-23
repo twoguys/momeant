@@ -70,6 +70,10 @@ class StoriesController < ApplicationController
     redirect_to preview_story_path(@story), :notice => "Recommendation removed."
   end
   
+  def recommended
+    @recommendations = current_user.recommendations
+  end
+  
   def show
   end
   
