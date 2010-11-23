@@ -24,6 +24,10 @@ Repo::Application.routes.draw do
   match '/library',             :to => 'stories#library',           :as => :library
   
   resources :deposits
+  
+  resources :users do
+    post :subscribe_to, :on => :member
+  end
 
   match '/',                    :to => 'home#index',                :as => :home
   root :to => "home#index"

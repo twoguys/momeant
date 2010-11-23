@@ -1,10 +1,16 @@
 class User < ActiveRecord::Base
   has_many :purchases, :foreign_key => :payer_id
+
   has_many :stories, :through => :purchases, :foreign_key => :payer_id
   has_many :bookmarks
   has_many :bookmarked_stories, :through => :bookmarks, :source => :story
   has_many :recommendations
   has_many :recommended_stories, :through => :recommendations, :source => :story
+
+  has_many :subscriptions
+  has_many :inverse_subscriptions, :class_name => "Subscription", :foreign_key => :subscriber_id
+  has_many :subscribers, :through => :subscriptions
+  has_many :subscribed_to, :through => :inverse_subscriptions, :source => :user
   
   RECOMMENDATIONS_LIMIT = 10
   
@@ -57,5 +63,9 @@ class User < ActiveRecord::Base
   
   def recommendation_limit_reached?
     self.recommendations.count == RECOMMENDATIONS_LIMIT
+  end
+  
+  def is_subscribed_to?(user)
+    self.subscribed_to.include?(user)
   end
 end
