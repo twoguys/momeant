@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101122220542) do
+ActiveRecord::Schema.define(:version => 20101123140013) do
 
   create_table "bookmarked_stories_users", :id => false, :force => true do |t|
     t.integer "user_id"
@@ -30,6 +30,13 @@ ActiveRecord::Schema.define(:version => 20101122220542) do
     t.string   "invited_as"
     t.string   "invitee_email"
     t.string   "token"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "recommendations", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "story_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

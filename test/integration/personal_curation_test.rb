@@ -16,7 +16,7 @@ Feature "A user wants to personally curate their experience" do
       visit preview_story_path(@story)
     end
     
-    And "I click the bookmark link" do
+    And "I click the bookmark button" do
       click_button("bookmark story")
     end
     
@@ -56,7 +56,7 @@ Feature "A user wants to personally curate their experience" do
       visit preview_story_path(@story)
     end
     
-    And "I click the unbookmark link" do
+    And "I click the unbookmark button" do
       click_button("unbookmark story")
     end
     

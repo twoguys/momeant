@@ -11,7 +11,7 @@ class Ability
       can :manage, Story
     else
       can [:create, :show, :index], Invitation
-      can [:preview, :purchase, :library, :bookmark, :unbookmark, :bookmarked], Story
+      can [:preview, :purchase, :library, :bookmark, :unbookmark, :bookmarked, :recommend, :unrecommend, :recommended], Story
       can :show, Story do |story|
         user.stories.include?(story)
       end

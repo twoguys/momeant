@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
   has_many :stories, :through => :purchases, :foreign_key => :payer_id
   has_many :bookmarks
   has_many :bookmarked_stories, :through => :bookmarks, :source => :story
+  has_many :recommendations
+  has_many :recommended_stories, :through => :recommendations, :source => :story
   
   validates_uniqueness_of :username
   
@@ -44,6 +46,10 @@ class User < ActiveRecord::Base
   end
   
   def has_bookmarked?(story)
-    !Bookmark.where(:user_id => self.id, :story_id => story).empty?
+    Bookmark.where(:user_id => self.id, :story_id => story).count > 0
+  end
+  
+  def has_recommended?(story)
+    Recommendation.where(:user_id => self.id, :story_id => story).count > 0
   end
 end

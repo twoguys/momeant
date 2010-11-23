@@ -15,8 +15,11 @@ Repo::Application.routes.draw do
       get :purchase
       post :bookmark
       post :unbookmark
+      post :recommend
+      post :unrecommend
     end
     get :bookmarked, :on => :collection
+    get :recommended, :on => :collection
   end
   match '/library',             :to => 'stories#library',           :as => :library
   

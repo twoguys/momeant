@@ -1,8 +1,6 @@
 .story-preview
-  - if current_user.has_bookmarked?(@story)
-    = button_to("unbookmark story", unbookmark_story_path(@story))
-  - else
-    = button_to("bookmark story", bookmark_story_path(@story))
+  = bookmark_button(@story)
+  = recommend_button(@story)
 
   %h2
     Preview of

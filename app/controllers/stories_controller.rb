@@ -60,6 +60,16 @@ class StoriesController < ApplicationController
     @bookmarks = current_user.bookmarks
   end
   
+  def recommend
+    Recommendation.create(:story_id => @story.id, :user_id => current_user.id)
+    redirect_to preview_story_path(@story), :notice => "Story recommended."
+  end
+  
+  def unrecommend
+    Recommendation.where(:story_id => @story.id, :user_id => current_user.id).destroy_all
+    redirect_to preview_story_path(@story), :notice => "Recommendation removed."
+  end
+  
   def show
   end
   
