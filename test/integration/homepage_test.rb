@@ -23,8 +23,8 @@ Feature "A user should be able to see the home page" do
     end
     
     And "I should see a list of public stories (thumbnails)" do
-      assert page.has_content? @story1.title
-      assert page.has_content? @story2.title
+      assert page.find('#recent-stories').has_content? @story1.title
+      assert page.find('#recent-stories').has_content? @story2.title
     end
   end
   

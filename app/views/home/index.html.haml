@@ -3,7 +3,13 @@
 %section#editorial
   %h2 Editorial section
 
-%section#story-stream
+%section#recent-stories
   %h2 Recent Stories
   %ul.stories
     = render :partial => "home/story_preview", :collection => @stories, :as => :story
+    
+- if current_user
+  %section#subscribed-to-stories
+    %h2 Stories recommended by users you're subscribed to
+    %ul.stories
+      = render :partial => "home/story_preview", :collection => @subscribed_to_stories, :as => :story

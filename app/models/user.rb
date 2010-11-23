@@ -68,4 +68,8 @@ class User < ActiveRecord::Base
   def is_subscribed_to?(user)
     self.subscribed_to.include?(user)
   end
+  
+  def recommended_stories_from_people_i_subscribe_to
+    Story.joins(Recommendation.joins(self.subscribed_to))
+  end
 end

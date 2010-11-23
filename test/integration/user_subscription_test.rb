@@ -1,6 +1,6 @@
 require File.expand_path('../test_helper', File.dirname(__FILE__))
 
-Feature "A user should be able subscribe to other users whose curations they like" do
+Feature "A user should be able subscribe to other users whose curations they like and be delivered those stories" do
 
   in_order_to "be shown more content I might like"
   as_a "user"
@@ -34,6 +34,34 @@ Feature "A user should be able subscribe to other users whose curations they lik
     And "I should be subscribed to the user" do
       assert @email_confirmed_user.subscribed_to.include?(@user2)
       assert @user2.subscribers.include?(@email_confirmed_user)
+    end
+  end
+  
+  Scenario "Seeing recommended stories from people I subscribe to on my homepage" do
+    given_a(:email_confirmed_user)
+    given_im_signed_in_as(:email_confirmed_user)
+    Given "A second user" do
+      @user2 = Factory(:email_confirmed_user)
+    end
+    Given "I'm subscribed to the other user" do
+      Subscription.create(:subscriber_id => @email_confirmed_user.id, :user_id => @user2.id)
+    end
+    given_a(:story)
+    Given "Another story" do
+      @story2 = Factory(:story)
+    end
+    Given "The other user has a recommended stories" do
+      Recommendation.create(:story_id => @story.id, :user_id => @user2.id)
+      Recommendation.create(:story_id => @story2.id, :user_id => @user2.id)
+    end
+    
+    when_i_visit_page(:home)
+    
+    Then "I should see links to the stories the other user recommends" do
+      @their_recommended_stories = @user2.recommended_stories
+      @their_recommended_stories.each do |story|
+        assert page.find('#subscribed-to-stories').has_content? story.title
+      end
     end
   end
   
