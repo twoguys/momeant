@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
   has_many :recommendations
   has_many :recommended_stories, :through => :recommendations, :source => :story
   
+  RECOMMENDATIONS_LIMIT = 10
+  
   validates_uniqueness_of :username
   
   has_attached_file :avatar,
@@ -51,5 +53,9 @@ class User < ActiveRecord::Base
   
   def has_recommended?(story)
     Recommendation.where(:user_id => self.id, :story_id => story).count > 0
+  end
+  
+  def recommendation_limit_reached?
+    self.recommendations.count == RECOMMENDATIONS_LIMIT
   end
 end

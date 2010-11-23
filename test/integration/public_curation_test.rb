@@ -75,4 +75,27 @@ Feature "A user wants to publicly curate for others" do
     end
   end
   
+  Scenario "A user has reached their limit of recommendations" do
+    given_a(:email_confirmed_user)
+    given_a(:story)
+    Given "A second story" do
+      @story2 = Factory(:story)
+    end
+    Given "10 recommendations already exist for this story/user" do
+      10.times do
+        Recommendation.create(:story_id => @story.id, :user_id => @email_confirmed_user.id)
+      end
+    end
+    
+    given_im_signed_in_as(:email_confirmed_user)
+    
+    When "I visit the story preview page" do
+      visit preview_story_path(@story2)
+    end
+    
+    Then "I should see that my recommendation limit is reached" do
+      assert page.has_content?("Recommendation limit reached")
+    end
+  end
+  
 end
