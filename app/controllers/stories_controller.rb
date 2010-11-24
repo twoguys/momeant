@@ -13,7 +13,7 @@ class StoriesController < ApplicationController
   end
   
   def new
-    @story = Story.new
+    @story = Story.new(:price => 0.0)
   end
   
   def create
