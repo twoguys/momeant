@@ -12,7 +12,7 @@ Repo::Application.routes.draw do
   resources :stories do
     member do
       get :preview
-      get :purchase
+      post :purchase
       post :bookmark
       post :unbookmark
       post :recommend
@@ -28,6 +28,8 @@ Repo::Application.routes.draw do
   resources :users do
     post :subscribe_to, :on => :member
   end
+  
+  resources :pay_periods
 
   match '/',                    :to => 'home#index',                :as => :home
   root :to => "home#index"

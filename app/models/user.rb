@@ -70,6 +70,6 @@ class User < ActiveRecord::Base
   end
   
   def recommended_stories_from_people_i_subscribe_to
-    Story.where(:id => Recommendation.where(:user_id => self.subscribed_to).map{|r|r.story_id})
+    Story.where(:id => Recommendation.where(:user_id => self.subscribed_to).map{ |r| r.story_id })
   end
 end

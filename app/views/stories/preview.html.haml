@@ -21,7 +21,7 @@
     - else
       - if @story.free?
         .value free
-        = link_to("acquire", purchase_story_path(@story), :class => "buy-it")
+        = button_to("acquire", purchase_story_path(@story), :class => "buy-it")
       - else
         .value= number_to_currency(@story.price)
-        = link_to("purchase", purchase_story_path(@story), :class => "buy-it")
+        = button_to("purchase", purchase_story_path(@story), :class => "buy-it")

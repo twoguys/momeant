@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101123194509) do
+ActiveRecord::Schema.define(:version => 20101124184113) do
 
   create_table "bookmarked_stories_users", :id => false, :force => true do |t|
     t.integer "user_id"
@@ -31,6 +31,22 @@ ActiveRecord::Schema.define(:version => 20101123194509) do
     t.string   "invited_as"
     t.string   "invitee_email"
     t.string   "token"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "pay_period_line_items", :force => true do |t|
+    t.integer  "payee_id"
+    t.integer  "pay_period_id"
+    t.float    "amount"
+    t.integer  "payment_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "pay_periods", :force => true do |t|
+    t.datetime "end"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

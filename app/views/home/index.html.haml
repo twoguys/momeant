@@ -6,7 +6,7 @@
 %section#recent-stories
   %h2 Recent Stories
   %ul.stories
-    = #render :partial => "home/story_preview", :collection => @stories, :as => :story
+    = render :partial => "home/story_preview", :collection => @stories, :as => :story
     
 - if current_user
   %section#subscribed-to-stories

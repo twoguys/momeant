@@ -1,0 +1,4 @@
+%h1 Pay Period ending #{@pay_period.end}
+
+%ul.pay-period-line-items
+  = render :partial => "pay_periods/line_item", :collection => @pay_period.line_items, :as => :line_item
