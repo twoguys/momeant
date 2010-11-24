@@ -16,4 +16,8 @@ class PayPeriod < ActiveRecord::Base
       self.line_items << PayPeriodLineItem.new(:payee_id => creator_id, :amount => creator_purchases_total)
     end
   end
+  
+  def total
+    self.line_items.map {|l| l.amount}.inject {|sum, price| sum + price}
+  end
 end

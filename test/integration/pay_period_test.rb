@@ -20,14 +20,14 @@ Feature "Momeant can pay creators for the sales they've made" do
                                          :payee_id => @purchase.story.user_id)
     end
     
-    when_i_visit_page(:pay_periods)
+    when_i_visit_page(:admin_pay_periods)
     
     When "I click end current pay period" do
       click_button("End current pay period")
     end
     
     Then "I should be on the new pay period page" do
-      assert_equal pay_period_path(PayPeriod.last), current_path
+      assert_equal admin_pay_period_path(PayPeriod.last), current_path
     end
     
     And "I should see a pay period line item for each creator that needs to be paid" do
