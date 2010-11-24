@@ -70,6 +70,14 @@ class User < ActiveRecord::Base
   end
   
   def recommended_stories_from_people_i_subscribe_to
-    Story.joins(Recommendation.joins(self.subscribed_to))
+    #Story.joins(Recommendation.joins(self.subscribed_to))
+    Story.where(:id => Recommendation.where(:user_id => self.subscribed_to).map{|r|r.story_id})
+    
+    #User.connection.execute("SELECT curations.* FROM curations INNER JOIN users ON curations.user_id = users.id INNER JOIN subscriptions ON subscriptions.user_id = users.id WHERE curations.type = 'Recommendation' AND subscriptions.subscriber_id = 1")
+    
+    # SELECT recommendations.* FROM recommendations
+    #   INNER JOIN users ON recommendations.user_id = users.id
+    #   INNER JOIN subscriptions ON subscriptions.user_id = users.id
+    #   WHERE subscriptions.subscriber_id = self.id
   end
 end
