@@ -11,7 +11,7 @@
     = link_to("Recommendations", recommended_stories_path)
     - if current_user.is_admin?
       = link_to("Admin", admin_dashboard_path)
-    Signed in as #{current_user.username}
+    Signed in as #{current_user.email}
     = link_to("Sign out", destroy_user_session_path)
   - else
     = link_to("Sign up", new_user_registration_path)

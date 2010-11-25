@@ -8,6 +8,9 @@ Feature "A user should be able to see the home page" do
 
   Scenario "Visting the homepage when not logged in" do
     Given "There are a few stories" do
+      @user = Factory(:user)
+      @user2 = Factory(:user)
+      
       @story1 = Factory(:story)
       @story2 = Factory(:story)
     end

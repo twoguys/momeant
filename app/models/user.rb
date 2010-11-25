@@ -14,8 +14,6 @@ class User < ActiveRecord::Base
   
   RECOMMENDATIONS_LIMIT = 10
   
-  validates_uniqueness_of :username
-  
   has_attached_file :avatar,
     :styles => { :thumbnail => "80x80#" },
     :path          => "avatars/:id/:style.:extension",
@@ -32,11 +30,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :username, :first_name, :last_name, :email, :password, :password_confirmation, :remember_me, :avatar
-  
-  def name
-    "#{self.first_name} #{self.last_name}"
-  end
+  attr_accessible :username, :name, :email, :password, :password_confirmation, :remember_me, :avatar
   
   def can_afford?(amount)
     self.money_available >= amount
