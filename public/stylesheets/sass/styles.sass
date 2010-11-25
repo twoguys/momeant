@@ -102,7 +102,7 @@ form
 		color: #444
 		color: rgba(0, 0, 0, 0.8)
 		text-shadow: 0 1px 1px #fff
-	input[type="text"]
+	input[type="text"], input[type="password"], textarea
 		padding: 5px 8px
 		font-size: 1.2em
 		border: none
@@ -113,7 +113,7 @@ form
 		-moz-border-radius: 4px
 		-o-border-radius: 4px
 		border-radius: 4px
-	input[type="text"]:focus
+	input[type="text"]:focus, input[type="password"]:focus, textarea:focus
 		outline: none
 		-webkit-box-shadow: 0 0 12px rgba(51, 204, 255, 0.5)
 		-moz-box-shadow: 0 0 12px rgba(51, 204, 255, 0.5)
@@ -144,6 +144,8 @@ form
 		background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#bbb), to(#ddd))
 form.button_to
 	margin: 0 0 10px
+label[for="user_remember_me"]
+	display: inline-block
 
 /* Stories */
 .story-preview
