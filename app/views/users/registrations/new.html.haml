@@ -6,30 +6,30 @@
   
   %fieldset
     %ul
-    
-      %li
-        = f.label :username
-        = f.text_field :username
         
       %li
-        = f.label :first_name
-        = f.text_field :first_name
-        
-      %li
-        = f.label :last_name
-        = f.text_field :last_name
+        .side
+          = f.label :first_name
+          = f.text_field :first_name
+        .side
+          = f.label :last_name
+          = f.text_field :last_name
       
       %li
-        = f.label :email
-        = f.text_field :email
-
+        .side
+          = f.label :email
+          = f.text_field :email
+        .side
+          = f.label :username
+          = f.text_field :username
+        
       %li
-        = f.label :password
-        = f.password_field :password
-
-      %li
-        = f.label :password_confirmation, "Password (again)"
-        = f.password_field :password_confirmation
+        .side
+          = f.label :password
+          = f.password_field :password
+        .side
+          = f.label :password_confirmation, "Password again (just to be sure)"
+          = f.password_field :password_confirmation
       
       %li
         = f.label :avatar
