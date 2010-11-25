@@ -22,6 +22,7 @@ Feature "A user should be able subscribe to other users whose curations they lik
     end
     
     When "I click the subscribe button" do
+      save_and_open_page
       click_button("subscribe")
     end
     

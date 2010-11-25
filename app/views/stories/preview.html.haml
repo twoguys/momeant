@@ -5,6 +5,7 @@
   %h2
     Preview of
     %span.title= @story.title
+  .creator= link_to(@story.user.name, user_path(@story.user))
 
   .excerpt= @story.excerpt
   
