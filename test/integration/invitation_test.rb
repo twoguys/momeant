@@ -49,6 +49,7 @@ Feature "A Creator or Admin should be able to invite new creators" do
     then_i_should_be_on_page(:new_user_registration)
     
     And "I fill out the form fields and submit the form" do
+      fill_in "user_name", :with => "Creator Guy"
       fill_in "user_email", :with => "new_creator@example.com"
       fill_in "user_password", :with => "password"
       fill_in "user_password_confirmation", :with => "password"

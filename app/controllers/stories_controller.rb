@@ -1,6 +1,6 @@
 class StoriesController < ApplicationController
-  before_filter :authenticate_user!
-  load_and_authorize_resource
+  before_filter :authenticate_user!, :except => [:index, :preview]
+  load_and_authorize_resource :except => [:index, :preview]
   before_filter :find_story, :only => [:preview, :purchase, :bookmark, :unbookmark, :show]
   before_filter :get_topics, :only => [:new]
   

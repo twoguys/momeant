@@ -32,6 +32,7 @@ Feature "A user should be able to sign up, sign in and sign out" do
     when_i_visit_page(:new_user_registration)
     
     And "I fill out the form fields and submit the form" do
+      fill_in "user_name", :with => "Adam Adams"
       fill_in "user_email", :with => "a@a.com"
       fill_in "user_password", :with => "password"
       fill_in "user_password_confirmation", :with => "password"

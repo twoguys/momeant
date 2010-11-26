@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
   has_many :subscribers, :through => :subscriptions
   has_many :subscribed_to, :through => :inverse_subscriptions, :source => :user
   
+  validates :name, :presence => true, :length => (3...128)
+  
   RECOMMENDATIONS_LIMIT = 10
   
   has_attached_file :avatar,
@@ -30,7 +32,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :username, :name, :email, :password, :password_confirmation, :remember_me, :avatar
+  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :avatar
   
   def can_afford?(amount)
     self.money_available >= amount

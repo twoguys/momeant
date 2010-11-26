@@ -5,7 +5,7 @@
   %h2
     Preview of
     %span.title= @story.title
-  .creator= link_to(@story.user.name, user_path(@story.user))
+  .creator Creator: #{link_to(@story.user.name, user_path(@story.user))}
 
   .excerpt= @story.excerpt
   
@@ -14,15 +14,4 @@
     = @story.topics.map{|t| t.name}.join(', ')
     
   .price
-    - if @story.user == current_user
-      .value yours
-    - elsif current_user.stories.include?(@story)
-      .value owned
-      = link_to("view", @story)
-    - else
-      - if @story.free?
-        .value free
-        = button_to("acquire", purchase_story_path(@story), :class => "buy-it")
-      - else
-        .value= number_to_currency(@story.price)
-        = button_to("purchase", purchase_story_path(@story), :class => "buy-it")
+    = story_price(@story)
