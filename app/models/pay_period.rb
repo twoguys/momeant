@@ -47,7 +47,8 @@ class PayPeriod < ActiveRecord::Base
   
   def mark_as_paid
     self.line_items.each do |line_item|
-      Payment.create(:payee_id => line_item.payee_id, :amount => line_item.amount)
+      payment = Payment.create(:payee_id => line_item.payee_id, :amount => line_item.amount)
+      line_item.update_attribute(:payment_id, payment.id)
     end
     self.update_attribute(:paid, true)
   end
