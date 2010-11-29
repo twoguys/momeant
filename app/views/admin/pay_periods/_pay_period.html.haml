@@ -1,4 +1,5 @@
 %li.pay-period
   %span.date= link_to(pay_period.print_date, admin_pay_period_path(pay_period))
   %span.admin ended by #{pay_period.user.name}
+  %span.paid= "paid" if pay_period.paid?
   %span.csv= link_to("Download CSV", admin_pay_period_path(pay_period, :format => :csv))

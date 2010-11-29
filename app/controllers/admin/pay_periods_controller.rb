@@ -21,4 +21,10 @@ class Admin::PayPeriodsController < Admin::BaseController
       end
     end
   end
+  
+  def mark_paid
+    @pay_period = PayPeriod.find(params[:id])
+    @pay_period.mark_as_paid
+    redirect_to admin_pay_period_path(@pay_period), :notice => "Payments have been entered for each line item."
+  end
 end

@@ -52,7 +52,7 @@ Feature "Momeant can pay creators for the sales they've made" do
     end
   end
   
-  Scenario "An admin wants to view a CSV of the line items for a previous pay period" do
+  Scenario "An admin views a CSV of the line items for a previous pay period" do
     given_a(:admin)
     given_im_signed_in_as(:admin)
     given_a(:pay_period)
@@ -71,6 +71,28 @@ Feature "Momeant can pay creators for the sales they've made" do
         assert_equal line_items[i].payee.name, row[1].strip
         i += 1
       end
+    end
+  end
+  
+  Scenario "An admin marks a pay period as paid" do
+    given_a(:admin)
+    given_im_signed_in_as(:admin)
+    given_a(:pay_period)
+    
+    When "I visit the pay period page" do
+      visit admin_pay_period_path(@pay_period)
+    end
+    
+    And "I click the mark as paid button" do
+      click_button "Mark as paid"
+    end
+    
+    Then "There should be payment transactions stored for each creator requiring payment in the pay period" do
+      @pay_period.line_items.each do |line_item|
+        assert_equal line_item.amount, line_item.payee.payments.last.amount
+        assert_equal 0, line_item.payee.balance
+      end
+      assert PayPeriod.last.paid?
     end
   end
   

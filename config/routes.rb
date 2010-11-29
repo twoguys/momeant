@@ -32,7 +32,9 @@ Repo::Application.routes.draw do
   
   namespace :admin do
     match '/', :to =>"dashboard#index", :as => :dashboard
-    resources :pay_periods
+    resources :pay_periods do
+      post :mark_paid, :on => :member
+    end
   end
 
   match '/',                    :to => 'home#index',                :as => :home

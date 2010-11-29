@@ -4,6 +4,7 @@ class PayPeriod < ActiveRecord::Base
   belongs_to :user # admin that ended the period
   has_many :line_items, :class_name => "PayPeriodLineItem"
   has_many :purchases, :through => :line_items
+  has_many :payees, :through => :line_items
   
   def create_line_items
     previous_pay_period = PayPeriod.where("created_at < ?", self.created_at).order("created_at DESC").limit(1).first
@@ -42,5 +43,12 @@ class PayPeriod < ActiveRecord::Base
         csv << [number_to_currency(line_item.amount), line_item.payee.name] unless line_item.amount == 0
       end
     end
+  end
+  
+  def mark_as_paid
+    self.line_items.each do |line_item|
+      Payment.create(:payee_id => line_item.payee_id, :amount => line_item.amount)
+    end
+    self.update_attribute(:paid, true)
   end
 end

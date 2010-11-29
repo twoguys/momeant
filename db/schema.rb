@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101129153322) do
+ActiveRecord::Schema.define(:version => 20101129203530) do
 
   create_table "bookmarked_stories_users", :id => false, :force => true do |t|
     t.integer "user_id"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(:version => 20101129153322) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "paid",       :default => false
   end
 
   create_table "stories", :force => true do |t|
