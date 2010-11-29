@@ -2,9 +2,10 @@ class PayPeriod < ActiveRecord::Base
   include ActionView::Helpers::NumberHelper
   
   belongs_to :user # admin that ended the period
-  has_many :line_items, :class_name => "PayPeriodLineItem"
+  has_many :line_items, :class_name => "PayPeriodLineItem", :dependent => :destroy
   has_many :purchases, :through => :line_items
   has_many :payees, :through => :line_items
+  has_many :payments, :through => :line_items
   
   def create_line_items
     previous_pay_period = PayPeriod.where("created_at < ?", self.created_at).order("created_at DESC").limit(1).first
