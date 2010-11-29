@@ -67,8 +67,8 @@ Feature "Momeant can pay creators for the sales they've made" do
       i = 0
       line_items = @pay_period.line_items
       FasterCSV.parse(page.body, :headers => true) do |row|
-        assert_equal line_items[i].payee.name, row[0].strip
-        assert_equal number_to_currency(line_items[i].amount), row[1].strip
+        assert_equal number_to_currency(line_items[i].amount), row[0].strip
+        assert_equal line_items[i].payee.name, row[1].strip
         i += 1
       end
     end

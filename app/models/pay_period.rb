@@ -3,6 +3,7 @@ class PayPeriod < ActiveRecord::Base
   
   belongs_to :user # admin that ended the period
   has_many :line_items, :class_name => "PayPeriodLineItem"
+  has_many :purchases, :through => :line_items
   
   def create_line_items
     previous_pay_period = PayPeriod.where("created_at < ?", self.created_at).order("created_at DESC").limit(1).first
@@ -18,16 +19,16 @@ class PayPeriod < ActiveRecord::Base
       creator_purchases_total = creator_sales.map {|p| p.amount}.inject {|sum, price| sum + price}
       line_item = PayPeriodLineItem.new(:payee_id => creator_id, :amount => creator_purchases_total)
       if self.line_items << line_item
-        Rails.logger.info "----------LINE ITEM ID: #{line_item.id}------------"
         # associate the purchases with this line item
+        line_item_id = PayPeriodLineItem.last.id
         creator_sales_ids = creator_sales.map{|sale| sale.id}.join(",")
-        Purchase.update_all("pay_period_line_item_id = #{line_item.id}", "id IN (#{creator_sales_ids})")
+        Purchase.update_all("pay_period_line_item_id = #{line_item_id}", "id IN (#{creator_sales_ids})")
       end
     end
   end
   
   def total
-    self.line_items.map {|l| l.amount}.inject {|sum, price| sum + price}
+    self.line_items.map {|l| l.amount}.inject {|sum, price| sum + price} || 0.0
   end
   
   def print_date
@@ -38,7 +39,7 @@ class PayPeriod < ActiveRecord::Base
     FasterCSV.generate do |csv|
       csv << ["Pay Period ending #{self.print_date}"]
       self.line_items.each do |line_item|
-        csv << [line_item.payee.name, number_to_currency(line_item.amount)] unless line_item.amount == 0
+        csv << [number_to_currency(line_item.amount), line_item.payee.name] unless line_item.amount == 0
       end
     end
   end
