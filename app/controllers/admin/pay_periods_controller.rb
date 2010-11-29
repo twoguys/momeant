@@ -12,5 +12,13 @@ class Admin::PayPeriodsController < Admin::BaseController
   
   def show
     @pay_period = PayPeriod.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.csv do
+        send_data @pay_period.to_csv,
+          :type => 'text/csv; charset=iso-8859-1;',
+          :disposition => "attachment; filename=pay-period-#{@pay_period.print_date.gsub('/','-')}"
+      end
+    end
   end
 end

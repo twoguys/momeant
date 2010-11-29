@@ -1,4 +1,6 @@
-%h1 Pay Period ending #{@pay_period.end}
+= link_to("Back to pay periods", admin_pay_periods_path)
+
+%h1 Pay Period ending #{@pay_period.print_date}
 
 %h3 Total: #{number_to_currency(@pay_period.total)}
 

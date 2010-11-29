@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101125072012) do
+ActiveRecord::Schema.define(:version => 20101129153322) do
 
   create_table "bookmarked_stories_users", :id => false, :force => true do |t|
     t.integer "user_id"
@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(:version => 20101125072012) do
     t.integer  "payee_id"
     t.integer  "payer_id"
     t.string   "type"
+    t.integer  "pay_period_line_item_id"
   end
 
   create_table "users", :force => true do |t|

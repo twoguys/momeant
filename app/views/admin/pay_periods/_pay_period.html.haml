@@ -1,3 +1,4 @@
 %li.pay-period
-  %span.date= link_to("#{time_ago_in_words(pay_period.created_at)} ago", admin_pay_period_path(pay_period))
+  %span.date= link_to(pay_period.print_date, admin_pay_period_path(pay_period))
   %span.admin ended by #{pay_period.user.name}
+  %span.csv= link_to("Download CSV", admin_pay_period_path(pay_period, :format => :csv))
