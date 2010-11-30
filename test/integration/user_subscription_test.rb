@@ -54,7 +54,10 @@ Feature "A user should be able subscribe to other users whose curations they lik
     Given "Another story" do
       @story2 = Factory(:story)
     end
-    Given "The other user has a recommended stories" do
+    Given "Yet another story" do
+      @story3 = Factory(:story)
+    end
+    Given "The other user has recommended stories" do
       Recommendation.create(:story_id => @story.id, :user_id => @user2.id)
       Recommendation.create(:story_id => @story2.id, :user_id => @user2.id)
     end
@@ -66,6 +69,10 @@ Feature "A user should be able subscribe to other users whose curations they lik
       @their_recommended_stories.each do |story|
         assert page.find('#subscribed-to-stories').has_content? story.title
       end
+    end
+    
+    And "I should not see a link to a story they didn't recommend" do
+      assert !page.find('#subscribed-to-stories').has_content?(@story3.title)
     end
   end
   
