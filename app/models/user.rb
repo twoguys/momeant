@@ -50,11 +50,11 @@ class User < ActiveRecord::Base
   end
   
   def has_bookmarked?(story)
-    Bookmark.where(:user_id => self.id, :story_id => story).count > 0
+    Bookmark.where(:user_id => self.id, :story_id => story).present?
   end
   
   def has_recommended?(story)
-    Recommendation.where(:user_id => self.id, :story_id => story).count > 0
+    Recommendation.where(:user_id => self.id, :story_id => story).present?
   end
   
   def recommendation_limit_reached?
