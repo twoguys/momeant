@@ -8,14 +8,9 @@ class PayPeriod < ActiveRecord::Base
   has_many :payments, :through => :line_items
   
   def create_line_items
-    previous_pay_period = PayPeriod.where("created_at < ?", self.created_at).order("created_at DESC").limit(1).first
-    if previous_pay_period
-      purchases = Purchase.after(previous_pay_period.created_at)
-    else
-      purchases = Purchase.all
-    end
-    
+    purchases = Purchase.where(:pay_period_line_item_id => nil)
     creator_ids = purchases.map {|p| p.payee_id}.uniq
+    
     creator_ids.each do |creator_id|
       creator_sales = purchases.reject {|p| p.payee_id != creator_id}
       creator_purchases_total = creator_sales.map {|p| p.amount}.inject {|sum, price| sum + price}
@@ -48,7 +43,7 @@ class PayPeriod < ActiveRecord::Base
   
   def mark_as_paid
     self.line_items.each do |line_item|
-      payment = Payment.create(:payee_id => line_item.payee_id, :amount => line_item.amount)
+      payment = Payment.create(:payee_id => line_item.payee_id, :amount => line_item.amount, :pay_period_line_item_id => line_item.id)
       line_item.update_attribute(:payment_id, payment.id)
     end
     self.update_attribute(:paid, true)

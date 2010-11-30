@@ -74,10 +74,15 @@ Feature "Momeant can pay creators for the sales they've made" do
     end
   end
   
-  Scenario "An admin marks a pay period as paid" do
+  Scenario "An admin marks a pay period as paid (with no previous pay period)" do
     given_a(:admin)
     given_im_signed_in_as(:admin)
     given_a(:pay_period)
+    given_a(:purchase)
+    
+    Given "The pay period line items were created" do
+      @pay_period.create_line_items
+    end
     
     When "I visit the pay period page" do
       visit admin_pay_period_path(@pay_period)
@@ -101,6 +106,78 @@ Feature "Momeant can pay creators for the sales they've made" do
     
     And "the pay period should be marked as paid" do
       assert PayPeriod.last.paid?
+    end
+    
+    And "all purchases should have associated line items" do
+      assert_equal 0, Purchase.where(:pay_period_line_item_id => nil).count
+    end
+  end
+  
+  Scenario "An admin marks a pay period as paid (with an existing previous pay period)" do
+    given_a(:email_confirmed_user)
+    given_a(:admin)
+    given_im_signed_in_as(:admin)
+    given_a(:pay_period)
+    
+    Given "purchases for two different creators" do
+      @purchase = Factory(:purchase)
+      @purchase2 = Factory(:purchase)
+    end
+    
+    When "the first pay period is marked as paid" do
+      @pay_period.create_line_items
+      visit admin_pay_period_path(@pay_period)
+      click_button "Mark as paid"
+    end
+    
+    Then "all purchases should have associated line items" do
+      assert_equal 0, Purchase.where(:pay_period_line_item_id => nil).count
+    end
+    
+    When "two new purchases are made for two separate creators" do
+      story = @purchase.story
+      @purchase3 = Purchase.create(:amount => story.price, :story_id => story.id, :payer_id => @email_confirmed_user.id, :payee_id => story.user_id)
+      story2 = @purchase2.story
+      @purchase4 = Purchase.create(:amount => story2.price, :story_id => story2.id, :payer_id => @email_confirmed_user.id, :payee_id => story2.user_id)
+    end
+    
+    And "another pay period is created" do
+      @pay_period2 = Factory(:pay_period)
+      @pay_period2.update_attribute(:end, Time.now)
+      @pay_period2.create_line_items
+    end
+    
+    And "I visit the pay period page" do
+      visit admin_pay_period_path(@pay_period2)
+    end
+    
+    And "I click the mark as paid button" do
+      click_button "Mark as paid"
+    end
+    
+    Then "the pay period should have two purchases" do
+      assert_equal 2, @pay_period2.purchases.count
+    end
+    
+    And "the pay period should have two payments to the appropriate creators" do
+      assert_equal 2, @pay_period2.payments.count
+      @pay_period2.line_items.each do |line_item|
+        assert_equal line_item.amount, line_item.payee.payments.last.amount
+      end
+    end
+    
+    And "each Creator that was paid should have a balance of 0" do
+      @pay_period2.line_items.each do |line_item|
+        assert_equal 0, line_item.payee.balance
+      end
+    end
+    
+    And "the pay period should be marked as paid" do
+      assert PayPeriod.last.paid?
+    end
+
+    And "all purchases should have associated line items" do
+      assert_equal 0, Purchase.where(:pay_period_line_item_id => nil).count
     end
   end
   
