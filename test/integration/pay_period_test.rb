@@ -87,11 +87,19 @@ Feature "Momeant can pay creators for the sales they've made" do
       click_button "Mark as paid"
     end
     
-    Then "There should be payment transactions stored for each creator requiring payment in the pay period" do
+    Then "there should be payment transactions stored for each creator requiring payment in the pay period" do
       @pay_period.line_items.each do |line_item|
         assert_equal line_item.amount, line_item.payee.payments.last.amount
+      end
+    end
+    
+    And "each Creator that was paid should have a balance of 0" do
+      @pay_period.line_items.each do |line_item|
         assert_equal 0, line_item.payee.balance
       end
+    end
+    
+    And "the pay period should be marked as paid" do
       assert PayPeriod.last.paid?
     end
   end
