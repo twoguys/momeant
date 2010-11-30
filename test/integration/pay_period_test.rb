@@ -63,7 +63,7 @@ Feature "Momeant can pay creators for the sales they've made" do
       click_link "Download CSV"
     end
     
-    Then "I should get back a CSV file" do
+    Then "I should get back a CSV file with a header and then each line having a payment's amount and payee name" do
       i = 0
       line_items = @pay_period.line_items
       FasterCSV.parse(page.body, :headers => true) do |row|
