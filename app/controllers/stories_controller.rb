@@ -1,7 +1,6 @@
 class StoriesController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :preview]
   load_and_authorize_resource :except => [:index, :preview]
-  before_filter :find_story, :only => [:preview, :purchase, :bookmark, :unbookmark, :show]
   before_filter :get_topics, :only => [:new]
   
   def index
@@ -28,6 +27,7 @@ class StoriesController < ApplicationController
   end
   
   def preview
+    @story = Story.find(params[:id])
   end
   
   def purchase
@@ -79,10 +79,6 @@ class StoriesController < ApplicationController
   end
   
   private
-  
-    def find_story
-      @story = Story.find(params[:id])
-    end
     
     def get_topics
       @topics = Topic.all
