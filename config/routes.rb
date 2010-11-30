@@ -14,9 +14,9 @@ Repo::Application.routes.draw do
       get :preview
       post :purchase
       post :bookmark
-      post :unbookmark
+      delete :unbookmark
       post :recommend
-      post :unrecommend
+      delete :unrecommend
     end
     get :bookmarked, :on => :collection
     get :recommended, :on => :collection
