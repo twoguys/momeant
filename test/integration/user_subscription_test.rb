@@ -35,6 +35,10 @@ Feature "A user should be able subscribe to other users whose curations they lik
       assert @email_confirmed_user.subscribed_to.include?(@user2)
       assert @user2.subscribers.include?(@email_confirmed_user)
     end
+    
+    And "I should see an unsubscribe button" do
+      assert find_button("unsubscribe").visible?
+    end
   end
   
   Scenario "Seeing recommended stories from people I subscribe to on my homepage" do
