@@ -57,14 +57,82 @@ header .insides, #mid .insides, #footer .insides
 /* Overall app layout styles */
 
 header
-	#logo
-		font-size: 1.5em
 	#user-nav
-		padding: 5px 0
-		border-top: 1px dotted #ccc
+		position: relative
+		height: 50px
 		border-bottom: 1px dotted #ccc
-		a
-			margin-right: 10px
+		.tip
+			display: none
+			background: transparent url(../images/tooltip-bg.png) no-repeat 0 0
+			padding: 12px 8px 5px
+			color: #fff
+			font-weight: bold
+			text-shadow: none
+			position: absolute
+			bottom: -24px
+			left: 6px
+			-webkit-transition: all 0.2s linear
+			z-index: 100
+		#logo, #signup, #signin, #signout, #profile, #create, #balance, #subscriptions, #recommendations, #topics, #search
+			position: absolute
+			top: 10px
+		#logo
+			font-size: 1.5em
+			left: 0
+		#signup, #profile, #signin, #signout
+			top: 15px
+		#signup, #profile
+			left: 200px
+		#signin, #signout
+			left: 320px
+		#create, #balance, #subscriptions, #recommendations, #topics
+			a
+				display: block
+				text-indent: -9999px
+				background-color: transparent
+				background-repeat: no-repeat
+				width: 32px
+				height: 32px
+		#create:hover, #balance:hover, #subscriptions:hover, #recommendations:hover, #topics:hover
+			.tip
+				display: block
+		#create
+			left: 410px
+			a
+				background-image: url(../images/icons/create.png)
+		#balance
+			left: 450px
+			a
+				background-image: url(../images/icons/balance.png)
+		#subscriptions
+			left: 490px
+			a
+				background-image: url(../images/icons/subscriptions.png)
+		#recommendations
+			left: 530px
+			a
+				background-image: url(../images/icons/recommendations.png)
+		#topics
+			left: 650px
+			a
+				background-image: url(../images/icons/topics.png)
+		#search
+			left: 760px
+			top: 8px
+			width: 200px
+			input[type="text"]
+				width: 165px
+			input[type="submit"]
+				width: 20px
+				height: 20px
+				padding: 0
+				margin: 0
+				background: transparent url(../images/icons/search.png) no-repeat
+				-webkit-box-shadow: none
+				-moz-box-shadow: none
+				box-shadow: none
+				text-indent: -9999px
+					
 #footer
 	text-align: center
 

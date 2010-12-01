@@ -45,14 +45,79 @@ header .insides, #mid .insides, #footer .insides {
   clear: both; }
 
 /* Overall app layout styles */
-header #logo {
-  font-size: 1.5em; }
 header #user-nav {
-  padding: 5px 0;
-  border-top: 1px dotted #cccccc;
+  position: relative;
+  height: 50px;
   border-bottom: 1px dotted #cccccc; }
-  header #user-nav a {
-    margin-right: 10px; }
+  header #user-nav .tip {
+    display: none;
+    background: transparent url(../images/tooltip-bg.png) no-repeat 0 0;
+    padding: 12px 8px 5px;
+    color: white;
+    font-weight: bold;
+    text-shadow: none;
+    position: absolute;
+    bottom: -24px;
+    left: 6px;
+    -webkit-transition: all 0.2s linear;
+    z-index: 100; }
+  header #user-nav #logo, header #user-nav #signup, header #user-nav #signin, header #user-nav #signout, header #user-nav #profile, header #user-nav #create, header #user-nav #balance, header #user-nav #subscriptions, header #user-nav #recommendations, header #user-nav #topics, header #user-nav #search {
+    position: absolute;
+    top: 10px; }
+  header #user-nav #logo {
+    font-size: 1.5em;
+    left: 0; }
+  header #user-nav #signup, header #user-nav #profile, header #user-nav #signin, header #user-nav #signout {
+    top: 15px; }
+  header #user-nav #signup, header #user-nav #profile {
+    left: 200px; }
+  header #user-nav #signin, header #user-nav #signout {
+    left: 320px; }
+  header #user-nav #create a, header #user-nav #balance a, header #user-nav #subscriptions a, header #user-nav #recommendations a, header #user-nav #topics a {
+    display: block;
+    text-indent: -9999px;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    width: 32px;
+    height: 32px; }
+  header #user-nav #create:hover .tip, header #user-nav #balance:hover .tip, header #user-nav #subscriptions:hover .tip, header #user-nav #recommendations:hover .tip, header #user-nav #topics:hover .tip {
+    display: block; }
+  header #user-nav #create {
+    left: 410px; }
+    header #user-nav #create a {
+      background-image: url(../images/icons/create.png); }
+  header #user-nav #balance {
+    left: 450px; }
+    header #user-nav #balance a {
+      background-image: url(../images/icons/balance.png); }
+  header #user-nav #subscriptions {
+    left: 490px; }
+    header #user-nav #subscriptions a {
+      background-image: url(../images/icons/subscriptions.png); }
+  header #user-nav #recommendations {
+    left: 530px; }
+    header #user-nav #recommendations a {
+      background-image: url(../images/icons/recommendations.png); }
+  header #user-nav #topics {
+    left: 650px; }
+    header #user-nav #topics a {
+      background-image: url(../images/icons/topics.png); }
+  header #user-nav #search {
+    left: 760px;
+    top: 8px;
+    width: 200px; }
+    header #user-nav #search input[type="text"] {
+      width: 165px; }
+    header #user-nav #search input[type="submit"] {
+      width: 20px;
+      height: 20px;
+      padding: 0;
+      margin: 0;
+      background: transparent url(../images/icons/search.png) no-repeat;
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
+      box-shadow: none;
+      text-indent: -9999px; }
 
 #footer {
   text-align: center; }

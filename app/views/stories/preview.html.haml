@@ -1,17 +1,15 @@
 .story-preview
-  = bookmark_button(@story)
-  = recommend_button(@story)
-
-  %h2
-    Preview of
-    %span.title= @story.title
-  .creator Creator: #{link_to(@story.user.name, user_path(@story.user))}
-
-  .excerpt= @story.excerpt
-  
-  %ul.topics
-    %h3 Topics
-    = @story.topics.map{|t| t.name}.join(', ')
-    
-  .price
-    = story_price(@story)
+  .left
+    .image-preview
+    .price= story_price(@story)
+    .featured-comment
+  .right
+    .actions    
+      = bookmark_button(@story)
+      = recommend_button(@story)
+    .creator Creator: #{link_to(@story.user.name, user_path(@story.user))}
+    .title= @story.title
+    .excerpt= @story.excerpt
+    %ul.topics
+      %h3 Topics
+      = @story.topics.map{|t| t.name}.join(', ')

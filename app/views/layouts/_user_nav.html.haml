@@ -1,18 +1,33 @@
 #user-nav
-  = link_to("Home", home_path)
+  = link_to("Momeant", root_path, :id => "logo")
+
   - if user_signed_in?
-    - if can? :create, Story
-      = link_to("Create a Story", new_story_path)
-      = link_to("My Stories", stories_path)
-    - if can? :invite_creator, Invitation
-      = link_to("Invite a Creator", invite_creator_invitations_path)
-    = link_to("Library", library_path)
-    = link_to("Bookmarks", bookmarked_stories_path)
-    = link_to("Recommendations", recommended_stories_path)
-    - if current_user.is_admin?
-      = link_to("Admin", admin_dashboard_path)
-    Signed in as #{current_user.email}
-    = link_to("Sign out", destroy_user_session_path)
+    #profile
+      = link_to("Hi #{current_user.name}", "#")
+    #signout
+      = link_to("Sign out", destroy_user_session_path)
+    #create
+      = link_to("Create a Story", new_story_path) if can? :create, Story
+      .tip Create
+    #balance
+      = link_to("Balance", "#")
+      .tip Balance
+    #subscriptions
+      = link_to("Subscriptions", "#")
+      .tip Subscriptions
+    #recommendations
+      = link_to("Recommendations", recommended_stories_path)
+      .tip Recommendations
   - else
-    = link_to("Sign up", new_user_registration_path)
-    = link_to("Sign in", new_user_session_path)
+    #signup
+      = link_to("Sign up", new_user_registration_path)
+    #signin
+      = link_to("Sign in", new_user_session_path)
+  
+  #topics
+    = link_to("Topics", "#")
+    .tip Topics
+  #search
+    = form_tag "/search" do
+      = text_field_tag :query, "", :placeholder => "Search"
+      = submit_tag "Search"
