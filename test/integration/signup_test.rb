@@ -65,8 +65,8 @@ Feature "A user should be able to sign up, sign in and sign out" do
     
     then_i_should_be_on_page :home
     
-    And "I should see my email and a sign out link" do
-      assert page.has_content? @user.email
+    And "I should see my name and a sign out link" do
+      assert page.has_content? @user.name
       assert find_link("Sign out").visible?
     end
   end
@@ -78,8 +78,8 @@ Feature "A user should be able to sign up, sign in and sign out" do
     
     then_i_should_be_on_page :home
     
-    And "I should see my email and a sign out link" do
-      assert page.has_content? @email_confirmed_user.email
+    And "I should see my name and a sign out link" do
+      assert page.has_content? @email_confirmed_user.name
       assert find_link("Sign out").visible?
     end
   end

@@ -14,7 +14,8 @@ html, body
 	font-size: 12px
 	color: $text_color
 	text-shadow: 0 1px 1px #fff
-	background: $background_color url(../images/cardboard.jpg) repeat
+	background: #fff
+	//$background_color url(../images/cardboard.jpg) repeat
 
 h1, h2
 	font-weight: normal
@@ -39,6 +40,9 @@ header .insides, #mid .insides, #footer .insides
 	margin: 0 auto
 	position: relative
 
+#mid .insides
+	padding: 0
+
 #main
 	width: 100%
 
@@ -53,190 +57,21 @@ header .insides, #mid .insides, #footer .insides
 	margin-top: -51px
 	height: 50px
 	clear: both
-
-/* Overall app layout styles */
-
-header
-	#user-nav
-		position: relative
-		height: 50px
-		border-bottom: 1px dotted #ccc
-		.tip
-			display: none
-			background: transparent url(../images/tooltip-bg.png) no-repeat 0 0
-			padding: 12px 8px 5px
-			color: #fff
-			font-weight: bold
-			text-shadow: none
-			position: absolute
-			bottom: -24px
-			left: 6px
-			-webkit-transition: all 0.2s linear
-			z-index: 100
-		#logo, #signup, #signin, #signout, #profile, #create, #balance, #subscriptions, #recommendations, #topics, #search
-			position: absolute
-			top: 10px
-		#logo
-			font-size: 1.5em
-			left: 0
-		#signup, #profile, #signin, #signout
-			top: 15px
-		#signup, #profile
-			left: 200px
-		#signin, #signout
-			left: 320px
-		#create, #balance, #subscriptions, #recommendations, #topics
-			a
-				display: block
-				text-indent: -9999px
-				background-color: transparent
-				background-repeat: no-repeat
-				width: 32px
-				height: 32px
-		#create:hover, #balance:hover, #subscriptions:hover, #recommendations:hover, #topics:hover
-			.tip
-				display: block
-		#create
-			left: 410px
-			a
-				background-image: url(../images/icons/create.png)
-		#balance
-			left: 450px
-			a
-				background-image: url(../images/icons/balance.png)
-		#subscriptions
-			left: 490px
-			a
-				background-image: url(../images/icons/subscriptions.png)
-		#recommendations
-			left: 530px
-			a
-				background-image: url(../images/icons/recommendations.png)
-		#topics
-			left: 650px
-			a
-				background-image: url(../images/icons/topics.png)
-		#search
-			left: 760px
-			top: 8px
-			width: 200px
-			input[type="text"]
-				width: 165px
-			input[type="submit"]
-				width: 20px
-				height: 20px
-				padding: 0
-				margin: 0
-				background: transparent url(../images/icons/search.png) no-repeat
-				-webkit-box-shadow: none
-				-moz-box-shadow: none
-				box-shadow: none
-				text-indent: -9999px
-					
-#footer
 	text-align: center
 
-/* Flash notices */
-#flash 
-	width: 960px
-	margin: 0 auto 10px
-	text-align: center
-	color: black
+@import "toolbar"
+@import "flash"
+@import "forms"
+@import "stories"
+
+.tip
+	display: none
+	background: transparent url(../images/tooltip-bg.png) no-repeat 0 0
+	padding: 12px 8px 5px
+	color: #fff
 	font-weight: bold
-	text-shadow: 0 1px 1px white
-	div
-		padding: 5px 0
-		-webkit-border-radius: 5px
-		-moz-border-radius: 5px
-		border-radius: 5px
-	.notice
-		background-color: #eaf5e9
-		color: #006702
-		border: 1px solid #bdd7bc
-	.alert
-		background-color: #f5dbda
-		color: #990402
-		border: 1px solid #d1b2b2
-
-/* Form styles */
-
-form
-	li
-		padding: 5px 0
-		clear: both
-	label
-		display: block
-		padding-bottom: 5px
-		font-weight: bold
-		line-height: 1.4
-		color: #444
-		color: rgba(0, 0, 0, 0.8)
-		text-shadow: 0 1px 1px #fff
-	input[type="text"], input[type="password"], textarea
-		padding: 5px
-		font-size: 1.2em
-		border: none
-		background-image: -webkit-gradient(linear, 0% 0%, 0% 12%, from(#999), to(#fff))
-		background-image: -moz-linear-gradient(0% 12% 90deg, #fff, #999)
-		background-color: #fff
-		-webkit-border-radius: 4px
-		-moz-border-radius: 4px
-		-o-border-radius: 4px
-		border-radius: 4px
-	input[type="text"]:focus, input[type="password"]:focus, textarea:focus
-		outline: none
-		-webkit-box-shadow: 0 0 12px rgba(51, 204, 255, 0.5)
-		-moz-box-shadow: 0 0 12px rgba(51, 204, 255, 0.5)
-		box-shadow: 0 0 12px rgba(51, 204, 255, 0.5)
-	input[type="submit"]
-		position: relative
-		padding: 8px 15px
-		font-weight: bold
-		line-height: 1
-		color: #222
-		border: none
-		text-shadow: 0 1px 1px rgba(255, 255, 255, 0.85)
-		background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#fff), to(#bbb))
-		background-image: -moz-linear-gradient(0% 100% 90deg, #bbb, #fff)
-		background-color: #fff
-		-webkit-border-radius: 23px
-		-moz-border-radius: 23px
-		-o-border-radius: 23px
-		border-radius: 23px
-		-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5)
-		-moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5)
-		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5)
-		cursor: pointer
-	input[type="submit"]:active
-		top: 1px
-		-webkit-box-shadow: 0 1px 2px #fff
-		-moz-box-shadow: 0 1px 2px #fff
-		box-shadow: 0 1px 2px #fff
-
-form
-	.side
-		float: left
-		margin: 0 20px 20px 0
-form.button_to
-	margin: 0 0 10px
-label[for="user_remember_me"]
-	display: inline-block
-
-/* Stories */
-.story-preview
-	.price
-		background: #fff
-		-webkit-border-radius: 5px
-		-moz-border-radius: 5px
-		border-radius: 5px
-		padding: 5px
-		display: inline-block
-		.value
-			font-weight: bold
-			display: block
-form.new_story
-	.topics
-		h3
-			padding-bottom: 5px
-		li
-			padding: 0
+	text-shadow: none
+	position: absolute
+	bottom: -26px
+	left: 6px
+	z-index: 100

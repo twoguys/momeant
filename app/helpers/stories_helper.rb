@@ -3,9 +3,9 @@ module StoriesHelper
   def bookmark_button(story)
     if current_user
       if current_user.has_bookmarked?(story)
-        button_to("unbookmark story", unbookmark_story_path(story), :method => :delete)
+        button_to("unbookmark story", unbookmark_story_path(story), :method => :delete, :class => "unbookmark")
       else
-        button_to("bookmark story", bookmark_story_path(story))
+        button_to("bookmark story", bookmark_story_path(story), :class => "bookmark")
       end
     end
   end
@@ -13,11 +13,11 @@ module StoriesHelper
   def recommend_button(story)
     if current_user
       if current_user.has_recommended?(story)
-        button_to("unrecommend story", unrecommend_story_path(story), :method => :delete)
+        button_to("unrecommend story", unrecommend_story_path(story), :method => :delete, :class => "unrecommend")
       elsif current_user.recommendation_limit_reached?
         "Recommendation limit reached"
       else
-        button_to("recommend story", recommend_story_path(story))
+        button_to("recommend story", recommend_story_path(story), :class => "recommend")
       end
     end
   end

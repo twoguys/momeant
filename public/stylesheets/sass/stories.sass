@@ -1,0 +1,102 @@
+$border_type: 1px dotted #ccc
+
+/* Stories */
+
+.story-preview
+	.left
+		width: 550px
+		border-right: $border_type
+		float: left
+		.image-preview
+			height: 550px
+			border-bottom: $border_type
+		.price
+			background: transparent url(../images/price-bg.png) no-repeat
+			color: #fff
+			width: 113px
+			height: 112px
+			-webkit-border-radius: 5px
+			-moz-border-radius: 5px
+			border-radius: 5px
+			margin-top: -55px
+			.value
+				font-size: 20px
+				display: block
+				text-align: center
+				padding-top: 40px
+	.right
+		width: 409px
+		float: right
+		position: relative
+		.actions
+			width: 50px
+			height: 300px
+			float: left
+			border-right: $border_type
+			border-bottom: $border_type
+			.series
+				position: relative
+				font-size: 24px
+				height: 50px
+				border-bottom: $border_type
+				span
+					display: block
+					position: absolute
+				.current
+					top: 0
+					left: 8px
+				.of
+					top: 10px
+					left: 20px
+				.total
+					top: 20px
+					left: 28px
+			.bookmark, .unbookmark, .recommend, .unrecommend
+				width: 63px
+				height: 63px
+				padding: 0
+				margin: 0
+				text-indent: -9999px
+				background: transparent url(../images/bookmark.png) no-repeat 0 -126px
+				-webkit-box-shadow: none
+				-moz-box-shadow: none
+				box-shadow: none
+				-webkit-border-radius: 0
+				-moz-border-radius: 0
+				border-radius: 0
+			.bookmark, .unbookmark
+				position: absolute
+				top: 0
+				right: 0
+			.bookmark:hover
+				background-position: 0 -189px
+			.unbookmark
+				background-position: 0 0
+			.unbookmark:hover
+				background-position: 0 -63px
+			.recommend, .unrecommend
+				height: 40px
+				width: 50px
+				background: transparent url(../images/icons/recommend.png) no-repeat 50% 0
+			.unrecommend
+				background-position: 50% -40px
+		.metadata
+			height: 300px
+			border-bottom: $border_type
+			.creator, .title, .excerpt
+				width: 338px
+				padding: 10px
+				float: left
+			.title
+				font-weight: bold
+				font-size: 1.3em
+		.topics
+			padding: 10px
+			font-size: 1.1em
+	
+form.new_story
+	.topics
+		h3
+			padding-bottom: 5px
+		li
+			padding: 0

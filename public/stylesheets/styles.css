@@ -4,7 +4,7 @@ html, body {
   font-size: 12px;
   color: #252525;
   text-shadow: 0 1px 1px white;
-  background: #eeeeee url(../images/cardboard.jpg) repeat; }
+  background: white; }
 
 h1, h2 {
   font-weight: normal; }
@@ -29,6 +29,9 @@ header .insides, #mid .insides, #footer .insides {
   margin: 0 auto;
   position: relative; }
 
+#mid .insides {
+  padding: 0; }
+
 #main {
   width: 100%; }
 
@@ -42,31 +45,20 @@ header .insides, #mid .insides, #footer .insides {
   position: relative;
   margin-top: -51px;
   height: 50px;
-  clear: both; }
+  clear: both;
+  text-align: center; }
 
-/* Overall app layout styles */
 header #user-nav {
   position: relative;
   height: 50px;
   border-bottom: 1px dotted #cccccc; }
-  header #user-nav .tip {
-    display: none;
-    background: transparent url(../images/tooltip-bg.png) no-repeat 0 0;
-    padding: 12px 8px 5px;
-    color: white;
-    font-weight: bold;
-    text-shadow: none;
-    position: absolute;
-    bottom: -24px;
-    left: 6px;
-    -webkit-transition: all 0.2s linear;
-    z-index: 100; }
   header #user-nav #logo, header #user-nav #signup, header #user-nav #signin, header #user-nav #signout, header #user-nav #profile, header #user-nav #create, header #user-nav #balance, header #user-nav #subscriptions, header #user-nav #recommendations, header #user-nav #topics, header #user-nav #search {
     position: absolute;
-    top: 10px; }
+    top: 0; }
   header #user-nav #logo {
     font-size: 1.5em;
-    left: 0; }
+    left: 0;
+    top: 10px; }
   header #user-nav #signup, header #user-nav #profile, header #user-nav #signin, header #user-nav #signout {
     top: 15px; }
   header #user-nav #signup, header #user-nav #profile {
@@ -78,10 +70,11 @@ header #user-nav {
     text-indent: -9999px;
     background-color: transparent;
     background-repeat: no-repeat;
-    width: 32px;
-    height: 32px; }
+    width: 40px;
+    height: 40px; }
   header #user-nav #create:hover .tip, header #user-nav #balance:hover .tip, header #user-nav #subscriptions:hover .tip, header #user-nav #recommendations:hover .tip, header #user-nav #topics:hover .tip {
-    display: block; }
+    display: block;
+    left: 14px; }
   header #user-nav #create {
     left: 410px; }
     header #user-nav #create a {
@@ -93,11 +86,11 @@ header #user-nav {
   header #user-nav #subscriptions {
     left: 490px; }
     header #user-nav #subscriptions a {
-      background-image: url(../images/icons/subscriptions.png); }
+      background-image: url(../images/icons/person.png); }
   header #user-nav #recommendations {
     left: 530px; }
     header #user-nav #recommendations a {
-      background-image: url(../images/icons/recommendations.png); }
+      background-image: url(../images/icons/recommend.png); }
   header #user-nav #topics {
     left: 650px; }
     header #user-nav #topics a {
@@ -107,7 +100,7 @@ header #user-nav {
     top: 8px;
     width: 200px; }
     header #user-nav #search input[type="text"] {
-      width: 165px; }
+      width: 160px; }
     header #user-nav #search input[type="submit"] {
       width: 20px;
       height: 20px;
@@ -119,13 +112,10 @@ header #user-nav {
       box-shadow: none;
       text-indent: -9999px; }
 
-#footer {
-  text-align: center; }
-
 /* Flash notices */
 #flash {
   width: 960px;
-  margin: 0 auto 10px;
+  margin: 10px auto;
   text-align: center;
   color: black;
   font-weight: bold;
@@ -159,9 +149,7 @@ form label {
 form input[type="text"], form input[type="password"], form textarea {
   padding: 5px;
   font-size: 1.2em;
-  border: none;
-  background-image: -webkit-gradient(linear, 0% 0%, 0% 12%, from(#999999), to(white));
-  background-image: -moz-linear-gradient(0% 12% 90deg, white, #999999);
+  border: 2px solid #cccccc;
   background-color: white;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -208,18 +196,110 @@ label[for="user_remember_me"] {
   display: inline-block; }
 
 /* Stories */
-.story-preview .price {
-  background: white;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
-  padding: 5px;
-  display: inline-block; }
-  .story-preview .price .value {
-    font-weight: bold;
-    display: block; }
+.story-preview .left {
+  width: 550px;
+  border-right: 1px dotted #cccccc;
+  float: left; }
+  .story-preview .left .image-preview {
+    height: 550px;
+    border-bottom: 1px dotted #cccccc; }
+  .story-preview .left .price {
+    background: transparent url(../images/price-bg.png) no-repeat;
+    color: white;
+    width: 113px;
+    height: 112px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    margin-top: -55px; }
+    .story-preview .left .price .value {
+      font-size: 20px;
+      display: block;
+      text-align: center;
+      padding-top: 40px; }
+.story-preview .right {
+  width: 409px;
+  float: right;
+  position: relative; }
+  .story-preview .right .actions {
+    width: 50px;
+    height: 300px;
+    float: left;
+    border-right: 1px dotted #cccccc;
+    border-bottom: 1px dotted #cccccc; }
+    .story-preview .right .actions .series {
+      position: relative;
+      font-size: 24px;
+      height: 50px;
+      border-bottom: 1px dotted #cccccc; }
+      .story-preview .right .actions .series span {
+        display: block;
+        position: absolute; }
+      .story-preview .right .actions .series .current {
+        top: 0;
+        left: 8px; }
+      .story-preview .right .actions .series .of {
+        top: 10px;
+        left: 20px; }
+      .story-preview .right .actions .series .total {
+        top: 20px;
+        left: 28px; }
+    .story-preview .right .actions .bookmark, .story-preview .right .actions .unbookmark, .story-preview .right .actions .recommend, .story-preview .right .actions .unrecommend {
+      width: 63px;
+      height: 63px;
+      padding: 0;
+      margin: 0;
+      text-indent: -9999px;
+      background: transparent url(../images/bookmark.png) no-repeat 0 -126px;
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
+      box-shadow: none;
+      -webkit-border-radius: 0;
+      -moz-border-radius: 0;
+      border-radius: 0; }
+    .story-preview .right .actions .bookmark, .story-preview .right .actions .unbookmark {
+      position: absolute;
+      top: 0;
+      right: 0; }
+    .story-preview .right .actions .bookmark:hover {
+      background-position: 0 -189px; }
+    .story-preview .right .actions .unbookmark {
+      background-position: 0 0; }
+    .story-preview .right .actions .unbookmark:hover {
+      background-position: 0 -63px; }
+    .story-preview .right .actions .recommend, .story-preview .right .actions .unrecommend {
+      height: 40px;
+      width: 50px;
+      background: transparent url(../images/icons/recommend.png) no-repeat 50% 0; }
+    .story-preview .right .actions .unrecommend {
+      background-position: 50% -40px; }
+  .story-preview .right .metadata {
+    height: 300px;
+    border-bottom: 1px dotted #cccccc; }
+    .story-preview .right .metadata .creator, .story-preview .right .metadata .title, .story-preview .right .metadata .excerpt {
+      width: 338px;
+      padding: 10px;
+      float: left; }
+    .story-preview .right .metadata .title {
+      font-weight: bold;
+      font-size: 1.3em; }
+  .story-preview .right .topics {
+    padding: 10px;
+    font-size: 1.1em; }
 
 form.new_story .topics h3 {
   padding-bottom: 5px; }
 form.new_story .topics li {
   padding: 0; }
+
+.tip {
+  display: none;
+  background: transparent url(../images/tooltip-bg.png) no-repeat 0 0;
+  padding: 12px 8px 5px;
+  color: white;
+  font-weight: bold;
+  text-shadow: none;
+  position: absolute;
+  bottom: -26px;
+  left: 6px;
+  z-index: 100; }
