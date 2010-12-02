@@ -3,7 +3,7 @@
 
   - if user_signed_in?
     #profile
-      = link_to("Hi #{current_user.name}", "#")
+      = link_to("Hi #{current_user.name}", library_path)
     #signout
       = link_to("Sign out", destroy_user_session_path)
     #create
