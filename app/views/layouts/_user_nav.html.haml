@@ -3,21 +3,17 @@
 
   - if user_signed_in?
     #profile
-      = link_to("Hi #{current_user.name}", library_path)
+      = link_to("Hi, #{current_user.name}", library_path)
     #signout
       = link_to("Sign out", destroy_user_session_path)
     #create
-      = link_to("Create a Story", new_story_path) if can? :create, Story
-      .tip Create
+      = link_to("Create a Story", new_story_path, :class => "tooltipped", :title => "Create") if can? :create, Story
     #balance
-      = link_to("Balance", "#")
-      .tip Balance
+      = link_to("Balance", "#", :class => "tooltipped", :title => "Balance")
     #subscriptions
-      = link_to("Subscriptions", "#")
-      .tip Subscriptions
+      = link_to("Subscriptions", "#", :class => "tooltipped", :title => "Subscriptions")
     #recommendations
-      = link_to("Recommendations", recommended_stories_path)
-      .tip Recommendations
+      = link_to("Recommendations", recommended_stories_path, :class => "tooltipped", :title => "Recommendations")
   - else
     #signup
       = link_to("Sign up", new_user_registration_path)
@@ -25,8 +21,7 @@
       = link_to("Sign in", new_user_session_path)
   
   #topics
-    = link_to("Topics", "#")
-    .tip Topics
+    = link_to("Topics", "#", :class => "tooltipped", :title => "Topics")
   #search
     = form_tag "/search" do
       = text_field_tag :query, "", :placeholder => "Search"

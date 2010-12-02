@@ -3,9 +3,9 @@ module StoriesHelper
   def bookmark_button(story)
     if current_user
       if current_user.has_bookmarked?(story)
-        button_to("unbookmark story", unbookmark_story_path(story), :method => :delete, :class => "unbookmark")
+        button_to("unbookmark story", unbookmark_story_path(story), :method => :delete, :class => "unbookmark tooltipped", :title => "Unbookmark")
       else
-        button_to("bookmark story", bookmark_story_path(story), :class => "bookmark")
+        button_to("bookmark story", bookmark_story_path(story), :class => "bookmark tooltipped", :title => "Bookmark")
       end
     end
   end
@@ -13,32 +13,23 @@ module StoriesHelper
   def recommend_button(story)
     if current_user
       if current_user.has_recommended?(story)
-        content_tag("div", :class => "unrecommend") do
-          html = button_to("unrecommend story", unrecommend_story_path(story), :method => :delete)
-          html += tip("Unrecommend")
-        end
+        button_to("unrecommend story", unrecommend_story_path(story), :method => :delete, :class => "urecommend tooltipped", :title => "Unrecommend")
       elsif current_user.recommendation_limit_reached?
         "Recommendation limit reached"
       else
-        content_tag("div", :class => "recommend") do
-          html = button_to("recommend story", recommend_story_path(story))
-          html += tip("Recommend")
-        end
+        button_to("recommend story", recommend_story_path(story), :class => "recommend tooltipped", :title => "Recommend")
       end
     end
   end
   
   def story_price(story)
     if current_user && (story.user == current_user || current_user.stories.include?(story))
-      html = link_to("view", @story)
+      link_to("view", @story)
     elsif @story.free?
-      html = button_to("free", purchase_story_path(@story), :class => "buy-it")
-      html += tip("Acquire")
+      button_to("free", purchase_story_path(@story), :class => "buy-it", :class => "tooltipped-n", :title => "Acquire")
     else
-      html = button_to(number_to_currency(@story.price), purchase_story_path(@story), :class => "buy-it")
-      html += tip("Purchase")
+      button_to(number_to_currency(@story.price), purchase_story_path(@story), :class => "buy-it", :class => "tooltipped-n", :title => "Purchase")
     end
-    html
   end
   
 end
