@@ -19,11 +19,24 @@ $border_type: 1px dotted #ccc
 			-moz-border-radius: 5px
 			border-radius: 5px
 			margin-top: -55px
-			.value
-				font-size: 20px
+			-webkit-transform: rotate(-10deg)
+			a, input[type="submit"]
+				font-size: 22px
 				display: block
 				text-align: center
-				padding-top: 40px
+				padding: 43px 0 37px
+				color: #fff
+				background: none
+				-webkit-box-shadow: none
+				-moz-box-shadow: none
+				box-shadow: none
+				-webkit-text-shadow: none
+				-moz-text-shadow: none
+				text-shadow: none
+				width: 105px
+		.price:hover .tip
+			display: block
+			left: 45px
 	.right
 		width: 409px
 		float: right
@@ -51,7 +64,7 @@ $border_type: 1px dotted #ccc
 				.total
 					top: 20px
 					left: 28px
-			.bookmark, .unbookmark, .recommend, .unrecommend
+			.bookmark, .unbookmark, .recommend input, .unrecommend input
 				width: 63px
 				height: 63px
 				padding: 0
@@ -75,11 +88,16 @@ $border_type: 1px dotted #ccc
 			.unbookmark:hover
 				background-position: 0 -63px
 			.recommend, .unrecommend
+				position: relative
+			.recommend input, .unrecommend input
 				height: 40px
 				width: 50px
 				background: transparent url(../images/icons/recommend.png) no-repeat 50% 0
-			.unrecommend
+			.unrecommend input
 				background-position: 50% -40px
+			.recommend:hover .tip, .unrecommend:hover .tip
+				display: block
+				left: 20px
 		.metadata
 			height: 300px
 			border-bottom: $border_type

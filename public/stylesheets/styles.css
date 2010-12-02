@@ -211,12 +211,25 @@ label[for="user_remember_me"] {
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
-    margin-top: -55px; }
-    .story-preview .left .price .value {
-      font-size: 20px;
+    margin-top: -55px;
+    -webkit-transform: rotate(-10deg); }
+    .story-preview .left .price a, .story-preview .left .price input[type="submit"] {
+      font-size: 22px;
       display: block;
       text-align: center;
-      padding-top: 40px; }
+      padding: 43px 0 37px;
+      color: white;
+      background: none;
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
+      box-shadow: none;
+      -webkit-text-shadow: none;
+      -moz-text-shadow: none;
+      text-shadow: none;
+      width: 105px; }
+  .story-preview .left .price:hover .tip {
+    display: block;
+    left: 45px; }
 .story-preview .right {
   width: 409px;
   float: right;
@@ -244,7 +257,7 @@ label[for="user_remember_me"] {
       .story-preview .right .actions .series .total {
         top: 20px;
         left: 28px; }
-    .story-preview .right .actions .bookmark, .story-preview .right .actions .unbookmark, .story-preview .right .actions .recommend, .story-preview .right .actions .unrecommend {
+    .story-preview .right .actions .bookmark, .story-preview .right .actions .unbookmark, .story-preview .right .actions .recommend input, .story-preview .right .actions .unrecommend input {
       width: 63px;
       height: 63px;
       padding: 0;
@@ -268,11 +281,16 @@ label[for="user_remember_me"] {
     .story-preview .right .actions .unbookmark:hover {
       background-position: 0 -63px; }
     .story-preview .right .actions .recommend, .story-preview .right .actions .unrecommend {
+      position: relative; }
+    .story-preview .right .actions .recommend input, .story-preview .right .actions .unrecommend input {
       height: 40px;
       width: 50px;
       background: transparent url(../images/icons/recommend.png) no-repeat 50% 0; }
-    .story-preview .right .actions .unrecommend {
+    .story-preview .right .actions .unrecommend input {
       background-position: 50% -40px; }
+    .story-preview .right .actions .recommend:hover .tip, .story-preview .right .actions .unrecommend:hover .tip {
+      display: block;
+      left: 20px; }
   .story-preview .right .metadata {
     height: 300px;
     border-bottom: 1px dotted #cccccc; }

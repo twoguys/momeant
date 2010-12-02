@@ -13,27 +13,30 @@ module StoriesHelper
   def recommend_button(story)
     if current_user
       if current_user.has_recommended?(story)
-        button_to("unrecommend story", unrecommend_story_path(story), :method => :delete, :class => "unrecommend")
+        content_tag("div", :class => "unrecommend") do
+          html = button_to("unrecommend story", unrecommend_story_path(story), :method => :delete)
+          html += tip("Unrecommend")
+        end
       elsif current_user.recommendation_limit_reached?
         "Recommendation limit reached"
       else
-        button_to("recommend story", recommend_story_path(story), :class => "recommend")
+        content_tag("div", :class => "recommend") do
+          html = button_to("recommend story", recommend_story_path(story))
+          html += tip("Recommend")
+        end
       end
     end
   end
   
   def story_price(story)
-    if current_user && story.user == current_user
-      html = content_tag(:span, "yours", :class => "value")
-    elsif current_user && current_user.stories.include?(story)
-      html = content_tag(:span, "owned", :class => "value")
-      html += link_to("view", @story)
+    if current_user && (story.user == current_user || current_user.stories.include?(story))
+      html = link_to("view", @story)
     elsif @story.free?
-      html = content_tag(:span, "free", :class => "value")
-      html += button_to("acquire", purchase_story_path(@story), :class => "buy-it")
+      html = button_to("free", purchase_story_path(@story), :class => "buy-it")
+      html += tip("Acquire")
     else
-      html = content_tag(:span, number_to_currency(@story.price), :class => "value")
-      html += button_to("purchase", purchase_story_path(@story), :class => "buy-it")
+      html = button_to(number_to_currency(@story.price), purchase_story_path(@story), :class => "buy-it")
+      html += tip("Purchase")
     end
     html
   end

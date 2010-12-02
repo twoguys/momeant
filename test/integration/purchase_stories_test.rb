@@ -21,12 +21,11 @@ Feature "A user can acquire a story" do
     end
     
     Then "I should see that the story is free to acquire" do
-      assert page.find('.price').has_content? "free"
-      assert find_button("acquire").visible?
+      assert page.find('.price').find_button("free").visible?
     end
     
-    When "I click the acquire link" do
-      click_button("acquire")
+    When "I click the free button" do
+      click_button("free")
     end
     
     Then "I should be on the story view page" do
@@ -74,12 +73,11 @@ Feature "A user can acquire a story" do
     end
     
     Then "I should see the story's cost and a link to buy it" do
-      assert page.find('.price').has_content? "$#{@story.price}"
-      assert find_button("purchase").visible?
+      assert page.find('.price').find_button(number_to_currency(@story.price)).visible?
     end
     
     When "I click the acquire link" do
-      click_button("purchase")
+      click_button(number_to_currency(@story.price))
     end
     
     Then "I should be on the story view page" do
@@ -125,12 +123,11 @@ Feature "A user can acquire a story" do
     end
     
     Then "I should see the story's cost and a link to buy it" do
-      assert page.find('.price').has_content? number_to_currency(@crazy_expensive_story.price)
-      assert find_button("purchase").visible?
+      assert page.find('.price').find_button(number_to_currency(@crazy_expensive_story.price)).visible?
     end
     
     When "I click the purchase button" do
-      click_button("purchase")
+      click_button(number_to_currency(@crazy_expensive_story.price))
     end
     
     then_i_should_be_on_page(:deposits)
