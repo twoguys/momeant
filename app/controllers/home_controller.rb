@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+  
   def index
     @stories = Story.all
     if current_user

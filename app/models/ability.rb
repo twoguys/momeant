@@ -10,14 +10,14 @@ class Ability
       elsif user.is_a?(Creator)
         can [:invite_creator, :create, :show, :index], Invitation
         can :manage, Story
-        can [:view, :subscribe_to, :unsubscribe_from], User
+        can [:library, :subscribe_to, :unsubscribe_from], User
       else
         can [:create, :show, :index], Invitation
         can [:preview, :purchase, :library, :bookmark, :unbookmark, :bookmarked, :recommend, :unrecommend, :recommended], Story
         can :show, Story do |story|
           user.stories.include?(story)
         end
-        can [:view, :subscribe_to, :unsubscribe_from], User
+        can [:library, :subscribe_to, :unsubscribe_from], User
       end
     end
   end

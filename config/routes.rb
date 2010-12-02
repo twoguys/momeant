@@ -21,7 +21,6 @@ Repo::Application.routes.draw do
     get :bookmarked, :on => :collection
     get :recommended, :on => :collection
   end
-  match '/library',             :to => 'stories#library',           :as => :library
   
   resources :deposits
   
@@ -36,7 +35,8 @@ Repo::Application.routes.draw do
       post :mark_paid, :on => :member
     end
   end
-
+  
+  match '/library',             :to => 'users#library',           :as => :library
   match '/',                    :to => 'home#index',                :as => :home
   root :to => "home#index"
   
