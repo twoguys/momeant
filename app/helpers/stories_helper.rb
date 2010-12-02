@@ -13,7 +13,7 @@ module StoriesHelper
   def recommend_button(story)
     if current_user
       if current_user.has_recommended?(story)
-        button_to("unrecommend story", unrecommend_story_path(story), :method => :delete, :class => "urecommend tooltipped", :title => "Unrecommend")
+        button_to("unrecommend story", unrecommend_story_path(story), :method => :delete, :class => "unrecommend tooltipped", :title => "Unrecommend")
       elsif current_user.recommendation_limit_reached?
         "Recommendation limit reached"
       else
