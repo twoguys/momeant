@@ -69,10 +69,13 @@ class User < ActiveRecord::Base
     Story.where(:id => Recommendation.where(:user_id => self.subscribed_to).map{ |r| r.story_id })
   end
   
-  def stories_similar_to_my_bookmarks
+  def stories_similar_to_my_bookmarks_and_purchases
     similar_stories = []
     self.bookmarks.each do |bookmark|
       similar_stories += bookmark.story.similar_stories
+    end
+    self.stories.each do |purchased_story|
+      similar_stories += purchased_story.similar_stories
     end
     similar_stories
   end
