@@ -111,6 +111,12 @@ Feature "Momeant can pay creators for the sales they've made" do
     And "all purchases should have associated line items" do
       assert_equal 0, Purchase.where(:pay_period_line_item_id => nil).count
     end
+
+    And "all line items have associated payments with matching amounts" do
+      @pay_period.line_items.each do |line_item|
+        assert_equal line_item.amount, line_item.payment.amount
+      end
+    end
   end
   
   Scenario "An admin marks a pay period as paid (with an existing previous pay period)" do
@@ -178,6 +184,12 @@ Feature "Momeant can pay creators for the sales they've made" do
 
     And "all purchases should have associated line items" do
       assert_equal 0, Purchase.where(:pay_period_line_item_id => nil).count
+    end
+    
+    And "all line items have associated payments with matching amounts" do
+      @pay_period2.line_items.each do |line_item|
+        assert_equal line_item.amount, line_item.payment.amount
+      end
     end
   end
   
