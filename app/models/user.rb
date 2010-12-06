@@ -68,4 +68,12 @@ class User < ActiveRecord::Base
   def recommended_stories_from_people_i_subscribe_to
     Story.where(:id => Recommendation.where(:user_id => self.subscribed_to).map{ |r| r.story_id })
   end
+  
+  def stories_similar_to_my_bookmarks
+    similar_stories = []
+    self.bookmarks.each do |bookmark|
+      similar_stories += bookmark.story.similar_stories
+    end
+    similar_stories
+  end
 end

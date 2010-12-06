@@ -14,4 +14,16 @@ class Story < ActiveRecord::Base
   def free?
     self.price == 0
   end
+  
+  def similar_stories
+    # find other stories by my creator
+    stories = self.user.created_stories
+    
+    # find other stories with matching topics
+    my_topic_ids = self.topics.map { |topic| topic.id }.join(",")
+    stories += Story.joins(:topics).where("topics.id IN (#{my_topic_ids})") unless my_topic_ids.blank?
+    
+    # remove duplicates and this story
+    stories.uniq - [self]
+  end
 end

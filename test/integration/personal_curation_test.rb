@@ -74,4 +74,40 @@ Feature "A user wants to personally curate their experience" do
       assert !@story.users_who_bookmarked.include?(@email_confirmed_user)
     end
   end
+  
+  Scenario "A user sees recommended stories on their homepage that match their personally curated stories" do
+    given_a(:email_confirmed_user)
+    given_im_signed_in_as(:email_confirmed_user)
+    Given "A few bookmarked stories for the user" do
+      @bookmark = Factory(:bookmark, :user => @email_confirmed_user)
+      @bookmark2 = Factory(:bookmark, :user => @email_confirmed_user)
+    end
+    Given "Two stories whose topics match one of the bookmarked stories" do
+      @topic_matching_story = Factory(:story, :topics => [@bookmark.story.topics.first])
+      @topic_matching_story2 = Factory(:story, :topics => [@bookmark.story.topics.second])
+    end
+    Given "Another two stories by the same creator as one of the bookmarked stories" do
+      @creator_matching_story = Factory(:story, :user => @bookmark2.story.user)
+      @creator_matching_story2 = Factory(:story, :user => @bookmark2.story.user)
+    end
+    Given "A story that doesn't match either topics or creator" do
+      @unmatching_story = Factory(:story)
+    end
+    
+    when_i_visit_page(:home)
+    
+    Then "I should see the topic-matching stories in my list of recommended stories" do
+      assert page.find('#similar-to-bookmarked-stories').has_content? @topic_matching_story.title
+      assert page.find('#similar-to-bookmarked-stories').has_content? @topic_matching_story2.title
+    end
+    
+    And "I should see the creator-matching stories in my list of recommended stories" do
+      assert page.find('#similar-to-bookmarked-stories').has_content? @creator_matching_story.title
+      assert page.find('#similar-to-bookmarked-stories').has_content? @creator_matching_story2.title
+    end
+    
+    And "I should NOT see the unmatching story" do
+      assert !page.find('#similar-to-bookmarked-stories').has_content?(@unmatching_story.title)
+    end
+  end
 end

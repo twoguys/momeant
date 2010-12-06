@@ -13,3 +13,8 @@
     %h2 Recommendeded stories from users you're subscribed to
     %ul.stories
       = render :partial => "home/story_preview", :collection => @subscribed_to_stories, :as => :story
+  
+  %section#similar-to-bookmarked-stories
+    %h2 Stories similar to your bookmarks
+    %ul.stories
+      = render :partial => "home/story_preview", :collection => @similar_to_bookmarked_stories, :as => :story
