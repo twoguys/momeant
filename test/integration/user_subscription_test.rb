@@ -41,6 +41,23 @@ Feature "A user should be able subscribe to other users whose curations they lik
     end
   end
   
+  Scenario "Visiting my own profile page and NOT seeing a subscribe button" do
+    given_a(:email_confirmed_user)
+    given_im_signed_in_as(:email_confirmed_user)
+    
+    When "I visit my page" do
+      visit user_path(@email_confirmed_user)
+    end
+    
+    Then "I should be on my profile/curations page" do
+      assert_equal current_path, user_path(@email_confirmed_user)
+    end
+    
+    And "I should NOT see the subscribe button" do
+      assert !page.has_content?("subscribe")
+    end
+  end
+  
   Scenario "Seeing recommended stories from people I subscribe to on my homepage" do
     given_a(:email_confirmed_user)
     given_im_signed_in_as(:email_confirmed_user)
