@@ -6,6 +6,8 @@ class Story < ActiveRecord::Base
   has_many :users_who_bookmarked, :through => :bookmarks, :source => :user
   has_many :recommendations
   has_many :users_who_recommended, :through => :recommendations, :source => :user
+  
+  has_many :pages
     
   validates :title, :presence => true, :length => (2..256)
   validates :excerpt, :length => (2..1024)

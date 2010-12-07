@@ -1,0 +1,2 @@
+class PageImage < PageMedia
+end
