@@ -1,4 +1,66 @@
-.user
-  %h1= @user.name
+- content_for :head do
+  = javascript_include_tag "users/show"
+
+.user-profile
+  - if @user.is_a?(Creator)
+    .created-stories
+      %ul
+        = render @user.created_stories[0..3]
   
-  = subscribe_button(@user)
+  .user-info
+    .name= @user.name
+    .tagline tagline
+    .actions
+      = subscribe_button(@user)
+  
+  .subscribers
+    .count
+      .number= @user.subscribers.count
+      .label= pluralize(@user.subscribers.count, "subscriber").gsub(/[^a-z]/,"")
+    %ul.avatars
+      - @user.subscribers.each do |user|
+        %li
+          %a{:href => user_path(user)}
+            = image_tag(user.avatar.url, :class => "tooltipped", :title => user.name)
+            %span.name= user.name
+  
+  
+  .recommendation-stream
+    .tabs
+      = link_to("recommended by #{you_or_user_names(@user)} subscriptions", "#", :class => "active", :id => "subscribed-to-recommendations")
+      = link_to("recommended by Momeant", "#", :id => "momeant-recommendations")
+      .clear
+  
+    %ul.subscribed-to-stream.stories
+      - @user.recommended_stories_from_people_i_subscribe_to[0..5].each do |story|
+        %li= link_to(story.title, story)
+  
+    %ul.momeant-recommended-stream.stories.hidden
+      - @user.stories_similar_to_my_bookmarks_and_purchases[0..5].each do |story|
+        %li= link_to(story.title, story)
+        
+  .curatorial-stream
+    %h3 #{@user.name}'s recommended stories
+    %ul.stories
+      - @user.recommendations[0..7].each do |recommendation|
+        %li= link_to(recommendation.story.title, recommendation.story)
+  
+  .comments Comments (coming soon...)
+
+  - if me?(@user)
+    .personal-library
+      .tabs
+        = link_to("your purchases", "#", :id => "your-purchases", :class => "active")
+        = link_to("your bookmarks", "#", :id => "your-bookmarks")
+      %ul.purchases
+        = render @user.stories
+      %ul.bookmarks
+        - @user.bookmarks.each do |bookmark|
+          %li= link_to(bookmark.story.title, bookmark.story)
+
+    = render "invitations/form" if can? :invite_creator, Invitation
+
+    - if @user.is_admin?
+      .admin
+        %h3 Admin
+        = link_to("Pay Periods", admin_pay_periods_path)

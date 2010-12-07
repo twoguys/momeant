@@ -1,10 +1,10 @@
 require File.expand_path('../test_helper', File.dirname(__FILE__))
 
-Feature "A user should be able to access their content on their library/profile page" do
+Feature "A user should be able to access their/others' content on their/a user's library/profile page" do
 
-  in_order_to "find my stories and curations"
-  as_a "user"
-  i_want_to "have a library page with links to my content"
+  in_order_to "view the creations, curations, comments, and recommendations of mine and others"
+  as_a "user of any type"
+  i_want_to "see a library page with my/others' content"
 
   ["email_confirmed_user", "creator", "admin"].each do |user_type|
     Scenario "Visiting my library page as a #{user_type}" do
@@ -17,13 +17,61 @@ Feature "A user should be able to access their content on their library/profile 
           @story2 = Factory(:story, :user => @creator)
         end
       end
+      
+      Given "I'm subscribed to some users who have recommendations" do
+        @user_var = instance_variable_get("@#{user_type}")
+        subscription = Factory(:subscription, :subscriber => @user_var)
+        subscription2 = Factory(:subscription, :subscriber => @user_var)
+        @recommendation = Factory(:recommendation, :user => subscription.user)
+        @recommendation2 = Factory(:recommendation, :user => subscription2.user)
+      end
+
+      Given "Some users are subscribed to me" do
+        Factory(:subscription, :user => @user_var)
+        Factory(:subscription, :user => @user_var)
+      end
+      
+      Given "I have some recommendations" do
+        Factory(:recommendation, :user => @user_var)
+        Factory(:recommendation, :user => @user_var)
+      end
     
       when_i_visit_page(:library)
     
+      Then "I should see my name" do
+        assert page.has_content? @user_var.name
+      end
+
       if user_type == "creator"
-        Then "I should see links to my stories" do
-          assert page.find(".my-stories").has_content? @story.title
-          assert page.find(".my-stories").has_content? @story2.title
+        And "I should see links to my stories" do
+          assert page.find(".created-stories").has_content? @story.title
+          assert page.find(".created-stories").has_content? @story2.title
+        end
+      end
+      
+      And "I should see my number of subscribers and links to their pages" do
+        within(".subscribers") do
+          assert has_content? @user_var.subscribers.count.to_s
+          @user_var.subscribers.each do |subscriber|
+            assert has_content? subscriber.name
+          end
+        end
+      end
+      
+      And "I should see the stories I've recommended" do
+        @user_var.recommendations.each do |recommendation|
+          assert page.find(".curatorial-stream").has_content? recommendation.story.title
+        end
+      end
+      
+      And "I should see the stories the users I'm subscribed to have recommended" do
+        assert page.find(".subscribed-to-stream").has_content? @recommendation.story.title
+        assert page.find(".subscribed-to-stream").has_content? @recommendation2.story.title
+      end
+      
+      And "I should see links to stories Momeant recommends" do
+        @user_var.stories_similar_to_my_bookmarks_and_purchases.each do |story|
+          assert page.find(".momeant-recommended-stream").has_content? story_path(story)
         end
       end
     
@@ -32,17 +80,10 @@ Feature "A user should be able to access their content on their library/profile 
           assert page.find("form.new_invitation").visible?
         end
       end
-    
+      
       And "I should see a list of my bookmarks" do
-        @user_var = instance_variable_get("@#{user_type}")
         @user_var.bookmarks.each do |bookmark|
           assert page.find(".bookmarks").has_content? bookmark.story.title
-        end
-      end
-      
-      And "I should see a list of my recommended stories" do
-        @user_var.recommendations.each do |recommendation|
-          assert page.find(".recommendations").has_content? recommendation.story.title
         end
       end
       

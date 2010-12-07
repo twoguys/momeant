@@ -7,6 +7,8 @@ $job_type_color: #5197d3
 $payment_type_color: #a451d3
 $term_color: #d27442
 
+$border_type: 1px dotted #ccc
+
 /* Element styles */
 
 html, body
@@ -64,6 +66,10 @@ header .insides, #mid .insides, #footer .insides
 @import "errors"
 @import "forms"
 @import "stories"
+@import "users"
+
+.hidden
+	display: none
 
 .tip
 	display: none
@@ -76,3 +82,19 @@ header .insides, #mid .insides, #footer .insides
 	bottom: -26px
 	left: 6px
 	z-index: 100
+
+.tabs
+	border-bottom: $border_type
+	min-height: 40px
+	a
+		padding: 2%
+		display: block
+		float: left
+		text-align: center
+		width: 46%
+		height: 96%
+	a:hover
+		background-color: #daf1ff
+	a.active
+		background-color: #ccc
+		color: #333

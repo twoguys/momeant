@@ -1,6 +1,7 @@
 class UsersController < InheritedResources::Base
   before_filter :authenticate_user!
   before_filter :find_user, :only => [:subscribe_to, :unsubscribe_from]
+  before_filter :setup_invitation, :only => [:library, :show]
   
   def subscribe_to
     Subscription.create(:subscriber_id => current_user.id, :user_id => @user.id)
@@ -13,12 +14,17 @@ class UsersController < InheritedResources::Base
   end
   
   def library
-    @invitation = Invitation.new(:invited_as => "Creator") if can? :invite_creator, Invitation
+    @user = current_user
+    render "show"
   end
   
   private
   
     def find_user
       @user = User.find(params[:id])
+    end
+    
+    def setup_invitation
+      @invitation = Invitation.new(:invited_as => "Creator") if can? :invite_creator, Invitation
     end
 end

@@ -24,3 +24,8 @@ end
 Factory.define :user_with_money, :parent => :email_confirmed_user do |user|
   user.money_available        5.00
 end
+
+Factory.define :subscription do |subscription|
+  subscription.user           { Factory(:user) }
+  subscription.subscriber     { Factory(:user) }
+end

@@ -54,7 +54,7 @@ Feature "A user should be able subscribe to other users whose curations they lik
     end
     
     And "I should NOT see the subscribe button" do
-      assert !page.has_content?("subscribe")
+      assert !page.find(".user-info").find(".actions").has_content?("subscribe")
     end
   end
   
