@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   RECOMMENDATIONS_LIMIT = 10
   
   has_attached_file :avatar,
-    :styles => { :thumbnail => "80x80#" },
+    :styles => { :thumbnail => "50x50#" },
     :path          => "avatars/:id/:style.:extension",
     :storage        => :s3,
     :s3_credentials => {
