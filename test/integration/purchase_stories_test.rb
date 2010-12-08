@@ -60,6 +60,16 @@ Feature "A user can acquire a story" do
     Then "I should see a link to the story I just acquired" do
       assert find_link(@free_story.title).visible?
     end
+    
+    And "I should have received an email with my purchase receipt" do
+      receipt_email = ActionMailer::Base.deliveries.last
+      assert_equal receipt_email.subject, "Thank you for your Momeant purchase!"
+      assert_equal receipt_email.to[0], @email_confirmed_user.email
+      assert receipt_email.body.include?(@free_story.title)
+      assert receipt_email.body.include?("Excerpt: #{@free_story.excerpt}")
+      assert receipt_email.body.include?("Price: #{number_to_currency(@free_story.price)}")
+      assert receipt_email.body.include?(story_path(@free_story))
+    end
   end
   
   Scenario "A user purchases a non-free story that they can afford" do
@@ -109,6 +119,16 @@ Feature "A user can acquire a story" do
       original_count = @story.purchased_count
       @story = Story.find(@story.id)
       assert_equal @story.purchased_count, original_count + 1
+    end
+
+    And "I should have received an email with my purchase receipt" do
+      receipt_email = ActionMailer::Base.deliveries.last
+      assert_equal receipt_email.subject, "Thank you for your Momeant purchase!"
+      assert_equal receipt_email.to[0], @user_with_money.email
+      assert receipt_email.body.include?(@story.title)
+      assert receipt_email.body.include?("Excerpt: #{@story.excerpt}")
+      assert receipt_email.body.include?("Price: #{number_to_currency(@story.price)}")
+      assert receipt_email.body.include?(story_path(@story))
     end
   end
   

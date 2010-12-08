@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   has_many :subscribed_to, :through => :inverse_subscriptions, :source => :user
   
   validates :name, :presence => true, :length => (3...128)
+  validates :email, :presence => true, :format => /^([^\s]+)((?:[-a-z0-9]\.)[a-z]{2,})$/i
   
   RECOMMENDATIONS_LIMIT = 10
   
@@ -41,12 +42,14 @@ class User < ActiveRecord::Base
   def purchase(story)
     return false if !self.can_afford?(story.price)
     
+    purchase = Purchase.create(:amount => story.price, :story_id => story.id, :payer_id => self.id, :payee_id => story.user_id)
     unless story.free?
       self.decrement!(:money_available, story.price)
       story.user.increment!(:credits, story.price)
     end
     story.increment!(:purchased_count)
-    return Purchase.create(:amount => story.price, :story_id => story.id, :payer_id => self.id, :payee_id => story.user_id)
+
+    return purchase
   end
   
   def has_bookmarked?(story)

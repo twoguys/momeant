@@ -37,6 +37,7 @@ class StoriesController < ApplicationController
       elsif current_user.stories.include?(@story)
         redirect_to @story, :notice => "You already own this story, silly!"
       elsif current_user.purchase(@story)
+        PurchasesMailer.purchase_receipt(current_user, @story).deliver
         redirect_to @story, :notice => "This story is now in your library."
       else
         redirect_to deposits_path, :alert => "You need to deposit more money in order to purchase that story."
