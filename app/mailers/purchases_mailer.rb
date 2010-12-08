@@ -1,4 +1,5 @@
 class PurchasesMailer < ActionMailer::Base
+  default :from => "Momeant <noreply@momeant.com>"
   
   def purchase_receipt(user, story)
     @story = story

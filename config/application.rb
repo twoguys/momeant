@@ -43,8 +43,7 @@ module Repo
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
     
-    config.action_mailer.default_url_options = { :host => ENV['HOST_URL'], :from => "Momeant <noreply@momeant.com>" }
-    
-    ActionMailer::Base.asset_host = "http://#{ENV['HOST_URL']}"
+    config.action_mailer.default_url_options = { :host => ENV['HOST_URL'] }
+    config.action_mailer.asset_host = "http://#{ENV['HOST_URL']}"
   end
 end
