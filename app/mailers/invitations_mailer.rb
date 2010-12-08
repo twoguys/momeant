@@ -1,5 +1,4 @@
 class InvitationsMailer < ActionMailer::Base
-  default :from => "Momeant <noreply@momeant.com>"
   
   def creator_invitation(invitation)
     @invitation = invitation
