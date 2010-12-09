@@ -54,13 +54,14 @@ var story_page_editor = function() {
 	
 	this.choose_page_theme = function(page_type) {
 		var $current_page = $('#page_' + pages_editor.page);
-		$current_page.hide();
+		//$current_page.hide();
 		//$('#loader').show();
 		$.get('/stories/render_page_theme?theme=' + page_type + '&page=' + pages_editor.page, function(result) {
 			$current_page.html(result);
 			$current_page.find('#input[placeholder],textarea[placeholder]').placeholder();
 			//$('#loader').hide();
 			$current_page.fadeIn();
+			$current_page.click(pages_editor.hide_page_type_chooser);
 			pages_editor.hide_page_type_chooser();
 		});
 	};
@@ -121,7 +122,6 @@ var story_page_editor = function() {
 	this.set_current_page = function(new_page) {
 		this.page = new_page;
 		$('#current_page .current').text(new_page);
-		$('#current_page').effect("highlight", {}, 2000);
 		if (new_page == 1) {
 			pages_editor.hide_previous_page_button();
 		} else if (new_page == 2) {

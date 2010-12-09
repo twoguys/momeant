@@ -5,7 +5,8 @@ html, body {
   color: #252525;
   text-shadow: 0 1px 1px white;
   background: white;
-  min-height: 100%; }
+  min-height: 100%;
+  height: 100%; }
 
 h1, h2 {
   font-weight: normal; }
@@ -32,6 +33,8 @@ header .insides, #mid .insides, #footer .insides {
 
 .fullscreen header .insides, .fullscreen #mid .insides, .fullscreen #footer .insides {
   width: 100%; }
+.fullscreen #wrap, .fullscreen #main, .fullscreen #mid, .fullscreen #mid .insides, .fullscreen form, .fullscreen form fieldset, .fullscreen form ul {
+  height: 100%; }
 .fullscreen #footer {
   display: none; }
 
@@ -349,9 +352,7 @@ form.new_story .topics li {
 #page-editor {
   width: 100%;
   height: 100%;
-  min-height: 800px;
-  padding: 0;
-  background: transparent url(../images/story-creator-background-hint.jpg) no-repeat 40% 200px; }
+  padding: 0; }
   #page-editor #close-page-editor-button {
     position: absolute;
     top: -45px;
@@ -363,7 +364,8 @@ form.new_story .topics li {
     width: 100%;
     -webkit-box-shadow: 0 0 10px black;
     -moz-box-shadow: 0 0 10px black;
-    box-shadow: 0 0 10px black; }
+    box-shadow: 0 0 10px black;
+    z-index: 3; }
     #page-editor #page-type-chooser .info {
       width: 130px;
       height: 80px;
@@ -422,15 +424,22 @@ form.new_story .topics li {
         cursor: pointer;
         text-align: center; }
   #page-editor ul#pages {
-    overflow: hidden; }
+    overflow: hidden;
+    height: 100%;
+    position: relative;
+    z-index: 1;
+    background: transparent url(../images/story-creator-background-hint.jpg) no-repeat 40% 200px; }
     #page-editor ul#pages li.page {
       width: 100%;
-      min-height: 600px;
+      height: 100%;
       text-align: center;
+      position: absolute;
+      z-index: 2;
       display: none; }
       #page-editor ul#pages li.page .page-theme {
         min-height: 600px;
-        background-color: white; }
+        background: white;
+        height: 90%; }
     #page-editor ul#pages .title-page {
       padding-top: 200px; }
       #page-editor ul#pages .title-page label, #page-editor ul#pages .title-page textarea {
@@ -486,7 +495,10 @@ form.new_story .topics li {
     font-style: italic;
     text-transform: uppercase;
     border-top: 1px dotted #cccccc;
-    border-right: 1px dotted #cccccc; }
+    border-right: 1px dotted #cccccc;
+    background: #efff74;
+    height: 40px;
+    z-index: 2; }
     #page-editor #current_page .label {
       float: left;
       border-right: 1px dotted #cccccc;
@@ -496,8 +508,7 @@ form.new_story .topics li {
       width: 47px;
       float: left;
       position: relative;
-      font-size: 18px;
-      height: 40px; }
+      font-size: 18px; }
       #page-editor #current_page .number span {
         display: block;
         position: absolute; }
@@ -510,6 +521,26 @@ form.new_story .topics li {
       #page-editor #current_page .number .total {
         top: 17px;
         left: 21px; }
+  #page-editor #story-details {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    padding: 10px 10px 0 10px;
+    font-size: 26px;
+    font-style: italic;
+    text-transform: uppercase;
+    border-top: 1px dotted #cccccc;
+    border-left: 1px dotted #cccccc;
+    background: #efff74;
+    height: 40px;
+    z-index: 2; }
+    #page-editor #story-details .label {
+      float: left;
+      border-right: 1px dotted #cccccc;
+      padding-right: 15px;
+      margin-right: 10px; }
+    #page-editor #story-details .value {
+      float: left; }
   #page-editor #previous-page, #page-editor #next-page {
     width: 80px;
     padding: 30px 10px;

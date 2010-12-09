@@ -108,9 +108,7 @@ form.new_story
 #page-editor
 	width: 100%
 	height: 100%
-	min-height: 800px
 	padding: 0
-	background: transparent url(../images/story-creator-background-hint.jpg) no-repeat 40% 200px
 	#close-page-editor-button
 		position: absolute
 		top: -45px
@@ -123,6 +121,7 @@ form.new_story
 		-webkit-box-shadow: 0 0 10px #000
 		-moz-box-shadow: 0 0 10px #000
 		box-shadow: 0 0 10px #000
+		z-index: 3
 		.info
 			width: 130px
 			height: 80px
@@ -182,14 +181,21 @@ form.new_story
 				text-align: center
 	ul#pages
 		overflow: hidden
+		height: 100%
+		position: relative
+		z-index: 1
+		background: transparent url(../images/story-creator-background-hint.jpg) no-repeat 40% 200px
 		li.page
 			width: 100%
-			min-height: 600px
+			height: 100%
 			text-align: center
+			position: absolute
+			z-index: 2
 			display: none
 			.page-theme
 				min-height: 600px
-				background-color: #fff
+				background: #fff
+				height: 90%
 		.title-page
 			padding-top: 200px
 			label, textarea
@@ -246,6 +252,9 @@ form.new_story
 		text-transform: uppercase
 		border-top: $border_type
 		border-right: $border_type
+		background: #efff74
+		height: 40px
+		z-index: 2
 		.label
 			float: left
 			border-right: $border_type
@@ -256,7 +265,6 @@ form.new_story
 			float: left
 			position: relative
 			font-size: 18px
-			height: 40px
 			span
 				display: block
 				position: absolute
@@ -269,6 +277,26 @@ form.new_story
 			.total
 				top: 17px
 				left: 21px
+	#story-details
+		position: fixed
+		bottom: 0
+		right: 0
+		padding: 10px 10px 0 10px
+		font-size: 26px
+		font-style: italic
+		text-transform: uppercase
+		border-top: $border_type
+		border-left: $border_type
+		background: #efff74
+		height: 40px
+		z-index: 2
+		.label
+			float: left
+			border-right: $border_type
+			padding-right: 15px
+			margin-right: 10px
+		.value
+			float: left
 	#previous-page, #next-page
 		width: 80px
 		padding: 30px 10px

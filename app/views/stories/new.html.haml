@@ -46,11 +46,16 @@
           - (1..10).each do |page_number|
             %li.page{:id => "page_#{page_number}"}
         #current_page
-          .label PAGE
-          .number
-            %span.current 1
-            %span.of /
-            %span.total 10
+          .inner
+            .label PAGE
+            .number
+              %span.current 1
+              %span.of /
+              %span.total 10
+        #story-details
+          .inner
+            .label STORY
+            .value
         #previous-page.hidden previous page
         #next-page next page
         #loader.hidden
