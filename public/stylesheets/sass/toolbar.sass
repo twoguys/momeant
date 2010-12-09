@@ -1,4 +1,7 @@
 header
+	background-color: #fff
+	z-index: 100
+	position: relative
 	#user-nav
 		position: relative
 		height: 50px
@@ -15,12 +18,16 @@ header
 			display: block
 			width: 180px
 			height: 32px
+		.right
+			position: absolute
+			right: 0
+			width: 760px
 		#signup, #profile, #signin, #signout
 			top: 15px
 		#signup, #profile
-			left: 200px
+			left: 0
 		#signin, #signout
-			left: 320px
+			left: 120px
 		#create, #balance, #subscriptions, #recommendations, #topics
 			a
 				display: block
@@ -34,29 +41,34 @@ header
 				display: block
 				left: 14px
 		#create
-			left: 410px
+			left: 210px
 			a
 				background-image: url(../images/icons/create.png)
 		#balance
-			left: 450px
+			left: 250px
 			a
 				background-image: url(../images/icons/balance.png)
 		#subscriptions
-			left: 490px
+			left: 290px
 			a
 				background-image: url(../images/icons/person.png)
 		#recommendations
-			left: 530px
+			left: 330px
 			a
 				background-image: url(../images/icons/recommend.png)
 		#topics
-			left: 650px
+			left: 450px
 			a
 				background-image: url(../images/icons/topics.png)
 		#search
-			left: 760px
+			left: 559px
 			top: 8px
 			width: 200px
+			label
+				font-size: 1.2em
+				font-weight: normal
+				color: #777
+				padding: 5px 0 0 10px
 			input[type="text"]
 				width: 160px
 			input[type="submit"]

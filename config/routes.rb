@@ -20,6 +20,7 @@ Repo::Application.routes.draw do
     end
     get :bookmarked, :on => :collection
     get :recommended, :on => :collection
+    get :render_page_theme, :on => :collection
   end
   
   resources :deposits

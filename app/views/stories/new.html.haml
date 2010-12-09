@@ -1,20 +1,21 @@
-%h2 Create a Story
+- content_for :head do
+  = javascript_include_tag "stories/form"
 
-= form_for(@story) do |form|
+= form_for(@story, :html => {:multipart => true}) do |form|
 
   = render "shared/error_messages", :target => @story
-  
+
   %fieldset
     %ul
-      
+    
       %li
         = form.label :title
         = form.text_field :title
-        
+      
       %li
         = form.label :excerpt
         = form.text_field :excerpt
-      
+    
       %li.topics
         %h3 Topics
         %ul
@@ -22,10 +23,37 @@
             %li.topic
               = check_box_tag "topics[#{topic.id}]", 1, @story.topics.include?(topic)
               = topic.name
-      
+    
       %li
         = form.label :price
         = form.text_field :price
+    
+      %li
+        = link_to("Open Page Editor", "#", :id => "open-page-editor-button", :class => "button")
       
+      %li#page-editor.hidden
+        = link_to("Close Page Editor", "#", :class => "button", :id => "close-page-editor-button")
+        #page-type-chooser
+          #page-type-chooser-button
+            .inner see page layouts
+          .info choose a page layout
+          .slider
+            %ul
+              %li.title-page.tooltipped{:title => "Title Page", "page-type" => "title-page"}
+              %li.full-image.tooltipped{:title => "Full Image (with caption)", "page-type" => "full-image"}
+              %li.pullquote.tooltipped{:title => "Pullquote", "page-type" => "pullquote"}
+        %ul#pages
+          - (1..10).each do |page_number|
+            %li.page{:id => "page_#{page_number}"}
+        #current_page
+          .label PAGE
+          .number
+            %span.current 1
+            %span.of /
+            %span.total 10
+        #previous-page.hidden previous page
+        #next-page next page
+        #loader.hidden
+    
       %li.submit
         = form.submit "Create Story"
