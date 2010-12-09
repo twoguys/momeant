@@ -35,6 +35,14 @@ header .insides, #mid .insides, #footer .insides {
   width: 100%; }
 .fullscreen #wrap, .fullscreen #main, .fullscreen #mid, .fullscreen #mid .insides, .fullscreen form, .fullscreen form fieldset, .fullscreen form ul {
   height: 100%; }
+.fullscreen #main {
+  padding: 0; }
+.fullscreen #mid {
+  height: 90%;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  margin-top: 60px; }
 .fullscreen #footer {
   display: none; }
 
@@ -42,13 +50,11 @@ header .insides, #mid .insides, #footer .insides {
   padding: 0; }
 
 #main {
-  width: 100%; }
+  width: 100%;
+  padding-bottom: 50px; }
 
 #mid {
   min-height: 400px; }
-
-#main {
-  padding-bottom: 50px; }
 
 #footer {
   position: relative;
@@ -383,6 +389,8 @@ form.new_story .topics li {
       height: 160px;
       overflow-x: scroll;
       background-color: white; }
+      #page-editor #page-type-chooser .slider ul {
+        height: auto; }
       #page-editor #page-type-chooser .slider li {
         width: 200px;
         height: 145px;
@@ -441,7 +449,7 @@ form.new_story .topics li {
         background: white;
         height: 90%; }
     #page-editor ul#pages .title-page {
-      padding-top: 200px; }
+      padding-top: 15%; }
       #page-editor ul#pages .title-page label, #page-editor ul#pages .title-page textarea {
         font-size: 36px;
         font-weight: normal; }
@@ -453,7 +461,7 @@ form.new_story .topics li {
         background: transparent url(../images/page-themes/36px-tall-dashed-line.png) repeat;
         outline: none; }
     #page-editor ul#pages .full-image {
-      padding-top: 100px; }
+      padding-top: 10%; }
       #page-editor ul#pages .full-image input[type="file"] {
         margin: 0 auto;
         width: 600px;
@@ -474,7 +482,7 @@ form.new_story .topics li {
         background: transparent url(../images/page-themes/click-to-pick-an-image.png) no-repeat;
         cursor: pointer; }
     #page-editor ul#pages .pullquote {
-      padding-top: 200px; }
+      padding-top: 15%; }
       #page-editor ul#pages .pullquote label, #page-editor ul#pages .pullquote textarea {
         font-size: 18px;
         font-weight: normal; }
@@ -513,13 +521,13 @@ form.new_story .topics li {
         display: block;
         position: absolute; }
       #page-editor #current_page .number .current {
-        top: 2px;
+        top: 0;
         right: 34px; }
       #page-editor #current_page .number .of {
-        top: 10px;
+        top: 8px;
         left: 15px; }
       #page-editor #current_page .number .total {
-        top: 17px;
+        top: 15px;
         left: 21px; }
   #page-editor #story-details {
     position: fixed;
