@@ -385,8 +385,8 @@ form.new_story .topics li {
       background-color: #efff74; }
     #page-editor #page-type-chooser .slider {
       position: relative;
-      margin-left: 210px;
       height: 160px;
+      margin-left: 214px;
       overflow-x: scroll;
       background-color: white; }
       #page-editor #page-type-chooser .slider ul {
@@ -397,7 +397,7 @@ form.new_story .topics li {
         float: left;
         background-repeat: no-repeat;
         cursor: pointer;
-        margin-left: 5px;
+        margin-right: 5px;
         padding: 0;
         clear: none; }
       #page-editor #page-type-chooser .slider .title-page {
@@ -420,11 +420,9 @@ form.new_story .topics li {
         width: 110px;
         padding: 12px 10px 8px;
         margin: 0 auto;
-        border: 1px solid #777777;
-        border-top: none;
-        -webkit-box-shadow: 0 0 5px black;
-        -moz-box-shadow: 0 0 5px black;
-        box-shadow: 0 0 5px black;
+        -webkit-box-shadow: 0 0 5px #555555;
+        -moz-box-shadow: 0 0 5px #555555;
+        box-shadow: 0 0 5px #555555;
         border-bottom-right-radius: 5px;
         -moz-border-radius-bottomright: 5px;
         border-bottom-left-radius: 5px;
@@ -447,22 +445,21 @@ form.new_story .topics li {
       #page-editor ul#pages li.page .page-theme {
         min-height: 600px;
         background: white;
-        height: 90%; }
-    #page-editor ul#pages .title-page {
-      padding-top: 15%; }
-      #page-editor ul#pages .title-page label, #page-editor ul#pages .title-page textarea {
-        font-size: 36px;
-        font-weight: normal; }
-      #page-editor ul#pages .title-page textarea {
-        border: none;
-        width: 60%;
-        height: 80px;
-        overflow: hidden;
-        background: transparent url(../images/page-themes/36px-tall-dashed-line.png) repeat;
-        outline: none; }
-    #page-editor ul#pages .full-image {
-      padding-top: 10%; }
-      #page-editor ul#pages .full-image input[type="file"] {
+        height: 90%;
+        padding-top: 250px; }
+      #page-editor ul#pages li.page .title-page {
+        padding-top: 300px; }
+        #page-editor ul#pages li.page .title-page label, #page-editor ul#pages li.page .title-page textarea {
+          font-size: 36px;
+          font-weight: normal; }
+        #page-editor ul#pages li.page .title-page textarea {
+          border: none;
+          width: 60%;
+          height: 80px;
+          overflow: hidden;
+          background: transparent url(../images/page-themes/36px-tall-dashed-line.png) repeat;
+          outline: none; }
+      #page-editor ul#pages li.page .full-image input[type="file"] {
         margin: 0 auto;
         width: 600px;
         height: 400px;
@@ -473,7 +470,7 @@ form.new_story .topics li {
         text-indent: -9999px;
         cursor: pointer;
         z-index: 1; }
-      #page-editor ul#pages .full-image .upload-clicker {
+      #page-editor ul#pages li.page .full-image .upload-clicker {
         width: 367px;
         height: 126px;
         margin: -360px auto 0;
@@ -481,12 +478,10 @@ form.new_story .topics li {
         z-index: 2;
         background: transparent url(../images/page-themes/click-to-pick-an-image.png) no-repeat;
         cursor: pointer; }
-    #page-editor ul#pages .pullquote {
-      padding-top: 15%; }
-      #page-editor ul#pages .pullquote label, #page-editor ul#pages .pullquote textarea {
+      #page-editor ul#pages li.page .pullquote label, #page-editor ul#pages li.page .pullquote textarea {
         font-size: 18px;
         font-weight: normal; }
-      #page-editor ul#pages .pullquote textarea {
+      #page-editor ul#pages li.page .pullquote textarea {
         border: none;
         width: 60%;
         height: 400px;
@@ -494,24 +489,22 @@ form.new_story .topics li {
         background: transparent url(../images/page-themes/18px-tall-dashed-line.png) repeat;
         outline: none; }
   #page-editor #current_page {
-    display: inline;
-    position: fixed;
-    padding: 10px 10px 0 10px;
+    position: absolute;
+    width: 100%;
+    top: 200px;
     left: 0;
-    bottom: 0;
     font-size: 26px;
     font-style: italic;
     text-transform: uppercase;
-    border-top: 1px dotted #cccccc;
-    border-right: 1px dotted #cccccc;
-    background: #efff74;
     height: 40px;
     z-index: 2; }
+    #page-editor #current_page .inner {
+      padding: 10px 10px 0 10px;
+      width: 160px;
+      margin: 0 auto; }
     #page-editor #current_page .label {
       float: left;
-      border-right: 1px dotted #cccccc;
-      padding-right: 15px;
-      margin-right: 10px; }
+      margin-right: 20px; }
     #page-editor #current_page .number {
       width: 47px;
       float: left;
@@ -530,8 +523,8 @@ form.new_story .topics li {
         top: 15px;
         left: 21px; }
   #page-editor #story-details {
-    position: fixed;
-    bottom: 0;
+    position: absolute;
+    bottom: -51px;
     right: 0;
     padding: 10px 10px 0 10px;
     font-size: 26px;

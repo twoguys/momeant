@@ -135,8 +135,8 @@ form.new_story
 			background-color: #efff74
 		.slider
 			position: relative
-			margin-left: 210px
 			height: 160px
+			margin-left: 214px
 			overflow-x: scroll
 			background-color: #fff
 			ul
@@ -147,7 +147,7 @@ form.new_story
 				float: left
 				background-repeat: no-repeat
 				cursor: pointer
-				margin-left: 5px
+				margin-right: 5px
 				padding: 0
 				clear: none
 			.title-page
@@ -170,11 +170,9 @@ form.new_story
 				width: 110px
 				padding: 12px 10px 8px
 				margin: 0 auto
-				border: 1px solid #777
-				border-top: none
-				-webkit-box-shadow: 0 0 5px #000
-				-moz-box-shadow: 0 0 5px #000
-				box-shadow: 0 0 5px #000
+				-webkit-box-shadow: 0 0 5px #555
+				-moz-box-shadow: 0 0 5px #555
+				box-shadow: 0 0 5px #555
 				border-bottom-right-radius: 5px
 				-moz-border-radius-bottomright: 5px
 				border-bottom-left-radius: 5px
@@ -198,70 +196,67 @@ form.new_story
 				min-height: 600px
 				background: #fff
 				height: 90%
-		.title-page
-			padding-top: 15%
-			label, textarea
-				font-size: 36px
-				font-weight: normal
-			textarea
-				border: none
-				width: 60%
-				height: 80px
-				overflow: hidden
-				background: transparent url(../images/page-themes/36px-tall-dashed-line.png) repeat
-				outline: none
-		.full-image
-			padding-top: 10%
-			input[type="file"]
-				margin: 0 auto
-				width: 600px
-				height: 400px
-				background: transparent url(../images/page-themes/pick-an-image-bg.jpg?12) no-repeat 50% 0
-				margin: 0 auto
-				padding-top: 200px
-				text-align: center
-				text-indent: -9999px
-				cursor: pointer
-				z-index: 1
-			.upload-clicker
-				width: 367px
-				height: 126px
-				margin: -360px auto 0
-				position: relative
-				z-index: 2
-				background: transparent url(../images/page-themes/click-to-pick-an-image.png) no-repeat
-				cursor: pointer
-		.pullquote
-			padding-top: 15%
-			label, textarea
-				font-size: 18px
-				font-weight: normal
-			textarea
-				border: none
-				width: 60%
-				height: 400px
-				overflow: hidden
-				background: transparent url(../images/page-themes/18px-tall-dashed-line.png) repeat
-				outline: none
+				padding-top: 250px
+			.title-page
+				padding-top: 300px
+				label, textarea
+					font-size: 36px
+					font-weight: normal
+				textarea
+					border: none
+					width: 60%
+					height: 80px
+					overflow: hidden
+					background: transparent url(../images/page-themes/36px-tall-dashed-line.png) repeat
+					outline: none
+			.full-image
+				input[type="file"]
+					margin: 0 auto
+					width: 600px
+					height: 400px
+					background: transparent url(../images/page-themes/pick-an-image-bg.jpg?12) no-repeat 50% 0
+					margin: 0 auto
+					padding-top: 200px
+					text-align: center
+					text-indent: -9999px
+					cursor: pointer
+					z-index: 1
+				.upload-clicker
+					width: 367px
+					height: 126px
+					margin: -360px auto 0
+					position: relative
+					z-index: 2
+					background: transparent url(../images/page-themes/click-to-pick-an-image.png) no-repeat
+					cursor: pointer
+			.pullquote
+				label, textarea
+					font-size: 18px
+					font-weight: normal
+				textarea
+					border: none
+					width: 60%
+					height: 400px
+					overflow: hidden
+					background: transparent url(../images/page-themes/18px-tall-dashed-line.png) repeat
+					outline: none
 	#current_page
-		display: inline
-		position: fixed
-		padding: 10px 10px 0 10px
+		position: absolute
+		width: 100%
+		top: 200px
 		left: 0
-		bottom: 0
 		font-size: 26px
 		font-style: italic
 		text-transform: uppercase
-		border-top: $border_type
-		border-right: $border_type
-		background: #efff74
 		height: 40px
 		z-index: 2
+		.inner
+			padding: 10px 10px 0 10px
+			width: 160px
+			margin: 0 auto	
 		.label
 			float: left
-			border-right: $border_type
-			padding-right: 15px
-			margin-right: 10px
+			margin-right: 20px
 		.number
 			width: 47px
 			float: left
@@ -280,8 +275,8 @@ form.new_story
 				top: 15px
 				left: 21px
 	#story-details
-		position: fixed
-		bottom: 0
+		position: absolute
+		bottom: -51px
 		right: 0
 		padding: 10px 10px 0 10px
 		font-size: 26px

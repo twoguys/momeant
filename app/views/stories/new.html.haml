@@ -41,21 +41,17 @@
             %ul
               %li.title-page.tooltipped{:title => "Title Page", "page-type" => "title-page"}
               %li.full-image.tooltipped{:title => "Full Image (with caption)", "page-type" => "full-image"}
-              %li.pullquote.tooltipped{:title => "Pullquote", "page-type" => "pullquote"}
+              %li.pullquote.tooltipped{:title => "Pullquote", "page-type" => "pullquote"}              
         %ul#pages
           - (1..10).each do |page_number|
             %li.page{:id => "page_#{page_number}"}
-        #current_page
-          .inner
-            .label PAGE
-            .number
-              %span.current 1
-              %span.of /
-              %span.total 10
-        #story-details
-          .inner
-            .label STORY
-            .value
+          #current_page
+            .inner
+              .label PAGE
+              .number
+                %span.current 1
+                %span.of /
+                %span.total 10
         #previous-page.hidden previous page
         #next-page next page
         #loader.hidden

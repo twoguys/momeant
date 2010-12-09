@@ -72,7 +72,7 @@ var story_page_editor = function() {
 		if (!pages_editor.page_chooser_open) {
 			return;
 		} else {
-			$('#page-type-chooser').animate({ top: '-=160'}, 500, pages_editor.show_layout_chooser_button);
+			$('#page-type-chooser, #pages').animate({ top: '-=160'}, 500, pages_editor.show_layout_chooser_button);
 			pages_editor.page_chooser_open = false;
 		}
 	};
@@ -81,7 +81,7 @@ var story_page_editor = function() {
 		if (pages_editor.page_chooser_open) {
 			return;
 		} else {
-			$('#page-type-chooser').animate({ top: '+=160'}, 500, pages_editor.hide_layout_chooser_button);
+			$('#page-type-chooser, #pages').animate({ top: '+=160'}, 500, pages_editor.hide_layout_chooser_button);
 			pages_editor.page_chooser_open = true;
 		}
 	};
