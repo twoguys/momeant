@@ -432,7 +432,8 @@ form.new_story .topics li {
   #page-editor ul#pages {
     overflow: hidden;
     height: 100%;
-    position: relative;
+    position: absolute;
+    width: 100%;
     z-index: 1;
     background: transparent url(../images/story-creator-background-hint.jpg) no-repeat 40% 200px; }
     #page-editor ul#pages li.page {
@@ -463,7 +464,7 @@ form.new_story .topics li {
         margin: 0 auto;
         width: 600px;
         height: 400px;
-        background: transparent url(../images/page-themes/pick-an-image-bg.jpg?12) no-repeat 50% 0;
+        background: transparent url(../images/page-themes/pick-an-image-bg.jpg) no-repeat 50% -60px;
         margin: 0 auto;
         padding-top: 200px;
         text-align: center;
@@ -488,7 +489,7 @@ form.new_story .topics li {
         overflow: hidden;
         background: transparent url(../images/page-themes/18px-tall-dashed-line.png) repeat;
         outline: none; }
-  #page-editor #current_page {
+  #page-editor #page_info {
     position: absolute;
     width: 100%;
     top: 200px;
@@ -498,28 +499,28 @@ form.new_story .topics li {
     text-transform: uppercase;
     height: 40px;
     z-index: 2; }
-    #page-editor #current_page .inner {
+    #page-editor #page_info .inner {
       padding: 10px 10px 0 10px;
       width: 160px;
       margin: 0 auto; }
-    #page-editor #current_page .label {
+    #page-editor #page_info .label {
       float: left;
       margin-right: 20px; }
-    #page-editor #current_page .number {
+    #page-editor #page_info .number {
       width: 47px;
       float: left;
       position: relative;
       font-size: 18px; }
-      #page-editor #current_page .number span {
+      #page-editor #page_info .number span {
         display: block;
         position: absolute; }
-      #page-editor #current_page .number .current {
+      #page-editor #page_info .number .current {
         top: 0;
         right: 34px; }
-      #page-editor #current_page .number .of {
+      #page-editor #page_info .number .of {
         top: 8px;
         left: 15px; }
-      #page-editor #current_page .number .total {
+      #page-editor #page_info .number .total {
         top: 15px;
         left: 21px; }
   #page-editor #story-details {

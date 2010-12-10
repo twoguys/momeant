@@ -121,7 +121,7 @@ var story_page_editor = function() {
 	
 	this.set_current_page = function(new_page) {
 		this.page = new_page;
-		$('#current_page .current').text(new_page);
+		$('#page_info .current').text(new_page);
 		if (new_page == 1) {
 			pages_editor.hide_previous_page_button();
 		} else if (new_page == 2) {
