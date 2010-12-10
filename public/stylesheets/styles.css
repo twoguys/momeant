@@ -6,7 +6,8 @@ html, body {
   text-shadow: 0 1px 1px white;
   background: white;
   min-height: 100%;
-  height: 100%; }
+  height: 100%;
+  overflow: hidden; }
 
 h1, h2 {
   font-weight: normal; }
@@ -460,16 +461,16 @@ form.new_story .topics li {
           overflow: hidden;
           background: transparent url(../images/page-themes/36px-tall-dashed-line.png) repeat;
           outline: none; }
-      #page-editor ul#pages li.page .full-image input[type="file"] {
+      #page-editor ul#pages li.page .full-image .input {
+        text-align: center;
+        width: 600px;
+        margin: 50px auto 10px; }
+      #page-editor ul#pages li.page .full-image .image-preview {
         margin: 0 auto;
         width: 600px;
         height: 400px;
-        background: transparent url(../images/page-themes/pick-an-image-bg.jpg) no-repeat 50% -60px;
+        background: transparent url(../images/page-themes/pick-an-image-bg.jpg?2323) no-repeat 50% 0;
         margin: 0 auto;
-        padding-top: 200px;
-        text-align: center;
-        text-indent: -9999px;
-        cursor: pointer;
         z-index: 1; }
       #page-editor ul#pages li.page .full-image .upload-clicker {
         width: 367px;
