@@ -1,3 +1,8 @@
 .story-view
   %h1= @story.title
   .excerpt= @story.excerpt
+  
+  %ul#pages
+    - @story.pages.each do |page|
+      - @page = page
+      = render "/stories/page_themes/#{page.partial_name}"

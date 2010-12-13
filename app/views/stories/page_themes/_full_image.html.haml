@@ -1,4 +1,2 @@
-= render :partial => "stories/page_themes/page_input", :locals => {:page_type => "full-image"}
-.full-image.page-theme
-  .input= file_field_tag "page[#{@page_number}][image]"
-  .image-preview  
+.number Page #{@page.number + 1}
+= image_tag(@page.medias.first.image.url)

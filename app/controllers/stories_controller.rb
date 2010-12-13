@@ -18,6 +18,7 @@ class StoriesController < ApplicationController
   def create
     @story = Story.new(params[:story])
     attach_topics
+    attach_pages(params[:pages])
     if current_user.created_stories << @story
       redirect_to preview_story_path(@story), :notice => "Great story!"
     else
@@ -82,11 +83,11 @@ class StoriesController < ApplicationController
   def render_page_theme
     @page_number = params[:page]
     if params[:theme] == "title-page"
-      render :partial => "stories/page_themes/title_page"
+      render :partial => "stories/page_forms/title"
     elsif params[:theme] == "full-image"
-      render :partial => "stories/page_themes/full_image"
+      render :partial => "stories/page_forms/full_image"
     elsif params[:theme] == "pullquote"
-      render :partial => "stories/page_themes/pullquote"
+      render :partial => "stories/page_forms/pullquote"
     end
   end
   
@@ -100,6 +101,15 @@ class StoriesController < ApplicationController
       topic_ids = params[:topics]
       if topic_ids
         @story.topics << Topic.where("id IN (#{topic_ids.keys.join(',')})")
+      end
+    end
+    
+    def attach_pages(pages)
+      return unless pages.is_a?(Hash) # TODO: check to ensure 10 pages and add errors to @story
+      pages.each_pair do |number, options|
+        options.merge!({:number => number})
+        page_type = Page.create_page_type_with(options)
+        @story.pages << page_type if page_type
       end
     end
   

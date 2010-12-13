@@ -6,8 +6,7 @@ html, body {
   text-shadow: 0 1px 1px white;
   background: white;
   min-height: 100%;
-  height: 100%;
-  overflow: hidden; }
+  height: 100%; }
 
 h1, h2 {
   font-weight: normal; }
@@ -33,7 +32,8 @@ header .insides, #mid .insides, #footer .insides {
   position: relative; }
 
 .fullscreen header .insides, .fullscreen #mid .insides, .fullscreen #footer .insides {
-  width: 100%; }
+  width: 100%;
+  min-width: 960px; }
 .fullscreen #wrap, .fullscreen #main, .fullscreen #mid, .fullscreen #mid .insides, .fullscreen form, .fullscreen form fieldset, .fullscreen form ul {
   height: 100%; }
 .fullscreen #main {
@@ -90,10 +90,12 @@ header {
       width: 760px; }
     header #user-nav #signup, header #user-nav #profile, header #user-nav #signin, header #user-nav #signout {
       top: 15px; }
-    header #user-nav #signup, header #user-nav #profile {
+    header #user-nav #signup {
+      left: 60px; }
+    header #user-nav #profile {
       left: 0; }
     header #user-nav #signin, header #user-nav #signout {
-      left: 120px; }
+      left: 140px; }
     header #user-nav #create a, header #user-nav #balance a, header #user-nav #subscriptions a, header #user-nav #recommendations a, header #user-nav #topics a {
       display: block;
       text-indent: -9999px;
@@ -418,7 +420,7 @@ form.new_story .topics li {
         text-transform: uppercase;
         font-size: 11px;
         font-weight: bold;
-        width: 110px;
+        width: 150px;
         padding: 12px 10px 8px;
         margin: 0 auto;
         -webkit-box-shadow: 0 0 5px #555555;
@@ -545,32 +547,21 @@ form.new_story .topics li {
     #page-editor #story-details .value {
       float: left; }
   #page-editor #previous-page, #page-editor #next-page {
-    width: 80px;
-    padding: 30px 10px;
-    text-align: center;
-    text-transform: uppercase;
-    font-size: 11px;
-    background-color: white;
+    width: 100px;
+    height: 100px;
+    text-indent: -9999px;
+    background: transparent url(../images/next-previous-arrows.png) no-repeat 0 0;
     position: fixed;
     top: 50%;
     z-index: 100;
-    -webkit-box-shadow: 0 0 10px #555555;
-    -moz-box-shadow: 0 0 10px #555555;
-    box-shadow: 0 0 10px #555555;
-    color: #555555;
     cursor: pointer; }
+  #page-editor #previous-page:active, #page-editor #next-page:active {
+    top: 50.1%; }
   #page-editor #previous-page {
-    left: 0;
-    border-top-right-radius: 5px;
-    -moz-border-radius-topright: 5px;
-    border-bottom-right-radius: 5px;
-    -moz-border-radius-bottomright: 5px; }
+    left: 0; }
   #page-editor #next-page {
     right: 0;
-    border-top-left-radius: 5px;
-    -moz-border-radius-topleft: 5px;
-    border-bottom-left-radius: 5px;
-    -moz-border-radius-bottomleft: 5px; }
+    background-position: -138px 0; }
   #page-editor #loader {
     width: 100%;
     height: 600px;

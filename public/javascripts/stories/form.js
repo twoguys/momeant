@@ -10,6 +10,7 @@ var story_page_editor = function() {
 		setup_page_layout_chooser();
 		setup_next_page_button();
 		setup_prev_page_button();
+		initialize_first_page();
 	};
 	
 	// SETUP
@@ -50,16 +51,23 @@ var story_page_editor = function() {
 		$('#previous-page').click(pages_editor.goto_previous_page);
 	};
 	
+	var initialize_first_page = function() {
+		var $page1 = $('#page_1');
+		// is there data in page 1?
+		if (! $page1.html().trim() == "") {
+			$page1.show();
+			$page1.click(pages_editor.hide_page_type_chooser);
+			pages_editor.hide_page_type_chooser();
+		}
+	};
+	
 	// PAGE THEME CHOOSING
 	
 	this.choose_page_theme = function(page_type) {
 		var $current_page = $('#page_' + pages_editor.page);
-		//$current_page.hide();
-		//$('#loader').show();
 		$.get('/stories/render_page_theme?theme=' + page_type + '&page=' + pages_editor.page, function(result) {
 			$current_page.html(result);
 			$current_page.find('#input[placeholder],textarea[placeholder]').placeholder();
-			//$('#loader').hide();
 			$current_page.fadeIn();
 			$current_page.click(pages_editor.hide_page_type_chooser);
 			pages_editor.hide_page_type_chooser();

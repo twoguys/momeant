@@ -35,7 +35,7 @@
         = link_to("Close Page Editor", "#", :class => "button", :id => "close-page-editor-button")
         #page-type-chooser
           #page-type-chooser-button
-            .inner see page layouts
+            .inner change page layout
           .info choose a page layout
           .slider
             %ul
@@ -45,6 +45,9 @@
         %ul#pages
           - (1..10).each do |page_number|
             %li.page{:id => "page_#{page_number}"}
+              - @page_number = page_number - 1
+              - @page = @story.pages[@page_number]
+              = render "/stories/page_forms/#{@page.partial_name}" if @page
           %li#page_info
             .inner
               .label PAGE
@@ -52,8 +55,8 @@
                 %span.current 1
                 %span.of /
                 %span.total 10
-        #previous-page.hidden previous page
-        #next-page next page
+        #previous-page.hidden.tooltipped-n{:title => "Previous page"} previous page
+        #next-page.tooltipped-n{:title => "Next page"} next page
         #loader.hidden
     
       %li.submit
