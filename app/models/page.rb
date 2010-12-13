@@ -15,28 +15,16 @@ class Page < ActiveRecord::Base
     
     type = options[:type]
     if type == "TitlePage"
-      unless options[:title]
-        Rails.logger.info "[Momeant] TitlePage but no title"
-        return false
-      end
       page = TitlePage.new(:number => options[:number])
-      page.medias << PageText.new(:text => options[:title])
+      page.medias << PageText.new(:text => options[:title]) if options[:title]
       return page
     elsif type == "FullImagePage"
-      unless options[:image]
-        Rails.logger.info "[Momeant] FullImage but no image"
-        return false
-      end
       page = FullImagePage.new(:number => options[:number])
-      page.medias << PageImage.new(:image => options[:image])
+      page.medias << PageImage.new(:image => options[:image]) if options[:image]
       return page
     elsif type == "PullquotePage"
-      unless options[:quote]
-        Rails.logger.info "[Momeant] Pullquote but no quote"
-        return false
-      end
       page = PullquotePage.new(:number => options[:number])
-      page.medias << PageText.new(:text => options[:quote])
+      page.medias << PageText.new(:text => options[:quote]) if options[:quote]
       return page
     else
       Rails.logger.info "[Momeant] No implementation for page type: #{type}"
