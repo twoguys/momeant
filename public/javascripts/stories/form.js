@@ -18,7 +18,7 @@ var story_page_editor = function() {
 	var setup_page_editor_open_button = function() {
 		$('#open-page-editor-button').click(function() {
 			$('body').addClass('fullscreen');
-			$('#page-editor').show().siblings().hide();
+			$('#page-editor').removeClass('hidden').siblings().hide();
 			$('#error-explanation').hide();
 			return false;
 		});
@@ -27,7 +27,7 @@ var story_page_editor = function() {
 	var setup_page_editor_close_button = function() {
 		$('#close-page-editor-button').click(function() {
 			$('body').removeClass('fullscreen');
-			$('#page-editor').hide().siblings().show();
+			$('#page-editor').addClass('hidden').siblings().show();
 			$('#error-explanation').show();
 			return false;
 		});
