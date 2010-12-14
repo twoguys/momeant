@@ -26,8 +26,7 @@ Repo::Application.routes.draw do
   resources :deposits
   
   resources :users do
-    post :subscribe_to, :on => :member
-    post :unsubscribe_from, :on => :member
+    resources :subscriptions
   end
   
   namespace :admin do
