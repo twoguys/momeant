@@ -3,7 +3,7 @@ class RegistrationsController < Devise::RegistrationsController
   def create
     if !session[:accepting_invitation_id].blank?
       invitation = Invitation.where(:id => session[:accepting_invitation_id]).first
-      resource = Creator.new(params[:user]) if invitation && invitation.invited_as_creator?
+      resource = Creator.new(params[:user]) if invitation && invitation.for_creator?
     end
     resource ||= User.new(params[:user])
     

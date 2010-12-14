@@ -8,19 +8,24 @@ class InvitationsController < InheritedResources::Base
   
   def create
     @invitation = Invitation.new(params[:invitation])
-    if @invitation.invited_as_creator? && !can?(:invite_creator, Invitation)
+    if @invitation.for_creator? && cannot?(:invite_creator, Invitation)
       redirect_to root_path, :alert => "Sorry, you're not allowed to invite Creators"
-    elsif Invitation.where(:invitee_email => params[:invitation][:invitee_email], :inviter_id => current_user.id).first
+      return
+    end
+    
+    invitation = Invitation.where(:invitee_email => @invitation.invitee_email, :inviter_id => current_user.id)
+    if invitation.present?
       redirect_to invite_creator_invitations_path, :notice => "Oops, you've already sent them an invite."
+      return
+    end
+
+    @invitation.inviter = current_user
+    if @invitation.save
+      InvitationsMailer.creator_invitation(@invitation).deliver
+      redirect_to invitations_path
     else
-      @invitation.inviter = current_user
-      if @invitation.save
-        InvitationsMailer.creator_invitation(@invitation).deliver
-        redirect_to invitations_path
-      else
-        flash[:alert] = "There were issues with your invitation."
-        render "invite_creator"
-      end
+      flash[:alert] = "There were issues with your invitation."
+      render "invite_creator"
     end
   end
   

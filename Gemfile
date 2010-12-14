@@ -24,4 +24,5 @@ group :test do
   gem 'autotest-fsevent'
   gem 'autotest-growl'
   gem 'redgreen'
+  gem 'database_cleaner'
 end

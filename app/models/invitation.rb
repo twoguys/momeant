@@ -3,7 +3,7 @@ class Invitation < ActiveRecord::Base
   
   before_create :generate_token
   
-  def invited_as_creator?
+  def for_creator?
     self.invited_as == "Creator"
   end
   

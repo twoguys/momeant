@@ -15,9 +15,20 @@ FileList[File.expand_path('integration/steps/**/*_steps.rb', File.dirname(__FILE
   require f
 end
 
+DatabaseCleaner.strategy = :truncation
+
 class ActionController::IntegrationTest
   include Capybara
   extend WebSteps
+end
+
+class FullStackTest < ActionController::IntegrationTest
+  self.use_transactional_fixtures = false
+  
+  def teardown
+    DatabaseCleaner.clean
+    super
+  end
 end
 
 class ActionController::TestCase
