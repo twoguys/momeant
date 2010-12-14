@@ -82,11 +82,12 @@ class StoriesController < ApplicationController
   
   def render_page_theme
     @page_number = params[:page]
-    if params[:theme] == "title-page"
+    case params[:theme]
+    when "title-page"
       render :partial => "stories/page_forms/title"
-    elsif params[:theme] == "full-image"
+    when "full-image"
       render :partial => "stories/page_forms/full_image"
-    elsif params[:theme] == "pullquote"
+    when "pullquote"
       render :partial => "stories/page_forms/pullquote"
     end
   end
