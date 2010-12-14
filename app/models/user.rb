@@ -80,6 +80,7 @@ class User < ActiveRecord::Base
     self.stories.each do |purchased_story|
       similar_stories += purchased_story.similar_stories
     end
+    similar_stories = similar_stories.reject {|story| story.user == self}
     similar_stories.uniq
   end
 end

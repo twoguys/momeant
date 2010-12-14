@@ -132,4 +132,21 @@ Feature "A user wants to personally curate their experience" do
       assert !page.find('#similar-to-bookmarked-stories').has_content?(@unmatching_story.title)
     end
   end
+  
+  Scenario "A user does not see their own created stories on their homepage that match their personally curated stories" do
+    given_a(:creator)
+    given_im_signed_in_as(:creator)
+    Given "A story I have bookmarked" do
+      @bookmark = Factory(:bookmark, :user => @creator)
+    end
+    Given "A story I've created with topics matching the story I bookmarked" do
+      @topic_matching_story = Factory(:story, :user => @creator, :topics => [@bookmark.story.topics.first])
+    end
+    
+    when_i_visit_page(:home)
+    
+    Then "I should NOT see my own story in the recommended stories" do
+      assert !page.find('#similar-to-bookmarked-stories').has_content?(@topic_matching_story.title)
+    end
+  end
 end
