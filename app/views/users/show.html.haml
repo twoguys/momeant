@@ -54,7 +54,7 @@
         = link_to("your bookmarks", "#", :id => "your-bookmarks")
       %ul.purchases
         = render @user.stories
-      %ul.bookmarks
+      %ul.bookmarks.hidden
         - @user.bookmarks.each do |bookmark|
           %li= link_to(bookmark.story.title, preview_story_path(bookmark.story))
 
