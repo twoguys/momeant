@@ -9,12 +9,31 @@
     %ul
     
       %li
-        = form.label :title
-        = form.text_field :title
-      
-      %li
-        = form.label :excerpt
-        = form.text_field :excerpt
+        .title-input
+          = form.label :title
+          = form.text_field :title
+          .example Around the World in 80 Days
+        .excerpt-input
+          = form.label :excerpt
+          = form.text_field :excerpt
+          .example Everything, it said, was against the travellers, every obstacle imposed alike by man and by nature.
+    
+      %li#page-previews
+        %h3 Story Pages
+        .actions
+          = link_to("Open Page Editor", "#", :id => "open-page-editor-button")
+        %ul
+          %li.page
+          %li.page
+          %li.page
+          %li.page
+          %li.page
+          %li.page
+          %li.page
+          %li.page
+          %li.page
+          %li.page
+        .clear
     
       %li.topics
         %h3 Topics
@@ -27,9 +46,6 @@
       %li
         = form.label :price
         = form.text_field :price
-    
-      %li
-        = link_to("Open Page Editor", "#", :id => "open-page-editor-button", :class => "button")
       
       %li#page-editor.hidden
         = link_to("Close Page Editor", "#", :class => "button", :id => "close-page-editor-button")
