@@ -21,6 +21,7 @@ class Page < ActiveRecord::Base
     elsif type == "FullImagePage"
       page = FullImagePage.new(:number => options[:number])
       page.medias << PageImage.new(:image => options[:image]) if options[:image]
+      page.medias << PageText.new(:text => options[:caption]) if options[:caption]
       return page
     elsif type == "PullquotePage"
       page = PullquotePage.new(:number => options[:number])

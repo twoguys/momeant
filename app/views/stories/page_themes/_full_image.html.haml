@@ -1,2 +1,3 @@
 .number Page #{@page.number + 1}
 = image_tag(@page.medias.first.image.url)
+.caption= @page.caption.text if @page.caption

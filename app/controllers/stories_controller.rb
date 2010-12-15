@@ -78,6 +78,7 @@ class StoriesController < ApplicationController
   end
   
   def show
+    @fullscreen = true
   end
   
   def render_page_theme

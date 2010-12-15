@@ -21,7 +21,7 @@
 
     = yield :head
     
-  %body
+  %body{:class => @fullscreen.nil? ? "" : "fullscreen"}
     #wrap
       #main.clearfix
         %header
