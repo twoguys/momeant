@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :purchases, :foreign_key => :payer_id
+  has_many :purchased_stories, :through => :purchases, :source => :story
 
   has_many :stories, :through => :purchases, :foreign_key => :payer_id
   has_many :bookmarks
@@ -70,7 +71,9 @@ class User < ActiveRecord::Base
   
   def recommended_stories_from_people_i_subscribe_to
     stories = Story.where(:id => Recommendation.where(:user_id => self.subscribed_to).map{ |r| r.story_id })
-    stories.reject { |story| story.user == self }
+    purchased_stories = self.purchased_stories
+    # remove stories I've created or purchased
+    stories.reject { |story| story.user == self || purchased_stories.include?(story) }
   end
   
   def stories_similar_to_my_bookmarks_and_purchases
@@ -81,7 +84,8 @@ class User < ActiveRecord::Base
     self.stories.each do |purchased_story|
       similar_stories += purchased_story.similar_stories
     end
-    similar_stories = similar_stories.reject {|story| story.user == self}
-    similar_stories.uniq
+    # remove stories I've created or purchased
+    purchased_stories = self.purchased_stories
+    similar_stories.reject { |story| story.user == self || purchased_stories.include?(story) }.uniq
   end
 end

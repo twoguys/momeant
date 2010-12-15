@@ -25,9 +25,13 @@ end
 class FullStackTest < ActionController::IntegrationTest
   self.use_transactional_fixtures = false
   
+  def setup
+    Capybara.current_driver = :selenium
+  end
+  
   def teardown
+    Capybara.use_default_driver
     DatabaseCleaner.clean
-    super
   end
 end
 

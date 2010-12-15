@@ -6,9 +6,6 @@ Feature "A Creator can create a story", :testcase_class => FullStackTest do
   in_order_to "share my stories with others"
   as_a "creator or admin"
   i_want_to "create momeant stories"
-  
-  setup { Capybara.current_driver = :selenium }
-  teardown { Capybara.use_default_driver }
     
   Scenario "A Creator creates a new story" do
     given_a :creator
@@ -52,16 +49,16 @@ Feature "A Creator can create a story", :testcase_class => FullStackTest do
     end
   end
   
-  # Scenario "A regular user (non-Creator) tries to access the new story page" do
-  #   given_a(:email_confirmed_user)
-  #   
-  #   given_im_signed_in_as(:email_confirmed_user)
-  #   
-  #   when_i_visit_page(:new_story)
-  #   
-  #   then_i_should_be_on_page(:home)
-  #   
-  #   then_i_should_see_flash(:alert, "You are not authorized to access this page.")
-  # end
+  Scenario "A regular user (non-Creator) tries to access the new story page" do
+    given_a(:email_confirmed_user)
+    
+    given_im_signed_in_as(:email_confirmed_user)
+    
+    when_i_visit_page(:new_story)
+    
+    then_i_should_be_on_page(:home)
+    
+    then_i_should_see_flash(:alert, "You are not authorized to access this page.")
+  end
   
 end

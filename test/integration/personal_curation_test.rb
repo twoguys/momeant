@@ -78,75 +78,17 @@ Feature "A user wants to personally curate their experience" do
   Scenario "A user sees recommended stories on their homepage that match their personally curated stories" do
     given_a(:email_confirmed_user)
     given_im_signed_in_as(:email_confirmed_user)
-    Given "A few bookmarked stories for the user" do
+    Given "A story I've bookmarked" do
       @bookmark = Factory(:bookmark, :user => @email_confirmed_user)
-      @bookmark2 = Factory(:bookmark, :user => @email_confirmed_user)
     end
-    Given "Two stories whose topics match one of the bookmarked stories" do
+    Given "A story whose topics match my bookmarked story" do
       @topic_matching_story = Factory(:story, :topics => [@bookmark.story.topics.first])
-      @topic_matching_story2 = Factory(:story, :topics => [@bookmark.story.topics.second])
-    end
-    Given "Another two stories by the same creator as one of the bookmarked stories" do
-      @creator_matching_story = Factory(:story, :user => @bookmark2.story.user)
-      @creator_matching_story2 = Factory(:story, :user => @bookmark2.story.user)
-    end
-    Given "Two stories that I purchased" do
-      @purchase = Factory(:purchase, :payer => @email_confirmed_user)
-      @purchase2 = Factory(:purchase, :payer => @email_confirmed_user)
-    end
-    Given "Two stories whose topics match one of the purchased stories" do
-      @topic_matching_purchased_story = Factory(:story, :topics => [@purchase.story.topics.first])
-      @topic_matching_purchased_story2 = Factory(:story, :topics => [@purchase.story.topics.second])
-    end
-    Given "Another two stories by the same creator as one of the purchased stories" do
-      @creator_matching_purchased_story = Factory(:story, :user => @purchase2.story.user)
-      @creator_matching_purchased_story2 = Factory(:story, :user => @purchase2.story.user)
-    end
-    Given "A story that doesn't match either topics or creator" do
-      @unmatching_story = Factory(:story)
     end
     
     when_i_visit_page(:home)
     
-    Then "I should see the topic-matching stories in my list of recommended stories" do
+    Then "I should see the topic-matching story in my list of recommended stories" do
       assert page.find('#similar-to-bookmarked-stories').has_content? @topic_matching_story.title
-      assert page.find('#similar-to-bookmarked-stories').has_content? @topic_matching_story2.title
-    end
-    
-    And "I should see the creator-matching stories in my list of recommended stories" do
-      assert page.find('#similar-to-bookmarked-stories').has_content? @creator_matching_story.title
-      assert page.find('#similar-to-bookmarked-stories').has_content? @creator_matching_story2.title
-    end
-    
-    And "I should see the topic-matching purchased stories in my list of recommended stories" do
-      assert page.find('#similar-to-bookmarked-stories').has_content? @topic_matching_purchased_story.title
-      assert page.find('#similar-to-bookmarked-stories').has_content? @topic_matching_purchased_story2.title
-    end
-    
-    And "I should see the creator-matching purchased stories in my list of recommended stories" do
-      assert page.find('#similar-to-bookmarked-stories').has_content? @creator_matching_purchased_story.title
-      assert page.find('#similar-to-bookmarked-stories').has_content? @creator_matching_purchased_story2.title
-    end
-    
-    And "I should NOT see the unmatching story" do
-      assert !page.find('#similar-to-bookmarked-stories').has_content?(@unmatching_story.title)
-    end
-  end
-  
-  Scenario "A user does not see their own created stories on their homepage that match their personally curated stories" do
-    given_a(:creator)
-    given_im_signed_in_as(:creator)
-    Given "A story I have bookmarked" do
-      @bookmark = Factory(:bookmark, :user => @creator)
-    end
-    Given "A story I've created with topics matching the story I bookmarked" do
-      @topic_matching_story = Factory(:story, :user => @creator, :topics => [@bookmark.story.topics.first])
-    end
-    
-    when_i_visit_page(:home)
-    
-    Then "I should NOT see my own story in the recommended stories" do
-      assert !page.find('#similar-to-bookmarked-stories').has_content?(@topic_matching_story.title)
     end
   end
 end
