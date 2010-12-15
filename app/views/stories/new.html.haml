@@ -45,8 +45,8 @@
         %ul#pages
           - (1..10).each do |page_number|
             %li.page{:id => "page_#{page_number}"}
-              - @page_number = page_number - 1
-              - @page = @story.pages[@page_number]
+              - @page_number = page_number
+              - @page = @story.pages[@page_number - 1]
               = render "/stories/page_forms/#{@page.partial_name}" if @page
           %li#page_info
             .inner

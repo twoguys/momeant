@@ -3,7 +3,7 @@
   .input
     = file_field_tag "pages[#{@page_number}][image]"
     .image-preview
-      = image_tag @page.image.url if @page && @page.image
+      = image_tag @page.image.image.url if @page && @page.image
     .caption
       %h3 Caption
       - if @page && @page.caption

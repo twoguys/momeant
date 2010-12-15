@@ -27,7 +27,7 @@ Feature "A Creator can create a story", :testcase_class => FullStackTest do
     
     and_i_goto_the_next_page
     
-    and_i_choose_the_image_theme_and_choose_an_image_for_page(2)
+    and_i_choose_the_image_theme_and_choose_an_image_and_caption_for_page(2)
     
     and_i_goto_the_next_page
     
@@ -59,6 +59,39 @@ Feature "A Creator can create a story", :testcase_class => FullStackTest do
     then_i_should_be_on_page(:home)
     
     then_i_should_see_flash(:alert, "You are not authorized to access this page.")
+  end
+  
+  Scenario "A creator tries to create a story but forgets a title and excerpt" do
+    given_a :creator
+    given_a :topic
+    given_im_signed_in_as :creator
+    
+    when_i_visit_page :new_story
+    
+    and_i_open_the_page_editor
+    
+    and_i_choose_the_title_theme_and_fill_in_a_title_for_page(1)
+    
+    and_i_goto_the_next_page
+    
+    and_i_choose_the_image_theme_and_choose_an_image_and_caption_for_page(2)
+    
+    and_i_goto_the_next_page
+    
+    and_i_choose_the_pullquote_theme_and_fill_in_a_quote_for_page(3)
+    
+    and_i_close_the_page_editor
+    
+    And "I click Create Story" do
+      click_button "Create Story"
+    end
+    
+    Then "I should be back on the new story page and my page content should still be there" do
+      assert "Little Red Riding Hood", find("#pages_1_title").value
+      assert "Here is an explanation of what this image is", find("#pages_2_caption")
+      excerpt = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+      assert excerpt, find("#pages_3_quote").value
+    end
   end
   
 end

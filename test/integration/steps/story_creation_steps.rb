@@ -25,10 +25,11 @@ module StoryCreationSteps
     end
   end
   
-  def and_i_choose_the_image_theme_and_choose_an_image_for_page(page_number)
+  def and_i_choose_the_image_theme_and_choose_an_image_and_caption_for_page(page_number)
     And "I choose the image theme for page #{page_number} and choose an image" do
       find(".slider").find(".full-image").click
       attach_file "pages_#{page_number}_image", File.join(Rails.root, "test/assets", "avatar.png")
+      fill_in "pages_#{page_number}_caption", :with => "Here is an explanation of what this image is"
     end
   end
   
