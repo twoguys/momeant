@@ -84,7 +84,7 @@ class StoriesController < ApplicationController
   def render_page_theme
     @page_number = params[:page]
     case params[:theme]
-    when "title-page"
+    when "title"
       render :partial => "stories/page_forms/title"
     when "full-image"
       render :partial => "stories/page_forms/full_image"

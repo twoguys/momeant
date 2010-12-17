@@ -375,6 +375,15 @@ form.new_story #page-previews {
   border-bottom: 1px dotted #cccccc; }
   form.new_story #page-previews h3 {
     padding: 3px 0; }
+  form.new_story #page-previews li.page {
+    width: 200px;
+    height: 145px;
+    background-color: #f5f5f5;
+    float: left;
+    clear: none;
+    margin: 10px 20px; }
+  form.new_story #page-previews li.chosen {
+    cursor: pointer; }
   form.new_story #page-previews .actions {
     position: absolute;
     top: 9px;
@@ -386,17 +395,17 @@ form.new_story #page-previews {
       padding: 3px 6px;
       text-shadow: 0 -1px 1px black;
       -webkit-border-radius: 3px; }
-  form.new_story #page-previews li.page {
-    width: 170px;
-    height: 160px;
-    background-color: #f5f5f5;
-    float: left;
-    clear: none;
-    margin: 11px; }
 form.new_story .topics h3 {
   padding-bottom: 5px; }
 form.new_story .topics li {
   padding: 0; }
+
+#page-previews .title, #page-editor .slider .title {
+  background-image: url(../images/page-themes/title-page-thumbnail.jpg); }
+#page-previews .full-image, #page-editor .slider .full-image {
+  background-image: url(../images/page-themes/full-image-thumbnail.jpg); }
+#page-previews .pullquote, #page-editor .slider .pullquote {
+  background-image: url(../images/page-themes/pullquote-thumbnail.jpg); }
 
 #page-editor {
   width: 100%;
@@ -443,12 +452,6 @@ form.new_story .topics li {
         margin-right: 5px;
         padding: 0;
         clear: none; }
-      #page-editor #page-type-chooser .slider .title-page {
-        background-image: url(../images/page-themes/title-page-thumbnail.jpg); }
-      #page-editor #page-type-chooser .slider .full-image {
-        background-image: url(../images/page-themes/full-image-thumbnail.jpg); }
-      #page-editor #page-type-chooser .slider .pullquote {
-        background-image: url(../images/page-themes/pullquote-thumbnail.jpg); }
     #page-editor #page-type-chooser #page-type-chooser-button {
       position: absolute;
       left: 0;
@@ -491,12 +494,12 @@ form.new_story .topics li {
         background: white;
         height: 90%;
         padding-top: 250px; }
-      #page-editor ul#pages li.page .title-page {
+      #page-editor ul#pages li.page .title {
         padding-top: 300px; }
-        #page-editor ul#pages li.page .title-page label, #page-editor ul#pages li.page .title-page textarea {
+        #page-editor ul#pages li.page .title label, #page-editor ul#pages li.page .title textarea {
           font-size: 36px;
           font-weight: normal; }
-        #page-editor ul#pages li.page .title-page textarea {
+        #page-editor ul#pages li.page .title textarea {
           border: none;
           width: 60%;
           height: 80px;

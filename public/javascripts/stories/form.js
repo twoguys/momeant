@@ -3,35 +3,19 @@ var story_page_editor = function() {
 	
 	this.page = 1;
 	this.page_chooser_open = true;
+	this.page_type_css_classes = 'title full-image pullquote';
 	
 	this.initialize = function() {
-		setup_page_editor_open_button();
-		setup_page_editor_close_button();
+		$('#open-page-editor-button').click(pages_editor.open);
+		$('#close-page-editor-button').click(pages_editor.close);
 		setup_page_layout_chooser();
 		setup_next_page_button();
 		setup_prev_page_button();
+		setup_preview_clicking();
 		initialize_first_page();
 	};
 	
 	// SETUP
-	
-	var setup_page_editor_open_button = function() {
-		$('#open-page-editor-button').click(function() {
-			$('body').addClass('fullscreen');
-			$('#page-editor').removeClass('hidden').siblings().hide();
-			$('#error-explanation').hide();
-			return false;
-		});
-	};
-	
-	var setup_page_editor_close_button = function() {
-		$('#close-page-editor-button').click(function() {
-			$('body').removeClass('fullscreen');
-			$('#page-editor').addClass('hidden').siblings().show();
-			$('#error-explanation').show();
-			return false;
-		});
-	};
 	
 	var setup_page_layout_chooser = function() {
 		$('#page-type-chooser .slider li').click(function() {
@@ -49,6 +33,15 @@ var story_page_editor = function() {
 	
 	var setup_prev_page_button = function()  {
 		$('#previous-page').click(pages_editor.goto_previous_page);
+	};
+	
+	var setup_preview_clicking = function() {
+		$('#page-previews li.page').click(function() {
+			var page_number = $(this).attr('page-number');
+			pages_editor.goto_page(page_number);
+			pages_editor.hide_page_type_chooser();
+			pages_editor.open();
+		});
 	};
 	
 	var initialize_first_page = function() {
@@ -71,10 +64,25 @@ var story_page_editor = function() {
 			$current_page.fadeIn();
 			$current_page.click(pages_editor.hide_page_type_chooser);
 			pages_editor.hide_page_type_chooser();
+			pages_editor.set_preview_type(page_type);
 		});
 	};
 	
 	// VISUAL CHANGES
+	
+	this.open = function() {
+		$('body').addClass('fullscreen');
+		$('#page-editor').removeClass('hidden').siblings().hide();
+		$('#error-explanation').hide();
+		return false;
+	};
+	
+	this.close = function() {
+		$('body').removeClass('fullscreen');
+		$('#page-editor').addClass('hidden').siblings().show();
+		$('#error-explanation').show();
+		return false;
+	};
 	
 	this.hide_page_type_chooser = function() {
 		if (!pages_editor.page_chooser_open) {
@@ -111,6 +119,16 @@ var story_page_editor = function() {
 	this.goto_previous_page = function() {
 		if (pages_editor.page == 1) { return false; }
 		pages_editor.change_page_by(-1);
+	};
+	
+	this.goto_page = function(page_number) {
+		page_number = parseInt(page_number);
+		if (page_number >= 1 && page_number <= 10) {
+			var $page = $('#page_' + page_number);
+			$page.siblings('.page').hide();
+			$page.show();
+			pages_editor.set_current_page(page_number);
+		}
 	};
 	
 	this.change_page_by = function(difference) {
@@ -150,11 +168,19 @@ var story_page_editor = function() {
 	};
 	
 	this.hide_previous_page_button = function() {
-		$('#previous-page').fadeOut();
+		$('#previous-page').hide();
 	};
 	
 	this.hide_next_page_button = function() {
-		$('#next-page').fadeOut();
+		$('#next-page').hide();
+	};
+	
+	this.set_preview_type = function(type) {
+		var $preview_page = $('#preview_' + pages_editor.page);
+		$preview_page.removeClass(pages_editor.page_type_css_classes);
+		$preview_page.addClass(type + ' chosen');
+		$preview_page.attr('title', 'Click to edit this page');
+		$preview_page.tipsy();
 	};
 	
 }

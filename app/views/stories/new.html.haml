@@ -12,27 +12,19 @@
         .title-input
           = form.label :title
           = form.text_field :title
-          .example Around the World in 80 Days
+          .example e.g. Around the World in 80 Days
         .excerpt-input
           = form.label :excerpt
           = form.text_field :excerpt
-          .example Everything, it said, was against the travellers, every obstacle imposed alike by man and by nature.
+          .example e.g. Everything, it said, was against the travellers, every obstacle imposed alike by man and by nature.
     
       %li#page-previews
         %h3 Story Pages
         .actions
           = link_to("Open Page Editor", "#", :id => "open-page-editor-button")
         %ul
-          %li.page
-          %li.page
-          %li.page
-          %li.page
-          %li.page
-          %li.page
-          %li.page
-          %li.page
-          %li.page
-          %li.page
+          - (1..10).each do |page_number|
+            %li.page{:id => "preview_#{page_number}", "page-number" => page_number}
         .clear
     
       %li.topics
@@ -55,7 +47,7 @@
           .info choose a page layout
           .slider
             %ul
-              %li.title-page.tooltipped{:title => "Title Page", "page-type" => "title-page"}
+              %li.title.tooltipped{:title => "Title Page", "page-type" => "title"}
               %li.full-image.tooltipped{:title => "Full Image (with caption)", "page-type" => "full-image"}
               %li.pullquote.tooltipped{:title => "Pullquote", "page-type" => "pullquote"}              
         %ul#pages
