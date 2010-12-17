@@ -14,7 +14,7 @@ module StoryCreationSteps
   
   def and_i_choose_the_title_theme_and_fill_in_a_title_for_page(page_number)
     And "I choose the title theme for page #{page_number} and fill in a title" do
-      find(".slider").find(".title-page").click
+      find(".slider").find(".title").click
       fill_in "pages_#{page_number}_title", :with => "Little Red Riding Hood"
     end
   end

@@ -4,7 +4,7 @@ class TitlePage < Page
     "title"
   end
   
-  def self.type_name
-    "title-page"
+  def css_class
+    "title"
   end
 end

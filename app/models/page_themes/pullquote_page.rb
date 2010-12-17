@@ -4,7 +4,7 @@ class PullquotePage < Page
     "pullquote"
   end
   
-  def self.type_name
+  def css_class
     "pullquote"
   end
 end

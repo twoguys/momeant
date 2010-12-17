@@ -24,7 +24,11 @@
           = link_to("Open Page Editor", "#", :id => "open-page-editor-button")
         %ul
           - (1..10).each do |page_number|
-            %li.page{:id => "preview_#{page_number}", "page-number" => page_number}
+            - @page = @story.pages[page_number - 1]
+            - if @page
+              %li.page.chosen.tooltipped{:id => "preview_#{page_number}", "page-number" => page_number, :class => @page.css_class, :title => "Click to edit this page"}
+            - else
+              %li.page{:id => "preview_#{page_number}", "page-number" => page_number}
         .clear
     
       %li.topics
