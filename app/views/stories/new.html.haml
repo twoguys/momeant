@@ -16,7 +16,7 @@
         .excerpt-input
           = form.label :excerpt
           = form.text_field :excerpt
-          .example e.g. Everything, it said, was against the travellers, every obstacle imposed alike by man and by nature.
+          .example e.g. Everything, it said, was against the travelers, every obstacle imposed alike by man and by nature.
     
       %li#page-previews
         %h3 Story Pages
@@ -31,6 +31,12 @@
               %li.page{:id => "preview_#{page_number}", "page-number" => page_number}= page_number
         .clear
     
+      %li.metadata
+        .price
+          = form.label :price
+          %strong $
+          = form.text_field :price
+
       %li.topics
         %h3 Topics
         %ul
@@ -38,10 +44,6 @@
             %li.topic
               = check_box_tag "topics[#{topic.id}]", 1, @story.topics.include?(topic)
               = topic.name
-    
-      %li
-        = form.label :price
-        = form.text_field :price
       
       %li#page-editor.hidden
         = link_to("Close Page Editor", "#", :class => "button", :id => "close-page-editor-button")
