@@ -40,10 +40,9 @@
       %li.topics
         %h3 Topics
         %ul
-          - @topics.each do |topic|
-            %li.topic
-              = check_box_tag "topics[#{topic.id}]", 1, @story.topics.include?(topic)
-              = topic.name
+          - parent_topics = @topics.reject {|topic| topic.topic_id != nil}
+          - parent_topics.each do |topic|
+            = topic_checkbox(topic, @story, @topics)
       
       %li#page-editor.hidden
         = link_to("Close Page Editor", "#", :class => "button", :id => "close-page-editor-button")

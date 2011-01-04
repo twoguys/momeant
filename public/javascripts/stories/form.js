@@ -189,7 +189,20 @@ var story_page_editor = function() {
 	
 }
 
+function clicking_a_child_topic_clicks_the_parent() {
+	$('li.topics .children input').click(function() {
+		if ($(this).is(':checked')) {
+			var $parent_checkbox = $(this).parents('li.topic:eq(1)').children('input');
+			if (! $parent_checkbox.is(':checked')) {
+				$parent_checkbox.click();
+			}
+		}
+	});
+}
+
 $(document).ready(function() {
 	pages_editor = new story_page_editor();
 	pages_editor.initialize();
+	
+	clicking_a_child_topic_clicks_the_parent();
 });

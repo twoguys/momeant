@@ -32,4 +32,33 @@ module StoriesHelper
     end
   end
   
+  def topic_checkbox(topic, story, all_topics)
+    content_tag(:li, :class => "topic") do
+      html = check_box_tag "topics[#{topic.id}]", 1, story.topics.include?(topic)
+      html += topic.name
+      html += topic_children_checkboxes(topic, story, all_topics)
+    end
+  end
+  
+  def topic_children_checkboxes(topic, story, all_topics)
+    children = all_topics.reject {|t| t.topic_id != topic.id}
+    if children.size > 0
+      content_tag(:ul, :class => "children") do
+        html = ""
+        children.each do |child|
+          html += content_tag(:li, :class => "topic child") do
+            checkbox = check_box_tag "topics[#{child.id}]", 1, story.topics.include?(child)
+            checkbox += child.name
+          end
+        end
+        html
+      end
+    end
+  end
+  
+  # - @topics.each do |topic|
+  #   %li.topic
+  #     = check_box_tag "topics[#{topic.id}]", 1, @story.topics.include?(topic)
+  #     = topic.name
+  
 end
