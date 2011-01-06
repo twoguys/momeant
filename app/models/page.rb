@@ -29,7 +29,7 @@ class Page < ActiveRecord::Base
       return page
     when "VideoPage"
       page = VideoPage.new(:number => options[:number])
-      page.medias << PageText.new(:text => options[:url]) if options[:url]
+      page.medias << PageText.new(:text => options[:vimeo_id]) if options[:vimeo_id]
       return page
     else
       Rails.logger.info "[Momeant] No implementation for page type: #{type}"

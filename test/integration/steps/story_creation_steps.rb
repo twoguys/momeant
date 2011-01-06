@@ -40,4 +40,11 @@ module StoryCreationSteps
     end
   end
   
+  def and_i_choose_the_video_theme_and_fill_in_a_vimeo_id_for_page(page_number)
+    And "I choose the video theme for page #{page_number} and fill in a Vimeo ID" do
+      find(".slider").find(".video").click
+      fill_in "pages_#{page_number}_vimeo_id", :with => "18427511"
+    end
+  end
+  
 end

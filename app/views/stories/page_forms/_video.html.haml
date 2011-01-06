@@ -4,6 +4,6 @@
   .url
     %span http://vimeo.com/
     - if @page && @page.medias.first
-      = text_field_tag "pages[#{@page_number}][url]", @page.medias.first.text
+      = text_field_tag "pages[#{@page_number}][vimeo_id]", @page.medias.first.text
     - else
-      = text_field_tag "pages[#{@page_number}][url]", ""
+      = text_field_tag "pages[#{@page_number}][vimeo_id]", ""
