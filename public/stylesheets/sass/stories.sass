@@ -165,12 +165,14 @@ form.new_story
 #page-previews, #page-editor .slider
 	.title
 		background-image: url(../images/page-themes/title-page-thumbnail.jpg)
-	.full-image
+	.full_image
 		background-image: url(../images/page-themes/full-image-thumbnail.jpg)
 	.pullquote
 		background-image: url(../images/page-themes/pullquote-thumbnail.jpg)
 	.video
 		background-image: url(../images/page-themes/video-thumbnail.jpg)
+	.split
+		background-image: url(../images/page-themes/split-thumbnail.jpg)
 
 #page-editor
 	width: 100%
@@ -254,6 +256,10 @@ form.new_story
 			position: absolute
 			z-index: 2
 			display: none
+			textarea				
+				border: none
+				overflow: hidden
+				outline: none
 			.page-theme
 				min-height: 600px
 				background: #fff
@@ -271,7 +277,7 @@ form.new_story
 					overflow: hidden
 					background: transparent url(../images/page-themes/36px-tall-dashed-line.png) repeat
 					outline: none
-			.full-image
+			.full_image
 				.input
 					text-align: center
 					width: 100%
@@ -310,17 +316,40 @@ form.new_story
 					font-size: 18px
 					font-weight: normal
 				textarea
-					border: none
 					width: 60%
 					height: 400px
-					overflow: hidden
 					background: transparent url(../images/page-themes/18px-tall-dashed-line.png) repeat
-					outline: none
 			.video
 				.info
 					padding: 50px 0 20px
 				.url span
 					font-size: 2em
+			.split
+				.image, .text
+					width: 50%
+					height: 90%
+					text-align: center
+				.image
+					float: left
+					.preview
+						margin: 25px auto 0
+						width: 100%
+						height: 95%
+						background: #eee url(../images/page-themes/pick-an-image-bg.png) no-repeat 50% 0
+						z-index: 1
+					.inner
+						padding: 25px 20px 0 100px
+						height: 100%
+				.text
+					float: right
+					textarea
+						font-size: 18px
+						width: 100%
+						height: 400px
+						background: transparent url(../images/page-themes/18px-tall-dashed-line.png) repeat
+					.inner
+						padding: 25px 100px 0 20px
+						height: 100%
 	#page_info
 		position: absolute
 		width: 100%

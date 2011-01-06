@@ -3,7 +3,7 @@ var story_page_editor = function() {
 	
 	this.page = 1;
 	this.page_chooser_open = true;
-	this.page_type_css_classes = 'title full-image pullquote';
+	this.page_type_css_classes = 'title full_image pullquote video split';
 	
 	this.initialize = function() {
 		$('#open-page-editor-button').click(pages_editor.open);
@@ -181,6 +181,7 @@ var story_page_editor = function() {
 	
 	this.set_preview_type = function(type) {
 		var $preview_page = $('#preview_' + pages_editor.page);
+		console.log('Resetting preview type on ' + '#preview_' + pages_editor.page + ' to ' + type);
 		$preview_page.removeClass(pages_editor.page_type_css_classes);
 		$preview_page.addClass(type + ' chosen');
 		$preview_page.attr('title', 'Click to edit this page');

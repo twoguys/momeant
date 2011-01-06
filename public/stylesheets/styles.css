@@ -425,12 +425,14 @@ form.new_story .topics {
 
 #page-previews .title, #page-editor .slider .title {
   background-image: url(../images/page-themes/title-page-thumbnail.jpg); }
-#page-previews .full-image, #page-editor .slider .full-image {
+#page-previews .full_image, #page-editor .slider .full_image {
   background-image: url(../images/page-themes/full-image-thumbnail.jpg); }
 #page-previews .pullquote, #page-editor .slider .pullquote {
   background-image: url(../images/page-themes/pullquote-thumbnail.jpg); }
 #page-previews .video, #page-editor .slider .video {
   background-image: url(../images/page-themes/video-thumbnail.jpg); }
+#page-previews .split, #page-editor .slider .split {
+  background-image: url(../images/page-themes/split-thumbnail.jpg); }
 
 #page-editor {
   width: 100%;
@@ -513,6 +515,10 @@ form.new_story .topics {
       position: absolute;
       z-index: 2;
       display: none; }
+      #page-editor ul#pages li.page textarea {
+        border: none;
+        overflow: hidden;
+        outline: none; }
       #page-editor ul#pages li.page .page-theme {
         min-height: 600px;
         background: white;
@@ -530,19 +536,19 @@ form.new_story .topics {
           overflow: hidden;
           background: transparent url(../images/page-themes/36px-tall-dashed-line.png) repeat;
           outline: none; }
-      #page-editor ul#pages li.page .full-image .input {
+      #page-editor ul#pages li.page .full_image .input {
         text-align: center;
         width: 100%;
         height: 100%;
         margin: 25px auto 10px;
         positon: relative; }
-      #page-editor ul#pages li.page .full-image .image-preview {
+      #page-editor ul#pages li.page .full_image .image-preview {
         margin: 25px auto 0;
         width: 70%;
         height: 95%;
         background: #eeeeee url(../images/page-themes/pick-an-image-bg.png) no-repeat 50% 0;
         z-index: 1; }
-      #page-editor ul#pages li.page .full-image .caption {
+      #page-editor ul#pages li.page .full_image .caption {
         width: 300px;
         height: 200px;
         background-color: white;
@@ -550,12 +556,12 @@ form.new_story .topics {
         position: absolute;
         right: 16%;
         bottom: 4%; }
-        #page-editor ul#pages li.page .full-image .caption h3 {
+        #page-editor ul#pages li.page .full_image .caption h3 {
           padding: 5px;
           height: 15px;
           text-align: left;
           border-bottom: 1px solid #aaaaaa; }
-        #page-editor ul#pages li.page .full-image .caption textarea {
+        #page-editor ul#pages li.page .full_image .caption textarea {
           width: 265px;
           height: 140px;
           margin: 10px;
@@ -567,16 +573,38 @@ form.new_story .topics {
         font-size: 18px;
         font-weight: normal; }
       #page-editor ul#pages li.page .pullquote textarea {
-        border: none;
         width: 60%;
         height: 400px;
-        overflow: hidden;
-        background: transparent url(../images/page-themes/18px-tall-dashed-line.png) repeat;
-        outline: none; }
+        background: transparent url(../images/page-themes/18px-tall-dashed-line.png) repeat; }
       #page-editor ul#pages li.page .video .info {
         padding: 50px 0 20px; }
       #page-editor ul#pages li.page .video .url span {
         font-size: 2em; }
+      #page-editor ul#pages li.page .split .image, #page-editor ul#pages li.page .split .text {
+        width: 50%;
+        height: 90%;
+        text-align: center; }
+      #page-editor ul#pages li.page .split .image {
+        float: left; }
+        #page-editor ul#pages li.page .split .image .preview {
+          margin: 25px auto 0;
+          width: 100%;
+          height: 95%;
+          background: #eeeeee url(../images/page-themes/pick-an-image-bg.png) no-repeat 50% 0;
+          z-index: 1; }
+        #page-editor ul#pages li.page .split .image .inner {
+          padding: 25px 20px 0 100px;
+          height: 100%; }
+      #page-editor ul#pages li.page .split .text {
+        float: right; }
+        #page-editor ul#pages li.page .split .text textarea {
+          font-size: 18px;
+          width: 100%;
+          height: 400px;
+          background: transparent url(../images/page-themes/18px-tall-dashed-line.png) repeat; }
+        #page-editor ul#pages li.page .split .text .inner {
+          padding: 25px 100px 0 20px;
+          height: 100%; }
   #page-editor #page_info {
     position: absolute;
     width: 100%;

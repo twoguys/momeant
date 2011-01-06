@@ -27,7 +27,7 @@ module StoryCreationSteps
   
   def and_i_choose_the_image_theme_and_choose_an_image_and_caption_for_page(page_number)
     And "I choose the image theme for page #{page_number} and choose an image" do
-      find(".slider").find(".full-image").click
+      find(".slider").find(".full_image").click
       attach_file "pages_#{page_number}_image", File.join(Rails.root, "test/assets", "avatar.png")
       fill_in "pages_#{page_number}_caption", :with => "Here is an explanation of what this image is"
     end
@@ -44,6 +44,14 @@ module StoryCreationSteps
     And "I choose the video theme for page #{page_number} and fill in a Vimeo ID" do
       find(".slider").find(".video").click
       fill_in "pages_#{page_number}_vimeo_id", :with => "18427511"
+    end
+  end
+  
+  def and_i_choose_the_split_theme_and_choose_a_picture_and_text_for_page(page_number)
+    And "I choose the split theme for page #{page_number} and choose a picture and text" do
+      find(".slider").find(".split").click
+      attach_file "pages_#{page_number}_image", File.join(Rails.root, "test/assets", "avatar.png")
+      fill_in "pages_#{page_number}_text", :with => "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
     end
   end
   

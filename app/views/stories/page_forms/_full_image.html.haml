@@ -1,9 +1,9 @@
 = hidden_field_tag "pages[#{@page_number}][type]", "FullImagePage"
-.full-image.page-theme
+.full_image.page-theme
   .input
     = file_field_tag "pages[#{@page_number}][image]"
     .image-preview
-      = image_tag @page.image.image.url if @page && @page.image
+      = image_tag @page.image.image.url if @page && @page.image && @page.image.id
     .caption
       %h3 Caption
       - if @page && @page.caption

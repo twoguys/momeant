@@ -37,6 +37,10 @@ Feature "A Creator can create a story", :testcase_class => FullStackTest do
     
     and_i_choose_the_video_theme_and_fill_in_a_vimeo_id_for_page(4)
     
+    and_i_goto_the_next_page
+    
+    and_i_choose_the_split_theme_and_choose_a_picture_and_text_for_page(5)
+    
     and_i_close_the_page_editor
     
     And "I click Create Story" do
@@ -48,7 +52,7 @@ Feature "A Creator can create a story", :testcase_class => FullStackTest do
     And "The data should be properly stored and linked" do
       @story = Story.last
       assert @creator.created_stories.include?(@story)
-      assert_equal 4, @story.pages.count 
+      assert_equal 5, @story.pages.count 
     end
         
     And "I should see my story information" do
@@ -93,6 +97,10 @@ Feature "A Creator can create a story", :testcase_class => FullStackTest do
     
     and_i_choose_the_video_theme_and_fill_in_a_vimeo_id_for_page(4)
     
+    and_i_goto_the_next_page
+    
+    and_i_choose_the_split_theme_and_choose_a_picture_and_text_for_page(5)
+    
     and_i_close_the_page_editor
     
     And "I click Create Story" do
@@ -105,6 +113,7 @@ Feature "A Creator can create a story", :testcase_class => FullStackTest do
       excerpt = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
       assert_equal excerpt, find("#pages_3_quote").value
       assert_equal "18427511", find("#pages_4_vimeo_id").value
+      assert_equal excerpt, find("#pages_5_text").value
     end
   end
   

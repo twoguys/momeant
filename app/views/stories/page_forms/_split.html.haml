@@ -1,0 +1,13 @@
+= hidden_field_tag "pages[#{@page_number}][type]", "SplitPage"
+.split.page-theme
+  .image
+    .inner
+      = file_field_tag "pages[#{@page_number}][image]"
+      .preview
+        = image_tag @page.image.image.url if @page && @page.image && @page.image.id
+  .text
+    .inner
+      - if @page && @page.text
+        = text_area_tag "pages[#{@page_number}][text]", @page.text.text, :placeholder => "Type your text here..."
+      - else
+        = text_area_tag "pages[#{@page_number}][text]", "", :placeholder => "Type your text here..."

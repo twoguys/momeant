@@ -53,9 +53,10 @@
           .slider
             %ul
               %li.title.tooltipped{:title => "Title Page", "page-type" => "title"}
-              %li.full-image.tooltipped{:title => "Full Image (with caption)", "page-type" => "full_image"}
-              %li.pullquote.tooltipped{:title => "Pullquote", "page-type" => "pullquote"}
+              %li.full_image.tooltipped{:title => "Full Image (w/ caption)", "page-type" => "full_image"}
+              %li.pullquote.tooltipped{:title => "Blockquote", "page-type" => "pullquote"}
               %li.video.tooltipped{:title => "Video", "page-type" => "video"}
+              %li.split.tooltipped{:title => "Split Image/Text", "page-type" => "split"}
         %ul#pages
           - (1..10).each do |page_number|
             %li.page{:id => "page_#{page_number}"}
