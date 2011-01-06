@@ -13,19 +13,23 @@ class Page < ActiveRecord::Base
       return false
     end
     
-    type = options[:type]
-    if type == "TitlePage"
+    case type = options[:type]
+    when "TitlePage"
       page = TitlePage.new(:number => options[:number])
       page.medias << PageText.new(:text => options[:title]) if options[:title]
       return page
-    elsif type == "FullImagePage"
+    when "FullImagePage"
       page = FullImagePage.new(:number => options[:number])
       page.medias << PageImage.new(:image => options[:image]) if options[:image]
       page.medias << PageText.new(:text => options[:caption]) if options[:caption]
       return page
-    elsif type == "PullquotePage"
+    when "PullquotePage"
       page = PullquotePage.new(:number => options[:number])
       page.medias << PageText.new(:text => options[:quote]) if options[:quote]
+      return page
+    when "VideoPage"
+      page = VideoPage.new(:number => options[:number])
+      page.medias << PageText.new(:text => options[:url]) if options[:url]
       return page
     else
       Rails.logger.info "[Momeant] No implementation for page type: #{type}"
