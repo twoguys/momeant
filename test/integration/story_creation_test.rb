@@ -64,6 +64,10 @@ Feature "A Creator can create a story", :testcase_class => FullStackTest do
       assert page.has_content? "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor."
       assert page.has_content? @topic.name
     end
+    
+    And "I should be able to visit the story show page" do
+      visit story_path(@story)
+    end
   end
   
   Scenario "A regular user (non-Creator) tries to access the new story page" do
