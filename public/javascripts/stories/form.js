@@ -12,6 +12,7 @@ var story_page_editor = function() {
 		setup_next_page_button();
 		setup_prev_page_button();
 		setup_preview_clicking();
+		setup_grid_editing();
 		initialize_first_page();
 	};
 	
@@ -48,6 +49,14 @@ var story_page_editor = function() {
 		});
 	};
 	
+	var setup_grid_editing = function() {
+		$('#page-editor .grid .cells a').live('click', function() {
+			var $parent = $(this).parent();
+			$parent.hide();
+			$parent.siblings().show();
+		});
+	};
+	
 	var initialize_first_page = function() {
 		var $page1 = $('#page_1');
 		// is there data in page 1?
@@ -64,7 +73,7 @@ var story_page_editor = function() {
 		var $current_page = $('#page_' + pages_editor.page);
 		$.get('/stories/render_page_theme?theme=' + page_type + '&page=' + pages_editor.page, function(result) {
 			$current_page.html(result);
-			$current_page.find('#input[placeholder],textarea[placeholder]').placeholder();
+			$current_page.find('input[placeholder],textarea[placeholder]').placeholder();
 			$current_page.fadeIn();
 			$current_page.click(pages_editor.hide_page_type_chooser);
 			pages_editor.hide_page_type_chooser();

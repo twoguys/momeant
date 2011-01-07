@@ -1,6 +1,6 @@
 = hidden_field_tag "pages[#{@page_number}][type]", "TitlePage"
 .title.page-theme
-  - if @page && @page.medias.first
-    = text_area_tag "pages[#{@page_number}][title]", @page.medias.first.text, :placeholder => "Type your title here..."
+  - if @page && @page.text
+    = text_area_tag "pages[#{@page_number}][title]", @page.text, :placeholder => "Type your title here..."
   - else
     = text_area_tag "pages[#{@page_number}][title]", "", :placeholder => "Type your title here..."

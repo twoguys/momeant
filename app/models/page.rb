@@ -2,6 +2,28 @@ class Page < ActiveRecord::Base
   belongs_to :story
   has_many :medias, :class_name => "PageMedia", :dependent => :destroy
   
+  def image
+    self.medias.each do |media|
+      return media.image if media.is_a?(PageImage)
+    end
+    return nil
+  end
+  
+  def text
+    self.medias.each do |media|
+      return media.text if media.is_a?(PageText)
+    end
+    return nil
+  end
+
+  def image_at_position(position)
+    self.medias.reject {|media| media.type != "PageImage" || media.position != position.to_s}.first
+  end
+  
+  def text_at_position(position)
+    self.medias.reject {|media| media.type != "PageText" || media.position != position.to_s}.first
+  end
+  
   def self.create_page_type_with(options)
     Rails.logger.info "Creating page with: #{options.inspect}"
     if !options || !options[:type]
@@ -35,6 +57,21 @@ class Page < ActiveRecord::Base
       page = SplitPage.new(:number => options[:number])
       page.medias << PageImage.new(:image => options[:image]) if options[:image]
       page.medias << PageText.new(:text => options[:text]) unless options[:text].blank?
+      return page
+    when "GridPage"
+      page = GridPage.new(:number => options[:number])
+      if options[:cells]
+        8.times do |num|
+          cell = (num + 1).to_s
+          if options[:cells][cell]
+            image = options[:cells][cell][:image]
+            caption = options[:cells][cell][:text]
+            page.medias << PageImage.new(:image => image, :position => cell) if image
+            page.medias << PageText.new(:text => caption, :position => cell) unless caption.blank?
+          end
+        end
+      end
+      Rails.logger.info "PAGE TEXTS: #{page.text_at_position(1)}"
       return page
     else
       Rails.logger.info "[Momeant] No implementation for page type: #{type}"

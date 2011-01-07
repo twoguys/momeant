@@ -1,3 +1,3 @@
 .number Page #{@page.number}
-= image_tag(@page.image.image.url) if @page.image && @page.image.image.file?
-.caption= @page.caption.text if @page.caption
+= image_tag(@page.image.url) if @page.image
+.caption= @page.text if @page.text

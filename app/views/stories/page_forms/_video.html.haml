@@ -3,7 +3,7 @@
   .info Enter the Vimeo video ID below (the last part of the video’s URL)
   .url
     %span http://vimeo.com/
-    - if @page && @page.medias.first
-      = text_field_tag "pages[#{@page_number}][vimeo_id]", @page.medias.first.text
+    - if @page && @page.text
+      = text_field_tag "pages[#{@page_number}][vimeo_id]", @page.text
     - else
       = text_field_tag "pages[#{@page_number}][vimeo_id]", ""

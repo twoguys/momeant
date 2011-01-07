@@ -55,4 +55,18 @@ module StoryCreationSteps
     end
   end
   
+  def and_i_choose_the_grid_theme_and_choose_pictures_and_text_for_page(page_number)
+    And "I choose the grid theme for page #{page_number} and choose pictures and text" do
+      find(".slider").find(".grid").click
+      8.times do |num|
+        cell = num + 1
+        within("#cell_#{cell}") do
+          attach_file "pages_#{page_number}_cells_#{cell}_image", File.join(Rails.root, "test/assets", "avatar.png")
+          click_link("Edit caption")
+          fill_in "pages_#{page_number}_cells_#{cell}_text", :with => "Lorem ipsum dolor sit amet"
+        end
+      end
+    end
+  end
+  
 end

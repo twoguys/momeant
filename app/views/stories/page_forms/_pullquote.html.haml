@@ -1,6 +1,6 @@
 = hidden_field_tag "pages[#{@page_number}][type]", "PullquotePage"
 .pullquote.page-theme
-  - if @page && @page.medias.first
-    = text_area_tag "pages[#{@page_number}][quote]", @page.medias.first.text, :placeholder => "Type your text here..."
+  - if @page && @page.text
+    = text_area_tag "pages[#{@page_number}][quote]", @page.text, :placeholder => "Type your text here..."
   - else
     = text_area_tag "pages[#{@page_number}][quote]", "", :placeholder => "Type your text here..."

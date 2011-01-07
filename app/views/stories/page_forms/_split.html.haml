@@ -4,10 +4,10 @@
     .inner
       = file_field_tag "pages[#{@page_number}][image]"
       .preview
-        = image_tag @page.image.image.url if @page && @page.image && @page.image.id
+        = image_tag @page.image.url if @page && @page.id && @page.image
   .text
     .inner
       - if @page && @page.text
-        = text_area_tag "pages[#{@page_number}][text]", @page.text.text, :placeholder => "Type your text here..."
+        = text_area_tag "pages[#{@page_number}][text]", @page.text, :placeholder => "Type your text here..."
       - else
         = text_area_tag "pages[#{@page_number}][text]", "", :placeholder => "Type your text here..."

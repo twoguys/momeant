@@ -1,10 +1,10 @@
-class SplitPage < Page
+class GridPage < Page
   
   def partial_name
-    "split"
+    "grid"
   end
   
   def css_class
-    "split"
+    "grid"
   end
 end
