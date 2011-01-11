@@ -1,8 +1,28 @@
-.story-view
-  %h1= @story.title
-  .excerpt= @story.excerpt
+- content_for :head do
+  = javascript_include_tag "stories/show"
+
+.story-viewer
+
+  #number-of-pages.hidden= @story.pages.count
   
   %ul#pages
     - @story.pages.each do |page|
       - @page = page
-      = render "/stories/page_themes/#{page.partial_name}"
+      %li{:id => "page_#{page.number}", :class => page.number == 1 ? "#{page.css_class}" : "#{page.css_class} hidden"}
+        = render "/stories/page_themes/#{page.partial_name}"
+  
+  #previous-page
+    .button.tooltipped-n{:title => "Previous page"} previous page
+  #next-page
+    .button.tooltipped-n{:title => "Next page"} next page
+  
+  #previewer
+    .info
+      .title= @story.title
+      .excerpt= @story.excerpt
+    %ul.pages
+      - @story.pages.each do |page|
+        - @page = page
+        %li.page{:class => page.css_class, "page-number" => page.number}
+          - @preview = true
+          .inner= render "/stories/page_themes/#{page.partial_name}"

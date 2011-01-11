@@ -1,0 +1,209 @@
+/* Story viewing */
+
+.story-viewer
+	width: 100%
+	height: 100%
+	overflow: hidden
+	
+	#previewer
+		height: 150px
+		background-color: #ddd
+		position: fixed
+		left: 0
+		bottom: 0
+		z-index: 5
+		width: 100%
+		overflow-x: auto
+		overflow-y: hidden
+		.info
+			height: 30px
+			overflow: hidden
+			padding-left: 30px
+			background: transparent url(../images/story-previewer-open-arrow.png) no-repeat 10px 6px
+			.title, .excerpt
+				float: left
+				font-size: 1.2em
+				line-height: 30px
+				vertical-align: middle
+			.title
+				font-weight: bold
+				margin: 0 30px 0 10px
+			.excerpt
+				color: #777
+		ul.pages
+			height: 104px
+			li.page
+				width: 150px
+				height: 100px
+				border: 2px solid #ddd
+				float: left
+				overflow: hidden
+				margin-right: 5px
+				cursor: pointer
+				.number
+					display: none
+			li.page:hover
+				border: 2px solid #fff
+			li.title .inner
+				background-color: #000
+				color: #fff
+				text-shadow: none
+				text-align: center
+				padding: 40px 5px
+				height: 30px
+				font-weight: bold
+			li.full_image .inner
+				img
+					width: 150px
+			li.pullquote .inner
+				padding: 5px
+				font-size: 0.7em
+				overflow: hidden
+				p
+					margin: 0
+					line-height: 1.2em
+			li.video .inner
+				img
+					width: 150px
+					height: 100px
+			li.split .inner
+				.image, .text
+					width: 75px
+				.image
+					float: left
+					img
+						width: 75px
+				.text
+					float: right
+					.inner
+						padding-left: 4px
+						font-size: 0.7em
+			li.grid .inner
+				ul.cells
+					width: 150px
+					li
+						width: 37.5px
+						height: 50px
+						float: left
+						font-size: 0.7em
+						position: relative
+						img
+							width: 37.5px
+						.image
+							z-index: 2
+						.text
+							z-index: 1
+						.image, .text
+							position: absolute
+	
+	ul#pages
+		width: 100%
+		height: 100%
+		li
+			width: 100%
+			height: 100%
+			.number
+				display: none
+		li.title div.title
+			font-size: 5em
+			text-align: center
+			position: relative
+			top: 35%
+		li.full_image
+			text-align: center
+			img
+				max-width: 100%
+			.caption
+				position: absolute
+				padding: 20px
+				background-color: #fff
+				background-color: rgba(255,255,255,0.75)
+				max-width: 200px
+				right: 17%
+				bottom: 150px
+				-webkit-box-shadow: 0 0 10px #000
+				-moz-box-shadow: 0 0 10px #000
+				box-shadow: 0 0 10px #000
+				-webkit-border-radius: 3px
+				-moz-border-radius: 3px
+				border-radius: 3px
+		li.pullquote
+			p
+				width: 80%
+				height: 80%
+				padding: 5% 0
+				margin: 0 auto
+				font-size: 1.6em
+		li.video
+			text-align: center
+			iframe
+				position: relative
+				margin: 5% auto
+				-webkit-box-shadow: 0 0 30px #000
+				z-index: 4
+		li.split
+			div.split
+				padding: 5% 10%
+			.image, .text
+				width: 50%
+				float: left
+			.image
+				text-align: center
+			.text	
+				font-size: 1.6em
+				.inner
+					padding: 3%
+		li.grid
+			ul.cells
+				padding: 5% 10%
+				height: 80%
+				li
+					width: 25%
+					height: 50%
+					float: left
+					position: relative
+					z-index: 4
+					.image, .text
+						position: absolute
+						width: 100%
+						height: 100%
+					.image
+						display: block
+						overflow: hidden
+					.text
+						display: none
+						font-size: 2em
+						text-align: center
+						background-color: #fff
+						background-color: rgba(255,255,255,0.75)
+						.inner
+							padding: 5px
+					img
+						width: 100%
+				li:hover
+					.text
+						display: block
+	
+	#previous-page, #next-page
+		width: 20%
+		height: 100%
+		position: absolute
+		top: 0
+		z-index: 2
+		.button
+			text-indent: -9999px
+			background: transparent url(../images/next-previous-arrows.png) no-repeat 0 0
+			cursor: pointer
+			position: absolute
+			top: 35%
+			right: 0
+			height: 100px
+			width: 100px
+	#previous-page
+		left: 0
+		.button
+			left: 0
+	#next-page
+		right: 0
+		.button
+			background-position: -138px 0

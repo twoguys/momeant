@@ -1,15 +1,21 @@
 /*
 Syntax error: Undefined variable: "$border_type".
         on line 6 of /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/stories/form.sass
-        from line 1 of /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/stories.sass
 
-1: @import "stories/form"
-2: @import "stories/preview"
-3: @import "stories/show"
+1: /* Story creation */
+2: 
+3: form.new_story, form.edit_story
+4: 	.title-input, .excerpt-input
+5: 		height: 80px
+6: 		border-bottom: $border_type
+7: 		float: left
+8: 		input
+9: 			width: 95%
+10: 	.title-input
+11: 		width: 30%
 
 Backtrace:
 /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/stories/form.sass:6
-/Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/stories.sass:1
 /Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.24/lib/sass/script/variable.rb:39:in `_perform'
 /Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.24/lib/sass/script/node.rb:61:in `perform'
 /Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.24/lib/sass/tree/prop_node.rb:132:in `perform!'
@@ -29,14 +35,6 @@ Backtrace:
 /Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.24/lib/sass/tree/rule_node.rb:191:in `perform!'
 /Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.24/lib/sass/tree/node.rb:305:in `_perform'
 /Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.24/lib/sass/tree/node.rb:213:in `perform'
-/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.24/lib/sass/tree/node.rb:326:in `perform_children'
-/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.24/lib/sass/tree/node.rb:326:in `map'
-/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.24/lib/sass/tree/node.rb:326:in `perform_children'
-/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.24/lib/sass/tree/import_node.rb:78:in `perform!'
-/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.24/lib/sass/tree/node.rb:305:in `_perform'
-/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.24/lib/sass/tree/import_node.rb:64:in `_perform'
-/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.24/lib/sass/tree/node.rb:213:in `perform'
-/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.24/lib/sass/tree/root_node.rb:37:in `perform'
 /Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.24/lib/sass/tree/node.rb:326:in `perform_children'
 /Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.24/lib/sass/tree/node.rb:326:in `map'
 /Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.24/lib/sass/tree/node.rb:326:in `perform_children'
@@ -110,4 +108,4 @@ script/rails:6
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Syntax error: Undefined variable: \"$border_type\".\A         on line 6 of /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/stories/form.sass\A         from line 1 of /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/stories.sass\A \A 1: @import \"stories/form\"\A 2: @import \"stories/preview\"\A 3: @import \"stories/show\""; }
+  content: "Syntax error: Undefined variable: \"$border_type\".\A         on line 6 of /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/stories/form.sass\A \A 1: /* Story creation */\A 2: \A 3: form.new_story, form.edit_story\A 4: 	.title-input, .excerpt-input\A 5: 		height: 80px\A 6: 		border-bottom: $border_type\A 7: 		float: left\A 8: 		input\A 9: 			width: 95%\A 10: 	.title-input\A 11: 		width: 30%"; }

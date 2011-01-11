@@ -1,7 +1,7 @@
 class StoriesController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :preview]
   load_and_authorize_resource :except => [:index, :preview]
-  before_filter :get_topics, :only => [:new]
+  before_filter :get_topics, :only => [:new, :edit]
   
   def index
     @stories = Story.all
@@ -25,6 +25,10 @@ class StoriesController < ApplicationController
       get_topics
       render "new"
     end
+  end
+  
+  def edit
+    render "new"
   end
   
   def preview

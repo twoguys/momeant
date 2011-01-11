@@ -1,0 +1,14 @@
+- @preview ||= false
+.number Page #{@page.number}
+%ul.cells
+  - 8.times do |num|
+    - cell = num + 1
+    %li
+      .image
+        - if @preview
+          = image_tag @page.image_at_position(cell).image.url(:petite) if @page.image_at_position(cell)
+        - else
+          = image_tag @page.image_at_position(cell).image.url if @page.image_at_position(cell)
+      .text{:class => @page.image_at_position(cell) ? "hidden" : ""}
+        .inner
+          = @page.text_at_position(cell).text if @page.text_at_position(cell)

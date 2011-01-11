@@ -1,2 +1,6 @@
+- @preview ||= false
 .number Page #{@page.number}
-%iframe{:class => "video-frame", :src => "http://player.vimeo.com/video/#{@page.text}", :width => "800", :height => "450", :frameborder => "0"}
+- if @preview
+  = image_tag("/images/page-themes/video-thumbnail.jpg")
+- else
+  %iframe{:class => "video-frame", :src => "http://player.vimeo.com/video/#{@page.text}", :width => "800", :height => "450", :frameborder => "0"}

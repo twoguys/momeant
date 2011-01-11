@@ -7,7 +7,7 @@ class Story < ActiveRecord::Base
   has_many :recommendations
   has_many :users_who_recommended, :through => :recommendations, :source => :user
   
-  has_many :pages, :dependent => :destroy
+  has_many :pages, :order => "number ASC", :dependent => :destroy
     
   validates :title, :presence => true, :length => (2..256)
   validates :excerpt, :length => (2..1024)

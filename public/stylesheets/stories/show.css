@@ -1,0 +1,197 @@
+/* Story viewing */
+.story-viewer {
+  width: 100%;
+  height: 100%;
+  overflow: hidden; }
+  .story-viewer #previewer {
+    height: 150px;
+    background-color: #dddddd;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    z-index: 5;
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden; }
+    .story-viewer #previewer .info {
+      height: 30px;
+      overflow: hidden;
+      padding-left: 30px;
+      background: transparent url(../images/story-previewer-open-arrow.png) no-repeat 10px 6px; }
+      .story-viewer #previewer .info .title, .story-viewer #previewer .info .excerpt {
+        float: left;
+        font-size: 1.2em;
+        line-height: 30px;
+        vertical-align: middle; }
+      .story-viewer #previewer .info .title {
+        font-weight: bold;
+        margin: 0 30px 0 10px; }
+      .story-viewer #previewer .info .excerpt {
+        color: #777777; }
+    .story-viewer #previewer ul.pages {
+      height: 104px; }
+      .story-viewer #previewer ul.pages li.page {
+        width: 150px;
+        height: 100px;
+        border: 2px solid #dddddd;
+        float: left;
+        overflow: hidden;
+        margin-right: 5px;
+        cursor: pointer; }
+        .story-viewer #previewer ul.pages li.page .number {
+          display: none; }
+      .story-viewer #previewer ul.pages li.page:hover {
+        border: 2px solid white; }
+      .story-viewer #previewer ul.pages li.title .inner {
+        background-color: black;
+        color: white;
+        text-shadow: none;
+        text-align: center;
+        padding: 40px 5px;
+        height: 30px;
+        font-weight: bold; }
+      .story-viewer #previewer ul.pages li.full_image .inner img {
+        width: 150px; }
+      .story-viewer #previewer ul.pages li.pullquote .inner {
+        padding: 5px;
+        font-size: 0.7em;
+        overflow: hidden; }
+        .story-viewer #previewer ul.pages li.pullquote .inner p {
+          margin: 0;
+          line-height: 1.2em; }
+      .story-viewer #previewer ul.pages li.video .inner img {
+        width: 150px;
+        height: 100px; }
+      .story-viewer #previewer ul.pages li.split .inner .image, .story-viewer #previewer ul.pages li.split .inner .text {
+        width: 75px; }
+      .story-viewer #previewer ul.pages li.split .inner .image {
+        float: left; }
+        .story-viewer #previewer ul.pages li.split .inner .image img {
+          width: 75px; }
+      .story-viewer #previewer ul.pages li.split .inner .text {
+        float: right; }
+        .story-viewer #previewer ul.pages li.split .inner .text .inner {
+          padding-left: 4px;
+          font-size: 0.7em; }
+      .story-viewer #previewer ul.pages li.grid .inner ul.cells {
+        width: 150px; }
+        .story-viewer #previewer ul.pages li.grid .inner ul.cells li {
+          width: 37.5px;
+          height: 50px;
+          float: left;
+          font-size: 0.7em;
+          position: relative; }
+          .story-viewer #previewer ul.pages li.grid .inner ul.cells li img {
+            width: 37.5px; }
+          .story-viewer #previewer ul.pages li.grid .inner ul.cells li .image {
+            z-index: 2; }
+          .story-viewer #previewer ul.pages li.grid .inner ul.cells li .text {
+            z-index: 1; }
+          .story-viewer #previewer ul.pages li.grid .inner ul.cells li .image, .story-viewer #previewer ul.pages li.grid .inner ul.cells li .text {
+            position: absolute; }
+  .story-viewer ul#pages {
+    width: 100%;
+    height: 100%; }
+    .story-viewer ul#pages li {
+      width: 100%;
+      height: 100%; }
+      .story-viewer ul#pages li .number {
+        display: none; }
+    .story-viewer ul#pages li.title div.title {
+      font-size: 5em;
+      text-align: center;
+      position: relative;
+      top: 35%; }
+    .story-viewer ul#pages li.full_image {
+      text-align: center; }
+      .story-viewer ul#pages li.full_image img {
+        max-width: 100%; }
+      .story-viewer ul#pages li.full_image .caption {
+        position: absolute;
+        padding: 20px;
+        background-color: white;
+        background-color: rgba(255, 255, 255, 0.75);
+        max-width: 200px;
+        right: 17%;
+        bottom: 150px;
+        -webkit-box-shadow: 0 0 10px black;
+        -moz-box-shadow: 0 0 10px black;
+        box-shadow: 0 0 10px black;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px; }
+    .story-viewer ul#pages li.pullquote p {
+      width: 80%;
+      height: 80%;
+      padding: 5% 0;
+      margin: 0 auto;
+      font-size: 1.6em; }
+    .story-viewer ul#pages li.video {
+      text-align: center; }
+      .story-viewer ul#pages li.video iframe {
+        position: relative;
+        margin: 5% auto;
+        -webkit-box-shadow: 0 0 30px black;
+        z-index: 4; }
+    .story-viewer ul#pages li.split div.split {
+      padding: 5% 10%; }
+    .story-viewer ul#pages li.split .image, .story-viewer ul#pages li.split .text {
+      width: 50%;
+      float: left; }
+    .story-viewer ul#pages li.split .image {
+      text-align: center; }
+    .story-viewer ul#pages li.split .text {
+      font-size: 1.6em; }
+      .story-viewer ul#pages li.split .text .inner {
+        padding: 3%; }
+    .story-viewer ul#pages li.grid ul.cells {
+      padding: 5% 10%;
+      height: 80%; }
+      .story-viewer ul#pages li.grid ul.cells li {
+        width: 25%;
+        height: 50%;
+        float: left;
+        position: relative;
+        z-index: 4; }
+        .story-viewer ul#pages li.grid ul.cells li .image, .story-viewer ul#pages li.grid ul.cells li .text {
+          position: absolute;
+          width: 100%;
+          height: 100%; }
+        .story-viewer ul#pages li.grid ul.cells li .image {
+          display: block;
+          overflow: hidden; }
+        .story-viewer ul#pages li.grid ul.cells li .text {
+          display: none;
+          font-size: 2em;
+          text-align: center;
+          background-color: white;
+          background-color: rgba(255, 255, 255, 0.75); }
+          .story-viewer ul#pages li.grid ul.cells li .text .inner {
+            padding: 5px; }
+        .story-viewer ul#pages li.grid ul.cells li img {
+          width: 100%; }
+      .story-viewer ul#pages li.grid ul.cells li:hover .text {
+        display: block; }
+  .story-viewer #previous-page, .story-viewer #next-page {
+    width: 20%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    z-index: 2; }
+    .story-viewer #previous-page .button, .story-viewer #next-page .button {
+      text-indent: -9999px;
+      background: transparent url(../images/next-previous-arrows.png) no-repeat 0 0;
+      cursor: pointer;
+      position: absolute;
+      top: 35%;
+      right: 0;
+      height: 100px;
+      width: 100px; }
+  .story-viewer #previous-page {
+    left: 0; }
+    .story-viewer #previous-page .button {
+      left: 0; }
+  .story-viewer #next-page {
+    right: 0; }
+    .story-viewer #next-page .button {
+      background-position: -138px 0; }

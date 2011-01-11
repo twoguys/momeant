@@ -1,3 +1,8 @@
+- @preview ||= false
 .number Page #{@page.number}
-= image_tag(@page.image.url) if @page.image
-.caption= @page.text if @page.text
+.inner
+  - if @preview
+    = image_tag(@page.image.url(:small)) if @page.image
+  - else
+    = image_tag(@page.image.url) if @page.image
+  .caption= @page.text if @page.text

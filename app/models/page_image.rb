@@ -1,6 +1,6 @@
 class PageImage < PageMedia
   has_attached_file :image,
-    :styles => { :thumbnail => "80x80#" },
+    :styles => { :large => "630x420#", :medium => "288x180#", :small => "150x100#", :petite => "95x60#" },
     :path          => "page_images/:id/:style.:extension",
     :storage        => :s3,
     :s3_credentials => {
