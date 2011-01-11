@@ -70,6 +70,7 @@ var story_viewer = function() {
 			var $next_page = $('#page_' + page_number);
 			$current_page.fadeOut();
 			$next_page.fadeIn();
+			var previous_page_number = viewer.page;
 			viewer.page = page_number;
 			
 			if (page_number == 1) {
@@ -77,6 +78,10 @@ var story_viewer = function() {
 			}
 			if (page_number == viewer.total_pages) {
 				viewer.hide_next_button();
+			}
+			if (previous_page_number == 1) {
+				// bring the prev button from opacity 0 to .3
+				viewer.hide_prev_button();
 			}
 		}
 	};
