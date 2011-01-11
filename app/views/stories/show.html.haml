@@ -17,12 +17,13 @@
     .button.tooltipped-n{:title => "Next page"} next page
   
   #previewer
-    .info
-      .title= @story.title
-      .excerpt= @story.excerpt
-    %ul.pages
-      - @story.pages.each do |page|
-        - @page = page
-        %li.page{:class => page.css_class, "page-number" => page.number}
-          - @preview = true
-          .inner= render "/stories/page_themes/#{page.partial_name}"
+    .preview-inner
+      .info
+        .title= @story.title
+        .excerpt= @story.excerpt
+      %ul.pages
+        - @story.pages.each do |page|
+          - @page = page
+          %li.page{:class => page.css_class, "page-number" => page.number}
+            - @preview = true
+            .inner= render "/stories/page_themes/#{page.partial_name}"

@@ -464,7 +464,7 @@ form.new_story .topics, form.edit_story .topics {
         border: 1px solid #aaaaaa;
         position: absolute;
         right: 16%;
-        bottom: 4%; }
+        bottom: 8%; }
         #page-editor ul#pages li.page .full_image .caption h3 {
           padding: 5px;
           height: 15px;
@@ -738,8 +738,8 @@ form.new_story .topics, form.edit_story .topics {
   height: 100%;
   overflow: hidden; }
   .story-viewer #previewer {
-    height: 150px;
-    background-color: #dddddd;
+    height: 170px;
+    background: transparent url(../images/story-page-previewer-tab.png) no-repeat 5px 0;
     position: fixed;
     left: 0;
     bottom: 0;
@@ -747,11 +747,13 @@ form.new_story .topics, form.edit_story .topics {
     width: 100%;
     overflow-x: auto;
     overflow-y: hidden; }
+    .story-viewer #previewer .preview-inner {
+      height: 150px;
+      margin-top: 20px;
+      background-color: #dddddd; }
     .story-viewer #previewer .info {
       height: 30px;
-      overflow: hidden;
-      padding-left: 30px;
-      background: transparent url(../images/story-previewer-open-arrow.png) no-repeat 10px 6px; }
+      overflow: hidden; }
       .story-viewer #previewer .info .title, .story-viewer #previewer .info .excerpt {
         float: left;
         font-size: 1.2em;

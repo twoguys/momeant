@@ -31,22 +31,24 @@ var story_viewer = function() {
 	
 	this.show_next_button = function() {
 		if (viewer.page < viewer.total_pages) {
-			$('#next-page .button').show();
+			$('#next-page .button').stop().animate({opacity: 1});
 		}
 	};
 	
 	this.hide_next_button = function() {
-		$('#next-page .button').hide();
+		var opacity_level = viewer.page == viewer.total_pages ? 0 : .3;
+		$('#next-page .button').stop().animate({opacity: opacity_level});
 	};
 	
 	this.show_prev_button = function() {
 		if (viewer.page > 1) {
-			$('#previous-page .button').show();
+			$('#previous-page .button').stop().animate({opacity: 1});
 		}
 	};
 
 	this.hide_prev_button = function() {
-		$('#previous-page .button').hide();
+		var opacity_level = viewer.page == 1 ? 0 : .3;
+		$('#previous-page .button').stop().animate({opacity: opacity_level});
 	};
 	
 	this.previewer_page_clicked = function() {
@@ -87,8 +89,9 @@ var story_viewer = function() {
 	var hide_controls_after_initial_delay = function() {
 		setTimeout(function() {
 				viewer.close_previewer();
-				$('#next-page .button, #previous-page .button').hide();
-			}, 1000);
+				viewer.hide_next_button();
+				viewer.hide_prev_button();
+			}, 2000);
 	};
 	
 }
