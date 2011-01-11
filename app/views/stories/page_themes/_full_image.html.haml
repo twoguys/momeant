@@ -5,4 +5,5 @@
     = image_tag(@page.image.url(:small)) if @page.image
   - else
     = image_tag(@page.image.url) if @page.image
-  .caption= @page.text if @page.text
+  - if @page.text
+    .caption= @page.text
