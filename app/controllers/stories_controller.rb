@@ -1,6 +1,6 @@
 class StoriesController < ApplicationController
-  before_filter :authenticate_user!, :except => [:index, :preview]
-  load_and_authorize_resource :except => [:index, :preview]
+  before_filter :authenticate_user!, :except => [:index, :preview, :tagged_with]
+  load_and_authorize_resource :except => [:index, :preview, :tagged_with]
   before_filter :get_topics, :only => [:new, :edit]
   
   def index
@@ -9,6 +9,14 @@ class StoriesController < ApplicationController
   
   def library
     @stories = current_user.stories
+  end
+  
+  def tagged_with
+    @stories = []
+    @tags = Story.tag_counts_on(:tags)
+    return if params[:tag].blank?
+    
+    @stories = Story.tagged_with(params[:tag])
   end
   
   def new
@@ -79,6 +87,14 @@ class StoriesController < ApplicationController
   def recommended
     @limit = User::RECOMMENDATIONS_LIMIT
     @recommendations = current_user.recommendations
+  end
+  
+  def remove_tag_from
+    story = Story.find_by_id(params[:id])
+    render :text => "" and return if story.nil? || params[:tag].blank?
+    story.tag_list.remove(params[:tag])
+    story.save
+    render :text => ""
   end
   
   def show

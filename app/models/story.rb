@@ -23,6 +23,10 @@ class Story < ActiveRecord::Base
     self.topics.map{|t| t.name}.join(', ')
   end
   
+  def owner?(user)
+    !user.nil? && self.user == user
+  end
+  
   def similar_stories
     # find other stories by my creator
     stories = self.user.created_stories

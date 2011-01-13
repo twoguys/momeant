@@ -20,4 +20,8 @@
       = @story.topic_list
     .tags
       %h3 Tags
-      = @story.tag_list
+      - @story.tags.each do |tag|
+        .tag
+          = link_to(tag.name, stories_tagged_with_path(tag.name))
+          - if @story.owner?(current_user)
+            = link_to("x", remove_tag_from_story_path(@story, :tag => tag.name),:class => "remove tooltipped-n", :title => "Remove tag", :remote => true, :method => :delete)

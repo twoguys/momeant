@@ -35,3 +35,11 @@ Factory.define :recommendation do |recommendation|
   recommendation.user     { Factory :user }
   recommendation.story    { Factory :story }
 end
+
+Factory.sequence :tag_name do |n|
+  "Tag #{n}"
+end
+
+Factory.define :tagged_story, :parent => :story do |story|
+  story.tag_list      { "#{Factory.next :tag_name}, #{Factory.next :tag_name}" }
+end

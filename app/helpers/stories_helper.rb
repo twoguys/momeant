@@ -1,4 +1,5 @@
 module StoriesHelper
+  include ActsAsTaggableOn::TagsHelper
   
   def bookmark_button(story)
     if current_user
