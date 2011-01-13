@@ -17,5 +17,7 @@
       .excerpt= @story.excerpt
     .topics
       %h3 Topics
-      %ul
-        = @story.topics.map{|t| t.name}.join(', ')
+      = @story.topic_list
+    .tags
+      %h3 Tags
+      = @story.tag_list

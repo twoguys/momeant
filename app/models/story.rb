@@ -1,4 +1,6 @@
 class Story < ActiveRecord::Base
+  acts_as_taggable
+  
   belongs_to :user
   has_and_belongs_to_many :topics
   has_many :purchases
@@ -15,6 +17,10 @@ class Story < ActiveRecord::Base
   
   def free?
     self.price == 0
+  end
+  
+  def topic_list
+    self.topics.map{|t| t.name}.join(', ')
   end
   
   def similar_stories

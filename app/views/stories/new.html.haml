@@ -43,6 +43,11 @@
           - parent_topics = @topics.reject {|topic| topic.topic_id != nil}
           - parent_topics.each do |topic|
             = topic_checkbox(topic, @story, @topics)
+    
+      %li.tags
+        %h3 Tags
+        .example firecracker, John Smith, x-ray
+        = form.text_area :tag_list
       
       %li#page-editor.hidden
         = link_to("Close Page Editor", "#", :class => "button", :id => "close-page-editor-button")

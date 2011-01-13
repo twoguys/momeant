@@ -19,6 +19,7 @@ Feature "A Creator can create a story", :testcase_class => FullStackTest do
       fill_in "story_excerpt", :with => "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor."
       check "topics_#{@topic.id}"
       fill_in "story_price", :with => "0.50"
+      fill_in "story_tag_list", :with => "1st tag, 2nd tag, 3rd tag"
     end
     
     and_i_open_the_page_editor
@@ -63,6 +64,9 @@ Feature "A Creator can create a story", :testcase_class => FullStackTest do
       assert page.has_content? "Little Red Riding Hood"
       assert page.has_content? "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor."
       assert page.has_content? @topic.name
+      ["1st tag", "2nd tag", "3rd tag"].each do |tag|
+        assert page.has_content? tag
+      end
     end
     
     And "I should be able to visit the story show page" do

@@ -12,6 +12,7 @@ gem 'paperclip'
 gem 'inherited_resources'
 gem 'cancan'
 gem 'fastercsv'
+gem 'acts-as-taggable-on'
 
 group :test do
   gem 'shoulda'
