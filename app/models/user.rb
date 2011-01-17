@@ -84,8 +84,8 @@ class User < ActiveRecord::Base
     self.stories.each do |purchased_story|
       similar_stories += purchased_story.similar_stories
     end
-    # remove stories I've created or purchased
+    # remove stories I've created or purchased or that are unpublished
     purchased_stories = self.purchased_stories
-    similar_stories.reject { |story| story.user == self || purchased_stories.include?(story) }.uniq
+    similar_stories.reject { |story| story.user == self || purchased_stories.include?(story) || story.draft? }.uniq
   end
 end

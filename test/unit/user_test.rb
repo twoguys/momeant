@@ -16,7 +16,6 @@ class UserTest < ActiveSupport::TestCase
     subscription = Factory(:subscription, :subscriber => creator)
     recommendation = Factory(:recommendation, :story => story, :user => subscription.user)
     
-    # make sure the story I created isn't recommended to me
     assert !creator.recommended_stories_from_people_i_subscribe_to.include?(story)
   end
   
@@ -26,7 +25,6 @@ class UserTest < ActiveSupport::TestCase
     recommendation = Factory(:recommendation, :user => subscription.user)
     purchase = Factory(:purchase, :payer => user, :story => recommendation.story)
 
-    # make sure the story I've already purchased isn't recommended to me
     assert !user.recommended_stories_from_people_i_subscribe_to.include?(recommendation.story)
   end
   
@@ -83,6 +81,14 @@ class UserTest < ActiveSupport::TestCase
     purchase = Factory(:purchase, :payer => user)
     similar_story = Factory(:story, :topics => purchase.story.topics)
     purchase = Factory(:purchase, :payer => user, :story => similar_story)
+    
+    assert !user.stories_similar_to_my_bookmarks_and_purchases.include?(similar_story)
+  end
+  
+  test "Momeant does NOT show stories that are unpublished" do
+    user = Factory(:user)
+    purchase = Factory(:purchase, :payer => user)
+    similar_story = Factory(:draft_story, :topics => purchase.story.topics)
     
     assert !user.stories_similar_to_my_bookmarks_and_purchases.include?(similar_story)
   end
