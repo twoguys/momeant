@@ -1,4 +1,8 @@
 .story-preview
+  - if @story.draft? && @story.owner?(current_user)
+    .banner
+      %span Your story is still in draft state (no one else can see it). Once you're ready to make it public,
+      = button_to("Publish this story", publish_story_path(@story))
   .left
     .image-preview Image Preview
     .price= story_price(@story)

@@ -19,7 +19,6 @@ group :test do
   gem 'coulda'
   gem 'factory_girl'
   gem 'capybara'
-  gem 'capybara-envjs', :require => 'capybara/envjs' # speeds up js testing over selenium
   gem 'launchy'
   gem 'autotest-rails-pure'
   gem 'autotest-fsevent'

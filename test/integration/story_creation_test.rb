@@ -69,8 +69,37 @@ Feature "A Creator can create a story", :testcase_class => FullStackTest do
       end
     end
     
-    And "I should be able to visit the story show page" do
-      visit story_path(@story)
+    And "My story should be in the draft state" do
+      assert !@story.published?
+    end
+      
+    And "I should see a publish button" do
+      assert find_button('Publish this story').visible?
+    end
+  end
+  
+  Scenario "A creator publishes a story currently in draft state" do
+    given_a :creator
+    Given "A story I've created" do
+      @draft_story = Factory(:draft_story, :user => @creator)
+    end
+    given_im_signed_in_as :creator
+    
+    When "I visit the preview page for my story" do
+      visit preview_story_path(@draft_story)
+    end
+    
+    And "I click the 'Publish story' button" do
+      click_button "Publish this story"
+    end
+    
+    Then "I should be back on the preview page" do
+      assert_equal preview_story_path(@draft_story), current_path
+    end
+    
+    And "My story should be published" do
+      @draft_story.reload
+      assert @draft_story.published?
     end
   end
   
@@ -86,7 +115,7 @@ Feature "A Creator can create a story", :testcase_class => FullStackTest do
     then_i_should_see_flash(:alert, "You are not authorized to access this page.")
   end
   
-  Scenario "A creator tries to create a story but forgets a title and excerpt" do
+  Scenario "A creator tries to create a story but forgets to fill in some required fields" do
     given_a :creator
     given_a :topic
     given_im_signed_in_as :creator

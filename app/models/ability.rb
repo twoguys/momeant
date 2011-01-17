@@ -12,16 +12,18 @@ class Ability
         can :manage, Story
       else
         can [:create, :show, :index], Invitation
-        can [:preview, :purchase, :library, :bookmark, :unbookmark, :bookmarked, :recommend, :unrecommend, :recommended], Story
+        can [:library, :bookmarked, :recommended], Story
+        can [:purchase, :bookmark, :unbookmark, :recommend, :unrecommend], Story, :published => true
+        can :preview, Story do |story|
+          story.published? || story.owner?(user)
+        end
         can :show, Story do |story|
           user.stories.include?(story)
         end
       end  
-      can [:library], User
+      can :library, User
       can :create, Subscription
-      can :destroy, Subscription do |subscription|
-        subscription.subscriber == user
-      end
+      can :destroy, Subscription, :subscriber_id => user.id
     end
   end
 end

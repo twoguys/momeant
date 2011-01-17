@@ -4,7 +4,7 @@ class StoriesController < ApplicationController
   before_filter :get_topics, :only => [:new, :edit]
   
   def index
-    @stories = Story.all
+    @stories = Story.published
   end
   
   def library
@@ -13,10 +13,10 @@ class StoriesController < ApplicationController
   
   def tagged_with
     @stories = []
-    @tags = Story.tag_counts_on(:tags)
+    @tags = Story.published.tag_counts_on(:tags)
     return if params[:tag].blank?
     
-    @stories = Story.tagged_with(params[:tag])
+    @stories = Story.published.tagged_with(params[:tag])
   end
   
   def new
@@ -25,6 +25,7 @@ class StoriesController < ApplicationController
   
   def create
     @story = Story.new(params[:story])
+    @story.published = false # draft state by default
     attach_topics
     attach_pages(params[:pages])
     if current_user.created_stories << @story
@@ -41,6 +42,9 @@ class StoriesController < ApplicationController
   
   def preview
     @story = Story.find(params[:id])
+    if @story.draft? && !@story.owner?(current_user)
+      redirect_to root_path, :alert => "Sorry, that story has not been published yet."
+    end
   end
   
   def purchase
@@ -87,6 +91,11 @@ class StoriesController < ApplicationController
   def recommended
     @limit = User::RECOMMENDATIONS_LIMIT
     @recommendations = current_user.recommendations
+  end
+  
+  def publish
+    @story.update_attribute(:published, true)
+    redirect_to preview_story_path(@story), :notice => "Your story has been published!"
   end
   
   def remove_tag_from

@@ -18,6 +18,7 @@ Repo::Application.routes.draw do
       post :recommend
       delete :unrecommend
       delete :remove_tag_from
+      post :publish
     end
     get :bookmarked, :on => :collection
     get :recommended, :on => :collection

@@ -15,8 +15,14 @@ class Story < ActiveRecord::Base
   validates :excerpt, :length => (2..1024)
   validates :price, :format => /[0-9.,]+/
   
+  scope :published, where(:published => true)
+  
   def free?
     self.price == 0
+  end
+  
+  def draft?
+    !self.published
   end
   
   def topic_list

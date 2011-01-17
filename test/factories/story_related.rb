@@ -16,6 +16,7 @@ Factory.define :story do |story|
   story.price       0.50
   story.topics      { [Factory(:topic), Factory(:topic)] }
   story.user        { Factory :creator }
+  story.published   true
 end
 
 Factory.define :free_story, :parent => :story do |story|
@@ -24,6 +25,10 @@ end
 
 Factory.define :crazy_expensive_story, :parent => :story do |story|
   story.price       1000.0  # that @%$# is ballin'
+end
+
+Factory.define :draft_story, :parent => :story do |story|
+  story.published   false
 end
 
 Factory.define :bookmark do |bookmark|
