@@ -1,6 +1,15 @@
 Setting up the app locally
 ==========================
 
+
+Getting the necessary gems (libraries)
+
+a) Run "bundle install"
+
+b) Install imagemagick
+- run "brew install imagemagick"
+
+
 Database setup
 
 a) Install PostgreSQL database
@@ -10,16 +19,11 @@ a) Install PostgreSQL database
 
 b) Create a proper config/database.yml file
 - Copy config/database.yml.template to config/database.yml and change the username to your postgres user (usually your computer username, mine was djbrowning)
-- Create the proper databases by running "rake db:create:all"
+- Create your local database by running "rake db:create"
 
 c) Migrate your database
 - Run "rake db:migrate"
 - (you'll do this any time there are changes to the database, which happens when you see new files under db/migrations)
-
-
-Getting the necessary gems (libraries)
-
-a) Run "bundle install"
 
 
 Testing the code

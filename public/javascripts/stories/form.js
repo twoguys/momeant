@@ -12,6 +12,7 @@ var story_page_editor = function() {
 		setup_next_page_button();
 		setup_prev_page_button();
 		setup_preview_clicking();
+		setup_preview_thumbnailing();
 		setup_grid_editing();
 		initialize_first_page();
 	};
@@ -46,6 +47,17 @@ var story_page_editor = function() {
 			else
 				pages_editor.show_page_type_chooser();
 			pages_editor.open();
+		});
+	};
+	
+	var setup_preview_thumbnailing = function() {
+		$('#page-previews li.page a.choose-thumbnail').click(function() {
+			var page_number = $(this).parent().attr('page-number');
+			var $form_input = $('#story_thumbnail_page');
+			$form_input.val(page_number);
+			$(this).parents('ul:eq(0)').find('a.choose-thumbnail').removeClass('chosen');
+			$(this).addClass('chosen');
+			return false;
 		});
 	};
 	
@@ -193,8 +205,6 @@ var story_page_editor = function() {
 		console.log('Resetting preview type on ' + '#preview_' + pages_editor.page + ' to ' + type);
 		$preview_page.removeClass(pages_editor.page_type_css_classes);
 		$preview_page.addClass(type + ' chosen');
-		$preview_page.attr('title', 'Click to edit this page');
-		$preview_page.tipsy();
 	};
 	
 }

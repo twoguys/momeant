@@ -69,4 +69,10 @@ module StoryCreationSteps
     end
   end
   
+  def and_i_choose_the_thumbnail_as_page(page_number)
+    And "I choose page #{page_number} as the thumbnail preview" do
+      find("#preview_#{page_number}").find(".choose-thumbnail").click
+    end
+  end
+  
 end

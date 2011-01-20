@@ -33,6 +33,15 @@ class Story < ActiveRecord::Base
     !user.nil? && self.user == user
   end
   
+  def thumbnail
+    page_index = self.thumbnail_page - 1
+    if self.pages[page_index]
+      return self.pages[page_index]
+    else
+      return self.pages.first
+    end
+  end
+  
   def similar_stories
     # find other stories by my creator
     stories = self.user.created_stories

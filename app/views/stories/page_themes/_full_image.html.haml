@@ -1,8 +1,7 @@
-- @preview ||= false
-.number Page #{@page.number}
+- preview ||= false
 .inner
-  - if @preview
-    = image_tag(@page.image.url(:small)) if @page.image
+  - if preview
+    = image_tag(@page.image.url(:medium)) if @page.image
   - else
     = image_tag(@page.image.url) if @page.image
   - if @page.text

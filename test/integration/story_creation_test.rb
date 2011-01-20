@@ -48,6 +48,8 @@ Feature "A Creator can create a story", :testcase_class => FullStackTest do
     
     and_i_close_the_page_editor
     
+    and_i_choose_the_thumbnail_as_page(2)
+    
     And "I click Create Story" do
       click_button "Create Story"
     end
@@ -58,6 +60,7 @@ Feature "A Creator can create a story", :testcase_class => FullStackTest do
       @story = Story.last
       assert @creator.created_stories.include?(@story)
       assert_equal 6, @story.pages.count
+      assert_equal 2, @story.thumbnail_page
     end
         
     And "I should see my story information" do

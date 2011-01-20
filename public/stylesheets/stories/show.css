@@ -1,200 +1,125 @@
-/* Story viewing */
-.story-viewer {
-  width: 100%;
-  height: 100%;
-  overflow: hidden; }
-  .story-viewer #previewer {
-    height: 170px;
-    background: transparent url(../images/story-page-previewer-tab.png) no-repeat 5px 0;
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    z-index: 5;
-    width: 100%;
-    overflow-x: auto;
-    overflow-y: hidden; }
-    .story-viewer #previewer .preview-inner {
-      height: 150px;
-      margin-top: 20px;
-      background-color: #dddddd; }
-    .story-viewer #previewer .info {
-      height: 30px;
-      overflow: hidden; }
-      .story-viewer #previewer .info .title, .story-viewer #previewer .info .excerpt {
-        float: left;
-        font-size: 1.2em;
-        line-height: 30px;
-        vertical-align: middle; }
-      .story-viewer #previewer .info .title {
-        font-weight: bold;
-        margin: 0 30px 0 10px; }
-      .story-viewer #previewer .info .excerpt {
-        color: #777777; }
-    .story-viewer #previewer ul.pages {
-      height: 104px; }
-      .story-viewer #previewer ul.pages li.page {
-        width: 150px;
-        height: 100px;
-        border: 2px solid #dddddd;
-        float: left;
-        overflow: hidden;
-        margin-right: 5px;
-        cursor: pointer;
-        background-color: white; }
-        .story-viewer #previewer ul.pages li.page .number {
-          display: none; }
-      .story-viewer #previewer ul.pages li.page:hover {
-        border: 2px solid white; }
-      .story-viewer #previewer ul.pages li.title .inner {
-        background-color: black;
-        color: white;
-        text-shadow: none;
-        text-align: center;
-        padding: 40px 5px;
-        height: 30px;
-        font-weight: bold; }
-      .story-viewer #previewer ul.pages li.full_image .inner img {
-        width: 150px; }
-      .story-viewer #previewer ul.pages li.pullquote .inner {
-        padding: 5px;
-        font-size: 0.7em;
-        overflow: hidden; }
-        .story-viewer #previewer ul.pages li.pullquote .inner p {
-          margin: 0;
-          line-height: 1.2em; }
-      .story-viewer #previewer ul.pages li.video .inner img {
-        width: 150px;
-        height: 100px; }
-      .story-viewer #previewer ul.pages li.split .inner .image, .story-viewer #previewer ul.pages li.split .inner .text {
-        width: 75px; }
-      .story-viewer #previewer ul.pages li.split .inner .image {
-        float: left; }
-        .story-viewer #previewer ul.pages li.split .inner .image img {
-          width: 75px; }
-      .story-viewer #previewer ul.pages li.split .inner .text {
-        float: right; }
-        .story-viewer #previewer ul.pages li.split .inner .text .inner {
-          padding-left: 4px;
-          font-size: 0.7em; }
-      .story-viewer #previewer ul.pages li.grid .inner ul.cells {
-        width: 150px; }
-        .story-viewer #previewer ul.pages li.grid .inner ul.cells li {
-          width: 37.5px;
-          height: 50px;
-          float: left;
-          font-size: 0.7em;
-          position: relative; }
-          .story-viewer #previewer ul.pages li.grid .inner ul.cells li img {
-            width: 37.5px; }
-          .story-viewer #previewer ul.pages li.grid .inner ul.cells li .image {
-            z-index: 2; }
-          .story-viewer #previewer ul.pages li.grid .inner ul.cells li .text {
-            z-index: 1; }
-          .story-viewer #previewer ul.pages li.grid .inner ul.cells li .image, .story-viewer #previewer ul.pages li.grid .inner ul.cells li .text {
-            position: absolute; }
-  .story-viewer ul#pages {
-    width: 100%;
-    height: 100%; }
-    .story-viewer ul#pages li {
-      width: 100%;
-      height: 100%; }
-      .story-viewer ul#pages li .number {
-        display: none; }
-    .story-viewer ul#pages li.title div.title {
-      font-size: 5em;
-      text-align: center;
-      position: relative;
-      top: 35%; }
-    .story-viewer ul#pages li.full_image {
-      text-align: center; }
-      .story-viewer ul#pages li.full_image img {
-        max-width: 100%; }
-      .story-viewer ul#pages li.full_image .caption {
-        position: absolute;
-        padding: 20px;
-        background-color: white;
-        background-color: rgba(255, 255, 255, 0.75);
-        max-width: 200px;
-        right: 17%;
-        bottom: 150px;
-        -webkit-box-shadow: 0 0 10px black;
-        -moz-box-shadow: 0 0 10px black;
-        box-shadow: 0 0 10px black;
-        -webkit-border-radius: 3px;
-        -moz-border-radius: 3px;
-        border-radius: 3px; }
-    .story-viewer ul#pages li.pullquote p {
-      width: 80%;
-      height: 80%;
-      padding: 5% 0;
-      margin: 0 auto;
-      font-size: 1.6em; }
-    .story-viewer ul#pages li.video {
-      text-align: center; }
-      .story-viewer ul#pages li.video iframe {
-        position: relative;
-        margin: 5% auto;
-        -webkit-box-shadow: 0 0 30px black;
-        z-index: 4; }
-    .story-viewer ul#pages li.split div.split {
-      padding: 5% 10%; }
-    .story-viewer ul#pages li.split .image, .story-viewer ul#pages li.split .text {
-      width: 50%;
-      float: left; }
-    .story-viewer ul#pages li.split .image {
-      text-align: center; }
-    .story-viewer ul#pages li.split .text {
-      font-size: 1.6em; }
-      .story-viewer ul#pages li.split .text .inner {
-        padding: 3%; }
-    .story-viewer ul#pages li.grid ul.cells {
-      padding: 5% 10%;
-      height: 80%; }
-      .story-viewer ul#pages li.grid ul.cells li {
-        width: 25%;
-        height: 50%;
-        float: left;
-        position: relative;
-        z-index: 4; }
-        .story-viewer ul#pages li.grid ul.cells li .image, .story-viewer ul#pages li.grid ul.cells li .text {
-          position: absolute;
-          width: 100%;
-          height: 100%; }
-        .story-viewer ul#pages li.grid ul.cells li .image {
-          display: block;
-          overflow: hidden; }
-        .story-viewer ul#pages li.grid ul.cells li .text {
-          display: none;
-          font-size: 2em;
-          text-align: center;
-          background-color: white;
-          background-color: rgba(255, 255, 255, 0.75); }
-          .story-viewer ul#pages li.grid ul.cells li .text .inner {
-            padding: 5px; }
-        .story-viewer ul#pages li.grid ul.cells li img {
-          width: 100%; }
-      .story-viewer ul#pages li.grid ul.cells li:hover .text {
-        display: block; }
-  .story-viewer #previous-page, .story-viewer #next-page {
-    width: 20%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    z-index: 2; }
-    .story-viewer #previous-page .button, .story-viewer #next-page .button {
-      text-indent: -9999px;
-      background: transparent url(../images/next-previous-arrows.png) no-repeat 0 0;
-      cursor: pointer;
-      position: absolute;
-      top: 35%;
-      right: 0;
-      height: 100px;
-      width: 100px; }
-  .story-viewer #previous-page {
-    left: 0; }
-    .story-viewer #previous-page .button {
-      left: 0; }
-  .story-viewer #next-page {
-    right: 0; }
-    .story-viewer #next-page .button {
-      background-position: -138px 0; }
+/*
+Syntax error: Undefined mixin 'rounded'.
+        on line 130 of /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/stories/show.sass, in `rounded'
+        from line 130 of /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/stories/show.sass
+
+125: 				right: 17%
+126: 				bottom: 150px
+127: 				-webkit-box-shadow: 0 0 10px #000
+128: 				-moz-box-shadow: 0 0 10px #000
+129: 				box-shadow: 0 0 10px #000
+130: 				@include rounded(3px)
+131: 		li.pullquote
+132: 			p
+133: 				width: 80%
+134: 				height: 80%
+135: 				padding: 5% 0
+
+Backtrace:
+/Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/stories/show.sass:130:in `rounded'
+/Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/stories/show.sass:130
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.24/lib/sass/tree/mixin_node.rb:74:in `perform!'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.24/lib/sass/tree/node.rb:305:in `_perform'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.24/lib/sass/tree/node.rb:213:in `perform'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.24/lib/sass/tree/node.rb:326:in `perform_children'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.24/lib/sass/tree/node.rb:326:in `map'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.24/lib/sass/tree/node.rb:326:in `perform_children'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.24/lib/sass/tree/node.rb:317:in `perform!'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.24/lib/sass/tree/rule_node.rb:191:in `perform!'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.24/lib/sass/tree/node.rb:305:in `_perform'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.24/lib/sass/tree/node.rb:213:in `perform'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.24/lib/sass/tree/node.rb:326:in `perform_children'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.24/lib/sass/tree/node.rb:326:in `map'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.24/lib/sass/tree/node.rb:326:in `perform_children'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.24/lib/sass/tree/node.rb:317:in `perform!'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.24/lib/sass/tree/rule_node.rb:191:in `perform!'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.24/lib/sass/tree/node.rb:305:in `_perform'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.24/lib/sass/tree/node.rb:213:in `perform'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.24/lib/sass/tree/node.rb:326:in `perform_children'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.24/lib/sass/tree/node.rb:326:in `map'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.24/lib/sass/tree/node.rb:326:in `perform_children'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.24/lib/sass/tree/node.rb:317:in `perform!'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.24/lib/sass/tree/rule_node.rb:191:in `perform!'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.24/lib/sass/tree/node.rb:305:in `_perform'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.24/lib/sass/tree/node.rb:213:in `perform'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.24/lib/sass/tree/node.rb:326:in `perform_children'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.24/lib/sass/tree/node.rb:326:in `map'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.24/lib/sass/tree/node.rb:326:in `perform_children'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.24/lib/sass/tree/node.rb:317:in `perform!'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.24/lib/sass/tree/rule_node.rb:191:in `perform!'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.24/lib/sass/tree/node.rb:305:in `_perform'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.24/lib/sass/tree/node.rb:213:in `perform'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.24/lib/sass/tree/node.rb:326:in `perform_children'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.24/lib/sass/tree/node.rb:326:in `map'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.24/lib/sass/tree/node.rb:326:in `perform_children'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.24/lib/sass/tree/node.rb:317:in `perform!'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.24/lib/sass/tree/root_node.rb:59:in `perform!'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.24/lib/sass/tree/node.rb:305:in `_perform'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.24/lib/sass/tree/node.rb:213:in `perform'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.24/lib/sass/tree/root_node.rb:37:in `perform'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.24/lib/sass/tree/root_node.rb:29:in `render'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.24/lib/sass/plugin.rb:220:in `update_stylesheet'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.24/lib/sass/plugin.rb:85:in `update_stylesheets'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.24/lib/sass/plugin.rb:78:in `each'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.24/lib/sass/plugin.rb:78:in `update_stylesheets'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.24/lib/sass/plugin.rb:76:in `each'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.24/lib/sass/plugin.rb:76:in `update_stylesheets'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.24/lib/sass/plugin.rb:50:in `check_for_updates'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.24/lib/sass/plugin/rack.rb:40:in `call'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/warden-0.10.7/lib/warden/manager.rb:35:in `call'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/warden-0.10.7/lib/warden/manager.rb:34:in `catch'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/warden-0.10.7/lib/warden/manager.rb:34:in `call'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/actionpack-3.0.0/lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/actionpack-3.0.0/lib/action_dispatch/middleware/head.rb:14:in `call'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/rack-1.2.1/lib/rack/methodoverride.rb:24:in `call'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/actionpack-3.0.0/lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/actionpack-3.0.0/lib/action_dispatch/middleware/flash.rb:182:in `call'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/actionpack-3.0.0/lib/action_dispatch/middleware/session/abstract_store.rb:149:in `call'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/actionpack-3.0.0/lib/action_dispatch/middleware/cookies.rb:287:in `call'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/activerecord-3.0.0/lib/active_record/query_cache.rb:32:in `call'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/activerecord-3.0.0/lib/active_record/connection_adapters/abstract/query_cache.rb:28:in `cache'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/activerecord-3.0.0/lib/active_record/query_cache.rb:12:in `cache'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/activerecord-3.0.0/lib/active_record/query_cache.rb:31:in `call'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/activerecord-3.0.0/lib/active_record/connection_adapters/abstract/connection_pool.rb:355:in `call'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/actionpack-3.0.0/lib/action_dispatch/middleware/callbacks.rb:46:in `call'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/activesupport-3.0.0/lib/active_support/callbacks.rb:415:in `_run_call_callbacks'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/actionpack-3.0.0/lib/action_dispatch/middleware/callbacks.rb:44:in `call'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/rack-1.2.1/lib/rack/sendfile.rb:107:in `call'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/actionpack-3.0.0/lib/action_dispatch/middleware/remote_ip.rb:48:in `call'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/actionpack-3.0.0/lib/action_dispatch/middleware/show_exceptions.rb:46:in `call'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/railties-3.0.0/lib/rails/rack/logger.rb:13:in `call'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/rack-1.2.1/lib/rack/runtime.rb:17:in `call'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/activesupport-3.0.0/lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/rack-1.2.1/lib/rack/lock.rb:11:in `call'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/rack-1.2.1/lib/rack/lock.rb:11:in `synchronize'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/rack-1.2.1/lib/rack/lock.rb:11:in `call'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/actionpack-3.0.0/lib/action_dispatch/middleware/static.rb:30:in `call'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/railties-3.0.0/lib/rails/application.rb:168:in `call'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/railties-3.0.0/lib/rails/application.rb:77:in `send'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/railties-3.0.0/lib/rails/application.rb:77:in `method_missing'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/railties-3.0.0/lib/rails/rack/log_tailer.rb:14:in `call'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/rack-1.2.1/lib/rack/content_length.rb:13:in `call'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/rack-1.2.1/lib/rack/handler/webrick.rb:52:in `service'
+/Users/djbrowning/.rvm/rubies/ruby-1.8.7-p302/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+/Users/djbrowning/.rvm/rubies/ruby-1.8.7-p302/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+/Users/djbrowning/.rvm/rubies/ruby-1.8.7-p302/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+/Users/djbrowning/.rvm/rubies/ruby-1.8.7-p302/lib/ruby/1.8/webrick/server.rb:162:in `start'
+/Users/djbrowning/.rvm/rubies/ruby-1.8.7-p302/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+/Users/djbrowning/.rvm/rubies/ruby-1.8.7-p302/lib/ruby/1.8/webrick/server.rb:95:in `start'
+/Users/djbrowning/.rvm/rubies/ruby-1.8.7-p302/lib/ruby/1.8/webrick/server.rb:92:in `each'
+/Users/djbrowning/.rvm/rubies/ruby-1.8.7-p302/lib/ruby/1.8/webrick/server.rb:92:in `start'
+/Users/djbrowning/.rvm/rubies/ruby-1.8.7-p302/lib/ruby/1.8/webrick/server.rb:23:in `start'
+/Users/djbrowning/.rvm/rubies/ruby-1.8.7-p302/lib/ruby/1.8/webrick/server.rb:82:in `start'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/rack-1.2.1/lib/rack/handler/webrick.rb:13:in `run'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/rack-1.2.1/lib/rack/server.rb:213:in `start'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/railties-3.0.0/lib/rails/commands/server.rb:65:in `start'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/railties-3.0.0/lib/rails/commands.rb:30
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/railties-3.0.0/lib/rails/commands.rb:27:in `tap'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/railties-3.0.0/lib/rails/commands.rb:27
+script/rails:6:in `require'
+script/rails:6
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Syntax error: Undefined mixin 'rounded'.\A         on line 130 of /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/stories/show.sass, in `rounded'\A         from line 130 of /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/stories/show.sass\A \A 125: 				right: 17%\A 126: 				bottom: 150px\A 127: 				-webkit-box-shadow: 0 0 10px #000\A 128: 				-moz-box-shadow: 0 0 10px #000\A 129: 				box-shadow: 0 0 10px #000\A 130: 				@include rounded(3px)\A 131: 		li.pullquote\A 132: 			p\A 133: 				width: 80%\A 134: 				height: 80%\A 135: 				padding: 5% 0"; }

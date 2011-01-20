@@ -25,5 +25,4 @@
         - @story.pages.each do |page|
           - @page = page
           %li.page{:class => page.css_class, "page-number" => page.number}
-            - @preview = true
-            .inner= render "/stories/page_themes/#{page.partial_name}"
+            .inner= render :partial => "/stories/page_themes/#{page.partial_name}", :locals => {:preview => true}

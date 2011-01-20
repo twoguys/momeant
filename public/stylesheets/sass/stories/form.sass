@@ -29,6 +29,19 @@ form.new_story, form.edit_story
 			font-size: 60px
 			color: #ddd
 			cursor: pointer
+			position: relative
+			a.choose-thumbnail
+				font-size: 12px
+				position: absolute
+				bottom: 4px
+				left: 25px
+				padding: 3px 6px 3px 20px
+				background: #bbd6e7 url(../images/blue-checkbox.png) 3px -22px no-repeat
+				@include rounded(3px)
+				color: $link_color - #333
+				text-indent: 0
+			a.choose-thumbnail.chosen
+				background-position: 3px 1px
 		li.chosen
 			text-indent: -9999px
 		.actions
@@ -41,9 +54,7 @@ form.new_story, form.edit_story
 				color: #fff
 				padding: 3px 6px
 				text-shadow: 0 -1px 1px #000
-				-webkit-border-radius: 3px
-				-moz-border-radius: 3px
-				border-radius: 3px
+				@include rounded(3px)
 	.metadata
 		width: 469px
 		float: left
@@ -204,7 +215,7 @@ form.new_story, form.edit_story
 					border: 1px solid #aaa
 					position: absolute
 					right: 16%
-					bottom: 8%
+					bottom: 16%
 					h3
 						padding: 5px
 						height: 15px

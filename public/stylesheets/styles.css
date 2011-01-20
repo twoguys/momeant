@@ -288,7 +288,22 @@ form.new_story #page-previews, form.edit_story #page-previews {
     text-align: center;
     font-size: 60px;
     color: #dddddd;
-    cursor: pointer; }
+    cursor: pointer;
+    position: relative; }
+    form.new_story #page-previews li.page a.choose-thumbnail, form.edit_story #page-previews li.page a.choose-thumbnail {
+      font-size: 12px;
+      position: absolute;
+      bottom: 4px;
+      left: 25px;
+      padding: 3px 6px 3px 20px;
+      background: #bbd6e7 url(../images/blue-checkbox.png) 3px -22px no-repeat;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      border-radius: 3px;
+      color: #004066;
+      text-indent: 0; }
+    form.new_story #page-previews li.page a.choose-thumbnail.chosen, form.edit_story #page-previews li.page a.choose-thumbnail.chosen {
+      background-position: 3px 1px; }
   form.new_story #page-previews li.chosen, form.edit_story #page-previews li.chosen {
     text-indent: -9999px; }
   form.new_story #page-previews .actions, form.edit_story #page-previews .actions {
@@ -462,7 +477,7 @@ form.new_story .topics, form.edit_story .topics {
         border: 1px solid #aaaaaa;
         position: absolute;
         right: 16%;
-        bottom: 8%; }
+        bottom: 16%; }
         #page-editor ul#pages li.page .full_image .caption h3 {
           padding: 5px;
           height: 15px;
@@ -1095,9 +1110,3 @@ form.new_story .topics, form.edit_story .topics {
   .tabs a.active {
     background-color: #cccccc;
     color: #333333; }
-
-.thumbnail {
-  background: transparent url(../images/thumbnail-shadow.png) no-repeat 100% 100%; }
-  .thumbnail a {
-    border: 1px solid #e5e5e5;
-    border-bottom: none; }

@@ -9,6 +9,11 @@ $term_color: #d27442
 
 $border_type: 1px dotted #ccc
 
+@mixin rounded($radius: 5px)
+	-webkit-border-radius: $radius
+	-moz-border-radius: $radius
+	border-radius: $radius
+
 /* Element styles */
 
 html, body
@@ -105,9 +110,3 @@ header .insides, #mid .insides, #footer .insides
 	a.active
 		background-color: #ccc
 		color: #333
-
-.thumbnail
-	background: transparent url(../images/thumbnail-shadow.png) no-repeat 100% 100%
-	a
-		border: 1px solid #e5e5e5
-		border-bottom: none

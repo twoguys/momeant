@@ -1,8 +1,11 @@
-.number Page #{@page.number}
+- preview ||= false
 .split
   .image
     .inner
-      = image_tag @page.image.url if @page.image
+      - if preview
+        = image_tag(@page.image.url(:medium)) if @page.image
+      - else
+        = image_tag(@page.image.url) if @page.image
   .text
     .inner
       = @page.text
