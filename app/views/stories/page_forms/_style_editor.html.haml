@@ -1,0 +1,13 @@
+.style-editor
+  .insides
+    %h2 Style Editor
+    .widget
+      %h3 background
+      - color = @page && @page.background_color ? @page.background_color : "ffffff"
+      = hidden_field_tag "pages[#{@page_number}][background_color]", color
+      .color-picker{:style => "background-color: #fff", "affected-style" => "background-color"}
+    .widget
+      %h3 text
+      - color = @page && @page.text_color ? @page.text_color : "444444"
+      = hidden_field_tag "pages[#{@page_number}][text_color]", color
+      .color-picker{:style => "background-color: #444", "affected-style" => "color"}

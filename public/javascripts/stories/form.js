@@ -69,6 +69,27 @@ var story_page_editor = function() {
 		});
 	};
 	
+	this.setup_style_editor = function(current_page) {
+		var $color_picker = current_page.find('.color-picker');
+		_.each($color_picker, function(picker) {
+			var $picker = $(picker);
+			var color = $picker.css('backgroundColor');
+			var style_affected = $picker.attr('affected-style');
+			console.log(style_affected);
+			var $elements_affected = $picker.parents('.page:eq(0)').find('.color-affected');
+			var $form_field = $picker.siblings('input');
+			$picker.ColorPicker({
+				color: color,
+				onChange: function (hsb, hex, rgb) {
+					$picker.css('backgroundColor', '#' + hex);
+					$elements_affected.css(style_affected, '#' + hex);
+					$form_field.val(hex);
+				}
+			});
+		});
+		
+	}
+	
 	var initialize_first_page = function() {
 		var $page1 = $('#page_1');
 		// is there data in page 1?
@@ -86,6 +107,7 @@ var story_page_editor = function() {
 		$.get('/stories/render_page_theme?theme=' + page_type + '&page=' + pages_editor.page, function(result) {
 			$current_page.html(result);
 			$current_page.find('input[placeholder],textarea[placeholder]').placeholder();
+			pages_editor.setup_style_editor($current_page);
 			$current_page.fadeIn();
 			$current_page.click(pages_editor.hide_page_type_chooser);
 			pages_editor.hide_page_type_chooser();
@@ -202,7 +224,6 @@ var story_page_editor = function() {
 	
 	this.set_preview_type = function(type) {
 		var $preview_page = $('#preview_' + pages_editor.page);
-		console.log('Resetting preview type on ' + '#preview_' + pages_editor.page + ' to ' + type);
 		$preview_page.removeClass(pages_editor.page_type_css_classes);
 		$preview_page.addClass(type + ' chosen');
 	};

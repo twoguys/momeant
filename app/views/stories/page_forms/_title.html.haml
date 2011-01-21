@@ -1,6 +1,7 @@
 = hidden_field_tag "pages[#{@page_number}][type]", "TitlePage"
-.title.page-theme
+.title.page-theme.color-affected
+  = render "stories/page_forms/style_editor"
   - if @page && @page.text
-    = text_area_tag "pages[#{@page_number}][title]", @page.text, :placeholder => "Type your title here..."
+    = text_area_tag "pages[#{@page_number}][title]", @page.text, :class => "color-affected", :placeholder => "Type your title here..."
   - else
-    = text_area_tag "pages[#{@page_number}][title]", "", :placeholder => "Type your title here..."
+    = text_area_tag "pages[#{@page_number}][title]", "", :class => "color-affected", :placeholder => "Type your title here..."

@@ -93,6 +93,7 @@ form.new_story, form.edit_story
 	width: 100%
 	height: 100%
 	padding: 0
+	overflow: hidden
 	#close-page-editor-button
 		position: absolute
 		top: -45px
@@ -183,6 +184,49 @@ form.new_story, form.edit_story
 				padding-top: 250px
 				position: relative
 				z-index: 2
+				.style-editor
+					width: 100%
+					position: fixed
+					bottom: 50px
+					.insides
+						width: 300px
+						min-width: 300px
+						margin: 0 auto
+						padding: 10px
+						@include boxshadow(8px,0.5)
+						background: #cfd5d7
+						border: 1px solid #999
+						@include rounded
+						text-align: left
+						h2
+							font-weight: bold
+							color: #555966
+							margin-bottom: 0
+						.widget
+							display: inline-block
+							margin: 10px 10px 0 0
+							padding: 6px
+							background-color: #adb2b8
+							-webkit-box-shadow: 0 0 4px #666 inset
+							-moz-box-shadow: 0 0 4px #666 inset
+							box-shadow: 0 0 4px #666 inset
+							@include rounded(3px)
+							color: $text_color
+							h3
+								font-weight: normal
+								font-size: 0.9em
+								margin-bottom: 4px
+								text-align: center
+							.color-picker
+								cursor: pointer
+								width: 30px
+								height: 30px
+								margin: 0 auto
+								background: transparent url(../images/colorpicker/select.png) 50% 50%
+							input
+								border: none
+								width: 40px
+								font-size: 11px
 			.title
 				padding-top: 300px
 				label, textarea

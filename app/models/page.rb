@@ -38,7 +38,9 @@ class Page < ActiveRecord::Base
     case type = options[:type]
     when "TitlePage"
       page = TitlePage.new(:number => options[:number])
-      page.medias << PageText.new(:text => options[:title]) unless options[:title].blank?
+      unless options[:title].blank?
+        page.medias << PageText.new(:text => options[:title], :background_color => options[:background_color], :text_color => options[:text_color])
+      end
       return page
     when "FullImagePage"
       page = FullImagePage.new(:number => options[:number])

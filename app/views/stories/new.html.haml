@@ -1,5 +1,6 @@
 - content_for :head do
-  = javascript_include_tag "stories/form"
+  = javascript_include_tag "stories/form", "colorpicker", "eye"
+  = stylesheet_link_tag "colorpicker"
 
 = form_for(@story, :html => {:multipart => true}) do |form|
 

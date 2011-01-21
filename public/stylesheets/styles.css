@@ -40,12 +40,13 @@ header .insides, #mid .insides, #footer .insides {
 .fullscreen #main {
   padding: 0; }
 .fullscreen #mid {
-  height: 90%;
+  height: 100%;
   position: absolute;
   width: 100%;
   top: 0;
-  margin-top: 60px;
   min-height: 600px; }
+  .fullscreen #mid .insides {
+    margin-top: 60px; }
 .fullscreen #footer {
   display: none; }
 
@@ -355,7 +356,8 @@ form.new_story .topics, form.edit_story .topics {
 #page-editor {
   width: 100%;
   height: 100%;
-  padding: 0; }
+  padding: 0;
+  overflow: hidden; }
   #page-editor #close-page-editor-button {
     position: absolute;
     top: -45px;
@@ -446,6 +448,55 @@ form.new_story .topics, form.edit_story .topics {
         padding-top: 250px;
         position: relative;
         z-index: 2; }
+        #page-editor ul#pages li.page .page-theme .style-editor {
+          width: 100%;
+          position: fixed;
+          bottom: 50px; }
+          #page-editor ul#pages li.page .page-theme .style-editor .insides {
+            width: 300px;
+            min-width: 300px;
+            margin: 0 auto;
+            padding: 10px;
+            -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+            -moz-box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+            background: #cfd5d7;
+            border: 1px solid #999999;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+            text-align: left; }
+            #page-editor ul#pages li.page .page-theme .style-editor .insides h2 {
+              font-weight: bold;
+              color: #555966;
+              margin-bottom: 0; }
+            #page-editor ul#pages li.page .page-theme .style-editor .insides .widget {
+              display: inline-block;
+              margin: 10px 10px 0 0;
+              padding: 6px;
+              background-color: #adb2b8;
+              -webkit-box-shadow: 0 0 4px #666666 inset;
+              -moz-box-shadow: 0 0 4px #666666 inset;
+              box-shadow: 0 0 4px #666666 inset;
+              -webkit-border-radius: 3px;
+              -moz-border-radius: 3px;
+              border-radius: 3px;
+              color: #252525; }
+              #page-editor ul#pages li.page .page-theme .style-editor .insides .widget h3 {
+                font-weight: normal;
+                font-size: 0.9em;
+                margin-bottom: 4px;
+                text-align: center; }
+              #page-editor ul#pages li.page .page-theme .style-editor .insides .widget .color-picker {
+                cursor: pointer;
+                width: 30px;
+                height: 30px;
+                margin: 0 auto;
+                background: transparent url(../images/colorpicker/select.png) 50% 50%; }
+              #page-editor ul#pages li.page .page-theme .style-editor .insides .widget input {
+                border: none;
+                width: 40px;
+                font-size: 11px; }
       #page-editor ul#pages li.page .title {
         padding-top: 300px; }
         #page-editor ul#pages li.page .title label, #page-editor ul#pages li.page .title textarea {
@@ -1110,3 +1161,6 @@ form.new_story .topics, form.edit_story .topics {
   .tabs a.active {
     background-color: #cccccc;
     color: #333333; }
+
+.colorpicker {
+  z-index: 100; }

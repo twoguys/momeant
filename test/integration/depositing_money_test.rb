@@ -8,7 +8,14 @@ Feature "A user can deposit credits into their account" do
   as_a "user"
   i_want_to "pay money for Momeant credits"
   
-  Scenario "A user enters a valid credit card"
+  Scenario "A user enters a valid credit card" do
+    given_a(:email_confirmed_user)
+    given_im_signed_in_as(:email_confirmed_user)
+    
+    when_i_visit_page(:credits)
+    
+    
+  end
   
   Scenario "A user enters an invalid credit card"
   

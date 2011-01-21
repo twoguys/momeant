@@ -129,7 +129,7 @@ class StoriesController < ApplicationController
     end
     
     def attach_pages(pages)
-      return unless pages.is_a?(Hash) # TODO: check to ensure 10 pages and add errors to @story
+      return unless pages.is_a?(Hash) # TODO: validate pages
       pages.each_pair do |number, options|
         options.merge!({:number => number})
         page_type = Page.create_page_type_with(options)
