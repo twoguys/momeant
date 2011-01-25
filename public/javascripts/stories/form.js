@@ -14,6 +14,7 @@ var story_page_editor = function() {
 		setup_preview_clicking();
 		setup_preview_thumbnailing();
 		setup_grid_editing();
+		this.setup_style_editor($('#pages'));
 		initialize_first_page();
 	};
 	
@@ -78,6 +79,7 @@ var story_page_editor = function() {
 			var elements_to_update_class = $picker.attr('update');
 			var $elements_affected = $picker.parents('.page:eq(0)').find('.' + elements_to_update_class);
 			var $form_field = $picker.siblings('input');
+			$elements_affected.css(style_affected, color);
 			$picker.ColorPicker({
 				color: color,
 				onChange: function (hsb, hex, rgb) {

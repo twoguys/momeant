@@ -174,7 +174,7 @@ header {
     border: 1px solid #d1b2b2; }
 
 /* Errors */
-#error-explanation {
+#error-explanation, #error_explanation {
   background-color: #f5d4d4;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -182,25 +182,34 @@ header {
   padding: 10px;
   color: #280909;
   margin-bottom: 10px; }
-  #error-explanation h3 {
+  #error-explanation h2, #error-explanation h3, #error_explanation h2, #error_explanation h3 {
     font-size: 18px;
     border-bottom: 1px dotted #280909;
     margin-bottom: 5px;
     padding-bottom: 5px; }
-  #error-explanation li {
-    padding: 3px 0; }
+  #error-explanation li, #error_explanation li {
+    padding: 3px 0;
+    margin: 0; }
 
-form .field_with_errors input[type="text"], form .field_with_errors textarea {
+form .field_with_errors input[type="text"], form .field_with_errors input[type="password"], form .field_with_errors textarea {
   background-color: #f5d4d4;
   border: 2px solid #db6666; }
 
 /* Form styles */
 form li {
-  padding: 5px 0;
+  margin-bottom: 2em;
   clear: both; }
+  form li span {
+    display: inline-block;
+    height: 4em; }
+    form li span label {
+      margin-left: 0.3em;
+      font-size: 0.9em;
+      font-weight: normal;
+      padding-top: 2px; }
 form label {
   display: block;
-  padding-bottom: 5px;
+  padding: 0 0 3px 3px;
   font-weight: bold;
   line-height: 1.4;
   color: #444444;
@@ -209,7 +218,7 @@ form label {
 form input[type="text"], form input[type="password"], form textarea {
   padding: 5px;
   font-size: 1.2em;
-  border: 2px solid #cccccc;
+  border: 1px solid #cccccc;
   background-color: white;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -336,7 +345,7 @@ form.new_story .topics, form.edit_story .topics {
   form.new_story .topics h3, form.edit_story .topics h3 {
     padding-bottom: 5px; }
   form.new_story .topics li, form.edit_story .topics li {
-    padding: 0; }
+    margin: 0; }
     form.new_story .topics li .children, form.edit_story .topics li .children {
       padding-left: 10px; }
 

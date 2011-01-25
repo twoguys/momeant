@@ -32,8 +32,6 @@ Feature "A user can acquire a story" do
       assert_equal story_path(@free_story), current_path
     end
     
-    then_i_should_see_flash(:notice, "This story is now in your library.")
-    
     And "I should see the story content" do
       assert page.has_content? @free_story.title
       assert page.has_content? @free_story.excerpt
@@ -93,8 +91,6 @@ Feature "A user can acquire a story" do
     Then "I should be on the story view page" do
       assert_equal story_path(@story), current_path
     end
-    
-    then_i_should_see_flash(:notice, "This story is now in your library.")
     
     And "I should see the story content" do
       assert page.has_content? @story.title

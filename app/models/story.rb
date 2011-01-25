@@ -34,8 +34,8 @@ class Story < ActiveRecord::Base
   end
   
   def thumbnail
-    thumbnail = self.thumbnail_page || 0
-    page_index = self.thumbnail_page - 1
+    thumbnail = self.thumbnail_page || 1
+    page_index = thumbnail - 1
     if self.pages[page_index]
       return self.pages[page_index]
     else
