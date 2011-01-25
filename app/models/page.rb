@@ -24,6 +24,12 @@ class Page < ActiveRecord::Base
     self.medias.reject {|media| media.type != "PageText" || media.position != position.to_s}.first
   end
   
+  def has_styles?
+    return true if self.background_color
+    return true if self.text_color
+    return false
+  end
+  
   def self.create_page_type_with(options)
     Rails.logger.info "Creating page with: #{options.inspect}"
     if !options || !options[:type]
@@ -37,31 +43,31 @@ class Page < ActiveRecord::Base
     
     case type = options[:type]
     when "TitlePage"
-      page = TitlePage.new(:number => options[:number])
+      page = TitlePage.new(:number => options[:number], :background_color => options[:background_color], :text_color => options[:text_color])
       unless options[:title].blank?
-        page.medias << PageText.new(:text => options[:title], :background_color => options[:background_color], :text_color => options[:text_color])
+        page.medias << PageText.new(:text => options[:title])
       end
       return page
     when "FullImagePage"
-      page = FullImagePage.new(:number => options[:number])
+      page = FullImagePage.new(:number => options[:number], :background_color => options[:background_color])
       page.medias << PageImage.new(:image => options[:image]) if options[:image]
-      page.medias << PageText.new(:text => options[:caption]) unless options[:caption].blank?
+      page.medias << PageText.new(:text => options[:caption], :background_color => options[:caption_background_color], :text_color => options[:caption_text_color]) unless options[:caption].blank?
       return page
     when "PullquotePage"
-      page = PullquotePage.new(:number => options[:number])
+      page = PullquotePage.new(:number => options[:number], :background_color => options[:background_color], :text_color => options[:text_color])
       page.medias << PageText.new(:text => options[:quote]) unless options[:quote].blank?
       return page
     when "VideoPage"
-      page = VideoPage.new(:number => options[:number])
+      page = VideoPage.new(:number => options[:number], :background_color => options[:background_color])
       page.medias << PageText.new(:text => options[:vimeo_id]) unless options[:vimeo_id].blank?
       return page
     when "SplitPage"
-      page = SplitPage.new(:number => options[:number])
+      page = SplitPage.new(:number => options[:number], :background_color => options[:background_color], :text_color => options[:text_color])
       page.medias << PageImage.new(:image => options[:image]) if options[:image]
       page.medias << PageText.new(:text => options[:text]) unless options[:text].blank?
       return page
     when "GridPage"
-      page = GridPage.new(:number => options[:number])
+      page = GridPage.new(:number => options[:number], :background_color => options[:background_color], :text_color => options[:text_color])
       if options[:cells]
         8.times do |num|
           cell = (num + 1).to_s

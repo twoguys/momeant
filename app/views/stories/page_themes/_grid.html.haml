@@ -1,3 +1,11 @@
+- if @page.has_styles?
+  - content_for :head do
+    :css
+      #page_#{@page.number} {
+        background-color: ##{@page.background_color} !important;
+        color: ##{@page.text_color} !important;
+      }
+
 - @preview ||= false
 %ul.cells
   - 8.times do |num|

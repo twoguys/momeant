@@ -357,7 +357,8 @@ form.new_story .topics, form.edit_story .topics {
   width: 100%;
   height: 100%;
   padding: 0;
-  overflow: hidden; }
+  overflow: hidden;
+  text-shadow: none; }
   #page-editor #close-page-editor-button {
     position: absolute;
     top: -45px;
@@ -366,9 +367,11 @@ form.new_story .topics, form.edit_story .topics {
   #page-editor #page-type-chooser {
     height: 160px;
     position: absolute;
-    -webkit-box-shadow: 0 0 10px black;
+    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+    -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+    background-color: white;
     width: 100%;
-    box-shadow: 0 0 10px black;
     z-index: 3; }
     #page-editor #page-type-chooser .info {
       width: 130px;
@@ -446,8 +449,7 @@ form.new_story .topics, form.edit_story .topics {
         background: white;
         height: 90%;
         padding-top: 250px;
-        position: relative;
-        z-index: 2; }
+        position: relative; }
         #page-editor ul#pages li.page .page-theme .style-editor {
           width: 100%;
           position: fixed;
@@ -465,7 +467,9 @@ form.new_story .topics, form.edit_story .topics {
             -webkit-border-radius: 5px;
             -moz-border-radius: 5px;
             border-radius: 5px;
-            text-align: left; }
+            text-align: left;
+            position: relative;
+            z-index: 5; }
             #page-editor ul#pages li.page .page-theme .style-editor .insides h2 {
               font-weight: bold;
               color: #555966;
@@ -548,7 +552,8 @@ form.new_story .topics, form.edit_story .topics {
       #page-editor ul#pages li.page .pullquote textarea {
         width: 60%;
         height: 400px;
-        background: transparent url(../images/page-themes/18px-tall-dashed-line.png) repeat; }
+        background: transparent url(../images/page-themes/18px-tall-dashed-line.png) repeat;
+        color: inherit; }
       #page-editor ul#pages li.page .video .info {
         padding: 50px 0 20px; }
       #page-editor ul#pages li.page .video .url span {
@@ -581,6 +586,22 @@ form.new_story .topics, form.edit_story .topics {
       #page-editor ul#pages li.page .grid {
         padding-left: 70px;
         padding-right: 70px; }
+        #page-editor ul#pages li.page .grid .style-editor {
+          position: absolute;
+          top: 170px;
+          left: 70px;
+          width: 200px;
+          height: 60px; }
+          #page-editor ul#pages li.page .grid .style-editor .insides {
+            margin: 0;
+            height: 60px;
+            width: 200px;
+            min-width: 200px; }
+            #page-editor ul#pages li.page .grid .style-editor .insides h2 {
+              float: left;
+              width: 60px; }
+            #page-editor ul#pages li.page .grid .style-editor .insides .widget {
+              margin: 0 10px 10px 0; }
         #page-editor ul#pages li.page .grid ul.cells {
           width: 100%;
           height: 100%; }
@@ -622,7 +643,8 @@ form.new_story .topics, form.edit_story .topics {
                 background: transparent url(../images/page-themes/18px-tall-dashed-line.png) repeat; }
   #page-editor #page_info {
     position: absolute;
-    width: 100%;
+    width: 50%;
+    margin: 0 25%;
     top: 200px;
     left: 0;
     font-size: 26px;
@@ -902,7 +924,8 @@ form.new_story .topics, form.edit_story .topics {
     height: 100%; }
     .story-viewer ul#pages li {
       width: 100%;
-      height: 100%; }
+      height: 100%;
+      text-shadow: none; }
       .story-viewer ul#pages li .number {
         display: none; }
     .story-viewer ul#pages li.title div.title {
@@ -922,12 +945,7 @@ form.new_story .topics, form.edit_story .topics {
         max-width: 200px;
         right: 17%;
         bottom: 150px;
-        -webkit-box-shadow: 0 0 10px black;
-        -moz-box-shadow: 0 0 10px black;
-        box-shadow: 0 0 10px black;
-        -webkit-border-radius: 3px;
-        -moz-border-radius: 3px;
-        border-radius: 3px; }
+        text-shadow: none; }
     .story-viewer ul#pages li.pullquote p {
       width: 80%;
       height: 80%;
@@ -939,7 +957,6 @@ form.new_story .topics, form.edit_story .topics {
       .story-viewer ul#pages li.video iframe {
         position: relative;
         margin: 5% auto;
-        -webkit-box-shadow: 0 0 30px black;
         z-index: 4; }
     .story-viewer ul#pages li.split div.split {
       padding: 5% 10%; }

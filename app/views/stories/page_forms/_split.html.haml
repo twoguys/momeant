@@ -1,5 +1,6 @@
 = hidden_field_tag "pages[#{@page_number}][type]", "SplitPage"
-.split.page-theme
+.split.page-theme.background-color-affected
+  = render :partial => "stories/page_forms/style_editor", :locals => {:background_color => true, :text_color => true}
   .image
     .inner
       = file_field_tag "pages[#{@page_number}][image]"
@@ -8,6 +9,6 @@
   .text
     .inner
       - if @page && @page.text
-        = text_area_tag "pages[#{@page_number}][text]", @page.text, :placeholder => "Type your text here..."
+        = text_area_tag "pages[#{@page_number}][text]", @page.text, :placeholder => "Type your text here...", :class => "color-affected"
       - else
-        = text_area_tag "pages[#{@page_number}][text]", "", :placeholder => "Type your text here..."
+        = text_area_tag "pages[#{@page_number}][text]", "", :placeholder => "Type your text here...", :class => "color-affected"

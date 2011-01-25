@@ -28,3 +28,9 @@ $(document).ready(function() {
 	setup_placeholder_text();
 	tag_deletions();
 });
+
+function log(message) {
+	if (console && console.log) {
+		console.log(message);
+	}
+}

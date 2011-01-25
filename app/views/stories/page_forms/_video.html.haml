@@ -1,5 +1,6 @@
 = hidden_field_tag "pages[#{@page_number}][type]", "VideoPage"
-.video.page-theme
+.video.page-theme.background-color-affected
+  = render :partial => "stories/page_forms/style_editor", :locals => {:background_color => true}
   .info Enter the Vimeo video ID below (the last part of the video’s URL)
   .url
     %span http://vimeo.com/

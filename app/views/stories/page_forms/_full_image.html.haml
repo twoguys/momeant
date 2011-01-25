@@ -1,12 +1,13 @@
 = hidden_field_tag "pages[#{@page_number}][type]", "FullImagePage"
-.full_image.page-theme
+.full_image.page-theme.background-color-affected
+  = render :partial => "stories/page_forms/style_editor", :locals => {:background_color => true, :caption => true}
   .input
     = file_field_tag "pages[#{@page_number}][image]"
     .image-preview
       = image_tag @page.image.url if @page && @page.id && @page.image
-    .caption
+    .caption.caption-background-color-affected
       %h3 Caption
       - if @page && @page.text
-        = text_area_tag "pages[#{@page_number}][caption]", @page.text, :placeholder => "Type your caption here..."
+        = text_area_tag "pages[#{@page_number}][caption]", @page.text, :placeholder => "Type your caption here...", :class => "caption-color-affected"
       - else
-        = text_area_tag "pages[#{@page_number}][caption]", "", :placeholder => "Type your caption here..."
+        = text_area_tag "pages[#{@page_number}][caption]", "", :placeholder => "Type your caption here...", :class => "caption-color-affected"
