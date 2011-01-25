@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110125145504) do
+ActiveRecord::Schema.define(:version => 20110125183546) do
 
   create_table "bookmarked_stories_users", :id => false, :force => true do |t|
     t.integer "user_id"
@@ -162,7 +162,8 @@ ActiveRecord::Schema.define(:version => 20110125145504) do
     t.boolean  "is_admin",                            :default => false
     t.float    "money_available",                     :default => 0.0
     t.float    "credits",                             :default => 0.0
-    t.string   "name"
+    t.string   "first_name"
+    t.string   "last_name"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

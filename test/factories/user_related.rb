@@ -1,11 +1,12 @@
-Factory.sequence :name do |n|
-  "John Doe#{n}"
+Factory.sequence :last_name do |n|
+  "Doe#{n}"
 end
 
 Factory.define :user do |user|
   user.password               "password"
   user.password_confirmation  "password"
-  user.name                   { Factory.next(:name) }
+  user.first_name             "John"
+  user.last_name              { Factory.next(:last_name) }
   user.email                  { |u| "#{u.name.delete(' ').underscore}@example.com" }
 end
 
