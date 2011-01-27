@@ -18,8 +18,7 @@ Factory.define :line_item, :class => "PayPeriodLineItem" do |line_item|
 end
 
 Factory.define :credit_card do |c|
-  c.number                "5105105105105100"
-  c.month                 "12"
-  c.year                  { (Date.today.year + 10).to_s }
-  c.cvv                   "123"
+  c.last_four_digits      "4444"
+  c.braintree_token       "xxxx"
+  c.user                  { Factory :email_confirmed_user }
 end

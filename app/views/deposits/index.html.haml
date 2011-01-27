@@ -1,2 +1,78 @@
+- content_for :head do
+  = javascript_include_tag "deposits/form"
+
 .deposits
-  %h1 Your Money
+  %h1 Momeant Credits
+  
+  .current
+    %span You currently have
+    %strong= current_user.credits || 0
+    %span credits.
+  
+  = form_for @deposit, :url => deposit_path do |form|
+
+    = render "shared/error_messages", :target => @deposit
+  
+    %h3 Add more credits!
+    
+    %fieldset
+      %ul
+        %li
+          = form.label :credits, "Which credits package would you like to purchase?"
+          = form.radio_button :credits, 500
+          500
+          = form.radio_button :credits, 1000
+          1000
+          = form.radio_button :credits, 2000
+          2000
+    
+      - if current_user.credit_cards.count > 0
+        %li
+          = form.label :credit_card_id, "Use a previous credit card"
+          = form.select :credit_card_id, current_user.credit_cards.map {|card| ["Ending in #{card.last_four_digits}", card.id]}
+          = link_to("OR use a new credit card", "#", :id => "use-a-new-credit-card")
+    
+      %ul#new-credit-card-fields{:class => current_user.credit_cards.count > 0 ? "hidden" : ""}
+        %li
+          %h3 Credit Card information
+          %span
+            = form.text_field :credit_card_number
+            = form.label :credit_card_number, "Card number"
+          %span
+            = form.text_field :credit_card_cvv, :class => "skinny"
+            = form.label :credit_card_cvv, "Security code"
+          %span
+            = form.select :credit_card_month, (1..12)
+            = form.select :credit_card_year, (Date.today.year..Date.today.year+10)
+            = form.label :credit_card_month, "Expiration date"
+        
+        %li
+          = form.label :first_name, "Name on card"
+          %span
+            = form.text_field :first_name, :value => @deposit.first_name || current_user.first_name
+            = form.label :first_name, "First"
+          %span
+            = form.text_field :last_name, :value => @deposit.last_name || current_user.last_name
+            = form.label :last_name, "Last"
+        %li
+          = form.label :street1, "Billing Address"
+          %span
+            = form.text_field :street1
+            = form.label :street1, "Street"
+          %span
+            = form.text_field :street2, :class => "skinny"
+            = form.label :street2, "Apt/Suite"
+        %li
+          %span
+            = form.text_field :city
+            = form.label :city
+          %span
+            = form.select :state, US_STATES
+            = form.label :state, "State/Province"
+          %span
+            = form.text_field :zipcode, :class => "skinny"
+            = form.label :zipcode, "Zip/Postal code"
+            
+      %ul
+        %li.submit
+          = form.submit "Purchase credits"

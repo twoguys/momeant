@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
   has_many :subscribers, :through => :subscriptions
   has_many :subscribed_to, :through => :inverse_subscriptions, :source => :user
   
+  has_many :credit_cards
+  
   validates :first_name, :presence => true, :length => (1...128)
   validates :last_name, :presence => true, :length => (1...128)
   validates :email, :presence => true, :format => /^([^\s]+)((?:[-a-z0-9]\.)[a-z]{2,})$/i

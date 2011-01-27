@@ -27,6 +27,6 @@ Factory.define :user_with_money, :parent => :email_confirmed_user do |user|
 end
 
 Factory.define :subscription do |subscription|
-  subscription.user           { Factory(:user) }
-  subscription.subscriber     { Factory(:user) }
+  subscription.user           { Factory :user }
+  subscription.subscriber     { Factory :user }
 end

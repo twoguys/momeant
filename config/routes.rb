@@ -27,7 +27,7 @@ Repo::Application.routes.draw do
   end
   match "/stories/tagged_with/:tag",    :to => "stories#tagged_with",  :as => :stories_tagged_with
   
-  match '/credits', :to => "deposits#new", :as => :credits
+  match '/credits', :to => "deposits#index", :as => :credits
   match '/credits/buy', :to => "deposits#create", :as => :deposit
   
   resources :users do

@@ -10,11 +10,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110125183546) do
+ActiveRecord::Schema.define(:version => 20110126172652) do
 
   create_table "bookmarked_stories_users", :id => false, :force => true do |t|
     t.integer "user_id"
     t.integer "story_id"
+  end
+
+  create_table "credit_cards", :force => true do |t|
+    t.string   "last_four_digits"
+    t.string   "braintree_token"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "curations", :force => true do |t|
@@ -134,6 +142,7 @@ ActiveRecord::Schema.define(:version => 20110125183546) do
     t.integer  "payer_id"
     t.string   "type"
     t.integer  "pay_period_line_item_id"
+    t.string   "braintree_order_id"
   end
 
   create_table "users", :force => true do |t|
