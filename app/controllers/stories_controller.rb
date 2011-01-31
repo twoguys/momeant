@@ -21,6 +21,7 @@ class StoriesController < ApplicationController
   
   def new
     @story = Story.new(:price => 0.0)
+    render "form"
   end
   
   def create
@@ -32,12 +33,25 @@ class StoriesController < ApplicationController
       redirect_to preview_story_path(@story), :notice => "Great story!"
     else
       get_topics
-      render "new"
+      render "form"
     end
   end
   
   def edit
-    render "new"
+    get_topics
+    render "form"
+  end
+  
+  def update
+    @story.topics.destroy_all
+    attach_topics
+    update_pages(params[:pages])
+    if @story.update_attributes(params[:story])
+      redirect_to preview_story_path(@story), :notice => "Story saved."
+    else
+      get_topics
+      render "form"
+    end
   end
   
   def preview
@@ -129,11 +143,19 @@ class StoriesController < ApplicationController
     end
     
     def attach_pages(pages)
-      return unless pages.is_a?(Hash) # TODO: validate pages
+      return unless pages.is_a?(Hash)
       pages.each_pair do |number, options|
         options.merge!({:number => number})
         page_type = Page.create_page_type_with(options)
         @story.pages << page_type if page_type
+      end
+    end
+    
+    def update_pages(pages)
+      return unless pages.is_a?(Hash)
+      pages.each_pair do |number, options|
+        options.merge!({:number => number})
+        Page.create_or_update_page_with(@story.page_at(number), options, @story)
       end
     end
   

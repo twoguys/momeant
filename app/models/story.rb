@@ -43,6 +43,10 @@ class Story < ActiveRecord::Base
     end
   end
   
+  def page_at(number)
+    return self.pages.find_by_number(number)
+  end
+  
   def similar_stories
     # find other stories by my creator
     stories = self.user.created_stories

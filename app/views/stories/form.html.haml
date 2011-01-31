@@ -87,4 +87,5 @@
         #loader.hidden
     
       %li.submit
-        = form.submit "Create Story", :disable_with => "Creating..."
+        - button_text = @story.new_record? ? "Create" : "Save"
+        = form.submit "#{button_text} Story", :disable_with => "#{button_text[0..-2]}ing..."
