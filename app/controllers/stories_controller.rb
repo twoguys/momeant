@@ -57,7 +57,7 @@ class StoriesController < ApplicationController
         PurchasesMailer.purchase_receipt(current_user, @story).deliver
         redirect_to @story
       else
-        redirect_to deposits_path, :alert => "You need to deposit more money in order to purchase that story."
+        redirect_to credits_path, :alert => "You need more credits in order to purchase that story."
       end
     else
       redirect_to home_path, :alert => "Sorry, that story does not exist."

@@ -35,7 +35,7 @@ class DepositsController < ApplicationController
     end
     
     if !result.success?
-      Rails.logger.error "[Momeant] Braintree failure, but no errors... #{result.inspect}" if result.errors.empty?
+      Rails.logger.error "[Momeant] Braintree failure, but no errors... #{result.inspect}" if result.errors.size == 0
       result.errors.each do |error|
         Rails.logger.info "[Momeant] Braintree transaction error: #{error.code} - #{error.message}"
         @deposit.errors.add(:base, error.message)
