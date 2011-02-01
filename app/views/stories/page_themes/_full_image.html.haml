@@ -6,12 +6,12 @@
         #page_#{@page.number} {        
             background-color: ##{@page.background_color};
         }
-    - if caption.background_color
+    - if caption && caption.background_color
       :css
         #page_#{@page.number} .caption {
           background-color: ##{caption.background_color} !important;
         }      
-    - if caption.text_color
+    - if caption && caption.text_color
       :css
         #page_#{@page.number} .caption {
           color: ##{caption.text_color} !important;
