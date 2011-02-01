@@ -6,7 +6,7 @@
   
   .current
     %span You currently have
-    %strong= current_user.credits || 0
+    %strong= number_to_human(current_user.credits || 0, :precision => 0)
     %span credits.
   
   = form_for @deposit, :url => deposit_path do |form|
