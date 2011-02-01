@@ -1,4 +1,4 @@
-%li.story
+%li.story{:class => (story_counter + 1) % 3 == 0 ? "third" : ""}
 
   %a.thumbnail{:href => preview_story_path(story)}
     - if story.thumbnail

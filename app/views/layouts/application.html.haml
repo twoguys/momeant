@@ -18,7 +18,9 @@
     
     /[if lt IE 7]
       = stylesheet_link_tag "ie"
-
+      = javascript_include_tag "http://use.typekit.com/sji8gns.js"
+      :javascript
+          try{Typekit.load();}catch(e){}
     = yield :head
     
   %body{:class => @fullscreen.nil? ? "" : "fullscreen"}

@@ -4,6 +4,7 @@ gem 'rails', '3.0.0'
 
 # Postgres for our database
 gem 'pg'
+gem 'sqlite3-ruby', :require => 'sqlite3'
 
 gem 'devise'
 gem 'haml'
@@ -13,6 +14,7 @@ gem 'inherited_resources'
 gem 'cancan'
 gem 'fastercsv'
 gem 'acts-as-taggable-on'
+gem 'compass'
 
 group :test do
   gem 'shoulda'
