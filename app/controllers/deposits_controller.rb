@@ -26,16 +26,24 @@ class DepositsController < ApplicationController
     if existing_card
       card = CreditCard.find_by_id(@deposit.credit_card_id)
       result = charge_existing_credit_card(card.braintree_token, @deposit.amount)
-
-      Rails.logger.info "Using existing card #{card.last_four_digits}"
-    else  
+      Rails.logger.info "[Momeant] Charging existing card #{card.id} - #{card.last_four_digits}"
+    elsif current_user.stored_in_braintree?
+      result = charge_new_card_for_existing_user(@deposit, current_user.id)
+      Rails.logger.info "[Momeant] Charging new card for existing Vault customer"
+    else
       result = charge_new_credit_card(@deposit)
-      
-      Rails.logger.info "charging new card"
+      Rails.logger.info "[Momeant] Charging new card for new Vault customer"
     end
     
     if !result.success?
-      Rails.logger.error "[Momeant] Braintree failure, but no errors... #{result.inspect}" if result.errors.size == 0
+      Rails.logger.error "[Momeant] Braintree failure, but no errors... #{result.message}, #{result.inspect}" if result.errors.size == 0
+      if result.message == "Gateway Rejected: avs"
+        @deposit.errors.add(:base, "Invalid postal code")
+      elsif result.message == "Gateway Rejected: cvv"
+        @deposit.errors.add(:base, "Invalid security code (CVV)")
+      elsif result.errors.size == 0
+        @deposit.errors.add(:base, result.message)
+      end
       result.errors.each do |error|
         Rails.logger.info "[Momeant] Braintree transaction error: #{error.code} - #{error.message}"
         @deposit.errors.add(:base, error.message)
@@ -63,7 +71,9 @@ class DepositsController < ApplicationController
     end
     
     current_credits = current_user.credits || 0
-    current_user.update_attribute(:credits, current_credits + @deposit.credits.to_i)
+    current_user.update_attributes(:credits => current_credits + @deposit.credits.to_i, :stored_in_braintree => true)
+    
+    Rails.logger.info "Updated the user"
     
     redirect_to credits_path, :notice => "#{@deposit.credits} credits were just added to your account!"
   end
@@ -93,6 +103,22 @@ class DepositsController < ApplicationController
       :options => {
         :store_in_vault => true,
         :add_billing_address_to_payment_method => true,
+        :submit_for_settlement => true
+      }
+    )
+  end
+  
+  def charge_new_card_for_existing_user(deposit, user_id)
+    Braintree::Transaction.sale(
+      :customer_id => user_id, 
+      :amount => deposit.amount, 
+      :credit_card => {
+        :number => deposit.credit_card_number,
+        :expiration_date => "#{deposit.credit_card_month}/#{deposit.credit_card_year}",
+        :cvv => deposit.credit_card_cvv
+      },
+      :options => {
+        :store_in_vault => true,
         :submit_for_settlement => true
       }
     )

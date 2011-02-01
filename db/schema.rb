@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110126172652) do
+ActiveRecord::Schema.define(:version => 20110131230422) do
 
   create_table "bookmarked_stories_users", :id => false, :force => true do |t|
     t.integer "user_id"
@@ -173,6 +173,7 @@ ActiveRecord::Schema.define(:version => 20110126172652) do
     t.float    "credits",                             :default => 0.0
     t.string   "first_name"
     t.string   "last_name"
+    t.boolean  "stored_in_braintree",                 :default => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
