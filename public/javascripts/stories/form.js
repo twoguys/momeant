@@ -14,6 +14,7 @@ var story_page_editor = function() {
 		setup_preview_clicking();
 		setup_preview_thumbnailing();
 		setup_grid_editing();
+		this.setup_style_editor($('#pages'));
 		initialize_first_page();
 	};
 	
@@ -24,7 +25,7 @@ var story_page_editor = function() {
 			var page_type = $(this).attr('page-type');
 			pages_editor.choose_page_theme(page_type);
 		});
-		$('#page-type-chooser-button').click(function() {
+		$('#page-type-chooser-button .inner').click(function() {
 			pages_editor.show_page_type_chooser();
 		});
 	};
@@ -75,9 +76,10 @@ var story_page_editor = function() {
 			var $picker = $(picker);
 			var color = $picker.css('backgroundColor');
 			var style_affected = $picker.attr('affected-style');
-			console.log(style_affected);
-			var $elements_affected = $picker.parents('.page:eq(0)').find('.color-affected');
+			var elements_to_update_class = $picker.attr('update');
+			var $elements_affected = $picker.parents('.page:eq(0)').find('.' + elements_to_update_class);
 			var $form_field = $picker.siblings('input');
+			$elements_affected.css(style_affected, color);
 			$picker.ColorPicker({
 				color: color,
 				onChange: function (hsb, hex, rgb) {

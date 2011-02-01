@@ -16,3 +16,9 @@ Factory.define :line_item, :class => "PayPeriodLineItem" do |line_item|
   line_item.payee       { |l| l.purchases.first.payee }
   line_item.amount      { |l| l.purchases.first.amount }
 end
+
+Factory.define :credit_card do |c|
+  c.last_four_digits      "4444"
+  c.braintree_token       "xxxx"
+  c.user                  { Factory :email_confirmed_user }
+end

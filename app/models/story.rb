@@ -34,12 +34,17 @@ class Story < ActiveRecord::Base
   end
   
   def thumbnail
-    page_index = self.thumbnail_page - 1
+    thumbnail = self.thumbnail_page || 1
+    page_index = thumbnail - 1
     if self.pages[page_index]
       return self.pages[page_index]
     else
       return self.pages.first
     end
+  end
+  
+  def page_at(number)
+    return self.pages.find_by_number(number)
   end
   
   def similar_stories

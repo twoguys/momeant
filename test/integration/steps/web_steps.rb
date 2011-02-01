@@ -26,6 +26,12 @@ module WebSteps
     end
   end
   
+  def then_i_should_see_error(message)
+    Then "I should see the error message '#{message}'" do
+      assert find("#error-explanation").has_content? message
+    end
+  end
+  
   def given_im_signed_in_as(var_name)
     Given "I'm signed in as a #{var_name}" do
       visit new_user_session_path

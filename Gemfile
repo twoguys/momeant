@@ -15,6 +15,7 @@ gem 'cancan'
 gem 'fastercsv'
 gem 'acts-as-taggable-on'
 gem 'compass'
+gem 'braintree'
 
 group :test do
   gem 'shoulda'
@@ -22,9 +23,5 @@ group :test do
   gem 'factory_girl'
   gem 'capybara'
   gem 'launchy'
-  gem 'autotest-rails-pure'
-  gem 'autotest-fsevent'
-  gem 'autotest-growl'
-  gem 'redgreen'
   gem 'database_cleaner'
 end

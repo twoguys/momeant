@@ -6,6 +6,7 @@ class RegistrationsController < Devise::RegistrationsController
       resource = Creator.new(params[:user]) if invitation && invitation.for_creator?
     end
     resource ||= User.new(params[:user])
+    resource.credits = 0
     
     if resource.save
       invitation.update_attribute(:accepted, true) if invitation

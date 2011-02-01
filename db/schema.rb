@@ -10,8 +10,24 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110120221731) do
+ActiveRecord::Schema.define(:version => 20110131230422) do
 
+<<<<<<< HEAD
+=======
+  create_table "bookmarked_stories_users", :id => false, :force => true do |t|
+    t.integer "user_id"
+    t.integer "story_id"
+  end
+
+  create_table "credit_cards", :force => true do |t|
+    t.string   "last_four_digits"
+    t.string   "braintree_token"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+>>>>>>> 27522ae299e79c3ed088ad7624094ba17287c38d
   create_table "curations", :force => true do |t|
     t.integer   "user_id"
     t.integer   "story_id"
@@ -46,11 +62,21 @@ ActiveRecord::Schema.define(:version => 20110120221731) do
   end
 
   create_table "pages", :force => true do |t|
+<<<<<<< HEAD
     t.integer   "number"
     t.string    "type"
     t.integer   "story_id"
     t.timestamp "created_at"
     t.timestamp "updated_at"
+=======
+    t.integer  "number"
+    t.string   "type"
+    t.integer  "story_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "background_color"
+    t.string   "text_color"
+>>>>>>> 27522ae299e79c3ed088ad7624094ba17287c38d
   end
 
   create_table "pay_period_line_items", :force => true do |t|
@@ -119,6 +145,7 @@ ActiveRecord::Schema.define(:version => 20110120221731) do
   end
 
   create_table "transactions", :force => true do |t|
+<<<<<<< HEAD
     t.integer   "story_id"
     t.timestamp "created_at"
     t.timestamp "updated_at"
@@ -156,6 +183,48 @@ ActiveRecord::Schema.define(:version => 20110120221731) do
     t.float     "money_available",                     :default => 0.0
     t.float     "credits",                             :default => 0.0
     t.string    "name"
+=======
+    t.integer  "story_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.float    "amount"
+    t.integer  "payee_id"
+    t.integer  "payer_id"
+    t.string   "type"
+    t.integer  "pay_period_line_item_id"
+    t.string   "braintree_order_id"
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "email"
+    t.string   "encrypted_password",   :limit => 128, :default => "",    :null => false
+    t.string   "password_salt",                       :default => "",    :null => false
+    t.string   "reset_password_token"
+    t.string   "remember_token"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",                       :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "username"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "avatar_file_name"
+    t.string   "avatar_file_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_udpated_at"
+    t.string   "type"
+    t.boolean  "is_admin",                            :default => false
+    t.float    "money_available",                     :default => 0.0
+    t.float    "credits",                             :default => 0.0
+    t.string   "first_name"
+    t.string   "last_name"
+    t.boolean  "stored_in_braintree",                 :default => false
+>>>>>>> 27522ae299e79c3ed088ad7624094ba17287c38d
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

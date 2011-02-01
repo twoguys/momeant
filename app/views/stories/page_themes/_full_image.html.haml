@@ -1,8 +1,27 @@
+- caption = @page.medias.last
+- if @page.has_styles? || caption.has_styles?
+  - content_for :head do
+    - if @page.background_color
+      :css
+        #page_#{@page.number} {        
+            background-color: ##{@page.background_color};
+        }
+    - if caption && caption.background_color
+      :css
+        #page_#{@page.number} .caption {
+          background-color: ##{caption.background_color} !important;
+        }      
+    - if caption && caption.text_color
+      :css
+        #page_#{@page.number} .caption {
+          color: ##{caption.text_color} !important;
+        }
+
 - preview ||= false
 .inner
   - if preview
     = image_tag(@page.image.url(:medium)) if @page.image
   - else
     = image_tag(@page.image.url) if @page.image
-  - if @page.text
+  - if @page.text && !preview
     .caption= @page.text

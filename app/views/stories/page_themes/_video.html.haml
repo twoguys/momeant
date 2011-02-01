@@ -1,3 +1,10 @@
+- if @page.has_styles?
+  - content_for :head do
+    :css
+      #page_#{@page.number} {
+        background-color: ##{@page.background_color} !important;
+      }
+      
 - preview ||= false
 - if preview
   = image_tag("/images/page-themes/video-thumbnail.jpg")

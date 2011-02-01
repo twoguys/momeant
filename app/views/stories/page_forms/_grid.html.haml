@@ -1,5 +1,6 @@
 = hidden_field_tag "pages[#{@page_number}][type]", "GridPage"
-.grid.page-theme
+.grid.page-theme.background-color-affected
+  = render :partial => "stories/page_forms/style_editor", :locals => {:background_color => true, :text_color => true}
   %ul.cells
     - 8.times do |num|
       - cell = num + 1
@@ -19,7 +20,7 @@
             = link_to("Edit caption", "#")
           .text
             - if @page && @page.text_at_position(cell)
-              = text_area_tag "pages[#{@page_number}][cells][#{cell}][text]", @page.text_at_position(cell).text, :placeholder => "Type your caption here..."
+              = text_area_tag "pages[#{@page_number}][cells][#{cell}][text]", @page.text_at_position(cell).text, :placeholder => "Type your caption here...", :class => "color-affected"
             - else
-              = text_area_tag "pages[#{@page_number}][cells][#{cell}][text]", "", :placeholder => "Type your caption here..."
+              = text_area_tag "pages[#{@page_number}][cells][#{cell}][text]", "", :placeholder => "Type your caption here...", :class => "color-affected"
             = link_to("Choose image", "#")
