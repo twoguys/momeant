@@ -27,6 +27,7 @@
         .color-picker{:style => "background-color: ##{color}", "affected-style" => "background-color", :update => "caption-background-color-affected"}
       .widget
         %h3 caption text
-        - color = @page && @page.caption && @page.caption.text_color ? @page.caption.text_color : "ffffff"
+        - color = @page && @page.caption && @page.caption.text_color ? @page.caption.text_color : "444444"
+        = color
         = hidden_field_tag "pages[#{@page_number}][caption_text_color]", color
-        .color-picker{:style => "color: ##{color}", "affected-style" => "color", :update => "caption-color-affected"}
+        .color-picker{:style => "background-color: ##{color}", "affected-style" => "color", :update => "caption-color-affected"}

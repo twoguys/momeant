@@ -29,7 +29,7 @@
             - @page = @story.pages.reject{|p|p.number != page_number}.first
             - if @page
               %li.page.chosen{:id => "preview_#{page_number}", "page-number" => page_number, :class => @page.css_class}
-                = link_to("choose thumbnail", "#", :class => @story.thumbnail_page == page_number ? "choose-thumbnail chosen" : "choose-thumbnail")
+                = link_to("set as story thumbnail", "#", :class => @story.thumbnail_page == page_number ? "choose-thumbnail chosen" : "choose-thumbnail")
             - else
               %li.page{:id => "preview_#{page_number}", "page-number" => page_number}
                 = page_number

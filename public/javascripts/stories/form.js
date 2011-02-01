@@ -71,6 +71,7 @@ var story_page_editor = function() {
 	};
 	
 	this.setup_style_editor = function(current_page) {
+		$('.style-editor .insides').draggable();
 		var $color_picker = current_page.find('.color-picker');
 		_.each($color_picker, function(picker) {
 			var $picker = $(picker);
