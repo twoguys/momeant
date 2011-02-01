@@ -34,6 +34,8 @@
     
       %ul#new-credit-card-fields{:class => current_user.credit_cards.count > 0 ? "hidden" : ""}
         %li
+          = link_to("List of valid test CCs to use", "http://www.braintreepaymentsolutions.com/docs/ruby/reference/sandbox")
+        %li
           %h3 Credit Card information
           %span
             = form.text_field :credit_card_number
