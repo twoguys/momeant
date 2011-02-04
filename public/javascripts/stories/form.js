@@ -1,11 +1,13 @@
 var pages_editor;
 var story_page_editor = function() {
 	
+	this.story_id = null;
 	this.page = 1;
 	this.page_chooser_open = true;
 	this.page_type_css_classes = 'title full_image pullquote video split';
 	
 	this.initialize = function() {
+		this.story_id = $('#story_id').val();
 		$('#open-page-editor-button').click(pages_editor.open);
 		$('#close-page-editor-button').click(pages_editor.close);
 		setup_page_layout_chooser();
@@ -14,6 +16,7 @@ var story_page_editor = function() {
 		setup_preview_clicking();
 		setup_preview_thumbnailing();
 		setup_grid_editing();
+		setup_key_bindings();
 		this.setup_style_editor($('#pages'));
 		initialize_first_page();
 	};
@@ -70,6 +73,14 @@ var story_page_editor = function() {
 		});
 	};
 	
+	var setup_key_bindings = function() {
+		$(document).keyup(function(e) {
+		  if (e.keyCode == 27) { pages_editor.close(); }   							// esc
+			if (e.keyCode == 39) { pages_editor.goto_next_page(); } 			// right arrow
+			if (e.keyCode == 37) { pages_editor.goto_previous_page(); } 	// left arrow
+		});
+	};
+	
 	this.setup_style_editor = function(current_page) {
 		$('.style-editor .insides').draggable();
 		var $color_picker = current_page.find('.color-picker');
@@ -115,6 +126,7 @@ var story_page_editor = function() {
 			$current_page.click(pages_editor.hide_page_type_chooser);
 			pages_editor.hide_page_type_chooser();
 			pages_editor.set_preview_type(page_type);
+			auto_saver.create_and_monitor_page($current_page, page_type, pages_editor.page);
 		});
 	};
 	
@@ -124,6 +136,7 @@ var story_page_editor = function() {
 		$('body').addClass('fullscreen');
 		$('#page-editor').removeClass('hidden').siblings().hide();
 		$('#error-explanation').hide();
+		$.scrollTo('61');
 		return false;
 	};
 	
@@ -233,6 +246,239 @@ var story_page_editor = function() {
 	
 }
 
+var auto_saver;
+var story_auto_saver = function() {
+	this.spinner_count = 0;
+	this.observe_delay = 1;
+	this.has_saved = false;
+	
+	this.initialize = function() {
+		this.monitor_details_typing();
+		this.monitor_existing_pages();
+		this.monitor_thumbnail_switching();
+		this.monitor_topic_clicking();
+	};
+	
+	this.show_spinner = function() {
+		auto_saver.spinner_count += 1;
+		if (auto_saver.spinner_count == 1) {
+			$('#story-spinner').show();
+			$('#story-saved').hide();
+		}
+		if (!auto_saver.has_saved) {
+			auto_saver.has_saved = true;
+			$('#story-saved').text('Saved');
+		}
+	};
+	
+	this.hide_spinner = function() {
+		auto_saver.spinner_count -= 1;
+		if (auto_saver.spinner_count == 0) {
+			$('#story-spinner').hide();
+			$('#story-saved').show();
+		}
+	};
+	
+	this.monitor_existing_pages = function() {
+		$('ul#pages li.page').each(function() {
+			var $page = $(this);
+			var page_id = $page.attr('page-id');
+			if (page_id) {
+				var page_type = $page.attr('page-type');
+				var number = $page.attr('id').substring(5);
+				auto_saver.monitor_page_typing($page, page_id, page_type, number);
+				auto_saver.handle_image_uploading($page, page_id, page_type, number);
+				auto_saver.monitor_page_style_updates($page, page_id, page_type, number);
+			}
+		});
+	}
+	
+	this.monitor_details_typing = function() {
+		var $story_attributes_to_monitor = $('.monitor-story-typing');
+		_.each($story_attributes_to_monitor, function(story_attribute) {
+			var $story_attribute = $(story_attribute);
+			$story_attribute.observe_field(auto_saver.observe_delay, function(value, object) {
+				var attribute_to_update = $story_attribute.attr('update');
+				var data = {};
+				var value = $story_attribute.val();
+				data['story[' + attribute_to_update + ']'] = value;
+				auto_saver.show_spinner();
+				//alert("AJAXING!");
+				$.ajax({
+					type: 'PUT',
+					url: '/stories/' + pages_editor.story_id + '/autosave',
+					data: data,
+					success: function(data) {
+						auto_saver.hide_spinner();
+						if (data.result == "success") {
+							log('successfully updated story with: ' + value);
+						} else {
+							log('error when updating page with: ' + value);
+						}
+					}
+				});
+			});
+		});
+	};
+	
+	this.monitor_thumbnail_switching = function() {
+		$('#page-previews a.choose-thumbnail').click(function() {
+			var page_number = $(this).parent().attr('page-number');
+			auto_saver.show_spinner();
+			$.ajax({
+				type: 'PUT',
+				url: '/stories/' + pages_editor.story_id + '/autosave',
+				data: {
+					'story[thumbnail_page]': page_number
+				},
+				success: function(data) {
+					auto_saver.hide_spinner();
+					if (data.result == "success") {
+						log('successfully updated thumbnail to: ' + page_number);
+					} else {
+						log('error when updating thumbnail to: ' + page_number);
+					}
+				}
+			});
+		});
+	};
+	
+	this.monitor_topic_clicking = function() {
+		$('li.topics li.topic input[type="checkbox"]').change(function() {
+			var $checkbox = $(this);
+			var topic_id = $checkbox.attr('topic-id')
+			var url = 'add_topic_to';
+			if (!$checkbox.is(':checked')) {
+				url = 'remove_topic_from';
+			}
+			auto_saver.show_spinner();
+			$.ajax({
+				type: 'POST',
+				url: '/stories/' + pages_editor.story_id + '/' + url,
+				data: {
+					topic_id: topic_id
+				},
+				success: function(data) {
+					auto_saver.hide_spinner();
+					if (data.result == "success") {
+						log('successful ' + url + ': ' + topic_id);
+					} else {
+						log(data.message);
+					}
+				}
+			});
+		});
+	};
+	
+	this.create_and_monitor_page = function($page, type, number) {
+		$.post('/stories/' + pages_editor.story_id + '/pages',
+			{
+				type: type,
+				number: number
+			},
+			function(data) {
+				if (data.result == "success") {
+					$page.find('.page-id').val(data.id);
+					auto_saver.monitor_page_typing($page, data.id, type, number);
+					auto_saver.handle_image_uploading($page, data.id, type, number);
+					auto_saver.monitor_page_style_updates($page, data.id, type, number);
+				} else {
+					log('error when creating a ' + type + ' page.');
+				}
+			}
+		);
+	};
+	
+	this.monitor_page_typing = function($page, page_id, type, number) {
+		$page.find('.monitor-typing').observe_field(auto_saver.observe_delay, function(value, object) {
+			var value = $(object).val();
+			var data = {};
+			data['type'] = type;
+			data['number'] = number;
+			var cell = $(object).attr('cell');
+			if (cell) {
+				data['cells[' + cell + '][text]'] = value;
+			} else {
+				data['text'] = value;
+			}
+			$.ajax({
+			  type: 'PUT',
+			  url: '/stories/' + pages_editor.story_id + '/pages/' + page_id,
+			  data: data,
+			  success: function(data) {
+					if (data.result == "success") {
+						log('successfully updated page ' + page_id + ' with: ' + value);
+					} else {
+						log('error when updating page ' + page_id);
+					}
+				}
+			});
+		});
+	};
+	
+	this.monitor_page_style_updates = function($page, page_id, type, number) {
+		$page.find('.style-editor .widget input').each(function() {
+			$(this).observe_field(auto_saver.observe_delay, function(value, object) {
+				var style = $(object).attr('update');
+				var data = {
+					type: type,
+					number: number,
+				};
+				data[style] = $(object).val();
+				$.ajax({
+				  type: 'PUT',
+				  url: '/stories/' + pages_editor.story_id + '/pages/' + page_id,
+				  data: data,
+				  success: function(data) {
+						if (data.result == "success") {
+							log('successfully updated page ' + page_id + ' with: ' + value);
+						} else {
+							log('error when updating page ' + page_id);
+						}
+					}
+				});
+			});
+		});
+	};
+	
+	this.handle_image_uploading = function($page, page_id, type, number) {
+		$('.file-uploader').each(function() {
+			var $uploader = $(this);
+			var $loader = $uploader.find('.loader');
+			var $file_input = $uploader.find('input[type="file"]');
+			var $preview = $uploader.find('.image-preview');
+			var url = '/stories/' + pages_editor.story_id + '/pages/' + page_id + '/add_or_update_image';
+			var grid_cell = $file_input.attr('cell');
+			if (grid_cell)
+				url += '?cell=' + grid_cell
+			$file_input.html5_upload({
+				url: url,
+				sendBoundary: window.FormData || $.browser.mozilla,
+				fieldName: 'image',
+				onStart: function() {
+					$file_input.hide();
+					$loader.show();
+					return true;
+				},
+				onFinishOne: function(event, response, name, number, total) {
+					json = $.parseJSON(response);
+					var $img = $preview.find('img');
+					if ($img.length != 0) {
+						$img.attr('src', json.full);
+					} else {
+						$preview.append('<img src="' + json.full + '"/>').addClass('no-bg');
+					}
+					$uploader.find('.info').remove();
+					if (!grid_cell)
+						$('#preview_' + (number + 1)).css('background-image', 'url(' + json.thumbnail + ')');
+					$loader.hide();
+					$file_input.show();
+				}
+			});
+		});
+	};
+}
+
 function clicking_a_child_topic_clicks_the_parent() {
 	$('li.topics .children input').click(function() {
 		if ($(this).is(':checked')) {
@@ -248,5 +494,34 @@ $(document).ready(function() {
 	pages_editor = new story_page_editor();
 	pages_editor.initialize();
 	
+	auto_saver = new story_auto_saver();
+	auto_saver.initialize();
+	
 	clicking_a_child_topic_clicks_the_parent();
 });
+
+// http://github.com/splendeo/jquery.observe_field
+jQuery.fn.observe_field = function(frequency, callback) {
+
+  return this.each(function(){
+    var element = $(this);
+    var prev = element.val();
+
+    var chk = function() {
+      var val = element.val();
+      if(prev != val){
+        prev = val;
+        element.map(callback); // invokes the callback on the element
+      }
+    };
+    chk();
+    frequency = frequency * 1000; // translate to milliseconds
+    var ti = setInterval(chk, frequency);
+    // reset counter after user interaction
+    element.bind('keyup', function() {
+      ti && clearInterval(ti);
+      ti = setInterval(chk, frequency);
+    });
+  });
+
+};

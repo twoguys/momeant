@@ -16,6 +16,7 @@ Factory.define :story do |story|
   story.price       0.50
   story.topics      { [Factory(:topic), Factory(:topic)] }
   story.user        { Factory :creator }
+  story.autosaving  true # this gets around the at-least-one-page requirement
   story.published   true
 end
 
@@ -29,6 +30,7 @@ end
 
 Factory.define :draft_story, :parent => :story do |story|
   story.published   false
+  story.autosaving  true
 end
 
 Factory.define :bookmark do |bookmark|
@@ -39,6 +41,9 @@ end
 Factory.define :recommendation do |recommendation|
   recommendation.user     { Factory :user }
   recommendation.story    { Factory :story }
+end
+
+Factory.define :page, :class => "TitlePage" do |p|
 end
 
 Factory.sequence :tag_name do |n|

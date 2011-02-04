@@ -5,7 +5,7 @@
       - @page = story.thumbnail
       = render :partial => "stories/page_themes/#{@page.partial_name}", :locals => {:preview => true}
       
-  .title= link_to(story.title, preview_story_path(story))
+  .title= link_to(story.title || "Incomplete Story", preview_story_path(story))
   .likes
   .recommendations= story.recommendations.count
   .author= link_to("by #{story.user.name}", user_path(story.user))

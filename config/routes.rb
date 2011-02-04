@@ -19,11 +19,18 @@ Repo::Application.routes.draw do
       delete :unrecommend
       delete :remove_tag_from
       post :publish
+      put :autosave
+      post :add_topic_to
+      post :remove_topic_from
     end
     get :bookmarked, :on => :collection
     get :recommended, :on => :collection
     get :render_page_theme, :on => :collection
     get :tagged_with, :on => :collection
+    
+    resources :pages, :only => [:create, :update, :destroy] do
+      post :add_or_update_image, :on => :member
+    end
   end
   match "/stories/tagged_with/:tag",    :to => "stories#tagged_with",  :as => :stories_tagged_with
   

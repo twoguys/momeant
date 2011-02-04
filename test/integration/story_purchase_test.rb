@@ -146,9 +146,9 @@ Feature "A user can acquire a story" do
       click_button(number_to_currency(@crazy_expensive_story.price))
     end
     
-    then_i_should_be_on_page(:deposits)
+    then_i_should_be_on_page(:credits)
     
-    then_i_should_see_flash(:alert, "You need to deposit more money in order to purchase that story.")
+    then_i_should_see_flash(:alert, "You need more credits in order to purchase that story.")
   end
   
 end

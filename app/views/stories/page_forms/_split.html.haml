@@ -1,14 +1,18 @@
-= hidden_field_tag "pages[#{@page_number}][type]", "SplitPage"
+= hidden_field_tag "pages[#{@page_number}][type]", "split"
 .split.page-theme.background-color-affected
   = render :partial => "stories/page_forms/style_editor", :locals => {:background_color => true, :text_color => true}
   .image
     .inner
-      = file_field_tag "pages[#{@page_number}][image]"
-      .preview
-        = image_tag @page.image.url if @page && @page.id && @page.image
+      .file-uploader
+        .loader.hidden
+        %form{:enctype => "multipart/form-data", :method => "POST", :action => "/stories"}
+          %input{:type => "hidden", :value => form_authenticity_token, :name => "authenticity_token"}
+          %input{:type => "file", :name => "pages[#{@page_number}][image]", :id => "pages_#{@page_number}_image"}
+        .image-preview{:class => (@page.present? && @page.image.present?) ? "no-bg" : ""}
+          = image_tag @page.image.url if @page && @page.image
   .text
     .inner
       - if @page && @page.text
-        = text_area_tag "pages[#{@page_number}][text]", @page.text, :placeholder => "Type your text here...", :class => "color-affected"
+        = text_area_tag "pages[#{@page_number}][text]", @page.text, :placeholder => "Type your text here...", :class => "color-affected monitor-typing"
       - else
-        = text_area_tag "pages[#{@page_number}][text]", "", :placeholder => "Type your text here...", :class => "color-affected"
+        = text_area_tag "pages[#{@page_number}][text]", "", :placeholder => "Type your text here...", :class => "color-affected monitor-typing"

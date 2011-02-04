@@ -1,31 +1,24 @@
 /*
-Syntax error: Undefined variable: "$border_type".
-        on line 6 of /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/stories/form.sass
+Syntax error: Undefined mixin 'rounded'.
+        on line 8 of /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/stories/form.sass, in `rounded'
+        from line 8 of /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/stories/form.sass
 
-1: /* Story creation */
-2: 
-3: form.new_story, form.edit_story
-4: 	.title-input, .excerpt-input
-5: 		height: 80px
-6: 		border-bottom: $border_type
-7: 		float: left
-8: 		input
-9: 			width: 95%
-10: 	.title-input
-11: 		width: 30%
+3: #preview-link
+4: 	position: absolute
+5: 	right: 0
+6: 	background-color: #bbd6e7
+7: 	padding: 3px 6px
+8: 	@include rounded
+9: form.new_story, form.edit_story, .story-form
+10: 	padding-top: 20px
+11: 	fieldset, fieldset ul
+12: 		padding-top: 1px
+13: 	#story-spinner
 
 Backtrace:
-/Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/stories/form.sass:6
-/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.25/lib/sass/script/variable.rb:39:in `_perform'
-/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.25/lib/sass/script/node.rb:61:in `perform'
-/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.25/lib/sass/tree/prop_node.rb:132:in `perform!'
-/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.25/lib/sass/tree/node.rb:305:in `_perform'
-/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.25/lib/sass/tree/node.rb:213:in `perform'
-/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.25/lib/sass/tree/node.rb:327:in `perform_children'
-/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.25/lib/sass/tree/node.rb:327:in `map'
-/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.25/lib/sass/tree/node.rb:327:in `perform_children'
-/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.25/lib/sass/tree/node.rb:317:in `perform!'
-/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.25/lib/sass/tree/rule_node.rb:191:in `perform!'
+/Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/stories/form.sass:8:in `rounded'
+/Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/stories/form.sass:8
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.25/lib/sass/tree/mixin_node.rb:62:in `perform!'
 /Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.25/lib/sass/tree/node.rb:305:in `_perform'
 /Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.25/lib/sass/tree/node.rb:213:in `perform'
 /Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.25/lib/sass/tree/node.rb:327:in `perform_children'
@@ -108,4 +101,4 @@ script/rails:6
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Syntax error: Undefined variable: \"$border_type\".\A         on line 6 of /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/stories/form.sass\A \A 1: /* Story creation */\A 2: \A 3: form.new_story, form.edit_story\A 4: 	.title-input, .excerpt-input\A 5: 		height: 80px\A 6: 		border-bottom: $border_type\A 7: 		float: left\A 8: 		input\A 9: 			width: 95%\A 10: 	.title-input\A 11: 		width: 30%"; }
+  content: "Syntax error: Undefined mixin 'rounded'.\A         on line 8 of /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/stories/form.sass, in `rounded'\A         from line 8 of /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/stories/form.sass\A \A 3: #preview-link\A 4: 	position: absolute\A 5: 	right: 0\A 6: 	background-color: #bbd6e7\A 7: 	padding: 3px 6px\A 8: 	@include rounded\A 9: form.new_story, form.edit_story, .story-form\A 10: 	padding-top: 20px\A 11: 	fieldset, fieldset ul\A 12: 		padding-top: 1px\A 13: 	#story-spinner"; }

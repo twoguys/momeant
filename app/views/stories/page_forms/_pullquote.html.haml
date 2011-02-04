@@ -1,7 +1,7 @@
-= hidden_field_tag "pages[#{@page_number}][type]", "PullquotePage"
+= hidden_field_tag "pages[#{@page_number}][type]", "pullquote"
 .pullquote.page-theme.background-color-affected.color-affected
   = render :partial => "stories/page_forms/style_editor", :locals => {:background_color => true, :text_color => true}
   - if @page && @page.text
-    = text_area_tag "pages[#{@page_number}][quote]", @page.text, :placeholder => "Type your text here..."
+    = text_area_tag "pages[#{@page_number}][text]", @page.text, :class => "monitor-typing", :placeholder => "Type your text here..."
   - else
-    = text_area_tag "pages[#{@page_number}][quote]", "", :placeholder => "Type your text here..."
+    = text_area_tag "pages[#{@page_number}][text]", "", :class => "monitor-typing", :placeholder => "Type your text here..."

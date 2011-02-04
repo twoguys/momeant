@@ -1,8 +1,8 @@
 module StoryCreationSteps
   
-  def and_i_open_the_page_editor
-    And "I open the page editor" do
-      click_link "Open Page Editor"
+  def and_i_open_the_page_editor_to_page(page_number)
+    And "I open the page editor to page" do
+      find("#preview_#{page_number}").click
     end
   end
   
@@ -15,7 +15,7 @@ module StoryCreationSteps
   def and_i_choose_the_title_theme_and_fill_in_a_title_for_page(page_number)
     And "I choose the title theme for page #{page_number} and fill in a title" do
       find(".slider").find(".title").click
-      fill_in "pages_#{page_number}_title", :with => "Little Red Riding Hood"
+      fill_in "pages_#{page_number}_text", :with => "Little Red Riding Hood"
     end
   end
   
@@ -29,21 +29,21 @@ module StoryCreationSteps
     And "I choose the image theme for page #{page_number} and choose an image" do
       find(".slider").find(".full_image").click
       attach_file "pages_#{page_number}_image", File.join(Rails.root, "test/assets", "avatar.png")
-      fill_in "pages_#{page_number}_caption", :with => "Here is an explanation of what this image is"
+      fill_in "pages_#{page_number}_text", :with => "Here is an explanation of what this image is"
     end
   end
   
   def and_i_choose_the_pullquote_theme_and_fill_in_a_quote_for_page(page_number)
     And "I choose the title theme for page #{page_number} and fill in a title" do
       find(".slider").find(".pullquote").click
-      fill_in "pages_#{page_number}_quote", :with => "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+      fill_in "pages_#{page_number}_text", :with => "Here is a great quote."
     end
   end
   
   def and_i_choose_the_video_theme_and_fill_in_a_vimeo_id_for_page(page_number)
     And "I choose the video theme for page #{page_number} and fill in a Vimeo ID" do
       find(".slider").find(".video").click
-      fill_in "pages_#{page_number}_vimeo_id", :with => "18427511"
+      fill_in "pages_#{page_number}_text", :with => "18427511"
     end
   end
   
@@ -51,7 +51,7 @@ module StoryCreationSteps
     And "I choose the split theme for page #{page_number} and choose a picture and text" do
       find(".slider").find(".split").click
       attach_file "pages_#{page_number}_image", File.join(Rails.root, "test/assets", "avatar.png")
-      fill_in "pages_#{page_number}_text", :with => "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+      fill_in "pages_#{page_number}_text", :with => "Here is a great quote."
     end
   end
   

@@ -11,11 +11,22 @@ class Story < ActiveRecord::Base
   
   has_many :pages, :order => "number ASC", :dependent => :destroy
     
-  validates :title, :presence => true, :length => (2..256)
-  validates :excerpt, :length => (2..1024)
-  validates :price, :format => /[0-9.,]+/
+  validates :title, :presence => true, :length => (2..256), :unless => :autosaving
+  validates :excerpt, :length => (2..1024), :unless => :autosaving
+  validates :price, :format => /[0-9.,]+/, :unless => :autosaving
+  
+  validate  :at_least_one_page
   
   scope :published, where(:published => true)
+  
+  attr_accessor :autosaving
+  
+  def at_least_one_page
+    if !self.autosaving && self.pages.count == 0
+      self.errors.add(:base, "Your story needs at least one page")
+      return false
+    end
+  end
   
   def free?
     self.price == 0

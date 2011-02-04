@@ -7,10 +7,6 @@ class StoriesController < ApplicationController
     @stories = Story.published
   end
   
-  def library
-    @stories = current_user.stories
-  end
-  
   def tagged_with
     @stories = []
     @tags = Story.published.tag_counts_on(:tags)
@@ -20,7 +16,7 @@ class StoriesController < ApplicationController
   end
   
   def new
-    @story = Story.new(:price => 0.0)
+    @story = Story.create(:price => 0, :thumbnail_page => 1, :user_id => current_user.id, :autosaving => true)
     render "form"
   end
   
@@ -51,6 +47,21 @@ class StoriesController < ApplicationController
     else
       get_topics
       render "form"
+    end
+  end
+  
+  def autosave
+    Rails.logger.info "OMG AUTOSAVE: #{params.inspect}"
+    if params[:story]
+      @story.autosaving = true
+      if @story.update_attributes(params[:story])
+        Rails.logger.info "SUCCESS! #{Story.last.inspect}"
+        render :json => {:result => "success"}
+      else
+        render :json => {:result => "failure", :message => @story.errors.full_messages}
+      end
+    else
+      render :json => {:result => "failure", :message => "No story data sent"}
     end
   end
   
@@ -120,6 +131,36 @@ class StoriesController < ApplicationController
     render :text => ""
   end
   
+  def add_topic_to
+    if params[:topic_id]
+      topics = Topic.where(:id => params[:topic_id])
+      # add the parent topic as well, if there is one
+      topics += Topic.where(:id => topics.first.topic_id) if topics.first && topics.first.topic_id
+      if @story.topics << topics
+        render :json => {:result => "success"}
+      else  
+        render :json => {:result => "failure", :message => "Unable to attach topic"}
+      end
+    else  
+      render :json => {:result => "failure", :message => "No topic id sent"}
+    end
+  end
+  
+  def remove_topic_from
+    if params[:topic_id]
+      topics = Topic.where(:id => params[:topic_id])
+      # remove the children topics as well, if there are any
+      #topics += Topic.where(:topic_id => params[:topic_id])
+      if @story.topics.delete(topics)
+        render :json => {:result => "success"}
+      else  
+        render :json => {:result => "failure", :message => "Unable to remove topic"}
+      end
+    else  
+      render :json => {:result => "failure", :message => "No topic id sent"}
+    end
+  end
+  
   def show
     @fullscreen = true
   end
@@ -146,8 +187,7 @@ class StoriesController < ApplicationController
       return unless pages.is_a?(Hash)
       pages.each_pair do |number, options|
         options.merge!({:number => number})
-        page_type = Page.create_page_type_with(options)
-        @story.pages << page_type if page_type
+        Page.create_or_update_page_with(@story.page_at(number), options, @story)
       end
     end
     
