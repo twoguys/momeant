@@ -105,17 +105,27 @@ class StoriesController < ApplicationController
   
   def recommend
     Recommendation.create(:story_id => @story.id, :user_id => current_user.id)
-    redirect_to preview_story_path(@story), :notice => "Story recommended."
+    redirect_to preview_story_path(@story)
   end
   
   def unrecommend
     Recommendation.where(:story_id => @story.id, :user_id => current_user.id).destroy_all
-    redirect_to preview_story_path(@story), :notice => "Recommendation removed."
+    redirect_to preview_story_path(@story)
   end
   
   def recommended
     @limit = User::RECOMMENDATIONS_LIMIT
     @recommendations = current_user.recommendations
+  end
+  
+  def like
+    Like.create(:story_id => @story.id, :user_id => current_user.id)
+    redirect_to preview_story_path(@story)
+  end
+  
+  def unlike
+    Like.where(:story_id => @story.id, :user_id => current_user.id).destroy_all
+    redirect_to preview_story_path(@story)
   end
   
   def publish

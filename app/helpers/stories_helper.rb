@@ -23,6 +23,16 @@ module StoriesHelper
     end
   end
   
+  def like_button(story)
+    if current_user
+      if current_user.has_liked?(story)
+        button_to("unlike story", unlike_story_path(story), :method => :delete, :class => "liked tooltipped", :title => "Unlike")
+      else
+        button_to("like story", like_story_path(story), :class => "like tooltipped", :title => "Like")
+      end
+    end
+  end
+  
   def story_price(story)
     if current_user && (story.user == current_user || current_user.stories.include?(story))
       link_to("view", @story)

@@ -17,6 +17,8 @@ Repo::Application.routes.draw do
       delete :unbookmark
       post :recommend
       delete :unrecommend
+      post :like
+      delete :unlike
       delete :remove_tag_from
       post :publish
       put :autosave

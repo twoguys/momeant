@@ -8,6 +8,8 @@ class Story < ActiveRecord::Base
   has_many :users_who_bookmarked, :through => :bookmarks, :source => :user
   has_many :recommendations
   has_many :users_who_recommended, :through => :recommendations, :source => :user
+  has_many :likes
+  has_many :users_who_liked, :through => :likes, :source => :user
   
   has_many :pages, :order => "number ASC", :dependent => :destroy
     

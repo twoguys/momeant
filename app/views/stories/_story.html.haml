@@ -8,5 +8,5 @@
   .title= link_to(story.title || "Incomplete Story", preview_story_path(story))
   .likes
   .recommendations= story.recommendations.count
-  .author= link_to("by #{story.user.name}", user_path(story.user))
+  .author by #{link_to(story.user.name, user_path(story.user))}
   .excerpt= story.excerpt

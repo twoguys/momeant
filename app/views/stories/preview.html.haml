@@ -19,10 +19,12 @@
         %span.current 1
         %span.of /
         %span.total 1
-      = bookmark_button(@story)
-      = recommend_button(@story)
       - if @story.owner?(current_user)
         .edit= link_to("edit", edit_story_path(@story))
+      - else
+        = bookmark_button(@story)
+        = recommend_button(@story)
+        = like_button(@story)
     .metadata
       .creator Created by #{link_to(@story.user.name, user_path(@story.user))}
       .title= @story.title

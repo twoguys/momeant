@@ -13,7 +13,7 @@ class Ability
       else
         can [:create, :show, :index], Invitation
         can [:library, :bookmarked, :recommended], Story
-        can [:purchase, :bookmark, :unbookmark, :recommend, :unrecommend], Story, :published => true
+        can [:purchase, :bookmark, :unbookmark, :recommend, :unrecommend, :like, :unlike], Story, :published => true
         can :preview, Story do |story|
           story.published? || story.owner?(user)
         end
