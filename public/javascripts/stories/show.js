@@ -26,7 +26,7 @@ var story_viewer = function() {
 	};
 	
 	this.close_previewer = function() {
-		$('#previewer').stop().animate({bottom: '-120px'}, 500);
+		$('#previewer').stop().animate({bottom: '-190px'}, 500);
 	};
 	
 	this.show_next_button = function() {
