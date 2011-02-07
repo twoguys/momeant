@@ -14,6 +14,7 @@ gem 'cancan'
 gem 'fastercsv'
 gem 'acts-as-taggable-on'
 gem 'braintree'
+gem 'silent-postgres'
 
 group :test do
   gem 'shoulda'

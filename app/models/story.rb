@@ -23,6 +23,10 @@ class Story < ActiveRecord::Base
   
   attr_accessor :autosaving
   
+  def to_param
+    "#{id}_#{title.gsub(' ', '_')}"
+  end
+  
   def at_least_one_page
     if !self.autosaving && self.pages.count == 0
       self.errors.add(:base, "Your story needs at least one page")

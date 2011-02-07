@@ -9,7 +9,7 @@ class Ability
         can :manage, :all
       elsif user.is_a?(Creator)
         can [:invite_creator, :create, :show, :index], Invitation
-        can :manage, Story
+        can :manage, Story, :user_id => user.id
       else
         can [:create, :show, :index], Invitation
         can [:library, :bookmarked, :recommended], Story
