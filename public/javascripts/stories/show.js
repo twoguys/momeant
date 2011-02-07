@@ -18,6 +18,7 @@ var story_viewer = function() {
 		$('#previewer ul.pages li').click(viewer.previewer_page_clicked);
 		
 		update_previewer_width();
+		viewer.set_active_preview(1);
 		hide_controls_after_initial_delay();
 	};
 	
@@ -26,7 +27,7 @@ var story_viewer = function() {
 	};
 	
 	this.close_previewer = function() {
-		$('#previewer').stop().animate({bottom: '-190px'}, 500);
+		$('#previewer').stop().animate({bottom: '-215px'}, 500);
 	};
 	
 	this.show_next_button = function() {
@@ -56,6 +57,10 @@ var story_viewer = function() {
 		viewer.goto_page(page_number);
 	};
 	
+	this.set_active_preview = function(page_number) {
+		$('#previewer ul.pages li[page-number="' + page_number + '"]').addClass('active').siblings().removeClass('active');
+	};
+	
 	this.goto_next_page = function() {
 		viewer.goto_page(viewer.page + 1);
 	};
@@ -71,6 +76,7 @@ var story_viewer = function() {
 			$current_page.fadeOut();
 			$next_page.fadeIn();
 			var previous_page_number = viewer.page;
+			viewer.set_active_preview(page_number);
 			viewer.page = page_number;
 			
 			if (page_number == 1) {
@@ -87,7 +93,7 @@ var story_viewer = function() {
 	};
 	
 	var update_previewer_width = function() {
-		var width = viewer.total_pages * 159;
+		var width = viewer.total_pages * 290;
 		$('#previewer ul.pages').css('width', width + 'px');
 	};
 	

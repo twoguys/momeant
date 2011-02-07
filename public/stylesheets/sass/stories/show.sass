@@ -6,7 +6,7 @@
 	overflow: hidden
 	
 	#previewer
-		height: 210px
+		height: 235px
 		background: transparent url(../images/story-page-previewer-tab.png) no-repeat 50% 0
 		position: fixed
 		left: 0
@@ -16,17 +16,19 @@
 		overflow-x: auto
 		overflow-y: hidden
 		.preview-inner
-			height: 190px
+			height: 215px
 			margin-top: 20px
 			background-color: #000
 			color: #fff
 			text-shadow: none
+			position: relative
 		.info
-			width: 260px
-			height: 170px
-			float: left
-			margin-right: 5px
-			padding: 10px
+			width: 270px
+			height: 180px
+			position: absolute
+			top: 10px
+			left: 0
+			overflow: hidden
 			.title, .author, .excerpt
 				padding-left: 10px
 			.title
@@ -43,20 +45,23 @@
 				font-size: 0.9em
 				line-height: 1.4em
 		ul.pages
-			float: left
 			height: 190px
+			padding: 5px 0
+			background-color: #000
+			position: absolute
+			top: 0
+			left: 280px
 			li.page
 				width: 280px
 				height: 180px
 				border: 5px solid #000
 				float: left
 				overflow: hidden
-				margin-right: 5px
 				cursor: pointer
 				background-color: #fff
 				.number
 					display: none
-			li.page:hover
+			li.page.active, li.page:hover
 				border: 5px solid #00aeef
 			li.title .inner
 				background-color: #000

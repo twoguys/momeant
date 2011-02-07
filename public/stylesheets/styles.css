@@ -908,7 +908,7 @@ form.new_story, form.edit_story, .story-form {
   height: 100%;
   overflow: hidden; }
   .story-viewer #previewer {
-    height: 210px;
+    height: 235px;
     background: transparent url(../images/story-page-previewer-tab.png) no-repeat 50% 0;
     position: fixed;
     left: 0;
@@ -918,17 +918,19 @@ form.new_story, form.edit_story, .story-form {
     overflow-x: auto;
     overflow-y: hidden; }
     .story-viewer #previewer .preview-inner {
-      height: 190px;
+      height: 215px;
       margin-top: 20px;
       background-color: black;
       color: white;
-      text-shadow: none; }
+      text-shadow: none;
+      position: relative; }
     .story-viewer #previewer .info {
-      width: 260px;
-      height: 170px;
-      float: left;
-      margin-right: 5px;
-      padding: 10px; }
+      width: 270px;
+      height: 180px;
+      position: absolute;
+      top: 10px;
+      left: 0;
+      overflow: hidden; }
       .story-viewer #previewer .info .title, .story-viewer #previewer .info .author, .story-viewer #previewer .info .excerpt {
         padding-left: 10px; }
       .story-viewer #previewer .info .title {
@@ -945,20 +947,23 @@ form.new_story, form.edit_story, .story-form {
         font-size: 0.9em;
         line-height: 1.4em; }
     .story-viewer #previewer ul.pages {
-      float: left;
-      height: 190px; }
+      height: 190px;
+      padding: 5px 0;
+      background-color: black;
+      position: absolute;
+      top: 0;
+      left: 280px; }
       .story-viewer #previewer ul.pages li.page {
         width: 280px;
         height: 180px;
         border: 5px solid black;
         float: left;
         overflow: hidden;
-        margin-right: 5px;
         cursor: pointer;
         background-color: white; }
         .story-viewer #previewer ul.pages li.page .number {
           display: none; }
-      .story-viewer #previewer ul.pages li.page:hover {
+      .story-viewer #previewer ul.pages li.page.active, .story-viewer #previewer ul.pages li.page:hover {
         border: 5px solid #00aeef; }
       .story-viewer #previewer ul.pages li.title .inner {
         background-color: black;
