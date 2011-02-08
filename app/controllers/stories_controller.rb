@@ -79,7 +79,7 @@ class StoriesController < ApplicationController
       elsif current_user.stories.include?(@story)
         redirect_to @story, :notice => "You already own this story, silly!"
       elsif current_user.purchase(@story)
-        PurchasesMailer.purchase_receipt(current_user, @story).deliver
+        # PurchasesMailer.purchase_receipt(current_user, @story).deliver
         redirect_to @story
       else
         redirect_to credits_path, :alert => "You need more credits in order to purchase that story."
