@@ -15,7 +15,7 @@ gem 'fastercsv'
 gem 'acts-as-taggable-on'
 gem 'braintree'
 gem 'silent-postgres'
-gem 'sunspot_rails', :git => 'http://github.com/outoftime/sunspot.git'
+gem 'sunspot_rails'
 
 group :test do
   gem 'shoulda'
