@@ -6,7 +6,7 @@ Feature "A user searches stories" do
     given_a(:email_confirmed_user)
     given_im_signed_in_as(:email_confirmed_user)
     Given "A story with the title 'Axel Rose'" do
-      Factory :story, :title => "Axel Rose"
+      @story = Factory :story, :title => "Axel Rose"
     end
     
     when_i_visit_page(:home)
@@ -16,10 +16,8 @@ Feature "A user searches stories" do
       click_button "search-submit"
     end
     
-    then_i_should_be_on_page(:search_stories)
-    
-    And "I should see links to the story where the title matches" do
-      save_and_open_page
+    Then "I should see links to the story where the title matches" do
+      assert page.has_content? @story.title
     end
     
   end
