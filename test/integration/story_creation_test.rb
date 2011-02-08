@@ -117,6 +117,7 @@ Feature "A Creator can create a story", :testcase_class => FullStackTest do
       grid_page = @story.pages.last
       assert grid_page.present?
       8.times do |cell|
+        cell += 1
         assert grid_page.image_at_position(cell).present?
         assert_equal "Lorem ipsum dolor sit amet", grid_page.text_at_position(cell)
       end

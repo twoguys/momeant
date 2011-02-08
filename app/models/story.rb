@@ -17,19 +17,31 @@ class Story < ActiveRecord::Base
   validates :excerpt, :length => (2..1024), :unless => :autosaving
   validates :price, :format => /[0-9.,]+/, :unless => :autosaving
   
-  validate  :at_least_one_page
+  validate  :at_least_one_page, :only_two_free_stories, :unless => :autosaving
   
   scope :published, where(:published => true)
+  scope :free, where(:price => 0.0)
   
   attr_accessor :autosaving
   
   def to_param
-    "#{id}_#{title.gsub(' ', '_')}"
+    if title.blank?
+      "#{id}"
+    else
+      "#{id}-#{title.gsub(' ', '-')}"
+    end
   end
   
   def at_least_one_page
-    if !self.autosaving && self.pages.count == 0
+    if self.pages.count == 0
       self.errors.add(:base, "Your story needs at least one page")
+      return false
+    end
+  end
+  
+  def only_two_free_stories
+    if self.price == 0 && self.user.created_stories.free.count > 2
+      self.errors.add(:base, "You are only allowed two free stories")
       return false
     end
   end
