@@ -1,6 +1,17 @@
 class Story < ActiveRecord::Base
   acts_as_taggable
   
+  searchable do
+    text :title, :default_boost => 2.0
+    text :excerpt
+    text :topics do
+      topics.map { |topic| topic.name }
+    end
+    text :pages do
+      pages.inject("") { |x,n| x << "#{n.text} " }
+    end
+  end
+  
   belongs_to :user
   has_and_belongs_to_many :topics
   has_many :purchases

@@ -180,6 +180,14 @@ class StoriesController < ApplicationController
     render :partial => "stories/page_forms/#{params[:theme]}" if params[:theme]
   end
   
+  def search
+    if params[:q]
+      @stories = Story.search do
+        keywords(params[:q])
+      end
+    end
+  end
+  
   private
     
     def get_topics
