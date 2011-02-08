@@ -16,7 +16,7 @@ class StoriesController < ApplicationController
   end
   
   def new
-    @story = Story.create(:price => 0, :thumbnail_page => 1, :user_id => current_user.id, :autosaving => true)
+    @story = Story.create(:thumbnail_page => 1, :user_id => current_user.id, :autosaving => true)
     render "form"
   end
   
@@ -181,10 +181,12 @@ class StoriesController < ApplicationController
   end
   
   def search
-    if params[:q]
-      @stories = Story.search do
-        keywords(params[:q])
+    if params[:query]
+      @search = Story.search do
+        keywords params[:query]
+        with :published, true
       end
+      @stories = @search.results
     end
   end
   

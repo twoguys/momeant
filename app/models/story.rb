@@ -2,7 +2,7 @@ class Story < ActiveRecord::Base
   acts_as_taggable
   
   searchable do
-    text :title, :default_boost => 2.0
+    text :title, :boost => 2.0
     text :excerpt
     text :topics do
       topics.map { |topic| topic.name }
@@ -10,6 +10,7 @@ class Story < ActiveRecord::Base
     text :pages do
       pages.inject("") { |x,n| x << "#{n.text} " }
     end
+    boolean :published
   end
   
   belongs_to :user
