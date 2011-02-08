@@ -1,29 +1,29 @@
 #user-nav
   = link_to("Momeant", root_path, :id => "logo")
 
-  .right
+  %ul
     - if user_signed_in?
-      #profile
+      %li#profile
         = link_to("Hi, #{current_user.name}", library_path)
-      #signout
+      %li#signout
         = link_to("Sign out", destroy_user_session_path)
-      #create
+      %li#create
         = link_to("Create a Story", new_story_path, :class => "tooltipped", :title => "Create") if can? :create, Story
-      #balance
+      %li#balance
         = link_to("Credits", credits_path, :class => "tooltipped", :title => "Credits")
-      #subscriptions
+      %li#subscriptions
         = link_to("Subscriptions", "#", :class => "tooltipped", :title => "Subscriptions")
-      #recommendations
+      %li#recommendations
         = link_to("Recommendations", recommended_stories_path, :class => "tooltipped", :title => "Recommendations")
     - else
-      #signup
+      %li#signup
         = link_to("Sign up", new_user_registration_path)
-      #signin
+      %li#signin
         = link_to("Sign in", new_user_session_path)
   
-    #topics
+    %li#topics
       = link_to("Topics", "#", :class => "tooltipped", :title => "Topics")
-    #search
+    %li#search
       = form_tag "/search" do
         = text_field_tag :query, "", :placeholder => "Search"
-        = submit_tag "Search"
+        = submit_tag "Search", :id => "search-submit"
