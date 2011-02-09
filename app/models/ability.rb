@@ -12,7 +12,7 @@ class Ability
         can :manage, Story, :user_id => user.id
       else
         can [:create, :show, :index], Invitation
-        can [:library, :bookmarked, :recommended], Story
+        can [:library, :bookmarked, :recommended, :search], Story
         can [:purchase, :bookmark, :unbookmark, :recommend, :unrecommend, :like, :unlike], Story, :published => true
         can :preview, Story do |story|
           story.published? || story.owner?(user)

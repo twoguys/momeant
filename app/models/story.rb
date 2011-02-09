@@ -3,8 +3,8 @@ class Story < ActiveRecord::Base
   
   searchable do
     text :title, :boost => 2.0
-    text :excerpt
     text(:author_name) { user.name }
+    text :excerpt
     text :topics do
       topics.map { |topic| topic.name }
     end
