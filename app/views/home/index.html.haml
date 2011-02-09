@@ -4,17 +4,17 @@
   %h2 Editorial section
 
 %section#recent-stories
-  %h2 Recent Stories
+  %h2 Recent
   %ul.stories
     = render @stories
     
 - if current_user
   %section#subscribed-to-stories
-    %h2 Recommendeded stories from users you're subscribed to
+    %h2 User Recommended
     %ul.stories
       = render @subscribed_to_stories
   
   %section#similar-to-bookmarked-stories
-    %h2 Stories similar to your bookmarks and purchases
+    %h2 Mo¥meant Recommended
     %ul.stories
       = render @similar_to_bookmarked_stories

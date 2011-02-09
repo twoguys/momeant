@@ -4,8 +4,7 @@ header
 	position: relative
 	#user-nav
 		position: relative
-		height: 50px
-		border-bottom: 1px dotted #ccc
+		height: 42px
 		#logo, #signup, #signin, #signout, #profile, #create, #balance, #subscriptions, #recommendations, #topics, #search
 			position: absolute
 			top: 0
@@ -13,7 +12,7 @@ header
 			font-size: 1.5em
 			left: 0
 			top: 6px
-			background: transparent url(../images/logo.png) no-repeat
+			background: url("../images/icons/momeantHome.png") no-repeat scroll 0 0 transparent
 			text-indent: -9999px
 			display: block
 			width: 180px
@@ -28,6 +27,11 @@ header
 			left: 60px
 		#profile
 			left: 0
+			font-family: $block
+			font-weight: 900
+			font-size: 14px
+			text-transform: uppercase
+			line-height: 14px
 		#signin, #signout
 			left: 140px
 		#create, #balance, #subscriptions, #recommendations, #topics
@@ -45,7 +49,10 @@ header
 		#create
 			left: 210px
 			a
-				background-image: url(../images/icons/create.png)
+				background: url("../images/icons/momeantAddStory.png") no-repeat scroll 0 6px transparent
+				display: block
+				height: 32px
+				top: 6px
 		#balance
 			left: 250px
 			a
@@ -57,22 +64,27 @@ header
 		#recommendations
 			left: 330px
 			a
-				background-image: url(../images/icons/recommend.png)
+				background-image: url("../images/icons/momeantStream.png") no-repeat scroll 0 7px transparent
 		#topics
 			left: 450px
 			a
-				background-image: url(../images/icons/topics.png)
+				background-image: url("../images/icons/momeantTopics.png") 0 6px no-repeat
 		#search
 			left: 559px
 			top: 8px
 			width: 200px
 			label
-				font-size: 1.2em
+				color: #999999
+				font-family: georgia
+				font-size: 10px
+				font-style: oblique
 				font-weight: normal
-				color: #777
+				letter-spacing: 0.4px
 				padding: 5px 0 0 10px
+				text-transform: lowercase
 			input[type="text"]
 				width: 160px
+				height: 12px
 			input[type="submit"]
 				width: 20px
 				height: 20px

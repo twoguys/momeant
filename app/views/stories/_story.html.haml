@@ -1,4 +1,4 @@
-%li.story
+%li.story{:class => (story_counter + 1) % 3 == 0 ? "third" : ""}
 
   %a.thumbnail{:href => preview_story_path(story)}
     - if story.thumbnail
@@ -9,4 +9,6 @@
   .likes
   .recommendations= story.recommendations.count
   .author by #{link_to(story.user.name, user_path(story.user))}
+  .excerpt= story.excerpt
+  .price= story.price
   .excerpt= story.excerpt

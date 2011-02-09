@@ -3,10 +3,23 @@ namespace :momeant do
     
     desc "Insert a few sample topics"
     task :seed_topics => :environment do
-      Topic.create(:name => "Fashion")
+      Topic.create(:name => "Art")
+      Topic.create(:name => "Business")
       Topic.create(:name => "Design")
-      Topic.create(:name => "Photography")
-      Topic.create(:name => "Life")
+      Topic.create(:name => "DIY")
+      Topic.create(:name => "Education")
+      Topic.create(:name => "Environment")
+      Topic.create(:name => "Fashion")
+      Topic.create(:name => "Gastronomy")
+      Topic.create(:name => "Health")
+      Topic.create(:name => "History")
+      Topic.create(:name => "Literature")
+      Topic.create(:name => "Music")
+      Topic.create(:name => "News")
+      Topic.create(:name => "Science")
+      Topic.create(:name => "Sports")
+      Topic.create(:name => "Technology")
+      Topic.create(:name => "Travel")
     end
     
   end
