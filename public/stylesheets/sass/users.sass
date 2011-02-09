@@ -1,9 +1,10 @@
 .user-profile
 	.created-stories
-		width: 480px
+		width: 625px
 		padding-top: 1px
 		float: left
-		border-right: $border_type
+		-moz-box-shadow: 3px 3px 5px #BBBBBB
+		background-color: white
 		li a
 			width: 234px
 			height: 222px
@@ -13,12 +14,16 @@
 			float: left
 
 	.user-info
-		padding: 20px
-		width: 439px
+		margin-left: 25px
+		width: 300px
 		float: right
 		.name
-			font-weight: bold
-			font-size: 2em
+			font-weight: 900
+			font-size: 32px
+			font-family: $block
+			text-transform: uppercase
+			line-height: 28px
+			margin-top: 20px
 		.name, .tagline
 			margin-bottom: 10px
 	
@@ -30,16 +35,18 @@
 		padding: 10px 0
 		border-top: $border_type
 		.count
-			width: 155px
-			height: 119px
-			padding-top: 25px
+			width: 100px
+			height: 100px
+			padding: 20px
 			margin: 0 20px
-			background: transparent url(../images/subscriber-count-bg.png) no-repeat
+			background: black
 			color: #fff
 			text-shadow: 0 -1px 1px #aaa
 			text-align: center
-			font-size: 1.7em
+			font-size: 20px
 			float: left
+			@include rounded(100px)
+			font-family: $typewriter
 			.number
 				font-size: 2em
 		.avatars
@@ -101,16 +108,23 @@
 		padding: 10px
 	
 	.personal-library
-		border-top: $border_type
 		clear: both
 		height: 420px
 		.tabs
 			margin-bottom: 10px
 			height: 40px
+			width: 100%
+			background: none repeat scroll 0 0 #EAEAEA
 			a
-				padding: 10px 0
+				color: #B5B5B5
+				font-family: "facitweb-1","facitweb-2",helvetica,sans-serif
+				font-size: 13px
+				font-weight: 900
 				height: 20px
-				width: 50%
+				letter-spacing: 0.3px
+				padding: 14px 25px 6px
+				text-transform: uppercase
+				width: auto
 		li
 			float: left
 			a

@@ -1,13 +1,17 @@
-$background_color: #fff
+$background_color: #f4f4f4
 $text_color: #252525
-$link_color: #307399
+$link_color: #00aeef
 
 $category_color: #d35151
 $job_type_color: #5197d3
 $payment_type_color: #a451d3
 $term_color: #d27442
 
-$border_type: 1px dotted #ccc
+$block: "facitweb-1","facitweb-2",helvetica,sans-serif
+$serif: georgia
+$typewriter: "museo-slab-1","museo-slab-2",serif 
+
+$border_type: 1px dotted #aaa
 
 @mixin rounded($radius: 5px)
 	-webkit-border-radius: $radius
@@ -49,8 +53,8 @@ h2
 /* Layout */
 
 header .insides, #mid .insides, #footer .insides
-	width: 960px
-	padding: 10px 0 0
+	width: 950px
+	padding: 0px 0 0
 	margin: 0 auto
 	position: relative
 
@@ -104,7 +108,6 @@ header .insides, #mid .insides, #footer .insides
 	display: none
 
 .tabs
-	border-bottom: $border_type
 	min-height: 40px
 	a
 		padding: 2%
@@ -116,7 +119,10 @@ header .insides, #mid .insides, #footer .insides
 	a:hover
 		background-color: #daf1ff
 	a.active
-		background-color: #ccc
+		-moz-box-shadow: 3px 3px 5px #DDDDDD inset
+		-webkit-box-shadow: 3px 3px 5px #DDDDDD inset
+    box-shadow: 3px 3px 5px #DDDDDD inset
+		background-color: #ffffff
 		color: #333
 
 .colorpicker

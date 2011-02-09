@@ -3,7 +3,7 @@ source 'http://rubygems.org'
 gem 'rails', '3.0.0'
 
 # Postgres for our database
-gem 'pg'
+# gem 'pg'
 gem 'sqlite3-ruby', :require => 'sqlite3'
 
 gem 'devise'

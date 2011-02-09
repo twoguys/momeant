@@ -43,7 +43,7 @@ class StoriesController < ApplicationController
   end
   
   def update
-    @story.topics.destroy_all
+    @story.topics = []
     attach_topics
     update_pages(params[:pages])
     if @story.update_attributes(params[:story])
