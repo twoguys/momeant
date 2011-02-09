@@ -9,11 +9,11 @@ class Ability
         can :manage, :all
       elsif user.is_a?(Creator)
         can [:invite_creator, :create, :show, :index], Invitation
-        can :manage, Story
+        can :manage, Story, :user_id => user.id
       else
         can [:create, :show, :index], Invitation
         can [:library, :bookmarked, :recommended], Story
-        can [:purchase, :bookmark, :unbookmark, :recommend, :unrecommend], Story, :published => true
+        can [:purchase, :bookmark, :unbookmark, :recommend, :unrecommend, :like, :unlike], Story, :published => true
         can :preview, Story do |story|
           story.published? || story.owner?(user)
         end

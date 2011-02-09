@@ -1,10 +1,10 @@
-= hidden_field_tag "pages[#{@page_number}][type]", "VideoPage"
+= hidden_field_tag "pages[#{@page_number}][type]", "video"
 .video.page-theme.background-color-affected
   = render :partial => "stories/page_forms/style_editor", :locals => {:background_color => true}
   .info Enter the Vimeo video ID below (the last part of the video’s URL)
   .url
     %span http://vimeo.com/
     - if @page && @page.text
-      = text_field_tag "pages[#{@page_number}][vimeo_id]", @page.text
+      = text_field_tag "pages[#{@page_number}][text]", @page.text, :class => "monitor-typing"
     - else
-      = text_field_tag "pages[#{@page_number}][vimeo_id]", ""
+      = text_field_tag "pages[#{@page_number}][text]", "", :class => "monitor-typing"

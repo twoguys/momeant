@@ -1,26 +1,54 @@
 /* Story creation */
 
-form.new_story, form.edit_story
+#preview-link
+	position: absolute
+	right: 0
+	background-color: #bbd6e7
+	padding: 3px 6px
+	@include rounded
+form.new_story, form.edit_story, .story-form
+	padding-top: 20px
+	fieldset, fieldset ul
+		padding-top: 1px
+	#story-spinner
+		display: none
+		height: 16px
+		background: transparent url(../images/spinner.gif) no-repeat 0 0
+		position: absolute
+		top: 0
+		left: -20px
+		padding-left: 20px
+	#story-saved
+		height: 16px
+		position: absolute
+		top: 0
+		left: 0
+		color: #999
+		font-style: italic
 	.title-input, .excerpt-input
 		height: 80px
 		border-bottom: $border_type
 		float: left
-		input
-			width: 95%
+		position: relative
 	.title-input
-		width: 30%
+		width: 290px
+		padding-right: 50px
+		input
+			width: 290px
 	.excerpt-input
-		width: 65%
-		padding-left: 5%
+		width: 570px
+		padding-right: 50px
+		input
+			width: 570px
 	#page-previews
 		position: relative
 		border-bottom: $border_type
 		h3
 			padding: 3px 0
 		li.page
-			width: 200px
-			height: 110px
-			padding-top: 35px
+			width: 150px
+			height: 95px
+			padding-top: 5px
 			background-color: #eee
 			float: left
 			clear: none
@@ -56,17 +84,19 @@ form.new_story, form.edit_story
 				text-shadow: 0 -1px 1px #000
 				@include rounded(3px)
 	.metadata
-		width: 469px
+		width: 270px
 		float: left
 		clear: left
 		padding-top: 10px
 		.price strong
 			font-size: 1.5em
+		.tags
+			margin-top: 20px
 	.topics
 		width: 470px
 		clear: none
-		float: right
-		padding: 10px
+		float: left
+		padding: 10px 10px 10px 50px
 		border-left: $border_type
 		h3
 			padding-bottom: 5px
@@ -95,6 +125,7 @@ form.new_story, form.edit_story
 	padding: 0
 	overflow: hidden
 	text-shadow: none
+	margin-top: -21px
 	#close-page-editor-button
 		position: absolute
 		top: -45px
@@ -103,8 +134,8 @@ form.new_story, form.edit_story
 	#page-type-chooser
 		height: 160px
 		position: absolute
-		@include boxshadow
 		background-color: #fff
+		border-bottom: 1px solid #ccc
 		width: 100%
 		z-index: 3
 		.info
@@ -173,7 +204,10 @@ form.new_story, form.edit_story
 			height: 100%
 			text-align: center
 			position: absolute
-			display: none
+			display: none			
+			.file-uploader
+				.loader
+					margin: 0 auto
 			textarea				
 				border: none
 				overflow: hidden
@@ -189,6 +223,7 @@ form.new_story, form.edit_story
 					position: fixed
 					bottom: 50px
 					.insides
+						cursor: all-scroll
 						width: 300px
 						min-width: 300px
 						margin: 0 auto
@@ -242,6 +277,8 @@ form.new_story, form.edit_story
 					background: transparent url(../images/page-themes/36px-tall-dashed-line.png) repeat
 					outline: none
 			.full_image
+				form
+					height: 40px
 				.input
 					text-align: center
 					width: 100%
@@ -249,11 +286,13 @@ form.new_story, form.edit_story
 					margin: 25px auto 10px
 					positon: relative
 				.image-preview
-					margin: 25px auto 0
+					margin: 0 auto
 					width: 70%
 					height: 95%
-					background: #eee url(../images/page-themes/pick-an-image-bg.png) no-repeat 50% 0
-					z-index: 1
+					background: transparent url(../images/page-themes/pick-an-image-bg.png) no-repeat 50% 0
+					z-index: 5
+				.image-preview.no-bg
+					background: none
 				.caption
 					width: 300px
 					height: 200px
@@ -273,6 +312,7 @@ form.new_story, form.edit_story
 						margin: 10px
 						overflow: hidden
 						background: transparent url(../images/page-themes/18px-tall-dashed-line.png) repeat
+						color: #444
 						outline: none
 						border: none
 			.pullquote
@@ -296,12 +336,14 @@ form.new_story, form.edit_story
 					text-align: center
 				.image
 					float: left
-					.preview
+					.image-preview
 						margin: 25px auto 0
 						width: 100%
 						height: 95%
-						background: #eee url(../images/page-themes/pick-an-image-bg.png) no-repeat 50% 0
+						background: transparent url(../images/page-themes/pick-an-image-bg.png) no-repeat 50% 0
 						z-index: 1
+					.image-preview.no-bg
+						background: none
 					.inner
 						padding: 25px 20px 0 100px
 						height: 100%
@@ -356,15 +398,19 @@ form.new_story, form.edit_story
 								font-size: 1.2em
 						.image
 							position: relative
+							.file-uploader
+								position: relative
+								height: 100%
+								form
+									height: 30px
 							.info
-								position: absolute
 								padding: 0 20px
 								font-size: 0.8em
 								font-style: italic
 								color: #777
-							.preview
-								height: 70%
-								background: #eee
+							.image-preview
+								overflow: hidden
+								height: 90%
 						.text
 							display: none
 							textarea
@@ -445,10 +491,8 @@ form.new_story, form.edit_story
 	#next-page
 		right: 0
 		background-position: -138px 0
-	#loader
-		width: 100%
-		height: 600px
-		position: absolute
+	.loader
+		width: 220px
+		height: 19px
 		z-index: 999
-		top: 0
-		background: #fff url(../images/loading.gif) no-repeat 50% 300px
+		background: transparent url(../images/loading.gif) no-repeat 0 0

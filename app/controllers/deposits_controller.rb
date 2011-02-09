@@ -14,14 +14,10 @@ class DepositsController < ApplicationController
       render "index" and return
     end
     
-    Rails.logger.info "Deposit valid"
-    
     if !@deposit.set_amount_based_on_credits
       flash[:alert] = "Please choose a credit package"
       render "index" and return
     end
-    
-    Rails.logger.info "Amount valid"
     
     if existing_card
       card = CreditCard.find_by_id(@deposit.credit_card_id)
@@ -50,8 +46,6 @@ class DepositsController < ApplicationController
       end
       render "index" and return
     end
-
-    Rails.logger.info "Successful BT result"
     
     if !existing_card
       new_credit_card = CreditCard.create(
@@ -73,7 +67,7 @@ class DepositsController < ApplicationController
     current_credits = current_user.credits || 0
     current_user.update_attributes(:credits => current_credits + @deposit.credits.to_i, :stored_in_braintree => true)
     
-    Rails.logger.info "Updated the user"
+    PurchasesMailer.deposit_receipt(current_user, @deposit).deliver
     
     redirect_to credits_path, :notice => "#{@deposit.credits} credits were just added to your account!"
   end

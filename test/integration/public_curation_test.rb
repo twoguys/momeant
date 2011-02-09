@@ -4,7 +4,7 @@ Feature "A user wants to publicly curate for others" do
 
   in_order_to "share the content I like with others"
   as_a "user"
-  i_want_to "be able to recommend stories and see the list later"
+  i_want_to "be able to recommend and like stories and see the list later"
   
   Scenario "A user recommends a story they like" do
     given_a(:email_confirmed_user)
@@ -23,8 +23,6 @@ Feature "A user wants to publicly curate for others" do
     Then "I should be on the story preview page" do
       assert_equal preview_story_path(@story), current_path
     end
-    
-    then_i_should_see_flash(:notice, "Story recommended.")
     
     And "the story should be in my recommended stories" do
       assert @email_confirmed_user.recommended_stories.include?(@story)
@@ -64,8 +62,6 @@ Feature "A user wants to publicly curate for others" do
       assert_equal preview_story_path(@story), current_path
     end
     
-    then_i_should_see_flash(:notice, "Recommendation removed.")
-    
     And "the story should not be in my recommended stories" do
       assert !@email_confirmed_user.recommended_stories.include?(@story)
     end
@@ -95,6 +91,63 @@ Feature "A user wants to publicly curate for others" do
     
     Then "I should see that my recommendation limit is reached" do
       assert page.has_content?("Recommendation limit reached")
+    end
+  end
+  
+  Scenario "A user likes a story" do
+    given_a(:email_confirmed_user)
+    given_a(:story)
+    
+    given_im_signed_in_as(:email_confirmed_user)
+    
+    When "I visit the story preview page" do
+      visit preview_story_path(@story)
+    end
+    
+    And "I click the like button" do
+      click_button("like story")
+    end
+    
+    Then "I should be on the story preview page" do
+      assert_equal preview_story_path(@story), current_path
+    end
+    
+    And "the story should be in my liked stories" do
+      assert @email_confirmed_user.liked_stories.include?(@story)
+    end
+    
+    And "the user should be in the story's users who liked" do
+      assert @story.users_who_liked.include?(@email_confirmed_user)
+    end
+  end
+  
+  Scenario "A user unlikes a story they've previously liked" do
+    given_a(:email_confirmed_user)
+    given_a(:story)
+    Given "A like already exists for this story/user" do
+      Like.create(:story_id => @story.id, :user_id => @email_confirmed_user.id)
+    end
+    
+    given_im_signed_in_as(:email_confirmed_user)
+    
+    When "I visit the story preview page" do
+      visit preview_story_path(@story)
+    end
+    
+    And "I click the unlike button" do
+      click_button("unlike story")
+    end
+    
+    Then "I should be on the story preview page" do
+      assert_equal preview_story_path(@story), current_path
+    end
+    
+    And "the story should not be in my liked stories" do
+      assert !@email_confirmed_user.liked_stories.include?(@story)
+    end
+    
+    And "the user should not be in the story's users who liked" do
+      assert !@story.users_who_liked.include?(@email_confirmed_user)
     end
   end
   

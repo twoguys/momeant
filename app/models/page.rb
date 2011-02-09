@@ -44,64 +44,7 @@ class Page < ActiveRecord::Base
     return false
   end
   
-  def self.create_page_type_with(options)
-    Rails.logger.info "Creating page with: #{options.inspect}"
-    if !options || !options[:type]
-      Rails.logger.info "[Momeant] Empty options or no page type"
-      return false
-    end
-    if !options[:number]
-      Rails.logger.info "[Momeant] No page number"
-      return false
-    end
-    
-    case type = options[:type]
-    when "TitlePage"
-      page = TitlePage.new(:number => options[:number], :background_color => options[:background_color], :text_color => options[:text_color])
-      unless options[:title].blank?
-        page.medias << PageText.new(:text => options[:title])
-      end
-      return page
-    when "FullImagePage"
-      page = FullImagePage.new(:number => options[:number], :background_color => options[:background_color])
-      page.medias << PageImage.new(:image => options[:image]) if options[:image]
-      page.medias << PageText.new(:text => options[:caption], :background_color => options[:caption_background_color], :text_color => options[:caption_text_color]) unless options[:caption].blank?
-      return page
-    when "PullquotePage"
-      page = PullquotePage.new(:number => options[:number], :background_color => options[:background_color], :text_color => options[:text_color])
-      page.medias << PageText.new(:text => options[:quote]) unless options[:quote].blank?
-      return page
-    when "VideoPage"
-      page = VideoPage.new(:number => options[:number], :background_color => options[:background_color])
-      page.medias << PageText.new(:text => options[:vimeo_id]) unless options[:vimeo_id].blank?
-      return page
-    when "SplitPage"
-      page = SplitPage.new(:number => options[:number], :background_color => options[:background_color], :text_color => options[:text_color])
-      page.medias << PageImage.new(:image => options[:image]) if options[:image]
-      page.medias << PageText.new(:text => options[:text]) unless options[:text].blank?
-      return page
-    when "GridPage"
-      page = GridPage.new(:number => options[:number], :background_color => options[:background_color], :text_color => options[:text_color])
-      if options[:cells]
-        8.times do |num|
-          cell = (num + 1).to_s
-          if options[:cells][cell]
-            image = options[:cells][cell][:image]
-            caption = options[:cells][cell][:text]
-            page.medias << PageImage.new(:image => image, :position => cell) if image
-            page.medias << PageText.new(:text => caption, :position => cell) unless caption.blank?
-          end
-        end
-      end
-      return page
-    else
-      Rails.logger.info "[Momeant] No implementation for page type: #{type}"
-      return false
-    end
-  end
-  
   def self.create_or_update_page_with(page, options, story)
-    Rails.logger.info "Creating/Updating page with: #{options.inspect}"
     if !options || !options[:type]
       Rails.logger.info "[Momeant] Empty options or no page type"
       return false
@@ -111,27 +54,32 @@ class Page < ActiveRecord::Base
       return false
     end
     
+    if !page && story.page_at(options[:number])
+      # the user has chosen to overrite this page with another
+      story.page_at(options[:number]).destroy
+    end
+
     case type = options[:type]
-    when "TitlePage"
+    when "title"
       if page
-        page.background_color = options[:background_color]
-        page.text_color = options[:text_color]
+        page.background_color = options[:background_color] if options[:background_color]
+        page.text_color = options[:text_color] if options[:text_color]
       else
         page = TitlePage.new(:number => options[:number], :background_color => options[:background_color], :text_color => options[:text_color])
       end
-      return unless options[:title]
-      text_media = page.medias.first
-      if text_media
-        text_media.update_attribute(:text, options[:title])
-      else
-        page.medias << PageText.new(:text => options[:title])
+      unless options[:text].blank?
+        text_media = page.medias.first
+        if text_media
+          text_media.update_attribute(:text, options[:text])
+        else
+          page.medias << PageText.new(:text => options[:text])
+        end
       end
-    when "FullImagePage"
-      if page
-        page.background_color = options[:background_color]
-      else
-        page = FullImagePage.new(:number => options[:number], :background_color => options[:background_color])
+    when "full_image"
+      unless page
+        page = FullImagePage.new(:number => options[:number])
       end
+      page.background_color = options[:background_color] if options[:background_color]
       if options[:image]
         image_media = page.image_media
         if image_media
@@ -140,40 +88,41 @@ class Page < ActiveRecord::Base
           page.medias << PageImage.new(:image => options[:image])
         end
       end
-      unless options[:caption].blank?
-        text_media = page.text_media
-        if text_media
-          text_media.update_attributes(:text => options[:caption], :background_color => options[:caption_background_color], :text_color => options[:caption_text_color])
-        else
-          page.medias << PageText.new(:text => options[:caption], :background_color => options[:caption_background_color], :text_color => options[:caption_text_color])
-        end
+      text_media = page.text_media
+      unless text_media
+        page.medias << PageText.new
+        text_media = page.medias.last
       end
-    when "PullquotePage"
+      text_media.text = options[:text] if options[:text]
+      text_media.background_color = options[:caption_background_color] if options[:caption_background_color]
+      text_media.text_color = options[:caption_text_color] if options[:caption_text_color]
+      text_media.save unless page.new_record?
+    when "pullquote"
       if page
-        page.background_color = options[:background_color]
-        page.text_color = options[:text_color]
+        page.background_color = options[:background_color] if options[:background_color]
+        page.text_color = options[:text_color] if options[:text_color]
       else
         page = PullquotePage.new(:number => options[:number], :background_color => options[:background_color], :text_color => options[:text_color])
       end
-      unless options[:quote].blank?
+      unless options[:text].blank?
         text_media = page.text_media
         if text_media
-          text_media.update_attributes(:text => options[:quote])
+          text_media.update_attributes(:text => options[:text])
         else
-          page.medias << PageText.new(:text => options[:quote])
+          page.medias << PageText.new(:text => options[:text])
         end
       end
-    when "VideoPage"
+    when "video"
       if page
         page.background_color = options[:background_color]
       else
         page = VideoPage.new(:number => options[:number], :background_color => options[:background_color])
       end
-      page.medias << PageText.new(:text => options[:vimeo_id]) unless options[:vimeo_id].blank?
-    when "SplitPage"
+      page.medias << PageText.new(:text => options[:text]) unless options[:text].blank?
+    when "split"
       if page
-        page.background_color = options[:background_color]
-        page.text_color = options[:text_color]
+        page.background_color = options[:background_color] if options[:background_color]
+        page.text_color = options[:text_color] if options[:text_color]
       else
         page = SplitPage.new(:number => options[:number], :background_color => options[:background_color], :text_color => options[:text_color])
       end
@@ -193,10 +142,10 @@ class Page < ActiveRecord::Base
           page.medias << PageText.new(:text => options[:text])
         end
       end
-    when "GridPage"
+    when "grid"
       if page
-        page.background_color = options[:background_color]
-        page.text_color = options[:text_color]
+        page.background_color = options[:background_color] if options[:background_color]
+        page.text_color = options[:text_color] if options[:text_color]
       else
         page = GridPage.new(:number => options[:number], :background_color => options[:background_color], :text_color => options[:text_color])
       end
@@ -231,8 +180,13 @@ class Page < ActiveRecord::Base
     end
     
     if page
+      Rails.logger.info "[Momeant] Creating/updating page: #{page.inspect}"
       page.story_id = story.id
       page.save
+      return page
+    else
+      Rails.logger.info "[Momeant] Hmm, no page was made..."
+      return false
     end
   end
 end

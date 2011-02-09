@@ -9,24 +9,24 @@
       .widget
         %h3 background
         - color = @page && @page.background_color ? @page.background_color : "ffffff"
-        = hidden_field_tag "pages[#{@page_number}][background_color]", color
+        = text_field_tag "pages[#{@page_number}][background_color]", color, :class => 'hidden', :update => "background_color"
         .color-picker{:style => "background-color: ##{color}", "affected-style" => "background-color", :update => "background-color-affected"}    
 
     - if text_color
       .widget
         %h3 text
         - color = @page && @page.text_color ? @page.text_color : "444444"
-        = hidden_field_tag "pages[#{@page_number}][text_color]", color
+        = text_field_tag "pages[#{@page_number}][text_color]", color, :class => 'hidden', :update => "text_color"
         .color-picker{:style => "background-color: ##{color}", "affected-style" => "color", :update => "color-affected"}
         
     - if caption
       .widget
         %h3 caption background
         - color = @page && @page.caption && @page.caption.background_color ? @page.caption.background_color : "ffffff"
-        = hidden_field_tag "pages[#{@page_number}][caption_background_color]", color
+        = text_field_tag "pages[#{@page_number}][caption_background_color]", color, :class => 'hidden', :update => "caption_background_color"
         .color-picker{:style => "background-color: ##{color}", "affected-style" => "background-color", :update => "caption-background-color-affected"}
       .widget
         %h3 caption text
-        - color = @page && @page.caption && @page.caption.text_color ? @page.caption.text_color : "ffffff"
-        = hidden_field_tag "pages[#{@page_number}][caption_text_color]", color
-        .color-picker{:style => "color: ##{color}", "affected-style" => "color", :update => "caption-color-affected"}
+        - color = @page && @page.caption && @page.caption.text_color ? @page.caption.text_color : "444444"
+        = text_field_tag "pages[#{@page_number}][caption_text_color]", color, :class => 'hidden', :update => "caption_text_color"
+        .color-picker{:style => "background-color: ##{color}", "affected-style" => "color", :update => "caption-color-affected"}

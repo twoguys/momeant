@@ -16,6 +16,7 @@ FileList[File.expand_path('integration/steps/**/*_steps.rb', File.dirname(__FILE
 end
 
 DatabaseCleaner.strategy = :truncation
+#Capybara.default_wait_time = 5
 
 class ActionController::IntegrationTest
   include Capybara

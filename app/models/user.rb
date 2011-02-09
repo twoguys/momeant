@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
   has_many :bookmarked_stories, :through => :bookmarks, :source => :story
   has_many :recommendations
   has_many :recommended_stories, :through => :recommendations, :source => :story
+  has_many :likes
+  has_many :liked_stories, :through => :likes, :source => :story
 
   has_many :subscriptions
   has_many :inverse_subscriptions, :class_name => "Subscription", :foreign_key => :subscriber_id
@@ -61,11 +63,15 @@ class User < ActiveRecord::Base
   end
   
   def has_bookmarked?(story)
-    Bookmark.where(:user_id => self.id, :story_id => story).present?
+    Bookmark.where(:user_id => self.id, :story_id => story.id).present?
   end
   
   def has_recommended?(story)
-    Recommendation.where(:user_id => self.id, :story_id => story).present?
+    Recommendation.where(:user_id => self.id, :story_id => story.id).present?
+  end
+  
+  def has_liked?(story)
+    Like.where(:user_id => self.id, :story_id => story.id).present?
   end
   
   def recommendation_limit_reached?

@@ -7,10 +7,6 @@ class StoriesController < ApplicationController
     @stories = Story.published
   end
   
-  def library
-    @stories = current_user.stories
-  end
-  
   def tagged_with
     @stories = []
     @tags = Story.published.tag_counts_on(:tags)
@@ -20,7 +16,7 @@ class StoriesController < ApplicationController
   end
   
   def new
-    @story = Story.new(:price => 0.0)
+    @story = Story.create(:thumbnail_page => 1, :user_id => current_user.id, :autosaving => true)
     render "form"
   end
   
@@ -54,6 +50,21 @@ class StoriesController < ApplicationController
     end
   end
   
+  def autosave
+    Rails.logger.info "OMG AUTOSAVE: #{params.inspect}"
+    if params[:story]
+      @story.autosaving = true
+      if @story.update_attributes(params[:story])
+        Rails.logger.info "SUCCESS! #{Story.last.inspect}"
+        render :json => {:result => "success"}
+      else
+        render :json => {:result => "failure", :message => @story.errors.full_messages}
+      end
+    else
+      render :json => {:result => "failure", :message => "No story data sent"}
+    end
+  end
+  
   def preview
     @story = Story.find(params[:id])
     if @story.draft? && !@story.owner?(current_user)
@@ -68,7 +79,7 @@ class StoriesController < ApplicationController
       elsif current_user.stories.include?(@story)
         redirect_to @story, :notice => "You already own this story, silly!"
       elsif current_user.purchase(@story)
-        PurchasesMailer.purchase_receipt(current_user, @story).deliver
+        # PurchasesMailer.purchase_receipt(current_user, @story).deliver
         redirect_to @story
       else
         redirect_to credits_path, :alert => "You need more credits in order to purchase that story."
@@ -94,17 +105,27 @@ class StoriesController < ApplicationController
   
   def recommend
     Recommendation.create(:story_id => @story.id, :user_id => current_user.id)
-    redirect_to preview_story_path(@story), :notice => "Story recommended."
+    redirect_to preview_story_path(@story)
   end
   
   def unrecommend
     Recommendation.where(:story_id => @story.id, :user_id => current_user.id).destroy_all
-    redirect_to preview_story_path(@story), :notice => "Recommendation removed."
+    redirect_to preview_story_path(@story)
   end
   
   def recommended
     @limit = User::RECOMMENDATIONS_LIMIT
     @recommendations = current_user.recommendations
+  end
+  
+  def like
+    Like.create(:story_id => @story.id, :user_id => current_user.id)
+    redirect_to preview_story_path(@story)
+  end
+  
+  def unlike
+    Like.where(:story_id => @story.id, :user_id => current_user.id).destroy_all
+    redirect_to preview_story_path(@story)
   end
   
   def publish
@@ -120,6 +141,36 @@ class StoriesController < ApplicationController
     render :text => ""
   end
   
+  def add_topic_to
+    if params[:topic_id]
+      topics = Topic.where(:id => params[:topic_id])
+      # add the parent topic as well, if there is one
+      topics += Topic.where(:id => topics.first.topic_id) if topics.first && topics.first.topic_id
+      if @story.topics << topics
+        render :json => {:result => "success"}
+      else  
+        render :json => {:result => "failure", :message => "Unable to attach topic"}
+      end
+    else  
+      render :json => {:result => "failure", :message => "No topic id sent"}
+    end
+  end
+  
+  def remove_topic_from
+    if params[:topic_id]
+      topics = Topic.where(:id => params[:topic_id])
+      # remove the children topics as well, if there are any
+      #topics += Topic.where(:topic_id => params[:topic_id])
+      if @story.topics.delete(topics)
+        render :json => {:result => "success"}
+      else  
+        render :json => {:result => "failure", :message => "Unable to remove topic"}
+      end
+    else  
+      render :json => {:result => "failure", :message => "No topic id sent"}
+    end
+  end
+  
   def show
     @fullscreen = true
   end
@@ -127,6 +178,16 @@ class StoriesController < ApplicationController
   def render_page_theme
     @page_number = params[:page]
     render :partial => "stories/page_forms/#{params[:theme]}" if params[:theme]
+  end
+  
+  def search
+    if params[:query]
+      @search = Story.search do
+        keywords params[:query]
+        with :published, true
+      end
+      @stories = @search.results
+    end
   end
   
   private
@@ -146,8 +207,7 @@ class StoriesController < ApplicationController
       return unless pages.is_a?(Hash)
       pages.each_pair do |number, options|
         options.merge!({:number => number})
-        page_type = Page.create_page_type_with(options)
-        @story.pages << page_type if page_type
+        Page.create_or_update_page_with(@story.page_at(number), options, @story)
       end
     end
     

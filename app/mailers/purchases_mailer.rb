@@ -7,4 +7,11 @@ class PurchasesMailer < ActionMailer::Base
     
     mail :to => user.email, :subject => "Thank you for your Momeant purchase!"
   end
+  
+  def deposit_receipt(user, deposit)
+    @deposit = deposit
+    @url = credits_url
+    
+    mail :to => user.email, :subject => "Thank you for purchasing Momeant credits!"
+  end
 end

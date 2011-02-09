@@ -23,6 +23,16 @@ module StoriesHelper
     end
   end
   
+  def like_button(story)
+    if current_user
+      if current_user.has_liked?(story)
+        button_to("unlike story", unlike_story_path(story), :method => :delete, :class => "liked tooltipped", :title => "Unlike")
+      else
+        button_to("like story", like_story_path(story), :class => "like tooltipped", :title => "Like")
+      end
+    end
+  end
+  
   def story_price(story)
     if current_user && (story.user == current_user || current_user.stories.include?(story))
       link_to("view", @story)
@@ -35,7 +45,7 @@ module StoriesHelper
   
   def topic_checkbox(topic, story, all_topics)
     content_tag(:li, :class => "topic") do
-      html = check_box_tag "topics[#{topic.id}]", 1, story.topics.include?(topic)
+      html = check_box_tag "topics[#{topic.id}]", 1, story.topics.include?(topic), "topic-id" => topic.id
       html += topic.name
       html += topic_children_checkboxes(topic, story, all_topics)
     end
@@ -48,7 +58,7 @@ module StoriesHelper
         html = ""
         children.each do |child|
           html += content_tag(:li, :class => "topic child") do
-            checkbox = check_box_tag "topics[#{child.id}]", 1, story.topics.include?(child)
+            checkbox = check_box_tag "topics[#{child.id}]", 1, story.topics.include?(child), "topic-id" => child.id
             checkbox += child.name
           end
         end

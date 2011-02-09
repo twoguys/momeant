@@ -6,8 +6,8 @@
 	overflow: hidden
 	
 	#previewer
-		height: 170px
-		background: transparent url(../images/story-page-previewer-tab.png) no-repeat 5px 0
+		height: 235px
+		background: transparent url(../images/story-page-previewer-tab.png) no-repeat 50% 0
 		position: fixed
 		left: 0
 		bottom: 0
@@ -16,48 +16,64 @@
 		overflow-x: auto
 		overflow-y: hidden
 		.preview-inner
-			height: 150px
+			height: 215px
 			margin-top: 20px
-			background-color: #ddd
+			background-color: #000
+			color: #fff
+			text-shadow: none
+			position: relative
 		.info
-			height: 30px
+			width: 270px
+			height: 180px
+			position: absolute
+			top: 10px
+			left: 0
 			overflow: hidden
-			.title, .excerpt
-				float: left
-				font-size: 1.2em
-				line-height: 30px
-				vertical-align: middle
+			.title, .author, .excerpt
+				padding-left: 10px
 			.title
+				font-size: 2.5em
+				line-height: 1em
 				font-weight: bold
-				margin: 0 30px 0 10px
+				text-transform: uppercase
+			.author
+				font-style: italic
+				font-size: 1.1em
+				padding: 10px
 			.excerpt
-				color: #777
+				color: #aaa
+				font-size: 0.9em
+				line-height: 1.4em
 		ul.pages
-			height: 104px
+			height: 190px
+			padding: 5px 0
+			background-color: #000
+			position: absolute
+			top: 0
+			left: 280px
 			li.page
-				width: 150px
-				height: 100px
-				border: 2px solid #ddd
+				width: 280px
+				height: 180px
+				border: 5px solid #000
 				float: left
 				overflow: hidden
-				margin-right: 5px
 				cursor: pointer
 				background-color: #fff
 				.number
 					display: none
-			li.page:hover
-				border: 2px solid #fff
+			li.page.active, li.page:hover
+				border: 5px solid #00aeef
 			li.title .inner
 				background-color: #000
 				color: #fff
 				text-shadow: none
 				text-align: center
 				padding: 40px 5px
-				height: 30px
+				height: 110px
 				font-weight: bold
 			li.full_image .inner
 				img
-					width: 150px
+					width: 180px
 			li.pullquote .inner
 				padding: 5px
 				font-size: 0.7em
@@ -67,15 +83,16 @@
 					line-height: 1.2em
 			li.video .inner
 				img
-					width: 150px
-					height: 100px
+					width: 280px
+					height: 180px
 			li.split .inner
 				.image, .text
-					width: 75px
+					width: 140px
 				.image
 					float: left
+					overflow: hidden
 					img
-						width: 75px
+						max-height: 280px
 				.text
 					float: right
 					.inner
@@ -83,15 +100,15 @@
 						font-size: 0.7em
 			li.grid .inner
 				ul.cells
-					width: 150px
+					width: 280px
 					li
-						width: 37.5px
-						height: 50px
+						width: 70px
+						height: 90px
 						float: left
 						font-size: 0.7em
 						position: relative
 						img
-							width: 37.5px
+							width: 70px
 						.image
 							z-index: 2
 						.text

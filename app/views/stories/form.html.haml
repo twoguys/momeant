@@ -2,45 +2,50 @@
   = javascript_include_tag "stories/form", "colorpicker"
   = stylesheet_link_tag "colorpicker"
 
-= form_for(@story, :html => {:multipart => true}) do |form|
+= link_to "Preview story", preview_story_path(@story), :id => "preview-link"
 
-  = render "shared/error_messages", :target => @story
-
+.form.story-form
+  #story-spinner Saving story...
+  #story-saved Your story will be automatically saved as you edit it
   %fieldset
     %ul
-    
       %li
+        = hidden_field_tag :story_id, @story.id
         .title-input
-          = form.label :title
-          = form.text_field :title
+          = label_tag :story_title
+          = text_field_tag :story_title, @story.title, :class => "monitor-story-typing", :update => "title"
           .example e.g. Around the World in 80 Days
         .excerpt-input
-          = form.label :excerpt
-          = form.text_field :excerpt
+          = label_tag :story_excerpt
+          = text_field_tag :story_excerpt, @story.excerpt, :class => "monitor-story-typing", :update => "excerpt"
           .example e.g. Everything, it said, was against the travelers, every obstacle imposed alike by man and by nature.
-    
+          
       %li#page-previews
-        = form.hidden_field :thumbnail_page, :value => @story.thumbnail_page ? @story.thumbnail_page : 1
+        = hidden_field_tag :story_thumbnail_page, @story.thumbnail_page ? @story.thumbnail_page : 1
         %h3 Story Pages
         .actions
-          = link_to("Open Page Editor", "#", :id => "open-page-editor-button")
+          = #link_to("Open Page Editor", "#", :id => "open-page-editor-button")
         %ul
           - (1..10).each do |page_number|
             - @page = @story.pages.reject{|p|p.number != page_number}.first
             - if @page
               %li.page.chosen{:id => "preview_#{page_number}", "page-number" => page_number, :class => @page.css_class}
-                = link_to("choose thumbnail", "#", :class => @story.thumbnail_page == page_number ? "choose-thumbnail chosen" : "choose-thumbnail")
+                = link_to("set thumbnail", "#", :class => @story.thumbnail_page == page_number ? "choose-thumbnail chosen" : "choose-thumbnail")
             - else
               %li.page{:id => "preview_#{page_number}", "page-number" => page_number}
                 = page_number
-                = link_to("set as story thumbnail", "#", :class => @story.thumbnail_page == page_number ? "choose-thumbnail chosen" : "choose-thumbnail")
+                = link_to("set thumbnail", "#", :class => @story.thumbnail_page == page_number ? "choose-thumbnail chosen" : "choose-thumbnail")
         .clear
     
       %li.metadata
         .price
-          = form.label :price
-          %strong $
-          = form.text_field :price
+          = label_tag :story_price
+          = text_field_tag :story_price, @story.price || "", :class => "monitor-story-typing", :update => "price"
+          .example 10, 20, 500 - increments of 10
+        .tags
+          = label_tag :story_tag_list, "Tags"
+          = text_field_tag :story_tag_list, @story.tag_list, :class => "monitor-story-typing", :update => "tag_list"
+          .example firecracker, John Smith, x-ray
 
       %li.topics
         %h3 Topics
@@ -48,11 +53,6 @@
           - parent_topics = @topics.reject {|topic| topic.topic_id != nil}
           - parent_topics.each do |topic|
             = topic_checkbox(topic, @story, @topics)
-    
-      %li.tags
-        %h3 Tags
-        .example firecracker, John Smith, x-ray
-        = form.text_field :tag_list
       
       %li#page-editor.hidden
         = link_to("Close Page Editor", "#", :class => "button", :id => "close-page-editor-button")
@@ -70,11 +70,13 @@
               %li.grid.tooltipped{:title => "Grid", "page-type" => "grid"}
         %ul#pages
           - (1..10).each do |page_number|
-            %li.page{:id => "page_#{page_number}"}
-              - @page = @story.pages.reject{|p|p.number != page_number}.first
-              - if @page
+            - @page = @story.pages.reject{|p|p.number != page_number}.first
+            - if @page
+              %li.page{:id => "page_#{page_number}", "page-id" => @page.id, "page-type" => @page.partial_name}
                 - @page_number = @page.number
                 = render "/stories/page_forms/#{@page.partial_name}"
+            - else
+              %li.page{:id => "page_#{page_number}"}
           %li#page_info
             .inner
               .label PAGE
@@ -88,4 +90,4 @@
     
       %li.submit
         - button_text = @story.new_record? ? "Create" : "Save"
-        = form.submit "#{button_text} Story", :disable_with => "#{button_text[0..-2]}ing..."
+        =# form.submit "#{button_text} Story", :disable_with => "#{button_text[0..-2]}ing..."
