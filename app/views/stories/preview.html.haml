@@ -1,41 +1,43 @@
 .story-preview
-  - if @story.owner?(current_user) && @story.draft?
-    .banner
-      - if @story.valid?
-        %span Your story is still in draft state (no one else can see it). Once you're ready to make it public,
-        = button_to("Publish this story", publish_story_path(@story))
-      - else
-        %span Before you can publish your story, please #{link_to("edit it", edit_story_path(@story))} and fix these issues:
-        %ul
-          - @story.errors.full_messages.each do |msg|
-            %li= msg
-  .left
-    .image-preview Image Preview
-    .price= story_price(@story)
-    .featured-comment
-  .right
+  - if @story.owner?(current_user)
+    - if @story.draft?
+      .banner
+        - if @story.valid?
+          %span Your story is still in draft state (no one else can see it). Once you're ready to make it public,
+          = button_to("Publish this story", publish_story_path(@story))
+        - else
+          %span Before you can publish your story, please #{link_to("edit it", edit_story_path(@story))} and fix these issues:
+          %ul
+            - @story.errors.full_messages.each do |msg|
+              %li= msg
+    = link_to("Edit your story", edit_story_path(@story), :class => "edit")
+  .preview.clearfix
+    .thumbnail
+      - if @story.thumbnail
+        - @page = @story.thumbnail
+        = render :partial => "stories/page_themes/#{@page.partial_name}", :locals => {:size => "large"}
     .actions
+      = like_button(@story)
+      = recommend_button(@story)
+      = bookmark_button(@story)
+    .price= story_price(@story)
+  .metadata
+    .top
+      .title= @story.title
+      .creator by: #{link_to(@story.user.name, user_path(@story.user))}
       .series
         %span.current 1
         %span.of /
         %span.total 1
-      - if @story.owner?(current_user)
-        .edit= link_to("edit", edit_story_path(@story))
-      - else
-        = bookmark_button(@story)
-        = recommend_button(@story)
-        = like_button(@story)
-    .metadata
-      .creator Created by #{link_to(@story.user.name, user_path(@story.user))}
-      .title= @story.title
-      .excerpt= @story.excerpt
+    .excerpt= @story.excerpt
     .topics
-      %h3 Topics
-      = @story.topic_list
+      - @story.topics.each do |topic|
+        = link_to(topic.name, "#", :class => topic.name)
     .tags
-      %h3 Tags
       - @story.tags.each do |tag|
         .tag
           = link_to(tag.name, stories_tagged_with_path(tag.name))
           - if @story.owner?(current_user)
             = link_to("x", remove_tag_from_story_path(@story, :tag => tag.name),:class => "remove tooltipped-n", :title => "Remove tag", :remote => true, :method => :delete)
+  .clear
+  .featured-comment

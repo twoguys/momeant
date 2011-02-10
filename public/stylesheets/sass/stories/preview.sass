@@ -1,6 +1,9 @@
-/* Stories */
+/* Story Preview */
 
 .story-preview
+	font-family: $block
+	margin-top: 40px
+	position: relative
 	.banner
 		padding: 1em 0
 		font-size: 1.2em
@@ -12,28 +15,65 @@
 			font-weight: normal
 			font-size: 12px
 			margin-top: 5px
-	.left
-		width: 645px
-		border-right: $border_type
+	a.edit
+		position: absolute
+		top: -24px
+		left: 50px
+		font-size: 15px
+	.preview
 		float: left
-		.image-preview
-			height: 550px
-			border-bottom: $border_type
+		position: relative
+		border: 6px solid #fff
+		-webkit-box-shadow: 3px 3px 5px #ccc
+		width: 630px
+		.thumbnail
+			height: 420px
+			display: table
+			.title div, .pullquote p
+				display: table-cell
+				vertical-align: middle
+				text-align: center
+				width: 600px
+				padding: 15px
+				font-size: 32px
+				font-weight: 700
+				overflow: hidden
+			p
+				font-size: 16px
+				font-weight: 300
+				text-align: left
+			.split
+				.image, .text
+					width: 315px
+					float: left
+				.image img
+					width: 315px
+				.text
+					padding: 20px
+					width: 275px
+			ul.cells
+				li
+					width: 157.5px
+					height: 210px
+					float: left
+				.image img
+					width: 157.5px
+					height: 210px
 		.price
 			background: transparent url(../images/price-bg.png) no-repeat
 			color: #fff
-			width: 113px
-			height: 112px
-			-webkit-border-radius: 5px
-			-moz-border-radius: 5px
-			border-radius: 5px
-			margin-top: -55px
-			-webkit-transform: rotate(-10deg)
+			width: 85px
+			height: 82px
+			position: absolute
+			top: -40px
+			left: -40px
 			a, input[type="submit"]
-				font-size: 22px
+				font-weight: 700
+				font-size: 30px
 				display: block
 				text-align: center
-				padding: 43px 0 37px
+				line-height: 85px
+				vertical-align: middle
 				color: #fff
 				background: none
 				-webkit-box-shadow: none
@@ -42,25 +82,58 @@
 				-webkit-text-shadow: none
 				-moz-text-shadow: none
 				text-shadow: none
-				width: 105px
-	.right
-		width: 288px
+				width: 85px
+			.view, .free
+				font-size: 22px
+		.actions
+			padding: 10px
+			height: 30px
+			form
+				float: left
+				margin-right: 10px
+				border-right: 1px solid #ccc
+				input[type="submit"]
+					background-color: none
+					padding-left: 20px
+					background-color: transparent
+					background-position: 0 50%
+					background-repeat: no-repeat
+			.like
+				background-image: url(../images/icons/heartOff.png)
+			.liked
+				background-image: url(../images/icons/heartOn.png)
+			.recommend
+				background-image: url(../images/icons/recommendOff.png)
+			.unrecommend
+				background-image: url(../images/icons/recommendOn.png)
+	.metadata
+		width: 290px
 		float: right
 		position: relative
-		.excerpt
-			margin: 0
-			height: auto
-		.actions
-			width: 50px
-			height: 300px
-			float: left
-			border-right: $border_type
-			border-bottom: $border_type
+		.top
+			position: relative
+			padding: 0 5px 10px
+			background: transparent url(../images/simpleDotBG.png) repeat-x 0 100%
+			.title
+				font-weight: 900
+				font-family: $block
+				font-size: 32px
+				text-transform: uppercase
+				letter-spacing: -.4px
+				line-height: 30px
+			.creator
+				font-family: $serif
+				font-size: 13px
+				font-style: italic
+				font-weight: bold
+				padding-top: 3px
 			.series
-				position: relative
+				position: absolute
 				font-size: 24px
 				height: 50px
 				border-bottom: $border_type
+				right: 50px
+				bottom: 5px
 				span
 					display: block
 					position: absolute
@@ -73,58 +146,15 @@
 				.total
 					top: 20px
 					left: 28px
-			.bookmark, .unbookmark, .recommend, .unrecommend, .like, .liked
-				width: 63px
-				height: 63px
-				padding: 0
-				margin: 0
-				text-indent: -9999px
-				background: transparent url(../images/bookmark.png) no-repeat 0 -126px
-				-webkit-box-shadow: none
-				-moz-box-shadow: none
-				box-shadow: none
-				@include rounded(0)
-			.bookmark, .unbookmark
-				position: absolute
-				top: 0
-				right: 0
-			.unbookmark
-				background-position: 0 0
-			.recommend, .unrecommend
-				height: 40px
-				width: 50px
-				background: transparent url(../images/icons/recommend.png) no-repeat 50% 0
-			.unrecommend
-				background-position: 50% -40px
-			.like, .liked
-				height: 40px
-				width: 50px
-				background: transparent url(../images/icons/like.png) no-repeat 50% 0
-			.liked
-				background-position: 50% -40px
-			.edit
-				text-align: center
-				padding: 20px 0
-				text-transform: uppercase
-				font-weight: bold
-				a
-					color: $text_color
-		.metadata
-			height: 300px
-			border-bottom: $border_type
-			.creator, .title, .excerpt
-				width: 288px
-				padding: 0px
-				float: left
-			.title
-				font-weight: 900
-				font-family: $block
-				font-size: 32px
-				text-transform: uppercase
-				letter-spacing: -.4px
-				line-height: 30px
+		.excerpt
+			padding: 10px
 		.topics, .tags
-			padding: 10px 0
+			padding: 10px
 			font-size: 1.1em
 			background: url("../images/simpleDotBG.png") repeat-x scroll 0 0 transparent
-			margin: 10px 0
+		.topics
+			background-color: #fff
+	.featured-comment
+		margin-top: 30px
+		padding-top: 30px
+		background: transparent url(../images/simpleDotBG.png) repeat-x 0 0

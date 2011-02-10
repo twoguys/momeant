@@ -4,9 +4,9 @@ module StoriesHelper
   def bookmark_button(story)
     if current_user
       if current_user.has_bookmarked?(story)
-        button_to("unbookmark story", unbookmark_story_path(story), :method => :delete, :class => "unbookmark tooltipped", :title => "Unbookmark")
+        button_to("unbookmark story", unbookmark_story_path(story), :method => :delete, :class => "unbookmark tooltipped", :title => "Unbookmark?")
       else
-        button_to("bookmark story", bookmark_story_path(story), :class => "bookmark tooltipped", :title => "Bookmark")
+        button_to("bookmark story", bookmark_story_path(story), :class => "bookmark tooltipped", :title => "Bookmark?")
       end
     end
   end
@@ -14,11 +14,11 @@ module StoriesHelper
   def recommend_button(story)
     if current_user
       if current_user.has_recommended?(story)
-        button_to("unrecommend story", unrecommend_story_path(story), :method => :delete, :class => "unrecommend tooltipped", :title => "Unrecommend")
+        button_to(pluralize(story.recommendations.count, "recommendation"), unrecommend_story_path(story), :method => :delete, :class => "unrecommend tooltipped", :title => "Unrecommend?")
       elsif current_user.recommendation_limit_reached?
         "Recommendation limit reached"
       else
-        button_to("recommend story", recommend_story_path(story), :class => "recommend tooltipped", :title => "Recommend")
+        button_to(pluralize(story.recommendations.count, "recommendation"), recommend_story_path(story), :class => "recommend tooltipped", :title => "Recommend?")
       end
     end
   end
@@ -26,18 +26,18 @@ module StoriesHelper
   def like_button(story)
     if current_user
       if current_user.has_liked?(story)
-        button_to("unlike story", unlike_story_path(story), :method => :delete, :class => "liked tooltipped", :title => "Unlike")
+        button_to(pluralize(story.likes.count, "heart"), unlike_story_path(story), :method => :delete, :class => "liked tooltipped", :title => "Unlike?")
       else
-        button_to("like story", like_story_path(story), :class => "like tooltipped", :title => "Like")
+        button_to(pluralize(story.likes.count, "heart"), like_story_path(story), :class => "like", :title => "Like?")
       end
     end
   end
   
   def story_price(story)
     if current_user && (story.user == current_user || current_user.stories.include?(story))
-      link_to("view", @story)
+      link_to("view", @story, :class => "view")
     elsif @story.free?
-      button_to("free", purchase_story_path(@story), :class => "buy-it", :class => "tooltipped-n", :title => "Acquire")
+      button_to("free", purchase_story_path(@story), :class => "free", :class => "tooltipped-n", :title => "Acquire")
     else
       button_to(number_to_currency(@story.price), purchase_story_path(@story), :class => "buy-it", :class => "tooltipped-n", :title => "Purchase")
     end
@@ -66,10 +66,5 @@ module StoriesHelper
       end
     end
   end
-  
-  # - @topics.each do |topic|
-  #   %li.topic
-  #     = check_box_tag "topics[#{topic.id}]", 1, @story.topics.include?(topic)
-  #     = topic.name
   
 end

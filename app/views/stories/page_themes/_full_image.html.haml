@@ -17,11 +17,8 @@
           color: ##{caption.text_color} !important;
         }
 
-- preview ||= false
+- size ||= "full"
 .inner
-  - if preview
-    = image_tag(@page.image.url(:medium)) if @page.image
-  - else
-    = image_tag(@page.image.url) if @page.image
-  - if @page.text && !preview
+  = image_tag(@page.image.url(size.to_s)) if @page.image
+  - if @page.text && size == "full"
     .caption= @page.text
