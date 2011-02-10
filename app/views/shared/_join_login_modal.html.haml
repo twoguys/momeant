@@ -43,7 +43,7 @@
                   = f.file_field :avatar
 
                 %li.submit
-                  = f.submit "Sign up"
+                  = f.submit "sign up"
         .login
           %h2 Login
           = form_for(@user, :as => :user, :url => session_path(:user)) do |f|
@@ -52,15 +52,15 @@
 
                 %li
                   = f.label :email
-                  = f.text_field :email
+                  = f.text_field :email, :id => "login_email"
 
                 %li
                   = f.label :password
-                  = f.password_field :password
+                  = f.password_field :password, :id => "login_password"
 
                 %li
                   = f.check_box :remember_me
                   = f.label :remember_me
 
                 %li.submit
-                  = f.submit "Sign in"
+                  = f.submit "login"
