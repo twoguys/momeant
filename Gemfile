@@ -16,7 +16,7 @@ gem 'fastercsv'
 gem 'acts-as-taggable-on'
 gem 'compass'
 gem 'braintree'
-gem 'silent-postgres'
+#gem 'silent-postgres'
 gem 'sunspot_rails'
 
 group :test do

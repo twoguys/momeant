@@ -6,9 +6,8 @@
       = render :partial => "stories/page_themes/#{@page.partial_name}", :locals => {:preview => true}
       
   .title= link_to(story.title || "Incomplete Story", preview_story_path(story))
-  .likes
+  .likes= story.likes.count
   .recommendations= story.recommendations.count
   .author by #{link_to(story.user.name, user_path(story.user))}
   .excerpt= story.excerpt
   .price= story.price
-  .excerpt= story.excerpt
