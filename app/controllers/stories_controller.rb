@@ -91,12 +91,12 @@ class StoriesController < ApplicationController
   
   def bookmark
     Bookmark.create(:story_id => @story.id, :user_id => current_user.id)
-    redirect_to preview_story_path(@story), :notice => "Story bookmarked."
+    redirect_to preview_story_path(@story)
   end
   
   def unbookmark
     Bookmark.where(:story_id => @story.id, :user_id => current_user.id).destroy_all
-    redirect_to preview_story_path(@story), :notice => "Bookmark removed."
+    redirect_to preview_story_path(@story)
   end
   
   def bookmarked

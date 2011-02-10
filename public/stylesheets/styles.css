@@ -784,6 +784,21 @@ form.new_story, form.edit_story, .story-form {
     background: transparent url(../images/loading.gif) no-repeat 0 0; }
 
 /* Story Preview */
+input.bookmark, input.unbookmark {
+  position: absolute;
+  top: -12px;
+  right: 0;
+  width: 50px;
+  height: 50px;
+  background: transparent url(../images/bookmark.png) no-repeat 0 -50px;
+  text-indent: -9999px; }
+
+input.unbookmark {
+  background-position: 0 0; }
+
+input.bookmark:active, input.unbookmark:active {
+  top: -12px; }
+
 .story-preview {
   font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
   margin-top: 40px;
