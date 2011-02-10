@@ -22,11 +22,26 @@ function tag_deletions() {
 	});
 }
 
+function setup_signup_modal() {
+	$('#join').click(function() {
+		var $modal = $('#join-login-modal');
+		$modal.stop().fadeIn('fast');
+		return false;
+	});
+	$('#join-login-modal .cover').click(function() {
+		$('#join-login-modal').stop().fadeOut('fast');
+	});
+	$(document).keyup(function(e) {
+	  if (e.keyCode == 27) { $('#join-login-modal').stop().fadeOut('fast'); } // escape
+	});
+}
+
 $(document).ready(function() {
 	setup_tooltips();
 	setup_tab_switching();
 	setup_placeholder_text();
 	tag_deletions();
+	setup_signup_modal();
 });
 
 function log(message) {

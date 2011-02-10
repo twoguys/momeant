@@ -45,6 +45,9 @@
     #footer
       .insides
         Copyright © 2010 - Momeant
+    
+    - if !current_user
+      = render "shared/join_login_modal"
 
     =# render "analytics"
     = yield :javascript

@@ -288,15 +288,11 @@ input[type="submit"], a.button {
   font-size: 11px;
   color: #222222;
   border: none;
-  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.85);
   background-color: #cccccc;
   cursor: pointer; }
 
 input[type="submit"]:active, a.button:active {
-  top: 1px;
-  -webkit-box-shadow: 0 1px 2px white;
-  -moz-box-shadow: 0 1px 2px white;
-  box-shadow: 0 1px 2px white; }
+  top: 1px; }
 
 label[for="user_remember_me"] {
   display: inline-block; }
@@ -1418,6 +1414,74 @@ ul.stories .excerpt {
   width: 250px;
   overflow: hidden; }
 
+#join-login-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  z-index: 999;
+  text-shadow: none;
+  font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
+  color: white;
+  width: 100%;
+  height: 100%; }
+  #join-login-modal .cover {
+    width: 100%;
+    height: 100%;
+    background: transparent url(../images/modalCover.png) repeat;
+    position: absolute;
+    z-index: 1; }
+  #join-login-modal .padder {
+    width: 550px;
+    margin: 0 auto;
+    background-color: rgba(0, 0, 0, 0.15);
+    padding: 9px;
+    position: relative;
+    top: -9px;
+    z-index: 2; }
+  #join-login-modal .insides {
+    background: black url(../images/logoWhite.png) no-repeat 20px 20px;
+    padding: 70px 20px 20px; }
+    #join-login-modal .insides .copy {
+      background: transparent url(../images/simpleDotBGgrey.png) repeat-x 0 100%;
+      padding-bottom: 10px;
+      margin-bottom: 10px; }
+      #join-login-modal .insides .copy h3 {
+        font-size: 15px; }
+      #join-login-modal .insides .copy p {
+        margin: 12px 0 10px;
+        font-size: 11px; }
+    #join-login-modal .insides .forms h2 {
+      background: none;
+      color: white;
+      font-size: 30px;
+      padding: 0;
+      margin: 0 0 10px; }
+    #join-login-modal .insides .forms form label {
+      text-shadow: none;
+      color: white; }
+    #join-login-modal .insides .forms form input[type="text"] {
+      width: 216px; }
+    #join-login-modal .insides .forms form input[type="submit"] {
+      color: black;
+      text-shadow: none;
+      font-size: 16px; }
+    #join-login-modal .insides .forms form span input[type="text"], #join-login-modal .insides .forms form span input[type="password"] {
+      width: 100px; }
+    #join-login-modal .insides .forms form span label {
+      color: #aaaaaa; }
+    #join-login-modal .insides .forms form li {
+      margin-bottom: 10px; }
+    #join-login-modal .insides .forms .join, #join-login-modal .insides .forms .login {
+      width: 246px;
+      float: left; }
+    #join-login-modal .insides .forms .join {
+      background: transparent url(../images/simpleDotBGgreyVertical.png) repeat-y 100% 0;
+      margin-right: 18px; }
+      #join-login-modal .insides .forms .join input[type="submit"] {
+        background-color: #a9d300; }
+    #join-login-modal .insides .forms .login input[type="submit"] {
+      background-color: #31afff; }
+
 .hidden {
   display: none; }
 
@@ -1441,58 +1505,3 @@ ul.stories .excerpt {
 
 .colorpicker {
   z-index: 100; }
-
-h2 {
-  background: none repeat scroll 0 0 #eaeaea;
-  color: #b2b2b2;
-  font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
-  font-size: 13px;
-  font-weight: 700;
-  padding: 11px 13px 9px;
-  text-transform: uppercase;
-  clear: both; }
-
-ul.stories li.story {
-  background-color: white;
-  float: left;
-  height: 300px;
-  margin-bottom: 25px;
-  margin-right: 25px;
-  width: 300px;
-  -moz-box-shadow: 3px 3px 5px #bbbbbb; }
-ul.stories .third {
-  margin-right: 0px; }
-ul.stories a.thumbnail img {
-  margin: 5px; }
-ul.stories .title a {
-  color: black;
-  font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.2px;
-  line-height: 15px;
-  margin: 0 10px; }
-ul.stories .author {
-  color: black;
-  font-family: Georgia, serif;
-  font-style: italic;
-  border-bottom: 1px dotted black;
-  font-size: 11px;
-  letter-spacing: 0.3px;
-  line-height: 20px;
-  margin: 0 10px;
-  padding-bottom: 4px; }
-  ul.stories .author a {
-    color: #00aeef; }
-ul.stories .recommendations {
-  float: right;
-  margin-right: 10px; }
-ul.stories .excerpt {
-  font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
-  font-weight: 100;
-  font-size: 11px;
-  margin: 10px;
-  line-height: 15px;
-  height: 45px;
-  width: 250px;
-  overflow: hidden; }
