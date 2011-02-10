@@ -14,11 +14,11 @@ module StoriesHelper
   def recommend_button(story)
     if current_user
       if current_user.has_recommended?(story)
-        button_to(pluralize(story.recommendations.count, "recommendation"), unrecommend_story_path(story), :method => :delete, :class => "unrecommend tooltipped", :title => "Unrecommend?")
+        link_to(pluralize(story.recommendations.count, "recommendation"), unrecommend_story_path(story), :method => :delete, :class => "unrecommend tooltipped", :title => "Unrecommend?")
       elsif current_user.recommendation_limit_reached?
         "Recommendation limit reached"
       else
-        button_to(pluralize(story.recommendations.count, "recommendation"), recommend_story_path(story), :class => "recommend tooltipped", :title => "Recommend?")
+        link_to(pluralize(story.recommendations.count, "recommendation"), recommend_story_path(story), :method => :post, :class => "recommend tooltipped", :title => "Recommend?")
       end
     end
   end
@@ -26,20 +26,30 @@ module StoriesHelper
   def like_button(story)
     if current_user
       if current_user.has_liked?(story)
-        button_to(pluralize(story.likes.count, "heart"), unlike_story_path(story), :method => :delete, :class => "liked tooltipped", :title => "Unlike?")
+        link_to(pluralize(story.likes.count, "heart"), unlike_story_path(story), :method => :delete, :class => "liked tooltipped", :title => "Unlike?")
       else
-        button_to(pluralize(story.likes.count, "heart"), like_story_path(story), :class => "like", :title => "Like?")
+        link_to(pluralize(story.likes.count, "heart"), like_story_path(story), :method => :post, :class => "like tooltipped", :title => "Like?")
       end
     end
   end
   
   def story_price(story)
     if current_user && (story.user == current_user || current_user.stories.include?(story))
-      link_to("view", @story, :class => "view")
+      link_to("view", story, :class => "view")
     elsif @story.free?
-      button_to("free", purchase_story_path(@story), :class => "free", :class => "tooltipped-n", :title => "Acquire")
+      link_to("free", purchase_story_path(story), :class => "free", :method => :post, :class => "tooltipped-n", :title => "Acquire")
     else
-      button_to(number_to_currency(@story.price), purchase_story_path(@story), :class => "buy-it", :class => "tooltipped-n", :title => "Purchase")
+      link_to(number_with_precision(story.price, :precision => 0), purchase_story_path(story), :method => :post, :class => "buy-it", :class => "tooltipped-n", :title => "Buy")
+    end
+  end
+  
+  def story_buy_view_link(story)
+    if current_user && (story.user == current_user || current_user.stories.include?(story))
+      link_to("view story", story, :class => "view")
+    elsif story.free?
+      link_to("acquire story for free", purchase_story_path(story), :method => :post, :class => "free", :class => "tooltipped", :title => "Acquire")
+    else
+      link_to("buy story for #{@story.price}", purchase_story_path(story), :method => :post, :class => "buy-it", :class => "tooltipped", :title => "Buy")
     end
   end
   

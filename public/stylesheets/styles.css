@@ -866,7 +866,7 @@ input.bookmark:active, input.unbookmark:active {
       left: -40px; }
       .story-preview .preview .price a, .story-preview .preview .price input[type="submit"] {
         font-weight: 700;
-        font-size: 30px;
+        font-size: 24px;
         display: block;
         text-align: center;
         line-height: 85px;
@@ -883,18 +883,19 @@ input.bookmark:active, input.unbookmark:active {
       .story-preview .preview .price .view, .story-preview .preview .price .free {
         font-size: 22px; }
     .story-preview .preview .actions {
-      padding: 10px;
+      padding: 10px 10px 10px 0;
       height: 30px; }
-      .story-preview .preview .actions form {
+      .story-preview .preview .actions a {
+        display: block;
         float: left;
-        margin-right: 10px;
+        padding: 10px 20px 8px 35px;
+        background-color: transparent;
+        background-position: 15px 50%;
+        background-repeat: no-repeat;
+        font-size: 11px;
+        font-weight: 700;
+        color: #252525;
         border-right: 1px solid #cccccc; }
-        .story-preview .preview .actions form input[type="submit"] {
-          background-color: none;
-          padding-left: 20px;
-          background-color: transparent;
-          background-position: 0 50%;
-          background-repeat: no-repeat; }
       .story-preview .preview .actions .like {
         background-image: url(../images/icons/heartOff.png); }
       .story-preview .preview .actions .liked {
@@ -903,6 +904,8 @@ input.bookmark:active, input.unbookmark:active {
         background-image: url(../images/icons/recommendOff.png); }
       .story-preview .preview .actions .unrecommend {
         background-image: url(../images/icons/recommendOn.png); }
+      .story-preview .preview .actions .view {
+        background-image: url(../images/icons/fullscreenOn.png); }
   .story-preview .metadata {
     width: 290px;
     float: right;

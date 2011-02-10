@@ -21,11 +21,11 @@ Feature "A user can acquire a story" do
     end
     
     Then "I should see that the story is free to acquire" do
-      assert page.find('.price').find_button("free").visible?
+      assert page.find('.price').find_link("free").visible?
     end
     
     When "I click the free button" do
-      click_button("free")
+      click_link("free")
     end
     
     Then "I should be on the story view page" do
@@ -59,15 +59,15 @@ Feature "A user can acquire a story" do
       assert find_link(@free_story.title).visible?
     end
     
-    And "I should have received an email with my purchase receipt" do
-      receipt_email = ActionMailer::Base.deliveries.last
-      assert_equal receipt_email.subject, "Thank you for your Momeant purchase!"
-      assert_equal receipt_email.to[0], @email_confirmed_user.email
-      assert receipt_email.body.include?(@free_story.title)
-      assert receipt_email.body.include?("Excerpt: #{@free_story.excerpt}")
-      assert receipt_email.body.include?("Price: #{number_to_currency(@free_story.price)}")
-      assert receipt_email.body.include?(story_path(@free_story))
-    end
+    # And "I should have received an email with my purchase receipt" do
+    #   receipt_email = ActionMailer::Base.deliveries.last
+    #   assert_equal receipt_email.subject, "Thank you for your Momeant purchase!"
+    #   assert_equal receipt_email.to[0], @email_confirmed_user.email
+    #   assert receipt_email.body.include?(@free_story.title)
+    #   assert receipt_email.body.include?("Excerpt: #{@free_story.excerpt}")
+    #   assert receipt_email.body.include?("Price: #{number_to_currency(@free_story.price)}")
+    #   assert receipt_email.body.include?(story_path(@free_story))
+    # end
   end
   
   Scenario "A user purchases a non-free story that they can afford" do
@@ -81,11 +81,11 @@ Feature "A user can acquire a story" do
     end
     
     Then "I should see the story's cost and a link to buy it" do
-      assert page.find('.price').find_button(number_to_currency(@story.price)).visible?
+      assert page.find('.price').find_link(number_with_precision(@story.price, :precision => 0)).visible?
     end
     
     When "I click the acquire link" do
-      click_button(number_to_currency(@story.price))
+      click_link(@story.price.to_s)
     end
     
     Then "I should be on the story view page" do
@@ -117,15 +117,15 @@ Feature "A user can acquire a story" do
       assert_equal @story.purchased_count, original_count + 1
     end
 
-    And "I should have received an email with my purchase receipt" do
-      receipt_email = ActionMailer::Base.deliveries.last
-      assert_equal receipt_email.subject, "Thank you for your Momeant purchase!"
-      assert_equal receipt_email.to[0], @user_with_money.email
-      assert receipt_email.body.include?(@story.title)
-      assert receipt_email.body.include?("Excerpt: #{@story.excerpt}")
-      assert receipt_email.body.include?("Price: #{number_to_currency(@story.price)}")
-      assert receipt_email.body.include?(story_path(@story))
-    end
+    # And "I should have received an email with my purchase receipt" do
+    #   receipt_email = ActionMailer::Base.deliveries.last
+    #   assert_equal receipt_email.subject, "Thank you for your Momeant purchase!"
+    #   assert_equal receipt_email.to[0], @user_with_money.email
+    #   assert receipt_email.body.include?(@story.title)
+    #   assert receipt_email.body.include?("Excerpt: #{@story.excerpt}")
+    #   assert receipt_email.body.include?("Price: #{number_to_currency(@story.price)}")
+    #   assert receipt_email.body.include?(story_path(@story))
+    # end
   end
   
   Scenario "A user views a story they can't afford" do
@@ -139,11 +139,11 @@ Feature "A user can acquire a story" do
     end
     
     Then "I should see the story's cost and a link to buy it" do
-      assert page.find('.price').find_button(number_to_currency(@crazy_expensive_story.price)).visible?
+      assert page.find('.price').find_link(number_with_precision(@crazy_expensive_story.price, :precision => 0)).visible?
     end
     
     When "I click the purchase button" do
-      click_button(number_to_currency(@crazy_expensive_story.price))
+      click_link(number_with_precision(@crazy_expensive_story.price, :precision => 0))
     end
     
     then_i_should_be_on_page(:credits)
