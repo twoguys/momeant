@@ -17,8 +17,8 @@
           color: ##{caption.text_color} !important;
         }
 
-- size ||= "full"
+- size ||= "medium"
 .inner
   = image_tag(@page.image.url(size.to_s)) if @page.image
-  - if @page.text && size == "full"
+  - if @page.text && size == "original"
     .caption= @page.text
