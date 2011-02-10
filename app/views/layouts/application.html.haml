@@ -30,6 +30,12 @@
         %header
           .insides
             = render "layouts/user_nav"
+            .momeant-header
+              = link_to("Home", root_path, :id => "logo-large")
+              - if !current_user
+                = link_to("Join", new_user_registration_path, :id => "join", :class => "round-button")
+              - elsif !@hide_stumble
+                = link_to("Stumble", random_stories_path, :id => "stumble", :class => "round-button tooltipped", :title => "Random story")
             
         #mid
           .insides

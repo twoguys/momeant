@@ -30,6 +30,7 @@ Repo::Application.routes.draw do
     get :render_page_theme, :on => :collection
     get :tagged_with, :on => :collection
     get :search, :on => :collection
+    get :random, :on => :collection
     
     resources :pages, :only => [:create, :update, :destroy] do
       post :add_or_update_image, :on => :member
