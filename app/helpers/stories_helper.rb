@@ -60,7 +60,7 @@ module StoriesHelper
   def topic_checkbox(topic, story, all_topics)
     content_tag(:li, :class => "topic") do
       html = check_box_tag "topics[#{topic.id}]", 1, story.topics.include?(topic), "topic-id" => topic.id
-      html += topic.name
+      html += label_tag "topics_#{topic.id}", topic.name
       html += topic_children_checkboxes(topic, story, all_topics)
     end
   end

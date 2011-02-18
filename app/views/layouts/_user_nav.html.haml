@@ -1,20 +1,26 @@
 #user-nav
-  = link_to("Momeant", root_path, :id => "logo")
-
-  %ul
+  %ul.links
+    %li#home
+      = link_to("Momeant", root_path, :class => "tooltipped", :title => "Home")
     - if user_signed_in?
       %li#profile
-        = link_to("Profile", library_path)
+        = link_to("Profile", library_path, :class => "tooltipped", :title => "Profile")
       %li#faq
-        = link_to("FAQ", "#")        
-      %li#topics
-        = link_to("Topics", "#", :class => "tooltipped", :title => "Topics")
+        = link_to("FAQ", "#", :class => "tooltipped", :title => "FAQ")        
+      %li#topics  
+        %span
+        .inner
+          %ul.topic-list
+            - counter = 1
+            - Topic.parent_topics.each do |topic|
+              %li{:class => "#{counter % 2 == 1 ? "odd" : "even"} #{topic.name}"}= link_to(topic.name, topic_path(topic))
+              - counter += 1
       %li#recommendations
         = link_to("Recommendations", recommended_stories_path, :class => "tooltipped", :title => "Recommendations")
       %li#create
         = link_to("Create a Story", new_story_path, :class => "tooltipped", :title => "Create") if can? :create, Story
       %li#balance
-        = link_to(current_user.credits, credits_path, :class => "tooltipped", :title => "Credits")
+        = link_to(number_with_precision(current_user.credits, :precision => 0), credits_path, :class => "tooltipped", :title => "Credits")
       %li#hi
         Hello #{link_to(current_user.name, library_path)}!
         (#{link_to("Sign out", destroy_user_session_path, :class => "signout-link")})

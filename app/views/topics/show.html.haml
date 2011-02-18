@@ -1,0 +1,6 @@
+- content_for :header do
+  .topic-icon
+    .topic{:class => @topic.name.downcase}
+
+%ul.stories
+  = render @topic.stories

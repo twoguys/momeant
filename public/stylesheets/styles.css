@@ -77,71 +77,100 @@ header {
   header #user-nav {
     position: relative;
     height: 42px; }
-    header #user-nav #logo, header #user-nav #signup, header #user-nav #signin, header #user-nav #signout, header #user-nav #profile, header #user-nav #create, header #user-nav #balance, header #user-nav #subscriptions, header #user-nav #recommendations, header #user-nav #topics, header #user-nav #search {
+    header #user-nav ul.links {
       position: absolute;
-      top: 0; }
-    header #user-nav #logo {
-      font-size: 1.5em;
       left: 0;
-      top: 6px;
-      background: url(../images/icons/momeantHome.png) no-repeat scroll 0 0 transparent;
-      text-indent: -9999px;
-      display: block;
-      width: 180px;
-      height: 32px; }
-    header #user-nav ul {
-      position: absolute;
-      right: 0;
-      width: 760px; }
+      width: 950px; }
+      header #user-nav ul.links li {
+        float: left; }
+    header #user-nav #home, header #user-nav #profile, header #user-nav #faq, header #user-nav #topics, header #user-nav #recommendations, header #user-nav #create {
+      width: 46px;
+      height: 36px;
+      background: transparent url(../images/topNavBreak.gif) no-repeat 0 0; }
+      header #user-nav #home a, header #user-nav #profile a, header #user-nav #faq a, header #user-nav #topics a, header #user-nav #recommendations a, header #user-nav #create a {
+        width: 46px;
+        height: 36px;
+        display: block;
+        margin: 0 auto;
+        text-indent: -9999px;
+        background-color: transparent;
+        background-repeat: no-repeat;
+        background-position: 50% 6px; }
+    header #user-nav #home a {
+      background: url(../images/icons/momeantHome.png) no-repeat scroll 50% 6px transparent; }
     header #user-nav #signup, header #user-nav #profile, header #user-nav #signin, header #user-nav #signout {
       top: 15px; }
     header #user-nav #signup {
       left: 60px; }
-    header #user-nav #profile {
-      left: 0;
-      font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
-      font-weight: 900;
-      font-size: 14px;
-      text-transform: uppercase;
-      line-height: 14px; }
+    header #user-nav #profile a {
+      background-image: url(../images/icons/momeantProfile.png); }
     header #user-nav #signin, header #user-nav #signout {
       left: 140px; }
-    header #user-nav #create a, header #user-nav #balance a, header #user-nav #subscriptions a, header #user-nav #recommendations a, header #user-nav #topics a {
-      display: block;
-      text-indent: -9999px;
-      background-color: transparent;
-      background-repeat: no-repeat;
-      width: 40px;
-      height: 40px; }
     header #user-nav #create:hover .tip, header #user-nav #balance:hover .tip, header #user-nav #subscriptions:hover .tip, header #user-nav #recommendations:hover .tip, header #user-nav #topics:hover .tip {
       display: block;
       left: 14px; }
-    header #user-nav #create {
-      left: 210px; }
-      header #user-nav #create a {
-        background: url(../images/icons/momeantAddStory.png) no-repeat scroll 0 6px transparent;
-        display: block;
-        height: 32px;
-        top: 6px; }
+    header #user-nav #faq a {
+      background-image: url(../images/icons/momeantHelp.png); }
+    header #user-nav #create a {
+      background-image: url(../images/icons/momeantAddStory.png); }
     header #user-nav #balance {
-      left: 250px; }
+      background: transparent url(../images/topNavBreak.gif) no-repeat 0 0; }
       header #user-nav #balance a {
-        background-image: url(../images/icons/balance.png); }
-    header #user-nav #subscriptions {
-      left: 290px; }
-      header #user-nav #subscriptions a {
-        background-image: url(../images/icons/person.png); }
-    header #user-nav #recommendations {
-      left: 330px; }
-      header #user-nav #recommendations a {
-        background-image: url("../images/icons/momeantStream.png") no-repeat scroll 0 7px transparent; }
+        display: block;
+        color: black;
+        font-weight: bold;
+        font-size: 1.1em;
+        padding: 12px 10px; }
+    header #user-nav #subscriptions a {
+      background-image: url(../images/icons/person.png); }
+    header #user-nav #recommendations a {
+      background-image: url(../images/icons/momeantStream.png); }
     header #user-nav #topics {
-      left: 450px; }
-      header #user-nav #topics a {
-        background-image: url("../images/icons/momeantTopics.png") 0 6px no-repeat; }
+      background: transparent url(../images/topNavBreak.gif) no-repeat 0 0; }
+      header #user-nav #topics span {
+        position: absolute;
+        display: block;
+        width: 46px;
+        height: 36px;
+        background: transparent url(../images/icons/momeantTopics.png) 50% 6px no-repeat;
+        cursor: pointer; }
+      header #user-nav #topics .inner {
+        background: transparent url(../images/topTriangle.png) no-repeat 10px 0;
+        padding-top: 7px;
+        position: absolute;
+        top: 35px; }
+      header #user-nav #topics .topic-list {
+        border: 3px solid black;
+        -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+        -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+        display: none; }
+        header #user-nav #topics .topic-list .odd {
+          background-color: #f0f0f0; }
+        header #user-nav #topics .topic-list .even {
+          background-color: white; }
+        header #user-nav #topics .topic-list li {
+          float: none; }
+          header #user-nav #topics .topic-list li a {
+            width: 130px;
+            height: 1.1em;
+            padding: 12px 10px;
+            text-indent: 0;
+            font-weight: bold;
+            font-size: 1.1em;
+            text-transform: uppercase;
+            color: black; }
+    header #user-nav #topics:hover .topic-list {
+      display: block; }
+    header #user-nav #hi {
+      background: transparent url(../images/topNavBreak.gif) no-repeat 0 0;
+      padding: 12px 10px;
+      font-size: 1.1em;
+      font-weight: bold;
+      text-transform: uppercase; }
     header #user-nav #search {
-      left: 559px;
-      top: 8px;
+      padding-top: 8px;
+      float: right;
       width: 200px; }
       header #user-nav #search label {
         color: #999999;
@@ -176,7 +205,8 @@ header {
     text-indent: -9999px;
     height: 130px;
     padding-top: 33px;
-    background: transparent url(../images/diagStripeBG.png) repeat-x 0 100%; }
+    background: transparent url(../images/diagStripeBG.png) repeat-x 0 100%;
+    margin-bottom: 10px; }
     header .momeant-header #logo-large {
       height: 100px;
       width: 645px;
@@ -406,6 +436,10 @@ form.new_story, form.edit_story, .story-form {
       padding-bottom: 5px; }
     form.new_story .topics li, form.edit_story .topics li, .story-form .topics li {
       margin: 0; }
+      form.new_story .topics li label, form.edit_story .topics li label, .story-form .topics li label {
+        display: inline-block;
+        font-weight: normal;
+        cursor: pointer; }
       form.new_story .topics li .children, form.edit_story .topics li .children, .story-form .topics li .children {
         padding-left: 10px; }
 
@@ -816,25 +850,25 @@ input.unbookmark {
 input.bookmark:active, input.unbookmark:active {
   top: -12px; }
 
+.banner {
+  padding: 1em 0;
+  font-size: 1.2em;
+  font-weight: bold; }
+  .banner form {
+    display: inline-block; }
+  .banner ul {
+    font-weight: normal;
+    font-size: 12px;
+    margin-top: 5px; }
+
+a.edit-story {
+  font-size: 15px; }
+
 .story-preview {
   font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
   margin-top: 40px;
   position: relative; }
-  .story-preview .banner {
-    padding: 1em 0;
-    font-size: 1.2em;
-    font-weight: bold;
-    border-bottom: 1px dotted #aaaaaa; }
-    .story-preview .banner form {
-      display: inline-block; }
-    .story-preview .banner ul {
-      font-weight: normal;
-      font-size: 12px;
-      margin-top: 5px; }
   .story-preview a.edit {
-    position: absolute;
-    top: -24px;
-    left: 50px;
     font-size: 15px; }
   .story-preview .preview {
     float: left;
@@ -1507,6 +1541,17 @@ ul.stories .excerpt {
         background-color: #a9d300; }
     #join-login-modal .insides .forms .login input[type="submit"] {
       background-color: #31afff; }
+
+header .topic-icon {
+  width: 135px;
+  height: 86px;
+  background: transparent url(../images/topic-icon-bg.png) no-repeat 0 0;
+  float: right;
+  margin-top: 12px; }
+  header .topic-icon .topic {
+    width: 50px;
+    height: 50px;
+    margin: 18px auto; }
 
 .hidden {
   display: none; }

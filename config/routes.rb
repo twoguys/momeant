@@ -38,6 +38,8 @@ Repo::Application.routes.draw do
   end
   match "/stories/tagged_with/:tag",    :to => "stories#tagged_with",  :as => :stories_tagged_with
   
+  match "/topics/:name", :to => "topics#show", :as => :topic
+  
   match '/credits', :to => "deposits#index", :as => :credits
   match '/credits/buy', :to => "deposits#create", :as => :deposit
   

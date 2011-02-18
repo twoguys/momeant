@@ -5,73 +5,101 @@ header
 	#user-nav
 		position: relative
 		height: 42px
-		#logo, #signup, #signin, #signout, #profile, #create, #balance, #subscriptions, #recommendations, #topics, #search
+		ul.links
 			position: absolute
-			top: 0
-		#logo
-			font-size: 1.5em
 			left: 0
-			top: 6px
-			background: url(../images/icons/momeantHome.png) no-repeat scroll 0 0 transparent
-			text-indent: -9999px
-			display: block
-			width: 180px
-			height: 32px
-		ul
-			position: absolute
-			right: 0
-			width: 760px
+			width: 950px
+			li
+				float: left
+		#home, #profile, #faq, #topics, #recommendations, #create
+			width: 46px
+			height: 36px
+			background: transparent url(../images/topNavBreak.gif) no-repeat 0 0
+			a
+				width: 46px
+				height: 36px
+				display: block
+				margin: 0 auto
+				text-indent: -9999px
+				background-color: transparent
+				background-repeat: no-repeat
+				background-position: 50% 6px
+		#home
+			a
+				background: url(../images/icons/momeantHome.png) no-repeat scroll 50% 6px transparent
 		#signup, #profile, #signin, #signout
 			top: 15px
 		#signup
 			left: 60px
-		#profile
-			left: 0
-			font-family: $block
-			font-weight: 900
-			font-size: 14px
-			text-transform: uppercase
-			line-height: 14px
+		#profile a
+			background-image: url(../images/icons/momeantProfile.png)
 		#signin, #signout
 			left: 140px
-		#create, #balance, #subscriptions, #recommendations, #topics
-			a
-				display: block
-				text-indent: -9999px
-				background-color: transparent
-				background-repeat: no-repeat
-				width: 40px
-				height: 40px
 		#create:hover, #balance:hover, #subscriptions:hover, #recommendations:hover, #topics:hover
 			.tip
 				display: block
 				left: 14px
-		#create
-			left: 210px
+		#faq a
+			background-image: url(../images/icons/momeantHelp.png)
+		#create a
+			background-image: url(../images/icons/momeantAddStory.png)
+		#balance	
+			background: transparent url(../images/topNavBreak.gif) no-repeat 0 0
 			a
-				background: url(../images/icons/momeantAddStory.png) no-repeat scroll 0 6px transparent
 				display: block
-				height: 32px
-				top: 6px
-		#balance
-			left: 250px
-			a
-				background-image: url(../images/icons/balance.png)
-		#subscriptions
-			left: 290px
-			a
-				background-image: url(../images/icons/person.png)
-		#recommendations
-			left: 330px
-			a
-				background-image: url("../images/icons/momeantStream.png") no-repeat scroll 0 7px transparent
-		#topics
-			left: 450px
-			a
-				background-image: url("../images/icons/momeantTopics.png") 0 6px no-repeat
+				color: #000
+				font-weight: bold
+				font-size: 1.1em
+				padding: 12px 10px
+		#subscriptions a
+			background-image: url(../images/icons/person.png)
+		#recommendations a
+			background-image: url(../images/icons/momeantStream.png)
+		#topics	
+			background: transparent url(../images/topNavBreak.gif) no-repeat 0 0
+			span
+				position: absolute
+				display: block
+				width: 46px
+				height: 36px
+				background: transparent url(../images/icons/momeantTopics.png) 50% 6px no-repeat
+				cursor: pointer
+			.inner
+				background: transparent url(../images/topTriangle.png) no-repeat 10px 0
+				padding-top: 7px
+				position: absolute
+				top: 35px
+			.topic-list
+				border: 3px solid #000
+				@include boxshadow
+				display: none
+				.odd
+					background-color: #f0f0f0
+				.even
+					background-color: #fff
+				li
+					float: none
+					a
+						width: 130px
+						height: 1.1em
+						padding: 12px 10px
+						text-indent: 0
+						font-weight: bold
+						font-size: 1.1em
+						text-transform: uppercase
+						color: #000
+		#topics:hover
+			.topic-list
+				display: block
+		#hi
+			background: transparent url(../images/topNavBreak.gif) no-repeat 0 0
+			padding: 12px 10px
+			font-size: 1.1em
+			font-weight: bold
+			text-transform: uppercase
 		#search
-			left: 559px
-			top: 8px
+			padding-top: 8px
+			float: right
 			width: 200px
 			label
 				color: #999999
@@ -107,6 +135,7 @@ header
 		height: 130px
 		padding-top: 33px
 		background: transparent url(../images/diagStripeBG.png) repeat-x 0 100%
+		margin-bottom: 10px
 		#logo-large
 			height: 100px
 			width: 645px

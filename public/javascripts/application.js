@@ -37,12 +37,17 @@ function setup_signup_modal() {
 	});
 }
 
+function setup_topics_menu() {
+	
+}
+
 $(document).ready(function() {
 	setup_tooltips();
 	setup_tab_switching();
 	setup_placeholder_text();
 	tag_deletions();
 	setup_signup_modal();
+	setup_topics_menu();
 });
 
 function log(message) {
