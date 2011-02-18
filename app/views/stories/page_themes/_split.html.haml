@@ -11,14 +11,11 @@
           color: ##{@page.text_color} !important;
         }
 
-- preview ||= false
+- size ||= "original"
 .split
   .image
     .inner
-      - if preview
-        = image_tag(@page.image.url(:medium)) if @page.image
-      - else
-        = image_tag(@page.image.url) if @page.image
+      = image_tag(@page.image.url(size.to_s)) if @page.image
   .text
     .inner
       = @page.text
