@@ -21,7 +21,7 @@ module StoriesHelper
         link_to(pluralize(story.recommendations.count, "recommendation"), "#recommend-modal", :class => "recommend tooltipped", :title => "Recommend?")
       end
     else
-      link_to(pluralize(story.recommendations.count, "recommendation"), "#", :class => "recommend disabled")
+      link_to(pluralize(story.recommendations.count, "recommendation"), "#", :class => "recommend disabled tooltipped", :title => "Login to recommend")
     end
   end
   
@@ -33,7 +33,7 @@ module StoriesHelper
         link_to(pluralize(story.likes.count, "heart"), like_story_path(story), :method => :post, :class => "like tooltipped", :title => "Like?")
       end
     else
-      link_to(pluralize(story.likes.count, "heart"), "#", :class => "like disabled")
+      link_to(pluralize(story.likes.count, "heart"), "#", :class => "like disabled tooltipped", :title => "Login to like")
     end
   end
   

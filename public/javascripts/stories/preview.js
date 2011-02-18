@@ -1,3 +1,4 @@
 $(document).ready(function() {
-	$("a.recommend").fancybox();
+	$("a.recommend:not(.disabled)").fancybox();
+	$("a.disabled").click(function() {return false;})
 });
