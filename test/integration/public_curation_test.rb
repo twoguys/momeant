@@ -2,7 +2,7 @@ require File.expand_path('../test_helper', File.dirname(__FILE__))
 
 include ActionView::Helpers::TextHelper
 
-Feature "A user wants to publicly curate for others" do
+Feature "A user wants to publicly curate for others", :testcase_class => FullStackTest do
 
   in_order_to "share the content I like with others"
   as_a "user"
@@ -22,6 +22,11 @@ Feature "A user wants to publicly curate for others" do
       click_link(pluralize(@story.recommendations.count, "recommendation"))
     end
     
+    And "I fill out a comment as to why I recommend this story and hit the Recommend story button" do
+      fill_in "comment", :with => "Because it's so much fun!"
+      click_button "Recommend story"
+    end
+    
     Then "I should be on the story preview page" do
       assert_equal preview_story_path(@story), current_path
     end
@@ -32,6 +37,10 @@ Feature "A user wants to publicly curate for others" do
     
     And "the user should be in the story's users who recommended" do
       assert @story.users_who_recommended.include?(@email_confirmed_user)
+    end
+    
+    And "the recommendation should have the comment assigned to it" do
+      assert_equal "Because it's so much fun!", Recommendation.last.comment
     end
     
     when_i_visit_page(:recommended_stories)

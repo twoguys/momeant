@@ -18,8 +18,10 @@ module StoriesHelper
       elsif current_user.recommendation_limit_reached?
         "Recommendation limit reached"
       else
-        link_to(pluralize(story.recommendations.count, "recommendation"), recommend_story_path(story), :method => :post, :class => "recommend tooltipped", :title => "Recommend?")
+        link_to(pluralize(story.recommendations.count, "recommendation"), "#recommend-modal", :class => "recommend tooltipped", :title => "Recommend?")
       end
+    else
+      link_to(pluralize(story.recommendations.count, "recommendation"), "#", :class => "recommend disabled")
     end
   end
   
@@ -30,6 +32,8 @@ module StoriesHelper
       else
         link_to(pluralize(story.likes.count, "heart"), like_story_path(story), :method => :post, :class => "like tooltipped", :title => "Like?")
       end
+    else
+      link_to(pluralize(story.likes.count, "heart"), "#", :class => "like disabled")
     end
   end
   

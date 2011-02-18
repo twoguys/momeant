@@ -104,7 +104,7 @@ class StoriesController < ApplicationController
   end
   
   def recommend
-    Recommendation.create(:story_id => @story.id, :user_id => current_user.id)
+    Recommendation.create(:story_id => @story.id, :user_id => current_user.id, :comment => params[:comment])
     redirect_to preview_story_path(@story)
   end
   
