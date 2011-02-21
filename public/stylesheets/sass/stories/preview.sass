@@ -1,5 +1,17 @@
 /* Story Preview */
 
+input.bookmark, input.unbookmark
+	position: absolute
+	top: -12px
+	right: 0
+	width: 50px
+	height: 55px
+	background: transparent url(../images/bookmark.png) no-repeat 0 -51px
+	text-indent: -9999px
+input.unbookmark
+	background-position: 0 2px
+input.bookmark:active, input.unbookmark:active
+	top: -12px
 .story-preview
 	font-family: $block
 	margin-top: 40px
@@ -25,6 +37,8 @@
 		position: relative
 		border: 6px solid #fff
 		-webkit-box-shadow: 3px 3px 5px #ccc
+		box-shadow: 3px 3px 5px #ccc
+		-moz-box-shadow: 3px 3px 5px #ccc
 		width: 630px
 		.thumbnail
 			height: 420px
@@ -69,7 +83,7 @@
 			left: -40px
 			a, input[type="submit"]
 				font-weight: 700
-				font-size: 30px
+				font-size: 24px
 				display: block
 				text-align: center
 				line-height: 85px
@@ -86,18 +100,19 @@
 			.view, .free
 				font-size: 22px
 		.actions
-			padding: 10px
+			padding: 10px 10px 10px 0
 			height: 30px
-			form
+			a
+				display: block
 				float: left
-				margin-right: 10px
+				padding: 10px 20px 8px 35px
+				background-color: transparent
+				background-position: 15px 50%
+				background-repeat: no-repeat
+				font-size: 11px
+				font-weight: 700
+				color: $text_color
 				border-right: 1px solid #ccc
-				input[type="submit"]
-					background-color: none
-					padding-left: 20px
-					background-color: transparent
-					background-position: 0 50%
-					background-repeat: no-repeat
 			.like
 				background-image: url(../images/icons/heartOff.png)
 			.liked
@@ -106,6 +121,8 @@
 				background-image: url(../images/icons/recommendOff.png)
 			.unrecommend
 				background-image: url(../images/icons/recommendOn.png)
+			.view
+				background-image: url(../images/icons/fullscreenOn.png)
 	.metadata
 		width: 290px
 		float: right
@@ -121,12 +138,14 @@
 				text-transform: uppercase
 				letter-spacing: -.4px
 				line-height: 30px
+				margin-top: 15px
 			.creator
 				font-family: $serif
-				font-size: 13px
+				font-size: 12px
 				font-style: italic
-				font-weight: bold
+				font-weight: normal
 				padding-top: 3px
+				letter-spacing: .4px
 			.series
 				position: absolute
 				font-size: 24px
@@ -134,6 +153,7 @@
 				border-bottom: $border_type
 				right: 50px
 				bottom: 5px
+				visibility: hidden
 				span
 					display: block
 					position: absolute

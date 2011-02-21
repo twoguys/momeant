@@ -1,5 +1,7 @@
 require File.expand_path('../test_helper', File.dirname(__FILE__))
 
+include ActionView::Helpers::TextHelper
+
 Feature "A user wants to publicly curate for others" do
 
   in_order_to "share the content I like with others"
@@ -17,7 +19,7 @@ Feature "A user wants to publicly curate for others" do
     end
     
     And "I click the recommend button" do
-      click_button("recommend story")
+      click_link(pluralize(@story.recommendations.count, "recommendation"))
     end
     
     Then "I should be on the story preview page" do
@@ -55,7 +57,7 @@ Feature "A user wants to publicly curate for others" do
     end
     
     And "I click the unrecommend button" do
-      click_button("unrecommend story")
+      click_link(pluralize(@story.recommendations.count, "recommendation"))
     end
     
     Then "I should be on the story preview page" do
@@ -105,7 +107,7 @@ Feature "A user wants to publicly curate for others" do
     end
     
     And "I click the like button" do
-      click_button("like story")
+      click_link(pluralize(@story.likes.count, "heart"))
     end
     
     Then "I should be on the story preview page" do
@@ -135,7 +137,7 @@ Feature "A user wants to publicly curate for others" do
     end
     
     And "I click the unlike button" do
-      click_button("unlike story")
+      click_link(pluralize(@story.likes.count, "heart"))
     end
     
     Then "I should be on the story preview page" do

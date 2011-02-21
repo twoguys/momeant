@@ -3,7 +3,7 @@
   %a.thumbnail{:href => preview_story_path(story)}
     - if story.thumbnail
       - @page = story.thumbnail
-      = render :partial => "stories/page_themes/#{@page.partial_name}", :locals => {:preview => true}
+      = render :partial => "stories/page_themes/#{@page.partial_name}", :locals => {:size => "medium"}
       
   .title= link_to(story.title || "Incomplete Story", preview_story_path(story))
   .likes= story.likes.count

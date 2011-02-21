@@ -24,8 +24,6 @@ Feature "A user wants to personally curate their experience" do
       assert_equal preview_story_path(@story), current_path
     end
     
-    then_i_should_see_flash(:notice, "Story bookmarked.")
-    
     And "the story should show up in my bookmarked stories" do
       assert @email_confirmed_user.bookmarked_stories.include?(@story)
     end
@@ -63,8 +61,6 @@ Feature "A user wants to personally curate their experience" do
     Then "I should be on the story preview page" do
       assert_equal preview_story_path(@story), current_path
     end
-    
-    then_i_should_see_flash(:notice, "Bookmark removed.")
     
     And "the story should no longer be in my bookmarked stories" do
       assert !@email_confirmed_user.bookmarked_stories.include?(@story)

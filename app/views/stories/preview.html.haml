@@ -1,3 +1,4 @@
+= bookmark_button(@story)
 .story-preview
   - if @story.owner?(current_user)
     - if @story.draft?
@@ -19,7 +20,7 @@
     .actions
       = like_button(@story)
       = recommend_button(@story)
-      = bookmark_button(@story)
+      = story_buy_view_link(@story)
     .price= story_price(@story)
   .metadata
     .top
