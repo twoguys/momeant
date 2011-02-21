@@ -2,7 +2,7 @@
 
 input.bookmark, input.unbookmark
 	position: absolute
-	top: -12px
+	top: -22px
 	right: 0
 	width: 50px
 	height: 55px
@@ -12,25 +12,30 @@ input.unbookmark
 	background-position: 0 2px
 input.bookmark:active, input.unbookmark:active
 	top: -12px
+.banner
+	padding: 1em 0
+	font-size: 1.2em
+	font-weight: bold
+	form
+		display: inline-block
+	ul
+		font-weight: normal
+		font-size: 12px
+		margin-top: 5px
+a.edit-story
+	background: none repeat scroll 0 0 white
+	display: block
+	float: left
+	font-size: 13px
+	margin-left: 540px
+	padding: 5px
+	top: 206px
+	z-index: 1000
 .story-preview
 	font-family: $block
-	margin-top: 40px
+	margin-top: 0px
 	position: relative
-	.banner
-		padding: 1em 0
-		font-size: 1.2em
-		font-weight: bold
-		border-bottom: $border_type
-		form
-			display: inline-block
-		ul
-			font-weight: normal
-			font-size: 12px
-			margin-top: 5px
 	a.edit
-		position: absolute
-		top: -24px
-		left: 50px
 		font-size: 15px
 	.preview
 		float: left
@@ -43,6 +48,7 @@ input.bookmark:active, input.unbookmark:active
 		.thumbnail
 			height: 420px
 			display: table
+			background-color: #fff
 			.title div, .pullquote p
 				display: table-cell
 				vertical-align: middle
@@ -74,13 +80,15 @@ input.bookmark:active, input.unbookmark:active
 					width: 157.5px
 					height: 210px
 		.price
-			background: transparent url(../images/price-bg.png) no-repeat
-			color: #fff
-			width: 85px
-			height: 82px
+			-moz-border-radius: 50px 50px 50px 50px
+			background: none repeat scroll 0 0 black
+			border: 5px solid white
+			color: white
+			height: 75px
+			left: -30px
 			position: absolute
-			top: -40px
-			left: -40px
+			top: -30px
+			width: 75px
 			a, input[type="submit"]
 				font-weight: 700
 				font-size: 24px
@@ -98,10 +106,16 @@ input.bookmark:active, input.unbookmark:active
 				text-shadow: none
 				width: 85px
 			.view, .free
-				font-size: 22px
+				font-size: 18px
+				letter-spacing: 0.6px
+				line-height: 77px
+				margin-left: 14px
+				text-align: left
+				text-transform: uppercase
 		.actions
 			padding: 10px 10px 10px 0
 			height: 30px
+			background-color: #fff
 			a
 				display: block
 				float: left
@@ -121,7 +135,7 @@ input.bookmark:active, input.unbookmark:active
 				background-image: url(../images/icons/recommendOff.png)
 			.unrecommend
 				background-image: url(../images/icons/recommendOn.png)
-			.view
+			.view, .free, .buy-it
 				background-image: url(../images/icons/fullscreenOn.png)
 	.metadata
 		width: 290px
@@ -129,7 +143,7 @@ input.bookmark:active, input.unbookmark:active
 		position: relative
 		.top
 			position: relative
-			padding: 0 5px 10px
+			padding: 0 5px 10px 0
 			background: transparent url(../images/simpleDotBG.png) repeat-x 0 100%
 			.title
 				font-weight: 900
@@ -139,6 +153,8 @@ input.bookmark:active, input.unbookmark:active
 				letter-spacing: -.4px
 				line-height: 30px
 				margin-top: 15px
+				width: 230px
+				overflow: hidden
 			.creator
 				font-family: $serif
 				font-size: 12px
@@ -167,9 +183,15 @@ input.bookmark:active, input.unbookmark:active
 					top: 20px
 					left: 28px
 		.excerpt
+			font-size: 11px
+			line-height: 17px
+			padding: 10px 10px 10px 0
+		.topics
 			padding: 10px
-		.topics, .tags
-			padding: 10px
+			font-size: 1.1em
+			background: url("../images/simpleDotBG.png") repeat-x scroll 0 0 transparent
+		.tags
+			padding: 10px 0
 			font-size: 1.1em
 			background: url("../images/simpleDotBG.png") repeat-x scroll 0 0 transparent
 		.topics
@@ -178,3 +200,28 @@ input.bookmark:active, input.unbookmark:active
 		margin-top: 30px
 		padding-top: 30px
 		background: transparent url(../images/simpleDotBG.png) repeat-x 0 0
+	a.disabled
+		cursor: default
+
+#recommend-modal
+	width: 400px
+	padding: 20px
+	h3
+		font-size: 1.1em
+		margin-bottom: 10px
+	textarea
+		width: 385px
+	p
+		width: 230px
+		float: left
+		font-size: 11px
+		color: #999
+		line-height: 13px
+		margin: 10px 0 0
+	input[type="submit"]
+		background: #ffa801 url(../images/icons/recommendWhite.png) no-repeat 7px 50%
+		color: #fff
+		font-size: 12px
+		float: right
+		margin-top: 15px
+		padding: 10px 12px 10px 27px

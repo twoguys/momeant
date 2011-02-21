@@ -72,7 +72,9 @@ Feature "A user can acquire a story" do
   
   Scenario "A user purchases a non-free story that they can afford" do
     given_a(:user_with_money)
-    given_a(:story)
+    Given "A story that costs 10 credits" do
+      @story = Factory :story, :price => 10
+    end
     
     given_im_signed_in_as(:user_with_money)
 

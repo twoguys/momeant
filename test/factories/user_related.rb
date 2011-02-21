@@ -23,7 +23,7 @@ Factory.define :admin, :parent => :email_confirmed_user do |admin|
 end
 
 Factory.define :user_with_money, :parent => :email_confirmed_user do |user|
-  user.money_available        5.00
+  user.money_available        500
 end
 
 Factory.define :subscription do |subscription|

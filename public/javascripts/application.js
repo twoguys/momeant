@@ -1,6 +1,7 @@
 function setup_tooltips() {
 	$('.tooltipped').tipsy();
 	$('.tooltipped-n').tipsy({gravity:'s'});
+	$('.tooltipped-w').tipsy({gravity:'e'});
 }
 
 function setup_tab_switching() {
@@ -22,11 +23,31 @@ function tag_deletions() {
 	});
 }
 
+function setup_signup_modal() {
+	$('#join').click(function() {
+		var $modal = $('#join-login-modal');
+		$modal.stop().fadeIn('fast');
+		return false;
+	});
+	$('#join-login-modal .cover').click(function() {
+		$('#join-login-modal').stop().fadeOut('fast');
+	});
+	$(document).keyup(function(e) {
+	  if (e.keyCode == 27) { $('#join-login-modal').stop().fadeOut('fast'); } // escape
+	});
+}
+
+function setup_topics_menu() {
+	
+}
+
 $(document).ready(function() {
 	setup_tooltips();
 	setup_tab_switching();
 	setup_placeholder_text();
 	tag_deletions();
+	setup_signup_modal();
+	setup_topics_menu();
 });
 
 function log(message) {

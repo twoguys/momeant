@@ -30,12 +30,15 @@ Repo::Application.routes.draw do
     get :render_page_theme, :on => :collection
     get :tagged_with, :on => :collection
     get :search, :on => :collection
+    get :random, :on => :collection
     
     resources :pages, :only => [:create, :update, :destroy] do
       post :add_or_update_image, :on => :member
     end
   end
   match "/stories/tagged_with/:tag",    :to => "stories#tagged_with",  :as => :stories_tagged_with
+  
+  match "/topics/:name", :to => "topics#show", :as => :topic
   
   match '/credits', :to => "deposits#index", :as => :credits
   match '/credits/buy', :to => "deposits#create", :as => :deposit

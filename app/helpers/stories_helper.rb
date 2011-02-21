@@ -4,9 +4,9 @@ module StoriesHelper
   def bookmark_button(story)
     if current_user
       if current_user.has_bookmarked?(story)
-        button_to("unbookmark story", unbookmark_story_path(story), :method => :delete, :class => "unbookmark tooltipped", :title => "Unbookmark?")
+        button_to("unbookmark story", unbookmark_story_path(story), :method => :delete, :class => "unbookmark tooltipped-w", :title => "Unbookmark?")
       else
-        button_to("bookmark story", bookmark_story_path(story), :class => "bookmark tooltipped", :title => "Bookmark?")
+        button_to("bookmark story", bookmark_story_path(story), :class => "bookmark tooltipped-w", :title => "Bookmark?")
       end
     end
   end
@@ -18,8 +18,10 @@ module StoriesHelper
       elsif current_user.recommendation_limit_reached?
         "Recommendation limit reached"
       else
-        link_to(pluralize(story.recommendations.count, "recommendation"), recommend_story_path(story), :method => :post, :class => "recommend tooltipped", :title => "Recommend?")
+        link_to(pluralize(story.recommendations.count, "recommendation"), "#recommend-modal", :class => "recommend tooltipped", :title => "Recommend?")
       end
+    else
+      link_to(pluralize(story.recommendations.count, "recommendation"), "#", :class => "recommend disabled tooltipped", :title => "Login to recommend")
     end
   end
   
@@ -30,6 +32,8 @@ module StoriesHelper
       else
         link_to(pluralize(story.likes.count, "heart"), like_story_path(story), :method => :post, :class => "like tooltipped", :title => "Like?")
       end
+    else
+      link_to(pluralize(story.likes.count, "heart"), "#", :class => "like disabled tooltipped", :title => "Login to like")
     end
   end
   
@@ -49,14 +53,14 @@ module StoriesHelper
     elsif story.free?
       link_to("acquire story for free", purchase_story_path(story), :method => :post, :class => "free", :class => "tooltipped", :title => "Acquire")
     else
-      link_to("buy story for #{@story.price}", purchase_story_path(story), :method => :post, :class => "buy-it", :class => "tooltipped", :title => "Buy")
+      link_to("buy story for #{@story.price}", purchase_story_path(story), :method => :post, :class => "buy-it tooltipped", :title => "Buy")
     end
   end
   
   def topic_checkbox(topic, story, all_topics)
     content_tag(:li, :class => "topic") do
       html = check_box_tag "topics[#{topic.id}]", 1, story.topics.include?(topic), "topic-id" => topic.id
-      html += topic.name
+      html += label_tag "topics_#{topic.id}", topic.name
       html += topic_children_checkboxes(topic, story, all_topics)
     end
   end

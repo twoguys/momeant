@@ -1,17 +1,20 @@
+- content_for :head do
+  = javascript_include_tag "stories/preview"
+
 = bookmark_button(@story)
+- if @story.owner?(current_user)
+  - if @story.draft?
+    .banner
+      - if @story.valid?
+        %span Your story is still in draft state (no one else can see it). Once you're ready to make it public,
+        = button_to("Publish this story", publish_story_path(@story))
+      - else
+        %span Before you can publish your story, please #{link_to("edit it", edit_story_path(@story))} and fix these issues:
+        %ul
+          - @story.errors.full_messages.each do |msg|
+            %li= msg
+  = link_to("Edit your story", edit_story_path(@story), :class => "edit-story")
 .story-preview
-  - if @story.owner?(current_user)
-    - if @story.draft?
-      .banner
-        - if @story.valid?
-          %span Your story is still in draft state (no one else can see it). Once you're ready to make it public,
-          = button_to("Publish this story", publish_story_path(@story))
-        - else
-          %span Before you can publish your story, please #{link_to("edit it", edit_story_path(@story))} and fix these issues:
-          %ul
-            - @story.errors.full_messages.each do |msg|
-              %li= msg
-    = link_to("Edit your story", edit_story_path(@story), :class => "edit")
   .preview.clearfix
     .thumbnail
       - if @story.thumbnail
@@ -19,7 +22,17 @@
         = render :partial => "stories/page_themes/#{@page.partial_name}", :locals => {:size => "large"}
     .actions
       = like_button(@story)
+
       = recommend_button(@story)
+      - if current_user && !current_user.has_recommended?(@story)
+        .hidden
+          #recommend-modal.clearfix
+            %h3 Tell others why you recommend this story
+            = form_tag recommend_story_path(@story) do
+              = text_area_tag :comment
+              %p Help your subscribers discover new content by telling them why you recommend this story. Thanks!
+              = submit_tag "Recommend story"
+      
       = story_buy_view_link(@story)
     .price= story_price(@story)
   .metadata
@@ -33,7 +46,7 @@
     .excerpt= @story.excerpt
     .topics
       - @story.topics.each do |topic|
-        = link_to(topic.name, "#", :class => topic.name)
+        = link_to(topic.name, topic_path(topic), :class => topic.name)
     .tags
       - @story.tags.each do |tag|
         .tag
