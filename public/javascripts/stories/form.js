@@ -211,15 +211,14 @@ var story_page_editor = function() {
 	this.set_current_page = function(new_page) {
 		this.page = new_page;
 		$('#page_info .current').text(new_page);
-		if (new_page == 1) {
+		if (new_page == 1)
 			pages_editor.hide_previous_page_button();
-		} else if (new_page == 2) {
+		else
 			pages_editor.show_previous_page_button();
-		} else if (new_page == 9) {
-			pages_editor.show_next_page_button();
-		} else if (new_page == 10) {
+		if (new_page == 10)
 			pages_editor.hide_next_page_button();
-		}
+		else
+			pages_editor.show_next_page_button();
 	};
 	
 	this.show_previous_page_button = function() {

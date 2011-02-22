@@ -817,7 +817,7 @@ form.new_story, form.edit_story, .story-form {
       float: left; }
   #page-editor #previous-page, #page-editor #next-page {
     width: 100px;
-    height: 100px;
+    height: 140px;
     text-indent: -9999px;
     background: transparent url(../images/next-previous-arrows.png) no-repeat 0 0;
     position: fixed;
@@ -892,8 +892,13 @@ a.edit-story {
     width: 630px; }
     .story-preview .preview .thumbnail {
       height: 420px;
+      width: 100%;
       display: table;
       background-color: white; }
+      .story-preview .preview .thumbnail .inner {
+        height: 100%;
+        width: 100%;
+        display: table; }
       .story-preview .preview .thumbnail .title div, .story-preview .preview .thumbnail .pullquote p {
         display: table-cell;
         vertical-align: middle;
@@ -906,7 +911,13 @@ a.edit-story {
       .story-preview .preview .thumbnail p {
         font-size: 16px;
         font-weight: 300;
-        text-align: left; }
+        text-align: left;
+        display: table-cell;
+        vertical-align: middle;
+        text-align: center; }
+      .story-preview .preview .thumbnail .image {
+        width: 100%;
+        height: 100%; }
       .story-preview .preview .thumbnail .split .image, .story-preview .preview .thumbnail .split .text {
         width: 315px;
         float: left; }
@@ -1159,8 +1170,9 @@ a.edit-story {
         padding: 40px 5px;
         height: 110px;
         font-weight: bold; }
-      .story-viewer #previewer ul.pages li.full_image .inner img {
-        width: 288px; }
+      .story-viewer #previewer ul.pages li.full_image .inner, .story-viewer #previewer ul.pages li.full_image .image {
+        width: 100%;
+        height: 100%; }
       .story-viewer #previewer ul.pages li.pullquote .inner {
         padding: 5px;
         font-size: 0.7em;
@@ -1215,8 +1227,17 @@ a.edit-story {
       top: 35%; }
     .story-viewer ul#pages li.full_image {
       text-align: center; }
-      .story-viewer ul#pages li.full_image img {
-        max-width: 100%; }
+      .story-viewer ul#pages li.full_image .inner {
+        height: 100%; }
+      .story-viewer ul#pages li.full_image .image {
+        width: 100%;
+        height: 100%;
+        background-repeat: no-repeat;
+        background-position: center center;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover; }
       .story-viewer ul#pages li.full_image .caption {
         position: absolute;
         padding: 20px;
@@ -1300,6 +1321,53 @@ a.edit-story {
     right: 0; }
     .story-viewer #next-page .button {
       background-position: -138px 0; }
+
+ul.stories li.story {
+  background-color: white;
+  float: left;
+  height: 300px;
+  margin-bottom: 25px;
+  margin-right: 25px;
+  width: 300px;
+  -moz-box-shadow: 3px 3px 5px #bbbbbb; }
+ul.stories li.story.third {
+  margin-right: 0px; }
+ul.stories a.thumbnail .image {
+  width: 288px;
+  height: 180px;
+  margin: 5px; }
+ul.stories .title a {
+  color: black;
+  font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  line-height: 15px;
+  margin: 0 10px; }
+ul.stories .author {
+  color: black;
+  font-family: Georgia, serif;
+  font-style: italic;
+  border-bottom: 1px dotted black;
+  font-size: 11px;
+  letter-spacing: 0.3px;
+  line-height: 20px;
+  margin: 0 10px;
+  padding-bottom: 4px; }
+  ul.stories .author a {
+    color: #00aeef; }
+ul.stories .recommendations {
+  float: right;
+  margin-right: 10px; }
+ul.stories .excerpt {
+  font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
+  font-weight: 100;
+  font-size: 11px;
+  margin: 10px;
+  line-height: 15px;
+  height: 45px;
+  width: 250px;
+  overflow: hidden; }
 
 .tag, a.tag {
   background-color: white;
@@ -1483,51 +1551,6 @@ h2 {
   padding: 11px 13px 9px;
   text-transform: uppercase;
   clear: both; }
-
-ul.stories li.story {
-  background-color: white;
-  float: left;
-  height: 300px;
-  margin-bottom: 25px;
-  margin-right: 25px;
-  width: 300px;
-  -moz-box-shadow: 3px 3px 5px #bbbbbb; }
-ul.stories li.story.third {
-  margin-right: 0px; }
-ul.stories a.thumbnail img {
-  margin: 5px; }
-ul.stories .title a {
-  color: black;
-  font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.2px;
-  line-height: 15px;
-  margin: 0 10px; }
-ul.stories .author {
-  color: black;
-  font-family: Georgia, serif;
-  font-style: italic;
-  border-bottom: 1px dotted black;
-  font-size: 11px;
-  letter-spacing: 0.3px;
-  line-height: 20px;
-  margin: 0 10px;
-  padding-bottom: 4px; }
-  ul.stories .author a {
-    color: #00aeef; }
-ul.stories .recommendations {
-  float: right;
-  margin-right: 10px; }
-ul.stories .excerpt {
-  font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
-  font-weight: 100;
-  font-size: 11px;
-  margin: 10px;
-  line-height: 15px;
-  height: 45px;
-  width: 250px;
-  overflow: hidden; }
 
 #join-login-modal {
   display: none;

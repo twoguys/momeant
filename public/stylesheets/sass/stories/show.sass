@@ -90,9 +90,10 @@
 				padding: 40px 5px
 				height: 110px
 				font-weight: bold
-			li.full_image .inner
-				img
-					width: 288px
+			li.full_image
+				.inner, .image
+					width: 100%
+					height: 100%
 			li.pullquote .inner
 				padding: 5px
 				font-size: 0.7em
@@ -151,8 +152,14 @@
 			top: 35%
 		li.full_image
 			text-align: center
-			img
-				max-width: 100%
+			.inner
+				height: 100%
+			.image
+				width: 100%
+				height: 100%
+				background-repeat: no-repeat
+				background-position: center center
+				@include bgcover
 			.caption
 				position: absolute
 				padding: 20px

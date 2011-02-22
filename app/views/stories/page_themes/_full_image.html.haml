@@ -19,6 +19,7 @@
 
 - size ||= "original"
 .inner
-  = image_tag(@page.image.url(size.to_s)) if @page.image
+  - if @page.image
+    .image{:style => "background-image: url(#{@page.image.url(size.to_s)})"}
   - if @page.text && size == "original"
     .caption= @page.text
