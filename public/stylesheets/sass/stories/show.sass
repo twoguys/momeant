@@ -5,9 +5,25 @@
 	height: 100%
 	overflow: hidden
 	
+	#back-to-preview
+		position: absolute
+		top: 0
+		left: 0
+		background: #fff url(../images/icons/fullscreenOff.png) no-repeat 10px 50%
+		color: #000
+		font-weight: bold
+		display: inline-block
+		padding: 8px 10px 8px 32px
+		-webkit-border-bottom-right-radius: 5px
+		-moz-border-radius-bottomright: 5px
+		border-bottom-right-radius: 5px
+		z-index: 3
+	#previewer.open .handle
+		background-position: 50% -22px
+	#previewer.closed .handle
+		background-position: 50% 0
 	#previewer
 		height: 235px
-		background: transparent url(../images/story-page-previewer-tab.png) no-repeat 50% 0
 		position: fixed
 		left: 0
 		bottom: 0
@@ -15,9 +31,12 @@
 		width: 100%
 		overflow-x: auto
 		overflow-y: hidden
+		.handle
+			height: 20px
+			background: transparent url(../images/story-page-previewer-tab.png) no-repeat
+			cursor: pointer
 		.preview-inner
 			height: 215px
-			margin-top: 20px
 			background-color: #000
 			color: #fff
 			text-shadow: none

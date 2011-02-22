@@ -3,9 +3,25 @@
   width: 100%;
   height: 100%;
   overflow: hidden; }
+  .story-viewer #back-to-preview {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: white url(../images/icons/fullscreenOff.png) no-repeat 10px 50%;
+    color: black;
+    font-weight: bold;
+    display: inline-block;
+    padding: 8px 10px 8px 32px;
+    -webkit-border-bottom-right-radius: 5px;
+    -moz-border-radius-bottomright: 5px;
+    border-bottom-right-radius: 5px;
+    z-index: 3; }
+  .story-viewer #previewer.open .handle {
+    background-position: 50% -22px; }
+  .story-viewer #previewer.closed .handle {
+    background-position: 50% 0; }
   .story-viewer #previewer {
     height: 235px;
-    background: transparent url(../images/story-page-previewer-tab.png) no-repeat 50% 0;
     position: fixed;
     left: 0;
     bottom: 0;
@@ -13,9 +29,12 @@
     width: 100%;
     overflow-x: auto;
     overflow-y: hidden; }
+    .story-viewer #previewer .handle {
+      height: 20px;
+      background: transparent url(../images/story-page-previewer-tab.png) no-repeat;
+      cursor: pointer; }
     .story-viewer #previewer .preview-inner {
       height: 215px;
-      margin-top: 20px;
       background-color: black;
       color: white;
       text-shadow: none;

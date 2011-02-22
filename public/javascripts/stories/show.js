@@ -8,7 +8,7 @@ var story_viewer = function() {
 	this.initialize = function() {
 		viewer.total_pages = parseInt($('#number-of-pages').text());
 		
-//		$('#previewer').hover(viewer.open_previewer, viewer.close_previewer);
+		$('#previewer .handle').click(viewer.toggle_previewer);
 		$('#next-page').hover(viewer.show_next_button, viewer.hide_next_button);
 		$('#previous-page').hover(viewer.show_prev_button, viewer.hide_prev_button);
 		
@@ -17,17 +17,32 @@ var story_viewer = function() {
 		
 		$('#previewer ul.pages li').click(viewer.previewer_page_clicked);
 		
+		$('ul#pages, #previous-page, #next-page').click(viewer.close_previewer);
+		
 		update_previewer_width();
 		viewer.set_active_preview(1);
-//		hide_controls_after_initial_delay();
+		hide_controls_after_initial_delay();
 	};
 	
 	this.open_previewer = function() {
-		$('#previewer').stop().animate({bottom: '0px'}, 500);
+		if (!viewer.previewer_open) {
+			$('#previewer').stop().animate({bottom: '0px'}, 500).removeClass('closed').addClass('open');
+			viewer.previewer_open = true;
+		}
 	};
 	
 	this.close_previewer = function() {
-		$('#previewer').stop().animate({bottom: '-215px'}, 500);
+		if (viewer.previewer_open) {
+			$('#previewer').stop().animate({bottom: '-215px'}, 500).removeClass('open').addClass('closed');
+			viewer.previewer_open = false;
+		}
+	};
+	
+	this.toggle_previewer = function() {
+		if (viewer.previewer_open)
+			viewer.close_previewer();
+		else
+			viewer.open_previewer();
 	};
 	
 	this.show_next_button = function() {

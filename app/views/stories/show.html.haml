@@ -16,7 +16,10 @@
   #next-page
     .button{:title => "Next page"} next page
   
-  #previewer
+  = link_to("back to preview", preview_story_path(@story), :id => "back-to-preview")
+  
+  #previewer.open
+    .handle
     .preview-inner
       .info
         .title= @story.title

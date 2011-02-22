@@ -47,7 +47,7 @@ header .insides, #mid .insides, #footer .insides {
   min-height: 600px;
   padding-top: 0; }
   .fullscreen #mid .insides {
-    margin-top: 60px;
+    margin-top: 41px;
     height: 100%; }
 .fullscreen #footer {
   display: none; }
@@ -845,13 +845,14 @@ input.bookmark, input.unbookmark {
   width: 50px;
   height: 55px;
   background: transparent url(../images/bookmark.png) no-repeat 0 -51px;
-  text-indent: -9999px; }
+  text-indent: -9999px;
+  z-index: 3; }
 
 input.unbookmark {
   background-position: 0 2px; }
 
 input.bookmark:active, input.unbookmark:active {
-  top: -12px; }
+  top: -22px; }
 
 .banner {
   padding: 1em 0;
@@ -869,14 +870,15 @@ a.edit-story {
   display: block;
   float: left;
   font-size: 13px;
-  margin-left: 540px;
-  padding: 5px;
-  top: 206px;
-  z-index: 1000; }
+  margin-left: 527px;
+  padding: 5px 10px;
+  z-index: 1000;
+  position: absolute;
+  top: -6px; }
 
 .story-preview {
   font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
-  margin-top: 0px;
+  margin-top: 20px;
   position: relative; }
   .story-preview a.edit {
     font-size: 15px; }
@@ -1072,9 +1074,25 @@ a.edit-story {
   width: 100%;
   height: 100%;
   overflow: hidden; }
+  .story-viewer #back-to-preview {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: white url(../images/icons/fullscreenOff.png) no-repeat 10px 50%;
+    color: black;
+    font-weight: bold;
+    display: inline-block;
+    padding: 8px 10px 8px 32px;
+    -webkit-border-bottom-right-radius: 5px;
+    -moz-border-radius-bottomright: 5px;
+    border-bottom-right-radius: 5px;
+    z-index: 3; }
+  .story-viewer #previewer.open .handle {
+    background-position: 50% -22px; }
+  .story-viewer #previewer.closed .handle {
+    background-position: 50% 0; }
   .story-viewer #previewer {
     height: 235px;
-    background: transparent url(../images/story-page-previewer-tab.png) no-repeat 50% 0;
     position: fixed;
     left: 0;
     bottom: 0;
@@ -1082,9 +1100,12 @@ a.edit-story {
     width: 100%;
     overflow-x: auto;
     overflow-y: hidden; }
+    .story-viewer #previewer .handle {
+      height: 20px;
+      background: transparent url(../images/story-page-previewer-tab.png) no-repeat;
+      cursor: pointer; }
     .story-viewer #previewer .preview-inner {
       height: 215px;
-      margin-top: 20px;
       background-color: black;
       color: white;
       text-shadow: none;
