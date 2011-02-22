@@ -37,8 +37,12 @@ function setup_signup_modal() {
 	});
 }
 
-function setup_topics_menu() {
-	
+function setup_recommend_modal() {
+	$("a.recommend:not(.disabled)").fancybox({
+		onComplete: function() {
+			$("#recommend-modal textarea").focus();
+		}
+	});
 }
 
 $(document).ready(function() {
@@ -47,7 +51,8 @@ $(document).ready(function() {
 	setup_placeholder_text();
 	tag_deletions();
 	setup_signup_modal();
-	setup_topics_menu();
+	setup_recommend_modal();
+	$("a.disabled").click(function() {return false;})
 });
 
 function log(message) {

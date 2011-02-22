@@ -24,7 +24,11 @@
       .info
         .title= @story.title
         .author by #{link_to(@story.user.name, user_path(@story.user))}
-        .excerpt= @story.excerpt
+        .excerpt= truncate(@story.excerpt, :length => 250)
+        .actions
+          = like_button(@story, true)
+          = recommend_button(@story, true)
+          = render "stories/recommend_modal"
       %ul.pages
         - @story.pages.each do |page|
           - @page = page

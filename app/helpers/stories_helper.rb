@@ -11,29 +11,31 @@ module StoriesHelper
     end
   end
   
-  def recommend_button(story)
+  def recommend_button(story, short = false)
+    text = short ? story.recommendations.count : pluralize(story.recommendations.count, "recommendation")
     if current_user
       if current_user.has_recommended?(story)
-        link_to(pluralize(story.recommendations.count, "recommendation"), unrecommend_story_path(story), :method => :delete, :class => "unrecommend tooltipped", :title => "Unrecommend?")
+        link_to(text, unrecommend_story_path(story), :method => :delete, :class => "unrecommend tooltipped", :title => "Unrecommend?")
       elsif current_user.recommendation_limit_reached?
         "Recommendation limit reached"
       else
-        link_to(pluralize(story.recommendations.count, "recommendation"), "#recommend-modal", :class => "recommend tooltipped", :title => "Recommend?")
+        link_to(text, "#recommend-modal", :class => "recommend tooltipped", :title => "Recommend?")
       end
     else
-      link_to(pluralize(story.recommendations.count, "recommendation"), "#", :class => "recommend disabled tooltipped", :title => "Login to recommend")
+      link_to(text, "#", :class => "recommend disabled tooltipped", :title => "Login to recommend")
     end
   end
   
-  def like_button(story)
+  def like_button(story, short = false)
+    text = short ? story.likes.count : pluralize(story.likes.count, "heart")
     if current_user
       if current_user.has_liked?(story)
-        link_to(pluralize(story.likes.count, "heart"), unlike_story_path(story), :method => :delete, :class => "liked tooltipped", :title => "Unlike?")
+        link_to(text, unlike_story_path(story), :method => :delete, :class => "liked tooltipped", :title => "Unlike?")
       else
-        link_to(pluralize(story.likes.count, "heart"), like_story_path(story), :method => :post, :class => "like tooltipped", :title => "Like?")
+        link_to(text, like_story_path(story), :method => :post, :class => "like tooltipped", :title => "Like?")
       end
     else
-      link_to(pluralize(story.likes.count, "heart"), "#", :class => "like disabled tooltipped", :title => "Login to like")
+      link_to(text, "#", :class => "like disabled tooltipped", :title => "Login to like")
     end
   end
   

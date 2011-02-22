@@ -1,0 +1,8 @@
+- if current_user && !current_user.has_recommended?(@story)
+  .hidden
+    #recommend-modal.clearfix
+      %h3 Tell others why you recommend this story
+      = form_tag recommend_story_path(@story) do
+        = text_area_tag :comment
+        %p Help your subscribers discover new content by telling them why you recommend this story. Thanks!
+        = submit_tag "Recommend story"
