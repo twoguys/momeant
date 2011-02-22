@@ -17,11 +17,7 @@ Feature "A user should be able to see the home page" do
 
     when_i_visit_page(:home)
     
-    Then "I should see a header with 'Momeant' in it" do
-      assert page.has_content? "Welcome to Momeant"
-    end
-    
-    And "I should see an editorial section" do
+    Then "I should see an editorial section" do
       assert page.has_selector? "section#editorial"
     end
     

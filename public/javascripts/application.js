@@ -39,6 +39,7 @@ function setup_signup_modal() {
 
 function setup_recommend_modal() {
 	$("a.recommend:not(.disabled)").fancybox({
+		scrolling: 'no',
 		onComplete: function() {
 			$("#recommend-modal textarea").focus();
 		}

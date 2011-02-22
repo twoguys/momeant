@@ -11,12 +11,11 @@ Feature "A user should be able to sign up, sign in and sign out" do
     when_i_visit_page(:home)
     
     Then "I can see the sign up and sign in links" do
-      assert find_link("Sign up").visible?
-      assert find_link("Sign in").visible?
+      assert find("#join").visible?
     end 
 
     When "I click the sign up link" do
-      click_link "Sign up"
+      click_link "join"
     end
 
     then_i_should_be_on_page(:new_user_registration)
@@ -94,9 +93,8 @@ Feature "A user should be able to sign up, sign in and sign out" do
       click_link "Sign out"
     end
     
-    Then "I should be logged out and see a sign in link" do
-      assert page.has_content?("Sign in")
-      assert page.has_content?("Sign up")
+    Then "I should be logged out and see the join/login button" do
+      assert find("#join").visible?
     end
   end
 end
