@@ -50,7 +50,7 @@ class User < ActiveRecord::Base
   end
   
   def can_afford?(amount)
-    self.money_available >= amount
+    self.credits >= amount
   end
   
   def purchase(story)
@@ -58,7 +58,7 @@ class User < ActiveRecord::Base
     
     purchase = Purchase.create(:amount => story.price, :story_id => story.id, :payer_id => self.id, :payee_id => story.user_id)
     unless story.free?
-      self.decrement!(:money_available, story.price)
+      self.decrement!(:credits, story.price)
       story.user.increment!(:credits, story.price)
     end
     story.increment!(:purchased_count)

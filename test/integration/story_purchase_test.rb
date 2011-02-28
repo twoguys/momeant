@@ -102,10 +102,10 @@ Feature "A user can acquire a story" do
     end
     
     And "My available money should be decremented the cost of the story" do
-      users_original_money_available = @user_with_money.money_available
+      users_original_credits = @user_with_money.credits
       # grab the user out of the DB again to refresh money available
       @user_with_money = User.find(@user_with_money.id)
-      assert_equal @user_with_money.money_available, users_original_money_available - @story.price
+      assert_equal @user_with_money.credits, users_original_credits - @story.price
     end
     
     And "The Creator's credits should be incremented the cost of the story" do
