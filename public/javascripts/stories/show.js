@@ -22,6 +22,8 @@ var story_viewer = function() {
 		update_previewer_width();
 		viewer.set_active_preview(1);
 		hide_controls_after_initial_delay();
+		
+		setup_key_bindings();
 	};
 	
 	this.open_previewer = function() {
@@ -63,6 +65,16 @@ var story_viewer = function() {
 
 	this.hide_prev_button = function() {
 		$('#previous-page .button').stop().animate({opacity: 0});
+	};
+	
+	var setup_key_bindings = function() {
+		$(document).keyup(function(e) {
+		  if (e.keyCode == 27) { viewer.toggle_previewer(); }   // esc
+			if (e.keyCode == 39) { viewer.goto_next_page(); } 		// right arrow
+			if (e.keyCode == 37) { viewer.goto_prev_page(); }			// left arrow
+			//if (e.keyCode == 40) { viewer.close_previewer(); }		// down arrow
+			//if (e.keyCode == 38) { viewer.open_previewer(); }			// up arrow
+		});
 	};
 	
 	this.previewer_page_clicked = function() {

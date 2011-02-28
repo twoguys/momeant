@@ -41,6 +41,10 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :remember_me, :avatar, :credits, :stored_in_braintree
   
+  def to_param
+    "#{self.id}-#{self.name.gsub(/[^a-zA-Z]/,"-")}"
+  end
+  
   def name
     "#{self.first_name} #{self.last_name}"
   end

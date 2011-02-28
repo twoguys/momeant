@@ -5,16 +5,16 @@ Syntax error: Undefined mixin 'rounded'.
         from line 1 of /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/stories.sass
 
 3: @import "stories/show"
-4: 
-5: ul.stories
-6: 	li.story
-7: 		background-color: white
-8: 		float: left
-9: 		height: 300px
-10: 		margin-bottom: 25px
-11: 		margin-right: 25px
-12: 		width: 300px
-13: 		-moz-box-shadow: 3px 3px 5px #BBBBBB
+4: @import "stories/gallery"
+5: 
+6: .thumbnail
+7: 	width: 630px
+8: 	height: 420px
+9: 	width: 100%
+10: 	display: table
+11: 	background-color: #fff
+12: 	.inner
+13: 		height: 100%
 
 Backtrace:
 /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/stories/form.sass:8:in `rounded'
@@ -111,4 +111,4 @@ script/rails:6
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Syntax error: Undefined mixin 'rounded'.\A         on line 8 of /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/stories/form.sass, in `rounded'\A         from line 8 of /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/stories/form.sass\A         from line 1 of /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/stories.sass\A \A 3: @import \"stories/show\"\A 4: \A 5: ul.stories\A 6: 	li.story\A 7: 		background-color: white\A 8: 		float: left\A 9: 		height: 300px\A 10: 		margin-bottom: 25px\A 11: 		margin-right: 25px\A 12: 		width: 300px\A 13: 		-moz-box-shadow: 3px 3px 5px #BBBBBB"; }
+  content: "Syntax error: Undefined mixin 'rounded'.\A         on line 8 of /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/stories/form.sass, in `rounded'\A         from line 8 of /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/stories/form.sass\A         from line 1 of /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/stories.sass\A \A 3: @import \"stories/show\"\A 4: @import \"stories/gallery\"\A 5: \A 6: .thumbnail\A 7: 	width: 630px\A 8: 	height: 420px\A 9: 	width: 100%\A 10: 	display: table\A 11: 	background-color: #fff\A 12: 	.inner\A 13: 		height: 100%"; }

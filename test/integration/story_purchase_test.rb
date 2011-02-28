@@ -51,12 +51,14 @@ Feature "A user can acquire a story" do
       assert_equal @free_story.purchased_count, original_count + 1
     end
     
-    when_i_visit_page(:library)
-    
-    then_i_should_be_on_page(:library)
-    
-    Then "I should see a link to the story I just acquired" do
-      assert find_link(@free_story.title).visible?
+    When "I visit my profile page" do
+      visit user_path(@email_confirmed_user)
+    end
+        
+    Then "I should see a link under my purchases to the story I just acquired" do
+      within ".purchases" do
+        assert find_link(@free_story.title).visible?
+      end
     end
     
     # And "I should have received an email with my purchase receipt" do

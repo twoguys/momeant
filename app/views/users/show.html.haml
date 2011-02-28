@@ -1,18 +1,17 @@
 - content_for :head do
   = javascript_include_tag "users/show"
 
-.user-profile
-  - if @user.is_a?(Creator)
-    .created-stories
-      %ul
-        = render @user.created_stories[0..3]
+.user-profile{:class => @user.is_a?(Creator) ? "creator" : ""}
+  .top{:class => @user.is_a?(Creator) ? "created-stories" : "curatorial-stream"}
+    = render "stories/gallery"
   
-  .user-info
-    .name= @user.name
-    .tagline tagline
-    .actions
-      = subscribe_button(@user)
-  
+    .user-info
+      .name= @user.name
+      .tagline tagline
+      .actions
+        = subscribe_button(@user)
+    .clear
+
   .subscribers
     .count
       .number= @user.subscribers.count
@@ -27,26 +26,34 @@
   
   .recommendation-stream
     .tabs
-      = link_to("recommended by #{you_or_user_names(@user)} subscriptions", "#", :class => "active", :id => "subscribed-to-recommendations")
-      = link_to("recommended by Momeant", "#", :id => "momeant-recommendations")
+      = link_to("subscribed", "#", :class => "active", :id => "subscribed-to-recommendations")
+      = link_to("Mo&#149;meant".html_safe, "#", :id => "momeant-recommendations")
       .clear
   
     %ul.subscribed-to-stream.stories
-      - @user.recommended_stories_from_people_i_subscribe_to[0..5].each do |story|
-        %li= link_to(story.title, preview_story_path(story))
+      - @user.recommended_stories_from_people_i_subscribe_to[0..3].each do |story|
+        %li
+          %a.thumbnail{:href => preview_story_path(story)}
+            - if story.thumbnail
+              - @page = story.thumbnail
+              = render :partial => "stories/page_themes/#{@page.partial_name}", :locals => {:size => "petite"}
+          .info
+            = link_to(story.title, preview_story_path(story), :class => "title")
+            .author by #{story.user.name}
+          .price= story.price
   
     %ul.momeant-recommended-stream.stories.hidden
-      - @user.stories_similar_to_my_bookmarks_and_purchases[0..5].each do |story|
+      - @user.stories_similar_to_my_bookmarks_and_purchases[0..3].each do |story|
         %li= link_to(story.title, preview_story_path(story))
-        
-  .curatorial-stream
-    %h3 #{@user.name}'s recommended stories
-    %ul.stories
-      - @user.recommendations[0..7].each do |recommendation|
-        %li= link_to(recommendation.story.title, preview_story_path(recommendation.story))
   
   .comments Comments (coming soon...)
 
+  - if @user.is_a?(Creator)
+    .curatorial-stream
+      %h3 My curatorial stream
+      %ul.stories
+        = render @user.recommended_stories
+              
   - if me?(@user)
     .personal-library
       .tabs
@@ -54,11 +61,8 @@
         = link_to("your bookmarks", "#", :id => "your-bookmarks")
       %ul.purchases
         = render @user.stories
-      %ul.bookmarks.hidden
-        - @user.bookmarks.each do |bookmark|
-          %li= link_to(bookmark.story.title, preview_story_path(bookmark.story))
-
-    = render "invitations/form" if can? :invite_creator, Invitation
+      %ul.bookmarks.stories.hidden
+        = render @user.bookmarked_stories
 
     - if @user.is_admin?
       .admin
