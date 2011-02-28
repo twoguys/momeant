@@ -8,9 +8,12 @@ Feature "A user wants to publicly curate for others", :testcase_class => FullSta
   as_a "user"
   i_want_to "be able to recommend and like stories and see the list later"
   
-  Scenario "A user recommends a story they like" do
+  Scenario "A user recommends a story" do
     given_a(:email_confirmed_user)
     given_a(:story)
+    Given "I own the story" do
+      Purchase.create(:story => @story, :payer => @email_confirmed_user)
+    end
     
     given_im_signed_in_as(:email_confirmed_user)
     
@@ -108,6 +111,9 @@ Feature "A user wants to publicly curate for others", :testcase_class => FullSta
   Scenario "A user likes a story" do
     given_a(:email_confirmed_user)
     given_a(:story)
+    Given "I own the story" do
+      Purchase.create(:story => @story, :payer => @email_confirmed_user)
+    end
     
     given_im_signed_in_as(:email_confirmed_user)
     
