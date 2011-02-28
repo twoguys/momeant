@@ -3,4 +3,4 @@
     .topic{:class => @topic.name.downcase}
 
 %ul.stories
-  = render @topic.stories
+  = render @topic.stories.published.newest_first
