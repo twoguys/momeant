@@ -2,10 +2,11 @@
   = javascript_include_tag "stories/form", "colorpicker"
   = stylesheet_link_tag "colorpicker"
 
-.copy
-  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+.fullscreen-hidden
+  .new-story-copy
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-= link_to "Preview story", preview_story_path(@story), :id => "preview-link"
+  = link_to "Preview story", preview_story_path(@story), :id => "preview-link"
 
 .form.story-form
   #story-spinner Saving story...
@@ -58,8 +59,8 @@
             = topic_checkbox(topic, @story, @topics)
       
       %li#page-editor.hidden
-        = link_to("Close Page Editor", "#", :class => "button", :id => "close-page-editor-button")
         #page-type-chooser
+          = link_to("Close Page Editor", "#", :class => "button", :id => "close-page-editor-button")
           #page-type-chooser-button
             .inner change page layout
           .info choose a page layout

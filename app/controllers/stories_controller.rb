@@ -115,7 +115,7 @@ class StoriesController < ApplicationController
   
   def recommended
     @limit = User::RECOMMENDATIONS_LIMIT
-    @recommendations = current_user.recommendations
+    @stories = current_user.recommended_stories
   end
   
   def like

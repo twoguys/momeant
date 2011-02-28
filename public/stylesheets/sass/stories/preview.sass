@@ -23,24 +23,23 @@ input.bookmark:active, input.unbookmark:active
 		font-weight: normal
 		font-size: 12px
 		margin-top: 5px
-a.edit-story
-	background: none repeat scroll 0 0 white
-	display: block
-	float: left
-	font-size: 13px
-	font-weight: bold
-	margin-left: 70px
-	padding: 8px 10px
-	z-index: 1000
-	position: absolute
-	top: 1px
-	text-transform: uppercase
 .story-preview
 	font-family: $block
 	margin-top: 20px
 	position: relative
-	a.edit
-		font-size: 15px
+	a.edit-story
+		background: none repeat scroll 0 0 white
+		display: block
+		float: left
+		font-size: 13px
+		font-weight: bold
+		margin-left: 70px
+		padding: 8px 10px
+		z-index: 10
+		position: absolute
+		top: 1px
+		right: 0
+		text-transform: uppercase
 	.preview
 		float: left
 		position: relative
@@ -61,10 +60,13 @@ a.edit-story
 			border: 5px solid white
 			color: white
 			height: 75px
-			left: -10px
+			left: -17px
 			position: absolute
 			top: -10px
 			width: 75px
+			-webkit-background-clip: padding-box
+			-moz-background-clip: padding-box
+			background-clip: padding-box
 			a, input[type="submit"]
 				font-weight: 700
 				font-size: 24px
@@ -80,13 +82,12 @@ a.edit-story
 				-webkit-text-shadow: none
 				-moz-text-shadow: none
 				text-shadow: none
-				width: 85px
+				width: 75px
 			.view, .free
 				font-size: 18px
 				letter-spacing: 0.6px
 				line-height: 77px
-				margin-left: 14px
-				text-align: left
+				text-align: center
 				text-transform: uppercase
 		.actions
 			padding: 10px 10px 10px 0

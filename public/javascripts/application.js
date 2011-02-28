@@ -63,6 +63,10 @@ function setup_story_gallery() {
 			$('.story-gallery .large-preview').scrollTo(position, 0, {duration: 200});
 		});
 	}
+	if ($('.story-gallery').length > 0) {
+		var story_count = $('.story-gallery .large-preview .pages a').length;
+		$('.story-gallery .large-preview .pages').css('width', story_count * 630);
+	}
 }
 
 $(document).ready(function() {

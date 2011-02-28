@@ -6,9 +6,15 @@
 	background-color: #bbd6e7
 	padding: 3px 6px
 	@include rounded
+	z-index: 3
+.new-story-copy
+	margin-bottom: 20px
+.fullscreen .story-form
+	padding-top: 0
 form.new_story, form.edit_story, .story-form
 	position: relative
 	padding-top: 20px
+	height: 100%
 	fieldset, fieldset ul
 		padding-top: 1px
 	#story-spinner
@@ -131,11 +137,6 @@ form.new_story, form.edit_story, .story-form
 	overflow: hidden
 	text-shadow: none
 	margin-top: -21px
-	#close-page-editor-button
-		position: absolute
-		top: -45px
-		left: 230px
-		z-index: 101
 	#page-type-chooser
 		height: 160px
 		position: absolute
@@ -143,6 +144,16 @@ form.new_story, form.edit_story, .story-form
 		border-bottom: 1px solid #ccc
 		width: 100%
 		z-index: 3
+		#close-page-editor-button
+			position: absolute
+			top: 161px
+			left: 0
+			-webkit-border-bottom-right-radius: 3px
+			-moz-border-radius-bottomright: 3px
+			border-bottom-right-radius: 3px
+			z-index: 2
+		#close-page-editor-button:active
+			top: 161px
 		.info
 			width: 130px
 			height: 80px
@@ -160,12 +171,13 @@ form.new_story, form.edit_story, .story-form
 			margin-left: 214px
 			overflow-x: scroll
 			background-color: #fff
+			z-index: 2
 			ul
 				height: 143px
 				width: 1260px
 			li
 				width: 200px
-				height: 127px
+				height: 124px
 				float: left
 				background-position: 0 -7px
 				background-repeat: no-repeat
@@ -179,6 +191,7 @@ form.new_story, form.edit_story, .story-form
 			bottom: 0
 			height: 40px
 			width: 100%
+			z-index: 1
 			.inner
 				background-color: #fff
 				text-transform: uppercase

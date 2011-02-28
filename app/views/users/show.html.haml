@@ -6,7 +6,9 @@
     = render "stories/gallery"
   
     .user-info
-      .name= @user.name
+      .avatar-name
+        .avatar= image_tag(@user.avatar.url(:thumbnail))
+        .name= @user.name
       .tagline tagline
       .actions
         = subscribe_button(@user)

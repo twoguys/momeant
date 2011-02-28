@@ -7,6 +7,8 @@
           - if story.thumbnail
             - @page = story.thumbnail
             = render :partial => "stories/page_themes/#{@page.partial_name}", :locals => {:size => "large"}
+          - elsif !story.published?
+            .incomplete incomplete story
           .hidden= story.title
           - counter += 1
   .gallery-title
@@ -24,6 +26,8 @@
               - if story.thumbnail 
                 - @page = story.thumbnail
                 = render :partial => "stories/page_themes/#{@page.partial_name}", :locals => {:size => "petite"}
+              - elsif !story.published?
+                .incomplete incomplete story
               - counter += 1
       .scrollbar
         .track

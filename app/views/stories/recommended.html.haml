@@ -8,8 +8,5 @@
       so in order to recommend another story you'll have to
       remove a previous recommendation.
   
-  %ul
-    - @recommendations.each do |recommendation|
-      %li.recommendation
-        %span.story= link_to(recommendation.story.title, preview_story_path(recommendation.story))
-        %span.date #{time_ago_in_words(recommendation.created_at)} ago
+  %ul.stories
+    = render @stories

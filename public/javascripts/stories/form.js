@@ -135,15 +135,13 @@ var story_page_editor = function() {
 	this.open = function() {
 		$('body').addClass('fullscreen');
 		$('#page-editor').removeClass('hidden').siblings().hide();
-		$('#error-explanation').hide();
-		$.scrollTo('61');
+		$.scrollTo('43');
 		return false;
 	};
 	
 	this.close = function() {
 		$('body').removeClass('fullscreen');
 		$('#page-editor').addClass('hidden').siblings().show();
-		$('#error-explanation').show();
 		return false;
 	};
 	
@@ -188,6 +186,7 @@ var story_page_editor = function() {
 		page_number = parseInt(page_number);
 		if (page_number >= 1 && page_number <= 10) {
 			var $page = $('#page_' + page_number);
+			$page.click(pages_editor.hide_page_type_chooser);
 			$page.siblings('.page').hide();
 			$page.show();
 			pages_editor.set_current_page(page_number);

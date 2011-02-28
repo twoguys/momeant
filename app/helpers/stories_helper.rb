@@ -18,8 +18,10 @@ module StoriesHelper
         link_to(text, unrecommend_story_path(story), :method => :delete, :class => "unrecommend tooltipped", :title => "Unrecommend?")
       elsif current_user.recommendation_limit_reached?
         "Recommendation limit reached"
-      else
+      elsif current_user.has_purchased?(story)
         link_to(text, "#recommend-modal", :class => "recommend tooltipped", :title => "Recommend?")
+      else
+        link_to(text, "#", :class => "recommend disabled tooltipped", :title => "Purchase to recommend")
       end
     else
       link_to(text, "#", :class => "recommend disabled tooltipped", :title => "Login to recommend")
@@ -31,8 +33,10 @@ module StoriesHelper
     if current_user
       if current_user.has_liked?(story)
         link_to(text, unlike_story_path(story), :method => :delete, :class => "liked tooltipped", :title => "Unlike?")
-      else
+      elsif current_user.has_purchased?(story)
         link_to(text, like_story_path(story), :method => :post, :class => "like tooltipped", :title => "Like?")
+      else
+        link_to(text, "#", :class => "like disabled tooltipped", :title => "Purchase to like")
       end
     else
       link_to(text, "#", :class => "like disabled tooltipped", :title => "Login to like")
@@ -43,7 +47,7 @@ module StoriesHelper
     if current_user && (story.user == current_user || current_user.stories.include?(story))
       link_to("view", story, :class => "view")
     elsif @story.free?
-      link_to("free", purchase_story_path(story), :class => "free", :method => :post, :class => "tooltipped-n", :title => "Acquire")
+      link_to("free", purchase_story_path(story), :class => "free tooltipped-n", :method => :post, :title => "Acquire")
     else
       link_to(number_with_precision(story.price, :precision => 0), purchase_story_path(story), :method => :post, :class => "buy-it", :class => "tooltipped-n", :title => "Buy")
     end

@@ -78,6 +78,10 @@ class User < ActiveRecord::Base
     Like.where(:user_id => self.id, :story_id => story.id).present?
   end
   
+  def has_purchased?(story)
+    self.stories.include?(story)
+  end
+  
   def recommendation_limit_reached?
     self.recommendations.count == RECOMMENDATIONS_LIMIT
   end

@@ -18,8 +18,9 @@
     - if user_signed_in?
       %li#recommendations
         = link_to("Recommendations", recommended_stories_path, :class => "tooltipped", :title => "Recommendations")
-      %li#create
-        = link_to("Create a Story", new_story_path, :class => "tooltipped", :title => "Create") if can? :create, Story
+      - if can? :create, Story
+        %li#create
+          = link_to("Create a Story", new_story_path, :class => "tooltipped", :title => "Create") if can? :create, Story
       %li#balance
         = link_to(number_with_precision(current_user.credits, :precision => 0), credits_path, :class => "tooltipped", :title => "Credits")
       %li#hi
