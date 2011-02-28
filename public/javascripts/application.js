@@ -60,7 +60,7 @@ function setup_story_gallery() {
 		$('.story-gallery .preview').click(function() {
 			var page = $(this).attr('counter');
 			var position = page * large_preview_width;
-			$('.story-gallery .large-preview').scrollTo(position, 0, {duration: 200});
+			$('.story-gallery .large-preview').scrollTo({top: 0, left: position}, {duration: 200});
 		});
 	}
 	if ($('.story-gallery').length > 0) {

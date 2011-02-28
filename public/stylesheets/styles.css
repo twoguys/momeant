@@ -1101,7 +1101,7 @@ input.bookmark:active, input.unbookmark:active {
     padding: 8px 10px;
     z-index: 10;
     position: absolute;
-    top: 1px;
+    top: 0;
     right: 0;
     text-transform: uppercase; }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\/preview\.sass}line{font-family:\0000343}}
@@ -1114,13 +1114,13 @@ input.bookmark:active, input.unbookmark:active {
     width: 650px;
     margin-top: -20px; }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\/preview\.sass}line{font-family:\0000351}}
+    .story-preview .preview .padder {
+      padding: 10px;
+      background-color: white; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\/preview\.sass}line{font-family:\0000354}}
     .story-preview .preview .thumbnail {
-      padding: 0px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\/preview\.sass}line{font-family:\0000353}}
-      .story-preview .preview .thumbnail .inner {
-        width: 630px;
-        height: 420px;
-        margin: 10px; }
+      width: 630px;
+      height: 420px; }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\/preview\.sass}line{font-family:\0000357}}
     .story-preview .preview .price {
       -webkit-border-radius: 50px;
@@ -1725,15 +1725,16 @@ input.bookmark:active, input.unbookmark:active {
 .thumbnail {
   width: 630px;
   height: 420px;
+  overflow: hidden;
   width: 100%;
   display: table;
   background-color: white; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\0000312}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\0000313}}
   .thumbnail .inner {
     height: 100%;
     width: 100%;
     display: table; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\0000316}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\0000317}}
   .thumbnail p, .thumbnail .title {
     font-size: 16px;
     font-weight: 300;
@@ -1741,53 +1742,56 @@ input.bookmark:active, input.unbookmark:active {
     display: table-cell;
     vertical-align: middle;
     text-align: center; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\0000323}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\0000324}}
   .thumbnail .image {
     width: 100%;
     height: 100%;
     display: table-cell; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\0000328}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\0000329}}
   .thumbnail .split .image, .thumbnail .split .text {
-    width: 315px;
+    width: 50%;
     float: left; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\0000331}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\0000332}}
   .thumbnail .split .image img {
-    width: 315px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\0000333}}
+    width: 100%; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\0000334}}
   .thumbnail .split .text {
-    padding: 20px;
-    width: 275px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\0000337}}
+    width: 46%;
+    padding: 2%; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\0000338}}
   .thumbnail ul.cells li {
     width: 157.5px;
     height: 210px;
     float: left; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\0000341}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\0000342}}
   .thumbnail ul.cells .image img {
     width: 157.5px;
     height: 210px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\0000346}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\0000347}}
 ul.stories li.story {
   background-color: white;
   float: left;
-  height: 300px;
-  margin-bottom: 25px;
-  margin-right: 25px;
-  width: 300px;
   -webkit-box-shadow: 3px 3px 5px #bbbbbb;
   -moz-box-shadow: 3px 3px 5px #bbbbbb;
   box-shadow: 3px 3px 5px #bbbbbb;
   position: relative; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\0000358}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\0000355}}
+ul.stories li.medium.story {
+  height: 300px;
+  margin-bottom: 25px;
+  margin-right: 25px;
+  width: 300px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\0000360}}
+  ul.stories li.medium.story a.thumbnail {
+    display: block;
+    width: 288px;
+    height: 180px;
+    margin: 6px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\0000366}}
 ul.stories li.story.third {
   margin-right: 0px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\0000361}}
-ul.stories a.thumbnail {
-  width: 288px;
-  height: 180px;
-  margin: 6px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\0000366}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\0000369}}
 ul.stories .title a {
   color: black;
   font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
@@ -1796,7 +1800,7 @@ ul.stories .title a {
   letter-spacing: 0.2px;
   line-height: 15px;
   margin: 0 10px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\0000375}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\0000378}}
 ul.stories .author {
   color: black;
   font-family: Georgia, serif;
@@ -1807,30 +1811,30 @@ ul.stories .author {
   line-height: 20px;
   margin: 0 10px;
   padding-bottom: 4px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\0000385}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\0000388}}
   ul.stories .author a {
     color: #00aeef; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\0000388}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\0000391}}
 ul.stories .likes {
   position: absolute;
   top: 192px;
   right: 10px;
   padding-right: 18px;
   background: transparent url(../images/icons/heartOff.png) no-repeat 100% 0; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\0000394}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\0000397}}
 ul.stories .recommendations {
   position: absolute;
   top: 210px;
   right: 10px;
   padding-right: 18px;
   background: transparent url(../images/icons/recommendOff.png) no-repeat 100% 0; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\00003100}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\00003103}}
 ul.stories .liked {
   background: transparent url(../images/icons/heartOn.png) no-repeat 100% 0; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\00003102}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\00003105}}
 ul.stories .recommended {
   background: transparent url(../images/icons/recommendOn.png) no-repeat 100% 0; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\00003105}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\00003108}}
 ul.stories .excerpt {
   font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
   font-weight: 100;
@@ -1841,19 +1845,19 @@ ul.stories .excerpt {
   width: 250px;
   overflow: hidden; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\00003115}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\00003118}}
 .recommendation-stream {
   width: 290px;
   height: 364px;
   float: right;
   overflow: hidden;
   border: 5px solid black; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\00003121}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\00003124}}
   .recommendation-stream .tabs {
     height: 33px;
     min-height: 33px;
     margin: 0; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\00003125}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\00003128}}
     .recommendation-stream .tabs a {
       width: 145px;
       background-color: black;
@@ -1861,7 +1865,7 @@ ul.stories .excerpt {
       border: none;
       padding: 6px 0;
       text-align: center; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\00003132}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\00003135}}
     .recommendation-stream .tabs a.active {
       background-color: black;
       color: white;
@@ -1869,16 +1873,16 @@ ul.stories .excerpt {
       -moz-box-shadow: none;
       box-shadow: none;
       cursor: default; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\00003139}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\00003142}}
     .recommendation-stream .tabs a:hover {
       background-color: black; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\00003141}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\00003144}}
     .recommendation-stream .tabs a:first-child {
       border: none; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\00003143}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\00003146}}
   .recommendation-stream ul {
     padding: 10px 10px 0 10px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\00003145}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\00003148}}
     .recommendation-stream ul li {
       display: block;
       width: 270px;
@@ -1886,47 +1890,47 @@ ul.stories .excerpt {
       background: transparent url(../images/simpleDotBG.png) repeat-x 50% 100%;
       padding-bottom: 10px;
       margin-bottom: 10px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\00003152}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\00003155}}
       .recommendation-stream ul li a.thumbnail {
         width: 95px;
         height: 60px;
         float: left;
         margin: 0 8px 0 0; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\00003157}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\00003160}}
       .recommendation-stream ul li .info {
         width: 109px;
         float: left;
         margin-right: 8px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\00003161}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\00003164}}
         .recommendation-stream ul li .info .title {
           font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
           color: black;
           font-weight: bold; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\00003165}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\00003168}}
         .recommendation-stream ul li .info .author {
           border: none;
           margin: 0;
           font-size: 10px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\00003169}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\00003172}}
       .recommendation-stream ul li .price {
         width: 50px;
         float: left; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\00003173}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\00003176}}
 #recommend-modal {
   width: 400px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\00003175}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\00003178}}
   #recommend-modal .insides {
     padding: 20px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\00003177}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\00003180}}
   #recommend-modal h3 {
     font-size: 1.1em;
     margin-bottom: 10px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\00003180}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\00003183}}
   #recommend-modal textarea {
     width: 345px;
     height: 30px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\00003183}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\00003186}}
   #recommend-modal p {
     width: 230px;
     float: left;
@@ -1934,7 +1938,7 @@ ul.stories .excerpt {
     color: #999999;
     line-height: 13px;
     margin: 10px 0 0; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\00003190}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\00003193}}
   #recommend-modal input[type="submit"] {
     background: #ffa801 url(../images/icons/recommendWhite.png) no-repeat 7px 50%;
     color: white;
@@ -1943,7 +1947,7 @@ ul.stories .excerpt {
     margin-top: 15px;
     padding: 10px 12px 10px 27px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\00003198}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\00003201}}
 .tag, a.tag {
   background-color: white;
   display: inline-block;
@@ -1957,7 +1961,7 @@ ul.stories .excerpt {
   margin-right: 5px;
   font-weight: 100;
   font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\00003211}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\00003214}}
   .tag .remove, a.tag .remove {
     display: inline-block;
     width: 10px;
@@ -1966,25 +1970,25 @@ ul.stories .excerpt {
     padding: 2px 5px;
     margin-left: 3px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\00003218}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\00003221}}
 .tag:hover, a.tag:hover {
   background-color: #b8e6ff; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\00003222}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\00003225}}
 .addthis_button_compact span {
   width: 0;
   height: 0; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\00003227}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\00003230}}
 .ignore #at15s_inner {
   background-color: black; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\00003229}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\00003232}}
 .ignore #at_hover {
   background-color: black; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\00003231}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\00003234}}
   .ignore #at_hover .at_item {
     background-color: black !important; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\00003233}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/stories\.sass}line{font-family:\00003236}}
     .ignore #at_hover .at_item span {
       color: white !important;
       text-shadow: none; }
@@ -2091,7 +2095,7 @@ ul.stories .excerpt {
   overflow: hidden; }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/users\.sass}line{font-family:\0000387}}
   .creator .curatorial-stream h3 {
-    font-size: 50px;
+    font-size: 48px;
     font-weight: 900;
     text-transform: uppercase;
     color: #dddddd; }

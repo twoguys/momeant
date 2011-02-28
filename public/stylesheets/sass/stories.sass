@@ -6,6 +6,7 @@
 .thumbnail
 	width: 630px
 	height: 420px
+	overflow: hidden
 	width: 100%
 	display: table
 	background-color: #fff
@@ -26,13 +27,13 @@
 		display: table-cell
 	.split
 		.image, .text
-			width: 315px
+			width: 50%
 			float: left
 		.image img
-			width: 315px
+			width: 100%
 		.text
-			padding: 20px
-			width: 275px
+			width: 46%
+			padding: 2%
 	ul.cells
 		li
 			width: 157.5px
@@ -46,22 +47,24 @@ ul.stories
 	li.story
 		background-color: white
 		float: left
-		height: 300px
-		margin-bottom: 25px
-		margin-right: 25px
-		width: 300px
 		-webkit-box-shadow: 3px 3px 5px #BBBBBB
 		-moz-box-shadow: 3px 3px 5px #BBBBBB
 		box-shadow: 3px 3px 5px #BBBBBB
 		position: relative
+		
+	li.medium.story	
+		height: 300px
+		margin-bottom: 25px
+		margin-right: 25px
+		width: 300px
+		a.thumbnail
+			display: block
+			width: 288px
+			height: 180px
+			margin: 6px
 
 	li.story.third
 		margin-right: 0px
-		
-	a.thumbnail
-		width: 288px
-		height: 180px
-		margin: 6px
 
 	.title a
 		color: black
