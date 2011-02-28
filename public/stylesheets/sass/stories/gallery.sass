@@ -1,0 +1,79 @@
+.story-gallery
+	width: 630px
+	position: relative
+	padding: 10px
+	overflow: hidden
+	float: left
+	-webkit-box-shadow: 3px 3px 5px #BBBBBB
+	-moz-box-shadow: 3px 3px 5px #BBBBBB
+	box-shadow: 3px 3px 5px #BBBBBB
+	background-color: white
+	.large-preview
+		width: 630px
+		height: 420px
+		overflow: hidden
+		.pages
+			width: 6300px
+			height: 100%
+			a.story-link
+				width: 630px
+				height: 100%
+				float: left
+				color: #000
+				.inner, .image
+					width: 630px
+					height: 100%
+	.gallery-title
+		width: 610px
+		height: 36px
+		padding: 5px 10px
+		position: absolute
+		top: 384px
+		left: 10px
+		background-color: #000
+		color: #fff
+		font-weight: bold
+		font-size: 30px
+		text-transform: uppercase
+		text-shadow: none
+	.slider
+		margin-top: 5px
+		.viewport
+			width: 630px
+			height: 60px
+			overflow: hidden
+			position: relative
+			.overview
+				list-style: none
+				position: absolute
+				left: 0
+				top: 0
+				height: 100%
+			.preview, .inner, .image
+				width: 95px
+				height: 100%
+			.preview
+				float: left
+				margin-right: 5px
+				cursor: pointer
+		.scrollbar
+			height: 12px
+			position: relative
+			margin-top: 4px
+			.track
+				background-color: #eee
+				height: 12px
+				width: 100%
+				position: relative
+				padding: 0 1px
+			.thumb
+				height: 10px
+				width: 20px
+				cursor: pointer
+				overflow: hidden
+				position: absolute
+				left: 0
+				background-color: #ccc
+				@include rounded
+		.scrollbar.disable
+			display: none

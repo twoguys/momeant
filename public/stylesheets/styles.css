@@ -3,7 +3,6 @@ html, body {
   font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
   font-size: 12px;
   color: #252525;
-  text-shadow: 0 1px 1px white;
   background: #f4f4f4;
   min-height: 100%;
   height: 100%;
@@ -878,11 +877,13 @@ a.edit-story {
   display: block;
   float: left;
   font-size: 13px;
-  margin-left: 527px;
-  padding: 5px 10px;
+  font-weight: bold;
+  margin-left: 70px;
+  padding: 8px 10px;
   z-index: 1000;
   position: absolute;
-  top: -6px; }
+  top: 1px;
+  text-transform: uppercase; }
 
 .story-preview {
   font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
@@ -893,54 +894,17 @@ a.edit-story {
   .story-preview .preview {
     float: left;
     position: relative;
-    border: 6px solid white;
     -webkit-box-shadow: 3px 3px 5px #cccccc;
     box-shadow: 3px 3px 5px #cccccc;
     -moz-box-shadow: 3px 3px 5px #cccccc;
-    width: 630px; }
+    width: 650px;
+    margin-top: -20px; }
     .story-preview .preview .thumbnail {
-      height: 420px;
-      width: 100%;
-      display: table;
-      background-color: white; }
+      padding: 0px; }
       .story-preview .preview .thumbnail .inner {
-        height: 100%;
-        width: 100%;
-        display: table; }
-      .story-preview .preview .thumbnail .title div, .story-preview .preview .thumbnail .pullquote p {
-        display: table-cell;
-        vertical-align: middle;
-        text-align: center;
-        width: 600px;
-        padding: 15px;
-        font-size: 32px;
-        font-weight: 700;
-        overflow: hidden; }
-      .story-preview .preview .thumbnail p {
-        font-size: 16px;
-        font-weight: 300;
-        text-align: left;
-        display: table-cell;
-        vertical-align: middle;
-        text-align: center; }
-      .story-preview .preview .thumbnail .image {
-        width: 100%;
-        height: 100%; }
-      .story-preview .preview .thumbnail .split .image, .story-preview .preview .thumbnail .split .text {
-        width: 315px;
-        float: left; }
-      .story-preview .preview .thumbnail .split .image img {
-        width: 315px; }
-      .story-preview .preview .thumbnail .split .text {
-        padding: 20px;
-        width: 275px; }
-      .story-preview .preview .thumbnail ul.cells li {
-        width: 157.5px;
-        height: 210px;
-        float: left; }
-      .story-preview .preview .thumbnail ul.cells .image img {
-        width: 157.5px;
-        height: 210px; }
+        width: 630px;
+        height: 420px;
+        margin: 10px; }
     .story-preview .preview .price {
       -webkit-border-radius: 50px;
       -moz-border-radius: 50px;
@@ -949,9 +913,9 @@ a.edit-story {
       border: 5px solid white;
       color: white;
       height: 75px;
-      left: -30px;
+      left: -10px;
       position: absolute;
-      top: -30px;
+      top: -10px;
       width: 75px; }
       .story-preview .preview .price a, .story-preview .preview .price input[type="submit"] {
         font-weight: 700;
@@ -999,10 +963,12 @@ a.edit-story {
         background-image: url(../images/icons/recommendOff.png); }
       .story-preview .preview .actions .unrecommend {
         background-image: url(../images/icons/recommendOn.png); }
+      .story-preview .preview .actions .share {
+        background-image: url(../images/icons/shareOn.png); }
       .story-preview .preview .actions .view, .story-preview .preview .actions .free, .story-preview .preview .actions .buy-it {
         background-image: url(../images/icons/fullscreenOn.png); }
   .story-preview .metadata {
-    width: 290px;
+    width: 274px;
     float: right;
     position: relative; }
     .story-preview .metadata .top {
@@ -1147,7 +1113,7 @@ a.edit-story {
           padding: 0 0 0 20px;
           margin-right: 15px;
           background-color: transparent;
-          background-position: 0 50%;
+          background-position: 0 -1px;
           background-repeat: no-repeat;
           font-size: 11px;
           font-weight: 700;
@@ -1160,6 +1126,8 @@ a.edit-story {
           background-image: url(../images/icons/recommendGrey.png); }
         .story-viewer #previewer .info .actions .unrecommend {
           background-image: url(../images/icons/recommendOn.png); }
+        .story-viewer #previewer .info .actions .share {
+          background-image: url(../images/icons/shareOn.png); }
     .story-viewer #previewer ul.pages {
       height: 190px;
       padding: 5px 0;
@@ -1339,6 +1307,125 @@ a.edit-story {
     .story-viewer #next-page .button {
       background-position: -138px 0; }
 
+.story-gallery {
+  width: 630px;
+  position: relative;
+  padding: 10px;
+  overflow: hidden;
+  float: left;
+  -webkit-box-shadow: 3px 3px 5px #bbbbbb;
+  -moz-box-shadow: 3px 3px 5px #bbbbbb;
+  box-shadow: 3px 3px 5px #bbbbbb;
+  background-color: white; }
+  .story-gallery .large-preview {
+    width: 630px;
+    height: 420px;
+    overflow: hidden; }
+    .story-gallery .large-preview .pages {
+      width: 6300px;
+      height: 100%; }
+      .story-gallery .large-preview .pages a.story-link {
+        width: 630px;
+        height: 100%;
+        float: left;
+        color: black; }
+        .story-gallery .large-preview .pages a.story-link .inner, .story-gallery .large-preview .pages a.story-link .image {
+          width: 630px;
+          height: 100%; }
+  .story-gallery .gallery-title {
+    width: 610px;
+    height: 36px;
+    padding: 5px 10px;
+    position: absolute;
+    top: 384px;
+    left: 10px;
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    font-size: 30px;
+    text-transform: uppercase;
+    text-shadow: none; }
+  .story-gallery .slider {
+    margin-top: 5px; }
+    .story-gallery .slider .viewport {
+      width: 630px;
+      height: 60px;
+      overflow: hidden;
+      position: relative; }
+      .story-gallery .slider .viewport .overview {
+        list-style: none;
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%; }
+      .story-gallery .slider .viewport .preview, .story-gallery .slider .viewport .inner, .story-gallery .slider .viewport .image {
+        width: 95px;
+        height: 100%; }
+      .story-gallery .slider .viewport .preview {
+        float: left;
+        margin-right: 5px;
+        cursor: pointer; }
+    .story-gallery .slider .scrollbar {
+      height: 12px;
+      position: relative;
+      margin-top: 4px; }
+      .story-gallery .slider .scrollbar .track {
+        background-color: #eeeeee;
+        height: 12px;
+        width: 100%;
+        position: relative;
+        padding: 0 1px; }
+      .story-gallery .slider .scrollbar .thumb {
+        height: 10px;
+        width: 20px;
+        cursor: pointer;
+        overflow: hidden;
+        position: absolute;
+        left: 0;
+        background-color: #cccccc;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px; }
+    .story-gallery .slider .scrollbar.disable {
+      display: none; }
+
+.thumbnail {
+  width: 630px;
+  height: 420px;
+  width: 100%;
+  display: table;
+  background-color: white; }
+  .thumbnail .inner {
+    height: 100%;
+    width: 100%;
+    display: table; }
+  .thumbnail p, .thumbnail .title {
+    font-size: 16px;
+    font-weight: 300;
+    text-align: left;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center; }
+  .thumbnail .image {
+    width: 100%;
+    height: 100%;
+    display: table-cell; }
+  .thumbnail .split .image, .thumbnail .split .text {
+    width: 315px;
+    float: left; }
+  .thumbnail .split .image img {
+    width: 315px; }
+  .thumbnail .split .text {
+    padding: 20px;
+    width: 275px; }
+  .thumbnail ul.cells li {
+    width: 157.5px;
+    height: 210px;
+    float: left; }
+  .thumbnail ul.cells .image img {
+    width: 157.5px;
+    height: 210px; }
+
 ul.stories li.story {
   background-color: white;
   float: left;
@@ -1346,13 +1433,16 @@ ul.stories li.story {
   margin-bottom: 25px;
   margin-right: 25px;
   width: 300px;
-  -moz-box-shadow: 3px 3px 5px #bbbbbb; }
+  -webkit-box-shadow: 3px 3px 5px #bbbbbb;
+  -moz-box-shadow: 3px 3px 5px #bbbbbb;
+  box-shadow: 3px 3px 5px #bbbbbb;
+  position: relative; }
 ul.stories li.story.third {
   margin-right: 0px; }
-ul.stories a.thumbnail .image {
+ul.stories a.thumbnail {
   width: 288px;
   height: 180px;
-  margin: 5px; }
+  margin: 6px; }
 ul.stories .title a {
   color: black;
   font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
@@ -1373,9 +1463,22 @@ ul.stories .author {
   padding-bottom: 4px; }
   ul.stories .author a {
     color: #00aeef; }
+ul.stories .likes {
+  position: absolute;
+  top: 192px;
+  right: 10px;
+  padding-right: 18px;
+  background: transparent url(../images/icons/heartOff.png) no-repeat 100% 0; }
 ul.stories .recommendations {
-  float: right;
-  margin-right: 10px; }
+  position: absolute;
+  top: 210px;
+  right: 10px;
+  padding-right: 18px;
+  background: transparent url(../images/icons/recommendOff.png) no-repeat 100% 0; }
+ul.stories .liked {
+  background: transparent url(../images/icons/heartOn.png) no-repeat 100% 0; }
+ul.stories .recommended {
+  background: transparent url(../images/icons/recommendOn.png) no-repeat 100% 0; }
 ul.stories .excerpt {
   font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
   font-weight: 100;
@@ -1385,6 +1488,64 @@ ul.stories .excerpt {
   height: 45px;
   width: 250px;
   overflow: hidden; }
+
+.recommendation-stream {
+  width: 290px;
+  height: 364px;
+  float: right;
+  overflow: hidden;
+  border: 5px solid black; }
+  .recommendation-stream .tabs {
+    height: 33px;
+    min-height: 33px;
+    margin: 0; }
+    .recommendation-stream .tabs a {
+      width: 145px;
+      background-color: black;
+      color: #00aeef;
+      border: none;
+      padding: 6px 0;
+      text-align: center; }
+    .recommendation-stream .tabs a.active {
+      background-color: black;
+      color: white;
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
+      box-shadow: none;
+      cursor: default; }
+    .recommendation-stream .tabs a:hover {
+      background-color: black; }
+    .recommendation-stream .tabs a:first-child {
+      border: none; }
+  .recommendation-stream ul {
+    padding: 10px 10px 0 10px; }
+    .recommendation-stream ul li {
+      display: block;
+      width: 270px;
+      height: 60px;
+      background: transparent url(../images/simpleDotBG.png) repeat-x 50% 100%;
+      padding-bottom: 10px;
+      margin-bottom: 10px; }
+      .recommendation-stream ul li a.thumbnail {
+        width: 95px;
+        height: 60px;
+        float: left;
+        margin: 0 8px 0 0; }
+      .recommendation-stream ul li .info {
+        width: 109px;
+        float: left;
+        margin-right: 8px; }
+        .recommendation-stream ul li .info .title {
+          font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
+          color: black;
+          font-weight: bold; }
+        .recommendation-stream ul li .info .author {
+          border: none;
+          margin: 0;
+          font-size: 10px; }
+      .recommendation-stream ul li .price {
+        width: 50px;
+        float: left; }
 
 #recommend-modal {
   width: 400px; }
@@ -1435,27 +1596,27 @@ ul.stories .excerpt {
 .tag:hover, a.tag:hover {
   background-color: #b8e6ff; }
 
-.user-profile .created-stories {
-  width: 625px;
-  height: 500px;
-  overflow: hidden;
-  padding-top: 1px;
-  float: left;
-  -moz-box-shadow: 3px 3px 5px #bbbbbb;
-  background-color: white; }
-  .user-profile .created-stories li a {
-    width: 234px;
-    height: 222px;
-    display: block;
-    margin: 2px;
-    background-color: #f5f5f5;
-    float: left; }
-  .user-profile .created-stories .story {
-    width: 625px;
-    height: 500px; }
+.addthis_button_compact span {
+  width: 0;
+  height: 0; }
+
+.ignore #at15s_inner {
+  background-color: black; }
+.ignore #at_hover {
+  background-color: black; }
+  .ignore #at_hover .at_item {
+    background-color: black !important; }
+    .ignore #at_hover .at_item span {
+      color: white !important;
+      text-shadow: none; }
+
+.user-profile .top {
+  background: transparent url(../images/simpleDotBG.png) repeat-x 50% 100%;
+  padding-bottom: 15px;
+  margin-bottom: 15px; }
 .user-profile .user-info {
   margin-left: 25px;
-  width: 300px;
+  width: 274px;
   float: right; }
   .user-profile .user-info .name {
     font-weight: 900;
@@ -1468,11 +1629,12 @@ ul.stories .excerpt {
     margin-bottom: 10px; }
 .user-profile .subscribers {
   clear: both;
-  width: 649px;
+  width: 635px;
   height: 150px;
   float: left;
-  padding: 10px 0;
-  border-top: 1px dotted #aaaaaa; }
+  background: transparent url(../images/simpleDotBG.png) repeat-x 50% 100%;
+  padding-bottom: 15px;
+  margin-bottom: 15px; }
   .user-profile .subscribers .count {
     width: 100px;
     height: 100px;
@@ -1507,69 +1669,27 @@ ul.stories .excerpt {
         height: 50px; }
       .user-profile .subscribers .avatars li a .name {
         display: none; }
-.user-profile .recommendation-stream {
-  width: 310px;
-  height: 920px;
-  border-left: 1px dotted #aaaaaa;
-  border-top: 1px dotted #aaaaaa;
-  float: right;
-  overflow: hidden; }
-  .user-profile .recommendation-stream ul {
-    padding: 10px; }
-    .user-profile .recommendation-stream ul a {
-      display: block;
-      width: 285px;
-      height: 170px;
-      background-color: #f5f5f5;
-      margin-bottom: 10px; }
-.user-profile .curatorial-stream {
-  width: 629px;
-  height: 320px;
-  float: left;
-  padding: 15px 10px 30px;
-  border-top: 1px dotted #aaaaaa;
-  overflow: hidden; }
-  .user-profile .curatorial-stream h3 {
-    padding-bottom: 10px; }
-  .user-profile .curatorial-stream li {
-    float: left; }
-  .user-profile .curatorial-stream a {
-    display: block;
-    width: 150px;
-    height: 150px;
-    background-color: #f5f5f5;
-    margin: 0 10px 10px 0; }
 .user-profile .comments {
   width: 629px;
   float: left;
-  border-top: 1px dotted #aaaaaa;
-  padding: 10px; }
+  display: none; }
 .user-profile .personal-library {
   clear: both;
-  height: 420px; }
-  .user-profile .personal-library .tabs {
-    margin-bottom: 10px;
-    height: 40px;
-    width: 100%;
-    background: none repeat scroll 0 0 #eaeaea; }
-    .user-profile .personal-library .tabs a {
-      color: #b5b5b5;
-      font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
-      font-size: 13px;
-      font-weight: 900;
-      height: 20px;
-      letter-spacing: 0.3px;
-      padding: 14px 25px 6px;
-      text-transform: uppercase;
-      width: auto; }
-  .user-profile .personal-library li {
-    float: left; }
-    .user-profile .personal-library li a {
-      display: block;
-      width: 220px;
-      height: 170px;
-      background-color: #f5f5f5;
-      margin: 0 10px 10px 0; }
+  height: 365px;
+  padding-top: 20px; }
+
+.creator .recommendation-stream {
+  height: 540px; }
+.creator .curatorial-stream {
+  width: 629px;
+  height: 380px;
+  float: left;
+  overflow: hidden; }
+  .creator .curatorial-stream h3 {
+    font-size: 50px;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #dddddd; }
 
 .deposits form {
   margin-top: 1em;
@@ -1690,6 +1810,25 @@ header .topic-icon {
     box-shadow: 3px 3px 5px #dddddd inset;
     background-color: white;
     color: #333333; }
+
+.tabs {
+  margin-bottom: 10px;
+  height: 40px;
+  width: 100%;
+  background: none repeat scroll 0 0 #eaeaea; }
+  .tabs a {
+    color: #b5b5b5;
+    font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
+    font-size: 13px;
+    font-weight: 900;
+    height: 20px;
+    letter-spacing: 0.3px;
+    padding: 14px 25px 6px;
+    text-transform: uppercase;
+    width: auto;
+    border-right: 1px solid #cccccc; }
+  .tabs a:first-child {
+    border-left: 1px solid #cccccc; }
 
 .colorpicker {
   z-index: 100; }

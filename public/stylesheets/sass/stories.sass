@@ -1,6 +1,46 @@
 @import "stories/form"
 @import "stories/preview"
 @import "stories/show"
+@import "stories/gallery"
+
+.thumbnail
+	width: 630px
+	height: 420px
+	width: 100%
+	display: table
+	background-color: #fff
+	.inner
+		height: 100%
+		width: 100%
+		display: table
+	p, .title
+		font-size: 16px
+		font-weight: 300
+		text-align: left
+		display: table-cell
+		vertical-align: middle
+		text-align: center
+	.image
+		width: 100%
+		height: 100%
+		display: table-cell
+	.split
+		.image, .text
+			width: 315px
+			float: left
+		.image img
+			width: 315px
+		.text
+			padding: 20px
+			width: 275px
+	ul.cells
+		li
+			width: 157.5px
+			height: 210px
+			float: left
+		.image img
+			width: 157.5px
+			height: 210px
 
 ul.stories
 	li.story
@@ -10,15 +50,18 @@ ul.stories
 		margin-bottom: 25px
 		margin-right: 25px
 		width: 300px
+		-webkit-box-shadow: 3px 3px 5px #BBBBBB
 		-moz-box-shadow: 3px 3px 5px #BBBBBB
+		box-shadow: 3px 3px 5px #BBBBBB
+		position: relative
 
 	li.story.third
 		margin-right: 0px
-
-	a.thumbnail .image
+		
+	a.thumbnail
 		width: 288px
 		height: 180px
-		margin: 5px
+		margin: 6px
 
 	.title a
 		color: black
@@ -42,9 +85,22 @@ ul.stories
 		a
 			color: #00aeef
 
+	.likes
+		position: absolute
+		top: 192px
+		right: 10px
+		padding-right: 18px
+		background: transparent url(../images/icons/heartOff.png) no-repeat 100% 0
 	.recommendations
-		float: right
-		margin-right: 10px
+		position: absolute
+		top: 210px
+		right: 10px
+		padding-right: 18px
+		background: transparent url(../images/icons/recommendOff.png) no-repeat 100% 0
+	.liked
+		background: transparent url(../images/icons/heartOn.png) no-repeat 100% 0
+	.recommended
+		background: transparent url(../images/icons/recommendOn.png) no-repeat 100% 0
 
 	.excerpt
 		font-family: $block
@@ -55,6 +111,64 @@ ul.stories
 		height: 45px
 		width: 250px
 		overflow: hidden
+
+.recommendation-stream
+	width: 290px
+	height: 364px
+	float: right
+	overflow: hidden
+	border: 5px solid #000
+	.tabs
+		height: 33px
+		min-height: 33px
+		margin: 0
+		a
+			width: 145px
+			background-color: #000
+			color: $link_color
+			border: none
+			padding: 6px 0
+			text-align: center
+		a.active
+			background-color: #000
+			color: #fff
+			-webkit-box-shadow: none
+			-moz-box-shadow: none
+			box-shadow: none
+			cursor: default
+		a:hover
+			background-color: #000
+		a:first-child
+			border: none
+	ul
+		padding: 10px 10px 0 10px
+		li
+			display: block
+			width: 270px
+			height: 60px
+			background: transparent url(../images/simpleDotBG.png) repeat-x 50% 100%
+			padding-bottom: 10px
+			margin-bottom: 10px
+			a.thumbnail
+				width: 95px
+				height: 60px
+				float: left
+				margin: 0 8px 0 0
+			.info
+				width: 109px
+				float: left
+				margin-right: 8px
+				.title
+					font-family: $block
+					color: #000
+					font-weight: bold
+				.author
+					border: none
+					margin: 0
+					font-size: 10px
+			.price
+				width: 50px
+				float: left
 
 #recommend-modal
 	width: 400px
@@ -103,3 +217,19 @@ ul.stories
 		margin-left: 3px
 .tag:hover, a.tag:hover
 	background-color: #b8e6ff
+
+.addthis_button_compact
+	span
+		width: 0
+		height: 0
+
+.ignore
+	#at15s_inner
+		background-color: #000
+	#at_hover
+		background-color: #000
+		.at_item
+			background-color: #000 !important
+			span
+				color: #fff !important
+				text-shadow: none

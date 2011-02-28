@@ -16,7 +16,7 @@ class StoriesController < ApplicationController
   end
   
   def new
-    @story = Story.create(:thumbnail_page => 1, :user_id => current_user.id, :autosaving => true)
+    @story = Story.create(:thumbnail_page => 1, :user_id => current_user.id, :autosaving => true, :price => 0)
     render "form"
   end
   

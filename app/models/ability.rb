@@ -11,7 +11,6 @@ class Ability
         can [:invite_creator, :create, :show, :index], Invitation
         can :manage, Story, :user_id => user.id
       else
-        can [:create, :show, :index], Invitation
         can [:library, :bookmarked, :recommended, :search], Story
         can [:purchase, :bookmark, :unbookmark, :recommend, :unrecommend, :like, :unlike], Story, :published => true
         can :preview, Story do |story|
@@ -20,7 +19,7 @@ class Ability
         can :show, Story do |story|
           user.stories.include?(story)
         end
-      end  
+      end
       can :library, User
       can :create, Subscription
       can :destroy, Subscription, :subscriber_id => user.id

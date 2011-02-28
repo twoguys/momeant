@@ -1,0 +1,31 @@
+.story-gallery
+  .large-preview
+    .pages
+      - counter = 0
+      - @stories.each do |story|
+        %a.story-link.thumbnail{:href => preview_story_path(story), :counter => counter}
+          - if story.thumbnail
+            - @page = story.thumbnail
+            = render :partial => "stories/page_themes/#{@page.partial_name}", :locals => {:size => "large"}
+          .hidden= story.title
+          - counter += 1
+  .gallery-title
+    - if @user.is_a?(Creator)
+      My Created Stories
+    - else
+      My Recommended Stories
+  .slider
+    .scrollbar-me
+      .viewport
+        .overview
+          - counter = 0
+          - @stories.each do |story|
+            .preview{:counter => counter}
+              - if story.thumbnail 
+                - @page = story.thumbnail
+                = render :partial => "stories/page_themes/#{@page.partial_name}", :locals => {:size => "petite"}
+              - counter += 1
+      .scrollbar
+        .track
+          .thumb
+            .end

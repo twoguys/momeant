@@ -34,6 +34,7 @@ class Story < ActiveRecord::Base
   
   scope :published, where(:published => true)
   scope :free, where(:price => 0.0)
+  scope :newest_first, order("created_at ASC")
   
   attr_accessor :autosaving
   
@@ -41,7 +42,7 @@ class Story < ActiveRecord::Base
     if title.blank?
       "#{id}"
     else
-      "#{id}-#{title.gsub(' ', '-')}"
+      "#{id}-#{title.gsub(/[^a-zA-Zd]/, '-')}"
     end
   end
   
@@ -72,7 +73,15 @@ class Story < ActiveRecord::Base
   end
   
   def owner?(user)
-    !user.nil? && self.user == user
+    user.present? && self.user == user
+  end
+  
+  def liked_by?(user)
+    user.present? && self.users_who_liked.include?(user)
+  end
+  
+  def recommended_by?(user)
+    user.present? && self.users_who_recommended.include?(user)
   end
   
   def thumbnail

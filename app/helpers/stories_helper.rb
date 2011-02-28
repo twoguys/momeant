@@ -53,7 +53,7 @@ module StoriesHelper
     if current_user && (story.user == current_user || current_user.stories.include?(story))
       link_to("view story", story, :class => "view")
     elsif story.free?
-      link_to("acquire story for free", purchase_story_path(story), :method => :post, :class => "free", :class => "tooltipped", :title => "Acquire")
+      link_to("acquire story for free", purchase_story_path(story), :method => :post, :class => "free tooltipped", :title => "Acquire")
     else
       link_to("buy story for #{@story.price}", purchase_story_path(story), :method => :post, :class => "buy-it tooltipped", :title => "Buy")
     end

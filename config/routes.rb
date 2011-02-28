@@ -54,7 +54,6 @@ Repo::Application.routes.draw do
     end
   end
   
-  match '/library',             :to => 'users#library',             :as => :library
   match '/',                    :to => 'home#index',                :as => :home
   root :to => "home#index"
   

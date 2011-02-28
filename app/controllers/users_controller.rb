@@ -1,15 +1,13 @@
 class UsersController < InheritedResources::Base
   before_filter :authenticate_user!
-  before_filter :setup_invitation, :only => [:library, :show]
   
-  def library
-    @user = current_user
-    render "show"
-  end
-  
-  private
-    
-    def setup_invitation
-      @invitation = Invitation.new(:invited_as => "Creator") if can? :invite_creator, Invitation
+  def show
+    @user = User.find(params[:id])
+    return unless @user
+    if @user.is_a?(Creator)
+      @stories = @user.created_stories.published.newest_first
+    else
+      @stories = @user.recommended_stories.newest_first
     end
+  end
 end

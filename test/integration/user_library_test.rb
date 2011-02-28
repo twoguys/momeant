@@ -1,10 +1,10 @@
 require File.expand_path('../test_helper', File.dirname(__FILE__))
 
-Feature "A user should be able to access their/others' content on their/a user's library/profile page" do
+Feature "A user should be able to access their and others' content on profile pages" do
 
   in_order_to "view the creations, curations, comments, and recommendations of mine and others"
   as_a "user of any type"
-  i_want_to "see a library page with my/others' content"
+  i_want_to "see a profile page with a user's content"
 
   ["email_confirmed_user", "creator", "admin"].each do |user_type|
     Scenario "Visiting my library page as a #{user_type}" do
@@ -36,7 +36,9 @@ Feature "A user should be able to access their/others' content on their/a user's
         Factory(:recommendation, :user => @user_var)
       end
     
-      when_i_visit_page(:library)
+      When "I visit my profile page" do
+        visit user_path(@user_var)
+      end
     
       Then "I should see my name" do
         assert page.has_content? @user_var.name
@@ -75,11 +77,11 @@ Feature "A user should be able to access their/others' content on their/a user's
         end
       end
     
-      if ["creator", "admin"].include? user_type
-        And "I should see a form to invite other creators" do
-          assert page.find("form.new_invitation").visible?
-        end
-      end
+      # if ["creator", "admin"].include? user_type
+      #   And "I should see a form to invite other creators" do
+      #     assert page.find("form.new_invitation").visible?
+      #   end
+      # end
       
       And "I should see a list of my bookmarks" do
         @user_var.bookmarks.each do |bookmark|

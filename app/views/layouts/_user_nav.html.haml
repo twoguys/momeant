@@ -4,7 +4,7 @@
       = link_to("Momeant", root_path, :class => "tooltipped", :title => "Home")
     - if user_signed_in?
       %li#profile
-        = link_to("Profile", library_path, :class => "tooltipped", :title => "Profile")
+        = link_to("Profile", user_path(current_user), :class => "tooltipped", :title => "Profile")
     %li#faq
       = link_to("FAQ", "#", :class => "tooltipped", :title => "FAQ")        
     %li#topics  
@@ -23,9 +23,8 @@
       %li#balance
         = link_to(number_with_precision(current_user.credits, :precision => 0), credits_path, :class => "tooltipped", :title => "Credits")
       %li#hi
-        Hello #{link_to("#{current_user.name}!", library_path)}
+        Hello #{link_to("#{current_user.name}!", user_path(current_user))}
         =link_to("(Sign out)", destroy_user_session_path, :class => "signout-link")
-
     %li#search
       = form_tag search_stories_path, :method => :get do
         = text_field_tag :query, "search mo•meant"

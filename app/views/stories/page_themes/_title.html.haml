@@ -1,9 +1,9 @@
 - if @page.has_styles?
   - content_for :head do
     :css
-      #page_#{@page.number} {
+      #story_#{@page.story_id}_page_#{@page.number} {
         background-color: ##{@page.background_color} !important;
         color: ##{@page.text_color} !important;
       }
-  
-.title= @page.text
+
+.title{:id => "story_#{@page.story_id}_page_#{@page.number}"}= @page.text
