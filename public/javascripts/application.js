@@ -46,6 +46,12 @@ function setup_recommend_modal() {
 	});
 }
 
+function setup_search_placeholder() {
+	$('#query').focus(function(){
+		$(this).val('');
+	});
+}
+
 $(document).ready(function() {
 	setup_tooltips();
 	setup_tab_switching();
@@ -53,6 +59,7 @@ $(document).ready(function() {
 	tag_deletions();
 	setup_signup_modal();
 	setup_recommend_modal();
+	setup_search_placeholder();
 	$("a.disabled").click(function() {return false;})
 });
 

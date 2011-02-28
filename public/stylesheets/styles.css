@@ -164,10 +164,15 @@ header {
       display: block; }
     header #user-nav #hi {
       background: transparent url(../images/topNavBreak.gif) no-repeat 0 0;
-      padding: 12px 10px;
+      padding: 13px 10px 13px 12px;
       font-size: 1.1em;
-      font-weight: bold;
-      text-transform: uppercase; }
+      font-weight: 900;
+      text-transform: uppercase;
+      text-shadow: none; }
+      header #user-nav #hi .signout-link {
+        color: #bbbbbb;
+        letter-spacing: 0.3px;
+        padding-left: 10px; }
     header #user-nav #search {
       padding-top: 8px;
       float: right;
@@ -189,7 +194,8 @@ header {
         font-style: oblique;
         font-weight: normal;
         letter-spacing: 0.4px;
-        text-transform: lowercase; }
+        text-transform: lowercase;
+        color: #999999; }
       header #user-nav #search input[type="submit"] {
         width: 20px;
         height: 20px;
@@ -341,6 +347,7 @@ label[for="user_remember_me"] {
   border-radius: 5px; }
 
 form.new_story, form.edit_story, .story-form {
+  position: relative;
   padding-top: 20px; }
   form.new_story fieldset, form.new_story fieldset ul, form.edit_story fieldset, form.edit_story fieldset ul, .story-form fieldset, .story-form fieldset ul {
     padding-top: 1px; }
@@ -354,6 +361,7 @@ form.new_story, form.edit_story, .story-form {
     padding-left: 20px; }
   form.new_story #story-saved, form.edit_story #story-saved, .story-form #story-saved {
     height: 16px;
+    font-family: "museo-slab-1", "museo-slab-2", serif;
     position: absolute;
     top: 0;
     left: 0;
@@ -934,7 +942,9 @@ a.edit-story {
         width: 157.5px;
         height: 210px; }
     .story-preview .preview .price {
-      -moz-border-radius: 50px 50px 50px 50px;
+      -webkit-border-radius: 50px;
+      -moz-border-radius: 50px;
+      border-radius: 50px;
       background: none repeat scroll 0 0 black;
       border: 5px solid white;
       color: white;
@@ -1074,6 +1084,9 @@ a.edit-story {
     -webkit-border-bottom-right-radius: 5px;
     -moz-border-radius-bottomright: 5px;
     border-bottom-right-radius: 5px;
+    -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
     z-index: 3; }
   .story-viewer #previewer.open .handle {
     background-position: 50% -22px; }
@@ -1089,8 +1102,8 @@ a.edit-story {
     overflow-x: auto;
     overflow-y: hidden; }
     .story-viewer #previewer .handle {
-      height: 20px;
-      background: transparent url(../images/story-page-previewer-tab.png) no-repeat;
+      height: 22px;
+      background: transparent url(../images/story-page-previewer-tabB.png) no-repeat;
       cursor: pointer; }
     .story-viewer #previewer .preview-inner {
       height: 215px;
@@ -1102,8 +1115,8 @@ a.edit-story {
       width: 270px;
       height: 180px;
       position: absolute;
-      top: 10px;
-      left: 0;
+      top: 15px;
+      left: 5px;
       overflow: hidden;
       color: white; }
       .story-viewer #previewer .info .title, .story-viewer #previewer .info .author, .story-viewer #previewer .info .excerpt {
@@ -1115,13 +1128,19 @@ a.edit-story {
         text-transform: uppercase; }
       .story-viewer #previewer .info .author {
         font-style: italic;
+        font-family: Georgia, serif;
         font-size: 1.1em;
-        padding: 10px; }
+        padding: 5px 10px 7px; }
       .story-viewer #previewer .info .excerpt {
-        font-size: 0.9em;
+        font-size: 11px;
+        font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
+        height: 48px;
+        overflow: hidden;
         line-height: 1.4em; }
       .story-viewer #previewer .info .actions {
-        padding: 10px; }
+        padding: 11px;
+        border-top: 1px dotted white;
+        margin-top: 9px; }
         .story-viewer #previewer .info .actions a {
           display: block;
           float: left;
@@ -1409,12 +1428,9 @@ ul.stories .excerpt {
     display: inline-block;
     width: 10px;
     text-indent: -9999px;
-    background: white url(../images/tag-close.png) no-repeat 0 -1px;
+    background: transparent url(../images/tag-close.png) no-repeat 0 -1px;
     padding: 2px 5px;
-    margin-left: 3px;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    -border-radius: 10px; }
+    margin-left: 3px; }
 
 .tag:hover, a.tag:hover {
   background-color: #b8e6ff; }

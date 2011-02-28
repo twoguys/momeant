@@ -10,9 +10,9 @@
         %ul
           - @story.errors.full_messages.each do |msg|
             %li= msg
-  = link_to("Edit your story", edit_story_path(@story), :class => "edit-story")
 .story-preview
   .preview.clearfix
+    = link_to("Edit your story", edit_story_path(@story), :class => "edit-story")
     .thumbnail
       - if @story.thumbnail
         - @page = @story.thumbnail

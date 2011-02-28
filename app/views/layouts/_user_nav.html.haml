@@ -23,10 +23,10 @@
       %li#balance
         = link_to(number_with_precision(current_user.credits, :precision => 0), credits_path, :class => "tooltipped", :title => "Credits")
       %li#hi
-        Hello #{link_to(current_user.name, library_path)}!
-        (#{link_to("Sign out", destroy_user_session_path, :class => "signout-link")})
+        Hello #{link_to("#{current_user.name}!", library_path)}
+        =link_to("(Sign out)", destroy_user_session_path, :class => "signout-link")
 
     %li#search
       = form_tag search_stories_path, :method => :get do
-        = text_field_tag :query, "", :placeholder => "search momeant"
+        = text_field_tag :query, "search mo•meant"
         = submit_tag "Search", :id => "search-submit", :name => ""

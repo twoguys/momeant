@@ -4,7 +4,7 @@ $link_color: #00aeef
 
 $category_color: #d35151
 $job_type_color: #5197d3
-$payment_type_color: #a451d3
+$payment_type_color: #16be36
 $term_color: #d27442
 
 $block: "facitweb-1","facitweb-2",helvetica,sans-serif
@@ -17,10 +17,10 @@ $border_type: 1px dotted #aaa
 	-webkit-border-radius: $radius
 	-moz-border-radius: $radius
 	border-radius: $radius
-@mixin boxshadow($radius: 10px, $opacity: 0.7)
-	-webkit-box-shadow: 0 0 $radius rgba(0,0,0,$opacity)
-	-moz-box-shadow: 0 0 $radius rgba(0,0,0,$opacity)
-	box-shadow: 0 0 $radius rgba(0,0,0,$opacity)
+@mixin boxshadow($radius: 10px, $opacity: 0.7, $x: 0, $y: 0)
+	-webkit-box-shadow: $x $y $radius rgba(0,0,0,$opacity)
+	-moz-box-shadow: $x $y $radius rgba(0,0,0,$opacity)
+	box-shadow: $x $y $radius rgba(0,0,0,$opacity)
 @mixin bgcover
 	-webkit-background-size: cover
 	-moz-background-size: cover
@@ -112,6 +112,7 @@ header .insides, #mid .insides, #footer .insides
 @import "homepage"
 @import "join_login"
 @import "topics"
+@import "fancybox"
 
 .hidden
 	display: none
