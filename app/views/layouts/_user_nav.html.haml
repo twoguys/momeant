@@ -12,8 +12,8 @@
       .inner
         %ul.topic-list
           - counter = 1
-          - Topic.parent_topics.each do |topic|
-            %li{:class => "#{counter % 2 == 1 ? "odd" : "even"} #{topic.name}"}= link_to(topic.name, topic_path(topic))
+          - Topic.parent_topics.order(:name).each do |topic|
+            %li{:class => "#{counter % 2 == 1 ? "odd" : "even"} #{topic.name.downcase}"}= link_to(topic.name, topic_path(topic))
             - counter += 1
     - if user_signed_in?
       %li#recommendations

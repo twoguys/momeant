@@ -5,6 +5,7 @@ namespace :momeant do
     task :seed_topics => :environment do
       Topic.create(:name => "Art")
       Topic.create(:name => "Business")
+      Topic.create(:name => "Culture")
       design = Topic.create(:name => "Design")
       Topic.create(:name => "DIY")
       Topic.create(:name => "Education")
