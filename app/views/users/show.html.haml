@@ -61,7 +61,7 @@
       .tabs
         = link_to("your purchases", "#", :id => "your-purchases", :class => "active")
         = link_to("your bookmarks", "#", :id => "your-bookmarks")
-      %ul.purchases
+      %ul.purchases.stories
         = render @user.stories
       %ul.bookmarks.stories.hidden
         = render @user.bookmarked_stories
