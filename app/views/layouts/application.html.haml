@@ -31,7 +31,7 @@
           .insides
             = render "layouts/user_nav"
             .momeant-header
-              = link_to("Home", root_path, :id => "logo-large")
+              = link_to("Home", root_path, :id => "logo-large") unless @hide_momeant
               - if !current_user
                 = link_to("Join", new_user_registration_path, :id => "join", :class => "round-button")
               - elsif !@hide_stumble
