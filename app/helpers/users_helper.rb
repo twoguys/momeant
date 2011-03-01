@@ -1,8 +1,6 @@
 module UsersHelper
   def subscribe_button(user)
-    if current_user == user
-      ""
-    else
+    if current_user.present? && current_user != user
       subscription = Subscription.where(:subscriber_id => current_user.id, :user_id => user.id).first
       if subscription
         link_to("unsubscribe", user_subscription_path(user, subscription), :method => :delete, :class => 'button')
