@@ -1,6 +1,3 @@
-- content_for :head do
-  = javascript_include_tag "users/show"
-
 .user-profile{:class => @user.is_a?(Creator) ? "creator" : ""}
   .top{:class => @user.is_a?(Creator) ? "created-stories" : "curatorial-stream"}
     = render "stories/gallery"
