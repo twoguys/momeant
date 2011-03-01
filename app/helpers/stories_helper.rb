@@ -20,6 +20,8 @@ module StoriesHelper
         "Recommendation limit reached"
       elsif current_user.has_purchased?(story)
         link_to(text, "#recommend-modal", :class => "recommend tooltipped", :title => "Recommend?")
+      elsif story.owner?(current_user)
+        link_to(text, "#", :class => "recommend disabled")
       else
         link_to(text, "#", :class => "recommend disabled tooltipped", :title => "Purchase to recommend")
       end
@@ -35,6 +37,8 @@ module StoriesHelper
         link_to(text, unlike_story_path(story), :method => :delete, :class => "liked tooltipped", :title => "Unlike?")
       elsif current_user.has_purchased?(story)
         link_to(text, like_story_path(story), :method => :post, :class => "like tooltipped", :title => "Like?")
+      elsif story.owner?(current_user)
+        link_to(text, "#", :class => "like disabled")
       else
         link_to(text, "#", :class => "like disabled tooltipped", :title => "Purchase to like")
       end

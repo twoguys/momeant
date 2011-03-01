@@ -6,7 +6,11 @@ function setup_tooltips() {
 
 function setup_tab_switching() {
 	$('.tabs a').click(function() {
-		$(this).addClass('active').siblings().removeClass('active');
+		var $tab = $(this);
+		$tab.addClass('active').siblings().removeClass('active');
+		var $content = $tab.parent().siblings('.' + $tab.attr('href'));
+		$content.show().siblings('.tabcontent').hide();
+		return false;
 	});
 }
 
@@ -82,19 +86,6 @@ function setup_recommendation_tabs() {
 	});
 }
 
-function setup_personal_library_tabs() {
-	$('#your-purchases').click(function() {
-		$('.personal-library .bookmarks').hide();
-		$('.personal-library .purchases').show();
-		return false;
-	});
-	$('#your-bookmarks').click(function() {
-		$('.personal-library .purchases').hide();
-		$('.personal-library .bookmarks').show();
-		return false;
-	});
-}
-
 $(document).ready(function() {
 	setup_tooltips();
 	setup_tab_switching();
@@ -105,7 +96,7 @@ $(document).ready(function() {
 	setup_search_placeholder();
 	setup_story_gallery();
 	setup_recommendation_tabs();
-	setup_personal_library_tabs();
+	//setup_personal_library_tabs();
 	$("a.disabled").click(function() {return false;})
 });
 
