@@ -134,8 +134,12 @@ class StoriesController < ApplicationController
   end
   
   def publish
-    @story.update_attribute(:published, true)
-    redirect_to preview_story_path(@story), :notice => "Your story has been published!"
+    if @story.valid?
+      @story.update_attribute(:published, true)
+      redirect_to preview_story_path(@story), :notice => "Your story has been published!"
+    else
+      redirect_to edit_story_path(@story), :alert => "Please fix the errors with your story."
+    end
   end
   
   def remove_tag_from

@@ -55,7 +55,7 @@ class Story < ActiveRecord::Base
   
   def only_two_free_stories
     if self.price == 0 && self.user.created_stories.free.count > 2
-      self.errors.add(:base, "You are only allowed two free stories")
+      self.errors.add(:base, "You are only allowed two free stories. Please change the price of this story or another of yours.")
       return false
     end
   end

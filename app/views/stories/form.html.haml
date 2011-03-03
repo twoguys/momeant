@@ -6,11 +6,21 @@
   .new-story-copy
     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-  = link_to "Preview story", preview_story_path(@story), :id => "preview-link"
+  .finished-links
+    = link_to "Preview story", preview_story_path(@story), :id => "preview-link"
+    = link_to "Publish story", publish_story_path(@story), :id => "publish-link", :method => :post
 
 .form.story-form
   #story-spinner Saving story...
   #story-saved Your story will be automatically saved as you edit it
+  
+  - if !@story.valid?
+    .banner
+      %span Before you can publish your story, please fix these issues:
+      %ul
+        - @story.errors.full_messages.each do |msg|
+          %li= msg
+  
   %fieldset
     %ul
       %li
@@ -23,6 +33,23 @@
           = label_tag :story_excerpt
           = text_field_tag :story_excerpt, @story.excerpt, :class => "monitor-story-typing", :update => "excerpt"
           .example e.g. Everything, it said, was against the travelers, every obstacle imposed alike by man and by nature.
+          
+      %li.metadata
+        .price
+          = label_tag :story_price
+          = text_field_tag :story_price, @story.price || "", :class => "monitor-story-typing", :update => "price"
+          .example 10, 20, 500 - increments of 10
+        .tags
+          = label_tag :story_tag_list, "Tags"
+          = text_field_tag :story_tag_list, @story.tag_list, :class => "monitor-story-typing", :update => "tag_list"
+          .example firecracker, John Smith, x-ray
+
+      %li.topics
+        %label Topics
+        %ul
+          - parent_topics = @topics.reject {|topic| topic.topic_id != nil}
+          - parent_topics.each do |topic|
+            = topic_checkbox(topic, @story, @topics)
           
       %li#page-previews
         = hidden_field_tag :story_thumbnail_page, @story.thumbnail_page ? @story.thumbnail_page : 1
@@ -42,23 +69,6 @@
                 = page_number
                 = link_to("set thumbnail", "#", :class => @story.thumbnail_page == page_number ? "choose-thumbnail chosen" : "choose-thumbnail")
         .clear
-    
-      %li.metadata
-        .price
-          = label_tag :story_price
-          = text_field_tag :story_price, @story.price || "", :class => "monitor-story-typing", :update => "price"
-          .example 10, 20, 500 - increments of 10
-        .tags
-          = label_tag :story_tag_list, "Tags"
-          = text_field_tag :story_tag_list, @story.tag_list, :class => "monitor-story-typing", :update => "tag_list"
-          .example firecracker, John Smith, x-ray
-
-      %li.topics
-        %label Topics
-        %ul
-          - parent_topics = @topics.reject {|topic| topic.topic_id != nil}
-          - parent_topics.each do |topic|
-            = topic_checkbox(topic, @story, @topics)
       
       %li#page-editor.hidden
         #page-type-chooser

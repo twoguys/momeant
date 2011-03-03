@@ -1,12 +1,22 @@
 /* Story creation */
 
-#preview-link
+.finished-links
 	position: absolute
 	right: 0
-	background-color: #bbd6e7
-	padding: 3px 6px
-	@include rounded
 	z-index: 3
+	a, input[type="submit"]
+		float: left
+		font-weight: 700
+		font-size: 1.3em
+		text-transform: uppercase
+		margin-left: 10px
+		padding: 6px 12px
+		@include rounded
+	#preview-link
+		background-color: #bbd6e7
+	#publish-link
+		background-color: #d1e7bb
+		color: #428202
 .new-story-copy
 	font-family: $typewriter
 	color: #999
@@ -30,6 +40,9 @@ form.new_story, form.edit_story, .story-form
 	position: relative
 	padding-top: 20px
 	height: 100%
+	.banner
+		li
+			margin-bottom: 0.5em
 	fieldset, fieldset ul
 		padding-top: 1px
 	label
@@ -68,6 +81,7 @@ form.new_story, form.edit_story, .story-form
 		input
 			width: 99%
 			height: 100px
+			vertical-align: top
 	#page-previews
 		position: relative
 		border-bottom: $border_solid
@@ -151,7 +165,7 @@ form.new_story, form.edit_story, .story-form
 		width: 47%
 		clear: none
 		float: left
-		padding: 0 0 0 2%
+		padding: 10px 0 0 2%
 		border-left: $border_solid
 		h3
 			padding-bottom: 5px
@@ -161,6 +175,9 @@ form.new_story, form.edit_story, .story-form
 			text-transform: uppercase
 		li
 			margin: 0
+			width: 50%
+			float: left
+			clear: none
 			input
 				float: left
 			label
