@@ -34,6 +34,11 @@ class StoriesController < ApplicationController
   end
   
   def edit
+    if @story.published?
+      redirect_to preview_story_path(@story), :alert => "Sorry, you cannot edit a story once it's been published."
+      return
+    end
+    
     get_topics
     render "form"
   end

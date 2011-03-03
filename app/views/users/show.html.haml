@@ -1,6 +1,3 @@
-- content_for :head do
-  = javascript_include_tag "users/show"
-
 .user-profile{:class => @user.is_a?(Creator) ? "creator" : ""}
   .top{:class => @user.is_a?(Creator) ? "created-stories" : "curatorial-stream"}
     = render "stories/gallery"
@@ -57,14 +54,7 @@
         = render @user.recommended_stories
               
   - if me?(@user)
-    .personal-library
-      .tabs
-        = link_to("your purchases", "#", :id => "your-purchases", :class => "active")
-        = link_to("your bookmarks", "#", :id => "your-bookmarks")
-      %ul.purchases
-        = render @user.stories
-      %ul.bookmarks.stories.hidden
-        = render @user.bookmarked_stories
+    = render "stories/personal_library"
 
     - if @user.is_admin?
       .admin

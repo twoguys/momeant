@@ -11,6 +11,6 @@
   .recommendations{:class => story.recommended_by?(current_user) ? "recommended" : ""}
     = story.recommendations.count
   .author by #{link_to(story.user.name, user_path(story.user))}
-  .excerpt= truncate(story.excerpt, :length => 130)
+  .excerpt= truncate(story.excerpt, :length => 100)
   .price= story.price
 

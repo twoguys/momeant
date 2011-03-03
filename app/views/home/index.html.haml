@@ -1,18 +1,21 @@
-%section#editorial
-  = render "editorials/01communications"
+.homepage
+  %section#editorial
+    = render "editorials/01communications"
 
-%section#recent-stories
-  %h2 Recent
-  %ul.stories
-    = render @stories
+  %section#recent-stories
+    %h2 Recent
+    %ul.stories
+      = render @stories
     
-- if current_user
-  %section#subscribed-to-stories
-    %h2 User Recommended
-    %ul.stories
-      = render @subscribed_to_stories
+  - if current_user
+    %section#subscribed-to-stories
+      %h2 User Recommended
+      %ul.stories
+        = render @subscribed_to_stories
   
-  %section#similar-to-bookmarked-stories
-    %h2 Mo&#149;meant Recommended
-    %ul.stories
-      = render @similar_to_bookmarked_stories
+    %section#similar-to-bookmarked-stories
+      %h2 Mo&#149;meant Recommended
+      %ul.stories
+        = render @similar_to_bookmarked_stories
+      
+    = render "stories/personal_library"
