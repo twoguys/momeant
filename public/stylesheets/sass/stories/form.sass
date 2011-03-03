@@ -1,12 +1,22 @@
 /* Story creation */
 
-#preview-link
+.finished-links
 	position: absolute
 	right: 0
-	background-color: #bbd6e7
-	padding: 3px 6px
-	@include rounded
 	z-index: 3
+	a, input[type="submit"]
+		float: left
+		font-weight: 700
+		font-size: 1.3em
+		text-transform: uppercase
+		margin-left: 10px
+		padding: 6px 12px
+		@include rounded
+	#preview-link
+		background-color: #bbd6e7
+	#publish-link
+		background-color: #d1e7bb
+		color: #428202
 .new-story-copy
 	font-family: $typewriter
 	color: #999
@@ -30,6 +40,9 @@ form.new_story, form.edit_story, .story-form
 	position: relative
 	padding-top: 20px
 	height: 100%
+	.banner
+		li
+			margin-bottom: 0.5em
 	fieldset, fieldset ul
 		padding-top: 1px
 	label
@@ -65,9 +78,10 @@ form.new_story, form.edit_story, .story-form
 			width: 99%
 	.excerpt-input
 		width: 950px
-		input
+		textarea
 			width: 99%
 			height: 100px
+			vertical-align: top
 	#page-previews
 		position: relative
 		border-bottom: $border_solid
@@ -131,7 +145,7 @@ form.new_story, form.edit_story, .story-form
 				background-position: 85px 6px
 		li#preview_2, li#preview_4, li#preview_7, li#preview_10
 			margin-right: 0px
-		li.chosen
+		li.thumbnail
 			border: 5px solid $blue
 		.actions
 			position: absolute
@@ -167,7 +181,7 @@ form.new_story, form.edit_story, .story-form
 		width: 47%
 		clear: none
 		float: left
-		padding: 0 0 0 2%
+		padding: 10px 0 0 2%
 		border-left: $border_solid
 		h3
 			padding-bottom: 5px
@@ -177,6 +191,9 @@ form.new_story, form.edit_story, .story-form
 			text-transform: uppercase
 		li
 			margin: 0
+			width: 50%
+			float: left
+			clear: none
 			input
 				float: left
 			label
@@ -210,38 +227,39 @@ form.new_story, form.edit_story, .story-form
 	padding: 0
 	overflow: hidden
 	text-shadow: none
-	margin-top: -21px
 	#page-type-chooser
-		height: 160px
+		height: 200px
 		position: absolute
 		background-color: #fff
 		border-bottom: 1px solid #ccc
 		width: 100%
 		z-index: 3
+		margin-top: -2px
 		#close-page-editor-button
 			position: absolute
-			top: 161px
+			top: 201px
 			left: 0
 			-webkit-border-bottom-right-radius: 3px
 			-moz-border-radius-bottomright: 3px
 			border-bottom-right-radius: 3px
 			z-index: 2
 		#close-page-editor-button:active
-			top: 161px
+			top: 201px
 		.info
 			width: 100%
 			height: 40px
-			padding: 0 10px
 			font-size: 20px
 			font-weight: 900
 			text-align: center
-			line-height: .9em
+			line-height: 40px
+			vertical-align: middle
 			text-transform: uppercase
 			position: absolute
 			left: 0
 			background-color: #000000
 			color: white
 		.slider
+			margin-top: 40px
 			position: relative
 			height: 160px
 			overflow-x: scroll
@@ -291,7 +309,7 @@ form.new_story, form.edit_story, .story-form
 		width: 100%
 		z-index: 1
 		background: transparent url(../images/story-creator-background-hint.jpg) no-repeat 40% 200px
-		padding-bottom: 160px
+		padding: 40px 0 200px
 		li.page
 			width: 100%
 			height: 100%
@@ -517,7 +535,7 @@ form.new_story, form.edit_story, .story-form
 		position: absolute
 		width: 50%
 		margin: 0 25%
-		top: 200px
+		top: 240px
 		left: 0
 		font-size: 26px
 		font-style: italic
