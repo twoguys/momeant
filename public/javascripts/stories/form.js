@@ -61,6 +61,8 @@ var story_page_editor = function() {
 			$form_input.val(page_number);
 			$(this).parents('ul:eq(0)').find('a.choose-thumbnail').removeClass('chosen');
 			$(this).addClass('chosen');
+			$(this).parents('ul:eq(0)').find('li').removeClass('chosen');
+			$(this).parent().addClass('chosen');
 			return false;
 		});
 	};
