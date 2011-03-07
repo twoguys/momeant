@@ -1,0 +1,71 @@
+.beta
+  .important We're now in private beta!
+
+  %p.copy Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+  .clearfix
+    = render "shared/error_messages", :target => @user
+    .shots
+      screenshots
+    .join
+      .inner
+        %h2 Join
+        = form_for(@user, :as => :user, :url => registration_path(:user), :html => {:multipart => true}) do |f|
+          %fieldset
+            %ul
+              %li
+                = f.label :invitation_code
+                = f.text_field :invitation_code
+                
+              %li
+                = f.label :first_name, "Your name"
+                %span
+                  = f.text_field :first_name
+                  = f.label :first_name, "First"
+                %span
+                  = f.text_field :last_name
+                  = f.label :last_name, "Last"
+
+              %li
+                = f.label :email
+                = f.text_field :email
+
+              %li
+                = f.label :password
+                %span
+                  = f.password_field :password
+                  = f.label :password, "6+ characters"
+                %span
+                  = f.password_field :password_confirmation
+                  = f.label :password_confirmation, "Once more, please"
+
+              %li
+                = f.label :avatar
+                = f.file_field :avatar
+
+              %li.submit
+                = f.submit "sign up"
+    .login
+      .form
+        %h2 Login
+        = form_for(@user, :as => :user, :url => session_path(:user)) do |f|
+          %fieldset
+            %ul
+
+              %li
+                = f.label :email
+                = f.text_field :email, :id => "login_email"
+
+              %li
+                = f.label :password
+                = f.password_field :password, :id => "login_password"
+
+              %li
+                = f.check_box :remember_me
+                = f.label :remember_me
+
+              %li.submit
+                = f.submit "login"
+      .email-list
+        %h2 Find out when we open up!
+        = render "mailchimp_beta_list"

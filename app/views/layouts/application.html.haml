@@ -27,12 +27,14 @@
   %body{:class => @fullscreen.nil? ? "" : "fullscreen"}
     #wrap
       #main.clearfix
-        %header
+        %header{:class => private_beta? ? "hide-nav" : ""}
           .insides
-            = render "layouts/user_nav"
+            = render "layouts/user_nav" unless @hide_nav
             .momeant-header
               = link_to("Home", root_path, :id => "logo-large") unless @hide_momeant
-              - if !current_user
+              - if !current_user && private_beta?
+                = link_to("Beta", root_path, :id => "beta", :class => "round-button")
+              - elsif !current_user
                 = link_to("Join", new_user_registration_path, :id => "join", :class => "round-button")
               - elsif !@hide_stumble
                 = link_to("Stumble", random_stories_path, :id => "stumble", :class => "round-button tooltipped-w", :title => "Show me a random story!")

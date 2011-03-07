@@ -58,5 +58,6 @@
 
     - if @user.is_admin?
       .admin
-        %h3 Admin
-        = link_to("Pay Periods", admin_pay_periods_path)
+        %h1 Admin
+        .link= link_to("Pay Periods", admin_pay_periods_path)
+        .link= link_to("Invitations", admin_invitations_path)

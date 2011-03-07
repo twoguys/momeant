@@ -1,6 +1,8 @@
 class InvitationsController < InheritedResources::Base
   before_filter :authenticate_user!, :except => :accept
   
+  # RIGHT NOW THIS IS DEAD CODE, BUT WILL BE USED LATER WHEN CREATORS CAN INVITE USERS AGAIN
+  
   def invite_creator
     authorize! :invite_creator, Invitation
     @invitation = Invitation.new(:invited_as => "Creator")

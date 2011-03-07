@@ -3,7 +3,7 @@ source 'http://rubygems.org'
 gem 'rails', '3.0.0'
 
 # Postgres for our database
-'pg'
+gem 'pg'
 #gem 'sqlite3-ruby', :require => 'sqlite3'
 
 gem 'devise'
@@ -25,4 +25,5 @@ group :test do
   gem 'capybara'
   gem 'launchy'
   gem 'database_cleaner'
+  gem 'redgreen'
 end

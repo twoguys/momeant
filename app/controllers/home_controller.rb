@@ -1,6 +1,11 @@
 class HomeController < ApplicationController
+  skip_before_filter :release_lockdown
   
   def index
+    if private_beta? && current_user.nil?
+      render "beta" and return
+    end
+    
     @stories = Story.published.order("created_at DESC")
     if current_user
       @subscribed_to_stories = current_user.recommended_stories_from_people_i_subscribe_to

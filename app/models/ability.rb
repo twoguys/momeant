@@ -18,7 +18,7 @@ class Ability
       can :destroy, Subscription, :subscriber_id => user.id
       
       if user.is_a?(Creator)
-        can [:invite_creator, :create, :show, :index], Invitation
+        #can [:invite_creator, :create, :show, :index], Invitation
         can :manage, Story, :user_id => user.id
       end
       

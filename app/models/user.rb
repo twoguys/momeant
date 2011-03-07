@@ -17,12 +17,6 @@ class User < ActiveRecord::Base
   
   has_many :credit_cards
   
-  validates :first_name, :presence => true, :length => (1...128)
-  validates :last_name, :presence => true, :length => (1...128)
-  validates :email, :presence => true, :format => /^([^\s]+)((?:[-a-z0-9]\.)[a-z]{2,})$/i
-  
-  RECOMMENDATIONS_LIMIT = 10
-  
   has_attached_file :avatar,
     :styles => { :thumbnail => "50x50#" },
     :path          => "avatars/:id/:style.:extension",
@@ -33,13 +27,37 @@ class User < ActiveRecord::Base
     },
     :bucket        => ENV['S3_BUCKET']
   
-  # Include default devise modules. Others available are:
-  # :token_authenticatable, :confirmable, :lockable and :timeoutable
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
-
+  
+  validates :first_name, :presence => true, :length => (1...128)
+  validates :last_name, :presence => true, :length => (1...128)
+  validates :email, :presence => true, :format => /^([^\s]+)((?:[-a-z0-9]\.)[a-z]{2,})$/i
+  
+  validate  :extra_validations
+  
+  RECOMMENDATIONS_LIMIT = 10
+  
+  attr_accessor :invitation_code
+  
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :remember_me, :avatar, :credits, :stored_in_braintree
+  attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :remember_me,
+    :avatar, :credits, :stored_in_braintree, :invitation_code
+  
+  def extra_validations
+    safe = true
+    if ENV["CURRENT_RELEASE"] == 'private-beta'
+      # validate invitation code
+      if self.invitation_code.blank?
+        self.errors.add(:invitation_code, "is required during private beta.")
+        safe = false
+      elsif Invitation.find_by_token(self.invitation_code).nil?
+        self.errors.add(:invitation_code, "is invalid. Please ensure you typed it correctly.")
+        safe = false
+      end
+    end
+    return safe
+  end
   
   def to_param
     "#{self.id}-#{self.name.gsub(/[^a-zA-Z]/,"-")}"

@@ -1,13 +1,18 @@
 Repo::Application.routes.draw do
   
-  devise_for :users, :controllers => { :registrations => "registrations" }
+  devise_for :users, :controllers => {
+    :registrations => "registrations",
+    :sessions => "sessions",
+    :confirmations => "confirmations",
+    :passwords => "passwords"
+  }
   
-  resources :invitations do
-    collection do
-      get :invite_creator
-    end
-  end
-  match 'invites/:token',       :to => 'invitations#accept',        :as => :accept_invitation
+  # resources :invitations do
+  #   collection do
+  #     get :invite_creator
+  #   end
+  # end
+  # match 'invites/:token',       :to => 'invitations#accept',        :as => :accept_invitation
   
   resources :stories do
     member do
@@ -52,6 +57,7 @@ Repo::Application.routes.draw do
     resources :pay_periods do
       post :mark_paid, :on => :member
     end
+    resources :invitations
   end
   
   match '/',                    :to => 'home#index',                :as => :home

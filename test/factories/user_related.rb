@@ -26,6 +26,12 @@ Factory.define :user_with_money, :parent => :email_confirmed_user do |user|
   user.credits                500
 end
 
+Factory.define :momeant_user, :parent => :email_confirmed_user do |user|
+  user.first_name             "Momeant"
+  user.last_name              ""
+  user.email                  "invitations@momeant.com"
+end
+
 Factory.define :subscription do |subscription|
   subscription.user           { Factory :user }
   subscription.subscriber     { Factory :user }

@@ -1,0 +1,4 @@
+%tr
+  %td= link_to invitation.inviter.name, user_path(invitation.inviter)
+  %td= link_to invitation.invitee.name, user_path(invitation.invitee) if invitation.invitee
+  %td= invitation.token
