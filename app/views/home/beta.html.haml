@@ -7,6 +7,30 @@
     = render "shared/error_messages", :target => @user
     .shots
       screenshots
+    .login
+      .form
+        %h2 Login
+        = form_for(@user, :as => :user, :url => session_path(:user)) do |f|
+          %fieldset
+            %ul
+
+              %li
+                = f.label :email
+                = f.text_field :email, :id => "login_email"
+
+              %li
+                = f.label :password
+                = f.password_field :password, :id => "login_password"
+
+              %li
+                = f.check_box :remember_me
+                = f.label :remember_me
+
+              %li.submit
+                = f.submit "login"
+      .email-list
+        %h2 Find out when we open up!
+        = render "mailchimp_beta_list"
     .join
       .inner
         %h2 Join
@@ -45,27 +69,3 @@
 
               %li.submit
                 = f.submit "sign up"
-    .login
-      .form
-        %h2 Login
-        = form_for(@user, :as => :user, :url => session_path(:user)) do |f|
-          %fieldset
-            %ul
-
-              %li
-                = f.label :email
-                = f.text_field :email, :id => "login_email"
-
-              %li
-                = f.label :password
-                = f.password_field :password, :id => "login_password"
-
-              %li
-                = f.check_box :remember_me
-                = f.label :remember_me
-
-              %li.submit
-                = f.submit "login"
-      .email-list
-        %h2 Find out when we open up!
-        = render "mailchimp_beta_list"
