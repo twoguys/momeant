@@ -36,7 +36,7 @@ class PagesController < ApplicationController
     image_media.image = params[:image]
     
     if image_media.save
-      render :json => {:result => "success", :full => image_media.image.url, :thumbnail => image_media.image.url(:small)}
+      render :json => {:result => "success", :full => image_media.image.url, :thumbnail => image_media.image.url(:medium)}
     else
       render :json => {:result => "failure", :message => "Unable to save image"}
     end

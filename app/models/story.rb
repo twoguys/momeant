@@ -34,7 +34,7 @@ class Story < ActiveRecord::Base
   
   scope :published, where(:published => true)
   scope :free, where(:price => 0.0)
-  scope :newest_first, order("created_at ASC")
+  scope :newest_first, order("created_at DESC")
   
   attr_accessor :autosaving
   

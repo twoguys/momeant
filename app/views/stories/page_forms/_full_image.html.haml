@@ -8,7 +8,8 @@
         %input{:type => "file", :name => "pages[#{@page_number}][image]", :id => "pages_#{@page_number}_image"}
         .loader.hidden
       .image-preview{:class => (@page.present? && @page.image.present?) ? "no-bg" : ""}
-        = image_tag @page.image.url if @page && @page.image
+        - if @page && @page.image
+          .image{:style => "background-image: url(#{@page.image.url})"}
     .caption.caption-background-color-affected
       %h3 Caption
       - if @page && @page.text
