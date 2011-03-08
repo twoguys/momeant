@@ -119,7 +119,6 @@ form.new_story, form.edit_story, .story-form
 			width: 288px
 			font-family: $typewriter
 			height: 180px
-			padding-top: 5px
 			background-color: #eaeaea
 			float: left
 			clear: none
@@ -131,6 +130,9 @@ form.new_story, form.edit_story, .story-form
 			position: relative
 			border: 5px solid #ffffff
 			@include boxshadow(5px, 0.25, 3px, 3px)
+			.inner, .image
+				width: 100%
+				height: 100%
 			a.choose-thumbnail
 				font-size: 12px
 				position: absolute
@@ -316,7 +318,7 @@ form.new_story, form.edit_story, .story-form
 			height: 100%
 			text-align: center
 			position: absolute
-			display: none			
+			display: none
 			.file-uploader
 				.loader
 					margin: 0 auto
@@ -327,7 +329,7 @@ form.new_story, form.edit_story, .story-form
 			.page-theme
 				min-height: 600px
 				background: #fff
-				height: 90%
+				height: 70%
 				padding-top: 250px
 				position: relative
 				.style-editor
@@ -338,7 +340,7 @@ form.new_story, form.edit_story, .story-form
 						cursor: all-scroll
 						width: 300px
 						min-width: 300px
-						margin: 0 auto
+						margin-left: 100px
 						padding: 10px
 						@include boxshadow(8px,0.5)
 						background: #cfd5d7
@@ -389,20 +391,22 @@ form.new_story, form.edit_story, .story-form
 					background: transparent url(../images/page-themes/36px-tall-dashed-line.png) repeat
 					outline: none
 			.full_image
+				.file-uploader, .image-preview, .image-preview .image
+					width: 100%
+					height: 100%
 				form
 					height: 40px
 				.input
 					text-align: center
 					width: 100%
 					height: 100%
-					margin: 25px auto 10px
 					positon: relative
 				.image-preview
 					margin: 0 auto
-					width: 70%
-					height: 95%
 					background: transparent url(../images/page-themes/pick-an-image-bg.png) no-repeat 50% 0
 					z-index: 5
+					.image
+						@include bgcover
 				.image-preview.no-bg
 					background: none
 				.caption
@@ -410,9 +414,9 @@ form.new_story, form.edit_story, .story-form
 					height: 200px
 					background-color: #fff
 					border: 1px solid #aaa
-					position: absolute
-					right: 16%
-					bottom: 16%
+					position: fixed
+					right: 100px
+					bottom: 50px
 					h3
 						padding: 5px
 						height: 15px

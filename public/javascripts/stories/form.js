@@ -45,7 +45,7 @@ var story_page_editor = function() {
 		$('#page-previews li.page').click(function() {
 			var page_number = $(this).attr('page-number');
 			pages_editor.goto_page(page_number);
-			var chosen = $(this).hasClass('chosen');
+			var chosen = $(this).hasClass('has-content');
 			if (chosen)
 				pages_editor.hide_page_type_chooser();
 			else
@@ -463,12 +463,16 @@ var story_auto_saver = function() {
 				},
 				onFinishOne: function(event, response, name, number, total) {
 					json = $.parseJSON(response);
+					
+//					$page.css('background-image', 'url(' + json.full + ')');
+					
 					var $img = $preview.find('img');
 					if ($img.length != 0) {
 						$img.attr('src', json.full);
 					} else {
 						$preview.append('<img src="' + json.full + '"/>').addClass('no-bg');
 					}
+					
 					$uploader.find('.info').remove();
 					if (!grid_cell)
 						$('#preview_' + (number + 1)).css('background-image', 'url(' + json.thumbnail + ')');
