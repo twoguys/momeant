@@ -1,3 +1,7 @@
+# financial
+
+MOMEANT_STORY_SALE_FEE_PERCENTAGE = 0.3
+
 US_STATES = [
   'Alabama', 
 	'Alaska',

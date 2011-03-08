@@ -72,9 +72,12 @@ class User < ActiveRecord::Base
   end
   
   def purchase(story)
-    return false if !self.can_afford?(story.price)
+    return false unless can_afford?(story.price)
     
-    purchase = Purchase.create(:amount => story.price, :story_id => story.id, :payer_id => self.id, :payee_id => story.user_id)
+    momeant_portion = story.price * MOMEANT_STORY_SALE_FEE_PERCENTAGE
+    creator_portion = story.price * (1 - MOMEANT_STORY_SALE_FEE_PERCENTAGE)
+    
+    purchase = Purchase.create(:amount => creator_portion, :story_id => story.id, :payer_id => self.id, :payee_id => story.user_id)
     unless story.free?
       self.decrement!(:credits, story.price)
       story.user.increment!(:credits, story.price)
