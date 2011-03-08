@@ -56,7 +56,6 @@ class StoriesController < ApplicationController
   end
   
   def autosave
-    Rails.logger.info "OMG AUTOSAVE: #{params.inspect}"
     if params[:story]
       @story.autosaving = true
       if @story.update_attributes(params[:story])
