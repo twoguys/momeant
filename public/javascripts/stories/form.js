@@ -443,7 +443,7 @@ var story_auto_saver = function() {
 	};
 	
 	this.handle_image_uploading = function($page, page_id, type, number) {
-		$('.file-uploader').each(function() {
+		$page.find('.file-uploader').each(function() {
 			var $uploader = $(this);
 			var $loader = $uploader.find('.loader');
 			var $file_input = $uploader.find('input[type="file"]');
@@ -452,11 +452,13 @@ var story_auto_saver = function() {
 			var grid_cell = $file_input.attr('cell');
 			if (grid_cell)
 				url += '?cell=' + grid_cell
+			var page_number = number;
 			$file_input.html5_upload({
 				url: url,
 				sendBoundary: window.FormData || $.browser.mozilla,
 				fieldName: 'image',
 				onStart: function() {
+					log('starting upload...');
 					$file_input.hide();
 					$loader.show();
 					return true;
@@ -464,18 +466,24 @@ var story_auto_saver = function() {
 				onFinishOne: function(event, response, name, number, total) {
 					json = $.parseJSON(response);
 					
-//					$page.css('background-image', 'url(' + json.full + ')');
-					
-					var $img = $preview.find('img');
+					var $img = $preview.find('.image');
 					if ($img.length != 0) {
-						$img.attr('src', json.full);
+						log($img);
+						$img.css('background-image', 'url(' + json.full + ')');
 					} else {
-						$preview.append('<img src="' + json.full + '"/>').addClass('no-bg');
+						$preview.append('<div class="image" style="background-image: url(' + json.full + ');"></div>').addClass('no-bg');
+					}
+					if (!grid_cell) {
+						var $thumbnail = $('#preview_' + page_number);
+						if ($thumbnail.find('.image').length > 0) {
+							$('#preview_' + page_number + ' .image').css('background-image', 'url(' + json.thumbnail + ')');
+						} else {
+							$thumbnail.prepend('<div class="inner"><div class="image" style="background-image: url(' + json.thumbnail + ');"></div></div>');
+						}
 					}
 					
+					
 					$uploader.find('.info').remove();
-					if (!grid_cell)
-						$('#preview_' + (number + 1)).css('background-image', 'url(' + json.thumbnail + ')');
 					$loader.hide();
 					$file_input.show();
 				}
