@@ -14,8 +14,8 @@
 - size ||= "original"
 .split
   .image
-    .inner
-      = image_tag(@page.image.url(size.to_s)) if @page.image
+    - if @page.image
+      .inner{:style => "background-image: url(#{@page.image.url(size.to_s)})"}
   .text
     .inner
       = @page.text
