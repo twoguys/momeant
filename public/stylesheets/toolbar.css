@@ -1,24 +1,31 @@
 /*
-Syntax error: Undefined mixin 'boxshadow'.
-        on line 74 of /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/toolbar.sass, in `boxshadow'
-        from line 74 of /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/toolbar.sass
+Syntax error: Undefined variable: "$background-color".
+        on line 74 of /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/toolbar.sass
 
-69: 				padding-top: 7px
-70: 				position: absolute
-71: 				top: 35px
-72: 			.topic-list
-73: 				border: 3px solid #000
-74: 				@include boxshadow
-75: 				display: none
-76: 				.odd
-77: 					background-color: #f0f0f0
-78: 				.even
-79: 					background-color: #fff
+69: 				background: transparent url(../images/topTriangle.png) no-repeat 10px 0
+70: 				padding-top: 7px
+71: 				position: absolute
+72: 				top: 35px
+73: 				.recommendation-stream
+74: 					background-color: $background-color
+75: 					@include boxshadow
+76: 					height: auto
+77: 		#recommendations:hover
+78: 			.inner
+79: 				display: block
 
 Backtrace:
-/Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/toolbar.sass:74:in `boxshadow'
 /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/toolbar.sass:74
-/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.25/lib/sass/tree/mixin_node.rb:62:in `perform!'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.25/lib/sass/script/variable.rb:39:in `_perform'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.25/lib/sass/script/node.rb:61:in `perform'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.25/lib/sass/tree/prop_node.rb:132:in `perform!'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.25/lib/sass/tree/node.rb:305:in `_perform'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.25/lib/sass/tree/node.rb:213:in `perform'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.25/lib/sass/tree/node.rb:327:in `perform_children'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.25/lib/sass/tree/node.rb:327:in `map'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.25/lib/sass/tree/node.rb:327:in `perform_children'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.25/lib/sass/tree/node.rb:317:in `perform!'
+/Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.25/lib/sass/tree/rule_node.rb:191:in `perform!'
 /Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.25/lib/sass/tree/node.rb:305:in `_perform'
 /Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.25/lib/sass/tree/node.rb:213:in `perform'
 /Users/djbrowning/.rvm/gems/ruby-1.8.7-p302@momeant/gems/haml-3.0.25/lib/sass/tree/node.rb:327:in `perform_children'
@@ -122,4 +129,4 @@ script/rails:6
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Syntax error: Undefined mixin 'boxshadow'.\A         on line 74 of /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/toolbar.sass, in `boxshadow'\A         from line 74 of /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/toolbar.sass\A \A 69: 				padding-top: 7px\A 70: 				position: absolute\A 71: 				top: 35px\A 72: 			.topic-list\A 73: 				border: 3px solid #000\A 74: 				@include boxshadow\A 75: 				display: none\A 76: 				.odd\A 77: 					background-color: #f0f0f0\A 78: 				.even\A 79: 					background-color: #fff"; }
+  content: "Syntax error: Undefined variable: \"$background-color\".\A         on line 74 of /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/toolbar.sass\A \A 69: 				background: transparent url(../images/topTriangle.png) no-repeat 10px 0\A 70: 				padding-top: 7px\A 71: 				position: absolute\A 72: 				top: 35px\A 73: 				.recommendation-stream\A 74: 					background-color: $background-color\A 75: 					@include boxshadow\A 76: 					height: auto\A 77: 		#recommendations:hover\A 78: 			.inner\A 79: 				display: block"; }

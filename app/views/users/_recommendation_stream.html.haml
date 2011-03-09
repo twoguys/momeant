@@ -1,0 +1,29 @@
+.recommendation-stream
+  .tabs
+    = link_to("subscribed", "subscribed-to-stream", :class => "active subscribed-to-recommendations")
+    = link_to("Mo&#149;meant".html_safe, "momeant-recommended-stream", :class=> "momeant-recommendations")
+    .clear
+
+  %ul.subscribed-to-stream.stories.tabcontent
+    - @user.recommendations_from_people_i_subscribe_to[0..3].each do |recommendation|
+      %li
+        = link_to(image_tag(recommendation.user.avatar.url(:thumbnail)), user_path(recommendation.user), :class => "avatar")
+        .info
+          %a.who-recommended{:href => preview_story_path(recommendation.story)}
+            %span= recommendation.user.name
+            %span.starred 's
+          = link_to(recommendation.story.title, preview_story_path(recommendation.story), :class => "title")
+          .author by #{recommendation.story.user.name}
+        .why= recommendation.comment
+
+  %ul.momeant-recommended-stream.stories.tabcontent.hidden
+    - @user.stories_similar_to_my_bookmarks_and_purchases[0..3].each do |story|
+      %li
+        %a.thumbnail{:href => preview_story_path(story)}
+          - if story.thumbnail
+            - @page = story.thumbnail
+            = render :partial => "stories/page_themes/#{@page.partial_name}", :locals => {:size => "petite"}
+        .info
+          = link_to(story.title, preview_story_path(story), :class => "title")
+          .author by #{story.user.name}
+        .price= story.price
