@@ -18,7 +18,7 @@
     - if user_signed_in?
       %li#recommendations
         %span.icon
-        .inner
+        .stream-inner
           = render :partial => "users/recommendation_stream", :locals => {:user => current_user}
       - if can? :create, Story
         %li#create
