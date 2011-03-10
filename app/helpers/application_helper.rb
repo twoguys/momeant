@@ -11,4 +11,8 @@ module ApplicationHelper
   def private_beta?
     ENV["CURRENT_RELEASE"] == "private-beta"
   end
+  
+  def markdown(text)
+    BlueCloth.new(text).to_html.html_safe
+  end
 end

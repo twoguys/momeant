@@ -17,9 +17,9 @@ class Story < ActiveRecord::Base
   belongs_to :user
   has_and_belongs_to_many :topics
   has_many :purchases
-  has_many :bookmarks
+  has_many :bookmarks, :dependent => :destroy
   has_many :users_who_bookmarked, :through => :bookmarks, :source => :user
-  has_many :recommendations
+  has_many :recommendations, :dependent => :destroy
   has_many :users_who_recommended, :through => :recommendations, :source => :user
   has_many :likes
   has_many :users_who_liked, :through => :likes, :source => :user

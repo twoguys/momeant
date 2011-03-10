@@ -10,7 +10,7 @@
         - if me?(@user) && @user.tagline.blank?
           Please edit your tagline
         - else
-          = @user.tagline
+          = markdown @user.tagline
       - if me?(@user)
         = link_to("Edit your info", edit_user_path(@user))
       .actions
