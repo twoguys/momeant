@@ -42,7 +42,7 @@ class User < ActiveRecord::Base
   
   # Setup accessible (or protected) attributes for your model
   attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :remember_me,
-    :avatar, :credits, :stored_in_braintree, :invitation_code
+    :avatar, :credits, :stored_in_braintree, :invitation_code, :tagline
   
   def extra_validations
     safe = true

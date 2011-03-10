@@ -6,7 +6,13 @@
       .avatar-name
         .avatar= image_tag(@user.avatar.url(:thumbnail))
         .name= @user.name
-      .tagline tagline
+      .tagline
+        - if me?(@user) && @user.tagline.blank?
+          Please edit your tagline
+        - else
+          = @user.tagline
+      - if me?(@user)
+        = link_to("Edit your info", edit_user_path(@user))
       .actions
         = subscribe_button(@user)
     .clear
