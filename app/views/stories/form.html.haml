@@ -8,7 +8,7 @@
 
   .finished-links
     = link_to "Preview story", preview_story_path(@story), :id => "preview-link"
-    = link_to "Publish story", publish_story_path(@story), :id => "publish-link", :method => :post
+    = link_to "Publish story", publish_story_path(@story), :id => "publish-link", :method => :post unless @story.published?
 
 .form.story-form
   #story-spinner Saving story...

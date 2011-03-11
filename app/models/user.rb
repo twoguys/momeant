@@ -82,7 +82,7 @@ class User < ActiveRecord::Base
     purchase = Purchase.create(:amount => creator_portion, :story_id => story.id, :payer_id => self.id, :payee_id => story.user_id)
     unless story.free?
       self.decrement!(:credits, story.price)
-      story.user.increment!(:credits, story.price)
+      story.user.increment!(:credits, creator_portion)
     end
     story.increment!(:purchased_count)
 
