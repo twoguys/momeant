@@ -30,8 +30,16 @@
           = recommend_button(@story, true)
           = render "stories/recommend_modal"
           = render "add_this"
-      %ul.pages
-        - @story.pages.each do |page|
-          - @page = page
-          %li.page{:class => page.css_class, "page-number" => page.number}
-            .inner= render :partial => "/stories/page_themes/#{page.partial_name}", :locals => {:preview => true, :size => "medium"}
+      .slider
+        .scrollbar-me
+          .viewport
+            .overview
+              %ul.pages
+                - @story.pages.each do |page|
+                  - @page = page
+                  %li.page{:class => page.css_class, "page-number" => page.number}
+                    .inner= render :partial => "/stories/page_themes/#{page.partial_name}", :locals => {:preview => true, :size => "medium"}
+          .scrollbar
+            .track
+              .thumb
+                .end

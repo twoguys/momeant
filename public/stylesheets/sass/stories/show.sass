@@ -30,7 +30,6 @@
 		bottom: 0
 		z-index: 5
 		width: 100%
-		overflow-x: auto
 		overflow-y: hidden
 		.handle
 			height: 22px
@@ -42,6 +41,7 @@
 			color: #fff
 			text-shadow: none
 			position: relative
+			overflow: hidden
 		.info
 			width: 270px
 			height: 180px
@@ -93,13 +93,44 @@
 					background-image: url(../images/icons/recommendOn.png)
 				.share
 					background-image: url(../images/icons/shareOn.png)
+		.slider
+			position: absolute
+			top: 0
+			left: 280px
+			width: 100%
+			.viewport
+				overflow: hidden
+				position: relative
+				height: 190px
+				.overview
+					position: absolute
+					top: 0
+					left: 0
+			.scrollbar
+				height: 12px
+				position: relative
+				margin-top: 4px
+				.track
+					background-color: #000
+					height: 12px
+					width: 100%
+					position: relative
+					padding: 0 1px
+				.thumb
+					height: 10px
+					width: 20px
+					cursor: pointer
+					overflow: hidden
+					position: absolute
+					left: 0
+					background-color: #ccc
+					@include rounded
+			.scrollbar.disable
+				display: none
 		ul.pages
 			height: 190px
 			padding: 5px 0
 			background-color: #000
-			position: absolute
-			top: 0
-			left: 280px
 			li.page
 				width: 280px
 				height: 180px
