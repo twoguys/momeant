@@ -1,21 +1,27 @@
 .homepage
   %section#editorial
     = render "home/editorials/communications"
-
-  %section#recent-stories
-    %h2 Recent
-    %ul.stories
-      = render @stories
     
-  - if current_user
-    %section#subscribed-to-stories
-      %h2 User Recommended
-      %ul.stories
-        = render @subscribed_to_stories
-  
-    %section#similar-to-bookmarked-stories
-      %h2 Mo&#149;meant Recommended
-      %ul.stories
-        = render @similar_to_bookmarked_stories
-      
-    = render "stories/personal_library"
+  %section#tutorials
+    %h1 Momeant tutorial stories will go here
+    
+  %section.story-tabs
+    .tabs
+      = link_to("recent", "recent", :class => "active")
+      = link_to("recommendations", "user-recommended")
+      = link_to("mo&#149meant".html_safe, "momeant-recommended")
+      = link_to("hearted", "likes", :class => "right-side")
+      = link_to("bookmarked", "bookmarks", :class => "right-side")
+      = link_to("purchased", "purchases", :class => "right-side bordered-left")
+    %ul.recent.stories.tabcontent
+      = render @stories
+    %ul.user-recommended.stories.tabcontent
+      = render @subscribed_to_stories
+    %ul.momeant-recommended.stories.tabcontent
+      = render @similar_to_bookmarked_stories
+    %ul.purchases.stories.tabcontent
+      = render current_user.stories
+    %ul.bookmarks.stories.hidden.tabcontent
+      = render current_user.bookmarked_stories
+    %ul.likes.stories.hidden.tabcontent
+      = render current_user.liked_stories

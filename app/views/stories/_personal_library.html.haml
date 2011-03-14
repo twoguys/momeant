@@ -1,8 +1,8 @@
 %section.personal-library
   .tabs
-    = link_to("my purchases", "purchases", :class => "active")
-    = link_to("my bookmarks", "bookmarks")
-    = link_to("my likes", "likes")
+    = link_to("purchased", "purchases", :class => "active")
+    = link_to("bookmarked", "bookmarks")
+    = link_to("hearted", "likes")
   %ul.purchases.stories.tabcontent
     = render current_user.stories
   %ul.bookmarks.stories.hidden.tabcontent
