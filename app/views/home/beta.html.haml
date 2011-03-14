@@ -1,12 +1,46 @@
-.beta
-  .important We're now in private beta!
+- content_for :head do
+  = javascript_include_tag "beta"
 
-  %p.copy Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+.beta
+
+  %p.copy Mo•meant is currently in private beta. If you have an invitation ID please enter it here. If you would like to be invited as a creator or user, please sign up to our mailing list below.
 
   .clearfix
     = render "shared/error_messages", :target => @user
+    .join
+      .inner
+        %h2 Join
+        = form_for(@user, :as => :user, :url => registration_path(:user), :html => {:multipart => true}) do |f|
+          %fieldset
+            %ul
+              %li
+                = f.label :invitation_code
+                = f.text_field :invitation_code
+                
+              %li
+                = f.label :first_name, "Your name"
+                %span
+                  = f.text_field :first_name, :value => "first", :class => "placeholder"
+                %span
+                  = f.text_field :last_name, :value => "last", :class => "placeholder"
+              %li
+                = f.label :email
+                = f.text_field :email
+
+              %li
+                %label{:for => "user_password"}
+                  Password
+                  %span.instructions (6+ characters)
+                %span
+                  = f.password_field :password
+                %span
+                  = f.password_field :password_confirmation
+                  = f.label :password, "(once more, please)"
+
+              %li.submit
+                = f.submit "sign up"
     .shots
-      screenshots
+      %img(src="/images/betaBorder.png" alt="border")
     .login
       .form
         %h2 Login
@@ -29,43 +63,5 @@
               %li.submit
                 = f.submit "login"
       .email-list
-        %h2 Find out when we open up!
+        %h2 I Want In!
         = render "mailchimp_beta_list"
-    .join
-      .inner
-        %h2 Join
-        = form_for(@user, :as => :user, :url => registration_path(:user), :html => {:multipart => true}) do |f|
-          %fieldset
-            %ul
-              %li
-                = f.label :invitation_code
-                = f.text_field :invitation_code
-                
-              %li
-                = f.label :first_name, "Your name"
-                %span
-                  = f.text_field :first_name
-                  = f.label :first_name, "First"
-                %span
-                  = f.text_field :last_name
-                  = f.label :last_name, "Last"
-
-              %li
-                = f.label :email
-                = f.text_field :email
-
-              %li
-                = f.label :password
-                %span
-                  = f.password_field :password
-                  = f.label :password, "6+ characters"
-                %span
-                  = f.password_field :password_confirmation
-                  = f.label :password_confirmation, "Once more, please"
-
-              %li
-                = f.label :avatar
-                = f.file_field :avatar
-
-              %li.submit
-                = f.submit "sign up"
