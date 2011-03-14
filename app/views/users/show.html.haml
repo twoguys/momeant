@@ -6,7 +6,13 @@
       .avatar-name
         .avatar= image_tag(@user.avatar.url(:thumbnail))
         .name= @user.name
-      .tagline tagline
+      .tagline
+        - if me?(@user) && @user.tagline.blank?
+          Please edit your tagline
+        - else
+          = markdown @user.tagline
+      - if me?(@user)
+        = link_to("Edit your info", edit_user_path(@user))
       .actions
         = subscribe_button(@user)
     .clear
@@ -23,27 +29,7 @@
             %span.name= user.name
   
   
-  .recommendation-stream
-    .tabs
-      = link_to("subscribed", "#", :class => "active", :id => "subscribed-to-recommendations")
-      = link_to("Mo&#149;meant".html_safe, "#", :id => "momeant-recommendations")
-      .clear
-  
-    %ul.subscribed-to-stream.stories
-      - @user.recommended_stories_from_people_i_subscribe_to[0..3].each do |story|
-        %li
-          %a.thumbnail{:href => preview_story_path(story)}
-            - if story.thumbnail
-              - @page = story.thumbnail
-              = render :partial => "stories/page_themes/#{@page.partial_name}", :locals => {:size => "petite"}
-          .info
-            = link_to(story.title, preview_story_path(story), :class => "title")
-            .author by #{story.user.name}
-          .price= story.price
-  
-    %ul.momeant-recommended-stream.stories.hidden
-      - @user.stories_similar_to_my_bookmarks_and_purchases[0..3].each do |story|
-        %li= link_to(story.title, preview_story_path(story))
+  = render :partial => "users/recommendation_stream", :locals => {:user => @user}
   
   .comments Comments (coming soon...)
 

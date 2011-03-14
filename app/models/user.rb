@@ -42,18 +42,20 @@ class User < ActiveRecord::Base
   
   # Setup accessible (or protected) attributes for your model
   attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :remember_me,
-    :avatar, :credits, :stored_in_braintree, :invitation_code
+    :avatar, :credits, :stored_in_braintree, :invitation_code, :tagline
   
   def extra_validations
     safe = true
     if ENV["CURRENT_RELEASE"] == 'private-beta'
-      # validate invitation code
-      if self.invitation_code.blank?
-        self.errors.add(:invitation_code, "is required during private beta.")
-        safe = false
-      elsif Invitation.find_by_token(self.invitation_code).nil?
-        self.errors.add(:invitation_code, "is invalid. Please ensure you typed it correctly.")
-        safe = false
+      if !self.confirmed?
+        # validate invitation code
+        if self.invitation_code.blank?
+          self.errors.add(:invitation_code, "is required during private beta.")
+          safe = false
+        elsif Invitation.find_by_token(self.invitation_code).nil?
+          self.errors.add(:invitation_code, "is invalid. Please ensure you typed it correctly.")
+          safe = false
+        end
       end
     end
     return safe
@@ -80,7 +82,7 @@ class User < ActiveRecord::Base
     purchase = Purchase.create(:amount => creator_portion, :story_id => story.id, :payer_id => self.id, :payee_id => story.user_id)
     unless story.free?
       self.decrement!(:credits, story.price)
-      story.user.increment!(:credits, story.price)
+      story.user.increment!(:credits, creator_portion)
     end
     story.increment!(:purchased_count)
 
@@ -116,6 +118,15 @@ class User < ActiveRecord::Base
     purchased_stories = self.purchased_stories
     # remove stories I've created or purchased
     stories.reject { |story| story.user == self || purchased_stories.include?(story) }
+  end
+
+  def recommendations_from_people_i_subscribe_to
+    recommendations = Recommendation.where(:user_id => self.subscribed_to)
+    purchased_story_ids = self.purchased_stories.map {|story| story.id}
+    my_created_story_ids = self.is_a?(Creator) ? self.created_stories.map {|story| story.id} : []
+    ignore_story_ids = purchased_story_ids + my_created_story_ids
+    # remove stories I've created or purchased
+    recommendations.reject { |recommendation| ignore_story_ids.include?(recommendation.story_id) }
   end
   
   def stories_similar_to_my_bookmarks_and_purchases

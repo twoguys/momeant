@@ -8,7 +8,8 @@
 
   .finished-links
     = link_to "Preview story", preview_story_path(@story), :id => "preview-link"
-    = link_to "Publish story", publish_story_path(@story), :id => "publish-link", :method => :post
+    = link_to "Publish story", publish_story_path(@story), :id => "publish-link", :method => :post unless @story.published?
+    = link_to "Delete story", story_path(@story), :id => "delete-link", :method => :delete, :confirm => "Are you sure you want to delete this story?" unless @story.published?
 
 .form.story-form
   #story-spinner Saving story...

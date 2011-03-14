@@ -56,11 +56,11 @@ function setup_search_placeholder() {
 	});
 }
 function setup_story_gallery() {
-	if ($('.scrollbar-me').length > 0 ) {
+	if ($('.story-gallery .scrollbar-me').length > 0 ) {
 		var small_preview_width = 100, large_preview_width = 630;
 		var count = $('.scrollbar-me .overview .preview').length;
-		$('.scrollbar-me .overview').css('width', count * small_preview_width);
-		$('.scrollbar-me').tinyscrollbar({axis:'x'});
+		$('.story-gallery .scrollbar-me .overview').css('width', count * small_preview_width);
+		$('.story-gallery .scrollbar-me').tinyscrollbar({axis:'x'});
 		$('.story-gallery .preview').click(function() {
 			var page = $(this).attr('counter');
 			var position = page * large_preview_width;

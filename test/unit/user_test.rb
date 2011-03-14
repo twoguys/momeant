@@ -8,6 +8,7 @@ class UserTest < ActiveSupport::TestCase
     recommendation = Factory(:recommendation, :user => subscription.user)
 
     assert user.recommended_stories_from_people_i_subscribe_to.include?(recommendation.story)
+    assert user.recommendations_from_people_i_subscribe_to.include?(recommendation)
   end
   
   test "Momeant does NOT show recommended stories from users I'm subscribed to if I've created them" do
@@ -17,6 +18,7 @@ class UserTest < ActiveSupport::TestCase
     recommendation = Factory(:recommendation, :story => story, :user => subscription.user)
     
     assert !creator.recommended_stories_from_people_i_subscribe_to.include?(story)
+    assert !creator.recommendations_from_people_i_subscribe_to.include?(recommendation)
   end
   
   test "Momeant does NOT show recommended stories from users I'm subscribed to if I've already purchased them" do
@@ -26,6 +28,7 @@ class UserTest < ActiveSupport::TestCase
     purchase = Factory(:purchase, :payer => user, :story => recommendation.story)
 
     assert !user.recommended_stories_from_people_i_subscribe_to.include?(recommendation.story)
+    assert !user.recommendations_from_people_i_subscribe_to.include?(recommendation.story)
   end
   
   test "Momeant shows stories similar to my bookmarks" do

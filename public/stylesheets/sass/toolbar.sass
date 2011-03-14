@@ -11,7 +11,7 @@ header
 			width: 100%
 			li
 				float: left
-		#home, #profile, #faq, #topics, #recommendations, #create
+		#home, #profile, #faq, #topics, #create
 			width: 46px
 			height: 36px
 			background: transparent url(../images/topNavBreak.gif) no-repeat 0 0
@@ -53,8 +53,30 @@ header
 				padding: 12px 10px
 		#subscriptions a
 			background-image: url(../images/icons/person.png)
-		#recommendations a
-			background-image: url(../images/icons/momeantStream.png)
+		#recommendations
+			background: transparent url(../images/topNavBreak.gif) no-repeat 0 0
+			width: 46px
+			height: 36px
+			span.icon
+				position: absolute
+				display: block
+				width: 46px
+				height: 36px
+				background: transparent url(../images/icons/momeantStream.png) no-repeat 50% 6px
+				cursor: pointer
+			.stream-inner
+				display: none
+				background: transparent url(../images/topTriangle.png) no-repeat 10px 0
+				padding-top: 7px
+				position: absolute
+				top: 35px
+				.recommendation-stream
+					background-color: $background-color
+					@include boxshadow
+					height: auto
+		#recommendations:hover
+			.stream-inner
+				display: block
 		#topics	
 			background: transparent url(../images/topNavBreak.gif) no-repeat 0 0
 			span

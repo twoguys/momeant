@@ -17,7 +17,7 @@ class StoriesController < ApplicationController
   
   def new
     @story = Story.create(:thumbnail_page => 1, :user_id => current_user.id, :autosaving => true, :price => 0)
-    render "form"
+    redirect_to edit_story_path(@story)
   end
   
   def create
@@ -34,12 +34,11 @@ class StoriesController < ApplicationController
   end
   
   def edit
-    # if @story.published?
-    #   redirect_to preview_story_path(@story), :alert => "Sorry, you cannot edit a story once it's been published."
-    #   return
-    # end
+    if @story.published?
+      redirect_to preview_story_path(@story), :alert => "Sorry, you cannot edit a story once it's been published."
+      return
+    end
     
-    get_topics
     render "form"
   end
   
@@ -52,6 +51,15 @@ class StoriesController < ApplicationController
     else
       get_topics
       render "form"
+    end
+  end
+  
+  def destroy
+    if @story.published?
+      redirect_to edit_story_path(@story), :alert => "You can't delete a published story."
+    else
+      @story.destroy
+      redirect_to user_path(current_user), :notice => "Your story was deleted."
     end
   end
   

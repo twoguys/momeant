@@ -17,9 +17,9 @@ class Story < ActiveRecord::Base
   belongs_to :user
   has_and_belongs_to_many :topics
   has_many :purchases
-  has_many :bookmarks
+  has_many :bookmarks, :dependent => :destroy
   has_many :users_who_bookmarked, :through => :bookmarks, :source => :user
-  has_many :recommendations
+  has_many :recommendations, :dependent => :destroy
   has_many :users_who_recommended, :through => :recommendations, :source => :user
   has_many :likes
   has_many :users_who_liked, :through => :likes, :source => :user
@@ -30,7 +30,7 @@ class Story < ActiveRecord::Base
   validates :excerpt, :length => (2..1024), :unless => :autosaving
   validates :price, :format => /[0-9.,]+/, :unless => :autosaving
   
-  validate  :at_least_one_page, :only_two_free_stories, :unless => :autosaving
+  validate  :ten_page_requirement, :only_two_free_stories, :unless => :autosaving
   
   scope :published, where(:published => true)
   scope :free, where(:price => 0.0)
@@ -46,9 +46,9 @@ class Story < ActiveRecord::Base
     end
   end
   
-  def at_least_one_page
-    if self.pages.count == 0
-      self.errors.add(:base, "Your story needs at least one page")
+  def ten_page_requirement
+    if self.pages.count != 10
+      self.errors.add(:base, "Your story must have 10 pages")
       return false
     end
   end
