@@ -12,9 +12,26 @@ h2
 	clear: both
 
 .beta
+	margin-top: -10px
+	margin-bottom: 30px
+	padding-bottom: 30px
 	.important, .copy
 		font-family: $typewriter
-		font-size: 1.1em
+		color: #999
+		font-size: 20px
+		line-height: 31px
+		margin-bottom: 20px
+		&:first-letter
+			font-size: 60px
+			font-weight: 100
+			padding-bottom: 5px
+			line-height: 100px
+			float: left
+			display: inline-block
+			vertical-align: baseline
+			padding-right: 5px
+			padding-top: 12px
+			color: #000
 	.important
 		font-weight: 700
 		font-style: italic
@@ -22,45 +39,83 @@ h2
 	h2
 		background: none
 		color: #000
-		font-size: 26px
-		padding: 0
+		font-size: 36px
+		padding: 0 10px 10px
 		margin: 0 0 10px
+		font-family: $typewriter
+		font-weight: 100
+		border-bottom: 1px solid #ddd
+		text-align: center
+		width: 190px
 	form
+		.placeholder
+			color: #aaa
+			font-style: italic
+			font-family: $serif
+			font-size: 12px
 		input[type="text"], input[type="password"]
-			width: 216px
+			width: 194px
 		input[type="submit"]
 			color: #000
 			text-shadow: none
 			font-size: 16px
 		span
 			input[type="text"], input[type="password"]
-				width: 100px
+				width: 194px
 			label
-				color: #aaa
+				color: #cacaca
+				margin: 0px 0px 10px 0
+				text-transform: lowercase
+				font-family: $serif
+				font-style: italic
+				font-size: 12px
 		li
 			margin-bottom: 10px
 	
 	.shots, .join, .login
 		float: left
-		width: 286px
+		width: 280px
 		margin-top: 20px
-
+		img
+			margin: 15px 37%
 	.join
-		background: transparent url(../images/simpleDotBGgreyVertical.png) repeat-y 100% 0
 		padding-right: 45px
 		input[type="submit"]
-			background-color: #a9d300
+			background-color: $lightblue
+			@include rounded(4px)
+			color: $blue
+			font-weight: 900
+			text-transform: uppercase
+			font-family: $block
+			width: 210px
+			margin-top: 34px
 		.inner
-			background: transparent url(../images/simpleDotBGgreyVertical.png) repeat-y 0 0
-			padding-left: 45px
+			padding-left: 115px
 	.login
 		float: right
-		padding-left: 45px
+		padding-left: 5px
 		input[type="submit"]
-			background-color: #31afff
-	
+			background-color: $lightblue
+			@include rounded(4px)
+			color: $blue
+			font-weight: 900
+			text-transform: uppercase
+			font-family: $block
+			width: 210px
+			margin-top: 20px
+		input[type="checkbox"]
+			float: left
+			height: 25px
 	.email-list
-		margin-top: 60px
+		h2
+			letter-spacing: -2.5px
+		margin-top: 15px
 		input[type="submit"]
-			margin-top: 10px
-			background-color: #ff1345
+			background-color: $lightblue
+			@include rounded(4px)
+			color: $blue
+			font-weight: 900
+			text-transform: uppercase
+			font-family: $block
+			width: 210px
+			margin-top: 20px
