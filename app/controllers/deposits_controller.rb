@@ -1,5 +1,5 @@
 class DepositsController < ApplicationController
-  ssl_required :create if RAILS_ENV == "production"
+  ssl_required :create if RAILS_ENV == "production" && ENV["HTTPS"] == "on"
   before_filter :authenticate_user!
   
   def index
