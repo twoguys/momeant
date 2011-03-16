@@ -4,12 +4,14 @@
 
 .fullscreen-hidden
   .new-story-copy
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    Momeant stories are a new form of digital media. You simply take your creative content—whether it’s audio, video, text or images—and plug it into our customizable story blocks. The blocks allow you to layer and mash up content however you like. Hyperlinks give you an added dimension of interactivity.
+
+    We’ve already got some great storytelling tools, but we’re always looking for feedback on how we can improve them and on what new tools you want to see. So get in touch with us!
 
   .finished-links
-    = link_to "Preview story", preview_story_path(@story), :id => "preview-link"
-    = link_to "Publish story", publish_story_path(@story), :id => "publish-link", :method => :post unless @story.published?
-    = link_to "Delete story", story_path(@story), :id => "delete-link", :method => :delete, :confirm => "Are you sure you want to delete this story?" unless @story.published?
+    = link_to "Preview", preview_story_path(@story), :id => "preview-link"
+    = link_to "Publish", publish_story_path(@story), :id => "publish-link", :method => :post unless @story.published?
+    = link_to "Delete", story_path(@story), :id => "delete-link", :method => :delete, :confirm => "Are you sure you want to delete this story?" unless @story.published?
 
 .form.story-form
   #story-spinner Saving story...
@@ -27,17 +29,17 @@
       %li
         = hidden_field_tag :story_id, @story.id
         .title-input
-          = label_tag :story_title
+          = label_tag :story_title, "Title"
           = text_field_tag :story_title, @story.title, :class => "monitor-story-typing", :update => "title"
           .example e.g. Around the World in 80 Days
         .excerpt-input
-          = label_tag :story_excerpt
+          = label_tag :story_excerpt, "Synopsis"
           = text_area_tag :story_excerpt, @story.excerpt, :class => "monitor-story-typing", :update => "excerpt"
           .example e.g. Everything, it said, was against the travelers, every obstacle imposed alike by man and by nature.
           
       %li.metadata
         .price
-          = label_tag :story_price
+          = label_tag :story_price, "Price"
           = text_field_tag :story_price, @story.price || "", :class => "monitor-story-typing", :update => "price"
           .example 10, 20, 500 - increments of 10
         .tags

@@ -1,8 +1,10 @@
 /* Story Preview */
 
+#mid
+	padding: 0px
 input.bookmark, input.unbookmark
 	position: absolute
-	top: -22px
+	top: -12px
 	right: 0
 	width: 50px
 	height: 55px
@@ -14,11 +16,20 @@ input.unbookmark
 input.bookmark:active, input.unbookmark:active
 	top: -22px
 .banner
-	padding: 1em 0
-	font-size: 1.2em
-	font-weight: bold
+	padding: 10px 20px
+	font-size: 11px
+	font-weight: 100
+	text-align: left
+	margin-bottom: 32px
+	background-color: #efefef
+	@include rounded
 	form
 		display: inline-block
+		input[type="submit"]
+			font-size: 13px
+			margin-left: 10px
+			background-color: $lightgreen
+			color: #1EA337
 	ul
 		font-weight: normal
 		font-size: 12px
@@ -31,15 +42,19 @@ input.bookmark:active, input.unbookmark:active
 		background: none repeat scroll 0 0 white
 		display: block
 		float: left
-		font-size: 13px
-		font-weight: bold
+		font-size: 12px
+		font-weight: 900
 		margin-left: 70px
-		padding: 8px 10px
+		padding: 16px 20px 10px 15px
 		z-index: 10
 		position: absolute
 		top: 0
 		right: 0
 		text-transform: uppercase
+		color: black
+		-moz-border-radius: 0 0 0 5px
+		-webkit-border-radius: 0 0 0 5px
+		border-radius: 0 0 0 5px
 	.preview
 		float: left
 		position: relative

@@ -3,8 +3,8 @@
   - if @story.draft?
     .banner
       - if @story.valid?
-        %span Your story is still in draft state (no one else can see it). Once you're ready to make it public,
-        = button_to("Publish this story", publish_story_path(@story))
+        %span Your story is still a draft (no one else can see it). Once you're ready to make it public, click here: 
+        = button_to("Publish", publish_story_path(@story))
       - else
         %span Before you can publish your story, please #{link_to("edit it", edit_story_path(@story))} and fix these issues:
         %ul

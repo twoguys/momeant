@@ -6,20 +6,23 @@
 	z-index: 3
 	a, input[type="submit"]
 		float: left
-		font-weight: 700
-		font-size: 1.3em
+		font-weight: 900
+		font-size: 14px
 		text-transform: uppercase
 		margin-left: 10px
-		padding: 6px 12px
-		@include rounded
+		padding: 8px 10px 5px
+		@include rounded(4px)
+		width: 80px
+		text-align: center
+		letter-spacing: .5px
 	#preview-link
-		background-color: #bbd6e7
+		background-color: $lightblue
 	#publish-link
-		background-color: #d1e7bb
-		color: #428202
+		background-color: $lightgreen
+		color: #1EA337
 	#delete-link
-		background-color: #e7bbbb
-		color: #820202
+		background-color: $lightred
+		color: $red
 .new-story-copy
 	font-family: $typewriter
 	color: #999
@@ -88,9 +91,11 @@ form.new_story, form.edit_story, .story-form
 	#page-previews
 		position: relative
 		border-bottom: $border_solid
+		border-top: $border_solid
 		margin-bottom: 25px
 		padding-bottom: 15px
 		width: 950px
+		padding-top: 30px
 		h3
 			padding: 3px 0
 			color: $blue
@@ -202,12 +207,14 @@ form.new_story, form.edit_story, .story-form
 			clear: none
 			input
 				float: left
+				height: 24px
 			label
 				display: inline-block
 				color: #333333
-				font-size: 18px
+				font-size: 15px
+				width: auto
 				font-weight: 900
-				line-height: 22px
+				line-height: 12px
 				font-weight: 900
 				cursor: pointer
 			.children

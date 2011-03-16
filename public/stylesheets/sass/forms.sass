@@ -77,13 +77,15 @@ form, .form
 input[type="submit"], a.button
 	position: relative
 	padding: 8px 10px 5px
-	font-weight: bold
 	line-height: 1
-	font-size: 11px
-	color: #222
 	border: none
-	background-color: #ccc
 	cursor: pointer
+	background-color: $lightblue
+	@include rounded(4px)
+	color: $blue
+	font-weight: 900
+	text-transform: uppercase
+	font-family: $block
 input[type="submit"]:active, a.button:active
 	top: 1px
 label[for="user_remember_me"]

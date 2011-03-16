@@ -17,7 +17,7 @@ class StoriesController < ApplicationController
   
   def new
     @story = Story.create(:thumbnail_page => 1, :user_id => current_user.id, :autosaving => true, :price => 0)
-    redirect_to edit_story_path(@story)
+    render "form"
   end
   
   def create

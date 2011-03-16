@@ -5,6 +5,11 @@
         background-color: ##{@page.background_color} !important;
         color: ##{@page.text_color} !important;
       }
+      #story_#{@page.story_id}_page_#{@page.number} hr{
+        border: 1px solid ##{@page.text_color};
+      }
 
 .inner
-  .title{:id => "story_#{@page.story_id}_page_#{@page.number}"}= @page.text
+  .title{:id => "story_#{@page.story_id}_page_#{@page.number}"}
+    = @page.text
+    %hr
