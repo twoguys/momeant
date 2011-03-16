@@ -3,7 +3,7 @@ class DepositsController < ApplicationController
   before_filter :authenticate_user!
   
   def index
-    if RAILS_ENV == "production" && request.protocol != "https"
+    if RAILS_ENV == "production" && ENV["HTTPS"] == "on" && request.protocol != "https"
       redirect_to credits_path(:only_path => false, :host => "secure.#{request.host}", :protocol => "https")
     end
     
