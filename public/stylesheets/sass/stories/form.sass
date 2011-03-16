@@ -342,7 +342,7 @@ form.new_story, form.edit_story, .story-form
 		position: absolute
 		width: 100%
 		z-index: 1
-		background: transparent url(../images/story-creator-background-hint.jpg) no-repeat 40% 200px
+		background: url("../images/story-creator-background-hint.gif") no-repeat scroll 50% 50% #f2f2f2
 		padding: 40px 0 200px
 		li.page
 			width: 100%
@@ -361,7 +361,7 @@ form.new_story, form.edit_story, .story-form
 				min-height: 600px
 				background: #fff
 				height: 70%
-				padding-top: 250px
+				padding-top: 350px
 				position: relative
 				.style-editor
 					width: 100%
@@ -410,17 +410,29 @@ form.new_story, form.edit_story, .story-form
 								width: 40px
 								font-size: 11px
 			.title
-				padding-top: 300px
-				label, textarea
-					font-size: 36px
-					font-weight: normal
+				padding-top: 400px
+				label
+					font-size: 24px
+					font-family: $block
+					font-weight: 900
+					text-transform: uppercase
+					top: 400px
+					margin-top: 10px
+					color: #ccc
 				textarea
-					border: none
-					width: 60%
-					height: 80px
+					font-size: 120px
+					font-family: $dropcaps
+					font-weight: 900
+					text-transform: uppercase
+					top: 400px
+					border: 1px solid #aaa
+					padding: 50px 20px
+					width: 65%
+					height: auto
 					overflow: hidden
-					background: transparent url(../images/page-themes/36px-tall-dashed-line.png) repeat
 					outline: none
+					text-align: center
+					line-height: 110px
 			.full_image
 				.file-uploader, .image-preview, .image-preview .image
 					width: 100%
@@ -569,39 +581,38 @@ form.new_story, form.edit_story, .story-form
 							
 	#page_info
 		position: absolute
-		width: 50%
-		margin: 0 25%
-		top: 240px
+		width: 40%
+		margin: 0 32% 0 28%
+		top: 275px
 		left: 0
-		font-size: 26px
-		font-style: italic
+		font-size: 32px
 		text-transform: uppercase
-		height: 40px
+		height: 35px
 		z-index: 2
+		border-bottom: 1px solid white
+		color: #ccc
+		font-weight: 900
+		padding-bottom: 50px
 		.inner
 			padding: 10px 10px 0 10px
 			width: 160px
 			margin: 0 auto	
 		.label
 			float: left
-			margin-right: 20px
 		.number
-			width: 47px
-			float: left
+			width: 48px
 			position: relative
-			font-size: 18px
+			left: 130px
 			span
 				display: block
 				position: absolute
 			.current
-				top: 0
 				right: 34px
 			.of
-				top: 8px
-				left: 15px
+				left: 18px
+				font-weight: 100
 			.total
-				top: 15px
-				left: 21px
+				left: 36px
 	#story-details
 		position: absolute
 		bottom: -51px
