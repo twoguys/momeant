@@ -14,15 +14,16 @@
     = link_to "Delete", story_path(@story), :id => "delete-link", :method => :delete, :confirm => "Are you sure you want to delete this story?" unless @story.published?
 
 .form.story-form
-  #story-spinner Saving story...
-  #story-saved Your story will be automatically saved as you edit it
+  .fullscreen-hidden
+    #story-spinner Saving story...
+    #story-saved Your story will be automatically saved as you edit it
   
-  - if !@story.valid?
-    .banner
-      %span Before you can publish your story, please fix these issues:
-      %ul
-        - @story.errors.full_messages.each do |msg|
-          %li= msg
+    - if !@story.valid?
+      .banner
+        %span Before you can publish your story, please fix these issues:
+        %ul
+          - @story.errors.full_messages.each do |msg|
+            %li= msg
   
   %fieldset
     %ul

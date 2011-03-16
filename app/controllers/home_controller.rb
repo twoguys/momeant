@@ -6,7 +6,8 @@ class HomeController < ApplicationController
       render "beta" and return
     end
     
-    @stories = Story.published.order("created_at DESC")
+    @stories = Story.published.newest_first
+    @popular_stories = Story.published.popular
     if current_user
       @subscribed_to_stories = current_user.recommended_stories_from_people_i_subscribe_to
       @similar_to_bookmarked_stories = current_user.stories_similar_to_my_bookmarks_and_purchases

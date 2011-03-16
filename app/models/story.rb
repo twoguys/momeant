@@ -21,7 +21,7 @@ class Story < ActiveRecord::Base
   has_many :users_who_bookmarked, :through => :bookmarks, :source => :user
   has_many :recommendations, :dependent => :destroy
   has_many :users_who_recommended, :through => :recommendations, :source => :user
-  has_many :likes
+  has_many :likes, :dependent => :destroy
   has_many :users_who_liked, :through => :likes, :source => :user
   
   has_many :pages, :order => "number ASC", :dependent => :destroy
@@ -35,6 +35,7 @@ class Story < ActiveRecord::Base
   scope :published, where(:published => true)
   scope :free, where(:price => 0.0)
   scope :newest_first, order("created_at DESC")
+  scope :popular, where("likes_count > 0").order("likes_count DESC")
   
   attr_accessor :autosaving
   

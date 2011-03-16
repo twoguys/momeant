@@ -69,6 +69,13 @@ h2
 
 /* Layout */
 
+html, body, #wrap
+	height: 100%
+
+body > #wrap
+	height: auto
+	min-height: 100%
+
 header .insides, #mid .insides, #footer .insides
 	width: 950px
 	padding: 0px 0 0
@@ -181,6 +188,10 @@ header .insides, #mid .insides, #footer .insides
 		width: auto
 		border-right: 1px solid #ccc
 	a:first-child
+		border-left: 1px solid #ccc
+	a.right-side
+		float: right
+	a.bordered-left
 		border-left: 1px solid #ccc
 
 .colorpicker

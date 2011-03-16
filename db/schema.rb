@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110310134946) do
+ActiveRecord::Schema.define(:version => 20110316130424) do
 
   create_table "credit_cards", :force => true do |t|
     t.string    "last_four_digits"
@@ -92,6 +92,7 @@ ActiveRecord::Schema.define(:version => 20110310134946) do
     t.boolean  "published",       :default => false
     t.integer  "thumbnail_page"
     t.integer  "price"
+    t.integer  "likes_count",     :default => 0
   end
 
   create_table "stories_topics", :id => false, :force => true do |t|
