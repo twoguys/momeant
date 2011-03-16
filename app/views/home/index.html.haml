@@ -8,20 +8,17 @@
   %section.story-tabs
     .tabs
       = link_to("recent", "recent", :class => "active")
-      = link_to("recommendations", "user-recommended")
-      = link_to("mo&#149meant".html_safe, "momeant-recommended")
-      = link_to("hearted", "likes", :class => "right-side")
-      = link_to("bookmarked", "bookmarks", :class => "right-side")
-      = link_to("purchased", "purchases", :class => "right-side bordered-left")
+      = link_to("popular", "popular")
+      = link_to("purchased", "purchases")
+      = link_to("hearted", "likes")
+      = link_to("dog-eared", "bookmarks")
     %ul.recent.stories.tabcontent
       = render @stories
-    %ul.user-recommended.stories.tabcontent
-      = render @subscribed_to_stories
-    %ul.momeant-recommended.stories.tabcontent
-      = render @similar_to_bookmarked_stories
-    %ul.purchases.stories.tabcontent
+    %ul.popular.stories.tabcontent.hidden
+      = render @popular_stories
+    %ul.purchases.stories.tabcontent.hidden
       = render current_user.stories
-    %ul.bookmarks.stories.hidden.tabcontent
-      = render current_user.bookmarked_stories
-    %ul.likes.stories.hidden.tabcontent
+    %ul.likes.stories.hidden.tabcontent.hidden
       = render current_user.liked_stories
+    %ul.bookmarks.stories.hidden.tabcontent.hidden
+      = render current_user.bookmarked_stories
