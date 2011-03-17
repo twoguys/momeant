@@ -1,6 +1,15 @@
+- content_for :head do
+  = javascript_include_tag "flipbook"
+
 .homepage
-  %section#editorial
-    = render "home/editorials/communications"
+  %section#flipbook
+    .flipbook
+      .controls
+        .left.tooltipped{:title => "Previous"}
+        .right.tooltipped{:title => "Next"}
+      .flipstrip
+        .slides
+          = render "home/editorials/communications"
     
   %section#tutorials
     %h1 Momeant tutorial stories will go here

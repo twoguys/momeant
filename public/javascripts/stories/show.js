@@ -23,6 +23,8 @@ var story_viewer = function() {
 		viewer.set_active_preview(1);
 		hide_controls_after_initial_delay();
 		
+		$.scrollTo('42');
+		
 		setup_key_bindings();
 	};
 	

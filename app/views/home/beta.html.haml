@@ -1,6 +1,3 @@
-- content_for :head do
-  = javascript_include_tag "beta"
-
 .beta
 
   %p.copy Mo&#149;meant is both a community and a marketplace for creativity, where selected contributors provide free and paying digital content in a limitless range of original, interactive forms. We are currently in private beta, and are accepting viewers and creators by invitation only.
@@ -20,9 +17,11 @@
               %li
                 = f.label :first_name, "Your name"
                 %span
-                  = f.text_field :first_name, :value => "first", :class => "placeholder"
+                  = f.text_field :first_name
+                  = f.label :first_name, "first"
                 %span
-                  = f.text_field :last_name, :value => "last", :class => "placeholder"
+                  = f.text_field :last_name
+                  = f.label :last_name, "last"
               %li
                 = f.label :email
                 = f.text_field :email
@@ -31,10 +30,9 @@
                 %label{:for => "user_password"}
                   Password
                   %span.instructions (6+ characters)
+                = f.password_field :password, :class => "spaced-a-bit"
+                = f.password_field :password_confirmation
                 %span
-                  = f.password_field :password
-                %span
-                  = f.password_field :password_confirmation
                   = f.label :password, "(once more, please)"
 
               %li.submit

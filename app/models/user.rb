@@ -42,7 +42,7 @@ class User < ActiveRecord::Base
   
   # Setup accessible (or protected) attributes for your model
   attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :remember_me,
-    :avatar, :credits, :stored_in_braintree, :invitation_code, :tagline
+    :avatar, :credits, :stored_in_braintree, :invitation_code, :tagline, :occupation
   
   def extra_validations
     safe = true
@@ -82,7 +82,7 @@ class User < ActiveRecord::Base
     purchase = Purchase.create(:amount => creator_portion, :story_id => story.id, :payer_id => self.id, :payee_id => story.user_id)
     unless story.free?
       self.decrement!(:credits, story.price)
-      story.user.increment!(:credits, creator_portion)
+      #story.user.increment!(:credits, creator_portion)
     end
     story.increment!(:purchased_count)
 
