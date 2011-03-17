@@ -5,9 +5,28 @@
 	-moz-box-shadow: 3px 3px 5px #BBBBBB
 	box-shadow: 3px 3px 5px #BBBBBB
 	margin-bottom: 20px
-	overflow: hidden
+	.controls
+		.left, .right
+			position: absolute
+			top: 180px
+			width: 26px
+			height: 47px
+			background: transparent url(../images/flipbook-arrows.png) no-repeat 0 0
+			cursor: pointer
+		.left	
+			left: -24px
+			display: none
+		.right
+			background-position: -30px 0
+			right: -24px
 	.flipstrip
-		width: 500%
+		overflow: hidden
+		position: relative
+		height: 100%
+		.slides
+			width: 500%
+			position: absolute
+			left: 0
 		.slide
 			height: 400px
 			float: left
