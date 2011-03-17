@@ -3033,45 +3033,61 @@ header .topic-icon {
   -webkit-box-shadow: 3px 3px 5px #bbbbbb;
   -moz-box-shadow: 3px 3px 5px #bbbbbb;
   box-shadow: 3px 3px 5px #bbbbbb;
-  margin-bottom: 20px; }
+  margin-bottom: 20px;
+  position: relative; }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/flipbook\.sass}line{font-family:\000039}}
-  .flipbook .controls .left, .flipbook .controls .right {
+  .flipbook .controls {
     position: absolute;
-    top: 180px;
-    width: 26px;
-    height: 47px;
-    background: transparent url(../images/flipbook-arrows.png) no-repeat 0 0;
-    cursor: pointer; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/flipbook\.sass}line{font-family:\0000316}}
-  .flipbook .controls .left {
-    left: -24px;
-    display: none; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/flipbook\.sass}line{font-family:\0000319}}
-  .flipbook .controls .right {
-    background-position: -30px 0;
-    right: -24px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/flipbook\.sass}line{font-family:\0000322}}
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/flipbook\.sass}line{font-family:\0000315}}
+    .flipbook .controls .left, .flipbook .controls .right {
+      position: absolute;
+      top: 180px;
+      width: 26px;
+      height: 47px;
+      background: transparent url(../images/flipbook-arrows.png) no-repeat 0 0;
+      cursor: pointer;
+      -webkit-transition: all 0.2s linear;
+      -moz-transition: all 0.2s linear; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/flipbook\.sass}line{font-family:\0000324}}
+    .flipbook .controls .left {
+      left: -20px;
+      display: none; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/flipbook\.sass}line{font-family:\0000327}}
+    .flipbook .controls .right {
+      background-position: -30px 0;
+      right: -20px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/flipbook\.sass}line{font-family:\0000330}}
+    .flipbook .controls .left:hover {
+      left: -23px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/flipbook\.sass}line{font-family:\0000332}}
+    .flipbook .controls .right:hover {
+      right: -23px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/flipbook\.sass}line{font-family:\0000334}}
   .flipbook .flipstrip {
     overflow: hidden;
     position: relative;
     height: 100%; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/flipbook\.sass}line{font-family:\0000326}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/flipbook\.sass}line{font-family:\0000338}}
     .flipbook .flipstrip .slides {
       width: 500%;
       position: absolute;
       left: 0; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/flipbook\.sass}line{font-family:\0000330}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/flipbook\.sass}line{font-family:\0000342}}
     .flipbook .flipstrip .slide {
       height: 400px;
       float: left; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/flipbook\.sass}line{font-family:\0000333}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/flipbook\.sass}line{font-family:\0000345}}
       .flipbook .flipstrip .slide .flipleft {
         float: left;
         width: 270px;
         height: 370px;
         text-align: right;
         padding: 15px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/flipbook\.sass}line{font-family:\0000339}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/flipbook\.sass}line{font-family:\0000351}}
         .flipbook .flipstrip .slide .flipleft h1 {
           font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
           font-size: 30px;
@@ -3079,7 +3095,7 @@ header .topic-icon {
           text-transform: uppercase;
           margin-bottom: 0;
           letter-spacing: 0.5px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/flipbook\.sass}line{font-family:\0000346}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/flipbook\.sass}line{font-family:\0000358}}
         .flipbook .flipstrip .slide .flipleft h2 {
           font-family: Georgia, serif;
           font-style: italic;
@@ -3092,34 +3108,34 @@ header .topic-icon {
           letter-spacing: 0.3px;
           font-weight: 100;
           background: url("../images/simpleDotBGWhite.png") repeat-x scroll 50% 100% transparent; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/flipbook\.sass}line{font-family:\0000358}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/flipbook\.sass}line{font-family:\0000370}}
         .flipbook .flipstrip .slide .flipleft p {
           font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
           font-size: 11px;
           font-weight: 100;
           line-height: 18px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/flipbook\.sass}line{font-family:\0000363}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/flipbook\.sass}line{font-family:\0000375}}
         .flipbook .flipstrip .slide .flipleft hr {
           width: 60px;
           height: 2px;
           background-color: white; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/flipbook\.sass}line{font-family:\0000367}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/flipbook\.sass}line{font-family:\0000379}}
       .flipbook .flipstrip .slide .blue {
         background-color: #00aeef;
         color: white; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/flipbook\.sass}line{font-family:\0000370}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/flipbook\.sass}line{font-family:\0000382}}
       .flipbook .flipstrip .slide .purple {
         background-color: #985faf;
         color: white; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/flipbook\.sass}line{font-family:\0000373}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/flipbook\.sass}line{font-family:\0000385}}
       .flipbook .flipstrip .slide .red {
         background-color: #f42652;
         color: white; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/flipbook\.sass}line{font-family:\0000376}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/flipbook\.sass}line{font-family:\0000388}}
       .flipbook .flipstrip .slide .green {
         background-color: #34b44c;
         color: white; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/flipbook\.sass}line{font-family:\0000379}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/djbrowning\/projects\/momeant\/repo\/public\/stylesheets\/sass\/flipbook\.sass}line{font-family:\0000391}}
       .flipbook .flipstrip .slide .flipright {
         float: right;
         width: 650px;

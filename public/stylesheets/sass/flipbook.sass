@@ -5,7 +5,13 @@
 	-moz-box-shadow: 3px 3px 5px #BBBBBB
 	box-shadow: 3px 3px 5px #BBBBBB
 	margin-bottom: 20px
+	position: relative
 	.controls
+		position: absolute
+		top: 0
+		left: 0
+		height: 100%
+		width: 100%
 		.left, .right
 			position: absolute
 			top: 180px
@@ -13,12 +19,18 @@
 			height: 47px
 			background: transparent url(../images/flipbook-arrows.png) no-repeat 0 0
 			cursor: pointer
+			-webkit-transition: all 0.2s linear
+			-moz-transition: all 0.2s linear
 		.left	
-			left: -24px
+			left: -20px
 			display: none
 		.right
 			background-position: -30px 0
-			right: -24px
+			right: -20px
+		.left:hover
+			left: -23px
+		.right:hover
+			right: -23px
 	.flipstrip
 		overflow: hidden
 		position: relative
