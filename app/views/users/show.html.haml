@@ -6,6 +6,8 @@
       .avatar-name
         .avatar= image_tag(@user.avatar.url(:thumbnail))
         .name= @user.name
+      .occupation
+        occupation: #{@user.occupation}
       .tagline
         - if me?(@user) && @user.tagline.blank?
           Please edit your tagline
