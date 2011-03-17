@@ -12,7 +12,12 @@ var flipbook_manager = function() {
 		this.left_arrow.click(flipbook.goto_previous_page);
 		this.right_arrow.click(flipbook.goto_next_page);
 		this.slide_count = $('#flipbook .flipstrip .slides .slide').length;
+		this.handle_slide_click();
 		this.update_arrow_visibility();
+	};
+	
+	this.handle_slide_click = function() {
+		$('#flipbook .flipstrip .slides .slide').click(flipbook.goto_next_page);
 	};
 	
 	this.goto_previous_page = function() {
