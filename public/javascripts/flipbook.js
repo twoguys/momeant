@@ -18,6 +18,7 @@ var flipbook_manager = function() {
 	
 	this.handle_slide_click = function() {
 		$('#flipbook .flipstrip .slides .slide').click(flipbook.goto_next_page);
+		$('#flipbook .flipstrip .slides .slide:last-child').click(flipbook.goto_first_page);
 	};
 	
 	this.goto_previous_page = function() {
@@ -38,6 +39,13 @@ var flipbook_manager = function() {
 			flipbook.current_slide += 1;
 			flipbook.update_arrow_visibility();
 		}
+	};
+	
+	this.goto_first_page = function() {
+		$('#flipbook .flipstrip .slides').stop().animate({
+			left: '0'
+		}, 400);
+		flipbook.current_slide = 1;
 	};
 	
 	this.update_arrow_visibility = function() {
