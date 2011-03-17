@@ -2,6 +2,7 @@ function setup_tooltips() {
 	$('.tooltipped').tipsy();
 	$('.tooltipped-n').tipsy({gravity:'s'});
 	$('.tooltipped-w').tipsy({gravity:'e'});
+	$('.tooltipped-e').tipsy({gravity:'w'});
 }
 
 function setup_tab_switching() {

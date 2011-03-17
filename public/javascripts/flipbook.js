@@ -19,7 +19,7 @@ var flipbook_manager = function() {
 		if (flipbook.current_slide > 1) {
 			$('#flipbook .flipstrip .slides').stop().animate({
 				left: '+=' + flipbook.width + 'px'
-			}, 200);
+			}, 400);
 			flipbook.current_slide -= 1;
 			flipbook.update_arrow_visibility();
 		}
@@ -29,7 +29,7 @@ var flipbook_manager = function() {
 		if (flipbook.current_slide < flipbook.slide_count) {
 			$('#flipbook .flipstrip .slides').stop().animate({
 				left: '-=' + flipbook.width + 'px'
-			}, 200);
+			}, 400);
 			flipbook.current_slide += 1;
 			flipbook.update_arrow_visibility();
 		}
