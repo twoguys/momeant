@@ -4,7 +4,7 @@
 
 .fullscreen-hidden
   .new-story-copy
-    Momeant stories are a new form of digital media. You simply take your creative content—whether it’s audio, video, text or images—and plug it into our customizable story blocks. The blocks allow you to layer and mash up content however you like. Hyperlinks give you an added dimension of interactivity.
+    Mo&#149;meant stories are a new form of digital media. You simply take your creative content—whether it’s audio, video, text or images—and plug it into our customizable story blocks. The blocks allow you to layer and mash up content however you like. Hyperlinks give you an added dimension of interactivity.
 
     We’ve already got some great storytelling tools, but we’re always looking for feedback on how we can improve them and on what new tools you want to see. So get in touch with us!
 
@@ -32,24 +32,33 @@
         .title-input
           = label_tag :story_title, "Title"
           = text_field_tag :story_title, @story.title, :class => "monitor-story-typing", :update => "title"
-          .example e.g. Around the World in 80 Days
+          .example What's in a name? Give your story one! (ie. Around the World in 80 Days)
         .excerpt-input
           = label_tag :story_excerpt, "Synopsis"
           = text_area_tag :story_excerpt, @story.excerpt, :class => "monitor-story-typing", :update => "excerpt"
-          .example e.g. Everything, it said, was against the travelers, every obstacle imposed alike by man and by nature.
+          .example Give a teaser or brief description of your story. Make sure it stands out from the crowd, and that viewers know what to expect!
           
       %li.metadata
         .price
           = label_tag :story_price, "Price"
           = text_field_tag :story_price, @story.price || "", :class => "monitor-story-typing", :update => "price"
-          .example 10, 20, 500 - increments of 10
+          .example 
+            Give your story a price in Momeant credits (in multiples of 10). 
+            %br/ 
+            Remember: 1 MC = 1 US penny
         .tags
           = label_tag :story_tag_list, "Tags"
           = text_field_tag :story_tag_list, @story.tag_list, :class => "monitor-story-typing", :update => "tag_list"
-          .example firecracker, John Smith, x-ray
+          .example
+            Choose keywords that describe your story. These help make it searchable.
+            %br/
+            ie. Firecracker, John Smith, X-ray
 
       %li.topics
-        %label Topics
+        %label Categories
+        .example
+          Select one or more categories that describe your story.
+          This makes it easier for viewers browsing the category hubs to find and buy your work!
         %ul
           - parent_topics = @topics.reject {|topic| topic.topic_id != nil}
           - parent_topics.each do |topic|
