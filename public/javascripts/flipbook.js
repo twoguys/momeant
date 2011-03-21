@@ -22,7 +22,7 @@ var flipbook_manager = function() {
 		$('#flipbook .flipstrip .slides .slide:last-child').click(flipbook.goto_first_page);
 	};
 	
-	this.swipe = function() {
+	this.swipe = function(event, direction) {
 		if (direction == "left") {
 			flipbook.goto_next_page();
 		} else if (direction == "right") {
