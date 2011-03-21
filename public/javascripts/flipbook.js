@@ -46,6 +46,7 @@ var flipbook_manager = function() {
 			left: '0'
 		}, 400);
 		flipbook.current_slide = 1;
+		flipbook.update_arrow_visibility();
 	};
 	
 	this.update_arrow_visibility = function() {
