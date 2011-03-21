@@ -1,8 +1,9 @@
 function setup_tooltips() {
-	$('.tooltipped').tipsy();
-	$('.tooltipped-n').tipsy({gravity:'s'});
-	$('.tooltipped-w').tipsy({gravity:'e'});
-	$('.tooltipped-e').tipsy({gravity:'w'});
+	var opacity_setting = 1;
+	$('.tooltipped').tipsy({opacity:opacity_setting});
+	$('.tooltipped-n').tipsy({opacity:opacity_setting,gravity:'s'});
+	$('.tooltipped-w').tipsy({opacity:opacity_setting,gravity:'e'});
+	$('.tooltipped-e').tipsy({opacity:opacity_setting,gravity:'w'});
 }
 
 function setup_tab_switching() {
