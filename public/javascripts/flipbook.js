@@ -14,6 +14,7 @@ var flipbook_manager = function() {
 		this.slide_count = $('#flipbook .flipstrip .slides .slide').length;
 		this.handle_slide_click();
 		this.update_arrow_visibility();
+		$('#flipbook').swipe({swipe:flipbook.swipe,threshold:0});
 	};
 	
 	this.handle_slide_click = function() {
@@ -21,9 +22,17 @@ var flipbook_manager = function() {
 		$('#flipbook .flipstrip .slides .slide:last-child').click(flipbook.goto_first_page);
 	};
 	
+	this.swipe = function() {
+		if (direction == "left") {
+			flipbook.goto_next_page();
+		} else if (direction == "right") {
+			flipbook.goto_previous_page();
+		}
+	};
+	
 	this.goto_previous_page = function() {
 		if (flipbook.current_slide > 1) {
-			$('#flipbook .flipstrip .slides').stop().animate({
+			$('#flipbook .flipstrip .slides').animate({
 				left: '+=' + flipbook.width + 'px'
 			}, 400);
 			flipbook.current_slide -= 1;
@@ -33,7 +42,7 @@ var flipbook_manager = function() {
 	
 	this.goto_next_page = function() {
 		if (flipbook.current_slide < flipbook.slide_count) {
-			$('#flipbook .flipstrip .slides').stop().animate({
+			$('#flipbook .flipstrip .slides').animate({
 				left: '-=' + flipbook.width + 'px'
 			}, 400);
 			flipbook.current_slide += 1;
@@ -62,6 +71,10 @@ var flipbook_manager = function() {
 			flipbook.right_arrow.hide();
 		}
 	};
+}
+
+var wasSwiped = function(event, direction) {
+	alert('You swiped ' + direction);
 }
 
 $(document).ready(function() {
