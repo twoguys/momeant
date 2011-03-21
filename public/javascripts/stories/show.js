@@ -116,6 +116,9 @@ var story_viewer = function() {
 				// bring the prev button from opacity 0 to .3
 				viewer.hide_prev_button();
 			}
+			
+			var x_coord = 200 * page_number;
+			$('#previewer .viewport .overview').scrollLeft(x_coord);
 		}
 	};
 	
