@@ -17,5 +17,5 @@ class Advert < ActiveRecord::Base
     "FAQ page" => "faq"
   }.freeze
   
-  scope :gimme_two, :order => "RANDOM()", :limit => 1
+  scope :random, :order => "RANDOM()"
 end
