@@ -8,6 +8,7 @@ class HomeController < ApplicationController
     
     @stories = Story.published.newest_first
     @popular_stories = Story.published.popular
+    @adverts = Advert.gimme_two
     if current_user
       @subscribed_to_stories = current_user.recommended_stories_from_people_i_subscribe_to
       @similar_to_bookmarked_stories = current_user.stories_similar_to_my_bookmarks_and_purchases

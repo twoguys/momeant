@@ -1,13 +1,14 @@
-.invitations
-  %h1 Invitations
+.admin
+  .invitations
+    %h1 Invitations
 
-  = button_to "Create new invitation", admin_invitations_path
+    = button_to "Create new invitation", admin_invitations_path
 
-  %table.invitations
-    %thead
-      %tr
-        %th Inviter
-        %th Invitee
-        %th Code
-    %tbody
-      = render @invitations
+    %table.invitations
+      %thead
+        %tr
+          %th Inviter
+          %th Invitee
+          %th Code
+      %tbody
+        = render @invitations
