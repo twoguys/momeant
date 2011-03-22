@@ -84,7 +84,7 @@ Feature "A user wants to personally curate their experience" do
     when_i_visit_page(:home)
     
     Then "I should see the topic-matching story in my list of recommended stories" do
-      assert page.find('#similar-to-bookmarked-stories').has_content? @topic_matching_story.title
+      assert page.find('.momeant-recommended-stream').has_content? @topic_matching_story.title
     end
   end
 end

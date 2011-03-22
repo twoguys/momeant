@@ -24,7 +24,7 @@
       .info
         .title= @story.title
         .author by #{link_to(@story.user.name, user_path(@story.user))}
-        .excerpt= truncate(@story.excerpt, :length => 250)
+        .excerpt= truncate(@story.synopsis, :length => 250)
         .actions
           = like_button(@story, true)
           = recommend_button(@story, true)

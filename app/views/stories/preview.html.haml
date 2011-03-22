@@ -36,7 +36,7 @@
         %span.current 1
         %span.of /
         %span.total 1
-    .excerpt= @story.excerpt
+    .excerpt= @story.synopsis
     .topics
       - @story.topics.each do |topic|
         = link_to(topic.name.downcase, topic_path(topic), :class => "#{topic.name.downcase} tooltipped-n", :title => topic.name.downcase)

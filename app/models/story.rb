@@ -4,7 +4,7 @@ class Story < ActiveRecord::Base
   searchable do
     text :title, :boost => 2.0
     text(:author_name) { user.name }
-    text :excerpt
+    text :synopsis
     text :topics do
       topics.map { |topic| topic.name }
     end
@@ -27,7 +27,7 @@ class Story < ActiveRecord::Base
   has_many :pages, :order => "number ASC", :dependent => :destroy
     
   validates :title, :presence => true, :length => (2..256), :unless => :autosaving
-  validates :excerpt, :length => (2..1024), :unless => :autosaving
+  validates :synopsis, :length => (2..1024), :unless => :autosaving
   validates :price, :format => /[0-9.,]+/, :unless => :autosaving
   
   validate  :ten_page_requirement, :only_two_free_stories, :unless => :autosaving

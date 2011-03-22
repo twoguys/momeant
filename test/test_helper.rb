@@ -46,3 +46,5 @@ class ActiveSupport::TestCase
 
   # Add more helper methods to be used by all tests here...
 end
+
+Sunspot.session = Sunspot::Rails::StubSessionProxy.new(Sunspot.session) 

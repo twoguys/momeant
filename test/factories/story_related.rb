@@ -12,7 +12,7 @@ end
 
 Factory.define :story do |story|
   story.title       { Factory.next :story_name }
-  story.excerpt     { "Lorem ipsum dolor sit amet, consectetur adipisicing elit."}
+  story.synopsis    { "Lorem ipsum dolor sit amet, consectetur adipisicing elit."}
   story.price       0.50
   story.topics      { [Factory(:topic), Factory(:topic)] }
   story.user        { Factory :creator }
