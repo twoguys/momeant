@@ -18,4 +18,5 @@ class Advert < ActiveRecord::Base
   }.freeze
   
   scope :random, :order => "RANDOM()"
+  scope :enabled, where(:enabled => true)
 end
