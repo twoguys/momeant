@@ -1,7 +1,9 @@
 = render "stories/page_forms/page_id"
 = hidden_field_tag "pages[#{@page_number}][type]", "title"
 .title.page-theme.background-color-affected.color-affected
-  = render :partial => "stories/page_forms/style_editor", :locals => {:background_color => true, :text_color => true}
+  .header
+    .title Title
+  = #render :partial => "stories/page_forms/style_editor", :locals => {:background_color => true, :text_color => true}
   %label Type your title below...
   - if @page && @page.text
     = text_area_tag "pages[#{@page_number}][text]", @page.text, :class => "monitor-typing background-color-affected color-affected"

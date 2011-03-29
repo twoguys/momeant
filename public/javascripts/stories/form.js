@@ -45,8 +45,8 @@ var story_page_editor = function() {
 		$('#page-previews li.page').click(function() {
 			var page_number = $(this).attr('page-number');
 			pages_editor.goto_page(page_number);
-			var chosen = $(this).hasClass('has-content');
-			if (chosen)
+			var has_content = $(this).hasClass('has-content');
+			if (has_content)
 				pages_editor.hide_page_type_chooser();
 			else
 				pages_editor.show_page_type_chooser();
@@ -77,7 +77,7 @@ var story_page_editor = function() {
 	
 	var setup_key_bindings = function() {
 		$(document).keyup(function(e) {
-		  if (e.keyCode == 27) { pages_editor.close(); }   							// esc
+		  //if (e.keyCode == 27) { pages_editor.close(); }   							// esc
 			if (e.keyCode == 39) { pages_editor.goto_next_page(); } 			// right arrow
 			if (e.keyCode == 37) { pages_editor.goto_previous_page(); } 	// left arrow
 		});
@@ -152,7 +152,8 @@ var story_page_editor = function() {
 		if (!pages_editor.page_chooser_open) {
 			return;
 		} else {
-			$('#page-type-chooser, #pages').animate({ top: '-200'}, 500, pages_editor.show_layout_chooser_button);
+			//$('#page-type-chooser, #pages').animate({ top: '-200'}, 500, pages_editor.show_layout_chooser_button);
+			$('#page-type-chooser').hide();
 			pages_editor.page_chooser_open = false;
 		}
 	};
@@ -161,7 +162,8 @@ var story_page_editor = function() {
 		if (pages_editor.page_chooser_open) {
 			return;
 		} else {
-			$('#page-type-chooser, #pages').animate({ top: '0'}, 500, pages_editor.hide_layout_chooser_button);
+			//$('#page-type-chooser, #pages').animate({ top: '0'}, 500, pages_editor.hide_layout_chooser_button);
+			$('#page-type-chooser').show();
 			pages_editor.page_chooser_open = true;
 		}
 	};
@@ -185,11 +187,11 @@ var story_page_editor = function() {
 		pages_editor.change_page_by(-1);
 	};
 	
-	this.goto_page = function(page_number) {
-		page_number = parseInt(page_number);
+	this.goto_page = function(page_number_string) {
+		var page_number = parseInt(page_number_string);
 		if (page_number >= 1 && page_number <= 10) {
-			var $page = $('#page_' + page_number);
-			$page.click(pages_editor.hide_page_type_chooser);
+			var $page = $('ul#pages #page_' + page_number);
+			//$page.click(pages_editor.hide_page_type_chooser);
 			$page.siblings('.page').hide();
 			$page.show();
 			pages_editor.set_current_page(page_number);
@@ -281,7 +283,7 @@ var story_auto_saver = function() {
 	};
 	
 	this.monitor_existing_pages = function() {
-		$('ul#pages li.page').each(function() {
+		$('#pane ul.pages li.pane-insides').each(function() {
 			var $page = $(this);
 			var page_id = $page.attr('page-id');
 			if (page_id) {
@@ -447,32 +449,29 @@ var story_auto_saver = function() {
 			var $uploader = $(this);
 			var $loader = $uploader.find('.loader');
 			var $file_input = $uploader.find('input[type="file"]');
-			var $preview = $uploader.find('.image-preview');
+			$file_input.change(function() {
+				$file_input.siblings('.text').text($file_input.val());
+			});
 			var url = '/stories/' + pages_editor.story_id + '/pages/' + page_id + '/add_or_update_image';
 			var grid_cell = $file_input.attr('cell');
 			if (grid_cell)
 				url += '?cell=' + grid_cell
 			var page_number = number;
-			$file_input.html5_upload({
+			var uploader = $file_input.html5_upload({
 				url: url,
+				autostart: false,
 				sendBoundary: window.FormData || $.browser.mozilla,
 				fieldName: 'image',
 				onStart: function() {
 					log('starting upload...');
-					$file_input.hide();
-					$loader.show();
+					$loader.show().siblings().hide();
 					return true;
 				},
 				onFinishOne: function(event, response, name, number, total) {
 					json = $.parseJSON(response);
 					
-					var $img = $preview.find('.image');
-					if ($img.length != 0) {
-						log($img);
-						$img.css('background-image', 'url(' + json.full + ')');
-					} else {
-						$preview.append('<div class="image" style="background-image: url(' + json.full + ');"></div>').addClass('no-bg');
-					}
+					$('ul#pages #page_' + page_id + ' .image').css('background-image', json.full);
+					
 					if (!grid_cell) {
 						var $thumbnail = $('#preview_' + page_number);
 						if ($thumbnail.find('.image').length > 0) {
@@ -482,11 +481,14 @@ var story_auto_saver = function() {
 						}
 					}
 					
-					
 					$uploader.find('.info').remove();
-					$loader.hide();
-					$file_input.show();
+					$loader.hide().siblings().show();
 				}
+			});
+			var $upload_button = $uploader.find('a.upload');
+			$upload_button.click(function() {
+				uploader.trigger('html5_upload.start');
+				return false;
 			});
 		});
 	};
@@ -512,6 +514,7 @@ $(document).ready(function() {
 	
 	clicking_a_child_topic_clicks_the_parent();
 });
+
 
 // http://github.com/splendeo/jquery.observe_field
 jQuery.fn.observe_field = function(frequency, callback) {

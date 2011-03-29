@@ -1,18 +1,47 @@
 = hidden_field_tag "pages[#{@page_number}][type]", "full_image"
-.full_image.page-theme.background-color-affected
-  = render :partial => "stories/page_forms/style_editor", :locals => {:background_color => true, :caption => true}
-  .input
-    .file-uploader
-      %form{:enctype => "multipart/form-data", :method => "POST", :action => "/stories"}
-        %input{:type => "hidden", :value => form_authenticity_token, :name => "authenticity_token"}
-        %input{:type => "file", :name => "pages[#{@page_number}][image]", :id => "pages_#{@page_number}_image"}
-        .loader.hidden
-      .image-preview{:class => (@page.present? && @page.image.present?) ? "no-bg" : ""}
-        - if @page && @page.image
-          .image{:style => "background-image: url(#{@page.image.url})"}
-    .caption.caption-background-color-affected
-      %h3 Caption
-      - if @page && @page.text
-        = text_area_tag "pages[#{@page_number}][text]", @page.text, :class => "monitor-typing caption-color-affected"
-      - else
-        = text_area_tag "pages[#{@page_number}][text]", "", :class => "monitor-typing caption-color-affected"
+.full_image.page-theme.background-color-affected.pane-insides
+  = #render :partial => "stories/page_forms/style_editor", :locals => {:background_color => true, :caption => true}
+  .header
+    .title Full Image
+    .spinner Saving...
+  .copy Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+  .body
+    %fieldset
+      %ul
+        %li
+          %label Choose an image
+          .file-uploader
+            %form{:enctype => "multipart/form-data", :method => "POST", :action => "/stories"}
+              %input{:type => "hidden", :value => form_authenticity_token, :name => "authenticity_token"}
+              .file-input-faker
+                %input{:type => "file", :name => "pages[#{@page_number}][image]", :id => "pages_#{@page_number}_image"}
+                .text
+                = link_to("Upload", "#", :class => "upload")
+              .loader
+        %li
+          %label Choose image placement
+          = select :image, :placement, ["fill screen", "fit to screen", "original size"]
+        %li.break
+          %label
+            %span Write a caption
+            %span.sidenote (optional)
+          .caption
+            - if @page && @page.text
+              = text_area_tag "pages[#{@page_number}][text]", @page.text, :class => "monitor-typing caption-color-affected"
+            - else
+              = text_area_tag "pages[#{@page_number}][text]", "", :class => "monitor-typing caption-color-affected"
+            .colors
+            .placement
+              %label Select caption placement
+              %ul.picker
+                %li{:position => "top-left"}
+                %li.chosen{:position => "top-right"}
+                %li{:position => "bottom-left"}
+                %li{:position => "bottom-right"}
+        %li.break
+          = link_to("Save &amp; Preview".html_safe, "#", :class => "save")
+  .tips
+    %h3 Tips
+    %ul
+      %li  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.
+      %li  Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.

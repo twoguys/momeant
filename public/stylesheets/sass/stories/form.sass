@@ -49,8 +49,6 @@ form.new_story, form.edit_story, .story-form
 	.banner
 		li
 			margin-bottom: 0.5em
-	fieldset, fieldset ul
-		padding-top: 1px
 	label
 		float: none
 	#story-spinner
@@ -251,51 +249,113 @@ form.new_story, form.edit_story, .story-form
 			
 #page-editor
 	width: 100%
-	height: 100%
+	position: absolute
+	top: 0
+	bottom: 0
 	padding: 0
+	margin: 0
 	overflow: hidden
 	text-shadow: none
-	#page-type-chooser
-		height: 200px
-		position: absolute
+	#editor-header
+		height: 42px
+		position: relative
+		z-index: 2
+		font-family: $block
+		font-weight: 700
+		text-transform: uppercase
 		background-color: #fff
-		border-bottom: 1px solid #ccc
-		width: 100%
-		z-index: 3
-		margin-top: -2px
-		#close-page-editor-button
-			position: absolute
-			top: 201px
-			left: 0
-			-webkit-border-bottom-right-radius: 3px
-			-moz-border-radius-bottomright: 3px
-			border-bottom-right-radius: 3px
-			z-index: 2
-		#close-page-editor-button:active
-			top: 201px
-		.info
-			width: 100%
-			height: 40px
-			font-size: 20px
-			font-weight: 900
-			text-align: center
-			line-height: 40px
+		background-color: rgba(255,255,255,0.9)
+		.title
+			font-size: 26px
+			color: #b0b0b0
+			line-height: 42px
 			vertical-align: middle
-			text-transform: uppercase
+			margin-left: 10px
+			float: left
+		.slide-nav
 			position: absolute
-			left: 0
-			background-color: #000000
-			color: white
-		.slider
-			margin-top: 40px
-			position: relative
-			height: 160px
-			overflow-x: scroll
-			background-color: #fff
-			z-index: 2
-			ul
-				height: 143px
-				width: 1260px
+			left: 50%
+			top: 9px
+			width: 100px
+			margin-left: -25px
+			font-size: 18px
+		.actions
+			float: right
+			margin-top: 7px
+			a
+				float: left
+				margin-right: 8px
+				display: block
+				font-size: 12px
+				height: 15px
+				padding: 5px 10px
+				background-color: #c0eefe
+				@include rounded(3px)
+			a.delete
+				background-color: #f7d4db
+				color: #f52654
+			a.save
+				background-color: #c9f3cf
+				color: #1ca436
+	#pane
+		width: 50%
+		background-color: #e0e0e0
+		background-color: rgba(224,224,224,0.9)
+		z-index: 2
+		position: absolute
+		top: 42px
+		bottom: 0
+		left: 0
+		margin-bottom: -42px
+		.pane-insides
+			overflow-y: auto
+			.header
+				height: 35px
+				background-color: #000
+				color: #fff
+				text-transform: uppercase
+				position: relative
+				.title
+					font-family: $block
+					font-weight: 700
+					font-size: 16px
+					line-height: 35px
+					vertical-align: middle
+					padding-left: 10px
+				.spinner
+					position: absolute
+					right: 5px
+					top: 9px
+					width: 60px
+					height: 16px
+					background: transparent url(../images/spinner-white.gif) no-repeat 0 0
+					font-size: 12px
+					font-weight: 300
+					font-style: italic
+					padding: 1px 0 0 20px
+					display: none
+				.spinner.off
+					background-position: -16px 0
+			.copy
+				margin: 15px
+				font-size: 15px
+				line-height: 24px
+				font-family: $typewriter
+				border-bottom: 1px dotted #aaa
+				padding-bottom: 15px
+				color: #777
+			.body
+				padding: 0 15px 15px
+		a.save
+			font-size: 12px
+			height: 15px
+			padding: 5px 10px
+			background-color: #c9f3cf
+			font-weight: 700
+			text-transform: uppercase
+			color: #1ca436
+			@include rounded(3px)
+		#page-type-chooser
 			li
 				width: 200px
 				height: 124px
@@ -305,273 +365,142 @@ form.new_story, form.edit_story, .story-form
 				cursor: pointer
 				margin: 10px 5px
 				padding: 0
-				clear: none				
-		#page-type-chooser-button
-			position: absolute
-			left: 0
-			bottom: 0
-			height: 40px
-			width: 100%
-			z-index: 1
-			.inner
-				background-color: #fff
-				text-transform: uppercase
-				font-size: 11px
-				font-weight: bold
-				width: 150px
-				padding: 12px 10px 8px
-				margin: 0 auto
-				-webkit-box-shadow: 0 0 5px #555
-				-moz-box-shadow: 0 0 5px #555
-				box-shadow: 0 0 5px #555
-				border-bottom-right-radius: 5px
-				-moz-border-radius-bottomright: 5px
-				border-bottom-left-radius: 5px
-				-moz-border-radius-bottomleft: 5px
-				cursor: pointer
-				text-align: center
+				clear: none
+		ul.pages
+			li.break
+				border-top: 1px solid #ccc
+				padding-top: 1em
+			li
+				margin-bottom: 1em
+				label
+					font-size: 12px
+					font-weight: 300
+					color: #777
+					margin-top: 5px
+					span
+						height: auto
+					span.sidenote
+						text-transform: none
+						font-style: italic
+				.tips
+					padding: 15px
+					color: #777
+					h3
+						font-weight: 700
+						font-size: 20px
+						color: #fff
+						padding-bottom: 10px
+						border-bottom: 1px dotted #aaa
+						margin-bottom: 10px
+						text-transform: uppercase
+					ul li
+						font-size: 11px
+						float: left
+						width: 40%
+						margin-right: 5%
+						clear: none
+				.full_image
+					fieldset
+						width: 50%
+						margin: 0 auto
+					textarea
+						width: 95%
+						height: 150px
+					.picker
+						background-color: #fff
+						border: 1px solid #ccc
+						width: 94px
+						height: 70px
+						padding: 5px 0 0 5px
+						li
+							background-color: #eee
+							width: 42px
+							height: 30px
+							float: left
+							margin: 0 5px 5px 0
+							clear: none
+							cursor: pointer
+						li.chosen
+							background-color: #b7ebff
+					
+				.file-uploader
+					position: relative
+					height: 27px
+					.file-input-faker
+						position: absolute
+						width: 300px
+						height: 25px
+						overflow: hidden
+						input[type="file"]
+							position: absolute
+							top: 0
+							left: 0
+							opacity: 0
+							z-index: 2
+							height: 25px
+							width: 200px
+						.text
+							position: absolute
+							left: 0
+							line-height: 25px
+							vertical-align: middle
+							background-color: #fff
+							border: 1px solid #ccc
+							height: 25px
+							width: 190px
+							padding: 0 5px
+					a
+						position: absolute
+						left: 210px
+						display: block
+						height: 25px
+						width: 80px
+						text-align: center
+						line-height: 25px
+						vertical-align: middle
+						font-family: $block
+						font-weight: 700
+						text-transform: uppercase
+						background-color: #c0eefe
+						z-index: 2
+					.loader
+						display: none
+
 	ul#pages
 		overflow: hidden
-		height: 100%
 		position: absolute
+		top: 0
+		bottom: 0
 		width: 100%
 		z-index: 1
-		background: url("../images/story-creator-background-hint.gif") no-repeat scroll 50% 50% #f2f2f2
-		padding: 40px 0 200px
+		background-color: #f2f2f2
 		li.page
 			width: 100%
-			height: 100%
 			text-align: center
 			position: absolute
+			top: 0
+			bottom: 0
 			display: none
-			.file-uploader
-				.loader
-					margin: 0 auto
-			textarea				
-				border: none
-				overflow: hidden
-				outline: none
-			.page-theme
-				min-height: 600px
-				background: #fff
-				height: 70%
-				padding-top: 350px
-				position: relative
-				.style-editor
-					width: 100%
-					position: fixed
-					bottom: 50px
-					.insides
-						cursor: all-scroll
-						width: 300px
-						min-width: 300px
-						margin-left: 100px
-						padding: 10px
-						@include boxshadow(8px,0.5)
-						background: #cfd5d7
-						border: 1px solid #999
-						@include rounded
-						text-align: left
-						position: relative
-						z-index: 5
-						h2
-							font-weight: bold
-							color: #555966
-							margin-bottom: 0
-						.widget
-							display: inline-block
-							margin: 10px 10px 0 0
-							padding: 6px
-							background-color: #adb2b8
-							-webkit-box-shadow: 0 0 4px #666 inset
-							-moz-box-shadow: 0 0 4px #666 inset
-							box-shadow: 0 0 4px #666 inset
-							@include rounded(3px)
-							color: $text_color
-							h3
-								font-weight: normal
-								font-size: 0.9em
-								margin-bottom: 4px
-								text-align: center
-							.color-picker
-								cursor: pointer
-								width: 30px
-								height: 30px
-								margin: 0 auto
-								background: transparent url(../images/colorpicker/select.png) 50% 50%
-							input
-								border: none
-								width: 40px
-								font-size: 11px
-			.title
-				padding-top: 400px
-				label
-					font-size: 24px
-					font-family: $block
-					font-weight: 900
-					text-transform: uppercase
-					top: 400px
-					margin-top: 10px
-					color: #ccc
-				textarea
-					font-size: 120px
-					font-family: $dropcaps
-					font-weight: 900
-					text-transform: uppercase
-					top: 400px
-					border: 1px solid #aaa
-					padding: 50px 20px
-					width: 65%
-					height: auto
-					overflow: hidden
-					outline: none
-					text-align: center
-					line-height: 110px
-			.full_image
-				.file-uploader, .image-preview, .image-preview .image
-					width: 100%
-					height: 100%
-				form
-					height: 40px
-				.input
-					text-align: center
-					width: 100%
-					height: 100%
-					positon: relative
-				.image-preview
-					margin: 0 auto
-					background: transparent url(../images/page-themes/pick-an-image-bg.png) no-repeat 50% 0
-					z-index: 5
-					.image
-						@include bgcover
-				.image-preview.no-bg
-					background: none
-				.caption
-					width: 300px
-					height: 200px
-					background-color: #fff
-					border: 1px solid #aaa
-					position: fixed
-					right: 100px
-					bottom: 50px
-					h3
-						padding: 5px
-						height: 15px
-						text-align: left
-						border-bottom: 1px solid #aaa
-					textarea
-						width: 265px
-						height: 140px
-						margin: 10px
-						overflow: hidden
-						background: transparent url(../images/page-themes/18px-tall-dashed-line.png) repeat
-						color: #444
-						outline: none
-						border: none
-			.pullquote
-				label, textarea
-					font-size: 18px
-					font-weight: normal
-				textarea
-					width: 60%
-					height: 400px
-					background: transparent url(../images/page-themes/18px-tall-dashed-line.png) repeat
-					color: inherit
-			.video
-				.info
-					padding: 50px 0 20px
-				.url span
-					font-size: 2em
-			.split
-				.image, .text
-					width: 50%
-					height: 90%
-					text-align: center
-				.image
-					float: left
-					.image-preview
-						margin: 25px auto 0
-						width: 100%
-						height: 95%
-						background: transparent url(../images/page-themes/pick-an-image-bg.png) no-repeat 50% 0
-						z-index: 1
-					.image-preview.no-bg
-						background: none
-					.inner
-						padding: 25px 20px 0 100px
-						height: 100%
-				.text
-					float: right
-					textarea
-						font-size: 18px
-						width: 100%
-						height: 400px
-						background: transparent url(../images/page-themes/18px-tall-dashed-line.png) repeat
-					.inner
-						padding: 25px 100px 0 20px
-						height: 100%
-			.grid
-				padding-left: 70px
-				padding-right: 70px
-				.style-editor
-					position: absolute
-					top: 170px
-					left: 70px
-					width: 200px
-					height: 60px
-					.insides
-						margin: 0
-						height: 60px
-						width: 200px
-						min-width: 200px
-						h2
-							float: left
-							width: 60px
-						.widget
-							margin: 0 10px 10px 0
-				ul.cells
-					width: 100%
-					height: 100%
-					li
-						width: 25%
-						height: 40%
-						float: left
-						padding: 0
-						margin: 0
-						clear: none
-						.inner
-							padding: 10px 30px
-							height: 100%
-						.image, .text
-							height: 90%
-							text-align: center
-							a
-								display: block
-								margin-top: 5px
-								font-size: 1.2em
-						.image
-							position: relative
-							.file-uploader
-								position: relative
-								height: 100%
-								form
-									height: 30px
-							.info
-								padding: 0 20px
-								font-size: 0.8em
-								font-style: italic
-								color: #777
-							.image-preview
-								overflow: hidden
-								height: 90%
-						.text
-							display: none
-							textarea
-								font-size: 18px
-								width: 100%
-								height: 80%
-								min-height: 179px
-								background: transparent url(../images/page-themes/18px-tall-dashed-line.png) repeat
+			margin-bottom: 0
+			.inner
+				position: absolute
+				top: 0
+				bottom: 0
+				width: 100%
+		.full_image
+			.image
+				position: absolute
+				top: 0
+				bottom: 0
+				width: 100%
+			.caption
+				width: 300px
+				height: 200px
+				background-color: #fff
+				border: 1px solid #aaa
+				position: fixed
+				right: 100px
+				bottom: 50px
 							
 	#page_info
 		position: absolute

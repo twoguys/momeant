@@ -1,6 +1,5 @@
 - content_for :head do
-  = javascript_include_tag "stories/form", "colorpicker"
-  = stylesheet_link_tag "colorpicker"
+  = javascript_include_tag "stories/form"
 
 .fullscreen-hidden
   .new-story-copy
@@ -75,7 +74,8 @@
           - (1..10).each do |page_number|
             - @page = @story.pages.reject{|p|p.number != page_number}.first
             - if @page
-              %li.page.has-content{:id => "preview_#{page_number}", "page-number" => page_number, :class => @story.thumbnail_page == page_number ? "chosen-thumbnail #{@page.css_class} page_#{@page.number}_userstyles" : "#{@page.css_class} page_#{@page.number}_userstyles"}
+              %li.page.has-content{:id => "preview_#{page_number}", "page-number" => page_number, :class => @story.thumbnail_page == page_number ? "chosen-thumbnail #{@page.css_class}" : @page.css_class}
+                - @page_number = @page.number
                 .inner= render :partial => "stories/page_themes/#{@page.partial_name}", :locals => {:size => "medium"}
                 = link_to("set thumbnail", "#", :class => @story.thumbnail_page == page_number ? "choose-thumbnail chosen" : "choose-thumbnail")
             - else
@@ -85,38 +85,44 @@
         .clear
         
       %li#page-editor.hidden
-        #page-type-chooser
-          = link_to("Close Story Builder", "#", :class => "button", :id => "close-page-editor-button")
-          #page-type-chooser-button
-            .inner change page layout
-          .info choose a slide layout
-          .slider
-            %ul
-              %li.title.tooltipped{:title => "Title Slide", "page-type" => "title"}
-              %li.full_image.tooltipped{:title => "Full Image (w/ caption)", "page-type" => "full_image"}
-              %li.pullquote.tooltipped{:title => "Blockquote", "page-type" => "pullquote"}
-              %li.video.tooltipped{:title => "Video", "page-type" => "video"}
-              %li.split.tooltipped{:title => "Split Image/Text", "page-type" => "split"}
-              %li.grid.tooltipped{:title => "Grid", "page-type" => "grid"}
+        #editor-header
+          .title Mo&#149meant story builder
+          .slide-nav
+            = link_to("prev", "#", :class => "hidden")
+            .current-slide
+              slide
+              %span 1
+            = link_to("next", "#", :class => "hidden")
+          .actions
+            = link_to("Add a slide", "#")
+            = link_to("Delete slide", "#", :class => "delete")
+            = link_to("Save and close", "#", :class => "save")
+        #pane
+          #page-type-chooser.pane-insides            
+            .header
+              .title Choose a slide layout
+            .copy Click the type of slide you want, then customize it to fit your personal style!
+            .body
+              %ul
+                %li.title.tooltipped{:title => "Title Slide", "page-type" => "title"}
+                %li.full_image.tooltipped{:title => "Full Image (w/ caption)", "page-type" => "full_image"}
+                %li.pullquote.tooltipped{:title => "Blockquote", "page-type" => "pullquote"}
+                %li.video.tooltipped{:title => "Video", "page-type" => "video"}
+                %li.split.tooltipped{:title => "Split Image/Text", "page-type" => "split"}
+                %li.grid.tooltipped{:title => "Grid", "page-type" => "grid"}
+          %ul.pages
+            - @story.pages.each do |page|
+              %li.pane-insides.hidden{:id => "page_#{page.number}", "page-id" => page.id, "page-type" => page.partial_name}
+                = render :partial => "/stories/page_forms/#{page.partial_name}", :locals => {:page => page}
         %ul#pages
           - (1..10).each do |page_number|
             - @page = @story.pages.reject{|p|p.number != page_number}.first
             - if @page
-              %li.page{:id => "page_#{page_number}", "page-id" => @page.id, "page-type" => @page.partial_name}
+              %li.page{:id => "page_#{page_number}", :class => @page.css_class, "page-id" => @page.id, "page-type" => @page.partial_name}
                 - @page_number = @page.number
-                = render "/stories/page_forms/#{@page.partial_name}"
+                = render "/stories/page_themes/#{@page.partial_name}"
             - else
               %li.page{:id => "page_#{page_number}"}
-          %li#page_info
-            .inner
-              .label Slide
-              .number
-                %span.current 1
-                %span.of /
-                %span.total 10
-        #previous-page.hidden.tooltipped-n{:title => "Previous page"} previous page
-        #next-page.tooltipped-n{:title => "Next page"} next page
-        #loader.hidden
     
       %li.submit
         - button_text = @story.new_record? ? "Create" : "Save"
