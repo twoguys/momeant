@@ -3,17 +3,17 @@
   - content_for :head do
     - if @page.background_color
       :css
-        #page_#{@page.number} {        
+        #page_#{@page.number}, .page_#{@page.number}_userstyles {        
             background-color: ##{@page.background_color};
         }
     - if caption && caption.background_color
       :css
-        #page_#{@page.number} .caption {
+        #page_#{@page.number} .caption, .page_#{@page.number}_userstyles .caption {
           background-color: ##{caption.background_color} !important;
         }      
     - if caption && caption.text_color
       :css
-        #page_#{@page.number} .caption {
+        #page_#{@page.number} .caption, .page_#{@page.number}_userstyles .caption {
           color: ##{caption.text_color} !important;
         }
 
@@ -21,5 +21,5 @@
 .inner
   - if @page.image
     .image{:style => "background-image: url(#{@page.image.url(size.to_s)})"}
-  - if @page.text && size == "original"
+  - if @page.text
     .caption= @page.text

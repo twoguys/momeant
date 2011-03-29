@@ -37,7 +37,7 @@
               %ul.pages
                 - @story.pages.each do |page|
                   - @page = page
-                  %li.page{:class => page.css_class, "page-number" => page.number}
+                  %li.page{:class => page.css_class, "page-number" => page.number, :id => "page_#{page.number}"}
                     .inner= render :partial => "/stories/page_themes/#{page.partial_name}", :locals => {:preview => true, :size => "medium"}
           .scrollbar
             .track

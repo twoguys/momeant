@@ -14,10 +14,11 @@
   .preview.clearfix
     = link_to("Edit your story", edit_story_path(@story), :class => "edit-story") if @story.owner?(current_user) && !@story.published?
     .padder
-      .thumbnail
-        - if @story.thumbnail
-          - @page = @story.thumbnail
-          = render :partial => "stories/page_themes/#{@page.partial_name}", :locals => {:size => "large"}
+      .thumbnail.large
+        .inner
+          - if @story.thumbnail
+            - @page = @story.thumbnail
+            = render :partial => "stories/page_themes/#{@page.partial_name}", :locals => {:size => "large"}
     .actions
       = like_button(@story)
 

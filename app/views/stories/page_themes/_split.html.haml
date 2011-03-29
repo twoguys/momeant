@@ -2,12 +2,12 @@
   - content_for :head do
     - if @page.background_color
       :css
-        #page_#{@page.number} {
+        #page_#{@page.number}, .page_#{@page.number}_userstyles {
           background-color: ##{@page.background_color} !important;
         }
     - if @page.text_color
       :css
-        #page_#{@page.number} {
+        #page_#{@page.number}, .page_#{@page.number}_userstyles {
           color: ##{@page.text_color} !important;
         }
 
