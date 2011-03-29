@@ -34,8 +34,8 @@
           = text_field_tag :story_title, @story.title, :class => "monitor-story-typing", :update => "title"
           .example What's in a name? Give your story one! (ie. Around the World in 80 Days)
         .excerpt-input
-          = label_tag :story_excerpt, "Synopsis"
-          = text_area_tag :story_excerpt, @story.excerpt, :class => "monitor-story-typing", :update => "excerpt"
+          = label_tag :story_synopsis, "Synopsis"
+          = text_area_tag :story_synopsis, @story.synopsis, :class => "monitor-story-typing", :update => "synopsis"
           .example Give a teaser or brief description of your story. Make sure it stands out from the crowd, and that viewers know what to expect!
           
       %li.metadata
@@ -44,7 +44,7 @@
           = text_field_tag :story_price, @story.price || "", :class => "monitor-story-typing", :update => "price"
           .example 
             Give your story a price in Momeant credits (in multiples of 10). 
-            %br/ 
+            %br
             Remember: 1 MC = 1 US penny
         .tags
           = label_tag :story_tag_list, "Tags"

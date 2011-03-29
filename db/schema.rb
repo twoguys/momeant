@@ -10,7 +10,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110317185234) do
+ActiveRecord::Schema.define(:version => 20110322180353) do
+
+  create_table "adverts", :force => true do |t|
+    t.string   "title"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.string   "path"
+    t.boolean  "enabled",            :default => true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "credit_cards", :force => true do |t|
     t.string    "last_four_digits"
@@ -84,7 +96,6 @@ ActiveRecord::Schema.define(:version => 20110317185234) do
 
   create_table "stories", :force => true do |t|
     t.string   "title"
-    t.text     "excerpt"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -93,6 +104,7 @@ ActiveRecord::Schema.define(:version => 20110317185234) do
     t.integer  "thumbnail_page"
     t.integer  "price"
     t.integer  "likes_count",     :default => 0
+    t.text     "synopsis"
   end
 
   create_table "stories_topics", :id => false, :force => true do |t|

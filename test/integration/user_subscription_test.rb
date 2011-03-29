@@ -122,12 +122,12 @@ Feature "A user should be able subscribe to other users whose curations they lik
     Then "I should see links to the stories the other user recommends" do
       @their_recommended_stories = @user2.recommended_stories
       @their_recommended_stories.each do |story|
-        assert page.find('#subscribed-to-stories').has_content? story.title
+        assert page.find('.subscribed-to-stream').has_content? story.title
       end
     end
     
     And "I should not see a link to a story they didn't recommend" do
-      assert !page.find('#subscribed-to-stories').has_content?(@story3.title)
+      assert !page.find('.subscribed-to-stream').has_content?(@story3.title)
     end
   end
   

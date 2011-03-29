@@ -1,0 +1,8 @@
+%li
+  .title= advert.title
+  .enabled
+    = check_box_tag "advert_#{advert.id}_enabled", advert.id, advert.enabled?
+    = image_tag('/images/spinner.gif', :class => 'hidden')
+    %span{:class => advert.enabled? ? "" : "disabled"}= advert.enabled? ? "enabled" : "disabled"
+  .delete= link_to("delete", admin_advert_path(advert), :method => :delete)
+  .image= link_to(image_tag(advert.image.url), polymorphic_path(advert.path))

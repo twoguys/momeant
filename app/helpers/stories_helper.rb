@@ -48,23 +48,25 @@ module StoriesHelper
   end
   
   def story_price(story)
-    if current_user && (story.user == current_user || current_user.stories.include?(story))
-      link_to("view", story, :class => "view")
-    elsif @story.free?
-      link_to("free", purchase_story_path(story), :class => "free tooltipped-n", :method => :post, :title => "Acquire")
-    else
-      link_to(number_with_precision(story.price, :precision => 0), purchase_story_path(story), :method => :post, :class => "buy-it", :class => "tooltipped-n", :title => "Buy")
-    end
+    # if current_user && (story.user == current_user || current_user.stories.include?(story))
+    #   link_to("view", story, :class => "view")
+    # elsif @story.free?
+    #   link_to("free", purchase_story_path(story), :class => "free tooltipped-n", :method => :post, :title => "Acquire")
+    # else
+    #   link_to(number_with_precision(story.price, :precision => 0), purchase_story_path(story), :method => :post, :class => "buy-it", :class => "tooltipped-n", :title => "Buy")
+    # end
+    link_to("view", story, :class => "view")
   end
   
   def story_buy_view_link(story)
-    if current_user && (story.user == current_user || current_user.stories.include?(story))
-      link_to("view story", story, :class => "view")
-    elsif story.free?
-      link_to("acquire story for free", purchase_story_path(story), :method => :post, :class => "free tooltipped", :title => "Acquire")
-    else
-      link_to("buy story for #{@story.price}", purchase_story_path(story), :method => :post, :class => "buy-it tooltipped", :title => "Buy")
-    end
+    # if current_user && (story.user == current_user || current_user.stories.include?(story))
+    #   link_to("view story", story, :class => "view")
+    # elsif story.free?
+    #   link_to("acquire story for free", purchase_story_path(story), :method => :post, :class => "free tooltipped", :title => "Acquire")
+    # else
+    #   link_to("buy story for #{@story.price}", purchase_story_path(story), :method => :post, :class => "buy-it tooltipped", :title => "Buy")
+    # end
+    link_to("view story", story, :class => "view")
   end
   
   def topic_checkbox(topic, story, all_topics)

@@ -19,6 +19,8 @@ var story_viewer = function() {
 		
 		$('ul#pages, #previous-page, #next-page').click(viewer.close_previewer);
 		
+		$('ul#pages li').swipe({swipe:viewer.swipe,threshold:0});
+		
 		update_previewer_width();
 		viewer.set_active_preview(1);
 		hide_controls_after_initial_delay();
@@ -69,6 +71,14 @@ var story_viewer = function() {
 		$('#previous-page .button').stop().animate({opacity: 0});
 	};
 	
+	this.swipe = function(event, direction) {
+		if (direction == "left") {
+			viewer.goto_next_page();
+		} else if (direction == "right") {
+			viewer.goto_prev_page();
+		}
+	};
+	
 	var setup_key_bindings = function() {
 		$(document).keyup(function(e) {
 		  if (e.keyCode == 27) { viewer.toggle_previewer(); }   // esc
@@ -116,6 +126,9 @@ var story_viewer = function() {
 				// bring the prev button from opacity 0 to .3
 				viewer.hide_prev_button();
 			}
+			
+			var x_coord = 200 * page_number;
+			$('#previewer .viewport .overview').scrollLeft(x_coord);
 		}
 	};
 	

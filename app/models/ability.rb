@@ -11,9 +11,9 @@ class Ability
       can :preview, Story do |story|
         story.published? || story.owner?(user)
       end
-      can :show, Story do |story|
-        user.stories.include?(story)
-      end
+      can :show, Story # do |story|
+      #         user.stories.include?(story)
+      #       end
       can :create, Subscription
       can :destroy, Subscription, :subscriber_id => user.id
       

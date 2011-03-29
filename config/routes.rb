@@ -58,8 +58,12 @@ Repo::Application.routes.draw do
       post :mark_paid, :on => :member
     end
     resources :invitations
+    resources :adverts do
+      post :toggle_enabled, :on => :member
+    end
   end
   
+  match '/faq',                 :to => 'home#faq',                  :as => :faq
   match '/',                    :to => 'home#index',                :as => :home
   root :to => "home#index"
   
