@@ -1,18 +1,36 @@
 = hidden_field_tag "pages[#{@page_number}][type]", "split"
-.split.page-theme.background-color-affected
-  = render :partial => "stories/page_forms/style_editor", :locals => {:background_color => true, :text_color => true}
-  .image
-    .inner
-      .file-uploader
-        .loader.hidden
-        %form{:enctype => "multipart/form-data", :method => "POST", :action => "/stories"}
-          %input{:type => "hidden", :value => form_authenticity_token, :name => "authenticity_token"}
-          %input{:type => "file", :name => "pages[#{@page_number}][image]", :id => "pages_#{@page_number}_image"}
-        .image-preview{:class => (@page.present? && @page.image.present?) ? "no-bg" : ""}
-          = image_tag @page.image.url if @page && @page.image
-  .text
-    .inner
-      - if @page && @page.text
-        = text_area_tag "pages[#{@page_number}][text]", @page.text, :placeholder => "Type your text here...", :class => "color-affected monitor-typing"
-      - else
-        = text_area_tag "pages[#{@page_number}][text]", "", :placeholder => "Type your text here...", :class => "color-affected monitor-typing"
+.split.page-theme.pane-insides
+  .header
+    .title Split
+    = link_to("Change", "#", :class => "change")
+    .spinner Saving...
+  .copy Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+  .body
+    %fieldset
+      %ul
+        %li
+          %label Choose your image
+          .image
+            .inner
+              .file-uploader
+                .loader.hidden
+                %form{:enctype => "multipart/form-data", :method => "POST", :action => "/stories"}
+                  %input{:type => "hidden", :value => form_authenticity_token, :name => "authenticity_token"}
+                  %input{:type => "file", :name => "pages[#{@page_number}][image]", :id => "pages_#{@page_number}_image"}
+                .image-preview{:class => (@page.present? && @page.image.present?) ? "no-bg" : ""}
+                  = image_tag @page.image.url if @page && @page.image
+        %li
+          %label Enter your text
+          .text
+            .inner
+              - if @page && @page.text
+                = text_area_tag "pages[#{@page_number}][text]", @page.text, :placeholder => "Type your text here...", :class => "color-affected monitor-typing"
+              - else
+                = text_area_tag "pages[#{@page_number}][text]", "", :placeholder => "Type your text here...", :class => "color-affected monitor-typing"
+        %li
+          = link_to("Save &amp; Preview".html_safe, "#", :class => "save")
+  .tips
+    %h3 Tips
+    %ul
+      %li  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.
+      %li  Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.

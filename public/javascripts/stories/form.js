@@ -11,30 +11,28 @@ var story_page_editor = function() {
 		this.story_id = $('#story_id').val();
 		$('#open-page-editor-button').click(pages_editor.open);
 		$('#close-page-editor-button').click(pages_editor.close);
-		setup_page_layout_chooser();
 		$('#next-page').click(pages_editor.goto_next_page);
 		$('#previous-page').click(pages_editor.goto_previous_page);
 		$('#pane .expander-tab').click(pages_editor.open_or_close_pane);
 		$('.pane-insides a.save').click(pages_editor.open_or_close_pane);
+		setup_page_type_chooser();
 		setup_preview_clicking();
 		setup_preview_thumbnailing();
 		setup_grid_editing();
 		setup_key_bindings();
-		this.setup_style_editor($('#pages'));
 		this.total_pages = $('ul#pages li').length;
 		initialize_first_page();
 	};
 	
 	// SETUP
 	
-	var setup_page_layout_chooser = function() {
-		$('#page-type-chooser .slider li').click(function() {
+	var setup_page_type_chooser = function() {
+		$('#page-type-chooser .body li').click(function() {
 			var page_type = $(this).attr('page-type');
+			$(this).addClass('loading');
 			pages_editor.choose_page_theme(page_type);
 		});
-		$('#page-type-chooser-button .inner').click(function() {
-			pages_editor.show_page_type_chooser();
-		});
+		$('.pane-insides a.change').click(pages_editor.show_page_type_chooser);
 	};
 	
 	var setup_preview_clicking = function() {
@@ -42,10 +40,6 @@ var story_page_editor = function() {
 			var page_number = $(this).attr('page-number');
 			pages_editor.goto_page(page_number);
 			var has_content = $(this).hasClass('has-content');
-			if (has_content)
-				pages_editor.hide_page_type_chooser();
-			else
-				pages_editor.show_page_type_chooser();
 			pages_editor.open();
 		});
 	};
@@ -118,11 +112,10 @@ var story_page_editor = function() {
 		var $current_page = $('#page_' + pages_editor.page);
 		$.get('/stories/render_page_theme?theme=' + page_type + '&page=' + pages_editor.page, function(result) {
 			$current_page.html(result);
-			$current_page.find('input[placeholder],textarea[placeholder]').placeholder();
-			pages_editor.setup_style_editor($current_page);
-			$current_page.fadeIn();
-			$current_page.click(pages_editor.hide_page_type_chooser);
 			pages_editor.hide_page_type_chooser();
+			$('#page-type-chooser li[page-type="' + page_type + '"]').removeClass('loading');
+			$current_page.find('input[placeholder],textarea[placeholder]').placeholder();
+			$current_page.find('a.change').click(pages_editor.show_page_type_chooser);
 			pages_editor.set_preview_type(page_type);
 			auto_saver.create_and_monitor_page($current_page, page_type, pages_editor.page);
 		});
@@ -144,23 +137,19 @@ var story_page_editor = function() {
 	};
 	
 	this.hide_page_type_chooser = function() {
-		if (!pages_editor.page_chooser_open) {
-			return;
-		} else {
-			//$('#page-type-chooser, #pages').animate({ top: '-200'}, 500, pages_editor.show_layout_chooser_button);
+		if (pages_editor.page_chooser_open) {
 			$('#page-type-chooser').hide();
 			pages_editor.page_chooser_open = false;
 		}
+		return false;
 	};
 	
 	this.show_page_type_chooser = function() {
-		if (pages_editor.page_chooser_open) {
-			return;
-		} else {
-			//$('#page-type-chooser, #pages').animate({ top: '0'}, 500, pages_editor.hide_layout_chooser_button);
+		if (!pages_editor.page_chooser_open) {
 			$('#page-type-chooser').show();
 			pages_editor.page_chooser_open = true;
 		}
+		return false;
 	};
 	
 	this.show_layout_chooser_button = function() {
@@ -462,7 +451,7 @@ var story_auto_saver = function() {
 					auto_saver.monitor_page_style_updates($page, data.id, type, number);
 					auto_saver.monitor_mirroring($page, data.id, type, number);
 					auto_saver.monitor_placement($page, data.id, type, number);
-					auto_saver.monitor_image_placement($page, data,id, type, number);
+					auto_saver.monitor_image_placement($page, data.id, type, number);
 				} else {
 					log('error when creating a ' + type + ' page.');
 				}
@@ -552,8 +541,8 @@ var story_auto_saver = function() {
 				onFinishOne: function(event, response, name, number, total) {
 					json = $.parseJSON(response);
 					
-					log('ul#pages #page_' + (number + 1) + ' .image');
-					//$('ul#pages #page_' + (number + 1) + ' .image').css('background-image', json.full);
+					// Paperclip saves the image with the same URL on Amazon S3 so the browser doesn't update the image
+					// By removing the node and re-adding it the new image shows up
 					$('ul#pages #page_' + (number + 1) + ' .image').remove();
 					$('ul#pages #page_' + (number + 1) + ' .inner').append('<div class="image" style="background-image: url(' + json.thumbnail + ');"></div>');
 					

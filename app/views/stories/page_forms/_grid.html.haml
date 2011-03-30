@@ -1,31 +1,40 @@
 = hidden_field_tag "pages[#{@page_number}][type]", "grid"
-.grid.page-theme.background-color-affected
-  = render :partial => "stories/page_forms/style_editor", :locals => {:background_color => true, :text_color => true}
-  %ul.cells
-    - 8.times do |num|
-      - cell = num + 1
-      %li{:id => "cell_#{cell}"}
-        .inner
-          .image
-            .file-uploader
-              %form{:enctype => "multipart/form-data", :method => "POST", :action => "/stories"}
-                %input{:type => "hidden", :value => form_authenticity_token, :name => "authenticity_token"}
-                %input{:type => "file", :name => "pages[#{@page_number}][cells][#{cell}][image]", :id => "pages_#{@page_number}_cells_#{cell}_image", :cell => cell}
-                .loader.hidden                
-              .image-preview
-                = image_tag @page.image_at_position(cell).image.url if @page && @page.image_at_position(cell)
-                - unless @page && @page.image_at_position(cell)
-                  .info
-                    %p
-                      If no image is chosen, the caption will be shown by default.
-                      If an image is chosen, the image will be shown and upon
-                      hover the caption is shown.
-                    %p
-                      Acceptable filetypes: JPG, PNG, GIF
-            = link_to("Edit caption", "#")
-          .text
-            - if @page && @page.text_at_position(cell)
-              = text_area_tag "pages[#{@page_number}][cells][#{cell}][text]", @page.text_at_position(cell).text, :placeholder => "Type your caption here...", :class => "monitor-typing color-affected", :cell => cell
-            - else
-              = text_area_tag "pages[#{@page_number}][cells][#{cell}][text]", "", :placeholder => "Type your caption here...", :class => "monitor-typing color-affected", :cell => cell
-            = link_to("Choose image", "#")
+.grid.page-theme.pane-insides
+  .header
+    .title Grid
+    = link_to("Change", "#", :class => "change")
+    .spinner Saving...
+  .copy Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+  .body
+    %fieldset
+      %ul
+        %li
+          %label Choose your images
+          %ul.cells
+            - 8.times do |num|
+              - cell = num + 1
+              %li{:id => "cell_#{cell}"}
+                .inner
+                  .image
+                    .file-uploader
+                      %form{:enctype => "multipart/form-data", :method => "POST", :action => "/stories"}
+                        %input{:type => "hidden", :value => form_authenticity_token, :name => "authenticity_token"}
+                        %input{:type => "file", :name => "pages[#{@page_number}][cells][#{cell}][image]", :id => "pages_#{@page_number}_cells_#{cell}_image", :cell => cell}
+                        .loader.hidden                
+                      .image-preview
+                        = image_tag @page.image_at_position(cell).image.url if @page && @page.image_at_position(cell)
+                        - unless @page && @page.image_at_position(cell)
+                          .info
+                            %p
+                              If no image is chosen, the caption will be shown by default.
+                              If an image is chosen, the image will be shown and upon
+                              hover the caption is shown.
+                            %p
+                              Acceptable filetypes: JPG, PNG, GIF
+                    = link_to("Edit caption", "#")
+                  .text
+                    - if @page && @page.text_at_position(cell)
+                      = text_area_tag "pages[#{@page_number}][cells][#{cell}][text]", @page.text_at_position(cell).text, :placeholder => "Type your caption here...", :class => "monitor-typing color-affected", :cell => cell
+                    - else
+                      = text_area_tag "pages[#{@page_number}][cells][#{cell}][text]", "", :placeholder => "Type your caption here...", :class => "monitor-typing color-affected", :cell => cell
+                    = link_to("Choose image", "#")

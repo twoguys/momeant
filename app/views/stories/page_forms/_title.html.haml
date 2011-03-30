@@ -14,3 +14,10 @@
             = text_area_tag "pages[#{@page_number}][text]", @page.text, :class => "monitor-typing background-color-affected color-affected"
           - else
             = text_area_tag "pages[#{@page_number}][text]", "", :class => "monitor-typing background-color-affected color-affected"
+        %li
+          = link_to("Save &amp; Preview".html_safe, "#", :class => "save")
+  .tips
+    %h3 Tips
+    %ul
+      %li  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.
+      %li  Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.

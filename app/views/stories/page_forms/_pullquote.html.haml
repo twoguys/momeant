@@ -1,7 +1,23 @@
 = hidden_field_tag "pages[#{@page_number}][type]", "pullquote"
-.pullquote.page-theme.background-color-affected.color-affected
-  = render :partial => "stories/page_forms/style_editor", :locals => {:background_color => true, :text_color => true}
-  - if @page && @page.text
-    = text_area_tag "pages[#{@page_number}][text]", @page.text, :class => "monitor-typing", :placeholder => "Type your text here..."
-  - else
-    = text_area_tag "pages[#{@page_number}][text]", "", :class => "monitor-typing", :placeholder => "Type your text here..."
+.pullquote.page-theme.pane-insides
+  .header
+    .title Blockquote
+    = link_to("Change", "#", :class => "change")
+    .spinner Saving...
+  .copy Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+  .body
+    %fieldset
+      %ul
+        %li
+          %label Type your blockquote
+          - if @page && @page.text
+            = text_area_tag "pages[#{@page_number}][text]", @page.text, :class => "monitor-typing", :placeholder => "Type your text here..."
+          - else
+            = text_area_tag "pages[#{@page_number}][text]", "", :class => "monitor-typing", :placeholder => "Type your text here..."
+        %li
+          = link_to("Save &amp; Preview".html_safe, "#", :class => "save")
+  .tips
+    %h3 Tips
+    %ul
+      %li  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.
+      %li  Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.

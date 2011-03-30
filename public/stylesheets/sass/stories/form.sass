@@ -218,20 +218,76 @@ form.new_story, form.edit_story, .story-form
 				cursor: pointer
 			.children
 				padding-left: 10px
-
-#page-editor .slider
-	.title
-		background-image: url(../images/page-themes/title-page-thumbnail.jpg)
-	.full_image
-		background-image: url(../images/page-themes/full-image-thumbnail.jpg)
-	.pullquote
-		background-image: url(../images/page-themes/pullquote-thumbnail.jpg)
-	.video
-		background-image: url(../images/page-themes/video-thumbnail.jpg)
-	.split
-		background-image: url(../images/page-themes/split-thumbnail.jpg)
-	.grid
-		background-image: url(../images/page-themes/grid-thumbnail.jpg)
+	#page-type-chooser
+		width: 100%
+		height: 100%
+		position: fixed
+		top: 0
+		background-color: rgba(0,0,0,0.6)
+		z-index: 5
+		.insides
+			width: 700px
+			height: auto
+			position: fixed
+			top: 50%
+			left: 50%
+			margin: -250px 0 0 -485px
+			background-color: #fff
+			@include boxshadow
+			.header
+				font-family: $block
+				font-weight: 700
+				font-size: 30px
+				line-height: 50px
+				vertical-align: middle
+				text-transform: uppercase
+				background-color: #000
+				color: #fff
+				height: 50px
+				margin-bottom: 10px
+				padding-left: 10px
+			.copy
+				margin: 15px
+				font-size: 15px
+				line-height: 24px
+				font-family: $typewriter
+				border-bottom: 1px dotted #aaa
+				padding-bottom: 15px
+				color: #777
+			.body
+				.clear
+					height: 20px
+				ul
+					width: 750px
+					margin: 0 auto
+					li
+						display: block
+						width: 200px
+						height: 124px
+						float: left
+						background-position: 0 -7px
+						background-repeat: no-repeat
+						cursor: pointer
+						margin: 15px
+						padding: 0
+						clear: none
+						border: 5px solid #fff
+					li.loading
+						background: transparent url(../images/spinner.gif) no-repeat 50% 50%
+					li:hover
+						border: 5px solid #eee
+				.title
+					background-image: url(../images/page-themes/title-page-thumbnail.jpg)
+				.full_image
+					background-image: url(../images/page-themes/full-image-thumbnail.jpg)
+				.pullquote
+					background-image: url(../images/page-themes/pullquote-thumbnail.jpg)
+				.video
+					background-image: url(../images/page-themes/video-thumbnail.jpg)
+				.split
+					background-image: url(../images/page-themes/split-thumbnail.jpg)
+				.grid
+					background-image: url(../images/page-themes/grid-thumbnail.jpg)
 
 #page-previews
 	li.title .inner
@@ -391,17 +447,6 @@ form.new_story, form.edit_story, .story-form
 			text-transform: uppercase
 			color: #1ca436
 			@include rounded(3px)
-		#page-type-chooser
-			li
-				width: 200px
-				height: 124px
-				float: left
-				background-position: 0 -7px
-				background-repeat: no-repeat
-				cursor: pointer
-				margin: 10px 5px
-				padding: 0
-				clear: none
 		ul.pages
 			li.break
 				border-top: 1px solid #ccc
@@ -529,42 +574,7 @@ form.new_story, form.edit_story, .story-form
 				width: 100%
 		.full_image
 			@include fullimageSlideFullsize
-			
-							
-	#page_info
-		position: absolute
-		width: 40%
-		margin: 0 32% 0 28%
-		top: 275px
-		left: 0
-		font-size: 32px
-		text-transform: uppercase
-		height: 35px
-		z-index: 2
-		border-bottom: 1px solid white
-		color: #ccc
-		font-weight: 900
-		padding-bottom: 50px
-		.inner
-			padding: 10px 10px 0 10px
-			width: 160px
-			margin: 0 auto	
-		.label
-			float: left
-		.number
-			width: 48px
-			position: relative
-			left: 130px
-			span
-				display: block
-				position: absolute
-			.current
-				right: 34px
-			.of
-				left: 18px
-				font-weight: 100
-			.total
-				left: 36px
+
 	#story-details
 		position: absolute
 		bottom: -51px

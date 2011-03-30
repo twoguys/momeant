@@ -99,18 +99,6 @@
             = link_to("Save and close", "#", :class => "save", :id => "close-page-editor-button")
         #pane    
           .expander-tab
-          #page-type-chooser.pane-insides            
-            .header
-              .title Choose a slide layout
-            .copy Click the type of slide you want, then customize it to fit your personal style!
-            .body
-              %ul
-                %li.title.tooltipped{:title => "Title Slide", "page-type" => "title"}
-                %li.full_image.tooltipped{:title => "Full Image (w/ caption)", "page-type" => "full_image"}
-                %li.pullquote.tooltipped{:title => "Blockquote", "page-type" => "pullquote"}
-                %li.video.tooltipped{:title => "Video", "page-type" => "video"}
-                %li.split.tooltipped{:title => "Split Image/Text", "page-type" => "split"}
-                %li.grid.tooltipped{:title => "Grid", "page-type" => "grid"}
           %ul.pages
             - @story.pages.each do |page|
               %li.pane-insides.hidden{:id => "page_#{page.number}", "page-id" => page.id, "page-type" => page.partial_name}
@@ -129,3 +117,18 @@
       %li.submit
         - button_text = @story.new_record? ? "Create" : "Save"
         =# form.submit "#{button_text} Story", :disable_with => "#{button_text[0..-2]}ing..."
+        
+  #page-type-chooser
+    .insides
+      .header
+        .title Choose a slide layout
+      .copy Click the type of slide you want, then customize it to fit your personal style!
+      .body
+        %ul
+          %li.title.tooltipped{:title => "Title Slide", "page-type" => "title"}
+          %li.full_image.tooltipped{:title => "Full Image (w/ caption)", "page-type" => "full_image"}
+          %li.pullquote.tooltipped{:title => "Blockquote", "page-type" => "pullquote"}
+          %li.video.tooltipped{:title => "Video", "page-type" => "video"}
+          %li.split.tooltipped{:title => "Split Image/Text", "page-type" => "split"}
+          %li.grid.tooltipped{:title => "Grid", "page-type" => "grid"}
+        .clear
