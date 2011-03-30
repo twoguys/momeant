@@ -19,6 +19,6 @@
 
 - size ||= "original"
 .inner
-  .image{:class => @page.image_media.placement, :style => @page.image.present? ? "background-image: url(#{@page.image.url(size.to_s)})" : ""}
+  .image{:class => @page.image_media ? @page.image_media.placement : "", :style => @page.image.present? ? "background-image: url(#{@page.image.url(size.to_s)})" : ""}
   - if size == "original"
     .caption.mirrored.placeable{:class => @page.text_media.placement, "mirrored-from" => "caption"}= @page.text if @page.text
