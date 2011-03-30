@@ -30,7 +30,7 @@ class Story < ActiveRecord::Base
   validates :synopsis, :length => (2..1024), :unless => :autosaving
   validates :price, :format => /[0-9.,]+/, :unless => :autosaving
   
-  validate  :ten_page_requirement, :only_two_free_stories, :unless => :autosaving
+  #validate  :ten_page_requirement, :only_two_free_stories, :unless => :autosaving
   
   scope :published, where(:published => true)
   scope :free, where(:price => 0.0)

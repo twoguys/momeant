@@ -88,6 +88,9 @@ class Page < ActiveRecord::Base
           page.medias << PageImage.new(:image => options[:image])
         end
       end
+      if options[:image_placement] && page.image_media.present?
+        page.image_media.update_attribute(:placement, options[:image_placement])
+      end
       text_media = page.text_media
       unless text_media
         page.medias << PageText.new
@@ -96,6 +99,7 @@ class Page < ActiveRecord::Base
       text_media.text = options[:text] if options[:text]
       text_media.background_color = options[:caption_background_color] if options[:caption_background_color]
       text_media.text_color = options[:caption_text_color] if options[:caption_text_color]
+      text_media.placement = options[:placement] if options[:placement]
       text_media.save unless page.new_record?
     when "pullquote"
       if page

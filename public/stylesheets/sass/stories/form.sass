@@ -276,9 +276,24 @@ form.new_story, form.edit_story, .story-form
 			position: absolute
 			left: 50%
 			top: 9px
-			width: 100px
-			margin-left: -25px
+			width: 130px
+			height: 42px
+			margin-left: -32px
 			font-size: 18px
+			text-align: center
+			#previous-page, #next-page
+				width: 16px
+				height: 18px
+				text-indent: -9999px
+				background: transparent url(../images/story-creator-next-prev-arrows.png) no-repeat 0 0
+				cursor: pointer
+				position: absolute
+				top: 2px
+			#previous-page
+				left: 0
+			#next-page
+				right: 0
+				background-position: -18px 0
 		.actions
 			float: right
 			margin-top: 7px
@@ -300,15 +315,30 @@ form.new_story, form.edit_story, .story-form
 	#pane
 		width: 50%
 		background-color: #e0e0e0
-		background-color: rgba(224,224,224,0.9)
+		background-color: rgba(224,224,224,0.95)
 		z-index: 2
 		position: absolute
 		top: 42px
 		bottom: 0
 		left: 0
 		margin-bottom: -42px
+		-webkit-transition: left 0.5s ease-in-out
+		-moz-transition-property: left
+		-moz-transition-duration: 0.5s
+		@include boxshadow(5px, 0.15, 5px, 0)
+		.expander-tab
+			position: absolute
+			right: -31px
+			top: 46%
+			width: 34px
+			height: 57px
+			background: transparent url(../images/verticalDrawerTab.png) no-repeat -34px 0
 		.pane-insides
-			overflow-y: auto
+			position: absolute
+			top: 0
+			bottom: 0
+			left: 0
+			width: 100%
 			.header
 				height: 35px
 				background-color: #000
@@ -322,6 +352,12 @@ form.new_story, form.edit_story, .story-form
 					line-height: 35px
 					vertical-align: middle
 					padding-left: 10px
+					display: inline-block
+				.change
+					display: inline-block
+					line-height: 35px
+					vertical-align: middle
+					margin-left: 10px
 				.spinner
 					position: absolute
 					right: 5px
@@ -465,18 +501,22 @@ form.new_story, form.edit_story, .story-form
 						z-index: 2
 					.loader
 						display: none
+	#pane.closed
+		left: -49%
+		.expander-tab
+			background-position: 0 0
 
 	ul#pages
 		overflow: hidden
 		position: absolute
-		top: 0
+		top: 42px
 		bottom: 0
 		width: 100%
 		z-index: 1
 		background-color: #f2f2f2
 		li.page
 			width: 100%
-			text-align: center
+			height: 100%
 			position: absolute
 			top: 0
 			bottom: 0
@@ -488,19 +528,8 @@ form.new_story, form.edit_story, .story-form
 				bottom: 0
 				width: 100%
 		.full_image
-			.image
-				position: absolute
-				top: 0
-				bottom: 0
-				width: 100%
-			.caption
-				width: 300px
-				height: 200px
-				background-color: #fff
-				border: 1px solid #aaa
-				position: fixed
-				right: 100px
-				bottom: 50px
+			@include fullimageSlideFullsize
+			
 							
 	#page_info
 		position: absolute
@@ -556,22 +585,6 @@ form.new_story, form.edit_story, .story-form
 			margin-right: 10px
 		.value
 			float: left
-	#previous-page, #next-page
-		width: 100px
-		height: 140px
-		text-indent: -9999px
-		background: transparent url(../images/next-previous-arrows.png) no-repeat 0 0
-		position: fixed
-		top: 50%
-		z-index: 100
-		cursor: pointer
-	#previous-page:active, #next-page:active
-		top: 50.1%
-	#previous-page
-		left: 0
-	#next-page
-		right: 0
-		background-position: -138px 0
 	.loader
 		width: 220px
 		height: 19px

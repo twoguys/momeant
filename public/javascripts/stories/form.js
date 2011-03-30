@@ -5,19 +5,23 @@ var story_page_editor = function() {
 	this.page = 1;
 	this.page_chooser_open = true;
 	this.page_type_css_classes = 'title full_image pullquote video split';
+	this.total_pages = 0;
 	
 	this.initialize = function() {
 		this.story_id = $('#story_id').val();
 		$('#open-page-editor-button').click(pages_editor.open);
 		$('#close-page-editor-button').click(pages_editor.close);
 		setup_page_layout_chooser();
-		setup_next_page_button();
-		setup_prev_page_button();
+		$('#next-page').click(pages_editor.goto_next_page);
+		$('#previous-page').click(pages_editor.goto_previous_page);
+		$('#pane .expander-tab').click(pages_editor.open_or_close_pane);
+		$('.pane-insides a.save').click(pages_editor.open_or_close_pane);
 		setup_preview_clicking();
 		setup_preview_thumbnailing();
 		setup_grid_editing();
 		setup_key_bindings();
 		this.setup_style_editor($('#pages'));
+		this.total_pages = $('ul#pages li').length;
 		initialize_first_page();
 	};
 	
@@ -31,14 +35,6 @@ var story_page_editor = function() {
 		$('#page-type-chooser-button .inner').click(function() {
 			pages_editor.show_page_type_chooser();
 		});
-	};
-	
-	var setup_next_page_button = function()  {
-		$('#next-page').click(pages_editor.goto_next_page);
-	};
-	
-	var setup_prev_page_button = function()  {
-		$('#previous-page').click(pages_editor.goto_previous_page);
 	};
 	
 	var setup_preview_clicking = function() {
@@ -138,7 +134,6 @@ var story_page_editor = function() {
 		$('body').addClass('fullscreen');
 		$('#page-editor').removeClass('hidden').siblings().hide();
 		$.scrollTo(43);
-		log($(window)._scrollable());
 		return false;
 	};
 	
@@ -177,14 +172,21 @@ var story_page_editor = function() {
 		$('#page-type-chooser-button').animate({ bottom: 0}, 500);
 	};
 	
+	this.open_or_close_pane = function() {
+		$('#pane').toggleClass('closed');
+		return false;
+	};
+	
 	this.goto_next_page = function() {
 		if (pages_editor.page == 10) { return false; }
 		pages_editor.change_page_by(1);
+		return false;
 	};
 	
 	this.goto_previous_page = function() {
 		if (pages_editor.page == 1) { return false; }
 		pages_editor.change_page_by(-1);
+		return false;
 	};
 	
 	this.goto_page = function(page_number_string) {
@@ -200,37 +202,46 @@ var story_page_editor = function() {
 	
 	this.change_page_by = function(difference) {
 		var page = pages_editor.page;
-		var $current_page = $('#page_' + page);
-		var $next_page = $('#page_' + (page + difference));
-		$next_page.fadeIn();
-		$current_page.fadeOut();
-		pages_editor.set_current_page(page + difference);
-		if ($next_page.find('.page-theme').length == 0) {
-			pages_editor.show_page_type_chooser();
-		} else {
-			pages_editor.hide_page_type_chooser();
-		}
+		pages_editor.goto_page(page + difference);
+		// var $current_page = $('#page_' + page);
+		// var $next_page = $('#page_' + (page + difference));
+		// $next_page.fadeIn();
+		// $current_page.fadeOut();
+		// pages_editor.set_current_page(page + difference);
+		// if ($next_page.find('.page-theme').length == 0) {
+		// 	pages_editor.show_page_type_chooser();
+		// } else {
+		// 	pages_editor.hide_page_type_chooser();
+		// }
 	}
 	
 	this.set_current_page = function(new_page) {
+		var $old_pane = $('#pane ul.pages li#page_' + this.page);
+		var $new_pane = $('#pane ul.pages li#page_' + new_page);
+		$old_pane.hide();
+		$new_pane.show();
+
 		this.page = new_page;
-		$('#page_info .current').text(new_page);
+		$('#editor-header .current-slide span').text(new_page);
+		
 		if (new_page == 1)
 			pages_editor.hide_previous_page_button();
 		else
 			pages_editor.show_previous_page_button();
-		if (new_page == 10)
-			pages_editor.hide_next_page_button();
-		else
+		if (new_page < pages_editor.total_pages)
 			pages_editor.show_next_page_button();
+		else
+			pages_editor.hide_next_page_button();
+		
+		
 	};
 	
 	this.show_previous_page_button = function() {
-		$('#previous-page').fadeIn();
+		$('#previous-page').show();
 	};
 	
 	this.show_next_page_button = function() {
-		$('#next-page').fadeIn();
+		$('#next-page').show();
 	};
 	
 	this.hide_previous_page_button = function() {
@@ -251,9 +262,10 @@ var story_page_editor = function() {
 
 var auto_saver;
 var story_auto_saver = function() {
-	this.spinner_count = 0;
+	this.metadata_spinner_count = 0;
+	this.metadata_has_saved = false;
+	this.pages_spinner_count = 0;
 	this.observe_delay = 1;
-	this.has_saved = false;
 	
 	this.initialize = function() {
 		this.monitor_details_typing();
@@ -262,23 +274,37 @@ var story_auto_saver = function() {
 		this.monitor_topic_clicking();
 	};
 	
-	this.show_spinner = function() {
-		auto_saver.spinner_count += 1;
-		if (auto_saver.spinner_count == 1) {
+	this.show_metadata_spinner = function() {
+		auto_saver.metadata_spinner_count += 1;
+		if (auto_saver.metadata_spinner_count == 1) {
 			$('#story-spinner').show();
 			$('#story-saved').hide();
 		}
-		if (!auto_saver.has_saved) {
-			auto_saver.has_saved = true;
+		if (!auto_saver.metadata_has_saved) {
+			auto_saver.metadata_has_saved = true;
 			$('#story-saved').text('Saved');
 		}
 	};
 	
-	this.hide_spinner = function() {
-		auto_saver.spinner_count -= 1;
-		if (auto_saver.spinner_count == 0) {
+	this.hide_metadata_spinner = function() {
+		auto_saver.metadata_spinner_count -= 1;
+		if (auto_saver.metadata_spinner_count == 0) {
 			$('#story-spinner').hide();
 			$('#story-saved').show();
+		}
+	};
+	
+	this.show_pages_spinner = function() {
+		auto_saver.pages_spinner_count += 1;
+		if (auto_saver.pages_spinner_count == 1) {
+			$('#pane ul.pages li#page_' + pages_editor.page + ' .pane-insides .header .spinner').text('Saving...').removeClass('off').show();
+		}
+	};
+	
+	this.hide_pages_spinner = function() {
+		auto_saver.pages_spinner_count -= 1;
+		if (auto_saver.pages_spinner_count == 0) {
+			$('#pane ul.pages li#page_' + pages_editor.page + ' .pane-insides .header .spinner').text('Saved').addClass('off');
 		}
 	};
 	
@@ -292,9 +318,59 @@ var story_auto_saver = function() {
 				auto_saver.monitor_page_typing($page, page_id, page_type, number);
 				auto_saver.handle_image_uploading($page, page_id, page_type, number);
 				auto_saver.monitor_page_style_updates($page, page_id, page_type, number);
+				auto_saver.monitor_mirroring($page, page_id, page_type, number);
+				auto_saver.monitor_placement($page, page_id, page_type, number);
+				auto_saver.monitor_image_placement($page, page_id, page_type, number);
 			}
 		});
-	}
+	};
+	
+	this.monitor_mirroring = function($page, page_id, type, number) {
+		_.each($page.find('.mirrored'), function(input) {
+			var $from = $(input);
+			var $to = $('ul#pages li#page_' + number + ' *[mirrored-from="' + $from.attr('mirror-to') + '"]');
+			$from.keyup(function() {
+				$to.text($from.val());
+			});
+		});
+	};
+	
+	this.monitor_placement = function($page, page_id, type, number) {
+		_.each($page.find('.placement'), function(placement) {
+			$(placement).find('ul.picker li').click(function() {
+				var $position = $(this);
+				var position = $position.attr('position');
+				$position.addClass('chosen').siblings().removeClass('chosen');
+				$('ul#pages li#page_' + number + ' .placeable').removeClass('top-left top-right bottom-left bottom-right').addClass(position);
+				auto_saver.show_pages_spinner();
+				$.ajax({
+					type: 'PUT',
+					url: '/stories/' + pages_editor.story_id + '/pages/' + page_id,
+					data: {placement:position, type:type, number:number},
+					success: function(data) {
+						auto_saver.hide_pages_spinner();
+					}
+				});
+			});
+		});
+	};
+	
+	this.monitor_image_placement = function($page, page_id, type, number) {
+		$page.find('#image_placement').change(function() {
+			var $select = $(this);
+			var placement = $select.val();
+			$('ul#pages li#page_' + number + ' .image').removeClass('fill-screen fit-to-screen original').addClass(placement);
+			auto_saver.show_pages_spinner();
+			$.ajax({
+				type: 'PUT',
+				url: '/stories/' + pages_editor.story_id + '/pages/' + page_id,
+				data: {image_placement:placement, type:type, number:number},
+				success: function(data) {
+					auto_saver.hide_pages_spinner();
+				}
+			});
+		});
+	};
 	
 	this.monitor_details_typing = function() {
 		var $story_attributes_to_monitor = $('.monitor-story-typing');
@@ -305,14 +381,13 @@ var story_auto_saver = function() {
 				var data = {};
 				var value = $story_attribute.val();
 				data['story[' + attribute_to_update + ']'] = value;
-				auto_saver.show_spinner();
-				//alert("AJAXING!");
+				auto_saver.show_metadata_spinner();
 				$.ajax({
 					type: 'PUT',
 					url: '/stories/' + pages_editor.story_id + '/autosave',
 					data: data,
 					success: function(data) {
-						auto_saver.hide_spinner();
+						auto_saver.hide_metadata_spinner();
 						if (data.result == "success") {
 							log('successfully updated story with: ' + value);
 						} else {
@@ -327,7 +402,7 @@ var story_auto_saver = function() {
 	this.monitor_thumbnail_switching = function() {
 		$('#page-previews a.choose-thumbnail').click(function() {
 			var page_number = $(this).parent().attr('page-number');
-			auto_saver.show_spinner();
+			auto_saver.show_metadata_spinner();
 			$.ajax({
 				type: 'PUT',
 				url: '/stories/' + pages_editor.story_id + '/autosave',
@@ -335,7 +410,7 @@ var story_auto_saver = function() {
 					'story[thumbnail_page]': page_number
 				},
 				success: function(data) {
-					auto_saver.hide_spinner();
+					auto_saver.hide_metadata_spinner();
 					if (data.result == "success") {
 						log('successfully updated thumbnail to: ' + page_number);
 					} else {
@@ -354,7 +429,7 @@ var story_auto_saver = function() {
 			if (!$checkbox.is(':checked')) {
 				url = 'remove_topic_from';
 			}
-			auto_saver.show_spinner();
+			auto_saver.show_metadata_spinner();
 			$.ajax({
 				type: 'POST',
 				url: '/stories/' + pages_editor.story_id + '/' + url,
@@ -362,7 +437,7 @@ var story_auto_saver = function() {
 					topic_id: topic_id
 				},
 				success: function(data) {
-					auto_saver.hide_spinner();
+					auto_saver.hide_metadata_spinner();
 					if (data.result == "success") {
 						log('successful ' + url + ': ' + topic_id);
 					} else {
@@ -385,6 +460,9 @@ var story_auto_saver = function() {
 					auto_saver.monitor_page_typing($page, data.id, type, number);
 					auto_saver.handle_image_uploading($page, data.id, type, number);
 					auto_saver.monitor_page_style_updates($page, data.id, type, number);
+					auto_saver.monitor_mirroring($page, data.id, type, number);
+					auto_saver.monitor_placement($page, data.id, type, number);
+					auto_saver.monitor_image_placement($page, data,id, type, number);
 				} else {
 					log('error when creating a ' + type + ' page.');
 				}
@@ -404,6 +482,7 @@ var story_auto_saver = function() {
 			} else {
 				data['text'] = value;
 			}
+			auto_saver.show_pages_spinner();
 			$.ajax({
 			  type: 'PUT',
 			  url: '/stories/' + pages_editor.story_id + '/pages/' + page_id,
@@ -411,6 +490,7 @@ var story_auto_saver = function() {
 			  success: function(data) {
 					if (data.result == "success") {
 						log('successfully updated page ' + page_id + ' with: ' + value);
+						auto_saver.hide_pages_spinner(true);
 					} else {
 						log('error when updating page ' + page_id);
 					}
@@ -428,6 +508,7 @@ var story_auto_saver = function() {
 					number: number,
 				};
 				data[style] = $(object).val();
+				auto_saver.show_pages_spinner();
 				$.ajax({
 				  type: 'PUT',
 				  url: '/stories/' + pages_editor.story_id + '/pages/' + page_id,
@@ -435,6 +516,7 @@ var story_auto_saver = function() {
 				  success: function(data) {
 						if (data.result == "success") {
 							log('successfully updated page ' + page_id + ' with: ' + value);
+							auto_saver.hide_pages_spinner(true);
 						} else {
 							log('error when updating page ' + page_id);
 						}
@@ -470,7 +552,10 @@ var story_auto_saver = function() {
 				onFinishOne: function(event, response, name, number, total) {
 					json = $.parseJSON(response);
 					
-					$('ul#pages #page_' + page_id + ' .image').css('background-image', json.full);
+					log('ul#pages #page_' + (number + 1) + ' .image');
+					//$('ul#pages #page_' + (number + 1) + ' .image').css('background-image', json.full);
+					$('ul#pages #page_' + (number + 1) + ' .image').remove();
+					$('ul#pages #page_' + (number + 1) + ' .inner').append('<div class="image" style="background-image: url(' + json.thumbnail + ');"></div>');
 					
 					if (!grid_cell) {
 						var $thumbnail = $('#preview_' + page_number);

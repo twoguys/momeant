@@ -64,10 +64,59 @@
 		height: 100%
 	.inner .inner
 		position: relative
+	.image
+		background-repeat: no-repeat
+		background-position: center center
+	.image.fill-screen
+		@include bgcover
+	.image.fit-to-screen
+		@include bgcontain
 	.caption
 		top: 5px
 		right: 5px
 		position: absolute
+	
+@mixin fullimageSlideFullsize
+	@include fullimageSlide(100%, 100%)
+	.caption
+		padding: 20px 20px 22px 25px
+		background-color: #fff
+		background-color: rgba(255,255,255,0.9)
+		max-width: 400px
+		right: 50px
+		top: 50px
+		text-shadow: none
+		text-align: left
+		font-family: $serif
+		line-height: 24px
+		border-bottom: 5px solid black
+		font-size: 12px
+		font-style: italic
+		&:first-letter
+			font-family: $typewriter
+			font-size: 44px
+			vertical-align: baseline
+			float: left
+			text-transform: uppercase
+			line-height: 24px
+			letter-spacing: -4px
+			height: 24px
+			padding-top: 10px
+			padding-right: 10px
+			font-weight: 700
+			font-style: normal			
+	.top-right, .top-left
+		top: 50px
+		bottom: auto
+	.bottom-right, .bottom-left
+		top: auto
+		bottom: 50px
+	.top-right, .bottom-right
+		right: 50px
+		left: auto
+	.top-left, .bottom-left
+		left: 50px
+		right: auto
 		
 @mixin splitSlide($width:288px, $height:180px)
 	width: $width

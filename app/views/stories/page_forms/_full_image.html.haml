@@ -3,6 +3,7 @@
   = #render :partial => "stories/page_forms/style_editor", :locals => {:background_color => true, :caption => true}
   .header
     .title Full Image
+    = link_to("Change", "#", :class => "change")
     .spinner Saving...
   .copy Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
   .body
@@ -20,24 +21,28 @@
               .loader
         %li
           %label Choose image placement
-          = select :image, :placement, ["fill screen", "fit to screen", "original size"]
+          %select{:id => "image_placement"}
+            - FullImagePage::IMAGE_PLACEMENTS.each_pair do |k,v|
+              %option{:value => v, :selected => @page && @page.image_media && @page.image_media.placement == v}= k
         %li.break
           %label
             %span Write a caption
             %span.sidenote (optional)
           .caption
             - if @page && @page.text
-              = text_area_tag "pages[#{@page_number}][text]", @page.text, :class => "monitor-typing caption-color-affected"
+              = text_area_tag "pages[#{@page_number}][text]", @page.text, :class => "monitor-typing caption-color-affected mirrored", "mirror-to" => "caption"
             - else
-              = text_area_tag "pages[#{@page_number}][text]", "", :class => "monitor-typing caption-color-affected"
+              = text_area_tag "pages[#{@page_number}][text]", "", :class => "monitor-typing caption-color-affected mirrored", "mirror-to" => "caption"
             .colors
             .placement
               %label Select caption placement
+              - placement = @page.caption_placement if @page
+              - placement ||= "top-right"
               %ul.picker
-                %li{:position => "top-left"}
-                %li.chosen{:position => "top-right"}
-                %li{:position => "bottom-left"}
-                %li{:position => "bottom-right"}
+                %li{:class => placement == "top-left" ? "chosen" : "", :position => "top-left"}
+                %li{:class => placement == "top-right" ? "chosen" : "", :position => "top-right"}
+                %li{:class => placement == "bottom-left" ? "chosen" : "", :position => "bottom-left"}
+                %li{:class => placement == "bottom-right" ? "chosen" : "", :position => "bottom-right"}
         %li.break
           = link_to("Save &amp; Preview".html_safe, "#", :class => "save")
   .tips

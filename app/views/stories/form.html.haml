@@ -88,16 +88,17 @@
         #editor-header
           .title Mo&#149meant story builder
           .slide-nav
-            = link_to("prev", "#", :class => "hidden")
+            = link_to("prev", "#", :id => "previous-page")
             .current-slide
               slide
               %span 1
-            = link_to("next", "#", :class => "hidden")
+            = link_to("next", "#", :id => "next-page")
           .actions
             = link_to("Add a slide", "#")
             = link_to("Delete slide", "#", :class => "delete")
-            = link_to("Save and close", "#", :class => "save")
-        #pane
+            = link_to("Save and close", "#", :class => "save", :id => "close-page-editor-button")
+        #pane    
+          .expander-tab
           #page-type-chooser.pane-insides            
             .header
               .title Choose a slide layout
@@ -113,12 +114,13 @@
           %ul.pages
             - @story.pages.each do |page|
               %li.pane-insides.hidden{:id => "page_#{page.number}", "page-id" => page.id, "page-type" => page.partial_name}
-                = render :partial => "/stories/page_forms/#{page.partial_name}", :locals => {:page => page}
+                - @page = page
+                = render "/stories/page_forms/#{page.partial_name}"
         %ul#pages
           - (1..10).each do |page_number|
             - @page = @story.pages.reject{|p|p.number != page_number}.first
             - if @page
-              %li.page{:id => "page_#{page_number}", :class => @page.css_class, "page-id" => @page.id, "page-type" => @page.partial_name}
+              %li{:id => "page_#{page_number}", :class => "page #{@page.css_class}", "page-id" => @page.id, "page-type" => @page.partial_name}
                 - @page_number = @page.number
                 = render "/stories/page_themes/#{@page.partial_name}"
             - else
