@@ -1,15 +1,15 @@
-- if @page.has_styles?
+- if @page && @page.has_styles?
   - content_for :head do
     :css
       #story_#{@page.story_id}_page_#{@page.number} {
-        background-color: ##{@page.background_color} !important;
-        color: ##{@page.text_color} !important;
+        background-color: #{@page.background_color} !important;
+        color: #{@page.text_color} !important;
       }
       #story_#{@page.story_id}_page_#{@page.number} hr{
-        border: 1px solid ##{@page.text_color};
+        border: 1px solid #{@page.text_color} !important;
       }
 
 .inner
-  .title{:id => "story_#{@page.story_id}_page_#{@page.number}"}
-    = @page.text
+  .title{:id => @page ? "story_#{@page.story_id}_page_#{@page.number}" : ""}
+    = @page.text if @page
     %hr

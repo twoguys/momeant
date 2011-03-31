@@ -11,9 +11,9 @@
         %li
           %label Type your title below...
           - if @page && @page.text
-            = text_area_tag "pages[#{@page_number}][text]", @page.text, :class => "monitor-typing background-color-affected color-affected"
+            = text_area_tag "pages[#{@page_number}][text]", @page.text, :class => "monitor-typing background-color-affected color-affected mirrored", "mirror-to" => "title"
           - else
-            = text_area_tag "pages[#{@page_number}][text]", "", :class => "monitor-typing background-color-affected color-affected"
+            = text_area_tag "pages[#{@page_number}][text]", "", :class => "monitor-typing background-color-affected color-affected mirrored", "mirror-to" => "title"
         %li
           = link_to("Save &amp; Preview".html_safe, "#", :class => "save")
   .tips

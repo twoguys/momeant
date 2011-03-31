@@ -94,7 +94,7 @@
               %span 1
             = link_to("next", "#", :id => "next-page")
           .actions
-            = link_to("Add a slide", "#")
+            = link_to("Add a slide", "#", :class => "add")
             = link_to("Delete slide", "#", :class => "delete")
             = link_to("Save and close", "#", :class => "save", :id => "close-page-editor-button")
         #pane    
@@ -102,14 +102,14 @@
           %ul.pages
             - @story.pages.each do |page|
               %li.pane-insides.hidden{:id => "page_#{page.number}", "page-id" => page.id, "page-type" => page.partial_name}
-                - @page = page
+                - @page_number = page.number
                 = render "/stories/page_forms/#{page.partial_name}"
         %ul#pages
           - (1..10).each do |page_number|
             - @page = @story.pages.reject{|p|p.number != page_number}.first
             - if @page
               %li{:id => "page_#{page_number}", :class => "page #{@page.css_class}", "page-id" => @page.id, "page-type" => @page.partial_name}
-                - @page_number = @page.number
+                - @page_number = page_number
                 = render "/stories/page_themes/#{@page.partial_name}"
             - else
               %li.page{:id => "page_#{page_number}"}
@@ -119,9 +119,11 @@
         =# form.submit "#{button_text} Story", :disable_with => "#{button_text[0..-2]}ing..."
         
   #page-type-chooser
+    .dark
     .insides
       .header
         .title Choose a slide layout
+        = link_to("close", "#", :class => "close")
       .copy Click the type of slide you want, then customize it to fit your personal style!
       .body
         %ul

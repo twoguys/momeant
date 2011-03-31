@@ -191,9 +191,14 @@ class StoriesController < ApplicationController
     @fullscreen = true
   end
   
-  def render_page_theme
+  def render_page_form
     @page_number = params[:page]
     render :partial => "stories/page_forms/#{params[:theme]}" if params[:theme]
+  end
+  
+  def render_page_theme
+    @page_number = params[:page]
+    render :partial => "stories/page_themes/#{params[:theme]}" if params[:theme]
   end
   
   def search

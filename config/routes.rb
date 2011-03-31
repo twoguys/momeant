@@ -32,6 +32,7 @@ Repo::Application.routes.draw do
     end
     get :bookmarked, :on => :collection
     get :recommended, :on => :collection
+    get :render_page_form, :on => :collection
     get :render_page_theme, :on => :collection
     get :tagged_with, :on => :collection
     get :search, :on => :collection

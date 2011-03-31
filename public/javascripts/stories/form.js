@@ -3,7 +3,7 @@ var story_page_editor = function() {
 	
 	this.story_id = null;
 	this.page = 1;
-	this.page_chooser_open = true;
+	this.page_chooser_open = false;
 	this.page_type_css_classes = 'title full_image pullquote video split';
 	this.total_pages = 0;
 	
@@ -19,9 +19,8 @@ var story_page_editor = function() {
 		setup_preview_clicking();
 		setup_preview_thumbnailing();
 		setup_grid_editing();
-		setup_key_bindings();
+		//setup_key_bindings();
 		this.total_pages = $('ul#pages li').length;
-		initialize_first_page();
 	};
 	
 	// SETUP
@@ -33,6 +32,7 @@ var story_page_editor = function() {
 			pages_editor.choose_page_theme(page_type);
 		});
 		$('.pane-insides a.change').click(pages_editor.show_page_type_chooser);
+		$('#page-type-chooser .dark, #page-type-chooser .close').click(pages_editor.hide_page_type_chooser);
 	};
 	
 	var setup_preview_clicking = function() {
@@ -96,21 +96,11 @@ var story_page_editor = function() {
 		
 	}
 	
-	var initialize_first_page = function() {
-		var $page1 = $('#page_1');
-		// is there data in page 1?
-		if (! $page1.html().trim() == "") {
-			$page1.show();
-			$page1.click(pages_editor.hide_page_type_chooser);
-			pages_editor.hide_page_type_chooser();
-		}
-	};
-	
 	// PAGE THEME CHOOSING
 	
 	this.choose_page_theme = function(page_type) {
 		var $current_page = $('#page_' + pages_editor.page);
-		$.get('/stories/render_page_theme?theme=' + page_type + '&page=' + pages_editor.page, function(result) {
+		$.get('/stories/render_page_form?theme=' + page_type + '&page=' + pages_editor.page, function(result) {
 			$current_page.html(result);
 			pages_editor.hide_page_type_chooser();
 			$('#page-type-chooser li[page-type="' + page_type + '"]').removeClass('loading');
@@ -118,6 +108,10 @@ var story_page_editor = function() {
 			$current_page.find('a.change').click(pages_editor.show_page_type_chooser);
 			pages_editor.set_preview_type(page_type);
 			auto_saver.create_and_monitor_page($current_page, page_type, pages_editor.page);
+		});
+		var $full_page = $('ul#pages li#page_' + pages_editor.page);
+		$.get('/stories/render_page_theme?theme=' + page_type, function(result) {
+			$full_page.html(result);
 		});
 	};
 	
@@ -210,18 +204,23 @@ var story_page_editor = function() {
 		$old_pane.hide();
 		$new_pane.show();
 
-		this.page = new_page;
+		pages_editor.page = new_page;
 		$('#editor-header .current-slide span').text(new_page);
 		
 		if (new_page == 1)
 			pages_editor.hide_previous_page_button();
 		else
 			pages_editor.show_previous_page_button();
-		if (new_page < pages_editor.total_pages)
+		if (new_page < pages_editor.total_pages) {
 			pages_editor.show_next_page_button();
-		else
+			$('#editor-header .actions a.add').hide();
+		} else {
 			pages_editor.hide_next_page_button();
-		
+			$('#editor-header .actions a.add').show();
+		}	
+	};
+	
+	this.add_new_page = function() {
 		
 	};
 	
@@ -245,6 +244,9 @@ var story_page_editor = function() {
 		var $preview_page = $('#preview_' + pages_editor.page);
 		$preview_page.removeClass(pages_editor.page_type_css_classes);
 		$preview_page.addClass(type + ' chosen');
+		var $full_page = $('ul#pages li#page_' + pages_editor.page);
+		$full_page.removeClass(pages_editor.page_type_css_classes);
+		$full_page.addClass(type);
 	};
 	
 }
@@ -297,6 +299,28 @@ var story_auto_saver = function() {
 		}
 	};
 	
+	this.create_and_monitor_page = function($page, type, number) {
+		$.post('/stories/' + pages_editor.story_id + '/pages',
+			{
+				type: type,
+				number: number
+			},
+			function(data) {
+				if (data.result == "success") {
+					$page.find('.page-id').val(data.id);
+					auto_saver.monitor_page_typing($page, data.id, type, number);
+					auto_saver.handle_image_uploading($page, data.id, type, number);
+					auto_saver.monitor_page_style_updates($page, data.id, type, number);
+					auto_saver.monitor_mirroring($page, data.id, type, number);
+					auto_saver.monitor_placement($page, data.id, type, number);
+					auto_saver.monitor_image_placement($page, data.id, type, number);
+				} else {
+					log('error when creating a ' + type + ' page.');
+				}
+			}
+		);
+	};
+	
 	this.monitor_existing_pages = function() {
 		$('#pane ul.pages li.pane-insides').each(function() {
 			var $page = $(this);
@@ -317,7 +341,7 @@ var story_auto_saver = function() {
 	this.monitor_mirroring = function($page, page_id, type, number) {
 		_.each($page.find('.mirrored'), function(input) {
 			var $from = $(input);
-			var $to = $('ul#pages li#page_' + number + ' *[mirrored-from="' + $from.attr('mirror-to') + '"]');
+			var $to = $('ul#pages li#page_' + number + ' .' + $from.attr('mirror-to'));
 			$from.keyup(function() {
 				$to.text($from.val());
 			});
@@ -437,28 +461,6 @@ var story_auto_saver = function() {
 		});
 	};
 	
-	this.create_and_monitor_page = function($page, type, number) {
-		$.post('/stories/' + pages_editor.story_id + '/pages',
-			{
-				type: type,
-				number: number
-			},
-			function(data) {
-				if (data.result == "success") {
-					$page.find('.page-id').val(data.id);
-					auto_saver.monitor_page_typing($page, data.id, type, number);
-					auto_saver.handle_image_uploading($page, data.id, type, number);
-					auto_saver.monitor_page_style_updates($page, data.id, type, number);
-					auto_saver.monitor_mirroring($page, data.id, type, number);
-					auto_saver.monitor_placement($page, data.id, type, number);
-					auto_saver.monitor_image_placement($page, data.id, type, number);
-				} else {
-					log('error when creating a ' + type + ' page.');
-				}
-			}
-		);
-	};
-	
 	this.monitor_page_typing = function($page, page_id, type, number) {
 		$page.find('.monitor-typing').observe_field(auto_saver.observe_delay, function(value, object) {
 			var value = $(object).val();
@@ -544,7 +546,7 @@ var story_auto_saver = function() {
 					// Paperclip saves the image with the same URL on Amazon S3 so the browser doesn't update the image
 					// By removing the node and re-adding it the new image shows up
 					$('ul#pages #page_' + (number + 1) + ' .image').remove();
-					$('ul#pages #page_' + (number + 1) + ' .inner').append('<div class="image" style="background-image: url(' + json.thumbnail + ');"></div>');
+					$('ul#pages #page_' + (number + 1) + ' .inner').append('<div class="image" style="background-image: url(' + json.full + ');"></div>');
 					
 					if (!grid_cell) {
 						var $thumbnail = $('#preview_' + page_number);
@@ -561,7 +563,8 @@ var story_auto_saver = function() {
 			});
 			var $upload_button = $uploader.find('a.upload');
 			$upload_button.click(function() {
-				uploader.trigger('html5_upload.start');
+				if ($file_input.val() != "")
+					uploader.trigger('html5_upload.start');
 				return false;
 			});
 		});

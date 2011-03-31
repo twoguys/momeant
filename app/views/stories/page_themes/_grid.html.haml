@@ -1,4 +1,4 @@
-- if @page.has_styles?
+- if @page && @page.has_styles?
   - content_for :head do
     :css
       #page_#{@page.number} {
@@ -11,8 +11,7 @@
   - 8.times do |num|
     - cell = num + 1
     %li
-      - if @page.image_at_position(cell)
-        .image{:style => "background-image: url(#{@page.image_at_position(cell).image.url})"}
-      .text{:class => @page.image_at_position(cell) ? "hidden" : ""}
+      .image{:style => @page && @page.image_at_position(cell) ? "background-image: url(#{@page.image_at_position(cell).image.url})" : ""}
+      .text{:class => @page && @page.image_at_position(cell) ? "hidden" : ""}
         .inner
-          = @page.text_at_position(cell).text if @page.text_at_position(cell)
+          = @page.text_at_position(cell).text if @page && @page.text_at_position(cell)

@@ -1,4 +1,4 @@
-- if @page.has_styles?
+- if @page && @page.has_styles?
   - content_for :head do
     - if @page.background_color
       :css
@@ -14,8 +14,7 @@
 - size ||= "original"
 .split
   .image
-    - if @page.image
-      .inner{:style => "background-image: url(#{@page.image.url(size.to_s)})"}
+    .inner{:style => @page && @page.image ? "background-image: url(#{@page.image.url(size.to_s)})" : ""}
   .text
     .inner
-      = @page.text
+      = @page.text if @page

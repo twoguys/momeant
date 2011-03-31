@@ -11,9 +11,9 @@
         %li
           %label Type your blockquote
           - if @page && @page.text
-            = text_area_tag "pages[#{@page_number}][text]", @page.text, :class => "monitor-typing", :placeholder => "Type your text here..."
+            = text_area_tag "pages[#{@page_number}][text]", @page.text, :class => "monitor-typing mirrored", "mirror-to" => "quote", :placeholder => "Type your text here..."
           - else
-            = text_area_tag "pages[#{@page_number}][text]", "", :class => "monitor-typing", :placeholder => "Type your text here..."
+            = text_area_tag "pages[#{@page_number}][text]", "", :class => "monitor-typing mirrored", "mirror-to" => "quote", :placeholder => "Type your text here..."
         %li
           = link_to("Save &amp; Preview".html_safe, "#", :class => "save")
   .tips

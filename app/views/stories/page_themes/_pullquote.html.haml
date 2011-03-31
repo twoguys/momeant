@@ -1,10 +1,10 @@
-- if @page.has_styles?
+- if @page && @page.has_styles?
   - content_for :head do
     :css
       #story_#{@page.story_id}_page_#{@page.number} {
-        background-color: ##{@page.background_color} !important;
-        color: ##{@page.text_color} !important;
+        background-color: #{@page.background_color} !important;
+        color: #{@page.text_color} !important;
       }
 
 .pullquote-inner
-  %p{:id => "story_#{@page.story_id}_page_#{@page.number}"}= @page.text
+  %p.quote{:id => @page ? "story_#{@page.story_id}_page_#{@page.number}" : ""}= @page.text if @page
