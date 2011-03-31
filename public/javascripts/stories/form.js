@@ -96,25 +96,6 @@ var story_page_editor = function() {
 		
 	}
 	
-	// PAGE THEME CHOOSING
-	
-	this.choose_page_theme = function(page_type) {
-		var $current_page = $('#page_' + pages_editor.page);
-		$.get('/stories/render_page_form?theme=' + page_type + '&page=' + pages_editor.page, function(result) {
-			$current_page.html(result);
-			pages_editor.hide_page_type_chooser();
-			$('#page-type-chooser li[page-type="' + page_type + '"]').removeClass('loading');
-			$current_page.find('input[placeholder],textarea[placeholder]').placeholder();
-			$current_page.find('a.change').click(pages_editor.show_page_type_chooser);
-			pages_editor.set_preview_type(page_type);
-			auto_saver.create_and_monitor_page($current_page, page_type, pages_editor.page);
-		});
-		var $full_page = $('ul#pages li#page_' + pages_editor.page);
-		$.get('/stories/render_page_theme?theme=' + page_type, function(result) {
-			$full_page.html(result);
-		});
-	};
-	
 	// VISUAL CHANGES
 	
 	this.open = function() {
@@ -159,6 +140,24 @@ var story_page_editor = function() {
 		$('#pane').toggleClass('closed');
 		return false;
 	};
+
+	this.show_previous_page_button = function() {
+		$('#previous-page').show();
+	};
+
+	this.show_next_page_button = function() {
+		$('#next-page').show();
+	};
+
+	this.hide_previous_page_button = function() {
+		$('#previous-page').hide();
+	};
+
+	this.hide_next_page_button = function() {
+		$('#next-page').hide();
+	};
+	
+	// BROWSING
 	
 	this.goto_next_page = function() {
 		if (pages_editor.page == 10) { return false; }
@@ -171,6 +170,11 @@ var story_page_editor = function() {
 		pages_editor.change_page_by(-1);
 		return false;
 	};
+
+	this.change_page_by = function(difference) {
+		var page = pages_editor.page;
+		pages_editor.goto_page(page + difference);
+	};
 	
 	this.goto_page = function(page_number_string) {
 		var page_number = parseInt(page_number_string);
@@ -182,21 +186,6 @@ var story_page_editor = function() {
 			pages_editor.set_current_page(page_number);
 		}
 	};
-	
-	this.change_page_by = function(difference) {
-		var page = pages_editor.page;
-		pages_editor.goto_page(page + difference);
-		// var $current_page = $('#page_' + page);
-		// var $next_page = $('#page_' + (page + difference));
-		// $next_page.fadeIn();
-		// $current_page.fadeOut();
-		// pages_editor.set_current_page(page + difference);
-		// if ($next_page.find('.page-theme').length == 0) {
-		// 	pages_editor.show_page_type_chooser();
-		// } else {
-		// 	pages_editor.hide_page_type_chooser();
-		// }
-	}
 	
 	this.set_current_page = function(new_page) {
 		var $old_pane = $('#pane ul.pages li#page_' + this.page);
@@ -220,24 +209,25 @@ var story_page_editor = function() {
 		}	
 	};
 	
-	this.add_new_page = function() {
-		
-	};
+	// EDITING
 	
-	this.show_previous_page_button = function() {
-		$('#previous-page').show();
-	};
-	
-	this.show_next_page_button = function() {
-		$('#next-page').show();
-	};
-	
-	this.hide_previous_page_button = function() {
-		$('#previous-page').hide();
-	};
-	
-	this.hide_next_page_button = function() {
-		$('#next-page').hide();
+	this.choose_page_theme = function(page_type) {
+		// update the edit pane
+		var $current_page = $('#page_' + pages_editor.page);
+		$.get('/stories/render_page_form?theme=' + page_type + '&page=' + pages_editor.page, function(result) {
+			$current_page.html(result);
+			pages_editor.hide_page_type_chooser();
+			$('#page-type-chooser li[page-type="' + page_type + '"]').removeClass('loading');
+			$current_page.find('input[placeholder],textarea[placeholder]').placeholder();
+			$current_page.find('a.change').click(pages_editor.show_page_type_chooser);
+			pages_editor.set_preview_type(page_type);
+			auto_saver.create_and_monitor_page($current_page, page_type, pages_editor.page);
+		});
+		// update the full-size preview behind the pane
+		var $full_page = $('ul#pages li#page_' + pages_editor.page);
+		$.get('/stories/render_page_theme?theme=' + page_type, function(result) {
+			$full_page.html(result);
+		});
 	};
 	
 	this.set_preview_type = function(type) {
@@ -247,6 +237,10 @@ var story_page_editor = function() {
 		var $full_page = $('ul#pages li#page_' + pages_editor.page);
 		$full_page.removeClass(pages_editor.page_type_css_classes);
 		$full_page.addClass(type);
+	};
+	
+	this.add_new_page = function() {
+		
 	};
 	
 }

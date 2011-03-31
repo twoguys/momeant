@@ -102,6 +102,7 @@
           %ul.pages
             - @story.pages.each do |page|
               %li.pane-insides.hidden{:id => "page_#{page.number}", "page-id" => page.id, "page-type" => page.partial_name}
+                - @page = page
                 - @page_number = page.number
                 = render "/stories/page_forms/#{page.partial_name}"
         %ul#pages

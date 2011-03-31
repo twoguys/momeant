@@ -6,16 +6,15 @@
     .spinner Saving...
   .copy Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
   .body
-    %fieldset
-      %ul
-        %li
-          %label Type your title below...
-          - if @page && @page.text
-            = text_area_tag "pages[#{@page_number}][text]", @page.text, :class => "monitor-typing background-color-affected color-affected mirrored", "mirror-to" => "title"
-          - else
-            = text_area_tag "pages[#{@page_number}][text]", "", :class => "monitor-typing background-color-affected color-affected mirrored", "mirror-to" => "title"
-        %li
-          = link_to("Save &amp; Preview".html_safe, "#", :class => "save")
+    %ul
+      %li
+        %label Type your title below...
+        - if @page && @page.text
+          = text_area_tag "pages[#{@page_number}][text]", @page.text, :class => "monitor-typing background-color-affected color-affected mirrored", "mirror-to" => "title"
+        - else
+          = text_area_tag "pages[#{@page_number}][text]", "", :class => "monitor-typing background-color-affected color-affected mirrored", "mirror-to" => "title"
+      %li
+        = link_to("Save &amp; Preview".html_safe, "#", :class => "save")
   .tips
     %h3 Tips
     %ul
