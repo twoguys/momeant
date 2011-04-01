@@ -273,7 +273,7 @@ var story_page_editor = function() {
 		var new_fullscreen_html = '<li id="page_' + pages_editor.page + '" class="page ' + type + '" page-type="' + type + '" page-id=""></li>';
 		$('ul#pages').append(new_fullscreen_html);
 		var new_preview_html = '<li id="preview_' + pages_editor.page + '" class="page ' + type + '" page-number="' +
-			pages_editor.page + '">' + '<a class="choose-thumbnail" href="#">set thumbnail</a></li>';
+			pages_editor.page + '">' + '<div class="inner"></div><a class="choose-thumbnail" href="#">set thumbnail</a></li>';
 		$('#page-previews ul.previews').append(new_preview_html);
 		pages_editor.setup_preview_thumbnail_switching($('#page-previews li#preview_' + pages_editor.page + ' a.choose-thumbnail'));
 		pages_editor.setup_preview_clicking($('#page-previews li#preview_' + pages_editor.page));
