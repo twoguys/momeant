@@ -11,5 +11,5 @@
 
 .inner
   .title{:id => @page ? "story_#{@page.story_id}_page_#{@page.number}" : ""}
-    = @page.text if @page
+    .text= @page.text if @page
     %hr

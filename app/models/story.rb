@@ -30,7 +30,7 @@ class Story < ActiveRecord::Base
   validates :synopsis, :length => (2..1024), :unless => :autosaving
   validates :price, :format => /[0-9.,]+/, :unless => :autosaving
   
-  #validate  :ten_page_requirement, :only_two_free_stories, :unless => :autosaving
+  validate  :at_least_one_page, :unless => :autosaving
   
   scope :published, where(:published => true)
   scope :free, where(:price => 0.0)
@@ -47,16 +47,9 @@ class Story < ActiveRecord::Base
     end
   end
   
-  def ten_page_requirement
-    if self.pages.count != 10
-      self.errors.add(:base, "Your story must have 10 pages")
-      return false
-    end
-  end
-  
-  def only_two_free_stories
-    if self.price == 0 && self.user.created_stories.free.count > 2
-      self.errors.add(:base, "You are only allowed two free stories. Please change the price of this story or another of yours.")
+  def at_least_one_page
+    if self.pages.count == 0
+      self.errors.add(:base, "Your story must have at least one page")
       return false
     end
   end
