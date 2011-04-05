@@ -219,6 +219,19 @@
 					padding-top: 4px
 					padding-right: 8px
 
+@mixin videoSlide($width:288px, $height:180px)
+	width: $width
+	height: $height
+	text-align: center
+	
+@mixin videoSlideFullsize
+	@include videoSlide(100%, 100%)
+	background-color: #000
+	iframe
+		position: relative
+		margin: 5% auto
+		z-index: 4
+
 @import "stories/form"
 @import "stories/preview"
 @import "stories/show"

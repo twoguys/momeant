@@ -5,8 +5,8 @@
         background-color: ##{@page.background_color} !important;
       }
       
-- preview ||= false
-- if preview
+- size ||= "original"
+- if size != "original"
   = image_tag("/images/page-themes/video-thumbnail.jpg")
 - else
   %iframe{:class => "video-frame", :src => @page && @page.text ? "http://player.vimeo.com/video/#{@page.text}" : "", :width => "800", :height => "450", :frameborder => "0"}

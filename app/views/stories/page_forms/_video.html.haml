@@ -11,7 +11,7 @@
           %label Enter the Vimeo video ID below (the last part of the video’s URL)
           .url
             %span http://vimeo.com/
-            - if @page && @page.text
+            - if @page && @page.text.present?
               = text_field_tag "pages[#{@page_number}][text]", @page.text, :class => "monitor-typing"
             - else
               = text_field_tag "pages[#{@page_number}][text]", "", :class => "monitor-typing"

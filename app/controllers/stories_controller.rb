@@ -198,8 +198,7 @@ class StoriesController < ApplicationController
   
   def render_page_theme
     @page_number = params[:page]
-    @page = Page.where(:story_id => params[:story_id], :number => params[:number]).first
-    Rails.logger.info "POOP #{@page}"
+    #@page = Page.where(:story_id => params[:story_id], :number => params[:number]).first
     render :partial => "stories/page_themes/#{params[:theme]}" if params[:theme]
   end
   

@@ -405,6 +405,7 @@ var story_auto_saver = function() {
 					auto_saver.monitor_placement($page, data.id, type, number);
 					auto_saver.monitor_image_placement($page, data.id, type, number);
 					auto_saver.monitor_thumbnail_switching($page, data.id, type, number);
+					auto_saver.handle_video_uploading($page, data.id, type, number);
 				} else {
 					log('error when creating a ' + type + ' page.');
 				}
@@ -426,6 +427,7 @@ var story_auto_saver = function() {
 				auto_saver.monitor_placement($page, page_id, page_type, number);
 				auto_saver.monitor_image_placement($page, page_id, page_type, number);
 				auto_saver.monitor_thumbnail_switching($page, page_id, page_type, number);
+				auto_saver.handle_video_uploading($page, page_id, page_type, number);
 			}
 		});
 	};
@@ -659,6 +661,19 @@ var story_auto_saver = function() {
 					uploader.trigger('html5_upload.start');
 				return false;
 			});
+		});
+	};
+	
+	this.handle_video_uploading = function($page, page_id, type, number) {
+		if (type != "video") { return false; }
+		
+		$page.find('a.save').click(function() {
+			var $from = $page.find('input.monitor-typing');
+			var $to = $('ul#pages li#page_' + number + ' iframe');
+			var $parent = $to.parent();
+			// update the video URL, remove it and re-add it to make the browser refresh it
+			var $iframe = $to.attr('src', 'http://player.vimeo.com/video/' + $from.val()).remove();
+			$parent.append($iframe);
 		});
 	};
 }
