@@ -55,12 +55,8 @@ class StoriesController < ApplicationController
   end
   
   def destroy
-    if @story.published?
-      redirect_to edit_story_path(@story), :alert => "You can't delete a published story."
-    else
-      @story.destroy
-      redirect_to user_path(current_user), :notice => "Your story was deleted."
-    end
+    @story.destroy
+    redirect_to user_path(current_user), :notice => "Your story was deleted."
   end
   
   def autosave
