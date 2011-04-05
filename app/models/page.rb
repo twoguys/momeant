@@ -1,5 +1,6 @@
 class Page < ActiveRecord::Base
   belongs_to :story
+  acts_as_list :scope => :story, :column => :number
   has_many :medias, :class_name => "PageMedia", :dependent => :destroy
   
   def image

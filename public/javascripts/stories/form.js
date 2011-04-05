@@ -22,8 +22,10 @@ var story_page_editor = function() {
 		$('.pane-insides a.change').click(pages_editor.change_page_type);
 		this.setup_preview_thumbnail_switching($('#page-previews li.page a.choose-thumbnail'));
 		this.setup_preview_clicking($('#page-previews li.page'));
-		setup_grid_editing();
+		//this.setup_rich_text_editing($('.rich-editable'));
+		//setup_grid_editing();
 		setup_page_adding();
+		$('#editor-header a.delete').click(pages_editor.delete_current_page);
 		setup_launch_when_no_pages();
 
 		this.total_pages = $('ul#pages li').length;
@@ -85,28 +87,23 @@ var story_page_editor = function() {
 		});
 	};
 	
-	this.setup_style_editor = function(current_page) {
-		$('.style-editor .insides').draggable();
-		var $color_picker = current_page.find('.color-picker');
-		_.each($color_picker, function(picker) {
-			var $picker = $(picker);
-			var color = $picker.css('backgroundColor');
-			var style_affected = $picker.attr('affected-style');
-			var elements_to_update_class = $picker.attr('update');
-			var $elements_affected = $picker.parents('.page:eq(0)').find('.' + elements_to_update_class);
-			var $form_field = $picker.siblings('input');
-			$elements_affected.css(style_affected, color);
-			$picker.ColorPicker({
-				color: color,
-				onChange: function (hsb, hex, rgb) {
-					$picker.css('backgroundColor', '#' + hex);
-					$elements_affected.css(style_affected, '#' + hex);
-					$form_field.val(hex);
-				}
-			});
+	this.setup_rich_text_editing = function($elements) {
+		$elements.each(function(index, element) {
+			var Dom = YAHOO.util.Dom,
+				Event = YAHOO.util.Event;
+
+				// The SimpleEditor config
+				var myConfig = {
+					height: '300px',
+					width: '600px',
+					dompath: true
+				};
+
+			// Now let's load the SimpleEditor..
+			var myEditor = new YAHOO.widget.SimpleEditor($(element).attr('id'), myConfig);
+			myEditor.render();
 		});
-		
-	}
+	};
 	
 	// VISUAL CHANGES
 	
@@ -169,6 +166,26 @@ var story_page_editor = function() {
 		$('#next-page').hide();
 	};
 	
+	this.update_slider_nav = function() {
+		log('page: ' + pages_editor.page + ', total: ' + pages_editor.total_pages);
+		$('#editor-header .current-slide span').text(pages_editor.page);
+		if (pages_editor.page == 1)
+			pages_editor.hide_previous_page_button();
+		else
+			pages_editor.show_previous_page_button();
+		if (pages_editor.page < pages_editor.total_pages) {
+			pages_editor.show_next_page_button();
+			$('#editor-header .actions a.add').hide();
+		} else {
+			pages_editor.hide_next_page_button();
+			$('#editor-header .actions a.add').show();
+		}
+		if (pages_editor.total_pages == 1)
+			$('#editor-header .actions a.delete').hide();
+		else
+			$('#editor-header .actions a.delete').show();
+	};
+	
 	// BROWSING
 	
 	this.goto_next_page = function() {
@@ -185,38 +202,27 @@ var story_page_editor = function() {
 	
 	this.goto_page = function(page_number_string, page_number_already_updated) {
 		var page_number = parseInt(page_number_string);
-		if (page_number >= 1 && page_number <= pages_editor.total_pages) {
-			var $page = $('ul#pages #page_' + page_number);
-			$page.siblings('.page').hide();
-			$page.show();
-			pages_editor.set_current_page(page_number, page_number_already_updated);
-		}
+		if (page_number < 1 || page_number > pages_editor.total_pages) { return false; }
+		
+		var $page = $('ul#pages #page_' + page_number);
+		$page.siblings('.page').hide();
+		$page.show();
+		pages_editor.set_current_page(page_number, page_number_already_updated);
 	};
 	
 	this.set_current_page = function(new_page, page_number_already_updated) {
 		if (page_number_already_updated) {
-			var $old_pane = $('#pane ul.pages li#page_' + (this.page - 1));
+			var $old_pane = $('#pane ul.pages li#page_' + (pages_editor.page - 1));
 		} else {
-			var $old_pane = $('#pane ul.pages li#page_' + this.page);
+			var $old_pane = $('#pane ul.pages li#page_' + pages_editor.page);
 		}
 		var $new_pane = $('#pane ul.pages li#page_' + new_page);
 		$old_pane.hide();
 		$new_pane.show();
 
 		pages_editor.page = new_page;
-		$('#editor-header .current-slide span').text(new_page);
 		
-		if (new_page == 1)
-			pages_editor.hide_previous_page_button();
-		else
-			pages_editor.show_previous_page_button();
-		if (new_page < pages_editor.total_pages) {
-			pages_editor.show_next_page_button();
-			$('#editor-header .actions a.add').hide();
-		} else {
-			pages_editor.hide_next_page_button();
-			$('#editor-header .actions a.add').show();
-		}	
+		pages_editor.update_slider_nav();
 	};
 	
 	// EDITING
@@ -280,6 +286,60 @@ var story_page_editor = function() {
 		var $current_page = $('#pane #page_' + pages_editor.page);
 	};
 	
+	this.delete_current_page = function() {
+		if (pages_editor.total_pages < 2) { return false; }
+		if (!confirm('Are you sure you want to remove Slide ' + pages_editor.page + '?')) { return false; }
+		
+		// grab the stuff we're about to delete
+		var current_page_num = pages_editor.page;
+		var $current_pane = $('#pane ul.pages li#page_' + current_page_num);
+		var $current_preview = $('ul#pages li#page_' + current_page_num);
+		var $current_thumbnail = $('#page-previews ul.previews li#preview_' + current_page_num);
+
+		// fade out the current page to provide the right UX
+		$current_pane.fadeOut(500, function() {
+			
+			pages_editor.total_pages -= 1;
+
+			// if not deleting page 1, go ahead and move to the next lowest page (otherwise we'll do it in a bit)
+			if (pages_editor.page > 1) {
+				pages_editor.goto_page(pages_editor.page - 1);
+			}
+
+			// remove the deleted page stuff
+			$current_pane.remove();
+			$current_preview.remove();
+			$current_thumbnail.remove();
+			
+			// update the DOM page ids to use the new page numbers
+			_.each($("ul#pages li.page, #page-previews li.page, #pane ul.pages li.pane-insides"), function(element) {
+				var $element = $(element);
+				var id = $element.attr('id');
+				var first_part = id.substring(0, id.indexOf('_') + 1);
+				var page_num = parseInt(id.substring(id.indexOf('_') + 1, id.length));
+				if (page_num > current_page_num) {
+					var new_num = page_num - 1;
+					$element.attr('id', first_part + new_num);
+				}
+			});
+			
+			// if deleting page 1, now that we've updated the DOM, let's refresh everything
+			if (pages_editor.page == 1) {
+				pages_editor.goto_page(1);
+			}
+
+			// let's tell the server we're deleting this page
+			$.ajax({
+				type: 'DELETE',
+				url: '/stories/' + pages_editor.story_id + '/pages/' + $current_pane.attr('page-id'),
+				success: function(data) {
+				}
+			});
+		});
+		
+		return false;
+	};
+	
 }
 
 var auto_saver;
@@ -337,7 +397,7 @@ var story_auto_saver = function() {
 			},
 			function(data) {
 				if (data.result == "success") {
-					$page.find('.page-id').val(data.id);
+					$page.attr('page-id', data.id);
 					auto_saver.monitor_page_typing($page, data.id, type, number);
 					auto_saver.handle_image_uploading($page, data.id, type, number);
 					auto_saver.monitor_page_style_updates($page, data.id, type, number);

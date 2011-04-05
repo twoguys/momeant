@@ -1,4 +1,3 @@
-= hidden_field_tag "pages[#{@page_number}][type]", "title"
 .title.page-theme.pane-insides
   .header
     .title Title
@@ -9,10 +8,8 @@
     %ul
       %li
         %label Type your title below...
-        - if @page && @page.text
-          = text_area_tag "pages[#{@page_number}][text]", @page.text, :class => "monitor-typing background-color-affected color-affected mirrored", "mirror-to" => "text"
-        - else
-          = text_area_tag "pages[#{@page_number}][text]", "", :class => "monitor-typing background-color-affected color-affected mirrored", "mirror-to" => "text"
+        - text_value = @page && @page.text ? @page.text : ""
+        = text_area_tag "pages[#{@page_number}][text]", text_value, :class => "monitor-typing background-color-affected color-affected mirrored rich-editable", "mirror-to" => "text"
       %li
         = link_to("Save &amp; Preview".html_safe, "#", :class => "save")
   .tips

@@ -24,7 +24,7 @@
       try{Typekit.load();}catch(e){}
     = yield :head
     
-  %body{:class => @fullscreen.nil? ? "" : "fullscreen"}
+  %body.yui-skin-sam{:class => @fullscreen.nil? ? "" : "fullscreen"}
     #wrap
       #main.clearfix
         %header{:class => private_beta? && !current_user ? "hide-nav" : ""}
