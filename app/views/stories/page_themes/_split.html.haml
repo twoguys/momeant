@@ -13,8 +13,13 @@
 
 - size ||= "original"
 .split
-  .image
-    .inner{:style => @page && @page.image ? "background-image: url(#{@page.image.url(size.to_s)})" : ""}
-  .text
-    .inner
-      = @page.text if @page
+  .image.image1
+    .inner{:style => @page && @page.image_at_position(1) ? "background-image: url(#{@page.image_at_position(1).image.url(size.to_s)})" : ""}
+  .text.text1.hidden
+    .inner.text1-inner
+      = @page.text_at_position(1).text if @page && @page.text_at_position(1)
+  .image.image2.hidden
+    .inner{:style => @page && @page.image_at_position(2) ? "background-image: url(#{@page.image_at_position(2).image.url(size.to_s)})" : ""}
+  .text.text2
+    .inner.text2-inner
+      = @page.text_at_position(2).text if @page && @page.text_at_position(2)

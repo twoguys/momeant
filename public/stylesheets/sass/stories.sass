@@ -232,6 +232,51 @@
 		margin: 5% auto
 		z-index: 4
 
+@mixin splitSlide($width:288px, $height:180px)
+	width: $width
+	height: $height
+	
+@mixin splitSlideFullsize
+	@inluce splitSlide(100%, 100%)
+	div.split
+		height: 100%
+	.image, .text
+		width: 50%
+		position: relative
+	.image1, .text1
+		float: left
+	.image2, .text2
+		float: right
+	.image
+		height: 100%
+		.inner
+			height: 100%
+			width: 100%
+			@include bgcover
+	.text	
+		font-size: 1.6em
+		display: table
+		height: 100%
+		.inner
+			padding: 0 8%
+			width: 34%
+			vertical-align: middle
+			display: table-cell
+			font-family: $typewriter
+			line-height: 36px
+			font-size: 16px
+			&:first-letter
+				font-family: $caps
+				font-size: 116px
+				vertical-align: baseline
+				float: left
+				text-transform: uppercase
+				line-height: 110px
+				letter-spacing: -4px
+				height: 100px
+				padding-top: 14px
+				padding-right: 10px
+
 @import "stories/form"
 @import "stories/preview"
 @import "stories/show"

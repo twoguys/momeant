@@ -68,7 +68,7 @@ class Page < ActiveRecord::Base
       else
         page = TitlePage.new(:number => options[:number], :background_color => options[:background_color], :text_color => options[:text_color])
       end
-      unless options[:text].blank?
+      if options[:text].present?
         text_media = page.medias.first
         if text_media
           text_media.update_attribute(:text, options[:text])
@@ -109,7 +109,7 @@ class Page < ActiveRecord::Base
       else
         page = PullquotePage.new(:number => options[:number], :background_color => options[:background_color], :text_color => options[:text_color])
       end
-      unless options[:text].blank?
+      if options[:text].present?
         text_media = page.text_media
         if text_media
           text_media.update_attributes(:text => options[:text])
@@ -139,13 +139,16 @@ class Page < ActiveRecord::Base
           page.medias << PageImage.new(:image => options[:image])
         end
       end
-      unless options[:text].blank?
+      if options[:text].present?
         text_media = page.text_media
         if text_media
           text_media.update_attributes(:text => options[:text])
         else
           page.medias << PageText.new(:text => options[:text])
         end
+      end
+      if options[:layout].present?
+        page.layout = options[:layout]
       end
     when "grid"
       if page
@@ -168,7 +171,7 @@ class Page < ActiveRecord::Base
                 page.medias << PageImage.new(:image => image, :position => cell)
               end
             end
-            unless caption.blank?
+            if caption.present?
               text_media = page.text_at_position(cell)
               if text_media
                 text_media.update_attributes(:text => caption, :position => cell)

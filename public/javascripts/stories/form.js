@@ -167,7 +167,6 @@ var story_page_editor = function() {
 	};
 	
 	this.update_slider_nav = function() {
-		log('page: ' + pages_editor.page + ', total: ' + pages_editor.total_pages);
 		$('#editor-header .current-slide span').text(pages_editor.page);
 		if (pages_editor.page == 1)
 			pages_editor.hide_previous_page_button();
@@ -405,7 +404,8 @@ var story_auto_saver = function() {
 					auto_saver.monitor_placement($page, data.id, type, number);
 					auto_saver.monitor_image_placement($page, data.id, type, number);
 					auto_saver.monitor_thumbnail_switching($page, data.id, type, number);
-					auto_saver.handle_video_uploading($page, data.id, type, number);
+					auto_saver.handle_video_embedding($page, data.id, type, number);
+					auto_saver.handle_split_configuration($page, data.id, type, number);
 				} else {
 					log('error when creating a ' + type + ' page.');
 				}
@@ -427,7 +427,8 @@ var story_auto_saver = function() {
 				auto_saver.monitor_placement($page, page_id, page_type, number);
 				auto_saver.monitor_image_placement($page, page_id, page_type, number);
 				auto_saver.monitor_thumbnail_switching($page, page_id, page_type, number);
-				auto_saver.handle_video_uploading($page, page_id, page_type, number);
+				auto_saver.handle_video_embedding($page, page_id, page_type, number);
+				auto_saver.handle_split_configuration($page, page_id, page_type, number);
 			}
 		});
 	};
@@ -619,9 +620,21 @@ var story_auto_saver = function() {
 				$file_input.siblings('.text').text($file_input.val());
 			});
 			var url = '/stories/' + pages_editor.story_id + '/pages/' + page_id + '/add_or_update_image';
-			var grid_cell = $file_input.attr('cell');
-			if (grid_cell)
-				url += '?cell=' + grid_cell
+			
+			if (type == 'grid') {
+				var grid_cell = $file_input.attr('cell');
+				if (grid_cell)
+					url += '?cell=' + grid_cell
+			}
+			
+			if (type == 'split') {
+				var $parent = $uploader.parents('.input:eq(0)');
+				if ($parent.hasClass('image1'))
+					url += '?cell=1'
+				else
+					url += '?cell=2'
+			}
+				
 			var page_number = number;
 			var uploader = $file_input.html5_upload({
 				url: url,
@@ -629,29 +642,38 @@ var story_auto_saver = function() {
 				sendBoundary: window.FormData || $.browser.mozilla,
 				fieldName: 'image',
 				onStart: function() {
-					log('starting upload...');
 					$loader.show().siblings().hide();
 					return true;
 				},
 				onFinishOne: function(event, response, name, number, total) {
 					json = $.parseJSON(response);
-					
-					log('updating ' + page_number);
-					// Paperclip saves the image with the same URL on Amazon S3 so the browser doesn't update the image
-					// By removing the node and re-adding it the new image shows up
-					$('ul#pages #page_' + page_number + ' .image').remove();
-					$('ul#pages #page_' + page_number + ' .inner').append('<div class="image" style="background-image: url(' + json.full + ');"></div>');
-					
-					if (!grid_cell) {
+										
+					if (type == 'full_image') {
+						// Paperclip saves the image with the same URL on Amazon S3 so the browser doesn't update the image
+						// By removing the node and re-adding it the new image shows up
+						$('ul#pages #page_' + page_number + ' .image').remove();
+						$('ul#pages #page_' + page_number + ' .inner').append('<div class="image" style="background-image: url(' + json.full + ');"></div>');
+						
 						var $thumbnail = $('#preview_' + page_number);
 						if ($thumbnail.find('.image').length > 0) {
 							$('#preview_' + page_number + ' .image').css('background-image', 'url(' + json.thumbnail + ')');
 						} else {
 							$thumbnail.prepend('<div class="inner"><div class="image" style="background-image: url(' + json.thumbnail + ');"></div></div>');
 						}
+
+					} else if (type == 'split') {
+						if ($parent.hasClass('image1'))
+							var class_of_element_to_replace = 'image1';
+						else
+							var class_of_element_to_replace = 'image2';
+						log('replacing ' + class_of_element_to_replace);
+						$('ul#pages #page_' + page_number + ' .' + class_of_element_to_replace + ' .inner').remove();
+						$('ul#pages #page_' + page_number + ' .' + class_of_element_to_replace).append('<div class="inner" style="background-image: url(' + json.full + ');"></div>');
+
+					} else if (type == 'grid') {
+						$uploader.find('.info').remove();
 					}
 					
-					$uploader.find('.info').remove();
 					$loader.hide().siblings().show();
 				}
 			});
@@ -664,8 +686,8 @@ var story_auto_saver = function() {
 		});
 	};
 	
-	this.handle_video_uploading = function($page, page_id, type, number) {
-		if (type != "video") { return false; }
+	this.handle_video_embedding = function($page, page_id, type, number) {
+		if (type != 'video') { return false; }
 		
 		$page.find('a.save').click(function() {
 			var $from = $page.find('input.monitor-typing');
@@ -674,6 +696,60 @@ var story_auto_saver = function() {
 			// update the video URL, remove it and re-add it to make the browser refresh it
 			var $iframe = $to.attr('src', 'http://player.vimeo.com/video/' + $from.val()).remove();
 			$parent.append($iframe);
+		});
+	};
+	
+	this.handle_split_configuration = function($page, page_id, type, number) {
+		if (type != 'split') { return false; }
+		
+		var $preview = $('ul#pages li#page_' + number);
+		$page.find('li.chooser ul li').click(function() {
+			var $element = $(this);
+			$element.addClass('selected').siblings().removeClass('selected');
+			var layout = '';
+			if ($element.hasClass('image-text')) {
+				layout = 'image-text';
+				$page.find('li.inputs li.image1, li.inputs li.text2').show();
+				$page.find('li.inputs li.image2, li.inputs li.text1').hide();
+				$preview.find('div.image1, div.text2').show();
+				$preview.find('div.image2, div.text1').hide();
+			} else if ($element.hasClass('text-image')) {
+					layout = 'text-image';
+				$page.find('li.inputs li.image2, li.inputs li.text1').show();
+				$page.find('li.inputs li.image1, li.inputs li.text2').hide();
+				$preview.find('div.image2, div.text1').show();
+				$preview.find('div.image1, div.text2').hide();
+			} else if ($element.hasClass('image-image')) {
+				layout = 'image-image';
+				$page.find('li.inputs li.image1, li.inputs li.image2').show();
+				$page.find('li.inputs li.text1, li.inputs li.text2').hide();
+				$preview.find('div.image1, div.image2').show();
+				$preview.find('div.text1, div.text2').hide();
+			} else if ($element.hasClass('text-text')) {
+				layout = 'text-text';
+				$page.find('li.inputs li.text1, li.inputs li.text2').show();
+				$page.find('li.inputs li.image1, li.inputs li.image2').hide();
+				$preview.find('div.text1, div.text2').show();
+				$preview.find('div.image1, div.image2').hide();
+			}
+			auto_saver.show_pages_spinner();
+			$.ajax({
+			  type: 'PUT',
+			  url: '/stories/' + pages_editor.story_id + '/pages/' + page_id,
+			  data: {
+					type: type,
+					number: number,
+					layout: layout
+				},
+			  success: function(data) {
+					if (data.result == "success") {
+						log('successfully updated page ' + page_id + ' with layout: ' + layout);
+						auto_saver.hide_pages_spinner(true);
+					} else {
+						log('error when updating page ' + page_id);
+					}
+				}
+			});
 		});
 	};
 }
@@ -715,12 +791,12 @@ jQuery.fn.observe_field = function(frequency, callback) {
       }
     };
     chk();
-    frequency = frequency * 1000; // translate to milliseconds
-    var ti = setInterval(chk, frequency);
+    var new_frequency = frequency * 1000; // translate to milliseconds
+    var ti = setInterval(chk, new_frequency);
     // reset counter after user interaction
     element.bind('keyup', function() {
       ti && clearInterval(ti);
-      ti = setInterval(chk, frequency);
+      ti = setInterval(chk, new_frequency);
     });
   });
 

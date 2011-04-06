@@ -7,25 +7,60 @@
   .body
     %fieldset
       %ul
-        %li
-          %label Choose your image
-          .image
-            .inner
-              .file-uploader
-                .loader.hidden
-                %form{:enctype => "multipart/form-data", :method => "POST", :action => "/stories"}
-                  %input{:type => "hidden", :value => form_authenticity_token, :name => "authenticity_token"}
-                  %input{:type => "file", :name => "pages[#{@page_number}][image]", :id => "pages_#{@page_number}_image"}
-                .image-preview{:class => (@page.present? && @page.image.present?) ? "no-bg" : ""}
-                  = image_tag @page.image.url if @page && @page.image
-        %li
-          %label Enter your text
-          .text
-            .inner
-              - if @page && @page.text
-                = text_area_tag "pages[#{@page_number}][text]", @page.text, :placeholder => "Type your text here...", :class => "color-affected monitor-typing"
-              - else
-                = text_area_tag "pages[#{@page_number}][text]", "", :placeholder => "Type your text here...", :class => "color-affected monitor-typing"
+        %li.chooser
+          %label Select layout
+          %ul
+            %li.image-text.selected
+            %li.text-image
+            %li.image-image
+            %li.text-text
+        %li.inputs
+          %ul
+            %li.image1.input
+              %ul
+                %li
+                  %h3 Image Column (left)
+                  %label Choose an image
+                  .file-uploader
+                    %form
+                      %input{:type => "hidden", :value => form_authenticity_token, :name => "authenticity_token"}
+                      .file-input-faker
+                        %input{:type => "file", :name => "pages[#{@page_number}][image]", :id => "pages_#{@page_number}_image"}
+                        .text
+                        = link_to("Upload", "#", :class => "upload")
+                      .loader
+                %li
+                  %label Choose image placement
+                  %select{:id => "image_placement"}
+                    - FullImagePage::IMAGE_PLACEMENTS.each_pair do |k,v|
+                      %option{:value => v, :selected => @page && @page.image_media && @page.image_media.placement == v}= k
+            %li.text1.input.hidden
+              %h3 Text Column (left)
+              - text_value = @page && @page.text ? @page.text : ""
+              = text_area_tag "pages[#{@page_number}][text][1]", text_value, :class => "monitor-typing mirrored rich-editable", "mirror-to" => "text1-inner"
+            %li.image2.input.hidden
+              %ul
+                %li
+                  %h3 Image Column (right)
+                  %label Choose an image
+                  .file-uploader
+                    %form
+                      %input{:type => "hidden", :value => form_authenticity_token, :name => "authenticity_token"}
+                      .file-input-faker
+                        %input{:type => "file", :name => "pages[#{@page_number}][image]", :id => "pages_#{@page_number}_image"}
+                        .text
+                        = link_to("Upload", "#", :class => "upload")
+                      .loader
+                %li
+                  %label Choose image placement
+                  %select{:id => "image_placement"}
+                    - FullImagePage::IMAGE_PLACEMENTS.each_pair do |k,v|
+                      %option{:value => v, :selected => @page && @page.image_media && @page.image_media.placement == v}= k
+            %li.text2.input
+              %h3 Text Column (right)
+              - text_value = @page && @page.text ? @page.text : ""
+              = text_area_tag "pages[#{@page_number}][text][2]", text_value, :class => "monitor-typing mirrored rich-editable", "mirror-to" => "text2-inner"
+              
         %li
           = link_to("Save &amp; Preview".html_safe, "#", :class => "save")
   .tips

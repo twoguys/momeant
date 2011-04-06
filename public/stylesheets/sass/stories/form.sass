@@ -480,6 +480,7 @@ form.new_story, form.edit_story, .story-form
 			text-transform: uppercase
 			color: #1ca436
 			@include rounded(3px)
+			display: inline-block
 		ul.pages
 			li.break
 				border-top: 1px solid #ccc
@@ -549,6 +550,38 @@ form.new_story, form.edit_story, .story-form
 					textarea
 						width: 95%
 						height: 300px
+				.split
+					li.chooser
+						margin-bottom: 25px
+						ul
+							height: 72px
+							margin-bottom: 15px
+						li
+							float: left
+							clear: none
+							width: 100px
+							height: 70px
+							background: #fff
+							border: 1px solid #ccc
+							margin-right: 15px
+							cursor: pointer
+						li.selected
+							background-color: $lightblue
+						li:last-child
+							margin-right: 0
+					li.inputs
+						h3
+							background-color: #aaa
+							color: #fff
+							text-transform: uppercase
+							padding: 5px
+							margin-bottom: 5px
+						ul
+							li.image1, li.text1
+								margin-bottom: 20px
+						textarea
+							width: 97%
+							height: 150px
 					
 				.file-uploader
 					position: relative
@@ -626,6 +659,8 @@ form.new_story, form.edit_story, .story-form
 			@include blockquoteSlideFullsize
 		.video
 			@include videoSlideFullsize
+		.split
+			@include splitSlideFullsize
 
 	#story-details
 		position: absolute
