@@ -23,9 +23,9 @@ class PagesController < ApplicationController
     page = Page.find_by_id(params[:id])
     render :json => {:result => "failure", :message => "Page with id #{params[:id]} does not exist"} and return if page.nil?
     
-    if params[:cell]
-      image_media = page.image_at_position(params[:cell])
-      options = {:page_id => page.id, :position => params[:cell]}
+    if params[:position]
+      image_media = page.image_at_position(params[:position])
+      options = {:page_id => page.id, :position => params[:position]}
     else
       image_media = page.image_media
       options = {:page_id => page.id}

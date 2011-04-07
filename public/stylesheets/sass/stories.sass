@@ -12,19 +12,18 @@
 		font-weight: bold
 		.inner
 			display: table
-			.title
-				display: table-cell
-				vertical-align: middle
-				font-family: $dropcaps
-				text-transform: uppercase
-				padding: 20px 10px 10px
-				line-height: 22px
-				letter-spacing: .5px
-				font-size: 22px
-				hr
-					margin: 10px auto
-					width: 40%
-					
+		.title
+			display: table-cell
+			vertical-align: middle
+			font-family: $dropcaps
+			text-transform: uppercase
+			padding: 20px 10px 10px
+			line-height: 22px
+			letter-spacing: .5px
+			font-size: 22px
+			hr
+				margin: 10px auto
+				width: 40%
 @mixin titleSlideFullsize
 	@include titleSlide(100%, 100%)
 	.inner
@@ -55,28 +54,57 @@
 		display: table
 		height: 100%
 		width: 100%
-	p
-		display: table-cell
-		vertical-align: middle
-		padding: 0 6%
-		text-transform: uppercase
-		text-align: justify
-		font-size: 6px
-		line-height: 11px
-		font-family: $caps
-		color: #333
-		&:first-letter
-			font-family: $dropcaps
-			float: left
-			font-size: 21px
-			height: 21px
-			line-height: 21px
+		p
+			display: table-cell
+			vertical-align: middle
+			padding: 0 6%
 			text-transform: uppercase
-			vertical-align: baseline
+			text-align: justify
+			font-size: 6px
+			line-height: 11px
+			font-family: $caps
+			color: #333
+			&:first-letter
+				font-family: $dropcaps
+				float: left
+				font-size: 21px
+				height: 21px
+				line-height: 21px
+				text-transform: uppercase
+				vertical-align: baseline
+				letter-spacing: -2px
+				padding-right: 4px
+				padding-top: 3px
+@mixin blockquoteSlideMedium
+	@include blockquoteSlide(288px, 180px)
+	.pullquote-inner p
+		height: 180px
+		font-size: 10px
+		line-height: 18px
+		&:first-letter
+			font-size: 30px
+			height: 30px
+			line-height: 30px
 			letter-spacing: -2px
-			padding-right: 4px
-			padding-top: 3px
-
+			padding-right: 7px
+			padding-top: 7px
+@mixin blockquoteSlideLarge
+	@include blockquoteSlide(630px, 420px)
+	.pullquote-inner		
+		p
+			height: 420px
+			padding: 0% 7%
+			font-size: 15px
+			line-height: 22px
+			font-weight: 100
+			letter-spacing: -.4px
+			&:first-letter
+				font-size: 44px
+				height: 44px
+				line-height: 44px
+				letter-spacing: -2px
+				padding-right: 7px
+				padding-top: 7px
 @mixin blockquoteSlideFullsize
 	@include blockquoteSlide(100%, 100%)
 	.pullquote-inner
@@ -162,62 +190,6 @@
 	.top-left, .bottom-left
 		left: 50px
 		right: auto
-		
-@mixin splitSlide($width:288px, $height:180px)
-	width: $width
-	height: $height
-	.inner
-		width: 100%
-		height: 100%
-		.image, .text
-			width: 50%
-			height: 100%
-		.image
-			float: left
-			overflow: hidden
-			img
-				max-height: 280px
-		.text
-			float: right
-			.inner
-				padding-left: 4px
-				font-size: 0.7em
-	.split
-		width: 100%
-		height: 100%
-		div.split
-			height: 100%
-		.image, .text
-			width: 50%
-			float: left
-		.image
-			height: 100%
-			.inner
-				height: 100%
-				width: 100%
-				@include bgcover
-		.text	
-			font-size: 1.6em
-			display: table
-			height: 100%
-			.inner
-				padding: 2% 8% 2% 12%
-				vertical-align: middle
-				display: table-cell
-				font-family: $typewriter
-				line-height: 9px
-				font-size: 3px
-				&:first-letter
-					font-family: $caps
-					font-size: 26px
-					vertical-align: baseline
-					float: left
-					text-transform: uppercase
-					line-height: 20px
-					letter-spacing: -4px
-					height: 20px
-					padding-top: 4px
-					padding-right: 8px
 
 @mixin videoSlide($width:288px, $height:180px)
 	width: $width
@@ -235,123 +207,111 @@
 @mixin splitSlide($width:288px, $height:180px)
 	width: $width
 	height: $height
-	
-@mixin splitSlideFullsize
-	@inluce splitSlide(100%, 100%)
 	div.split
 		height: 100%
-	.image, .text
-		width: 50%
-		position: relative
-	.image1, .text1
-		float: left
-	.image2, .text2
-		float: right
-	.image
-		height: 100%
-		.inner
+		color: #000
+		.image, .text
+			width: 50%
+			position: relative
+		.image1, .text1
+			float: left
+		.image2, .text2
+			float: right
+		.image
 			height: 100%
-			width: 100%
+			.inner
+				height: 100%
+				width: 100%
+		.image.fill-screen .inner
 			@include bgcover
-	.text	
-		font-size: 1.6em
-		display: table
-		height: 100%
-		.inner
-			padding: 0 8%
-			width: 34%
-			vertical-align: middle
-			display: table-cell
-			font-family: $typewriter
-			line-height: 36px
-			font-size: 16px
-			&:first-letter
-				font-family: $caps
-				font-size: 116px
-				vertical-align: baseline
-				float: left
-				text-transform: uppercase
-				line-height: 110px
-				letter-spacing: -4px
-				height: 100px
-				padding-top: 14px
-				padding-right: 10px
+		.image.fit-to-screen .inner
+			@include bgcontain
+		.text	
+			font-size: 1.6em
+			display: table
+			height: 100%
+			.inner
+				padding: 2% 8% 2% 12%
+				width: 34%
+				vertical-align: middle
+				display: table-cell
+				font-family: $typewriter
+				line-height: 9px
+				font-size: 3px
+				&:first-letter
+					font-family: $caps
+					font-size: 26px
+					vertical-align: baseline
+					float: left
+					text-transform: uppercase
+					line-height: 20px
+					letter-spacing: -4px
+					height: 20px
+					padding-top: 4px
+					padding-right: 1px
+		.hidden
+			display: none
+@mixin splitSlideMedium
+	@include splitSlide(288px, 180px)
+	div.split
+		height: 180px
+		.text
+			.inner
+				line-height: 18px
+				font-size: 12px
+				&:first-letter
+					font-size: 40px
+					line-height: 40px
+					letter-spacing: -3px
+					height: 40px
+					padding-top: 4px
+					padding-right: 4px
+@mixin splitSlideLarge
+	@include splitSlide(630px, 420px)
+	div.split
+		height: 420px
+		.text
+			.inner
+				line-height: 27px
+				font-size: 12px
+				&:first-letter
+					font-size: 87px
+					line-height: 82.5px
+					letter-spacing: -3px
+					height: 75px
+					padding-top: 10.5px
+					padding-right: 7.5px
+@mixin splitSlideFullsize
+	@include splitSlide(100%, 100%)
+	div.split
+		.text
+			.inner
+				line-height: 36px
+				font-size: 16px
+				&:first-letter
+					font-size: 116px
+					line-height: 110px
+					letter-spacing: -4px
+					height: 100px
+					padding-top: 14px
+					padding-right: 10px
 
 @import "stories/form"
 @import "stories/preview"
 @import "stories/show"
 @import "stories/gallery"
 
-.medium
-	.thumbnail
-		.pullquote-inner
-			@include blockquoteSlide
-		.splitSlide
-			@include splitSlide
-
-.thumbnail
-	width: 630px
-	height: 420px
-	overflow: hidden
-	display: table
-	background-color: #fff
-	.pullquote-inner
-		height: 100%
-		width: 100%
-		display: table
-		p
-			display: table-cell
-			vertical-align: middle
-			padding: 0% 7%
-			text-transform: uppercase
-			text-align: justify
-			font-size: 15px
-			line-height: 22px
-			font-family: $caps
-			font-weight: 100
-			letter-spacing: -.4px
-			&:first-letter
-				font-family: $dropcaps
-				float: left
-				font-size: 44px
-				height: 44px
-				line-height: 44px
-				text-transform: uppercase
-				vertical-align: baseline
-				letter-spacing: -2px
-				padding-right: 7px
-				padding-top: 7px
-
+.thumbnail.title
+	@include titleSlide
+.thumbnail.full_image
+	@include fullimageSlideFullsize
 	.inner
-		height: 100%
-		width: 100%
-		display: table
-	p, .title
-		font-family: $dropcaps
-		font-size: 48px
-		font-weight: 900
-		text-align: left
-		display: table-cell
-		vertical-align: middle
-		text-align: center
-		text-transform: uppercase
-		padding: 4% 10% 0
-		line-height: 42px
-		hr
-			width: 200px
-	.image
-		width: 100%
-		height: 100%
-		display: table-cell
-	.split
-		.image, .text
-			width: 50%
-			float: left
-		.image img
-			width: 100%
-		.text
-			width: 46%
-			padding: 2%
+		height: 420px
+.thumbnail.pullquote
+	@include blockquoteSlideLarge
+.thumbnail.split
+	@include splitSlideLarge
+.thumbnail.grid
 	ul.cells
 		li
 			width: 157.5px
@@ -360,6 +320,24 @@
 		.image img
 			width: 157.5px
 			height: 210px
+.thumbnail.large
+	width: 630px
+	height: 420px
+	overflow: hidden
+	display: table
+	background-color: #fff
+	.inner
+		height: 420px
+.thumbnail.title.medium
+	.inner
+		display: table
+.thumbnail.full_image.medium
+	.inner
+		height: 180px
+.thumbnail.pullquote.medium
+	@include blockquoteSlideMedium
+.thumbnail.split.medium
+	@include splitSlideMedium
 
 ul.stories
 	li.story
@@ -380,6 +358,7 @@ ul.stories
 			width: 288px
 			height: 180px
 			margin: 6px
+			overflow: hidden
 
 	li.story.third
 		margin-right: 0px

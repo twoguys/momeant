@@ -12,14 +12,15 @@
         }
 
 - size ||= "original"
+- split_layout = @page && @page.layout ? @page.layout : ""
 .split
-  .image.image1
-    .inner{:style => @page && @page.image_at_position(1) ? "background-image: url(#{@page.image_at_position(1).image.url(size.to_s)})" : ""}
-  .text.text1.hidden
+  .image.image1{:class => split_layout == "image-text" || split_layout == "image-image" ? "" : "hidden"}
+    .inner{:class => @page && @page.image_at_position(1) ? @page.image_at_position(1).placement : "", :style => @page && @page.image_at_position(1) ? "background-image: url(#{@page.image_at_position(1).image.url(size.to_s)})" : ""}
+  .text.text1{:class => split_layout == "text-image" || split_layout == "text-text" ? "" : "hidden"}
     .inner.text1-inner
       = @page.text_at_position(1).text if @page && @page.text_at_position(1)
-  .image.image2.hidden
-    .inner{:style => @page && @page.image_at_position(2) ? "background-image: url(#{@page.image_at_position(2).image.url(size.to_s)})" : ""}
-  .text.text2
+  .image.image2{:class => split_layout == "text-image" || split_layout == "image-image" ? "" : "hidden"}
+    .inner{:class => @page && @page.image_at_position(2) ? @page.image_at_position(2).placement : "", :style => @page && @page.image_at_position(2) ? "background-image: url(#{@page.image_at_position(2).image.url(size.to_s)})" : ""}
+  .text.text2{:class => split_layout == "image-text" || split_layout == "text-text" ? "" : "hidden"}
     .inner.text2-inner
       = @page.text_at_position(2).text if @page && @page.text_at_position(2)

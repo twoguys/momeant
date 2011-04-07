@@ -55,7 +55,7 @@ class Page < ActiveRecord::Base
       return false
     end
     
-    if !page && story.page_at(options[:number])
+    if page.blank? && story.page_at(options[:number])
       # the user has chosen to overrite this page with another
       story.page_at(options[:number]).destroy
     end
@@ -77,25 +77,25 @@ class Page < ActiveRecord::Base
         end
       end
     when "full_image"
-      unless page
+      if page.blank?
         page = FullImagePage.new(:number => options[:number])
       end
       page.background_color = options[:background_color] if options[:background_color]
-      if options[:image]
+      image_media = page.image_media
+      if image_media.blank?
+        page.medias << PageImage.new
         image_media = page.image_media
-        if image_media
-          image_media.update_attribute(:image, options[:image])
-        else
-          page.medias << PageImage.new(:image => options[:image])
-        end
       end
-      if options[:image_placement] && page.image_media.present?
-        page.image_media.update_attribute(:placement, options[:image_placement])
+      if options[:image]
+        image_media.image = options[:image]
+      end
+      if options[:image_placement]
+        image_media.update_attribute(:placement, options[:image_placement])
       end
       text_media = page.text_media
-      unless text_media
+      if text_media.blank?
         page.medias << PageText.new
-        text_media = page.medias.last
+        text_media = page.text_media
       end
       text_media.text = options[:text] if options[:text]
       text_media.background_color = options[:caption_background_color] if options[:caption_background_color]
@@ -109,7 +109,7 @@ class Page < ActiveRecord::Base
       else
         page = PullquotePage.new(:number => options[:number], :background_color => options[:background_color], :text_color => options[:text_color])
       end
-      if options[:text].present?
+      if options[:text]
         text_media = page.text_media
         if text_media
           text_media.update_attributes(:text => options[:text])
@@ -131,24 +131,64 @@ class Page < ActiveRecord::Base
       else
         page = SplitPage.new(:number => options[:number], :background_color => options[:background_color], :text_color => options[:text_color])
       end
+      
+      # split pages will have 2 unused PageMedias in the DB, but it's a lot easier than conditionally
+      # creating them (data is cheap) and if the user swaps layouts, we still save the unused medias
+      # so they could use them again if they swapped layouts back.
+      image1 = page.image_at_position(1)
+      if image1.blank?
+        page.medias << PageImage.new(:position => 1)
+        image1 = page.image_at_position(1)
+      end
+      image2 = page.image_at_position(2)
+      if image2.blank?
+        page.medias << PageImage.new(:position => 2)
+        image2 = page.image_at_position(2)
+      end
+      text1 = page.text_at_position(1)
+      if text1.blank?
+        page.medias << PageText.new(:position => 1)
+        text1 = page.text_at_position(1)
+      end
+      text2 = page.text_at_position(2)
+      if text2.blank?
+        page.medias << PageText.new(:position => 2)
+        text2 = page.text_at_position(2)
+      end
+      
       if options[:image]
-        image_media = page.image_media
-        if image_media
-          image_media.update_attribute(:image, options[:image])
-        else
-          page.medias << PageImage.new(:image => options[:image])
+        if options[:position] == "1"
+          image1.image = options[:image]
+        elsif options[:position] == "2"
+          image2.image = options[:image]
         end
       end
-      if options[:text].present?
-        text_media = page.text_media
-        if text_media
-          text_media.update_attributes(:text => options[:text])
-        else
-          page.medias << PageText.new(:text => options[:text])
+      
+      if options[:text]
+        if options[:position] == "1"
+          text1.text = options[:text]
+        elsif options[:position] == "2"
+          text2.text = options[:text]
         end
       end
+      
+      if options[:image_placement]
+        if options[:position] == "1"
+          image1.placement = options[:image_placement]
+        elsif options[:position] == "2"
+          image2.placement = options[:image_placement]
+        end
+      end
+      
       if options[:layout].present?
         page.layout = options[:layout]
+      end
+      
+      unless page.new_record?
+        image1.save
+        image2.save
+        text1.save
+        text2.save
       end
     when "grid"
       if page
@@ -157,26 +197,26 @@ class Page < ActiveRecord::Base
       else
         page = GridPage.new(:number => options[:number], :background_color => options[:background_color], :text_color => options[:text_color])
       end
-      if options[:cells]
+      if options[:positions]
         8.times do |num|
-          cell = (num + 1).to_s
-          if options[:cells][cell]
-            image = options[:cells][cell][:image]
-            caption = options[:cells][cell][:text]
+          position = (num + 1).to_s
+          if options[:positions][position]
+            image = options[:positions][position][:image]
+            caption = options[:positions][position][:text]
             if image
-              image_media = page.image_at_position(cell)
+              image_media = page.image_at_position(position)
               if image_media
                 image_media.update_attribute(:image, image)
               else
-                page.medias << PageImage.new(:image => image, :position => cell)
+                page.medias << PageImage.new(:image => image, :position => position)
               end
             end
             if caption.present?
-              text_media = page.text_at_position(cell)
+              text_media = page.text_at_position(position)
               if text_media
-                text_media.update_attributes(:text => caption, :position => cell)
+                text_media.update_attributes(:text => caption, :position => position)
               else
-                page.medias << PageText.new(:text => caption, :position => cell)
+                page.medias << PageText.new(:text => caption, :position => position)
               end
             end
           end

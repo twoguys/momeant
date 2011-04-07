@@ -133,7 +133,7 @@ var story_viewer = function() {
 	};
 	
 	var update_previewer_width = function() {
-		var width = viewer.total_pages * 290;
+		var width = viewer.total_pages * 300;
 		$('#previewer .viewport .overview').css('width', width + 'px');
 		$('#previewer .slider').css('width', $(window).width() - 280 + 'px');
 		$('#previewer .scrollbar-me').tinyscrollbar({axis:'x'});

@@ -14,7 +14,7 @@
   .preview.clearfix
     = link_to("Edit your story", edit_story_path(@story), :class => "edit-story") if @story.owner?(current_user) #&& !@story.published?
     .padder
-      .thumbnail.large
+      .thumbnail.large{:class => @story.thumbnail.present? ? @story.thumbnail.css_class : ""}
         .inner
           - if @story.thumbnail
             - @page = @story.thumbnail

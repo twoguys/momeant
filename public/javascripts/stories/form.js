@@ -467,12 +467,16 @@ var story_auto_saver = function() {
 		$page.find('#image_placement').change(function() {
 			var $select = $(this);
 			var placement = $select.val();
-			$('ul#pages li#page_' + number + ' .image').removeClass('fill-screen fit-to-screen original').addClass(placement);
+			var position = $select.attr('position');
+			$('ul#pages li#page_' + number + ' .image' + position).removeClass('fill-screen fit-to-screen original').addClass(placement);
+			var data = {image_placement:placement, type:type, number:number};
+			if (position)
+				data['position'] = position;
 			auto_saver.show_pages_spinner();
 			$.ajax({
 				type: 'PUT',
 				url: '/stories/' + pages_editor.story_id + '/pages/' + page_id,
-				data: {image_placement:placement, type:type, number:number},
+				data: data,
 				success: function(data) {
 					auto_saver.hide_pages_spinner();
 				}
@@ -561,11 +565,10 @@ var story_auto_saver = function() {
 			var data = {};
 			data['type'] = type;
 			data['number'] = number;
-			var cell = $(object).attr('cell');
-			if (cell) {
-				data['cells[' + cell + '][text]'] = value;
-			} else {
-				data['text'] = value;
+			data['text'] = value;
+			var position = $(object).attr('position');
+			if (position) {
+				data['position'] = position;
 			}
 			auto_saver.show_pages_spinner();
 			$.ajax({
@@ -622,17 +625,17 @@ var story_auto_saver = function() {
 			var url = '/stories/' + pages_editor.story_id + '/pages/' + page_id + '/add_or_update_image';
 			
 			if (type == 'grid') {
-				var grid_cell = $file_input.attr('cell');
-				if (grid_cell)
-					url += '?cell=' + grid_cell
+				var cell_position = $file_input.attr('position');
+				if (cell_position)
+					url += '?position=' + cell_position
 			}
 			
 			if (type == 'split') {
 				var $parent = $uploader.parents('.input:eq(0)');
 				if ($parent.hasClass('image1'))
-					url += '?cell=1'
+					url += '?position=1'
 				else
-					url += '?cell=2'
+					url += '?position=2'
 			}
 				
 			var page_number = number;

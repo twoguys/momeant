@@ -1,6 +1,6 @@
 %li.story.medium{:class => (story_counter + 1) % 3 == 0 ? "third" : ""}
 
-  %a.thumbnail{:href => preview_story_path(story)}
+  %a.thumbnail.medium{:href => preview_story_path(story), :class => story.thumbnail.present? ? story.thumbnail.css_class : ""}
     - if story.thumbnail
       - @page = story.thumbnail
       = render :partial => "stories/page_themes/#{@page.partial_name}", :locals => {:size => "medium"}
