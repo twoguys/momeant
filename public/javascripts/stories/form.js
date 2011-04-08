@@ -406,6 +406,7 @@ var story_auto_saver = function() {
 					auto_saver.monitor_thumbnail_switching($page, data.id, type, number);
 					auto_saver.handle_video_embedding($page, data.id, type, number);
 					auto_saver.handle_split_configuration($page, data.id, type, number);
+					auto_saver.handle_grid_configuration($page, data.id, type, number);
 				} else {
 					log('error when creating a ' + type + ' page.');
 				}
@@ -429,6 +430,7 @@ var story_auto_saver = function() {
 				auto_saver.monitor_thumbnail_switching($page, page_id, page_type, number);
 				auto_saver.handle_video_embedding($page, page_id, page_type, number);
 				auto_saver.handle_split_configuration($page, page_id, page_type, number);
+				auto_saver.handle_grid_configuration($page, page_id, page_type, number);
 			}
 		});
 	};
@@ -464,11 +466,14 @@ var story_auto_saver = function() {
 	};
 	
 	this.monitor_image_placement = function($page, page_id, type, number) {
-		$page.find('#image_placement').change(function() {
+		$page.find('.image_placement').change(function() {
 			var $select = $(this);
 			var placement = $select.val();
-			var position = $select.attr('position');
-			$('ul#pages li#page_' + number + ' .image' + position).removeClass('fill-screen fit-to-screen original').addClass(placement);
+			var position = $select.attr('position') || '';
+			if (type == 'full_image')
+				$('ul#pages li#page_' + number + ' .inner').removeClass('fill-screen fit-to-screen original').addClass(placement);
+			else
+				$('ul#pages li#page_' + number + ' .image' + position).removeClass('fill-screen fit-to-screen original').addClass(placement);
 			var data = {image_placement:placement, type:type, number:number};
 			if (position)
 				data['position'] = position;
@@ -706,6 +711,7 @@ var story_auto_saver = function() {
 		if (type != 'split') { return false; }
 		
 		var $preview = $('ul#pages li#page_' + number);
+		var $thumbnail = $('#page-previews li#preview_' + number);
 		$page.find('li.chooser ul li').click(function() {
 			var $element = $(this);
 			$element.addClass('selected').siblings().removeClass('selected');
@@ -716,24 +722,32 @@ var story_auto_saver = function() {
 				$page.find('li.inputs li.image2, li.inputs li.text1').hide();
 				$preview.find('div.image1, div.text2').show();
 				$preview.find('div.image2, div.text1').hide();
+				$thumbnail.find('div.image1, div.text2').show();
+				$thumbnail.find('div.image2, div.text1').hide();
 			} else if ($element.hasClass('text-image')) {
 					layout = 'text-image';
 				$page.find('li.inputs li.image2, li.inputs li.text1').show();
 				$page.find('li.inputs li.image1, li.inputs li.text2').hide();
 				$preview.find('div.image2, div.text1').show();
 				$preview.find('div.image1, div.text2').hide();
+				$thumbnail.find('div.image2, div.text1').show();
+				$thumbnail.find('div.image1, div.text2').hide();
 			} else if ($element.hasClass('image-image')) {
 				layout = 'image-image';
 				$page.find('li.inputs li.image1, li.inputs li.image2').show();
 				$page.find('li.inputs li.text1, li.inputs li.text2').hide();
 				$preview.find('div.image1, div.image2').show();
 				$preview.find('div.text1, div.text2').hide();
+				$thumbnail.find('div.image1, div.image2').show();
+				$thumbnail.find('div.text1, div.text2').hide();
 			} else if ($element.hasClass('text-text')) {
 				layout = 'text-text';
 				$page.find('li.inputs li.text1, li.inputs li.text2').show();
 				$page.find('li.inputs li.image1, li.inputs li.image2').hide();
 				$preview.find('div.text1, div.text2').show();
 				$preview.find('div.image1, div.image2').hide();
+				$thumbnail.find('div.text1, div.text2').show();
+				$thumbnail.find('div.image1, div.image2').hide();
 			}
 			auto_saver.show_pages_spinner();
 			$.ajax({
@@ -753,6 +767,25 @@ var story_auto_saver = function() {
 					}
 				}
 			});
+		});
+	};
+	
+	this.handle_grid_configuration = function($page, page_id, type, number) {
+		if (type != 'grid') { return false; }
+		
+		var $preview = $('ul#pages li#page_' + number);
+		var $thumbnail = $('#page-previews li#preview_' + number);
+		$page.find('li.chooser ul li').click(function() {
+			var $element = $(this);
+			$element.addClass('selected').siblings().removeClass('selected');
+			var position = $element.attr('position');
+			$page.find('li.inputs li#cell_' + position).show().siblings().hide();
+			return false;
+		});
+		$page.find('li.inputs h3 .types a').click(function() {
+			var type = $(this).attr('type');
+			$(this).parents('.side:eq(0)').find('.type.' + type).show().siblings('.type').hide();
+			return false;
 		});
 	};
 }

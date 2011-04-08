@@ -19,7 +19,7 @@
           }
 
 - size ||= "original"
-.inner
-  .image{:class => @page && @page.image_media ? @page.image_media.placement : "", :style => @page && @page.image ? "background-image: url(#{@page.image.url(size.to_s)})" : ""}
+.inner{:class => @page && @page.image_media ? @page.image_media.placement : "fill-screen"}
+  .image{:style => @page && @page.image ? "background-image: url(#{@page.image.url(size.to_s)})" : ""}
   - if size == "original"
     .caption.placeable{:class => @page && @page.text_media ? @page.text_media.placement : ""}= @page.text if @page && @page.text

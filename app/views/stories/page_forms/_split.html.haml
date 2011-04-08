@@ -1,6 +1,6 @@
 .split.page-theme.pane-insides
   .header
-    .title Split
+    .title Two Column
     = link_to("Change", "#", :class => "change")
     .spinner Saving...
   .copy Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -31,7 +31,7 @@
                       .loader
                 %li
                   %label Choose image placement
-                  %select{:id => "image_placement", :position => "1"}
+                  %select.image_placement{:position => "1"}
                     - FullImagePage::IMAGE_PLACEMENTS.each_pair do |k,v|
                       %option{:value => v, :selected => @page && @page.image_media && @page.image_media.placement == v}= k
             %li.text1.input{:class => @page && (@page.layout == "text-image" || @page.layout == "text-text") ? "" : "hidden"}
@@ -53,7 +53,7 @@
                       .loader
                 %li
                   %label Choose image placement
-                  %select{:id => "image_placement", :position => "2"}
+                  %select.image_placement{:position => "2"}
                     - FullImagePage::IMAGE_PLACEMENTS.each_pair do |k,v|
                       %option{:value => v, :selected => @page && @page.image_media && @page.image_media.placement == v}= k
             %li.text2.input{:class => @page && (@page.layout == "image-text" || @page.layout == "text-text") ? "" : "hidden"}

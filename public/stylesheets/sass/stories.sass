@@ -133,9 +133,9 @@
 	.image
 		background-repeat: no-repeat
 		background-position: center center
-	.image.fill-screen
+	.inner.fill-screen .image
 		@include bgcover
-	.image.fit-to-screen
+	.inner.fit-to-screen .image
 		@include bgcontain
 	.caption
 		top: 5px
@@ -222,6 +222,8 @@
 			.inner
 				height: 100%
 				width: 100%
+				background-repeat: no-repeat
+				background-position: center center
 		.image.fill-screen .inner
 			@include bgcover
 		.image.fit-to-screen .inner

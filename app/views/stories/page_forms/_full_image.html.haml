@@ -20,7 +20,7 @@
               .loader
         %li
           %label Choose image placement
-          %select{:id => "image_placement"}
+          %select.image_placement
             - FullImagePage::IMAGE_PLACEMENTS.each_pair do |k,v|
               %option{:value => v, :selected => @page && @page.image_media && @page.image_media.placement == v}= k
         %li.break

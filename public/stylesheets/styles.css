@@ -823,12 +823,12 @@ form.new_story, form.edit_story, .story-form {
   #page-previews .full_image .image {
     background-repeat: no-repeat;
     background-position: center center; }
-  #page-previews .full_image .image.fill-screen {
+  #page-previews .full_image .inner.fill-screen .image {
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover; }
-  #page-previews .full_image .image.fit-to-screen {
+  #page-previews .full_image .inner.fit-to-screen .image {
     -webkit-background-size: contain;
     -moz-background-size: contain;
     -o-background-size: contain;
@@ -910,7 +910,9 @@ form.new_story, form.edit_story, .story-form {
       height: 100%; }
       #page-previews li.split div.split .image .inner {
         height: 100%;
-        width: 100%; }
+        width: 100%;
+        background-repeat: no-repeat;
+        background-position: center center; }
     #page-previews li.split div.split .image.fill-screen .inner {
       -webkit-background-size: cover;
       -moz-background-size: cover;
@@ -1206,6 +1208,71 @@ form.new_story, form.edit_story, .story-form {
       #page-editor #pane ul.pages li .split li.inputs textarea {
         width: 97%;
         height: 150px; }
+      #page-editor #pane ul.pages li .grid li.chooser {
+        width: 280px;
+        margin: 0 auto 25px; }
+        #page-editor #pane ul.pages li .grid li.chooser ul {
+          width: 268px;
+          height: 164px;
+          padding: 5px;
+          background-color: white;
+          border: 1px solid #cccccc; }
+        #page-editor #pane ul.pages li .grid li.chooser li {
+          float: left;
+          clear: none;
+          width: 55px;
+          height: 70px;
+          background: #eeeeee;
+          color: white;
+          border: 1px solid #cccccc;
+          margin: 5px;
+          cursor: pointer;
+          font-size: 36px;
+          font-family: "museo-slab-1", "museo-slab-2", serif;
+          text-align: center;
+          line-height: 70px;
+          vertical-align: middle; }
+        #page-editor #pane ul.pages li .grid li.chooser li.selected {
+          background-color: #c0eeff;
+          color: #00aeef; }
+      #page-editor #pane ul.pages li .grid li.inputs ul.cells li {
+        position: absolute;
+        width: 95%; }
+      #page-editor #pane ul.pages li .grid li.inputs .side {
+        float: left;
+        width: 50%;
+        margin: 0; }
+        #page-editor #pane ul.pages li .grid li.inputs .side .inner h3 {
+          background-color: #d7d7d7;
+          color: #8d8d8d;
+          text-transform: uppercase;
+          padding: 5px; }
+          #page-editor #pane ul.pages li .grid li.inputs .side .inner h3 span {
+            height: auto; }
+          #page-editor #pane ul.pages li .grid li.inputs .side .inner h3 .dark {
+            color: #333333; }
+          #page-editor #pane ul.pages li .grid li.inputs .side .inner h3 .types {
+            float: right; }
+            #page-editor #pane ul.pages li .grid li.inputs .side .inner h3 .types a {
+              padding-left: 5px; }
+        #page-editor #pane ul.pages li .grid li.inputs .side .inner .file-uploader .file-input-faker {
+          display: table;
+          width: auto; }
+          #page-editor #pane ul.pages li .grid li.inputs .side .inner .file-uploader .file-input-faker .text, #page-editor #pane ul.pages li .grid li.inputs .side .inner .file-uploader .file-input-faker a.upload {
+            display: table-cell;
+            position: relative; }
+          #page-editor #pane ul.pages li .grid li.inputs .side .inner .file-uploader .file-input-faker .text {
+            min-width: 100px; }
+          #page-editor #pane ul.pages li .grid li.inputs .side .inner .file-uploader .file-input-faker a.upload {
+            width: 80px; }
+        #page-editor #pane ul.pages li .grid li.inputs .side .inner textarea {
+          width: 95%;
+          margin-top: 5px; }
+      #page-editor #pane ul.pages li .grid li.inputs .front .inner {
+        padding-right: 15px;
+        border-right: 1px solid #cccccc; }
+      #page-editor #pane ul.pages li .grid li.inputs .back .inner {
+        padding-left: 15px; }
       #page-editor #pane ul.pages li .file-uploader {
         position: relative;
         height: 27px; }
@@ -1327,12 +1394,12 @@ form.new_story, form.edit_story, .story-form {
       #page-editor ul#pages .full_image .image {
         background-repeat: no-repeat;
         background-position: center center; }
-      #page-editor ul#pages .full_image .image.fill-screen {
+      #page-editor ul#pages .full_image .inner.fill-screen .image {
         -webkit-background-size: cover;
         -moz-background-size: cover;
         -o-background-size: cover;
         background-size: cover; }
-      #page-editor ul#pages .full_image .image.fit-to-screen {
+      #page-editor ul#pages .full_image .inner.fit-to-screen .image {
         -webkit-background-size: contain;
         -moz-background-size: contain;
         -o-background-size: contain;
@@ -1457,7 +1524,9 @@ form.new_story, form.edit_story, .story-form {
           height: 100%; }
           #page-editor ul#pages .split div.split .image .inner {
             height: 100%;
-            width: 100%; }
+            width: 100%;
+            background-repeat: no-repeat;
+            background-position: center center; }
         #page-editor ul#pages .split div.split .image.fill-screen .inner {
           -webkit-background-size: cover;
           -moz-background-size: cover;
@@ -1968,12 +2037,12 @@ input.bookmark:active, input.unbookmark:active {
         .story-viewer #previewer ul.pages li.full_image .image {
           background-repeat: no-repeat;
           background-position: center center; }
-        .story-viewer #previewer ul.pages li.full_image .image.fill-screen {
+        .story-viewer #previewer ul.pages li.full_image .inner.fill-screen .image {
           -webkit-background-size: cover;
           -moz-background-size: cover;
           -o-background-size: cover;
           background-size: cover; }
-        .story-viewer #previewer ul.pages li.full_image .image.fit-to-screen {
+        .story-viewer #previewer ul.pages li.full_image .inner.fit-to-screen .image {
           -webkit-background-size: contain;
           -moz-background-size: contain;
           -o-background-size: contain;
@@ -2052,7 +2121,9 @@ input.bookmark:active, input.unbookmark:active {
             height: 100%; }
             .story-viewer #previewer ul.pages li.split div.split .image .inner {
               height: 100%;
-              width: 100%; }
+              width: 100%;
+              background-repeat: no-repeat;
+              background-position: center center; }
           .story-viewer #previewer ul.pages li.split div.split .image.fill-screen .inner {
             -webkit-background-size: cover;
             -moz-background-size: cover;
@@ -2167,12 +2238,12 @@ input.bookmark:active, input.unbookmark:active {
       .story-viewer ul#pages li.full_image .image {
         background-repeat: no-repeat;
         background-position: center center; }
-      .story-viewer ul#pages li.full_image .image.fill-screen {
+      .story-viewer ul#pages li.full_image .inner.fill-screen .image {
         -webkit-background-size: cover;
         -moz-background-size: cover;
         -o-background-size: cover;
         background-size: cover; }
-      .story-viewer ul#pages li.full_image .image.fit-to-screen {
+      .story-viewer ul#pages li.full_image .inner.fit-to-screen .image {
         -webkit-background-size: contain;
         -moz-background-size: contain;
         -o-background-size: contain;
@@ -2297,7 +2368,9 @@ input.bookmark:active, input.unbookmark:active {
           height: 100%; }
           .story-viewer ul#pages li.split div.split .image .inner {
             height: 100%;
-            width: 100%; }
+            width: 100%;
+            background-repeat: no-repeat;
+            background-position: center center; }
         .story-viewer ul#pages li.split div.split .image.fill-screen .inner {
           -webkit-background-size: cover;
           -moz-background-size: cover;
@@ -2564,12 +2637,12 @@ input.bookmark:active, input.unbookmark:active {
   .thumbnail.full_image .image {
     background-repeat: no-repeat;
     background-position: center center; }
-  .thumbnail.full_image .image.fill-screen {
+  .thumbnail.full_image .inner.fill-screen .image {
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover; }
-  .thumbnail.full_image .image.fit-to-screen {
+  .thumbnail.full_image .inner.fit-to-screen .image {
     -webkit-background-size: contain;
     -moz-background-size: contain;
     -o-background-size: contain;
@@ -2690,7 +2763,9 @@ input.bookmark:active, input.unbookmark:active {
       height: 100%; }
       .thumbnail.split div.split .image .inner {
         height: 100%;
-        width: 100%; }
+        width: 100%;
+        background-repeat: no-repeat;
+        background-position: center center; }
     .thumbnail.split div.split .image.fill-screen .inner {
       -webkit-background-size: cover;
       -moz-background-size: cover;
@@ -2822,7 +2897,9 @@ input.bookmark:active, input.unbookmark:active {
       height: 100%; }
       .thumbnail.split.medium div.split .image .inner {
         height: 100%;
-        width: 100%; }
+        width: 100%;
+        background-repeat: no-repeat;
+        background-position: center center; }
     .thumbnail.split.medium div.split .image.fill-screen .inner {
       -webkit-background-size: cover;
       -moz-background-size: cover;
