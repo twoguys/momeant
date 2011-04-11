@@ -32,11 +32,15 @@ class Page < ActiveRecord::Base
   end
 
   def image_at_position(position)
-    self.medias.reject {|media| media.type != "PageImage" || media.position != position.to_s}.first
+    self.medias.where(:type => "PageImage", :position => position.to_s).first
   end
   
   def text_at_position(position)
-    self.medias.reject {|media| media.type != "PageText" || media.position != position.to_s}.first
+    self.medias.where(:type => "PageText", :position => position.to_s).first
+  end
+  
+  def media_at_position_and_side(position, side)
+    self.medias.where(:position => position.to_s, :side => side).first
   end
   
   def has_styles?
@@ -197,29 +201,15 @@ class Page < ActiveRecord::Base
       else
         page = GridPage.new(:number => options[:number], :background_color => options[:background_color], :text_color => options[:text_color])
       end
-      if options[:positions]
-        8.times do |num|
-          position = (num + 1).to_s
-          if options[:positions][position]
-            image = options[:positions][position][:image]
-            caption = options[:positions][position][:text]
-            if image
-              image_media = page.image_at_position(position)
-              if image_media
-                image_media.update_attribute(:image, image)
-              else
-                page.medias << PageImage.new(:image => image, :position => position)
-              end
-            end
-            if caption.present?
-              text_media = page.text_at_position(position)
-              if text_media
-                text_media.update_attributes(:text => caption, :position => position)
-              else
-                page.medias << PageText.new(:text => caption, :position => position)
-              end
-            end
-          end
+      
+      if options[:position] && options[:side]
+        media = page.media_at_position_and_side(options[:position], options[:side])
+        if media.nil? || media.is_a?(PageImage)
+          media.destroy if media # remove the old image for this position and side
+          media = PageText.new(:position => options[:position], :side => options[:side], :text => options[:text])
+          page.medias << media
+        else
+          media.update_attribute(:text, options[:text])
         end
       end
     else

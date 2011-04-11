@@ -16,7 +16,6 @@ class RegistrationsController < Devise::RegistrationsController
       if private_beta?
         invitation = Invitation.find_by_token(resource.invitation_code)
         invitation.update_attribute(:invitee_id, resource.id)
-        Rails.logger.info "POOP NEW USER ID: #{resource.id}"
       end
       
       invitation.update_attribute(:accepted, true) if invitation

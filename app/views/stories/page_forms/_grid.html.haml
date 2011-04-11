@@ -22,25 +22,27 @@
           %ul.cells
             - 1.upto(8) do |cell|
               %li{:id => "cell_#{cell}", :class => cell == 1 ? "" : "hidden"}
-                - ['front', 'back'].each do |side|
+                - front_side_show = @page && @page.media_at_position_and_side(cell,"front").is_a?(PageText) ? "text" : "image"
+                - back_side_show = @page && @page.media_at_position_and_side(cell,"back").is_a?(PageImage) ? "image" : "text"
+                - ["front", "back"].each do |side|
                   .side{:class => side}
                     .inner
                       %h3
                         %span #{side} of cell
                         %span.dark ##{cell}
                         .types
-                          %a{:href => "#", :type => "image"} image
-                          %a{:href => "#", :type => "text"} text
-                      .image.type{:class => side == "back" ? "hidden" : ""}
+                          %a{:href => "#", :type => "image", :position => cell, :side => side} image
+                          %a{:href => "#", :type => "text", :position => cell, :side => side} text
+                      .image.type{:class => (side == "front" && front_side_show == "image") || (side == "back" && back_side_show == "image") ? "" : "hidden"}
                         %label Choose an image
                         .file-uploader
                           %form
                             %input{:type => "hidden", :value => form_authenticity_token, :name => "authenticity_token"}
                             .file-input-faker
-                              %input{:type => "file"}
+                              %input{:type => "file", :position => cell, :side => side}
                               .text
                               = link_to("Upload", "#", :class => "upload")
                             .loader
-                      .text.type{:class => side == "front" ? "hidden" : ""}
-                        - text = @page && @page.text_at_position(cell) ? @page.text_at_position(cell).text : ""
-                        = text_area_tag "pages[#{@page_number}][cells][#{cell}][text]", text, :class => "monitor-typing color-affected", :cell => cell
+                      .text.type{:class => (side == "front" && front_side_show == "text") || (side == "back" && back_side_show == "text") ? "" : "hidden"}
+                        - text = @page ? @page.media_at_position_and_side(cell,side).try(:text) : ""
+                        = text_area_tag "grid_text", text, :class => "monitor-typing color-affected mirrored", :position => cell, :side => side, "mirror-to" => "text-#{cell}-#{side}"

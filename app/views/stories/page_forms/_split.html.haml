@@ -5,18 +5,19 @@
     .spinner Saving...
   .copy Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
   .body
+    - layout = @page && @page.layout ? @page.layout : "image-text"
     %fieldset
       %ul
         %li.chooser
           %label Select layout
           %ul
-            %li.image-text{:class => @page && @page.layout == "image-text" ? "selected" : ""}
-            %li.text-image{:class => @page && @page.layout == "text-image" ? "selected" : ""}
-            %li.image-image{:class => @page && @page.layout == "image-image" ? "selected" : ""}
-            %li.text-text{:class => @page && @page.layout == "text-text" ? "selected" : ""}
+            %li.image-text{:class => layout == "image-text" ? "selected" : ""}
+            %li.text-image{:class => layout == "text-image" ? "selected" : ""}
+            %li.image-image{:class => layout == "image-image" ? "selected" : ""}
+            %li.text-text{:class => layout == "text-text" ? "selected" : ""}
         %li.inputs
           %ul
-            %li.image1.input{:class => @page && (@page.layout == "image-text" || @page.layout == "image-image") ? "" : "hidden"}
+            %li.image1.input{:class => layout == "image-text" || layout == "image-image" ? "" : "hidden"}
               %ul
                 %li
                   %h3 Image Column (left)
@@ -34,11 +35,11 @@
                   %select.image_placement{:position => "1"}
                     - FullImagePage::IMAGE_PLACEMENTS.each_pair do |k,v|
                       %option{:value => v, :selected => @page && @page.image_media && @page.image_media.placement == v}= k
-            %li.text1.input{:class => @page && (@page.layout == "text-image" || @page.layout == "text-text") ? "" : "hidden"}
+            %li.text1.input{:class => layout == "text-image" || layout == "text-text" ? "" : "hidden"}
               %h3 Text Column (left)
               - text_value = @page && @page.text_at_position(1) ? @page.text_at_position(1).text : ""
               = text_area_tag "pages[#{@page_number}][text][1]", text_value, :class => "monitor-typing mirrored rich-editable", "mirror-to" => "text1-inner", :position => "1"
-            %li.image2.input{:class => @page && (@page.layout == "text-image" || @page.layout == "image-image") ? "" : "hidden"}
+            %li.image2.input{:class => layout == "text-image" || layout == "image-image" ? "" : "hidden"}
               %ul
                 %li
                   %h3 Image Column (right)
@@ -56,7 +57,7 @@
                   %select.image_placement{:position => "2"}
                     - FullImagePage::IMAGE_PLACEMENTS.each_pair do |k,v|
                       %option{:value => v, :selected => @page && @page.image_media && @page.image_media.placement == v}= k
-            %li.text2.input{:class => @page && (@page.layout == "image-text" || @page.layout == "text-text") ? "" : "hidden"}
+            %li.text2.input{:class => layout == "image-text" || layout == "text-text" ? "" : "hidden"}
               %h3 Text Column (right)
               - text_value = @page && @page.text_at_position(2) ? @page.text_at_position(2).text : ""
               = text_area_tag "pages[#{@page_number}][text][2]", text_value, :class => "monitor-typing mirrored rich-editable", "mirror-to" => "text2-inner", :position => "2"

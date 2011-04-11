@@ -28,7 +28,7 @@ var story_page_editor = function() {
 		$('#editor-header a.delete').click(pages_editor.delete_current_page);
 		setup_launch_when_no_pages();
 
-		this.total_pages = $('ul#pages li').length;
+		this.total_pages = $('ul#pages').children().length;
 	};
 	
 	// SETUP
@@ -575,6 +575,10 @@ var story_auto_saver = function() {
 			if (position) {
 				data['position'] = position;
 			}
+			var side = $(object).attr('side');
+			if (side) {
+				data['side'] = side;
+			}
 			auto_saver.show_pages_spinner();
 			$.ajax({
 			  type: 'PUT',
@@ -630,9 +634,12 @@ var story_auto_saver = function() {
 			var url = '/stories/' + pages_editor.story_id + '/pages/' + page_id + '/add_or_update_image';
 			
 			if (type == 'grid') {
-				var cell_position = $file_input.attr('position');
-				if (cell_position)
-					url += '?position=' + cell_position
+				var position = $file_input.attr('position');
+				if (position)
+					url += '?position=' + position;
+				var side = $file_input.attr('side');
+				if (position && side)
+					url += '&side=' + side;
 			}
 			
 			if (type == 'split') {
@@ -674,12 +681,13 @@ var story_auto_saver = function() {
 							var class_of_element_to_replace = 'image1';
 						else
 							var class_of_element_to_replace = 'image2';
-						log('replacing ' + class_of_element_to_replace);
 						$('ul#pages #page_' + page_number + ' .' + class_of_element_to_replace + ' .inner').remove();
 						$('ul#pages #page_' + page_number + ' .' + class_of_element_to_replace).append('<div class="inner" style="background-image: url(' + json.full + ');"></div>');
 
 					} else if (type == 'grid') {
-						$uploader.find('.info').remove();
+						var $cell = $('ul#pages #page_' + page_number + ' ul.cells li[position="' + position + '"] .' + side);
+						$cell.find('.image').remove();
+						$cell.append('<div class="image" style="background-image: url(' + json.full + ');"></div>');
 					}
 					
 					$loader.hide().siblings().show();
@@ -785,6 +793,16 @@ var story_auto_saver = function() {
 		$page.find('li.inputs h3 .types a').click(function() {
 			var type = $(this).attr('type');
 			$(this).parents('.side:eq(0)').find('.type.' + type).show().siblings('.type').hide();
+			var position = $(this).attr('position');
+			var side = $(this).attr('side');
+			var $side = $('ul#pages li#page_' + number + ' li[position="' + position + '"] .' + side);
+			if (type == 'image') {
+				$side.find('.text').hide();
+				$side.find('.image').show();
+			} else if (type == 'text') {
+				$side.find('.image').hide();
+				$side.find('.text').show();
+			}
 			return false;
 		});
 	};

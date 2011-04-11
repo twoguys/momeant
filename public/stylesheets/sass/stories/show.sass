@@ -193,50 +193,7 @@
 		li.split
 			@include splitSlideFullsize
 		li.grid
-			ul.cells
-				height: 100%
-				li
-					width: 25%
-					height: 50%
-					float: left
-					position: relative
-					.image, .text
-						position: absolute
-						width: 100%
-						height: 100%
-					.image
-						display: block
-						@include bgcover
-					.text
-						display: none
-						font-size: 2em
-						text-align: center
-						background-color: #fff
-						background-color: rgba(255,255,255,0.9)
-						.inner
-							padding: 0 10%
-							vertical-align: middle
-							display: table-cell
-							font-family: $typewriter
-							line-height: 26px
-							font-size: 14px
-							text-align: justify
-							letter-spacing: -.5px
-							&:first-letter
-								font-family: $caps
-								font-size: 50px
-								vertical-align: baseline
-								float: left
-								text-transform: uppercase
-								line-height: 50px
-								height: 50px
-								padding-top: 10px
-								padding-right: 4px
-					img
-						width: 100%
-				li:hover
-					.text
-						display: table
+			@include gridSlideFullsize
 	
 	#previous-page, #next-page
 		width: 20%

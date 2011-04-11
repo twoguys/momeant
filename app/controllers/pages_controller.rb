@@ -23,17 +23,22 @@ class PagesController < ApplicationController
     page = Page.find_by_id(params[:id])
     render :json => {:result => "failure", :message => "Page with id #{params[:id]} does not exist"} and return if page.nil?
     
-    if params[:position]
-      image_media = page.image_at_position(params[:position])
-      options = {:page_id => page.id, :position => params[:position]}
-    else
-      image_media = page.image_media
-      options = {:page_id => page.id}
+    old_text = nil
+    # only for the grid, remove the text for this position + side if it exists (after successful image save)
+    if page.is_a?(GridPage) && page.media_at_position_and_side(params[:position], params[:side]).is_a?(PageText)
+      old_text = page.media_at_position_and_side(params[:position], params[:side])
     end
-    image_media = PageImage.new(options) if image_media.nil?
+    
+    image_media = page.medias.where(:type => "PageImage")
+    image_media = image_media.where(:position => params[:position]) if params[:position]
+    image_media = image_media.where(:side => params[:side]) if params[:side]
+    image_media = image_media.first
+    
+    image_media = PageImage.new(:page_id => page.id, :position => params[:position], :side => params[:side]) if image_media.nil?
     image_media.image = params[:image]
     
     if image_media.save
+      old_text.destroy if old_text  
       render :json => {:result => "success", :full => image_media.image.url, :thumbnail => image_media.image.url(:medium)}
     else
       render :json => {:result => "failure", :message => "Unable to save image"}

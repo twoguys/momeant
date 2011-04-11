@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110406181952) do
+ActiveRecord::Schema.define(:version => 20110411130719) do
 
   create_table "adverts", :force => true do |t|
     t.string   "title"
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(:version => 20110406181952) do
     t.string   "background_color"
     t.string   "text_color"
     t.string   "placement"
+    t.string   "side"
   end
 
   create_table "pages", :force => true do |t|
