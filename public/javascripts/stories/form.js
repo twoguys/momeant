@@ -819,7 +819,9 @@ var story_auto_saver = function() {
               { type: 'color', label: 'Background Color', value: 'backcolor', disabled: true },
 							{ type: 'separator' },
 							{ type: 'push', label: 'Bold', value: 'bold' },
+							{ type: 'separator' },
               { type: 'push', label: 'Italic', value: 'italic' },
+							{ type: 'separator' },
               { type: 'push', label: 'Underline', value: 'underline' }
 						]
 					}
