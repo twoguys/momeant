@@ -7,7 +7,7 @@
   .body
     %ul
       %li
-        %label Type your title below...
+        %label Type your title
         - text_value = @page && @page.text ? @page.text : ""
         = text_area_tag "pages[#{@page_number}][text]", text_value, :class => "monitor-typing background-color-affected color-affected mirrored rich-editable", "mirror-to" => "text"
       %li

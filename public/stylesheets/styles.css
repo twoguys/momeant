@@ -786,10 +786,10 @@ form.new_story, form.edit_story, .story-form {
 
 #page-previews li.title .inner {
   display: table; }
-#page-previews .title {
+#page-previews li.title {
   width: 288px;
   height: 180px; }
-  #page-previews .title .inner {
+  #page-previews li.title .inner {
     background-color: black;
     color: white;
     text-shadow: none;
@@ -798,42 +798,43 @@ form.new_story, form.edit_story, .story-form {
     height: 100%;
     width: 100%;
     font-weight: bold; }
-    #page-previews .title .inner .inner {
+    #page-previews li.title .inner .inner {
       display: table; }
-    #page-previews .title .inner .title {
+    #page-previews li.title .inner .title {
       display: table-cell;
       vertical-align: middle;
-      font-family: "ambroise-std-1", "ambroise-std-2", serif;
-      text-transform: uppercase;
       padding: 20px 10px 10px;
       line-height: 22px;
       letter-spacing: 0.5px;
       font-size: 22px; }
-      #page-previews .title .inner .title hr {
+      #page-previews li.title .inner .title hr {
         margin: 10px auto;
         width: 40%; }
-#page-previews .full_image {
+      #page-previews li.title .inner .title span {
+        margin-right: 0.2em;
+        height: auto; }
+#page-previews li.full_image {
   width: 288px;
   height: 180px; }
-  #page-previews .full_image .inner, #page-previews .full_image .image {
+  #page-previews li.full_image .inner, #page-previews li.full_image .image {
     width: 100%;
     height: 100%; }
-  #page-previews .full_image .inner .inner {
+  #page-previews li.full_image .inner .inner {
     position: relative; }
-  #page-previews .full_image .image {
+  #page-previews li.full_image .image {
     background-repeat: no-repeat;
     background-position: center center; }
-  #page-previews .full_image .inner.fill-screen .image {
+  #page-previews li.full_image .inner.fill-screen .image {
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover; }
-  #page-previews .full_image .inner.fit-to-screen .image {
+  #page-previews li.full_image .inner.fit-to-screen .image {
     -webkit-background-size: contain;
     -moz-background-size: contain;
     -o-background-size: contain;
     background-size: contain; }
-  #page-previews .full_image .caption {
+  #page-previews li.full_image .caption {
     top: 5px;
     right: 5px;
     position: absolute;
@@ -846,7 +847,7 @@ form.new_story, form.edit_story, .story-form {
     font-family: Georgia, serif;
     border-bottom: 2px solid black;
     font-style: italic; }
-    #page-previews .full_image .caption:first-letter {
+    #page-previews li.full_image .caption:first-letter {
       font-family: "museo-slab-1", "museo-slab-2", serif;
       vertical-align: baseline;
       float: left;
@@ -856,7 +857,7 @@ form.new_story, form.edit_story, .story-form {
       font-weight: 700;
       font-style: normal;
       padding-right: 2px; }
-  #page-previews .full_image .caption {
+  #page-previews li.full_image .caption {
     display: none; }
 #page-previews li.pullquote {
   width: 288px;
@@ -889,7 +890,7 @@ form.new_story, form.edit_story, .story-form {
         letter-spacing: -2px;
         padding-right: 4px;
         padding-top: 3px; }
-#page-previews .video {
+#page-previews li.video {
   width: 288px;
   height: 180px;
   text-align: center; }
@@ -948,43 +949,47 @@ form.new_story, form.edit_story, .story-form {
           padding-right: 1px; }
     #page-previews li.split div.split .hidden {
       display: none; }
-#page-previews .grid {
+#page-previews li.grid {
   width: 288px;
   height: 180px; }
-  #page-previews .grid ul.cells {
+  #page-previews li.grid ul.cells {
     height: 100%; }
-    #page-previews .grid ul.cells li {
+    #page-previews li.grid ul.cells li {
       width: 25%;
       height: 50%;
       float: left;
       position: relative;
       margin: 0;
       clear: none; }
-      #page-previews .grid ul.cells li .side {
+      #page-previews li.grid ul.cells li .side {
         margin: 0; }
-      #page-previews .grid ul.cells li .front, #page-previews .grid ul.cells li .back {
+      #page-previews li.grid ul.cells li .front, #page-previews li.grid ul.cells li .back {
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%; }
-      #page-previews .grid ul.cells li .front {
+      #page-previews li.grid ul.cells li .front {
         z-index: 2; }
-      #page-previews .grid ul.cells li .back {
+      #page-previews li.grid ul.cells li .back {
         z-index: 1; }
-      #page-previews .grid ul.cells li .side .image {
+      #page-previews li.grid ul.cells li .side .text, #page-previews li.grid ul.cells li .side .image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%; }
+      #page-previews li.grid ul.cells li .side .image {
         width: 100%;
-        height: 100%;
         display: block;
         -webkit-background-size: cover;
         -moz-background-size: cover;
         -o-background-size: cover;
         background-size: cover; }
-      #page-previews .grid ul.cells li .side .text {
+      #page-previews li.grid ul.cells li .side .text {
         display: table;
         font-size: 2em;
         text-align: center; }
-        #page-previews .grid ul.cells li .side .text .inner {
+        #page-previews li.grid ul.cells li .side .text .inner {
           background-color: white;
           background-color: rgba(255, 255, 255, 0.9);
           padding: 0 10%;
@@ -995,7 +1000,7 @@ form.new_story, form.edit_story, .story-form {
           font-size: 14px;
           text-align: justify;
           letter-spacing: -0.5px; }
-          #page-previews .grid ul.cells li .side .text .inner:first-letter {
+          #page-previews li.grid ul.cells li .side .text .inner:first-letter {
             font-family: "museo-sans-1", "museo-sans-2", sans-serif;
             font-size: 50px;
             vertical-align: baseline;
@@ -1005,9 +1010,9 @@ form.new_story, form.edit_story, .story-form {
             height: 50px;
             padding-top: 10px;
             padding-right: 4px; }
-    #page-previews .grid ul.cells li:hover .front {
+    #page-previews li.grid ul.cells li:hover .front {
       z-index: 1; }
-    #page-previews .grid ul.cells li:hover .back {
+    #page-previews li.grid ul.cells li:hover .back {
       z-index: 2; }
 #page-previews li.page.launch {
   color: #333333;
@@ -1418,8 +1423,6 @@ form.new_story, form.edit_story, .story-form {
         #page-editor ul#pages .title .inner .title {
           display: table-cell;
           vertical-align: middle;
-          font-family: "ambroise-std-1", "ambroise-std-2", serif;
-          text-transform: uppercase;
           padding: 20px 10px 10px;
           line-height: 22px;
           letter-spacing: 0.5px;
@@ -1427,6 +1430,9 @@ form.new_story, form.edit_story, .story-form {
           #page-editor ul#pages .title .inner .title hr {
             margin: 10px auto;
             width: 40%; }
+          #page-editor ul#pages .title .inner .title span {
+            margin-right: 0.2em;
+            height: auto; }
       #page-editor ul#pages .title .inner {
         display: table; }
       #page-editor ul#pages .title .title {
@@ -1434,11 +1440,9 @@ form.new_story, form.edit_story, .story-form {
         top: 0;
         bottom: 0;
         display: table-cell;
-        font-family: "ambroise-std-1", "ambroise-std-2", serif;
         font-size: 120px;
         vertical-align: middle;
         text-align: center;
-        text-transform: uppercase;
         line-height: 110px;
         letter-spacing: -4px; }
         #page-editor ul#pages .title .title hr {
@@ -1657,9 +1661,13 @@ form.new_story, form.edit_story, .story-form {
             z-index: 2; }
           #page-editor ul#pages .grid ul.cells li .back {
             z-index: 1; }
+          #page-editor ul#pages .grid ul.cells li .side .text, #page-editor ul#pages .grid ul.cells li .side .image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%; }
           #page-editor ul#pages .grid ul.cells li .side .image {
             width: 100%;
-            height: 100%;
             display: block;
             -webkit-background-size: cover;
             -moz-background-size: cover;
@@ -2139,8 +2147,6 @@ input.bookmark:active, input.unbookmark:active {
           .story-viewer #previewer ul.pages li.title .inner .title {
             display: table-cell;
             vertical-align: middle;
-            font-family: "ambroise-std-1", "ambroise-std-2", serif;
-            text-transform: uppercase;
             padding: 20px 10px 10px;
             line-height: 22px;
             letter-spacing: 0.5px;
@@ -2148,6 +2154,9 @@ input.bookmark:active, input.unbookmark:active {
             .story-viewer #previewer ul.pages li.title .inner .title hr {
               margin: 10px auto;
               width: 40%; }
+            .story-viewer #previewer ul.pages li.title .inner .title span {
+              margin-right: 0.2em;
+              height: auto; }
       .story-viewer #previewer ul.pages li.full_image {
         width: 288px;
         height: 180px; }
@@ -2323,8 +2332,6 @@ input.bookmark:active, input.unbookmark:active {
         .story-viewer ul#pages li.title .inner .title {
           display: table-cell;
           vertical-align: middle;
-          font-family: "ambroise-std-1", "ambroise-std-2", serif;
-          text-transform: uppercase;
           padding: 20px 10px 10px;
           line-height: 22px;
           letter-spacing: 0.5px;
@@ -2332,6 +2339,9 @@ input.bookmark:active, input.unbookmark:active {
           .story-viewer ul#pages li.title .inner .title hr {
             margin: 10px auto;
             width: 40%; }
+          .story-viewer ul#pages li.title .inner .title span {
+            margin-right: 0.2em;
+            height: auto; }
       .story-viewer ul#pages li.title .inner {
         display: table; }
       .story-viewer ul#pages li.title .title {
@@ -2339,11 +2349,9 @@ input.bookmark:active, input.unbookmark:active {
         top: 0;
         bottom: 0;
         display: table-cell;
-        font-family: "ambroise-std-1", "ambroise-std-2", serif;
         font-size: 120px;
         vertical-align: middle;
         text-align: center;
-        text-transform: uppercase;
         line-height: 110px;
         letter-spacing: -4px; }
         .story-viewer ul#pages li.title .title hr {
@@ -2562,9 +2570,13 @@ input.bookmark:active, input.unbookmark:active {
             z-index: 2; }
           .story-viewer ul#pages li.grid ul.cells li .back {
             z-index: 1; }
+          .story-viewer ul#pages li.grid ul.cells li .side .text, .story-viewer ul#pages li.grid ul.cells li .side .image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%; }
           .story-viewer ul#pages li.grid ul.cells li .side .image {
             width: 100%;
-            height: 100%;
             display: block;
             -webkit-background-size: cover;
             -moz-background-size: cover;
@@ -2753,8 +2765,6 @@ input.bookmark:active, input.unbookmark:active {
     .thumbnail.title .inner .title {
       display: table-cell;
       vertical-align: middle;
-      font-family: "ambroise-std-1", "ambroise-std-2", serif;
-      text-transform: uppercase;
       padding: 20px 10px 10px;
       line-height: 22px;
       letter-spacing: 0.5px;
@@ -2762,6 +2772,9 @@ input.bookmark:active, input.unbookmark:active {
       .thumbnail.title .inner .title hr {
         margin: 10px auto;
         width: 40%; }
+      .thumbnail.title .inner .title span {
+        margin-right: 0.2em;
+        height: auto; }
 
 .thumbnail.full_image {
   width: 100%;
@@ -3851,6 +3864,24 @@ header .topic-icon {
         width: 650px;
         background-color: white;
         height: 400px; }
+
+.yui-editor-container {
+  border: 1px solid #cccccc !important; }
+  .yui-editor-container .yui-toolbar-titlebar {
+    display: none !important; }
+  .yui-editor-container .yui-toolbar-container .yui-toolbar-subcont {
+    border-bottom: 1px solid #cccccc !important;
+    background-color: #f7f7f7 !important;
+    padding: 5px 10px !important; }
+    .yui-editor-container .yui-toolbar-container .yui-toolbar-subcont h3 {
+      display: none; }
+    .yui-editor-container .yui-toolbar-container .yui-toolbar-subcont select {
+      border: 1px solid #cccccc !important;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      border-radius: 3px; }
+    .yui-editor-container .yui-toolbar-container .yui-toolbar-subcont ul li {
+      margin-bottom: 0 !important; }
 
 .hidden {
   display: none; }

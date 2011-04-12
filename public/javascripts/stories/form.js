@@ -22,7 +22,6 @@ var story_page_editor = function() {
 		$('.pane-insides a.change').click(pages_editor.change_page_type);
 		this.setup_preview_thumbnail_switching($('#page-previews li.page a.choose-thumbnail'));
 		this.setup_preview_clicking($('#page-previews li.page'));
-		//this.setup_rich_text_editing($('.rich-editable'));
 		//setup_grid_editing();
 		setup_page_adding();
 		$('#editor-header a.delete').click(pages_editor.delete_current_page);
@@ -84,24 +83,6 @@ var story_page_editor = function() {
 			pages_editor.page_chooser_mode = 'add';
 			pages_editor.show_page_type_chooser();
 			return false;
-		});
-	};
-	
-	this.setup_rich_text_editing = function($elements) {
-		$elements.each(function(index, element) {
-			var Dom = YAHOO.util.Dom,
-				Event = YAHOO.util.Event;
-
-				// The SimpleEditor config
-				var myConfig = {
-					height: '300px',
-					width: '600px',
-					dompath: true
-				};
-
-			// Now let's load the SimpleEditor..
-			var myEditor = new YAHOO.widget.SimpleEditor($(element).attr('id'), myConfig);
-			myEditor.render();
 		});
 	};
 	
@@ -431,6 +412,7 @@ var story_auto_saver = function() {
 				auto_saver.handle_video_embedding($page, page_id, page_type, number);
 				auto_saver.handle_split_configuration($page, page_id, page_type, number);
 				auto_saver.handle_grid_configuration($page, page_id, page_type, number);
+				auto_saver.setup_rich_text_editing($page, page_id, page_type, number);
 			}
 		});
 	};
@@ -804,6 +786,66 @@ var story_auto_saver = function() {
 				$side.find('.text').show();
 			}
 			return false;
+		});
+	};
+	
+	this.setup_rich_text_editing = function($page, page_id, type, number) {
+		var text_editor_config = {
+			height: '300px',
+			width: '600px',
+			dompath: false,
+			toolbar: {
+				buttons: [
+					{ group: 'textstyle', label: 'Type options',
+						buttons: [
+							{ type: 'select', label: 'typeface', value: 'fontname', disabled: true,
+                  menu: [
+                      { text: 'Arial', checked: true },
+                      { text: 'Arial Black' },
+                      { text: 'Comic Sans MS' },
+                      { text: 'Courier New' },
+                      { text: 'Lucida Console' },
+                      { text: 'Tahoma' },
+                      { text: 'Times New Roman' },
+                      { text: 'Trebuchet MS' },
+                      { text: 'Verdana' }
+                  ]
+              },
+							{ type: 'separator' },
+							{ type: 'spin', label: '13', value: 'fontsize', range: [ 9, 75 ], disabled: true },
+							{ type: 'separator' },
+							{ type: 'color', label: 'Font Color', value: 'forecolor', disabled: true },
+							{ type: 'separator' },
+              { type: 'color', label: 'Background Color', value: 'backcolor', disabled: true },
+							{ type: 'separator' },
+							{ type: 'push', label: 'Bold', value: 'bold' },
+              { type: 'push', label: 'Italic', value: 'italic' },
+              { type: 'push', label: 'Underline', value: 'underline' }
+						]
+					}
+				]
+			}
+		};
+		
+		$page.find('.rich-editable').each(function(index, element) {
+			var $element = $(element), Dom = YAHOO.util.Dom, Event = YAHOO.util.Event;
+
+			var myEditor = new YAHOO.widget.SimpleEditor($(element).attr('id'), text_editor_config);
+
+			// setup previewing
+			if ($element.hasClass('mirrored')) {
+				log('setting up mirroring...');
+				var $to = $('ul#pages li#page_' + number + ' .' + $element.attr('mirror-to') + ', #page-previews li#preview_' + number + ' .' + $element.attr('mirror-to'));
+				var $save_button = $element.parents('.body:eq(0)').find('a.save');
+				$save_button.click(function() {
+					myEditor.saveHTML();
+					var html = myEditor.get('element').value;
+					$element.html(html);
+					$to.html(html);
+				});
+			}
+
+			myEditor.render();
 		});
 	};
 }
