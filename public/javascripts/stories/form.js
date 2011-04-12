@@ -800,9 +800,9 @@ var story_auto_saver = function() {
 						buttons: [
 							{ type: 'select', label: 'typeface', value: 'fontname', disabled: true,
                   menu: [
-                      { text: 'Arial', checked: true },
-                      { text: 'Arial Black' },
-                      { text: 'Comic Sans MS' },
+                      { text: 'Arial' },
+                      { text: '"ambroise-std-1"', checked: true },
+                      { text: '"museo-slab-1"' },
                       { text: 'Courier New' },
                       { text: 'Lucida Console' },
                       { text: 'Tahoma' },
@@ -812,7 +812,7 @@ var story_auto_saver = function() {
                   ]
               },
 							{ type: 'separator' },
-							{ type: 'spin', label: '13', value: 'fontsize', range: [ 9, 75 ], disabled: true },
+							{ type: 'spin', label: '13', value: 'fontsize', range: [ 30, 70 ], disabled: true },
 							{ type: 'separator' },
 							{ type: 'color', label: 'Font Color', value: 'forecolor', disabled: true },
 							{ type: 'separator' },
@@ -836,7 +836,6 @@ var story_auto_saver = function() {
 
 			// setup previewing
 			if ($element.hasClass('mirrored')) {
-				log('setting up mirroring...');
 				var $to = $('ul#pages li#page_' + number + ' .' + $element.attr('mirror-to') + ', #page-previews li#preview_' + number + ' .' + $element.attr('mirror-to'));
 				var $save_button = $element.parents('.body:eq(0)').find('a.save');
 				$save_button.click(function() {
