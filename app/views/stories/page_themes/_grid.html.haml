@@ -1,17 +1,22 @@
 - if @page && @page.has_styles?
   - content_for :head do
     :css
-      #page_#{@page.number} {
+      ul#pages #page_#{@page.number} {
         background-color: ##{@page.background_color} !important;
         color: ##{@page.text_color} !important;
       }
 
-- @preview ||= false
+- size ||= "original"
 %ul.cells
-  - 8.times do |num|
-    - cell = num + 1
-    %li
-      .image{:style => @page && @page.image_at_position(cell) ? "background-image: url(#{@page.image_at_position(cell).image.url})" : ""}
-      .text{:class => @page && @page.image_at_position(cell) ? "hidden" : ""}
-        .inner
-          = @page.text_at_position(cell).text if @page && @page.text_at_position(cell)
+  - 1.upto(8) do |cell|
+    %li{:position => cell}
+      .side.front
+        - front_media = @page ? @page.media_at_position_and_side(cell, "front") : nil
+        .image{:style => front_media && front_media.is_a?(PageImage) ? "background-image: url(#{front_media.image.url(size.to_s)})" : ""}
+        .text
+          .inner{:class => "text-#{cell}-front"}= front_media.text if front_media && front_media.is_a?(PageText)
+      .side.back
+        - back_media = @page ? @page.media_at_position_and_side(cell, "back") : nil
+        .image{:style => back_media && back_media.is_a?(PageImage) ? "background-image: url(#{back_media.image.url(size.to_s)})" : ""}
+        .text
+          .inner{:class => "text-#{cell}-back"}= back_media.text if back_media && back_media.is_a?(PageText)

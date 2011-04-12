@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110406181952) do
+ActiveRecord::Schema.define(:version => 20110411130719) do
 
   create_table "adverts", :force => true do |t|
     t.string   "title"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(:version => 20110406181952) do
   end
 
   create_table "page_medias", :force => true do |t|
+<<<<<<< HEAD
     t.string    "type"
     t.text      "text"
     t.string    "image_file_name"
@@ -66,6 +67,22 @@ ActiveRecord::Schema.define(:version => 20110406181952) do
     t.string    "background_color"
     t.string    "text_color"
     t.string    "placement"
+=======
+    t.string   "type"
+    t.text     "text"
+    t.string   "image_file_name"
+    t.string   "image_file_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.string   "position"
+    t.integer  "page_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "background_color"
+    t.string   "text_color"
+    t.string   "placement"
+    t.string   "side"
+>>>>>>> ccb50d1fe9014abef7d38f63f6ac5a95301d32ec
   end
 
   create_table "pages", :force => true do |t|

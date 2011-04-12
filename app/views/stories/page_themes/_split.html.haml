@@ -12,7 +12,7 @@
         }
 
 - size ||= "original"
-- split_layout = @page && @page.layout ? @page.layout : ""
+- split_layout = @page && @page.layout ? @page.layout : "image-text"
 .split
   .image.image1{:class => split_layout == "image-text" || split_layout == "image-image" ? "" : "hidden"}
     .inner{:class => @page && @page.image_at_position(1) ? @page.image_at_position(1).placement : "", :style => @page && @page.image_at_position(1) ? "background-image: url(#{@page.image_at_position(1).image.url(size.to_s)})" : ""}

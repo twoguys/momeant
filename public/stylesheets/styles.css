@@ -948,6 +948,67 @@ form.new_story, form.edit_story, .story-form {
           padding-right: 1px; }
     #page-previews li.split div.split .hidden {
       display: none; }
+#page-previews .grid {
+  width: 288px;
+  height: 180px; }
+  #page-previews .grid ul.cells {
+    height: 100%; }
+    #page-previews .grid ul.cells li {
+      width: 25%;
+      height: 50%;
+      float: left;
+      position: relative;
+      margin: 0;
+      clear: none; }
+      #page-previews .grid ul.cells li .side {
+        margin: 0; }
+      #page-previews .grid ul.cells li .front, #page-previews .grid ul.cells li .back {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%; }
+      #page-previews .grid ul.cells li .front {
+        z-index: 2; }
+      #page-previews .grid ul.cells li .back {
+        z-index: 1; }
+      #page-previews .grid ul.cells li .side .image {
+        width: 100%;
+        height: 100%;
+        display: block;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover; }
+      #page-previews .grid ul.cells li .side .text {
+        display: table;
+        font-size: 2em;
+        text-align: center; }
+        #page-previews .grid ul.cells li .side .text .inner {
+          background-color: white;
+          background-color: rgba(255, 255, 255, 0.9);
+          padding: 0 10%;
+          vertical-align: middle;
+          display: table-cell;
+          font-family: "museo-slab-1", "museo-slab-2", serif;
+          line-height: 26px;
+          font-size: 14px;
+          text-align: justify;
+          letter-spacing: -0.5px; }
+          #page-previews .grid ul.cells li .side .text .inner:first-letter {
+            font-family: "museo-sans-1", "museo-sans-2", sans-serif;
+            font-size: 50px;
+            vertical-align: baseline;
+            float: left;
+            text-transform: uppercase;
+            line-height: 50px;
+            height: 50px;
+            padding-top: 10px;
+            padding-right: 4px; }
+    #page-previews .grid ul.cells li:hover .front {
+      z-index: 1; }
+    #page-previews .grid ul.cells li:hover .back {
+      z-index: 2; }
 #page-previews li.page.launch {
   color: #333333;
   font-size: 20px;
@@ -1243,7 +1304,7 @@ form.new_story, form.edit_story, .story-form {
         width: 50%;
         margin: 0; }
         #page-editor #pane ul.pages li .grid li.inputs .side .inner h3 {
-          background-color: #d7d7d7;
+          background-color: #eeeeee;
           color: #8d8d8d;
           text-transform: uppercase;
           padding: 5px; }
@@ -1572,6 +1633,67 @@ form.new_story, form.edit_story, .story-form {
           height: 100px;
           padding-top: 14px;
           padding-right: 10px; }
+    #page-editor ul#pages .grid {
+      width: 100%;
+      height: 100%; }
+      #page-editor ul#pages .grid ul.cells {
+        height: 100%; }
+        #page-editor ul#pages .grid ul.cells li {
+          width: 25%;
+          height: 50%;
+          float: left;
+          position: relative;
+          margin: 0;
+          clear: none; }
+          #page-editor ul#pages .grid ul.cells li .side {
+            margin: 0; }
+          #page-editor ul#pages .grid ul.cells li .front, #page-editor ul#pages .grid ul.cells li .back {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%; }
+          #page-editor ul#pages .grid ul.cells li .front {
+            z-index: 2; }
+          #page-editor ul#pages .grid ul.cells li .back {
+            z-index: 1; }
+          #page-editor ul#pages .grid ul.cells li .side .image {
+            width: 100%;
+            height: 100%;
+            display: block;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover; }
+          #page-editor ul#pages .grid ul.cells li .side .text {
+            display: table;
+            font-size: 2em;
+            text-align: center; }
+            #page-editor ul#pages .grid ul.cells li .side .text .inner {
+              background-color: white;
+              background-color: rgba(255, 255, 255, 0.9);
+              padding: 0 10%;
+              vertical-align: middle;
+              display: table-cell;
+              font-family: "museo-slab-1", "museo-slab-2", serif;
+              line-height: 26px;
+              font-size: 14px;
+              text-align: justify;
+              letter-spacing: -0.5px; }
+              #page-editor ul#pages .grid ul.cells li .side .text .inner:first-letter {
+                font-family: "museo-sans-1", "museo-sans-2", sans-serif;
+                font-size: 50px;
+                vertical-align: baseline;
+                float: left;
+                text-transform: uppercase;
+                line-height: 50px;
+                height: 50px;
+                padding-top: 10px;
+                padding-right: 4px; }
+        #page-editor ul#pages .grid ul.cells li:hover .front {
+          z-index: 1; }
+        #page-editor ul#pages .grid ul.cells li:hover .back {
+          z-index: 2; }
   #page-editor #story-details {
     position: absolute;
     bottom: -51px;
@@ -2416,52 +2538,67 @@ input.bookmark:active, input.unbookmark:active {
           height: 100px;
           padding-top: 14px;
           padding-right: 10px; }
-    .story-viewer ul#pages li.grid ul.cells {
+    .story-viewer ul#pages li.grid {
+      width: 100%;
       height: 100%; }
-      .story-viewer ul#pages li.grid ul.cells li {
-        width: 25%;
-        height: 50%;
-        float: left;
-        position: relative; }
-        .story-viewer ul#pages li.grid ul.cells li .image, .story-viewer ul#pages li.grid ul.cells li .text {
-          position: absolute;
-          width: 100%;
-          height: 100%; }
-        .story-viewer ul#pages li.grid ul.cells li .image {
-          display: block;
-          -webkit-background-size: cover;
-          -moz-background-size: cover;
-          -o-background-size: cover;
-          background-size: cover; }
-        .story-viewer ul#pages li.grid ul.cells li .text {
-          display: none;
-          font-size: 2em;
-          text-align: center;
-          background-color: white;
-          background-color: rgba(255, 255, 255, 0.9); }
-          .story-viewer ul#pages li.grid ul.cells li .text .inner {
-            padding: 0 10%;
-            vertical-align: middle;
-            display: table-cell;
-            font-family: "museo-slab-1", "museo-slab-2", serif;
-            line-height: 26px;
-            font-size: 14px;
-            text-align: justify;
-            letter-spacing: -0.5px; }
-            .story-viewer ul#pages li.grid ul.cells li .text .inner:first-letter {
-              font-family: "museo-sans-1", "museo-sans-2", sans-serif;
-              font-size: 50px;
-              vertical-align: baseline;
-              float: left;
-              text-transform: uppercase;
-              line-height: 50px;
-              height: 50px;
-              padding-top: 10px;
-              padding-right: 4px; }
-        .story-viewer ul#pages li.grid ul.cells li img {
-          width: 100%; }
-      .story-viewer ul#pages li.grid ul.cells li:hover .text {
-        display: table; }
+      .story-viewer ul#pages li.grid ul.cells {
+        height: 100%; }
+        .story-viewer ul#pages li.grid ul.cells li {
+          width: 25%;
+          height: 50%;
+          float: left;
+          position: relative;
+          margin: 0;
+          clear: none; }
+          .story-viewer ul#pages li.grid ul.cells li .side {
+            margin: 0; }
+          .story-viewer ul#pages li.grid ul.cells li .front, .story-viewer ul#pages li.grid ul.cells li .back {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%; }
+          .story-viewer ul#pages li.grid ul.cells li .front {
+            z-index: 2; }
+          .story-viewer ul#pages li.grid ul.cells li .back {
+            z-index: 1; }
+          .story-viewer ul#pages li.grid ul.cells li .side .image {
+            width: 100%;
+            height: 100%;
+            display: block;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover; }
+          .story-viewer ul#pages li.grid ul.cells li .side .text {
+            display: table;
+            font-size: 2em;
+            text-align: center; }
+            .story-viewer ul#pages li.grid ul.cells li .side .text .inner {
+              background-color: white;
+              background-color: rgba(255, 255, 255, 0.9);
+              padding: 0 10%;
+              vertical-align: middle;
+              display: table-cell;
+              font-family: "museo-slab-1", "museo-slab-2", serif;
+              line-height: 26px;
+              font-size: 14px;
+              text-align: justify;
+              letter-spacing: -0.5px; }
+              .story-viewer ul#pages li.grid ul.cells li .side .text .inner:first-letter {
+                font-family: "museo-sans-1", "museo-sans-2", sans-serif;
+                font-size: 50px;
+                vertical-align: baseline;
+                float: left;
+                text-transform: uppercase;
+                line-height: 50px;
+                height: 50px;
+                padding-top: 10px;
+                padding-right: 4px; }
+        .story-viewer ul#pages li.grid ul.cells li:hover .front {
+          z-index: 1; }
+        .story-viewer ul#pages li.grid ul.cells li:hover .back {
+          z-index: 2; }
   .story-viewer #previous-page, .story-viewer #next-page {
     width: 20%;
     height: 100%;
