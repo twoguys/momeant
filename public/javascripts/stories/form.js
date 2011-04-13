@@ -18,7 +18,7 @@ var story_page_editor = function() {
 		$('#pane .expander-tab').click(pages_editor.open_or_close_pane);
 		$('.pane-insides a.save').click(pages_editor.open_or_close_pane);
 
-		setup_page_type_chooser();		
+		setup_page_type_chooser();
 		$('.pane-insides a.change').click(pages_editor.change_page_type);
 		this.setup_preview_thumbnail_switching($('#page-previews li.page a.choose-thumbnail'));
 		this.setup_preview_clicking($('#page-previews li.page'));
@@ -547,35 +547,37 @@ var story_auto_saver = function() {
 		});
 	};
 	
+	this.save_text = function($element, page_id, type, number) {
+		var data = {};
+		data['type'] = type;
+		data['number'] = number;
+		data['text'] = $element.val();
+		var position = $element.attr('position');
+		if (position) {
+			data['position'] = position;
+		}
+		var side = $element.attr('side');
+		if (side) {
+			data['side'] = side;
+		}
+		auto_saver.show_pages_spinner();
+		$.ajax({
+		  type: 'PUT',
+		  url: '/stories/' + pages_editor.story_id + '/pages/' + page_id,
+		  data: data,
+		  success: function(data) {
+				if (data.result == "success") {
+					auto_saver.hide_pages_spinner(true);
+				} else {
+					log('error when updating page ' + page_id);
+				}
+			}
+		});
+	};
+	
 	this.monitor_page_typing = function($page, page_id, type, number) {
 		$page.find('.monitor-typing').observe_field(auto_saver.observe_delay, function(value, object) {
-			var value = $(object).val();
-			var data = {};
-			data['type'] = type;
-			data['number'] = number;
-			data['text'] = value;
-			var position = $(object).attr('position');
-			if (position) {
-				data['position'] = position;
-			}
-			var side = $(object).attr('side');
-			if (side) {
-				data['side'] = side;
-			}
-			auto_saver.show_pages_spinner();
-			$.ajax({
-			  type: 'PUT',
-			  url: '/stories/' + pages_editor.story_id + '/pages/' + page_id,
-			  data: data,
-			  success: function(data) {
-					if (data.result == "success") {
-						log('successfully updated page ' + page_id + ' with: ' + value);
-						auto_saver.hide_pages_spinner(true);
-					} else {
-						log('error when updating page ' + page_id);
-					}
-				}
-			});
+			auto_saver.save_text($(object), page_id, type, number);
 		});
 	};
 	
@@ -791,65 +793,89 @@ var story_auto_saver = function() {
 	};
 	
 	this.setup_rich_text_editing = function($page, page_id, type, number) {
-		var text_editor_config = {
-			height: '300px',
-			width: '600px',
-			dompath: false,
-			toolbar: {
-				buttons: [
-					{ group: 'textstyle', label: 'Type options',
-						buttons: [
-							{ type: 'select', label: 'typeface', value: 'fontname', disabled: true,
-                  menu: [
-                      { text: 'Arial' },
-                      { text: '"ambroise-std-1"', checked: true },
-                      { text: '"museo-slab-1"' },
-                      { text: 'Courier New' },
-                      { text: 'Lucida Console' },
-                      { text: 'Tahoma' },
-                      { text: 'Times New Roman' },
-                      { text: 'Trebuchet MS' },
-                      { text: 'Verdana' }
-                  ]
-              },
-							{ type: 'separator' },
-							{ type: 'spin', label: '13', value: 'fontsize', range: [ 30, 70 ], disabled: true },
-							{ type: 'separator' },
-							{ type: 'color', label: 'Font Color', value: 'forecolor', disabled: true },
-							{ type: 'separator' },
-              { type: 'color', label: 'Background Color', value: 'backcolor', disabled: true },
-							{ type: 'separator' },
-							{ type: 'push', label: 'Bold', value: 'bold' },
-							{ type: 'separator' },
-              { type: 'push', label: 'Italic', value: 'italic' },
-							{ type: 'separator' },
-              { type: 'push', label: 'Underline', value: 'underline' }
-						]
-					}
-				]
-			}
-		};
-		if (type == 'pullquote')
-			text_editor_config.toolbar.buttons[0].buttons[2].range = [10, 30]
+		// var text_editor_config = {
+		// 	height: '300px',
+		// 	width: '600px',
+		// 	dompath: false,
+		// 	toolbar: {
+		// 		buttons: [
+		// 			{ group: 'textstyle', label: 'Type options',
+		// 				buttons: [
+		// 					{ type: 'select', label: 'typeface', value: 'fontname', disabled: true,
+		//                   menu: [
+		//                       { text: 'Arial' },
+		//                       { text: '"ambroise-std-1"', checked: true },
+		//                       { text: '"museo-slab-1"' },
+		//                       { text: 'Courier New' },
+		//                       { text: 'Lucida Console' },
+		//                       { text: 'Tahoma' },
+		//                       { text: 'Times New Roman' },
+		//                       { text: 'Trebuchet MS' },
+		//                       { text: 'Verdana' }
+		//                   ]
+		//               },
+		// 					{ type: 'separator' },
+		// 					{ type: 'spin', label: '13', value: 'fontsize', range: [ 30, 70 ], disabled: true },
+		// 					{ type: 'separator' },
+		// 					{ type: 'color', label: 'Font Color', value: 'forecolor', disabled: true },
+		// 					{ type: 'separator' },
+		//               { type: 'color', label: 'Background Color', value: 'backcolor', disabled: true },
+		// 					{ type: 'separator' },
+		// 					{ type: 'push', label: 'Bold', value: 'bold' },
+		// 					{ type: 'separator' },
+		//               { type: 'push', label: 'Italic', value: 'italic' },
+		// 					{ type: 'separator' },
+		//               { type: 'push', label: 'Underline', value: 'underline' }
+		// 				]
+		// 			}
+		// 		]
+		// 	}
+		// };
+		// if (type == 'pullquote')
+		// 	text_editor_config.toolbar.buttons[0].buttons[2].range = [10, 30]
+		// 
+		// $page.find('.rich-editable').each(function(index, element) {
+		// 	var $element = $(element), Dom = YAHOO.util.Dom, Event = YAHOO.util.Event;
+		// 
+		// 	var myEditor = new YAHOO.widget.SimpleEditor($(element).attr('id'), text_editor_config);
+		// 
+		// 	// setup previewing
+		// 	if ($element.hasClass('mirrored')) {
+		// 		var $to = $('ul#pages li#page_' + number + ' .' + $element.attr('mirror-to') + ', #page-previews li#preview_' + number + ' .' + $element.attr('mirror-to'));
+		// 		var $save_button = $element.parents('.body:eq(0)').find('a.save');
+		// 		$save_button.click(function() {
+		// 			myEditor.saveHTML();
+		// 			var html = myEditor.get('element').value;
+		// 			$element.html(html);
+		// 			$to.html(html);
+		// 		});
+		// 	}
+		// 
+		// 	myEditor.render();
+		// });
 		
 		$page.find('.rich-editable').each(function(index, element) {
-			var $element = $(element), Dom = YAHOO.util.Dom, Event = YAHOO.util.Event;
-
-			var myEditor = new YAHOO.widget.SimpleEditor($(element).attr('id'), text_editor_config);
-
-			// setup previewing
+			var $element = $(element);
+			tinyMCE.init({
+		    mode: 'exact',
+				elements: $element.attr('id'),
+				theme : "advanced",
+		    theme_advanced_buttons1 : "fontselect,fontsizeselect,forecolor,backcolor,bold,underline,italic",
+		    theme_advanced_buttons2 : "",
+		    theme_advanced_buttons3 : "",
+		    theme_advanced_toolbar_location : "top",
+		    theme_advanced_toolbar_align : "left"
+			});
+			
 			if ($element.hasClass('mirrored')) {
 				var $to = $('ul#pages li#page_' + number + ' .' + $element.attr('mirror-to') + ', #page-previews li#preview_' + number + ' .' + $element.attr('mirror-to'));
 				var $save_button = $element.parents('.body:eq(0)').find('a.save');
 				$save_button.click(function() {
-					myEditor.saveHTML();
-					var html = myEditor.get('element').value;
-					$element.html(html);
+					var html = tinyMCE.get($element.attr('id')).getContent();
+					auto_saver.save_text($element, page_id, type, number);
 					$to.html(html);
 				});
 			}
-
-			myEditor.render();
 		});
 	};
 	
