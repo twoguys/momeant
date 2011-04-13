@@ -24,40 +24,50 @@ ActiveRecord::Schema.define(:version => 20110411130719) do
     t.datetime "updated_at"
   end
 
-  create_table "bookmarked_stories_users", :id => false, :force => true do |t|
-    t.integer "user_id"
-    t.integer "story_id"
-  end
-
   create_table "credit_cards", :force => true do |t|
-    t.string   "last_four_digits"
-    t.string   "braintree_token"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string    "last_four_digits"
+    t.string    "braintree_token"
+    t.integer   "user_id"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   create_table "curations", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "story_id"
-    t.string   "type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.text     "comment"
+    t.integer   "user_id"
+    t.integer   "story_id"
+    t.string    "type"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.text      "comment"
   end
 
   create_table "invitations", :force => true do |t|
-    t.integer  "inviter_id"
-    t.boolean  "accepted",      :default => false
-    t.string   "invited_as"
-    t.string   "invitee_email"
-    t.string   "token"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "invitee_id"
+    t.integer   "inviter_id"
+    t.boolean   "accepted",      :default => false
+    t.string    "invited_as"
+    t.string    "invitee_email"
+    t.string    "token"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.integer   "invitee_id"
   end
 
   create_table "page_medias", :force => true do |t|
+<<<<<<< HEAD
+    t.string    "type"
+    t.text      "text"
+    t.string    "image_file_name"
+    t.string    "image_file_type"
+    t.integer   "image_file_size"
+    t.timestamp "image_updated_at"
+    t.string    "position"
+    t.integer   "page_id"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.string    "background_color"
+    t.string    "text_color"
+    t.string    "placement"
+=======
     t.string   "type"
     t.text     "text"
     t.string   "image_file_name"
@@ -72,34 +82,35 @@ ActiveRecord::Schema.define(:version => 20110411130719) do
     t.string   "text_color"
     t.string   "placement"
     t.string   "side"
+>>>>>>> ccb50d1fe9014abef7d38f63f6ac5a95301d32ec
   end
 
   create_table "pages", :force => true do |t|
-    t.integer  "number"
-    t.string   "type"
-    t.integer  "story_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "background_color"
-    t.string   "text_color"
-    t.string   "layout"
+    t.integer   "number"
+    t.string    "type"
+    t.integer   "story_id"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.string    "background_color"
+    t.string    "text_color"
+    t.string    "layout"
   end
 
   create_table "pay_period_line_items", :force => true do |t|
-    t.integer  "payee_id"
-    t.integer  "pay_period_id"
-    t.float    "amount"
-    t.integer  "payment_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer   "payee_id"
+    t.integer   "pay_period_id"
+    t.float     "amount"
+    t.integer   "payment_id"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   create_table "pay_periods", :force => true do |t|
-    t.datetime "end"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.boolean  "paid",       :default => false
+    t.timestamp "end"
+    t.integer   "user_id"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.boolean   "paid",       :default => false
   end
 
   create_table "stories", :force => true do |t|
@@ -121,20 +132,20 @@ ActiveRecord::Schema.define(:version => 20110411130719) do
   end
 
   create_table "subscriptions", :force => true do |t|
-    t.integer  "subscriber_id"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer   "subscriber_id"
+    t.integer   "user_id"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   create_table "taggings", :force => true do |t|
-    t.integer  "tag_id"
-    t.integer  "taggable_id"
-    t.string   "taggable_type"
-    t.integer  "tagger_id"
-    t.string   "tagger_type"
-    t.string   "context"
-    t.datetime "created_at"
+    t.integer   "tag_id"
+    t.integer   "taggable_id"
+    t.string    "taggable_type"
+    t.integer   "tagger_id"
+    t.string    "tagger_type"
+    t.string    "context"
+    t.timestamp "created_at"
   end
 
   add_index "taggings", ["tag_id"], :name => "index_taggings_on_tag_id"
@@ -145,22 +156,22 @@ ActiveRecord::Schema.define(:version => 20110411130719) do
   end
 
   create_table "topics", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "topic_id"
+    t.string    "name"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.integer   "topic_id"
   end
 
   create_table "transactions", :force => true do |t|
-    t.integer  "story_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.float    "amount"
-    t.integer  "payee_id"
-    t.integer  "payer_id"
-    t.string   "type"
-    t.integer  "pay_period_line_item_id"
-    t.string   "braintree_order_id"
+    t.integer   "story_id"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.float     "amount"
+    t.integer   "payee_id"
+    t.integer   "payer_id"
+    t.string    "type"
+    t.integer   "pay_period_line_item_id"
+    t.string    "braintree_order_id"
   end
 
   create_table "users", :force => true do |t|
