@@ -1,6 +1,7 @@
 @mixin titleSlide($width:288px, $height:180px)
 	width: $width
 	height: $height
+	overflow: hidden
 	.inner
 		background-color: #000
 		color: #fff
@@ -10,13 +11,12 @@
 		height: 100%
 		width: 100%
 		font-weight: bold
-		.inner
-			display: table
+		display: table
 		.title
 			display: table-cell
 			vertical-align: middle
 			padding: 20px 10px 10px
-			line-height: 22px
+			line-height: 3em
 			letter-spacing: .5px
 			font-size: 22px
 			hr
@@ -27,18 +27,8 @@
 				height: auto
 @mixin titleSlideFullsize
 	@include titleSlide(100%, 100%)
-	.inner
-		display: table
-	.title
-		position: relative
-		top: 0
-		bottom: 0
-		display: table-cell
-		font-size: 120px
-		vertical-align: middle
-		text-align: center
-		line-height: 110px
-		letter-spacing: -4px
+	.inner .title
+		letter-spacing: -2px
 		hr
 			margin: 30px auto
 			width: 30%
