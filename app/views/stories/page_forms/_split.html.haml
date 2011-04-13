@@ -3,7 +3,10 @@
     .title Two Column
     = link_to("Change", "#", :class => "change")
     .spinner Saving...
-  .copy Perfect for short stories, journalism and other text-centric content, the Two Column story block allows you to choose from four possible layouts using a combination of text and image columns. As with all image content, you can choose from three size options: original size, fullscreen (which adjusts your image to fill the viewer's browser window), or fit to screen (which fits either the height or width of the viewer's browser window but doesn't crop your image). In the text columns, add custom styling for typeface, text color(s), highlighting, and hyperlinking.
+  .copy
+    %strong Perfect for short stories, journalism and other text-centric content,
+    %span the Two Column story block allows you to choose from four possible layouts using a combination of text and image columns.
+    / As with all image content, you can choose from three size options: original size, fullscreen (which adjusts your image to fill the viewer's browser window), or fit to screen (which fits either the height or width of the viewer's browser window but doesn't crop your image). In the text columns, add custom styling for typeface, text color(s), highlighting, and hyperlinking.
   .body
     - layout = @page && @page.layout ? @page.layout : "image-text"
     %fieldset

@@ -1160,12 +1160,17 @@ form.new_story, form.edit_story, .story-form {
           background-position: -16px 0; }
       #page-editor #pane .pane-insides .copy {
         margin: 15px;
-        font-size: 15px;
+        font-size: 13px;
         line-height: 24px;
         font-family: "museo-slab-1", "museo-slab-2", serif;
         border-bottom: 1px dotted #aaaaaa;
         padding-bottom: 15px;
         color: #777777; }
+        #page-editor #pane .pane-insides .copy strong {
+          font-weight: normal;
+          color: black; }
+        #page-editor #pane .pane-insides .copy span {
+          display: inline; }
       #page-editor #pane .pane-insides .body {
         padding: 0 15px 15px; }
     #page-editor #pane a.save {
@@ -1195,23 +1200,21 @@ form.new_story, form.edit_story, .story-form {
         #page-editor #pane ul.pages li label span.sidenote {
           text-transform: none;
           font-style: italic; }
+      #page-editor #pane ul.pages li .tip-icon {
+        width: 19px;
+        height: 19px;
+        background: transparent url(../images/tipIcon.png) no-repeat;
+        cursor: pointer; }
       #page-editor #pane ul.pages li .tips {
-        padding: 15px;
-        color: #777777; }
-        #page-editor #pane ul.pages li .tips h3 {
-          font-weight: 700;
-          font-size: 20px;
-          color: white;
-          padding-bottom: 5px;
-          border-bottom: 1px dotted #aaaaaa;
-          margin-bottom: 10px;
-          text-transform: uppercase; }
-        #page-editor #pane ul.pages li .tips ul li {
-          font-size: 11px;
-          float: left;
-          width: 40%;
-          margin-right: 5%;
-          clear: none; }
+        display: none;
+        color: #777777;
+        width: 100%;
+        padding-top: 5px; }
+        #page-editor #pane ul.pages li .tips li {
+          margin-bottom: 5px;
+          padding-left: 5px;
+          background-color: #00aeef;
+          color: white; }
       #page-editor #pane ul.pages li .title textarea {
         width: 95%;
         height: 160px;
@@ -1239,9 +1242,6 @@ form.new_story, form.edit_story, .story-form {
           cursor: pointer; }
         #page-editor #pane ul.pages li .full_image .picker li.chosen {
           background-color: #b7ebff; }
-      #page-editor #pane ul.pages li .pullquote fieldset {
-        width: 80%;
-        margin: 0 auto; }
       #page-editor #pane ul.pages li .pullquote textarea {
         width: 95%;
         height: 300px; }

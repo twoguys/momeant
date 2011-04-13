@@ -464,12 +464,17 @@ form.new_story, form.edit_story, .story-form
 					background-position: -16px 0
 			.copy
 				margin: 15px
-				font-size: 15px
+				font-size: 13px
 				line-height: 24px
 				font-family: $typewriter
 				border-bottom: 1px dotted #aaa
 				padding-bottom: 15px
 				color: #777
+				strong
+					font-weight: normal
+					color: #000
+				span
+					display: inline
 			.body
 				padding: 0 15px 15px
 		a.save
@@ -498,23 +503,21 @@ form.new_story, form.edit_story, .story-form
 					span.sidenote
 						text-transform: none
 						font-style: italic
+				.tip-icon
+					width: 19px
+					height: 19px
+					background: transparent url(../images/tipIcon.png) no-repeat
+					cursor: pointer
 				.tips
-					padding: 15px
+					display: none
 					color: #777
-					h3
-						font-weight: 700
-						font-size: 20px
+					width: 100%
+					padding-top: 5px
+					li
+						margin-bottom: 5px
+						padding-left: 5px
+						background-color: $link_color
 						color: #fff
-						padding-bottom: 5px
-						border-bottom: 1px dotted #aaa
-						margin-bottom: 10px
-						text-transform: uppercase
-					ul li
-						font-size: 11px
-						float: left
-						width: 40%
-						margin-right: 5%
-						clear: none
 				.title
 					textarea
 						width: 95%
@@ -545,9 +548,6 @@ form.new_story, form.edit_story, .story-form
 						li.chosen
 							background-color: #b7ebff
 				.pullquote
-					fieldset
-						width: 80%
-						margin: 0 auto
 					textarea
 						width: 95%
 						height: 300px

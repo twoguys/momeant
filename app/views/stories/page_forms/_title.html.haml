@@ -3,7 +3,13 @@
     .title Title
     = link_to("Change", "#", :class => "change")
     .spinner Saving...
-  .copy Use this title page as a bold introduction to your story. You can add category icons by checking the appropriate box. This will give your readers some context and help them find the story again in the future. Or, just use this story block to emphasize a quote, factoid or other important snippet of text. Think outside the box - erm - slide!
+  .copy
+    %strong Use this title page as a bold introduction to your story.
+    %span This will give your readers some context and help them find the story again in the future. Or, just use this story block to emphasize a quote, factoid or other important snippet of text. Think outside the box - erm - slide!
+    .tip-icon.tooltipped-e{:title => "View tips"}
+    %ul.tips
+      %li You can add category icons by checking the appropriate box. 
+      %li Feel free to customize the typeface, size and color of your text.
   .body
     %ul
       %li
@@ -12,8 +18,3 @@
         = text_area_tag "pages[#{@page_number}][text]", text_value, :class => "monitor-typing background-color-affected color-affected mirrored rich-editable", "mirror-to" => "text"
       %li
         = link_to("Save &amp; Preview".html_safe, "#", :class => "save")
-  .tips
-    %h3 Tips
-    %ul
-      %li  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.
-      %li  Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.

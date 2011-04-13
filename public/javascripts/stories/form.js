@@ -413,6 +413,7 @@ var story_auto_saver = function() {
 				auto_saver.handle_split_configuration($page, page_id, page_type, number);
 				auto_saver.handle_grid_configuration($page, page_id, page_type, number);
 				auto_saver.setup_rich_text_editing($page, page_id, page_type, number);
+				auto_saver.handle_tip_showing($page, page_id, page_type, number);
 			}
 		});
 	};
@@ -828,6 +829,8 @@ var story_auto_saver = function() {
 				]
 			}
 		};
+		if (type == 'pullquote')
+			text_editor_config.toolbar.buttons[0].buttons[2].range = [10, 30]
 		
 		$page.find('.rich-editable').each(function(index, element) {
 			var $element = $(element), Dom = YAHOO.util.Dom, Event = YAHOO.util.Event;
@@ -847,6 +850,16 @@ var story_auto_saver = function() {
 			}
 
 			myEditor.render();
+		});
+	};
+	
+	this.handle_tip_showing = function($page, page_id, type, number) {
+		$page.find('.tip-icon').click(function() {
+			var $tips = $(this).siblings('.tips');
+			if ($tips.css('display') == 'none')
+				$tips.slideDown(300);
+			else
+				$tips.slideUp(300);
 		});
 	};
 }

@@ -7,4 +7,4 @@
       }
 
 .pullquote-inner
-  %p.quote{:id => @page ? "story_#{@page.story_id}_page_#{@page.number}" : ""}= @page.text if @page
+  %p.quote{:id => @page ? "story_#{@page.story_id}_page_#{@page.number}" : ""}= auto_link(@page.text) if @page

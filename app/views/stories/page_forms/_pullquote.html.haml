@@ -3,16 +3,16 @@
     .title Blockquote
     = link_to("Change", "#", :class => "change")
     .spinner Saving...
-  .copy Great for adding some emphasis to a larger block of text, the Blockquote slide allows you to enter up to 500 characters and add custom styling for typeface, text color(s), highlighting, and hyperlinking. Don't forget to choose a background color or pattern!
+  .copy
+    %strong Great for adding some emphasis to a larger block of text,
+    %span the Blockquote slide allows you to enter up to 500 characters and add custom styling for typeface, text color(s), highlighting, and hyperlinking. Don't forget to choose a background color or pattern!
   .body
     %fieldset
       %ul
         %li
           %label Type your blockquote
-          - if @page && @page.text
-            = text_area_tag "pages[#{@page_number}][text]", @page.text, :class => "monitor-typing mirrored", "mirror-to" => "quote", :placeholder => "Type your text here..."
-          - else
-            = text_area_tag "pages[#{@page_number}][text]", "", :class => "monitor-typing mirrored", "mirror-to" => "quote", :placeholder => "Type your text here..."
+          - text_value = @page && @page.text ? @page.text : ""
+          = text_area_tag "pages[#{@page_number}][text]", text_value, :class => "monitor-typing mirrored rich-editable", "mirror-to" => "quote", :placeholder => "Type your text here..."
         %li
           = link_to("Save &amp; Preview".html_safe, "#", :class => "save")
   .tips
