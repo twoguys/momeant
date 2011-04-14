@@ -14,9 +14,7 @@
           - text_value = @page && @page.text ? @page.text : ""
           = text_area_tag "pages[#{@page_number}][text]", text_value, :class => "monitor-typing mirrored rich-editable", "mirror-to" => "quote", :style => "width:100%;height:300px;"
         %li
+          %label Pick a background color
+          = text_field_tag "pages[#{@page_number}][background_color]", "#000", :class => "color-picker bgcolor"
+        %li
           = link_to("Save &amp; Preview".html_safe, "#", :class => "save")
-  .tips
-    %h3 Tips
-    %ul
-      %li  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.
-      %li  Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.

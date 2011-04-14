@@ -4,8 +4,8 @@
     - content_for :head do
       - if @page.background_color
         :css
-          ul#pages #page_#{@page.number}, .page_#{@page.number}_userstyles {        
-              background-color: ##{@page.background_color};
+          #story_#{@page.story_id}_page_#{@page.number} {
+            background-color: #{@page.background_color};
           }
       - if caption && caption.background_color
         :css
@@ -19,7 +19,7 @@
           }
 
 - size ||= "original"
-.inner{:class => @page && @page.image_media ? @page.image_media.placement : "fill-screen"}
+.inner.bg-affected{:id => @page ? "story_#{@page.story_id}_page_#{@page.number}" : "", :class => @page && @page.image_media ? @page.image_media.placement : "fill-screen"}
   .image{:style => @page && @page.image ? "background-image: url(#{@page.image.url(size.to_s)})" : ""}
   - if size == "original"
     .caption.placeable{:class => @page && @page.text_media ? @page.text_media.placement : ""}= @page.text if @page && @page.text

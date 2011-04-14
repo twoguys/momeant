@@ -184,6 +184,18 @@ class Page < ActiveRecord::Base
         end
       end
       
+      if options[:background_color]
+        if options[:position] == "image1"
+          image1.background_color = options[:background_color]
+        elsif options[:position] == "image2"
+          image2.background_color = options[:background_color]
+        elsif options[:position] == "text1"
+          text1.background_color = options[:background_color]
+        elsif options[:position] == "text2"
+          text2.background_color = options[:background_color]
+        end 
+      end
+      
       if options[:layout].present?
         page.layout = options[:layout]
       end

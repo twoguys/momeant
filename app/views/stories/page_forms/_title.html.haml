@@ -17,4 +17,7 @@
         - text_value = @page && @page.text ? @page.text : ""
         = text_area_tag "pages[#{@page_number}][text]", text_value, :class => "monitor-typing background-color-affected color-affected mirrored rich-editable", "mirror-to" => "text", :style => "width:100%;height:150px;"
       %li
+        %label Pick a background color
+        = text_field_tag "pages[#{@page_number}][background_color]", "#000", :class => "color-picker bgcolor"
+      %li
         = link_to("Save &amp; Preview".html_safe, "#", :class => "save")

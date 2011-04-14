@@ -16,6 +16,9 @@
             - else
               = text_field_tag "pages[#{@page_number}][text]", "", :class => "monitor-typing"
         %li
+          %label Pick a background color
+          = text_field_tag "pages[#{@page_number}][background_color]", "#f2f2f2", :class => "color-picker bgcolor"
+        %li
           = link_to("Save &amp; Preview".html_safe, "#", :class => "save")
   .tips
     %h3 Tips

@@ -225,12 +225,11 @@ var story_page_editor = function() {
 			if (pages_editor.page_chooser_mode == 'add') {
 				pages_editor.goto_page(pages_editor.page, true);
 			}
+			
 			$('#page-type-chooser li[page-type="' + page_type + '"]').removeClass('loading');
-			$current_page.find('input[placeholder],textarea[placeholder]').placeholder();
-			$current_page.find('a.change').click(pages_editor.change_page_type);
-			$current_page.find('a.save').click(pages_editor.open_or_close_pane);
 			pages_editor.set_preview_type(page_type);
-			auto_saver.create_and_monitor_page($current_page, page_type, pages_editor.page);
+			
+			auto_saver.create_or_change_page($current_page, page_type, pages_editor.page, pages_editor.page_chooser_mode == 'add');
 		});
 		// update the full-size and thumbnail previews as well
 		var $full_page = $('ul#pages li#page_' + pages_editor.page);
@@ -369,27 +368,33 @@ var story_auto_saver = function() {
 		}
 	};
 	
-	this.create_and_monitor_page = function($page, type, number) {
+	this.monitor_page = function($page, id, type, number, new_page) {
+		if (new_page) {
+			$page.find('a.change').click(pages_editor.change_page_type);
+			$page.find('a.save').click(pages_editor.open_or_close_pane);
+		}
+		auto_saver.monitor_page_typing($page, id, type, number);
+		auto_saver.handle_image_uploading($page, id, type, number);
+		auto_saver.monitor_bgcolor_updates($page, id, type, number);
+		auto_saver.monitor_mirroring($page, id, type, number);
+		auto_saver.monitor_placement($page, id, type, number);
+		auto_saver.monitor_image_placement($page, id, type, number);
+		auto_saver.monitor_thumbnail_switching($page, id, type, number);
+		auto_saver.handle_video_embedding($page, id, type, number);
+		auto_saver.handle_split_configuration($page, id, type, number);
+		auto_saver.handle_grid_configuration($page, id, type, number);
+		auto_saver.setup_rich_text_editing($page, id, type, number);
+		auto_saver.handle_tip_showing($page, id, type, number);
+	};
+	
+	this.create_or_change_page = function($page, type, number, new_page) {
 		$.post('/stories/' + pages_editor.story_id + '/pages',
-			{
-				type: type,
-				number: number
-			},
+			{ type: type, number: number },
 			function(data) {
 				if (data.result == "success") {
-					$page.attr('page-id', data.id);
-					auto_saver.monitor_page_typing($page, data.id, type, number);
-					auto_saver.handle_image_uploading($page, data.id, type, number);
-					auto_saver.monitor_page_style_updates($page, data.id, type, number);
-					auto_saver.monitor_mirroring($page, data.id, type, number);
-					auto_saver.monitor_placement($page, data.id, type, number);
-					auto_saver.monitor_image_placement($page, data.id, type, number);
-					auto_saver.monitor_thumbnail_switching($page, data.id, type, number);
-					auto_saver.handle_video_embedding($page, data.id, type, number);
-					auto_saver.handle_split_configuration($page, data.id, type, number);
-					auto_saver.handle_grid_configuration($page, data.id, type, number);
-					auto_saver.setup_rich_text_editing($page, data.id, type, number);
-					auto_saver.handle_tip_showing($page, data.id, type, number);
+					if (new_page)
+						$page.attr('page-id', data.id);
+					auto_saver.monitor_page($page, data.id, type, number, new_page);
 				} else {
 					log('error when creating a ' + type + ' page.');
 				}
@@ -404,18 +409,7 @@ var story_auto_saver = function() {
 			if (page_id) {
 				var page_type = $page.attr('page-type');
 				var number = $page.attr('id').substring(5);
-				auto_saver.monitor_page_typing($page, page_id, page_type, number);
-				auto_saver.handle_image_uploading($page, page_id, page_type, number);
-				auto_saver.monitor_page_style_updates($page, page_id, page_type, number);
-				auto_saver.monitor_mirroring($page, page_id, page_type, number);
-				auto_saver.monitor_placement($page, page_id, page_type, number);
-				auto_saver.monitor_image_placement($page, page_id, page_type, number);
-				auto_saver.monitor_thumbnail_switching($page, page_id, page_type, number);
-				auto_saver.handle_video_embedding($page, page_id, page_type, number);
-				auto_saver.handle_split_configuration($page, page_id, page_type, number);
-				auto_saver.handle_grid_configuration($page, page_id, page_type, number);
-				auto_saver.setup_rich_text_editing($page, page_id, page_type, number);
-				auto_saver.handle_tip_showing($page, page_id, page_type, number);
+				auto_saver.monitor_page($page, page_id, page_type, number);
 			}
 		});
 	};
@@ -583,15 +577,19 @@ var story_auto_saver = function() {
 		});
 	};
 	
-	this.monitor_page_style_updates = function($page, page_id, type, number) {
-		$page.find('.style-editor .widget input').each(function() {
-			$(this).observe_field(auto_saver.observe_delay, function(value, object) {
-				var style = $(object).attr('update');
-				var data = {
-					type: type,
-					number: number,
-				};
-				data[style] = $(object).val();
+	this.monitor_bgcolor_updates = function($page, page_id, type, number) {
+		$page.find('.bgcolor').each(function() {
+			$(this).change(function() {
+				var $element = $(this);
+				var color = $element.val();
+				var position = $element.attr('position');
+				var position_selector = '';
+				var data = { type: type, number: number, background_color: color};
+				if (position) {
+					position_selector += '.' + position;
+					data['position'] = position;
+				}
+				$('ul#pages #page_' + number + ' .bg-affected' + position_selector + ', #page-previews #preview_' + number + ' .bg-affected' + position_selector).css('background-color', color);
 				auto_saver.show_pages_spinner();
 				$.ajax({
 				  type: 'PUT',
@@ -599,7 +597,7 @@ var story_auto_saver = function() {
 				  data: data,
 				  success: function(data) {
 						if (data.result == "success") {
-							log('successfully updated page ' + page_id + ' with: ' + value);
+							log('successfully updated page ' + page_id + ' with: ' + color);
 							auto_saver.hide_pages_spinner(true);
 						} else {
 							log('error when updating page ' + page_id);
@@ -607,6 +605,7 @@ var story_auto_saver = function() {
 					}
 				});
 			});
+			$(this).colorPicker();
 		});
 	};
 	
@@ -810,6 +809,9 @@ var story_auto_saver = function() {
 			if (type == 'grid') {
 				tiny_mce_config.theme_advanced_buttons1 = "fontselect,fontsizeselect";
 				tiny_mce_config.theme_advanced_buttons2 = "forecolor,backcolor,bold,underline,italic";
+			}
+			if (type == 'title') {
+				tiny_mce_config.theme_advanced_font_sizes = "36pt=36pt, 48pt=48pt, 60pt=60pt, 72pt=72pt"
 			}
 			tinyMCE.init(tiny_mce_config);
 			

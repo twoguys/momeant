@@ -100,6 +100,8 @@ $(document).ready(function() {
 	setup_recommendation_tabs();
 	//setup_personal_library_tabs();
 	$("a.disabled").click(function() {return false;})
+	
+	$.fn.colorPicker.defaultColors = ['000', '666', 'aaa', 'fff'];
 });
 
 function log(message) {
