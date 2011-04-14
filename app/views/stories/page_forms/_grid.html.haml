@@ -48,4 +48,6 @@
                             .loader
                       .text.type{:class => (side == "front" && front_side_show == "text") || (side == "back" && back_side_show == "text") ? "" : "hidden"}
                         - text = @page ? @page.media_at_position_and_side(cell,side).try(:text) : ""
-                        = text_area_tag "grid_text", text, :class => "monitor-typing color-affected mirrored", :position => cell, :side => side, "mirror-to" => "text-#{cell}-#{side}"
+                        = text_area_tag "grid_text_#{cell}_#{side}", text, :class => "monitor-typing color-affected mirrored rich-editable", :position => cell, :side => side, "mirror-to" => "text-#{cell}-#{side}", :style => "width: 100%"
+        %li
+          = link_to("Save &amp; Preview".html_safe, "#", :class => "save")

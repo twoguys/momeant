@@ -388,6 +388,8 @@ var story_auto_saver = function() {
 					auto_saver.handle_video_embedding($page, data.id, type, number);
 					auto_saver.handle_split_configuration($page, data.id, type, number);
 					auto_saver.handle_grid_configuration($page, data.id, type, number);
+					auto_saver.setup_rich_text_editing($page, data.id, type, number);
+					auto_saver.handle_tip_showing($page, data.id, type, number);
 				} else {
 					log('error when creating a ' + type + ' page.');
 				}
@@ -793,70 +795,9 @@ var story_auto_saver = function() {
 	};
 	
 	this.setup_rich_text_editing = function($page, page_id, type, number) {
-		// var text_editor_config = {
-		// 	height: '300px',
-		// 	width: '600px',
-		// 	dompath: false,
-		// 	toolbar: {
-		// 		buttons: [
-		// 			{ group: 'textstyle', label: 'Type options',
-		// 				buttons: [
-		// 					{ type: 'select', label: 'typeface', value: 'fontname', disabled: true,
-		//                   menu: [
-		//                       { text: 'Arial' },
-		//                       { text: '"ambroise-std-1"', checked: true },
-		//                       { text: '"museo-slab-1"' },
-		//                       { text: 'Courier New' },
-		//                       { text: 'Lucida Console' },
-		//                       { text: 'Tahoma' },
-		//                       { text: 'Times New Roman' },
-		//                       { text: 'Trebuchet MS' },
-		//                       { text: 'Verdana' }
-		//                   ]
-		//               },
-		// 					{ type: 'separator' },
-		// 					{ type: 'spin', label: '13', value: 'fontsize', range: [ 30, 70 ], disabled: true },
-		// 					{ type: 'separator' },
-		// 					{ type: 'color', label: 'Font Color', value: 'forecolor', disabled: true },
-		// 					{ type: 'separator' },
-		//               { type: 'color', label: 'Background Color', value: 'backcolor', disabled: true },
-		// 					{ type: 'separator' },
-		// 					{ type: 'push', label: 'Bold', value: 'bold' },
-		// 					{ type: 'separator' },
-		//               { type: 'push', label: 'Italic', value: 'italic' },
-		// 					{ type: 'separator' },
-		//               { type: 'push', label: 'Underline', value: 'underline' }
-		// 				]
-		// 			}
-		// 		]
-		// 	}
-		// };
-		// if (type == 'pullquote')
-		// 	text_editor_config.toolbar.buttons[0].buttons[2].range = [10, 30]
-		// 
-		// $page.find('.rich-editable').each(function(index, element) {
-		// 	var $element = $(element), Dom = YAHOO.util.Dom, Event = YAHOO.util.Event;
-		// 
-		// 	var myEditor = new YAHOO.widget.SimpleEditor($(element).attr('id'), text_editor_config);
-		// 
-		// 	// setup previewing
-		// 	if ($element.hasClass('mirrored')) {
-		// 		var $to = $('ul#pages li#page_' + number + ' .' + $element.attr('mirror-to') + ', #page-previews li#preview_' + number + ' .' + $element.attr('mirror-to'));
-		// 		var $save_button = $element.parents('.body:eq(0)').find('a.save');
-		// 		$save_button.click(function() {
-		// 			myEditor.saveHTML();
-		// 			var html = myEditor.get('element').value;
-		// 			$element.html(html);
-		// 			$to.html(html);
-		// 		});
-		// 	}
-		// 
-		// 	myEditor.render();
-		// });
-		
 		$page.find('.rich-editable').each(function(index, element) {
 			var $element = $(element);
-			tinyMCE.init({
+			var tiny_mce_config = {
 		    mode: 'exact',
 				elements: $element.attr('id'),
 				theme : "advanced",
@@ -865,15 +806,22 @@ var story_auto_saver = function() {
 		    theme_advanced_buttons3 : "",
 		    theme_advanced_toolbar_location : "top",
 		    theme_advanced_toolbar_align : "left"
-			});
+			};
+			if (type == 'grid') {
+				tiny_mce_config.theme_advanced_buttons1 = "fontselect,fontsizeselect";
+				tiny_mce_config.theme_advanced_buttons2 = "forecolor,backcolor,bold,underline,italic";
+			}
+			tinyMCE.init(tiny_mce_config);
 			
 			if ($element.hasClass('mirrored')) {
 				var $to = $('ul#pages li#page_' + number + ' .' + $element.attr('mirror-to') + ', #page-previews li#preview_' + number + ' .' + $element.attr('mirror-to'));
 				var $save_button = $element.parents('.body:eq(0)').find('a.save');
 				$save_button.click(function() {
-					var html = tinyMCE.get($element.attr('id')).getContent();
-					auto_saver.save_text($element, page_id, type, number);
-					$to.html(html);
+					var editor = tinyMCE.get($element.attr('id'));
+					if (editor.isDirty()) {
+						auto_saver.save_text($element, page_id, type, number);
+						$to.html(editor.getContent());
+					}
 				});
 			}
 		});

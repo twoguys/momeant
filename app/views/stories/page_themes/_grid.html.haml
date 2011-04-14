@@ -14,9 +14,9 @@
         - front_media = @page ? @page.media_at_position_and_side(cell, "front") : nil
         .image{:style => front_media && front_media.is_a?(PageImage) ? "background-image: url(#{front_media.image.url(size.to_s)})" : ""}
         .text
-          .inner{:class => "text-#{cell}-front"}= front_media.text if front_media && front_media.is_a?(PageText)
+          .inner{:class => "text-#{cell}-front"}= front_media.text.html_safe if front_media && front_media.is_a?(PageText) && front_media.text.present?
       .side.back
         - back_media = @page ? @page.media_at_position_and_side(cell, "back") : nil
         .image{:style => back_media && back_media.is_a?(PageImage) ? "background-image: url(#{back_media.image.url(size.to_s)})" : ""}
         .text
-          .inner{:class => "text-#{cell}-back"}= back_media.text if back_media && back_media.is_a?(PageText)
+          .inner{:class => "text-#{cell}-back"}= back_media.text.html_safe if back_media && back_media.is_a?(PageText) && back_media.text.present?
