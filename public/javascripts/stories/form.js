@@ -16,13 +16,10 @@ var story_page_editor = function() {
 		$('#next-page').click(pages_editor.goto_next_page);
 		$('#previous-page').click(pages_editor.goto_previous_page);
 		$('#pane .expander-tab').click(pages_editor.open_or_close_pane);
-		$('.pane-insides a.save').click(pages_editor.open_or_close_pane);
 
 		setup_page_type_chooser();
-		$('.pane-insides a.change').click(pages_editor.change_page_type);
 		this.setup_preview_thumbnail_switching($('#page-previews li.page a.choose-thumbnail'));
 		this.setup_preview_clicking($('#page-previews li.page'));
-		//setup_grid_editing();
 		setup_page_adding();
 		$('#editor-header a.delete').click(pages_editor.delete_current_page);
 		setup_launch_when_no_pages();
@@ -61,15 +58,7 @@ var story_page_editor = function() {
 			return false;
 		});
 	};
-	
-	var setup_grid_editing = function() {
-		$('#page-editor .grid .cells a').live('click', function() {
-			var $parent = $(this).parent();
-			$parent.hide();
-			$parent.siblings().show();
-		});
-	};
-	
+		
 	var setup_page_adding = function() {
 		$('#editor-header a.add').click(function() {
 			pages_editor.page_chooser_mode = 'add';
@@ -369,10 +358,8 @@ var story_auto_saver = function() {
 	};
 	
 	this.monitor_page = function($page, id, type, number, new_page) {
-		if (new_page) {
-			$page.find('a.change').click(pages_editor.change_page_type);
-			$page.find('a.save').click(pages_editor.open_or_close_pane);
-		}
+		$page.find('a.change').click(pages_editor.change_page_type);
+		$page.find('a.save').click(pages_editor.open_or_close_pane);
 		auto_saver.monitor_page_typing($page, id, type, number);
 		auto_saver.handle_image_uploading($page, id, type, number);
 		auto_saver.monitor_bgcolor_updates($page, id, type, number);
@@ -589,6 +576,7 @@ var story_auto_saver = function() {
 					position_selector += '.' + position;
 					data['position'] = position;
 				}
+				log('ul#pages #page_' + number + ' .bg-affected' + position_selector);
 				$('ul#pages #page_' + number + ' .bg-affected' + position_selector + ', #page-previews #preview_' + number + ' .bg-affected' + position_selector).css('background-color', color);
 				auto_saver.show_pages_spinner();
 				$.ajax({

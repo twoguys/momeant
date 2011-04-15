@@ -224,6 +224,13 @@ class Page < ActiveRecord::Base
           media.update_attribute(:text, options[:text])
         end
       end
+      
+      if options[:background_color] && options[:position]
+        position = options[:position][12,1]
+        side = options[:position].include?("front") ? "front" : "back"
+        media = page.media_at_position_and_side(position, side)
+        media.update_attribute(:background_color, options[:background_color]) if media
+      end
     else
       Rails.logger.info "[Momeant] No implementation for page type: #{type}"
       return false

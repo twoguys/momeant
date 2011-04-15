@@ -7,9 +7,9 @@
       }
 
 - size ||= "original"
-%ul.cells
+%ul.cells.bg-affected
   - 1.upto(8) do |cell|
-    %li{:position => cell}
+    %li{:position => cell, :class => "cell_#{cell}"}
       .side.front
         - front_media = @page ? @page.media_at_position_and_side(cell, "front") : nil
         .image{:style => front_media && front_media.is_a?(PageImage) ? "background-image: url(#{front_media.image.url(size.to_s)})" : ""}

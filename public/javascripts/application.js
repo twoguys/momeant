@@ -101,7 +101,7 @@ $(document).ready(function() {
 	//setup_personal_library_tabs();
 	$("a.disabled").click(function() {return false;})
 	
-	$.fn.colorPicker.defaultColors = ['000', '666', 'aaa', 'fff'];
+	$.fn.colorPicker.defaultColors = ['000', '333', '666', '999', 'ccc', 'fff'];
 });
 
 function log(message) {

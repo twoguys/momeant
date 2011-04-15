@@ -39,35 +39,39 @@
   };
   
   buildSelector = function(){
-    selector = $("<div id='color_selector'></div>");
+		// check to see if we've already built
+		
+		if ($('#color_selector').length == 0) {
+	    selector = $("<div id='color_selector'></div>");
 
-     //add color pallete
-     $.each($.fn.colorPicker.defaultColors, function(i){
-      swatch = $("<div class='color_swatch'>&nbsp;</div>")
-      swatch.css("background-color", "#" + this);
-      swatch.bind("click", function(e){ changeColor($(this).css("background-color")) });
-      swatch.bind("mouseover", function(e){ 
-        $(this).css("border-color", "#598FEF"); 
-        $("input#color_value").val(toHex($(this).css("background-color")));    
-        }); 
-      swatch.bind("mouseout", function(e){ 
-        $(this).css("border-color", "#000");
-        $("input#color_value").val(toHex($(selectorOwner).css("background-color")));
-        });
+	     //add color pallete
+	     $.each($.fn.colorPicker.defaultColors, function(i){
+	      swatch = $("<div class='color_swatch'>&nbsp;</div>")
+	      swatch.css("background-color", "#" + this);
+	      swatch.bind("click", function(e){ changeColor($(this).css("background-color")) });
+	      swatch.bind("mouseover", function(e){ 
+	        $(this).css("border-color", "#598FEF"); 
+	        $("input#color_value").val(toHex($(this).css("background-color")));    
+	        }); 
+	      swatch.bind("mouseout", function(e){ 
+	        $(this).css("border-color", "#000");
+	        $("input#color_value").val(toHex($(selectorOwner).css("background-color")));
+	        });
       
-     swatch.appendTo(selector);
-     });
+	     swatch.appendTo(selector);
+	     });
   
-     //add HEX value field
-     hex_field = $("<label for='color_value'>Hex</label><input type='text' size='8' id='color_value'/>");
-     hex_field.bind("keydown", function(event){
-      if(event.keyCode == 13) {changeColor($(this).val());}
-      if(event.keyCode == 27) {toggleSelector()}
-     });
+	     //add HEX value field
+	     hex_field = $("<label for='color_value'>Hex</label><input type='text' size='8' id='color_value'/>");
+	     hex_field.bind("keydown", function(event){
+	      if(event.keyCode == 13) {changeColor($(this).val());}
+	      if(event.keyCode == 27) {toggleSelector()}
+	     });
      
-     $("<div id='color_custom'></div>").append(hex_field).appendTo(selector);
+	     $("<div id='color_custom'></div>").append(hex_field).appendTo(selector);
 
-     $("body").append(selector); 
+	     $("body").append(selector);
+	   }
      selector.hide();
   };
   
