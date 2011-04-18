@@ -6,10 +6,6 @@
       = render :partial => "stories/page_themes/#{@page.partial_name}", :locals => {:size => "medium"}
       
   .title= link_to(story.title || "Incomplete Story", preview_story_path(story))
-  .likes{:class => story.liked_by?(current_user) ? "liked" : ""}
-    = story.likes.count
-  .recommendations{:class => story.recommended_by?(current_user) ? "recommended" : ""}
-    = story.recommendations.count
   .author by #{link_to(story.user.name, user_path(story.user))}
   .excerpt= truncate(story.synopsis, :length => 100)
   .price= story.price

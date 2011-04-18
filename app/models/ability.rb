@@ -5,15 +5,12 @@ class Ability
     alias_action :update, :destroy, :to => :modify
 
     if user
-      
-      can [:bookmarked, :recommended, :search], Story
-      can [:purchase, :bookmark, :unbookmark, :recommend, :unrecommend, :like, :unlike], Story, :published => true
+      can [:bookmarked, :search], Story
+      can [:bookmark, :unbookmark], Story, :published => true
       can :preview, Story do |story|
         story.published? || story.owner?(user)
       end
-      can :show, Story # do |story|
-      #         user.stories.include?(story)
-      #       end
+      can :show, Story
       can :create, Subscription
       can :destroy, Subscription, :subscriber_id => user.id
       

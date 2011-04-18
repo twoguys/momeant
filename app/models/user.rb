@@ -98,8 +98,26 @@ class User < ActiveRecord::Base
     "#{self.first_name} #{self.last_name}"
   end
   
+  def can_view_stories?
+    self.trial? || self.active_subscription?
+  end
+  
+  def has_rewarded?(story)
+    Reward.where(:payer_id => self.id, :story_id => story.id).present?
+  end
+  
+  def reward(story, amount)
+    return if amount.nil?
+    amount = amount.to_i
+    if can_afford?(amount)
+      reward = Reward.create!(:amount => amount, :payer_id => self.id, :payee_id => story.user_id, :story_id => story.id)
+      story.increment!(:reward_count, amount)
+      self.decrement!(:coins, amount)
+    end
+  end
+  
   def can_afford?(amount)
-    self.credits >= amount
+    self.coins >= amount
   end
   
   def purchase(story)

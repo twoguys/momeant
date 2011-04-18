@@ -17,13 +17,8 @@ Repo::Application.routes.draw do
   resources :stories do
     member do
       get :preview
-      post :purchase
       post :bookmark
       delete :unbookmark
-      post :recommend
-      delete :unrecommend
-      post :like
-      delete :unlike
       delete :remove_tag_from
       post :publish
       put :autosave
@@ -41,6 +36,8 @@ Repo::Application.routes.draw do
     resources :pages, :only => [:create, :update, :destroy] do
       post :add_or_update_image, :on => :member
     end
+    
+    resources :rewards
   end
   match "/stories/tagged_with/:tag",    :to => "stories#tagged_with",  :as => :stories_tagged_with
   

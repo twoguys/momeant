@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110418154506) do
+ActiveRecord::Schema.define(:version => 20110418192435) do
 
   create_table "adverts", :force => true do |t|
     t.string   "title"
@@ -113,6 +113,7 @@ ActiveRecord::Schema.define(:version => 20110418154506) do
     t.integer  "price"
     t.integer  "likes_count",     :default => 0
     t.text     "synopsis"
+    t.integer  "reward_count"
   end
 
   create_table "stories_topics", :id => false, :force => true do |t|
@@ -194,7 +195,7 @@ ActiveRecord::Schema.define(:version => 20110418154506) do
     t.text     "tagline"
     t.string   "occupation"
     t.string   "paid_state"
-    t.integer  "coins"
+    t.integer  "coins",                               :default => 0
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

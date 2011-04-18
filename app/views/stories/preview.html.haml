@@ -20,15 +20,12 @@
             - @page = @story.thumbnail
             = render :partial => "stories/page_themes/#{@page.partial_name}", :locals => {:size => "large"}
     .actions
-      = like_button(@story)
-
-      = recommend_button(@story)
-      = render "stories/recommend_modal"
+      = reward_link(@story)
+      = render "reward_modal"
+      = story_view_link(@story)
       
-      = story_buy_view_link(@story)
-      
-      = render "add_this"
-    .price= story_price(@story)
+      = #render "add_this"
+    .price= story_view_link(@story)
   .metadata
     .top
       .title= @story.title
@@ -48,4 +45,3 @@
           - if @story.owner?(current_user)
             = link_to("x", remove_tag_from_story_path(@story, :tag => tag.name),:class => "remove tooltipped-n", :title => "Remove tag", :remote => true, :method => :delete)
   .clear
-  .featured-comment

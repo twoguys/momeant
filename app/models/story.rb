@@ -16,13 +16,10 @@ class Story < ActiveRecord::Base
   
   belongs_to :user
   has_and_belongs_to_many :topics
-  has_many :purchases
   has_many :bookmarks, :dependent => :destroy
   has_many :users_who_bookmarked, :through => :bookmarks, :source => :user
-  has_many :recommendations, :dependent => :destroy
-  has_many :users_who_recommended, :through => :recommendations, :source => :user
-  has_many :likes, :dependent => :destroy
-  has_many :users_who_liked, :through => :likes, :source => :user
+  has_many :rewards, :dependent => :destroy
+  has_many :users_who_rewarded, :through => :rewards, :source => :user
   
   has_many :pages, :order => "number ASC", :dependent => :destroy
     

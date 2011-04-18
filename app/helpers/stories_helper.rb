@@ -11,62 +11,25 @@ module StoriesHelper
     end
   end
   
-  def recommend_button(story, short = false)
-    text = short ? story.recommendations.count : pluralize(story.recommendations.count, "recommendation")
+  def reward_link(story)
+    text = pluralize(story.reward_count, "reward coin")
     if current_user
-      if current_user.has_recommended?(story)
-        link_to(text, unrecommend_story_path(story), :method => :delete, :class => "unrecommend tooltipped", :title => "Unrecommend?")
-      elsif current_user.recommendation_limit_reached?
-        "Recommendation limit reached"
-      elsif current_user.has_purchased?(story)
-        link_to(text, "#recommend-modal", :class => "recommend tooltipped", :title => "Recommend?")
-      elsif story.owner?(current_user)
-        link_to(text, "#", :class => "recommend disabled")
+      if current_user.has_rewarded?(story)
+        link_to(text, "#", :class => "rewarded disabled")
       else
-        link_to(text, "#", :class => "recommend disabled tooltipped", :title => "Purchase to recommend")
+        link_to(text, "#reward-modal", :class => "reward tooltipped", :title => "Reward this story?")
       end
-    else
-      link_to(text, "#", :class => "recommend disabled tooltipped", :title => "Login to recommend")
     end
   end
   
-  def like_button(story, short = false)
-    text = short ? story.likes.count : pluralize(story.likes.count, "heart")
-    if current_user
-      if current_user.has_liked?(story)
-        link_to(text, unlike_story_path(story), :method => :delete, :class => "liked tooltipped", :title => "Unlike?")
-      elsif current_user.has_purchased?(story)
-        link_to(text, like_story_path(story), :method => :post, :class => "like tooltipped", :title => "Like?")
-      elsif story.owner?(current_user)
-        link_to(text, "#", :class => "like disabled")
-      else
-        link_to(text, "#", :class => "like disabled tooltipped", :title => "Purchase to like")
-      end
+  def story_view_link(story)
+    if current_user && current_user.can_view_stories?
+      link_to("view", story, :class => "view")
+    elsif current_user
+      link_to("upgrade to view", "#", :class => "view")
     else
-      link_to(text, "#", :class => "like disabled tooltipped", :title => "Login to like")
+      link_to("signup to view", "#", :class => "view")
     end
-  end
-  
-  def story_price(story)
-    # if current_user && (story.user == current_user || current_user.stories.include?(story))
-    #   link_to("view", story, :class => "view")
-    # elsif @story.free?
-    #   link_to("free", purchase_story_path(story), :class => "free tooltipped-n", :method => :post, :title => "Acquire")
-    # else
-    #   link_to(number_with_precision(story.price, :precision => 0), purchase_story_path(story), :method => :post, :class => "buy-it", :class => "tooltipped-n", :title => "Buy")
-    # end
-    link_to("view", story, :class => "view")
-  end
-  
-  def story_buy_view_link(story)
-    # if current_user && (story.user == current_user || current_user.stories.include?(story))
-    #   link_to("view story", story, :class => "view")
-    # elsif story.free?
-    #   link_to("acquire story for free", purchase_story_path(story), :method => :post, :class => "free tooltipped", :title => "Acquire")
-    # else
-    #   link_to("buy story for #{@story.price}", purchase_story_path(story), :method => :post, :class => "buy-it tooltipped", :title => "Buy")
-    # end
-    link_to("view story", story, :class => "view")
   end
   
   def topic_checkbox(topic, story, all_topics)

@@ -6,7 +6,7 @@ Feature "A user wants to personally curate their experience" do
   as_a "user"
   i_want_to "be able to bookmark stories and see the list later"
   
-  Scenario "A user bookmarks a story they like" do
+  Scenario "A user bookmarks a story" do
     given_a(:email_confirmed_user)
     given_a(:story)
     
