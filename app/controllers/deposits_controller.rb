@@ -1,9 +1,9 @@
 class DepositsController < ApplicationController
-  ssl_required :create if RAILS_ENV == "production" && ENV["HTTPS"] == "on"
+  ssl_required :create if Rails.env == "production" && ENV["HTTPS"] == "on"
   before_filter :authenticate_user!
   
   def index
-    if RAILS_ENV == "production" && ENV["HTTPS"] == "on" && request.protocol != "https"
+    if Rails.env == "production" && ENV["HTTPS"] == "on" && request.protocol != "https"
       redirect_to credits_path(:only_path => false, :host => "secure.#{request.host}", :protocol => "https")
     end
     

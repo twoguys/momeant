@@ -1,15 +1,14 @@
-require File.expand_path('../test_helper', File.dirname(__FILE__))
+require 'test_helper'
 
-Feature "A user should be able to sign up, sign in and sign out" do
+Feature "A user should be able to sign up, sign in and sign out. Signing up immediately puts them in trial mode." do
 
   in_order_to "have an account"
   as_a "user"
   i_want_to "be able to sign up, sign in and sign out"
 
   Scenario "Visiting the homepage while not logged in and clicking the signup link" do
-    
     when_i_visit_page(:home)
-    
+  
     Then "I can see the sign up and sign in links" do
       assert find("#join").visible?
     end 
@@ -19,7 +18,7 @@ Feature "A user should be able to sign up, sign in and sign out" do
     end
 
     then_i_should_be_on_page(:new_user_registration)
-    
+  
     And "I should see a signup form" do
       assert page.has_selector?('input#user_email')
       assert page.has_selector?('input#user_password')
@@ -44,12 +43,18 @@ Feature "A user should be able to sign up, sign in and sign out" do
     
     then_i_should_see_flash(:notice, "You have signed up successfully.")
     
-    And "A user should exist in the database" do
-      assert_equal User.where(:email => "a@a.com").count, 1
+    And "a user should exist in the database" do
+      @user = User.where(:email => "a@a.com").first
+      assert @user.present?
     end
     
-    And "The user should have an avatar image" do
-      assert_match /^http:\/\/s3.amazonaws.com/, User.where(:email => "a@a.com").first.avatar.url
+    And "they should have an avatar image" do
+      assert_match /^http:\/\/s3.amazonaws.com/, @user.avatar.url
+    end
+    
+    And "they should be in trial mode with 10 reward coins" do
+      assert @user.trial?
+      assert_equal 10, @user.coins
     end
   end
   
@@ -95,6 +100,26 @@ Feature "A user should be able to sign up, sign in and sign out" do
     
     Then "I should be logged out and see the join/login button" do
       assert find("#join").visible?
+    end
+  end
+  
+  Scenario "Expiring the trial period" do
+    given_a(:email_confirmed_user)
+    
+    given_im_signed_in_as(:email_confirmed_user)
+    
+    Given "I signed up over 30 days ago and I'm still in trial" do
+      @email_confirmed_user.update_attribute(:created_at, 31.days.ago)
+    end
+    
+    When "I visit any page" do
+      visit root_path
+    end
+    
+    Then "my trial should be expired and I should be told so" do
+      @email_confirmed_user.reload
+      assert @email_confirmed_user.trial_expired?
+      assert page.has_content? "Your trial has expired"
     end
   end
 end

@@ -36,6 +36,8 @@
                 = link_to("Beta", root_path, :id => "beta", :class => "round-button")
               - elsif !current_user
                 = link_to("Join", new_user_registration_path, :id => "join", :class => "round-button")
+              - elsif current_user.trial_expired?
+                Your trial has expired.
               - elsif !@hide_stumble
                 = link_to("Stumble", random_stories_path, :id => "stumble", :class => "round-button tooltipped-w", :title => "Show me a random story!")
               = yield :header

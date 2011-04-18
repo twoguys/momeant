@@ -10,7 +10,7 @@ class RegistrationsController < Devise::RegistrationsController
     end
     
     resource ||= User.new(params[:user])
-    resource.credits = 0
+    resource.coins = 10
     
     if resource.save
       if private_beta?

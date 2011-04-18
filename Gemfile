@@ -19,6 +19,7 @@ gem 'silent-postgres'
 gem 'sunspot_rails'
 gem 'bluecloth'
 gem 'acts_as_list'
+gem 'aasm'
 
 group :test do
   gem 'shoulda'

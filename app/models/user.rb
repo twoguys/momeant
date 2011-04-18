@@ -1,4 +1,8 @@
 class User < ActiveRecord::Base
+  include AASM
+  
+  # ASSOCIATIONS
+  
   has_many :purchases, :foreign_key => :payer_id
   has_many :purchased_stories, :through => :purchases, :source => :story
 
@@ -29,6 +33,31 @@ class User < ActiveRecord::Base
   
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
+         
+  # STATE MACHINE FOR PAID SUBSCRIPTIONS
+  
+  aasm_column :paid_state
+
+  aasm_initial_state :trial
+
+  aasm_state :trial
+  aasm_state :trial_expired
+  aasm_state :active_subscription
+  aasm_state :disabled_subscription
+  
+  aasm_event :expire_trial do
+    transitions :to => :trial_expired, :from => [:trial]
+  end
+
+  aasm_event :start_paying do
+    transitions :to => :active_subscription, :from => [:trial, :trial_expired, :disabled_subscription]
+  end
+
+  aasm_event :stop_paying do
+    transitions :to => :disabled_subscription, :from => [:active_subscription]
+  end
+  
+  # VALIDATIONS
   
   validates :first_name, :presence => true, :length => (1...128)
   validates :last_name, :presence => true, :length => (1...128)
