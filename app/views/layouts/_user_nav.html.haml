@@ -24,7 +24,7 @@
         %li#create
           = link_to("Create a Story", new_story_path, :class => "tooltipped", :title => "Create a Story") if can? :create, Story
       %li#balance
-        = link_to(number_with_precision(current_user.credits, :precision => 0), credits_path, :class => "tooltipped", :title => "Credits")
+        = link_to(current_user.coins, credits_path, :class => "tooltipped", :title => "Reward Coins")
       %li#hi
         Hello #{link_to("#{current_user.name}!", user_path(current_user))}
         =link_to("(Sign out)", destroy_user_session_path, :class => "signout-link")
