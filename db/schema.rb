@@ -113,7 +113,7 @@ ActiveRecord::Schema.define(:version => 20110418192435) do
     t.integer  "price"
     t.integer  "likes_count",     :default => 0
     t.text     "synopsis"
-    t.integer  "reward_count"
+    t.integer  "reward_count",    :default => 0
   end
 
   create_table "stories_topics", :id => false, :force => true do |t|

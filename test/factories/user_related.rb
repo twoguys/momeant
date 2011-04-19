@@ -36,3 +36,7 @@ Factory.define :subscription do |subscription|
   subscription.user           { Factory :user }
   subscription.subscriber     { Factory :user }
 end
+
+Factory.define :user_with_coins, :parent => :email_confirmed_user do |user|
+  user.coins                  10
+end
