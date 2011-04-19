@@ -19,30 +19,40 @@
         = subscribe_button(@user)
     .clear
 
-  .subscribers
-    .count
-      .number= @user.subscribers.count
-      .label= pluralize(@user.subscribers.count, "subscriber").gsub(/[^a-z]/,"")
-    %ul.avatars
-      - @user.subscribers.each do |user|
-        %li
-          %a{:href => user_path(user)}
-            = image_tag(user.avatar.url(:thumbnail), :class => "tooltipped", :title => user.name)
-            %span.name= user.name
-  
-  
-  = render :partial => "users/recommendation_stream", :locals => {:user => @user}
-  
-  .comments Comments (coming soon...)
 
-  - if @user.is_a?(Creator)
-    .curatorial-stream
-      %h3 My curatorial stream
-      %ul.stories
-        = render @user.recommended_stories
-              
+  .supporters.clearfix
+    .tabs
+      - if @user.is_a?(Creator)
+        = link_to("my top patrons", "patrons", :class => "active")
+        = link_to("who i support", "creators")
+      - else
+        = link_to("who i support", "creators", :class => "active")
+    - if @user.is_a?(Creator)
+      %ul.patrons.tabcontent
+        - counter = 1
+        - @user.rewards.group_by {|r| r.payer}.each do |patron, rewards|
+          %li
+            .number= counter
+            - counter += 1
+            .avatar= image_tag(patron.avatar.url(:thumbnail))
+            .info
+              .name= patron.name
+              .occupation= "occupation: #{patron.occupation}"
+            .rewards= number_with_precision(rewards.sum(&:amount), :precision => 0)
+    %ul.creators.tabcontent{:class => @user.is_a?(Creator) ? "hidden" : ""}
+      - counter = 1
+      - @user.given_rewards.group_by {|r| r.payee}.each do |creator, rewards|
+        %li
+          .number= counter
+          - counter += 1
+          .avatar= image_tag(creator.avatar.url(:thumbnail))
+          .info
+            .name= creator.name
+            .occupation= "occupation: #{creator.occupation}"
+          .rewards= number_with_precision(rewards.sum(&:amount), :precision => 0)
+        
   - if me?(@user)
-    = render "stories/personal_library"
+    = #render "stories/personal_library"
 
     - if @user.is_admin?
       .admin

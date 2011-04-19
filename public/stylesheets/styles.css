@@ -871,7 +871,7 @@ form.new_story, form.edit_story, .story-form {
     display: table;
     height: 100%;
     width: 100%; }
-    #page-previews li.pullquote .pullquote-inner p {
+    #page-previews li.pullquote .pullquote-inner div.quote {
       display: table-cell;
       vertical-align: middle;
       padding: 0 6%;
@@ -882,7 +882,7 @@ form.new_story, form.edit_story, .story-form {
       line-height: 11px;
       font-family: "museo-sans-1", "museo-sans-2", sans-serif;
       color: #333333; }
-      #page-previews li.pullquote .pullquote-inner p:first-letter {
+      #page-previews li.pullquote .pullquote-inner div.quote p:first-letter {
         font-family: "ambroise-std-1", "ambroise-std-2", serif;
         float: left;
         font-size: 21px;
@@ -1533,7 +1533,7 @@ form.new_story, form.edit_story, .story-form {
         display: table;
         height: 100%;
         width: 100%; }
-        #page-editor ul#pages .pullquote .pullquote-inner p {
+        #page-editor ul#pages .pullquote .pullquote-inner div.quote {
           display: table-cell;
           vertical-align: middle;
           padding: 0 6%;
@@ -1544,7 +1544,7 @@ form.new_story, form.edit_story, .story-form {
           line-height: 11px;
           font-family: "museo-sans-1", "museo-sans-2", sans-serif;
           color: #333333; }
-          #page-editor ul#pages .pullquote .pullquote-inner p:first-letter {
+          #page-editor ul#pages .pullquote .pullquote-inner div.quote p:first-letter {
             font-family: "ambroise-std-1", "ambroise-std-2", serif;
             float: left;
             font-size: 21px;
@@ -2220,7 +2220,7 @@ input.bookmark:active, input.unbookmark:active {
           display: table;
           height: 100%;
           width: 100%; }
-          .story-viewer #previewer ul.pages li.pullquote .pullquote-inner p {
+          .story-viewer #previewer ul.pages li.pullquote .pullquote-inner div.quote {
             display: table-cell;
             vertical-align: middle;
             padding: 0 6%;
@@ -2231,7 +2231,7 @@ input.bookmark:active, input.unbookmark:active {
             line-height: 11px;
             font-family: "museo-sans-1", "museo-sans-2", sans-serif;
             color: #333333; }
-            .story-viewer #previewer ul.pages li.pullquote .pullquote-inner p:first-letter {
+            .story-viewer #previewer ul.pages li.pullquote .pullquote-inner div.quote p:first-letter {
               font-family: "ambroise-std-1", "ambroise-std-2", serif;
               float: left;
               font-size: 21px;
@@ -2438,7 +2438,7 @@ input.bookmark:active, input.unbookmark:active {
         display: table;
         height: 100%;
         width: 100%; }
-        .story-viewer ul#pages li.pullquote .pullquote-inner p {
+        .story-viewer ul#pages li.pullquote .pullquote-inner div.quote {
           display: table-cell;
           vertical-align: middle;
           padding: 0 6%;
@@ -2449,7 +2449,7 @@ input.bookmark:active, input.unbookmark:active {
           line-height: 11px;
           font-family: "museo-sans-1", "museo-sans-2", sans-serif;
           color: #333333; }
-          .story-viewer ul#pages li.pullquote .pullquote-inner p:first-letter {
+          .story-viewer ul#pages li.pullquote .pullquote-inner div.quote p:first-letter {
             font-family: "ambroise-std-1", "ambroise-std-2", serif;
             float: left;
             font-size: 21px;
@@ -2664,6 +2664,237 @@ input.bookmark:active, input.unbookmark:active {
         .story-gallery .large-preview .pages a.story-link .inner, .story-gallery .large-preview .pages a.story-link .image {
           width: 630px;
           height: 100%; }
+      .story-gallery .large-preview .pages a.title {
+        width: 630px;
+        height: 420px;
+        overflow: hidden; }
+        .story-gallery .large-preview .pages a.title .inner {
+          background-color: black;
+          color: white;
+          text-shadow: none;
+          text-align: center;
+          padding: 0px;
+          height: 100%;
+          width: 100%;
+          font-weight: bold;
+          display: table; }
+          .story-gallery .large-preview .pages a.title .inner .title {
+            display: table-cell;
+            vertical-align: middle;
+            padding: 20px 10px 10px;
+            line-height: 3em;
+            letter-spacing: 0.5px;
+            font-size: 22px; }
+            .story-gallery .large-preview .pages a.title .inner .title hr {
+              margin: 10px auto;
+              width: 40%; }
+            .story-gallery .large-preview .pages a.title .inner .title span {
+              margin-right: 0.2em;
+              height: auto; }
+      .story-gallery .large-preview .pages a.full_image {
+        width: 630px;
+        height: 420px; }
+        .story-gallery .large-preview .pages a.full_image .inner, .story-gallery .large-preview .pages a.full_image .image {
+          width: 100%;
+          height: 100%; }
+        .story-gallery .large-preview .pages a.full_image .inner .inner {
+          position: relative; }
+        .story-gallery .large-preview .pages a.full_image .image {
+          background-repeat: no-repeat;
+          background-position: center center; }
+        .story-gallery .large-preview .pages a.full_image .inner.fill-screen .image {
+          -webkit-background-size: cover;
+          -moz-background-size: cover;
+          -o-background-size: cover;
+          background-size: cover; }
+        .story-gallery .large-preview .pages a.full_image .inner.fit-to-screen .image {
+          -webkit-background-size: contain;
+          -moz-background-size: contain;
+          -o-background-size: contain;
+          background-size: contain; }
+        .story-gallery .large-preview .pages a.full_image .caption {
+          top: 5px;
+          right: 5px;
+          position: absolute;
+          font-size: 10px;
+          padding: 3px;
+          background-color: white;
+          background-color: rgba(255, 255, 255, 0.9);
+          text-shadow: none;
+          text-align: left;
+          font-family: Georgia, serif;
+          border-bottom: 2px solid black;
+          font-style: italic; }
+          .story-gallery .large-preview .pages a.full_image .caption:first-letter {
+            font-family: "museo-slab-1", "museo-slab-2", serif;
+            vertical-align: baseline;
+            float: left;
+            font-size: 20px;
+            line-height: 10px;
+            text-transform: uppercase;
+            font-weight: 700;
+            font-style: normal;
+            padding-right: 2px; }
+      .story-gallery .large-preview .pages a.pullquote {
+        width: 630px;
+        height: 420px; }
+        .story-gallery .large-preview .pages a.pullquote .inner {
+          width: 100%;
+          height: 100%; }
+        .story-gallery .large-preview .pages a.pullquote .pullquote-inner {
+          display: table;
+          height: 100%;
+          width: 100%; }
+          .story-gallery .large-preview .pages a.pullquote .pullquote-inner div.quote {
+            display: table-cell;
+            vertical-align: middle;
+            padding: 0 6%;
+            width: 100%;
+            text-transform: uppercase;
+            text-align: justify;
+            font-size: 6px;
+            line-height: 11px;
+            font-family: "museo-sans-1", "museo-sans-2", sans-serif;
+            color: #333333; }
+            .story-gallery .large-preview .pages a.pullquote .pullquote-inner div.quote p:first-letter {
+              font-family: "ambroise-std-1", "ambroise-std-2", serif;
+              float: left;
+              font-size: 21px;
+              height: 21px;
+              line-height: 21px;
+              text-transform: uppercase;
+              vertical-align: baseline;
+              letter-spacing: -2px;
+              padding-right: 4px;
+              padding-top: 3px; }
+      .story-gallery .large-preview .pages a.video {
+        width: 630px;
+        height: 420px;
+        text-align: center; }
+        .story-gallery .large-preview .pages a.video .insides {
+          margin: 0;
+          width: 100%;
+          height: 100%; }
+      .story-gallery .large-preview .pages a.split {
+        width: 630px;
+        height: 420px; }
+        .story-gallery .large-preview .pages a.split div.split {
+          height: 100%;
+          color: black; }
+          .story-gallery .large-preview .pages a.split div.split .image, .story-gallery .large-preview .pages a.split div.split .text {
+            width: 50%;
+            position: relative; }
+          .story-gallery .large-preview .pages a.split div.split .image1, .story-gallery .large-preview .pages a.split div.split .text1 {
+            float: left; }
+          .story-gallery .large-preview .pages a.split div.split .image2, .story-gallery .large-preview .pages a.split div.split .text2 {
+            float: right; }
+          .story-gallery .large-preview .pages a.split div.split .image {
+            height: 100%; }
+            .story-gallery .large-preview .pages a.split div.split .image .inner {
+              height: 100%;
+              width: 100%;
+              background-repeat: no-repeat;
+              background-position: center center; }
+          .story-gallery .large-preview .pages a.split div.split .image.fill-screen .inner {
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover; }
+          .story-gallery .large-preview .pages a.split div.split .image.fit-to-screen .inner {
+            -webkit-background-size: contain;
+            -moz-background-size: contain;
+            -o-background-size: contain;
+            background-size: contain; }
+          .story-gallery .large-preview .pages a.split div.split .text {
+            font-size: 1.6em;
+            display: table;
+            height: 100%; }
+            .story-gallery .large-preview .pages a.split div.split .text .inner {
+              padding: 2% 8% 2% 12%;
+              width: 34%;
+              vertical-align: middle;
+              display: table-cell;
+              font-family: "museo-slab-1", "museo-slab-2", serif;
+              line-height: 9px;
+              font-size: 3px; }
+              .story-gallery .large-preview .pages a.split div.split .text .inner:first-letter {
+                font-family: "museo-sans-1", "museo-sans-2", sans-serif;
+                font-size: 26px;
+                vertical-align: baseline;
+                float: left;
+                text-transform: uppercase;
+                line-height: 20px;
+                letter-spacing: -4px;
+                height: 20px;
+                padding-top: 4px;
+                padding-right: 1px; }
+          .story-gallery .large-preview .pages a.split div.split .hidden {
+            display: none; }
+      .story-gallery .large-preview .pages a.grid {
+        width: 630px;
+        height: 420px; }
+        .story-gallery .large-preview .pages a.grid ul.cells {
+          height: 100%; }
+          .story-gallery .large-preview .pages a.grid ul.cells li {
+            width: 25%;
+            height: 50%;
+            float: left;
+            position: relative;
+            margin: 0;
+            clear: none; }
+            .story-gallery .large-preview .pages a.grid ul.cells li .side {
+              margin: 0; }
+            .story-gallery .large-preview .pages a.grid ul.cells li .front, .story-gallery .large-preview .pages a.grid ul.cells li .back {
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%; }
+            .story-gallery .large-preview .pages a.grid ul.cells li .front {
+              z-index: 2; }
+            .story-gallery .large-preview .pages a.grid ul.cells li .back {
+              z-index: 1; }
+            .story-gallery .large-preview .pages a.grid ul.cells li .side .text, .story-gallery .large-preview .pages a.grid ul.cells li .side .image {
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%; }
+            .story-gallery .large-preview .pages a.grid ul.cells li .side .image {
+              display: block;
+              -webkit-background-size: cover;
+              -moz-background-size: cover;
+              -o-background-size: cover;
+              background-size: cover; }
+            .story-gallery .large-preview .pages a.grid ul.cells li .side .text {
+              display: table;
+              font-size: 2em;
+              text-align: center; }
+              .story-gallery .large-preview .pages a.grid ul.cells li .side .text .inner {
+                background-color: white;
+                background-color: rgba(255, 255, 255, 0.9);
+                padding: 0 10%;
+                vertical-align: middle;
+                display: table-cell;
+                font-family: "museo-slab-1", "museo-slab-2", serif;
+                line-height: 26px;
+                font-size: 14px;
+                text-align: justify;
+                letter-spacing: -0.5px; }
+                .story-gallery .large-preview .pages a.grid ul.cells li .side .text .inner:first-letter {
+                  font-family: "museo-sans-1", "museo-sans-2", sans-serif;
+                  font-size: 50px;
+                  vertical-align: baseline;
+                  float: left;
+                  text-transform: uppercase;
+                  line-height: 50px;
+                  height: 50px;
+                  padding-top: 10px;
+                  padding-right: 4px; }
+          .story-gallery .large-preview .pages a.grid ul.cells li:hover .front {
+            z-index: 1; }
+          .story-gallery .large-preview .pages a.grid ul.cells li:hover .back {
+            z-index: 2; }
   .story-gallery .gallery-title {
     width: 610px;
     height: 31px;
@@ -2697,34 +2928,262 @@ input.bookmark:active, input.unbookmark:active {
         float: left;
         margin-right: 5px;
         cursor: pointer; }
-        .story-gallery .slider .viewport .preview .pullquote-inner {
-          width: 100%;
+      .story-gallery .slider .viewport .preview.title {
+        width: 95px;
+        height: 60px;
+        overflow: hidden; }
+        .story-gallery .slider .viewport .preview.title .inner {
+          background-color: black;
+          color: white;
+          text-shadow: none;
+          text-align: center;
+          padding: 0px;
           height: 100%;
+          width: 100%;
+          font-weight: bold;
           display: table; }
-          .story-gallery .slider .viewport .preview .pullquote-inner p {
-            width: 100%;
-            height: 100%;
+          .story-gallery .slider .viewport .preview.title .inner .title {
             display: table-cell;
             vertical-align: middle;
-            padding: 0% 7%;
+            padding: 20px 10px 10px;
+            line-height: 3em;
+            letter-spacing: 0.5px;
+            font-size: 22px; }
+            .story-gallery .slider .viewport .preview.title .inner .title hr {
+              margin: 10px auto;
+              width: 40%; }
+            .story-gallery .slider .viewport .preview.title .inner .title span {
+              margin-right: 0.2em;
+              height: auto; }
+        .story-gallery .slider .viewport .preview.title .inner {
+          height: 60px; }
+          .story-gallery .slider .viewport .preview.title .inner .title {
+            padding: 0;
+            line-height: 60px; }
+            .story-gallery .slider .viewport .preview.title .inner .title .text p {
+              line-height: 1em;
+              margin: 0; }
+            .story-gallery .slider .viewport .preview.title .inner .title .text span {
+              font-size: 10px !important; }
+            .story-gallery .slider .viewport .preview.title .inner .title hr {
+              margin-top: 0; }
+      .story-gallery .slider .viewport .preview.full_image {
+        width: 95px;
+        height: 60px; }
+        .story-gallery .slider .viewport .preview.full_image .inner, .story-gallery .slider .viewport .preview.full_image .image {
+          width: 100%;
+          height: 100%; }
+        .story-gallery .slider .viewport .preview.full_image .inner .inner {
+          position: relative; }
+        .story-gallery .slider .viewport .preview.full_image .image {
+          background-repeat: no-repeat;
+          background-position: center center; }
+        .story-gallery .slider .viewport .preview.full_image .inner.fill-screen .image {
+          -webkit-background-size: cover;
+          -moz-background-size: cover;
+          -o-background-size: cover;
+          background-size: cover; }
+        .story-gallery .slider .viewport .preview.full_image .inner.fit-to-screen .image {
+          -webkit-background-size: contain;
+          -moz-background-size: contain;
+          -o-background-size: contain;
+          background-size: contain; }
+        .story-gallery .slider .viewport .preview.full_image .caption {
+          top: 5px;
+          right: 5px;
+          position: absolute;
+          font-size: 10px;
+          padding: 3px;
+          background-color: white;
+          background-color: rgba(255, 255, 255, 0.9);
+          text-shadow: none;
+          text-align: left;
+          font-family: Georgia, serif;
+          border-bottom: 2px solid black;
+          font-style: italic; }
+          .story-gallery .slider .viewport .preview.full_image .caption:first-letter {
+            font-family: "museo-slab-1", "museo-slab-2", serif;
+            vertical-align: baseline;
+            float: left;
+            font-size: 20px;
+            line-height: 10px;
+            text-transform: uppercase;
+            font-weight: 700;
+            font-style: normal;
+            padding-right: 2px; }
+      .story-gallery .slider .viewport .preview.pullquote {
+        width: 95px;
+        height: 60px; }
+        .story-gallery .slider .viewport .preview.pullquote .inner {
+          width: 100%;
+          height: 100%; }
+        .story-gallery .slider .viewport .preview.pullquote .pullquote-inner {
+          display: table;
+          height: 100%;
+          width: 100%; }
+          .story-gallery .slider .viewport .preview.pullquote .pullquote-inner div.quote {
+            display: table-cell;
+            vertical-align: middle;
+            padding: 0 6%;
+            width: 100%;
             text-transform: uppercase;
             text-align: justify;
-            font-size: 3px;
-            line-height: 3px;
+            font-size: 6px;
+            line-height: 11px;
             font-family: "museo-sans-1", "museo-sans-2", sans-serif;
-            font-weight: 100;
-            letter-spacing: -0.4px; }
-            .story-gallery .slider .viewport .preview .pullquote-inner p:first-letter {
+            color: #333333; }
+            .story-gallery .slider .viewport .preview.pullquote .pullquote-inner div.quote p:first-letter {
               font-family: "ambroise-std-1", "ambroise-std-2", serif;
               float: left;
-              font-size: 9px;
-              height: 9px;
-              line-height: 9px;
+              font-size: 21px;
+              height: 21px;
+              line-height: 21px;
               text-transform: uppercase;
               vertical-align: baseline;
               letter-spacing: -2px;
-              padding-right: 3px;
-              padding-top: 1px; }
+              padding-right: 4px;
+              padding-top: 3px; }
+        .story-gallery .slider .viewport .preview.pullquote .pullquote-inner div.quote {
+          font-size: 3px;
+          line-height: 3px;
+          letter-spacing: -0.4px; }
+          .story-gallery .slider .viewport .preview.pullquote .pullquote-inner div.quote p {
+            margin: 1px 0; }
+          .story-gallery .slider .viewport .preview.pullquote .pullquote-inner div.quote p:first-letter {
+            font-size: 9px;
+            height: 9px;
+            line-height: 9px;
+            letter-spacing: -2px;
+            padding-right: 3px;
+            padding-top: 1px; }
+      .story-gallery .slider .viewport .preview.video {
+        width: 95px;
+        height: 60px;
+        text-align: center; }
+        .story-gallery .slider .viewport .preview.video .insides {
+          margin: 0;
+          width: 100%;
+          height: 100%; }
+      .story-gallery .slider .viewport .preview.split {
+        width: 95px;
+        height: 60px; }
+        .story-gallery .slider .viewport .preview.split div.split {
+          height: 100%;
+          color: black; }
+          .story-gallery .slider .viewport .preview.split div.split .image, .story-gallery .slider .viewport .preview.split div.split .text {
+            width: 50%;
+            position: relative; }
+          .story-gallery .slider .viewport .preview.split div.split .image1, .story-gallery .slider .viewport .preview.split div.split .text1 {
+            float: left; }
+          .story-gallery .slider .viewport .preview.split div.split .image2, .story-gallery .slider .viewport .preview.split div.split .text2 {
+            float: right; }
+          .story-gallery .slider .viewport .preview.split div.split .image {
+            height: 100%; }
+            .story-gallery .slider .viewport .preview.split div.split .image .inner {
+              height: 100%;
+              width: 100%;
+              background-repeat: no-repeat;
+              background-position: center center; }
+          .story-gallery .slider .viewport .preview.split div.split .image.fill-screen .inner {
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover; }
+          .story-gallery .slider .viewport .preview.split div.split .image.fit-to-screen .inner {
+            -webkit-background-size: contain;
+            -moz-background-size: contain;
+            -o-background-size: contain;
+            background-size: contain; }
+          .story-gallery .slider .viewport .preview.split div.split .text {
+            font-size: 1.6em;
+            display: table;
+            height: 100%; }
+            .story-gallery .slider .viewport .preview.split div.split .text .inner {
+              padding: 2% 8% 2% 12%;
+              width: 34%;
+              vertical-align: middle;
+              display: table-cell;
+              font-family: "museo-slab-1", "museo-slab-2", serif;
+              line-height: 9px;
+              font-size: 3px; }
+              .story-gallery .slider .viewport .preview.split div.split .text .inner:first-letter {
+                font-family: "museo-sans-1", "museo-sans-2", sans-serif;
+                font-size: 26px;
+                vertical-align: baseline;
+                float: left;
+                text-transform: uppercase;
+                line-height: 20px;
+                letter-spacing: -4px;
+                height: 20px;
+                padding-top: 4px;
+                padding-right: 1px; }
+          .story-gallery .slider .viewport .preview.split div.split .hidden {
+            display: none; }
+      .story-gallery .slider .viewport .preview.grid {
+        width: 95px;
+        height: 60px; }
+        .story-gallery .slider .viewport .preview.grid ul.cells {
+          height: 100%; }
+          .story-gallery .slider .viewport .preview.grid ul.cells li {
+            width: 25%;
+            height: 50%;
+            float: left;
+            position: relative;
+            margin: 0;
+            clear: none; }
+            .story-gallery .slider .viewport .preview.grid ul.cells li .side {
+              margin: 0; }
+            .story-gallery .slider .viewport .preview.grid ul.cells li .front, .story-gallery .slider .viewport .preview.grid ul.cells li .back {
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%; }
+            .story-gallery .slider .viewport .preview.grid ul.cells li .front {
+              z-index: 2; }
+            .story-gallery .slider .viewport .preview.grid ul.cells li .back {
+              z-index: 1; }
+            .story-gallery .slider .viewport .preview.grid ul.cells li .side .text, .story-gallery .slider .viewport .preview.grid ul.cells li .side .image {
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%; }
+            .story-gallery .slider .viewport .preview.grid ul.cells li .side .image {
+              display: block;
+              -webkit-background-size: cover;
+              -moz-background-size: cover;
+              -o-background-size: cover;
+              background-size: cover; }
+            .story-gallery .slider .viewport .preview.grid ul.cells li .side .text {
+              display: table;
+              font-size: 2em;
+              text-align: center; }
+              .story-gallery .slider .viewport .preview.grid ul.cells li .side .text .inner {
+                background-color: white;
+                background-color: rgba(255, 255, 255, 0.9);
+                padding: 0 10%;
+                vertical-align: middle;
+                display: table-cell;
+                font-family: "museo-slab-1", "museo-slab-2", serif;
+                line-height: 26px;
+                font-size: 14px;
+                text-align: justify;
+                letter-spacing: -0.5px; }
+                .story-gallery .slider .viewport .preview.grid ul.cells li .side .text .inner:first-letter {
+                  font-family: "museo-sans-1", "museo-sans-2", sans-serif;
+                  font-size: 50px;
+                  vertical-align: baseline;
+                  float: left;
+                  text-transform: uppercase;
+                  line-height: 50px;
+                  height: 50px;
+                  padding-top: 10px;
+                  padding-right: 4px; }
+          .story-gallery .slider .viewport .preview.grid ul.cells li:hover .front {
+            z-index: 1; }
+          .story-gallery .slider .viewport .preview.grid ul.cells li:hover .back {
+            z-index: 2; }
       .story-gallery .slider .viewport .incomplete {
         text-align: center;
         color: #777777;
@@ -2865,7 +3324,7 @@ input.bookmark:active, input.unbookmark:active {
     display: table;
     height: 100%;
     width: 100%; }
-    .thumbnail.pullquote .pullquote-inner p {
+    .thumbnail.pullquote .pullquote-inner div.quote {
       display: table-cell;
       vertical-align: middle;
       padding: 0 6%;
@@ -2876,7 +3335,7 @@ input.bookmark:active, input.unbookmark:active {
       line-height: 11px;
       font-family: "museo-sans-1", "museo-sans-2", sans-serif;
       color: #333333; }
-      .thumbnail.pullquote .pullquote-inner p:first-letter {
+      .thumbnail.pullquote .pullquote-inner div.quote p:first-letter {
         font-family: "ambroise-std-1", "ambroise-std-2", serif;
         float: left;
         font-size: 21px;
@@ -3003,7 +3462,7 @@ input.bookmark:active, input.unbookmark:active {
     display: table;
     height: 100%;
     width: 100%; }
-    .thumbnail.pullquote.medium .pullquote-inner p {
+    .thumbnail.pullquote.medium .pullquote-inner div.quote {
       display: table-cell;
       vertical-align: middle;
       padding: 0 6%;
@@ -3014,7 +3473,7 @@ input.bookmark:active, input.unbookmark:active {
       line-height: 11px;
       font-family: "museo-sans-1", "museo-sans-2", sans-serif;
       color: #333333; }
-      .thumbnail.pullquote.medium .pullquote-inner p:first-letter {
+      .thumbnail.pullquote.medium .pullquote-inner div.quote p:first-letter {
         font-family: "ambroise-std-1", "ambroise-std-2", serif;
         float: left;
         font-size: 21px;
@@ -3362,10 +3821,10 @@ ul.stories .price {
   .user-profile .user-info .avatar {
     position: absolute;
     float: left;
-    width: 60px; }
+    width: 50px; }
     .user-profile .user-info .avatar img {
-      width: 60px;
-      height: 60px; }
+      width: 50px;
+      height: 50px; }
   .user-profile .user-info .name {
     margin-left: 70px;
     font-weight: 900;
@@ -3388,6 +3847,44 @@ ul.stories .price {
     line-height: 17px;
     font-size: 11px;
     letter-spacing: -0.2px; }
+.user-profile .supporters {
+  width: 100%; }
+  .user-profile .supporters ul.patrons, .user-profile .supporters ul.creators {
+    background-color: white; }
+    .user-profile .supporters ul.patrons li, .user-profile .supporters ul.creators li {
+      height: 50px;
+      padding: 5px 20px;
+      border-bottom: 1px solid #cccccc; }
+      .user-profile .supporters ul.patrons li .number, .user-profile .supporters ul.patrons li .avatar, .user-profile .supporters ul.patrons li .info, .user-profile .supporters ul.creators li .number, .user-profile .supporters ul.creators li .avatar, .user-profile .supporters ul.creators li .info {
+        float: left;
+        margin-right: 20px; }
+      .user-profile .supporters ul.patrons li .number, .user-profile .supporters ul.creators li .number {
+        background-color: black;
+        color: white;
+        -webkit-border-radius: 40px;
+        -moz-border-radius: 40px;
+        border-radius: 40px;
+        width: 40px;
+        height: 40px;
+        text-align: center;
+        line-height: 40px;
+        vertical-align: middle;
+        font-family: "museo-slab-1", "museo-slab-2", serif;
+        font-size: 24px;
+        margin-top: 5px; }
+      .user-profile .supporters ul.patrons li .info .name, .user-profile .supporters ul.creators li .info .name {
+        font-weight: 700;
+        font-size: 22px; }
+      .user-profile .supporters ul.patrons li .info .occupation, .user-profile .supporters ul.creators li .info .occupation {
+        font-style: italic; }
+      .user-profile .supporters ul.patrons li .rewards, .user-profile .supporters ul.creators li .rewards {
+        float: right;
+        background: transparent url(../images/icons/recommendOff.png) no-repeat 0 17px;
+        padding: 0 10px 0 20px;
+        font-size: 16px;
+        height: 50px;
+        line-height: 50px;
+        vertical-align: middle; }
 .user-profile .subscribers {
   clear: both;
   width: 635px;

@@ -3,7 +3,7 @@
     .pages
       - counter = 0
       - @stories.each do |story|
-        %a.story-link.thumbnail{:href => preview_story_path(story), :counter => counter}
+        %a.story-link.thumbnail{:href => preview_story_path(story), :counter => counter, :class => story.thumbnail ? story.thumbnail.css_class : ""}
           - if story.thumbnail
             - @page = story.thumbnail
             = render :partial => "stories/page_themes/#{@page.partial_name}", :locals => {:size => "large"}
@@ -22,7 +22,7 @@
         .overview
           - counter = 0
           - @stories.each do |story|
-            .preview{:counter => counter}
+            .preview{:counter => counter, :class => story.thumbnail ? story.thumbnail.css_class : ""}
               - if story.thumbnail 
                 - @page = story.thumbnail
                 = render :partial => "stories/page_themes/#{@page.partial_name}", :locals => {:size => "petite"}

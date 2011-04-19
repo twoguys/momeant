@@ -18,21 +18,10 @@
     .tabs
       = link_to("recent", "recent", :class => "active")
       = link_to("popular", "popular")
-      - if current_user
-        = link_to("purchased", "purchases")
-        = link_to("hearted", "likes")
-        = link_to("dog-eared", "bookmarks")
     %ul.recent.stories.tabcontent
       = render @stories
     %ul.popular.stories.tabcontent.hidden
       = render @popular_stories
-    - if current_user
-      %ul.purchases.stories.tabcontent.hidden
-        = render current_user.stories
-      %ul.likes.stories.tabcontent.hidden
-        = render current_user.liked_stories
-      %ul.bookmarks.stories.tabcontent.hidden
-        = render current_user.bookmarked_stories
   
   %section.adverts
     = render @adverts

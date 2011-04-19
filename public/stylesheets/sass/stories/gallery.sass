@@ -22,6 +22,18 @@
 				.inner, .image
 					width: 630px
 					height: 100%
+			a.title
+				@include titleSlide(630px,420px)
+			a.full_image
+				@include fullimageSlide(630px,420px)
+			a.pullquote
+				@include blockquoteSlide(630px,420px)
+			a.video
+				@include videoSlide(630px,420px)
+			a.split
+				@include splitSlide(630px,420px)
+			a.grid
+				@include gridSlide(630px,420px)
 	.gallery-title
 		width: 610px
 		height: 31px
@@ -55,34 +67,44 @@
 				float: left
 				margin-right: 5px
 				cursor: pointer
-				.pullquote-inner
-					width: 100%
-					height: 100%
-					display: table
+			.preview.title
+				@include titleSlide(95px,60px)
+				.inner
+					height: 60px
+					.title
+						padding: 0
+						line-height: 60px
+						.text
+							p
+								line-height: 1em
+								margin: 0
+							span
+								font-size: 10px !important
+						hr
+							margin-top: 0
+			.preview.full_image
+				@include fullimageSlide(95px,60px)
+			.preview.pullquote
+				@include blockquoteSlide(95px,60px)
+				.pullquote-inner div.quote
+					font-size: 3px
+					line-height: 3px
+					letter-spacing: -.4px
 					p
-						width: 100%
-						height: 100%
-						display: table-cell
-						vertical-align: middle
-						padding: 0% 7%
-						text-transform: uppercase
-						text-align: justify
-						font-size: 3px
-						line-height: 3px
-						font-family: $caps
-						font-weight: 100
-						letter-spacing: -.4px
-						&:first-letter
-							font-family: $dropcaps
-							float: left
-							font-size: 9px
-							height: 9px
-							line-height: 9px
-							text-transform: uppercase
-							vertical-align: baseline
-							letter-spacing: -2px
-							padding-right: 3px
-							padding-top: 1px
+						margin: 1px 0
+					p:first-letter
+						font-size: 9px
+						height: 9px
+						line-height: 9px
+						letter-spacing: -2px
+						padding-right: 3px
+						padding-top: 1px
+			.preview.video
+				@include videoSlide(95px,60px)
+			.preview.split
+				@include splitSlide(95px,60px)
+			.preview.grid
+				@include gridSlide(95px,60px)
 			.incomplete
 				text-align: center
 				color: #777

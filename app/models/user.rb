@@ -5,14 +5,16 @@ class User < ActiveRecord::Base
   
   has_many :purchases, :foreign_key => :payer_id
   has_many :purchased_stories, :through => :purchases, :source => :story
-
   has_many :stories, :through => :purchases, :foreign_key => :payer_id
+
   has_many :bookmarks
   has_many :bookmarked_stories, :through => :bookmarks, :source => :story
-  has_many :recommendations
-  has_many :recommended_stories, :through => :recommendations, :source => :story
-  has_many :likes
-  has_many :liked_stories, :through => :likes, :source => :story
+  
+  has_many :given_rewards, :class_name => "Reward", :foreign_key => :payer_id
+  has_many :rewarded_creators, :through => :given_rewards, :source => :payee
+  has_many :rewarded_stories, :through => :given_rewards, :source => :story
+  has_many :rewards, :foreign_key => :payee_id
+  has_many :patrons, :through => :rewards, :source => :payer
 
   has_many :subscriptions
   has_many :inverse_subscriptions, :class_name => "Subscription", :foreign_key => :subscriber_id
