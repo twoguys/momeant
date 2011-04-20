@@ -184,6 +184,7 @@ class StoriesController < ApplicationController
   end
   
   def show
+    View.record(@story, current_user)
     @fullscreen = true
   end
   

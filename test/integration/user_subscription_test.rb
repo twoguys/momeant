@@ -96,7 +96,7 @@ Feature "A user should be able subscribe to other users whose curations they lik
     end
   end
   
-  Scenario "Seeing recommended stories from people I subscribe to on my homepage" do
+  Scenario "Seeing rewarded stories from people I subscribe to on my homepage" do
     given_a(:email_confirmed_user)
     given_im_signed_in_as(:email_confirmed_user)
     Given "A second user" do
@@ -112,16 +112,16 @@ Feature "A user should be able subscribe to other users whose curations they lik
     Given "Yet another story" do
       @story3 = Factory(:story)
     end
-    Given "The other user has recommended stories" do
-      Recommendation.create(:story_id => @story.id, :user_id => @user2.id)
-      Recommendation.create(:story_id => @story2.id, :user_id => @user2.id)
+    Given "The other user has rewarded stories" do
+      Reward.create(:story_id => @story.id, :payer_id => @user2.id)
+      Reward.create(:story_id => @story2.id, :payer_id => @user2.id)
     end
     
     when_i_visit_page(:home)
     
-    Then "I should see links to the stories the other user recommends" do
-      @their_recommended_stories = @user2.recommended_stories
-      @their_recommended_stories.each do |story|
+    Then "I should see links to the stories the other user rewarded" do
+      @their_rewarded_stories = @user2.rewarded_stories
+      @their_rewarded_stories.each do |story|
         assert page.find('.subscribed-to-stream').has_content? story.title
       end
     end

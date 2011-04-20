@@ -11,7 +11,11 @@ module StoriesHelper
     end
   end
   
-  def reward_link(story)
+  def views_link(story)
+    link_to(pluralize(story.view_count, "view"), "#", :class => "views disabled")
+  end
+  
+  def rewards_link(story)
     text = pluralize(story.reward_count, "reward coin")
     if current_user
       if current_user.has_rewarded?(story)

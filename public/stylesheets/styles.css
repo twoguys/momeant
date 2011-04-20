@@ -1741,25 +1741,6 @@ form.new_story, form.edit_story, .story-form {
   clear: none; }
 
 /* Story Preview */
-#mid {
-  padding: 0px; }
-
-input.bookmark, input.unbookmark {
-  position: absolute;
-  top: -12px;
-  right: 310px;
-  width: 50px;
-  height: 55px;
-  background: transparent url(../images/bookmark.png) no-repeat 0 -51px;
-  text-indent: -9999px;
-  z-index: 3; }
-
-input.unbookmark {
-  background-position: 0 2px; }
-
-input.bookmark:active, input.unbookmark:active {
-  top: -12px; }
-
 .banner {
   padding: 10px 20px;
   font-size: 11px;
@@ -1786,6 +1767,19 @@ input.bookmark:active, input.unbookmark:active {
   font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
   margin-top: 20px;
   position: relative; }
+  .story-preview input.bookmark, .story-preview input.unbookmark {
+    position: absolute;
+    top: -12px;
+    right: 310px;
+    width: 50px;
+    height: 55px;
+    background: transparent url(../images/bookmark.png) no-repeat 0 -51px;
+    text-indent: -9999px;
+    z-index: 11; }
+  .story-preview input.unbookmark {
+    background-position: 0 2px; }
+  .story-preview input.bookmark:active, .story-preview input.unbookmark:active {
+    top: -12px; }
   .story-preview a.edit-story {
     background: none repeat scroll 0 0 white;
     display: block;
@@ -1873,17 +1867,15 @@ input.bookmark:active, input.unbookmark:active {
         font-weight: 700;
         color: #252525;
         border-right: 1px solid #cccccc; }
-      .story-preview .preview .actions .like {
-        background-image: url(../images/icons/heartOff.png); }
-      .story-preview .preview .actions .liked {
-        background-image: url(../images/icons/heartOn.png); }
       .story-preview .preview .actions .reward {
         background-image: url(../images/icons/recommendOff.png); }
       .story-preview .preview .actions .rewarded {
         background-image: url(../images/icons/recommendOn.png); }
+      .story-preview .preview .actions .views {
+        background-image: url(../images/icons/views.png); }
       .story-preview .preview .actions .share {
         background-image: url(../images/icons/shareOn.png); }
-      .story-preview .preview .actions .view, .story-preview .preview .actions .free, .story-preview .preview .actions .buy-it {
+      .story-preview .preview .actions .view {
         background-image: url(../images/icons/fullscreenOn.png); }
   .story-preview .metadata {
     width: 274px;
@@ -3604,21 +3596,19 @@ ul.stories .author {
   padding-bottom: 4px; }
   ul.stories .author a {
     color: #00aeef; }
-ul.stories .likes {
+ul.stories .views {
   position: absolute;
   top: 192px;
   right: 10px;
   padding-right: 18px;
-  background: transparent url(../images/icons/heartOff.png) no-repeat 100% 0; }
-ul.stories .recommendations {
+  background: transparent url(../images/icons/views.png) no-repeat 100% 0; }
+ul.stories .rewards {
   position: absolute;
   top: 210px;
   right: 10px;
   padding-right: 18px;
   background: transparent url(../images/icons/recommendOff.png) no-repeat 100% 0; }
-ul.stories .liked {
-  background: transparent url(../images/icons/heartOn.png) no-repeat 100% 0; }
-ul.stories .recommended {
+ul.stories .rewarded {
   background: transparent url(../images/icons/recommendOn.png) no-repeat 100% 0; }
 ul.stories .excerpt {
   font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;

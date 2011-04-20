@@ -11,6 +11,7 @@ class RegistrationsController < Devise::RegistrationsController
     
     resource ||= User.new(params[:user])
     resource.coins = 10
+    resource.subscription_last_updated_at = Time.now
     
     if resource.save
       if private_beta?

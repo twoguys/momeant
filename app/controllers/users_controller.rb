@@ -8,7 +8,7 @@ class UsersController < ApplicationController
       @stories = @user.created_stories
       @stories = @stories.published unless @user == current_user
     else
-      @stories = @user.recommended_stories
+      @stories = @user.rewarded_stories
     end  
     @stories = @stories.newest_first
   end

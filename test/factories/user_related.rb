@@ -8,6 +8,7 @@ Factory.define :user do |user|
   user.first_name             "John"
   user.last_name              { Factory.next(:last_name) }
   user.email                  { |u| "#{u.name.delete(' ').underscore}@example.com" }
+  user.subscription_last_updated_at   Time.now
 end
 
 Factory.define :email_confirmed_user, :parent => :user do |user|

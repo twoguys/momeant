@@ -1,20 +1,5 @@
 /* Story Preview */
 
-#mid
-	padding: 0px
-input.bookmark, input.unbookmark
-	position: absolute
-	top: -12px
-	right: 310px
-	width: 50px
-	height: 55px
-	background: transparent url(../images/bookmark.png) no-repeat 0 -51px
-	text-indent: -9999px
-	z-index: 3
-input.unbookmark
-	background-position: 0 2px
-input.bookmark:active, input.unbookmark:active
-	top: -12px
 .banner
 	padding: 10px 20px
 	font-size: 11px
@@ -38,6 +23,19 @@ input.bookmark:active, input.unbookmark:active
 	font-family: $block
 	margin-top: 20px
 	position: relative
+	input.bookmark, input.unbookmark
+		position: absolute
+		top: -12px
+		right: 310px
+		width: 50px
+		height: 55px
+		background: transparent url(../images/bookmark.png) no-repeat 0 -51px
+		text-indent: -9999px
+		z-index: 11
+	input.unbookmark
+		background-position: 0 2px
+	input.bookmark:active, input.unbookmark:active
+		top: -12px
 	a.edit-story
 		background: none repeat scroll 0 0 white
 		display: block
@@ -123,17 +121,15 @@ input.bookmark:active, input.unbookmark:active
 				font-weight: 700
 				color: $text_color
 				border-right: 1px solid #ccc
-			.like
-				background-image: url(../images/icons/heartOff.png)
-			.liked
-				background-image: url(../images/icons/heartOn.png)
 			.reward
 				background-image: url(../images/icons/recommendOff.png)
 			.rewarded
 				background-image: url(../images/icons/recommendOn.png)
+			.views
+				background-image: url(../images/icons/views.png)
 			.share
 				background-image: url(../images/icons/shareOn.png)
-			.view, .free, .buy-it
+			.view
 				background-image: url(../images/icons/fullscreenOn.png)
 	.metadata
 		width: 274px

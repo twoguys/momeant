@@ -122,6 +122,14 @@ class User < ActiveRecord::Base
     self.coins >= amount
   end
   
+  def has_viewed?(story)
+    View.where(:user_id => self.id, :story_id => story.id).present?
+  end
+  
+  def has_viewed_this_period?(story)
+    View.where(:user_id => self.id, :story_id => story.id).where("created_at > ?", self.subscription_last_updated_at).present?
+  end
+  
   def purchase(story)
     return false unless can_afford?(story.price)
     
@@ -162,32 +170,32 @@ class User < ActiveRecord::Base
     self.subscribed_to.include?(user)
   end
   
-  def recommended_stories_from_people_i_subscribe_to
-    stories = Story.where(:id => Recommendation.where(:user_id => self.subscribed_to).map{ |r| r.story_id })
-    purchased_stories = self.purchased_stories
-    # remove stories I've created or purchased
-    stories.reject { |story| story.user == self || purchased_stories.include?(story) }
+  def rewarded_stories_from_people_i_subscribe_to
+    stories = Story.where(:id => Reward.where(:user_id => self.subscribed_to).map{ |r| r.story_id })
+    #rewarded_stories = self.rewarded_stories
+    # remove stories I've created or rewarded
+    stories.reject { |story| story.user == self } #|| rewarded_stories.include?(story) }
   end
 
-  def recommendations_from_people_i_subscribe_to
-    recommendations = Recommendation.where(:user_id => self.subscribed_to)
-    purchased_story_ids = self.purchased_stories.map {|story| story.id}
+  def rewards_from_people_i_subscribe_to
+    rewards = Reward.where(:payer_id => self.subscribed_to)
+    #rewarded_story_ids = self.rewarded_stories.map {|story| story.id}
     my_created_story_ids = self.is_a?(Creator) ? self.created_stories.map {|story| story.id} : []
-    ignore_story_ids = purchased_story_ids + my_created_story_ids
-    # remove stories I've created or purchased
-    recommendations.reject { |recommendation| ignore_story_ids.include?(recommendation.story_id) }
+    ignore_story_ids = my_created_story_ids # + rewarded_story_ids
+    # remove stories I've created or rewarded
+    rewards.reject { |reward| ignore_story_ids.include?(reward.story_id) }
   end
   
-  def stories_similar_to_my_bookmarks_and_purchases
+  def stories_similar_to_my_bookmarks_and_rewards
     similar_stories = []
     self.bookmarks.each do |bookmark|
       similar_stories += bookmark.story.similar_stories
     end
-    self.stories.each do |purchased_story|
-      similar_stories += purchased_story.similar_stories
+    self.rewarded_stories.each do |rewarded_story|
+      similar_stories += rewarded_story.similar_stories
     end
     # remove stories I've created or purchased or that are unpublished
-    purchased_stories = self.purchased_stories
-    similar_stories.reject { |story| story.user == self || purchased_stories.include?(story) || story.draft? }.uniq
+    #purchased_stories = self.purchased_stories
+    similar_stories.reject { |story| story.user == self || story.draft? }.uniq
   end
 end

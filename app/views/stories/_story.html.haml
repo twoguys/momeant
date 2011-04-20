@@ -9,4 +9,5 @@
   .author by #{link_to(story.user.name, user_path(story.user))}
   .excerpt= truncate(story.synopsis, :length => 100)
   .price= story.price
-
+  .rewards{:class => current_user && current_user.has_rewarded?(story) ? "rewarded" : ""}= story.reward_count
+  .views= story.view_count

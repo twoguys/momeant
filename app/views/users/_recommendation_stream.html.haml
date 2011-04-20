@@ -5,19 +5,19 @@
     .clear
 
   %ul.subscribed-to-stream.stories.tabcontent
-    - user.recommendations_from_people_i_subscribe_to[0..3].each do |recommendation|
+    - user.rewards_from_people_i_subscribe_to[0..3].each do |reward|
       %li
-        = link_to(image_tag(recommendation.user.avatar.url(:thumbnail)), user_path(recommendation.user), :class => "avatar")
+        = link_to(image_tag(reward.payer.avatar.url(:thumbnail)), user_path(reward.payer), :class => "avatar")
         .info
-          %a.who-recommended{:href => preview_story_path(recommendation.story)}
-            %span= recommendation.user.name
+          %a.who-recommended{:href => preview_story_path(reward.story)}
+            %span= reward.payer.name
             %span.starred 's
-          = link_to(recommendation.story.title, preview_story_path(recommendation.story), :class => "title")
-          .author by #{recommendation.story.user.name}
-        .why= recommendation.comment
+          = link_to(reward.story.title, preview_story_path(reward.story), :class => "title")
+          .author by #{reward.story.user.name}
+        .why= #reward.comment
 
   %ul.momeant-recommended-stream.stories.tabcontent.hidden
-    - user.stories_similar_to_my_bookmarks_and_purchases[0..3].each do |story|
+    - user.stories_similar_to_my_bookmarks_and_rewards[0..3].each do |story|
       %li
         %a.thumbnail{:href => preview_story_path(story)}
           - if story.thumbnail

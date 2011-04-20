@@ -26,7 +26,7 @@
         .author by #{link_to(@story.user.name, user_path(@story.user))}
         .excerpt= truncate(@story.synopsis, :length => 250)
         .actions
-          = render "stories/recommend_modal"
+          = render "stories/reward_modal"
           = #render "add_this"
       .slider
         .scrollbar-me
