@@ -7,10 +7,10 @@
   %ul.subscribed-to-stream.stories.tabcontent
     - user.rewards_from_people_i_subscribe_to[0..3].each do |reward|
       %li
-        = link_to(image_tag(reward.payer.avatar.url(:thumbnail)), user_path(reward.payer), :class => "avatar")
+        = link_to(image_tag(reward.user.avatar.url(:thumbnail)), user_path(reward.user), :class => "avatar")
         .info
           %a.who-recommended{:href => preview_story_path(reward.story)}
-            %span= reward.payer.name
+            %span= reward.user.name
             %span.starred 's
           = link_to(reward.story.title, preview_story_path(reward.story), :class => "title")
           .author by #{reward.story.user.name}

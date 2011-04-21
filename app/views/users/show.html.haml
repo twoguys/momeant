@@ -30,7 +30,7 @@
     - if @user.is_a?(Creator)
       %ul.patrons.tabcontent
         - counter = 1
-        - @user.rewards.group_by {|r| r.payer}.each do |patron, rewards|
+        - @user.rewards.group_by {|r| r.user}.each do |patron, rewards|
           %li
             .number= counter
             - counter += 1
@@ -41,7 +41,7 @@
             .rewards= number_with_precision(rewards.sum(&:amount), :precision => 0)
     %ul.creators.tabcontent{:class => @user.is_a?(Creator) ? "hidden" : ""}
       - counter = 1
-      - @user.given_rewards.group_by {|r| r.payee}.each do |creator, rewards|
+      - @user.given_rewards.group_by {|r| r.recipient}.each do |creator, rewards|
         %li
           .number= counter
           - counter += 1

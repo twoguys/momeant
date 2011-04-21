@@ -38,6 +38,7 @@ Repo::Application.routes.draw do
     end
     
     resources :rewards
+    resources :curations
   end
   match "/stories/tagged_with/:tag",    :to => "stories#tagged_with",  :as => :stories_tagged_with
   

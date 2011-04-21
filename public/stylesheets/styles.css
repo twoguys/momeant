@@ -1978,10 +1978,115 @@ form.new_story, form.edit_story, .story-form {
       background: url("../images/simpleDotBG.png") repeat-x scroll 0 0 transparent; }
     .story-preview .metadata .topics {
       background-color: white; }
-  .story-preview .featured-comment {
-    margin-top: 30px;
-    padding-top: 30px;
-    background: transparent url(../images/simpleDotBG.png) repeat-x 0 0; }
+  .story-preview .top-patrons {
+    clear: both;
+    padding-top: 40px;
+    height: 50px; }
+    .story-preview .top-patrons h3 {
+      background-color: black;
+      color: white;
+      font-weight: 700;
+      font-size: 14px;
+      text-transform: uppercase;
+      width: 80px;
+      padding: 5px 10px 0;
+      height: 45px;
+      text-align: center;
+      float: left;
+      margin-right: 3px;
+      line-height: 20px;
+      vertical-align: middel; }
+    .story-preview .top-patrons ul {
+      height: 50px;
+      float: left;
+      width: 840px; }
+      .story-preview .top-patrons ul li {
+        float: left;
+        clear: none;
+        margin-right: 3px; }
+        .story-preview .top-patrons ul li a {
+          display: block;
+          width: 50px;
+          height: 50px; }
+          .story-preview .top-patrons ul li a img {
+            width: 50px;
+            height: 50px; }
+  .story-preview .curations {
+    margin-top: 35px;
+    padding-top: 27px;
+    background: transparent url(../images/simpleDotBG.png) repeat-x 50% 0; }
+    .story-preview .curations .writer {
+      height: 100px;
+      position: relative; }
+      .story-preview .curations .writer h3 {
+        font-size: 30px;
+        text-transform: uppercase;
+        background-color: transparent;
+        color: #d7d7d7;
+        position: absolute;
+        top: 0;
+        left: 0; }
+      .story-preview .curations .writer .input-types {
+        position: absolute;
+        top: 10px;
+        left: 400px;
+        z-index: 2; }
+        .story-preview .curations .writer .input-types a {
+          font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
+          text-transform: uppercase;
+          color: #b2b2b2;
+          font-weight: 700; }
+      .story-preview .curations .writer textarea {
+        width: 870px;
+        height: 40px;
+        margin: 40px 10px 0 0;
+        float: left; }
+      .story-preview .curations .writer input[type="submit"] {
+        float: left;
+        width: 50px;
+        height: 55px;
+        margin-top: 40px; }
+    .story-preview .curations ul.list {
+      margin-top: 20px; }
+      .story-preview .curations ul.list li {
+        position: relative;
+        background: transparent url(../images/insetLineBG.gif) repeat-x 50% 100%;
+        padding: 15px 0; }
+        .story-preview .curations ul.list li .avatar {
+          position: absolute;
+          top: 15px;
+          left: 0;
+          display: block;
+          width: 30px; }
+          .story-preview .curations ul.list li .avatar img {
+            width: 30px;
+            height: 30px; }
+        .story-preview .curations ul.list li .the-rest {
+          margin-left: 40px; }
+          .story-preview .curations ul.list li .the-rest .who-when {
+            height: 30px;
+            padding-left: 40px; }
+            .story-preview .curations ul.list li .the-rest .who-when .author, .story-preview .curations ul.list li .the-rest .who-when .date {
+              display: inline-block;
+              text-transform: uppercase;
+              color: #b2b2b2;
+              font-size: 20px;
+              font-weight: 700; }
+            .story-preview .curations ul.list li .the-rest .who-when .author {
+              padding: 3px 0 0 0; }
+            .story-preview .curations ul.list li .the-rest .who-when .date {
+              color: #d7d7d7;
+              margin-left: 10px; }
+          .story-preview .curations ul.list li .the-rest .comment {
+            font-family: "museo-slab-1", "museo-slab-2", serif;
+            font-size: 20px;
+            padding: 5px 0; }
+      .story-preview .curations ul.list li.reward .who-when {
+        background: transparent url(../images/icons/rewardLarge.png) no-repeat 0 0; }
+      .story-preview .curations ul.list li.comment .who-when {
+        background: transparent url(../images/icons/commentLarge.png) no-repeat 0 0; }
+      .story-preview .curations ul.list li.link .who-when {
+        background: transparent url(../images/icons/relateLarge.png) no-repeat 0 0; }
   .story-preview a.disabled {
     cursor: default; }
 
@@ -3989,7 +4094,9 @@ h2 {
 
 .adverts {
   height: 165px;
-  margin-bottom: 20px; }
+  margin-bottom: 20px;
+  padding-top: 10px;
+  background: transparent url(../images/diagStripeBG.png) repeat-x 0 0; }
   .adverts div {
     float: left;
     height: 165px; }

@@ -10,11 +10,9 @@ class User < ActiveRecord::Base
   has_many :bookmarks
   has_many :bookmarked_stories, :through => :bookmarks, :source => :story
   
-  has_many :given_rewards, :class_name => "Reward", :foreign_key => :payer_id
-  has_many :rewarded_creators, :through => :given_rewards, :source => :payee
+  has_many :given_rewards, :class_name => "Reward"
+  has_many :rewarded_creators, :through => :given_rewards, :source => :recipient
   has_many :rewarded_stories, :through => :given_rewards, :source => :story
-  has_many :rewards, :foreign_key => :payee_id
-  has_many :patrons, :through => :rewards, :source => :payer
 
   has_many :subscriptions
   has_many :inverse_subscriptions, :class_name => "Subscription", :foreign_key => :subscriber_id
@@ -105,14 +103,14 @@ class User < ActiveRecord::Base
   end
   
   def has_rewarded?(story)
-    Reward.where(:payer_id => self.id, :story_id => story.id).present?
+    Reward.where(:user_id => self.id, :story_id => story.id).present?
   end
   
   def reward(story, amount, comment)
     return if amount.nil?
     amount = amount.to_i
     if can_afford?(amount)
-      reward = Reward.create!(:amount => amount, :payer_id => self.id, :payee_id => story.user_id, :story_id => story.id, :comment => comment)
+      reward = Reward.create!(:amount => amount, :user_id => self.id, :recipient_id => story.user_id, :story_id => story.id, :comment => comment)
       story.increment!(:reward_count, amount)
       self.decrement!(:coins, amount)
     end
@@ -178,7 +176,7 @@ class User < ActiveRecord::Base
   end
 
   def rewards_from_people_i_subscribe_to
-    rewards = Reward.where(:payer_id => self.subscribed_to)
+    rewards = Reward.where(:user_id => self.subscribed_to)
     #rewarded_story_ids = self.rewarded_stories.map {|story| story.id}
     my_created_story_ids = self.is_a?(Creator) ? self.created_stories.map {|story| story.id} : []
     ignore_story_ids = my_created_story_ids # + rewarded_story_ids

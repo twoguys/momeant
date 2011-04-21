@@ -28,8 +28,8 @@ Feature "A user should be able to reward a creator for a story" do
     
     Then "there should be a new reward assigned to the story and linking to me and the creator" do
       @reward = Reward.last
-      assert_equal @user_with_coins, @reward.payer
-      assert_equal @story.user, @reward.payee
+      assert_equal @user_with_coins, @reward.user
+      assert_equal @story.user, @reward.recipient
       assert_equal @story, @reward.story
       assert_equal 2, @reward.amount
     end

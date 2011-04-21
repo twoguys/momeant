@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110421153324) do
+ActiveRecord::Schema.define(:version => 20110421165614) do
 
   create_table "adverts", :force => true do |t|
     t.string   "title"
@@ -44,6 +44,8 @@ ActiveRecord::Schema.define(:version => 20110421153324) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "comment"
+    t.integer  "amount",       :default => 0
+    t.integer  "recipient_id"
   end
 
   create_table "invitations", :force => true do |t|
@@ -115,6 +117,7 @@ ActiveRecord::Schema.define(:version => 20110421153324) do
     t.text     "synopsis"
     t.integer  "reward_count",    :default => 0
     t.integer  "view_count",      :default => 0
+    t.integer  "comment_count",   :default => 0
   end
 
   create_table "stories_topics", :id => false, :force => true do |t|

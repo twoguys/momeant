@@ -4,8 +4,8 @@ class UserTest < ActiveSupport::TestCase
   
   test "A creator who's story I've rewarded shows up in my rewarded creators list and I show up in their patrons list" do
     reward = Factory(:reward)
-    reward.payer.rewarded_creators.include?(reward.payee)
-    reward.payee.patrons.include?(reward.payer)
+    reward.user.rewarded_creators.include?(reward.recipient)
+    reward.recipient.patrons.include?(reward.user)
   end
   
   # DEPRECATED

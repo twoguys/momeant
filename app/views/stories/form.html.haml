@@ -39,13 +39,6 @@
           .example Give a teaser or brief description of your story. Make sure it stands out from the crowd, and that viewers know what to expect!
           
       %li.metadata
-        .price
-          = label_tag :story_price, "Price"
-          = text_field_tag :story_price, @story.price || "", :class => "monitor-story-typing", :update => "price"
-          .example 
-            Give your story a price in Momeant credits (in multiples of 10). 
-            %br
-            Remember: 1 MC = 1 US penny
         .tags
           = label_tag :story_tag_list, "Tags"
           = text_field_tag :story_tag_list, @story.tag_list, :class => "monitor-story-typing", :update => "tag_list"

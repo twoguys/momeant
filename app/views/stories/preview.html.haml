@@ -27,6 +27,7 @@
       
       = #render "add_this"
     .price= story_view_link(@story)
+
   .metadata
     .top
       .title= @story.title
@@ -45,4 +46,29 @@
           = link_to(tag.name, stories_tagged_with_path(tag.name))
           - if @story.owner?(current_user)
             = link_to("x", remove_tag_from_story_path(@story, :tag => tag.name),:class => "remove tooltipped-n", :title => "Remove tag", :remote => true, :method => :delete)
-  .clear
+
+  .top-patrons
+    %h3 Top Patrons
+    %ul.users
+      - @story.users_who_rewarded.limit(15).each do |user|
+        %li= link_to(image_tag(user.avatar.url(:thumbnail)), user_path(user), :class => "tooltipped", :title => user.name)
+        
+  .curations
+    .writer
+      %h3 Join the Conversation:
+      .input-types
+        = link_to("Write a Comment", "#", :class => "comment")
+      = form_for Curation.new, :url => story_curations_path(@story) do |form|
+        = form.hidden_field :type, :value => "comment"
+        = form.text_area :comment
+        = form.submit "Post"
+    %ul.list
+      - @story.curations.public.each do |curation|
+        %li{:class => curation.type.downcase}
+          = link_to(image_tag(curation.user.avatar.url(:thumbnail)), user_path(curation.user), :class => "avatar")
+          .the-rest
+            .who-when
+              .author= curation.user.name
+              .date= curation.created_at.strftime("%m/%d/%y")
+            - if curation.comment.present?
+              .comment= curation.comment

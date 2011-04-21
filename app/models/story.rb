@@ -16,21 +16,22 @@ class Story < ActiveRecord::Base
   
   belongs_to :user
   has_and_belongs_to_many :topics
+  
+  has_many :curations
   has_many :bookmarks, :dependent => :destroy
   has_many :users_who_bookmarked, :through => :bookmarks, :source => :user
   has_many :rewards, :dependent => :destroy
   has_many :users_who_rewarded, :through => :rewards, :source => :user
+  has_many :comments, :dependent => :destroy
   
   has_many :pages, :order => "number ASC", :dependent => :destroy
     
   validates :title, :presence => true, :length => (2..256), :unless => :autosaving
   validates :synopsis, :length => (2..1024), :unless => :autosaving
-  validates :price, :format => /[0-9.,]+/, :unless => :autosaving
   
   validate  :at_least_one_page, :unless => :autosaving
   
   scope :published, where(:published => true)
-  scope :free, where(:price => 0.0)
   scope :newest_first, order("created_at DESC")
   scope :popular, where("likes_count > 0").order("likes_count DESC")
   

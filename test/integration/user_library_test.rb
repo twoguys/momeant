@@ -22,8 +22,8 @@ Feature "A user should be able to access their and others' content on profile pa
         @user_var = instance_variable_get("@#{user_type}")
         subscription = Factory(:subscription, :subscriber => @user_var)
         subscription2 = Factory(:subscription, :subscriber => @user_var)
-        @reward = Factory(:reward, :payer => subscription.user)
-        @reward2 = Factory(:reward, :payer => subscription2.user)
+        @reward = Factory(:reward, :user => subscription.user)
+        @reward2 = Factory(:reward, :user => subscription2.user)
       end
 
       Given "Some users are subscribed to me" do
@@ -32,8 +32,8 @@ Feature "A user should be able to access their and others' content on profile pa
       end
       
       Given "I have some recommendations" do
-        Factory(:reward, :payer => @user_var)
-        Factory(:reward, :payer => @user_var)
+        Factory(:reward, :user => @user_var)
+        Factory(:reward, :user => @user_var)
       end
     
       When "I visit my profile page" do
@@ -51,20 +51,11 @@ Feature "A user should be able to access their and others' content on profile pa
         end
       end
       
-      # And "I should see my number of subscribers and links to their pages" do
-      #   within(".subscribers") do
-      #     assert has_content? @user_var.subscribers.count.to_s
-      #     @user_var.subscribers.each do |subscriber|
-      #       assert has_content? subscriber.name
-      #     end
+      # And "I should see the stories I've rewarded" do
+      #   @user_var.given_rewards.each do |reward|
+      #     assert page.find(".curatorial-stream").has_content? reward.story.title
       #   end
       # end
-      
-      And "I should see the stories I've rewarded" do
-        @user_var.rewards.each do |reward|
-          assert page.find(".curatorial-stream").has_content? reward.story.title
-        end
-      end
       
       And "I should see the stories the users I'm subscribed to have rewarded" do
         assert page.find(".subscribed-to-stream").has_content? @reward.story.title

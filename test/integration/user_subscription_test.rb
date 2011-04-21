@@ -113,8 +113,8 @@ Feature "A user should be able subscribe to other users whose curations they lik
       @story3 = Factory(:story)
     end
     Given "The other user has rewarded stories" do
-      Reward.create(:story_id => @story.id, :payer_id => @user2.id)
-      Reward.create(:story_id => @story2.id, :payer_id => @user2.id)
+      Reward.create(:story_id => @story.id, :user_id => @user2.id)
+      Reward.create(:story_id => @story2.id, :user_id => @user2.id)
     end
     
     when_i_visit_page(:home)
