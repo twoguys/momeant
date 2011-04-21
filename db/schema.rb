@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110420173009) do
+ActiveRecord::Schema.define(:version => 20110421153324) do
 
   create_table "adverts", :force => true do |t|
     t.string   "title"
@@ -163,6 +163,7 @@ ActiveRecord::Schema.define(:version => 20110420173009) do
     t.string   "type"
     t.integer  "pay_period_line_item_id"
     t.string   "braintree_order_id"
+    t.text     "comment"
   end
 
   create_table "users", :force => true do |t|

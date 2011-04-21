@@ -14,7 +14,7 @@
             %span.starred 's
           = link_to(reward.story.title, preview_story_path(reward.story), :class => "title")
           .author by #{reward.story.user.name}
-        .why= #reward.comment
+        .why= reward.comment
 
   %ul.momeant-recommended-stream.stories.tabcontent.hidden
     - user.stories_similar_to_my_bookmarks_and_rewards[0..3].each do |story|

@@ -2,11 +2,11 @@
   .hidden
     #reward-modal
       .insides
-        %h3 How much would you like to reward?
-        = form_for Reward.new(:amount => 1), :url => story_rewards_path(@story) do |form|
+        = form_for :reward, :url => story_rewards_path(@story) do |form|
+          %h3 How much would you like to reward?
           %ul
             %li
-              = form.radio_button :amount, 1
+              = form.radio_button :amount, 1, {:checked => true}
               1
             %li
               = form.radio_button :amount, 2
@@ -14,4 +14,7 @@
             %li
               = form.radio_button :amount, 5
               5
+          %h3 Tell others why you rewarded.
+          = form.text_area :comment    
+          %p Help your subscribers discover new content by telling them why you reward this story. Thanks!
           = form.submit "Give Reward"

@@ -108,11 +108,11 @@ class User < ActiveRecord::Base
     Reward.where(:payer_id => self.id, :story_id => story.id).present?
   end
   
-  def reward(story, amount)
+  def reward(story, amount, comment)
     return if amount.nil?
     amount = amount.to_i
     if can_afford?(amount)
-      reward = Reward.create!(:amount => amount, :payer_id => self.id, :payee_id => story.user_id, :story_id => story.id)
+      reward = Reward.create!(:amount => amount, :payer_id => self.id, :payee_id => story.user_id, :story_id => story.id, :comment => comment)
       story.increment!(:reward_count, amount)
       self.decrement!(:coins, amount)
     end
