@@ -26,7 +26,6 @@
                     width: this.$element[0].offsetWidth,
                     height: this.$element[0].offsetHeight
                 });
-                
                 var actualWidth = $tip[0].offsetWidth, actualHeight = $tip[0].offsetHeight;
                 var gravity = (typeof this.options.gravity == 'function')
                                 ? this.options.gravity.call(this.$element[0])

@@ -50,6 +50,12 @@
             .name= creator.name
             .occupation= "occupation: #{creator.occupation}"
           .rewards= number_with_precision(rewards.sum(&:amount), :precision => 0)
+          
+  .subscribing-to
+    %h1 Members I'm Following
+    %ul.users
+      - @user.subscribed_to.limit(15).each do |user|
+        %li= link_to(image_tag(user.avatar.url(:thumbnail)), user_path(user), :class => "tooltipped", :title => user.name)
         
   - if me?(@user)
     = #render "stories/personal_library"
