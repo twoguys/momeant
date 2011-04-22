@@ -23,12 +23,12 @@ Feature "A user should be able to comment on a story", :testcase_class => FullSt
     end
     
     Then "there should be a new comment assigned to the story" do
-      assert_equal "Here is a sweet comment about your awesome story!", @story.comments.last
+      assert_equal "Here is a sweet comment about your awesome story!", @story.comments.last.comment
     end
     
     And "the story's comment count should be one higher" do
       @story.reload
-      assert_equal @old_comment_count + 2, @story.comment_count
+      assert_equal @old_comment_count + 1, @story.comment_count
     end
     
     And "I should be back on the preview page and see the new total comments and my comment" do

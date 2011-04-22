@@ -7,6 +7,7 @@ class CurationsController < ApplicationController
     when "comment"
       if params[:curation][:comment]
         Comment.create!(:user_id => current_user.id, :story_id => @story.id, :comment => params[:curation][:comment])
+        @story.increment!(:comment_count)
       end
     end
       

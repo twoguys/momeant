@@ -6,7 +6,7 @@ module StoriesHelper
       if current_user.has_bookmarked?(story)
         button_to("unbookmark story", unbookmark_story_path(story), :method => :delete, :class => "unbookmark tooltipped-n", :title => "Unbookmark?")
       else
-        button_to("bookmark story", bookmark_story_path(story), :class => "bookmark tooltipped-n", :title => "Bookmark?")
+        button_to("bookmark story", bookmark_story_path(story), :class => "bookmark tooltipped-n", :title => "Bookmark this story to remember it for later")
       end
     end
   end
