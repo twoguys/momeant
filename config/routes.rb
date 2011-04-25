@@ -62,6 +62,7 @@ Repo::Application.routes.draw do
     end
   end
   
+  match '/subscribe',           :to => 'home#subscribe',            :as => :subscribe
   match '/faq',                 :to => 'home#faq',                  :as => :faq
   match '/',                    :to => 'home#index',                :as => :home
   root :to => "home#index"
