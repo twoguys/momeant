@@ -1,3 +1,9 @@
+- if current_user.blank?
+  - if @user.is_a?(Creator)
+    = render :partial => "shared/calls_to_action/signup", :locals => {:message => "Support #{@user.name} and other creators and become a mo&#149meant patron"}
+  - else
+    = render :partial => "shared/calls_to_action/signup", :locals => {:message => "#{@user.name} is a mo&#149meant patron, join them in supporting creators"}
+
 .user-profile{:class => @user.is_a?(Creator) ? "creator" : ""}
   .top{:class => @user.is_a?(Creator) ? "created-stories" : "curatorial-stream"}
     = render "stories/gallery"

@@ -1,3 +1,6 @@
+- if current_user.blank?
+  = render :partial => "shared/calls_to_action/signup", :locals => {:message => "View this and all amazing content from our creators"}
+
 - if @story.owner?(current_user)
   - if @story.draft?
     .banner

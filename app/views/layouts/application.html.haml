@@ -28,8 +28,13 @@
     #wrap
       #main.clearfix
         %header{:class => private_beta? && !current_user ? "hide-nav" : ""}
+          = render "layouts/user_nav" unless @hide_nav
+          #call-to-action
+            - if current_user.trial? && !private_beta?
+              = render :partial => "shared/calls_to_action/subscribe", :locals => {:message => "You have 10 days and 5 coins left in your trial. Loving it?"}
+            - else
+              = yield :call_to_action
           .insides
-            = render "layouts/user_nav" unless @hide_nav
             .momeant-header
               = link_to("Home", root_path, :id => "logo-large") unless @hide_momeant
               - if !current_user && private_beta?
