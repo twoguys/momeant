@@ -30,7 +30,7 @@
         %header{:class => private_beta? && !current_user ? "hide-nav" : ""}
           = render "layouts/user_nav" unless @hide_nav
           #call-to-action
-            - if current_user.trial? && !private_beta?
+            - if !private_beta? && current_user && current_user.trial?
               = render :partial => "shared/calls_to_action/subscribe", :locals => {:message => "You have 10 days and 5 coins left in your trial. Loving it?"}
             - else
               = yield :call_to_action
