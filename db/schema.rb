@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110426153701) do
+ActiveRecord::Schema.define(:version => 20110426200947) do
 
   create_table "adverts", :force => true do |t|
     t.string   "title"
@@ -119,6 +119,7 @@ ActiveRecord::Schema.define(:version => 20110426153701) do
     t.integer  "reward_count",    :default => 0
     t.integer  "view_count",      :default => 0
     t.integer  "comment_count",   :default => 0
+    t.text     "thankyou"
   end
 
   create_table "stories_topics", :id => false, :force => true do |t|

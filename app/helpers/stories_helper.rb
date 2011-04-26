@@ -52,7 +52,7 @@ module StoriesHelper
         children.each do |child|
           html += content_tag(:li, :class => "topic child") do
             checkbox = check_box_tag "topics[#{child.id}]", 1, story.topics.include?(child), "topic-id" => child.id
-            checkbox += child.name
+            checkbox += label_tag "topics_#{topic.id}", child.name
           end
         end
         html
