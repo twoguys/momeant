@@ -46,4 +46,30 @@ Feature "A view record should be recorded (max of once per subscription period) 
       assert_equal 2, View.where(:story_id => @story.id, :user_id => @email_confirmed_user.id).count
     end
   end
+  
+  Scenario "A trial user views a story" do
+    given_a(:trial_user)
+    given_a(:story)
+    given_im_signed_in_as(:trial_user)
+    
+    When "I view a story" do
+      visit story_path(@story)
+    end
+    
+    Then "the view should be marked as given by a trial user" do
+      @view = View.last
+      assert @view.given_during_trial?
+    end
+    
+    When "the user who viewed later starts paying for a subscription" do
+      @trial_user.start_paying!
+    end
+    
+    Then "the view should be unmarked as given by a trial user and it's created at time should be moved up to now" do
+      @view.reload
+      assert !@view.given_during_trial?
+      assert @view.created_at > @trial_user.subscription_last_updated_at
+      assert @trial_user.views.given_during_trial.empty?
+    end
+  end
 end

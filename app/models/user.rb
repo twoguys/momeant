@@ -13,6 +13,9 @@ class User < ActiveRecord::Base
   has_many :given_rewards, :class_name => "Reward"
   has_many :rewarded_creators, :through => :given_rewards, :source => :recipient
   has_many :rewarded_stories, :through => :given_rewards, :source => :story
+  
+  has_many :views
+  has_many :viewed_stories, :through => :views, :source => :story
 
   has_many :subscriptions
   has_many :inverse_subscriptions, :class_name => "Subscription", :foreign_key => :subscriber_id
@@ -42,19 +45,23 @@ class User < ActiveRecord::Base
 
   aasm_state :trial
   aasm_state :trial_expired
-  aasm_state :active_subscription, :enter => :update_trial_rewards
+  aasm_state :active_subscription, :enter => [:update_subscription_time, :update_trial_rewards, :update_trial_views]
   aasm_state :disabled_subscription
   
   aasm_event :expire_trial do
-    transitions :to => :trial_expired, :from => [:trial]
+    transitions :to => :trial_expired, :from => :trial
   end
 
   aasm_event :start_paying do
-    transitions :to => :active_subscription, :from => [:trial, :trial_expired, :disabled_subscription]
+    transitions :to => :active_subscription, :from => [:trial, :trial_expired]
   end
 
   aasm_event :stop_paying do
-    transitions :to => :disabled_subscription, :from => [:active_subscription]
+    transitions :to => :disabled_subscription, :from => :active_subscription
+  end
+  
+  aasm_event :resume_paying do
+    transitions :to => :active_subscription, :from => :disabled_subscription
   end
   
   # VALIDATIONS
@@ -130,8 +137,16 @@ class User < ActiveRecord::Base
     View.where(:user_id => self.id, :story_id => story.id).where("created_at > ?", self.subscription_last_updated_at).present?
   end
   
+  def update_subscription_time
+    self.update_attribute(:subscription_last_updated_at, Time.now)
+  end
+  
   def update_trial_rewards
     self.given_rewards.update_all(:given_during_trial => false)
+  end
+
+  def update_trial_views
+    self.views.update_all(:given_during_trial => false, :created_at => Time.now)
   end
   
   def purchase(story)
