@@ -41,3 +41,7 @@ end
 Factory.define :user_with_coins, :parent => :email_confirmed_user do |user|
   user.coins                  10
 end
+
+Factory.define :trial_user, :parent => :user_with_coins do |user|
+  user.paid_state             "trial"
+end

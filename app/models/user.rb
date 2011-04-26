@@ -42,7 +42,7 @@ class User < ActiveRecord::Base
 
   aasm_state :trial
   aasm_state :trial_expired
-  aasm_state :active_subscription
+  aasm_state :active_subscription, :enter => :update_trial_rewards
   aasm_state :disabled_subscription
   
   aasm_event :expire_trial do
@@ -110,7 +110,9 @@ class User < ActiveRecord::Base
     return if amount.nil?
     amount = amount.to_i
     if can_afford?(amount)
-      reward = Reward.create!(:amount => amount, :user_id => self.id, :recipient_id => story.user_id, :story_id => story.id, :comment => comment)
+      options = {:amount => amount, :user_id => self.id, :recipient_id => story.user_id, :story_id => story.id, :comment => comment}
+      options.merge!({:given_during_trial => true}) if self.trial?
+      reward = Reward.create!(options)
       story.increment!(:reward_count, amount)
       self.decrement!(:coins, amount)
     end
@@ -126,6 +128,10 @@ class User < ActiveRecord::Base
   
   def has_viewed_this_period?(story)
     View.where(:user_id => self.id, :story_id => story.id).where("created_at > ?", self.subscription_last_updated_at).present?
+  end
+  
+  def update_trial_rewards
+    self.given_rewards.update_all(:given_during_trial => false)
   end
   
   def purchase(story)

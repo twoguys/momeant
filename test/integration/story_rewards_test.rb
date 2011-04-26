@@ -44,4 +44,32 @@ Feature "A user should be able to reward a creator for a story" do
       assert page.has_content? pluralize(@story.reward_count, "reward coin")
     end
   end
+  
+  Scenario "Rewarding a story during trial and later paying for a Momeant subscription" do
+    given_a(:trial_user)
+    given_a(:story)
+    given_im_signed_in_as(:trial_user)
+    
+    When "I reward a story" do
+      visit preview_story_path(@story)
+      click_link pluralize(@story.rewards.count, "reward coin")
+      choose "reward_amount_2"
+      click_button "Give Reward"
+    end
+    
+    Then "the reward should be marked as given by a trial user" do
+      @reward = Reward.last
+      assert @reward.given_during_trial?
+    end
+    
+    When "the user who rewarded later starts paying for a subscription" do
+      @trial_user.start_paying!
+    end
+    
+    Then "the reward should be unmarked as given by a trial user" do
+      @reward.reload
+      assert !@reward.given_during_trial?
+      assert @trial_user.given_rewards.given_during_trial.empty?
+    end
+  end
 end

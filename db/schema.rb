@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110421165614) do
+ActiveRecord::Schema.define(:version => 20110426153701) do
 
   create_table "adverts", :force => true do |t|
     t.string   "title"
@@ -44,8 +44,9 @@ ActiveRecord::Schema.define(:version => 20110421165614) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "comment"
-    t.integer  "amount",       :default => 0
+    t.integer  "amount",             :default => 0
     t.integer  "recipient_id"
+    t.boolean  "given_during_trial", :default => false
   end
 
   create_table "invitations", :force => true do |t|
