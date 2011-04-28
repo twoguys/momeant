@@ -19,9 +19,9 @@ module StoriesHelper
     text = pluralize(story.reward_count, "reward coin")
     if current_user
       if current_user.has_rewarded?(story)
-        link_to(text, "#", :class => "rewarded disabled tooltipped", :title => "You rewarded this story.")
+        link_to(text, "#reward-box", :class => "rewarded tooltipped", :title => "You rewarded this story.")
       else
-        link_to(text, "#reward-modal", :class => "reward tooltipped", :title => "Reward this story?")
+        link_to(text, "#reward-box", :class => "reward tooltipped", :title => "Reward this story?")
       end
     end
   end

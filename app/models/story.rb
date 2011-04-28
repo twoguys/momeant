@@ -107,4 +107,12 @@ class Story < ActiveRecord::Base
     # remove duplicates and this story
     stories.uniq - [self]
   end
+  
+  def similar_stories_different_creator
+    # find other stories with matching topics
+    my_topic_ids = self.topics.map { |topic| topic.id }.join(",")
+    stories = []
+    stories += Story.published.joins(:topics).where("topics.id IN (#{my_topic_ids})") unless my_topic_ids.blank?
+    stories
+  end
 end

@@ -3,8 +3,8 @@ class RewardsController < ApplicationController
   before_filter :find_story
   
   def create
-    current_user.reward(@story, params[:reward][:amount], params[:reward][:comment])
-    redirect_to preview_story_path(@story)
+    reward = current_user.reward(@story, params[:reward][:amount], params[:reward][:comment])
+    render :partial => "stories/you_rewarded", :locals => {:reward => reward}
   end
   
   private

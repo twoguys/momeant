@@ -589,37 +589,6 @@ ul.stories
 .personal-library
 	clear: both
 
-#reward-modal
-	width: 400px
-	.insides
-		padding: 20px
-	h3
-		font-size: 1.1em
-		margin-bottom: 10px
-	ul
-		height: 30px
-		li
-			float: left
-			clear: none
-			width: 33%
-	textarea
-		width: 345px
-		height: 30px
-	p
-		width: 195px
-		float: left
-		font-size: 11px
-		color: #999
-		line-height: 13px
-		margin: 13px 0 0
-	input[type="submit"]
-		background: #ffa801 url(../images/icons/recommendWhite.png) no-repeat 7px 50%
-		color: #fff
-		font-size: 12px
-		float: right
-		margin-top: 15px
-		padding: 10px 12px 10px 27px
-
 .tag, a.tag
 	background-color: #ffffff
 	display: inline-block
@@ -658,3 +627,84 @@ ul.stories
 			span
 				color: #fff !important
 				text-shadow: none
+
+#reward-box
+	width: 430px
+	float: left
+	.tab
+		font-family: $block
+		font-weight: 900
+		text-transform: uppercase
+		background-color: #eee
+		width: 180px
+		padding: 10px 0
+		text-align: center
+	.inner
+		width: 410px
+		height: 281px
+		padding: 10px
+		background-color: #eee
+		.amount
+			p
+				float: left
+				width: 50%
+				text-align: center
+				font-size: 0.9em
+			ul.coins
+				float: right
+				margin-top: 10px
+				width: 50%
+				li
+					float: left
+					clear: none
+					width: 30%
+					height: 63px
+					text-align: center
+					cursor: pointer
+					input
+						display: none
+				li.bronze
+					background: transparent url(../images/coinBronze.png) no-repeat 0 5px
+				li.silver
+					background: transparent url(../images/coinSilver.png) no-repeat 0 5px
+				li.gold
+					background: transparent url(../images/coinGold.png) no-repeat 0 5px
+				li:hover, li.selected
+					background-position: 0 -53px
+		.comment
+			textarea
+				width: 96%
+				height: 80px
+			p
+				font-size: 0.9em
+				text-align: center
+				margin: 5px 0
+			input[type="submit"]
+				background-color: #ffc92a
+				color: #fff
+				display: block
+				margin: 0 auto
+#reward-box.loading .inner
+	background: #eee url(../images/spinner.gif) no-repeat 50% 50%
+	form
+		display: none
+#you-rewarded
+	.amount
+		width: 53px
+		height: 53px
+		margin: 20px auto
+	.amount.bronze
+		background: transparent url(../images/coinBronze.png) no-repeat 0 0
+	.amount.silver
+		background: transparent url(../images/coinSilver.png) no-repeat 0 0
+	.amount.gold
+		background: transparent url(../images/coinGold.png) no-repeat 0 0
+	.comment
+		padding: 0 20px
+		text-align: center
+		font-family: $typewriter
+		font-size: 1.5em
+	.note
+		text-align: center
+		margin-top: 10px
+		font-size: 0.9em

@@ -122,7 +122,12 @@ class User < ActiveRecord::Base
       reward = Reward.create!(options)
       story.increment!(:reward_count, amount)
       self.decrement!(:coins, amount)
+      return reward
     end
+  end
+  
+  def last_reward_for(story)
+    Reward.where(:user_id => self.id, :story_id => story.id).first
   end
   
   def can_afford?(amount)
