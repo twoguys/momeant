@@ -18,8 +18,8 @@
         = render :partial => "reward_modal", :locals => {:story => @story}
         .stories
           .tabs
-            = link_to("you might like", "you-might-like", :class => "active")
-            = link_to("by this creator", "by-this-creator")
+            = link_to("you might like", "you-might-like", :class => "active first")
+            = link_to("by this creator", "by-this-creator", :class => "last")
           %ul.stories.you-might-like.tabcontent
             - @story.similar_stories_different_creator.each do |story|
               %li

@@ -7,9 +7,10 @@
         = link_to("Profile", user_path(current_user), :class => "tooltipped", :title => "Profile")
     %li#faq
       = link_to("FAQ", "#", :class => "tooltipped", :title => "FAQ")        
-    %li#topics  
+    %li#topics
       %span.icon
       .inner
+        .heading Topics
         %ul.topic-list
           - counter = 1
           - Topic.parent_topics.order(:name).each do |topic|

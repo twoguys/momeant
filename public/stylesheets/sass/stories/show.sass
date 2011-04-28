@@ -223,18 +223,32 @@
 					.tabs
 						margin-bottom: 0
 						background-color: transparent
-						height: auto
+						height: 29px
 						min-height: 0
+						position: relative
 						a
-							padding: 10px 0
+							top: 0
+							padding: 0
+							position: absolute
+							height: 29px
+							line-height: 29px
+							vertical-align: middle
 							font-size: 12px
-							background-color: #ccc
+							background: transparent url(../images/tab155x29Dark.png) no-repeat 0 0
 							color: #fff
-							width: 50%
-							height: auto
+							width: 155px
+							z-index: 1
+							-webkit-box-shadow: none
+							-moz-box-shadow: none
+							box-shadow: none
+						a.first
+							left: 0
+						a.last
+							right: 0
 						a.active
-							background-color: #eee
+							background: transparent url(../images/tab155x29.png) no-repeat 0 0
 							color: $text_color
+							z-index: 2
 						a, a.active, a:first-child
 							border: 0 none
 					ul.stories

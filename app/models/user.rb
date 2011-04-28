@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
     },
     :bucket        => ENV['S3_BUCKET']
   
-  devise :database_authenticatable, :registerable, :confirmable,
+  devise :database_authenticatable, :registerable, #:confirmable,
          :recoverable, :rememberable, :trackable, :validatable
          
   # STATE MACHINE FOR PAID SUBSCRIPTIONS
@@ -221,5 +221,11 @@ class User < ActiveRecord::Base
     # remove stories I've created or purchased or that are unpublished
     #purchased_stories = self.purchased_stories
     similar_stories.reject { |story| story.user == self || story.draft? }.uniq
+  end
+  
+  def recommendation_stream
+    (rewards_from_people_i_subscribe_to + stories_similar_to_my_bookmarks_and_rewards).sort do |x,y|
+      x.created_at <=> y.created_at
+    end
   end
 end

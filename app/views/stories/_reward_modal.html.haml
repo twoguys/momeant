@@ -1,7 +1,8 @@
-- if current_user
+- if current_user && !@story.owner?(current_user)
   #reward-box
     - unless @hide_reward_tab
-      .tab Reward this story
+      .tab
+        .tab-inner Reward this story
     .inner
       - if !current_user.has_rewarded?(@story)
         = form_for :reward, :url => story_rewards_path(@story), :html => {:id => "reward-form"} do |form|

@@ -12,17 +12,21 @@ module StoriesHelper
   end
   
   def views_link(story)
-    link_to(pluralize(story.view_count, "view"), "#", :class => "views disabled")
+    content_tag("span", :class => "views") { pluralize(story.view_count, "view") }
   end
   
   def rewards_link(story)
     text = pluralize(story.reward_count, "reward coin")
-    if current_user
+    if story.owner?(current_user)
+      content_tag("span", :class => "reward") { text }
+    elsif current_user
       if current_user.has_rewarded?(story)
         link_to(text, "#reward-box", :class => "rewarded tooltipped", :title => "You rewarded this story.")
       else
         link_to(text, "#reward-box", :class => "reward tooltipped", :title => "Reward this story?")
       end
+    else
+      content_tag("span", :class => "reward tooltipped", :title => "Signup to reward!") { text }
     end
   end
   
@@ -30,9 +34,9 @@ module StoriesHelper
     if current_user && current_user.can_view_stories?
       link_to("view", story, :class => "view")
     elsif current_user
-      link_to("upgrade to view", "#", :class => "view")
+      link_to("subscribe to view", subscribe_path, :class => "view")
     else
-      link_to("signup to view", "#", :class => "view")
+      link_to("signup to view", new_user_registration_path, :class => "view")
     end
   end
   

@@ -7,6 +7,7 @@ header
 		height: 42px
 		width: 950px
 		margin: 0 auto
+		z-index: 2
 		ul.links
 			position: absolute
 			left: 0
@@ -93,10 +94,21 @@ header
 				padding-top: 7px
 				position: absolute
 				top: 35px
+				display: none
+				.heading
+					background-color: #000
+					color: #fff
+					font-size: 18px
+					font-weight: 900
+					text-transform: uppercase
+					text-align: center
+					height: 22px
+					line-height: 25px
+					vertical-align: middle
+					padding: 3px 0
 			.topic-list
 				border: 3px solid #000
 				@include boxshadow
-				display: none
 				.odd
 					background-color: #f0f0f0
 				.even
@@ -150,7 +162,7 @@ header
 				li.travel a
 					background-position: 120px -546px
 		#topics:hover
-			.topic-list
+			.inner
 				display: block
 		#hi
 			background: transparent url(../images/topNavBreak.gif) no-repeat 0 0
@@ -197,6 +209,7 @@ header
 				box-shadow: none
 				text-indent: -9999px
 	#call-to-action
+		z-index: 1
 		.insides
 			padding: 10px 0 3px
 			width: 100%
@@ -232,6 +245,7 @@ header
 		padding-top: 20px
 		background: transparent url(../images/diagStripeBG.png) repeat-x 0 100%
 		margin-bottom: 10px
+		z-index: 1
 		#logo-large
 			height: 100px
 			width: 645px

@@ -9,7 +9,7 @@ class Reward < Curation
       "bronze"
     when 2
       "silver"
-    when 3
+    when 5
       "gold"
     end
   end
