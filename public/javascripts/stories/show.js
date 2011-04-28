@@ -28,6 +28,8 @@ var story_viewer = function() {
 		$.scrollTo('42');
 		
 		setup_key_bindings();
+		
+		goto_page_in_url();
 	};
 	
 	this.open_previewer = function() {
@@ -147,6 +149,13 @@ var story_viewer = function() {
 			}, 2000);
 	};
 	
+	var goto_page_in_url = function() {
+		var url = window.location.href;
+		if (url.indexOf('#page')) {
+			var page = parseInt(url.substring(url.indexOf('#page') + 5));
+			viewer.goto_page(page);
+		}
+	};
 }
 
 $(document).ready(function() {
