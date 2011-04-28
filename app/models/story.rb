@@ -112,7 +112,7 @@ class Story < ActiveRecord::Base
     # find other stories with matching topics
     my_topic_ids = self.topics.map { |topic| topic.id }.join(",")
     stories = []
-    stories += Story.published.joins(:topics).where("topics.id IN (#{my_topic_ids})").where("user_id != ?", story.user_id) unless my_topic_ids.blank?
+    stories += Story.published.joins(:topics).where("topics.id IN (#{my_topic_ids})").where("user_id != #{self.user_id}") unless my_topic_ids.blank?
     stories
   end
 end
