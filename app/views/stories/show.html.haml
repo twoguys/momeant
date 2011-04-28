@@ -23,7 +23,7 @@
           %ul.stories.you-might-like.tabcontent
             - @story.similar_stories_different_creator.each do |story|
               %li
-                %a.thumbnail{:href => preview_story_path(story)}
+                %a.thumbnail.petite{:href => preview_story_path(story)}
                   - if story.thumbnail
                     - @page = story.thumbnail
                     = render :partial => "stories/page_themes/#{@page.partial_name}", :locals => {:size => "petite"}
@@ -33,7 +33,7 @@
           %ul.stories.by-this-creator.tabcontent.hidden
             - @story.user.created_stories.published.where("id != #{@story.id}").each do |story|
               %li
-                %a.thumbnail{:href => preview_story_path(story)}
+                %a.thumbnail.petite{:href => preview_story_path(story)}
                   - if story.thumbnail
                     - @page = story.thumbnail
                     = render :partial => "stories/page_themes/#{@page.partial_name}", :locals => {:size => "petite"}
