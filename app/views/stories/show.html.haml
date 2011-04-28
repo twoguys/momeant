@@ -31,7 +31,7 @@
                   = link_to(story.title, preview_story_path(story), :class => "title")
                   .author by #{story.user.name}
           %ul.stories.by-this-creator.tabcontent.hidden
-            - @story.user.created_stories.published.each do |story|
+            - @story.user.created_stories.published.where("story_id != #{@story.id}").each do |story|
               %li
                 %a.thumbnail{:href => preview_story_path(story)}
                   - if story.thumbnail
