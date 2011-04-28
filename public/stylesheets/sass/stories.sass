@@ -32,6 +32,16 @@
 		hr
 			margin: 30px auto
 			width: 30%
+@mixin titleSlidePetite
+	@include titleSlide(95px, 60px)
+	.inner .title
+		line-height: 1em
+		font-size: 10px !important
+		padding: 10px 5px
+		span
+			font-size: 10px !important
+		p
+			margin: 2px 0
 
 @mixin blockquoteSlide($width:288px, $height:180px)
 	width: $width
@@ -392,6 +402,7 @@
 	background-color: #fff
 	.inner
 		height: 420px
+
 .thumbnail.title.medium
 	.inner
 		display: table
@@ -402,6 +413,11 @@
 	@include blockquoteSlideMedium
 .thumbnail.split.medium
 	@include splitSlideMedium
+
+.thumbnail.title.petite
+	@include titleSlidePetite
+.thumbnail.full_image.petite
+	@include fullimageSlide(95px,60px)
 
 ul.stories
 	li.story

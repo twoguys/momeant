@@ -530,11 +530,15 @@ var story_auto_saver = function() {
 		});
 	};
 	
-	this.save_text = function($element, page_id, type, number) {
+	this.save_text = function($element, page_id, type, number, optional_text) {
 		var data = {};
 		data['type'] = type;
 		data['number'] = number;
-		data['text'] = $element.val();
+		if (optional_text) {
+			data['text'] = optional_text;
+		} else {
+			data['text'] = $element.val();
+		}
 		var position = $element.attr('position');
 		if (position) {
 			data['position'] = position;
@@ -809,7 +813,7 @@ var story_auto_saver = function() {
 				$save_button.click(function() {
 					var editor = tinyMCE.get($element.attr('id'));
 					if (editor.isDirty()) {
-						auto_saver.save_text($element, page_id, type, number);
+						auto_saver.save_text($element, page_id, type, number, editor.getContent());
 						$to.html(editor.getContent());
 					}
 				});

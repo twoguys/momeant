@@ -16,7 +16,7 @@
         %li.story
           - if obj.thumbnail
             - @page = obj.thumbnail
-            %a.thumbnail{:href => preview_story_path(obj), :class => @page.css_class}
+            %a.thumbnail.petite{:href => preview_story_path(obj), :class => @page.css_class}
               = render :partial => "stories/page_themes/#{@page.partial_name}", :locals => {:size => "petite"}
           .info
             = link_to(obj.title, preview_story_path(obj), :class => "title")
