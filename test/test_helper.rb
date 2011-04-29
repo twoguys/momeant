@@ -8,6 +8,10 @@ require 'coulda'
 require 'factory_girl'
 require 'capybara/rails'
 
+class Test::Unit::TestCase
+  include RR::Adapters::TestUnit
+end
+
 Coulda.default_testcase_class = ActionController::IntegrationTest
 
 # Load shared test steps for Coulda

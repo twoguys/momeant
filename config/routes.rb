@@ -48,6 +48,9 @@ Repo::Application.routes.draw do
   
   resources :users do
     resources :subscriptions
+
+    # Spreedly updates come here
+    post :billing_updates, :on => :collection
   end
   
   namespace :admin do
@@ -62,6 +65,7 @@ Repo::Application.routes.draw do
   end
   
   match '/subscribe',           :to => 'home#subscribe',            :as => :subscribe
+  match '/thankyou',            :to => 'home#thankyou',             :as => :thankyou
   match '/faq',                 :to => 'home#faq',                  :as => :faq
   match '/',                    :to => 'home#index',                :as => :home
   root :to => "home#index"

@@ -154,6 +154,32 @@ class User < ActiveRecord::Base
     self.views.update_all(:given_during_trial => false, :created_at => Time.now)
   end
   
+  def spreedly_plan_url
+    Spreedly.subscribe_url(self.id, ENV["SPREEDLY_PLAN_ID"], :email => self.email, :first_name => self.first_name, :last_name => self.last_name)
+  end
+  
+  def refresh_from_spreedly
+    Rails.logger.info "Getting info from Spreedly for #{self.name}"
+    spreedly_user = Spreedly::Subscriber.find(self.id)
+    Rails.logger.info spreedly_user.inspect
+    if spreedly_user
+      self.spreedly_token = spreedly_user.token
+      self.spreedly_plan = spreedly_user.feature_level
+      
+      if spreedly_user.active
+        self.start_paying! if self.trial? || self.trial_expired?
+        self.resume_paying! if self.disabled_subscription?
+      else
+        self.stop_paying! if self.active_subscription?
+      end
+      
+      self.save(:validate => false)
+      Rails.logger.info "Spreedly info received, user is updated."
+    else
+      Rails.logger.info "Oops...no data received from Spreedly for #{self.name}."
+    end
+  end
+  
   def purchase(story)
     return false unless can_afford?(story.price)
     
