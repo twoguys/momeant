@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!, :except => [:show, :billing_updates]
+  skip_before_filter :verify_authenticity_token, :only => :billing_updates
   
   def show
     @user = User.find(params[:id])
