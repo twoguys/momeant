@@ -83,7 +83,7 @@ class User < ActiveRecord::Base
   def extra_validations
     safe = true
     if ENV["CURRENT_RELEASE"] == 'private-beta'
-      if !self.confirmed?
+      if self.new_record?
         # validate invitation code
         if self.invitation_code.blank?
           self.errors.add(:invitation_code, "is required during private beta.")
