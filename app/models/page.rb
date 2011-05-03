@@ -3,6 +3,12 @@ class Page < ActiveRecord::Base
   acts_as_list :scope => :story, :column => :number
   has_many :medias, :class_name => "PageMedia", :dependent => :destroy
   
+  IMAGE_PLACEMENTS = {
+    "original size" => "original",
+    "fill screen" => "fill-screen",
+    "fit to screen" => "fit-to-screen"
+  }.freeze
+  
   def image
     self.medias.each do |media|
       return media.image if media.is_a?(PageImage)

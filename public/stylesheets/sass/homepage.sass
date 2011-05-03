@@ -5,13 +5,6 @@
 		border-bottom: 2px solid #fff
 		margin-bottom: 10px
 
-.blurb
-	font-size: 11px
-	color: #999
-	padding: 7px 0
-	text-align: center
-	width: 210px
-
 .adverts
 	height: 165px
 	margin-bottom: 20px
@@ -25,133 +18,204 @@
 			height: 165px
 
 .beta
-	margin-top: -10px
-	margin-bottom: 30px
 	padding-bottom: 30px
-	.important, .copy
-		font-family: $typewriter
-		color: #999
-		font-size: 20px
-		line-height: 31px
-		margin-bottom: 20px
-		&:first-letter
-			font-size: 60px
-			font-weight: 100
-			padding-bottom: 5px
-			line-height: 44px
-			float: left
-			display: inline-block
-			vertical-align: baseline
-			padding-right: 5px
-			padding-top: 12px
-			color: #000
-	.important
-		font-weight: 700
-		font-style: italic
-				
-	h2
-		background: none
-		color: #000
-		font-size: 36px
-		padding: 0 10px 10px
-		margin: 0 0 10px
-		font-family: $typewriter
-		font-weight: 100
-		border-bottom: 1px solid #ddd
-		text-align: center
-		width: 190px
-	h3
-		background: none
-		color: #aaa
-		font-size: 32px
-		padding: 25px 25px 15px
-		margin: 20px 0 10px
-		font-family: $block
-		font-weight: 900
-		border-right: 1px solid #ddd
-		text-align: right
-		width: 269px
+	.characters
+		width: 1008px
+		height: 290px
+		margin: 20px 0 50px -58px
+		background: transparent url(../images/splashCharacters.png) no-repeat 0 0
+	h1
 		text-transform: uppercase
-		float: left
-		line-height: 30px
-	p
-		float: right
-		height: 140px
-		margin: 20px 0
-		padding: 20px 25px
-		text-align: justify
-		width: 580px
-	form
-		.placeholder
-			color: #aaa
-			font-style: italic
-			font-family: $serif
-			font-size: 12px
-		input[type="text"], input[type="password"]
-			width: 194px
-		input[type="submit"]
-			color: #000
-			text-shadow: none
-			font-size: 16px
-		span
-			input[type="text"], input[type="password"]
-				width: 87px
-			label
-				color: #cacaca
-				margin: 0px 0px 10px 0
-				text-transform: lowercase
-				font-family: $serif
-				font-style: italic
-				font-size: 12px
-		li
-			margin-bottom: 10px
-		.spaced-a-bit
-			margin-bottom: 5px
+		font-size: 34px
+		font-weight: 900
+		letter-spacing: -0.02em
+		margin-bottom: 0
+	p.explanation
+		font-family: $typewriter
+		font-size: 18px
+		line-height: 1.5em
+		color: $blue
+		margin: 0
 	
-	.shots, .join, .login
+	.email-list
+		margin: 50px auto 0
+		width: 400px
+		p
+			font-family: $typewriter
+			font-style: italic
+			font-size: 12px
+			color: #999
+			text-align: center
+			line-height: 1.5em
+		form
+			width: 325px
+			margin: 0 auto
+			text-align: center
+			input[type="text"]
+				width: 300px
+				height: 36px
+				padding: 0 10px
+			input[type="submit"]
+				width: 100px
+				height: 38px
+				position: relative
+				display: block
+				float: right
+				border: 1px solid #88dffe
+				top: -38px
+				right: 0
+				background-color: $lightblue
+				@include rounded(4px)
+				color: $blue
+				font-weight: 900
+				text-transform: uppercase
+				font-family: $block
+				font-size: 14px
+				-webkit-border-top-left-radius: 0
+				-webkit-border-bottom-left-radius: 0
+				-moz-border-radius-topleft: 0
+				-moz-border-radius-bottomleft: 0
+				border-top-left-radius: 0
+				border-bottom-left-radius: 0
+	
+#beta-modal
+	display: none
+	position: fixed
+	top: 0
+	z-index: 999
+	text-shadow: none
+	font-family: $block
+	color: #fff
+	width: 100%
+	height: 100%
+	.cover
+		width: 100%
+		height: 100%
+		background: transparent url(../images/modalCover.png) repeat
+		background: rgba(0,0,0,0.7)
+		position: absolute
+		z-index: 1
+	.padder
+		width: 480px
+		margin: 0 auto
+		background-color: $background_color
+		padding: 0 20px
+		position: relative
+		top: 170px
+		z-index: 2
+		@include rounded(4px)
+		@include boxshadow
+		a.close
+			position: absolute
+			top: -15px
+			right: -15px
+			width: 30px
+			height: 30px
+			display: block
+			background: transparent url(../images/modalClose.png) no-repeat 0 0
+	.placeholder
+		color: #aaa
+		font-style: italic
+		font-family: $serif
+		font-size: 12px
+	h2
+		font-family: $typewriter
+		font-size: 30px
+		color: #000
+		border-bottom: 1px solid #ccc
+		padding-bottom: 10px
+		margin-bottom: 20px
+		text-align: center
+		background-color: transparent
+		font-weight: 100
+	input[type="text"], input[type="password"]
+		width: 194px
+	input[type="submit"]
+		color: #000
+		text-shadow: none
+		font-size: 16px
+	li
+		margin-bottom: 10px
+		height: 31px
+	li.remember-me
+		margin-top: -10px
+		margin-bottom: 5px
+	.spaced-a-bit
+		margin-bottom: 5px
+	li.copy
+		color: #999
+		font-size: 11px
+		font-family: $typewriter
+		margin-top: 25px
+		margin-bottom: 0
+	form
+		li
+			position: relative
+			label.placeholder
+				color: #999
+				font-style: italic
+				font-family: Georgia, serif
+				position: absolute
+				height: 31px
+				line-height: 31px
+				text-transform: none
+				font-weight: 100
+				margin: 0
+				padding: 0 0 0 10px
+			label.error
+				font-family: $serif
+				font-size: 11px
+				font-weight: 100
+				color: $link_color
+				text-transform: none
+				margin: 0 0 5px 0
+			span
+				width: 102px
+				float: left
+				margin-right: 5px
+				position: relative
+				input[type="text"]
+					width: 87px
+			span.last
+				margin-right: 0
+			input[type="submit"]
+				background-color: $lightblue
+				@include rounded(4px)
+				color: $blue
+				font-weight: 900
+				text-transform: uppercase
+				font-family: $block
+				width: 210px
+			input[type="submit"]:disabled
+				background-color: #dfdfdf
+				color: #787878
+				cursor: default
+			input[type="submit"]:disabled:active
+				top: 0
+		li.focused
+			label
+				opacity: 0.5
+		li.filled
+			label
+				display: none
+
+	.join, .login
 		float: left
-		width: 280px
-		margin-top: 20px
+		width: 210px
+		position: relative
 		img
 			margin: 15px 37%
 	.join
-		padding-right: 45px
-		input[type="submit"]
-			background-color: $lightblue
-			@include rounded(4px)
-			color: $blue
-			font-weight: 900
-			text-transform: uppercase
-			font-family: $block
-			width: 210px
-			margin-top: 34px
-		.inner
-			padding-left: 115px
+		padding-right: 30px
+		border-right: 1px solid #ccc
 	.login
 		float: right
-		padding-left: 5px
-		input[type="submit"]
-			background-color: $lightblue
-			@include rounded(4px)
-			color: $blue
-			font-weight: 900
-			text-transform: uppercase
-			font-family: $block
-			width: 210px
-			margin-top: 20px
+		padding-left: 29px
 		input[type="checkbox"]
 			float: left
 			height: 25px
-	.email-list
-		h2
-			letter-spacing: -2.5px
-		margin-top: 30px
-		input[type="submit"]
-			background-color: $lightblue
-			@include rounded(4px)
-			color: $blue
-			font-weight: 900
-			text-transform: uppercase
-			font-family: $block
-			width: 210px
-			margin-top: 20px
+		label
+			font-weight: 100
+			color: $text_color
+			text-transform: none
+			font-size: 12px

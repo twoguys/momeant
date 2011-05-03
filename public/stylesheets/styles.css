@@ -327,7 +327,8 @@ header {
           -moz-border-radius: 3px;
           border-radius: 3px;
           color: white;
-          padding: 2px 5px;
+          padding: 4px 8px;
+          margin-left: 10px;
           position: relative;
           top: -1px;
           font-size: 0.85em; }
@@ -1063,7 +1064,6 @@ form.new_story, form.edit_story, .story-form {
         text-align: center; }
         #page-previews li.grid ul.cells li .side .text .inner {
           background-color: white;
-          background-color: rgba(255, 255, 255, 0.9);
           padding: 0 10%;
           vertical-align: middle;
           display: table-cell;
@@ -1753,7 +1753,6 @@ form.new_story, form.edit_story, .story-form {
             text-align: center; }
             #page-editor ul#pages .grid ul.cells li .side .text .inner {
               background-color: white;
-              background-color: rgba(255, 255, 255, 0.9);
               padding: 0 10%;
               vertical-align: middle;
               display: table-cell;
@@ -2757,7 +2756,6 @@ form.new_story, form.edit_story, .story-form {
             text-align: center; }
             .story-viewer ul#pages li.grid ul.cells li .side .text .inner {
               background-color: white;
-              background-color: rgba(255, 255, 255, 0.9);
               padding: 0 10%;
               vertical-align: middle;
               display: table-cell;
@@ -3132,7 +3130,6 @@ form.new_story, form.edit_story, .story-form {
               text-align: center; }
               .story-gallery .large-preview .pages a.grid ul.cells li .side .text .inner {
                 background-color: white;
-                background-color: rgba(255, 255, 255, 0.9);
                 padding: 0 10%;
                 vertical-align: middle;
                 display: table-cell;
@@ -3421,7 +3418,6 @@ form.new_story, form.edit_story, .story-form {
               text-align: center; }
               .story-gallery .slider .viewport .preview.grid ul.cells li .side .text .inner {
                 background-color: white;
-                background-color: rgba(255, 255, 255, 0.9);
                 padding: 0 10%;
                 vertical-align: middle;
                 display: table-cell;
@@ -4379,13 +4375,6 @@ form.user_edit textarea#user_tagline {
   border-bottom: 2px solid white;
   margin-bottom: 10px; }
 
-.blurb {
-  font-size: 11px;
-  color: #999999;
-  padding: 7px 0;
-  text-align: center;
-  width: 210px; }
-
 .adverts {
   height: 165px;
   margin-bottom: 20px;
@@ -4399,138 +4388,210 @@ form.user_edit textarea#user_tagline {
       height: 165px; }
 
 .beta {
-  margin-top: -10px;
-  margin-bottom: 30px;
   padding-bottom: 30px; }
-  .beta .important, .beta .copy {
-    font-family: "museo-slab-1", "museo-slab-2", serif;
-    color: #999999;
-    font-size: 20px;
-    line-height: 31px;
-    margin-bottom: 20px; }
-    .beta .important:first-letter, .beta .copy:first-letter {
-      font-size: 60px;
-      font-weight: 100;
-      padding-bottom: 5px;
-      line-height: 44px;
-      float: left;
-      display: inline-block;
-      vertical-align: baseline;
-      padding-right: 5px;
-      padding-top: 12px;
-      color: black; }
-  .beta .important {
-    font-weight: 700;
-    font-style: italic; }
-  .beta h2 {
-    background: none;
-    color: black;
-    font-size: 36px;
-    padding: 0 10px 10px;
-    margin: 0 0 10px;
-    font-family: "museo-slab-1", "museo-slab-2", serif;
-    font-weight: 100;
-    border-bottom: 1px solid #dddddd;
-    text-align: center;
-    width: 190px; }
-  .beta h3 {
-    background: none;
-    color: #aaaaaa;
-    font-size: 32px;
-    padding: 25px 25px 15px;
-    margin: 20px 0 10px;
-    font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
-    font-weight: 900;
-    border-right: 1px solid #dddddd;
-    text-align: right;
-    width: 269px;
+  .beta .characters {
+    width: 1008px;
+    height: 290px;
+    margin: 20px 0 50px -58px;
+    background: transparent url(../images/splashCharacters.png) no-repeat 0 0; }
+  .beta h1 {
     text-transform: uppercase;
-    float: left;
-    line-height: 30px; }
-  .beta p {
-    float: right;
-    height: 140px;
-    margin: 20px 0;
-    padding: 20px 25px;
-    text-align: justify;
-    width: 580px; }
-  .beta form .placeholder {
+    font-size: 34px;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    margin-bottom: 0; }
+  .beta p.explanation {
+    font-family: "museo-slab-1", "museo-slab-2", serif;
+    font-size: 18px;
+    line-height: 1.5em;
+    color: #00aeef;
+    margin: 0; }
+  .beta .email-list {
+    margin: 50px auto 0;
+    width: 400px; }
+    .beta .email-list p {
+      font-family: "museo-slab-1", "museo-slab-2", serif;
+      font-style: italic;
+      font-size: 12px;
+      color: #999999;
+      text-align: center;
+      line-height: 1.5em; }
+    .beta .email-list form {
+      width: 325px;
+      margin: 0 auto;
+      text-align: center; }
+      .beta .email-list form input[type="text"] {
+        width: 300px;
+        height: 36px;
+        padding: 0 10px; }
+      .beta .email-list form input[type="submit"] {
+        width: 100px;
+        height: 38px;
+        position: relative;
+        display: block;
+        float: right;
+        border: 1px solid #88dffe;
+        top: -38px;
+        right: 0;
+        background-color: #c0eeff;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+        color: #00aeef;
+        font-weight: 900;
+        text-transform: uppercase;
+        font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
+        font-size: 14px;
+        -webkit-border-top-left-radius: 0;
+        -webkit-border-bottom-left-radius: 0;
+        -moz-border-radius-topleft: 0;
+        -moz-border-radius-bottomleft: 0;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0; }
+
+#beta-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  z-index: 999;
+  text-shadow: none;
+  font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
+  color: white;
+  width: 100%;
+  height: 100%; }
+  #beta-modal .cover {
+    width: 100%;
+    height: 100%;
+    background: transparent url(../images/modalCover.png) repeat;
+    background: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    z-index: 1; }
+  #beta-modal .padder {
+    width: 480px;
+    margin: 0 auto;
+    background-color: #f4f4f4;
+    padding: 0 20px;
+    position: relative;
+    top: 170px;
+    z-index: 2;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+    -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7); }
+    #beta-modal .padder a.close {
+      position: absolute;
+      top: -15px;
+      right: -15px;
+      width: 30px;
+      height: 30px;
+      display: block;
+      background: transparent url(../images/modalClose.png) no-repeat 0 0; }
+  #beta-modal .placeholder {
     color: #aaaaaa;
     font-style: italic;
     font-family: Georgia, serif;
     font-size: 12px; }
-  .beta form input[type="text"], .beta form input[type="password"] {
+  #beta-modal h2 {
+    font-family: "museo-slab-1", "museo-slab-2", serif;
+    font-size: 30px;
+    color: black;
+    border-bottom: 1px solid #cccccc;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+    background-color: transparent;
+    font-weight: 100; }
+  #beta-modal input[type="text"], #beta-modal input[type="password"] {
     width: 194px; }
-  .beta form input[type="submit"] {
+  #beta-modal input[type="submit"] {
     color: black;
     text-shadow: none;
     font-size: 16px; }
-  .beta form span input[type="text"], .beta form span input[type="password"] {
-    width: 87px; }
-  .beta form span label {
-    color: #cacaca;
-    margin: 0px 0px 10px 0;
-    text-transform: lowercase;
-    font-family: Georgia, serif;
-    font-style: italic;
-    font-size: 12px; }
-  .beta form li {
-    margin-bottom: 10px; }
-  .beta form .spaced-a-bit {
+  #beta-modal li {
+    margin-bottom: 10px;
+    height: 31px; }
+  #beta-modal li.remember-me {
+    margin-top: -10px;
     margin-bottom: 5px; }
-  .beta .shots, .beta .join, .beta .login {
+  #beta-modal .spaced-a-bit {
+    margin-bottom: 5px; }
+  #beta-modal li.copy {
+    color: #999999;
+    font-size: 11px;
+    font-family: "museo-slab-1", "museo-slab-2", serif;
+    margin-top: 25px;
+    margin-bottom: 0; }
+  #beta-modal form li {
+    position: relative; }
+    #beta-modal form li label.placeholder {
+      color: #999999;
+      font-style: italic;
+      font-family: Georgia, serif;
+      position: absolute;
+      height: 31px;
+      line-height: 31px;
+      text-transform: none;
+      font-weight: 100;
+      margin: 0;
+      padding: 0 0 0 10px; }
+    #beta-modal form li label.error {
+      font-family: Georgia, serif;
+      font-size: 11px;
+      font-weight: 100;
+      color: #00aeef;
+      text-transform: none;
+      margin: 0 0 5px 0; }
+    #beta-modal form li span {
+      width: 102px;
+      float: left;
+      margin-right: 5px;
+      position: relative; }
+      #beta-modal form li span input[type="text"] {
+        width: 87px; }
+    #beta-modal form li span.last {
+      margin-right: 0; }
+    #beta-modal form li input[type="submit"] {
+      background-color: #c0eeff;
+      -webkit-border-radius: 4px;
+      -moz-border-radius: 4px;
+      border-radius: 4px;
+      color: #00aeef;
+      font-weight: 900;
+      text-transform: uppercase;
+      font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
+      width: 210px; }
+    #beta-modal form li input[type="submit"]:disabled {
+      background-color: #dfdfdf;
+      color: #787878;
+      cursor: default; }
+    #beta-modal form li input[type="submit"]:disabled:active {
+      top: 0; }
+  #beta-modal form li.focused label {
+    opacity: 0.5; }
+  #beta-modal form li.filled label {
+    display: none; }
+  #beta-modal .join, #beta-modal .login {
     float: left;
-    width: 280px;
-    margin-top: 20px; }
-    .beta .shots img, .beta .join img, .beta .login img {
+    width: 210px;
+    position: relative; }
+    #beta-modal .join img, #beta-modal .login img {
       margin: 15px 37%; }
-  .beta .join {
-    padding-right: 45px; }
-    .beta .join input[type="submit"] {
-      background-color: #c0eeff;
-      -webkit-border-radius: 4px;
-      -moz-border-radius: 4px;
-      border-radius: 4px;
-      color: #00aeef;
-      font-weight: 900;
-      text-transform: uppercase;
-      font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
-      width: 210px;
-      margin-top: 34px; }
-    .beta .join .inner {
-      padding-left: 115px; }
-  .beta .login {
+  #beta-modal .join {
+    padding-right: 30px;
+    border-right: 1px solid #cccccc; }
+  #beta-modal .login {
     float: right;
-    padding-left: 5px; }
-    .beta .login input[type="submit"] {
-      background-color: #c0eeff;
-      -webkit-border-radius: 4px;
-      -moz-border-radius: 4px;
-      border-radius: 4px;
-      color: #00aeef;
-      font-weight: 900;
-      text-transform: uppercase;
-      font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
-      width: 210px;
-      margin-top: 20px; }
-    .beta .login input[type="checkbox"] {
+    padding-left: 29px; }
+    #beta-modal .login input[type="checkbox"] {
       float: left;
       height: 25px; }
-  .beta .email-list {
-    margin-top: 30px; }
-    .beta .email-list h2 {
-      letter-spacing: -2.5px; }
-    .beta .email-list input[type="submit"] {
-      background-color: #c0eeff;
-      -webkit-border-radius: 4px;
-      -moz-border-radius: 4px;
-      border-radius: 4px;
-      color: #00aeef;
-      font-weight: 900;
-      text-transform: uppercase;
-      font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
-      width: 210px;
-      margin-top: 20px; }
+    #beta-modal .login label {
+      font-weight: 100;
+      color: #252525;
+      text-transform: none;
+      font-size: 12px; }
 
 #join-login-modal {
   display: none;

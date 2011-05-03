@@ -1,69 +1,18 @@
+- content_for :head do
+  = javascript_include_tag "beta"
+
 .beta
-  %h3
-    Creative patronage
-    %br
-    for the digital renaissance
-  %p Mo&#149;meant is an online community built around exclusive, creative content and a sustainable model for supporting creators. The web gives us unprecedented access to free content — but at Mo&#149;meant, we believe that the best way to promote and enjoy creativity is to recognize its value. We bring together creators of every stripe: writers, artists, musicians, filmmakers and more, and share their work with an audience of online patrons. Artist by artist, patron by patron, we’re building a sustainable digital renaissance.
-
-  .clearfix
-    = render "shared/error_messages", :target => @user
-    .join
-      .inner
-        %h2 Join
-        = form_for(@user, :as => :user, :url => registration_path(:user), :html => {:multipart => true}) do |f|
-          %fieldset
-            %ul
-              %li
-                = f.label :invitation_code
-                = f.text_field :invitation_code
-                
-              %li
-                = f.label :first_name, "Your name"
-                %span.aside
-                  = f.text_field :first_name
-                  = f.label :first_name, "first"
-                %span.aside
-                  = f.text_field :last_name
-                  = f.label :last_name, "last"
-              %li
-                = f.label :email
-                = f.text_field :email
-
-              %li
-                %label{:for => "user_password"}
-                  Password
-                  %span.instructions (6+ characters)
-                = f.password_field :password, :class => "spaced-a-bit"
-                = f.password_field :password_confirmation
-                %span
-                  = f.label :password, "(once more, please)"
-
-              %li.submit
-                = f.submit "sign up"
-    .shots
-      %img(src="/images/betaBorder.png" alt="border")
-    .login
-      .form
-        %h2 Login
-        = form_for(@user, :as => :user, :url => session_path(:user)) do |f|
-          %fieldset
-            %ul
-
-              %li
-                = f.label :email
-                = f.text_field :email, :id => "login_email"
-
-              %li
-                = f.label :password
-                = f.password_field :password, :id => "login_password"
-
-              %li
-                = f.check_box :remember_me
-                = f.label :remember_me
-
-              %li.submit
-                = f.submit "login"
-      .email-list
-        %h2 I Want In!
-        .blurb If you would like to become a Mo&#149;meant creator or viewer, add your details to the waiting list below.
-        = render "home/mailchimp_beta_list"
+  .characters
+  %h1 Reinventing patronage for the digital renaissance
+  %p.explanation
+    The web gives us unprecedented access to free content &ndash; but at Mo&#149;meant, we believe the best
+    way to promote and enjoy creativity is to recognize its value. The Momeant community brings together creators
+    of every stripe&hellip;who share their work with an audience of online patrons. Join the community and artist
+    by artist, patron by patron, we'll build a sustainable digital renaissance
+  
+  .email-list
+    %p Mo&#149;meant is currently in private beta. If you'd like to join our community, please add your email to the waiting list below.
+    = render "home/mailchimp_beta_list"
+    
+  - content_for :modals do
+    = render "shared/beta_modal"

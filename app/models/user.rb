@@ -1,6 +1,10 @@
 class User < ActiveRecord::Base
   include AASM
   
+  # Authentication configuration
+  devise :database_authenticatable, :registerable, #:confirmable,
+       :recoverable, :rememberable, :trackable, :validatable
+       
   # ASSOCIATIONS
   
   has_many :purchases, :foreign_key => :payer_id
@@ -33,9 +37,6 @@ class User < ActiveRecord::Base
       :secret_access_key   => ENV['S3_SECRET']
     },
     :bucket        => ENV['S3_BUCKET']
-  
-  devise :database_authenticatable, :registerable, #:confirmable,
-         :recoverable, :rememberable, :trackable, :validatable
          
   # STATE MACHINE FOR PAID SUBSCRIPTIONS
   
@@ -152,6 +153,11 @@ class User < ActiveRecord::Base
 
   def update_trial_views
     self.views.update_all(:given_during_trial => false, :created_at => Time.now)
+  end
+  
+  def days_left_in_trial
+    days_so_far = (Time.now - self.subscription_last_updated_at) / (60*60*24)
+    30 - days_so_far.ceil
   end
   
   def spreedly_plan_url

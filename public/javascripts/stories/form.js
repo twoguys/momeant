@@ -416,13 +416,17 @@ var story_auto_saver = function() {
 			$(placement).find('ul.picker li').click(function() {
 				var $position = $(this);
 				var position = $position.attr('position');
+				var data = {placement:position, type:type, number:number};
+				var side = $position.attr('side');
+				if (side)
+					data['side'] = side;
 				$position.addClass('chosen').siblings().removeClass('chosen');
 				$('ul#pages li#page_' + number + ' .placeable').removeClass('top-left top-right bottom-left bottom-right').addClass(position);
 				auto_saver.show_pages_spinner();
 				$.ajax({
 					type: 'PUT',
 					url: '/stories/' + pages_editor.story_id + '/pages/' + page_id,
-					data: {placement:position, type:type, number:number},
+					data: data,
 					success: function(data) {
 						auto_saver.hide_pages_spinner();
 					}
