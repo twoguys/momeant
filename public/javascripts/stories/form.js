@@ -819,6 +819,9 @@ var story_auto_saver = function() {
 					if (editor.isDirty()) {
 						auto_saver.save_text($element, page_id, type, number, editor.getContent());
 						$to.html(editor.getContent());
+						if (type == 'grid') {
+							$to.removeClass('hidden').siblings().addClass('hidden');
+						}
 					}
 				});
 			}

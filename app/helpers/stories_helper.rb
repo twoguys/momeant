@@ -15,15 +15,16 @@ module StoriesHelper
     content_tag("span", :class => "views") { pluralize(story.view_count, "view") }
   end
   
-  def rewards_link(story)
+  def rewards_link(story, not_clickable = false)
     text = pluralize(story.reward_count, "reward coin")
     if story.owner?(current_user)
       content_tag("span", :class => "reward") { text }
     elsif current_user
-      if current_user.has_rewarded?(story)
-        link_to(text, "#reward-box", :class => "rewarded tooltipped", :title => "You rewarded this story.")
+      disabled = not_clickable ? "disabled" : ""
+      if current_user.has_rewarded?(story) 
+        link_to(text, "#reward-box", :class => "rewarded tooltipped #{disabled}", :title => "You rewarded this story.")
       else
-        link_to(text, "#reward-box", :class => "reward tooltipped", :title => "Reward this story?")
+        link_to(text, "#reward-box", :class => "reward tooltipped #{disabled}", :title => "Reward this story?")
       end
     else
       content_tag("span", :class => "reward tooltipped", :title => "Signup to reward!") { text }

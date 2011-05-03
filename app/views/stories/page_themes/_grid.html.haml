@@ -12,11 +12,31 @@
     %li{:position => cell, :class => "cell_#{cell}"}
       .side.front
         - front_media = @page ? @page.media_at_position_and_side(cell, "front") : nil
-        .image{:style => front_media && front_media.is_a?(PageImage) ? "background-image: url(#{front_media.image.url(size.to_s)})" : ""}
-        .text
-          .inner{:class => "text-#{cell}-front"}= front_media.text.html_safe if front_media && front_media.is_a?(PageText) && front_media.text.present?
+        - if front_media
+          - if front_media.is_a?(PageImage)
+            .image{:style => "background-image: url(#{front_media.image.url(size.to_s)})"}
+            .text.hidden
+              .inner{:class => "text-#{cell}-front"}
+          - else
+            .image.hidden
+            .text
+              .inner{:class => "text-#{cell}-front"}= front_media.text.html_safe if front_media.text.present?
+        - else
+          .image.hidden
+          .text
+            .inner{:class => "text-#{cell}-front"}
       .side.back
         - back_media = @page ? @page.media_at_position_and_side(cell, "back") : nil
-        .image{:style => back_media && back_media.is_a?(PageImage) ? "background-image: url(#{back_media.image.url(size.to_s)})" : ""}
-        .text
-          .inner{:class => "text-#{cell}-back"}= back_media.text.html_safe if back_media && back_media.is_a?(PageText) && back_media.text.present?
+        - if back_media
+          - if back_media.is_a?(PageImage)
+            .image{:style => "background-image: url(#{back_media.image.url(size.to_s)})"}
+            .text.hidden
+              .inner{:class => "text-#{cell}-back"}
+          - else
+            .image.hidden
+            .text
+              .inner{:class => "text-#{cell}-back"}= back_media.text.html_safe if back_media.text.present?
+        - else
+          .image.hidden
+          .text
+            .inner{:class => "text-#{cell}-back"}

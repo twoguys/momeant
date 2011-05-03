@@ -1082,6 +1082,8 @@ form.new_story, form.edit_story, .story-form {
             height: 50px;
             padding-top: 10px;
             padding-right: 4px; }
+      #page-previews li.grid ul.cells li .side .hidden {
+        display: none; }
     #page-previews li.grid ul.cells li:hover .front {
       z-index: 1; }
     #page-previews li.grid ul.cells li:hover .back {
@@ -1195,7 +1197,8 @@ form.new_story, form.edit_story, .story-form {
       top: 0;
       bottom: 0;
       left: 0;
-      width: 100%; }
+      width: 100%;
+      overflow-y: auto; }
       #page-editor #pane .pane-insides .header {
         height: 35px;
         background-color: black;
@@ -1244,7 +1247,7 @@ form.new_story, form.edit_story, .story-form {
         #page-editor #pane .pane-insides .copy span {
           display: inline; }
       #page-editor #pane .pane-insides .body {
-        padding: 0 15px 15px; }
+        padding: 0 15px 30px; }
     #page-editor #pane a.save {
       font-size: 12px;
       height: 15px;
@@ -1771,6 +1774,8 @@ form.new_story, form.edit_story, .story-form {
                 height: 50px;
                 padding-top: 10px;
                 padding-right: 4px; }
+          #page-editor ul#pages .grid ul.cells li .side .hidden {
+            display: none; }
         #page-editor ul#pages .grid ul.cells li:hover .front {
           z-index: 1; }
         #page-editor ul#pages .grid ul.cells li:hover .back {
@@ -2229,7 +2234,7 @@ form.new_story, form.edit_story, .story-form {
         padding: 11px;
         border-top: 1px dotted white;
         margin-top: 9px; }
-        .story-viewer #previewer .info .actions a {
+        .story-viewer #previewer .info .actions a, .story-viewer #previewer .info .actions span {
           display: block;
           float: left;
           padding: 0 0 0 20px;
@@ -2240,14 +2245,12 @@ form.new_story, form.edit_story, .story-form {
           font-size: 11px;
           font-weight: 700;
           color: white; }
-        .story-viewer #previewer .info .actions .like {
-          background-image: url(../images/icons/heartGrey.png); }
-        .story-viewer #previewer .info .actions .liked {
-          background-image: url(../images/icons/heartOn.png); }
-        .story-viewer #previewer .info .actions .recommend {
+        .story-viewer #previewer .info .actions .reward {
           background-image: url(../images/icons/recommendGrey.png); }
-        .story-viewer #previewer .info .actions .unrecommend {
+        .story-viewer #previewer .info .actions .rewarded {
           background-image: url(../images/icons/recommendOn.png); }
+        .story-viewer #previewer .info .actions .views {
+          background-image: url(../images/icons/viewsLight.png); }
         .story-viewer #previewer .info .actions .share {
           background-image: url(../images/icons/shareOn.png); }
     .story-viewer #previewer .slider {
@@ -2288,7 +2291,6 @@ form.new_story, form.edit_story, .story-form {
         display: none; }
     .story-viewer #previewer ul.pages {
       height: 190px;
-      padding: 5px 0;
       background-color: black; }
       .story-viewer #previewer ul.pages li.page {
         width: 280px;
@@ -2774,6 +2776,8 @@ form.new_story, form.edit_story, .story-form {
                 height: 50px;
                 padding-top: 10px;
                 padding-right: 4px; }
+          .story-viewer ul#pages li.grid ul.cells li .side .hidden {
+            display: none; }
         .story-viewer ul#pages li.grid ul.cells li:hover .front {
           z-index: 1; }
         .story-viewer ul#pages li.grid ul.cells li:hover .back {
@@ -3148,6 +3152,8 @@ form.new_story, form.edit_story, .story-form {
                   height: 50px;
                   padding-top: 10px;
                   padding-right: 4px; }
+            .story-gallery .large-preview .pages a.grid ul.cells li .side .hidden {
+              display: none; }
           .story-gallery .large-preview .pages a.grid ul.cells li:hover .front {
             z-index: 1; }
           .story-gallery .large-preview .pages a.grid ul.cells li:hover .back {
@@ -3436,6 +3442,8 @@ form.new_story, form.edit_story, .story-form {
                   height: 50px;
                   padding-top: 10px;
                   padding-right: 4px; }
+            .story-gallery .slider .viewport .preview.grid ul.cells li .side .hidden {
+              display: none; }
           .story-gallery .slider .viewport .preview.grid ul.cells li:hover .front {
             z-index: 1; }
           .story-gallery .slider .viewport .preview.grid ul.cells li:hover .back {
@@ -4455,6 +4463,7 @@ form.user_edit textarea#user_tagline {
   display: none;
   position: fixed;
   top: 0;
+  left: 0;
   z-index: 999;
   text-shadow: none;
   font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;

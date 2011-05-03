@@ -161,4 +161,10 @@ var story_viewer = function() {
 $(document).ready(function() {
 	viewer = new story_viewer();
 	viewer.initialize();
+	
+	$('#previewer a.rewarded, #previewer a.reward').click(function(event) {
+		viewer.goto_page(viewer.total_pages);
+		$('.viewport').scrollTo(viewer.total_pages * 210, 0);
+		return false;
+	});
 });

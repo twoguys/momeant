@@ -12,9 +12,10 @@
         = render "/stories/page_themes/#{page.partial_name}"
     %li.page.last{:id => "page_#{@story.pages.count + 1}"}
       .inner
-        .thank-you
-          %h3 A quick note from the creator:
-          %p= @story.thankyou
+        - unless @story.thankyou.blank?
+          .thank-you
+            %h3 A quick note from the creator:
+            %p= @story.thankyou
         = render :partial => "reward_modal", :locals => {:story => @story}
         .stories
           .tabs
@@ -56,8 +57,9 @@
         .author by #{link_to(@story.user.name, user_path(@story.user))}
         .excerpt= truncate(@story.synopsis, :length => 250)
         .actions
+          = views_link(@story)
+          = rewards_link(@story, true)
           = #render "stories/reward_modal"
-          = #render "add_this"
       .slider
         .scrollbar-me
           .viewport
