@@ -406,6 +406,16 @@ var story_auto_saver = function() {
 			var $from = $(input);
 			var $to = $('ul#pages li#page_' + number + ' .' + $from.attr('mirror-to') + ', #page-previews li#preview_' + number + ' .' + $from.attr('mirror-to'));
 			$from.keyup(function() {
+				if (type == 'full_image') {
+					// if caption isn't there and we have text, create it
+					if ($from.val() != '' && $('ul#pages li#page_' + number + ' .caption').length == 0) {
+						$('ul#pages li#page_' + number + ' .inner').append('<div class="caption placeable"></div>');
+						$to = $('ul#pages li#page_' + number + ' .caption');
+					// if caption is there but the text is empty, remove it
+					} else if ($from.val() == '' && $to.length != 0) {
+						$to.remove();
+					}
+				}
 				$to.text($from.val());
 			});
 		});

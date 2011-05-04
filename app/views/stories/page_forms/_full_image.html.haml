@@ -31,10 +31,8 @@
             %span Write a caption
             %span.sidenote (optional)
           .caption
-            - if @page && @page.text
-              = text_area_tag "pages[#{@page_number}][text]", @page.text, :class => "monitor-typing caption-color-affected mirrored", "mirror-to" => "caption"
-            - else
-              = text_area_tag "pages[#{@page_number}][text]", "", :class => "monitor-typing caption-color-affected mirrored", "mirror-to" => "caption"
+            - text = @page && @page.text ? @page.text : ""
+            = text_area_tag "pages[#{@page_number}][text]", text, :class => "monitor-typing caption-color-affected mirrored", "mirror-to" => "caption"
             .colors
             .placement
               %label Select caption placement

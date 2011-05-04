@@ -21,5 +21,5 @@
 - size ||= "original"
 .inner.bg-affected{:id => @page ? "story_#{@page.story_id}_page_#{@page.number}" : "", :class => @page && @page.image_media ? @page.image_media.placement : "fill-screen"}
   .image{:style => @page && @page.image ? "background-image: url(#{@page.image.url(size.to_s)})" : ""}
-  - if size == "original"
+  - if size == "original" && @page && @page.text.present?
     .caption.placeable{:class => @page && @page.text_media ? @page.text_media.placement : ""}= @page.text if @page && @page.text
