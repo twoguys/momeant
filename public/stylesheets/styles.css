@@ -1046,44 +1046,53 @@ form.new_story, form.edit_story, .story-form {
         z-index: 2; }
       #page-previews li.grid ul.cells li .back {
         z-index: 1; }
-      #page-previews li.grid ul.cells li .side .text, #page-previews li.grid ul.cells li .side .image {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%; }
-      #page-previews li.grid ul.cells li .side .image {
-        display: block;
+      #page-previews li.grid ul.cells li .side {
+        background-color: white; }
+        #page-previews li.grid ul.cells li .side .text, #page-previews li.grid ul.cells li .side .image {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%; }
+        #page-previews li.grid ul.cells li .side .image {
+          display: block;
+          background-repeat: no-repeat;
+          background-position: center center; }
+        #page-previews li.grid ul.cells li .side .text {
+          display: table;
+          font-size: 2em;
+          text-align: center; }
+          #page-previews li.grid ul.cells li .side .text .inner {
+            padding: 0 10%;
+            vertical-align: middle;
+            display: table-cell;
+            font-family: "museo-slab-1", "museo-slab-2", serif;
+            line-height: 26px;
+            font-size: 14px;
+            text-align: justify;
+            letter-spacing: -0.5px; }
+            #page-previews li.grid ul.cells li .side .text .inner:first-letter {
+              font-family: "museo-sans-1", "museo-sans-2", sans-serif;
+              font-size: 50px;
+              vertical-align: baseline;
+              float: left;
+              text-transform: uppercase;
+              line-height: 50px;
+              height: 50px;
+              padding-top: 10px;
+              padding-right: 4px; }
+        #page-previews li.grid ul.cells li .side .hidden {
+          display: none; }
+      #page-previews li.grid ul.cells li .side.fill-screen .image {
         -webkit-background-size: cover;
         -moz-background-size: cover;
         -o-background-size: cover;
         background-size: cover; }
-      #page-previews li.grid ul.cells li .side .text {
-        display: table;
-        font-size: 2em;
-        text-align: center; }
-        #page-previews li.grid ul.cells li .side .text .inner {
-          background-color: white;
-          padding: 0 10%;
-          vertical-align: middle;
-          display: table-cell;
-          font-family: "museo-slab-1", "museo-slab-2", serif;
-          line-height: 26px;
-          font-size: 14px;
-          text-align: justify;
-          letter-spacing: -0.5px; }
-          #page-previews li.grid ul.cells li .side .text .inner:first-letter {
-            font-family: "museo-sans-1", "museo-sans-2", sans-serif;
-            font-size: 50px;
-            vertical-align: baseline;
-            float: left;
-            text-transform: uppercase;
-            line-height: 50px;
-            height: 50px;
-            padding-top: 10px;
-            padding-right: 4px; }
-      #page-previews li.grid ul.cells li .side .hidden {
-        display: none; }
+      #page-previews li.grid ul.cells li .side.fit-to-screen .image {
+        -webkit-background-size: contain;
+        -moz-background-size: contain;
+        -o-background-size: contain;
+        background-size: contain; }
     #page-previews li.grid ul.cells li:hover .front {
       z-index: 1; }
     #page-previews li.grid ul.cells li:hover .back {
@@ -1738,44 +1747,53 @@ form.new_story, form.edit_story, .story-form {
             z-index: 2; }
           #page-editor ul#pages .grid ul.cells li .back {
             z-index: 1; }
-          #page-editor ul#pages .grid ul.cells li .side .text, #page-editor ul#pages .grid ul.cells li .side .image {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%; }
-          #page-editor ul#pages .grid ul.cells li .side .image {
-            display: block;
+          #page-editor ul#pages .grid ul.cells li .side {
+            background-color: white; }
+            #page-editor ul#pages .grid ul.cells li .side .text, #page-editor ul#pages .grid ul.cells li .side .image {
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%; }
+            #page-editor ul#pages .grid ul.cells li .side .image {
+              display: block;
+              background-repeat: no-repeat;
+              background-position: center center; }
+            #page-editor ul#pages .grid ul.cells li .side .text {
+              display: table;
+              font-size: 2em;
+              text-align: center; }
+              #page-editor ul#pages .grid ul.cells li .side .text .inner {
+                padding: 0 10%;
+                vertical-align: middle;
+                display: table-cell;
+                font-family: "museo-slab-1", "museo-slab-2", serif;
+                line-height: 26px;
+                font-size: 14px;
+                text-align: justify;
+                letter-spacing: -0.5px; }
+                #page-editor ul#pages .grid ul.cells li .side .text .inner:first-letter {
+                  font-family: "museo-sans-1", "museo-sans-2", sans-serif;
+                  font-size: 50px;
+                  vertical-align: baseline;
+                  float: left;
+                  text-transform: uppercase;
+                  line-height: 50px;
+                  height: 50px;
+                  padding-top: 10px;
+                  padding-right: 4px; }
+            #page-editor ul#pages .grid ul.cells li .side .hidden {
+              display: none; }
+          #page-editor ul#pages .grid ul.cells li .side.fill-screen .image {
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
             background-size: cover; }
-          #page-editor ul#pages .grid ul.cells li .side .text {
-            display: table;
-            font-size: 2em;
-            text-align: center; }
-            #page-editor ul#pages .grid ul.cells li .side .text .inner {
-              background-color: white;
-              padding: 0 10%;
-              vertical-align: middle;
-              display: table-cell;
-              font-family: "museo-slab-1", "museo-slab-2", serif;
-              line-height: 26px;
-              font-size: 14px;
-              text-align: justify;
-              letter-spacing: -0.5px; }
-              #page-editor ul#pages .grid ul.cells li .side .text .inner:first-letter {
-                font-family: "museo-sans-1", "museo-sans-2", sans-serif;
-                font-size: 50px;
-                vertical-align: baseline;
-                float: left;
-                text-transform: uppercase;
-                line-height: 50px;
-                height: 50px;
-                padding-top: 10px;
-                padding-right: 4px; }
-          #page-editor ul#pages .grid ul.cells li .side .hidden {
-            display: none; }
+          #page-editor ul#pages .grid ul.cells li .side.fit-to-screen .image {
+            -webkit-background-size: contain;
+            -moz-background-size: contain;
+            -o-background-size: contain;
+            background-size: contain; }
         #page-editor ul#pages .grid ul.cells li:hover .front {
           z-index: 1; }
         #page-editor ul#pages .grid ul.cells li:hover .back {
@@ -2740,44 +2758,53 @@ form.new_story, form.edit_story, .story-form {
             z-index: 2; }
           .story-viewer ul#pages li.grid ul.cells li .back {
             z-index: 1; }
-          .story-viewer ul#pages li.grid ul.cells li .side .text, .story-viewer ul#pages li.grid ul.cells li .side .image {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%; }
-          .story-viewer ul#pages li.grid ul.cells li .side .image {
-            display: block;
+          .story-viewer ul#pages li.grid ul.cells li .side {
+            background-color: white; }
+            .story-viewer ul#pages li.grid ul.cells li .side .text, .story-viewer ul#pages li.grid ul.cells li .side .image {
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%; }
+            .story-viewer ul#pages li.grid ul.cells li .side .image {
+              display: block;
+              background-repeat: no-repeat;
+              background-position: center center; }
+            .story-viewer ul#pages li.grid ul.cells li .side .text {
+              display: table;
+              font-size: 2em;
+              text-align: center; }
+              .story-viewer ul#pages li.grid ul.cells li .side .text .inner {
+                padding: 0 10%;
+                vertical-align: middle;
+                display: table-cell;
+                font-family: "museo-slab-1", "museo-slab-2", serif;
+                line-height: 26px;
+                font-size: 14px;
+                text-align: justify;
+                letter-spacing: -0.5px; }
+                .story-viewer ul#pages li.grid ul.cells li .side .text .inner:first-letter {
+                  font-family: "museo-sans-1", "museo-sans-2", sans-serif;
+                  font-size: 50px;
+                  vertical-align: baseline;
+                  float: left;
+                  text-transform: uppercase;
+                  line-height: 50px;
+                  height: 50px;
+                  padding-top: 10px;
+                  padding-right: 4px; }
+            .story-viewer ul#pages li.grid ul.cells li .side .hidden {
+              display: none; }
+          .story-viewer ul#pages li.grid ul.cells li .side.fill-screen .image {
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
             background-size: cover; }
-          .story-viewer ul#pages li.grid ul.cells li .side .text {
-            display: table;
-            font-size: 2em;
-            text-align: center; }
-            .story-viewer ul#pages li.grid ul.cells li .side .text .inner {
-              background-color: white;
-              padding: 0 10%;
-              vertical-align: middle;
-              display: table-cell;
-              font-family: "museo-slab-1", "museo-slab-2", serif;
-              line-height: 26px;
-              font-size: 14px;
-              text-align: justify;
-              letter-spacing: -0.5px; }
-              .story-viewer ul#pages li.grid ul.cells li .side .text .inner:first-letter {
-                font-family: "museo-sans-1", "museo-sans-2", sans-serif;
-                font-size: 50px;
-                vertical-align: baseline;
-                float: left;
-                text-transform: uppercase;
-                line-height: 50px;
-                height: 50px;
-                padding-top: 10px;
-                padding-right: 4px; }
-          .story-viewer ul#pages li.grid ul.cells li .side .hidden {
-            display: none; }
+          .story-viewer ul#pages li.grid ul.cells li .side.fit-to-screen .image {
+            -webkit-background-size: contain;
+            -moz-background-size: contain;
+            -o-background-size: contain;
+            background-size: contain; }
         .story-viewer ul#pages li.grid ul.cells li:hover .front {
           z-index: 1; }
         .story-viewer ul#pages li.grid ul.cells li:hover .back {
@@ -3116,44 +3143,53 @@ form.new_story, form.edit_story, .story-form {
               z-index: 2; }
             .story-gallery .large-preview .pages a.grid ul.cells li .back {
               z-index: 1; }
-            .story-gallery .large-preview .pages a.grid ul.cells li .side .text, .story-gallery .large-preview .pages a.grid ul.cells li .side .image {
-              position: absolute;
-              top: 0;
-              left: 0;
-              width: 100%;
-              height: 100%; }
-            .story-gallery .large-preview .pages a.grid ul.cells li .side .image {
-              display: block;
+            .story-gallery .large-preview .pages a.grid ul.cells li .side {
+              background-color: white; }
+              .story-gallery .large-preview .pages a.grid ul.cells li .side .text, .story-gallery .large-preview .pages a.grid ul.cells li .side .image {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%; }
+              .story-gallery .large-preview .pages a.grid ul.cells li .side .image {
+                display: block;
+                background-repeat: no-repeat;
+                background-position: center center; }
+              .story-gallery .large-preview .pages a.grid ul.cells li .side .text {
+                display: table;
+                font-size: 2em;
+                text-align: center; }
+                .story-gallery .large-preview .pages a.grid ul.cells li .side .text .inner {
+                  padding: 0 10%;
+                  vertical-align: middle;
+                  display: table-cell;
+                  font-family: "museo-slab-1", "museo-slab-2", serif;
+                  line-height: 26px;
+                  font-size: 14px;
+                  text-align: justify;
+                  letter-spacing: -0.5px; }
+                  .story-gallery .large-preview .pages a.grid ul.cells li .side .text .inner:first-letter {
+                    font-family: "museo-sans-1", "museo-sans-2", sans-serif;
+                    font-size: 50px;
+                    vertical-align: baseline;
+                    float: left;
+                    text-transform: uppercase;
+                    line-height: 50px;
+                    height: 50px;
+                    padding-top: 10px;
+                    padding-right: 4px; }
+              .story-gallery .large-preview .pages a.grid ul.cells li .side .hidden {
+                display: none; }
+            .story-gallery .large-preview .pages a.grid ul.cells li .side.fill-screen .image {
               -webkit-background-size: cover;
               -moz-background-size: cover;
               -o-background-size: cover;
               background-size: cover; }
-            .story-gallery .large-preview .pages a.grid ul.cells li .side .text {
-              display: table;
-              font-size: 2em;
-              text-align: center; }
-              .story-gallery .large-preview .pages a.grid ul.cells li .side .text .inner {
-                background-color: white;
-                padding: 0 10%;
-                vertical-align: middle;
-                display: table-cell;
-                font-family: "museo-slab-1", "museo-slab-2", serif;
-                line-height: 26px;
-                font-size: 14px;
-                text-align: justify;
-                letter-spacing: -0.5px; }
-                .story-gallery .large-preview .pages a.grid ul.cells li .side .text .inner:first-letter {
-                  font-family: "museo-sans-1", "museo-sans-2", sans-serif;
-                  font-size: 50px;
-                  vertical-align: baseline;
-                  float: left;
-                  text-transform: uppercase;
-                  line-height: 50px;
-                  height: 50px;
-                  padding-top: 10px;
-                  padding-right: 4px; }
-            .story-gallery .large-preview .pages a.grid ul.cells li .side .hidden {
-              display: none; }
+            .story-gallery .large-preview .pages a.grid ul.cells li .side.fit-to-screen .image {
+              -webkit-background-size: contain;
+              -moz-background-size: contain;
+              -o-background-size: contain;
+              background-size: contain; }
           .story-gallery .large-preview .pages a.grid ul.cells li:hover .front {
             z-index: 1; }
           .story-gallery .large-preview .pages a.grid ul.cells li:hover .back {
@@ -3406,44 +3442,53 @@ form.new_story, form.edit_story, .story-form {
               z-index: 2; }
             .story-gallery .slider .viewport .preview.grid ul.cells li .back {
               z-index: 1; }
-            .story-gallery .slider .viewport .preview.grid ul.cells li .side .text, .story-gallery .slider .viewport .preview.grid ul.cells li .side .image {
-              position: absolute;
-              top: 0;
-              left: 0;
-              width: 100%;
-              height: 100%; }
-            .story-gallery .slider .viewport .preview.grid ul.cells li .side .image {
-              display: block;
+            .story-gallery .slider .viewport .preview.grid ul.cells li .side {
+              background-color: white; }
+              .story-gallery .slider .viewport .preview.grid ul.cells li .side .text, .story-gallery .slider .viewport .preview.grid ul.cells li .side .image {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%; }
+              .story-gallery .slider .viewport .preview.grid ul.cells li .side .image {
+                display: block;
+                background-repeat: no-repeat;
+                background-position: center center; }
+              .story-gallery .slider .viewport .preview.grid ul.cells li .side .text {
+                display: table;
+                font-size: 2em;
+                text-align: center; }
+                .story-gallery .slider .viewport .preview.grid ul.cells li .side .text .inner {
+                  padding: 0 10%;
+                  vertical-align: middle;
+                  display: table-cell;
+                  font-family: "museo-slab-1", "museo-slab-2", serif;
+                  line-height: 26px;
+                  font-size: 14px;
+                  text-align: justify;
+                  letter-spacing: -0.5px; }
+                  .story-gallery .slider .viewport .preview.grid ul.cells li .side .text .inner:first-letter {
+                    font-family: "museo-sans-1", "museo-sans-2", sans-serif;
+                    font-size: 50px;
+                    vertical-align: baseline;
+                    float: left;
+                    text-transform: uppercase;
+                    line-height: 50px;
+                    height: 50px;
+                    padding-top: 10px;
+                    padding-right: 4px; }
+              .story-gallery .slider .viewport .preview.grid ul.cells li .side .hidden {
+                display: none; }
+            .story-gallery .slider .viewport .preview.grid ul.cells li .side.fill-screen .image {
               -webkit-background-size: cover;
               -moz-background-size: cover;
               -o-background-size: cover;
               background-size: cover; }
-            .story-gallery .slider .viewport .preview.grid ul.cells li .side .text {
-              display: table;
-              font-size: 2em;
-              text-align: center; }
-              .story-gallery .slider .viewport .preview.grid ul.cells li .side .text .inner {
-                background-color: white;
-                padding: 0 10%;
-                vertical-align: middle;
-                display: table-cell;
-                font-family: "museo-slab-1", "museo-slab-2", serif;
-                line-height: 26px;
-                font-size: 14px;
-                text-align: justify;
-                letter-spacing: -0.5px; }
-                .story-gallery .slider .viewport .preview.grid ul.cells li .side .text .inner:first-letter {
-                  font-family: "museo-sans-1", "museo-sans-2", sans-serif;
-                  font-size: 50px;
-                  vertical-align: baseline;
-                  float: left;
-                  text-transform: uppercase;
-                  line-height: 50px;
-                  height: 50px;
-                  padding-top: 10px;
-                  padding-right: 4px; }
-            .story-gallery .slider .viewport .preview.grid ul.cells li .side .hidden {
-              display: none; }
+            .story-gallery .slider .viewport .preview.grid ul.cells li .side.fit-to-screen .image {
+              -webkit-background-size: contain;
+              -moz-background-size: contain;
+              -o-background-size: contain;
+              background-size: contain; }
           .story-gallery .slider .viewport .preview.grid ul.cells li:hover .front {
             z-index: 1; }
           .story-gallery .slider .viewport .preview.grid ul.cells li:hover .back {

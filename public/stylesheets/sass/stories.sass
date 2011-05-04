@@ -326,7 +326,8 @@
 				z-index: 2
 			.back
 				z-index: 1
-			.side
+			.side	
+				background-color: #fff
 				.text, .image
 					position: absolute
 					top: 0
@@ -335,13 +336,13 @@
 					height: 100%
 				.image
 					display: block
-					@include bgcover
+					background-repeat: no-repeat
+					background-position: center center
 				.text
 					display: table
 					font-size: 2em
 					text-align: center
 					.inner
-						background-color: #fff
 						padding: 0 10%
 						vertical-align: middle
 						display: table-cell
@@ -362,6 +363,10 @@
 							padding-right: 4px
 				.hidden
 					display: none
+			.side.fill-screen .image
+				@include bgcover
+			.side.fit-to-screen .image
+				@include bgcontain
 		li:hover		
 			.front
 				z-index: 1

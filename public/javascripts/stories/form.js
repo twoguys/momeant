@@ -440,13 +440,20 @@ var story_auto_saver = function() {
 			var $select = $(this);
 			var placement = $select.val();
 			var position = $select.attr('position') || '';
-			if (type == 'full_image')
+			var side = $select.attr('side') || '';
+			if (type == 'full_image') {
 				$('ul#pages li#page_' + number + ' .inner').removeClass('fill-screen fit-to-screen original').addClass(placement);
-			else
+			} else if (type == 'grid') {
+				log('ul#pages li#page_' + number + ' cell_' + position + ' .side.' + side);
+				$('ul#pages li#page_' + number + ' .cell_' + position + ' .side.' + side).removeClass('fill-screen fit-to-screen original').addClass(placement);
+			} else {
 				$('ul#pages li#page_' + number + ' .image' + position).removeClass('fill-screen fit-to-screen original').addClass(placement);
+			}
 			var data = {image_placement:placement, type:type, number:number};
 			if (position)
 				data['position'] = position;
+			if (side)
+				data['side'] = side;
 			auto_saver.show_pages_spinner();
 			$.ajax({
 				type: 'PUT',
@@ -535,6 +542,7 @@ var story_auto_saver = function() {
 	};
 	
 	this.save_text = function($element, page_id, type, number, optional_text) {
+		log('SAVING TEXT');
 		var data = {};
 		data['type'] = type;
 		data['number'] = number;
@@ -815,6 +823,7 @@ var story_auto_saver = function() {
 				var $to = $('ul#pages li#page_' + number + ' .' + $element.attr('mirror-to') + ', #page-previews li#preview_' + number + ' .' + $element.attr('mirror-to'));
 				var $save_button = $element.parents('.body:eq(0)').find('a.save');
 				$save_button.click(function() {
+					log('OMG BUTTON CLICKED');
 					var editor = tinyMCE.get($element.attr('id'));
 					if (editor.isDirty()) {
 						auto_saver.save_text($element, page_id, type, number, editor.getContent());

@@ -213,14 +213,11 @@ class Page < ActiveRecord::Base
         text2.save
       end
     when "grid"
-      if page
-        page.background_color = options[:background_color] if options[:background_color]
-        page.text_color = options[:text_color] if options[:text_color]
-      else
+      unless page
         page = GridPage.new(:number => options[:number], :background_color => options[:background_color], :text_color => options[:text_color])
       end
       
-      if options[:position] && options[:side]
+      if options[:position] && options[:side] && options[:text]
         media = page.media_at_position_and_side(options[:position], options[:side])
         if media.nil? || media.is_a?(PageImage)
           media.destroy if media # remove the old image for this position and side
@@ -236,6 +233,13 @@ class Page < ActiveRecord::Base
         side = options[:position].include?("front") ? "front" : "back"
         media = page.media_at_position_and_side(position, side)
         media.update_attribute(:background_color, options[:background_color]) if media
+      end
+      
+      if options[:image_placement] && options[:position] && options[:side]
+        position = options[:position]
+        side = options[:side]
+        media = page.media_at_position_and_side(position, side)
+        media.update_attribute(:placement, options[:image_placement]) if media
       end
     else
       Rails.logger.info "[Momeant] No implementation for page type: #{type}"
