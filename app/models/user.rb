@@ -5,6 +5,10 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, #:confirmable,
        :recoverable, :rememberable, :trackable, :validatable
        
+   searchable do
+     text :name, :boost => 2.0
+   end
+       
   # ASSOCIATIONS
   
   has_many :purchases, :foreign_key => :payer_id

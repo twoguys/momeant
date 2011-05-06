@@ -1,0 +1,7 @@
+.search
+  %h1 Results for #{params[:query]}
+
+  %ul.users.stories
+    - @results.each do |result|
+      = render result if result.is_a?(Story)
+      = render :partial => "search/user", :locals => {:user => result} if result.is_a?(User)
