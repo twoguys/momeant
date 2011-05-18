@@ -3,8 +3,9 @@
     %h1 Become a patron of the arts!
     %h3 Creativity matters. Support creators and their work with a $10 monthly Mo&#149meant subscription.
     
-  %a.button{:href => "#"}
-    %span Get a Subscription
+  - unless current_user.active_subscription?
+    %a#subscribe1.button{:href => current_user.spreedly_plan_url}
+      %span Get a Subscription
     
   %ul.thirds
     %li.join
@@ -56,5 +57,6 @@
         gaining both recognition in the community and certain special awards and privileges.
       = image_tag("")
   
-  %a.button{:href => "#"}
-    %span Get a Subscription
+  - unless current_user.active_subscription?
+    %a#subscribe1.button{:href => current_user.spreedly_plan_url}
+      %span Get a Subscription

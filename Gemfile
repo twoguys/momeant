@@ -20,6 +20,7 @@ gem 'sunspot_rails'
 gem 'bluecloth'
 gem 'acts_as_list'
 gem 'aasm'
+gem 'spreedly', :require => false
 
 group :test do
   gem 'shoulda'
@@ -29,4 +30,5 @@ group :test do
   gem 'launchy'
   gem 'database_cleaner'
   gem 'redgreen'
+  gem 'rr'
 end

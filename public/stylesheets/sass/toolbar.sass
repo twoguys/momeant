@@ -7,6 +7,7 @@ header
 		height: 42px
 		width: 950px
 		margin: 0 auto
+		z-index: 2
 		ul.links
 			position: absolute
 			left: 0
@@ -16,7 +17,7 @@ header
 		#home, #profile, #faq, #topics, #create
 			width: 46px
 			height: 36px
-			background: transparent url(../images/topNavBreak.gif) no-repeat 0 0
+			background: transparent url(../images/topNavBreak.gif) no-repeat 0 5px
 			a
 				width: 46px
 				height: 36px
@@ -34,7 +35,7 @@ header
 		#signup
 			left: 60px
 		#profile a
-			background-image: url(../images/icons/momeantProfile.png)
+			background-image: url(../images/icons/momeantProfileB.png)
 		#signin, #signout
 			left: 140px
 		#create:hover, #balance:hover, #subscriptions:hover, #recommendations:hover, #topics:hover
@@ -44,19 +45,19 @@ header
 		#faq a
 			background-image: url(../images/icons/momeantHelp.png)
 		#create a
-			background-image: url(../images/icons/momeantAddStory.png)
+			background: transparent url(../images/icons/momeantAddStory.png) no-repeat 50% 7px
 		#balance	
-			background: transparent url(../images/topNavBreak.gif) no-repeat 0 0
+			background: transparent url(../images/topNavBreak.gif) no-repeat 0 5px
 			a
 				display: block
 				color: #000
 				font-weight: bold
 				font-size: 1.1em
-				padding: 12px 10px
+				padding: 12px 10px 7px
 		#subscriptions a
 			background-image: url(../images/icons/person.png)
 		#recommendations
-			background: transparent url(../images/topNavBreak.gif) no-repeat 0 0
+			background: transparent url(../images/topNavBreak.gif) no-repeat 0 5px
 			width: 46px
 			height: 36px
 			span.icon
@@ -64,7 +65,7 @@ header
 				display: block
 				width: 46px
 				height: 36px
-				background: transparent url(../images/icons/momeantStream.png) no-repeat 50% 6px
+				background: transparent url(../images/icons/momeantStreamB.png) no-repeat 50% 9px
 				cursor: pointer
 			.stream-inner
 				display: none
@@ -80,7 +81,7 @@ header
 			.stream-inner
 				display: block
 		#topics	
-			background: transparent url(../images/topNavBreak.gif) no-repeat 0 0
+			background: transparent url(../images/topNavBreak.gif) no-repeat 0 5px
 			span
 				position: absolute
 				display: block
@@ -93,10 +94,21 @@ header
 				padding-top: 7px
 				position: absolute
 				top: 35px
+				display: none
+				.heading
+					background-color: #000
+					color: #fff
+					font-size: 18px
+					font-weight: 900
+					text-transform: uppercase
+					text-align: center
+					height: 22px
+					line-height: 25px
+					vertical-align: middle
+					padding: 3px 0
 			.topic-list
 				border: 3px solid #000
 				@include boxshadow
-				display: none
 				.odd
 					background-color: #f0f0f0
 				.even
@@ -150,10 +162,10 @@ header
 				li.travel a
 					background-position: 120px -546px
 		#topics:hover
-			.topic-list
+			.inner
 				display: block
 		#hi
-			background: transparent url(../images/topNavBreak.gif) no-repeat 0 0
+			background: transparent url(../images/topNavBreak.gif) no-repeat 0 5px
 			padding: 13px 10px 13px 12px
 			font-size: 1.1em
 			font-weight: 900
@@ -197,6 +209,7 @@ header
 				box-shadow: none
 				text-indent: -9999px
 	#call-to-action
+		z-index: 1
 		.insides
 			padding: 10px 0 3px
 			width: 100%
@@ -211,7 +224,8 @@ header
 				a
 					@include rounded(3px)
 					color: #fff
-					padding: 2px 5px
+					padding: 4px 8px
+					margin-left: 10px
 					position: relative
 					top: -1px
 					font-size: 0.85em
@@ -232,6 +246,7 @@ header
 		padding-top: 20px
 		background: transparent url(../images/diagStripeBG.png) repeat-x 0 100%
 		margin-bottom: 10px
+		z-index: 1
 		#logo-large
 			height: 100px
 			width: 645px

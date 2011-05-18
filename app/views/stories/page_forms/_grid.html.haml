@@ -4,8 +4,6 @@
     = link_to("Change", "#", :class => "change")
     .spinner Saving...
   .copy
-    Warning, this guy is not finished yet and therefore not saving.
-    %br
     The possibilities are endless! Upload or enter content for the front and back of each of the 8 cells (either an image or snippet of text). Use the Grid content slide to create anything from instructional notecards to a table of contents for your story.
   .body
     %fieldset
@@ -46,14 +44,19 @@
                               .text
                               = link_to("Upload", "#", :class => "upload")
                             .loader
-                          %div
-                            %label Pick a background color
-                            = text_field_tag "pages[#{@page_number}][background_color]", "#f2f2f2", :class => "color-picker bgcolor", :position => "cells .cell_#{cell} .#{side} .image"
+                        .image-placement-picker
+                          %label Choose image placement
+                          %select.image_placement{:position => cell, :side => side}
+                            - Page::IMAGE_PLACEMENTS.each_pair do |k,v|
+                              %option{:value => v, :selected => @page && @page.image_media && @page.image_media.placement == v}= k
+                        .color-picker
+                          %label Pick a background color
+                          = text_field_tag "pages[#{@page_number}][background_color]", "#ffffff", :class => "color-picker bgcolor", :position => "cells .cell_#{cell} .#{side} .image"
                       .text.type{:class => (side == "front" && front_side_show == "text") || (side == "back" && back_side_show == "text") ? "" : "hidden"}
                         - text = @page ? @page.media_at_position_and_side(cell,side).try(:text) : ""
-                        = text_area_tag "grid_text_#{cell}_#{side}", text, :class => "monitor-typing color-affected mirrored rich-editable", :position => cell, :side => side, "mirror-to" => "text-#{cell}-#{side}", :style => "width: 100%"
+                        = text_area_tag "grid_text_#{cell}_#{side}", text, :class => "color-affected mirrored rich-editable", :position => cell, :side => side, "mirror-to" => "text-#{cell}-#{side}", :style => "width: 100%"
                         %div
                           %label Pick a background color
-                          = text_field_tag "pages[#{@page_number}][background_color]", "#f2f2f2", :class => "color-picker bgcolor", :position => "cells .cell_#{cell} .#{side} .text"
+                          = text_field_tag "pages[#{@page_number}][background_color]", "#ffffff", :class => "color-picker bgcolor", :position => "cells .cell_#{cell} .#{side} .text"
         %li
           = link_to("Save &amp; Preview".html_safe, "#", :class => "save")

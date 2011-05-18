@@ -1,22 +1,52 @@
-- if @page && @page.has_styles?
+- if @page
   - content_for :head do
-    :css
-      ul#pages #page_#{@page.number} {
-        background-color: ##{@page.background_color} !important;
-        color: ##{@page.text_color} !important;
-      }
+    - 1.upto(8) do |cell|
+      - front_media = @page.media_at_position_and_side(cell,"front")
+      - back_media = @page.media_at_position_and_side(cell,"back")
+      - if front_media && front_media.background_color
+        :css
+          ul#pages #page_#{@page.number} .cell_#{cell} .side.front {
+            background-color: #{front_media.background_color} !important;
+          }
+      - if back_media && back_media.background_color
+        :css
+          ul#pages #page_#{@page.number} .cell_#{cell} .side.back {
+            background-color: #{back_media.background_color} !important;
+          }
 
 - size ||= "original"
 %ul.cells.bg-affected
   - 1.upto(8) do |cell|
     %li{:position => cell, :class => "cell_#{cell}"}
-      .side.front
-        - front_media = @page ? @page.media_at_position_and_side(cell, "front") : nil
-        .image{:style => front_media && front_media.is_a?(PageImage) ? "background-image: url(#{front_media.image.url(size.to_s)})" : ""}
-        .text
-          .inner{:class => "text-#{cell}-front"}= front_media.text.html_safe if front_media && front_media.is_a?(PageText) && front_media.text.present?
-      .side.back
-        - back_media = @page ? @page.media_at_position_and_side(cell, "back") : nil
-        .image{:style => back_media && back_media.is_a?(PageImage) ? "background-image: url(#{back_media.image.url(size.to_s)})" : ""}
-        .text
-          .inner{:class => "text-#{cell}-back"}= back_media.text.html_safe if back_media && back_media.is_a?(PageText) && back_media.text.present?
+      - front_media = @page ? @page.media_at_position_and_side(cell, "front") : nil
+      - placement = front_media && front_media.placement ? front_media.placement : "fill-screen"
+      .side.front{:class => placement}
+        - if front_media
+          - if front_media.is_a?(PageImage)
+            .image{:style => "background-image: url(#{front_media.image.url(size.to_s)})"}
+            .text.hidden
+              .inner{:class => "text-#{cell}-front"}
+          - else
+            .image.hidden
+            .text
+              .inner{:class => "text-#{cell}-front"}= front_media.text.html_safe if front_media.text.present?
+        - else
+          .image.hidden
+          .text
+            .inner{:class => "text-#{cell}-front"}
+      - back_media = @page ? @page.media_at_position_and_side(cell, "back") : nil
+      - placement = back_media && back_media.placement ? back_media.placement : "fill-screen"
+      .side.back{:class => placement}
+        - if back_media
+          - if back_media.is_a?(PageImage)
+            .image{:style => "background-image: url(#{back_media.image.url(size.to_s)})"}
+            .text.hidden
+              .inner{:class => "text-#{cell}-back"}
+          - else
+            .image.hidden
+            .text
+              .inner{:class => "text-#{cell}-back"}= back_media.text.html_safe if back_media.text.present?
+        - else
+          .image.hidden
+          .text
+            .inner{:class => "text-#{cell}-back"}

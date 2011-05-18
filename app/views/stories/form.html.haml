@@ -46,6 +46,10 @@
             Choose keywords that describe your story. These help make it searchable.
             %br/
             ie. Firecracker, John Smith, X-ray
+        .thank-you
+          = label_tag :story_thankyou, "Thank You Note"
+          = text_area_tag :story_thankyou, @story.thankyou, :class => "monitor-story-typing", :update => "thankyou"
+          .example Leave a personalized note that your viewers will see at the end of your story.
 
       %li.topics
         %label Categories

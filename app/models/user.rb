@@ -1,6 +1,14 @@
 class User < ActiveRecord::Base
   include AASM
   
+  # Authentication configuration
+  devise :database_authenticatable, :registerable, #:confirmable,
+       :recoverable, :rememberable, :trackable, :validatable
+       
+   searchable do
+     text :name, :boost => 2.0
+   end
+       
   # ASSOCIATIONS
   
   has_many :purchases, :foreign_key => :payer_id
@@ -33,9 +41,6 @@ class User < ActiveRecord::Base
       :secret_access_key   => ENV['S3_SECRET']
     },
     :bucket        => ENV['S3_BUCKET']
-  
-  devise :database_authenticatable, :registerable, :confirmable,
-         :recoverable, :rememberable, :trackable, :validatable
          
   # STATE MACHINE FOR PAID SUBSCRIPTIONS
   
@@ -83,7 +88,7 @@ class User < ActiveRecord::Base
   def extra_validations
     safe = true
     if ENV["CURRENT_RELEASE"] == 'private-beta'
-      if !self.confirmed?
+      if self.new_record?
         # validate invitation code
         if self.invitation_code.blank?
           self.errors.add(:invitation_code, "is required during private beta.")
@@ -122,7 +127,12 @@ class User < ActiveRecord::Base
       reward = Reward.create!(options)
       story.increment!(:reward_count, amount)
       self.decrement!(:coins, amount)
+      return reward
     end
+  end
+  
+  def last_reward_for(story)
+    Reward.where(:user_id => self.id, :story_id => story.id).first
   end
   
   def can_afford?(amount)
@@ -147,6 +157,37 @@ class User < ActiveRecord::Base
 
   def update_trial_views
     self.views.update_all(:given_during_trial => false, :created_at => Time.now)
+  end
+  
+  def days_left_in_trial
+    days_so_far = (Time.now - self.subscription_last_updated_at) / (60*60*24)
+    30 - days_so_far.ceil
+  end
+  
+  def spreedly_plan_url
+    Spreedly.subscribe_url(self.id, ENV["SPREEDLY_PLAN_ID"], :email => self.email, :first_name => self.first_name, :last_name => self.last_name)
+  end
+  
+  def refresh_from_spreedly
+    Rails.logger.info "Getting info from Spreedly for #{self.name}"
+    spreedly_user = Spreedly::Subscriber.find(self.id)
+    Rails.logger.info spreedly_user.inspect
+    if spreedly_user
+      self.spreedly_token = spreedly_user.token
+      self.spreedly_plan = spreedly_user.feature_level
+      
+      if spreedly_user.active
+        self.start_paying! if self.trial? || self.trial_expired?
+        self.resume_paying! if self.disabled_subscription?
+      else
+        self.stop_paying! if self.active_subscription?
+      end
+      
+      self.save(:validate => false)
+      Rails.logger.info "Spreedly info received, user is updated."
+    else
+      Rails.logger.info "Oops...no data received from Spreedly for #{self.name}."
+    end
   end
   
   def purchase(story)
@@ -216,5 +257,11 @@ class User < ActiveRecord::Base
     # remove stories I've created or purchased or that are unpublished
     #purchased_stories = self.purchased_stories
     similar_stories.reject { |story| story.user == self || story.draft? }.uniq
+  end
+  
+  def recommendation_stream
+    (rewards_from_people_i_subscribe_to + stories_similar_to_my_bookmarks_and_rewards).sort do |x,y|
+      x.created_at <=> y.created_at
+    end
   end
 end

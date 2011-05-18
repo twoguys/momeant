@@ -1,20 +1,23 @@
-- if current_user && !current_user.has_rewarded?(@story)
-  .hidden
-    #reward-modal
-      .insides
-        = form_for :reward, :url => story_rewards_path(@story) do |form|
-          %h3 How much would you like to reward?
-          %ul
-            %li
-              = form.radio_button :amount, 1, {:checked => true}
-              1
-            %li
-              = form.radio_button :amount, 2
-              2
-            %li
-              = form.radio_button :amount, 5
-              5
-          %h3 Tell others why you rewarded.
-          = form.text_area :comment    
-          %p Help your subscribers discover new content by telling them why you reward this story. Thanks!
-          = form.submit "Give Reward"
+- if current_user && !@story.owner?(current_user)
+  #reward-box
+    - unless @hide_reward_tab
+      .tab
+        .tab-inner Reward this story
+    .inner
+      - if !current_user.has_rewarded?(@story)
+        = form_for :reward, :url => story_rewards_path(@story), :html => {:id => "reward-form"} do |form|
+          .amount
+            %p Choose a bronze, silver, or gold coin. Mo&#149meant rewards can be given in 1, 2, and 5 credit denominations.
+            %ul.coins
+              %li.bronze.selected
+                = form.radio_button :amount, 1, {:checked => true}
+              %li.silver
+                = form.radio_button :amount, 2
+              %li.gold
+                = form.radio_button :amount, 5
+          .comment
+            = form.text_area :comment, :placeholder => "tell everyone why this story deserves your reward..."
+            %p Use the space above to tell the Mo&#149meant community why you think this story deserves your reward. Consider it your curatorial comment.
+            = form.submit "Give Reward"
+      - else
+        = render :partial => "stories/you_rewarded", :locals => {:reward => current_user.last_reward_for(@story)}

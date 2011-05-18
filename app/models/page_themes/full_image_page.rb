@@ -1,11 +1,5 @@
 class FullImagePage < Page
   
-  IMAGE_PLACEMENTS = {
-    "original size" => "original",
-    "fill screen" => "fill-screen",
-    "fit to screen" => "fit-to-screen"
-  }.freeze
-  
   def caption
     self.medias.each do |media|
       return media if media.is_a?(PageText)

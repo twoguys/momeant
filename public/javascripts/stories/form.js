@@ -406,6 +406,16 @@ var story_auto_saver = function() {
 			var $from = $(input);
 			var $to = $('ul#pages li#page_' + number + ' .' + $from.attr('mirror-to') + ', #page-previews li#preview_' + number + ' .' + $from.attr('mirror-to'));
 			$from.keyup(function() {
+				if (type == 'full_image') {
+					// if caption isn't there and we have text, create it
+					if ($from.val() != '' && $('ul#pages li#page_' + number + ' .caption').length == 0) {
+						$('ul#pages li#page_' + number + ' .inner').append('<div class="caption placeable"></div>');
+						$to = $('ul#pages li#page_' + number + ' .caption');
+					// if caption is there but the text is empty, remove it
+					} else if ($from.val() == '' && $to.length != 0) {
+						$to.remove();
+					}
+				}
 				$to.text($from.val());
 			});
 		});
@@ -416,13 +426,17 @@ var story_auto_saver = function() {
 			$(placement).find('ul.picker li').click(function() {
 				var $position = $(this);
 				var position = $position.attr('position');
+				var data = {placement:position, type:type, number:number};
+				var side = $position.attr('side');
+				if (side)
+					data['side'] = side;
 				$position.addClass('chosen').siblings().removeClass('chosen');
 				$('ul#pages li#page_' + number + ' .placeable').removeClass('top-left top-right bottom-left bottom-right').addClass(position);
 				auto_saver.show_pages_spinner();
 				$.ajax({
 					type: 'PUT',
 					url: '/stories/' + pages_editor.story_id + '/pages/' + page_id,
-					data: {placement:position, type:type, number:number},
+					data: data,
 					success: function(data) {
 						auto_saver.hide_pages_spinner();
 					}
@@ -436,13 +450,20 @@ var story_auto_saver = function() {
 			var $select = $(this);
 			var placement = $select.val();
 			var position = $select.attr('position') || '';
-			if (type == 'full_image')
+			var side = $select.attr('side') || '';
+			if (type == 'full_image') {
 				$('ul#pages li#page_' + number + ' .inner').removeClass('fill-screen fit-to-screen original').addClass(placement);
-			else
+			} else if (type == 'grid') {
+				log('ul#pages li#page_' + number + ' cell_' + position + ' .side.' + side);
+				$('ul#pages li#page_' + number + ' .cell_' + position + ' .side.' + side).removeClass('fill-screen fit-to-screen original').addClass(placement);
+			} else {
 				$('ul#pages li#page_' + number + ' .image' + position).removeClass('fill-screen fit-to-screen original').addClass(placement);
+			}
 			var data = {image_placement:placement, type:type, number:number};
 			if (position)
 				data['position'] = position;
+			if (side)
+				data['side'] = side;
 			auto_saver.show_pages_spinner();
 			$.ajax({
 				type: 'PUT',
@@ -530,11 +551,16 @@ var story_auto_saver = function() {
 		});
 	};
 	
-	this.save_text = function($element, page_id, type, number) {
+	this.save_text = function($element, page_id, type, number, optional_text) {
+		log('SAVING TEXT');
 		var data = {};
 		data['type'] = type;
 		data['number'] = number;
-		data['text'] = $element.val();
+		if (optional_text) {
+			data['text'] = optional_text;
+		} else {
+			data['text'] = $element.val();
+		}
 		var position = $element.attr('position');
 		if (position) {
 			data['position'] = position;
@@ -807,10 +833,14 @@ var story_auto_saver = function() {
 				var $to = $('ul#pages li#page_' + number + ' .' + $element.attr('mirror-to') + ', #page-previews li#preview_' + number + ' .' + $element.attr('mirror-to'));
 				var $save_button = $element.parents('.body:eq(0)').find('a.save');
 				$save_button.click(function() {
+					log('OMG BUTTON CLICKED');
 					var editor = tinyMCE.get($element.attr('id'));
 					if (editor.isDirty()) {
-						auto_saver.save_text($element, page_id, type, number);
+						auto_saver.save_text($element, page_id, type, number, editor.getContent());
 						$to.html(editor.getContent());
+						if (type == 'grid') {
+							$to.removeClass('hidden').siblings().addClass('hidden');
+						}
 					}
 				});
 			}

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110426153701) do
+ActiveRecord::Schema.define(:version => 20110429145306) do
 
   create_table "adverts", :force => true do |t|
     t.string   "title"
@@ -114,6 +114,7 @@ ActiveRecord::Schema.define(:version => 20110426153701) do
     t.integer  "reward_count",    :default => 0
     t.integer  "view_count",      :default => 0
     t.integer  "comment_count",   :default => 0
+    t.text     "thankyou"
   end
 
   create_table "stories_topics", :id => false, :force => true do |t|
@@ -198,6 +199,8 @@ ActiveRecord::Schema.define(:version => 20110426153701) do
     t.string   "paid_state"
     t.integer  "coins",                                       :default => 0
     t.datetime "subscription_last_updated_at"
+    t.string   "spreedly_plan"
+    t.string   "spreedly_token"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

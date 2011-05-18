@@ -3,13 +3,44 @@
 
 .story-viewer
 
-  #number-of-pages.hidden= @story.pages.count
+  #number-of-pages.hidden= @story.pages.count + 1
   
   %ul#pages
     - @story.pages.each do |page|
       - @page = page
       %li{:id => "page_#{page.number}", :class => page.number == 1 ? "#{page.css_class}" : "#{page.css_class} hidden"}
         = render "/stories/page_themes/#{page.partial_name}"
+    %li.page.last{:id => "page_#{@story.pages.count + 1}"}
+      .inner
+        - unless @story.thankyou.blank?
+          .thank-you
+            %h3 A quick note from the creator:
+            %p= @story.thankyou
+        = render :partial => "reward_modal", :locals => {:story => @story}
+        .stories
+          .tabs
+            = link_to("you might like", "you-might-like", :class => "active first")
+            = link_to("by this creator", "by-this-creator", :class => "last")
+          %ul.stories.you-might-like.tabcontent
+            - @story.similar_stories_different_creator.each do |story|
+              %li
+                %a.thumbnail.petite{:href => preview_story_path(story)}
+                  - if story.thumbnail
+                    - @page = story.thumbnail
+                    = render :partial => "stories/page_themes/#{@page.partial_name}", :locals => {:size => "petite"}
+                .info
+                  = link_to(story.title, preview_story_path(story), :class => "title")
+                  .author by #{story.user.name}
+          %ul.stories.by-this-creator.tabcontent.hidden
+            - @story.user.created_stories.published.where("id != #{@story.id}").each do |story|
+              %li
+                %a.thumbnail.petite{:href => preview_story_path(story)}
+                  - if story.thumbnail
+                    - @page = story.thumbnail
+                    = render :partial => "stories/page_themes/#{@page.partial_name}", :locals => {:size => "petite"}
+                .info
+                  = link_to(story.title, preview_story_path(story), :class => "title")
+                  .author by #{story.user.name}
   
   #previous-page
     .button{:title => "Previous page"} previous page
@@ -26,8 +57,9 @@
         .author by #{link_to(@story.user.name, user_path(@story.user))}
         .excerpt= truncate(@story.synopsis, :length => 250)
         .actions
-          = render "stories/reward_modal"
-          = #render "add_this"
+          = views_link(@story)
+          = rewards_link(@story, true)
+          = #render "stories/reward_modal"
       .slider
         .scrollbar-me
           .viewport
@@ -37,6 +69,7 @@
                   - @page = page
                   %li.page{:class => page.css_class, "page-number" => page.number, :id => "page_#{page.number}"}
                     .inner= render :partial => "/stories/page_themes/#{page.partial_name}", :locals => {:preview => true, :size => "medium"}
+                %li.page.last{"page-number" => @story.pages.count + 1} ...
           .scrollbar
             .track
               .thumb

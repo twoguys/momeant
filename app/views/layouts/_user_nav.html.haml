@@ -7,9 +7,10 @@
         = link_to("Profile", user_path(current_user), :class => "tooltipped", :title => "Profile")
     %li#faq
       = link_to("FAQ", "#", :class => "tooltipped", :title => "FAQ")        
-    %li#topics  
+    %li#topics
       %span.icon
       .inner
+        .heading Topics
         %ul.topic-list
           - counter = 1
           - Topic.parent_topics.order(:name).each do |topic|
@@ -29,6 +30,6 @@
         Hello #{link_to("#{current_user.name}!", user_path(current_user))}
         =link_to("(Sign out)", destroy_user_session_path, :class => "signout-link")
     %li#search
-      = form_tag search_stories_path, :method => :get do
+      = form_tag search_path, :method => :get do
         = text_field_tag :query, "search mo•meant"
         = submit_tag "Search", :id => "search-submit", :name => ""

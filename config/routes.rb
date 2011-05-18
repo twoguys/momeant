@@ -3,7 +3,6 @@ Repo::Application.routes.draw do
   devise_for :users, :controllers => {
     :registrations => "registrations",
     :sessions => "sessions",
-    :confirmations => "confirmations",
     :passwords => "passwords"
   }
   
@@ -49,6 +48,9 @@ Repo::Application.routes.draw do
   
   resources :users do
     resources :subscriptions
+
+    # Spreedly updates come here
+    post :billing_updates, :on => :collection
   end
   
   namespace :admin do
@@ -62,7 +64,9 @@ Repo::Application.routes.draw do
     end
   end
   
+  match '/search',              :to => "search#index",              :as => :search
   match '/subscribe',           :to => 'home#subscribe',            :as => :subscribe
+  match '/thankyou',            :to => 'home#thankyou',             :as => :thankyou
   match '/faq',                 :to => 'home#faq',                  :as => :faq
   match '/',                    :to => 'home#index',                :as => :home
   root :to => "home#index"

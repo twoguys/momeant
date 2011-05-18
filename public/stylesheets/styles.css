@@ -12,6 +12,16 @@ html, body {
 h1, h2 {
   font-weight: normal; }
 
+h2 {
+  background: none repeat scroll 0 0 #eaeaea;
+  color: #b2b2b2;
+  font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 11px 13px 9px;
+  text-transform: uppercase;
+  clear: both; }
+
 p {
   line-height: 1.8em;
   margin: 20px 0; }
@@ -40,7 +50,7 @@ header .insides, #mid .insides, #footer .insides {
   margin: 0 auto;
   position: relative; }
 
-.fullscreen header .insides, .fullscreen #mid .insides, .fullscreen #footer .insides {
+.fullscreen header #user-nav, .fullscreen header .insides, .fullscreen #mid .insides, .fullscreen #footer .insides {
   width: 100%;
   min-width: 950px; }
 .fullscreen #mid, .fullscreen #mid .insides, .fullscreen form, .fullscreen form fieldset, .fullscreen form ul {
@@ -97,7 +107,8 @@ header {
     position: relative;
     height: 42px;
     width: 950px;
-    margin: 0 auto; }
+    margin: 0 auto;
+    z-index: 2; }
     header #user-nav ul.links {
       position: absolute;
       left: 0;
@@ -107,7 +118,7 @@ header {
     header #user-nav #home, header #user-nav #profile, header #user-nav #faq, header #user-nav #topics, header #user-nav #create {
       width: 46px;
       height: 36px;
-      background: transparent url(../images/topNavBreak.gif) no-repeat 0 0; }
+      background: transparent url(../images/topNavBreak.gif) no-repeat 0 5px; }
       header #user-nav #home a, header #user-nav #profile a, header #user-nav #faq a, header #user-nav #topics a, header #user-nav #create a {
         width: 46px;
         height: 36px;
@@ -124,7 +135,7 @@ header {
     header #user-nav #signup {
       left: 60px; }
     header #user-nav #profile a {
-      background-image: url(../images/icons/momeantProfile.png); }
+      background-image: url(../images/icons/momeantProfileB.png); }
     header #user-nav #signin, header #user-nav #signout {
       left: 140px; }
     header #user-nav #create:hover .tip, header #user-nav #balance:hover .tip, header #user-nav #subscriptions:hover .tip, header #user-nav #recommendations:hover .tip, header #user-nav #topics:hover .tip {
@@ -133,19 +144,19 @@ header {
     header #user-nav #faq a {
       background-image: url(../images/icons/momeantHelp.png); }
     header #user-nav #create a {
-      background-image: url(../images/icons/momeantAddStory.png); }
+      background: transparent url(../images/icons/momeantAddStory.png) no-repeat 50% 7px; }
     header #user-nav #balance {
-      background: transparent url(../images/topNavBreak.gif) no-repeat 0 0; }
+      background: transparent url(../images/topNavBreak.gif) no-repeat 0 5px; }
       header #user-nav #balance a {
         display: block;
         color: black;
         font-weight: bold;
         font-size: 1.1em;
-        padding: 12px 10px; }
+        padding: 12px 10px 7px; }
     header #user-nav #subscriptions a {
       background-image: url(../images/icons/person.png); }
     header #user-nav #recommendations {
-      background: transparent url(../images/topNavBreak.gif) no-repeat 0 0;
+      background: transparent url(../images/topNavBreak.gif) no-repeat 0 5px;
       width: 46px;
       height: 36px; }
       header #user-nav #recommendations span.icon {
@@ -153,7 +164,7 @@ header {
         display: block;
         width: 46px;
         height: 36px;
-        background: transparent url(../images/icons/momeantStream.png) no-repeat 50% 6px;
+        background: transparent url(../images/icons/momeantStreamB.png) no-repeat 50% 6px;
         cursor: pointer; }
       header #user-nav #recommendations .stream-inner {
         display: none;
@@ -170,7 +181,7 @@ header {
     header #user-nav #recommendations:hover .stream-inner {
       display: block; }
     header #user-nav #topics {
-      background: transparent url(../images/topNavBreak.gif) no-repeat 0 0; }
+      background: transparent url(../images/topNavBreak.gif) no-repeat 0 5px; }
       header #user-nav #topics span {
         position: absolute;
         display: block;
@@ -182,13 +193,24 @@ header {
         background: transparent url(../images/topTriangle.png) no-repeat 10px 0;
         padding-top: 7px;
         position: absolute;
-        top: 35px; }
+        top: 35px;
+        display: none; }
+        header #user-nav #topics .inner .heading {
+          background-color: black;
+          color: white;
+          font-size: 18px;
+          font-weight: 900;
+          text-transform: uppercase;
+          text-align: center;
+          height: 22px;
+          line-height: 25px;
+          vertical-align: middle;
+          padding: 3px 0; }
       header #user-nav #topics .topic-list {
         border: 3px solid black;
         -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
         -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
-        display: none; }
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.7); }
         header #user-nav #topics .topic-list .odd {
           background-color: #f0f0f0; }
         header #user-nav #topics .topic-list .even {
@@ -241,10 +263,10 @@ header {
           background-position: 120px -507px; }
         header #user-nav #topics .topic-list li.travel a {
           background-position: 120px -546px; }
-    header #user-nav #topics:hover .topic-list {
+    header #user-nav #topics:hover .inner {
       display: block; }
     header #user-nav #hi {
-      background: transparent url(../images/topNavBreak.gif) no-repeat 0 0;
+      background: transparent url(../images/topNavBreak.gif) no-repeat 0 5px;
       padding: 13px 10px 13px 12px;
       font-size: 1.1em;
       font-weight: 900;
@@ -287,43 +309,47 @@ header {
         -moz-box-shadow: none;
         box-shadow: none;
         text-indent: -9999px; }
-  header #call-to-action .insides {
-    padding: 10px 0 3px;
-    width: 100%; }
-    header #call-to-action .insides .message {
-      text-align: center;
-      font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
-      text-transform: uppercase;
-      font-weight: 700;
-      font-size: 16px;
-      padding-bottom: 6px;
-      border-bottom: 1px solid #f4f4f4; }
-      header #call-to-action .insides .message a {
-        -webkit-border-radius: 3px;
-        -moz-border-radius: 3px;
-        border-radius: 3px;
-        color: white;
-        padding: 2px 5px;
-        position: relative;
-        top: -1px;
-        font-size: 0.85em; }
-  header #call-to-action .signup {
-    background-color: #b1e8ba;
-    color: #26a13c; }
-    header #call-to-action .signup a {
-      background-color: #26a13c; }
-  header #call-to-action .subscribe {
-    background-color: #f6d4db;
-    color: #f42652; }
-    header #call-to-action .subscribe a {
-      background-color: #f42652; }
+  header #call-to-action {
+    z-index: 1; }
+    header #call-to-action .insides {
+      padding: 10px 0 3px;
+      width: 100%; }
+      header #call-to-action .insides .message {
+        text-align: center;
+        font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
+        text-transform: uppercase;
+        font-weight: 700;
+        font-size: 16px;
+        padding-bottom: 6px;
+        border-bottom: 1px solid #f4f4f4; }
+        header #call-to-action .insides .message a {
+          -webkit-border-radius: 3px;
+          -moz-border-radius: 3px;
+          border-radius: 3px;
+          color: white;
+          padding: 4px 8px;
+          margin-left: 10px;
+          position: relative;
+          top: -1px;
+          font-size: 0.85em; }
+    header #call-to-action .signup {
+      background-color: #b1e8ba;
+      color: #26a13c; }
+      header #call-to-action .signup a {
+        background-color: #26a13c; }
+    header #call-to-action .subscribe {
+      background-color: #f6d4db;
+      color: #f42652; }
+      header #call-to-action .subscribe a {
+        background-color: #f42652; }
   header .momeant-header {
     display: block;
     text-indent: -9999px;
     height: 130px;
     padding-top: 20px;
     background: transparent url(../images/diagStripeBG.png) repeat-x 0 100%;
-    margin-bottom: 10px; }
+    margin-bottom: 10px;
+    z-index: 1; }
     header .momeant-header #logo-large {
       height: 100px;
       width: 645px;
@@ -468,6 +494,8 @@ form .button_to, .form .button_to {
   margin: 0 0 10px; }
 form .skinny, .form .skinny {
   width: 80px; }
+form .sidenote, .form .sidenote {
+  display: inline-block; }
 
 input[type="submit"], a.button {
   position: relative;
@@ -534,17 +562,17 @@ table {
   color: #999999;
   font-size: 20px;
   line-height: 31px;
-  margin-bottom: 20px; }
+  margin-bottom: 20px;
+  font-weight: 100; }
   .new-story-copy:first-letter {
     font-size: 60px;
     font-weight: 100;
     padding-bottom: 5px;
-    line-height: 100px;
     float: left;
     display: inline-block;
     vertical-align: baseline;
     padding-right: 6px;
-    padding-top: 11px;
+    padding-top: 17px;
     color: black; }
 
 .fullscreen .story-form {
@@ -573,7 +601,8 @@ form.new_story, form.edit_story, .story-form {
     top: 0;
     left: 0;
     color: #999999;
-    font-style: italic; }
+    font-style: italic;
+    font-weight: 100; }
   form.new_story .title-input, form.new_story .excerpt-input, form.edit_story .title-input, form.edit_story .excerpt-input, .story-form .title-input, .story-form .excerpt-input {
     height: auto;
     float: left;
@@ -616,21 +645,22 @@ form.new_story, form.edit_story, .story-form {
         font-family: "museo-slab-1", "museo-slab-2", serif;
         color: #999999;
         font-size: 16px;
-        line-height: 24px; }
+        line-height: 24px;
+        font-weight: 100; }
         form.new_story #page-previews #story-instructions p:first-letter, form.edit_story #page-previews #story-instructions p:first-letter, .story-form #page-previews #story-instructions p:first-letter {
           font-size: 47px;
           font-weight: 100;
           padding-bottom: 5px;
-          line-height: 47px;
           float: left;
           display: inline-block;
           vertical-align: baseline;
           padding-right: 3px;
-          padding-top: 10px;
+          padding-top: 13px;
           color: black; }
     form.new_story #page-previews li.page, form.edit_story #page-previews li.page, .story-form #page-previews li.page {
       width: 288px;
       font-family: "museo-slab-1", "museo-slab-2", serif;
+      font-weight: 100;
       height: 180px;
       background-color: #eaeaea;
       float: left;
@@ -659,7 +689,8 @@ form.new_story, form.edit_story, .story-form {
         text-indent: 10px;
         font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
         width: 100px;
-        text-align: left; }
+        text-align: left;
+        z-index: 3; }
       form.new_story #page-previews li.page a.choose-thumbnail.chosen, form.edit_story #page-previews li.page a.choose-thumbnail.chosen, .story-form #page-previews li.page a.choose-thumbnail.chosen {
         background-position: 7px 6px; }
     form.new_story #page-previews li#preview_2, form.new_story #page-previews li#preview_4, form.new_story #page-previews li:nth-child(3n+7), form.edit_story #page-previews li#preview_2, form.edit_story #page-previews li#preview_4, form.edit_story #page-previews li:nth-child(3n+7), .story-form #page-previews li#preview_2, .story-form #page-previews li#preview_4, .story-form #page-previews li:nth-child(3n+7) {
@@ -697,6 +728,11 @@ form.new_story, form.edit_story, .story-form {
         width: 100%; }
       form.new_story .metadata .tags input, form.edit_story .metadata .tags input, .story-form .metadata .tags input {
         width: 98%; }
+    form.new_story .metadata .thank-you textarea, form.edit_story .metadata .thank-you textarea, .story-form .metadata .thank-you textarea {
+      width: 98%;
+      height: 160px; }
+    form.new_story .metadata .thank-you .example, form.edit_story .metadata .thank-you .example, .story-form .metadata .thank-you .example {
+      border-bottom: none; }
   form.new_story .topics, form.edit_story .topics, .story-form .topics {
     width: 47%;
     clear: none;
@@ -728,6 +764,8 @@ form.new_story, form.edit_story, .story-form {
         cursor: pointer; }
       form.new_story .topics li .children, form.edit_story .topics li .children, .story-form .topics li .children {
         padding-left: 10px; }
+        form.new_story .topics li .children label, form.edit_story .topics li .children label, .story-form .topics li .children label {
+          color: #999999; }
   form.new_story #page-type-chooser, form.edit_story #page-type-chooser, .story-form #page-type-chooser {
     display: none;
     width: 100%;
@@ -780,6 +818,7 @@ form.new_story, form.edit_story, .story-form {
         font-size: 15px;
         line-height: 24px;
         font-family: "museo-slab-1", "museo-slab-2", serif;
+        font-weight: 100;
         border-bottom: 1px dotted #aaaaaa;
         padding-bottom: 15px;
         color: #777777; }
@@ -954,28 +993,30 @@ form.new_story, form.edit_story, .story-form {
         width: 100%;
         background-repeat: no-repeat;
         background-position: center center; }
-    #page-previews li.split div.split .image.fill-screen .inner {
-      -webkit-background-size: cover;
-      -moz-background-size: cover;
-      -o-background-size: cover;
-      background-size: cover; }
-    #page-previews li.split div.split .image.fit-to-screen .inner {
-      -webkit-background-size: contain;
-      -moz-background-size: contain;
-      -o-background-size: contain;
-      background-size: contain; }
+      #page-previews li.split div.split .image .inner.fill-screen {
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover; }
+      #page-previews li.split div.split .image .inner.fit-to-screen {
+        -webkit-background-size: contain;
+        -moz-background-size: contain;
+        -o-background-size: contain;
+        background-size: contain; }
     #page-previews li.split div.split .text {
       font-size: 1.6em;
       display: table;
       height: 100%; }
       #page-previews li.split div.split .text .inner {
-        padding: 2% 8% 2% 12%;
-        width: 34%;
+        padding: 5% 9% 2% 11%;
+        width: auto;
         vertical-align: middle;
         display: table-cell;
         font-family: "museo-slab-1", "museo-slab-2", serif;
         line-height: 9px;
-        font-size: 3px; }
+        font-size: 3px;
+        font-weight: 100;
+        text-align: justify; }
         #page-previews li.split div.split .text .inner:first-letter {
           font-family: "museo-sans-1", "museo-sans-2", sans-serif;
           font-size: 26px;
@@ -1013,43 +1054,54 @@ form.new_story, form.edit_story, .story-form {
         z-index: 2; }
       #page-previews li.grid ul.cells li .back {
         z-index: 1; }
-      #page-previews li.grid ul.cells li .side .text, #page-previews li.grid ul.cells li .side .image {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%; }
-      #page-previews li.grid ul.cells li .side .image {
-        display: block;
+      #page-previews li.grid ul.cells li .side {
+        background-color: white; }
+        #page-previews li.grid ul.cells li .side .text, #page-previews li.grid ul.cells li .side .image {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%; }
+        #page-previews li.grid ul.cells li .side .image {
+          display: block;
+          background-repeat: no-repeat;
+          background-position: center center; }
+        #page-previews li.grid ul.cells li .side .text {
+          display: table;
+          font-size: 2em;
+          text-align: center; }
+          #page-previews li.grid ul.cells li .side .text .inner {
+            padding: 0 10%;
+            vertical-align: middle;
+            display: table-cell;
+            font-family: "museo-slab-1", "museo-slab-2", serif;
+            line-height: 26px;
+            font-size: 14px;
+            text-align: justify;
+            letter-spacing: -0.5px;
+            font-weight: 100; }
+            #page-previews li.grid ul.cells li .side .text .inner:first-letter {
+              font-family: "museo-sans-1", "museo-sans-2", sans-serif;
+              font-size: 50px;
+              vertical-align: baseline;
+              float: left;
+              text-transform: uppercase;
+              line-height: 50px;
+              height: 50px;
+              padding-top: 10px;
+              padding-right: 4px; }
+        #page-previews li.grid ul.cells li .side .hidden {
+          display: none; }
+      #page-previews li.grid ul.cells li .side.fill-screen .image {
         -webkit-background-size: cover;
         -moz-background-size: cover;
         -o-background-size: cover;
         background-size: cover; }
-      #page-previews li.grid ul.cells li .side .text {
-        display: table;
-        font-size: 2em;
-        text-align: center; }
-        #page-previews li.grid ul.cells li .side .text .inner {
-          background-color: white;
-          background-color: rgba(255, 255, 255, 0.9);
-          padding: 0 10%;
-          vertical-align: middle;
-          display: table-cell;
-          font-family: "museo-slab-1", "museo-slab-2", serif;
-          line-height: 26px;
-          font-size: 14px;
-          text-align: justify;
-          letter-spacing: -0.5px; }
-          #page-previews li.grid ul.cells li .side .text .inner:first-letter {
-            font-family: "museo-sans-1", "museo-sans-2", sans-serif;
-            font-size: 50px;
-            vertical-align: baseline;
-            float: left;
-            text-transform: uppercase;
-            line-height: 50px;
-            height: 50px;
-            padding-top: 10px;
-            padding-right: 4px; }
+      #page-previews li.grid ul.cells li .side.fit-to-screen .image {
+        -webkit-background-size: contain;
+        -moz-background-size: contain;
+        -o-background-size: contain;
+        background-size: contain; }
     #page-previews li.grid ul.cells li:hover .front {
       z-index: 1; }
     #page-previews li.grid ul.cells li:hover .back {
@@ -1086,19 +1138,22 @@ form.new_story, form.edit_story, .story-form {
     #page-editor #editor-header .title {
       font-size: 26px;
       color: #b0b0b0;
-      line-height: 42px;
+      padding: 6px 0px 5px;
       vertical-align: middle;
       margin-left: 10px;
       float: left; }
     #page-editor #editor-header .slide-nav {
       position: absolute;
       left: 50%;
-      top: 9px;
+      top: 13px;
       width: 130px;
       height: 42px;
       margin-left: -65px;
-      font-size: 18px;
-      text-align: center; }
+      font-size: 14px;
+      text-align: center;
+      color: #aaaaaa;
+      letter-spacing: 1px;
+      font-weight: 900; }
       #page-editor #editor-header .slide-nav #previous-page, #page-editor #editor-header .slide-nav #next-page {
         width: 16px;
         height: 18px;
@@ -1163,7 +1218,8 @@ form.new_story, form.edit_story, .story-form {
       top: 0;
       bottom: 0;
       left: 0;
-      width: 100%; }
+      width: 100%;
+      overflow-y: auto; }
       #page-editor #pane .pane-insides .header {
         height: 35px;
         background-color: black;
@@ -1174,11 +1230,11 @@ form.new_story, form.edit_story, .story-form {
         #page-editor #pane .pane-insides .header .title {
           font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
           font-weight: 700;
-          font-size: 16px;
-          line-height: 35px;
+          font-size: 14px;
           vertical-align: middle;
-          padding-left: 10px;
-          display: inline-block; }
+          padding: 9px 5px 10px 12px;
+          display: inline-block;
+          letter-spacing: 1px; }
         #page-editor #pane .pane-insides .header .change {
           display: inline-block;
           line-height: 35px;
@@ -1198,11 +1254,14 @@ form.new_story, form.edit_story, .story-form {
           display: none; }
         #page-editor #pane .pane-insides .header .spinner.off {
           background-position: -16px 0; }
+        #page-editor #pane .pane-insides .header a {
+          font-size: 11px; }
       #page-editor #pane .pane-insides .copy {
-        margin: 15px;
-        font-size: 13px;
+        margin: 17px 23px;
+        font-size: 15px;
         line-height: 24px;
         font-family: "museo-slab-1", "museo-slab-2", serif;
+        font-weight: 100;
         border-bottom: 1px dotted #aaaaaa;
         padding-bottom: 15px;
         color: #777777; }
@@ -1212,7 +1271,7 @@ form.new_story, form.edit_story, .story-form {
         #page-editor #pane .pane-insides .copy span {
           display: inline; }
       #page-editor #pane .pane-insides .body {
-        padding: 0 15px 15px; }
+        padding: 20px 45px 30px; }
     #page-editor #pane a.save {
       font-size: 12px;
       height: 15px;
@@ -1231,10 +1290,14 @@ form.new_story, form.edit_story, .story-form {
     #page-editor #pane ul.pages li {
       margin-bottom: 1em; }
       #page-editor #pane ul.pages li label {
-        font-size: 12px;
+        font-size: 11px;
         font-weight: 300;
-        color: #777777;
-        margin-top: 5px; }
+        color: #999999;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        text-shadow: none;
+        float: left;
+        width: auto; }
         #page-editor #pane ul.pages li label span {
           height: auto; }
         #page-editor #pane ul.pages li label span.sidenote {
@@ -1634,28 +1697,30 @@ form.new_story, form.edit_story, .story-form {
             width: 100%;
             background-repeat: no-repeat;
             background-position: center center; }
-        #page-editor ul#pages .split div.split .image.fill-screen .inner {
-          -webkit-background-size: cover;
-          -moz-background-size: cover;
-          -o-background-size: cover;
-          background-size: cover; }
-        #page-editor ul#pages .split div.split .image.fit-to-screen .inner {
-          -webkit-background-size: contain;
-          -moz-background-size: contain;
-          -o-background-size: contain;
-          background-size: contain; }
+          #page-editor ul#pages .split div.split .image .inner.fill-screen {
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover; }
+          #page-editor ul#pages .split div.split .image .inner.fit-to-screen {
+            -webkit-background-size: contain;
+            -moz-background-size: contain;
+            -o-background-size: contain;
+            background-size: contain; }
         #page-editor ul#pages .split div.split .text {
           font-size: 1.6em;
           display: table;
           height: 100%; }
           #page-editor ul#pages .split div.split .text .inner {
-            padding: 2% 8% 2% 12%;
-            width: 34%;
+            padding: 5% 9% 2% 11%;
+            width: auto;
             vertical-align: middle;
             display: table-cell;
             font-family: "museo-slab-1", "museo-slab-2", serif;
             line-height: 9px;
-            font-size: 3px; }
+            font-size: 3px;
+            font-weight: 100;
+            text-align: justify; }
             #page-editor ul#pages .split div.split .text .inner:first-letter {
               font-family: "museo-sans-1", "museo-sans-2", sans-serif;
               font-size: 26px;
@@ -1671,7 +1736,8 @@ form.new_story, form.edit_story, .story-form {
           display: none; }
       #page-editor ul#pages .split div.split .text .inner {
         line-height: 36px;
-        font-size: 16px; }
+        font-size: 16px;
+        font-weight: 100; }
         #page-editor ul#pages .split div.split .text .inner:first-letter {
           font-size: 116px;
           line-height: 110px;
@@ -1703,43 +1769,54 @@ form.new_story, form.edit_story, .story-form {
             z-index: 2; }
           #page-editor ul#pages .grid ul.cells li .back {
             z-index: 1; }
-          #page-editor ul#pages .grid ul.cells li .side .text, #page-editor ul#pages .grid ul.cells li .side .image {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%; }
-          #page-editor ul#pages .grid ul.cells li .side .image {
-            display: block;
+          #page-editor ul#pages .grid ul.cells li .side {
+            background-color: white; }
+            #page-editor ul#pages .grid ul.cells li .side .text, #page-editor ul#pages .grid ul.cells li .side .image {
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%; }
+            #page-editor ul#pages .grid ul.cells li .side .image {
+              display: block;
+              background-repeat: no-repeat;
+              background-position: center center; }
+            #page-editor ul#pages .grid ul.cells li .side .text {
+              display: table;
+              font-size: 2em;
+              text-align: center; }
+              #page-editor ul#pages .grid ul.cells li .side .text .inner {
+                padding: 0 10%;
+                vertical-align: middle;
+                display: table-cell;
+                font-family: "museo-slab-1", "museo-slab-2", serif;
+                line-height: 26px;
+                font-size: 14px;
+                text-align: justify;
+                letter-spacing: -0.5px;
+                font-weight: 100; }
+                #page-editor ul#pages .grid ul.cells li .side .text .inner:first-letter {
+                  font-family: "museo-sans-1", "museo-sans-2", sans-serif;
+                  font-size: 50px;
+                  vertical-align: baseline;
+                  float: left;
+                  text-transform: uppercase;
+                  line-height: 50px;
+                  height: 50px;
+                  padding-top: 10px;
+                  padding-right: 4px; }
+            #page-editor ul#pages .grid ul.cells li .side .hidden {
+              display: none; }
+          #page-editor ul#pages .grid ul.cells li .side.fill-screen .image {
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
             background-size: cover; }
-          #page-editor ul#pages .grid ul.cells li .side .text {
-            display: table;
-            font-size: 2em;
-            text-align: center; }
-            #page-editor ul#pages .grid ul.cells li .side .text .inner {
-              background-color: white;
-              background-color: rgba(255, 255, 255, 0.9);
-              padding: 0 10%;
-              vertical-align: middle;
-              display: table-cell;
-              font-family: "museo-slab-1", "museo-slab-2", serif;
-              line-height: 26px;
-              font-size: 14px;
-              text-align: justify;
-              letter-spacing: -0.5px; }
-              #page-editor ul#pages .grid ul.cells li .side .text .inner:first-letter {
-                font-family: "museo-sans-1", "museo-sans-2", sans-serif;
-                font-size: 50px;
-                vertical-align: baseline;
-                float: left;
-                text-transform: uppercase;
-                line-height: 50px;
-                height: 50px;
-                padding-top: 10px;
-                padding-right: 4px; }
+          #page-editor ul#pages .grid ul.cells li .side.fit-to-screen .image {
+            -webkit-background-size: contain;
+            -moz-background-size: contain;
+            -o-background-size: contain;
+            background-size: contain; }
         #page-editor ul#pages .grid ul.cells li:hover .front {
           z-index: 1; }
         #page-editor ul#pages .grid ul.cells li:hover .back {
@@ -1798,7 +1875,7 @@ form.new_story, form.edit_story, .story-form {
 
 .story-preview {
   font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
-  margin-top: 20px;
+  margin-top: 10px;
   position: relative; }
   .story-preview input.bookmark, .story-preview input.unbookmark {
     position: absolute;
@@ -1889,7 +1966,7 @@ form.new_story, form.edit_story, .story-form {
       padding: 0 10px 10px 0;
       height: 32px;
       background-color: white; }
-      .story-preview .preview .actions a {
+      .story-preview .preview .actions a, .story-preview .preview .actions span {
         display: block;
         float: left;
         padding: 10px 20px 8px 35px;
@@ -1910,6 +1987,8 @@ form.new_story, form.edit_story, .story-form {
         background-image: url(../images/icons/shareOn.png); }
       .story-preview .preview .actions .view {
         background-image: url(../images/icons/fullscreenOn.png); }
+      .story-preview .preview .actions #reward-box {
+        display: none; }
   .story-preview .metadata {
     width: 274px;
     float: right;
@@ -1925,7 +2004,7 @@ form.new_story, form.edit_story, .story-form {
         text-transform: uppercase;
         letter-spacing: -0.4px;
         line-height: 30px;
-        margin-top: 15px;
+        margin-top: 0px;
         width: 230px;
         overflow: hidden; }
       .story-preview .metadata .top .creator {
@@ -1960,7 +2039,7 @@ form.new_story, form.edit_story, .story-form {
       line-height: 17px;
       padding: 10px 10px 10px 0; }
     .story-preview .metadata .topics {
-      padding: 10px;
+      padding: 2px 10px 5px;
       font-size: 1.1em;
       background: url("../images/simpleDotBG.png") repeat-x scroll 0 0 transparent; }
       .story-preview .metadata .topics a {
@@ -2012,22 +2091,21 @@ form.new_story, form.edit_story, .story-form {
       background-color: white; }
   .story-preview .top-patrons {
     clear: both;
-    padding-top: 40px;
+    padding-top: 35px;
     height: 50px; }
     .story-preview .top-patrons h3 {
       background-color: black;
       color: white;
       font-weight: 700;
-      font-size: 14px;
+      font-size: 12px;
       text-transform: uppercase;
-      width: 80px;
-      padding: 5px 10px 0;
-      height: 45px;
+      width: 85px;
+      padding: 22px 10px 0;
+      height: 38px;
       text-align: center;
       float: left;
       margin-right: 3px;
-      line-height: 20px;
-      vertical-align: middel; }
+      vertical-align: middle; }
     .story-preview .top-patrons ul {
       height: 50px;
       float: left;
@@ -2038,11 +2116,12 @@ form.new_story, form.edit_story, .story-form {
         margin-right: 3px; }
         .story-preview .top-patrons ul li a {
           display: block;
-          width: 50px;
-          height: 50px; }
+          width: 60px;
+          height: 60px;
+          margin-left: 2px; }
           .story-preview .top-patrons ul li a img {
-            width: 50px;
-            height: 50px; }
+            width: 60px;
+            height: 60px; }
   .story-preview .curations {
     margin-top: 35px;
     padding-top: 27px;
@@ -2112,7 +2191,8 @@ form.new_story, form.edit_story, .story-form {
           .story-preview .curations ul.list li .the-rest .comment {
             font-family: "museo-slab-1", "museo-slab-2", serif;
             font-size: 20px;
-            padding: 5px 0; }
+            padding: 5px 0;
+            font-weight: 100; }
       .story-preview .curations ul.list li.reward .who-when {
         background: transparent url(../images/icons/rewardLarge.png) no-repeat 0 0; }
       .story-preview .curations ul.list li.comment .who-when {
@@ -2196,7 +2276,7 @@ form.new_story, form.edit_story, .story-form {
         padding: 11px;
         border-top: 1px dotted white;
         margin-top: 9px; }
-        .story-viewer #previewer .info .actions a {
+        .story-viewer #previewer .info .actions a, .story-viewer #previewer .info .actions span {
           display: block;
           float: left;
           padding: 0 0 0 20px;
@@ -2207,14 +2287,12 @@ form.new_story, form.edit_story, .story-form {
           font-size: 11px;
           font-weight: 700;
           color: white; }
-        .story-viewer #previewer .info .actions .like {
-          background-image: url(../images/icons/heartGrey.png); }
-        .story-viewer #previewer .info .actions .liked {
-          background-image: url(../images/icons/heartOn.png); }
-        .story-viewer #previewer .info .actions .recommend {
+        .story-viewer #previewer .info .actions .reward {
           background-image: url(../images/icons/recommendGrey.png); }
-        .story-viewer #previewer .info .actions .unrecommend {
+        .story-viewer #previewer .info .actions .rewarded {
           background-image: url(../images/icons/recommendOn.png); }
+        .story-viewer #previewer .info .actions .views {
+          background-image: url(../images/icons/viewsLight.png); }
         .story-viewer #previewer .info .actions .share {
           background-image: url(../images/icons/shareOn.png); }
     .story-viewer #previewer .slider {
@@ -2255,7 +2333,6 @@ form.new_story, form.edit_story, .story-form {
         display: none; }
     .story-viewer #previewer ul.pages {
       height: 190px;
-      padding: 5px 0;
       background-color: black; }
       .story-viewer #previewer ul.pages li.page {
         width: 280px;
@@ -2395,28 +2472,30 @@ form.new_story, form.edit_story, .story-form {
               width: 100%;
               background-repeat: no-repeat;
               background-position: center center; }
-          .story-viewer #previewer ul.pages li.split div.split .image.fill-screen .inner {
-            -webkit-background-size: cover;
-            -moz-background-size: cover;
-            -o-background-size: cover;
-            background-size: cover; }
-          .story-viewer #previewer ul.pages li.split div.split .image.fit-to-screen .inner {
-            -webkit-background-size: contain;
-            -moz-background-size: contain;
-            -o-background-size: contain;
-            background-size: contain; }
+            .story-viewer #previewer ul.pages li.split div.split .image .inner.fill-screen {
+              -webkit-background-size: cover;
+              -moz-background-size: cover;
+              -o-background-size: cover;
+              background-size: cover; }
+            .story-viewer #previewer ul.pages li.split div.split .image .inner.fit-to-screen {
+              -webkit-background-size: contain;
+              -moz-background-size: contain;
+              -o-background-size: contain;
+              background-size: contain; }
           .story-viewer #previewer ul.pages li.split div.split .text {
             font-size: 1.6em;
             display: table;
             height: 100%; }
             .story-viewer #previewer ul.pages li.split div.split .text .inner {
-              padding: 2% 8% 2% 12%;
-              width: 34%;
+              padding: 5% 9% 2% 11%;
+              width: auto;
               vertical-align: middle;
               display: table-cell;
               font-family: "museo-slab-1", "museo-slab-2", serif;
               line-height: 9px;
-              font-size: 3px; }
+              font-size: 3px;
+              font-weight: 100;
+              text-align: justify; }
               .story-viewer #previewer ul.pages li.split div.split .text .inner:first-letter {
                 font-family: "museo-sans-1", "museo-sans-2", sans-serif;
                 font-size: 26px;
@@ -2636,28 +2715,30 @@ form.new_story, form.edit_story, .story-form {
             width: 100%;
             background-repeat: no-repeat;
             background-position: center center; }
-        .story-viewer ul#pages li.split div.split .image.fill-screen .inner {
-          -webkit-background-size: cover;
-          -moz-background-size: cover;
-          -o-background-size: cover;
-          background-size: cover; }
-        .story-viewer ul#pages li.split div.split .image.fit-to-screen .inner {
-          -webkit-background-size: contain;
-          -moz-background-size: contain;
-          -o-background-size: contain;
-          background-size: contain; }
+          .story-viewer ul#pages li.split div.split .image .inner.fill-screen {
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover; }
+          .story-viewer ul#pages li.split div.split .image .inner.fit-to-screen {
+            -webkit-background-size: contain;
+            -moz-background-size: contain;
+            -o-background-size: contain;
+            background-size: contain; }
         .story-viewer ul#pages li.split div.split .text {
           font-size: 1.6em;
           display: table;
           height: 100%; }
           .story-viewer ul#pages li.split div.split .text .inner {
-            padding: 2% 8% 2% 12%;
-            width: 34%;
+            padding: 5% 9% 2% 11%;
+            width: auto;
             vertical-align: middle;
             display: table-cell;
             font-family: "museo-slab-1", "museo-slab-2", serif;
             line-height: 9px;
-            font-size: 3px; }
+            font-size: 3px;
+            font-weight: 100;
+            text-align: justify; }
             .story-viewer ul#pages li.split div.split .text .inner:first-letter {
               font-family: "museo-sans-1", "museo-sans-2", sans-serif;
               font-size: 26px;
@@ -2673,7 +2754,8 @@ form.new_story, form.edit_story, .story-form {
           display: none; }
       .story-viewer ul#pages li.split div.split .text .inner {
         line-height: 36px;
-        font-size: 16px; }
+        font-size: 16px;
+        font-weight: 100; }
         .story-viewer ul#pages li.split div.split .text .inner:first-letter {
           font-size: 116px;
           line-height: 110px;
@@ -2705,49 +2787,161 @@ form.new_story, form.edit_story, .story-form {
             z-index: 2; }
           .story-viewer ul#pages li.grid ul.cells li .back {
             z-index: 1; }
-          .story-viewer ul#pages li.grid ul.cells li .side .text, .story-viewer ul#pages li.grid ul.cells li .side .image {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%; }
-          .story-viewer ul#pages li.grid ul.cells li .side .image {
-            display: block;
+          .story-viewer ul#pages li.grid ul.cells li .side {
+            background-color: white; }
+            .story-viewer ul#pages li.grid ul.cells li .side .text, .story-viewer ul#pages li.grid ul.cells li .side .image {
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%; }
+            .story-viewer ul#pages li.grid ul.cells li .side .image {
+              display: block;
+              background-repeat: no-repeat;
+              background-position: center center; }
+            .story-viewer ul#pages li.grid ul.cells li .side .text {
+              display: table;
+              font-size: 2em;
+              text-align: center; }
+              .story-viewer ul#pages li.grid ul.cells li .side .text .inner {
+                padding: 0 10%;
+                vertical-align: middle;
+                display: table-cell;
+                font-family: "museo-slab-1", "museo-slab-2", serif;
+                line-height: 26px;
+                font-size: 14px;
+                text-align: justify;
+                letter-spacing: -0.5px;
+                font-weight: 100; }
+                .story-viewer ul#pages li.grid ul.cells li .side .text .inner:first-letter {
+                  font-family: "museo-sans-1", "museo-sans-2", sans-serif;
+                  font-size: 50px;
+                  vertical-align: baseline;
+                  float: left;
+                  text-transform: uppercase;
+                  line-height: 50px;
+                  height: 50px;
+                  padding-top: 10px;
+                  padding-right: 4px; }
+            .story-viewer ul#pages li.grid ul.cells li .side .hidden {
+              display: none; }
+          .story-viewer ul#pages li.grid ul.cells li .side.fill-screen .image {
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
             background-size: cover; }
-          .story-viewer ul#pages li.grid ul.cells li .side .text {
-            display: table;
-            font-size: 2em;
-            text-align: center; }
-            .story-viewer ul#pages li.grid ul.cells li .side .text .inner {
-              background-color: white;
-              background-color: rgba(255, 255, 255, 0.9);
-              padding: 0 10%;
-              vertical-align: middle;
-              display: table-cell;
-              font-family: "museo-slab-1", "museo-slab-2", serif;
-              line-height: 26px;
-              font-size: 14px;
-              text-align: justify;
-              letter-spacing: -0.5px; }
-              .story-viewer ul#pages li.grid ul.cells li .side .text .inner:first-letter {
-                font-family: "museo-sans-1", "museo-sans-2", sans-serif;
-                font-size: 50px;
-                vertical-align: baseline;
-                float: left;
-                text-transform: uppercase;
-                line-height: 50px;
-                height: 50px;
-                padding-top: 10px;
-                padding-right: 4px; }
+          .story-viewer ul#pages li.grid ul.cells li .side.fit-to-screen .image {
+            -webkit-background-size: contain;
+            -moz-background-size: contain;
+            -o-background-size: contain;
+            background-size: contain; }
         .story-viewer ul#pages li.grid ul.cells li:hover .front {
           z-index: 1; }
         .story-viewer ul#pages li.grid ul.cells li:hover .back {
           z-index: 2; }
+    .story-viewer ul#pages li.last {
+      background-color: #111111; }
+      .story-viewer ul#pages li.last .inner {
+        width: 745px;
+        margin: 0 auto;
+        padding-top: 150px; }
+        .story-viewer ul#pages li.last .inner .thank-you {
+          color: white;
+          border-bottom: 1px dotted #444444;
+          padding-bottom: 15px;
+          margin-bottom: 25px; }
+          .story-viewer ul#pages li.last .inner .thank-you h3 {
+            font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
+            text-transform: uppercase;
+            font-size: 18px;
+            font-weight: 700; }
+          .story-viewer ul#pages li.last .inner .thank-you p {
+            font-family: "museo-slab-1", "museo-slab-2", serif;
+            font-size: 18px;
+            margin: 2px 0 5px;
+            line-height: 20px;
+            letter-spacing: 0.3px;
+            font-weight: 100; }
+        .story-viewer ul#pages li.last .inner #reward-box .inner {
+          width: 410px;
+          padding: 10px; }
+        .story-viewer ul#pages li.last .inner .stories {
+          width: 300px;
+          float: right; }
+          .story-viewer ul#pages li.last .inner .stories .tabs {
+            margin-bottom: 0;
+            background-color: transparent;
+            height: 29px;
+            min-height: 0;
+            position: relative; }
+            .story-viewer ul#pages li.last .inner .stories .tabs a {
+              top: 0;
+              padding: 0;
+              position: absolute;
+              height: 29px;
+              line-height: 29px;
+              vertical-align: middle;
+              font-size: 12px;
+              background: transparent url(../images/tab155x29Dark.png) no-repeat 0 0;
+              color: white;
+              width: 155px;
+              z-index: 1;
+              -webkit-box-shadow: none;
+              -moz-box-shadow: none;
+              box-shadow: none; }
+            .story-viewer ul#pages li.last .inner .stories .tabs a.first {
+              left: 0; }
+            .story-viewer ul#pages li.last .inner .stories .tabs a.last {
+              right: 0; }
+            .story-viewer ul#pages li.last .inner .stories .tabs a.active {
+              background: transparent url(../images/tab155x29.png) no-repeat 0 0;
+              color: #252525;
+              z-index: 2; }
+            .story-viewer ul#pages li.last .inner .stories .tabs a, .story-viewer ul#pages li.last .inner .stories .tabs a.active, .story-viewer ul#pages li.last .inner .stories .tabs a:first-child {
+              border: 0 none; }
+          .story-viewer ul#pages li.last .inner .stories ul.stories {
+            background-color: white;
+            width: 278px;
+            height: 269px;
+            padding: 10px 5px;
+            border: 6px solid #eeeeee; }
+            .story-viewer ul#pages li.last .inner .stories ul.stories li {
+              display: block;
+              width: 280px;
+              height: 60px;
+              background: transparent url(../images/simpleDotBG.png) repeat-x 50% 100%;
+              padding-bottom: 10px;
+              margin-bottom: 10px;
+              position: relative; }
+              .story-viewer ul#pages li.last .inner .stories ul.stories li a.thumbnail {
+                width: 95px;
+                height: 60px;
+                display: block;
+                float: left;
+                margin: 0 8px 0 0;
+                overflow: hidden; }
+              .story-viewer ul#pages li.last .inner .stories ul.stories li .info {
+                width: 175px;
+                float: left;
+                line-height: 12px; }
+                .story-viewer ul#pages li.last .inner .stories ul.stories li .info .title {
+                  font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
+                  color: black;
+                  font-weight: 700; }
+                .story-viewer ul#pages li.last .inner .stories ul.stories li .info .author {
+                  border: none;
+                  margin: 0;
+                  font-size: 10px; }
+              .story-viewer ul#pages li.last .inner .stories ul.stories li .price {
+                width: 50px;
+                float: left;
+                right: 0;
+                bottom: 20px; }
+            .story-viewer ul#pages li.last .inner .stories ul.stories li:last-child {
+              background: none;
+              margin-bottom: 0; }
   .story-viewer #previous-page, .story-viewer #next-page {
-    width: 20%;
+    width: 10%;
     height: 100%;
     position: absolute;
     top: 0;
@@ -2925,28 +3119,30 @@ form.new_story, form.edit_story, .story-form {
               width: 100%;
               background-repeat: no-repeat;
               background-position: center center; }
-          .story-gallery .large-preview .pages a.split div.split .image.fill-screen .inner {
-            -webkit-background-size: cover;
-            -moz-background-size: cover;
-            -o-background-size: cover;
-            background-size: cover; }
-          .story-gallery .large-preview .pages a.split div.split .image.fit-to-screen .inner {
-            -webkit-background-size: contain;
-            -moz-background-size: contain;
-            -o-background-size: contain;
-            background-size: contain; }
+            .story-gallery .large-preview .pages a.split div.split .image .inner.fill-screen {
+              -webkit-background-size: cover;
+              -moz-background-size: cover;
+              -o-background-size: cover;
+              background-size: cover; }
+            .story-gallery .large-preview .pages a.split div.split .image .inner.fit-to-screen {
+              -webkit-background-size: contain;
+              -moz-background-size: contain;
+              -o-background-size: contain;
+              background-size: contain; }
           .story-gallery .large-preview .pages a.split div.split .text {
             font-size: 1.6em;
             display: table;
             height: 100%; }
             .story-gallery .large-preview .pages a.split div.split .text .inner {
-              padding: 2% 8% 2% 12%;
-              width: 34%;
+              padding: 5% 9% 2% 11%;
+              width: auto;
               vertical-align: middle;
               display: table-cell;
               font-family: "museo-slab-1", "museo-slab-2", serif;
               line-height: 9px;
-              font-size: 3px; }
+              font-size: 3px;
+              font-weight: 100;
+              text-align: justify; }
               .story-gallery .large-preview .pages a.split div.split .text .inner:first-letter {
                 font-family: "museo-sans-1", "museo-sans-2", sans-serif;
                 font-size: 26px;
@@ -2984,43 +3180,54 @@ form.new_story, form.edit_story, .story-form {
               z-index: 2; }
             .story-gallery .large-preview .pages a.grid ul.cells li .back {
               z-index: 1; }
-            .story-gallery .large-preview .pages a.grid ul.cells li .side .text, .story-gallery .large-preview .pages a.grid ul.cells li .side .image {
-              position: absolute;
-              top: 0;
-              left: 0;
-              width: 100%;
-              height: 100%; }
-            .story-gallery .large-preview .pages a.grid ul.cells li .side .image {
-              display: block;
+            .story-gallery .large-preview .pages a.grid ul.cells li .side {
+              background-color: white; }
+              .story-gallery .large-preview .pages a.grid ul.cells li .side .text, .story-gallery .large-preview .pages a.grid ul.cells li .side .image {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%; }
+              .story-gallery .large-preview .pages a.grid ul.cells li .side .image {
+                display: block;
+                background-repeat: no-repeat;
+                background-position: center center; }
+              .story-gallery .large-preview .pages a.grid ul.cells li .side .text {
+                display: table;
+                font-size: 2em;
+                text-align: center; }
+                .story-gallery .large-preview .pages a.grid ul.cells li .side .text .inner {
+                  padding: 0 10%;
+                  vertical-align: middle;
+                  display: table-cell;
+                  font-family: "museo-slab-1", "museo-slab-2", serif;
+                  line-height: 26px;
+                  font-size: 14px;
+                  text-align: justify;
+                  letter-spacing: -0.5px;
+                  font-weight: 100; }
+                  .story-gallery .large-preview .pages a.grid ul.cells li .side .text .inner:first-letter {
+                    font-family: "museo-sans-1", "museo-sans-2", sans-serif;
+                    font-size: 50px;
+                    vertical-align: baseline;
+                    float: left;
+                    text-transform: uppercase;
+                    line-height: 50px;
+                    height: 50px;
+                    padding-top: 10px;
+                    padding-right: 4px; }
+              .story-gallery .large-preview .pages a.grid ul.cells li .side .hidden {
+                display: none; }
+            .story-gallery .large-preview .pages a.grid ul.cells li .side.fill-screen .image {
               -webkit-background-size: cover;
               -moz-background-size: cover;
               -o-background-size: cover;
               background-size: cover; }
-            .story-gallery .large-preview .pages a.grid ul.cells li .side .text {
-              display: table;
-              font-size: 2em;
-              text-align: center; }
-              .story-gallery .large-preview .pages a.grid ul.cells li .side .text .inner {
-                background-color: white;
-                background-color: rgba(255, 255, 255, 0.9);
-                padding: 0 10%;
-                vertical-align: middle;
-                display: table-cell;
-                font-family: "museo-slab-1", "museo-slab-2", serif;
-                line-height: 26px;
-                font-size: 14px;
-                text-align: justify;
-                letter-spacing: -0.5px; }
-                .story-gallery .large-preview .pages a.grid ul.cells li .side .text .inner:first-letter {
-                  font-family: "museo-sans-1", "museo-sans-2", sans-serif;
-                  font-size: 50px;
-                  vertical-align: baseline;
-                  float: left;
-                  text-transform: uppercase;
-                  line-height: 50px;
-                  height: 50px;
-                  padding-top: 10px;
-                  padding-right: 4px; }
+            .story-gallery .large-preview .pages a.grid ul.cells li .side.fit-to-screen .image {
+              -webkit-background-size: contain;
+              -moz-background-size: contain;
+              -o-background-size: contain;
+              background-size: contain; }
           .story-gallery .large-preview .pages a.grid ul.cells li:hover .front {
             z-index: 1; }
           .story-gallery .large-preview .pages a.grid ul.cells li:hover .back {
@@ -3214,28 +3421,30 @@ form.new_story, form.edit_story, .story-form {
               width: 100%;
               background-repeat: no-repeat;
               background-position: center center; }
-          .story-gallery .slider .viewport .preview.split div.split .image.fill-screen .inner {
-            -webkit-background-size: cover;
-            -moz-background-size: cover;
-            -o-background-size: cover;
-            background-size: cover; }
-          .story-gallery .slider .viewport .preview.split div.split .image.fit-to-screen .inner {
-            -webkit-background-size: contain;
-            -moz-background-size: contain;
-            -o-background-size: contain;
-            background-size: contain; }
+            .story-gallery .slider .viewport .preview.split div.split .image .inner.fill-screen {
+              -webkit-background-size: cover;
+              -moz-background-size: cover;
+              -o-background-size: cover;
+              background-size: cover; }
+            .story-gallery .slider .viewport .preview.split div.split .image .inner.fit-to-screen {
+              -webkit-background-size: contain;
+              -moz-background-size: contain;
+              -o-background-size: contain;
+              background-size: contain; }
           .story-gallery .slider .viewport .preview.split div.split .text {
             font-size: 1.6em;
             display: table;
             height: 100%; }
             .story-gallery .slider .viewport .preview.split div.split .text .inner {
-              padding: 2% 8% 2% 12%;
-              width: 34%;
+              padding: 5% 9% 2% 11%;
+              width: auto;
               vertical-align: middle;
               display: table-cell;
               font-family: "museo-slab-1", "museo-slab-2", serif;
               line-height: 9px;
-              font-size: 3px; }
+              font-size: 3px;
+              font-weight: 100;
+              text-align: justify; }
               .story-gallery .slider .viewport .preview.split div.split .text .inner:first-letter {
                 font-family: "museo-sans-1", "museo-sans-2", sans-serif;
                 font-size: 26px;
@@ -3273,43 +3482,54 @@ form.new_story, form.edit_story, .story-form {
               z-index: 2; }
             .story-gallery .slider .viewport .preview.grid ul.cells li .back {
               z-index: 1; }
-            .story-gallery .slider .viewport .preview.grid ul.cells li .side .text, .story-gallery .slider .viewport .preview.grid ul.cells li .side .image {
-              position: absolute;
-              top: 0;
-              left: 0;
-              width: 100%;
-              height: 100%; }
-            .story-gallery .slider .viewport .preview.grid ul.cells li .side .image {
-              display: block;
+            .story-gallery .slider .viewport .preview.grid ul.cells li .side {
+              background-color: white; }
+              .story-gallery .slider .viewport .preview.grid ul.cells li .side .text, .story-gallery .slider .viewport .preview.grid ul.cells li .side .image {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%; }
+              .story-gallery .slider .viewport .preview.grid ul.cells li .side .image {
+                display: block;
+                background-repeat: no-repeat;
+                background-position: center center; }
+              .story-gallery .slider .viewport .preview.grid ul.cells li .side .text {
+                display: table;
+                font-size: 2em;
+                text-align: center; }
+                .story-gallery .slider .viewport .preview.grid ul.cells li .side .text .inner {
+                  padding: 0 10%;
+                  vertical-align: middle;
+                  display: table-cell;
+                  font-family: "museo-slab-1", "museo-slab-2", serif;
+                  line-height: 26px;
+                  font-size: 14px;
+                  text-align: justify;
+                  letter-spacing: -0.5px;
+                  font-weight: 100; }
+                  .story-gallery .slider .viewport .preview.grid ul.cells li .side .text .inner:first-letter {
+                    font-family: "museo-sans-1", "museo-sans-2", sans-serif;
+                    font-size: 50px;
+                    vertical-align: baseline;
+                    float: left;
+                    text-transform: uppercase;
+                    line-height: 50px;
+                    height: 50px;
+                    padding-top: 10px;
+                    padding-right: 4px; }
+              .story-gallery .slider .viewport .preview.grid ul.cells li .side .hidden {
+                display: none; }
+            .story-gallery .slider .viewport .preview.grid ul.cells li .side.fill-screen .image {
               -webkit-background-size: cover;
               -moz-background-size: cover;
               -o-background-size: cover;
               background-size: cover; }
-            .story-gallery .slider .viewport .preview.grid ul.cells li .side .text {
-              display: table;
-              font-size: 2em;
-              text-align: center; }
-              .story-gallery .slider .viewport .preview.grid ul.cells li .side .text .inner {
-                background-color: white;
-                background-color: rgba(255, 255, 255, 0.9);
-                padding: 0 10%;
-                vertical-align: middle;
-                display: table-cell;
-                font-family: "museo-slab-1", "museo-slab-2", serif;
-                line-height: 26px;
-                font-size: 14px;
-                text-align: justify;
-                letter-spacing: -0.5px; }
-                .story-gallery .slider .viewport .preview.grid ul.cells li .side .text .inner:first-letter {
-                  font-family: "museo-sans-1", "museo-sans-2", sans-serif;
-                  font-size: 50px;
-                  vertical-align: baseline;
-                  float: left;
-                  text-transform: uppercase;
-                  line-height: 50px;
-                  height: 50px;
-                  padding-top: 10px;
-                  padding-right: 4px; }
+            .story-gallery .slider .viewport .preview.grid ul.cells li .side.fit-to-screen .image {
+              -webkit-background-size: contain;
+              -moz-background-size: contain;
+              -o-background-size: contain;
+              background-size: contain; }
           .story-gallery .slider .viewport .preview.grid ul.cells li:hover .front {
             z-index: 1; }
           .story-gallery .slider .viewport .preview.grid ul.cells li:hover .back {
@@ -3511,28 +3731,30 @@ form.new_story, form.edit_story, .story-form {
         width: 100%;
         background-repeat: no-repeat;
         background-position: center center; }
-    .thumbnail.split div.split .image.fill-screen .inner {
-      -webkit-background-size: cover;
-      -moz-background-size: cover;
-      -o-background-size: cover;
-      background-size: cover; }
-    .thumbnail.split div.split .image.fit-to-screen .inner {
-      -webkit-background-size: contain;
-      -moz-background-size: contain;
-      -o-background-size: contain;
-      background-size: contain; }
+      .thumbnail.split div.split .image .inner.fill-screen {
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover; }
+      .thumbnail.split div.split .image .inner.fit-to-screen {
+        -webkit-background-size: contain;
+        -moz-background-size: contain;
+        -o-background-size: contain;
+        background-size: contain; }
     .thumbnail.split div.split .text {
       font-size: 1.6em;
       display: table;
       height: 100%; }
       .thumbnail.split div.split .text .inner {
-        padding: 2% 8% 2% 12%;
-        width: 34%;
+        padding: 5% 9% 2% 11%;
+        width: auto;
         vertical-align: middle;
         display: table-cell;
         font-family: "museo-slab-1", "museo-slab-2", serif;
         line-height: 9px;
-        font-size: 3px; }
+        font-size: 3px;
+        font-weight: 100;
+        text-align: justify; }
         .thumbnail.split div.split .text .inner:first-letter {
           font-family: "museo-sans-1", "museo-sans-2", sans-serif;
           font-size: 26px;
@@ -3550,7 +3772,8 @@ form.new_story, form.edit_story, .story-form {
     height: 420px; }
     .thumbnail.split div.split .text .inner {
       line-height: 27px;
-      font-size: 12px; }
+      font-size: 12px;
+      font-weight: 100; }
       .thumbnail.split div.split .text .inner:first-letter {
         font-size: 87px;
         line-height: 82.5px;
@@ -3646,28 +3869,30 @@ form.new_story, form.edit_story, .story-form {
         width: 100%;
         background-repeat: no-repeat;
         background-position: center center; }
-    .thumbnail.split.medium div.split .image.fill-screen .inner {
-      -webkit-background-size: cover;
-      -moz-background-size: cover;
-      -o-background-size: cover;
-      background-size: cover; }
-    .thumbnail.split.medium div.split .image.fit-to-screen .inner {
-      -webkit-background-size: contain;
-      -moz-background-size: contain;
-      -o-background-size: contain;
-      background-size: contain; }
+      .thumbnail.split.medium div.split .image .inner.fill-screen {
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover; }
+      .thumbnail.split.medium div.split .image .inner.fit-to-screen {
+        -webkit-background-size: contain;
+        -moz-background-size: contain;
+        -o-background-size: contain;
+        background-size: contain; }
     .thumbnail.split.medium div.split .text {
       font-size: 1.6em;
       display: table;
       height: 100%; }
       .thumbnail.split.medium div.split .text .inner {
-        padding: 2% 8% 2% 12%;
-        width: 34%;
+        padding: 5% 9% 2% 11%;
+        width: auto;
         vertical-align: middle;
         display: table-cell;
         font-family: "museo-slab-1", "museo-slab-2", serif;
         line-height: 9px;
-        font-size: 3px; }
+        font-size: 3px;
+        font-weight: 100;
+        text-align: justify; }
         .thumbnail.split.medium div.split .text .inner:first-letter {
           font-family: "museo-sans-1", "museo-sans-2", sans-serif;
           font-size: 26px;
@@ -3685,7 +3910,8 @@ form.new_story, form.edit_story, .story-form {
     height: 180px; }
     .thumbnail.split.medium div.split .text .inner {
       line-height: 18px;
-      font-size: 12px; }
+      font-size: 12px;
+      font-weight: 100; }
       .thumbnail.split.medium div.split .text .inner:first-letter {
         font-size: 40px;
         line-height: 40px;
@@ -3693,6 +3919,87 @@ form.new_story, form.edit_story, .story-form {
         height: 40px;
         padding-top: 4px;
         padding-right: 4px; }
+
+.thumbnail.title.petite {
+  width: 95px;
+  height: 60px;
+  overflow: hidden; }
+  .thumbnail.title.petite .inner {
+    background-color: black;
+    color: white;
+    text-shadow: none;
+    text-align: center;
+    padding: 0px;
+    height: 100%;
+    width: 100%;
+    font-weight: bold;
+    display: table; }
+    .thumbnail.title.petite .inner .title {
+      display: table-cell;
+      vertical-align: middle;
+      padding: 20px 10px 10px;
+      line-height: 3em;
+      letter-spacing: 0.5px;
+      font-size: 22px; }
+      .thumbnail.title.petite .inner .title hr {
+        margin: 10px auto;
+        width: 40%; }
+      .thumbnail.title.petite .inner .title span {
+        margin-right: 0.2em;
+        height: auto; }
+  .thumbnail.title.petite .inner .title {
+    line-height: 1em;
+    font-size: 10px !important;
+    padding: 10px 5px; }
+    .thumbnail.title.petite .inner .title span {
+      font-size: 10px !important; }
+    .thumbnail.title.petite .inner .title p {
+      margin: 2px 0; }
+
+.thumbnail.full_image.petite {
+  width: 95px;
+  height: 60px; }
+  .thumbnail.full_image.petite .inner, .thumbnail.full_image.petite .image {
+    width: 100%;
+    height: 100%; }
+  .thumbnail.full_image.petite .inner .inner {
+    position: relative; }
+  .thumbnail.full_image.petite .image {
+    background-repeat: no-repeat;
+    background-position: center center; }
+  .thumbnail.full_image.petite .inner.fill-screen .image {
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover; }
+  .thumbnail.full_image.petite .inner.fit-to-screen .image {
+    -webkit-background-size: contain;
+    -moz-background-size: contain;
+    -o-background-size: contain;
+    background-size: contain; }
+  .thumbnail.full_image.petite .caption {
+    top: 5px;
+    right: 5px;
+    position: absolute;
+    font-size: 10px;
+    padding: 3px;
+    background-color: white;
+    background-color: rgba(255, 255, 255, 0.9);
+    text-shadow: none;
+    text-align: left;
+    font-family: Georgia, serif;
+    border-bottom: 2px solid black;
+    font-style: italic; }
+    .thumbnail.full_image.petite .caption:first-letter {
+      font-family: "museo-slab-1", "museo-slab-2", serif;
+      vertical-align: baseline;
+      float: left;
+      font-size: 20px;
+      line-height: 10px;
+      text-transform: uppercase;
+      font-weight: 700;
+      font-style: normal;
+      padding-right: 2px; }
 
 ul.stories li.story {
   background-color: white;
@@ -3713,6 +4020,8 @@ ul.stories li.medium.story {
     margin: 6px;
     overflow: hidden; }
 ul.stories li.story.third {
+  margin-right: 0px; }
+ul.stories li.story:nth-child(3n+3) {
   margin-right: 0px; }
 ul.stories .title a {
   color: black;
@@ -3757,19 +4066,6 @@ ul.stories .excerpt {
   height: 45px;
   width: 220px;
   overflow: hidden; }
-ul.stories .price {
-  width: 43px;
-  height: 25px;
-  position: absolute;
-  right: 10px;
-  bottom: 22px;
-  background: transparent url(../images/priceTag.png) no-repeat 100% 0;
-  color: white;
-  line-height: 25px;
-  vertical-align: middle;
-  text-align: right;
-  padding-right: 6px;
-  font-weight: 700; }
 
 .recommendation-stream {
   width: 290px;
@@ -3778,6 +4074,17 @@ ul.stories .price {
   overflow: hidden;
   border: 5px solid black;
   border-top: none; }
+  .recommendation-stream .heading {
+    background-color: black;
+    color: white;
+    font-size: 18px;
+    font-weight: 900;
+    text-transform: uppercase;
+    text-align: center;
+    height: 25px;
+    line-height: 25px;
+    vertical-align: middle;
+    padding: 3px 0; }
   .recommendation-stream .tabs {
     height: 33px;
     min-height: 33px;
@@ -3811,8 +4118,7 @@ ul.stories .price {
       width: 270px;
       height: 60px;
       background: transparent url(../images/simpleDotBG.png) repeat-x 50% 100%;
-      padding-bottom: 10px;
-      margin-bottom: 10px;
+      padding: 10px 0;
       position: relative; }
       .recommendation-stream ul li a.thumbnail {
         width: 95px;
@@ -3841,87 +4147,62 @@ ul.stories .price {
     .recommendation-stream ul li:last-child {
       background: none;
       margin-bottom: 0; }
-  .recommendation-stream .subscribed-to-stream li {
-    position: relative;
-    height: auto; }
-    .recommendation-stream .subscribed-to-stream li .avatar {
-      width: 50px;
-      position: absolute;
-      top: 0;
-      left: 0;
-      overflow: hidden; }
-      .recommendation-stream .subscribed-to-stream li .avatar img {
-        width: 50px; }
-    .recommendation-stream .subscribed-to-stream li .info {
-      margin-left: 60px;
-      width: 100%; }
-      .recommendation-stream .subscribed-to-stream li .info .who-recommended, .recommendation-stream .subscribed-to-stream li .info .title {
-        font-weight: 700;
-        display: block;
+    .recommendation-stream ul li.story {
+      background-color: transparent;
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
+      box-shadow: none; }
+    .recommendation-stream ul li.reward {
+      position: relative;
+      height: auto; }
+      .recommendation-stream ul li.reward .avatar {
+        width: 50px;
+        position: absolute;
+        top: 10px;
+        left: 0;
+        overflow: hidden; }
+        .recommendation-stream ul li.reward .avatar img {
+          width: 50px; }
+      .recommendation-stream ul li.reward .info {
+        margin-left: 60px;
         width: 100%; }
-      .recommendation-stream .subscribed-to-stream li .info .who-recommended {
-        text-transform: uppercase; }
-      .recommendation-stream .subscribed-to-stream li .info .starred {
-        background: transparent url(../images/icons/starBlue.png) no-repeat 0 1px;
-        padding-left: 12px; }
-    .recommendation-stream .subscribed-to-stream li .why {
-      font-family: "museo-slab-1", "museo-slab-2", serif;
-      font-size: 13px; }
+        .recommendation-stream ul li.reward .info .who-recommended, .recommendation-stream ul li.reward .info .title {
+          font-weight: 700;
+          display: block;
+          width: 100%; }
+        .recommendation-stream ul li.reward .info .who-recommended {
+          text-transform: uppercase; }
+        .recommendation-stream ul li.reward .info .starred {
+          background: transparent url(../images/icons/starBlue.png) no-repeat 0 1px;
+          padding-left: 12px; }
+      .recommendation-stream ul li.reward .why {
+        font-family: "museo-slab-1", "museo-slab-2", serif;
+        font-size: 13px;
+        font-weight: 100; }
 
 .personal-library {
   clear: both; }
-
-#reward-modal {
-  width: 400px; }
-  #reward-modal .insides {
-    padding: 20px; }
-  #reward-modal h3 {
-    font-size: 1.1em;
-    margin-bottom: 10px; }
-  #reward-modal ul {
-    height: 30px; }
-    #reward-modal ul li {
-      float: left;
-      clear: none;
-      width: 33%; }
-  #reward-modal textarea {
-    width: 345px;
-    height: 30px; }
-  #reward-modal p {
-    width: 195px;
-    float: left;
-    font-size: 11px;
-    color: #999999;
-    line-height: 13px;
-    margin: 13px 0 0; }
-  #reward-modal input[type="submit"] {
-    background: #ffa801 url(../images/icons/recommendWhite.png) no-repeat 7px 50%;
-    color: white;
-    font-size: 12px;
-    float: right;
-    margin-top: 15px;
-    padding: 10px 12px 10px 27px; }
 
 .tag, a.tag {
   background-color: white;
   display: inline-block;
   text-shadow: none;
-  font-size: 11px;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
-  padding: 2px 5px 1px 8px;
-  margin-top: 6px;
-  margin-right: 5px;
+  font-size: 10px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  padding: 2px 7px 1px 6px;
+  margin-top: 5px;
+  margin-right: 1px;
   font-weight: 100;
   font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif; }
   .tag .remove, a.tag .remove {
     display: inline-block;
     width: 10px;
     text-indent: -9999px;
-    background: transparent url(../images/tag-close.png) no-repeat 0 -1px;
+    background: transparent url(../images/tag-close.png) no-repeat 0 -2px;
     padding: 2px 5px;
-    margin-left: 3px; }
+    margin-left: 0px; }
 
 .tag:hover, a.tag:hover {
   background-color: #b8e6ff; }
@@ -3940,6 +4221,100 @@ ul.stories .price {
       color: white !important;
       text-shadow: none; }
 
+#reward-box {
+  width: 430px;
+  float: left; }
+  #reward-box .tab {
+    font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
+    font-weight: 900;
+    text-transform: uppercase;
+    background: transparent url(../images/tab213x29.png) no-repeat 0 0;
+    width: 173px;
+    padding: 0 20px;
+    vertical-align: middle;
+    text-align: center; }
+    #reward-box .tab .tab-inner {
+      line-height: 28px;
+      height: 28px;
+      background: transparent url(../images/coinBlack18.png) no-repeat 5px 50%;
+      padding-left: 10px; }
+  #reward-box .inner {
+    width: 410px;
+    height: 281px;
+    padding: 10px;
+    background-color: #eeeeee; }
+    #reward-box .inner .amount p {
+      float: left;
+      width: 49%;
+      text-align: center;
+      font-size: 0.9em;
+      line-height: 1.3em;
+      margin: 22px 0 0 1%; }
+    #reward-box .inner .amount ul.coins {
+      float: right;
+      margin-top: 10px;
+      width: 50%; }
+      #reward-box .inner .amount ul.coins li {
+        float: left;
+        clear: none;
+        width: 30%;
+        height: 63px;
+        text-align: center;
+        cursor: pointer; }
+        #reward-box .inner .amount ul.coins li input {
+          display: none; }
+      #reward-box .inner .amount ul.coins li.bronze {
+        background: transparent url(../images/coinBronze.png) no-repeat 0 5px;
+        margin-left: 14px; }
+      #reward-box .inner .amount ul.coins li.silver {
+        background: transparent url(../images/coinSilver.png) no-repeat 0 5px; }
+      #reward-box .inner .amount ul.coins li.gold {
+        background: transparent url(../images/coinGold.png) no-repeat 0 5px; }
+      #reward-box .inner .amount ul.coins li:hover, #reward-box .inner .amount ul.coins li.selected {
+        background-position: 0 -53px; }
+    #reward-box .inner .comment textarea {
+      width: 96%;
+      height: 80px; }
+    #reward-box .inner .comment p {
+      font-size: 11px;
+      line-height: 16px;
+      text-align: center;
+      margin: 7px 0 12px; }
+    #reward-box .inner .comment input[type="submit"] {
+      background-color: #ffc92a;
+      color: white;
+      display: block;
+      margin: 10px auto;
+      width: 100px;
+      padding: 6px 5px 6px; }
+
+#reward-box.loading .inner {
+  background: #eeeeee url(../images/spinner.gif) no-repeat 50% 50%; }
+  #reward-box.loading .inner form {
+    display: none; }
+
+#you-rewarded .amount {
+  width: 116px;
+  height: 116px;
+  margin: 25px auto 23px; }
+#you-rewarded .amount.bronze {
+  background: transparent url(../images/coinBronzeLg.png) no-repeat 0 0; }
+#you-rewarded .amount.silver {
+  background: transparent url(../images/coinSilverLg.png) no-repeat 0 0; }
+#you-rewarded .amount.gold {
+  background: transparent url(../images/coinGoldLg.png) no-repeat 0 0; }
+#you-rewarded .comment {
+  padding: 0 20px;
+  text-align: center;
+  font-family: "museo-slab-1", "museo-slab-2", serif;
+  font-size: 16px;
+  font-weight: 100;
+  line-height: 19px; }
+#you-rewarded .note {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 0.9em; }
+
 .user-profile .top {
   background: transparent url(../images/simpleDotBG.png) repeat-x 50% 100%;
   padding-bottom: 15px;
@@ -3957,8 +4332,8 @@ ul.stories .price {
     float: left;
     width: 50px; }
     .user-profile .user-info .avatar img {
-      width: 50px;
-      height: 50px; }
+      width: 60px;
+      height: 60px; }
   .user-profile .user-info .name {
     margin-left: 70px;
     font-weight: 900;
@@ -3971,8 +4346,9 @@ ul.stories .price {
     margin-bottom: 10px; }
   .user-profile .user-info .occupation {
     font-style: italic;
-    font-size: 1.2em;
-    font-family: "museo-slab-1", "museo-slab-2", serif;
+    font-size: 11px;
+    font-family: georgia;
+    font-weight: bolder;
     padding-bottom: 15px;
     margin-bottom: 15px;
     background: transparent url(../images/simpleDotBG.png) repeat-x 50% 100%; }
@@ -3992,7 +4368,8 @@ ul.stories .price {
     .user-profile .supporters .tabs a.active {
       box-shadow: none; }
   .user-profile .supporters ul.patrons, .user-profile .supporters ul.creators {
-    min-height: 61px;
+    min-height: 60px;
+    padding: 5px 0;
     background-color: white;
     -webkit-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
     -moz-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
@@ -4104,25 +4481,11 @@ form.user_edit textarea#user_tagline {
     margin-bottom: 0.5em;
     font-size: 1.2em; }
 
-h2 {
-  background: none repeat scroll 0 0 #eaeaea;
-  color: #b2b2b2;
-  font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
-  font-size: 13px;
-  font-weight: 700;
-  padding: 11px 13px 9px;
-  text-transform: uppercase;
-  clear: both; }
-
-.blurb {
-  font-size: 11px;
-  color: #999999;
-  padding: 7px 0;
-  text-align: center;
-  width: 210px; }
-
 .homepage section {
   clear: both; }
+.homepage .tabs {
+  border-bottom: 2px solid white;
+  margin-bottom: 10px; }
 
 .adverts {
   height: 165px;
@@ -4137,138 +4500,223 @@ h2 {
       height: 165px; }
 
 .beta {
-  margin-top: -10px;
-  margin-bottom: 30px;
   padding-bottom: 30px; }
-  .beta .important, .beta .copy {
-    font-family: "museo-slab-1", "museo-slab-2", serif;
-    color: #999999;
-    font-size: 20px;
-    line-height: 31px;
-    margin-bottom: 20px; }
-    .beta .important:first-letter, .beta .copy:first-letter {
-      font-size: 60px;
-      font-weight: 100;
-      padding-bottom: 5px;
-      line-height: 44px;
-      float: left;
-      display: inline-block;
-      vertical-align: baseline;
-      padding-right: 5px;
-      padding-top: 12px;
-      color: black; }
-  .beta .important {
-    font-weight: 700;
-    font-style: italic; }
-  .beta h2 {
-    background: none;
-    color: black;
-    font-size: 36px;
-    padding: 0 10px 10px;
-    margin: 0 0 10px;
-    font-family: "museo-slab-1", "museo-slab-2", serif;
-    font-weight: 100;
-    border-bottom: 1px solid #dddddd;
-    text-align: center;
-    width: 190px; }
-  .beta h3 {
-    background: none;
-    color: #aaaaaa;
-    font-size: 32px;
-    padding: 25px 25px 15px;
-    margin: 20px 0 10px;
-    font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
-    font-weight: 900;
-    border-right: 1px solid #dddddd;
-    text-align: right;
-    width: 269px;
+  .beta .characters {
+    width: 1008px;
+    height: 290px;
+    margin: 20px 0 50px -58px;
+    background: transparent url(../images/splashCharacters.png) no-repeat 0 0; }
+  .beta h1 {
     text-transform: uppercase;
-    float: left;
-    line-height: 30px; }
-  .beta p {
-    float: right;
-    height: 140px;
-    margin: 20px 0;
-    padding: 20px 25px;
-    text-align: justify;
-    width: 580px; }
-  .beta form .placeholder {
+    font-size: 32px;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    margin-bottom: 4px;
+    text-align: center; }
+  .beta p.explanation {
+    font-family: "museo-slab-1", "museo-slab-2", serif;
+    font-size: 18px;
+    font-weight: 100;
+    line-height: 1.5em;
+    color: #00aeef;
+    margin: 0;
+    text-align: justify; }
+  .beta .email-list {
+    margin: 50px auto 0;
+    width: 400px; }
+    .beta .email-list p {
+      font-family: "museo-slab-1", "museo-slab-2", serif;
+      font-style: italic;
+      font-size: 12px;
+      font-weight: 100;
+      color: #999999;
+      text-align: center;
+      line-height: 1.5em; }
+    .beta .email-list form {
+      width: 325px;
+      margin: 0 auto;
+      text-align: center; }
+      .beta .email-list form input[type="text"] {
+        width: 300px;
+        height: 36px;
+        padding: 0 10px; }
+      .beta .email-list form input[type="submit"] {
+        width: 100px;
+        height: 38px;
+        position: relative;
+        display: block;
+        float: right;
+        border: 1px solid #88dffe;
+        top: -38px;
+        right: 0;
+        background-color: #c0eeff;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+        color: #00aeef;
+        font-weight: 900;
+        text-transform: uppercase;
+        font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
+        font-size: 14px;
+        -webkit-border-top-left-radius: 0;
+        -webkit-border-bottom-left-radius: 0;
+        -moz-border-radius-topleft: 0;
+        -moz-border-radius-bottomleft: 0;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0; }
+
+#beta-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  text-shadow: none;
+  font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
+  color: white;
+  width: 100%;
+  height: 100%; }
+  #beta-modal .cover {
+    width: 100%;
+    height: 100%;
+    background: transparent url(../images/modalCover.png) repeat;
+    background: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    z-index: 1; }
+  #beta-modal .padder {
+    width: 480px;
+    margin: 0 auto;
+    background-color: #f4f4f4;
+    padding: 15px 20px 10px;
+    position: relative;
+    top: 170px;
+    z-index: 2;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+    -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7); }
+    #beta-modal .padder a.close {
+      position: absolute;
+      top: -15px;
+      right: -15px;
+      width: 30px;
+      height: 30px;
+      display: block;
+      background: transparent url(../images/modalClose.png) no-repeat 0 0; }
+  #beta-modal .placeholder {
     color: #aaaaaa;
     font-style: italic;
     font-family: Georgia, serif;
     font-size: 12px; }
-  .beta form input[type="text"], .beta form input[type="password"] {
+  #beta-modal h2 {
+    font-family: "museo-slab-1", "museo-slab-2", serif;
+    font-size: 30px;
+    color: black;
+    border-bottom: 1px solid #cccccc;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    text-align: center;
+    background-color: transparent;
+    font-weight: 100;
+    padding-top: 0px; }
+  #beta-modal input[type="text"], #beta-modal input[type="password"] {
     width: 194px; }
-  .beta form input[type="submit"] {
+  #beta-modal input[type="submit"] {
     color: black;
     text-shadow: none;
-    font-size: 16px; }
-  .beta form span input[type="text"], .beta form span input[type="password"] {
-    width: 87px; }
-  .beta form span label {
-    color: #cacaca;
-    margin: 0px 0px 10px 0;
-    text-transform: lowercase;
-    font-family: Georgia, serif;
-    font-style: italic;
-    font-size: 12px; }
-  .beta form li {
-    margin-bottom: 10px; }
-  .beta form .spaced-a-bit {
+    font-size: 14px;
+    padding: 8px 10px 6px; }
+  #beta-modal li {
+    margin-bottom: 10px;
+    height: 31px; }
+  #beta-modal li.remember-me {
+    margin-top: -5px;
+    margin-bottom: 0px; }
+  #beta-modal .spaced-a-bit {
     margin-bottom: 5px; }
-  .beta .shots, .beta .join, .beta .login {
+  #beta-modal li.copy {
+    color: #999999;
+    font-size: 13px;
+    font-family: "museo-slab-1", "museo-slab-2", serif;
+    margin-top: 16px;
+    margin-bottom: 0;
+    font-weight: 100;
+    text-align: center; }
+  #beta-modal form li {
+    position: relative; }
+    #beta-modal form li label.placeholder {
+      color: #999999;
+      font-style: italic;
+      font-family: Georgia, serif;
+      position: absolute;
+      height: 31px;
+      line-height: 31px;
+      text-transform: none;
+      font-weight: 100;
+      margin: 0;
+      padding: 0 0 0 10px; }
+    #beta-modal form li label.error {
+      font-family: Georgia, serif;
+      font-size: 11px;
+      font-weight: 100;
+      color: #00aeef;
+      text-transform: none;
+      margin: 0 0 5px 0; }
+    #beta-modal form li span {
+      width: 102px;
+      float: left;
+      margin-right: 5px;
+      position: relative; }
+      #beta-modal form li span input[type="text"] {
+        width: 87px; }
+    #beta-modal form li span.last {
+      margin-right: 0; }
+    #beta-modal form li input[type="submit"] {
+      background-color: #c0eeff;
+      -webkit-border-radius: 4px;
+      -moz-border-radius: 4px;
+      border-radius: 4px;
+      color: #00aeef;
+      font-weight: 900;
+      text-transform: uppercase;
+      font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
+      width: 210px; }
+    #beta-modal form li input[type="submit"]:disabled {
+      background-color: #dfdfdf;
+      color: #787878;
+      cursor: default; }
+    #beta-modal form li input[type="submit"]:disabled:active {
+      top: 0; }
+  #beta-modal form li.focused label {
+    opacity: 0.5; }
+  #beta-modal form li.filled label {
+    display: none; }
+  #beta-modal .join, #beta-modal .login {
     float: left;
-    width: 280px;
-    margin-top: 20px; }
-    .beta .shots img, .beta .join img, .beta .login img {
+    width: 210px;
+    position: relative; }
+    #beta-modal .join img, #beta-modal .login img {
       margin: 15px 37%; }
-  .beta .join {
-    padding-right: 45px; }
-    .beta .join input[type="submit"] {
-      background-color: #c0eeff;
-      -webkit-border-radius: 4px;
-      -moz-border-radius: 4px;
-      border-radius: 4px;
-      color: #00aeef;
-      font-weight: 900;
-      text-transform: uppercase;
-      font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
-      width: 210px;
-      margin-top: 34px; }
-    .beta .join .inner {
-      padding-left: 115px; }
-  .beta .login {
-    float: right;
+  #beta-modal .join {
+    padding-right: 25px;
+    border-right: 1px solid #cccccc;
     padding-left: 5px; }
-    .beta .login input[type="submit"] {
-      background-color: #c0eeff;
-      -webkit-border-radius: 4px;
-      -moz-border-radius: 4px;
-      border-radius: 4px;
-      color: #00aeef;
-      font-weight: 900;
-      text-transform: uppercase;
-      font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
-      width: 210px;
-      margin-top: 20px; }
-    .beta .login input[type="checkbox"] {
+  #beta-modal .login {
+    float: right;
+    padding-left: 25px; }
+    #beta-modal .login input[type="checkbox"] {
       float: left;
       height: 25px; }
-  .beta .email-list {
-    margin-top: 30px; }
-    .beta .email-list h2 {
-      letter-spacing: -2.5px; }
-    .beta .email-list input[type="submit"] {
-      background-color: #c0eeff;
-      -webkit-border-radius: 4px;
-      -moz-border-radius: 4px;
-      border-radius: 4px;
-      color: #00aeef;
-      font-weight: 900;
+    #beta-modal .login label {
+      font-weight: 600;
+      color: #999999;
       text-transform: uppercase;
+      font-size: 10px;
       font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
-      width: 210px;
-      margin-top: 20px; }
+      text-shadow: none;
+      line-height: 11px; }
 
 #join-login-modal {
   display: none;
@@ -4583,9 +5031,10 @@ header .topic-icon {
           margin-bottom: 0;
           letter-spacing: 0.5px; }
         .flipbook .flipstrip .slide .flipleft .solo {
-          font-size: 28px;
+          font-size: 25px;
           line-height: 23px;
-          text-align: left; }
+          text-align: left;
+          font-weight: 700; }
         .flipbook .flipstrip .slide .flipleft h2 {
           font-family: Georgia, serif;
           font-style: italic;
@@ -4607,6 +5056,12 @@ header .topic-icon {
           width: 60px;
           height: 2px;
           background-color: white; }
+        .flipbook .flipstrip .slide .flipleft .dotted {
+          border-bottom: 1px dotted white;
+          width: 100%;
+          height: 1px;
+          background-color: transparent;
+          margin: 20px 0 25px; }
       .flipbook .flipstrip .slide .black {
         background-color: black;
         color: white; }
@@ -4662,45 +5117,43 @@ header .topic-icon {
 .yui-toolbar-spinbutton .first-child a {
   padding-left: 7px !important; }
 
+.search ul.users.stories li {
+  width: 300px;
+  height: 300px;
+  margin: 0 25px 25px 0;
+  float: left;
+  clear: none;
+  background-color: white;
+  -webkit-box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3); }
+.search ul.users.stories li:nth-child(3n+3) {
+  margin-right: 0; }
+
 .hidden {
   display: none; }
 
 .tabs {
-  min-height: 40px; }
+  height: 29px; }
   .tabs a {
-    padding: 2%;
-    display: block;
-    float: left;
-    text-align: center;
-    width: 46%;
-    height: 96%; }
-  .tabs a:hover {
-    background-color: #daf1ff; }
-  .tabs a.active {
-    -moz-box-shadow: 3px 3px 5px #dddddd inset;
-    -webkit-box-shadow: 3px 3px 5px #dddddd inset;
-    box-shadow: 3px 3px 5px #dddddd inset;
-    background-color: white;
-    color: #333333; }
-
-.tabs {
-  margin-bottom: 10px;
-  height: 40px;
-  width: 100%;
-  background: none repeat scroll 0 0 #eaeaea; }
-  .tabs a {
-    color: #b5b5b5;
     font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
     font-size: 13px;
     font-weight: 900;
-    height: 20px;
     letter-spacing: 0.3px;
-    padding: 14px 25px 6px;
     text-transform: uppercase;
-    width: auto;
-    border-right: 1px solid #cccccc; }
-  .tabs a:first-child {
-    border-left: 1px solid #cccccc; }
+    padding: 0 20px;
+    width: 173px;
+    height: 29px;
+    line-height: 29px;
+    vertical-align: middle;
+    display: block;
+    float: left;
+    text-align: center;
+    background: transparent url(../images/tab213x29Dark.png) no-repeat 0 0;
+    color: white; }
+  .tabs a.active {
+    background: transparent url(../images/tab213x29White.png) no-repeat 0 0;
+    color: #252525; }
   .tabs a.right-side {
     float: right; }
   .tabs a.bordered-left {

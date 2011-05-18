@@ -10,7 +10,7 @@
       
     = csrf_meta_tag
       
-    = javascript_include_tag "jquery-1.4.3.min", "jquery-ui-1.8.6.min", "jquery.scrollTo-1.4.2-min", "jquery.tipsy", "jquery.placeholder", "jquery.fileuploader", "jquery.fancybox-1.3.4.pack", "jquery.tinyscrollbar.min", "jquery.touchSwipe", "jquery.colorPicker"
+    = javascript_include_tag "jquery-1.4.3.min", "jquery-ui-1.8.6.min", "jquery.scrollTo-1.4.2-min", "jquery.tipsy", "jquery.placeholder", "jquery.fileuploader", "jquery.fancybox-1.3.4.pack", "jquery.tinyscrollbar.min", "jquery.touchSwipe", "jquery.colorPicker", "jquery.validate.min"
     = javascript_include_tag "underscore-min", "rails", "application"
     / [if lt IE 9]
       = javascript_include_tag "http://html5shiv.googlecode.com/svn/trunk/html5.js"
@@ -30,16 +30,15 @@
         %header{:class => private_beta? && !current_user ? "hide-nav" : ""}
           = render "layouts/user_nav" unless @hide_nav
           #call-to-action
-            - if !private_beta? && current_user && current_user.trial?
-              = render :partial => "shared/calls_to_action/subscribe", :locals => {:message => "You have 10 days and 5 coins left in your trial. Loving it?"}
-            - else
-              = yield :call_to_action
+            - unless private_beta?
+              - if current_user && current_user.trial?
+                = render :partial => "shared/calls_to_action/subscribe", :locals => {:message => "You have #{pluralize(current_user.days_left_in_trial, "day")} and #{pluralize(current_user.coins, "coin")} left in your trial. Loving it?"}
+              - else
+                = yield :call_to_action
           .insides
             .momeant-header
               = link_to("Home", root_path, :id => "logo-large") unless @hide_momeant
-              - if !current_user && private_beta?
-                = link_to("Beta", root_path, :id => "beta", :class => "round-button")
-              - elsif !current_user
+              - if !current_user
                 = link_to("Join", new_user_registration_path, :id => "join", :class => "round-button")
               - elsif current_user.trial_expired?
                 = link_to("Your trial has expired", "#", :class => "round-button")
@@ -56,8 +55,8 @@
       .insides
         Copyright © 2011 - Momeant
     
-    - if !current_user && !private_beta?
-      = render "shared/join_login_modal"
+    = render "shared/join_login_modal" if !private_beta? && !current_user
+    = yield :modals
 
-    =# render "analytics"
+    = render "shared/analytics" if Rails.env.production?
     = yield :javascript

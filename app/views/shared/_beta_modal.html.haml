@@ -1,0 +1,40 @@
+#beta-modal
+  .cover
+  .padder
+    %a.close{:href => "#"}
+    .insides.clearfix
+      .forms
+        .login
+          %h2 Login
+          = form_for(@user, :as => :user, :url => session_path(:user)) do |f|
+            %fieldset
+              %ul
+                %li
+                  = f.text_field :email, :id => "login_email", :placeholder => "email address"
+                %li
+                  = f.password_field :password, :id => "login_password", :placeholder => "password"
+                %li.remember-me
+                  = f.check_box :remember_me
+                  = f.label :remember_me
+                %li.submit
+                  = f.submit "login"
+                %li.copy
+                  Mo&#149;meant is currently in private beta; each new user will receive a 30 day trial.
+        .join
+          %h2 Join
+          = form_for(@user, :as => :user, :url => registration_path(:user), :html => {:id => "beta-join-form"}) do |f|
+            %fieldset
+              %ul
+                %li
+                  = f.text_field :invitation_code, :placeholder => "invitation code"
+                %li
+                  %span
+                    = f.text_field :first_name, :placeholder => "first name"
+                  %span.last
+                    = f.text_field :last_name, :placeholder => "last name"
+                %li
+                  = f.text_field :email, :placeholder => "email address"
+                %li
+                  = f.password_field :password, :placeholder => "password (6+ characters)"
+                %li.submit
+                  = f.submit "sign up"

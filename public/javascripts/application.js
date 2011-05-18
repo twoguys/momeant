@@ -43,8 +43,28 @@ function setup_signup_modal() {
 	});
 }
 
-function setup_reward_modal() {
-	$("a.reward:not(.disabled)").fancybox({scrolling: 'no'});
+function setup_rewarding() {
+	$("a.reward:not(.disabled), a.rewarded:not(.disabled)").fancybox({scrolling: 'no'});
+	$('#reward-form ul.coins li').click(function() {
+		var $coin = $(this);
+		$coin.addClass('selected').find('input').attr('checked', true);
+		$coin.siblings().removeClass('selected').find('input').attr('checked', false);
+	});
+	$('#reward-form').submit(function(event) {
+		event.preventDefault(); 
+
+		var $form = $(this);
+		var amount = $form.find('input:radio[name="reward[amount]"]:checked').val();
+		var comment = $form.find("#reward_comment").val();
+		var url = $form.attr('action');
+
+		$('#reward-box').addClass('loading');
+		$.post(url, { "reward[amount]":amount, "reward[comment]":comment }, function(data) {
+			$("#reward-box .inner").html(data);
+			$('#reward-box').removeClass('loading');
+			$('.story-preview .actions a.reward').removeClass('reward').addClass('rewarded').attr('title','You rewarded this story.');
+		});
+	});
 }
 
 function setup_search_placeholder() {
@@ -89,14 +109,14 @@ $(document).ready(function() {
 	setup_placeholder_text();
 	tag_deletions();
 	setup_signup_modal();
-	setup_reward_modal();
+	setup_rewarding();
 	setup_search_placeholder();
 	setup_story_gallery();
 	setup_recommendation_tabs();
 	//setup_personal_library_tabs();
 	$("a.disabled").click(function() {return false;})
 	
-	$.fn.colorPicker.defaultColors = ['000', '333', '666', '999', 'ccc', 'fff'];
+	$.fn.colorPicker.defaultColors = ['000', '666', '999', 'ccc', 'fff', 'f42652', 'f7d3db', 'ffa801', 'ffebc5', 'fff10f', 'fffcd2', '1ea337', 'c8f2d0', '00aeef', 'c0eeff', '985faf', 'f5deff', '7a5116', 'e1d5c3'];
 });
 
 function log(message) {

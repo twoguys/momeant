@@ -27,6 +27,7 @@ class PagesController < ApplicationController
     # only for the grid, remove the text for this position + side if it exists (after successful image save)
     if page.is_a?(GridPage) && page.media_at_position_and_side(params[:position], params[:side]).is_a?(PageText)
       old_text = page.media_at_position_and_side(params[:position], params[:side])
+      Rails.logger.info "POOP OLD WAS TEXT"
     end
     
     image_media = page.medias.where(:type => "PageImage")

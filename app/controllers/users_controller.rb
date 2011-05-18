@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
-  before_filter :authenticate_user!, :except => [:show]
+  before_filter :authenticate_user!, :except => [:show, :billing_updates]
+  skip_before_filter :verify_authenticity_token, :only => :billing_updates
+  skip_before_filter :release_lockdown, :only => :billing_updates
   
   def show
     @user = User.find(params[:id])
@@ -24,5 +26,15 @@ class UsersController < ApplicationController
     else
       render 'edit'
     end
+  end
+  
+  def billing_updates
+    subscriber_ids = params[:subscriber_ids].split(",")
+    subscriber_ids.each do |subscriber_id|
+      user = User.find_by_id(subscriber_id)
+      user.refresh_from_spreedly if user
+    end
+
+    head :ok
   end
 end

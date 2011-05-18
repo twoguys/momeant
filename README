@@ -1,20 +1,28 @@
-Setting up the app locally
-==========================
+New to Ruby/Rails?
+==================
+
+1) install Homebrew: https://github.com/mxcl/homebrew
+2) if you don't already have Ruby, run `brew install ruby` (check to see if you have it by running `ruby -v`)
+3) run `brew install git`
+4) git checkout git@github.com:twoguys/momeant.git
+
+continue below...
 
 
-Getting the necessary gems (libraries)
+Setting up and running the Rails app
+====================================
+
+I. Getting the necessary gems (libraries)
 
 a) Run "bundle install"
 
-b) Install imagemagick
+b) Install imagemagick (used to resize the uploaded story images)
 - run "brew install imagemagick"
-
 
 Database setup
 
 a) Install PostgreSQL database
-- if you don't have Homebrew (super awesome package manager), get it: https://github.com/mxcl/homebrew
-- run "brew install postgres"
+- run `brew install postgres`
 - follow any instructions afterwards for starting it
 
 b) Create a proper config/database.yml file
@@ -22,28 +30,28 @@ b) Create a proper config/database.yml file
 - Create your local database by running "rake db:create"
 
 c) Migrate your database
-- Run "rake db:migrate"
+- Run `rake db:migrate`
 - (you'll do this any time there are changes to the database, which happens when you see new files under db/migrations)
 
+d) Setup SOLR indexer (for searching stories)
+- run `rake sunspot:solr:start`
 
-Testing the code
+II. Testing the code
 
 a) Run all tests
-- Run "rake test" which, by default, runs all tests in the app
+- Run `rake test` which, by default, runs all tests in the app
 
 b) To run a specific test
-- Run "ruby test/path_to_test_file.rb", e.g. "ruby test/integration/homepage_tests.rb"
+- Run `ruby -Itest [path_to_test_file.rb]`, e.g. `ruby -Itest test/integration/signup_test.rb`
 
-
-Running the app
-
-a) Make sure your postgres database is running
-
-b) Run "rails s" to start the web server
-
-
-Running the ruby console
+III. Running the app
 
 a) Make sure your postgres database is running
 
-b) Run "rails c" to start the console
+b) Run `rails s` to start the web server
+
+IV. Running the ruby console
+
+a) Make sure your postgres database is running
+
+b) Run `rails c` to start the console

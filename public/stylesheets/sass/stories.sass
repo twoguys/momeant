@@ -32,6 +32,16 @@
 		hr
 			margin: 30px auto
 			width: 30%
+@mixin titleSlidePetite
+	@include titleSlide(95px, 60px)
+	.inner .title
+		line-height: 1em
+		font-size: 10px !important
+		padding: 10px 5px
+		span
+			font-size: 10px !important
+		p
+			margin: 2px 0
 
 @mixin blockquoteSlide($width:288px, $height:180px)
 	width: $width
@@ -218,22 +228,24 @@
 				width: 100%
 				background-repeat: no-repeat
 				background-position: center center
-		.image.fill-screen .inner
-			@include bgcover
-		.image.fit-to-screen .inner
-			@include bgcontain
+			.inner.fill-screen
+				@include bgcover
+			.inner.fit-to-screen
+				@include bgcontain
 		.text	
 			font-size: 1.6em
 			display: table
 			height: 100%
 			.inner
-				padding: 2% 8% 2% 12%
-				width: 34%
+				padding: 5% 9% 2% 11%
+				width: auto
 				vertical-align: middle
 				display: table-cell
 				font-family: $typewriter
 				line-height: 9px
 				font-size: 3px
+				font-weight: 100
+				text-align: justify
 				&:first-letter
 					font-family: $caps
 					font-size: 26px
@@ -255,6 +267,7 @@
 			.inner
 				line-height: 18px
 				font-size: 12px
+				font-weight: 100
 				&:first-letter
 					font-size: 40px
 					line-height: 40px
@@ -270,6 +283,7 @@
 			.inner
 				line-height: 27px
 				font-size: 12px
+				font-weight: 100
 				&:first-letter
 					font-size: 87px
 					line-height: 82.5px
@@ -284,6 +298,7 @@
 			.inner
 				line-height: 36px
 				font-size: 16px
+				font-weight: 100
 				&:first-letter
 					font-size: 116px
 					line-height: 110px
@@ -316,7 +331,8 @@
 				z-index: 2
 			.back
 				z-index: 1
-			.side
+			.side	
+				background-color: #fff
 				.text, .image
 					position: absolute
 					top: 0
@@ -325,14 +341,13 @@
 					height: 100%
 				.image
 					display: block
-					@include bgcover
+					background-repeat: no-repeat
+					background-position: center center
 				.text
 					display: table
 					font-size: 2em
 					text-align: center
 					.inner
-						background-color: #fff
-						background-color: rgba(255,255,255,0.9)
 						padding: 0 10%
 						vertical-align: middle
 						display: table-cell
@@ -341,6 +356,7 @@
 						font-size: 14px
 						text-align: justify
 						letter-spacing: -.5px
+						font-weight: 100
 						&:first-letter
 							font-family: $caps
 							font-size: 50px
@@ -351,6 +367,12 @@
 							height: 50px
 							padding-top: 10px
 							padding-right: 4px
+				.hidden
+					display: none
+			.side.fill-screen .image
+				@include bgcover
+			.side.fit-to-screen .image
+				@include bgcontain
 		li:hover		
 			.front
 				z-index: 1
@@ -392,6 +414,7 @@
 	background-color: #fff
 	.inner
 		height: 420px
+
 .thumbnail.title.medium
 	.inner
 		display: table
@@ -402,6 +425,11 @@
 	@include blockquoteSlideMedium
 .thumbnail.split.medium
 	@include splitSlideMedium
+
+.thumbnail.title.petite
+	@include titleSlidePetite
+.thumbnail.full_image.petite
+	@include fullimageSlide(95px,60px)
 
 ul.stories
 	li.story
@@ -425,6 +453,8 @@ ul.stories
 			overflow: hidden
 
 	li.story.third
+		margin-right: 0px
+	li.story:nth-child(3n+3)
 		margin-right: 0px
 
 	.title a
@@ -473,20 +503,6 @@ ul.stories
 		height: 45px
 		width: 220px
 		overflow: hidden
-		
-	.price
-		width: 43px
-		height: 25px
-		position: absolute
-		right: 10px
-		bottom: 22px
-		background: transparent url(../images/priceTag.png) no-repeat 100% 0
-		color: #fff
-		line-height: 25px
-		vertical-align: middle
-		text-align: right
-		padding-right: 6px
-		font-weight: 700
 
 .recommendation-stream
 	width: 290px
@@ -495,6 +511,17 @@ ul.stories
 	overflow: hidden
 	border: 5px solid #000
 	border-top: none
+	.heading
+		background-color: #000
+		color: #fff
+		font-size: 18px
+		font-weight: 900
+		text-transform: uppercase
+		text-align: center
+		height: 25px
+		line-height: 25px
+		vertical-align: middle
+		padding: 3px 0
 	.tabs
 		height: 33px
 		min-height: 33px
@@ -528,8 +555,7 @@ ul.stories
 			width: 270px
 			height: 60px
 			background: transparent url(../images/simpleDotBG.png) repeat-x 50% 100%
-			padding-bottom: 10px
-			margin-bottom: 10px
+			padding: 10px 0
 			position: relative
 			a.thumbnail
 				width: 95px
@@ -558,14 +584,18 @@ ul.stories
 		li:last-child
 			background: none
 			margin-bottom: 0
-	.subscribed-to-stream
-		li
+		li.story
+			background-color: transparent
+			-webkit-box-shadow: none
+			-moz-box-shadow: none
+			box-shadow: none
+		li.reward
 			position: relative
 			height: auto
 			.avatar
 				width: 50px
 				position: absolute
-				top: 0
+				top: 10px
 				left: 0
 				overflow: hidden
 				img
@@ -585,61 +615,31 @@ ul.stories
 			.why
 				font-family: $typewriter
 				font-size: 13px
+				font-weight: 100
 
 .personal-library
 	clear: both
-
-#reward-modal
-	width: 400px
-	.insides
-		padding: 20px
-	h3
-		font-size: 1.1em
-		margin-bottom: 10px
-	ul
-		height: 30px
-		li
-			float: left
-			clear: none
-			width: 33%
-	textarea
-		width: 345px
-		height: 30px
-	p
-		width: 195px
-		float: left
-		font-size: 11px
-		color: #999
-		line-height: 13px
-		margin: 13px 0 0
-	input[type="submit"]
-		background: #ffa801 url(../images/icons/recommendWhite.png) no-repeat 7px 50%
-		color: #fff
-		font-size: 12px
-		float: right
-		margin-top: 15px
-		padding: 10px 12px 10px 27px
 
 .tag, a.tag
 	background-color: #ffffff
 	display: inline-block
 	text-shadow: none
-	font-size: 11px
-	-webkit-border-radius: 4px
-	-moz-border-radius: 4px
-	border-radius: 4px
-	padding: 2px 5px 1px 8px
-	margin-top: 6px
-	margin-right: 5px
+	font-size: 10px
+	-webkit-border-radius: 3px
+	-moz-border-radius: 3px
+	border-radius: 3px
+	padding: 2px 7px 1px 6px
+	margin-top: 5px
+	margin-right: 1px
 	font-weight: 100
 	font-family: $block
 	.remove
 		display: inline-block
 		width: 10px
 		text-indent: -9999px
-		background: transparent url(../images/tag-close.png) no-repeat 0 -1px
+		background: transparent url(../images/tag-close.png) no-repeat 0 -2px
 		padding: 2px 5px
-		margin-left: 3px
+		margin-left: 0px
 .tag:hover, a.tag:hover
 	background-color: #b8e6ff
 
@@ -658,3 +658,98 @@ ul.stories
 			span
 				color: #fff !important
 				text-shadow: none
+
+#reward-box
+	width: 430px
+	float: left
+	.tab
+		font-family: $block
+		font-weight: 900
+		text-transform: uppercase
+		background: transparent url(../images/tab213x29.png) no-repeat 0 0
+		width: 173px
+		padding: 0 20px
+		vertical-align: middle
+		text-align: center
+		.tab-inner
+			line-height: 28px
+			height: 28px
+			background: transparent url(../images/coinBlack18.png) no-repeat 5px 50%
+			padding-left: 10px
+	.inner
+		width: 410px
+		height: 281px
+		padding: 10px
+		background-color: #eee
+		.amount
+			p
+				float: left
+				width: 49%
+				text-align: center
+				font-size: 0.9em
+				line-height: 1.3em
+				margin: 22px 0 0 1%
+			ul.coins
+				float: right
+				margin-top: 10px
+				width: 50%
+				li
+					float: left
+					clear: none
+					width: 30%
+					height: 63px
+					text-align: center
+					cursor: pointer
+					input
+						display: none
+				li.bronze
+					background: transparent url(../images/coinBronze.png) no-repeat 0 5px
+					margin-left: 14px
+				li.silver
+					background: transparent url(../images/coinSilver.png) no-repeat 0 5px
+				li.gold
+					background: transparent url(../images/coinGold.png) no-repeat 0 5px
+				li:hover, li.selected
+					background-position: 0 -53px
+		.comment
+			textarea
+				width: 96%
+				height: 80px
+			p
+				font-size: 11px
+				line-height: 16px
+				text-align: center
+				margin: 7px 0 12px
+			input[type="submit"]
+				background-color: #ffc92a
+				color: #fff
+				display: block
+				margin: 10px auto
+				width: 100px
+				padding: 6px 5px 6px
+#reward-box.loading .inner
+	background: #eee url(../images/spinner.gif) no-repeat 50% 50%
+	form
+		display: none
+#you-rewarded
+	.amount
+		width: 116px
+		height: 116px
+		margin: 25px auto 23px
+	.amount.bronze
+		background: transparent url(../images/coinBronzeLg.png) no-repeat 0 0
+	.amount.silver
+		background: transparent url(../images/coinSilverLg.png) no-repeat 0 0
+	.amount.gold
+		background: transparent url(../images/coinGoldLg.png) no-repeat 0 0
+	.comment
+		padding: 0 20px
+		text-align: center
+		font-family: $typewriter
+		font-size: 16px
+		font-weight: 100
+		line-height: 19px
+	.note
+		text-align: center
+		margin-top: 15px
+		font-size: 0.9em

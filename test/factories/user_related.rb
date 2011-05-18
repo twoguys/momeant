@@ -45,3 +45,11 @@ end
 Factory.define :trial_user, :parent => :user_with_coins do |user|
   user.paid_state             "trial"
 end
+
+Factory.define :paying_user, :parent => :user_with_coins do |user|
+  user.paid_state             "active_subscription"
+end
+
+Factory.define :disabled_user, :parent => :user_with_coins do |user|
+  user.paid_state             "disabled_subscription"
+end
