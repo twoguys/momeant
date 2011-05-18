@@ -6,12 +6,12 @@
       - if front_media && front_media.background_color
         :css
           ul#pages #page_#{@page.number} .cell_#{cell} .side.front {
-            background-color: ##{front_media.background_color} !important;
+            background-color: #{front_media.background_color} !important;
           }
       - if back_media && back_media.background_color
         :css
           ul#pages #page_#{@page.number} .cell_#{cell} .side.back {
-            background-color: ##{back_media.background_color} !important;
+            background-color: #{back_media.background_color} !important;
           }
 
 - size ||= "original"
