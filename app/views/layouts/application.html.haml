@@ -35,6 +35,7 @@
                 = render :partial => "shared/calls_to_action/subscribe", :locals => {:message => "You have #{pluralize(current_user.days_left_in_trial, "day")} and #{pluralize(current_user.coins, "coin")} left in your trial. Loving it?"}
               - else
                 = yield :call_to_action
+          = render "layouts/flash", :flash => flash
           .insides
             .momeant-header
               = link_to("Home", root_path, :id => "logo-large") unless @hide_momeant
@@ -48,7 +49,6 @@
             
         #mid
           .insides
-            = render "layouts/flash", :flash => flash
             = yield
 
     #footer

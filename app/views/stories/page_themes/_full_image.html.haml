@@ -2,10 +2,10 @@
   - caption = @page.text_media
   - if @page.has_styles? || (caption && caption.has_styles?)
     - content_for :head do
-      - if @page.background_color
+      - if @page.image_media && @page.image_media.background_color
         :css
           #story_#{@page.story_id}_page_#{@page.number} {
-            background-color: #{@page.background_color};
+            background-color: #{@page.image_media.background_color};
           }
       - if caption && caption.background_color
         :css
