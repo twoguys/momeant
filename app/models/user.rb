@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
   has_many :credit_cards
   
   has_attached_file :avatar,
-    :styles => { :thumbnail => "50x50#" },
+    :styles => { :thumbnail => "60x60#" },
     :path          => "avatars/:id/:style.:extension",
     :storage        => :s3,
     :s3_credentials => {
