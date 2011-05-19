@@ -7,7 +7,8 @@ html, body {
   min-height: 100%;
   height: 100%;
   overflow-x: hidden;
-  position: relative; }
+  position: relative;
+  text-rendering: optimizelegibility; }
 
 h1, h2 {
   font-weight: normal; }
@@ -164,7 +165,7 @@ header {
         display: block;
         width: 46px;
         height: 36px;
-        background: transparent url(../images/icons/momeantStreamB.png) no-repeat 50% 6px;
+        background: transparent url(../images/icons/momeantStreamB.png) no-repeat 50% 9px;
         cursor: pointer; }
       header #user-nav #recommendations .stream-inner {
         display: none;
@@ -2342,6 +2343,9 @@ form.new_story, form.edit_story, .story-form {
         overflow: hidden;
         cursor: pointer;
         background-color: white; }
+        .story-viewer #previewer ul.pages li.page .inner {
+          width: 100%;
+          height: 100%; }
         .story-viewer #previewer ul.pages li.page .number {
           display: none; }
       .story-viewer #previewer ul.pages li.page.active, .story-viewer #previewer ul.pages li.page:hover {

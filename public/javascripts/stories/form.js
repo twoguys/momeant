@@ -456,6 +456,8 @@ var story_auto_saver = function() {
 			} else if (type == 'grid') {
 				log('ul#pages li#page_' + number + ' cell_' + position + ' .side.' + side);
 				$('ul#pages li#page_' + number + ' .cell_' + position + ' .side.' + side).removeClass('fill-screen fit-to-screen original').addClass(placement);
+			} else if (type == 'split'){
+				$('ul#pages li#page_' + number + ' .image' + position + ' .inner').removeClass('fill-screen fit-to-screen original').addClass(placement);
 			} else {
 				$('ul#pages li#page_' + number + ' .image' + position).removeClass('fill-screen fit-to-screen original').addClass(placement);
 			}
