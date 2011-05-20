@@ -1,10 +1,12 @@
 .full_image.page-theme.background-color-affected.pane-insides
   = #render :partial => "stories/page_forms/style_editor", :locals => {:background_color => true, :caption => true}
   .header
-    .title Full Image
+    .title Image & Caption Page
     = link_to("Change", "#", :class => "change")
     .spinner Saving...
-  .copy Use this slide to display a single image with or without a caption. Choose one of three size options for your image: original size, fullscreen (which adjusts your image to fill the viewer's browser window), or fit to screen (which fits either the height or width of the viewer's browser window but doesn't crop your image). If you do choose to write a caption, select the corner in which you want it to appear. The default position is in the upper right.
+  .copy
+    %strong Use this slide to display a single image with or without a caption.
+    %span Choose one of three size options for your image: original size, fullscreen (which adjusts your image to fill the viewer's browser window), or fit to screen (which fits either the height or width of the viewer's browser window but doesn't crop your image). If you do choose to write a caption, select the corner in which you want it to appear.
   .body
     %fieldset
       %ul

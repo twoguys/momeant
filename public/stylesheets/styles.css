@@ -796,23 +796,21 @@ form.new_story, form.edit_story, .story-form {
       form.new_story #page-type-chooser .insides .header, form.edit_story #page-type-chooser .insides .header, .story-form #page-type-chooser .insides .header {
         font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
         font-weight: 700;
-        font-size: 30px;
-        line-height: 50px;
+        font-size: 15px;
         vertical-align: middle;
         text-transform: uppercase;
         background-color: black;
         color: white;
-        height: 50px;
         margin-bottom: 10px;
-        padding-left: 10px; }
+        padding: 10px 0 8px 15px; }
         form.new_story #page-type-chooser .insides .header .close, form.edit_story #page-type-chooser .insides .header .close, .story-form #page-type-chooser .insides .header .close {
           position: absolute;
-          top: 9px;
-          right: 9px;
+          top: 10px;
+          right: 0px;
           width: 32px;
           height: 32px;
           display: block;
-          background: transparent url(../images/white-close-x.png) no-repeat 0 0;
+          background: transparent url(../images/white-close-xSm.png) no-repeat 0 0;
           text-indent: -9999px; }
       form.new_story #page-type-chooser .insides .copy, form.edit_story #page-type-chooser .insides .copy, .story-form #page-type-chooser .insides .copy {
         margin: 15px;
@@ -823,6 +821,12 @@ form.new_story, form.edit_story, .story-form {
         border-bottom: 1px dotted #aaaaaa;
         padding-bottom: 15px;
         color: #777777; }
+        form.new_story #page-type-chooser .insides .copy strong, form.edit_story #page-type-chooser .insides .copy strong, .story-form #page-type-chooser .insides .copy strong {
+          color: #00aeef;
+          font-weight: 700; }
+        form.new_story #page-type-chooser .insides .copy span, form.edit_story #page-type-chooser .insides .copy span, .story-form #page-type-chooser .insides .copy span {
+          font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
+          font-weight: 100; }
       form.new_story #page-type-chooser .insides .body .clear, form.edit_story #page-type-chooser .insides .body .clear, .story-form #page-type-chooser .insides .body .clear {
         height: 20px; }
       form.new_story #page-type-chooser .insides .body ul, form.edit_story #page-type-chooser .insides .body ul, .story-form #page-type-chooser .insides .body ul {
@@ -1284,17 +1288,21 @@ form.new_story, form.edit_story, .story-form {
       -webkit-border-radius: 3px;
       -moz-border-radius: 3px;
       border-radius: 3px;
-      display: inline-block; }
+      display: inline-block;
+      margin-top: 10px; }
     #page-editor #pane ul.pages li.break {
       border-top: 1px solid #cccccc;
-      padding-top: 1em; }
+      padding-top: 10px;
+      margin-top: 20px; }
     #page-editor #pane ul.pages li {
       margin-bottom: 1em; }
+      #page-editor #pane ul.pages li select {
+        margin-top: 0px; }
       #page-editor #pane ul.pages li label {
         font-size: 11px;
         font-weight: 300;
         color: #999999;
-        margin-top: 5px;
+        margin-top: 0px;
         margin-bottom: 5px;
         text-shadow: none;
         float: left;
@@ -1335,7 +1343,8 @@ form.new_story, form.edit_story, .story-form {
         border: 1px solid #cccccc;
         width: 94px;
         height: 70px;
-        padding: 5px 0 0 5px; }
+        padding: 5px 0 0 5px;
+        clear: both; }
         #page-editor #pane ul.pages li .full_image .picker li {
           background-color: #eeeeee;
           width: 42px;
@@ -1456,7 +1465,7 @@ form.new_story, form.edit_story, .story-form {
         #page-editor #pane ul.pages li .file-uploader .file-input-faker {
           position: absolute;
           width: 300px;
-          height: 25px;
+          height: 30px;
           overflow: hidden; }
           #page-editor #pane ul.pages li .file-uploader .file-input-faker input[type="file"] {
             position: absolute;
@@ -1480,16 +1489,18 @@ form.new_story, form.edit_story, .story-form {
           position: absolute;
           left: 210px;
           display: block;
-          height: 25px;
-          width: 80px;
+          width: auto;
           text-align: center;
-          line-height: 25px;
           vertical-align: middle;
           font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
           font-weight: 700;
           text-transform: uppercase;
           background-color: #c0eefe;
-          z-index: 2; }
+          z-index: 2;
+          border-radius: 3px;
+          -moz-border-radius: 3px;
+          padding: 5px 10px;
+          height: 15px; }
         #page-editor #pane ul.pages li .file-uploader .loader {
           display: none; }
   #page-editor #pane.closed {

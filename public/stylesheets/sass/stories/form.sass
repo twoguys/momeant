@@ -256,23 +256,21 @@ form.new_story, form.edit_story, .story-form
 			.header
 				font-family: $block
 				font-weight: 700
-				font-size: 30px
-				line-height: 50px
+				font-size: 15px
 				vertical-align: middle
 				text-transform: uppercase
 				background-color: #000
 				color: #fff
-				height: 50px
 				margin-bottom: 10px
-				padding-left: 10px
+				padding: 10px 0 8px 15px
 				.close
 					position: absolute
-					top: 9px
-					right: 9px
+					top: 10px
+					right: 0px
 					width: 32px
 					height: 32px
 					display: block
-					background: transparent url(../images/white-close-x.png) no-repeat 0 0
+					background: transparent url(../images/white-close-xSm.png) no-repeat 0 0
 					text-indent: -9999px
 			.copy
 				margin: 15px
@@ -283,6 +281,13 @@ form.new_story, form.edit_story, .story-form
 				border-bottom: 1px dotted #aaa
 				padding-bottom: 15px
 				color: #777
+				strong
+					color: $blue
+					font-weight: 700
+				span
+					font-family: $block
+					font-weight: 100
+				
 			.body
 				.clear
 					height: 20px
@@ -508,17 +513,21 @@ form.new_story, form.edit_story, .story-form
 			color: #1ca436
 			@include rounded(3px)
 			display: inline-block
+			margin-top: 10px
 		ul.pages
 			li.break
 				border-top: 1px solid #ccc
-				padding-top: 1em
+				padding-top: 10px
+				margin-top: 20px
 			li
 				margin-bottom: 1em
+				select
+					margin-top: 0px
 				label
 					font-size: 11px
 					font-weight: 300
 					color: #999
-					margin-top: 5px
+					margin-top: 0px
 					margin-bottom: 5px
 					text-shadow: none
 					float: left
@@ -562,6 +571,7 @@ form.new_story, form.edit_story, .story-form
 						width: 94px
 						height: 70px
 						padding: 5px 0 0 5px
+						clear: both
 						li
 							background-color: #eee
 							width: 42px
@@ -694,7 +704,7 @@ form.new_story, form.edit_story, .story-form
 					.file-input-faker
 						position: absolute
 						width: 300px
-						height: 25px
+						height: 30px
 						overflow: hidden
 						input[type="file"]
 							position: absolute
@@ -718,16 +728,18 @@ form.new_story, form.edit_story, .story-form
 						position: absolute
 						left: 210px
 						display: block
-						height: 25px
-						width: 80px
+						width: auto
 						text-align: center
-						line-height: 25px
 						vertical-align: middle
 						font-family: $block
 						font-weight: 700
 						text-transform: uppercase
 						background-color: #c0eefe
 						z-index: 2
+						border-radius: 3px
+						-moz-border-radius: 3px
+						padding: 5px 10px
+						height: 15px
 					.loader
 						display: none
 	#pane.closed
