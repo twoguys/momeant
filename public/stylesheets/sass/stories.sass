@@ -241,8 +241,6 @@
 				vertical-align: middle
 				display: table-cell
 				font-family: $typewriter
-				line-height: 9px
-				font-size: 3px
 				font-weight: 100
 				text-align: justify
 				&:first-letter
@@ -264,12 +262,11 @@
 		height: 180px
 		.text
 			.inner
-				line-height: 18px
-				font-size: 12px
+				line-height: 9px
+				font-size: 3px !important
 				font-weight: 100
 				&:first-letter
 					font-size: 40px
-					line-height: 40px
 					letter-spacing: -3px
 					height: 40px
 					padding-top: 4px
@@ -281,11 +278,10 @@
 		.text
 			.inner
 				line-height: 27px
-				font-size: 12px
+				font-size: 12px !important
 				font-weight: 100
 				&:first-letter
 					font-size: 87px
-					line-height: 82.5px
 					letter-spacing: -3px
 					height: 75px
 					padding-top: 10.5px
@@ -379,6 +375,26 @@
 				z-index: 2
 @mixin gridSlideFullsize
 	@include gridSlide(100%, 100%)
+
+@mixin gridSlideMedium
+	@include gridSlide(288px, 180px)
+	.inner
+		ul.cells
+			width: 288px
+			li
+				width: 70px
+				height: 90px
+				float: left
+				font-size: 0.7em
+				position: relative
+				img
+					width: 70px
+				.image
+					z-index: 2
+				.text
+					z-index: 1
+				.image, .text
+					position: absolute
 
 
 @import "stories/form"

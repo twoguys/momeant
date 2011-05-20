@@ -789,7 +789,7 @@ form.new_story, form.edit_story, .story-form {
       top: 50%;
       left: 50%;
       margin: -250px 0 0 -360px;
-      background-color: white;
+      background-color: rgba(249, 249, 249, 0.9);
       -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
       -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.7); }
@@ -801,7 +801,7 @@ form.new_story, form.edit_story, .story-form {
         text-transform: uppercase;
         background-color: black;
         color: white;
-        margin-bottom: 10px;
+        margin-bottom: 5px;
         padding: 10px 0 8px 15px; }
         form.new_story #page-type-chooser .insides .header .close, form.edit_story #page-type-chooser .insides .header .close, .story-form #page-type-chooser .insides .header .close {
           position: absolute;
@@ -813,20 +813,32 @@ form.new_story, form.edit_story, .story-form {
           background: transparent url(../images/white-close-xSm.png) no-repeat 0 0;
           text-indent: -9999px; }
       form.new_story #page-type-chooser .insides .copy, form.edit_story #page-type-chooser .insides .copy, .story-form #page-type-chooser .insides .copy {
-        margin: 15px;
+        margin: 20px 5px 5px;
         font-size: 15px;
         line-height: 24px;
         font-family: "museo-slab-1", "museo-slab-2", serif;
         font-weight: 100;
-        border-bottom: 1px dotted #aaaaaa;
         padding-bottom: 15px;
         color: #777777; }
-        form.new_story #page-type-chooser .insides .copy strong, form.edit_story #page-type-chooser .insides .copy strong, .story-form #page-type-chooser .insides .copy strong {
+        form.new_story #page-type-chooser .insides .copy h2, form.edit_story #page-type-chooser .insides .copy h2, .story-form #page-type-chooser .insides .copy h2 {
+          font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
           color: #00aeef;
-          font-weight: 700; }
+          font-weight: 700;
+          font-size: 12px;
+          text-align: center;
+          background: none;
+          text-decoration: underline;
+          margin-bottom: 0px;
+          padding-bottom: 0px; }
         form.new_story #page-type-chooser .insides .copy span, form.edit_story #page-type-chooser .insides .copy span, .story-form #page-type-chooser .insides .copy span {
           font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
-          font-weight: 100; }
+          font-weight: 100;
+          clear: both;
+          display: block;
+          font-size: 10px;
+          font-style: italic;
+          text-align: center;
+          line-height: 13px; }
       form.new_story #page-type-chooser .insides .body .clear, form.edit_story #page-type-chooser .insides .body .clear, .story-form #page-type-chooser .insides .body .clear {
         height: 20px; }
       form.new_story #page-type-chooser .insides .body ul, form.edit_story #page-type-chooser .insides .body ul, .story-form #page-type-chooser .insides .body ul {
@@ -835,17 +847,21 @@ form.new_story, form.edit_story, .story-form {
         form.new_story #page-type-chooser .insides .body ul li, form.edit_story #page-type-chooser .insides .body ul li, .story-form #page-type-chooser .insides .body ul li {
           display: block;
           width: 200px;
-          height: 124px;
+          height: 95px;
           float: left;
           background-position: 0 0px;
           background-repeat: no-repeat;
+          background-color: white;
           cursor: pointer;
-          margin: 10px;
-          padding: 0;
+          margin: 8px 0 8px 15px;
+          padding: 105px 0 0 0;
           clear: none;
-          border: 5px solid white; }
+          border: 5px solid white;
+          -webkit-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+          -moz-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+          box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); }
         form.new_story #page-type-chooser .insides .body ul li.loading, form.edit_story #page-type-chooser .insides .body ul li.loading, .story-form #page-type-chooser .insides .body ul li.loading {
-          background: transparent url(../images/spinner.gif) no-repeat 50% 50%; }
+          background: transparent url(../images/spinner.gif) no-repeat 50% 70px; }
         form.new_story #page-type-chooser .insides .body ul li:hover, form.edit_story #page-type-chooser .insides .body ul li:hover, .story-form #page-type-chooser .insides .body ul li:hover {
           border: 5px solid #00aeef; }
       form.new_story #page-type-chooser .insides .body .title, form.edit_story #page-type-chooser .insides .body .title, .story-form #page-type-chooser .insides .body .title {
@@ -1017,8 +1033,6 @@ form.new_story, form.edit_story, .story-form {
         vertical-align: middle;
         display: table-cell;
         font-family: "museo-slab-1", "museo-slab-2", serif;
-        line-height: 9px;
-        font-size: 3px;
         font-weight: 100;
         text-align: justify; }
         #page-previews li.split div.split .text .inner:first-letter {
@@ -1034,6 +1048,18 @@ form.new_story, form.edit_story, .story-form {
           padding-right: 1px; }
     #page-previews li.split div.split .hidden {
       display: none; }
+  #page-previews li.split div.split {
+    height: 180px; }
+    #page-previews li.split div.split .text .inner {
+      line-height: 9px;
+      font-size: 3px !important;
+      font-weight: 100; }
+      #page-previews li.split div.split .text .inner:first-letter {
+        font-size: 40px;
+        letter-spacing: -3px;
+        height: 40px;
+        padding-top: 4px;
+        padding-right: 4px; }
 #page-previews li.grid {
   width: 288px;
   height: 180px; }
@@ -1110,6 +1136,22 @@ form.new_story, form.edit_story, .story-form {
       z-index: 1; }
     #page-previews li.grid ul.cells li:hover .back {
       z-index: 2; }
+  #page-previews li.grid .inner ul.cells {
+    width: 288px; }
+    #page-previews li.grid .inner ul.cells li {
+      width: 70px;
+      height: 90px;
+      float: left;
+      font-size: 0.7em;
+      position: relative; }
+      #page-previews li.grid .inner ul.cells li img {
+        width: 70px; }
+      #page-previews li.grid .inner ul.cells li .image {
+        z-index: 2; }
+      #page-previews li.grid .inner ul.cells li .text {
+        z-index: 1; }
+      #page-previews li.grid .inner ul.cells li .image, #page-previews li.grid .inner ul.cells li .text {
+        position: absolute; }
 #page-previews li.page.launch {
   color: #333333;
   font-size: 20px;
@@ -1294,14 +1336,14 @@ form.new_story, form.edit_story, .story-form {
       padding-top: 10px;
       margin-top: 20px; }
     #page-editor #pane ul.pages li {
-      margin-bottom: 1em; }
+      margin-bottom: 0; }
       #page-editor #pane ul.pages li select {
-        margin-top: 0px; }
+        margin-top: 9px; }
       #page-editor #pane ul.pages li label {
         font-size: 11px;
         font-weight: 300;
         color: #999999;
-        margin-top: 0px;
+        margin-top: 8px;
         margin-bottom: 5px;
         text-shadow: none;
         float: left;
@@ -1361,7 +1403,8 @@ form.new_story, form.edit_story, .story-form {
         margin-bottom: 25px; }
         #page-editor #pane ul.pages li .split li.chooser ul {
           height: 72px;
-          margin-bottom: 15px; }
+          margin-bottom: 15px;
+          clear: both; }
         #page-editor #pane ul.pages li .split li.chooser li {
           float: left;
           clear: none;
@@ -1396,7 +1439,8 @@ form.new_story, form.edit_story, .story-form {
           height: 164px;
           padding: 5px;
           background-color: white;
-          border: 1px solid #cccccc; }
+          border: 1px solid #cccccc;
+          clear: both; }
         #page-editor #pane ul.pages li .grid li.chooser li {
           float: left;
           clear: none;
@@ -1422,13 +1466,14 @@ form.new_story, form.edit_story, .story-form {
           width: 95%; }
         #page-editor #pane ul.pages li .grid li.inputs .side {
           float: left;
-          width: 50%;
+          width: 46%;
           margin: 0; }
           #page-editor #pane ul.pages li .grid li.inputs .side .inner h3 {
             background-color: #eeeeee;
             color: #8d8d8d;
             text-transform: uppercase;
-            padding: 5px; }
+            padding: 6px 10px 5px;
+            margin-bottom: 15px; }
             #page-editor #pane ul.pages li .grid li.inputs .side .inner h3 span {
               height: auto;
               display: inline-block; }
@@ -1458,6 +1503,10 @@ form.new_story, form.edit_story, .story-form {
           border-right: 1px solid #cccccc; }
         #page-editor #pane ul.pages li .grid li.inputs .back .inner {
           padding-left: 15px; }
+      #page-editor #pane ul.pages li .image-placement-picker {
+        clear: both; }
+      #page-editor #pane ul.pages li color-picker {
+        clear: both; }
       #page-editor #pane ul.pages li .file-uploader {
         position: relative;
         height: 27px; }
@@ -1727,8 +1776,6 @@ form.new_story, form.edit_story, .story-form {
             vertical-align: middle;
             display: table-cell;
             font-family: "museo-slab-1", "museo-slab-2", serif;
-            line-height: 9px;
-            font-size: 3px;
             font-weight: 100;
             text-align: justify; }
             #page-editor ul#pages .split div.split .text .inner:first-letter {
@@ -2504,8 +2551,6 @@ form.new_story, form.edit_story, .story-form {
               vertical-align: middle;
               display: table-cell;
               font-family: "museo-slab-1", "museo-slab-2", serif;
-              line-height: 9px;
-              font-size: 3px;
               font-weight: 100;
               text-align: justify; }
               .story-viewer #previewer ul.pages li.split div.split .text .inner:first-letter {
@@ -2521,22 +2566,110 @@ form.new_story, form.edit_story, .story-form {
                 padding-right: 1px; }
           .story-viewer #previewer ul.pages li.split div.split .hidden {
             display: none; }
-      .story-viewer #previewer ul.pages li.grid .inner ul.cells {
-        width: 280px; }
-        .story-viewer #previewer ul.pages li.grid .inner ul.cells li {
-          width: 70px;
-          height: 90px;
-          float: left;
-          font-size: 0.7em;
-          position: relative; }
-          .story-viewer #previewer ul.pages li.grid .inner ul.cells li img {
-            width: 70px; }
-          .story-viewer #previewer ul.pages li.grid .inner ul.cells li .image {
-            z-index: 2; }
-          .story-viewer #previewer ul.pages li.grid .inner ul.cells li .text {
+        .story-viewer #previewer ul.pages li.split div.split {
+          height: 180px; }
+          .story-viewer #previewer ul.pages li.split div.split .text .inner {
+            line-height: 9px;
+            font-size: 3px !important;
+            font-weight: 100; }
+            .story-viewer #previewer ul.pages li.split div.split .text .inner:first-letter {
+              font-size: 40px;
+              letter-spacing: -3px;
+              height: 40px;
+              padding-top: 4px;
+              padding-right: 4px; }
+      .story-viewer #previewer ul.pages li.grid {
+        width: 288px;
+        height: 180px; }
+        .story-viewer #previewer ul.pages li.grid ul.cells {
+          height: 100%; }
+          .story-viewer #previewer ul.pages li.grid ul.cells li {
+            width: 25%;
+            height: 50%;
+            float: left;
+            position: relative;
+            margin: 0;
+            clear: none; }
+            .story-viewer #previewer ul.pages li.grid ul.cells li .side {
+              margin: 0; }
+            .story-viewer #previewer ul.pages li.grid ul.cells li .front, .story-viewer #previewer ul.pages li.grid ul.cells li .back {
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%; }
+            .story-viewer #previewer ul.pages li.grid ul.cells li .front {
+              z-index: 2; }
+            .story-viewer #previewer ul.pages li.grid ul.cells li .back {
+              z-index: 1; }
+            .story-viewer #previewer ul.pages li.grid ul.cells li .side {
+              background-color: white; }
+              .story-viewer #previewer ul.pages li.grid ul.cells li .side .text, .story-viewer #previewer ul.pages li.grid ul.cells li .side .image {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%; }
+              .story-viewer #previewer ul.pages li.grid ul.cells li .side .image {
+                display: block;
+                background-repeat: no-repeat;
+                background-position: center center; }
+              .story-viewer #previewer ul.pages li.grid ul.cells li .side .text {
+                display: table;
+                font-size: 2em;
+                text-align: center; }
+                .story-viewer #previewer ul.pages li.grid ul.cells li .side .text .inner {
+                  padding: 0 10%;
+                  vertical-align: middle;
+                  display: table-cell;
+                  font-family: "museo-slab-1", "museo-slab-2", serif;
+                  line-height: 26px;
+                  font-size: 14px;
+                  text-align: justify;
+                  letter-spacing: -0.5px;
+                  font-weight: 100; }
+                  .story-viewer #previewer ul.pages li.grid ul.cells li .side .text .inner:first-letter {
+                    font-family: "museo-sans-1", "museo-sans-2", sans-serif;
+                    font-size: 50px;
+                    vertical-align: baseline;
+                    float: left;
+                    text-transform: uppercase;
+                    line-height: 50px;
+                    height: 50px;
+                    padding-top: 10px;
+                    padding-right: 4px; }
+              .story-viewer #previewer ul.pages li.grid ul.cells li .side .hidden {
+                display: none; }
+            .story-viewer #previewer ul.pages li.grid ul.cells li .side.fill-screen .image {
+              -webkit-background-size: cover;
+              -moz-background-size: cover;
+              -o-background-size: cover;
+              background-size: cover; }
+            .story-viewer #previewer ul.pages li.grid ul.cells li .side.fit-to-screen .image {
+              -webkit-background-size: contain;
+              -moz-background-size: contain;
+              -o-background-size: contain;
+              background-size: contain; }
+          .story-viewer #previewer ul.pages li.grid ul.cells li:hover .front {
             z-index: 1; }
-          .story-viewer #previewer ul.pages li.grid .inner ul.cells li .image, .story-viewer #previewer ul.pages li.grid .inner ul.cells li .text {
-            position: absolute; }
+          .story-viewer #previewer ul.pages li.grid ul.cells li:hover .back {
+            z-index: 2; }
+        .story-viewer #previewer ul.pages li.grid .inner ul.cells {
+          width: 288px; }
+          .story-viewer #previewer ul.pages li.grid .inner ul.cells li {
+            width: 70px;
+            height: 90px;
+            float: left;
+            font-size: 0.7em;
+            position: relative; }
+            .story-viewer #previewer ul.pages li.grid .inner ul.cells li img {
+              width: 70px; }
+            .story-viewer #previewer ul.pages li.grid .inner ul.cells li .image {
+              z-index: 2; }
+            .story-viewer #previewer ul.pages li.grid .inner ul.cells li .text {
+              z-index: 1; }
+            .story-viewer #previewer ul.pages li.grid .inner ul.cells li .image, .story-viewer #previewer ul.pages li.grid .inner ul.cells li .text {
+              position: absolute; }
   .story-viewer ul#pages {
     width: 100%;
     height: 100%; }
@@ -2746,8 +2879,6 @@ form.new_story, form.edit_story, .story-form {
             vertical-align: middle;
             display: table-cell;
             font-family: "museo-slab-1", "museo-slab-2", serif;
-            line-height: 9px;
-            font-size: 3px;
             font-weight: 100;
             text-align: justify; }
             .story-viewer ul#pages li.split div.split .text .inner:first-letter {
@@ -3149,8 +3280,6 @@ form.new_story, form.edit_story, .story-form {
               vertical-align: middle;
               display: table-cell;
               font-family: "museo-slab-1", "museo-slab-2", serif;
-              line-height: 9px;
-              font-size: 3px;
               font-weight: 100;
               text-align: justify; }
               .story-gallery .large-preview .pages a.split div.split .text .inner:first-letter {
@@ -3450,8 +3579,6 @@ form.new_story, form.edit_story, .story-form {
               vertical-align: middle;
               display: table-cell;
               font-family: "museo-slab-1", "museo-slab-2", serif;
-              line-height: 9px;
-              font-size: 3px;
               font-weight: 100;
               text-align: justify; }
               .story-gallery .slider .viewport .preview.split div.split .text .inner:first-letter {
@@ -3759,8 +3886,6 @@ form.new_story, form.edit_story, .story-form {
         vertical-align: middle;
         display: table-cell;
         font-family: "museo-slab-1", "museo-slab-2", serif;
-        line-height: 9px;
-        font-size: 3px;
         font-weight: 100;
         text-align: justify; }
         .thumbnail.split div.split .text .inner:first-letter {
@@ -3780,11 +3905,10 @@ form.new_story, form.edit_story, .story-form {
     height: 420px; }
     .thumbnail.split div.split .text .inner {
       line-height: 27px;
-      font-size: 12px;
+      font-size: 12px !important;
       font-weight: 100; }
       .thumbnail.split div.split .text .inner:first-letter {
         font-size: 87px;
-        line-height: 82.5px;
         letter-spacing: -3px;
         height: 75px;
         padding-top: 10.5px;
@@ -3897,8 +4021,6 @@ form.new_story, form.edit_story, .story-form {
         vertical-align: middle;
         display: table-cell;
         font-family: "museo-slab-1", "museo-slab-2", serif;
-        line-height: 9px;
-        font-size: 3px;
         font-weight: 100;
         text-align: justify; }
         .thumbnail.split.medium div.split .text .inner:first-letter {
@@ -3917,12 +4039,11 @@ form.new_story, form.edit_story, .story-form {
   .thumbnail.split.medium div.split {
     height: 180px; }
     .thumbnail.split.medium div.split .text .inner {
-      line-height: 18px;
-      font-size: 12px;
+      line-height: 9px;
+      font-size: 3px !important;
       font-weight: 100; }
       .thumbnail.split.medium div.split .text .inner:first-letter {
         font-size: 40px;
-        line-height: 40px;
         letter-spacing: -3px;
         height: 40px;
         padding-top: 4px;
