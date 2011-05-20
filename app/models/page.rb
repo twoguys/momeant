@@ -133,7 +133,11 @@ class Page < ActiveRecord::Base
       else
         page = VideoPage.new(:number => options[:number], :background_color => options[:background_color])
       end
-      page.medias << PageText.new(:text => options[:text]) unless options[:text].blank?
+      if page.text_media
+        page.text_media.update_attribute(:text, options[:text])
+      else
+        page.medias << PageText.new(:text => options[:text]) unless options[:text].blank?
+      end
     when "split"
       if page
         page.background_color = options[:background_color] if options[:background_color]
