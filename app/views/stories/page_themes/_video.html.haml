@@ -8,4 +8,4 @@
 - size ||= "original"
 .insides.bg-affected{:id => @page ? "story_#{@page.story_id}_page_#{@page.number}" : ""}
   - if size == "original"
-    %iframe{:class => "video-frame", :src => @page && @page.text ? "http://player.vimeo.com/video/#{@page.text}" : "", :width => "90%", :height => "90%", :frameborder => "0"}
+    %iframe{:class => "video-frame", :src => @page && @page.text ? "http://player.vimeo.com/video/#{@page.text}" : "", :width => "100%", :height => "90%", :frameborder => "0"}
