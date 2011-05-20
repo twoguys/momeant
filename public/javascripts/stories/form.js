@@ -816,11 +816,12 @@ var story_auto_saver = function() {
 		    mode: 'exact',
 				elements: $element.attr('id'),
 				theme : "advanced",
-		    theme_advanced_buttons1 : "fontselect,fontsizeselect,forecolor,backcolor,bold,underline,italic",
+		    theme_advanced_buttons1 : "fontselect,fontsizeselect,forecolor,backcolor,bold,underline,italic,justifyleft,justifycenter,justifyright,justifyfull",
 		    theme_advanced_buttons2 : "",
 		    theme_advanced_buttons3 : "",
 		    theme_advanced_toolbar_location : "top",
-		    theme_advanced_toolbar_align : "left"
+		    theme_advanced_toolbar_align : "left",
+				theme_advanced_more_colors: false
 			};
 			if (type == 'grid') {
 				tiny_mce_config.theme_advanced_buttons1 = "fontselect,fontsizeselect";
