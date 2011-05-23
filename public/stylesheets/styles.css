@@ -131,19 +131,59 @@ header {
         background-position: 50% 6px; }
     header #user-nav #home a {
       background: url(../images/icons/momeantHome.png) no-repeat scroll 50% 6px transparent; }
-    header #user-nav #signup, header #user-nav #profile, header #user-nav #signin, header #user-nav #signout {
+    header #user-nav #signup, header #user-nav #signin, header #user-nav #signout {
       top: 15px; }
     header #user-nav #signup {
       left: 60px; }
-    header #user-nav #profile a {
-      background-image: url(../images/icons/momeantProfileB.png); }
+    header #user-nav #profile, header #user-nav #faq {
+      position: relative; }
+      header #user-nav #profile span.icon, header #user-nav #faq span.icon {
+        position: absolute;
+        display: block;
+        width: 33px;
+        height: 28px;
+        top: 7px;
+        left: 7px;
+        background-image: url(../images/icons/momeantProfileB.png);
+        cursor: pointer; }
+      header #user-nav #profile .inner, header #user-nav #faq .inner {
+        background: transparent url(../images/topTriangle.png) no-repeat 10px 0;
+        padding-top: 7px;
+        position: absolute;
+        top: 35px;
+        display: none; }
+      header #user-nav #profile ul, header #user-nav #faq ul {
+        border: 3px solid black;
+        -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+        -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.7); }
+        header #user-nav #profile ul .odd, header #user-nav #faq ul .odd {
+          background-color: #f0f0f0; }
+        header #user-nav #profile ul .even, header #user-nav #faq ul .even {
+          background-color: white; }
+        header #user-nav #profile ul li, header #user-nav #faq ul li {
+          float: none; }
+          header #user-nav #profile ul li a, header #user-nav #faq ul li a {
+            width: 80px;
+            height: 1.1em;
+            padding: 12px 10px;
+            text-indent: 0;
+            font-weight: bold;
+            font-size: 1.1em;
+            text-transform: uppercase;
+            color: black; }
+        header #user-nav #profile ul li:hover, header #user-nav #faq ul li:hover {
+          background-color: #b8e6ff; }
+    header #user-nav #faq span.icon {
+      background-image: url(../images/icons/momeantHelp.png);
+      left: 10px; }
+    header #user-nav #profile:hover .inner, header #user-nav #faq:hover .inner {
+      display: block; }
     header #user-nav #signin, header #user-nav #signout {
       left: 140px; }
     header #user-nav #create:hover .tip, header #user-nav #balance:hover .tip, header #user-nav #subscriptions:hover .tip, header #user-nav #recommendations:hover .tip, header #user-nav #topics:hover .tip {
       display: block;
       left: 14px; }
-    header #user-nav #faq a {
-      background-image: url(../images/icons/momeantHelp.png); }
     header #user-nav #create a {
       background: transparent url(../images/icons/momeantAddStory.png) no-repeat 50% 7px; }
     header #user-nav #balance {
