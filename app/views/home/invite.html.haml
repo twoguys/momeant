@@ -1,0 +1,81 @@
+#invite-pitch
+  .byline
+    %h1 Become a Mo&#149meant creator!
+    %h3
+      Help shape the digital rennaissance
+      %br
+      by sharing your artistic vision with the world.
+    
+  - unless current_user.active_subscription?
+    %a#subscribe1.button{:href => current_user.spreedly_plan_url}
+      %span Apply Now!
+    
+  %ul.thirds
+    %li.join
+      = image_tag("invite/Placeholder240200.gif")
+      %h3
+        %span Artistic Freedom.
+      %p
+        Mo&#149meant's online editing
+        %br
+        tools enable you to layer,
+        %br
+        link, and mash up content
+        %br
+        however you like using
+        %br
+        audio, video, text & images.
+    %li.reward
+      = image_tag("invite/Placeholder240200.gif")
+      %h3
+        %span Get Inspired!
+      %p
+        %br
+        Check out a few of our
+        %br
+        favorite Mo&#149meant stories
+        %br
+        and consider the creative
+        %br
+        possibilities.
+    %li.make
+      = image_tag("invite/Placeholder240200.gif")
+      %h3
+        %span It's About You.
+      %p
+        We provide you with a
+        %br
+        unique storytelling platform.
+        %br
+        You just make the content,
+        %br
+        Engage with your community,
+        %br
+        and get paid.
+    
+  
+  .fine-print
+    .question
+      %h2 Who can join?
+      %p
+        At the moment, we are recruiting creators by invitation only. In the future we will be expanding our creative community                         by asking active Mo&#149;meant creators to invite people whose work they know and love. That way, creative responsibility remains in the hands of the community itself, and our network of creators will develop organically, built on trust and personal relationships.
+      = image_tag("invite/Placeholder240200.gif")
+    .question
+      %h2 But what about me?
+      %p
+        Well, we’re always ready to make an exception. If you’re interested in becoming a Mo&#149;meant creator, please provide us with your name, email address and a link to a sample of your work. We’d be glad to consider you!
+      = image_tag("invite/Placeholder240200.gif")
+    .question
+      %h2 What about my super-talented best friend?
+      %p
+        Know someone creative whom you’d like to recommend to us? Provide us with their details (as above) and we’ll get in touch!
+      = image_tag("invite/Placeholder240200.gif")
+    .question
+      %h2 What if you say no?
+      %p
+        Try again. We’d be happy to look at more of your work in the future—particularly as we move out of beta and start to grow our creator community!
+      = image_tag("invite/Placeholder240200.gif")
+  
+  - unless current_user.active_subscription?
+    %a#subscribe1.button{:href => current_user.spreedly_plan_url}
+      %span Apply Now!
