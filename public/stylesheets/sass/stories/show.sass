@@ -154,24 +154,9 @@
 					width: 280px
 					height: 180px
 			li.split
-				@include splitSlide
-			li.grid .inner
-				ul.cells
-					width: 280px
-					li
-						width: 70px
-						height: 90px
-						float: left
-						font-size: 0.7em
-						position: relative
-						img
-							width: 70px
-						.image
-							z-index: 2
-						.text
-							z-index: 1
-						.image, .text
-							position: absolute
+				@include splitSlideMedium
+			li.grid
+				@include gridSlideMedium
 	
 	ul#pages
 		width: 100%

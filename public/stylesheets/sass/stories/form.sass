@@ -251,7 +251,7 @@ form.new_story, form.edit_story, .story-form
 			top: 50%
 			left: 50%
 			margin: -250px 0 0 -360px
-			background-color: #fff
+			background-color: rgba(249, 249, 249, 0.9)
 			@include boxshadow
 			.header
 				font-family: $block
@@ -261,7 +261,7 @@ form.new_story, form.edit_story, .story-form
 				text-transform: uppercase
 				background-color: #000
 				color: #fff
-				margin-bottom: 10px
+				margin-bottom: 5px
 				padding: 10px 0 8px 15px
 				.close
 					position: absolute
@@ -273,20 +273,32 @@ form.new_story, form.edit_story, .story-form
 					background: transparent url(../images/white-close-xSm.png) no-repeat 0 0
 					text-indent: -9999px
 			.copy
-				margin: 15px
+				margin: 20px 5px 5px
 				font-size: 15px
 				line-height: 24px
 				font-family: $typewriter
 				font-weight: 100
-				border-bottom: 1px dotted #aaa
 				padding-bottom: 15px
 				color: #777
-				strong
+				h2
+					font-family: $block
 					color: $blue
 					font-weight: 700
+					font-size: 12px
+					text-align: center
+					background: none
+					text-decoration: underline
+					margin-bottom: 0px
+					padding-bottom: 0px
 				span
 					font-family: $block
 					font-weight: 100
+					clear: both
+					display: block
+					font-size: 10px
+					font-style: italic
+					text-align: center
+					line-height: 13px
 				
 			.body
 				.clear
@@ -297,17 +309,19 @@ form.new_story, form.edit_story, .story-form
 					li
 						display: block
 						width: 200px
-						height: 124px
+						height: 95px
 						float: left
 						background-position: 0 0px
 						background-repeat: no-repeat
+						background-color: white
 						cursor: pointer
-						margin: 10px
-						padding: 0
+						margin: 8px 0 8px 15px
+						padding: 105px 0 0 0
 						clear: none
 						border: 5px solid #fff
+						@include boxshadow(4px, 0.1, 2px, 2px)
 					li.loading
-						background: transparent url(../images/spinner.gif) no-repeat 50% 50%
+						background: transparent url(../images/spinner.gif) no-repeat 50% 70px
 					li:hover
 						border: 5px solid #00aeef
 				.title
@@ -339,9 +353,9 @@ form.new_story, form.edit_story, .story-form
 	li.video
 		@include videoSlide
 	li.split
-		@include splitSlide
+		@include splitSlideMedium
 	li.grid
-		@include gridSlide
+		@include gridSlideMedium
 	li.page.launch
 		color: #333
 		font-size: 20px
@@ -520,14 +534,14 @@ form.new_story, form.edit_story, .story-form
 				padding-top: 10px
 				margin-top: 20px
 			li
-				margin-bottom: 1em
+				margin-bottom: 0
 				select
-					margin-top: 0px
+					margin-top: 9px
 				label
 					font-size: 11px
 					font-weight: 300
 					color: #999
-					margin-top: 0px
+					margin-top: 8px
 					margin-bottom: 5px
 					text-shadow: none
 					float: left
@@ -592,6 +606,7 @@ form.new_story, form.edit_story, .story-form
 						ul
 							height: 72px
 							margin-bottom: 15px
+							clear: both
 						li
 							float: left
 							clear: none
@@ -632,6 +647,7 @@ form.new_story, form.edit_story, .story-form
 							padding: 5px
 							background-color: #fff
 							border: 1px solid #ccc
+							clear: both
 						li
 							float: left
 							clear: none
@@ -657,14 +673,15 @@ form.new_story, form.edit_story, .story-form
 							width: 95%
 						.side
 							float: left
-							width: 50%
+							width: 46%
 							margin: 0
 							.inner
 								h3
 									background-color: #eee
 									color: #8d8d8d
 									text-transform: uppercase
-									padding: 5px
+									padding: 6px 10px 5px
+									margin-bottom: 15px
 									span
 										height: auto
 										display: inline-block
@@ -697,7 +714,10 @@ form.new_story, form.edit_story, .story-form
 							.inner
 								padding-left: 15px
 				
-				
+				.image-placement-picker
+					clear: both
+				color-picker
+					clear: both
 				.file-uploader
 					position: relative
 					height: 27px
