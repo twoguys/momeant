@@ -105,7 +105,6 @@ $(document).ready(function() {
 	tag_deletions();
 	setup_signup_modal();
 	setup_rewarding();
-	setup_search_placeholder();
 	setup_story_gallery();
 	setup_recommendation_tabs();
 	//setup_personal_library_tabs();
