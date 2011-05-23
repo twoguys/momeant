@@ -1,9 +1,47 @@
 .homepage
 	section
 		clear: both
-	.tabs
-		border-bottom: 2px solid #fff
-		margin-bottom: 10px
+	.lists
+		ul.stories, ul.users
+			min-height: 300px
+	.home-tabs
+		height: 40px
+		background: #eaeaea
+		margin-bottom: 20px
+		clear: both
+		a
+			display: block
+			float: left
+			height: 40px
+			line-height: 40px
+			vertical-align: middle
+			padding: 0 15px
+			font-family: $block
+			font-weight: 700
+			font-size: 1.1em
+			text-transform: uppercase
+			color: #555
+			border-right: 1px solid #ccc
+		a.active
+			background: #555
+			color: #fff
+		div.pagination
+			float: right
+			margin-right: 10px
+			nav
+				.page, .first, .last
+					display: none
+				.next a, .prev a
+					display: block
+					width: 17px
+					height: 17px
+					margin: 11px 5px
+					padding: 0
+					background: transparent url(../images/paginationLeft.png) no-repeat
+					text-indent: -9999px
+					border: none
+				.next a
+					background: transparent url(../images/paginationRight.png) no-repeat
 
 .adverts
 	height: 165px

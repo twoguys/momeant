@@ -4443,6 +4443,38 @@ ul.stories .excerpt {
   margin-top: 15px;
   font-size: 0.9em; }
 
+ul.users li.user {
+  background-color: white;
+  float: left;
+  -webkit-box-shadow: 3px 3px 5px #bbbbbb;
+  -moz-box-shadow: 3px 3px 5px #bbbbbb;
+  box-shadow: 3px 3px 5px #bbbbbb;
+  position: relative;
+  height: 300px;
+  margin-bottom: 25px;
+  margin-right: 25px;
+  width: 300px; }
+  ul.users li.user a.avatar {
+    display: block;
+    float: left;
+    width: 60px;
+    height: 60px;
+    margin: 6px;
+    overflow: hidden; }
+  ul.users li.user a.name {
+    width: 228px;
+    float: left;
+    font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
+    font-size: 2em;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #252525;
+    margin-top: 16px; }
+ul.users li.user:nth-child(3n+3) {
+  margin-right: 0px; }
+ul.users li.user:nth-child(3n+3) {
+  margin-right: 0px; }
+
 .user-profile .top {
   background: transparent url(../images/simpleDotBG.png) repeat-x 50% 100%;
   padding-bottom: 15px;
@@ -4611,9 +4643,45 @@ form.user_edit textarea#user_tagline {
 
 .homepage section {
   clear: both; }
-.homepage .tabs {
-  border-bottom: 2px solid white;
-  margin-bottom: 10px; }
+.homepage .lists ul.stories, .homepage .lists ul.users {
+  min-height: 300px; }
+.homepage .home-tabs {
+  height: 40px;
+  background: #eaeaea;
+  margin-bottom: 20px;
+  clear: both; }
+  .homepage .home-tabs a {
+    display: block;
+    float: left;
+    height: 40px;
+    line-height: 40px;
+    vertical-align: middle;
+    padding: 0 15px;
+    font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
+    font-weight: 700;
+    font-size: 1.1em;
+    text-transform: uppercase;
+    color: #555555;
+    border-right: 1px solid #cccccc; }
+  .homepage .home-tabs a.active {
+    background: #555555;
+    color: white; }
+  .homepage .home-tabs div.pagination {
+    float: right;
+    margin-right: 10px; }
+    .homepage .home-tabs div.pagination nav .page, .homepage .home-tabs div.pagination nav .first, .homepage .home-tabs div.pagination nav .last {
+      display: none; }
+    .homepage .home-tabs div.pagination nav .next a, .homepage .home-tabs div.pagination nav .prev a {
+      display: block;
+      width: 17px;
+      height: 17px;
+      margin: 11px 5px;
+      padding: 0;
+      background: transparent url(../images/paginationLeft.png) no-repeat;
+      text-indent: -9999px;
+      border: none; }
+    .homepage .home-tabs div.pagination nav .next a {
+      background: transparent url(../images/paginationRight.png) no-repeat; }
 
 .adverts {
   height: 165px;
@@ -4918,7 +4986,7 @@ form.user_edit textarea#user_tagline {
 
 #subscribe-pitch .byline {
   width: 550px;
-  margin: 40px auto 0;
+  margin: 30px auto 0;
   text-align: center; }
   #subscribe-pitch .byline h1 {
     font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
@@ -4939,7 +5007,7 @@ form.user_edit textarea#user_tagline {
   text-align: center;
   font-size: 19px;
   display: block;
-  margin: 20px auto 40px;
+  margin: 20px auto 50px;
   font-weight: 900;
   padding: 3px; }
   #subscribe-pitch a.button span {
@@ -5235,7 +5303,7 @@ header .topic-icon {
 
 #invite-pitch .byline {
   width: 550px;
-  margin: 40px auto 0;
+  margin: 30px auto 0;
   text-align: center; }
   #invite-pitch .byline h1 {
     font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
@@ -5256,7 +5324,7 @@ header .topic-icon {
   text-align: center;
   font-size: 19px;
   display: block;
-  margin: 20px auto 40px;
+  margin: 20px auto 50px;
   font-weight: 900;
   padding: 3px;
   background-color: #c8f2d0;

@@ -7,8 +7,6 @@ class HomeController < ApplicationController
       render "beta" and return
     end
     
-    @stories = Story.published.newest_first
-    @popular_stories = Story.published.popular
-    @adverts = Advert.enabled.random.limit(2)
+    @most_rewarded_stories = Story.published.most_rewarded.page params[:page]
   end
 end

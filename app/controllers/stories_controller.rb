@@ -7,6 +7,16 @@ class StoriesController < ApplicationController
     @stories = Story.published
   end
   
+  def recent
+    @recent_stories = Story.published.newest_first.page params[:page]
+    render "home/index"
+  end
+  
+  def most_rewarded
+    @most_rewarded_stories = Story.published.most_rewarded.page params[:page]
+    render "home/index"
+  end
+  
   def tagged_with
     @stories = []
     @tags = Story.published.tag_counts_on(:tags)

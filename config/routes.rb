@@ -24,13 +24,17 @@ Repo::Application.routes.draw do
       post :add_topic_to
       post :remove_topic_from
     end
-    get :bookmarked, :on => :collection
-    get :recommended, :on => :collection
-    get :render_page_form, :on => :collection
-    get :render_page_theme, :on => :collection
-    get :tagged_with, :on => :collection
-    get :search, :on => :collection
-    get :random, :on => :collection
+    collection do
+      get :bookmarked
+      get :recommended
+      get :render_page_form
+      get :render_page_theme
+      get :tagged_with
+      get :search
+      get :random
+      get :recent
+      get :most_rewarded
+    end
     
     resources :pages, :only => [:create, :update, :destroy] do
       post :add_or_update_image, :on => :member
@@ -48,6 +52,9 @@ Repo::Application.routes.draw do
   
   resources :users do
     resources :subscriptions
+    
+    # Homepage tab
+    get :top_curators, :on => :collection
 
     # Spreedly updates come here
     post :billing_updates, :on => :collection
@@ -69,6 +76,7 @@ Repo::Application.routes.draw do
   match '/invite',              :to => 'home#invite',               :as => :invite
   match '/thankyou',            :to => 'home#thankyou',             :as => :thankyou
   match '/faq',                 :to => 'home#faq',                  :as => :faq
+
   match '/',                    :to => 'home#index',                :as => :home
   root :to => "home#index"
   

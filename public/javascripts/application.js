@@ -67,11 +67,6 @@ function setup_rewarding() {
 	});
 }
 
-function setup_search_placeholder() {
-	$('#query').focus(function(){
-		$(this).val('');
-	});
-}
 function setup_story_gallery() {
 	if ($('.story-gallery .scrollbar-me').length > 0 ) {
 		var small_preview_width = 100, large_preview_width = 630;
