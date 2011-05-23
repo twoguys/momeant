@@ -9,4 +9,4 @@
 %h3 Common tags
 .tag-cloud
   - tag_cloud(@tags, %w(css1 css2 css3 css4)) do |tag, css_class|
-    = link_to tag.name, stories_tagged_with_path(tag.name), :class => "tag #{css_class}"
+    = link_to tag.name, stories_tagged_with_path(tag.name.gsub('.','%2E')), :class => "tag #{css_class}"
