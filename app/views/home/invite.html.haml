@@ -1,3 +1,6 @@
+- content_for :head do
+  = javascript_include_tag "invite"
+
 #invite-pitch
   .byline
     %h1 Become a Mo&#149meant creator!
@@ -7,8 +10,20 @@
       by sharing your artistic vision with the world.
     
   - unless current_user.active_subscription?
-    %a#subscribe1.button{:href => current_user.spreedly_plan_url}
+    %a.apply.button{:href => "#invitation-instructions"}
       %span Apply Now!
+    %div{:style => "display:none"}
+      #invitation-instructions
+        .ticket
+        = form_tag apply_path, :remote => true do
+          %p Please provide us with:
+          = text_field_tag :name, "", :placeholder => "your name"
+          = text_field_tag :email, "", :placeholder => "email address"
+          = text_area_tag :about, "", :placeholder => "tell us a bit about your work..."
+          = submit_tag "Submit Application"
+        .thank-you
+          %h1 Thanks!
+          %p We'll take a look and get in touch with you soon.
     
   %ul.thirds
     %li.join
@@ -77,5 +92,5 @@
       = image_tag("invite/Placeholder240200.gif")
   
   - unless current_user.active_subscription?
-    %a#subscribe1.button{:href => current_user.spreedly_plan_url}
+    %a.apply.button{:href => "#invitation-instructions"}
       %span Apply Now!

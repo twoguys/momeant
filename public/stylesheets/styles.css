@@ -131,19 +131,59 @@ header {
         background-position: 50% 6px; }
     header #user-nav #home a {
       background: url(../images/icons/momeantHome.png) no-repeat scroll 50% 6px transparent; }
-    header #user-nav #signup, header #user-nav #profile, header #user-nav #signin, header #user-nav #signout {
+    header #user-nav #signup, header #user-nav #signin, header #user-nav #signout {
       top: 15px; }
     header #user-nav #signup {
       left: 60px; }
-    header #user-nav #profile a {
-      background-image: url(../images/icons/momeantProfileB.png); }
+    header #user-nav #profile, header #user-nav #faq {
+      position: relative; }
+      header #user-nav #profile span.icon, header #user-nav #faq span.icon {
+        position: absolute;
+        display: block;
+        width: 33px;
+        height: 28px;
+        top: 7px;
+        left: 7px;
+        background-image: url(../images/icons/momeantProfileB.png);
+        cursor: pointer; }
+      header #user-nav #profile .inner, header #user-nav #faq .inner {
+        background: transparent url(../images/topTriangle.png) no-repeat 10px 0;
+        padding-top: 7px;
+        position: absolute;
+        top: 35px;
+        display: none; }
+      header #user-nav #profile ul, header #user-nav #faq ul {
+        border: 3px solid black;
+        -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+        -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.7); }
+        header #user-nav #profile ul .odd, header #user-nav #faq ul .odd {
+          background-color: #f0f0f0; }
+        header #user-nav #profile ul .even, header #user-nav #faq ul .even {
+          background-color: white; }
+        header #user-nav #profile ul li, header #user-nav #faq ul li {
+          float: none; }
+          header #user-nav #profile ul li a, header #user-nav #faq ul li a {
+            width: 80px;
+            height: 1.1em;
+            padding: 12px 10px;
+            text-indent: 0;
+            font-weight: bold;
+            font-size: 1.1em;
+            text-transform: uppercase;
+            color: black; }
+        header #user-nav #profile ul li:hover, header #user-nav #faq ul li:hover {
+          background-color: #b8e6ff; }
+    header #user-nav #faq span.icon {
+      background-image: url(../images/icons/momeantHelp.png);
+      left: 10px; }
+    header #user-nav #profile:hover .inner, header #user-nav #faq:hover .inner {
+      display: block; }
     header #user-nav #signin, header #user-nav #signout {
       left: 140px; }
     header #user-nav #create:hover .tip, header #user-nav #balance:hover .tip, header #user-nav #subscriptions:hover .tip, header #user-nav #recommendations:hover .tip, header #user-nav #topics:hover .tip {
       display: block;
       left: 14px; }
-    header #user-nav #faq a {
-      background-image: url(../images/icons/momeantHelp.png); }
     header #user-nav #create a {
       background: transparent url(../images/icons/momeantAddStory.png) no-repeat 50% 7px; }
     header #user-nav #balance {
@@ -4451,6 +4491,38 @@ ul.stories .excerpt {
   margin-top: 15px;
   font-size: 0.9em; }
 
+ul.users li.user {
+  background-color: white;
+  float: left;
+  -webkit-box-shadow: 3px 3px 5px #bbbbbb;
+  -moz-box-shadow: 3px 3px 5px #bbbbbb;
+  box-shadow: 3px 3px 5px #bbbbbb;
+  position: relative;
+  height: 300px;
+  margin-bottom: 25px;
+  margin-right: 25px;
+  width: 300px; }
+  ul.users li.user a.avatar {
+    display: block;
+    float: left;
+    width: 60px;
+    height: 60px;
+    margin: 6px;
+    overflow: hidden; }
+  ul.users li.user a.name {
+    width: 228px;
+    float: left;
+    font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
+    font-size: 2em;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #252525;
+    margin-top: 16px; }
+ul.users li.user:nth-child(3n+3) {
+  margin-right: 0px; }
+ul.users li.user:nth-child(3n+3) {
+  margin-right: 0px; }
+
 .user-profile .top {
   background: transparent url(../images/simpleDotBG.png) repeat-x 50% 100%;
   padding-bottom: 15px;
@@ -4619,9 +4691,45 @@ form.user_edit textarea#user_tagline {
 
 .homepage section {
   clear: both; }
-.homepage .tabs {
-  border-bottom: 2px solid white;
-  margin-bottom: 10px; }
+.homepage .lists ul.stories, .homepage .lists ul.users {
+  min-height: 300px; }
+.homepage .home-tabs {
+  height: 40px;
+  background: #eaeaea;
+  margin-bottom: 20px;
+  clear: both; }
+  .homepage .home-tabs a {
+    display: block;
+    float: left;
+    height: 40px;
+    line-height: 40px;
+    vertical-align: middle;
+    padding: 0 15px;
+    font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
+    font-weight: 700;
+    font-size: 1.1em;
+    text-transform: uppercase;
+    color: #555555;
+    border-right: 1px solid #cccccc; }
+  .homepage .home-tabs a.active {
+    background: #555555;
+    color: white; }
+  .homepage .home-tabs div.pagination {
+    float: right;
+    margin-right: 10px; }
+    .homepage .home-tabs div.pagination nav .page, .homepage .home-tabs div.pagination nav .first, .homepage .home-tabs div.pagination nav .last {
+      display: none; }
+    .homepage .home-tabs div.pagination nav .next a, .homepage .home-tabs div.pagination nav .prev a {
+      display: block;
+      width: 17px;
+      height: 17px;
+      margin: 11px 5px;
+      padding: 0;
+      background: transparent url(../images/paginationLeft.png) no-repeat;
+      text-indent: -9999px;
+      border: none; }
+    .homepage .home-tabs div.pagination nav .next a {
+      background: transparent url(../images/paginationRight.png) no-repeat; }
 
 .adverts {
   height: 165px;
@@ -5227,37 +5335,7 @@ header .topic-icon {
           width: 650px;
           height: 400px; }
 
-.yui-editor-container {
-  border: 1px solid #cccccc !important; }
-  .yui-editor-container .yui-toolbar-titlebar {
-    display: none !important; }
-  .yui-editor-container .yui-toolbar-container .yui-toolbar-subcont {
-    border-bottom: 1px solid #cccccc !important;
-    background-color: #f7f7f7 !important;
-    padding: 5px 10px !important; }
-    .yui-editor-container .yui-toolbar-container .yui-toolbar-subcont h3 {
-      display: none; }
-    .yui-editor-container .yui-toolbar-container .yui-toolbar-subcont select {
-      border: 1px solid #cccccc !important;
-      -webkit-border-radius: 3px;
-      -moz-border-radius: 3px;
-      border-radius: 3px; }
-    .yui-editor-container .yui-toolbar-container .yui-toolbar-subcont ul li {
-      margin-bottom: 0 !important; }
-
-.yui-button {
-  background: white !important;
-  border-width: 1px !important;
-  border-color: #cccccc !important;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px; }
-  .yui-button .first-child {
-    border: none !important; }
-
-.yui-toolbar-spinbutton .first-child a {
-  padding-left: 7px !important; }
-
+@import url(text_editor.css);
 .search ul.users.stories li {
   width: 300px;
   height: 300px;
@@ -5378,6 +5456,55 @@ header .topic-icon {
       box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
       width: 240px;
       height: 200px; }
+
+#invitation-instructions {
+  width: 420px;
+  background: #393939;
+  padding-bottom: 1px; }
+  #invitation-instructions .ticket {
+    width: 100%;
+    height: 130px;
+    background: transparent url(../images/admitOneGreen.png) no-repeat 50% 20px; }
+  #invitation-instructions p {
+    font-family: "museo-slab-1", "museo-slab-2", serif;
+    font-weight: 100;
+    color: #b7b7b7;
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 1.2em; }
+  #invitation-instructions form {
+    width: 280px;
+    margin: 0 auto 10px; }
+    #invitation-instructions form input, #invitation-instructions form textarea {
+      clear: both;
+      width: 263px;
+      margin-bottom: 10px; }
+    #invitation-instructions form textarea {
+      height: 150px; }
+    #invitation-instructions form input[type="submit"] {
+      background: #c8f2d0;
+      color: #34b44c;
+      width: 280px;
+      font-size: 1.3em;
+      padding: 10px 0; }
+  #invitation-instructions .thank-you {
+    display: none;
+    text-align: center;
+    padding: 40px 0; }
+    #invitation-instructions .thank-you h1 {
+      color: white;
+      text-transform: uppercase;
+      font-size: 2.3em; }
+
+#invitation-instructions.loading form {
+  background: transparent url(../images/spinner.gif) no-repeat 50% 50%; }
+  #invitation-instructions.loading form * {
+    display: none; }
+
+#invitation-instructions.complete form {
+  display: none; }
+#invitation-instructions.complete .thank-you {
+  display: block; }
 
 .hidden {
   display: none; }

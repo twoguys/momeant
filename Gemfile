@@ -21,6 +21,7 @@ gem 'bluecloth'
 gem 'acts_as_list'
 gem 'aasm'
 gem 'spreedly', :require => false
+gem 'kaminari'
 
 group :test do
   gem 'shoulda'

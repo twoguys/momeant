@@ -7,8 +7,12 @@ class HomeController < ApplicationController
       render "beta" and return
     end
     
-    @stories = Story.published.newest_first
-    @popular_stories = Story.published.popular
-    @adverts = Advert.enabled.random.limit(2)
+    @most_rewarded_stories = Story.published.most_rewarded.page params[:page]
+  end
+  
+  def apply
+    redirect_to invite_path unless request.post?
+    InvitationsMailer.creator_application(params[:name],params[:email],params[:about]).deliver
+    return :json => {:result => "success"}
   end
 end

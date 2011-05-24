@@ -39,7 +39,7 @@ class Story < ActiveRecord::Base
   
   scope :published, where(:published => true)
   scope :newest_first, order("created_at DESC")
-  scope :popular, where("likes_count > 0").order("likes_count DESC")
+  scope :most_rewarded, where("reward_count > 0").order("reward_count DESC")
   
   attr_accessor :autosaving
   

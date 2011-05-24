@@ -1,7 +1,12 @@
 class UsersController < ApplicationController
-  before_filter :authenticate_user!, :except => [:show, :billing_updates]
+  before_filter :authenticate_user!, :except => [:show, :billing_updates, :top_curators]
   skip_before_filter :verify_authenticity_token, :only => :billing_updates
   skip_before_filter :release_lockdown, :only => :billing_updates
+  
+  def top_curators
+    @top_curators = User.order(:subscriptions_count).page params[:page]
+    render "home/index"
+  end
   
   def show
     @user = User.find(params[:id])
