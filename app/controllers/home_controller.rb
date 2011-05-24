@@ -9,4 +9,10 @@ class HomeController < ApplicationController
     
     @most_rewarded_stories = Story.published.most_rewarded.page params[:page]
   end
+  
+  def apply
+    redirect_to invite_path unless request.post?
+    InvitationsMailer.creator_application(params[:name],params[:email],params[:about]).deliver
+    return :json => {:result => "success"}
+  end
 end

@@ -74,6 +74,7 @@ Repo::Application.routes.draw do
   match '/search',              :to => "search#index",              :as => :search
   match '/subscribe',           :to => 'home#subscribe',            :as => :subscribe
   match '/invite',              :to => 'home#invite',               :as => :invite
+  match '/apply',               :to => 'home#apply',                :as => :apply
   match '/thankyou',            :to => 'home#thankyou',             :as => :thankyou
   match '/faq',                 :to => 'home#faq',                  :as => :faq
 
