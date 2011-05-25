@@ -119,6 +119,11 @@ var story_page_editor = function() {
 		$('#pane').toggleClass('closed');
 		return false;
 	};
+	
+	this.open_pane = function() {
+		$('#pane').removeClass('closed');
+		return false;
+	};
 
 	this.show_previous_page_button = function() {
 		$('#previous-page').show();
@@ -217,6 +222,8 @@ var story_page_editor = function() {
 			
 			$('#page-type-chooser li[page-type="' + page_type + '"]').removeClass('loading');
 			pages_editor.set_preview_type(page_type);
+			// open the pane if it's closed
+			pages_editor.open_pane();
 			
 			auto_saver.create_or_change_page($current_page, page_type, pages_editor.page, pages_editor.page_chooser_mode == 'add');
 		});
