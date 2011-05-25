@@ -41,10 +41,8 @@
               = link_to("Home", root_path, :id => "logo-large") unless @hide_momeant
               - if !current_user
                 = link_to("Join", new_user_registration_path, :id => "join", :class => "round-button")
-              - elsif current_user.trial_expired?
-                = link_to("Your trial has expired", "#", :class => "round-button")
-              - elsif !@hide_stumble
-                = link_to("Stumble", random_stories_path, :id => "stumble", :class => "round-button tooltipped-w", :title => "Show me a random story!")
+              - elsif !@hide_rewards
+                = render "shared/reward_bank"
               = yield :header
             
         #mid

@@ -1,0 +1,23 @@
+- if current_user.active_subscription?
+  #rewards-bank-slider
+    .inner
+      Reward Coins left in this pay period.
+  = link_to(current_user.coins, "#", :id => "rewards-bank", :class => "round-button")
+  
+- elsif current_user.trial?
+  #rewards-bank-slider
+    .inner
+      Reward Coins left in your trial.
+  = link_to(current_user.coins, subscribe_path, :id => "rewards-bank", :class => "round-button")
+
+- elsif current_user.trial_expired?
+  #rewards-bank-slider.expired
+    .inner
+      Trial Expired. #{link_to("Become a patron", subscribe_path)}
+  = link_to(current_user.coins, subscribe_path, :id => "rewards-bank", :class => "round-button expired")
+  
+- elsif current_user.disabled_subscription?
+  #rewards-bank-slider.disabled
+    .inner
+      Oops! We need you to #{link_to("fix your subscription", "#")}
+  = link_to(current_user.coins, "#", :id => "rewards-bank", :class => "round-button disabled")
