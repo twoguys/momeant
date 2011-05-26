@@ -459,68 +459,88 @@ ul.stories
 	li.medium.story
 		margin-bottom: 25px
 		margin-right: 19px
-		background: transparent url(../images/thumbnailStaples.png) no-repeat 0 0
-		.padder
-			background: white url(../images/thumbnailLeftGradientAndPagesEffect.png) no-repeat 0 0
-			height: 102px
-			width: 288px
-			padding: 192px 8px 6px 6px
-			margin: 0 0 0 2px
-			position: relative
-			-webkit-perspective: 600
-			a.thumbnail
-				display: block
+		position: relative
+		width: 300px
+		height: 300px
+		.front
+			background: transparent url(../images/thumbnailStaples.png) no-repeat 0 0
+			position: absolute
+			top: 0
+			left: 0
+			z-index: 2
+			-webkit-transform: rotateY(0deg)
+			-webkit-transform-style: preserve-3d
+			-webkit-backface-visibility: hidden
+			transition: all .4s ease-in-out
+			-moz-transition: all .4s ease-in-out
+			-webkit-transition: all .4s ease-in-out
+			.padder
+				background: white url(../images/thumbnailLeftGradientAndPagesEffect.png) no-repeat 0 0
+				height: 288px
 				width: 288px
-				height: 180px
-				margin-bottom: 6px
-				overflow: hidden
-				position: absolute
-				top: 6px
-				left: 6px
-				z-index: 900
-				-webkit-transform: rotateY(0deg)
-				-webkit-transform-style: preserve-3d
-				-webkit-backface-visibility: hidden
-				transition: all .4s ease-in-out
-				-moz-transition: all .4s ease-in-out
-				-webkit-transition: all .4s ease-in-out
+				padding: 6px 8px 6px 6px
+				margin: 0 0 0 2px
+				-webkit-perspective: 600
+				a.thumbnail
+					display: block
+					width: 288px
+					height: 180px
+					margin-bottom: 6px
+					overflow: hidden
+		.back
+			background: #fff
+			width: 276px
+			height: 276px
+			margin: 6px 8px
+			padding: 6px
+			position: absolute
+			top: 0
+			left: 0
+			z-index: 1
+			-webkit-transform: rotateY(-180deg)
+			-webkit-transform-style: preserve-3d
+			-webkit-backface-visibility: hidden
+			transition: all .4s ease-in-out
+			-moz-transition: all .4s ease-in-out
+			-webkit-transition: all .4s ease-in-out
+			.title
+				padding-bottom: 5px
+				margin: 0 0 10px
+				border-bottom: 1px dotted #ccc
+				font-family: $typewriter
+				font-weight: 100
+				text-align: center
+				color: #999
 			.author-info
 				background-color: #fff
 				width: 268px
 				height: 160px
-				position: absolute
-				padding: 10px
-				top: 6px
-				left: 6px
-				z-index: 800
-				-webkit-transform: rotateY(-180deg)
-				-webkit-transform-style: preserve-3d
-				-webkit-backface-visibility: hidden
-				transition: all .4s ease-in-out
-				-moz-transition: all .4s ease-in-out
-				-webkit-transition: all .4s ease-in-out
+				display: block
+				padding: 0 10px
+				position: relative
 				.avatar
 					width: 60px
 					height: 60px
 					overflow: none
 					position: absolute
-					top: 10px
-					left: 10px
+					top: 0
+					left: 0
 				.name
 					font-size: 1.5em
 					font-weight: 900
 					text-transform: uppercase
-					color: $text_color
+					padding-top: 10px
+				.name, .occupation
 					margin-left: 70px
+					color: $text_color
 	
 	li.medium.story.flip
-		.padder
-			a.thumbnail
-				z-index: 900
-				-webkit-transform: rotateY(180deg)
-			.author-info
-				z-index: 1000
-				-webkit-transform: rotateY(0deg)
+		.front
+			z-index: 2
+			-webkit-transform: rotateY(180deg)
+		.back
+			z-index: 3
+			-webkit-transform: rotateY(0deg)
 
 	li.story:nth-child(3n+3)
 		margin-right: 0px

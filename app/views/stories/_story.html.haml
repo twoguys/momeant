@@ -11,6 +11,7 @@
       .rewards{:class => current_user && current_user.has_rewarded?(story) ? "rewarded" : ""}= story.reward_count
       .views= story.view_count
   .back
+    %p.title This story was created by:
     %a.author-info{:href => preview_story_path(story)}
       = image_tag(story.user.avatar.url(:thumbnail), :class => "avatar")
       .name= story.user.name
