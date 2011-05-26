@@ -98,6 +98,10 @@ function setup_recommendation_tabs() {
 	});
 }
 
+function setup_thumbnail_flipping() {
+	$('ul.stories li.story.medium').hover(function(){$(this).addClass('flip')},function(){$(this).removeClass('flip')});
+}
+
 $(document).ready(function() {
 	setup_tooltips();
 	setup_tab_switching();
@@ -107,6 +111,7 @@ $(document).ready(function() {
 	setup_rewarding();
 	setup_story_gallery();
 	setup_recommendation_tabs();
+	setup_thumbnail_flipping();
 	//setup_personal_library_tabs();
 	$("a.disabled").click(function() {return false;})
 	

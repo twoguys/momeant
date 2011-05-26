@@ -338,8 +338,7 @@ header {
         font-style: oblique;
         font-weight: normal;
         letter-spacing: 0.4px;
-        text-transform: lowercase;
-        color: #999999; }
+        text-transform: lowercase; }
       header #user-nav #search input[type="submit"] {
         width: 20px;
         height: 20px;
@@ -4221,23 +4220,75 @@ form.new_story, form.edit_story, .story-form {
       padding-right: 2px; }
 
 ul.stories li.story {
-  background-color: white;
-  float: left;
-  -webkit-box-shadow: 3px 3px 5px #bbbbbb;
-  -moz-box-shadow: 3px 3px 5px #bbbbbb;
-  box-shadow: 3px 3px 5px #bbbbbb;
-  position: relative; }
+  float: left; }
+  ul.stories li.story .padder {
+    -webkit-box-shadow: 3px 3px 5px #bbbbbb;
+    -moz-box-shadow: 3px 3px 5px #bbbbbb;
+    box-shadow: 3px 3px 5px #bbbbbb;
+    position: relative;
+    padding: 6px; }
 ul.stories li.medium.story {
-  height: 300px;
   margin-bottom: 25px;
-  margin-right: 25px;
-  width: 300px; }
-  ul.stories li.medium.story a.thumbnail {
-    display: block;
+  margin-right: 19px;
+  background: transparent url(../images/thumbnailStaples.png) no-repeat 0 0; }
+  ul.stories li.medium.story .padder {
+    background: white url(../images/thumbnailLeftGradientAndPagesEffect.png) no-repeat 0 0;
+    height: 102px;
     width: 288px;
-    height: 180px;
-    margin: 6px;
-    overflow: hidden; }
+    padding: 192px 8px 6px 6px;
+    margin: 0 0 0 2px;
+    position: relative;
+    -webkit-perspective: 600; }
+    ul.stories li.medium.story .padder a.thumbnail {
+      display: block;
+      width: 288px;
+      height: 180px;
+      margin-bottom: 6px;
+      overflow: hidden;
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      z-index: 900;
+      -webkit-transform: rotateY(0deg);
+      -webkit-transform-style: preserve-3d;
+      -webkit-backface-visibility: hidden;
+      transition: all 0.4s ease-in-out;
+      -moz-transition: all 0.4s ease-in-out;
+      -webkit-transition: all 0.4s ease-in-out; }
+    ul.stories li.medium.story .padder .author-info {
+      background-color: white;
+      width: 268px;
+      height: 160px;
+      position: absolute;
+      padding: 10px;
+      top: 6px;
+      left: 6px;
+      z-index: 800;
+      -webkit-transform: rotateY(-180deg);
+      -webkit-transform-style: preserve-3d;
+      -webkit-backface-visibility: hidden;
+      transition: all 0.4s ease-in-out;
+      -moz-transition: all 0.4s ease-in-out;
+      -webkit-transition: all 0.4s ease-in-out; }
+      ul.stories li.medium.story .padder .author-info .avatar {
+        width: 60px;
+        height: 60px;
+        overflow: none;
+        position: absolute;
+        top: 10px;
+        left: 10px; }
+      ul.stories li.medium.story .padder .author-info .name {
+        font-size: 1.5em;
+        font-weight: 900;
+        text-transform: uppercase;
+        color: #252525;
+        margin-left: 70px; }
+ul.stories li.medium.story.flip .padder a.thumbnail {
+  z-index: 900;
+  -webkit-transform: rotateY(180deg); }
+ul.stories li.medium.story.flip .padder .author-info {
+  z-index: 1000;
+  -webkit-transform: rotateY(0deg); }
 ul.stories li.story:nth-child(3n+3) {
   margin-right: 0px; }
 ul.stories li.story:nth-child(3n+3) {
@@ -4248,8 +4299,7 @@ ul.stories .title a {
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.2px;
-  line-height: 15px;
-  margin: 0 10px; }
+  line-height: 15px; }
 ul.stories .author {
   color: black;
   font-family: Georgia, serif;
@@ -4258,7 +4308,6 @@ ul.stories .author {
   font-size: 11px;
   letter-spacing: 0.3px;
   line-height: 20px;
-  margin: 0 10px;
   padding-bottom: 4px; }
   ul.stories .author a {
     color: #00aeef; }
@@ -4280,7 +4329,7 @@ ul.stories .excerpt {
   font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
   font-weight: 100;
   font-size: 11px;
-  margin: 10px;
+  margin: 10px 0 0;
   line-height: 15px;
   height: 45px;
   width: 220px;
@@ -5349,6 +5398,7 @@ header .topic-icon {
           height: 2px;
           background-color: white; }
         .flipbook .flipstrip .slide .flipleft .dotted {
+          border: none;
           border-bottom: 1px dotted white;
           width: 100%;
           height: 1px;
