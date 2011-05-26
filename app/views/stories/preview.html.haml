@@ -20,9 +20,8 @@
 .story-preview
   = bookmark_button(@story) unless @story.owner?(current_user)
   .preview.clearfix
-    = link_to("Edit your story", edit_story_path(@story), :class => "edit-story") if @story.owner?(current_user) #&& !@story.published?
     .padder
-      .thumbnail.large{:class => @story.thumbnail.present? ? @story.thumbnail.css_class : ""}
+      %a.thumbnail.large{:class => @story.thumbnail.present? ? @story.thumbnail.css_class : "", :href => story_path(@story)}
         .inner
           - if @story.thumbnail
             - @page = @story.thumbnail
@@ -35,11 +34,10 @@
       = story_view_link(@story)
       
       = #render "add_this"
-    .price= story_view_link(@story)
 
   .metadata
     .top
-      .title= @story.title
+      = link_to(@story.title, story_path(@story), :class => "title")
       .creator by: #{link_to(@story.user.name, user_path(@story.user))}
       .series
         %span.current 1
