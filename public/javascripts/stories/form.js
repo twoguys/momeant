@@ -828,7 +828,15 @@ var story_auto_saver = function() {
 		    theme_advanced_buttons3 : "",
 		    theme_advanced_toolbar_location : "top",
 		    theme_advanced_toolbar_align : "left",
-				theme_advanced_more_colors: false
+				theme_advanced_more_colors: false,
+				
+				plugins : "paste",
+				paste_text_sticky : true,
+				setup : function(ed) {
+				    ed.onInit.add(function(ed) {
+				      ed.pasteAsPlainText = true;
+				    });
+				  }
 			};
 			if (type == 'grid') {
 				tiny_mce_config.theme_advanced_buttons1 = "fontselect,fontsizeselect";
