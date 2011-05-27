@@ -462,45 +462,25 @@
 ul.stories
 	li.story
 		float: left
-		.padder
-			-webkit-box-shadow: 3px 3px 5px #BBBBBB
-			-moz-box-shadow: 3px 3px 5px #BBBBBB
-			box-shadow: 3px 3px 5px #BBBBBB
-			position: relative
-			padding: 6px
+		background-color: white
+		-webkit-box-shadow: 3px 3px 5px #BBBBBB
+		-moz-box-shadow: 3px 3px 5px #BBBBBB
+		box-shadow: 3px 3px 5px #BBBBBB
+		position: relative
 		
 	li.medium.story
 		margin-bottom: 25px
-		margin-right: 19px
-		position: relative
+		margin-right: 25px
 		width: 300px
 		height: 300px
-		.front
-			background: transparent url(../images/thumbnailStaples.png) no-repeat 0 0
-			position: absolute
-			top: 0
-			left: 0
-			z-index: 2
-			-webkit-transform: rotateY(0deg)
-			-webkit-transform-style: preserve-3d
-			-webkit-backface-visibility: hidden
-			transition: all .4s ease-in-out
-			-moz-transition: all .4s ease-in-out
-			-webkit-transition: all .4s ease-in-out
-			.padder
-				background: white url(../images/thumbnailLeftGradientAndPagesEffect.png) no-repeat 0 0
-				height: 288px
-				width: 288px
-				padding: 6px 8px 6px 6px
-				margin: 0 0 0 2px
-				-webkit-perspective: 600
-				a.thumbnail
-					display: block
-					width: 288px
-					height: 180px
-					margin-bottom: 6px
-					overflow: hidden
+		a.thumbnail
+			display: block
+			width: 288px
+			height: 180px
+			margin: 6px
+			overflow: hidden
 		.back
+			display: none
 			background: #fff
 			width: 276px
 			height: 276px
@@ -509,13 +489,6 @@ ul.stories
 			position: absolute
 			top: 0
 			left: 0
-			z-index: 1
-			-webkit-transform: rotateY(-180deg)
-			-webkit-transform-style: preserve-3d
-			-webkit-backface-visibility: hidden
-			transition: all .4s ease-in-out
-			-moz-transition: all .4s ease-in-out
-			-webkit-transition: all .4s ease-in-out
 			.title
 				padding-bottom: 5px
 				margin: 0 0 10px
@@ -546,19 +519,12 @@ ul.stories
 				.name, .occupation
 					margin-left: 70px
 					color: $text_color
-	
-	li.medium.story.flip
-		.front
-			z-index: 2
-			-webkit-transform: rotateY(180deg)
-		.back
-			z-index: 3
-			-webkit-transform: rotateY(0deg)
 
 	li.story:nth-child(3n+3)
 		margin-right: 0px
-	li.story:nth-child(3n+3)
-		margin-right: 0px
+
+	.title, .author, .excerpt
+		margin: 0 10px
 
 	.title a
 		color: black
@@ -599,7 +565,7 @@ ul.stories
 		font-family: $block
 		font-weight: 100
 		font-size: 11px
-		margin: 10px 0 0
+		margin-top: 10px
 		line-height: 15px
 		height: 45px
 		width: 220px
