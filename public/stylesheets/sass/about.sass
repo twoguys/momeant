@@ -1,0 +1,179 @@
+#about-pitch
+	.characters
+		width: 1008px
+		height: 290px
+		margin: 20px 0 50px -58px
+		background: transparent url(../images/splashCharacters.png) no-repeat 0 0
+	.byline
+		width: 900px
+		margin: 30px auto 0
+		text-align: center
+		h1
+			font-family: $block
+			font-size: 33px
+			font-weight: 700
+			text-transform: uppercase
+			text-shadow: $background_color -1px 1px 0, $blue -2px 2px 0
+			margin-bottom: 5px
+		h3
+			font-family: $typewriter
+			color: $blue
+			font-size: 18px
+			font-weight: 100
+			width: 900px
+			margin: 0 auto
+	a.button
+		width: 402px
+		text-align: center
+		font-size: 19px
+		display: block
+		margin: 20px auto 50px
+		font-weight: 900
+		padding: 3px
+		background-color: $lightblue
+		color: $blue
+		span
+			@include rounded(3px)
+			padding: 12px 0 10px
+			display: block
+			border: 1px solid #fff
+			width: 400px
+			
+	ul.halves
+		height: 440px
+		margin: 10px 0 40px
+		li
+			float: left
+			width: 49%
+			border-right: 1px dotted #ccc
+			img
+				display: block
+				margin: 0 auto
+				width: 220px
+				height: 200px
+			h3
+				font-size: 18px
+				text-transform: uppercase
+				color: #7f7f7f
+				vertical-align: middle
+				margin: 30px auto
+				width: 220px
+				height: 60px
+				text-align: center
+				padding-bottom: 9px
+				background: transparent url(../images/subscribeCurlShadow.png) no-repeat 50% 100%
+				span
+					display: block
+					background-color: #fff
+					height: 60px
+					line-height: 60px
+			p
+				width: 450px
+				margin: 0 auto
+				text-align: center
+				font-family: $block
+				font-size: 1.2em
+				line-height: 18px
+				font-weight: 100
+				margin-bottom: 25px
+			.small
+				text-align: justify
+				float: right
+				width: 330px
+				height: 75px
+				margin-bottom: 0px
+				font-family: $typewriter
+				font-weight: 100
+				font-size: 1.2em
+				.title
+					font-family: $typewriter
+					color: $blue
+					font-size: 29px
+					background-color: transparent
+					text-transform: none
+					margin: 0
+					padding: 0
+					font-weight: 100
+					height: 75px
+					float: left
+		li.make
+			border: none
+	.fine-print
+		padding-top: 140px
+		background: transparent url(../images/finePrint.png) no-repeat 50% 0
+		.question
+			margin-top: 20px
+			height: 200px
+			position: relative
+			h2, p
+				width: 650px
+			h2
+				font-family: $typewriter
+				color: $blue
+				font-size: 29px
+				background-color: transparent
+				text-transform: none
+				margin: 0
+				padding: 0
+				font-weight: 100
+			p
+				font-size: 1.3em
+				line-height: 1.4em
+				font-weight: 100
+				font-family: $typewriter
+				margin: 7px 0
+			img
+				position: absolute
+				top: -20px
+				right: 0
+				@include boxshadow(5px,.2,0,0)
+				width: 240px
+				height: 200px
+#invitation-instructions
+	width: 420px
+	background: #393939
+	padding-bottom: 1px
+	.ticket
+		width: 100%
+		height: 130px
+		background: transparent url(../images/admitOneGreen.png) no-repeat 50% 20px
+	p
+		font-family: $typewriter
+		font-weight: 100
+		color: #b7b7b7
+		text-align: center
+		margin-bottom: 10px
+		font-size: 1.2em
+	form
+		width: 280px
+		margin: 0 auto 10px
+		input, textarea
+			clear: both
+			width: 263px
+			margin-bottom: 10px
+		textarea
+			height: 150px
+		input[type="submit"]
+			background: $lightblue
+			color: $blue
+			width: 280px
+			font-size: 1.3em
+			padding: 10px 0
+	.thank-you
+		display: none
+		text-align: center
+		padding: 40px 0
+		h1
+			color: #fff
+			text-transform: uppercase
+			font-size: 2.3em
+#invitation-instructions.loading
+	form
+		background: transparent url(../images/spinner.gif) no-repeat 50% 50%
+		*
+			display: none
+#invitation-instructions.complete
+	form
+		display: none
+	.thank-you
+		display: block
