@@ -22,7 +22,7 @@
         .overview
           - counter = 0
           - @stories.each do |story|
-            .preview{:counter => counter, :class => story.thumbnail ? story.thumbnail.css_class : ""}
+            .preview.petite{:counter => counter, :class => story.thumbnail ? story.thumbnail.css_class : ""}
               - if story.thumbnail 
                 - @page = story.thumbnail
                 = render :partial => "stories/page_themes/#{@page.partial_name}", :locals => {:size => "petite"}
