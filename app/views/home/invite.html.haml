@@ -9,21 +9,29 @@
       %br
       by sharing your artistic vision with the world.
     
-  - unless current_user.active_subscription?
-    %a.apply.button{:href => "#invitation-instructions"}
-      %span Apply Now!
-    %div{:style => "display:none"}
-      #invitation-instructions
-        .ticket
-        = form_tag apply_path, :remote => true do
-          %p Please provide us with:
-          = text_field_tag :name, "", :placeholder => "your name"
-          = text_field_tag :email, "", :placeholder => "email address"
-          = text_area_tag :about, "", :placeholder => "tell us a bit about your work..."
-          = submit_tag "Submit Application"
-        .thank-you
-          %h1 Thanks!
-          %p We'll take a look and get in touch with you soon.
+  %a.apply.button{:href => "#invitation-instructions"}
+    %span Apply Now!
+  %div{:style => "display:none"}
+    #invitation-instructions
+      .ticket
+      = form_tag apply_path, :remote => true do
+        %p
+          - if current_user && current_user.is_a?(Creator)
+            Want to recommend someone?
+            %br
+            Please provide us with their:
+          - else
+            Please provide us with your:
+        - name = current_user && !current_user.is_a?(Creator) ? current_user.name : ""
+        = text_field_tag :name, name, :placeholder => "name"
+        - email = current_user && !current_user.is_a?(Creator) ? current_user.email : ""
+        = text_field_tag :email, email, :placeholder => "email address"
+        - about_placeholder = current_user && current_user.is_a?(Creator) ? "tell us a bit about them..." : "tell us a bit about your work..."
+        = text_area_tag :about, "", :placeholder => about_placeholder
+        = submit_tag "Submit Application"
+      .thank-you
+        %h1 Thanks!
+        %p We'll take a look and get in touch soon.
     
   %ul.thirds
     %li.join
@@ -91,6 +99,5 @@
         Try again. We’d be happy to look at more of your work in the future—particularly as we move out of beta and start to grow our creator community!
       = image_tag("invite/Placeholder240200.gif")
   
-  - unless current_user.active_subscription?
-    %a.apply.button{:href => "#invitation-instructions"}
-      %span Apply Now!
+  %a.apply.button{:href => "#invitation-instructions"}
+    %span Apply Now!

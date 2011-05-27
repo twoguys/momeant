@@ -1,5 +1,36 @@
 /* Story Preview */
 
+.owner-links
+	height: 60px
+	a, input[type="submit"]
+		float: left
+		font-weight: 900
+		font-size: 14px
+		text-transform: uppercase
+		margin-left: 10px
+		padding: 8px 10px 5px
+		@include rounded(4px)
+		width: 80px
+		text-align: center
+		letter-spacing: .5px
+	#edit-link
+		background-color: $lightblue
+	#publish-link
+		background-color: $lightgreen
+		color: #1EA337
+	#delete-link
+		background-color: $lightred
+		color: $red
+	.publish
+		float: left
+		p
+			float: left
+			margin: 2px 15px 2px 10px
+			font-weight: 700
+			font-size: 1.2em
+			text-transform: uppercase
+			color: #999
+	
 .banner
 	padding: 10px 20px
 	font-size: 11px
@@ -67,6 +98,8 @@
 		.thumbnail
 			width: 630px
 			height: 420px
+		.thumbnail:hover .goto-view
+			display: block
 		.price
 			color: white
 			left: -17px
@@ -151,6 +184,9 @@
 				margin-top: 0px
 				width: 230px
 				overflow: hidden
+				color: $text_color
+			.title:hover
+				color: $link_color
 			.creator
 				font-family: $serif
 				font-size: 12px

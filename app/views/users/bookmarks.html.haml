@@ -1,0 +1,6 @@
+- if @user
+  %h2 #{@user.name}'s bookmarked stories
+
+  %ul.stories= render @user.bookmarked_stories
+- else
+  %h2 Sorry, we were unable to find that user.

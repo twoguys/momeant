@@ -2,22 +2,26 @@
   = render :partial => "shared/calls_to_action/signup", :locals => {:message => "View this and all amazing content from our creators"}
 
 - if @story.owner?(current_user)
-  - if @story.draft?
-    .banner
-      - if @story.valid?
-        %span Your story is still a draft (no one else can see it). Once you're ready to make it public, click here: 
-        = button_to("Publish", publish_story_path(@story))
-      - else
-        %span Before you can publish your story, please #{link_to("edit it", edit_story_path(@story))} and fix these issues:
-        %ul
-          - @story.errors.full_messages.each do |msg|
-            %li= msg
+  .owner-links
+    .links
+      - if @story.draft?
+        .publish
+          - if @story.valid?
+            = link_to "Publish", publish_story_path(@story), :id => "publish-link", :method => :post unless @story.published?
+            %p (Your story is still in draft mode)
+          - else
+            %span Before you can publish your story, please #{link_to("edit it", edit_story_path(@story))} and fix these issues:
+            %ul
+              - @story.errors.full_messages.each do |msg|
+                %li= msg
+      = link_to "Edit", edit_story_path(@story), :id => "edit-link"
+      = link_to "Delete", story_path(@story), :id => "delete-link", :method => :delete, :confirm => "Are you sure you want to delete this story?"
+        
 .story-preview
   = bookmark_button(@story) unless @story.owner?(current_user)
   .preview.clearfix
-    = link_to("Edit your story", edit_story_path(@story), :class => "edit-story") if @story.owner?(current_user) #&& !@story.published?
     .padder
-      .thumbnail.large{:class => @story.thumbnail.present? ? @story.thumbnail.css_class : ""}
+      %a.thumbnail.large{:class => @story.thumbnail.present? ? @story.thumbnail.css_class : "", :href => story_path(@story)}
         .inner
           - if @story.thumbnail
             - @page = @story.thumbnail
@@ -30,11 +34,10 @@
       = story_view_link(@story)
       
       = #render "add_this"
-    .price= story_view_link(@story)
 
   .metadata
     .top
-      .title= @story.title
+      = link_to(@story.title, story_path(@story), :class => "title")
       .creator by: #{link_to(@story.user.name, user_path(@story.user))}
       .series
         %span.current 1

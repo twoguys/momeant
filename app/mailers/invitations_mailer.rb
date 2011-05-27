@@ -8,10 +8,11 @@ class InvitationsMailer < ActionMailer::Base
     mail :to => invitation.invitee_email, :subject => "You have been invited to be a Creator on Momeant"
   end
   
-  def creator_application(name, email, bio)
+  def creator_application(name, email, bio, sender)
     @name = name
     @bio = bio
     @email = email
+    @sender = sender
     
     mail :to => "create@momeant.com", :from => email, :subject => "Creator Application (#{name})"
   end

@@ -205,7 +205,7 @@
 	iframe
 		position: relative
 		margin: 5% auto
-		z-index: 2
+		z-index: 4
 
 @mixin splitSlide($width:288px, $height:180px)
 	width: $width
@@ -448,24 +448,99 @@
 
 ul.stories
 	li.story
-		background-color: white
 		float: left
-		-webkit-box-shadow: 3px 3px 5px #BBBBBB
-		-moz-box-shadow: 3px 3px 5px #BBBBBB
-		box-shadow: 3px 3px 5px #BBBBBB
-		position: relative
+		.padder
+			-webkit-box-shadow: 3px 3px 5px #BBBBBB
+			-moz-box-shadow: 3px 3px 5px #BBBBBB
+			box-shadow: 3px 3px 5px #BBBBBB
+			position: relative
+			padding: 6px
 		
-	li.medium.story	
-		height: 300px
+	li.medium.story
 		margin-bottom: 25px
-		margin-right: 25px
+		margin-right: 19px
+		position: relative
 		width: 300px
-		a.thumbnail
-			display: block
-			width: 288px
-			height: 180px
-			margin: 6px
-			overflow: hidden
+		height: 300px
+		.front
+			background: transparent url(../images/thumbnailStaples.png) no-repeat 0 0
+			position: absolute
+			top: 0
+			left: 0
+			z-index: 2
+			-webkit-transform: rotateY(0deg)
+			-webkit-transform-style: preserve-3d
+			-webkit-backface-visibility: hidden
+			transition: all .4s ease-in-out
+			-moz-transition: all .4s ease-in-out
+			-webkit-transition: all .4s ease-in-out
+			.padder
+				background: white url(../images/thumbnailLeftGradientAndPagesEffect.png) no-repeat 0 0
+				height: 288px
+				width: 288px
+				padding: 6px 8px 6px 6px
+				margin: 0 0 0 2px
+				-webkit-perspective: 600
+				a.thumbnail
+					display: block
+					width: 288px
+					height: 180px
+					margin-bottom: 6px
+					overflow: hidden
+		.back
+			background: #fff
+			width: 276px
+			height: 276px
+			margin: 6px 8px
+			padding: 6px
+			position: absolute
+			top: 0
+			left: 0
+			z-index: 1
+			-webkit-transform: rotateY(-180deg)
+			-webkit-transform-style: preserve-3d
+			-webkit-backface-visibility: hidden
+			transition: all .4s ease-in-out
+			-moz-transition: all .4s ease-in-out
+			-webkit-transition: all .4s ease-in-out
+			.title
+				padding-bottom: 5px
+				margin: 0 0 10px
+				border-bottom: 1px dotted #ccc
+				font-family: $typewriter
+				font-weight: 100
+				text-align: center
+				color: #999
+			.author-info
+				background-color: #fff
+				width: 256px
+				height: 160px
+				display: block
+				padding: 0 10px
+				position: relative
+				.avatar
+					width: 60px
+					height: 60px
+					overflow: none
+					position: absolute
+					top: 0
+					left: 0
+				.name
+					font-size: 1.5em
+					font-weight: 900
+					text-transform: uppercase
+					padding-top: 10px
+				.name, .occupation
+					margin-left: 70px
+					color: $text_color
+	
+	li.medium.story.flip
+		.front
+			z-index: 2
+			-webkit-transform: rotateY(180deg)
+		.back
+			z-index: 3
+			-webkit-transform: rotateY(0deg)
 
 	li.story:nth-child(3n+3)
 		margin-right: 0px
@@ -479,7 +554,6 @@ ul.stories
 		font-weight: 700
 		letter-spacing: 0.2px
 		line-height: 15px
-		margin: 0 10px
 
 	.author
 		color: black
@@ -489,7 +563,6 @@ ul.stories
 		font-size: 11px
 		letter-spacing: .3px
 		line-height: 20px
-		margin: 0 10px
 		padding-bottom: 4px
 		a
 			color: $blue
@@ -513,7 +586,7 @@ ul.stories
 		font-family: $block
 		font-weight: 100
 		font-size: 11px
-		margin: 10px
+		margin: 10px 0 0
 		line-height: 15px
 		height: 45px
 		width: 220px

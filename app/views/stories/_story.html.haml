@@ -1,12 +1,20 @@
 %li.story.medium
-
-  %a.thumbnail.medium{:href => preview_story_path(story), :class => story.thumbnail.present? ? story.thumbnail.css_class : ""}
-    - if story.thumbnail
-      - @page = story.thumbnail
-      = render :partial => "stories/page_themes/#{@page.partial_name}", :locals => {:size => "medium"}
-      
-  .title= link_to(story.title || "Incomplete Story", preview_story_path(story))
-  .author by #{link_to(story.user.name, user_path(story.user))}
-  .excerpt= truncate(story.synopsis, :length => 100)
-  .rewards{:class => current_user && current_user.has_rewarded?(story) ? "rewarded" : ""}= story.reward_count
-  .views= story.view_count
+  .front
+    .padder
+      %a.thumbnail.medium{:href => preview_story_path(story), :class => story.thumbnail.present? ? story.thumbnail.css_class : ""}
+        - if story.thumbnail
+          - @page = story.thumbnail
+          = render :partial => "stories/page_themes/#{@page.partial_name}", :locals => {:size => "medium"}
+      .title= link_to(story.title || "Incomplete Story", preview_story_path(story))
+      .author by #{link_to(story.user.name, user_path(story.user))}
+      .excerpt= truncate(story.synopsis, :length => 100)
+      .rewards{:class => current_user && current_user.has_rewarded?(story) ? "rewarded" : ""}= story.reward_count
+      .views= story.view_count
+  .back
+    %p.title This story was created by:
+    %a.author-info{:href => preview_story_path(story)}
+      = image_tag(story.user.avatar.url(:thumbnail), :class => "avatar")
+      .name= story.user.name
+      .occupation
+        %span occupation:
+        = story.user.occupation

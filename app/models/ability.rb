@@ -10,7 +10,9 @@ class Ability
       can :preview, Story do |story|
         story.published? || story.owner?(user)
       end
-      can :show, Story
+      can :show, Story do |story|
+        story.published? && user.can_view_stories?
+      end
       can :create, Subscription
       can :destroy, Subscription, :subscriber_id => user.id
       

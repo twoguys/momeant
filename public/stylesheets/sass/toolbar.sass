@@ -51,6 +51,17 @@ header
 				position: absolute
 				top: 35px
 				display: none
+				.heading
+					background-color: #000
+					color: #fff
+					font-size: 18px
+					font-weight: 900
+					text-transform: uppercase
+					text-align: center
+					height: 22px
+					line-height: 25px
+					vertical-align: middle
+					padding: 3px 0
 			ul
 				border: 3px solid #000
 				@include boxshadow
@@ -61,7 +72,7 @@ header
 				li
 					float: none
 					a
-						width: 80px
+						width: 130px
 						height: 1.1em
 						padding: 12px 10px
 						text-indent: 0
@@ -205,7 +216,7 @@ header
 				display: block
 		#hi
 			background: transparent url(../images/topNavBreak.gif) no-repeat 0 5px
-			padding: 13px 10px 13px 12px
+			padding: 13px 10px 5px 12px
 			font-size: 1.1em
 			font-weight: 900
 			text-transform: uppercase
@@ -236,7 +247,6 @@ header
 				font-weight: normal
 				letter-spacing: 0.4px
 				text-transform: lowercase
-				color: #999999
 			input[type="submit"]
 				width: 20px
 				height: 20px
@@ -303,6 +313,45 @@ header
 			background: transparent url(../images/stumbleDot.png) no-repeat 0 0
 		#beta
 			background: transparent url(../images/betaDot.png) no-repeat 0 0
+		#rewards-bank
+			position: relative
+			z-index: 2
+			width: 78px
+			height: 78px
+			margin-top: 15px
+			background: transparent url(../images/coinCountBlue.png) no-repeat 0 0
+			text-indent: 0
+			font-weight: 900
+			font-size: 24px
+			line-height: 78px
+			vertical-align: middle
+			text-align: center
+		#rewards-bank.expired, #rewards-bank.disabled
+			background-image: url(../images/coinCountRed.png)
+			color: $red
+		#rewards-bank-slider
+			position: absolute
+			right: 40px
+			top: 44px
+			width: 180px
+			padding: 3px
+			@include rounded
+			background-color: $lightblue
+			z-index: 1
+			.inner
+				@include rounded
+				border: 1px solid $background_color
+				padding: 12px 35px 12px 10px
+				height: 30px
+				color: $blue
+				text-indent: 0
+				font-weight: 700
+				font-size: 12px
+				text-transform: uppercase
+		#rewards-bank-slider.expired, #rewards-bank-slider.disabled
+			background-color: $lightred
+			.inner
+				color: $red
 .fullscreen .momeant-header
 	display: none
 

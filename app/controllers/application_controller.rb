@@ -22,7 +22,15 @@ class ApplicationController < ActionController::Base
   
   rescue_from CanCan::AccessDenied do |exception|
     if exception.subject.is_a?(Story) && exception.action == :show
-      redirect_to preview_story_path(exception.subject), :alert => "You must first acquire this story."
+      if !current_user
+        redirect_to preview_story_path(exception.subject), :alert => "Please login to view stories."
+      elsif current_user.trial_expired?
+        redirect_to preview_story_path(exception.subject), :alert => "Your trial has expired. Please subscribe to view stories."
+      elsif current_user.disabled_subscription?
+        redirect_to preview_story_path(exception.subject), :alert => "Your subscription is not active. Please check your settings."
+      else
+        redirect_to preview_story_path(exception.subject), :alert => "Sorry, that story is not published yet."
+      end
     else
       redirect_to root_url, :alert => exception.message
     end

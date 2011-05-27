@@ -33,6 +33,10 @@ class UsersController < ApplicationController
     end
   end
   
+  def bookmarks
+    @user = User.find_by_id(params[:user_id])
+  end
+  
   def billing_updates
     subscriber_ids = params[:subscriber_ids].split(",")
     subscriber_ids.each do |subscriber_id|
