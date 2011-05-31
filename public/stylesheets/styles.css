@@ -98,6 +98,25 @@ header .insides, #mid .insides, #footer .insides {
     letter-spacing: 0.2px;
     font-size: 14px;
     font-weight: 900; }
+    #footer .insides .left {
+      float: left; }
+    #footer .insides .right {
+      float: right; }
+      #footer .insides .right a {
+        text-transform: lowercase;
+        font-size: 11px;
+        margin-right: 1px;
+        color: #bbbbbb;
+        font-weight: 900;
+        font-family: "museo-slab-1", "museo-slab-2", serif;
+        background-color: transparent;
+        padding: 4px 10px 3px;
+        -moz-border-radius: 2px;
+        letter-spacing: 0.5px; }
+      #footer .insides .right a:hover {
+        border-radius: 4px;
+        color: #00aeef;
+        background-color: #c0eeff; }
 
 header {
   background: transparent url(../images/topNavBG.png) repeat-x scroll 0 0;
@@ -404,7 +423,7 @@ header {
       height: 100px;
       width: 700px;
       float: left;
-      background: transparent url(../images/logoLrg.png) no-repeat 0 0; }
+      background: transparent url(../images/logoSm.png) no-repeat 0 0; }
     header .momeant-header .round-button {
       display: block;
       width: 99px;
@@ -3264,7 +3283,8 @@ form.new_story, form.edit_story, .story-form {
         width: 630px;
         height: 100%;
         float: left;
-        color: black; }
+        color: black;
+        position: relative; }
         .story-gallery .large-preview .pages a.story-link .inner, .story-gallery .large-preview .pages a.story-link .image {
           width: 630px;
           height: 100%; }
@@ -3732,6 +3752,15 @@ form.new_story, form.edit_story, .story-form {
                 padding-right: 1px; }
           .story-gallery .slider .viewport .preview.split div.split .hidden {
             display: none; }
+        .story-gallery .slider .viewport .preview.split div.split .text .inner {
+          line-height: 3px;
+          font-size: 2px;
+          font-weight: 100; }
+          .story-gallery .slider .viewport .preview.split div.split .text .inner:first-letter {
+            font-size: 5px;
+            height: 3px;
+            padding-top: 0px;
+            padding-right: 2px; }
       .story-gallery .slider .viewport .preview.grid {
         width: 95px;
         height: 60px; }
@@ -5270,7 +5299,7 @@ header .topic-name {
   height: 100px;
   width: 803px;
   float: left;
-  background: transparent url(../images/headersAll.png) no-repeat 0 0; }
+  background: transparent url(../images/logoSm.png) no-repeat 0 0; }
 header .topic-name.art {
   background-position: 0 -100px; }
 header .topic-name.business {
@@ -5643,6 +5672,108 @@ header .topic-icon {
   display: none; }
 #invitation-instructions.complete .thank-you {
   display: block; }
+
+#about-pitch .characters {
+  width: 1008px;
+  height: 290px;
+  margin: 20px 0 50px -58px;
+  background: transparent url(../images/splashCharacters.png) no-repeat 0 0; }
+#about-pitch .byline {
+  width: 900px;
+  margin: 30px auto 0;
+  text-align: center; }
+  #about-pitch .byline h1 {
+    font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
+    font-size: 33px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-shadow: #f4f4f4 -1px 1px 0, #00aeef -2px 2px 0;
+    margin-bottom: 5px; }
+  #about-pitch .byline h3 {
+    font-family: "museo-slab-1", "museo-slab-2", serif;
+    color: #00aeef;
+    font-size: 18px;
+    font-weight: 100;
+    width: 900px;
+    margin: 0 auto; }
+#about-pitch a.button {
+  width: 402px;
+  text-align: center;
+  font-size: 19px;
+  display: block;
+  margin: 20px auto 50px;
+  font-weight: 900;
+  padding: 3px;
+  background-color: #c0eeff;
+  color: #00aeef; }
+  #about-pitch a.button span {
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    padding: 12px 0 10px;
+    display: block;
+    border: 1px solid white;
+    width: 400px; }
+#about-pitch .ampersand {
+  background: transparent url(../images/blueAmpersand.png) no-repeat 50% 6%; }
+#about-pitch ul.halves {
+  height: 440px;
+  margin: 10px 0 40px; }
+  #about-pitch ul.halves li {
+    float: left;
+    width: 50%; }
+    #about-pitch ul.halves li img {
+      display: block;
+      margin: 0 auto;
+      width: 220px;
+      height: 200px; }
+    #about-pitch ul.halves li h3 {
+      font-size: 18px;
+      text-transform: uppercase;
+      color: black;
+      vertical-align: middle;
+      margin: 30px auto;
+      width: 220px;
+      height: 60px;
+      text-align: center;
+      padding-bottom: 9px;
+      background: transparent url(../images/subscribeCurlShadow.png) no-repeat 50% 100%; }
+      #about-pitch ul.halves li h3 span {
+        display: block;
+        background-color: white;
+        height: 60px;
+        line-height: 60px; }
+    #about-pitch ul.halves li p {
+      width: 400px;
+      margin: 0 auto 30px;
+      text-align: center;
+      font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
+      font-size: 1.2em;
+      line-height: 18px;
+      font-weight: 600;
+      padding-bottom: 30px;
+      border-bottom: 2px solid white; }
+    #about-pitch ul.halves li .small {
+      text-align: justify;
+      width: 400px;
+      height: 90px;
+      margin-bottom: 0px;
+      font-family: "museo-slab-1", "museo-slab-2", serif;
+      font-weight: 100;
+      font-size: 1.2em;
+      border-bottom: none;
+      padding-bottom: 0px; }
+      #about-pitch ul.halves li .small .title {
+        font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
+        color: #00aeef;
+        font-size: 14px;
+        background-color: transparent;
+        text-transform: uppercase;
+        margin: 0 5px 0 0;
+        padding: 0;
+        font-weight: 900;
+        float: left;
+        line-height: 16px; }
 
 .hidden {
   display: none; }

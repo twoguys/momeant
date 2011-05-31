@@ -301,6 +301,19 @@
 					height: 100px
 					padding-top: 14px
 					padding-right: 10px
+@mixin splitSlidePetite
+	@include splitSlide(95px, 60px)
+	div.split
+		.text
+			.inner
+				line-height: 3px
+				font-size: 2px
+				font-weight: 100
+				&:first-letter
+					font-size: 5px
+					height: 3px
+					padding-top: 0px
+					padding-right: 2px
 
 @mixin gridSlide($width:288px, $height:180px)
 	width: $width
