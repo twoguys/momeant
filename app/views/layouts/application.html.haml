@@ -51,7 +51,15 @@
 
     #footer
       .insides
-        Copyright © 2011 - Momeant
+        .left
+          = link_to("about", about_path)
+          = link_to("invite", invite_path)
+          = link_to("subscribe", subscribe_path)
+          = link_to("faq", faq_path)
+          = link_to("privacy policy", privacy_path)
+          = link_to("terms of service", tos_path)
+        .right
+          Copyright © 2011 - Momeant
     
     = render "shared/join_login_modal" if !private_beta? && !current_user
     = yield :modals

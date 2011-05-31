@@ -79,6 +79,8 @@ Repo::Application.routes.draw do
   match '/apply',               :to => 'home#apply',                :as => :apply
   match '/thankyou',            :to => 'home#thankyou',             :as => :thankyou
   match '/faq',                 :to => 'home#faq',                  :as => :faq
+  match '/tos',                 :to => 'home#tos',                  :as => :tos
+  match '/privacy',             :to => 'home#privacy',              :as => :privacy
 
   match '/',                    :to => 'home#index',                :as => :home
   root :to => "home#index"
