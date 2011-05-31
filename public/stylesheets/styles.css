@@ -105,7 +105,7 @@ header .insides, #mid .insides, #footer .insides {
       #footer .insides .right a {
         text-transform: lowercase;
         font-size: 11px;
-        margin-right: 1px;
+        margin-left: 1px;
         color: #bbbbbb;
         font-weight: 900;
         font-family: "museo-slab-1", "museo-slab-2", serif;
@@ -4889,16 +4889,17 @@ form.user_edit textarea#user_tagline {
       background: transparent url(../images/paginationRight.png) no-repeat; }
 
 .adverts {
-  height: 165px;
   margin-bottom: 20px;
-  padding-top: 10px;
+  padding-top: 30px;
   background: transparent url(../images/diagStripeBG.png) repeat-x 0 0; }
-  .adverts div {
+  .adverts div.advert {
     float: left;
     height: 165px; }
-    .adverts div img.medium {
+    .adverts div.advert img.medium {
       width: 465px;
       height: 165px; }
+  .adverts div:first-child {
+    margin-right: 20px; }
 
 .beta {
   padding-bottom: 30px; }
@@ -5355,6 +5356,8 @@ header .topic-icon {
   background-color: #eeeeee; }
   .admin .adverts form li span {
     margin-right: 50px; }
+.admin .adverts div {
+  height: auto; }
 .admin .adverts .advert-list {
   margin-top: 10px; }
   .admin .adverts .advert-list li {
@@ -5365,13 +5368,14 @@ header .topic-icon {
   .admin .adverts .advert-list .title {
     font-weight: 700;
     font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
-    font-size: 1.2em;
+    font-size: 2em;
     text-transform: uppercase; }
   .admin .adverts .advert-list .title, .admin .adverts .advert-list .enabled, .admin .adverts .advert-list .delete {
     float: left;
-    line-height: 25px;
+    line-height: 30px;
     vertical-align: middle;
-    margin-right: 20px; }
+    margin-right: 20px;
+    padding: 5px 0; }
   .admin .adverts .advert-list .enabled .disabled {
     color: #777777;
     font-style: italic; }

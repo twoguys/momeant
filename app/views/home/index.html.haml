@@ -35,5 +35,7 @@
         = paginate @top_curators if @top_curators
         = paginate @recent_stories if @recent_stories
   
-  %section.adverts
-    = render Advert.enabled.random.limit(2)
+  - if @adverts.length > 0
+    %section.adverts
+      = render @adverts
+      .clear
