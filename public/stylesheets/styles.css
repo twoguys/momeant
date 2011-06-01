@@ -567,6 +567,16 @@ form label, .form label {
     height: auto;
     padding-left: 5px;
     vertical-align: 1px; }
+form li.checkbox input, .form li.checkbox input {
+  float: left; }
+form li.checkbox label, .form li.checkbox label {
+  font-weight: 100;
+  font-size: 12px;
+  text-transform: none;
+  float: left;
+  width: auto;
+  margin: 0;
+  color: #252525; }
 form input[type="text"], form input[type="password"], form textarea, .form input[type="text"], .form input[type="password"], .form textarea {
   padding: 7px;
   font-size: 12px;
@@ -1628,7 +1638,8 @@ form.new_story, form.edit_story, .story-form {
         clear: both; }
       #page-editor #pane ul.pages li .file-uploader {
         position: relative;
-        height: 27px; }
+        height: 27px;
+        float: left; }
         #page-editor #pane ul.pages li .file-uploader .file-input-faker {
           position: absolute;
           width: 300px;
@@ -4467,7 +4478,8 @@ ul.stories .excerpt {
         .recommendation-stream ul li .info .title {
           font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
           color: black;
-          font-weight: 700; }
+          font-weight: 700;
+          margin: 0; }
         .recommendation-stream ul li .info .author {
           border: none;
           margin: 0;
@@ -5095,6 +5107,12 @@ form.user_edit textarea#user_tagline {
     opacity: 0.5; }
   #beta-modal form li.filled label {
     display: none; }
+  #beta-modal form li.checkbox label.error {
+    position: absolute;
+    bottom: -10px;
+    padding-left: 23px; }
+  #beta-modal form li.checkbox.focused label {
+    opacity: 1; }
   #beta-modal .join, #beta-modal .login {
     float: left;
     width: 210px;
@@ -5350,37 +5368,40 @@ header .topic-icon {
   margin-top: 10px; }
   .admin .invitations table th, .admin .invitations table td {
     min-width: 100px; }
-.admin .adverts form {
-  width: 928px;
-  padding: 10px;
-  background-color: #eeeeee; }
-  .admin .adverts form li span {
-    margin-right: 50px; }
-.admin .adverts div {
-  height: auto; }
-.admin .adverts .advert-list {
-  margin-top: 10px; }
-  .admin .adverts .advert-list li {
-    border-bottom: 1px solid #cccccc;
-    padding-bottom: 5px;
-    margin-bottom: 5px;
-    height: 200px; }
-  .admin .adverts .advert-list .title {
-    font-weight: 700;
-    font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
-    font-size: 2em;
-    text-transform: uppercase; }
-  .admin .adverts .advert-list .title, .admin .adverts .advert-list .enabled, .admin .adverts .advert-list .delete {
-    float: left;
-    line-height: 30px;
-    vertical-align: middle;
-    margin-right: 20px;
-    padding: 5px 0; }
-  .admin .adverts .advert-list .enabled .disabled {
-    color: #777777;
-    font-style: italic; }
-  .admin .adverts .advert-list .image {
-    clear: both; }
+.admin .adverts {
+  background: none;
+  padding-top: 0; }
+  .admin .adverts form {
+    width: 928px;
+    padding: 10px;
+    background-color: #eeeeee; }
+    .admin .adverts form li span {
+      margin-right: 50px; }
+  .admin .adverts div {
+    height: auto; }
+  .admin .adverts .advert-list {
+    margin-top: 10px; }
+    .admin .adverts .advert-list li {
+      border-bottom: 1px solid #cccccc;
+      padding-bottom: 5px;
+      margin-bottom: 5px;
+      height: 200px; }
+    .admin .adverts .advert-list .title {
+      font-weight: 700;
+      font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
+      font-size: 2em;
+      text-transform: uppercase; }
+    .admin .adverts .advert-list .title, .admin .adverts .advert-list .enabled, .admin .adverts .advert-list .delete {
+      float: left;
+      line-height: 30px;
+      vertical-align: middle;
+      margin-right: 20px;
+      padding: 5px 0; }
+    .admin .adverts .advert-list .enabled .disabled {
+      color: #777777;
+      font-style: italic; }
+    .admin .adverts .advert-list .image {
+      clear: both; }
 
 .flipbook {
   width: 950px;

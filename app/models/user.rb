@@ -74,6 +74,7 @@ class User < ActiveRecord::Base
   validates :first_name, :presence => true, :length => (1...128)
   validates :last_name, :presence => true, :length => (1...128)
   validates :email, :presence => true, :format => /^([^\s]+)((?:[-a-z0-9]\.)[a-z]{2,})$/i
+  validates_acceptance_of :tos_accepted
   
   validate  :extra_validations
   

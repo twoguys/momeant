@@ -35,9 +35,10 @@
                       .loader
                 %li
                   %label Choose image placement
+                  = debug @page.image_media.placement
                   %select.image_placement{:position => "1"}
                     - Page::IMAGE_PLACEMENTS.each_pair do |k,v|
-                      %option{:value => v, :selected => @page && @page.image_media && @page.image_media.placement == v}= k
+                      %option{:value => v, :selected => @page && @page.image_at_position(1) && @page.image_at_position(1).placement == v}= k
                 %li
                   %label Pick a background color
                   = text_field_tag "pages[#{@page_number}][background_color]", "#f2f2f2", :class => "color-picker bgcolor", :position => "image1"
@@ -65,7 +66,7 @@
                   %label Choose image placement
                   %select.image_placement{:position => "2"}
                     - Page::IMAGE_PLACEMENTS.each_pair do |k,v|
-                      %option{:value => v, :selected => @page && @page.image_media && @page.image_media.placement == v}= k
+                      %option{:value => v, :selected => @page && @page.image_at_position(2) && @page.image_at_position(2).placement == v}= k
                 %li
                   %label Pick a background color
                   = text_field_tag "pages[#{@page_number}][background_color]", "#f2f2f2", :class => "color-picker bgcolor", :position => "image2"
