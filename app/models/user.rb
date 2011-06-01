@@ -74,7 +74,7 @@ class User < ActiveRecord::Base
   validates :first_name, :presence => true, :length => (1...128)
   validates :last_name, :presence => true, :length => (1...128)
   validates :email, :presence => true, :format => /^([^\s]+)((?:[-a-z0-9]\.)[a-z]{2,})$/i
-  validates_acceptance_of :tos_accepted
+  validates :tos_accepted, :presence => true, :inclusion => {:in => [true]} # :acceptance => true won't work...
   
   validate  :extra_validations
   
@@ -83,8 +83,8 @@ class User < ActiveRecord::Base
   attr_accessor :invitation_code
   
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :remember_me,
-    :avatar, :credits, :stored_in_braintree, :invitation_code, :tagline, :occupation
+  attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :remember_me, :tos_accepted,
+    :avatar, :credits, :stored_in_braintree, :invitation_code, :tagline, :occupation, :paypal_email
   
   def extra_validations
     safe = true
