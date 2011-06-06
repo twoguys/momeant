@@ -10,7 +10,7 @@
     #stats
       %header
         %h1#title Stats for all stories
-        .subtext you joined #{time_ago_in_words(@user.created_at)} ago
+        .subtext the past 30 days
       .views 
         %span.count 1,673
         %span views
@@ -41,8 +41,8 @@
             .note.not-selected click this row to see ALL stats
           .title-and-date
             %h2 Stats for all stories
-          .rewards= @user.created_stories.sum(:reward_count)
-          .views= @user.created_stories.sum(:view_count)
+          .rewards= @user.rewards.past_thirty_days.sum(:amount)
+          .views= @user.views.past_thirty_days.count
           .money
         - @user.created_stories.each do |story|
           %li{:story_id => story.id}
@@ -53,8 +53,8 @@
             .title-and-date
               %h2= story.title
               .date= story.created_at.strftime("%b %d, %Y")
-            .rewards= story.reward_count
-            .views= story.view_count
+            .rewards= story.rewards.past_thirty_days.sum(:amount)
+            .views= story.views.past_thirty_days.count
             .money
     
     #patron-list

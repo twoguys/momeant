@@ -1,9 +1,9 @@
 <script type="text/javascript">
-  var story_all_rewards = <%= views_chart_series(@user.views, 6.days.ago) %>;
-  var story_all_views = <%= rewards_chart_series(@user.rewards, 6.days.ago) %>;
+  var story_all_views = <%= views_chart_series(@user.views) %>;
+  var story_all_rewards = <%= rewards_chart_series(@user.rewards) %>;
   <% @user.created_stories.each do |story| %>
-  var story_<%= story.id %>_rewards = <%= views_chart_series(story.views, 6.days.ago) %>;
-  var story_<%= story.id %>_views = <%= rewards_chart_series(story.rewards, 6.days.ago) %>;
+  var story_<%= story.id %>_views = <%= views_chart_series(story.views) %>;
+  var story_<%= story.id %>_rewards = <%= rewards_chart_series(story.rewards) %>;
   <% end %>
   
   $.jqplot.config.enablePlugins = true;
