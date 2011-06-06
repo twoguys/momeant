@@ -44,7 +44,7 @@
           .rewards= @user.rewards.past_thirty_days.sum(:amount)
           .views= @user.views.past_thirty_days.count
           .money
-        - @user.created_stories.each do |story|
+        - @user.created_stories.published.each do |story|
           %li{:story_id => story.id}
             .thumbnail.petite{:href => preview_story_path(story), :class => story.thumbnail.present? ? story.thumbnail.css_class : ""}
               - if story.thumbnail
