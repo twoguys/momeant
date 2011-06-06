@@ -60,6 +60,7 @@ Repo::Application.routes.draw do
     # Spreedly updates come here
     post :billing_updates, :on => :collection
   end
+  match '/analytics',           :to => "users#analytics",           :as => :analytics
   
   namespace :admin do
     match '/', :to =>"dashboard#index", :as => :dashboard
@@ -75,8 +76,8 @@ Repo::Application.routes.draw do
   match '/search',              :to => "search#index",              :as => :search
   match '/subscribe',           :to => 'home#subscribe',            :as => :subscribe
   match '/invite',              :to => 'home#invite',               :as => :invite
-  match '/about',               :to => 'home#about',                :as => :about
   match '/apply',               :to => 'home#apply',                :as => :apply
+  match '/about',               :to => 'home#about',                :as => :about
   match '/thankyou',            :to => 'home#thankyou',             :as => :thankyou
   match '/faq',                 :to => 'home#faq',                  :as => :faq
   match '/tos',                 :to => 'home#tos',                  :as => :tos

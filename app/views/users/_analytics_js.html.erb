@@ -1,0 +1,59 @@
+<script type="text/javascript">
+  var story_all_rewards = <%= views_chart_series(@user.views, 6.days.ago) %>;
+  var story_all_views = <%= rewards_chart_series(@user.rewards, 6.days.ago) %>;
+  <% @user.created_stories.each do |story| %>
+  var story_<%= story.id %>_rewards = <%= views_chart_series(story.views, 6.days.ago) %>;
+  var story_<%= story.id %>_views = <%= rewards_chart_series(story.rewards, 6.days.ago) %>;
+  <% end %>
+  
+  $.jqplot.config.enablePlugins = true;
+  var chart = $.jqplot('line-chart', [story_all_views, story_all_rewards], {
+  	axes: {
+  		xaxis: {
+  			renderer:$.jqplot.DateAxisRenderer,
+  			tickOptions:{formatString:'%d %b', showGridline: false},
+  		},
+  		yaxis: {
+  			tickOptions:{formatString:'%d'}
+  		},
+  	},
+  	axesDefaults: {
+  		tickOptions: {
+  			showMark: false,
+  		}
+  	},
+  	grid: {
+  		borderWidth: 1,
+  		background: '#fff',
+  		borderColor: '#eee',
+  		gridLineColor: '#eee',
+  		shadow: false,
+  	},
+  	seriesDefaults: {
+  		lineWidth: 3,
+  		shadow: false,
+  		markerOptions: {
+  		  size: 7,
+  		  shadow: false
+  		}
+  	},
+  	series: [
+  	  {
+  		  label:'views',
+  	    color: '#00aeef',
+    		markerOptions: {
+    			color: '#00aeef'
+    		}
+  	  },
+  	  {
+  		  label:'rewards',
+  	    color: '#ff1344',
+  	    markerOptions: {
+  	      color: '#ff1344'
+  	    }
+  	  }],
+  	highlighter: {
+    	sizeAdjust: 12
+    }
+  });
+</script>

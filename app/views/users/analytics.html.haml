@@ -1,0 +1,105 @@
+- content_for :head do
+  = javascript_include_tag "analytics", "jqplot/jquery.jqplot.min", "jqplot/plugins/jqplot.dateAxisRenderer.min", "jqplot/plugins/jqplot.highlighter.min"
+  / [if lt IE 9]
+    = javascript_include_tag "jqplot/excanvas.min"
+  = stylesheet_link_tag "jquery.jqplot"
+
+#creator-analytics
+  %section.data
+    
+    #stats
+      %header
+        %h1#title Stats for all stories
+        .subtext you joined #{time_ago_in_words(@user.created_at)} ago
+      .views 
+        %span.count 1,673
+        %span views
+      .rewards
+        %span.count 526
+        %span reward coins
+      .conversion
+        %span %
+        %span.count 43.2
+        %span.help.tooltipped-n{:title => "Average Rewards per View (a rough judge of how likely users are to reward)"} ?
+      .money
+        %span $
+        %span.count 473.62
+        
+    #line-chart
+    
+    
+    #story-list
+      %header
+        = link_to("Date", "#", :class => "date")
+        = link_to("Rewards", "#", :class => "rewards")
+        = link_to("Views", "#", :class => "views")
+        = link_to("Money", "#", :class => "money")
+      %ul#stories
+        %li#all.selected{:story_id => "all"}
+          .thumbnail
+            .note.is-selected click a story to see its stats
+            .note.not-selected click this row to see ALL stats
+          .title-and-date
+            %h2 Stats for all stories
+          .rewards= @user.created_stories.sum(:reward_count)
+          .views= @user.created_stories.sum(:view_count)
+          .money
+        - @user.created_stories.each do |story|
+          %li{:story_id => story.id}
+            .thumbnail.petite{:href => preview_story_path(story), :class => story.thumbnail.present? ? story.thumbnail.css_class : ""}
+              - if story.thumbnail
+                - @page = story.thumbnail
+                = render :partial => "stories/page_themes/#{@page.partial_name}", :locals => {:size => "medium"}
+            .title-and-date
+              %h2= story.title
+              .date= story.created_at.strftime("%b %d, %Y")
+            .rewards= story.reward_count
+            .views= story.view_count
+            .money
+    
+    #patron-list
+      %header
+        %h1 Your Patrons
+        = link_to("Name", "#", :class => "name")
+        = link_to("Rewards", "#", :class => "rewards")
+        = link_to("Views", "#", :class => "views")
+        = link_to("Money", "#", :class => "money")
+      %ul#patrons
+        - position = 1
+        - @user.patrons.each do |patron|
+          %li
+            .number= position
+            - position += 1
+            = link_to(image_tag(patron.avatar.url(:thumbnail)), user_path(patron), :class => "avatar")
+            .info
+              = link_to(patron.name, user_path(patron), :class => "name")
+              .occupation occupation: #{patron.occupation}
+            .rewards= @user.rewards.where(:user_id => patron.id).count
+            .views= @user.views.where(:user_id => patron.id).count
+            .money
+
+    #follower-list
+      %header
+        %h1 Your Followers
+        .subtext #{@user.subscribers.count} people subscribe to your rewards/recommendations
+      %ul
+        - @user.subscribers.each do |subscriber|
+          %li= link_to(image_tag(subscriber.avatar.url(:thumbnail)), user_path(subscriber), :class => "tooltipped", :title => subscriber.name)
+  
+  %section.sidebar
+    
+    .current-balance.box
+      %h3 Current Balance
+      .amount $253.62
+      = link_to("View Details", "#", :class => "button blue")
+      = link_to("Cash Out", "#", :class => "button green")
+    
+    .profile-views.bar-chart.box
+      .chart
+      %h4 2,400 profile views
+    
+    .story-previews.bar-chart.box
+      .chart
+      %h4 1,894 story previews
+      
+= render "analytics_js"

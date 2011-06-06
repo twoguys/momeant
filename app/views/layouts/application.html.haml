@@ -24,10 +24,10 @@
       try{Typekit.load();}catch(e){}
     = yield :head
     
-  %body.yui-skin-sam{:class => @fullscreen.nil? ? "" : "fullscreen"}
+  %body{:class => @fullscreen.nil? ? "" : "fullscreen"}
     #wrap
       #main.clearfix
-        %header{:class => private_beta? && !current_user ? "hide-nav" : ""}
+        %header#header{:class => private_beta? && !current_user ? "hide-nav" : ""}
           = render "layouts/user_nav" unless @hide_nav
           #call-to-action
             - unless private_beta?

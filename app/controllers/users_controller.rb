@@ -37,6 +37,10 @@ class UsersController < ApplicationController
     @user = User.find_by_id(params[:user_id])
   end
   
+  def analytics
+    @user = current_user
+  end
+  
   def billing_updates
     subscriber_ids = params[:subscriber_ids].split(",")
     subscriber_ids.each do |subscriber_id|
