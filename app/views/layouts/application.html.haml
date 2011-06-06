@@ -35,6 +35,8 @@
                 = render :partial => "shared/calls_to_action/subscribe", :locals => {:message => "You have #{pluralize(current_user.days_left_in_trial, "day")} and #{pluralize(current_user.coins, "coin")} left in your trial. Loving it?"}
               - else
                 = yield :call_to_action
+            - if current_user && current_user.is_a?(Creator) && current_user.paypal_email.blank?
+              = render :partial => "shared/calls_to_action/enter_payment_info"
           = render "layouts/flash", :flash => flash
           .insides
             .momeant-header

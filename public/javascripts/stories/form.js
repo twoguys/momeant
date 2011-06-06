@@ -851,7 +851,6 @@ var story_auto_saver = function() {
 				var $to = $('ul#pages li#page_' + number + ' .' + $element.attr('mirror-to') + ', #page-previews li#preview_' + number + ' .' + $element.attr('mirror-to'));
 				var $save_button = $element.parents('.body:eq(0)').find('a.save');
 				$save_button.click(function() {
-					log('OMG BUTTON CLICKED');
 					var editor = tinyMCE.get($element.attr('id'));
 					if (editor.isDirty()) {
 						auto_saver.save_text($element, page_id, type, number, editor.getContent());

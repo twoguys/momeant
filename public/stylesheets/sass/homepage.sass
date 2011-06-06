@@ -44,16 +44,17 @@
 					background: transparent url(../images/paginationRight.png) no-repeat
 
 .adverts
-	height: 165px
 	margin-bottom: 20px
-	padding-top: 10px
+	padding-top: 30px
 	background: transparent url(../images/diagStripeBG.png) repeat-x 0 0
-	div
+	div.advert
 		float: left
 		height: 165px
 		img.medium
 			width: 465px
 			height: 165px
+	div:first-child
+		margin-right: 20px
 
 .beta
 	padding-bottom: 30px
@@ -185,6 +186,8 @@
 	li.remember-me
 		margin-top: -5px
 		margin-bottom: 0px
+		label
+			color: $text_color
 	.spaced-a-bit
 		margin-bottom: 5px
 	li.copy
@@ -239,12 +242,14 @@
 				cursor: default
 			input[type="submit"]:disabled:active
 				top: 0
-		li.focused
-			label
-				opacity: 0.5
 		li.filled
 			label
 				display: none
+		li.checkbox
+			label.error
+				position: absolute
+				bottom: -10px
+				padding-left: 23px
 
 	.join, .login
 		float: left

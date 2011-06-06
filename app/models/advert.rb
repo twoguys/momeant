@@ -14,7 +14,10 @@ class Advert < ActiveRecord::Base
     :bucket        => ENV['S3_BUCKET']
   
   PATHS = {
-    "FAQ page" => "faq"
+    "FAQ page" => "faq",
+    "Creator Invite page" => "invite",
+    "About page" => "about",
+    "Subscribe page" => "subscribe"
   }.freeze
   
   scope :random, :order => "RANDOM()"

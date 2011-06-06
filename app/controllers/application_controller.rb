@@ -20,6 +20,18 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  def get_adverts
+    @adverts = Advert.enabled.random
+    if current_user
+      # TODO remove ads for non-logged in users
+      @adverts = @adverts.where("path != 'invite'") if current_user.is_a?(Creator)
+      @adverts = @adverts.where("path != 'subscribe'") if current_user.active_subscription?
+    else
+      @adverts = @adverts.where("path != 'subscribe'").where("path != 'invite'")
+    end
+    @adverts = @adverts.limit(2)
+  end
+  
   rescue_from CanCan::AccessDenied do |exception|
     if exception.subject.is_a?(Story) && exception.action == :show
       if !current_user

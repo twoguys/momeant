@@ -13,6 +13,8 @@ function handle_modal_closing() {
 
 var beta_form_validator;
 function handle_form_validation() {
+	// we have to remove the extra checkbox Rails inserts for the 0 value
+	$('#beta-join-form input[name="user[tos_accepted]"][value="0"]').remove();
 	var $beta_join_button = $('#beta-join-form input[type="submit"]');
 	beta_form_validator = $('#beta-join-form').validate({
 		rules: {
@@ -20,14 +22,15 @@ function handle_form_validation() {
 			'user[first_name]': 'required',
 			'user[last_name]': 'required',
 			'user[email]': {required:true,email:true},
-			'user[password]': {required:true,minlength:6}
+			'user[password]': {required:true,minlength:6},
+			'user[tos_accepted]': {required:true}
 		},
 		messages: {
 			'user[invitation_code]':{required:'Required',minlength:'Codes are 6 characters long.',maxlength:'Codes are 6 characters long.'},
 			'user[first_name]':'Required',
 			'user[last_name]':'Required',
 			'user[email]':{required:'Required'},
-			'user[password]':{required:'Required'}
+			'user[tos_accepted]': {required:'Must be accepted'}
 		}
 	});
 }
