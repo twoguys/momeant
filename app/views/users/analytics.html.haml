@@ -1,5 +1,5 @@
 - content_for :head do
-  = javascript_include_tag "analytics", "jqplot/jquery.jqplot.min", "jqplot/plugins/jqplot.dateAxisRenderer.min", "jqplot/plugins/jqplot.highlighter.min"
+  = javascript_include_tag "analytics", "jqplot/jquery.jqplot.min", "jqplot/plugins/jqplot.dateAxisRenderer.min", "jqplot/plugins/jqplot.highlighter.min", "jquery.sparkline.min"
   / [if lt IE 9]
     = javascript_include_tag "jqplot/excanvas.min"
   = stylesheet_link_tag "jquery.jqplot"
@@ -94,12 +94,12 @@
       = link_to("View Details", "#", :class => "button blue")
       = link_to("Cash Out", "#", :class => "button green")
     
-    .profile-views.bar-chart.box
-      .chart
+    #profile-views.box
+      .sparkline
       %h4 2,400 profile views
     
-    .story-previews.bar-chart.box
-      .chart
+    #story-previews.box
+      .sparkline
       %h4 1,894 story previews
       
 = render "analytics_js"

@@ -3,6 +3,7 @@ var story_stats_browser = function() {
 	
 	this.initialize = function() {
 		$('#stories li').click(handle_story_click);
+		setup_sparkline_charts();
 	};
 	
 	var handle_story_click = function() {
@@ -19,6 +20,12 @@ var story_stats_browser = function() {
 			chart.drawSeries({},1);
 		}
 		return false;
+	};
+	
+	var setup_sparkline_charts = function() {
+		var options = {type:'bar', barColor:'#ccc', height:'20px'};
+		$('#profile-views .sparkline').sparkline(profile_views, options);
+		$('#story-previews .sparkline').sparkline(story_previews, options);
 	};
 };
 

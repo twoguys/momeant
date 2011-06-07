@@ -1,4 +1,7 @@
 <script type="text/javascript">
+  var profile_views = [0,16,2,2,2,0,0,0,2,0,0,2,0,4,2,0,2,0,0,2,26,28,14,4,0,2,0];
+  var story_previews = [0,8,2,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,2,8,2,4,0,0,0];
+
   var story_all_views = <%= views_chart_series(@user.views) %>;
   var story_all_rewards = <%= rewards_chart_series(@user.rewards) %>;
   <% @user.created_stories.each do |story| %>
