@@ -30,6 +30,7 @@
 				float: right
 				padding-top: 7px
 				font-family: $typewriter
+				font-weight: 100
 		#stats		
 			height: 65px
 			.views, .rewards, .conversion, .money
@@ -52,14 +53,15 @@
 				text-align: right
 				float: right
 				color: $green
-		#line-chart
-			width: 735px
-			padding: 10px 0 0 10px
-			height: 200px
-			margin: 20px 0
+		#line-chart-wrapper
+			padding: 10px
 			background-color: #fff
 			border: 1px solid #ccc
 			@include rounded(3px)
+			margin: 20px 0
+		#line-chart
+			width: 725px
+			height: 200px
 		#story-list, #patron-list
 			margin-bottom: 60px
 			ul li				
@@ -94,8 +96,8 @@
 					text-transform: uppercase
 					color: #aaa
 				a.date
-					margin-left: 100px
-					width: 285px
+					margin-left: 118px
+					width: 267px
 				a.rewards
 					width: 140px
 				a.views
@@ -257,8 +259,6 @@
 				text-align: center
 				margin-top: 10px
 
-.jqplot-axis
-	font-size: 12px !important
 .jqplot-highlighter-tooltip
 	background: rgba(0,0,0,0.9) !important
 	color: #f4f4f4 !important

@@ -12,21 +12,21 @@
         %h1#title Stats for all stories
         .subtext the past 30 days
       .views 
-        %span.count 1,673
+        %span.count= @user.views.past_thirty_days.count
         %span views
       .rewards
-        %span.count 526
+        %span.count= @user.rewards.past_thirty_days.sum(:amount)
         %span reward coins
       .conversion
+        %span.count= number_with_precision(@user.rewards.past_thirty_days.count / @user.views.past_thirty_days.count * 100, :precision => 0)
         %span %
-        %span.count 43.2
-        %span.help.tooltipped-n{:title => "Average Rewards per View (a rough judge of how likely users are to reward)"} ?
+        %span.help.tooltipped-n{:title => "A rough judge of how likely users are to reward"} ?
       .money
         %span $
         %span.count 473.62
         
-    #line-chart
-    
+    #line-chart-wrapper
+      #line-chart
     
     #story-list
       %header
@@ -81,7 +81,7 @@
     #follower-list
       %header
         %h1 Your Followers
-        .subtext #{@user.subscribers.count} people subscribe to your rewards/recommendations
+        .subtext #{pluralize(@user.subscribers.count, "person")} subscribe to your rewards/recommendations
       %ul
         - @user.subscribers.each do |subscriber|
           %li= link_to(image_tag(subscriber.avatar.url(:thumbnail)), user_path(subscriber), :class => "tooltipped", :title => subscriber.name)
