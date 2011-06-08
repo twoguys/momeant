@@ -1,0 +1,45 @@
+::-moz-selection{ background: #00aeef; color:#fff; text-shadow: none; }
+::selection { background: #00aeef; color:#fff; text-shadow: none; }
+::-webkit-input-placeholder { color:#999; font-style: italic; font-family: Georgia, serif; }
+input:-moz-placeholder { color:#999; font-style: italic; font-family: Georgia, serif; }
+
+/* Scrollbars */
+.story-viewer ul#pages :not(iframe)::-webkit-scrollbar {
+  width: 20px;
+  height: 20px; }
+
+/* Turn on single button up on top, and down on bottom */
+.story-viewer ul#pages :not(iframe)::-webkit-scrollbar-button:start:decrement,
+.story-viewer ul#pages :not(iframe)::-webkit-scrollbar-button:end:increment {
+  display: none; }
+
+/* Turn off the down area up on top, and up area on bottom */
+.story-viewer ul#pages :not(iframe)::-webkit-scrollbar-button:start:increment,
+.story-viewer ul#pages :not(iframe)::-webkit-scrollbar-button:end:decrement {
+  display: none; }
+
+.story-viewer ul#pages :not(iframe)::-webkit-scrollbar-track {
+  -webkit-border-image: url(../images/scrollbar.png) 9 9 9 9/9px 9px 9px 9px stretch repeat;
+  border-width: 9px; }
+
+/* Top area above thumb and below up button */
+.story-viewer ul#pages :not(iframe)::-webkit-scrollbar-track-piece:start {
+  border: none; }
+
+/* Bottom area below thumb and down button */
+.story-viewer ul#pages :not(iframe)::-webkit-scrollbar-track-piece:end {
+  border: none; }
+
+/* Track below and above */
+.story-viewer ul#pages :not(iframe)::-webkit-scrollbar-track-piece {
+  background-color: transparent; }
+
+/* The thumb itself */
+.story-viewer ul#pages :not(iframe)::-webkit-scrollbar-thumb {
+  -webkit-border-image: url(../images/scrollbar.png) 9 9 9 9/9px 9px 9px 9px stretch repeat;
+  border-width: 9px;
+  -webkit-transition: 0.2s linear; }
+
+/* Corner */
+.story-viewer ul#pages :not(iframe)::-webkit-scrollbar-corner {
+  background-color: transparent; }

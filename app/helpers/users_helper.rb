@@ -30,4 +30,14 @@ module UsersHelper
       [date.to_time.to_i * 1000, views_on_date]
     end.inspect.html_safe
   end
+  
+  def rewards_bar_series(rewards, number_of_days_ago=30)
+    start_time = number_of_days_ago.days.ago
+    end_time = Date.today
+    rewards_by_day = rewards.where(:created_at => start_time.beginning_of_day..end_time.end_of_day)
+    (start_time.to_date..end_time).map do |date|
+      rewards_on_date = rewards_by_day.find_all { |reward| reward.created_at.to_date == date }
+      rewards_on_date.inject(0) {|sum,reward| sum + reward.amount.to_i}
+    end.inspect.html_safe
+  end
 end

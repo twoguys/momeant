@@ -35,7 +35,6 @@
                       .loader
                 %li
                   %label Choose image placement
-                  = debug @page.image_media.placement
                   %select.image_placement{:position => "1"}
                     - Page::IMAGE_PLACEMENTS.each_pair do |k,v|
                       %option{:value => v, :selected => @page && @page.image_at_position(1) && @page.image_at_position(1).placement == v}= k
@@ -45,7 +44,7 @@
             %li.text1.input{:class => layout == "text-image" || layout == "text-text" ? "" : "hidden"}
               %h3 Text Column (left)
               - text_value = @page && @page.text_at_position(1) ? @page.text_at_position(1).text : ""
-              = text_area_tag "pages[#{@page_number}][text][1]", text_value, :class => "monitor-typing mirrored rich-editable", "mirror-to" => "text1-inner", :position => "1", :style => "width:100%"
+              = text_area_tag "pages[#{@page_number}][text][1]", text_value, :class => "mirrored rich-editable", "mirror-to" => "text1-inner", :position => "1", :style => "width:100%"
               %div
                 %label Pick a background color
                 = text_field_tag "pages[#{@page_number}][background_color]", "#f2f2f2", :class => "color-picker bgcolor", :position => "text1"
@@ -73,7 +72,7 @@
             %li.text2.input{:class => layout == "image-text" || layout == "text-text" ? "" : "hidden"}
               %h3 Text Column (right)
               - text_value = @page && @page.text_at_position(2) ? @page.text_at_position(2).text : ""
-              = text_area_tag "pages[#{@page_number}][text][2]", text_value, :class => "monitor-typing mirrored rich-editable", "mirror-to" => "text2-inner", :position => "2", :style => "width:100%"
+              = text_area_tag "pages[#{@page_number}][text][2]", text_value, :class => "mirrored rich-editable", "mirror-to" => "text2-inner", :position => "2", :style => "width:100%"
               %div
                 %label Pick a background color
                 = text_field_tag "pages[#{@page_number}][background_color]", "#f2f2f2", :class => "color-picker bgcolor", :position => "text2"

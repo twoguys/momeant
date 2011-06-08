@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!, :except => [:show, :billing_updates, :top_curators]
+  before_filter :get_adverts, :only => :top_curators
   skip_before_filter :verify_authenticity_token, :only => :billing_updates
   skip_before_filter :release_lockdown, :only => :billing_updates
   

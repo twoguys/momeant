@@ -66,8 +66,10 @@ class Page < ActiveRecord::Base
     end
     
     if page.blank? && story.page_at(options[:number])
-      # the user has chosen to overrite this page with another
+      # the user has chosen to override this page with another
+      Rails.logger.info "[Momeant] Overriding page #{options[:number]}"
       story.page_at(options[:number]).destroy
+      replacing = true
     end
 
     case type = options[:type]
@@ -251,9 +253,12 @@ class Page < ActiveRecord::Base
     end
     
     if page
-      Rails.logger.info "[Momeant] Creating/updating page: #{page.inspect}"
       page.story_id = story.id
+      Rails.logger.info "[Momeant] Creating/updating page: #{page.inspect}"
       page.save
+      if replacing
+        page.insert_at(options[:number])
+      end
       return page
     else
       Rails.logger.info "[Momeant] Hmm, no page was made..."

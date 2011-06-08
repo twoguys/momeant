@@ -54,6 +54,8 @@ header .insides, #mid .insides, #footer .insides {
 body.fullscreen {
   position: static; }
 
+.fullscreen header {
+  display: none; }
 .fullscreen header #user-nav, .fullscreen header .insides, .fullscreen #mid .insides, .fullscreen #footer .insides {
   width: 100%;
   min-width: 950px; }
@@ -66,10 +68,10 @@ body.fullscreen {
   position: absolute;
   width: 100%;
   top: 0;
-  min-height: 600px;
-  padding-top: 0; }
+  min-height: 100%;
+  padding: 0; }
   .fullscreen #mid .insides {
-    margin-top: 41px;
+    margin-top: 0;
     height: 100%; }
 .fullscreen #footer {
   display: none; }
@@ -1086,7 +1088,8 @@ form.new_story, form.edit_story, .story-form {
     display: none; }
 #page-previews li.pullquote {
   width: 288px;
-  height: 180px; }
+  height: 180px;
+  overflow: hidden; }
   #page-previews li.pullquote .inner {
     width: 100%;
     height: 100%; }
@@ -1100,12 +1103,13 @@ form.new_story, form.edit_story, .story-form {
       padding: 0 6%;
       width: 100%;
       text-transform: uppercase;
-      text-align: justify;
-      font-size: 6px;
-      line-height: 11px;
-      font-family: "museo-sans-1", "museo-sans-2", sans-serif;
-      color: #333333; }
-      #page-previews li.pullquote .pullquote-inner div.quote p:first-letter {
+      text-align: justify; }
+      #page-previews li.pullquote .pullquote-inner div.quote p {
+        font-size: 6px;
+        line-height: 11px;
+        font-family: "museo-sans-1", "museo-sans-2", sans-serif;
+        color: #333333; }
+      #page-previews li.pullquote .pullquote-inner div.quote p:first-child:first-letter {
         font-family: "ambroise-std-1", "ambroise-std-2", serif;
         float: left;
         font-size: 21px;
@@ -1820,7 +1824,9 @@ form.new_story, form.edit_story, .story-form {
         right: auto; }
     #page-editor ul#pages .pullquote {
       width: 100%;
-      height: 100%; }
+      height: 100%;
+      overflow: hidden;
+      overflow-y: auto; }
       #page-editor ul#pages .pullquote .inner {
         width: 100%;
         height: 100%; }
@@ -1834,12 +1840,13 @@ form.new_story, form.edit_story, .story-form {
           padding: 0 6%;
           width: 100%;
           text-transform: uppercase;
-          text-align: justify;
-          font-size: 6px;
-          line-height: 11px;
-          font-family: "museo-sans-1", "museo-sans-2", sans-serif;
-          color: #333333; }
-          #page-editor ul#pages .pullquote .pullquote-inner div.quote p:first-letter {
+          text-align: justify; }
+          #page-editor ul#pages .pullquote .pullquote-inner div.quote p {
+            font-size: 6px;
+            line-height: 11px;
+            font-family: "museo-sans-1", "museo-sans-2", sans-serif;
+            color: #333333; }
+          #page-editor ul#pages .pullquote .pullquote-inner div.quote p:first-child:first-letter {
             font-family: "ambroise-std-1", "ambroise-std-2", serif;
             float: left;
             font-size: 21px;
@@ -1850,19 +1857,19 @@ form.new_story, form.edit_story, .story-form {
             letter-spacing: -2px;
             padding-right: 4px;
             padding-top: 3px; }
-      #page-editor ul#pages .pullquote .pullquote-inner p {
+      #page-editor ul#pages .pullquote .pullquote-inner div.quote p {
         font-size: 34px;
         line-height: 50px;
         letter-spacing: -1px;
         font-weight: 100;
         padding: 0 10%; }
-        #page-editor ul#pages .pullquote .pullquote-inner p:first-letter {
-          font-size: 105px;
-          line-height: 110px;
-          letter-spacing: -4px;
-          height: 100px;
-          padding-top: 12px;
-          padding-right: 10px; }
+      #page-editor ul#pages .pullquote .pullquote-inner div.quote p:first-child:first-letter {
+        font-size: 80px;
+        line-height: 110px;
+        letter-spacing: -4px;
+        height: 100px;
+        padding-top: 12px;
+        padding-right: 10px; }
     #page-editor ul#pages .video {
       width: 100%;
       height: 100%;
@@ -2150,7 +2157,8 @@ form.new_story, form.edit_story, .story-form {
       background-color: white; }
     .story-preview .preview .thumbnail {
       width: 630px;
-      height: 420px; }
+      height: 420px;
+      display: block; }
     .story-preview .preview .thumbnail:hover .goto-view {
       display: block; }
     .story-preview .preview .price {
@@ -2656,7 +2664,8 @@ form.new_story, form.edit_story, .story-form {
             padding-right: 2px; }
       .story-viewer #previewer ul.pages li.pullquote {
         width: 288px;
-        height: 180px; }
+        height: 180px;
+        overflow: hidden; }
         .story-viewer #previewer ul.pages li.pullquote .inner {
           width: 100%;
           height: 100%; }
@@ -2670,12 +2679,13 @@ form.new_story, form.edit_story, .story-form {
             padding: 0 6%;
             width: 100%;
             text-transform: uppercase;
-            text-align: justify;
-            font-size: 6px;
-            line-height: 11px;
-            font-family: "museo-sans-1", "museo-sans-2", sans-serif;
-            color: #333333; }
-            .story-viewer #previewer ul.pages li.pullquote .pullquote-inner div.quote p:first-letter {
+            text-align: justify; }
+            .story-viewer #previewer ul.pages li.pullquote .pullquote-inner div.quote p {
+              font-size: 6px;
+              line-height: 11px;
+              font-family: "museo-sans-1", "museo-sans-2", sans-serif;
+              color: #333333; }
+            .story-viewer #previewer ul.pages li.pullquote .pullquote-inner div.quote p:first-child:first-letter {
               font-family: "ambroise-std-1", "ambroise-std-2", serif;
               float: left;
               font-size: 21px;
@@ -2854,6 +2864,7 @@ form.new_story, form.edit_story, .story-form {
     .story-viewer ul#pages li {
       width: 100%;
       height: 100%;
+      overflow-y: auto;
       text-shadow: none; }
       .story-viewer ul#pages li .number {
         display: none; }
@@ -2961,7 +2972,9 @@ form.new_story, form.edit_story, .story-form {
         right: auto; }
     .story-viewer ul#pages li.pullquote {
       width: 100%;
-      height: 100%; }
+      height: 100%;
+      overflow: hidden;
+      overflow-y: auto; }
       .story-viewer ul#pages li.pullquote .inner {
         width: 100%;
         height: 100%; }
@@ -2975,12 +2988,13 @@ form.new_story, form.edit_story, .story-form {
           padding: 0 6%;
           width: 100%;
           text-transform: uppercase;
-          text-align: justify;
-          font-size: 6px;
-          line-height: 11px;
-          font-family: "museo-sans-1", "museo-sans-2", sans-serif;
-          color: #333333; }
-          .story-viewer ul#pages li.pullquote .pullquote-inner div.quote p:first-letter {
+          text-align: justify; }
+          .story-viewer ul#pages li.pullquote .pullquote-inner div.quote p {
+            font-size: 6px;
+            line-height: 11px;
+            font-family: "museo-sans-1", "museo-sans-2", sans-serif;
+            color: #333333; }
+          .story-viewer ul#pages li.pullquote .pullquote-inner div.quote p:first-child:first-letter {
             font-family: "ambroise-std-1", "ambroise-std-2", serif;
             float: left;
             font-size: 21px;
@@ -2991,19 +3005,19 @@ form.new_story, form.edit_story, .story-form {
             letter-spacing: -2px;
             padding-right: 4px;
             padding-top: 3px; }
-      .story-viewer ul#pages li.pullquote .pullquote-inner p {
+      .story-viewer ul#pages li.pullquote .pullquote-inner div.quote p {
         font-size: 34px;
         line-height: 50px;
         letter-spacing: -1px;
         font-weight: 100;
         padding: 0 10%; }
-        .story-viewer ul#pages li.pullquote .pullquote-inner p:first-letter {
-          font-size: 105px;
-          line-height: 110px;
-          letter-spacing: -4px;
-          height: 100px;
-          padding-top: 12px;
-          padding-right: 10px; }
+      .story-viewer ul#pages li.pullquote .pullquote-inner div.quote p:first-child:first-letter {
+        font-size: 80px;
+        line-height: 110px;
+        letter-spacing: -4px;
+        height: 100px;
+        padding-top: 12px;
+        padding-right: 10px; }
     .story-viewer ul#pages li.video {
       width: 100%;
       height: 100%;
@@ -3381,7 +3395,8 @@ form.new_story, form.edit_story, .story-form {
             padding-right: 2px; }
       .story-gallery .large-preview .pages a.pullquote {
         width: 630px;
-        height: 420px; }
+        height: 420px;
+        overflow: hidden; }
         .story-gallery .large-preview .pages a.pullquote .inner {
           width: 100%;
           height: 100%; }
@@ -3395,12 +3410,13 @@ form.new_story, form.edit_story, .story-form {
             padding: 0 6%;
             width: 100%;
             text-transform: uppercase;
-            text-align: justify;
-            font-size: 6px;
-            line-height: 11px;
-            font-family: "museo-sans-1", "museo-sans-2", sans-serif;
-            color: #333333; }
-            .story-gallery .large-preview .pages a.pullquote .pullquote-inner div.quote p:first-letter {
+            text-align: justify; }
+            .story-gallery .large-preview .pages a.pullquote .pullquote-inner div.quote p {
+              font-size: 6px;
+              line-height: 11px;
+              font-family: "museo-sans-1", "museo-sans-2", sans-serif;
+              color: #333333; }
+            .story-gallery .large-preview .pages a.pullquote .pullquote-inner div.quote p:first-child:first-letter {
               font-family: "ambroise-std-1", "ambroise-std-2", serif;
               float: left;
               font-size: 21px;
@@ -3667,7 +3683,8 @@ form.new_story, form.edit_story, .story-form {
             padding-right: 2px; }
       .story-gallery .slider .viewport .preview.pullquote {
         width: 95px;
-        height: 60px; }
+        height: 60px;
+        overflow: hidden; }
         .story-gallery .slider .viewport .preview.pullquote .inner {
           width: 100%;
           height: 100%; }
@@ -3681,12 +3698,13 @@ form.new_story, form.edit_story, .story-form {
             padding: 0 6%;
             width: 100%;
             text-transform: uppercase;
-            text-align: justify;
-            font-size: 6px;
-            line-height: 11px;
-            font-family: "museo-sans-1", "museo-sans-2", sans-serif;
-            color: #333333; }
-            .story-gallery .slider .viewport .preview.pullquote .pullquote-inner div.quote p:first-letter {
+            text-align: justify; }
+            .story-gallery .slider .viewport .preview.pullquote .pullquote-inner div.quote p {
+              font-size: 6px;
+              line-height: 11px;
+              font-family: "museo-sans-1", "museo-sans-2", sans-serif;
+              color: #333333; }
+            .story-gallery .slider .viewport .preview.pullquote .pullquote-inner div.quote p:first-child:first-letter {
               font-family: "ambroise-std-1", "ambroise-std-2", serif;
               float: left;
               font-size: 21px;
@@ -3989,7 +4007,8 @@ form.new_story, form.edit_story, .story-form {
 
 .thumbnail.pullquote {
   width: 630px;
-  height: 420px; }
+  height: 420px;
+  overflow: hidden; }
   .thumbnail.pullquote .inner {
     width: 100%;
     height: 100%; }
@@ -4003,12 +4022,13 @@ form.new_story, form.edit_story, .story-form {
       padding: 0 6%;
       width: 100%;
       text-transform: uppercase;
-      text-align: justify;
-      font-size: 6px;
-      line-height: 11px;
-      font-family: "museo-sans-1", "museo-sans-2", sans-serif;
-      color: #333333; }
-      .thumbnail.pullquote .pullquote-inner div.quote p:first-letter {
+      text-align: justify; }
+      .thumbnail.pullquote .pullquote-inner div.quote p {
+        font-size: 6px;
+        line-height: 11px;
+        font-family: "museo-sans-1", "museo-sans-2", sans-serif;
+        color: #333333; }
+      .thumbnail.pullquote .pullquote-inner div.quote p:first-child:first-letter {
         font-family: "ambroise-std-1", "ambroise-std-2", serif;
         float: left;
         font-size: 21px;
@@ -4019,14 +4039,13 @@ form.new_story, form.edit_story, .story-form {
         letter-spacing: -2px;
         padding-right: 4px;
         padding-top: 3px; }
-  .thumbnail.pullquote .pullquote-inner p {
-    height: 420px;
+  .thumbnail.pullquote .pullquote-inner div.quote p {
     padding: 0% 7%;
     font-size: 15px;
     line-height: 22px;
     font-weight: 100;
     letter-spacing: -0.4px; }
-    .thumbnail.pullquote .pullquote-inner p:first-letter {
+    .thumbnail.pullquote .pullquote-inner div.quote p:first-letter {
       font-size: 44px;
       height: 44px;
       line-height: 44px;
@@ -4127,7 +4146,8 @@ form.new_story, form.edit_story, .story-form {
 
 .thumbnail.pullquote.medium {
   width: 288px;
-  height: 180px; }
+  height: 180px;
+  overflow: hidden; }
   .thumbnail.pullquote.medium .inner {
     width: 100%;
     height: 100%; }
@@ -4141,12 +4161,13 @@ form.new_story, form.edit_story, .story-form {
       padding: 0 6%;
       width: 100%;
       text-transform: uppercase;
-      text-align: justify;
-      font-size: 6px;
-      line-height: 11px;
-      font-family: "museo-sans-1", "museo-sans-2", sans-serif;
-      color: #333333; }
-      .thumbnail.pullquote.medium .pullquote-inner div.quote p:first-letter {
+      text-align: justify; }
+      .thumbnail.pullquote.medium .pullquote-inner div.quote p {
+        font-size: 6px;
+        line-height: 11px;
+        font-family: "museo-sans-1", "museo-sans-2", sans-serif;
+        color: #333333; }
+      .thumbnail.pullquote.medium .pullquote-inner div.quote p:first-child:first-letter {
         font-family: "ambroise-std-1", "ambroise-std-2", serif;
         float: left;
         font-size: 21px;
@@ -4157,11 +4178,11 @@ form.new_story, form.edit_story, .story-form {
         letter-spacing: -2px;
         padding-right: 4px;
         padding-top: 3px; }
-  .thumbnail.pullquote.medium .pullquote-inner p {
+  .thumbnail.pullquote.medium .pullquote-inner div.quote p {
     height: 180px;
     font-size: 10px;
     line-height: 18px; }
-    .thumbnail.pullquote.medium .pullquote-inner p:first-letter {
+    .thumbnail.pullquote.medium .pullquote-inner div.quote p:first-letter {
       font-size: 30px;
       height: 30px;
       line-height: 30px;
@@ -4316,6 +4337,43 @@ form.new_story, form.edit_story, .story-form {
       font-weight: 700;
       font-style: normal;
       padding-right: 2px; }
+
+.thumbnail.pullquote.petite {
+  width: 95px;
+  height: 60px;
+  overflow: hidden; }
+  .thumbnail.pullquote.petite .inner {
+    width: 100%;
+    height: 100%; }
+  .thumbnail.pullquote.petite .pullquote-inner {
+    display: table;
+    height: 100%;
+    width: 100%; }
+    .thumbnail.pullquote.petite .pullquote-inner div.quote {
+      display: table-cell;
+      vertical-align: middle;
+      padding: 0 6%;
+      width: 100%;
+      text-transform: uppercase;
+      text-align: justify; }
+      .thumbnail.pullquote.petite .pullquote-inner div.quote p {
+        font-size: 6px;
+        line-height: 11px;
+        font-family: "museo-sans-1", "museo-sans-2", sans-serif;
+        color: #333333; }
+      .thumbnail.pullquote.petite .pullquote-inner div.quote p:first-child:first-letter {
+        font-family: "ambroise-std-1", "ambroise-std-2", serif;
+        float: left;
+        font-size: 21px;
+        height: 21px;
+        line-height: 21px;
+        text-transform: uppercase;
+        vertical-align: baseline;
+        letter-spacing: -2px;
+        padding-right: 4px;
+        padding-top: 3px; }
+  .thumbnail.pullquote.petite .pullquote-inner div.quote p {
+    margin: 1px 0; }
 
 ul.stories li.story {
   float: left;
