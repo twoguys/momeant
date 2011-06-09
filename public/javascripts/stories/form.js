@@ -823,14 +823,16 @@ var story_auto_saver = function() {
 		    mode: 'exact',
 				elements: $element.attr('id'),
 				theme : "advanced",
-		    theme_advanced_buttons1 : "fontselect,fontsizeselect,forecolor,backcolor,bold,underline,italic,justifyleft,justifycenter,justifyright,justifyfull",
+		    theme_advanced_buttons1 : "styleselect,forecolor,backcolor,bold,underline,italic,justifyleft,justifycenter,justifyright,justifyfull",
 		    theme_advanced_buttons2 : "",
 		    theme_advanced_buttons3 : "",
 		    theme_advanced_toolbar_location : "top",
 		    theme_advanced_toolbar_align : "left",
 				theme_advanced_more_colors: false,
 				
-				plugins : "paste",
+				content_css : "/stylesheets/creator_text_styles.css",
+				
+				plugins : "paste,style",
 				paste_text_sticky : true,
 				setup : function(ed) {
 				    ed.onInit.add(function(ed) {
@@ -846,6 +848,22 @@ var story_auto_saver = function() {
 				tiny_mce_config.theme_advanced_font_sizes = "36pt=36pt, 48pt=48pt, 60pt=60pt, 72pt=72pt"
 			}
 			tinyMCE.init(tiny_mce_config);
+			
+			// load Typekit into the tinyMCE iframe
+			log($element.attr('id'));
+			var editor = tinymce.get($element.attr('id')).getDoc();
+			var script = editor.contentDocument.createElement('script');
+			script.type = "text/javascript";
+			script.src = "http://use.typekit.com/" + typekit_id + ".js";
+			script.onload = function() {
+			    editor.contentDocument.Typekit.load({
+			        loading: function() {
+			            editor.contentDocument.designMode = "on";
+			        }
+			    });
+			}
+			editor.contentDocument.designMode = "off"
+			editor.contents().find('head')[0].appendChild(script);
 			
 			if ($element.hasClass('mirrored')) {
 				var $to = $('ul#pages li#page_' + number + ' .' + $element.attr('mirror-to') + ', #page-previews li#preview_' + number + ' .' + $element.attr('mirror-to'));
