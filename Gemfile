@@ -8,6 +8,7 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 
 gem 'devise'
 gem 'haml'
+gem 'sass'
 gem 'aws-s3'
 gem 'paperclip'
 gem 'inherited_resources'
@@ -22,6 +23,7 @@ gem 'acts_as_list'
 gem 'aasm'
 gem 'spreedly', :require => false
 gem 'kaminari'
+gem 'pusher'
 
 group :test do
   gem 'shoulda'

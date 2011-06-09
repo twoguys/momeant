@@ -12,7 +12,7 @@
             %li.even= link_to("Invite", invite_path)
             %li.odd= link_to("Bookmarks", user_bookmarks_path(current_user))
             - if current_user.is_a?(Creator)
-              %li.even= link_to("Analytics", "#")
+              %li.even= link_to("Analytics", analytics_path)
               %li.odd= link_to("Settings", edit_user_path(current_user))
               %li.even= link_to("Sign out", destroy_user_session_path)
             - else  

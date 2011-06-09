@@ -15,37 +15,39 @@
     / [if lt IE 9]
       = javascript_include_tag "http://html5shiv.googlecode.com/svn/trunk/html5.js"
     
-    = stylesheet_link_tag "reset", "tipsy", "jquery.fancybox-1.3.4", "colorpicker", "styles"
+    = stylesheet_link_tag "reset", "tipsy", "jquery.fancybox-1.3.4", "colorpicker", "creator_text_styles", "styles", "extras"
     
     /[if lt IE 7]
       = stylesheet_link_tag "ie"
     = javascript_include_tag "http://use.typekit.com/sji8gns.js"
     :javascript
       try{Typekit.load();}catch(e){}
+      var typekit_id = 'sji8gns';
     = yield :head
     
-  %body.yui-skin-sam{:class => @fullscreen.nil? ? "" : "fullscreen"}
+  %body{:class => @fullscreen.nil? ? "" : "fullscreen"}
     #wrap
       #main.clearfix
-        %header{:class => private_beta? && !current_user ? "hide-nav" : ""}
-          = render "layouts/user_nav" unless @hide_nav
-          #call-to-action
-            - unless private_beta?
-              - if current_user && current_user.trial?
-                = render :partial => "shared/calls_to_action/subscribe", :locals => {:message => "You have #{pluralize(current_user.days_left_in_trial, "day")} and #{pluralize(current_user.coins, "coin")} left in your trial. Loving it?"}
-              - else
-                = yield :call_to_action
-            - if current_user && current_user.is_a?(Creator) && current_user.paypal_email.blank?
-              = render :partial => "shared/calls_to_action/enter_payment_info"
-          = render "layouts/flash", :flash => flash
-          .insides
-            .momeant-header
-              = link_to("Home", root_path, :id => "logo-large") unless @hide_momeant
-              - if !current_user
-                = link_to("Join", new_user_registration_path, :id => "join", :class => "round-button")
-              - elsif !@hide_rewards
-                = render "shared/reward_bank"
-              = yield :header
+        %header#header{:class => private_beta? && !current_user ? "hide-nav" : ""}
+          - unless @fullscreen.present?
+            = render "layouts/user_nav" unless @hide_nav
+            #call-to-action
+              - unless private_beta?
+                - if current_user && current_user.trial?
+                  = render :partial => "shared/calls_to_action/subscribe", :locals => {:message => "You have #{pluralize(current_user.days_left_in_trial, "day")} and #{pluralize(current_user.coins, "coin")} left in your trial. Loving it?"}
+                - else
+                  = yield :call_to_action
+              - if current_user && current_user.is_a?(Creator) && current_user.paypal_email.blank?
+                = render :partial => "shared/calls_to_action/enter_payment_info"
+            = render "layouts/flash", :flash => flash
+            .insides
+              .momeant-header
+                = link_to("Home", root_path, :id => "logo-large") unless @hide_momeant
+                - if !current_user
+                  = link_to("Join", new_user_registration_path, :id => "join", :class => "round-button")
+                - elsif !@hide_rewards
+                  = render "shared/reward_bank"
+                = yield :header
             
         #mid
           .insides

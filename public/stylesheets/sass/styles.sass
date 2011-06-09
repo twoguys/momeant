@@ -58,6 +58,7 @@ html, body
 	height: 100%
 	overflow-x: hidden
 	text-rendering: optimizelegibility
+	position: relative
 
 h1, h2
 	font-weight: normal
@@ -99,7 +100,11 @@ header .insides, #mid .insides, #footer .insides
 	margin: 0 auto
 	position: relative
 
+body.fullscreen
+	position: static
 .fullscreen
+	header
+		display: none
 	header #user-nav, header .insides, #mid .insides, #footer .insides
 		width: 100%
 		min-width: 950px
@@ -112,10 +117,10 @@ header .insides, #mid .insides, #footer .insides
 		position: absolute
 		width: 100%
 		top: 0
-		min-height: 600px
-		padding-top: 0
+		min-height: 100%
+		padding: 0
 		.insides
-			margin-top: 41px
+			margin-top: 0
 			height: 100%
 	#footer
 		display: none
@@ -187,6 +192,7 @@ header .insides, #mid .insides, #footer .insides
 @import "invite"
 @import "about"
 @import "faq"
+@import "analytics"
 
 .hidden
 	display: none

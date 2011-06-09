@@ -1,0 +1,271 @@
+#creator-analytics
+	.help
+		font-size: 10px
+		background-color: #ccc
+		width: 15px
+		height: 15px
+		line-height: 17px
+		vertical-align: middle
+		@include rounded(15px)
+		display: inline-block
+		text-align: center
+		position: relative
+		top: -3px
+		cursor: help
+
+	.data
+		width: 745px
+		float: left
+		header
+			border-bottom: 1px dashed #999
+			height: 30px
+			margin-bottom: 10px
+			h1
+				float: left
+				font-size: 18px
+				text-transform: uppercase
+				font-weight: 900
+				margin: 0
+			.subtext
+				float: right
+				padding-top: 7px
+				font-family: $typewriter
+				font-weight: 100
+		#stats		
+			height: 65px
+			.views, .rewards, .conversion, .money
+				float: left
+				width: 187px
+				font-size: 15px
+				margin-top: 5px
+			.views, .rewards
+				padding-left: 20px
+			.views
+				color: $blue
+				background: transparent url(../images/icons/viewsBlue.png) no-repeat 0 50%
+			.rewards
+				width: 250px
+				color: $red
+				background: transparent url(../images/icons/rewardRed.png) no-repeat 0 50%
+			.conversion
+				width: 81px
+			.money
+				text-align: right
+				float: right
+				color: $green
+		#line-chart-wrapper
+			padding: 10px
+			background-color: #fff
+			border: 1px solid #ccc
+			@include rounded(3px)
+			margin: 20px 0
+		#line-chart
+			width: 725px
+			height: 200px
+		#story-list, #patron-list
+			margin-bottom: 60px
+			ul li				
+				.rewards, .views, .money
+					line-height: 69px
+					vertical-align: middle
+					padding-left: 20px
+					font-size: 13px
+					font-weight: 700
+					margin-left: 20px
+				.rewards
+					width: 105px
+					color: $red
+					background: transparent url(../images/icons/rewardRed.png) no-repeat 0 50%
+				.views
+					width: 100px
+					margin-left: 4px
+					color: $blue
+					background: transparent url(../images/icons/viewsBlue.png) no-repeat 0 50%
+				.money
+					width: 90px
+					margin: 0
+					padding-left: 5px
+					color: $green
+		#story-list
+			header
+				height: 15px
+				border: none
+				a
+					display: block
+					float: left
+					text-transform: uppercase
+					color: #aaa
+				a.date
+					margin-left: 118px
+					width: 267px
+				a.rewards
+					width: 140px
+				a.views
+					width: 120px
+				a.money
+					width: 95px
+			ul#stories
+				li
+					width: 100%
+					height: 70px
+					border-bottom: 1px solid #ccc
+					border-top: 1px solid #fff
+					cursor: pointer
+					.thumbnail, .title-and-date, .rewards, .views, .money
+						float: left
+					.thumbnail
+						width: 95px
+						margin: 5px
+						padding: 0
+					.title-and-date
+						width: 265px
+						padding: 5px
+						h2
+							color: $text_color
+							background: none
+							font-size: 16px
+							text-transform: none
+							margin: 0
+							padding: 10px 10px 5px
+							width: 245px
+							overflow: hidden
+							text-overflow: ellipsis
+							white-space: nowrap
+						.date
+							padding-left: 10px
+				li#all
+					.thumbnail
+						position: relative
+						.note
+							position: absolute
+							font-family: $typewriter
+							font-weight: 100
+							text-align: center
+							color: #777
+							padding-top: 10px
+							padding-bottom: 15px
+					.title-and-date h2
+						padding-top: 20px
+					.not-selected
+						display: block
+					.is-selected
+						display: none
+				li#all.selected
+					.note
+						background: transparent url(../images/downTriangle.png) no-repeat 50% 100%
+					.not-selected
+						display: none
+					.is-selected
+						display: block
+				li.selected
+					background-color: #fff
+		#patron-list
+			header
+				a
+					display: block
+					float: left
+					text-transform: uppercase
+					color: #aaa
+					padding-top: 5px
+				a.name
+					margin-left: 30px
+					width: 218px
+				a.rewards
+					width: 140px
+				a.views
+					width: 135px
+				a.money
+					width: 75px
+			ul#patrons
+				min-height: 60px
+				li
+					height: 60px
+					padding: 5px 0
+					border-bottom: 1px solid #ccc
+					.number, .avatar, .info
+						float: left
+						margin-right: 20px
+					.number
+						background-color: #000
+						color: #fff
+						@include rounded(40px)
+						width: 40px
+						height: 40px
+						text-align: center
+						line-height: 40px
+						vertical-align: middle
+						font-family: $typewriter
+						font-size: 24px
+						margin: 5px 20px
+					.avatar
+						width: 60px
+						height: 60px
+						margin: 0 20px 0 10px
+					.info
+						width: 190px
+						overflow: hidden
+						text-overflow: ellipsis
+						white-space: nowrap
+						.name
+							font-weight: 700
+							font-size: 22px
+						.occupation
+							font-style: italic
+					.rewards, .views, .money
+						float: left
+						line-height: 50px
+		#follower-list
+			padding-bottom: 60px
+			ul
+				height: 60px
+				li
+					float: left
+					margin-right: 5px
+					a
+						position: relative
+
+	.sidebar
+		width: 155px
+		float: right
+		.box
+			padding: 10px
+			background-color: #2a2a2a
+			@include rounded(3px)
+			margin-bottom: 20px
+			color: $background_color
+			h3
+				font-size: 13px
+				font-weight: 900
+				text-transform: uppercase
+				text-align: center
+				border-bottom: 1px dashed #555
+				padding-bottom: 5px
+				margin-bottom: 5px
+			h4
+				text-transform: uppercase
+				text-align: center
+				font-weight: 500
+				font-size: 11px
+			.sparkline
+				margin-bottom: 10px
+		.current-balance
+			.amount
+				font-family: $typewriter
+				font-size: 24px
+				font-weight: 100
+				padding: 20px 0
+				text-align: center
+			a
+				display: block
+				width: 115px
+				font-size: 13px
+				text-align: center
+				margin-top: 10px
+
+.jqplot-highlighter-tooltip
+	background: rgba(0,0,0,0.9) !important
+	color: #f4f4f4 !important
+	border: none !important
+	@include rounded(3px)
+	padding: 4px 6px !important
+	font-size: 12px !important

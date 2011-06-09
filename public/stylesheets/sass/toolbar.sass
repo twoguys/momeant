@@ -1,13 +1,12 @@
-header
+#header
 	background: transparent url(../images/topNavBG.png) repeat-x scroll 0 0
 	position: relative
-	z-index: 100
 	#user-nav
 		position: relative
 		height: 42px
 		width: 950px
 		margin: 0 auto
-		z-index: 2
+		z-index: 100
 		ul.links
 			position: absolute
 			left: 0
@@ -292,7 +291,6 @@ header
 		display: block
 		text-indent: -9999px
 		height: 130px
-		padding-top: 20px
 		background: transparent url(../images/diagStripeBG.png) repeat-x 0 100%
 		margin-bottom: 10px
 		z-index: 1
@@ -332,7 +330,7 @@ header
 		#rewards-bank-slider
 			position: absolute
 			right: 40px
-			top: 44px
+			top: 42px
 			width: 180px
 			padding: 3px
 			@include rounded
@@ -353,6 +351,8 @@ header
 			background-color: $lightred
 			.inner
 				color: $red
+#header.hide-nav
+	background: none
 .fullscreen .momeant-header
 	display: none
 

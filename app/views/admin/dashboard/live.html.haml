@@ -1,0 +1,12 @@
+.admin
+  %ul#live-updates
+
+= javascript_include_tag "http://js.pusherapp.com/1.8/pusher.min.js"
+:javascript
+  var pusher = new Pusher('4f572d1c91854205b7b9');
+  var myChannel = pusher.subscribe('admin');
+  myChannel.bind('request', function(url) {
+    log(url);
+    var time = new Date();
+    $('#live-updates').prepend('<li><span class="url">' + url +'</span><span class="time">' + time.toLocaleString() + '</span></li>');
+  });
