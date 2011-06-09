@@ -1,8 +1,10 @@
+require 'pusher'
+
 class ApplicationController < ActionController::Base
   include SslRequirement
   protect_from_forgery
   
-  before_filter :release_lockdown, :check_for_trial_expiration
+  before_filter :release_lockdown, :check_for_trial_expiration, :push_to_sender
   
   def private_beta?
     ENV["CURRENT_RELEASE"] == "private-beta"
@@ -30,6 +32,10 @@ class ApplicationController < ActionController::Base
       @adverts = @adverts.where("path != 'subscribe'").where("path != 'invite'")
     end
     @adverts = @adverts.limit(2)
+  end
+  
+  def push_to_sender
+    Pusher['admin'].trigger('request', request.path)
   end
   
   rescue_from CanCan::AccessDenied do |exception|

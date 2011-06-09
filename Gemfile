@@ -22,6 +22,7 @@ gem 'acts_as_list'
 gem 'aasm'
 gem 'spreedly', :require => false
 gem 'kaminari'
+gem 'pusher'
 
 group :test do
   gem 'shoulda'
