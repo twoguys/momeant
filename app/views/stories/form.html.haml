@@ -27,12 +27,24 @@
   
   %fieldset
     %ul
-      %li
+      %li#thumbnail
         = hidden_field_tag :story_id, @story.id
+        = label_tag :story_thumbnail, "Choose an image thumbnail"
+        .thumbnail-container
+          .preview{:style => @story.thumbnail ? "background: #fff url(#{@story.thumbnail.url(:petite)})" : ""}
+          .file-uploader
+            %form
+              %input{:type => "hidden", :value => form_authenticity_token, :name => "authenticity_token"}
+              .file-input
+                %input{:type => "file", :name => "story[thumbnail]"}
+                .loader
+            .example Preferably 630 pixels wide and 420 pixels tall. We use this to represent your story throughout the site (in various sizes).
+      %li
         .title-input
           = label_tag :story_title, "Title"
           = text_field_tag :story_title, @story.title, :class => "monitor-story-typing", :update => "title"
           .example What's in a name? Give your story one! (ie. Around the World in 80 Days)
+      %li
         .excerpt-input
           = label_tag :story_synopsis, "Synopsis"
           = text_area_tag :story_synopsis, @story.synopsis, :class => "monitor-story-typing", :update => "synopsis"

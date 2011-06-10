@@ -14,10 +14,8 @@
           .why= obj.comment
       - else
         %li.story
-          - if obj.thumbnail
-            - @page = obj.thumbnail
-            %a.thumbnail.petite{:href => preview_story_path(obj), :class => @page.css_class}
-              = render :partial => "stories/page_themes/#{@page.partial_name}", :locals => {:size => "petite"}
+          %a.thumbnail.petite{:href => preview_story_path(obj)}
+            = image_tag(obj.thumbnail(:petite))
           .info
             = link_to(obj.title, preview_story_path(obj), :class => "title")
             .author by #{obj.user.name}

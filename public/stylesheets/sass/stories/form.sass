@@ -1,9 +1,8 @@
 /* Story creation */
 
 .finished-links
-	position: absolute
-	right: 0
 	z-index: 3
+	float: right
 	a, input[type="submit"]
 		float: left
 		font-weight: 900
@@ -51,26 +50,54 @@ form.new_story, form.edit_story, .story-form
 			margin-bottom: 0.5em
 	label
 		float: none
+		padding: 0
+	fieldset
+		padding-top: 20px
 	#story-spinner
 		display: none
 		height: 16px
 		background: transparent url(../images/spinner.gif) no-repeat 0 0
 		position: absolute
-		top: 0
+		top: 10px
 		left: -20px
 		padding-left: 20px
 	#story-saved
 		height: 16px
 		font-family: $typewriter
 		position: absolute
-		top: 0
+		top: 10px
 		left: 0
 		color: #999
 		font-style: italic
 		font-weight: 100
+	#thumbnail
+		border-top: 1px solid #dedede
+		width: 950px
+		.thumbnail-container
+			padding-top: 5px
+			height: 80px
+			border-bottom: 1px solid #dedede
+			.preview
+				float: left
+				width: 95px
+				height: 60px
+				background: #fff
+				border: 1px solid #ccc
+				margin-right: 20px
+			.file-uploader
+				padding-top: 5px
+				float: left
+				.file-input
+					height: 25px
+				.loader
+					width: 220px
+					height: 19px
+					background: transparent url(../images/loading.gif) no-repeat 0 0
+					display: none
+				.example
+					border: none
 	.title-input, .excerpt-input
 		height: auto
-		float: left
 		position: relative
 		margin-bottom: 10px
 	.title-input
@@ -730,53 +757,53 @@ form.new_story, form.edit_story, .story-form
 				
 				.image-placement-picker
 					clear: both
-				color-picker
+				.color-picker
 					clear: both
-				.file-uploader
-					position: relative
-					height: 27px
-					float: left
-					.file-input-faker
-						position: absolute
-						width: 300px
-						height: 30px
-						overflow: hidden
-						input[type="file"]
-							position: absolute
-							top: 0
-							left: 0
-							opacity: 0
-							z-index: 2
-							height: 25px
-							width: 200px
-						.text
-							position: absolute
-							left: 0
-							line-height: 25px
-							vertical-align: middle
-							background-color: #fff
-							border: 1px solid #ccc
-							height: 25px
-							width: 190px
-							padding: 0 5px
-					a
-						position: absolute
-						left: 210px
-						display: block
-						width: auto
-						text-align: center
-						vertical-align: middle
-						font-family: $block
-						font-weight: 700
-						text-transform: uppercase
-						background-color: #c0eefe
-						z-index: 2
-						border-radius: 3px
-						-moz-border-radius: 3px
-						padding: 5px 10px
-						height: 15px
-					.loader
-						display: none
+		.file-uploader
+			position: relative
+			height: 27px
+			float: left
+			.file-input-faker
+				position: absolute
+				width: 300px
+				height: 30px
+				overflow: hidden
+				input[type="file"]
+					position: absolute
+					top: 0
+					left: 0
+					opacity: 0
+					z-index: 2
+					height: 25px
+					width: 200px
+				.text
+					position: absolute
+					left: 0
+					line-height: 25px
+					vertical-align: middle
+					background-color: #fff
+					border: 1px solid #ccc
+					height: 25px
+					width: 190px
+					padding: 0 5px
+			a
+				position: absolute
+				left: 210px
+				display: block
+				width: auto
+				text-align: center
+				vertical-align: middle
+				font-family: $block
+				font-weight: 700
+				text-transform: uppercase
+				background-color: #c0eefe
+				z-index: 2
+				border-radius: 3px
+				-moz-border-radius: 3px
+				padding: 5px 10px
+				height: 15px
+			.loader
+				display: none
 	#pane.closed
 		left: -49%
 		.expander-tab
@@ -841,7 +868,3 @@ form.new_story, form.edit_story, .story-form
 		height: 19px
 		z-index: 999
 		background: transparent url(../images/loading.gif) no-repeat 0 0
-		
-.yui-editor-container
-	li
-		clear: none

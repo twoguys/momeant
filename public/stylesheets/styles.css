@@ -665,9 +665,8 @@ table {
 
 /* Story creation */
 .finished-links {
-  position: absolute;
-  right: 0;
-  z-index: 3; }
+  z-index: 3;
+  float: right; }
   .finished-links a, .finished-links input[type="submit"] {
     float: left;
     font-weight: 900;
@@ -718,27 +717,55 @@ form.new_story, form.edit_story, .story-form {
   form.new_story .banner li, form.edit_story .banner li, .story-form .banner li {
     margin-bottom: 0.5em; }
   form.new_story label, form.edit_story label, .story-form label {
-    float: none; }
+    float: none;
+    padding: 0; }
+  form.new_story fieldset, form.edit_story fieldset, .story-form fieldset {
+    padding-top: 20px; }
   form.new_story #story-spinner, form.edit_story #story-spinner, .story-form #story-spinner {
     display: none;
     height: 16px;
     background: transparent url(../images/spinner.gif) no-repeat 0 0;
     position: absolute;
-    top: 0;
+    top: 10px;
     left: -20px;
     padding-left: 20px; }
   form.new_story #story-saved, form.edit_story #story-saved, .story-form #story-saved {
     height: 16px;
     font-family: "museo-slab-1", "museo-slab-2", serif;
     position: absolute;
-    top: 0;
+    top: 10px;
     left: 0;
     color: #999999;
     font-style: italic;
     font-weight: 100; }
+  form.new_story #thumbnail, form.edit_story #thumbnail, .story-form #thumbnail {
+    border-top: 1px solid #dedede;
+    width: 950px; }
+    form.new_story #thumbnail .thumbnail-container, form.edit_story #thumbnail .thumbnail-container, .story-form #thumbnail .thumbnail-container {
+      padding-top: 5px;
+      height: 80px;
+      border-bottom: 1px solid #dedede; }
+      form.new_story #thumbnail .thumbnail-container .preview, form.edit_story #thumbnail .thumbnail-container .preview, .story-form #thumbnail .thumbnail-container .preview {
+        float: left;
+        width: 95px;
+        height: 60px;
+        background: white;
+        border: 1px solid #cccccc;
+        margin-right: 20px; }
+      form.new_story #thumbnail .thumbnail-container .file-uploader, form.edit_story #thumbnail .thumbnail-container .file-uploader, .story-form #thumbnail .thumbnail-container .file-uploader {
+        padding-top: 5px;
+        float: left; }
+        form.new_story #thumbnail .thumbnail-container .file-uploader .file-input, form.edit_story #thumbnail .thumbnail-container .file-uploader .file-input, .story-form #thumbnail .thumbnail-container .file-uploader .file-input {
+          height: 25px; }
+        form.new_story #thumbnail .thumbnail-container .file-uploader .loader, form.edit_story #thumbnail .thumbnail-container .file-uploader .loader, .story-form #thumbnail .thumbnail-container .file-uploader .loader {
+          width: 220px;
+          height: 19px;
+          background: transparent url(../images/loading.gif) no-repeat 0 0;
+          display: none; }
+        form.new_story #thumbnail .thumbnail-container .file-uploader .example, form.edit_story #thumbnail .thumbnail-container .file-uploader .example, .story-form #thumbnail .thumbnail-container .file-uploader .example {
+          border: none; }
   form.new_story .title-input, form.new_story .excerpt-input, form.edit_story .title-input, form.edit_story .excerpt-input, .story-form .title-input, .story-form .excerpt-input {
     height: auto;
-    float: left;
     position: relative;
     margin-bottom: 10px; }
   form.new_story .title-input, form.edit_story .title-input, .story-form .title-input {
@@ -1509,29 +1536,31 @@ form.new_story, form.edit_story, .story-form {
       #page-editor #pane ul.pages li .title textarea {
         width: 95%;
         height: 160px; }
-      #page-editor #pane ul.pages li .full_image fieldset {
-        width: 50%;
-        margin: 0 auto; }
-      #page-editor #pane ul.pages li .full_image textarea {
-        width: 95%;
-        height: 150px; }
-      #page-editor #pane ul.pages li .full_image .picker {
-        background-color: white;
-        border: 1px solid #cccccc;
-        width: 94px;
-        height: 70px;
-        padding: 5px 0 0 5px;
-        clear: both; }
-        #page-editor #pane ul.pages li .full_image .picker li {
-          background-color: #eeeeee;
-          width: 42px;
-          height: 30px;
-          float: left;
-          margin: 0 5px 5px 0;
-          clear: none;
-          cursor: pointer; }
-        #page-editor #pane ul.pages li .full_image .picker li.chosen {
-          background-color: #b7ebff; }
+      #page-editor #pane ul.pages li .full_image {
+        padding-bottom: 20px; }
+        #page-editor #pane ul.pages li .full_image fieldset {
+          width: 50%;
+          margin: 0 auto; }
+        #page-editor #pane ul.pages li .full_image textarea {
+          width: 95%;
+          height: 150px; }
+        #page-editor #pane ul.pages li .full_image .picker {
+          background-color: white;
+          border: 1px solid #cccccc;
+          width: 94px;
+          height: 70px;
+          padding: 5px 0 0 5px;
+          clear: both; }
+          #page-editor #pane ul.pages li .full_image .picker li {
+            background-color: #eeeeee;
+            width: 42px;
+            height: 30px;
+            float: left;
+            margin: 0 5px 5px 0;
+            clear: none;
+            cursor: pointer; }
+          #page-editor #pane ul.pages li .full_image .picker li.chosen {
+            background-color: #b7ebff; }
       #page-editor #pane ul.pages li .pullquote textarea {
         width: 95%;
         height: 300px; }
@@ -1651,53 +1680,53 @@ form.new_story, form.edit_story, .story-form {
           padding-left: 15px; }
       #page-editor #pane ul.pages li .image-placement-picker {
         clear: both; }
-      #page-editor #pane ul.pages li color-picker {
+      #page-editor #pane ul.pages li .color-picker {
         clear: both; }
-      #page-editor #pane ul.pages li .file-uploader {
-        position: relative;
-        height: 27px;
-        float: left; }
-        #page-editor #pane ul.pages li .file-uploader .file-input-faker {
+    #page-editor #pane .file-uploader {
+      position: relative;
+      height: 27px;
+      float: left; }
+      #page-editor #pane .file-uploader .file-input-faker {
+        position: absolute;
+        width: 300px;
+        height: 30px;
+        overflow: hidden; }
+        #page-editor #pane .file-uploader .file-input-faker input[type="file"] {
           position: absolute;
-          width: 300px;
-          height: 30px;
-          overflow: hidden; }
-          #page-editor #pane ul.pages li .file-uploader .file-input-faker input[type="file"] {
-            position: absolute;
-            top: 0;
-            left: 0;
-            opacity: 0;
-            z-index: 2;
-            height: 25px;
-            width: 200px; }
-          #page-editor #pane ul.pages li .file-uploader .file-input-faker .text {
-            position: absolute;
-            left: 0;
-            line-height: 25px;
-            vertical-align: middle;
-            background-color: white;
-            border: 1px solid #cccccc;
-            height: 25px;
-            width: 190px;
-            padding: 0 5px; }
-        #page-editor #pane ul.pages li .file-uploader a {
-          position: absolute;
-          left: 210px;
-          display: block;
-          width: auto;
-          text-align: center;
-          vertical-align: middle;
-          font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
-          font-weight: 700;
-          text-transform: uppercase;
-          background-color: #c0eefe;
+          top: 0;
+          left: 0;
+          opacity: 0;
           z-index: 2;
-          border-radius: 3px;
-          -moz-border-radius: 3px;
-          padding: 5px 10px;
-          height: 15px; }
-        #page-editor #pane ul.pages li .file-uploader .loader {
-          display: none; }
+          height: 25px;
+          width: 200px; }
+        #page-editor #pane .file-uploader .file-input-faker .text {
+          position: absolute;
+          left: 0;
+          line-height: 25px;
+          vertical-align: middle;
+          background-color: white;
+          border: 1px solid #cccccc;
+          height: 25px;
+          width: 190px;
+          padding: 0 5px; }
+      #page-editor #pane .file-uploader a {
+        position: absolute;
+        left: 210px;
+        display: block;
+        width: auto;
+        text-align: center;
+        vertical-align: middle;
+        font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
+        font-weight: 700;
+        text-transform: uppercase;
+        background-color: #c0eefe;
+        z-index: 2;
+        border-radius: 3px;
+        -moz-border-radius: 3px;
+        padding: 5px 10px;
+        height: 15px; }
+      #page-editor #pane .file-uploader .loader {
+        display: none; }
   #page-editor #pane.closed {
     left: -49%; }
     #page-editor #pane.closed .expander-tab {
@@ -2053,9 +2082,6 @@ form.new_story, form.edit_story, .story-form {
     height: 19px;
     z-index: 999;
     background: transparent url(../images/loading.gif) no-repeat 0 0; }
-
-.yui-editor-container li {
-  clear: none; }
 
 /* Story Preview */
 .owner-links {
