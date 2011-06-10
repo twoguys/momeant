@@ -44,7 +44,7 @@ class Story < ActiveRecord::Base
     
   validates :title, :presence => true, :length => (2..256), :unless => :autosaving
   validates :synopsis, :length => (2..1024), :unless => :autosaving
-  validates_attachment_presence :photo, :unless => :autosaving
+  validates_attachment_presence :thumbnail, :unless => :autosaving
   
   validate  :at_least_one_page, :unless => :autosaving
   
