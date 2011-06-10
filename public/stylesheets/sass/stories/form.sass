@@ -1,27 +1,5 @@
 /* Story creation */
 
-.finished-links
-	z-index: 3
-	float: right
-	a, input[type="submit"]
-		float: left
-		font-weight: 900
-		font-size: 14px
-		text-transform: uppercase
-		margin-left: 10px
-		padding: 8px 10px 5px
-		@include rounded(4px)
-		width: 80px
-		text-align: center
-		letter-spacing: .5px
-	#preview-link
-		background-color: $lightblue
-	#publish-link
-		background-color: $lightgreen
-		color: #1EA337
-	#delete-link
-		background-color: $lightred
-		color: $red
 .new-story-copy
 	font-family: $typewriter
 	color: #999
@@ -43,9 +21,37 @@
 	padding-top: 0
 form.new_story, form.edit_story, .story-form
 	position: relative
-	padding-top: 20px
+	padding-top: 1px
 	height: 100%
+	.finished-links
+		position: absolute
+		top: 0
+		right: 0
+		a, input[type="submit"]
+			float: left
+			font-weight: 900
+			font-size: 14px
+			text-transform: uppercase
+			margin-left: 10px
+			padding: 8px 10px 5px
+			@include rounded(4px)
+			width: 80px
+			text-align: center
+			letter-spacing: .5px
+		#preview-link
+			background-color: $lightblue
+		#publish-link
+			background-color: $lightgreen
+			color: #1EA337
+		#delete-link
+			background-color: $lightred
+			color: $red
 	.banner
+		padding-top: 15px
+		margin: 20px 0 10px
+		background-color: $lightred
+		.before
+			font-weight: bold
 		li
 			margin-bottom: 0.5em
 	label

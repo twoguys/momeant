@@ -8,19 +8,19 @@
 
     We’ve already got some great storytelling tools, but we’re always looking for feedback on how we can improve them and on what new tools you want to see. So get in touch with us!
 
-  .finished-links
-    = link_to "Preview", preview_story_path(@story), :id => "preview-link"
-    = link_to "Publish", publish_story_path(@story), :id => "publish-link", :method => :post unless @story.published?
-    = link_to "Delete", story_path(@story), :id => "delete-link", :method => :delete, :confirm => "Are you sure you want to delete this story?"
-
 .form.story-form
   .fullscreen-hidden
     #story-spinner Saving story...
     #story-saved Your story will be automatically saved as you edit it
+    
+    .finished-links
+      = link_to "Preview", preview_story_path(@story), :id => "preview-link"
+      = link_to "Publish", publish_story_path(@story), :id => "publish-link", :method => :post unless @story.published?
+      = link_to "Delete", story_path(@story), :id => "delete-link", :method => :delete, :confirm => "Are you sure you want to delete this story?"
   
     - if !@story.valid?
       .banner
-        %span Before you can publish your story, please fix these issues:
+        .before Before you can publish your story, please fix these issues:
         %ul
           - @story.errors.full_messages.each do |msg|
             %li= msg
