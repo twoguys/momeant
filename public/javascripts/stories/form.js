@@ -841,8 +841,8 @@ var story_auto_saver = function() {
 				  }
 			};
 			if (type == 'grid') {
-				tiny_mce_config.theme_advanced_buttons1 = "fontselect,fontsizeselect";
-				tiny_mce_config.theme_advanced_buttons2 = "forecolor,backcolor,bold,underline,italic";
+				tiny_mce_config.theme_advanced_buttons1 = "styleselect,forecolor,backcolor,bold,underline,italic";
+				tiny_mce_config.theme_advanced_buttons2 = "justifyleft,justifycenter,justifyright,justifyfull";
 			}
 			if (type == 'title') {
 				tiny_mce_config.theme_advanced_font_sizes = "36pt=36pt, 48pt=48pt, 60pt=60pt, 72pt=72pt"

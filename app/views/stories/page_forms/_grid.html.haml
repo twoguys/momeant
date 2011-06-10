@@ -36,7 +36,7 @@
                           %a{:href => "#", :type => "image", :position => cell, :side => side} image
                           %a{:href => "#", :type => "text", :position => cell, :side => side} text
                       .image.type{:class => (side == "front" && front_side_show == "image") || (side == "back" && back_side_show == "image") ? "" : "hidden"}
-                        %label Choose an image
+                        %label.choose Choose an image
                         .file-uploader
                           %form
                             %input{:type => "hidden", :value => form_authenticity_token, :name => "authenticity_token"}

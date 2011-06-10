@@ -42,7 +42,7 @@
             - counter += 1
             .avatar= image_tag(patron.avatar.url(:thumbnail))
             .info
-              .name= patron.name
+              .name= link_to(patron.name, user_path(patron))
               .occupation= "occupation: #{patron.occupation}"
             .rewards= number_with_precision(rewards.sum(&:amount), :precision => 0)
     %ul.creators.tabcontent{:class => @user.is_a?(Creator) ? "hidden" : ""}
@@ -53,7 +53,7 @@
           - counter += 1
           .avatar= image_tag(creator.avatar.url(:thumbnail))
           .info
-            .name= creator.name
+            .name= link_to(creator.name, user_path(creator))
             .occupation= "occupation: #{creator.occupation}"
           .rewards= number_with_precision(rewards.sum(&:amount), :precision => 0)
           
