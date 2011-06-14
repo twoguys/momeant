@@ -1,6 +1,6 @@
 - unless flash.empty?
   #flash
     - flash.each do |key, value|
-      - if [:notice, :alert].include?(key)
+      - if [:notice, :alert].include?(key) && value.present?
         %div{:class => key.to_s}
           = value

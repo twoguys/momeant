@@ -45,11 +45,6 @@ class StoriesController < ApplicationController
   end
   
   def edit
-    # if @story.published?
-    #   redirect_to preview_story_path(@story), :alert => "Sorry, you cannot edit a story once it's been published."
-    #   return
-    # end
-    
     render "form"
   end
   
@@ -62,6 +57,18 @@ class StoriesController < ApplicationController
     else
       get_topics
       render "form"
+    end
+  end
+  
+  def update_thumbnail
+    return if params[:image].blank?
+    
+    @story.autosaving = true
+    @story.thumbnail = params[:image]
+    if @story.save
+      render :json => {:result => "success", :thumbnail => @story.thumbnail.url(:petite)}
+    else
+      render :json => {:result => "failure", :message => "Unable to save image"}
     end
   end
   

@@ -14,6 +14,16 @@ class Story < ActiveRecord::Base
     boolean :published
   end
   
+  has_attached_file :thumbnail,
+    :styles => { :large => "630x420#", :medium => "288x180#", :small => "150x100#", :petite => "95x60#" },
+    :path          => "story_thumbnails/:id/:style.:extension",
+    :storage        => :s3,
+    :s3_credentials => {
+      :access_key_id       => ENV['S3_KEY'],
+      :secret_access_key   => ENV['S3_SECRET']
+    },
+    :bucket        => ENV['S3_BUCKET']
+  
   belongs_to :user
   has_and_belongs_to_many :topics
   
@@ -34,6 +44,7 @@ class Story < ActiveRecord::Base
     
   validates :title, :presence => true, :length => (2..256), :unless => :autosaving
   validates :synopsis, :length => (2..1024), :unless => :autosaving
+  validates_attachment_presence :thumbnail, :unless => :autosaving, :message => "must be chosen"
   
   validate  :at_least_one_page, :unless => :autosaving
   
@@ -82,15 +93,15 @@ class Story < ActiveRecord::Base
     user.present? && self.users_who_recommended.include?(user)
   end
   
-  def thumbnail
-    thumbnail = self.thumbnail_page || 1
-    page_index = thumbnail - 1
-    if self.pages[page_index]
-      return self.pages[page_index]
-    else
-      return self.pages.first
-    end
-  end
+  # def thumbnail
+  #   thumbnail = self.thumbnail_page || 1
+  #   page_index = thumbnail - 1
+  #   if self.pages[page_index]
+  #     return self.pages[page_index]
+  #   else
+  #     return self.pages.first
+  #   end
+  # end
   
   def page_at(number)
     return self.pages.find_by_number(number)

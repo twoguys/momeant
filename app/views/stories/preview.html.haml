@@ -21,11 +21,8 @@
   = bookmark_button(@story) unless @story.owner?(current_user)
   .preview.clearfix
     .padder
-      %a.thumbnail.large{:class => @story.thumbnail.present? ? @story.thumbnail.css_class : "", :href => story_path(@story)}
-        .inner
-          - if @story.thumbnail
-            - @page = @story.thumbnail
-            = render :partial => "stories/page_themes/#{@page.partial_name}", :locals => {:size => "large"}
+      %a.thumbnail.large{:href => story_path(@story)}
+        .inner= image_tag(@story.thumbnail.url(:large))
     .actions
       = views_link(@story)
       = rewards_link(@story)

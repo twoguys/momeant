@@ -23,6 +23,7 @@ Repo::Application.routes.draw do
       put :autosave
       post :add_topic_to
       post :remove_topic_from
+      post :update_thumbnail
     end
     collection do
       get :bookmarked

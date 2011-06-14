@@ -35,9 +35,7 @@
             - @story.user.created_stories.published.where("id != #{@story.id}").each do |story|
               %li
                 %a.thumbnail.petite{:href => preview_story_path(story)}
-                  - if story.thumbnail
-                    - @page = story.thumbnail
-                    = render :partial => "stories/page_themes/#{@page.partial_name}", :locals => {:size => "petite"}
+                  = image_tag(story.thumbnail.url(:petite))
                 .info
                   = link_to(story.title, preview_story_path(story), :class => "title")
                   .author by #{story.user.name}
