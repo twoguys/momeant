@@ -55,7 +55,7 @@
                           = text_field_tag "pages[#{@page_number}][background_color]", "#ffffff", :class => "color-picker bgcolor", :position => "cells .cell_#{cell} .#{side} .image"
                       .text.type{:class => (side == "front" && front_side_show == "text") || (side == "back" && back_side_show == "text") ? "" : "hidden"}
                         - text = @page ? @page.media_at_position_and_side(cell,side).try(:text) : ""
-                        = text_area_tag "grid_text_#{cell}_#{side}", text, :class => "color-affected mirrored rich-editable", :position => cell, :side => side, "mirror-to" => "text-#{cell}-#{side}", :style => "width: 100%"
+                        = text_area_tag "grid_text_#{cell}_#{side}", text, :class => "color-affected mirrored", :position => cell, :side => side, "mirror-to" => "text-#{cell}-#{side}"
                         %div
                           %label Pick a background color
                           = text_field_tag "pages[#{@page_number}][background_color]", "#ffffff", :class => "color-picker bgcolor", :position => "cells .cell_#{cell} .#{side} .text"
