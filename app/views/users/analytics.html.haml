@@ -46,10 +46,8 @@
           .money
         - @user.created_stories.published.each do |story|
           %li{:story_id => story.id}
-            .thumbnail.petite{:href => preview_story_path(story), :class => story.thumbnail.present? ? story.thumbnail.css_class : ""}
-              - if story.thumbnail
-                - @page = story.thumbnail
-                = render :partial => "stories/page_themes/#{@page.partial_name}", :locals => {:size => "medium"}
+            .thumbnail.petite{:href => preview_story_path(story)}
+              = image_tag(story.thumbnail.url(:petite))
             .title-and-date
               %h2= story.title
               .date= story.created_at.strftime("%b %d, %Y")
