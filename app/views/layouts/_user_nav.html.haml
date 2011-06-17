@@ -34,10 +34,6 @@
             %li{:class => "#{counter % 2 == 1 ? "odd" : "even"} #{topic.name.downcase}"}= link_to(topic.name, topic_path(topic.name.downcase))
             - counter += 1
     - if user_signed_in?
-      %li#recommendations
-        %span.icon
-        .stream-inner
-          = render :partial => "users/recommendation_stream", :locals => {:user => current_user}
       - if can? :create, Story
         %li#create
           = link_to("Create a Story", new_story_path, :class => "tooltipped", :title => "Create a Story") if can? :create, Story
