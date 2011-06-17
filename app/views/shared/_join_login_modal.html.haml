@@ -5,10 +5,10 @@
       .copy
         %h3 Support Creators, Sustain Creativity
         %p
-          This is only filler text, it is not meant to be read. If you are still reading this, get back to work! Lorem
-          ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-          dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.
+          The web gives us unprecedented access to free content &ndash; but at Mo&#149;meant, we believe the best
+          way to promote and enjoy creativity is to recognize its value. The Mo&#149;meant community brings together creators
+          of every stripe: writers, artists, musicians, and more, who share their work with an audience of online patrons. Join the community and artist
+          by artist, patron by patron, we'll build a sustainable digital renaissance.
       .forms.clearfix
         .login
           %h2 Login
@@ -24,7 +24,7 @@
                   = f.label :password
                   = f.password_field :password, :id => "login_password"
 
-                %li
+                %li.remember
                   = f.check_box :remember_me
                   = f.label :remember_me
 
@@ -38,10 +38,10 @@
 
                 %li
                   = f.label :first_name, "Your name"
-                  %span
+                  %span.aside
                     = f.text_field :first_name
                     = f.label :first_name, "First"
-                  %span
+                  %span.aside
                     = f.text_field :last_name
                     = f.label :last_name, "Last"
 
@@ -51,10 +51,10 @@
 
                 %li
                   = f.label :password
-                  %span
+                  %span.aside
                     = f.password_field :password
                     = f.label :password, "6+ characters"
-                  %span
+                  %span.aside
                     = f.password_field :password_confirmation
                     = f.label :password_confirmation, "Once more, please"
 

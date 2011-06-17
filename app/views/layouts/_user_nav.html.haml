@@ -9,28 +9,21 @@
           .heading Your Links
           %ul
             %li.odd= link_to("Profile", user_path(current_user))
-            %li.even= link_to("Invite", invite_path)
-            %li.odd= link_to("Bookmarks", user_bookmarks_path(current_user))
+            %li.even= link_to("Bookmarks", user_bookmarks_path(current_user))
             - if current_user.is_a?(Creator)
-              %li.even= link_to("Analytics", analytics_path)
-              %li.odd= link_to("Settings", edit_user_path(current_user))
-              %li.even= link_to("Sign out", destroy_user_session_path)
-            - else  
+              %li.odd= link_to("Analytics", analytics_path)
               %li.even= link_to("Settings", edit_user_path(current_user))
               %li.odd= link_to("Sign out", destroy_user_session_path)
+            - else  
+              %li.odd= link_to("Settings", edit_user_path(current_user))
+              %li.even= link_to("Sign out", destroy_user_session_path)
     %li#faq
       %span.icon
       .inner
         .heading Information
         %ul
           %li.odd= link_to("About Us", about_path)
-          - if current_user && current_user.active_subscription?
-            %li.even= link_to("FAQ", faq_path)
-            %li.odd= link_to("Contact", "#")
-          - else
-            %li.even= link_to("Subscribe", subscribe_path)
-            %li.odd= link_to("FAQ", faq_path)
-            %li.even= link_to("Contact", "#")
+          %li.even= link_to("FAQ", faq_path)
     %li#topics
       %span.icon
       .inner

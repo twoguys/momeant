@@ -30,7 +30,7 @@ function tag_deletions() {
 }
 
 function setup_signup_modal() {
-	$('#join').click(function() {
+	$('#join, a[href="#signup-modal"]').click(function() {
 		var $modal = $('#join-login-modal');
 		$modal.stop().fadeIn('fast');
 		return false;
