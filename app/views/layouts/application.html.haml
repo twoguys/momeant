@@ -4,7 +4,7 @@
     %meta{ :content => "text/html; charset=utf-8", "http-equiv" => "Content-Type" }
     %meta{ :name => "Description", "http-equiv" => "Description", :content => "Reinventing patronage for the digital renaissance." }
     %meta{ :name => "Keywords", "http-equiv" => "Keywords", :content => "momeant, digital content, creators, reward, patron, art, community, sustainable" }
-    %link{ :id => 'favicon', :href => '/images/favicon.png', :rel => 'icon', :type => 'image/x-icon' }/
+    %link{ :id => 'favicon', :href => '/images/favicon.png', :rel => 'icon', :type => 'image/x-icon' }
     %title
       Momeant
       
@@ -41,7 +41,7 @@
                 - if current_user.created_stories.empty?
                   = render :partial => "shared/calls_to_action/create_a_story"
                 - elsif current_user.paypal_email.blank?
-                  = render :partial => "shared/calls_to_action/enter_payment_info"
+                  = #render :partial => "shared/calls_to_action/enter_payment_info"
             = render "layouts/flash", :flash => flash
             .insides
               .momeant-header
