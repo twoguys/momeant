@@ -9,6 +9,11 @@ class HomeController < ApplicationController
     end
     
     @most_rewarded_stories = Story.published.most_rewarded.page params[:page]
+    @nav = "home"
+  end
+  
+  def about
+    @nav = "about"
   end
   
   def apply

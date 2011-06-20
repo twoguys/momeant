@@ -10,6 +10,7 @@ class StoriesController < ApplicationController
   
   def recent
     @recent_stories = Story.published.newest_first.page params[:page]
+    @nav = "home"
     render "home/index"
   end
   
@@ -28,6 +29,7 @@ class StoriesController < ApplicationController
   
   def new
     @story = Story.create(:thumbnail_page => 1, :user_id => current_user.id, :autosaving => true, :price => 0)
+    @nav = "create"
     render "form"
   end
   
@@ -45,6 +47,7 @@ class StoriesController < ApplicationController
   end
   
   def edit
+    @nav = "create"
     render "form"
   end
   

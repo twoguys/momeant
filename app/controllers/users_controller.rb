@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!, :except => [:show, :billing_updates, :top_curators]
   before_filter :get_adverts, :only => :top_curators
+  before_filter :set_nav_active, :only => [:show, :edit, :bookmarks, :analytics]
   skip_before_filter :verify_authenticity_token, :only => :billing_updates
   skip_before_filter :release_lockdown, :only => :billing_updates
   
@@ -50,5 +51,9 @@ class UsersController < ApplicationController
     end
 
     head :ok
+  end
+  
+  def set_nav_active
+    @nav = "profile" if @user == current_user
   end
 end

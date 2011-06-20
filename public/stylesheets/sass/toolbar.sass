@@ -1,54 +1,58 @@
 #header
-	background: transparent url(../images/topNavBG.png) repeat-x scroll 0 0
 	position: relative
 	#user-nav
 		position: relative
-		height: 42px
-		width: 950px
-		margin: 0 auto
 		z-index: 100
-		ul.links
-			position: absolute
-			left: 0
+		height: 52px
+		.bg
+			background-color: #000
+			height: 42px
 			width: 100%
+			position: absolute
+			top: 0
+			z-index: 1
+		ul.links
+			position: relative
+			z-index: 2
+			width: 950px
+			margin: 0 auto
 			li
 				float: left
-		#home, #profile, #faq, #topics, #create
+			li.active
+				background: transparent url(../images/navActive.png) no-repeat 50% 100%
+		#logo, #home, #create, #profile, #faq
 			width: 46px
-			height: 36px
-			background: transparent url(../images/topNavBreak.gif) no-repeat 0 5px
+			height: 52px
 			a
 				width: 46px
-				height: 36px
+				height: 42px
 				display: block
 				margin: 0 auto
 				text-indent: -9999px
 				background-color: transparent
 				background-repeat: no-repeat
 				background-position: 50% 6px
-		#home
+		#logo
+			width: 180px
 			a
-				background: url(../images/icons/momeantHome.png) no-repeat scroll 50% 6px transparent
-		#signup, #signin, #signout
-			top: 15px
-		#signup
-			left: 60px
-		#profile, #faq
+				width: 165px
+				margin: 0
+				background: transparent url(../images/logoBlackSmall.png) no-repeat 0 0
+		#home a
+			background-image: url(../images/icons/momeantHomeWhite.png)
+		#create a
+			background: transparent url(../images/icons/momeantAddStoryWhite.png) no-repeat 50% 7px
+		#faq a
+			background-image: url(../images/icons/faqWhite.png)
+		#profile
 			position: relative
-			span.icon
-				position: absolute
-				display: block
-				width: 33px
-				height: 28px
-				top: 7px
-				left: 7px
-				background-image: url(../images/icons/momeantProfileB.png)
-				cursor: pointer
+			a.icon
+				background-image: url(../images/icons/momeantProfileWhite.png)
 			.inner
 				background: transparent url(../images/topTriangle.png) no-repeat 10px 0
 				padding-top: 7px
 				position: absolute
-				top: 35px
+				top: 41px
 				display: none
 				.heading
 					background-color: #000
@@ -81,20 +85,12 @@
 						color: #000
 				li:hover
 					background-color: #b8e6ff
-		#faq
-			span.icon
-				background-image: url(../images/icons/momeantHelp.png)
-				left: 10px
-		#profile:hover .inner, #faq:hover .inner
+		#profile:hover .inner
 			display: block
-		#signin, #signout
-			left: 140px
 		#create:hover, #balance:hover, #subscriptions:hover, #recommendations:hover, #topics:hover
 			.tip
 				display: block
 				left: 14px
-		#create a
-			background: transparent url(../images/icons/momeantAddStory.png) no-repeat 50% 7px
 		#balance	
 			background: transparent url(../images/topNavBreak.gif) no-repeat 0 5px
 			a
@@ -251,7 +247,7 @@
 				height: 20px
 				padding: 0
 				margin: 0
-				background: transparent url(../images/icons/search.png) no-repeat
+				background: transparent url(../images/icons/search.png) no-repeat 0 2px
 				-webkit-box-shadow: none
 				-moz-box-shadow: none
 				box-shadow: none
@@ -288,7 +284,7 @@
 			a
 				background-color: $red
 	.momeant-header
-		display: block
+		display: none
 		text-indent: -9999px
 		height: 130px
 		background: transparent url(../images/diagStripeBG.png) repeat-x 0 100%
