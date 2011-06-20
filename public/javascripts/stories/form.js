@@ -11,7 +11,15 @@ var story_page_editor = function() {
 	this.initialize = function() {
 		this.story_id = $('#story_id').val();
 
-		$('#open-page-editor-button').click(pages_editor.open);
+		$('#open-page-editor-button').click(function() {
+			pages_editor.goto_page(pages_editor.page);
+			pages_editor.open();
+			if ($(this).hasClass('launch')) {
+				pages_editor.page_chooser_mode = 'add';
+				pages_editor.show_page_type_chooser();
+			}
+			return false;
+		});
 		$('#close-page-editor-button').click(pages_editor.close);
 		$('#next-page').click(pages_editor.goto_next_page);
 		$('#previous-page').click(pages_editor.goto_previous_page);
@@ -218,6 +226,7 @@ var story_page_editor = function() {
 			pages_editor.hide_page_type_chooser();
 			if (pages_editor.page_chooser_mode == 'add') {
 				pages_editor.goto_page(pages_editor.page, true);
+				$('#open-page-editor-button').removeClass('launch');
 			}
 			
 			$('#page-type-chooser li[page-type="' + page_type + '"]').removeClass('loading');

@@ -58,7 +58,7 @@ class Story < ActiveRecord::Base
     if title.blank?
       "#{id}"
     else
-      "#{id}-#{title.gsub(/[^a-zA-Zd]/, '-')}"
+      "#{id}-#{title.gsub(/[^a-zA-Zd0-9]/, '-')}"
     end
   end
   

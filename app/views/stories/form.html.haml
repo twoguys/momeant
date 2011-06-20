@@ -76,21 +76,7 @@
       %li#page-previews
         = hidden_field_tag :story_thumbnail_page, @story.thumbnail_page ? @story.thumbnail_page : 1
         .actions
-          = #link_to("Open Page Editor", "#", :id => "open-page-editor-button")
-        #story-instructions
-          %label Story Slides
-          %p Start creating your story by clicking a slide. This will take you to the story builder, where you can choose a layout or template for the selected slide. Then, just follow the instructions to start filling in content. Once you've completed all ten slides, be sure to select one that can be used as a thumbnail. It will represent your story wherever it appears on the site and beyond. If you need more guidance, be sure to check out our tutorial here.
-        %ul.previews
-          - @story.pages.each do |page|
-            - @page = page
-            %li.page{:id => "preview_#{@page.number}", "page-number" => @page.number, :class => @story.thumbnail_page == @page.number ? "chosen-thumbnail #{@page.css_class}" : @page.css_class}
-              - @page_number = @page.number
-              .inner= render :partial => "stories/page_themes/#{@page.partial_name}", :locals => {:size => "medium"}
-              = link_to("set thumbnail", "#", :class => @story.thumbnail_page == @page.number ? "choose-thumbnail chosen" : "choose-thumbnail")              
-          - if @story.pages.count == 0
-            %li#preview_1.page.launch
-              .inner Create your first slide
-        .clear
+          = link_to("Launch Slide Editor", "#", :id => "open-page-editor-button", :class => @story.pages.count == 0 ? "launch" : "")
         
       %li#page-editor.hidden
         #editor-header
