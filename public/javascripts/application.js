@@ -102,6 +102,39 @@ function setup_thumbnail_flipping() {
 	$('ul.stories li.story.medium').hover(function(){$(this).addClass('flip')},function(){$(this).removeClass('flip')});
 }
 
+function handle_signup_login_form_validation() {
+	// we have to remove the extra checkbox Rails inserts for the 0 value
+	$('#join-form input[name="user[tos_accepted]"][value="0"]').remove();
+	var $beta_join_button = $('#beta-join-form input[type="submit"]');
+	$('#join-form').validate({
+		rules: {
+			'user[invitation_code]': {required:true,minlength:6,maxlength:6},
+			'user[first_name]': 'required',
+			'user[last_name]': 'required',
+			'user[email]': {required:true,email:true},
+			'user[password]': {required:true,minlength:6},
+			'user[tos_accepted]': {required:true}
+		},
+		messages: {
+			'user[invitation_code]':{required:'Required',minlength:'Codes are 6 characters long.',maxlength:'Codes are 6 characters long.'},
+			'user[first_name]':'Required',
+			'user[last_name]':'Required',
+			'user[email]':{required:'Required'},
+			'user[tos_accepted]': {required:'Must be accepted'}
+		}
+	});
+	$('#login-form').validate({
+		rules: {
+			'user[email]': {required:true,email:true},
+			'user[password]': 'required'
+		},
+		messages: {
+			'user[email]':{required:'Required'},
+			'user[password]':'Required'
+		}
+	});
+}
+
 $(document).ready(function() {
 	setup_tooltips();
 	setup_tab_switching();
@@ -112,7 +145,7 @@ $(document).ready(function() {
 	setup_story_gallery();
 	setup_recommendation_tabs();
 	setup_thumbnail_flipping();
-	//setup_personal_library_tabs();
+	handle_signup_login_form_validation();
 	$("a.disabled").click(function() {return false;})
 	
 	$.fn.colorPicker.defaultColors = ['000', '666', '999', 'ccc', 'fff', 'f42652', 'f7d3db', 'ffa801', 'ffebc5', 'fff10f', 'fffcd2', '1ea337', 'c8f2d0', '00aeef', 'c0eeff', '985faf', 'f5deff', '7a5116', 'e1d5c3'];

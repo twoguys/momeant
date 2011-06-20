@@ -1,66 +1,43 @@
 #join-login-modal
   .cover
   .padder
-    .insides
-      .copy
-        %h3 Support Creators, Sustain Creativity
-        %p
-          The web gives us unprecedented access to free content &ndash; but at Mo&#149;meant, we believe the best
-          way to promote and enjoy creativity is to recognize its value. The Mo&#149;meant community brings together creators
-          of every stripe: writers, artists, musicians, and more, who share their work with an audience of online patrons. Join the community and artist
-          by artist, patron by patron, we'll build a sustainable digital renaissance.
-      .forms.clearfix
+    %a.close{:href => "#"}
+    .insides.clearfix
+      .forms
         .login
           %h2 Login
-          = form_for(@user, :as => :user, :url => session_path(:user)) do |f|
+          = form_for(@user, :as => :user, :url => session_path(:user), :html => {:id => "login-form"}) do |f|
             %fieldset
               %ul
-
                 %li
-                  = f.label :email
-                  = f.text_field :email, :id => "login_email"
-
+                  = f.text_field :email, :id => "login_email", :placeholder => "email address"
                 %li
-                  = f.label :password
-                  = f.password_field :password, :id => "login_password"
-
-                %li.remember
+                  = f.password_field :password, :id => "login_password", :placeholder => "password"
+                %li.remember-me
                   = f.check_box :remember_me
                   = f.label :remember_me
-
                 %li.submit
                   = f.submit "login"
+                %li.copy
+                  Mo&#149;meant is currently in private beta; each new user will receive a 30 day trial.
         .join
           %h2 Join
-          = form_for(@user, :as => :user, :url => registration_path(:user), :html => {:multipart => true}) do |f|
+          = form_for(@user, :as => :user, :url => registration_path(:user), :html => {:id => "join-form"}) do |f|
             %fieldset
               %ul
-
                 %li
-                  = f.label :first_name, "Your name"
-                  %span.aside
-                    = f.text_field :first_name
-                    = f.label :first_name, "First"
-                  %span.aside
-                    = f.text_field :last_name
-                    = f.label :last_name, "Last"
-
+                  = f.text_field :invitation_code, :placeholder => "invitation code"
                 %li
-                  = f.label :email
-                  = f.text_field :email
-
+                  %span
+                    = f.text_field :first_name, :placeholder => "first name"
+                  %span.last
+                    = f.text_field :last_name, :placeholder => "last name"
                 %li
-                  = f.label :password
-                  %span.aside
-                    = f.password_field :password
-                    = f.label :password, "6+ characters"
-                  %span.aside
-                    = f.password_field :password_confirmation
-                    = f.label :password_confirmation, "Once more, please"
-
+                  = f.text_field :email, :placeholder => "email address"
                 %li
-                  = f.label :avatar
-                  = f.file_field :avatar
-
+                  = f.password_field :password, :placeholder => "password (6+ characters)"
+                %li.checkbox
+                  = f.check_box :tos_accepted
+                  %label{:for => "user_tos_accepted"} I agree to the #{link_to("Terms of Service", tos_path, :target => "new")}
                 %li.submit
                   = f.submit "sign up"
