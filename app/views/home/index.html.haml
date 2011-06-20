@@ -17,16 +17,12 @@
   %section.lists
     .home-tabs
       = link_to_active("Most Rewarded Stories", root_path)
-      = link_to_active("Top Curators", top_curators_users_path)
       = link_to_active("Latest Stories", recent_stories_path)
       .pagination
         = paginate @most_rewarded_stories if @most_rewarded_stories
-        = paginate @top_curators if @top_curators
         = paginate @recent_stories if @recent_stories
     - if @most_rewarded_stories
       %ul.most-rewarded.stories= render @most_rewarded_stories
-    - elsif @top_curators
-      %ul.top-curators.users= render :partial => "users/user", :collection => @top_curators
     - elsif @recent_stories
       %ul.recent.stories= render @recent_stories
     .home-tabs

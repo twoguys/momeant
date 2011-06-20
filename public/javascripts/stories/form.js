@@ -875,26 +875,7 @@ var story_auto_saver = function() {
 				tiny_mce_config.theme_advanced_buttons1 = "styleselect,forecolor,backcolor,bold,underline,italic";
 				tiny_mce_config.theme_advanced_buttons2 = "justifyleft,justifycenter,justifyright,justifyfull";
 			}
-			if (type == 'title') {
-				tiny_mce_config.theme_advanced_font_sizes = "36pt=36pt, 48pt=48pt, 60pt=60pt, 72pt=72pt"
-			}
 			tinyMCE.init(tiny_mce_config);
-			
-			// load Typekit into the tinyMCE iframe
-			// log($element.attr('id'));
-			// var editor = tinymce.get($element.attr('id')).getDoc();
-			// var script = editor.contentDocument.createElement('script');
-			// script.type = "text/javascript";
-			// script.src = "http://use.typekit.com/" + typekit_id + ".js";
-			// script.onload = function() {
-			//     editor.contentDocument.Typekit.load({
-			//         loading: function() {
-			//             editor.contentDocument.designMode = "on";
-			//         }
-			//     });
-			// }
-			// editor.contentDocument.designMode = "off"
-			// editor.contents().find('head')[0].appendChild(script);
 			
 			if ($element.hasClass('mirrored')) {
 				var $to = $('ul#pages li#page_' + number + ' .' + $element.attr('mirror-to') + ', #page-previews li#preview_' + number + ' .' + $element.attr('mirror-to'));

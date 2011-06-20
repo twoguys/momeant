@@ -1,6 +1,6 @@
 .pullquote.page-theme.pane-insides
   .header
-    .title Blockquote Page
+    .title One Column Page
     = link_to("Change", "#", :class => "change")
     .spinner Saving...
   .copy
@@ -11,6 +11,7 @@
       %ul
         %li
           %label Type your blockquote
+          = render "text_hints"
           - text_value = @page && @page.text ? @page.text : ""
           = text_area_tag "pages[#{@page_number}][text]", text_value, :class => "monitor-typing mirrored rich-editable", "mirror-to" => "quote", :style => "width:100%;height:300px;"
         %li

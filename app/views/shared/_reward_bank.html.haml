@@ -8,7 +8,7 @@
   #rewards-bank-slider
     .inner
       Reward Coins left in your trial
-  = link_to(current_user.coins, subscribe_path, :id => "rewards-bank", :class => "round-button")
+  = link_to(current_user.coins, "#", :id => "rewards-bank", :class => "round-button tooltipped", :title => "If you appreciate a story on the site, you show your appreciation by offering the artist a reward.")
 
 - elsif current_user.trial_expired?
   #rewards-bank-slider.expired

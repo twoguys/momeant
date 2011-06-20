@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   
   def check_for_trial_expiration
     unless private_beta?
-      if current_user && current_user.trial? && current_user.created_at < 30.days.ago
+      if current_user && current_user.trial? && current_user.created_at < 300.days.ago
         current_user.expire_trial!
       end
     end
