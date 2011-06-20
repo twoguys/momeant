@@ -5,7 +5,7 @@ class Creator < User
   has_many :payments, :foreign_key => :payee_id
   
   has_many :rewards, :foreign_key => :recipient_id
-  has_many :patrons, :through => :rewards, :source => :user
+  has_many :patrons, :through => :rewards, :source => :user, :uniq => true
   
   def balance
     self.sales.sum("amount") - self.payments.sum("amount")

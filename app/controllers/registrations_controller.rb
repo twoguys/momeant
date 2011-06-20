@@ -10,7 +10,7 @@ class RegistrationsController < Devise::RegistrationsController
     end
     
     resource ||= User.new(params[:user])
-    resource.coins = 10
+    resource.coins = 25
     resource.subscription_last_updated_at = Time.now
     
     if resource.save
