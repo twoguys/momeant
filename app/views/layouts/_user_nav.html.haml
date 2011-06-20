@@ -27,6 +27,9 @@
     - if user_signed_in?
       %li#rewards.tooltipped{:title => "If you appreciate a story on the site, you show your appreciation by offering the creator a reward."}
         = pluralize(current_user.coins, "reward coin")
+      %li#signout= link_to("Logout", destroy_user_session_path)
+    - else
+      %li#signin= link_to("Join / Login", "#signup-modal")
     %li#search
       = form_tag search_path, :method => :get do
         = text_field_tag :query, params[:query], :placeholder => "search mo•meant"
