@@ -24,6 +24,9 @@
               %li.even= link_to("Sign out", destroy_user_session_path)
     %li#faq{:class => @nav == "about" ? "active" : ""}
       = link_to("About Us", about_path, :class => "tooltipped", :title => "Tell me more".html_safe)
+    - if user_signed_in?
+      %li#rewards.tooltipped{:title => "If you appreciate a story on the site, you show your appreciation by offering the creator a reward."}
+        = pluralize(current_user.coins, "reward coin")
     %li#search
       = form_tag search_path, :method => :get do
         = text_field_tag :query, params[:query], :placeholder => "search mo•meant"
