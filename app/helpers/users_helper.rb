@@ -3,9 +3,9 @@ module UsersHelper
     if current_user.present? && current_user != user
       subscription = Subscription.where(:subscriber_id => current_user.id, :user_id => user.id).first
       if subscription
-        link_to("unsubscribe", user_subscription_path(user, subscription), :method => :delete, :class => 'button')
+        link_to("unfollow", user_subscription_path(user, subscription), :method => :delete, :class => 'button')
       else
-        button_to("subscribe", user_subscriptions_path(user))
+        button_to("follow", user_subscriptions_path(user))
       end
     end
   end
