@@ -205,7 +205,7 @@ class StoriesController < ApplicationController
   end
   
   def show
-    View.record(@story, current_user)
+    View.record(@story, current_user) unless current_user == @story.user
     @fullscreen = true
   end
   

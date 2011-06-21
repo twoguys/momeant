@@ -1,7 +1,7 @@
 %li.story.medium
   %a.thumbnail.medium{:href => preview_story_path(story)}
     = image_tag(story.thumbnail.url(:medium))
-  .title= link_to(story.title || "Incomplete Story", preview_story_path(story))
+  .title= link_to(truncate(story.title, :length => 40) || "Incomplete Story", preview_story_path(story))
   .author by #{link_to(story.user.name, user_path(story.user))}
   .excerpt= truncate(story.synopsis, :length => 100)
   .rewards{:class => current_user && current_user.has_rewarded?(story) ? "rewarded" : ""}= story.reward_count

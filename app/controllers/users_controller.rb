@@ -41,6 +41,7 @@ class UsersController < ApplicationController
   
   def analytics
     @user = current_user
+    @patrons = @user.rewards.group_by {|r| r.user_id}
   end
   
   def billing_updates

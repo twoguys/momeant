@@ -72,7 +72,7 @@
             .info
               = link_to(patron.name, user_path(patron), :class => "name")
               .occupation occupation: #{patron.occupation}
-            .rewards= @user.rewards.where(:user_id => patron.id).count
+            .rewards= @user.rewards.where(:user_id => patron.id).sum(:amount)
             .views= @user.views.where(:user_id => patron.id).count
             .money
 
