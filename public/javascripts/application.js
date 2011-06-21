@@ -108,7 +108,6 @@ function handle_signup_login_form_validation() {
 	var $beta_join_button = $('#beta-join-form input[type="submit"]');
 	$('#join-form').validate({
 		rules: {
-			'user[invitation_code]': {required:true,minlength:6,maxlength:6},
 			'user[first_name]': 'required',
 			'user[last_name]': 'required',
 			'user[email]': {required:true,email:true},
@@ -116,7 +115,6 @@ function handle_signup_login_form_validation() {
 			'user[tos_accepted]': {required:true}
 		},
 		messages: {
-			'user[invitation_code]':{required:'Required',minlength:'Codes are 6 characters long.',maxlength:'Codes are 6 characters long.'},
 			'user[first_name]':'Required',
 			'user[last_name]':'Required',
 			'user[email]':{required:'Required'},
