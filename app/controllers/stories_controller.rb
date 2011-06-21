@@ -5,7 +5,7 @@ class StoriesController < ApplicationController
   before_filter :get_adverts, :only => :recent
   
   def index
-    @stories = Story.published
+    redirect_to root_path
   end
   
   def recent
