@@ -25,7 +25,7 @@
     %li#faq{:class => @nav == "about" ? "active" : ""}
       = link_to("About Us", about_path, :class => "tooltipped", :title => "Tell me more".html_safe)
     - if user_signed_in?
-      %li#rewards.tooltipped{:title => "If you appreciate a story on the site, you show your appreciation by offering the creator a reward."}
+      %li#rewards.tooltipped{:title => "If you appreciate a story on the site, show your appreciation by offering the creator a reward."}
         = pluralize(current_user.coins, "reward coin")
       %li#signout= link_to("Logout", destroy_user_session_path)
     - else

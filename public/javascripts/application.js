@@ -35,7 +35,7 @@ function setup_signup_modal() {
 		$modal.stop().fadeIn('fast');
 		return false;
 	});
-	$('#join-login-modal .cover').click(function() {
+	$('#join-login-modal .cover, #join-login-modal .close').click(function() {
 		$('#join-login-modal').stop().fadeOut('fast');
 	});
 	$(document).keyup(function(e) {

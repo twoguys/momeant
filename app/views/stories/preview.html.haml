@@ -1,5 +1,5 @@
 - if current_user.blank?
-  = render :partial => "shared/calls_to_action/signup", :locals => {:message => "View this and all amazing content from our creators"}
+  = render :partial => "shared/calls_to_action/signup"
 
 - if @story.owner?(current_user)
   .owner-links
@@ -21,7 +21,7 @@
   = bookmark_button(@story) unless @story.owner?(current_user)
   .preview.clearfix
     .padder
-      %a.thumbnail.large{:href => story_path(@story)}
+      %a.thumbnail.large{:href => current_user.blank? ? "#signup-modal" : story_path(@story)}
         .inner= image_tag(@story.thumbnail.url(:large))
     .actions
       = views_link(@story)
