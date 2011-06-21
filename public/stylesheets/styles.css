@@ -158,11 +158,11 @@ body.fullscreen {
         background-repeat: no-repeat;
         background-position: 50% 6px; }
     #header #user-nav #logo {
-      width: 180px; }
+      width: 170px; }
       #header #user-nav #logo a {
         width: 165px;
         margin: 0;
-        background: transparent url(../images/logoBlackSmall.png) no-repeat 0 0; }
+        background: transparent url(../images/logoBlackSmall.png) no-repeat -12px 0px; }
     #header #user-nav #home a {
       background-image: url(../images/icons/momeantHomeWhite.png); }
     #header #user-nav #create a {
@@ -219,24 +219,29 @@ body.fullscreen {
       left: 14px; }
     #header #user-nav #rewards {
       position: absolute;
-      left: 480px;
+      left: 430px;
       height: 40px;
       line-height: 43px;
       vertical-align: middle;
       background: transparent url(../images/icons/recommendBlue.png) no-repeat 0 50%;
       padding-left: 20px;
-      font-weight: 500;
-      font-size: 13px;
-      color: white; }
+      font-weight: 700;
+      font-size: 12px;
+      color: white;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      word-spacing: 2px; }
     #header #user-nav #signin, #header #user-nav #signout {
       position: absolute;
       right: 210px;
-      padding-top: 9px; }
+      padding-top: 10px; }
       #header #user-nav #signin a, #header #user-nav #signout a {
+        background: -moz-linear-gradient(top, #d0d0d0 0%, #888888);
+        background: -webkit-gradient(linear, left top, left bottom, from(#d0d0d0), to(#888888));
         display: block;
-        height: 24px;
+        height: 22px;
         line-height: 24px;
-        padding: 0 8px;
+        padding: 0 15px;
         vertical-align: middle;
         text-transform: uppercase;
         color: white;
@@ -244,7 +249,8 @@ body.fullscreen {
         -webkit-border-radius: 3px;
         -moz-border-radius: 3px;
         border-radius: 3px;
-        background-color: #00aeff; }
+        font-size: 10px;
+        letter-spacing: 0.5px; }
     #header #user-nav #signout a {
       background-color: #888888; }
     #header #user-nav #balance {
@@ -379,7 +385,7 @@ body.fullscreen {
         letter-spacing: 0.3px;
         padding-left: 10px; }
     #header #user-nav #search {
-      padding-top: 8px;
+      padding-top: 9px;
       float: right;
       width: 200px; }
       #header #user-nav #search label {
@@ -393,23 +399,32 @@ body.fullscreen {
         text-transform: lowercase; }
       #header #user-nav #search input[type="text"] {
         width: 160px;
-        height: 12px;
+        height: 8px;
         font-family: georgia;
         font-size: 11px;
         font-style: oblique;
         font-weight: normal;
         letter-spacing: 0.4px;
-        text-transform: lowercase; }
+        text-transform: lowercase;
+        border: none;
+        -webkit-border-radius: 0 0 3px 3px;
+        -moz-border-radius: 0 0 3px 3px;
+        border-radius: 3px 0 0 3px;
+        color: #00aeef; }
       #header #user-nav #search input[type="submit"] {
-        width: 20px;
-        height: 20px;
+        width: 23px;
+        height: 23px;
         padding: 0;
         margin: 0;
-        background: transparent url(../images/icons/search.png) no-repeat 0 2px;
+        background: transparent url(../images/icons/searchBlue.png) no-repeat 0 1px;
         -webkit-box-shadow: none;
         -moz-box-shadow: none;
         box-shadow: none;
-        text-indent: -9999px; }
+        text-indent: -9999px;
+        margin-left: -4px;
+        -webkit-border-radius: 0px;
+        -moz-border-radius: 0px;
+        border-radius: 0px; }
   #header #call-to-action {
     z-index: 1; }
     #header #call-to-action .insides {
@@ -825,15 +840,32 @@ form.new_story, form.edit_story, .story-form {
     margin-bottom: 25px;
     padding-bottom: 15px;
     width: 950px;
-    padding-top: 30px; }
+    padding-top: 15px;
+    text-align: center; }
     form.new_story #page-previews a#open-page-editor-button, form.edit_story #page-previews a#open-page-editor-button, .story-form #page-previews a#open-page-editor-button {
-      display: block;
-      width: 400px;
-      padding: 10px 0;
+      background: -moz-linear-gradient(top, #43baf0 0%, #3a94e6);
+      background: -webkit-gradient(linear, left top, left bottom, from(#43baf0), to(#3a94e6));
+      display: inline-block;
+      height: 44px;
+      line-height: 45px;
+      padding: 0 15px;
+      vertical-align: middle;
+      text-transform: uppercase;
+      color: white;
+      font-weight: 700;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      border-radius: 3px;
+      font-size: 17px;
+      font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
+      text-shadow: none;
+      width: 350px;
       text-align: center;
-      font-size: 22px;
-      margin: 0 auto 15px;
-      text-transform: uppercase; }
+      margin: 0 auto; }
+    form.new_story #page-previews a#open-page-editor-button:hover, form.edit_story #page-previews a#open-page-editor-button:hover, .story-form #page-previews a#open-page-editor-button:hover {
+      -moz-box-shadow: 0px 0px 7px rgba(0, 175, 239, 0.5);
+      -webkit-box-shadow: 0px 0px 7px rgba(0, 175, 239, 0.5);
+      color: #c0eeff; }
     form.new_story #page-previews h3, form.edit_story #page-previews h3, .story-form #page-previews h3 {
       padding: 3px 0;
       color: #00aeef;
@@ -4717,7 +4749,7 @@ form.user_edit textarea#user_tagline {
     display: block;
     float: left;
     height: 40px;
-    line-height: 40px;
+    line-height: 41px;
     vertical-align: middle;
     padding: 0 15px;
     font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
@@ -4727,8 +4759,11 @@ form.user_edit textarea#user_tagline {
     color: #555555;
     border-right: 1px solid #cccccc; }
   .homepage .home-tabs a.active {
-    background: #555555;
-    color: white; }
+    background: white;
+    color: #989898;
+    box-shadow: inset 0 1px 6px #bbbbbb;
+    -moz-box-shadow: inset 0 1px 6px #bbbbbb;
+    -webkit-box-shadow: inset 0 1px 6px #bbbbbb; }
   .homepage .home-tabs div.pagination {
     float: right;
     margin-right: 10px; }
@@ -5314,9 +5349,11 @@ header .topic-icon {
     .opening-up .text h1 {
       font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
       font-size: 34px;
-      font-weight: 700;
+      font-weight: 900;
       text-transform: uppercase;
-      margin-bottom: 10px; }
+      margin-bottom: 10px;
+      margin-top: 30px;
+      line-height: 32px; }
       .opening-up .text h1 a {
         position: relative;
         top: -6px;
@@ -5325,15 +5362,35 @@ header .topic-icon {
         padding: 8px 14px 6px; }
     .opening-up .text p {
       font-family: "museo-slab-1", "museo-slab-2", serif;
-      font-size: 17px;
-      font-weight: 100;
+      font-size: 18px;
+      font-weight: 300;
       margin-top: 5px;
-      line-height: 1.5em; }
+      line-height: 30px;
+      margin-bottom: 45px;
+      color: #00aeef; }
+      .opening-up .text p a {
+        background: -moz-linear-gradient(top, #43baf0 0%, #3a94e6);
+        background: -webkit-gradient(linear, left top, left bottom, from(#43baf0), to(#3a94e6));
+        display: inline-block;
+        height: 22px;
+        line-height: 24px;
+        padding: 0 15px;
+        vertical-align: middle;
+        text-transform: uppercase;
+        color: white;
+        font-weight: 700;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        font-size: 10px;
+        letter-spacing: 0.5px;
+        font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
+        margin-top: -7px; }
   .opening-up .character {
     float: right;
     width: 200px;
     height: 250px;
-    background: transparent url(../images/homeAboutCharacter.png) no-repeat 50% 0; }
+    background: transparent url(../images/homeAboutCharacter.png) no-repeat 50% -3px; }
 
 #flipbook {
   display: none; }
