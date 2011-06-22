@@ -28,9 +28,9 @@
     .inner{:class => @page && @page.image_at_position(1) ? @page.image_at_position(1).placement : "", :style => @page && @page.image_at_position(1) ? "background-image: url(#{@page.image_at_position(1).image.url(size.to_s)})" : ""}
   .text.text1.bg-affected{:class => split_layout == "text-image" || split_layout == "text-text" ? "" : "hidden"}
     .inner.text1-inner
-      = @page.text_at_position(1).text.html_safe if @page && @page.text_at_position(1) && @page.text_at_position(1).text
+      = auto_link(@page.text_at_position(1).text.html_safe) if @page && @page.text_at_position(1) && @page.text_at_position(1).text
   .image.image2.bg-affected{:class => split_layout == "text-image" || split_layout == "image-image" ? "" : "hidden"}
     .inner{:class => @page && @page.image_at_position(2) ? @page.image_at_position(2).placement : "", :style => @page && @page.image_at_position(2) ? "background-image: url(#{@page.image_at_position(2).image.url(size.to_s)})" : ""}
   .text.text2.bg-affected{:class => split_layout == "image-text" || split_layout == "text-text" ? "" : "hidden"}
     .inner.text2-inner
-      = @page.text_at_position(2).text.html_safe if @page && @page.text_at_position(2) && @page.text_at_position(2).text
+      = auto_link(@page.text_at_position(2).text.html_safe) if @page && @page.text_at_position(2) && @page.text_at_position(2).text

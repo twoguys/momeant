@@ -8,4 +8,4 @@
 
 .pullquote-inner
   .quote.bg-affected{:id => @page ? "story_#{@page.story_id}_page_#{@page.number}" : ""}
-    = @page.text.html_safe if @page && @page.text
+    = auto_link(@page.text.html_safe) if @page && @page.text

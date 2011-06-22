@@ -22,13 +22,13 @@ class RegistrationsController < Devise::RegistrationsController
       invitation.update_attribute(:accepted, true) if invitation
       session[:accepting_invitation_id] = nil
       
-      if resource.active?
+      #if resource.active?
         set_flash_message :notice, "Welcome to the Mo&#149meant community! You are now signed in.".html_safe
         sign_in_and_redirect(resource_name, resource)
-      else
-        set_flash_message :notice, :inactive_signed_up
-        redirect_to new_user_session_path
-      end
+      # else
+      #   set_flash_message :notice, :inactive_signed_up
+      #   redirect_to new_user_session_path
+      # end
     else
       @user = resource
       clean_up_passwords(resource)
