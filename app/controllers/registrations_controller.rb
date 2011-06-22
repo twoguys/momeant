@@ -15,7 +15,7 @@ class RegistrationsController < Devise::RegistrationsController
       invitation.update_attribute(:accepted, true) if invitation
       session[:accepting_invitation_id] = nil
       
-      set_flash_message :notice, :signed_up
+      #set_flash_message :notice, :signed_up
       sign_in_and_redirect(resource_name, resource)
     else
       @user = resource
