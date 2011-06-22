@@ -66,6 +66,7 @@ Repo::Application.routes.draw do
   namespace :admin do
     match '/', :to =>"dashboard#index", :as => :dashboard
     match '/live', :to => "dashboard#live", :as => :live
+    match '/users', :to => "dashboard#users", :as => :admin_users
     resources :pay_periods do
       post :mark_paid, :on => :member
     end
