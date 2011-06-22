@@ -2,14 +2,7 @@ class RegistrationsController < Devise::RegistrationsController
   before_filter :release_lockdown, :except => [:create]
   
   def create
-    if private_beta?
-      resource = Creator.new(params[:user])
-    elsif !session[:accepting_invitation_id].blank?
-      invitation = Invitation.where(:id => session[:accepting_invitation_id]).first
-      resource = Creator.new(params[:user]) if invitation && invitation.for_creator?
-    end
-    
-    resource ||= User.new(params[:user])
+    resource = Creator.new(params[:user])
     resource.coins = 25
     resource.subscription_last_updated_at = Time.now
     
