@@ -66,6 +66,13 @@
 		height: 180px
 		font-size: 10px
 		line-height: 18px
+		&:first-letter
+			font-size: 30px
+			height: 30px
+			line-height: 30px
+			letter-spacing: -2px
+			padding-right: 7px
+			padding-top: 7px
 @mixin blockquoteSlideLarge
 	@include blockquoteSlide(630px, 420px)
 	.pullquote-inner div.quote p
@@ -74,9 +81,19 @@
 		line-height: 22px
 		font-weight: 100
 		letter-spacing: -.4px
+		&:first-letter
+			font-size: 44px
+			height: 44px
+			line-height: 44px
+			letter-spacing: -2px
+			padding-right: 7px
+			padding-top: 7px
 @mixin blockquoteSlideFullsize
 	@include blockquoteSlide(100%, 100%)
 	overflow-y: auto
+	.pullquote-inner div.quote
+		p
+		p:first-child:first-letter
 @mixin blockquoteSlidePetite
 	@include blockquoteSlide(95px, 60px)
 	.pullquote-inner div.quote p
@@ -110,6 +127,16 @@
 		font-family: $serif
 		border-bottom: 2px solid black
 		font-style: italic
+		&:first-letter
+			font-family: $typewriter
+			vertical-align: baseline
+			float: left
+			font-size: 20px
+			line-height: 10px
+			text-transform: uppercase
+			font-weight: 700
+			font-style: normal
+			padding-right: 2px
 	
 @mixin fullimageSlideFullsize
 	@include fullimageSlide(100%, 100%)
@@ -121,6 +148,13 @@
 		line-height: 24px
 		border-bottom: 5px solid black
 		font-size: 12px
+		&:first-letter
+			font-size: 44px
+			line-height: 24px
+			letter-spacing: -4px
+			height: 24px
+			padding-top: 10px
+			padding-right: 10px		
 	.top-right, .top-left
 		top: 50px
 		bottom: auto
