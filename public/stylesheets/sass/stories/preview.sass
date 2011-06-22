@@ -1,35 +1,4 @@
 /* Story Preview */
-
-.owner-links
-	height: 60px
-	a, input[type="submit"]
-		float: left
-		font-weight: 900
-		font-size: 14px
-		text-transform: uppercase
-		margin-left: 10px
-		padding: 8px 10px 5px
-		@include rounded(4px)
-		width: 80px
-		text-align: center
-		letter-spacing: .5px
-	#edit-link
-		background-color: $lightblue
-	#publish-link
-		background-color: $lightgreen
-		color: #1EA337
-	#delete-link
-		background-color: $lightred
-		color: $red
-	.publish
-		float: left
-		p
-			float: left
-			margin: 2px 15px 2px 10px
-			font-weight: 700
-			font-size: 1.2em
-			text-transform: uppercase
-			color: #999
 	
 .banner
 	padding: 10px 20px
@@ -166,7 +135,32 @@
 			.view
 				background-image: url(../images/icons/fullscreenOn.png)
 			#reward-box
-				display: none
+				display: none			
+			.owner-links
+				float: right
+				padding-top: 2px
+				a, input[type="submit"]
+					@include button
+					float: left
+					margin-left: 10px
+				#edit-link
+					@include gradient
+					border-right: none
+				#publish-link
+					@include gradient ($greengradient1, $greengradient2)
+					border-right: none
+				#delete-link
+					@include gradient ($redgradient1, $redgradient2)
+					border-right: none
+				.publish
+					float: left
+					p
+						float: left
+						margin: 2px 15px 2px 10px
+						font-weight: 700
+						font-size: 1.2em
+						text-transform: uppercase
+						color: #999
 	.metadata
 		width: 274px
 		float: right
@@ -329,13 +323,14 @@
 					color: #b2b2b2
 					font-weight: 700
 			textarea
-				width: 870px
+				width: 845px
 				height: 40px
 				margin: 40px 10px 0 0
 				float: left
 			input[type="submit"]
+				@include button
+				@include gradient
 				float: left
-				width: 50px
 				height: 55px
 				margin-top: 40px
 		ul.list

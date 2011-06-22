@@ -28,24 +28,15 @@ form.new_story, form.edit_story, .story-form
 		top: 0
 		right: 0
 		a, input[type="submit"]
+			@include button
 			float: left
-			font-weight: 900
-			font-size: 14px
-			text-transform: uppercase
 			margin-left: 10px
-			padding: 8px 10px 5px
-			@include rounded(4px)
-			width: 80px
-			text-align: center
-			letter-spacing: .5px
 		#preview-link
-			background-color: $lightblue
+			@include gradient
 		#publish-link
-			background-color: $lightgreen
-			color: #1EA337
+			@include gradient ($greengradient1, $greengradient2)
 		#delete-link
-			background-color: $lightred
-			color: $red
+			@include gradient ($redgradient1, $redgradient2)
 	.banner
 		padding-top: 15px
 		margin: 20px 0 10px
@@ -130,8 +121,7 @@ form.new_story, form.edit_story, .story-form
 		padding-top: 15px
 		text-align: center
 		a#open-page-editor-button
-			background: -moz-linear-gradient(top, #43BAF0 0%, #3A94E6)
-			background: -webkit-gradient(linear, left top, left bottom, from(#43BAF0), to(#3A94E6))
+			@include gradient
 			display: inline-block
 			height: 44px
 			line-height: 45px
@@ -152,7 +142,6 @@ form.new_story, form.edit_story, .story-form
 		a#open-page-editor-button:hover
 			-moz-box-shadow: 0px 0px 7px rgba(0,175,239,0.5)
 			-webkit-box-shadow: 0px 0px 7px rgba(0,175,239,0.5)
-			color: #c0eeff
 		h3
 			padding: 3px 0
 			color: $blue

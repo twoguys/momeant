@@ -1,22 +1,6 @@
 - if current_user.blank?
   = render :partial => "shared/calls_to_action/signup"
 
-- if @story.owner?(current_user)
-  .owner-links
-    .links
-      - if @story.draft?
-        .publish
-          - if @story.valid?
-            = link_to "Publish", publish_story_path(@story), :id => "publish-link", :method => :post unless @story.published?
-            %p (Your story is still in draft mode)
-          - else
-            %span Before you can publish your story, please #{link_to("edit it", edit_story_path(@story))} and fix these issues:
-            %ul
-              - @story.errors.full_messages.each do |msg|
-                %li= msg
-      = link_to "Edit", edit_story_path(@story), :id => "edit-link"
-      = link_to "Delete", story_path(@story), :id => "delete-link", :method => :delete, :confirm => "Are you sure you want to delete this story?"
-        
 .story-preview
   = bookmark_button(@story) unless @story.owner?(current_user)
   .preview.clearfix
@@ -31,6 +15,22 @@
       = story_view_link(@story)
       
       = #render "add_this"
+      
+      - if @story.owner?(current_user)
+        .owner-links
+          .links
+            - if @story.draft?
+              .publish
+                - if @story.valid?
+                  = link_to "Publish", publish_story_path(@story), :id => "publish-link", :method => :post unless @story.published?
+                  %p (Your story is still in draft mode)
+                - else
+                  %span Before you can publish your story, please #{link_to("edit it", edit_story_path(@story))} and fix these issues:
+                  %ul
+                    - @story.errors.full_messages.each do |msg|
+                      %li= msg
+            = link_to "Edit", edit_story_path(@story), :id => "edit-link"
+            = link_to "Delete", story_path(@story), :id => "delete-link", :method => :delete, :confirm => "Are you sure you want to delete this story?"
 
   .metadata
     .top

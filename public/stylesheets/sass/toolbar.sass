@@ -110,21 +110,15 @@
 			right: 210px
 			padding-top: 10px
 			a
-				background: -moz-linear-gradient(top, #d0d0d0 0%, #888888)
-				background: -webkit-gradient(linear, left top, left bottom, from(#d0d0d0), to(#888888))
-				display: block
+				@include button
+				@include gradient
 				height: 22px
 				line-height: 24px
 				padding: 0 15px
-				vertical-align: middle
-				text-transform: uppercase
-				color: #fff
-				font-weight: 700
-				@include rounded(3px)
 				font-size: 10px
-				letter-spacing: .5px
+				display: block
 		#signout a
-			background-color: #888
+			@include gradient ($greygradient1, $greygradient2)
 		#balance
 			background: transparent url(../images/topNavBreak.gif) no-repeat 0 5px
 			a
