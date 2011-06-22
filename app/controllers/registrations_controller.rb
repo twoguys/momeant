@@ -22,12 +22,8 @@ class RegistrationsController < Devise::RegistrationsController
       invitation.update_attribute(:accepted, true) if invitation
       session[:accepting_invitation_id] = nil
       
-      #if resource.active?
-        sign_in_and_redirect(resource_name, resource)
-      # else
-      #   set_flash_message :notice, :inactive_signed_up
-      #   redirect_to new_user_session_path
-      # end
+      set_flash_message :notice, :signed_up
+      sign_in_and_redirect(resource_name, resource)
     else
       @user = resource
       clean_up_passwords(resource)
