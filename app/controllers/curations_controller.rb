@@ -5,7 +5,7 @@ class CurationsController < ApplicationController
   def create
     case params[:curation][:type]
     when "comment"
-      if params[:curation][:comment]
+      if params[:curation][:comment].present?
         Comment.create!(:user_id => current_user.id, :story_id => @story.id, :comment => params[:curation][:comment])
         @story.increment!(:comment_count)
       end

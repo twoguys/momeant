@@ -6,7 +6,7 @@
       .forms
         .login
           %h2 Login
-          = form_for(@user, :as => :user, :url => session_path(:user), :html => {:id => "login-form"}) do |f|
+          = form_for(User.new, :as => :user, :url => session_path(:user), :html => {:id => "login-form"}) do |f|
             %fieldset
               %ul
                 %li
@@ -22,7 +22,7 @@
                   Mo&#149;meant is currently in public beta; as a new user you'll receive a free trial of 25 reward coins.
         .join
           %h2 Join
-          = form_for(@user, :as => :user, :url => registration_path(:user), :html => {:id => "join-form"}) do |f|
+          = form_for(User.new, :as => :user, :url => registration_path(:user), :html => {:id => "join-form"}) do |f|
             %fieldset
               %ul
                 %li

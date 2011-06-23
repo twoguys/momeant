@@ -66,13 +66,15 @@
         = form.hidden_field :type, :value => "comment"
         = form.text_area :comment
         = form.submit "Post"
+      - if current_user.blank?
+        = link_to("", "#signup-modal", :id => "non-logged-user-tries-to-comment")
     %ul.list
       - @story.curations.public.each do |curation|
-        %li{:class => curation.type.downcase}
+        %li{:class => curation.class.to_s.downcase}
           = link_to(image_tag(curation.user.avatar.url(:thumbnail)), user_path(curation.user), :class => "avatar")
           .the-rest
             .who-when
-              .author= curation.user.name
+              .author= link_to(curation.user.name, user_path(curation.user))
               .date= curation.created_at.strftime("%m/%d/%y")
             - if curation.comment.present?
               .comment= curation.comment
