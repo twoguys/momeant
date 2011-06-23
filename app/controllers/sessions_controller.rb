@@ -4,6 +4,6 @@ class SessionsController < Devise::SessionsController
   
   private
     def store_return_to
-      session[:return_to] = request.referer
+      session[:return_to] = request.referer unless request.referer == new_session_url(:user)
     end
 end
