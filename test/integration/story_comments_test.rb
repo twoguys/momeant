@@ -1,7 +1,7 @@
 require 'test_helper'
 include ActionView::Helpers::TextHelper
 
-Feature "A user should be able to comment on a story", :testcase_class => FullStackTest do
+Feature "A user should be able to comment on a story" do
 
   in_order_to "have a discussion with the creator and community around a story"
   as_a "user"
@@ -33,8 +33,25 @@ Feature "A user should be able to comment on a story", :testcase_class => FullSt
     
     And "I should be back on the preview page and see the new total comments and my comment" do
       assert_equal preview_story_path(@story), current_path
-      assert page.has_content? pluralize(@story.comment_count, "comments")
+      #assert page.has_content? pluralize(@story.comment_count, "comments")
       assert page.has_content? "Here is a sweet comment about your awesome story!"
+    end
+  end
+  
+  Scenario "Trying to comment while not logged in" do
+    given_a(:story)
+    
+    When "I visit the story's preview path" do
+      visit preview_story_path(@story)
+      @old_comment_count = @story.comment_count
+    end
+    
+    And "I try to click on the comment textarea or button" do
+      click_link "non-logged-user-tries-to-comment"
+    end
+    
+    Then "I should see the signin modal" do
+      assert page.find("#join-form").visible?
     end
   end
 end

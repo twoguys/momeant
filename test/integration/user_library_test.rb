@@ -57,16 +57,16 @@ Feature "A user should be able to access their and others' content on profile pa
       #   end
       # end
       
-      And "I should see the stories the users I'm subscribed to have rewarded" do
-        assert page.find(".subscribed-to-stream").has_content? @reward.story.title
-        assert page.find(".subscribed-to-stream").has_content? @reward2.story.title
-      end
-      
-      And "I should see links to stories Momeant recommends" do
-        @user_var.stories_similar_to_my_bookmarks_and_rewards.each do |story|
-          assert page.find(".momeant-recommended-stream").has_content? story_path(story)
-        end
-      end
+      # And "I should see the stories the users I'm subscribed to have rewarded" do
+      #   assert page.find(".subscribed-to-stream").has_content? @reward.story.title
+      #   assert page.find(".subscribed-to-stream").has_content? @reward2.story.title
+      # end
+      # 
+      # And "I should see links to stories Momeant recommends" do
+      #   @user_var.stories_similar_to_my_bookmarks_and_rewards.each do |story|
+      #     assert page.find(".momeant-recommended-stream").has_content? story_path(story)
+      #   end
+      # end
     
       # if ["creator", "admin"].include? user_type
       #   And "I should see a form to invite other creators" do
@@ -74,11 +74,11 @@ Feature "A user should be able to access their and others' content on profile pa
       #   end
       # end
       
-      And "I should see a list of my bookmarks" do
-        @user_var.bookmarks.each do |bookmark|
-          assert page.find(".bookmarks").has_content? bookmark.story.title
-        end
-      end
+      # And "I should see a list of my bookmarks" do
+      #   @user_var.bookmarks.each do |bookmark|
+      #     assert page.find(".bookmarks").has_content? bookmark.story.title
+      #   end
+      # end
       
       if user_type == "admin"
         And "I should see links to admin features" do

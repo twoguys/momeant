@@ -2,13 +2,13 @@ require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
   
-  test "A creator who's story I've rewarded shows up in my rewarded creators list and I show up in their patrons list" do
-    reward = Factory(:reward)
-    reward.user.rewarded_creators.include?(reward.recipient)
-    reward.recipient.patrons.include?(reward.user)
-  end
-  
   # DEPRECATED
+  #
+  # test "A creator who's story I've rewarded shows up in my rewarded creators list and I show up in their patrons list" do
+  #   reward = Factory(:reward)
+  #   reward.user.rewarded_creators.include?(reward.recipient)
+  #   reward.recipient.patrons.include?(reward.user)
+  # end  
   #
   # test "Momeant shows recommended stories from users I'm subscribed to" do
   #     user = Factory(:user)

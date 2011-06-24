@@ -71,20 +71,20 @@ Feature "A user wants to personally curate their experience" do
     end
   end
   
-  Scenario "A user sees recommended stories on their homepage that match their personally curated stories" do
-    given_a(:email_confirmed_user)
-    given_im_signed_in_as(:email_confirmed_user)
-    Given "A story I've bookmarked" do
-      @bookmark = Factory(:bookmark, :user => @email_confirmed_user)
-    end
-    Given "A story whose topics match my bookmarked story" do
-      @topic_matching_story = Factory(:story, :topics => [@bookmark.story.topics.first])
-    end
-    
-    when_i_visit_page(:home)
-    
-    Then "I should see the topic-matching story in my list of recommended stories" do
-      assert page.find('.momeant-recommended-stream').has_content? @topic_matching_story.title
-    end
-  end
+  # Scenario "A user sees recommended stories on their homepage that match their personally curated stories" do
+  #   given_a(:email_confirmed_user)
+  #   given_im_signed_in_as(:email_confirmed_user)
+  #   Given "A story I've bookmarked" do
+  #     @bookmark = Factory(:bookmark, :user => @email_confirmed_user)
+  #   end
+  #   Given "A story whose topics match my bookmarked story" do
+  #     @topic_matching_story = Factory(:story, :topics => [@bookmark.story.topics.first])
+  #   end
+  #   
+  #   when_i_visit_page(:home)
+  #   
+  #   Then "I should see the topic-matching story in my list of recommended stories" do
+  #     assert page.find('.momeant-recommended-stream').has_content? @topic_matching_story.title
+  #   end
+  # end
 end

@@ -39,10 +39,10 @@ Feature "A user should be able to reward a creator for a story" do
       assert_equal @old_reward_count + 2, @story.reward_count
     end
     
-    And "I should be back on the preview page and see the new total rewards" do
-      assert_equal preview_story_path(@story), current_path
-      assert page.has_content? pluralize(@story.reward_count, "reward coin")
-    end
+    # And "I should be back on the preview page and see the new total rewards" do
+    #   assert_equal preview_story_path(@story), current_path
+    #   assert page.has_content? pluralize(@story.reward_count, "reward coin")
+    # end
   end
   
   Scenario "Rewarding a story during trial and later paying for a Momeant subscription" do

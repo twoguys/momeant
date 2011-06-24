@@ -9,11 +9,12 @@ Factory.define :user do |user|
   user.last_name              { Factory.next(:last_name) }
   user.email                  { |u| "#{u.name.delete(' ').underscore}@example.com" }
   user.subscription_last_updated_at   Time.now
+  user.tos_accepted           true
 end
 
 Factory.define :email_confirmed_user, :parent => :user do |user|
-  user.confirmation_token     nil
-  user.confirmed_at           Time.now - 1.day
+  #user.confirmation_token     nil
+  #user.confirmed_at           Time.now - 1.day
 end
 
 Factory.define :creator, :parent => :email_confirmed_user, :class => "Creator" do |creator|
