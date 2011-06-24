@@ -38,7 +38,6 @@
                 - else
                   = yield :call_to_action
               - if current_user && current_user.is_a?(Creator)
-                = debug session[:return_to]
                 - if current_user.created_stories.empty?
                   = render :partial => "shared/calls_to_action/create_a_story"
                 - elsif current_user.paypal_email.blank?
