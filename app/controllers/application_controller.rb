@@ -37,7 +37,7 @@ class ApplicationController < ActionController::Base
   end
   
   def push_to_sender
-    Pusher['admin'].trigger('request', request.path)
+    Pusher['admin'].trigger('request', request.path) if ENV["SEND_ADMIN_LIVE_UPDATES"] == "yes"
   end
   
   rescue_from CanCan::AccessDenied do |exception|
