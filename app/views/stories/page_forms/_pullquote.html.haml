@@ -5,20 +5,20 @@
     .spinner Saving...
   .copy
     %strong Great for adding some emphasis to a larger block of text,
-    %span the Blockquote slide allows you to enter up to 500 characters and add custom styling for typeface, text color(s), highlighting, and hyperlinking. Don't forget to choose a background color or pattern!
+    %span the Blockquote slide allows you to enter up to 500 characters and add custom styling for typeface, text color(s), highlighting, and drop-capping. Don't forget to choose a background color!
   .body
     %fieldset
       %ul
         %li.text-editor
           %label.heading Enter your text:
           - text_value = @page && @page.text ? @page.text : ""
-          = text_area_tag "pages[#{@page_number}][text]", text_value, :class => "rich-editable", :style => "width:100%;height:300px;"
+          = text_area_tag "pages[#{@page_number}][text]", text_value, :class => "mirrored rich-editable", "mirror-to" => "quote", :style => "width:100%;height:300px;"
         %li.simple-heading
           %label Pick a background color:
           = text_field_tag "pages[#{@page_number}][background_color]", "#000", :class => "color-picker bgcolor"
         %li.text-style-chooser
           %label.heading
-            Pick a type style (optional):
+            Pick a type style:
             .drop-capper
               %label Dropcap
               .switch
