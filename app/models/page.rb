@@ -115,20 +115,18 @@ class Page < ActiveRecord::Base
       text_media.placement = options[:placement] if options[:placement]
       text_media.save unless page.new_record?
     when "pullquote"
-      if page
-        page.background_color = options[:background_color] if options[:background_color]
-        page.text_color = options[:text_color] if options[:text_color]
-      else
-        page = PullquotePage.new(:number => options[:number], :background_color => options[:background_color], :text_color => options[:text_color])
+      if page.blank?
+        page = PullquotePage.new(:number => options[:number])
       end
-      if options[:text]
+      text_media = page.text_media
+      if text_media.blank?
+        page.medias << PageText.new
         text_media = page.text_media
-        if text_media
-          text_media.update_attributes(:text => options[:text])
-        else
-          page.medias << PageText.new(:text => options[:text])
-        end
       end
+      text_media.text = options[:text] if options[:text]
+      text_media.text_style = options[:text_style] if options[:text_style]
+      text_media.drop_capped = options[:drop_capped] if options[:drop_capped]
+      text_media.save unless page.new_record?
     when "video"
       if page
         page.background_color = options[:background_color]

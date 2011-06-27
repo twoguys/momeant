@@ -564,6 +564,104 @@ form.new_story, form.edit_story, .story-form
 					display: inline
 			.body
 				padding: 20px 45px 30px
+				li.text-editor, li.text-style-chooser
+					position: relative
+					iframe
+						z-index: 1
+					label.heading
+						background: #f0f0ee
+						position: absolute
+						top: 0
+						left: 0
+						z-index: 2
+						margin: 5px 0 0 10px
+						border: none
+				li.simple-heading
+					background: #f0f0ee
+					border: 1px solid #ccc
+					height: 20px
+					padding: 5px 0
+					label
+						margin: 0 10px
+					.color_picker
+						margin: 0
+				li.text-style-chooser
+					background-color: #fff
+					border: 1px solid #ccc
+					width: 100%
+					height: 151px
+					label.heading
+						margin: 0
+						height: 20px
+						width: 100%
+						border-bottom: 1px solid #ccc
+						padding: 5px 0
+						text-indent: 10px
+						.drop-capper
+							float: right
+							label
+								float: left
+								margin: 0
+							.switch
+								float: right
+								width: 55px
+								height: 18px
+								background: transparent url(../images/toggle.png) no-repeat 0 0
+								margin: 1px 10px 0 0
+								cursor: pointer
+							.switch.on
+								background-position: 0 -18px
+					.styles-wrapper
+						overflow-x: auto
+						position: absolute
+						top: 30px
+						left: 0
+						height: 121px
+						width: 100%
+						ul.styles
+							width: 2184px
+							padding: 0 2px
+							li
+								width: 150px
+								height: 94px
+								float: left
+								clear: none
+								padding: 3px
+								margin: 3px 0
+								background-color: transparent
+								background-repeat: no-repeat
+								background-position: 3px 3px
+								cursor: pointer
+							li.selected
+								background-color: $blue
+							li.blocky-title
+								background-image: url(../images/textStyles/BlockyTitleSm.gif)
+							li.blocky-chunk
+								background-image: url(../images/textStyles/BlockyChunkSm.gif)
+							li.blocky-paragraph
+								background-image: url(../images/textStyles/BlockyParagraphSm.gif)
+							li.deco-title
+								background-image: url(../images/textStyles/DecoTitleSm.gif)
+							li.deco-chunk
+								background-image: url(../images/textStyles/DecoChunkSm.gif)
+							li.deco-paragraph
+								background-image: url(../images/textStyles/DecoParagraphSm.gif)
+							li.typewriter-title
+								background-image: url(../images/textStyles/TypewriterTitleSm.gif)
+							li.typewriter-chunk
+								background-image: url(../images/textStyles/TypewriterChunkSm.gif)
+							li.typewriter-paragraph
+								background-image: url(../images/textStyles/TypewriterParagraphSm.gif)
+							li.cursive-title
+								background-image: url(../images/textStyles/CursiveTitleSm.gif)
+							li.cursive-chunk
+								background-image: url(../images/textStyles/CursiveChunkSm.gif)
+							li.cursive-paragraph
+								background-image: url(../images/textStyles/CursiveParagraphSm.gif)
+							li.big-word-sans-serif
+								background-image: url(../images/textStyles/TallBigWordSm.gif)
+							li.big-word-cursive
+								background-image: url(../images/textStyles/CursiveBigWordSm.gif)
 		a.save
 			font-size: 12px
 			height: 15px
@@ -856,6 +954,7 @@ form.new_story, form.edit_story, .story-form
 				top: 0
 				bottom: 0
 				width: 100%
+							
 		.title
 			@include titleSlideFullsize
 		.full_image
@@ -894,3 +993,6 @@ form.new_story, form.edit_story, .story-form
 		height: 19px
 		z-index: 999
 		background: transparent url(../images/loading.gif) no-repeat 0 0
+
+.defaultSkin table.mceToolbar
+	float: right

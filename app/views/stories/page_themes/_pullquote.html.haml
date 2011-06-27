@@ -7,5 +7,8 @@
       }
 
 .pullquote-inner
-  .quote.bg-affected{:id => @page ? "story_#{@page.story_id}_page_#{@page.number}" : ""}
+  - text_style = @page && @page.text_media ? @page.text_media.text_style : ""
+  - drop_capped = @page && @page.text_media && @page.text_media.drop_capped ? "drop-capped" : ""
+  - class_to_use = "#{text_style} #{drop_capped}"
+  .quote.bg-affected.text-style-affected{:id => @page ? "story_#{@page.story_id}_page_#{@page.number}" : "", :class => class_to_use}
     = auto_link(@page.text.html_safe) if @page && @page.text

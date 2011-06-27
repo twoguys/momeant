@@ -9,13 +9,34 @@
   .body
     %fieldset
       %ul
-        %li
-          %label Type your blockquote
-          = render "text_hints"
+        %li.text-editor
+          %label.heading Enter your text:
           - text_value = @page && @page.text ? @page.text : ""
-          = text_area_tag "pages[#{@page_number}][text]", text_value, :class => "monitor-typing mirrored rich-editable", "mirror-to" => "quote", :style => "width:100%;height:300px;"
-        %li
-          %label Pick a background color
+          = text_area_tag "pages[#{@page_number}][text]", text_value, :class => "mirrored rich-editable", "mirror-to" => "quote", :style => "width:100%;height:300px;"
+        %li.simple-heading
+          %label Pick a background color:
           = text_field_tag "pages[#{@page_number}][background_color]", "#000", :class => "color-picker bgcolor"
+        %li.text-style-chooser
+          %label.heading
+            Pick a type style (optional):
+            .drop-capper
+              %label Dropcap
+              .switch
+          .styles-wrapper
+            %ul.styles
+              %li.blocky-title{:classname => "blocky-title"}
+              %li.blocky-chunk{:classname => "blocky-chunk"}
+              %li.blocky-paragraph{:classname => "blocky-paragraph"}
+              %li.deco-title{:classname => "deco-title"}
+              %li.deco-chunk{:classname => "deco-chunk"}
+              %li.deco-paragraph{:classname => "deco-paragraph"}
+              %li.typewriter-title{:classname => "typewriter-title"}
+              %li.typewriter-chunk{:classname => "typewriter-chunk"}
+              %li.typewriter-paragraph{:classname => "typewriter-paragraph"}
+              %li.cursive-title{:classname => "cursive-title"}
+              %li.cursive-chunk{:classname => "cursive-chunk"}
+              %li.cursive-paragraph{:classname => "cursive-paragraph"}
+              %li.big-word-sans-serif{:classname => "big-word-sans-serif"}
+              %li.big-word-cursive{:classname => "big-word-cursive"}
         %li
           = link_to("Save &amp; Preview".html_safe, "#", :class => "save")

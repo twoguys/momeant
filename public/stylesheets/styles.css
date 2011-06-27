@@ -1519,6 +1519,104 @@ form.new_story, form.edit_story, .story-form {
           display: inline; }
       #page-editor #pane .pane-insides .body {
         padding: 20px 45px 30px; }
+        #page-editor #pane .pane-insides .body li.text-editor, #page-editor #pane .pane-insides .body li.text-style-chooser {
+          position: relative; }
+          #page-editor #pane .pane-insides .body li.text-editor iframe, #page-editor #pane .pane-insides .body li.text-style-chooser iframe {
+            z-index: 1; }
+          #page-editor #pane .pane-insides .body li.text-editor label.heading, #page-editor #pane .pane-insides .body li.text-style-chooser label.heading {
+            background: #f0f0ee;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 2;
+            margin: 5px 0 0 10px;
+            border: none; }
+        #page-editor #pane .pane-insides .body li.simple-heading {
+          background: #f0f0ee;
+          border: 1px solid #cccccc;
+          height: 20px;
+          padding: 5px 0; }
+          #page-editor #pane .pane-insides .body li.simple-heading label {
+            margin: 0 10px; }
+          #page-editor #pane .pane-insides .body li.simple-heading .color_picker {
+            margin: 0; }
+        #page-editor #pane .pane-insides .body li.text-style-chooser {
+          background-color: white;
+          border: 1px solid #cccccc;
+          width: 100%;
+          height: 151px; }
+          #page-editor #pane .pane-insides .body li.text-style-chooser label.heading {
+            margin: 0;
+            height: 20px;
+            width: 100%;
+            border-bottom: 1px solid #cccccc;
+            padding: 5px 0;
+            text-indent: 10px; }
+            #page-editor #pane .pane-insides .body li.text-style-chooser label.heading .drop-capper {
+              float: right; }
+              #page-editor #pane .pane-insides .body li.text-style-chooser label.heading .drop-capper label {
+                float: left;
+                margin: 0; }
+              #page-editor #pane .pane-insides .body li.text-style-chooser label.heading .drop-capper .switch {
+                float: right;
+                width: 55px;
+                height: 18px;
+                background: transparent url(../images/toggle.png) no-repeat 0 0;
+                margin: 1px 10px 0 0;
+                cursor: pointer; }
+              #page-editor #pane .pane-insides .body li.text-style-chooser label.heading .drop-capper .switch.on {
+                background-position: 0 -18px; }
+          #page-editor #pane .pane-insides .body li.text-style-chooser .styles-wrapper {
+            overflow-x: auto;
+            position: absolute;
+            top: 30px;
+            left: 0;
+            height: 121px;
+            width: 100%; }
+            #page-editor #pane .pane-insides .body li.text-style-chooser .styles-wrapper ul.styles {
+              width: 2184px;
+              padding: 0 2px; }
+              #page-editor #pane .pane-insides .body li.text-style-chooser .styles-wrapper ul.styles li {
+                width: 150px;
+                height: 94px;
+                float: left;
+                clear: none;
+                padding: 3px;
+                margin: 3px 0;
+                background-color: transparent;
+                background-repeat: no-repeat;
+                background-position: 3px 3px;
+                cursor: pointer; }
+              #page-editor #pane .pane-insides .body li.text-style-chooser .styles-wrapper ul.styles li.selected {
+                background-color: #00aeef; }
+              #page-editor #pane .pane-insides .body li.text-style-chooser .styles-wrapper ul.styles li.blocky-title {
+                background-image: url(../images/textStyles/BlockyTitleSm.gif); }
+              #page-editor #pane .pane-insides .body li.text-style-chooser .styles-wrapper ul.styles li.blocky-chunk {
+                background-image: url(../images/textStyles/BlockyChunkSm.gif); }
+              #page-editor #pane .pane-insides .body li.text-style-chooser .styles-wrapper ul.styles li.blocky-paragraph {
+                background-image: url(../images/textStyles/BlockyParagraphSm.gif); }
+              #page-editor #pane .pane-insides .body li.text-style-chooser .styles-wrapper ul.styles li.deco-title {
+                background-image: url(../images/textStyles/DecoTitleSm.gif); }
+              #page-editor #pane .pane-insides .body li.text-style-chooser .styles-wrapper ul.styles li.deco-chunk {
+                background-image: url(../images/textStyles/DecoChunkSm.gif); }
+              #page-editor #pane .pane-insides .body li.text-style-chooser .styles-wrapper ul.styles li.deco-paragraph {
+                background-image: url(../images/textStyles/DecoParagraphSm.gif); }
+              #page-editor #pane .pane-insides .body li.text-style-chooser .styles-wrapper ul.styles li.typewriter-title {
+                background-image: url(../images/textStyles/TypewriterTitleSm.gif); }
+              #page-editor #pane .pane-insides .body li.text-style-chooser .styles-wrapper ul.styles li.typewriter-chunk {
+                background-image: url(../images/textStyles/TypewriterChunkSm.gif); }
+              #page-editor #pane .pane-insides .body li.text-style-chooser .styles-wrapper ul.styles li.typewriter-paragraph {
+                background-image: url(../images/textStyles/TypewriterParagraphSm.gif); }
+              #page-editor #pane .pane-insides .body li.text-style-chooser .styles-wrapper ul.styles li.cursive-title {
+                background-image: url(../images/textStyles/CursiveTitleSm.gif); }
+              #page-editor #pane .pane-insides .body li.text-style-chooser .styles-wrapper ul.styles li.cursive-chunk {
+                background-image: url(../images/textStyles/CursiveChunkSm.gif); }
+              #page-editor #pane .pane-insides .body li.text-style-chooser .styles-wrapper ul.styles li.cursive-paragraph {
+                background-image: url(../images/textStyles/CursiveParagraphSm.gif); }
+              #page-editor #pane .pane-insides .body li.text-style-chooser .styles-wrapper ul.styles li.big-word-sans-serif {
+                background-image: url(../images/textStyles/TallBigWordSm.gif); }
+              #page-editor #pane .pane-insides .body li.text-style-chooser .styles-wrapper ul.styles li.big-word-cursive {
+                background-image: url(../images/textStyles/CursiveBigWordSm.gif); }
     #page-editor #pane a.save {
       font-size: 12px;
       height: 15px;
@@ -2064,6 +2162,9 @@ form.new_story, form.edit_story, .story-form {
     height: 19px;
     z-index: 999;
     background: transparent url(../images/loading.gif) no-repeat 0 0; }
+
+.defaultSkin table.mceToolbar {
+  float: right; }
 
 /* Story Preview */
 .banner {

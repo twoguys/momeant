@@ -419,6 +419,7 @@ var story_auto_saver = function() {
 		auto_saver.handle_grid_configuration($page, id, type, number);
 		auto_saver.setup_rich_text_editing($page, id, type, number);
 		auto_saver.handle_tip_showing($page, id, type, number);
+		auto_saver.handle_text_style_chooser($page, id, type, number);
 	};
 	
 	this.create_or_change_page = function($page, type, number, new_page) {
@@ -601,7 +602,6 @@ var story_auto_saver = function() {
 	};
 	
 	this.save_text = function($element, page_id, type, number, optional_text) {
-		log('SAVING TEXT');
 		var data = {};
 		data['type'] = type;
 		data['number'] = number;
@@ -651,7 +651,6 @@ var story_auto_saver = function() {
 					position_selector += '.' + position;
 					data['position'] = position;
 				}
-				log('ul#pages #page_' + number + ' .bg-affected' + position_selector);
 				$('ul#pages #page_' + number + ' .bg-affected' + position_selector + ', #page-previews #preview_' + number + ' .bg-affected' + position_selector).css('background-color', color);
 				auto_saver.show_pages_spinner();
 				$.ajax({
@@ -863,16 +862,14 @@ var story_auto_saver = function() {
 		    mode: 'exact',
 				elements: $element.attr('id'),
 				theme : "advanced",
-		    theme_advanced_buttons1 : "styleselect,forecolor,backcolor,bold,underline,italic,justifyleft,justifycenter,justifyright,justifyfull",
+		    theme_advanced_buttons1 : "forecolor,backcolor,bold,underline,italic,justifyleft,justifycenter,justifyright,justifyfull",
 		    theme_advanced_buttons2 : "",
 		    theme_advanced_buttons3 : "",
 		    theme_advanced_toolbar_location : "top",
 		    theme_advanced_toolbar_align : "left",
 				theme_advanced_more_colors: false,
 				
-				content_css : "/stylesheets/creator_text_styles.css",
-				
-				plugins : "paste,style",
+				plugins : "paste",
 				paste_text_sticky : true,
 				setup : function(ed) {
 				    ed.onInit.add(function(ed) {
@@ -881,7 +878,7 @@ var story_auto_saver = function() {
 				  }
 			};
 			if (type == 'grid') {
-				tiny_mce_config.theme_advanced_buttons1 = "styleselect,forecolor,backcolor,bold,underline,italic";
+				tiny_mce_config.theme_advanced_buttons1 = "forecolor,backcolor,bold,underline,italic";
 				tiny_mce_config.theme_advanced_buttons2 = "justifyleft,justifycenter,justifyright,justifyfull";
 			}
 			tinyMCE.init(tiny_mce_config);
@@ -910,6 +907,56 @@ var story_auto_saver = function() {
 				$tips.slideDown(300);
 			else
 				$tips.slideUp(300);
+		});
+	};
+	
+	this.handle_text_style_chooser = function($page, page_id, type, number) {
+		var all_text_styles = 'blocky-title blocky-chunk blocky-paragraph deco-title deco-chunk deco-paragraph ' +
+			'typewriter-title typewriter-chunk typewriter-paragraph cursive-title cursive-chunk cursive-paragraph ' +
+			'big-word-sans-serif big-word-cursive';
+		$page.find('.styles-wrapper .styles li').click(function() {
+			var $style = $(this);
+			$style.addClass('selected').siblings().removeClass('selected');
+			var text_style = $style.attr('classname');
+			$('ul#pages li#page_' + number + ' .text-style-affected').removeClass(all_text_styles).addClass(text_style);
+			var data = { type: type, number: number, text_style: text_style};
+			auto_saver.show_pages_spinner();
+			$.ajax({
+			  type: 'PUT',
+			  url: '/stories/' + pages_editor.story_id + '/pages/' + page_id,
+			  data: data,
+			  success: function(data) {
+					if (data.result == "success") {
+						auto_saver.hide_pages_spinner(true);
+					} else {
+						log('error when updating page ' + page_id);
+					}
+				}
+			});
+		});
+		$page.find('.drop-capper .switch').click(function() {
+			var $the_switch = $(this);
+			if ($the_switch.hasClass('on')) {
+				$(this).removeClass('on');
+				$('ul#pages li#page_' + number + ' .text-style-affected').removeClass('drop-capped');
+			} else {
+				$(this).addClass('on');
+				$('ul#pages li#page_' + number + ' .text-style-affected').addClass('drop-capped');
+			}
+			var data = { type: type, number: number, drop_capped: $the_switch.hasClass('on')};
+			auto_saver.show_pages_spinner();
+			$.ajax({
+			  type: 'PUT',
+			  url: '/stories/' + pages_editor.story_id + '/pages/' + page_id,
+			  data: data,
+			  success: function(data) {
+					if (data.result == "success") {
+						auto_saver.hide_pages_spinner(true);
+					} else {
+						log('error when updating page ' + page_id);
+					}
+				}
+			});
 		});
 	};
 }
