@@ -118,6 +118,7 @@ class Page < ActiveRecord::Base
       if page.blank?
         page = PullquotePage.new(:number => options[:number])
       end
+      page.background_color = options[:background_color] if options[:background_color]
       text_media = page.text_media
       if text_media.blank?
         page.medias << PageText.new
