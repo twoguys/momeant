@@ -1,5 +1,5 @@
 class StoriesController < ApplicationController
-  before_filter :authenticate_user!, :except => [:index, :preview, :tagged_with]
+  before_filter :authenticate_user!, :except => [:index, :recent, :preview, :tagged_with]
   load_and_authorize_resource :except => [:index, :preview, :tagged_with]
   before_filter :get_topics, :only => [:new, :edit]
   before_filter :get_adverts, :only => :recent
