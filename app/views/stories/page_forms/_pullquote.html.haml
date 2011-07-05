@@ -25,19 +25,20 @@
               .switch{:class => @page && @page.text_media && @page.text_media.drop_capped? ? "on" : ""}
           .styles-wrapper
             %ul.styles
-              %li.blocky-title{:classname => "blocky-title"}
-              %li.blocky-chunk{:classname => "blocky-chunk"}
-              %li.blocky-paragraph{:classname => "blocky-paragraph"}
-              %li.deco-title{:classname => "deco-title"}
-              %li.deco-chunk{:classname => "deco-chunk"}
-              %li.deco-paragraph{:classname => "deco-paragraph"}
-              %li.typewriter-title{:classname => "typewriter-title"}
-              %li.typewriter-chunk{:classname => "typewriter-chunk"}
-              %li.typewriter-paragraph{:classname => "typewriter-paragraph"}
-              %li.cursive-title{:classname => "cursive-title"}
-              %li.cursive-chunk{:classname => "cursive-chunk"}
-              %li.cursive-paragraph{:classname => "cursive-paragraph"}
-              %li.big-word-sans-serif{:classname => "big-word-sans-serif"}
-              %li.big-word-cursive{:classname => "big-word-cursive"}
+              - text_style = @page && @page.text_media && @page.text_media.text_style ? @page.text_media.text_style : ""
+              %li.blocky-title{:classname => "blocky-title", :class => text_style == "blocky-title" ? "selected" : ""}
+              %li.blocky-chunk{:classname => "blocky-chunk", :class => text_style == "blocky-chunk" ? "selected" : ""}
+              %li.blocky-paragraph{:classname => "blocky-paragraph", :class => text_style == "blocky-paragraph" ? "selected" : ""}
+              %li.deco-title{:classname => "deco-title", :class => text_style == "deco-title" ? "selected" : ""}
+              %li.deco-chunk{:classname => "deco-chunk", :class => text_style == "deco-chunk" ? "selected" : ""}
+              %li.deco-paragraph{:classname => "deco-paragraph", :class => text_style == "deco-paragraph" ? "selected" : ""}
+              %li.typewriter-title{:classname => "typewriter-title", :class => text_style == "typewriter-title" ? "selected" : ""}
+              %li.typewriter-chunk{:classname => "typewriter-chunk", :class => text_style == "typewriter-chunk" ? "selected" : ""}
+              %li.typewriter-paragraph{:classname => "typewriter-paragraph", :class => text_style == "typewriter-paragraph" ? "selected" : ""}
+              %li.cursive-title{:classname => "cursive-title", :class => text_style == "cursive-title" ? "selected" : ""}
+              %li.cursive-chunk{:classname => "cursive-chunk", :class => text_style == "cursive-chunk" ? "selected" : ""}
+              %li.cursive-paragraph{:classname => "cursive-paragraph", :class => text_style == "cursive-paragraph" ? "selected" : ""}
+              %li.big-word-sans-serif{:classname => "big-word-sans-serif", :class => text_style == "big-word-sans-serif" ? "selected" : ""}
+              %li.big-word-cursive{:classname => "big-word-cursive", :class => text_style == "big-word-cursive" ? "selected" : ""}
         %li
           = link_to("Save &amp; Preview".html_safe, "#", :class => "save")
