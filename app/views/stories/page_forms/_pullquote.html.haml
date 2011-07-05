@@ -15,13 +15,14 @@
           = text_area_tag "pages[#{@page_number}][text]", text_value, :class => "mirrored rich-editable", "mirror-to" => "quote", :style => "width:100%;height:300px;"
         %li.simple-heading
           %label Pick a background color:
-          = text_field_tag "pages[#{@page_number}][background_color]", "#000", :class => "color-picker bgcolor"
+          - background_color = @page && @page.background_color ? @page.background_color : "#fff"
+          = text_field_tag "pages[#{@page_number}][background_color]", background_color, :class => "color-picker bgcolor"
         %li.text-style-chooser
           %label.heading
             Pick a type style:
             .drop-capper
               %label Dropcap
-              .switch
+              .switch{:class => @page && @page.text_media && @page.text_media.drop_capped? ? "on" : ""}
           .styles-wrapper
             %ul.styles
               %li.blocky-title{:classname => "blocky-title"}
