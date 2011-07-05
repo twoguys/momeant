@@ -6,6 +6,7 @@
   .preview.clearfix
     .padder
       %a.thumbnail.large{:href => current_user.blank? ? "#signup-modal" : story_path(@story)}
+        .guide
         .inner= image_tag(@story.thumbnail.url(:large))
     .actions
       = views_link(@story)
