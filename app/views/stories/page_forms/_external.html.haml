@@ -1,0 +1,18 @@
+.external.page-theme.pane-insides
+  .header
+    .title External Content
+    = link_to("Change", "#", :class => "change")
+    .spinner Saving...
+  .copy
+    %strong Use this as a way to show off your work from somewhere else on the web.
+    %span This will give you ultimate flexibility without having to always reproduce something you've built elsewhere.
+  .body
+    %ul
+      %li
+        %label URL of your content
+        .url
+          %span http://
+          - text_value = @page && @page.text ? @page.text : ""
+          = text_field_tag "pages[#{@page_number}][text]", text_value, :class => "monitor-typing"
+      %li
+        = link_to("Save &amp; Preview".html_safe, "#", :class => "save")

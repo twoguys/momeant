@@ -295,7 +295,6 @@
 				z-index: 2
 @mixin gridSlideFullsize
 	@include gridSlide(100%, 100%)
-
 @mixin gridSlideMedium
 	@include gridSlide(288px, 180px)
 	.inner
@@ -316,6 +315,23 @@
 				.image, .text
 					position: absolute
 
+@mixin externalSlide($width:288px, $height:180px)
+	.inner
+		height: 100%
+		iframe
+			width: $width
+			height: $height
+@mixin externalSlideMedium
+	@include externalSlide
+	.inner
+		iframe
+			width: 288px
+			height: 180px
+			overflow: hidden
+@mixin externalSlideFullsize
+	@include externalSlide(100%, 100%)
+	.inner
+		overflow-y: hidden
 
 @import "stories/form"
 @import "stories/preview"

@@ -289,13 +289,13 @@ form.new_story, form.edit_story, .story-form
 			left: 0
 			background-color: rgba(0,0,0,0.6)
 		.insides
-			width: 460px
-			min-width: 460px
+			width: 690px
+			min-width: 690px
 			height: auto
 			position: fixed
 			top: 50%
 			left: 50%
-			margin: -250px 0 0 -240px
+			margin: -250px 0 0 -355px
 			background-color: rgba(249, 249, 249, 0.9)
 			@include boxshadow
 			.header
@@ -802,6 +802,13 @@ form.new_story, form.edit_story, .story-form
 					.url
 						span
 							display: inline
+				.external
+					.url
+						clear: both
+						span
+							display: inline
+						input[type="text"]
+							width: 300px
 				.grid
 					li.chooser
 						width: 280px
@@ -970,6 +977,8 @@ form.new_story, form.edit_story, .story-form
 			@include splitSlideFullsize
 		.grid
 			@include gridSlideFullsize
+		.external
+			@include externalSlideFullsize
 
 	#story-details
 		position: absolute

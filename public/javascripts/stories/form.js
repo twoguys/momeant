@@ -420,6 +420,7 @@ var story_auto_saver = function() {
 		auto_saver.setup_rich_text_editing($page, id, type, number);
 		auto_saver.handle_tip_showing($page, id, type, number);
 		auto_saver.handle_text_style_chooser($page, id, type, number);
+		auto_saver.handle_external_iframing($page, id, type, number);
 	};
 	
 	this.create_or_change_page = function($page, type, number, new_page) {
@@ -897,6 +898,22 @@ var story_auto_saver = function() {
 					}
 				});
 			}
+		});
+	};
+	
+	this.handle_external_iframing = function($page, page_id, type, number) {
+		if (type != 'external') { return false; }
+		
+		$page.find('a.save').click(function() {
+			var $from = $page.find('input[type="text"]');
+			var $to = $('ul#pages li#page_' + number + ' iframe');
+			var $parent = $to.parent();
+			var url = $from.val();
+			if (!(url.substring(0, 7) === "http://"))
+				url = "http://" + url;
+			// update the iframe src URL, remove it and re-add it to make the browser refresh it
+			var $iframe = $to.attr('src', url).remove();
+			$parent.append($iframe);
 		});
 	};
 	
