@@ -218,7 +218,7 @@ class Page < ActiveRecord::Base
         text2.save
       end
     when "grid"
-      unless page
+      if page.blank?
         page = GridPage.new(:number => options[:number], :background_color => options[:background_color], :text_color => options[:text_color])
       end
       
@@ -246,6 +246,18 @@ class Page < ActiveRecord::Base
         media = page.media_at_position_and_side(position, side)
         media.update_attribute(:placement, options[:image_placement]) if media
       end
+    when "external"
+      if page.blank?
+        page = ExternalPage.new(:number => options[:number])
+      end
+      
+      text_media = page.text_media
+      if text_media.blank?
+        page.medias << PageText.new
+        text_media = page.text_media
+      end
+      text_media.text = options[:text] if options[:text]
+      text_media.save unless page.new_record?
     else
       Rails.logger.info "[Momeant] No implementation for page type: #{type}"
       return false

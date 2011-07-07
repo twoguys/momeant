@@ -1022,13 +1022,13 @@ form.new_story, form.edit_story, .story-form {
       left: 0;
       background-color: rgba(0, 0, 0, 0.6); }
     form.new_story #page-type-chooser .insides, form.edit_story #page-type-chooser .insides, .story-form #page-type-chooser .insides {
-      width: 460px;
-      min-width: 460px;
+      width: 690px;
+      min-width: 690px;
       height: auto;
       position: fixed;
       top: 50%;
       left: 50%;
-      margin: -250px 0 0 -240px;
+      margin: -250px 0 0 -355px;
       background-color: rgba(249, 249, 249, 0.9);
       -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
       -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
@@ -1749,6 +1749,12 @@ form.new_story, form.edit_story, .story-form {
         height: 150px; }
       #page-editor #pane ul.pages li .video .url span {
         display: inline; }
+      #page-editor #pane ul.pages li .external .url {
+        clear: both; }
+        #page-editor #pane ul.pages li .external .url span {
+          display: inline; }
+        #page-editor #pane ul.pages li .external .url input[type="text"] {
+          width: 300px; }
       #page-editor #pane ul.pages li .grid li.chooser {
         width: 280px;
         margin: 0 auto 25px; }
@@ -2136,6 +2142,13 @@ form.new_story, form.edit_story, .story-form {
           z-index: 1; }
         #page-editor ul#pages .grid ul.cells li:hover .back {
           z-index: 2; }
+    #page-editor ul#pages .external .inner {
+      height: 100%; }
+      #page-editor ul#pages .external .inner iframe {
+        width: 100%;
+        height: 100%; }
+    #page-editor ul#pages .external .inner {
+      overflow-y: hidden; }
   #page-editor #story-details {
     position: absolute;
     bottom: -51px;
@@ -2967,6 +2980,15 @@ form.new_story, form.edit_story, .story-form {
               z-index: 1; }
             .story-viewer #previewer ul.pages li.grid .inner ul.cells li .image, .story-viewer #previewer ul.pages li.grid .inner ul.cells li .text {
               position: absolute; }
+      .story-viewer #previewer ul.pages li.external .inner {
+        height: 100%; }
+        .story-viewer #previewer ul.pages li.external .inner iframe {
+          width: 288px;
+          height: 180px; }
+      .story-viewer #previewer ul.pages li.external .inner iframe {
+        width: 288px;
+        height: 180px;
+        overflow: hidden; }
   .story-viewer ul#pages {
     width: 100%;
     height: 100%; }
@@ -3216,6 +3238,13 @@ form.new_story, form.edit_story, .story-form {
           z-index: 1; }
         .story-viewer ul#pages li.grid ul.cells li:hover .back {
           z-index: 2; }
+    .story-viewer ul#pages li.external .inner {
+      height: 100%; }
+      .story-viewer ul#pages li.external .inner iframe {
+        width: 100%;
+        height: 100%; }
+    .story-viewer ul#pages li.external .inner {
+      overflow-y: hidden; }
     .story-viewer ul#pages li.last {
       background-color: #111111; }
       .story-viewer ul#pages li.last .inner {
