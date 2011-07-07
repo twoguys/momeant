@@ -1,3 +1,3 @@
 .inner
-  - url = @page && @page.text ? @page.text : ""
-  %iframe{:src => "http://#{url}"}
+  - url = @page && @page.text ? "http://#{@page.text}" : ""
+  %iframe{:src => url}
