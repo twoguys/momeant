@@ -87,6 +87,7 @@ Repo::Application.routes.draw do
   match '/privacy',             :to => 'home#privacy',              :as => :privacy
 
   match '/',                    :to => 'home#index',                :as => :home
+  match '/following',           :to => 'home#following',            :as => :following
   root :to => "home#index"
   
 end

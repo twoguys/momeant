@@ -17,6 +17,7 @@
     .home-tabs
       = link_to_active("Most Rewarded Stories", root_path)
       = link_to_active("Latest Stories", recent_stories_path)
+      = link_to_active("Following", following_path)
       .pagination
         = paginate @most_rewarded_stories if @most_rewarded_stories
         = paginate @recent_stories if @recent_stories
@@ -24,10 +25,11 @@
       %ul.most-rewarded.stories= render @most_rewarded_stories
     - elsif @recent_stories
       %ul.recent.stories= render @recent_stories
+    - elsif @rewards
+      %ul.rewards= render @rewards
     .home-tabs
       .pagination
         = paginate @most_rewarded_stories if @most_rewarded_stories
-        = paginate @top_curators if @top_curators
         = paginate @recent_stories if @recent_stories
   
   - if @adverts.length > 0

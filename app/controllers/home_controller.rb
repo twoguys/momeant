@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   skip_before_filter :release_lockdown
-  before_filter :authenticate_user!, :only => [:subscribe]
+  before_filter :authenticate_user!, :only => [:subscribe, :following]
   before_filter :get_adverts
   
   def index
@@ -10,6 +10,13 @@ class HomeController < ApplicationController
     
     @most_rewarded_stories = Story.published.most_rewarded.page params[:page]
     @nav = "home"
+  end
+  
+  def following
+    following_ids = current_user.subscribed_to.map { |user| user.id }.join(",")
+    @rewards = Reward.where("curations.user_id IN (#{following_ids})")
+    @nav = "home"
+    render "index"
   end
   
   def about
