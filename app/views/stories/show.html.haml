@@ -43,7 +43,29 @@
   #next-page
     .button{:title => "Next page"} next page
   
-  = link_to("back to preview", preview_story_path(@story), :id => "back-to-preview")
+  = link_to("Home", root_path, :id => "back-to-home", :class => "tooltipped", :title => "Home")
+  = link_to("Activity", "#", :id => "activity-flag", :class => "tooltipped", :title => "Reward Activity")
+  
+  #activity
+    = link_to("Hide", "#", :id => "close-activity")
+    .scroller
+      %ul.list
+        - unless @story.owner?(current_user)
+          %li.reward-box
+            = link_to(image_tag(current_user.avatar.url(:thumbnail)), user_path(current_user), :class => "avatar")
+            .the-rest
+              Rewarding action will go here
+        - @story.rewards.public.each do |curation|
+          %li
+            = link_to(image_tag(curation.user.avatar.url(:thumbnail)), user_path(curation.user), :class => "avatar")
+            .the-rest
+              .who-when
+                .icon{:class => curation.class.to_s.downcase}
+                  = curation.amount if curation.is_a?(Reward)
+                .author= link_to(curation.user.name, user_path(curation.user))
+                .date= curation.created_at.strftime("%m/%d/%y")
+              - if curation.comment.present?
+                .comment= curation.comment
   
   #metadata
     .info
@@ -53,4 +75,4 @@
         .full= @story.synopsis
     .pages
       - 1.upto @story.pages.count do |page|
-        = link_to(page, "#", :class => page == 1 ? "selected" : "")
+        = link_to(page, "#", :class => page == 1 ? "selected" : "", :page => page)

@@ -11,6 +11,7 @@ var story_viewer = function() {
 		$('#next-page').click(viewer.goto_next_page);
 		$('#previous-page').click(viewer.goto_prev_page);
 		$('ul#pages li').swipe({swipe:viewer.swipe,threshold:0});
+		$('#activity-flag, #close-activity').click(function(){$('#activity').toggle();});
 		$.scrollTo('42');
 		setup_page_number_clicking();
 		setup_key_bindings();
@@ -76,6 +77,7 @@ var story_viewer = function() {
 			$next_page.fadeIn();
 			var previous_page_number = viewer.page;
 			viewer.page = page_number;
+			$('#metadata .pages a["page='+page_number+'"]').addClass('selected').siblings().removeClass('selected');
 			
 			if (page_number == 1) {
 				viewer.hide_prev_button();

@@ -19,6 +19,97 @@
 		border-bottom-right-radius: 5px
 		@include boxshadow(5px, .1, 0, 1px)
 		z-index: 3
+	#back-to-home
+		position: fixed
+		top: 0
+		left: 35px
+		width: 46px
+		height: 60px
+		background: transparent url(../images/backToHome.png) no-repeat 50% 0
+		z-index: 3
+		text-indent: -9999px
+	#activity-flag
+		position: fixed
+		top: 0
+		left: 94px
+		width: 46px
+		height: 60px
+		background: transparent url(../images/activityFlag.png) no-repeat 50% 0
+		z-index 3
+		text-indent: -9999px
+	#activity
+		position: absolute
+		top: 0
+		right: 0
+		width: 385px
+		@include boxshadow
+		overflow: hidden
+		background: #fff
+		border: 1px solid #ccc
+		border-top: none
+		border-bottom: none
+		-webkit-transition: all linear 0.2s
+		-moz-transition: all linear 0.2s
+		display: none
+		a#close-activity
+			display: block
+			position: absolute
+			top: 0
+			left: 0
+			height: 30px
+			width: 345px
+			color: #fff
+			line-height: 30px
+			vertical-align: middle
+			padding: 0 30px 0 10px
+			font-size: 14px
+			text-transform: uppercase
+			font-weight: 900
+			background: #000 url(../images/white-close-xSm.png) no-repeat 98% 6px
+			text-align: right
+		.scroller
+			height: 100%
+			overflow-y: auto
+			margin-top: 30px
+		ul.list
+			.reward-box
+				.the-rest
+					height: 100px
+			li
+				background-color: #d7d7d7
+				position: relative
+				border-bottom: 1px solid #aaa
+				a.avatar
+					position: absolute
+					top: 10px
+					left: 10px
+					width: 30px
+					height: 30px
+					img
+						width: 30px
+						height: 30px
+				.the-rest
+					background-color: #fff
+					margin-left: 50px
+					padding: 10px
+					min-height: 30px
+					.who-when
+						height: 30px
+						.icon, .author, .date
+							float: left
+							height: 30px
+							line-height: 30px
+							vertical-align: middle
+							margin-right: 10px
+						.author
+							font-size: 16px
+							font-weight: 900
+							text-transform: uppercase
+						.date
+							color: #aaa
+					.comment
+						margin-top: 5px
+	
 	#metadata
 		position: fixed
 		left: 0
@@ -76,6 +167,7 @@
 				color: $link_color
 
 	ul#pages
+		position: fixed
 		width: 100%
 		height: 100%
 		li
@@ -205,8 +297,8 @@
 	#previous-page, #next-page
 		width: 100px
 		height: 140px
-		position: absolute
-		top: 35%
+		position: fixed
+		top: 45%
 		z-index: 3
 		opacity: 0.2
 		-webkit-transition: opacity linear 0.2s
