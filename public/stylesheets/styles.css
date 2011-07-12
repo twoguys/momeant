@@ -2633,6 +2633,40 @@ form.new_story, form.edit_story, .story-form {
     -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
     z-index: 3; }
+  .story-viewer #metadata {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    z-index: 5;
+    width: 100%;
+    background: black;
+    height: 35px; }
+    .story-viewer #metadata .info {
+      float: left;
+      margin-left: 10px; }
+      .story-viewer #metadata .info .title, .story-viewer #metadata .info .author {
+        line-height: 35px;
+        vertical-align: middle;
+        float: left;
+        font-weight: 700; }
+      .story-viewer #metadata .info .title {
+        color: white;
+        text-transform: uppercase;
+        font-size: 18px; }
+      .story-viewer #metadata .info .author {
+        color: #555555;
+        margin-left: 5px;
+        font-size: 16px; }
+    .story-viewer #metadata .pages {
+      float: right;
+      height: 15px;
+      margin: 10px 20px 10px 0; }
+      .story-viewer #metadata .pages a {
+        font-size: 10px;
+        margin-left: 5px;
+        color: white; }
+      .story-viewer #metadata .pages a.selected {
+        color: #00aeef; }
   .story-viewer #previewer.open .handle {
     background-position: 50% -22px; }
   .story-viewer #previewer.closed .handle {
@@ -3349,20 +3383,22 @@ form.new_story, form.edit_story, .story-form {
               background: none;
               margin-bottom: 0; }
   .story-viewer #previous-page, .story-viewer #next-page {
-    width: 10%;
-    height: 100%;
+    width: 100px;
+    height: 140px;
     position: absolute;
-    top: 0;
-    z-index: 3; }
+    top: 35%;
+    z-index: 3;
+    opacity: 0.2;
+    -webkit-transition: opacity linear 0.2s;
+    -moz-transition: opacity linear 0.2s; }
     .story-viewer #previous-page .button, .story-viewer #next-page .button {
       text-indent: -9999px;
       background: transparent url(../images/next-previous-arrows.png) no-repeat 0 0;
       cursor: pointer;
-      position: absolute;
-      top: 35%;
-      right: 0;
-      height: 140px;
-      width: 100px; }
+      width: 100px;
+      height: 140px; }
+  .story-viewer #previous-page:hover, .story-viewer #next-page:hover {
+    opacity: 1; }
   .story-viewer #previous-page {
     left: 0; }
     .story-viewer #previous-page .button {

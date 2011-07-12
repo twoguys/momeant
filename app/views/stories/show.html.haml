@@ -45,28 +45,12 @@
   
   = link_to("back to preview", preview_story_path(@story), :id => "back-to-preview")
   
-  #previewer.open
-    .handle
-    .preview-inner
-      .info
-        .title= @story.title
-        .author by #{link_to(@story.user.name, user_path(@story.user))}
-        .excerpt= truncate(@story.synopsis, :length => 250)
-        .actions
-          = views_link(@story)
-          = rewards_link(@story, true)
-          = #render "stories/reward_modal"
-      .slider
-        .scrollbar-me
-          .viewport
-            .overview
-              %ul.pages
-                - @story.pages.each do |page|
-                  - @page = page
-                  %li.page{:class => page.css_class, "page-number" => page.number, :id => "page_#{page.number}"}
-                    .inner= render :partial => "/stories/page_themes/#{page.partial_name}", :locals => {:preview => true, :size => "medium"}
-                %li.page.last{"page-number" => @story.pages.count + 1} ...
-          .scrollbar
-            .track
-              .thumb
-                .end
+  #metadata
+    .info
+      .title= @story.title
+      .author by #{link_to(@story.user.name, user_path(@story.user))}
+      .excerpt
+        .full= @story.synopsis
+    .pages
+      - 1.upto @story.pages.count do |page|
+        = link_to(page, "#", :class => page == 1 ? "selected" : "")

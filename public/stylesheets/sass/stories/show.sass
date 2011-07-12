@@ -19,6 +19,40 @@
 		border-bottom-right-radius: 5px
 		@include boxshadow(5px, .1, 0, 1px)
 		z-index: 3
+	#metadata
+		position: fixed
+		left: 0
+		bottom: 0
+		z-index: 5
+		width: 100%
+		background: #000
+		height: 35px
+		.info
+			float: left
+			margin-left: 10px
+			.title, .author
+				line-height: 35px
+				vertical-align: middle
+				float: left
+				font-weight: 700
+			.title
+				color: #fff
+				text-transform: uppercase
+				font-size: 18px
+			.author
+				color: #555
+				margin-left: 5px
+				font-size: 16px
+		.pages
+			float: right
+			height: 15px
+			margin: 10px 20px 10px 0
+			a
+				font-size: 10px
+				margin-left: 5px
+				color: #fff
+			a.selected
+				color: $link_color
 	#previewer.open .handle
 		background-position: 50% -22px
 	#previewer.closed .handle
@@ -288,20 +322,22 @@
 							background: none
 							margin-bottom: 0
 	#previous-page, #next-page
-		width: 10%
-		height: 100%
+		width: 100px
+		height: 140px
 		position: absolute
-		top: 0
+		top: 35%
 		z-index: 3
+		opacity: 0.2
+		-webkit-transition: opacity linear 0.2s
+		-moz-transition: opacity linear 0.2s
 		.button
 			text-indent: -9999px
 			background: transparent url(../images/next-previous-arrows.png) no-repeat 0 0
 			cursor: pointer
-			position: absolute
-			top: 35%
-			right: 0
-			height: 140px
 			width: 100px
+			height: 140px
+	#previous-page:hover, #next-page:hover
+		opacity: 1
 	#previous-page
 		left: 0
 		.button
