@@ -43,6 +43,26 @@
 				color: #555
 				margin-left: 5px
 				font-size: 16px
+			.excerpt
+				float: left
+				width: 30px
+				height: 30px
+				margin-left: 10px
+				background: transparent url(../images/storyShowSynopsis.png) no-repeat 50% 4px
+				position: relative
+				cursor: help
+				.full
+					width: 200px
+					padding: 8px
+					background-color: #000
+					color: #fff
+					position: absolute
+					bottom: 35px
+					left: -90px
+					opacity: 0.9
+					display: none
+			.excerpt:hover .full
+				display: block
 		.pages
 			float: right
 			height: 15px
@@ -53,147 +73,7 @@
 				color: #fff
 			a.selected
 				color: $link_color
-	#previewer.open .handle
-		background-position: 50% -22px
-	#previewer.closed .handle
-		background-position: 50% 0
-	#previewer
-		height: 235px
-		position: fixed
-		left: 0
-		bottom: 0
-		z-index: 5
-		width: 100%
-		overflow-y: hidden
-		.handle
-			height: 22px
-			background: transparent url(../images/story-page-previewer-tabB.png) no-repeat
-			cursor: pointer
-		.preview-inner
-			height: 215px
-			background-color: #000
-			color: #fff
-			text-shadow: none
-			position: relative
-			overflow: hidden
-		.info
-			width: 270px
-			height: 180px
-			position: absolute
-			top: 15px
-			left: 5px
-			overflow: hidden
-			color: #fff
-			.title, .author, .excerpt
-				padding-left: 10px
-			.title
-				font-size: 2.5em
-				line-height: 1em
-				font-weight: bold
-				text-transform: uppercase
-			.author
-				font-style: italic
-				font-family: $serif
-				font-size: 1.1em
-				padding: 5px 10px 7px
-			.excerpt
-				font-size: 11px
-				font-family: $block
-				height: 48px
-				overflow: hidden
-				line-height: 1.4em
-			.actions
-				padding: 11px
-				border-top: 1px dotted white
-				margin-top: 9px
-				a, span
-					display: block
-					float: left
-					padding: 0 0 0 20px
-					margin-right: 15px
-					background-color: transparent
-					background-position: 0 -1px
-					background-repeat: no-repeat
-					font-size: 11px
-					font-weight: 700
-					color: #fff
-				.reward
-					background-image: url(../images/icons/recommendGrey.png)
-				.rewarded
-					background-image: url(../images/icons/recommendOn.png)
-				.views
-					background-image: url(../images/icons/viewsLight.png)
-				.share
-					background-image: url(../images/icons/shareOn.png)
-		.slider
-			position: absolute
-			top: 0
-			left: 280px
-			width: 100%
-			.viewport
-				overflow: hidden
-				position: relative
-				height: 190px
-				.overview
-					position: absolute
-					top: 0
-					left: 0
-			.scrollbar
-				height: 12px
-				position: relative
-				margin-top: 4px
-				.track
-					background-color: #000
-					height: 12px
-					width: 100%
-					position: relative
-					padding: 0 1px
-				.thumb
-					height: 10px
-					width: 20px
-					cursor: pointer
-					overflow: hidden
-					position: absolute
-					left: 0
-					background-color: #ccc
-					@include rounded
-			.scrollbar.disable
-				display: none
-		ul.pages
-			height: 190px
-			background-color: #000
-			li.page
-				width: 280px
-				height: 180px
-				border: 5px solid #000
-				float: left
-				overflow: hidden
-				cursor: pointer
-				background-color: #fff
-				.inner
-					width: 100%
-					height: 100%
-				.number
-					display: none
-			li.page.active, li.page:hover
-				border: 5px solid $blue
-			li.title
-				@include titleSlide
-			li.full_image
-				@include fullimageSlide
-			li.pullquote
-				@include blockquoteSlide
-			li.video .inner
-				img
-					width: 280px
-					height: 180px
-			li.split
-				@include splitSlideMedium
-			li.grid
-				@include gridSlideMedium
-			li.external
-				@include externalSlideMedium
-	
+
 	ul#pages
 		width: 100%
 		height: 100%
