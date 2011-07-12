@@ -19,9 +19,7 @@ var story_viewer = function() {
 	};
 	
 	this.show_next_button = function() {
-		if (viewer.page < viewer.total_pages) {
-			$('#next-page').show();
-		}
+		$('#next-page').show();
 	};
 	
 	this.hide_next_button = function() {
@@ -29,9 +27,7 @@ var story_viewer = function() {
 	};
 	
 	this.show_prev_button = function() {
-		if (viewer.page > 1) {
-			$('#previous-page').show();
-		}
+		$('#previous-page').show();
 	};
 
 	this.hide_prev_button = function() {
@@ -77,7 +73,7 @@ var story_viewer = function() {
 			$next_page.fadeIn();
 			var previous_page_number = viewer.page;
 			viewer.page = page_number;
-			$('#metadata .pages a["page='+page_number+'"]').addClass('selected').siblings().removeClass('selected');
+			$('#metadata .pages a[page="'+page_number+'"]').addClass('selected').siblings().removeClass('selected');
 			
 			if (page_number == 1) {
 				viewer.hide_prev_button();
