@@ -1,5 +1,6 @@
 source 'http://rubygems.org'
 
+gem 'arel', :path => "vendor/private_gems/arel-2.0.10"
 gem 'rails', '3.0.9'
 
 # Postgres for our database
