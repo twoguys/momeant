@@ -133,6 +133,13 @@ function handle_signup_login_form_validation() {
 	});
 }
 
+function handle_reward_thumbnail_interactivity() {
+	$('ul.reward-thumbnails li.reward .others a.handle').click(function() {
+		$(this).siblings('ul').toggle();
+		$('.reward-thumbnails').masonry();
+	});
+}
+
 $(document).ready(function() {
 	setup_tooltips();
 	setup_tab_switching();
@@ -144,6 +151,10 @@ $(document).ready(function() {
 	setup_recommendation_tabs();
 	setup_thumbnail_flipping();
 	handle_signup_login_form_validation();
+	
+	// reward lists
+	handle_reward_thumbnail_interactivity();
+	
 	$("a.disabled").click(function() {return false;})
 	
 	$.fn.colorPicker.defaultColors = ['000', '666', '999', 'ccc', 'fff', 'f42652', 'f7d3db', 'ffa801', 'ffebc5', 'fff10f', 'fffcd2', '1ea337', 'c8f2d0', '00aeef', 'c0eeff', '985faf', 'f5deff', '7a5116', 'e1d5c3'];

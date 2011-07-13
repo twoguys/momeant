@@ -1,18 +1,26 @@
 %li.reward
-  .who
-    = link_to(image_tag(reward.user.avatar(:thumbnail)), user_path(reward.user), :class => "avatar")
-    .text
-      = link_to(reward.user.name, user_path(reward.user), :class => "author")
-      %span rewarded
-      %span.reward
-        %span.inner= reward.amount
-      %span to
   .what
-    .thumbnail= link_to(image_tag(reward.story.thumbnail.url(:medium), :style => "height:#{100*(1+ rand(2))}px"), reward.story)
     .text
       = link_to(reward.story.title, reward.story, :class => "title")
-      %span by
-      = link_to(reward.recipient.name, user_path(reward.recipient), :class => "author")
+      .author by #{link_to(reward.recipient.name, user_path(reward.recipient))}
+    .thumbnail= link_to(image_tag(reward.story.thumbnail.url(:medium)), reward.story)
+  .who.clearfix
+    = link_to(image_tag(reward.user.avatar(:thumbnail)), user_path(reward.user), :class => "avatar")
+    %span.amount-and-who
+      %span.reward
+        %span.inner= reward.amount
+      = link_to("rewarded by #{reward.user.name}", user_path(reward.user), :class => "author")
+    %span.comment &ldquo;#{reward.comment}&rdquo;
   .others
     - if reward[:other_rewards]
-      = pluralize(reward[:other_rewards].size, "more reward")
+      = link_to(pluralize(reward[:other_rewards].size, "more reward"), "#", :class => "handle")
+      %ul
+        - reward[:other_rewards].each do |other|
+          %li
+            .who.clearfix
+              = link_to(image_tag(other.user.avatar(:thumbnail)), user_path(other.user), :class => "avatar")
+              %span.amount-and-who
+                %span.reward
+                  %span.inner= reward.amount
+                = link_to("rewarded by #{reward.user.name}", user_path(reward.user), :class => "author")
+              %span.comment &ldquo;#{reward.comment}&rdquo;

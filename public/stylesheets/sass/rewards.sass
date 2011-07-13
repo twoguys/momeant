@@ -1,5 +1,5 @@
 ul.reward-thumbnails
-	li
+	li.reward
 		width: 230px
 		padding: 10px
 		background: #fff
@@ -7,39 +7,9 @@ ul.reward-thumbnails
 		float: left
 		display: inline
 		margin: 0 20px 24px 0
-		.who
-			position: relative
-			height: 40px
-			margin-bottom: 10px
-			.avatar
-				position: absolute
-				top: 0
-				left: 0
-				width: 40px
-				height: 40px
-				img
-					width: 40px
-					height: 40px
-			.text
-				margin-left: 50px
-				.author
-					display: block
-					font-size: 1.2em
-					font-weight: 900
-					text-transform: uppercase
-					margin-bottom: 2px
-				.reward
-					margin: 0 5px 0 2px
-					background-color: #ffbf03
-					color: #fff
-					padding: 3px 2px 3px 8px
-					@include rounded
-					.inner
-						padding-right: 18px
-						font-weight: 700
-						background: transparent url(../images/icons/recommendWhite.png) no-repeat 100% 0
 		.what
 			.thumbnail
+				margin: 5px 0
 				img
 					width: 230px
 			.text
@@ -48,4 +18,56 @@ ul.reward-thumbnails
 					color: #000
 					text-transform: uppercase
 					font-weight: 900
-					font-size: 1.1em
+					font-size: 13px
+				.author
+					color: #000
+					position: relative
+					top: -2px
+					a
+						color: $link_color
+		.who
+			padding: 8px
+			background: #f4f4f4
+			.avatar
+				float: left
+				width: 40px
+				height: 40px
+				margin-right: 5px
+				img
+					width: 40px
+					height: 40px
+			.amount-and-who
+				.reward
+					float: left
+					margin-right: 5px
+					background-color: $blue
+					color: #fff
+					padding: 6px 6px 6px 10px
+					@include rounded
+					.inner
+						padding-right: 18px
+						font-weight: 700
+						background: transparent url(../images/icons/recommendWhite.png) no-repeat 100% 0
+				.author
+					font-size: 1.2em
+					font-weight: 700
+					text-transform: uppercase
+					margin-bottom: 2px
+					font-size: 12px
+					display: block
+					position: relative
+					top: -1px
+			.comment
+				color: #555
+		.others
+			background: #f4f4f4
+			padding: 4px 8px
+			.handle
+				display: block
+				font-weight: 700
+				text-transform: uppercase
+				color: #aeaeae
+				font-size: 11px
+				background: transparent url(../images/dropDownArrow.png) no-repeat 100% 0
+			ul
+				display: none
