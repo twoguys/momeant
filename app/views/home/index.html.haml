@@ -40,4 +40,9 @@
       = render @adverts
       .clear
 
-= javascript_tag "$('.reward-thumbnails').masonry({itemSelector : 'li.reward'});"
+:javascript
+  Typekit.load({
+    active: {
+      $('.reward-thumbnails').masonry({itemSelector : 'li.reward'});
+    }
+  });

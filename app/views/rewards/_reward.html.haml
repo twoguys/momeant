@@ -11,8 +11,8 @@
         %span.inner= reward.amount
       = link_to("rewarded by #{reward.user.name}", user_path(reward.user), :class => "author")
     %span.comment &ldquo;#{reward.comment}&rdquo;
-  .others
-    - if reward[:other_rewards]
+  - if reward[:other_rewards]
+    .others
       = link_to(pluralize(reward[:other_rewards].size, "more reward"), "#", :class => "handle")
       %ul
         - reward[:other_rewards].each do |other|
