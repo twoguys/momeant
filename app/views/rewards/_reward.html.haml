@@ -13,3 +13,6 @@
       = link_to(reward.story.title, reward.story, :class => "title")
       %span by
       = link_to(reward.recipient.name, user_path(reward.recipient), :class => "author")
+  .others
+    - if reward[:other_rewards]
+      = pluralize(reward[:other_rewards].size, "more rewards")

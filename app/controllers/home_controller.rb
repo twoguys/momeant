@@ -17,7 +17,16 @@ class HomeController < ApplicationController
     render "index" and return if current_user.subscribed_to.count == 0
     
     following_ids = current_user.subscribed_to.map { |user| user.id }.join(",")
-    @rewards = Reward.where("curations.user_id IN (#{following_ids})").page params[:page]
+    @rewards = Reward.select("DISTINCT ON (story_id) curations.*").where("user_id IN (#{following_ids})").page params[:page]
+    
+    # add duplicate reward count to each piece of content
+    @rewards.each do |reward|
+      other_rewards = Reward.where(:story_id => reward.story_id).where("user_id IN (#{following_ids})").where("id != #{reward.id}")
+      if other_rewards.size > 0
+        reward[:other_rewards] = other_rewards
+      end
+    end
+
     @nav = "home"
     render "index"
   end
