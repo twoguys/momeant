@@ -22,6 +22,6 @@
               = link_to(image_tag(other.user.avatar(:thumbnail)), user_path(other.user), :class => "avatar")
               %span.amount-and-who
                 %span.reward
-                  %span.inner= reward.amount
-                = link_to("rewarded by #{reward.user.name}", user_path(reward.user), :class => "author")
-              %span.comment &ldquo;#{reward.comment}&rdquo;
+                  %span.inner= other.amount
+                = link_to("rewarded by #{other.user.name}", user_path(other.user), :class => "author")
+              %span.comment &ldquo;#{other.comment}&rdquo;
