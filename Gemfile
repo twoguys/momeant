@@ -6,7 +6,7 @@ gem 'rails', '3.0.9'
 gem 'pg'
 #gem 'sqlite3-ruby', :require => 'sqlite3'
 
-gem 'devise'
+gem 'devise', "~> 1.4.2"
 gem 'haml'
 gem 'sass'
 gem 'aws-s3'
