@@ -137,6 +137,7 @@ function handle_reward_thumbnail_interactivity() {
 	$('ul.reward-thumbnails li.reward .others a.handle').click(function() {
 		$(this).siblings('ul').toggle();
 		$('.reward-thumbnails').masonry();
+		return false;
 	});
 }
 
