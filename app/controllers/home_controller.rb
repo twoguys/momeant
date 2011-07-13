@@ -17,7 +17,7 @@ class HomeController < ApplicationController
     render "index" and return if current_user.subscribed_to.count == 0
     
     following_ids = current_user.subscribed_to.map { |user| user.id }.join(",")
-    @rewards = Reward.where("curations.user_id IN (#{following_ids})")
+    @rewards = Reward.where("curations.user_id IN (#{following_ids})").page params[:page]
     @nav = "home"
     render "index"
   end

@@ -1,5 +1,5 @@
 - content_for :head do
-  = javascript_include_tag "flipbook"
+  = javascript_include_tag "flipbook", "jquery.masonry.min"
 
 .homepage
   = render "home/editorials/openingUp"
@@ -28,7 +28,8 @@
     - elsif @rewards
       - if @rewards.empty? && current_user.subscribed_to.empty?
         %h3 You are not currently following anyone. Once you start following people, you will see content they have rewarded.
-      %ul.rewards= render @rewards
+      %ul.reward-thumbnails
+        = render @rewards
     .home-tabs
       .pagination
         = paginate @most_rewarded_stories if @most_rewarded_stories
@@ -38,3 +39,5 @@
     %section.adverts
       = render @adverts
       .clear
+
+= javascript_tag "$('.reward-thumbnails').masonry({itemSelector : 'li.reward'});"
