@@ -69,7 +69,7 @@ class StoriesController < ApplicationController
     
     @story.autosaving = true
     @story.thumbnail = params[:image]
-    #@story.determine_thumbnail_colors
+    @story.determine_thumbnail_colors
     if @story.save
       render :json => {:result => "success", :thumbnail => @story.thumbnail.url(:petite)}
     else

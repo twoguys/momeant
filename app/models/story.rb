@@ -120,10 +120,18 @@ class Story < ActiveRecord::Base
   end
   
   def determine_thumbnail_colors
-    # img =  Magick::Image.read(self.thumbnail.url).first
-    # colors = img.quantize(256)
-    # averageColor = pix.pixel_color(0,0)
-    # Rails.logger.info "ASDFASDFSADFASDFASDFASDFASDF"
-    # Rails.logger.info averageColor
+    image =  Magick::Image.read(self.thumbnail.url).first
+    histogram = image.color_histogram
+    
+    # sort by decreasing frequency
+    sorted = histogram.keys.sort_by {|p| -histogram[p]}
+    most_common_color = sorted.last
+
+    rgb = [sorted.last.red / 257,sorted.last.green / 257,sorted.last.blue / 257]
+    hex = rgb.inject("") do |code, color|
+      code += color.to_s(16).rjust(2, '0').upcase
+    end
+    
+    self.thumbnail_hex_color = hex
   end
 end

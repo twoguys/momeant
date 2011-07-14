@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110714131513) do
+ActiveRecord::Schema.define(:version => 20110714161112) do
 
   create_table "adverts", :force => true do |t|
     t.string   "title"
@@ -126,6 +126,7 @@ ActiveRecord::Schema.define(:version => 20110714131513) do
     t.string   "thumbnail_file_type"
     t.integer  "thumbnail_file_size"
     t.datetime "thumbnail_updated_at"
+    t.string   "thumbnail_hex_color"
   end
 
   create_table "stories_topics", :id => false, :force => true do |t|
