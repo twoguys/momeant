@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110627170707) do
+ActiveRecord::Schema.define(:version => 20110714131513) do
 
   create_table "adverts", :force => true do |t|
     t.string   "title"
@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(:version => 20110627170707) do
     t.integer  "invitee_id"
   end
 
-  create_table "page_medias", :force => true do |t|
+  create_table "page_media", :force => true do |t|
     t.string   "type"
     t.text     "text"
     t.string   "image_file_name"

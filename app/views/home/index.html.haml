@@ -42,7 +42,7 @@
 
 :javascript
   Typekit.load({
-    active: {
-      $('.reward-thumbnails').masonry({itemSelector: 'li.reward'});
+    active: function() {
+      $('.reward-thumbnails').masonry({itemSelector:'li.reward'});
     }
   });

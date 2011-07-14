@@ -54,6 +54,8 @@ class Story < ActiveRecord::Base
   
   attr_accessor :autosaving
   
+  before_create :detect_thumbnail_colors
+  
   def to_param
     if title.blank?
       "#{id}"
@@ -93,16 +95,6 @@ class Story < ActiveRecord::Base
     user.present? && self.users_who_recommended.include?(user)
   end
   
-  # def thumbnail
-  #   thumbnail = self.thumbnail_page || 1
-  #   page_index = thumbnail - 1
-  #   if self.pages[page_index]
-  #     return self.pages[page_index]
-  #   else
-  #     return self.pages.first
-  #   end
-  # end
-  
   def page_at(number)
     return self.pages.find_by_number(number)
   end
@@ -125,5 +117,13 @@ class Story < ActiveRecord::Base
     stories = []
     stories += Story.published.joins(:topics).where("topics.id IN (#{my_topic_ids})").where("user_id != #{self.user_id}") unless my_topic_ids.blank?
     stories
+  end
+  
+  def determine_thumbnail_colors
+    # img =  Magick::Image.read(self.thumbnail.url).first
+    # colors = img.quantize(256)
+    # averageColor = pix.pixel_color(0,0)
+    # Rails.logger.info "ASDFASDFSADFASDFASDFASDFASDF"
+    # Rails.logger.info averageColor
   end
 end

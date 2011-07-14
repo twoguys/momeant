@@ -3,6 +3,7 @@ class StoriesController < ApplicationController
   load_and_authorize_resource :except => [:index, :recent, :preview, :tagged_with]
   before_filter :get_topics, :only => [:new, :edit]
   before_filter :get_adverts, :only => :recent
+  skip_before_filter :verify_authenticity_token, :only => [:update_thumbnail]
   
   def index
     redirect_to root_path
@@ -68,6 +69,7 @@ class StoriesController < ApplicationController
     
     @story.autosaving = true
     @story.thumbnail = params[:image]
+    #@story.determine_thumbnail_colors
     if @story.save
       render :json => {:result => "success", :thumbnail => @story.thumbnail.url(:petite)}
     else
