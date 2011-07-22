@@ -5,8 +5,8 @@ class Story < ActiveRecord::Base
     text :title, :boost => 2.0
     text(:author_name) { user.name }
     text :synopsis
-    text :topics do
-      topics.map { |topic| topic.name }
+    text :tags do
+      tags.map { |tag| tag.name }
     end
     text :pages do
       pages.inject("") { |x,n| x << "#{n.text} " }

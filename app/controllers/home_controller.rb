@@ -13,14 +13,14 @@ class HomeController < ApplicationController
       @nav = "home"
       @sidenav = "following"
     else
-      @most_rewarded_stories = Story.published.most_rewarded.page params[:page]
+      load_recent_rewards
       @nav = "home"
       @sidenav = "global"
     end
   end
   
   def global
-    @most_rewarded_stories = Story.published.most_rewarded.page params[:page]
+    load_recent_rewards
     @nav = "home"
     @sidenav = "global"
     render "index"
@@ -44,6 +44,10 @@ class HomeController < ApplicationController
   end
   
   private
+  
+    def load_recent_rewards
+      @rewards = Reward.select("DISTINCT ON (story_id) curations.*").page params[:page]
+    end
   
     def load_following_rewards
       @rewards = []

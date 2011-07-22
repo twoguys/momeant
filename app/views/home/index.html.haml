@@ -14,12 +14,7 @@
           = #render "home/editorials/creatorflipbook"
     
   %section.lists
-    - if @most_rewarded_stories
-      %ul.most-rewarded.stories= render @most_rewarded_stories
-    - elsif @recent_stories
-      %ul.recent.stories= render @recent_stories
-    - elsif @rewards
-      - if @rewards.empty? && current_user.subscribed_to.empty?
-        %h3 You are not currently following anyone. Once you start following people, you will see content they have rewarded.
-      %ul.reward-thumbnails
-        = render @rewards
+    - if @sidenav == "following" && @rewards.empty? && current_user.subscribed_to.empty?
+      %h3 You are not currently following anyone. Once you start following people, you will see content they have rewarded.
+    %ul.reward-thumbnails
+      = render @rewards, :locals => {:recent_reward => true}

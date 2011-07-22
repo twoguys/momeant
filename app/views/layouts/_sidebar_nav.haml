@@ -26,13 +26,9 @@
       = link_to("Profile", user_path(current_user), :class => "profile")
     %li{:class => @sidenav == "analytics" ? "active" : ""}
       = link_to("Analytics", analytics_path, :class => "analytics")
-    %li{:class => @sidenav == "bookmarks" ? "active" : ""}
-      = link_to("Bookmarks", user_bookmarks_path(current_user), :class => "bookmarks")
   - else
     %li.disabled
       %span.profile Your Profile
     %li.disabled
       %span.analytics Analytics
-    %li.disabled
-      %span.bookmarks Bookmarks
   %li.header.break
