@@ -53,9 +53,7 @@ class Story < ActiveRecord::Base
   scope :most_rewarded, where("reward_count > 0").order("reward_count DESC")
   
   attr_accessor :autosaving
-  
-  before_create :detect_thumbnail_colors
-  
+    
   def to_param
     if title.blank?
       "#{id}"

@@ -1,0 +1,38 @@
+- if current_user
+  .personal-info
+    = link_to(image_tag(current_user.avatar.url(:thumbnail)), user_path(current_user), :class => "avatar")
+    = link_to(current_user.first_name, user_path(current_user), :class => "name")
+    .rewards
+      %span.count= current_user.coins
+      %span.text to reward
+- else
+  .signin-up
+    Signup for goes here
+  
+%ul.nav
+  %li.header Rewarded Content
+  - if current_user
+    %li{:class => @sidenav == "following" ? "active" : ""}
+      = link_to("Following Stream", following_path, :class => "following")
+  - else
+    %li.disabled
+      %span.following Following Stream
+  %li{:class => @sidenav == "global" ? "active" : ""}
+    = link_to("Global Stream", global_path, :class => "global")
+  
+  %li.header.break Your Stuff
+  - if current_user
+    %li{:class => @sidenav == "profile" ? "active" : ""}
+      = link_to("Profile", user_path(current_user), :class => "profile")
+    %li{:class => @sidenav == "analytics" ? "active" : ""}
+      = link_to("Analytics", analytics_path, :class => "analytics")
+    %li{:class => @sidenav == "bookmarks" ? "active" : ""}
+      = link_to("Bookmarks", user_bookmarks_path(current_user), :class => "bookmarks")
+  - else
+    %li.disabled
+      %span.profile Your Profile
+    %li.disabled
+      %span.analytics Analytics
+    %li.disabled
+      %span.bookmarks Bookmarks
+  %li.header.break

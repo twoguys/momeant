@@ -2,7 +2,7 @@
   = javascript_include_tag "flipbook", "jquery.masonry.min"
 
 .homepage
-  = render "home/editorials/openingUp"
+  = #render "home/editorials/openingUp"
 
   %section#flipbook
     .flipbook
@@ -14,13 +14,6 @@
           = #render "home/editorials/creatorflipbook"
     
   %section.lists
-    .home-tabs
-      = link_to_active("Most Rewarded Stories", root_path)
-      = link_to_active("Latest Stories", recent_stories_path)
-      = link_to_active("Following", following_path)
-      .pagination
-        = paginate @most_rewarded_stories if @most_rewarded_stories
-        = paginate @recent_stories if @recent_stories
     - if @most_rewarded_stories
       %ul.most-rewarded.stories= render @most_rewarded_stories
     - elsif @recent_stories
@@ -30,19 +23,3 @@
         %h3 You are not currently following anyone. Once you start following people, you will see content they have rewarded.
       %ul.reward-thumbnails
         = render @rewards
-    .home-tabs
-      .pagination
-        = paginate @most_rewarded_stories if @most_rewarded_stories
-        = paginate @recent_stories if @recent_stories
-  
-  - if @adverts.length > 0
-    %section.adverts
-      = render @adverts
-      .clear
-
-:javascript
-  Typekit.load({
-    active: function() {
-      $('.reward-thumbnails').masonry({itemSelector:'li.reward'});
-    }
-  });

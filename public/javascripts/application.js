@@ -141,6 +141,14 @@ function handle_reward_thumbnail_interactivity() {
 	});
 }
 
+function setup_reward_columns() {
+	Typekit.load({
+    active: function() {
+      $('.reward-thumbnails').masonry({itemSelector:'li.reward'});
+    }
+  });
+}
+
 $(document).ready(function() {
 	setup_tooltips();
 	setup_tab_switching();
@@ -152,6 +160,7 @@ $(document).ready(function() {
 	setup_recommendation_tabs();
 	setup_thumbnail_flipping();
 	handle_signup_login_form_validation();
+	setup_reward_columns();
 	
 	// reward lists
 	handle_reward_thumbnail_interactivity();

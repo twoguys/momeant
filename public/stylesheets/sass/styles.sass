@@ -1,6 +1,6 @@
 // Basic colors for site
 
-$background_color: #f4f4f4
+$background_color: #e0e0e0
 $text_color: #252525
 $black: #000000
 $blue: #00aeef
@@ -124,9 +124,11 @@ body > #wrap
 	height: auto
 	min-height: 100%
 
+body
+	min-width: 645px
+
 header .insides, #mid .insides, #footer .insides
-	width: 950px
-	padding: 0px 0 0
+	padding: 0
 	margin: 0 auto
 	position: relative
 
@@ -159,11 +161,24 @@ body.fullscreen
 
 #main
 	width: 100%
-	padding-bottom: 50px
+	padding: 42px 0 50px
+	#header
+		position: absolute
+		top: 0
+		width: 100%
 
 #mid
-	min-height: 400px
-	padding: 10px 0
+	.column
+		position: relative
+		float: left	
+	#center
+		width: 100%
+		min-height: 470px
+		background-color: #f4f4f4
+		border: 1px solid #ccc
+		border-top: none
+		.insides
+			padding: 20px
 
 #footer
 	position: relative
@@ -204,6 +219,7 @@ body.fullscreen
 				background-color: $lightblue
 
 @import "toolbar"
+@import "sidenavs"
 @import "flash"
 @import "errors"
 @import "forms"

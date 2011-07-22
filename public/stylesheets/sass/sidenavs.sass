@@ -1,0 +1,108 @@
+#mid
+	padding: 0 215px
+	min-width: 670px
+	#left-sidebar
+		width: 213px
+		right: 215px
+		margin-left: -100%
+	#right-sidebar
+		right: 215px
+		margin-right: -215px
+/* IE6 Fix */
+* html #left-sidebar
+	left: 215px
+
+#left-sidebar
+	padding-top: 40px
+	
+	.personal-info
+		padding-left: 25px
+		position: relative
+		height: 50px
+		.avatar
+			position: absolute
+			width: 60px
+			height: 60px
+			border: 1px solid #eee
+			img
+				width: 60px
+				height: 60px
+		.name, .rewards
+			margin-left: 70px
+		.name
+			display: block
+			color: #000
+			font-size: 16px
+			padding: 5px 0
+			width: 118px
+			overflow: hidden
+		.rewards
+			.count, .text				
+				display: block
+				float: left
+				height: 24px
+				line-height: 24px
+				vertical-align: middle
+				font-size: 11px
+			.count
+				background: $blue url(../images/icons/recommendWhite.png) no-repeat 93% 4px
+				color: #fff
+				padding: 0 18px 0 7px
+				font-weight: 700
+				-webkit-border-top-left-radius: 3px
+				-webkit-border-bottom-left-radius: 3px
+				-moz-border-radius-topleft: 3px
+				-moz-border-radius-bottomleft: 3px
+				border-top-left-radius: 3px
+				border-bottom-left-radius: 3px
+			.text
+				background-color: #fff
+				color: #555
+				padding: 0 6px
+				-webkit-border-top-right-radius: 3px
+				-webkit-border-bottom-right-radius: 3px
+				-moz-border-radius-topright: 3px
+				-moz-border-radius-bottomright: 3px
+				border-top-right-radius: 3px
+				border-bottom-right-radius: 3px
+	
+	ul.nav
+		li
+			padding-left: 50px
+			background: transparent url(../images/sidebarRowBG.png) no-repeat 0 0
+			a, span
+				display: block
+				height: 42px
+				line-height: 43px
+				vertical-align: middle
+				color: #000
+				padding-left: 27px
+			.following
+				background: transparent url(../images/sidenav/check.png) no-repeat 0 50%
+			.global
+				background: transparent url(../images/sidenav/global.png) no-repeat 0 50%
+			.profile
+				background: transparent url(../images/sidenav/user.png) no-repeat 0 50%
+			.analytics
+				background: transparent url(../images/sidenav/stats.png) no-repeat 0 50%
+			.bookmarks
+				background: transparent url(../images/sidenav/bookmark.png) no-repeat 0 50%
+		li.disabled span
+			opacity: 0.4
+		li.header
+			text-transform: uppercase
+			color: #aaa
+			font-weight: 700
+			font-size: 13px
+			letter-spacing: -0.1px
+			text-shadow: 0 1px 1px #fff
+			padding-top: 50px
+			padding-bottom: 5px
+			background: none
+		li.header.break
+			background: transparent url(../images/sidebarRowBG.png) no-repeat 0 0
+		li.active
+			background: transparent url(../images/sidebarRowActiveBG.png) no-repeat 0 0
+			position: relative
+			right: -1px
+			padding-left: 49px

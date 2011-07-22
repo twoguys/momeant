@@ -20,6 +20,7 @@ class UsersController < ApplicationController
       @stories = @user.rewarded_stories
     end  
     @stories = @stories.newest_first
+    @sidenav = "profile" if current_user.present? && @user == current_user
   end
   
   def edit
@@ -37,11 +38,15 @@ class UsersController < ApplicationController
   
   def bookmarks
     @user = User.find_by_id(params[:user_id])
+    @sidenav = "bookmarks"
+    @nav = "home"
   end
   
   def analytics
     @user = current_user
     @patrons = @user.rewards.group_by {|r| r.user_id}
+    @nav = "home"
+    @sidenav = "analytics"
   end
   
   def billing_updates

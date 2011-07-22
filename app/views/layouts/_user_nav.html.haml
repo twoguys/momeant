@@ -4,29 +4,12 @@
     %li#logo= link_to("Momeant", root_path)
     %li#home{:class => @nav == "home" ? "active" : ""}
       = link_to("Momeant", root_path, :class => "tooltipped", :title => "Home")
-    - if user_signed_in?
-      - if can? :create, Story
-        %li#create{:class => @nav == "create" ? "active" : ""}
-          = link_to("Create a Story", new_story_path, :class => "tooltipped", :title => "Create a Story") if can? :create, Story
-      %li#profile{:class => @nav == "profile" ? "active" : ""}
-        = link_to("Profile", user_path(current_user), :class => "icon")
-        .inner
-          .heading Your Links
-          %ul
-            %li.odd= link_to("Profile", user_path(current_user))
-            %li.even= link_to("Bookmarks", user_bookmarks_path(current_user))
-            - if current_user.is_a?(Creator)
-              %li.odd= link_to("Analytics", analytics_path)
-              %li.even= link_to("Settings", edit_user_path(current_user))
-              %li.odd= link_to("Sign out", destroy_user_session_path)
-            - else  
-              %li.odd= link_to("Settings", edit_user_path(current_user))
-              %li.even= link_to("Sign out", destroy_user_session_path)
+    - if user_signed_in? && can?(:create, Story)
+      %li#create{:class => @nav == "create" ? "active" : ""}
+        = link_to("Create a Story", new_story_path, :class => "tooltipped", :title => "Create a Story") if can? :create, Story
     %li#faq{:class => @nav == "about" ? "active" : ""}
       = link_to("About Us", about_path, :class => "tooltipped", :title => "Tell me more".html_safe)
     - if user_signed_in?
-      %li#rewards.tooltipped{:title => "If you appreciate a story on the site, show your appreciation by offering the creator a reward."}
-        = pluralize(current_user.coins, "reward coin")
       %li#signout= link_to("Logout", destroy_user_session_path)
     - else
       %li#signin= link_to("Join / Login", "#signup-modal")

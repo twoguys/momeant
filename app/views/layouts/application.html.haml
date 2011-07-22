@@ -42,7 +42,6 @@
                   = render :partial => "shared/calls_to_action/create_a_story"
                 - elsif current_user.paypal_email.blank?
                   = #render :partial => "shared/calls_to_action/enter_payment_info"
-            = render "layouts/flash", :flash => flash
             .insides
               .momeant-header
                 = link_to("Home", root_path, :id => "logo-large") unless @hide_momeant
@@ -51,10 +50,23 @@
                 - elsif !@hide_rewards
                   = render "shared/reward_bank"
                 = yield :header
-            
+        
         #mid
-          .insides
-            = yield
+          #center.column
+            = render "layouts/flash", :flash => flash
+            .insides
+              = yield
+          - unless @fullscreen.present?
+            #left-sidebar.column
+              = render "layouts/sidebar_nav"
+              = yield :left_sidebar
+            #right-sidebar.column
+              - if @adverts && @adverts.length > 0
+                %section.adverts
+                  = render @adverts
+                  .clear
+              = yield :right_sidebar
+          .clear
 
     #footer
       .insides

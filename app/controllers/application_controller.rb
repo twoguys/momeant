@@ -6,7 +6,8 @@ class ApplicationController < ActionController::Base
   
   before_filter :release_lockdown, :check_for_trial_expiration, :push_to_sender
   
-  @nav = ""
+  @nav = "home"
+  @sidenav = ""
   
   def private_beta?
     ENV["CURRENT_RELEASE"] == "private-beta"
