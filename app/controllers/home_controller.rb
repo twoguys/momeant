@@ -51,10 +51,13 @@ class HomeController < ApplicationController
   
     def load_following_rewards
       @rewards = []
-      return if current_user.subscribed_to.count == 0
-
-      following_ids = current_user.subscribed_to.map { |user| user.id }.join(",")
-      @rewards = Reward.select("DISTINCT ON (story_id) curations.*").where("user_id IN (#{following_ids})").page params[:page]
+      
+      if current_user.subscribed_to.count > 0
+        following_ids = current_user.subscribed_to.map { |user| user.id }
+        # show my rewards too
+        following_ids = (following_ids + [current_user.id]).join(",")
+        @rewards = Reward.select("DISTINCT ON (story_id) curations.*").where("user_id IN (#{following_ids})").page params[:page]
+      end
 
       # add duplicate reward count to each piece of content
       @rewards.each do |reward|
