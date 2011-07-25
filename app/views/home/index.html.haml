@@ -17,4 +17,5 @@
     - if @sidenav == "following" && @rewards.empty? && current_user.subscribed_to.empty?
       %h3 You are not currently following anyone. Once you start following people, you will see content they have rewarded.
     %ul.reward-thumbnails
-      = render @rewards, :locals => {:recent_reward => true}
+      - 5.times do
+        = render @rewards, :locals => {:recent_reward => true}
