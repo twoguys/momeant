@@ -1,0 +1,6 @@
+.horizontal-tabs
+  %ul
+    %li= link_to_active("bio", bio_user_path(@user))
+    %li= link_to_active("momeants", momeants_user_path(@user), :class => current_page?(user_path(@user)) ? "active" : "")
+    %li= link_to_active("rewarded", rewarded_user_path(@user))
+    %li= link_to_active("patrons", patrons_user_path(@user))

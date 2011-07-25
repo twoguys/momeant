@@ -6,7 +6,10 @@
     %meta{ :name => "Keywords", "http-equiv" => "Keywords", :content => "momeant, digital content, creators, reward, patron, art, community, sustainable" }
     %link{ :id => 'favicon', :href => '/images/favicon.png', :rel => 'icon', :type => 'image/x-icon' }
     %title
-      Momeant
+      - if @page_title
+        = "Momeant - #{@page_title}"
+      - else
+        Momeant
       
     = csrf_meta_tag
       

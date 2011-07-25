@@ -25,6 +25,7 @@ class Story < ActiveRecord::Base
     :bucket        => ENV['S3_BUCKET']
   
   belongs_to :user
+  belongs_to :gallery
   has_and_belongs_to_many :topics
   
   has_many :curations
@@ -51,6 +52,7 @@ class Story < ActiveRecord::Base
   scope :published, where(:published => true)
   scope :newest_first, order("created_at DESC")
   scope :most_rewarded, where("reward_count > 0").order("reward_count DESC")
+  scope :no_gallery, where(:gallery_id => nil)
   
   attr_accessor :autosaving
     

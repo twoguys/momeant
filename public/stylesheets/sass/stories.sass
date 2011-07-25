@@ -388,11 +388,27 @@ ul.stories
 	li.story
 		float: left
 		background-color: white
+		width: 230px
+		margin: 0 20px 20px 0
+		padding: 10px
 		-webkit-box-shadow: 3px 3px 5px #BBBBBB
 		-moz-box-shadow: 3px 3px 5px #BBBBBB
 		box-shadow: 3px 3px 5px #BBBBBB
 		position: relative
 		@include boxshadow(5px,0.2,2px,2px)
+		.title
+			font-weight: 700
+			text-transform: uppercase
+			color: #000
+		.byline
+			color: #000
+			font-size: 11px
+		a.thumbnail
+			display: block
+			width: 230px
+			margin-top: 8px
+			img
+				width: 230px
 		
 	li.medium.story
 		margin-bottom: 25px
@@ -445,12 +461,6 @@ ul.stories
 				.name, .occupation
 					margin-left: 70px
 					color: $text_color
-
-	li.story:nth-child(3n+3)
-		margin-right: 0px
-
-	.title, .author, .excerpt
-		margin: 0 10px
 
 	.title a
 		color: black

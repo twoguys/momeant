@@ -55,6 +55,13 @@ Repo::Application.routes.draw do
     resources :subscriptions
     get :bookmarks
     
+    member do
+      get :bio
+      get :momeants
+      get :rewarded
+      get :patrons
+    end
+    
     # Homepage tab
     get :top_curators, :on => :collection
 

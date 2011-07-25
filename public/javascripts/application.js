@@ -141,10 +141,11 @@ function handle_reward_thumbnail_interactivity() {
 	});
 }
 
-function setup_reward_columns() {
+function setup_reward_and_story_columns() {
 	Typekit.load({
     active: function() {
-      $('.reward-thumbnails').masonry({itemSelector:'li.reward'});
+      $('ul.reward-thumbnails').masonry({itemSelector:'li.reward'});
+			$('ul.stories').masonry({itemSelector:'li.story'});
     }
   });
 }
@@ -160,7 +161,7 @@ $(document).ready(function() {
 	setup_recommendation_tabs();
 	setup_thumbnail_flipping();
 	handle_signup_login_form_validation();
-	setup_reward_columns();
+	setup_reward_and_story_columns();
 	
 	// reward lists
 	handle_reward_thumbnail_interactivity();

@@ -1,75 +1,34 @@
-- if current_user.blank?
-  - if @user.is_a?(Creator)
-    = render :partial => "shared/calls_to_action/signup", :locals => {:message => "Support #{@user.name} and other creators and become a mo&#149meant patron"}
-  - else
-    = render :partial => "shared/calls_to_action/signup", :locals => {:message => "#{@user.name} is a mo&#149meant patron, join them in supporting creators"}
+.user-profile
+  = render "user_info"
+  = render "user_tabs"
 
-.user-profile{:class => @user.is_a?(Creator) ? "creator" : ""}
-  .top{:class => @user.is_a?(Creator) ? "created-stories" : "curatorial-stream"}
-    = render "stories/gallery"
-  
-    .user-info
-      .avatar-name
-        .avatar= image_tag(@user.avatar.url(:thumbnail))
-        .name= @user.name
-      .occupation
-        occupation: #{@user.occupation}
-      .tagline
-        - if me?(@user) && @user.tagline.blank?
-          Please edit your tagline
-        - else
-          = markdown @user.tagline
-      - if me?(@user)
-        = link_to("Edit your info", edit_user_path(@user))
-      .actions
-        = subscribe_button(@user)
-    .clear
-
-
-  .supporters.clearfix
-    .tabs
-      - if @user.is_a?(Creator)
-        = link_to("my top patrons", "patrons", :class => "active")
-        = link_to("who i support", "creators")
-      - else
-        = link_to("who i support", "creators", :class => "active")
-    - if @user.is_a?(Creator)
-      %ul.patrons.tabcontent
-        - counter = 1
-        - @user.rewards.group_by {|r| r.user}.each do |patron, rewards|
-          %li
-            .number= counter
-            - counter += 1
-            .avatar= image_tag(patron.avatar.url(:thumbnail))
-            .info
-              .name= link_to(patron.name, user_path(patron))
-              .occupation= "occupation: #{patron.occupation}"
-            .rewards= number_with_precision(rewards.sum(&:amount), :precision => 0)
-    %ul.creators.tabcontent{:class => @user.is_a?(Creator) ? "hidden" : ""}
-      - counter = 1
-      - @user.given_rewards.group_by {|r| r.recipient}.each do |creator, rewards|
-        %li
-          .number= counter
-          - counter += 1
-          .avatar= image_tag(creator.avatar.url(:thumbnail))
-          .info
-            .name= link_to(creator.name, user_path(creator))
-            .occupation= "occupation: #{creator.occupation}"
-          .rewards= number_with_precision(rewards.sum(&:amount), :precision => 0)
+  %ul.galleries
+    %li.no-gallery
+      %ul.stories
+        - no_gallery_stories = @user == current_user ? @user.created_stories.no_gallery : @user.created_stories.no_gallery.published
+        - no_gallery_stories.each do |story|
+          %li.story
+            = link_to(story.title || "Untitled", story, :class => "title")
+            .byline by #{link_to(@user.name, user_path(@user))}
+            = link_to(image_tag(story.thumbnail(:medium)), story, :class => "thumbnail")
+    - @user.galleries.each do |gallery|
+      %li.gallery
+        %ul.stories
+          %li.story.about
+            .name= gallery.name
+            .description= gallery.description
+          - gallery_stories = @user == current_user ? gallery.stories : gallery.stories.published
+          - gallery_stories.each do |story|
+            %li.story
+              = link_to(story.title || "Untitled", story, :class => "title")
+              .byline by #{@user.name}
+              = link_to(image_tag(story.thumbnail(:medium)), story, :class => "thumbnail")
           
-  .subscribing-to
-    %h1 Members I'm Following
-    %ul.users
-      - @user.subscribed_to.limit(15).each do |user|
-        %li= link_to(image_tag(user.avatar.url(:thumbnail)), user_path(user), :class => "tooltipped", :title => user.name)
         
-  - if me?(@user)
-    = #render "stories/personal_library"
-
-    - if @user.is_admin?
-      .admin
-        %h1 Admin
-        .link= link_to("Pay Periods", admin_pay_periods_path)
-        .link= link_to("Invitations", admin_invitations_path)
-        .link= link_to("Adverts", admin_adverts_path)
-        .link= link_to("Live View", admin_live_path)
+  - if me?(@user) && @user.is_admin?
+    .admin
+      %h1 Admin
+      .link= link_to("Pay Periods", admin_pay_periods_path)
+      .link= link_to("Invitations", admin_invitations_path)
+      .link= link_to("Adverts", admin_adverts_path)
+      .link= link_to("Live View", admin_live_path)

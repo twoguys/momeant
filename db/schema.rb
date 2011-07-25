@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110714161112) do
+ActiveRecord::Schema.define(:version => 20110725133250) do
 
   create_table "adverts", :force => true do |t|
     t.string   "title"
@@ -47,6 +47,14 @@ ActiveRecord::Schema.define(:version => 20110714161112) do
     t.integer  "amount",             :default => 0
     t.integer  "recipient_id"
     t.boolean  "given_during_trial", :default => false
+  end
+
+  create_table "galleries", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "invitations", :force => true do |t|
@@ -127,6 +135,7 @@ ActiveRecord::Schema.define(:version => 20110714161112) do
     t.integer  "thumbnail_file_size"
     t.datetime "thumbnail_updated_at"
     t.string   "thumbnail_hex_color"
+    t.integer  "gallery_id"
   end
 
   create_table "stories_topics", :id => false, :force => true do |t|

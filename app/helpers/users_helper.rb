@@ -1,5 +1,5 @@
 module UsersHelper
-  def subscribe_button(user)
+  def follow_button(user)
     if current_user.present? && current_user != user
       subscription = Subscription.where(:subscriber_id => current_user.id, :user_id => user.id).first
       if subscription

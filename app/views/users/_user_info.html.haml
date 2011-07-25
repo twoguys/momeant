@@ -1,0 +1,9 @@
+.info
+  = image_tag(@user.avatar.url(:thumbnail), :class => "avatar")
+  .name-occupation-follow
+    .name= @user.name
+    .occupation occupation: #{@user.occupation}
+    .follow= follow_button(@user)
+    
+  .reward
+    Rewarding guy goes here

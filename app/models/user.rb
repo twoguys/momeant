@@ -30,6 +30,8 @@ class User < ActiveRecord::Base
   has_many :subscribers, :through => :subscriptions
   has_many :subscribed_to, :through => :inverse_subscriptions, :source => :user
   
+  has_many :galleries
+  
   has_many :credit_cards
   
   has_attached_file :avatar,
