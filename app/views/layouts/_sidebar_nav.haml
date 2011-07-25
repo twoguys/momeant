@@ -31,4 +31,7 @@
       %span.profile Your Profile
     %li.disabled
       %span.analytics Analytics
-  %li.header.break
+  - if @user && @user != current_user
+    %li.header.break Community
+    %li.active
+      = link_to(@user.name, user_path(@user), :class => "profile")
