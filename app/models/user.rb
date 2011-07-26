@@ -5,9 +5,14 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, #:confirmable,
        :recoverable, :rememberable, :trackable, :validatable
        
-   searchable do
-     text :name, :boost => 2.0
-   end
+  searchable do
+    text :name, :boost => 2.0
+    text :interests do
+      interests.map { |interest| interest.name }
+    end
+  end
+  
+  acts_as_taggable_on :interests
        
   # ASSOCIATIONS
   
@@ -86,7 +91,7 @@ class User < ActiveRecord::Base
   
   # Setup accessible (or protected) attributes for your model
   attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :remember_me, :tos_accepted,
-    :avatar, :credits, :stored_in_braintree, :invitation_code, :tagline, :occupation, :paypal_email
+    :avatar, :credits, :stored_in_braintree, :invitation_code, :tagline, :occupation, :paypal_email, :interest_list
   
   def extra_validations
     safe = true

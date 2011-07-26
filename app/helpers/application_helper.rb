@@ -20,4 +20,9 @@ module ApplicationHelper
     html_options[:class] = "active" if current_page?(url)
     link_to(name, url, html_options)
   end
+  
+  def user_interest_links(user)
+    return if user.nil?
+    user.interests.map {|interest| link_to(interest.name, search_path(:query => interest.name))}.join(", ").html_safe
+  end
 end

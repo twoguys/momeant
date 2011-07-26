@@ -447,39 +447,6 @@ body.fullscreen {
         -webkit-border-radius: 0px;
         -moz-border-radius: 0px;
         border-radius: 0px; }
-  #header #call-to-action {
-    z-index: 1; }
-    #header #call-to-action .insides {
-      padding: 0;
-      width: 100%; }
-      #header #call-to-action .insides .message {
-        text-align: center;
-        font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
-        text-transform: uppercase;
-        font-weight: 700;
-        font-size: 13px;
-        padding: 8px 0 7px;
-        border-bottom: 1px solid #e0e0e0; }
-        #header #call-to-action .insides .message a {
-          -webkit-border-radius: 3px;
-          -moz-border-radius: 3px;
-          border-radius: 3px;
-          color: white;
-          padding: 4px 8px 3px;
-          margin-left: 10px;
-          position: relative;
-          top: -1px;
-          font-size: 0.85em; }
-    #header #call-to-action .green {
-      background-color: #b1e8ba;
-      color: #26a13c; }
-      #header #call-to-action .green a {
-        background-color: #26a13c; }
-    #header #call-to-action .red {
-      background-color: #f6d4db;
-      color: #f42652; }
-      #header #call-to-action .red a {
-        background-color: #f42652; }
   #header .momeant-header {
     display: none;
     text-indent: -9999px;
@@ -560,6 +527,40 @@ header.hide-nav {
   header.hide-nav #user-nav {
     display: none; }
 
+#call-to-action {
+  z-index: 1; }
+  #call-to-action .insides {
+    padding: 0;
+    width: 100%; }
+    #call-to-action .insides .message {
+      text-align: center;
+      font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
+      text-transform: uppercase;
+      font-weight: 700;
+      font-size: 13px;
+      padding: 8px 0 7px;
+      border-bottom: 1px solid #e0e0e0; }
+      #call-to-action .insides .message a {
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        color: white;
+        padding: 4px 8px 3px;
+        margin-left: 10px;
+        position: relative;
+        top: -1px;
+        font-size: 0.85em; }
+  #call-to-action .green {
+    background-color: #b1e8ba;
+    color: #26a13c; }
+    #call-to-action .green a {
+      background-color: #26a13c; }
+  #call-to-action .red {
+    background-color: #f6d4db;
+    color: #f42652; }
+    #call-to-action .red a {
+      background-color: #f42652; }
+
 #mid {
   padding: 0 215px;
   min-width: 670px; }
@@ -577,6 +578,28 @@ header.hide-nav {
 
 #left-sidebar {
   padding-top: 20px; }
+  #left-sidebar .join-login {
+    height: 28px;
+    line-height: 30px;
+    padding: 0 20px;
+    vertical-align: middle;
+    text-transform: uppercase;
+    color: white;
+    font-weight: 700;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
+    background: -moz-linear-gradient(top, #43baf0 0%, #3a94e6);
+    background: -webkit-gradient(linear, left top, left bottom, from(#43baf0), to(#3a94e6));
+    display: block;
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+    margin: 15px 0 0 37px;
+    text-align: center; }
   #left-sidebar .personal-info {
     padding-left: 25px;
     position: relative;
@@ -727,7 +750,7 @@ form label, .form label {
   padding: 0 5px 0px 3px;
   font-weight: 900;
   line-height: 20px;
-  color: #bbbbbb;
+  color: #777777;
   text-shadow: 0 1px 1px white;
   float: left;
   font-size: 14px;
@@ -4572,22 +4595,24 @@ ul.users li.user:nth-child(3n+3) {
   .user-profile ul.galleries li.gallery ul.stories li.about .description, .user-profile ul.galleries li.no-gallery ul.stories li.about .description {
     padding: 10px;
     background-color: #e0e0e0; }
-.user-profile .incomplete-profile {
+.user-profile .bio .incomplete-profile {
   background: transparent url(../images/tabNotification.png) no-repeat 0 0;
   padding: 4px 0 4px 25px;
   font-weight: 700;
   color: #f42652;
   margin-bottom: 10px;
   text-transform: uppercase; }
-  .user-profile .incomplete-profile a {
+  .user-profile .bio .incomplete-profile a {
     text-decoration: underline; }
-.user-profile .edit-link {
+.user-profile .bio .edit-link {
   text-transform: uppercase;
   font-weight: 700;
   display: block;
   margin-bottom: 10px;
   padding-left: 15px;
   background: transparent url(../images/icons/pencilBlue.png) no-repeat 0 1px; }
+.user-profile .bio .tagline, .user-profile .bio .interests {
+  margin-bottom: 10px; }
 .user-profile .supporters {
   width: 100%;
   margin-bottom: 40px; }
@@ -4693,12 +4718,16 @@ ul.users li.user:nth-child(3n+3) {
     letter-spacing: -0.5px;
     text-align: center; }
 
+form.user_edit .example {
+  border: none; }
 form.user_edit textarea {
   height: 150px;
   width: 95%;
   line-height: 24px;
   font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
   font-weight: 100; }
+form.user_edit #user_interest_list {
+  width: 98%; }
 
 .deposits form {
   margin-top: 1em;
@@ -6072,10 +6101,10 @@ ul.reward-thumbnails li.reward {
     ul.reward-thumbnails li.reward .others ul {
       display: none; }
       ul.reward-thumbnails li.reward .others ul li .who {
-        padding: 8px 0; }
+        padding: 8px 0 0; }
 ul.reward-thumbnails li.reward.person {
   background: black;
-  color: white; }
+  color: #dddddd; }
   ul.reward-thumbnails li.reward.person .avatar-name-occupation, ul.reward-thumbnails li.reward.person .interests {
     border-bottom: 1px solid #555555;
     padding-bottom: 10px; }
@@ -6094,18 +6123,21 @@ ul.reward-thumbnails li.reward.person {
     ul.reward-thumbnails li.reward.person .avatar-name-occupation .name {
       font-size: 20px;
       font-weight: 700;
-      text-transform: uppercase; }
+      text-transform: uppercase;
+      line-height: 1em;
+      margin-bottom: 3px; }
     ul.reward-thumbnails li.reward.person .avatar-name-occupation .occupation {
       font-weight: 700; }
   ul.reward-thumbnails li.reward.person .about {
-    padding: 10px 0;
+    margin: 10px 0;
     line-height: 1.2em; }
-  ul.reward-thumbnails li.reward.person .interests h3 {
-    text-transform: uppercase;
-    font-weight: 700; }
+  ul.reward-thumbnails li.reward.person .interests {
+    margin: 10px 0; }
+    ul.reward-thumbnails li.reward.person .interests h3 {
+      text-transform: uppercase;
+      font-weight: 700; }
   ul.reward-thumbnails li.reward.person .who {
-    background: #333333;
-    margin-top: 10px; }
+    background: #333333; }
     ul.reward-thumbnails li.reward.person .who .comment {
       color: white; }
   ul.reward-thumbnails li.reward.person .others {

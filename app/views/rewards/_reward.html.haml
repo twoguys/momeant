@@ -5,9 +5,11 @@
       = link_to(image_tag(reward.recipient.avatar.url(:thumbnail)), user_path(reward.recipient), :class => "avatar")
       .name= reward.recipient.name
       .occupation= reward.recipient.occupation
-    .about= reward.recipient.tagline
+    - if reward.recipient.tagline.present?
+      .about= truncate(reward.recipient.tagline, :length => 250)
     .interests
       %h3 Interests:
+      %span= user_interest_links(reward.recipient)
   - else
     .what
       .text

@@ -6,6 +6,9 @@
     .follow= follow_button(@user)
     
   .reward
-    = link_to("Reward", "#reward-box", :class => "reward button")
+    - if current_user
+      = link_to("Reward", "#reward-box", :class => "reward button")
+    - else
+      = link_to("Reward", "#signup-modal", :class => "reward button disabled")
     .hidden
       = render "shared/reward_modal"

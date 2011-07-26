@@ -3,7 +3,11 @@
 
   %fieldset
     %ul
-            
+      
+      %li
+        = form.label :avatar
+        = form.file_field :avatar
+        
       %li
         = form.label :first_name, "Your name"
         %span.aside
@@ -17,14 +21,19 @@
         = form.label :email
         = form.text_field :email
       
-      %li
-        = form.label :avatar
-        = form.file_field :avatar
         
       %li
         = form.label :occupation
         = form.text_field :occupation
         .example What's your "day job"?
+      
+      %li
+        = form.label :interests
+        = form.text_field :interest_list
+        .example
+          Choose interests that describe you and the work you do (separated by commas).
+          %br/
+          Example: web design, writer, photographer
         
       %li
         = form.label :tagline
