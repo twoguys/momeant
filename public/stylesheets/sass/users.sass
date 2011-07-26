@@ -43,7 +43,7 @@ ul.users
 			top: 0
 			left: 0
 			display: block
-			border: 1px solid #ccc
+			border: 1px solid #fff
 			width: 60px
 			height: 60px
 		.name-occupation-follow
@@ -80,6 +80,8 @@ ul.users
 			position: absolute
 			top: 0
 			right: 0
+			.hidden
+				display: none
 	
 	.horizontal-tabs
 		background: transparent url(../images/greyHorizontalLine.gif) repeat-x 50% 50%
@@ -91,6 +93,11 @@ ul.users
 			display: block
 			float: left
 			height: 27px
+			position: relative
+			img.notification
+				position: absolute
+				top: -12px
+				right: 0
 			a
 				position: relative
 				top: 5px
@@ -143,6 +150,23 @@ ul.users
 					.description
 						padding: 10px
 						background-color: #e0e0e0
+	
+	.incomplete-profile
+		background: transparent url(../images/tabNotification.png) no-repeat 0 0
+		padding: 4px 0 4px 25px
+		font-weight: 700
+		color: $red
+		margin-bottom: 10px
+		text-transform: uppercase
+		a
+			text-decoration: underline
+	.edit-link
+		text-transform: uppercase
+		font-weight: 700
+		display: block
+		margin-bottom: 10px
+		padding-left: 15px
+		background: transparent url(../images/icons/pencilBlue.png) no-repeat 0 1px
 				
 	.supporters
 		width: 100%
@@ -252,10 +276,9 @@ ul.users
 			text-align: center
 
 form.user_edit
-	textarea#user_tagline
-		width: 900px
+	textarea
 		height: 150px
+		width: 95%
 		line-height: 24px
 		font-family: $block
 		font-weight: 100
-		padding:  20px 25px 15px

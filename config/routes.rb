@@ -41,7 +41,6 @@ Repo::Application.routes.draw do
       post :add_or_update_image, :on => :member
     end
     
-    resources :rewards
     resources :curations
   end
   match "/stories/tagged_with/:tag",    :to => "stories#tagged_with",  :as => :stories_tagged_with
@@ -53,6 +52,7 @@ Repo::Application.routes.draw do
   
   resources :users do
     resources :subscriptions
+    resources :rewards
     get :bookmarks
     
     member do

@@ -75,3 +75,140 @@ ul.reward-thumbnails
 				li
 					.who
 						padding: 8px 0
+						
+#fancybox-content
+	background: rgba(0,0,0,0.2)
+	@include rounded(5px)
+#reward-box
+	width: 515px
+	float: left
+	.inner
+		width: 485px
+		height: 382px
+		@include rounded(5px)
+		padding: 15px
+		background-color: #eee
+		.yourself
+			padding-top: 100px
+			h1
+				text-align: center
+		h1
+			font-family: $typewriter
+			font-size: 40px
+			text-transform: uppercase
+			font-weight: 100
+			letter-spacing: -0.7px
+			margin-bottom: 0
+		h2
+			font-size: 16px
+			font-weight: 900
+			color: #000
+			background: none
+			padding: 0
+		h1, h2
+			text-align: center
+		form#reward-form
+			margin-top: 20px
+			.from, .amount, .to
+				float: left
+			.from, .to
+				width: 66px
+				height: 88px
+				background-color: $blue
+				position: relative
+				img.avatar
+					width: 60px
+					height: 60px
+					display: block
+					margin: 3px
+				.rewards
+					position: absolute
+					bottom: -13px
+					margin: 0 auto
+					text-align: center
+					.count
+						display: inline-block
+						color: #fff
+						font-weight: 700
+						padding: 0 17px 0 4px
+						height: 22px
+						background: transparent url(../images/icons/recommendWhite.png) no-repeat 100% 0
+					.text
+						font-size: 8px
+			.amount
+				width: 310px
+				margin: 30px 20px 0
+				p
+					margin-top: 10px
+					span, input
+						float: left
+						font-size: 11px
+					input[type="text"]
+						background: none
+						border: none
+						width: auto
+						font-size: 15px
+						font-weight: 700
+						width: 22px
+						height: 20px
+						padding: 0 3px
+						text-align: center
+		.comment
+			clear: both
+			padding-top: 40px
+			textarea
+				width: 96%
+				height: 80px
+			input[type="submit"]
+				background-color: #000
+				color: #fff
+				display: block
+				margin: 10px auto
+				width: 200px
+				padding: 8px 5px 7px
+#reward-box.loading .inner
+	background: #eee url(../images/spinner.gif) no-repeat 50% 50%
+	h1, h2, form
+		display: none
+#reward-box.thanks .inner
+	padding: 0
+	width: 515px
+#reward-thank-you
+	.header
+		background: $blue
+		.header-inner
+			background: transparent url(../images/icons/recommendWhite.png) no-repeat 10px 13px
+			padding: 10px 10px 10px 30px
+			color: #fff
+			font-family: $typewriter
+			font-weight: 100
+			font-size: 15px
+			.name
+				font-weight: 700
+				text-transform: uppercase
+				font-family: $block
+	.rest
+		padding: 20px
+		.message
+			padding-bottom: 30px
+			border-bottom: 1px solid #ccc
+			min-height: 70px
+			.avatar
+				display: block
+				float: left
+				border: 3px solid #000
+				margin: 0 15px 10px 0
+				img
+					width: 60px
+					height: 60px
+			.thanks
+				font-family: $typewriter
+				font-size: 30px
+				font-weight: 100
+				text-transform: uppercase
+			.text
+				font-size: 11px
+				padding-top: 5px
+		.share
+			border-top: 1px solid #fff
+			padding-top: 30px

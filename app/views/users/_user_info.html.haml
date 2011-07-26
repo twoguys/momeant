@@ -6,4 +6,6 @@
     .follow= follow_button(@user)
     
   .reward
-    Rewarding guy goes here
+    = link_to("Reward", "#reward-box", :class => "reward button")
+    .hidden
+      = render "shared/reward_modal"

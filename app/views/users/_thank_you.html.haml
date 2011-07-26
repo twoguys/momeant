@@ -1,0 +1,17 @@
+#reward-thank-you
+  .header
+    .header-inner
+      %span You just rewarded
+      %span.name #{@user.name}
+      %span with #{@reward.amount} credits.
+  
+  .rest
+    .message
+      = link_to(image_tag(@user.avatar.url(:thumbnail)), user_path(@user), :class => "avatar")
+      .thanks Thanks!
+      - if @story
+        .text= @story.thankyou
+      - else
+        .text= @user.thankyou
+    .share
+      Sharing goes here

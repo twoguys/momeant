@@ -113,6 +113,12 @@ class User < ActiveRecord::Base
     "#{self.first_name} #{self.last_name}"
   end
   
+  def profile_complete?
+    !self.avatar.url.include?("missing") &&
+    self.occupation.present? &&
+    self.tagline.present?
+  end
+  
   def can_view_stories?
     self.trial? || self.active_subscription?
   end
@@ -121,15 +127,22 @@ class User < ActiveRecord::Base
     Reward.where(:user_id => self.id, :story_id => story.id).present?
   end
   
-  def reward(story, amount, comment)
-    return if amount.nil?
+  def reward(user_id, amount, comment, story_id)
+    user = User.find_by_id(user_id)
+    return if amount.nil? || user.nil?
     amount = amount.to_i
     if can_afford?(amount)
-      options = {:amount => amount, :user_id => self.id, :recipient_id => story.user_id, :story_id => story.id, :comment => comment}
-      options.merge!({:given_during_trial => true}) if self.trial?
+      options = {:amount => amount, :user_id => self.id, :recipient_id => user_id, :comment => comment}
+
+      if story_id
+        options.merge!({:story_id => story_id})
+        story = Story.find_by_id(story_id)
+        story.increment!(:reward_count, amount) if story
+      end
+
       reward = Reward.create!(options)
-      story.increment!(:reward_count, amount)
       self.decrement!(:coins, amount)
+      user.increment!(:lifetime_rewards, amount)
       return reward
     end
   end

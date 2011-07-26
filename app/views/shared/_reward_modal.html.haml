@@ -1,0 +1,50 @@
+#reward-box
+  .inner
+    - if current_user && current_user == @user
+      .yourself
+        %h1
+          You can't reward yourself, silly!
+          %br
+          Nice try ;)
+    - else
+      %h1 Awesome!
+      %h2
+        Like #{@user.name} &amp; their work?
+        %br
+        Show them your support by rewarding!
+      = form_for :reward, :url => user_rewards_path(@user), :html => {:id => "reward-form"} do |form|
+        .from
+          = image_tag(current_user.avatar.url(:thumbnail), :class => "avatar")
+          .rewards
+            .count{:original => current_user.coins}= current_user.coins
+            .text credits available
+        .amount
+          .slider
+          %p
+            %span I would like to give
+            = form.text_field :amount, :value => 1, :readonly => true
+            %span reward credit(s) to #{@user.name}
+        .to
+          = image_tag(@user.avatar.url(:thumbnail), :class => "avatar")
+          .rewards
+            .count{:original => @user.lifetime_rewards}= @user.lifetime_rewards
+            .text total rewards
+        .comment
+          = form.text_area :comment, :placeholder => "Why does this work/creator deserve your reward?"
+          = form.hidden_field :story_id, :value => @story.present? ? @story.id : ""
+          = form.submit "Give Reward"
+        
+      :javascript
+        $('#reward-form .slider').slider({
+          min: 1,
+          max: #{current_user.coins},
+          slide: function(event, ui) {
+            $('#reward-form #reward_amount').val(ui.value);
+            var $from_count = $('#reward-form .from .count');
+            var new_from = parseInt($from_count.attr('original')) - ui.value;
+            $from_count.text(new_from);
+            var $to_count = $('#reward-form .to .count');
+            var new_to = parseInt($to_count.attr('original')) + ui.value;
+            $to_count.text(new_to);
+          }
+        });

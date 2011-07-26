@@ -45,24 +45,19 @@ function setup_signup_modal() {
 
 function setup_rewarding() {
 	$("a.reward:not(.disabled), a.rewarded:not(.disabled)").fancybox({scrolling: 'no'});
-	$('#reward-form ul.coins li').click(function() {
-		var $coin = $(this);
-		$coin.addClass('selected').find('input').attr('checked', true);
-		$coin.siblings().removeClass('selected').find('input').attr('checked', false);
-	});
 	$('#reward-form').submit(function(event) {
 		event.preventDefault(); 
 
 		var $form = $(this);
-		var amount = $form.find('input:radio[name="reward[amount]"]:checked').val();
+		var amount = $form.find('#reward_amount').val();
 		var comment = $form.find("#reward_comment").val();
+		var story_id = $form.find("#reward_story_id").val();
 		var url = $form.attr('action');
 
 		$('#reward-box').addClass('loading');
-		$.post(url, { "reward[amount]":amount, "reward[comment]":comment }, function(data) {
+		$.post(url, { "reward[amount]":amount, "reward[comment]":comment, "reward[story_id]":story_id }, function(data) {
 			$("#reward-box .inner").html(data);
-			$('#reward-box').removeClass('loading');
-			$('.story-preview .actions a.reward').removeClass('reward').addClass('rewarded').attr('title','You rewarded this story.');
+			$('#reward-box').removeClass('loading').addClass('thanks');
 		});
 	});
 }
@@ -157,9 +152,11 @@ $(document).ready(function() {
 	setup_recommendation_tabs();
 	setup_thumbnail_flipping();
 	handle_signup_login_form_validation();
-	Typekit.load({
-		active: function() {setup_reward_and_story_columns();}
-	});
+	try {
+		Typekit.load({
+			active: function() {setup_reward_and_story_columns();}
+		});
+	} catch(e) {}
 	// for some reason, calling masonry after Typekit loads gets it close, but not perfect...
 	// we have to run this again (after a small delay) to get masonry to make the final touches on alignment.
 	setTimeout(setup_reward_and_story_columns, 2000);

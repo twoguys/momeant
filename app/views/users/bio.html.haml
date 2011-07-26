@@ -2,4 +2,11 @@
   = render "user_info"
   = render "user_tabs"
   
+  - if @user == current_user && !@user.profile_complete?
+    .incomplete-profile
+      Your information is incomplete.
+      = link_to("Let's fill it out", edit_user_path(@user))
+  - else
+    = link_to("Edit your Information", edit_user_path(@user), :class => "edit-link") if @user == current_user
   
+  .tagline= @user.tagline

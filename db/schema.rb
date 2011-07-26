@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110725133250) do
+ActiveRecord::Schema.define(:version => 20110726152523) do
 
   create_table "adverts", :force => true do |t|
     t.string   "title"
@@ -225,6 +225,8 @@ ActiveRecord::Schema.define(:version => 20110725133250) do
     t.integer  "subscriptions_count",                         :default => 0
     t.boolean  "tos_accepted",                                :default => false
     t.string   "paypal_email"
+    t.integer  "lifetime_rewards",                            :default => 0
+    t.text     "thankyou"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

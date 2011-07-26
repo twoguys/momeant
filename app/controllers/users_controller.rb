@@ -15,13 +15,17 @@ class UsersController < ApplicationController
   
   def edit
     @user = current_user
+    @nav = "home"
+    @sidenav = "profile"
   end
   
   def update
     @user = current_user
     if @user.update_attributes(params[:user])
-      redirect_to edit_user_path(@user), :notice => "Info updated!"
+      redirect_to bio_user_path(@user), :notice => "Info updated!"
     else
+      @nav = "home"
+      @sidenav = "profile"
       render 'edit'
     end
   end
