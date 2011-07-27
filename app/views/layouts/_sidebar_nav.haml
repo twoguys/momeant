@@ -1,10 +1,22 @@
 - if current_user
   .personal-info
-    = link_to(image_tag(current_user.avatar.url(:thumbnail)), user_path(current_user), :class => "avatar")
-    = link_to(current_user.first_name, user_path(current_user), :class => "name")
-    .rewards
-      %span.count= current_user.coins
-      %span.text to reward
+    .avatar-coins
+      = link_to(image_tag(current_user.avatar.url(:thumbnail)), user_path(current_user), :class => "avatar")
+      .coins
+        %span.count= current_user.coins
+    = link_to(current_user.name, user_path(current_user), :class => "name")
+  
+  %ul.personal-stats
+    %li.patron
+      %span.icon
+      %span.text patron for 0 days
+    %li.followers
+      %span.icon
+      %span.text= pluralize(current_user.subscribers.count, "follower")
+    %li.rewards
+      %span.icon
+      %span.text #{pluralize(current_user.lifetime_rewards, "reward")} received
+    
 - else
   = link_to("Join / Login", "#signup-modal", :class => "join-login button")
   

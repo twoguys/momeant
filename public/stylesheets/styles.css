@@ -582,7 +582,7 @@ header.hide-nav {
   left: 185px; }
 
 #left-sidebar {
-  padding-top: 20px; }
+  padding-top: 10px; }
   #left-sidebar .join-login {
     height: 28px;
     line-height: 30px;
@@ -608,24 +608,35 @@ header.hide-nav {
   #left-sidebar .personal-info {
     padding-left: 10px;
     position: relative;
-    height: 50px; }
-    #left-sidebar .personal-info .avatar {
+    height: 90px; }
+    #left-sidebar .personal-info .avatar-coins {
       position: absolute;
       width: 60px;
-      height: 60px;
-      border: 1px solid #eeeeee; }
-      #left-sidebar .personal-info .avatar img {
+      height: 83px;
+      background: black;
+      padding: 2px; }
+      #left-sidebar .personal-info .avatar-coins img {
+        display: block;
         width: 60px;
         height: 60px; }
+      #left-sidebar .personal-info .avatar-coins .coins {
+        color: white;
+        padding: 5px 0 0 14px; }
+        #left-sidebar .personal-info .avatar-coins .coins .count {
+          padding-right: 18px;
+          font-weight: 700;
+          background: transparent url(../images/icons/coinStarWhite.png) no-repeat 100% 0; }
     #left-sidebar .personal-info .name, #left-sidebar .personal-info .rewards {
       margin-left: 70px; }
     #left-sidebar .personal-info .name {
       display: block;
       color: black;
-      font-size: 16px;
-      padding: 5px 0;
+      font-size: 15px;
+      font-weight: 700;
+      padding: 15px 0 5px 0;
       width: 118px;
-      overflow: hidden; }
+      overflow: hidden;
+      text-transform: uppercase; }
     #left-sidebar .personal-info .rewards .count, #left-sidebar .personal-info .rewards .text {
       display: block;
       float: left;
@@ -654,13 +665,46 @@ header.hide-nav {
       -moz-border-radius-bottomright: 3px;
       border-top-right-radius: 3px;
       border-bottom-right-radius: 3px; }
+  #left-sidebar .personal-stats {
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow: 2px 1px 3px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 2px 1px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: 2px 1px 3px rgba(0, 0, 0, 0.1);
+    background: #f7f7f7;
+    margin: 10px 10px -5px; }
+    #left-sidebar .personal-stats li {
+      border-bottom: 1px solid #e0e0e0;
+      height: 27px; }
+      #left-sidebar .personal-stats li .icon, #left-sidebar .personal-stats li .text {
+        display: block;
+        float: left;
+        height: 27px; }
+      #left-sidebar .personal-stats li .icon {
+        border-right: 1px solid #e0e0e0;
+        width: 27px;
+        background-repeat: no-repeat;
+        background-position: 50% 50%; }
+      #left-sidebar .personal-stats li .text {
+        width: 126px;
+        font-size: 10px;
+        text-align: right;
+        color: #666666;
+        line-height: 27px; }
+    #left-sidebar .personal-stats li.patron .icon {
+      background-image: url(../images/icons/patronBadgeSmall.png); }
+    #left-sidebar .personal-stats li.followers .icon {
+      background-image: url(../images/icons/personSmall.png); }
+    #left-sidebar .personal-stats li.rewards .icon {
+      background-image: url(../images/icons/starGreySmall.png); }
   #left-sidebar ul.nav li {
     padding-left: 20px;
     background: transparent url(../images/sidebarRowBG.png) no-repeat 0 0; }
     #left-sidebar ul.nav li a, #left-sidebar ul.nav li span {
       display: block;
-      height: 42px;
-      line-height: 43px;
+      height: 38px;
+      line-height: 38px;
       vertical-align: middle;
       color: black;
       padding-left: 27px; }
@@ -683,7 +727,7 @@ header.hide-nav {
     font-size: 13px;
     letter-spacing: -0.1px;
     text-shadow: 0 1px 1px white;
-    padding-top: 50px;
+    padding-top: 30px;
     padding-bottom: 5px;
     background: none; }
   #left-sidebar ul.nav li.header.break {
@@ -4791,8 +4835,7 @@ form.user_edit #user_interest_list {
 
 .adverts {
   margin-bottom: 20px;
-  padding-top: 30px;
-  background: transparent url(../images/diagStripeBG.png) repeat-x 0 0; }
+  padding-top: 30px; }
   .adverts div.advert {
     float: left;
     height: 165px; }
@@ -6031,7 +6074,7 @@ ul.reward-thumbnails li.reward {
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
   float: left;
   display: inline;
-  margin: 0 20px 24px 0; }
+  margin: 0 16px 20px 0; }
   ul.reward-thumbnails li.reward .what .thumbnail {
     margin: 5px 0; }
     ul.reward-thumbnails li.reward .what .thumbnail img {
@@ -6101,7 +6144,10 @@ ul.reward-thumbnails li.reward {
     ul.reward-thumbnails li.reward .others ul {
       display: none; }
       ul.reward-thumbnails li.reward .others ul li .who {
-        padding: 8px 0 0; }
+        padding: 8px 0 0;
+        -webkit-box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+        -moz-box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+        box-shadow: 0 0 0 rgba(0, 0, 0, 0); }
 ul.reward-thumbnails li.reward.person {
   background: black;
   color: #dddddd; }

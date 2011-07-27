@@ -15,7 +15,7 @@
 	left: 185px
 
 #left-sidebar
-	padding-top: 20px
+	padding-top: 10px
 	
 	.join-login
 		@include button
@@ -30,24 +30,35 @@
 	.personal-info
 		padding-left: 10px
 		position: relative
-		height: 50px
-		.avatar
+		height: 90px
+		.avatar-coins
 			position: absolute
 			width: 60px
-			height: 60px
-			border: 1px solid #eee
+			height: 83px
+			background: #000
+			padding: 2px
 			img
+				display: block
 				width: 60px
 				height: 60px
+			.coins
+				color: #fff
+				padding: 5px 0 0 14px
+				.count
+					padding-right: 18px
+					font-weight: 700
+					background: transparent url(../images/icons/coinStarWhite.png) no-repeat 100% 0
 		.name, .rewards
 			margin-left: 70px
 		.name
 			display: block
 			color: #000
-			font-size: 16px
-			padding: 5px 0
+			font-size: 15px
+			font-weight: 700
+			padding: 15px 0 5px 0
 			width: 118px
 			overflow: hidden
+			text-transform: uppercase
 		.rewards
 			.count, .text				
 				display: block
@@ -77,6 +88,36 @@
 				-moz-border-radius-bottomright: 3px
 				border-top-right-radius: 3px
 				border-bottom-right-radius: 3px
+				
+	.personal-stats
+		@include rounded(3px)
+		@include boxshadow(2px,0.1,2px,1px)
+		background: #f7f7f7
+		margin: 10px 10px -5px
+		li
+			border-bottom: 1px solid #e0e0e0
+			height: 27px
+			.icon, .text
+				display: block
+				float: left
+				height: 27px
+			.icon
+				border-right: 1px solid #e0e0e0
+				width: 27px
+				background-repeat: no-repeat
+				background-position: 50% 50%
+			.text
+				width: 126px
+				font-size: 10px
+				text-align: right
+				color: #666
+				line-height: 27px
+		li.patron .icon
+			background-image: url(../images/icons/patronBadgeSmall.png)
+		li.followers .icon
+			background-image: url(../images/icons/personSmall.png)
+		li.rewards .icon
+			background-image: url(../images/icons/starGreySmall.png)
 	
 	ul.nav
 		li
@@ -84,8 +125,8 @@
 			background: transparent url(../images/sidebarRowBG.png) no-repeat 0 0
 			a, span
 				display: block
-				height: 42px
-				line-height: 43px
+				height: 38px
+				line-height: 38px
 				vertical-align: middle
 				color: #000
 				padding-left: 27px
@@ -108,7 +149,7 @@
 			font-size: 13px
 			letter-spacing: -0.1px
 			text-shadow: 0 1px 1px #fff
-			padding-top: 50px
+			padding-top: 30px
 			padding-bottom: 5px
 			background: none
 		li.header.break
