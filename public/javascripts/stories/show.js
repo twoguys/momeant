@@ -11,7 +11,7 @@ var story_viewer = function() {
 		$('#next-page').click(viewer.goto_next_page);
 		$('#previous-page').click(viewer.goto_prev_page);
 		$('ul#pages li').swipe({swipe:viewer.swipe,threshold:0});
-		$('#activity-flag, #close-activity').click(function(){$('#activity').toggle();});
+		//$('#activity-flag, #close-activity').click(function(){$('#activity').toggle();});
 		$.scrollTo('42');
 		setup_page_number_clicking();
 		setup_key_bindings();

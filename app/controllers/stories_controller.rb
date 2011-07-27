@@ -209,6 +209,7 @@ class StoriesController < ApplicationController
   def show
     View.record(@story, current_user) unless current_user == @story.user
     @fullscreen = true
+    @user = @story.user
   end
   
   def render_page_form

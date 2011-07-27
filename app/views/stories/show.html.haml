@@ -16,7 +16,7 @@
           .thank-you
             %h3 A quick note from the creator:
             %p= @story.thankyou
-        = render :partial => "reward_modal", :locals => {:story => @story}
+        = render :partial => "shared/reward_modal", :locals => {:story => @story}
         .stories
           .tabs
             = link_to("you might like", "you-might-like", :class => "active first")
@@ -44,7 +44,7 @@
     .button{:title => "Next page"} next page
   
   = link_to("Home", root_path, :id => "back-to-home", :class => "tooltipped", :title => "Home")
-  = link_to("Activity", "#", :id => "activity-flag", :class => "tooltipped", :title => "Reward Activity")
+  = link_to("Reward", "#reward-box", :id => "activity-flag", :class => "reward tooltipped", :title => "Reward")
   
   #activity
     = link_to("Hide", "#", :id => "close-activity")
