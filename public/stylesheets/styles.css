@@ -4664,56 +4664,118 @@ ul.users li.user:nth-child(3n+3) {
   background: transparent url(../images/icons/pencilBlue.png) no-repeat 0 1px; }
 .user-profile .bio .tagline, .user-profile .bio .interests {
   margin-bottom: 10px; }
-.user-profile .supporters {
-  width: 100%;
-  margin-bottom: 40px; }
-  .user-profile .supporters .tabs {
-    background-color: transparent;
-    margin-bottom: 0; }
-    .user-profile .supporters .tabs a {
+.user-profile ul.patrons {
+  border-top: 1px solid #cccccc; }
+  .user-profile ul.patrons li:nth-child(2n) {
+    background-color: white; }
+  .user-profile ul.patrons li {
+    border: 1px solid #cccccc;
+    border-top: none;
+    height: 70px; }
+    .user-profile ul.patrons li .user-info, .user-profile ul.patrons li .patron, .user-profile ul.patrons li .rewards-given {
+      padding: 15px;
+      height: 40px;
+      line-height: 40px;
+      border-left: 1px solid #cccccc;
+      float: right; }
+    .user-profile ul.patrons li .user-info {
+      position: relative;
+      float: left;
       border: none; }
-    .user-profile .supporters .tabs a.active {
-      box-shadow: none; }
-  .user-profile .supporters ul.patrons, .user-profile .supporters ul.creators {
-    min-height: 60px;
-    background-color: white;
-    -webkit-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
-    -moz-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
-    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2); }
-    .user-profile .supporters ul.patrons li, .user-profile .supporters ul.creators li {
-      height: 50px;
-      padding: 10px 20px;
-      border-bottom: 1px solid #cccccc; }
-      .user-profile .supporters ul.patrons li .number, .user-profile .supporters ul.patrons li .avatar, .user-profile .supporters ul.patrons li .info, .user-profile .supporters ul.creators li .number, .user-profile .supporters ul.creators li .avatar, .user-profile .supporters ul.creators li .info {
-        float: left;
-        margin-right: 20px; }
-      .user-profile .supporters ul.patrons li .number, .user-profile .supporters ul.creators li .number {
-        background-color: black;
-        color: white;
-        -webkit-border-radius: 40px;
-        -moz-border-radius: 40px;
-        border-radius: 40px;
+      .user-profile ul.patrons li .user-info .avatar {
+        position: absolute;
+        display: block;
         width: 40px;
         height: 40px;
-        text-align: center;
-        line-height: 40px;
-        vertical-align: middle;
-        font-family: "museo-slab-1", "museo-slab-2", serif;
-        font-size: 24px;
-        margin-top: 5px; }
-      .user-profile .supporters ul.patrons li .info .name, .user-profile .supporters ul.creators li .info .name {
+        border: 1px solid #cccccc; }
+        .user-profile ul.patrons li .user-info .avatar img {
+          width: 40px;
+          height: 40px; }
+      .user-profile ul.patrons li .user-info .rank {
+        position: absolute;
+        top: 10px;
+        left: 8px;
+        display: block;
+        height: 15px;
+        width: 15px;
         font-weight: 700;
-        font-size: 22px; }
-      .user-profile .supporters ul.patrons li .info .occupation, .user-profile .supporters ul.creators li .info .occupation {
-        font-style: italic; }
-      .user-profile .supporters ul.patrons li .rewards, .user-profile .supporters ul.creators li .rewards {
-        float: right;
-        background: transparent url(../images/icons/recommendOff.png) no-repeat 0 17px;
-        padding: 0 10px 0 20px;
-        font-size: 16px;
-        height: 50px;
-        line-height: 50px;
-        vertical-align: middle; }
+        text-align: center;
+        line-height: 15px;
+        background: #f4f4f4;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        border-radius: 10px;
+        -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+        -moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+        box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4); }
+      .user-profile ul.patrons li .user-info .name, .user-profile ul.patrons li .user-info .occupation {
+        margin-left: 50px;
+        height: 20px;
+        line-height: 20px; }
+      .user-profile ul.patrons li .user-info .name {
+        font-size: 18px;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin-top: 3px; }
+        .user-profile ul.patrons li .user-info .name a {
+          color: #252525; }
+      .user-profile ul.patrons li .user-info .occupation {
+        font-style: italic;
+        font-size: 11px; }
+    .user-profile ul.patrons li .patron {
+      width: 115px; }
+      .user-profile ul.patrons li .patron .patron-inner {
+        padding: 6px 0 0 35px;
+        height: 27px;
+        line-height: 27px;
+        color: #777777;
+        font-size: 11px;
+        background: transparent url(../images/icons/patronBadgeBlue.png) no-repeat 10px 6px; }
+    .user-profile ul.patrons li .rewards-given {
+      width: 80px; }
+      .user-profile ul.patrons li .rewards-given .rewards-inner {
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        background: #00aeef url(../images/icons/recommendWhite.png) no-repeat 32px 5px;
+        padding: 5px 35px 5px 0;
+        margin: 8px;
+        color: white;
+        font-weight: 700;
+        width: 29px;
+        text-align: right;
+        height: 15px;
+        line-height: 15px; }
+    .user-profile ul.patrons li .number, .user-profile ul.patrons li .avatar, .user-profile ul.patrons li .info {
+      float: left;
+      margin-right: 20px; }
+    .user-profile ul.patrons li .number {
+      background-color: black;
+      color: white;
+      -webkit-border-radius: 40px;
+      -moz-border-radius: 40px;
+      border-radius: 40px;
+      width: 40px;
+      height: 40px;
+      text-align: center;
+      line-height: 40px;
+      vertical-align: middle;
+      font-family: "museo-slab-1", "museo-slab-2", serif;
+      font-size: 24px;
+      margin-top: 5px; }
+    .user-profile ul.patrons li .info .name {
+      font-weight: 700;
+      font-size: 22px; }
+    .user-profile ul.patrons li .info .occupation {
+      font-style: italic; }
+    .user-profile ul.patrons li .rewards {
+      float: right;
+      background: transparent url(../images/icons/recommendOff.png) no-repeat 0 17px;
+      padding: 0 10px 0 20px;
+      font-size: 16px;
+      height: 50px;
+      line-height: 50px;
+      vertical-align: middle; }
 .user-profile .subscribing-to {
   clear: both;
   margin-bottom: 20px; }

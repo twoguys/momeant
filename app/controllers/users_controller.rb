@@ -42,6 +42,10 @@ class UsersController < ApplicationController
     @rewards = @user.given_rewards
   end
   
+  def patrons
+    @patrons = @user.patrons[0,10]
+  end
+  
   def analytics
     @user = current_user
     @patrons = @user.rewards.group_by {|r| r.user_id}

@@ -171,53 +171,111 @@ ul.users
 		.tagline, .interests
 			margin-bottom: 10px
 				
-	.supporters
-		width: 100%
-		margin-bottom: 40px
-		.tabs
-			background-color: transparent
-			margin-bottom: 0
-			a
-				border: none
-			a.active
-				box-shadow: none
-		ul.patrons, ul.creators
-			min-height: 60px
+	ul.patrons
+		border-top: 1px solid #ccc
+		li:nth-child(2n)
 			background-color: #fff
-			@include boxshadow(5px,.2,5px,5px)
-			li
-				height: 50px
-				padding: 10px 20px
-				border-bottom: 1px solid #ccc
-				.number, .avatar, .info
-					float: left
-					margin-right: 20px
-				.number
-					background-color: #000
-					color: #fff
-					@include rounded(40px)
+		li
+			border: 1px solid #ccc
+			border-top: none
+			height: 70px
+			.user-info, .patron, .rewards-given
+				padding: 15px
+				height: 40px
+				line-height: 40px
+				border-left: 1px solid #ccc
+				float: right
+			.user-info
+				position: relative
+				float: left
+				border: none
+				.avatar
+					position: absolute
+					display: block
 					width: 40px
 					height: 40px
+					border: 1px solid #ccc
+					img
+						width: 40px
+						height: 40px
+				.rank
+					position: absolute
+					top: 10px
+					left: 8px
+					display: block
+					height: 15px
+					width: 15px
+					font-weight: 700
 					text-align: center
-					line-height: 40px
-					vertical-align: middle
-					font-family: $typewriter
-					font-size: 24px
-					margin-top: 5px
-				.info
-					.name
-						font-weight: 700
-						font-size: 22px
-					.occupation
-						font-style: italic
-				.rewards
-					float: right
-					background: transparent url(../images/icons/recommendOff.png) no-repeat 0 17px
-					padding: 0 10px 0 20px
-					font-size: 16px
-					height: 50px
-					line-height: 50px
-					vertical-align: middle
+					line-height: 15px
+					background: #f4f4f4
+					@include rounded(10px)
+					@include boxshadow(3px,0.4,1px,1px)
+				.name, .occupation
+					margin-left: 50px
+					height: 20px
+					line-height: 20px
+				.name
+					font-size: 18px
+					font-weight: 700
+					text-transform: uppercase
+					margin-top: 3px
+					a
+						color: $text_color
+				.occupation
+					font-style: italic
+					font-size: 11px
+			.patron
+				width: 115px
+				.patron-inner
+					padding: 6px 0 0 35px
+					height: 27px
+					line-height: 27px
+					color: #777
+					font-size: 11px
+					background: transparent url(../images/icons/patronBadgeBlue.png) no-repeat 10px 6px
+			.rewards-given
+				width: 80px
+				.rewards-inner
+					@include rounded(3px)
+					background: $blue url(../images/icons/recommendWhite.png) no-repeat 32px 5px
+					padding: 5px 35px 5px 0
+					margin: 8px
+					color: #fff
+					font-weight: 700
+					width: 29px
+					text-align: right
+					height: 15px
+					line-height: 15px
+			.number, .avatar, .info
+				float: left
+				margin-right: 20px
+			.number
+				background-color: #000
+				color: #fff
+				@include rounded(40px)
+				width: 40px
+				height: 40px
+				text-align: center
+				line-height: 40px
+				vertical-align: middle
+				font-family: $typewriter
+				font-size: 24px
+				margin-top: 5px
+			.info
+				.name
+					font-weight: 700
+					font-size: 22px
+				.occupation
+					font-style: italic
+			.rewards
+				float: right
+				background: transparent url(../images/icons/recommendOff.png) no-repeat 0 17px
+				padding: 0 10px 0 20px
+				font-size: 16px
+				height: 50px
+				line-height: 50px
+				vertical-align: middle
 	
 	.subscribing-to
 		clear: both
