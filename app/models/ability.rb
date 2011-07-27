@@ -11,7 +11,7 @@ class Ability
         story.published? || story.owner?(user)
       end
       can :show, Story do |story|
-        story.published? && user.can_view_stories?
+        story.published?
       end
       can :create, Subscription
       can :destroy, Subscription, :subscriber_id => user.id

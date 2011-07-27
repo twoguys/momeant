@@ -29,6 +29,7 @@ function tag_deletions() {
 	});
 }
 
+var prevent_closing_of_signup_modal = false;
 function setup_signup_modal() {
 	$('#join, a[href="#signup-modal"]').click(function() {
 		var $modal = $('#join-login-modal');
@@ -36,7 +37,9 @@ function setup_signup_modal() {
 		return false;
 	});
 	$('#join-login-modal .cover, #join-login-modal .close').click(function() {
-		$('#join-login-modal').stop().fadeOut('fast');
+		if (!prevent_closing_of_signup_modal) {
+			$('#join-login-modal').stop().fadeOut('fast');
+		}
 	});
 	$(document).keyup(function(e) {
 	  if (e.keyCode == 27) { $('#join-login-modal').stop().fadeOut('fast'); } // escape
