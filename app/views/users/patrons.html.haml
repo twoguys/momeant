@@ -16,3 +16,9 @@
         .patron
           .patron-inner for #{pluralize(0, "day")}
         - rank += 1
+    - if @patrons.size < 10
+      - (@patrons.size + 1).upto(10) do
+        %li.patron
+          .user-info
+          .rewards-given
+          .patron
