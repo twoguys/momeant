@@ -140,8 +140,8 @@ function handle_reward_thumbnail_interactivity() {
 }
 
 function setup_reward_and_story_columns() {
-	$('ul.reward-thumbnails').masonry();
-	$('ul.stories').masonry();
+	var $container = $('ul.reward-thumbnails, ul.stories');
+	$container.masonry();
 }
 
 $(document).ready(function() {
@@ -155,11 +155,11 @@ $(document).ready(function() {
 	setup_recommendation_tabs();
 	setup_thumbnail_flipping();
 	handle_signup_login_form_validation();
-	try {
-		Typekit.load({
-			active: function() {setup_reward_and_story_columns();}
-		});
-	} catch(e) {}
+	// try {
+	// 	Typekit.load({
+	// 		active: function() {setup_reward_and_story_columns();}
+	// 	});
+	// } catch(e) {}
 	// for some reason, calling masonry after Typekit loads gets it close, but not perfect...
 	// we have to run this again (after a small delay) to get masonry to make the final touches on alignment.
 	setTimeout(setup_reward_and_story_columns, 2000);

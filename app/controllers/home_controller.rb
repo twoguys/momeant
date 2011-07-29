@@ -17,12 +17,23 @@ class HomeController < ApplicationController
       @nav = "home"
       @sidenav = "global"
     end
+    
+    if params[:js]
+      @remote = true
+      render @rewards and return
+    end
+    render "index"
   end
   
   def global
     load_recent_rewards
     @nav = "home"
     @sidenav = "global"
+    
+    if params[:js]
+      @remote = true
+      render @rewards and return
+    end
     render "index"
   end
   
@@ -47,6 +58,7 @@ class HomeController < ApplicationController
   
     def load_recent_rewards
       @rewards = Reward.select("DISTINCT ON (story_id,recipient_id) curations.*").page params[:page]
+      @load_more_url = global_path
     end
   
     def load_following_rewards
@@ -66,5 +78,7 @@ class HomeController < ApplicationController
           reward[:other_rewards] = other_rewards
         end
       end
+      
+      @load_more_url = root_path
     end
 end
