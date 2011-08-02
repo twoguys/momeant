@@ -32,6 +32,36 @@ ul.users
 	li.user:nth-child(3n+3)
 		margin-right: 0px
 
+.user-stats
+	@include rounded(3px)
+	@include boxshadow(2px,0.1,2px,1px)
+	background: #f7f7f7
+	li
+		border-bottom: 1px solid #e0e0e0
+		height: 27px
+		.icon, .text
+			display: block
+			float: left
+			height: 27px
+		.icon
+			border-right: 1px solid #e0e0e0
+			width: 27px
+			background-repeat: no-repeat
+			background-position: 50% 50%
+		.text
+			width: 126px
+			padding-right: 9px
+			font-size: 10px
+			text-align: right
+			color: #666
+			line-height: 27px
+	li.patron .icon
+		background-image: url(../images/icons/patronBadgeSmall.png)
+	li.followers .icon
+		background-image: url(../images/icons/personSmall.png)
+	li.rewards .icon
+		background-image: url(../images/icons/starGreySmall.png)
+
 .user-profile
 	.info
 		position: relative
@@ -51,10 +81,18 @@ ul.users
 			top: -4px
 			.name
 				font-size: 22px
-				font-weight: 900
+				font-weight: 700
 				text-transform: uppercase
 				color: #000
 				margin-bottom: -4px
+				.badge
+					@include rounded(2px)
+					background: $yellow
+					padding: 2px 4px
+					color: #fff
+					font-size: 12px
+					position: relative
+					top: -4px
 			.occupation
 				font-size: 11px
 				padding-bottom: 1px
@@ -76,12 +114,23 @@ ul.users
 					background-color: #16be36
 				a:hover
 					background-color: #ff1345
-		.reward
+		.reward-and-stats
 			position: absolute
 			top: 0
 			right: 0
 			.hidden
 				display: none
+			.reward, .user-stats
+				float: left
+			.reward.button
+				background: $blue url(../images/icons/starWhite.png) no-repeat 50% 4px
+				color: #fff
+				padding-top: 35px
+				font-size: 13px
+				font-weight: 700
+			.user-stats
+				margin-left: 10px
+				border: 1px solid #ddd
 	
 	.horizontal-tabs
 		background: transparent url(../images/greyHorizontalLine.gif) repeat-x 50% 50%

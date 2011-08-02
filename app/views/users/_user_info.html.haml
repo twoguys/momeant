@@ -1,14 +1,19 @@
 .info
   = image_tag(@user.avatar.url(:thumbnail), :class => "avatar")
   .name-occupation-follow
-    .name= @user.name
+    .name
+      = @user.name
+      - if @user.active_subscription?
+        %span.badge patron
     .occupation occupation: #{@user.occupation}
     .follow= follow_button(@user)
     
-  .reward
+  .reward-and-stats
     - if current_user
       = link_to("Reward", "#reward-box", :class => "reward button")
     - else
       = link_to("Reward", "#signup-modal", :class => "reward button disabled")
     .hidden
       = render "shared/reward_modal"
+    
+    = render "users/stats", :user => @user

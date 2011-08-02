@@ -48,7 +48,7 @@
 					padding-right: 18px
 					font-weight: 700
 					background: transparent url(../images/icons/coinStarWhite.png) no-repeat 100% 0
-		.name, .rewards
+		.name, .patron
 			margin-left: 70px
 		.name
 			display: block
@@ -59,6 +59,15 @@
 			width: 118px
 			overflow: hidden
 			text-transform: uppercase
+		.patron
+			font-size: 10px
+			.badge
+				@include rounded(2px)
+				background: $yellow
+				padding: 2px 4px
+				color: #fff
+			.badge.dull
+				background-color: #555
 		.rewards
 			.count, .text				
 				display: block
@@ -89,35 +98,8 @@
 				border-top-right-radius: 3px
 				border-bottom-right-radius: 3px
 				
-	.personal-stats
-		@include rounded(3px)
-		@include boxshadow(2px,0.1,2px,1px)
-		background: #f7f7f7
+	.user-stats
 		margin: 10px 10px -5px
-		li
-			border-bottom: 1px solid #e0e0e0
-			height: 27px
-			.icon, .text
-				display: block
-				float: left
-				height: 27px
-			.icon
-				border-right: 1px solid #e0e0e0
-				width: 27px
-				background-repeat: no-repeat
-				background-position: 50% 50%
-			.text
-				width: 126px
-				font-size: 10px
-				text-align: right
-				color: #666
-				line-height: 27px
-		li.patron .icon
-			background-image: url(../images/icons/patronBadgeSmall.png)
-		li.followers .icon
-			background-image: url(../images/icons/personSmall.png)
-		li.rewards .icon
-			background-image: url(../images/icons/starGreySmall.png)
 	
 	ul.nav
 		li

@@ -1,0 +1,7 @@
+%ul.user-stats
+  %li.followers
+    %span.icon
+    %span.text= pluralize(user.subscribers.count, "follower")
+  %li.rewards
+    %span.icon
+    %span.text #{pluralize(user.lifetime_rewards, "reward")} received

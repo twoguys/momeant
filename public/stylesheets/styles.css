@@ -626,7 +626,7 @@ header.hide-nav {
           padding-right: 18px;
           font-weight: 700;
           background: transparent url(../images/icons/coinStarWhite.png) no-repeat 100% 0; }
-    #left-sidebar .personal-info .name, #left-sidebar .personal-info .rewards {
+    #left-sidebar .personal-info .name, #left-sidebar .personal-info .patron {
       margin-left: 70px; }
     #left-sidebar .personal-info .name {
       display: block;
@@ -637,6 +637,17 @@ header.hide-nav {
       width: 118px;
       overflow: hidden;
       text-transform: uppercase; }
+    #left-sidebar .personal-info .patron {
+      font-size: 10px; }
+      #left-sidebar .personal-info .patron .badge {
+        -webkit-border-radius: 2px;
+        -moz-border-radius: 2px;
+        border-radius: 2px;
+        background: #ffbf03;
+        padding: 2px 4px;
+        color: white; }
+      #left-sidebar .personal-info .patron .badge.dull {
+        background-color: #555555; }
     #left-sidebar .personal-info .rewards .count, #left-sidebar .personal-info .rewards .text {
       display: block;
       float: left;
@@ -665,39 +676,8 @@ header.hide-nav {
       -moz-border-radius-bottomright: 3px;
       border-top-right-radius: 3px;
       border-bottom-right-radius: 3px; }
-  #left-sidebar .personal-stats {
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
-    -webkit-box-shadow: 2px 1px 2px rgba(0, 0, 0, 0.1);
-    -moz-box-shadow: 2px 1px 2px rgba(0, 0, 0, 0.1);
-    box-shadow: 2px 1px 2px rgba(0, 0, 0, 0.1);
-    background: #f7f7f7;
+  #left-sidebar .user-stats {
     margin: 10px 10px -5px; }
-    #left-sidebar .personal-stats li {
-      border-bottom: 1px solid #e0e0e0;
-      height: 27px; }
-      #left-sidebar .personal-stats li .icon, #left-sidebar .personal-stats li .text {
-        display: block;
-        float: left;
-        height: 27px; }
-      #left-sidebar .personal-stats li .icon {
-        border-right: 1px solid #e0e0e0;
-        width: 27px;
-        background-repeat: no-repeat;
-        background-position: 50% 50%; }
-      #left-sidebar .personal-stats li .text {
-        width: 126px;
-        font-size: 10px;
-        text-align: right;
-        color: #666666;
-        line-height: 27px; }
-    #left-sidebar .personal-stats li.patron .icon {
-      background-image: url(../images/icons/patronBadgeSmall.png); }
-    #left-sidebar .personal-stats li.followers .icon {
-      background-image: url(../images/icons/personSmall.png); }
-    #left-sidebar .personal-stats li.rewards .icon {
-      background-image: url(../images/icons/starGreySmall.png); }
   #left-sidebar ul.nav li {
     padding-left: 25px;
     background: transparent url(../images/sidebarRowBG.png) no-repeat 0 0; }
@@ -4536,6 +4516,40 @@ ul.users li.user:nth-child(3n+3) {
 ul.users li.user:nth-child(3n+3) {
   margin-right: 0px; }
 
+.user-stats {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-box-shadow: 2px 1px 2px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 2px 1px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: 2px 1px 2px rgba(0, 0, 0, 0.1);
+  background: #f7f7f7; }
+  .user-stats li {
+    border-bottom: 1px solid #e0e0e0;
+    height: 27px; }
+    .user-stats li .icon, .user-stats li .text {
+      display: block;
+      float: left;
+      height: 27px; }
+    .user-stats li .icon {
+      border-right: 1px solid #e0e0e0;
+      width: 27px;
+      background-repeat: no-repeat;
+      background-position: 50% 50%; }
+    .user-stats li .text {
+      width: 126px;
+      padding-right: 9px;
+      font-size: 10px;
+      text-align: right;
+      color: #666666;
+      line-height: 27px; }
+  .user-stats li.patron .icon {
+    background-image: url(../images/icons/patronBadgeSmall.png); }
+  .user-stats li.followers .icon {
+    background-image: url(../images/icons/personSmall.png); }
+  .user-stats li.rewards .icon {
+    background-image: url(../images/icons/starGreySmall.png); }
+
 .user-profile .info {
   position: relative;
   padding-left: 70px;
@@ -4554,10 +4568,20 @@ ul.users li.user:nth-child(3n+3) {
     top: -4px; }
     .user-profile .info .name-occupation-follow .name {
       font-size: 22px;
-      font-weight: 900;
+      font-weight: 700;
       text-transform: uppercase;
       color: black;
       margin-bottom: -4px; }
+      .user-profile .info .name-occupation-follow .name .badge {
+        -webkit-border-radius: 2px;
+        -moz-border-radius: 2px;
+        border-radius: 2px;
+        background: #ffbf03;
+        padding: 2px 4px;
+        color: white;
+        font-size: 12px;
+        position: relative;
+        top: -4px; }
     .user-profile .info .name-occupation-follow .occupation {
       font-size: 11px;
       padding-bottom: 1px; }
@@ -4578,12 +4602,23 @@ ul.users li.user:nth-child(3n+3) {
       background-color: #16be36; }
     .user-profile .info .name-occupation-follow .follow a:hover {
       background-color: #ff1345; }
-  .user-profile .info .reward {
+  .user-profile .info .reward-and-stats {
     position: absolute;
     top: 0;
     right: 0; }
-    .user-profile .info .reward .hidden {
+    .user-profile .info .reward-and-stats .hidden {
       display: none; }
+    .user-profile .info .reward-and-stats .reward, .user-profile .info .reward-and-stats .user-stats {
+      float: left; }
+    .user-profile .info .reward-and-stats .reward.button {
+      background: #00aeef url(../images/icons/starWhite.png) no-repeat 50% 4px;
+      color: white;
+      padding-top: 35px;
+      font-size: 13px;
+      font-weight: 700; }
+    .user-profile .info .reward-and-stats .user-stats {
+      margin-left: 10px;
+      border: 1px solid #dddddd; }
 .user-profile .horizontal-tabs {
   background: transparent url(../images/greyHorizontalLine.gif) repeat-x 50% 50%; }
   .user-profile .horizontal-tabs ul {

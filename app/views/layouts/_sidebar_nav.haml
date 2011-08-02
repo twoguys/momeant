@@ -5,17 +5,15 @@
       .coins
         %span.count= current_user.coins
     = link_to(current_user.name, user_path(current_user), :class => "name")
+    .patron
+      - if current_user.active_subscription?
+        %span.badge patron
+        %span 0 days
+      - else
+        %span not a
+        = link_to("patron", subscribe_path, :class => "badge dull")
   
-  %ul.personal-stats
-    %li.patron
-      %span.icon
-      %span.text patron for 0 days
-    %li.followers
-      %span.icon
-      %span.text= pluralize(current_user.subscribers.count, "follower")
-    %li.rewards
-      %span.icon
-      %span.text #{pluralize(current_user.lifetime_rewards, "reward")} received
+  = render "users/stats", :user => current_user
     
 - else
   = link_to("Join / Login", "#signup-modal", :class => "join-login button")
