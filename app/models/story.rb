@@ -28,12 +28,12 @@ class Story < ActiveRecord::Base
   belongs_to :gallery
   has_and_belongs_to_many :topics
   
-  has_many :curations
+  has_many :curations, :dependent => :destroy
 
   has_many :bookmarks, :dependent => :destroy
   has_many :users_who_bookmarked, :through => :bookmarks, :source => :user
 
-  has_many :rewards, :dependent => :destroy
+  has_many :rewards
   has_many :users_who_rewarded, :through => :rewards, :source => :user
 
   has_many :views, :dependent => :destroy

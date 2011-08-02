@@ -62,16 +62,6 @@
           = label_tag :story_thankyou, "Thank You Note"
           = text_area_tag :story_thankyou, @story.thankyou, :class => "monitor-story-typing", :update => "thankyou"
           .example Leave a personalized note that your viewers will see at the end of your story.
-
-      %li.topics
-        %label Categories
-        .example
-          Select one or more categories that describe your story.
-          This makes it easier for viewers browsing the category hubs to find and buy your work!
-        %ul
-          - parent_topics = @topics.reject {|topic| topic.topic_id != nil}
-          - parent_topics.each do |topic|
-            = topic_checkbox(topic, @story, @topics)
           
       %li#page-previews
         = hidden_field_tag :story_thumbnail_page, @story.thumbnail_page ? @story.thumbnail_page : 1

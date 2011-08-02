@@ -9,6 +9,10 @@
         - no_gallery_stories.each do |story|
           %li.story
             = link_to(story.title || "Untitled", story, :class => "title")
+            - if story.owner?(current_user)
+              .edit-links
+                = link_to("edit", edit_story_path(story), :class => "edit tooltipped-e", :title => "edit")
+                = link_to("delete", story_path(story), :method => :delete, :class => "delete tooltipped-e", :title => "delete", :confirm => "Are you SURE you want to delete this?")
             .byline by #{link_to(@user.name, user_path(@user))}
             = link_to(image_tag(story.thumbnail(:medium)), story, :class => "thumbnail")
     - @user.galleries.each do |gallery|

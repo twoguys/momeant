@@ -891,21 +891,10 @@ table {
 /* Story creation */
 .new-story-copy {
   font-family: "museo-slab-1", "museo-slab-2", serif;
-  color: #999999;
-  font-size: 20px;
-  line-height: 31px;
+  font-size: 14px;
+  line-height: 20px;
   margin-bottom: 20px;
   font-weight: 100; }
-  .new-story-copy:first-letter {
-    font-size: 60px;
-    font-weight: 100;
-    padding-bottom: 5px;
-    float: left;
-    display: inline-block;
-    vertical-align: baseline;
-    padding-right: 6px;
-    padding-top: 17px;
-    color: black; }
 
 .fullscreen .story-form {
   padding-top: 0; }
@@ -974,8 +963,7 @@ form.new_story, form.edit_story, .story-form {
     font-style: italic;
     font-weight: 100; }
   form.new_story #thumbnail, form.edit_story #thumbnail, .story-form #thumbnail {
-    border-top: 1px solid #dedede;
-    width: 950px; }
+    border-top: 1px solid #dedede; }
     form.new_story #thumbnail .thumbnail-container, form.edit_story #thumbnail .thumbnail-container, .story-form #thumbnail .thumbnail-container {
       padding-top: 5px;
       height: 80px;
@@ -1004,26 +992,21 @@ form.new_story, form.edit_story, .story-form {
     position: relative;
     margin-bottom: 10px; }
   form.new_story .title-input, form.edit_story .title-input, .story-form .title-input {
-    width: 950px;
-    padding-right: 50px;
     margin-top: 10px;
     margin-bottom: 15px;
     height: auto; }
     form.new_story .title-input input, form.edit_story .title-input input, .story-form .title-input input {
       width: 99%; }
-  form.new_story .excerpt-input, form.edit_story .excerpt-input, .story-form .excerpt-input {
-    width: 950px; }
-    form.new_story .excerpt-input textarea, form.edit_story .excerpt-input textarea, .story-form .excerpt-input textarea {
-      width: 99%;
-      height: 100px;
-      vertical-align: top; }
+  form.new_story .excerpt-input textarea, form.edit_story .excerpt-input textarea, .story-form .excerpt-input textarea {
+    width: 99%;
+    height: 100px;
+    vertical-align: top; }
   form.new_story #page-previews, form.edit_story #page-previews, .story-form #page-previews {
     position: relative;
     border-bottom: 1px solid #dedede;
     border-top: 1px solid #dedede;
     margin-bottom: 25px;
     padding-bottom: 15px;
-    width: 950px;
     padding-top: 15px;
     text-align: center; }
     form.new_story #page-previews a#open-page-editor-button, form.edit_story #page-previews a#open-page-editor-button, .story-form #page-previews a#open-page-editor-button {
@@ -1125,29 +1108,23 @@ form.new_story, form.edit_story, .story-form {
       -webkit-border-radius: 3px;
       -moz-border-radius: 3px;
       border-radius: 3px; }
-  form.new_story .metadata, form.edit_story .metadata, .story-form .metadata {
-    width: 48%;
-    float: left;
-    clear: left;
-    padding-top: 10px;
-    margin-right: 2%; }
-    form.new_story .metadata .price label, form.edit_story .metadata .price label, .story-form .metadata .price label {
+  form.new_story .metadata .price label, form.edit_story .metadata .price label, .story-form .metadata .price label {
+    width: 100%; }
+  form.new_story .metadata .price input, form.edit_story .metadata .price input, .story-form .metadata .price input {
+    width: 98%; }
+  form.new_story .metadata .price strong, form.edit_story .metadata .price strong, .story-form .metadata .price strong {
+    font-size: 1.5em; }
+  form.new_story .metadata .tags, form.edit_story .metadata .tags, .story-form .metadata .tags {
+    margin-top: 20px; }
+    form.new_story .metadata .tags label, form.edit_story .metadata .tags label, .story-form .metadata .tags label {
       width: 100%; }
-    form.new_story .metadata .price input, form.edit_story .metadata .price input, .story-form .metadata .price input {
+    form.new_story .metadata .tags input, form.edit_story .metadata .tags input, .story-form .metadata .tags input {
       width: 98%; }
-    form.new_story .metadata .price strong, form.edit_story .metadata .price strong, .story-form .metadata .price strong {
-      font-size: 1.5em; }
-    form.new_story .metadata .tags, form.edit_story .metadata .tags, .story-form .metadata .tags {
-      margin-top: 20px; }
-      form.new_story .metadata .tags label, form.edit_story .metadata .tags label, .story-form .metadata .tags label {
-        width: 100%; }
-      form.new_story .metadata .tags input, form.edit_story .metadata .tags input, .story-form .metadata .tags input {
-        width: 98%; }
-    form.new_story .metadata .thank-you textarea, form.edit_story .metadata .thank-you textarea, .story-form .metadata .thank-you textarea {
-      width: 98%;
-      height: 160px; }
-    form.new_story .metadata .thank-you .example, form.edit_story .metadata .thank-you .example, .story-form .metadata .thank-you .example {
-      border-bottom: none; }
+  form.new_story .metadata .thank-you textarea, form.edit_story .metadata .thank-you textarea, .story-form .metadata .thank-you textarea {
+    width: 98%;
+    height: 160px; }
+  form.new_story .metadata .thank-you .example, form.edit_story .metadata .thank-you .example, .story-form .metadata .thank-you .example {
+    border-bottom: none; }
   form.new_story .topics, form.edit_story .topics, .story-form .topics {
     width: 47%;
     clear: none;
@@ -4226,7 +4203,9 @@ ul.stories li.story {
   ul.stories li.story .title {
     font-weight: 700;
     text-transform: uppercase;
-    color: black; }
+    color: black;
+    display: inline-block;
+    width: 195px; }
   ul.stories li.story .byline {
     color: black;
     font-size: 11px; }
@@ -4670,6 +4649,21 @@ ul.users li.user:nth-child(3n+3) {
     -moz-border-radius-bottomright: 3px;
     border-top-right-radius: 3px;
     border-bottom-right-radius: 3px; }
+.user-profile ul.galleries li.gallery ul.stories li.story .edit-links, .user-profile ul.galleries li.no-gallery ul.stories li.story .edit-links {
+  position: absolute;
+  top: 10px;
+  right: 10px; }
+  .user-profile ul.galleries li.gallery ul.stories li.story .edit-links a, .user-profile ul.galleries li.no-gallery ul.stories li.story .edit-links a {
+    text-indent: -9999px;
+    display: block;
+    width: 12px;
+    height: 12px;
+    background-repeat: no-repeat; }
+  .user-profile ul.galleries li.gallery ul.stories li.story .edit-links a.edit, .user-profile ul.galleries li.no-gallery ul.stories li.story .edit-links a.edit {
+    background-image: url(../images/icons/pencilTiny.png);
+    margin-bottom: 5px; }
+  .user-profile ul.galleries li.gallery ul.stories li.story .edit-links a.delete, .user-profile ul.galleries li.no-gallery ul.stories li.story .edit-links a.delete {
+    background-image: url(../images/icons/trashTiny.png); }
 .user-profile ul.galleries li.gallery ul.stories li.about, .user-profile ul.galleries li.no-gallery ul.stories li.about {
   font-size: 11px;
   padding: 0;

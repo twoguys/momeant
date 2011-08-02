@@ -86,7 +86,7 @@ class StoriesController < ApplicationController
   
   def destroy
     @story.destroy
-    redirect_to user_path(current_user), :notice => "Your story was deleted."
+    redirect_to user_path(current_user), :notice => "Your content was deleted."
   end
   
   def autosave
