@@ -633,11 +633,11 @@ header.hide-nav {
       color: black;
       font-size: 15px;
       font-weight: 700;
-      padding: 15px 0 5px 0;
       width: 118px;
       overflow: hidden;
       text-transform: uppercase; }
     #left-sidebar .personal-info .patron {
+      display: none;
       font-size: 10px; }
       #left-sidebar .personal-info .patron .badge {
         -webkit-border-radius: 2px;
@@ -648,36 +648,10 @@ header.hide-nav {
         color: white; }
       #left-sidebar .personal-info .patron .badge.dull {
         background-color: #555555; }
-    #left-sidebar .personal-info .rewards .count, #left-sidebar .personal-info .rewards .text {
-      display: block;
-      float: left;
-      height: 24px;
-      line-height: 24px;
-      vertical-align: middle;
-      font-size: 11px; }
-    #left-sidebar .personal-info .rewards .count {
-      background: #00aeef url(../images/icons/recommendWhite.png) no-repeat 93% 4px;
-      color: white;
-      padding: 0 18px 0 7px;
-      font-weight: 700;
-      -webkit-border-top-left-radius: 3px;
-      -webkit-border-bottom-left-radius: 3px;
-      -moz-border-radius-topleft: 3px;
-      -moz-border-radius-bottomleft: 3px;
-      border-top-left-radius: 3px;
-      border-bottom-left-radius: 3px; }
-    #left-sidebar .personal-info .rewards .text {
-      background-color: white;
-      color: #555555;
-      padding: 0 6px;
-      -webkit-border-top-right-radius: 3px;
-      -webkit-border-bottom-right-radius: 3px;
-      -moz-border-radius-topright: 3px;
-      -moz-border-radius-bottomright: 3px;
-      border-top-right-radius: 3px;
-      border-bottom-right-radius: 3px; }
   #left-sidebar .user-stats {
-    margin: 10px 10px -5px; }
+    margin: 5px 13px -5px 70px; }
+    #left-sidebar .user-stats .text {
+      width: 52px; }
   #left-sidebar ul.nav li {
     padding-left: 25px;
     background: transparent url(../images/sidebarRowBG.png) no-repeat 0 0; }
@@ -4541,9 +4515,6 @@ ul.users li.user:nth-child(3n+3) {
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
-  -webkit-box-shadow: 2px 1px 2px rgba(0, 0, 0, 0.1);
-  -moz-box-shadow: 2px 1px 2px rgba(0, 0, 0, 0.1);
-  box-shadow: 2px 1px 2px rgba(0, 0, 0, 0.1);
   background: #f7f7f7; }
   .user-stats li {
     border-bottom: 1px solid #e0e0e0;
@@ -4558,12 +4529,14 @@ ul.users li.user:nth-child(3n+3) {
       background-repeat: no-repeat;
       background-position: 50% 50%; }
     .user-stats li .text {
-      width: 126px;
+      width: 100px;
       padding-right: 9px;
       font-size: 10px;
       text-align: right;
       color: #666666;
       line-height: 27px; }
+    .user-stats li .sidebar.text {
+      display: none; }
   .user-stats li.patron .icon {
     background-image: url(../images/icons/patronBadgeSmall.png); }
   .user-stats li.followers .icon {

@@ -4,7 +4,7 @@
       = link_to(image_tag(current_user.avatar.url(:thumbnail)), user_path(current_user), :class => "avatar")
       .coins
         %span.count= current_user.coins
-    = link_to(current_user.name, user_path(current_user), :class => "name")
+    = link_to(current_user.first_name, user_path(current_user), :class => "name")
     .patron
       - if current_user.active_subscription?
         %span.badge patron
@@ -13,7 +13,7 @@
         %span not a
         = link_to("patron", subscribe_path, :class => "badge dull")
   
-  = render "users/stats", :user => current_user
+    = render "users/stats", :user => current_user, :sidebar => true
     
 - else
   = link_to("Join / Login", "#signup-modal", :class => "join-login button")

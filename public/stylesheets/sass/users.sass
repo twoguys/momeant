@@ -34,7 +34,6 @@ ul.users
 
 .user-stats
 	@include rounded(3px)
-	@include boxshadow(2px,0.1,2px,1px)
 	background: #f7f7f7
 	li
 		border-bottom: 1px solid #e0e0e0
@@ -49,12 +48,14 @@ ul.users
 			background-repeat: no-repeat
 			background-position: 50% 50%
 		.text
-			width: 126px
+			width: 100px
 			padding-right: 9px
 			font-size: 10px
 			text-align: right
 			color: #666
 			line-height: 27px
+		.sidebar.text
+			display: none
 	li.patron .icon
 		background-image: url(../images/icons/patronBadgeSmall.png)
 	li.followers .icon
