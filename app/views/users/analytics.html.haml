@@ -18,7 +18,11 @@
         %span.count= @user.rewards.past_thirty_days.sum(:amount)
         %span reward coins
       .conversion
-        %span.count= number_with_precision(@user.rewards.past_thirty_days.count / @user.views.past_thirty_days.count * 100, :precision => 0)
+        %span.count
+          - if @user.views.past_thirty_days.count > 0
+            = number_with_precision(@user.rewards.past_thirty_days.count / @user.views.past_thirty_days.count * 100, :precision => 0)
+          - else
+            0
         %span %
         %span.help.tooltipped-n{:title => "A rough judge of how likely users are to reward"} ?
       .money

@@ -19,5 +19,5 @@
     %ul.reward-thumbnails
       = render @rewards
     
-    = link_to("load more", @load_more_url, :id => "load-more")
+    = link_to("load more", @load_more_url, :id => "load-more") unless @rewards.empty?
     #hidden-reward-appender
