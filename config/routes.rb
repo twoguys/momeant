@@ -53,6 +53,7 @@ Repo::Application.routes.draw do
   resources :users do
     resources :subscriptions
     resources :rewards
+    resources :galleries
     get :bookmarks
     
     member do

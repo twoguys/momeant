@@ -360,6 +360,47 @@ form.new_story, form.edit_story, .story-form
 				.grid
 					background-image: url(../images/page-themes/grid-thumbnail.jpg)
 
+#gallery-creator
+	display: none
+	z-index: 99
+	.overlay
+		position: fixed
+		top: 0
+		left: 0
+		width: 100%
+		height: 100%
+		background: transparent url(../images/transparentGrey.png) repeat
+	.inner
+		width: 500px
+		height: 270px
+		padding: 20px
+		background: #fff
+		@include rounded
+		position: fixed
+		top: 50%
+		left: 50%
+		margin: -155px 0 0 -270px
+		h1
+			text-transform: uppercase
+			font-weight: 900
+			margin-bottom: 10px
+		form
+			li
+				margin-bottom: 10px
+		input[type="text"], textarea
+			width: 96%
+		textarea
+			height: 50px
+			margin-bottom: 10px
+	#cancel-gallery-creation
+		background-color: $lightred
+		color: $red
+#gallery-creator.loading
+	.inner
+		background: #fff url(../images/spinner.gif) no-repeat 50% 50%
+		h1, form
+			display: none
+		
 #page-previews
 	li.title .inner
 		display: table

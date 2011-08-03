@@ -140,7 +140,7 @@ function handle_reward_thumbnail_interactivity() {
 }
 
 function setup_reward_and_story_columns() {
-	var $container = $('ul.reward-thumbnails, ul.stories');
+	var $container = $('ul.reward-thumbnails');
 	$container.masonry();
 }
 

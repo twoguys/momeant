@@ -186,6 +186,9 @@ ul.users
 			
 	ul.galleries
 		li.gallery, li.no-gallery
+			border-bottom: 1px solid #ccc
+			padding-top: 5px
+			width: 100%
 			ul.stories
 				li.story
 					.edit-links
@@ -204,17 +207,17 @@ ul.users
 						a.delete
 							background-image: url(../images/icons/trashTiny.png)
 				li.about
-					font-size: 11px
+					background: none
 					padding: 0
 					width: 250px
+					@include boxshadow(0px,0,0,0)
 					.name
-						background-color: #000
-						padding: 8px
-						color: #fff
-						font-weight: 700
+						font-size: 18px
+						margin-bottom: 5px
 					.description
-						padding: 10px
-						background-color: #e0e0e0
+						font-size: 11px
+		li.gallery:first-child, li.no-gallery:first-child
+			padding-top: 0
 	
 	.bio
 		.incomplete-profile
@@ -379,7 +382,6 @@ ul.users
 	.admin
 		clear: both
 		padding-top: 30px
-		border-top: 1px solid #ccc
 		h1
 			font-weight: 900
 			text-transform: uppercase

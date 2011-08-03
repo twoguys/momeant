@@ -65,4 +65,8 @@ module StoriesHelper
     end
   end
   
+  def galleries_list(user)
+    user.galleries.collect {|g| [g.name, g.id]} + [["Create new gallery...","-1"]]
+  end
+  
 end

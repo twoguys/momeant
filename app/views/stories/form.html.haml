@@ -39,16 +39,26 @@
                 %input{:type => "file", :name => "story[thumbnail]"}
                 .loader
             .example Preferably 630 pixels wide and 420 pixels tall. We use this to represent your story throughout the site (in various sizes).
+
       %li
         .title-input
           = label_tag :story_title, "Title"
           = text_field_tag :story_title, @story.title, :class => "monitor-story-typing", :update => "title"
           .example What's in a name? Give your story one! (ie. Around the World in 80 Days)
+
       %li
         .excerpt-input
           = label_tag :story_synopsis, "Synopsis"
           = text_area_tag :story_synopsis, @story.synopsis, :class => "monitor-story-typing", :update => "synopsis"
           .example Give a teaser or brief description of your story. Make sure it stands out from the crowd, and that viewers know what to expect!
+      
+      %li
+        .gallery
+          = label_tag :story_gallery, "Add to Gallery?"
+          = select(:story, :gallery_id, galleries_list(current_user), {:include_blank => true})
+          .example You can organize your content into "galleries" of similar work.
+          - content_for :modals do
+            = render "gallery_creator"
           
       %li.metadata
         .tags

@@ -3,7 +3,7 @@
   = render "user_tabs"
 
   %ul.galleries
-    %li.no-gallery
+    %li.no-gallery.clearfix
       %ul.stories
         - no_gallery_stories = @user == current_user ? @user.created_stories.no_gallery : @user.created_stories.no_gallery.published
         - no_gallery_stories.each do |story|
@@ -16,7 +16,7 @@
             .byline by #{link_to(@user.name, user_path(@user))}
             = link_to(image_tag(story.thumbnail(:medium)), story, :class => "thumbnail")
     - @user.galleries.each do |gallery|
-      %li.gallery
+      %li.gallery.clearfix
         %ul.stories
           %li.story.about
             .name= gallery.name
