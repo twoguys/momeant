@@ -76,7 +76,7 @@ class HomeController < ApplicationController
         if reward.story_id.present?
           other_rewards = Reward.where(:story_id => reward.story_id).where("user_id IN (#{following_ids})").where("id != #{reward.id}")
         else
-          other_rewards = Reward.where(:recipient_id => reward.recipient_id).where("user_id IN (#{following_ids})").where("id != #{reward.id}")
+          other_rewards = Reward.where(:recipient_id => reward.recipient_id).where(:story_id => nil).where("user_id IN (#{following_ids})").where("id != #{reward.id}")
         end
         if other_rewards.size > 0
           reward[:other_rewards] = other_rewards
