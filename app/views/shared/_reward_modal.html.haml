@@ -24,7 +24,7 @@
             %p
               %span I would like to give
               = form.text_field :amount, :value => 1, :readonly => true
-              %span reward credit(s) to #{@user.name}
+              %span reward credit(s) to #{@user.first_name}
           .to
             = image_tag(@user.avatar.url(:thumbnail), :class => "avatar")
             .rewards

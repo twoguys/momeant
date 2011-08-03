@@ -73,7 +73,11 @@ class HomeController < ApplicationController
 
       # add duplicate reward count to each piece of content
       @rewards.each do |reward|
-        other_rewards = Reward.where(:story_id => reward.story_id).where("user_id IN (#{following_ids})").where("id != #{reward.id}")
+        if reward.story_id.present?
+          other_rewards = Reward.where(:story_id => reward.story_id).where("user_id IN (#{following_ids})").where("id != #{reward.id}")
+        else
+          other_rewards = Reward.where(:recipient_id => reward.recipient_id).where("user_id IN (#{following_ids})").where("id != #{reward.id}")
+        end
         if other_rewards.size > 0
           reward[:other_rewards] = other_rewards
         end
