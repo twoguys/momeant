@@ -6,7 +6,7 @@
       = link_to("Momeant", root_path, :class => "tooltipped", :title => "Home")
     - if user_signed_in? && can?(:create, Story)
       %li#create{:class => @nav == "create" ? "active" : ""}
-        = link_to("Create", new_story_path, :class => "tooltipped", :title => "Share") if can? :create, Story
+        = link_to("Create", new_story_path, :class => "tooltipped", :title => "Create") if can? :create, Story
     %li#faq{:class => @nav == "about" ? "active" : ""}
       = link_to("About Us", about_path, :class => "tooltipped", :title => "Tell me more".html_safe)
     - if user_signed_in?
