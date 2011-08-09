@@ -61,6 +61,7 @@ Repo::Application.routes.draw do
       get :momeants
       get :rewarded
       get :patrons
+      get :following
     end
     
     # Homepage tab

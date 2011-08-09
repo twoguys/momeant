@@ -3,34 +3,36 @@
   = render "user_tabs"
 
   %ul.galleries
-    %li.no-gallery.clearfix
-      %ul.stories
-        - no_gallery_stories = @user == current_user ? @user.created_stories.no_gallery : @user.created_stories.no_gallery.published
-        - no_gallery_stories.each do |story|
-          %li.story
-            = link_to(story.title || "Untitled", story, :class => "title")
-            - if story.owner?(current_user)
-              .edit-links
-                = link_to("edit", edit_story_path(story), :class => "edit tooltipped-e", :title => "edit")
-                = link_to("delete", story_path(story), :method => :delete, :class => "delete tooltipped-e", :title => "delete", :confirm => "Are you SURE you want to delete this?")
-            .byline by #{link_to(@user.name, user_path(@user))}
-            = link_to(image_tag(story.thumbnail(:medium)), story, :class => "thumbnail")
-    - @user.galleries.each do |gallery|
-      %li.gallery.clearfix
+    - no_gallery_stories = @user == current_user ? @user.created_stories.no_gallery : @user.created_stories.no_gallery.published
+    - unless no_gallery_stories.empty?
+      %li.no-gallery.clearfix
         %ul.stories
-          %li.story.about
-            .name= gallery.name
-            .description= gallery.description
-          - gallery_stories = @user == current_user ? gallery.stories : gallery.stories.published
-          - gallery_stories.each do |story|
+          - no_gallery_stories.each do |story|
             %li.story
               = link_to(story.title || "Untitled", story, :class => "title")
               - if story.owner?(current_user)
                 .edit-links
                   = link_to("edit", edit_story_path(story), :class => "edit tooltipped-e", :title => "edit")
                   = link_to("delete", story_path(story), :method => :delete, :class => "delete tooltipped-e", :title => "delete", :confirm => "Are you SURE you want to delete this?")
-              .byline by #{@user.name}
+              .byline by #{link_to(@user.name, user_path(@user))}
               = link_to(image_tag(story.thumbnail(:medium)), story, :class => "thumbnail")
+    - @user.galleries.each do |gallery|
+      - gallery_stories = @user == current_user ? gallery.stories : gallery.stories.published
+      - unless gallery_stories.empty?
+        %li.gallery.clearfix
+          %ul.stories
+            %li.story.about
+              .name= gallery.name
+              .description= gallery.description
+            - gallery_stories.each do |story|
+              %li.story
+                = link_to(story.title || "Untitled", story, :class => "title")
+                - if story.owner?(current_user)
+                  .edit-links
+                    = link_to("edit", edit_story_path(story), :class => "edit tooltipped-e", :title => "edit")
+                    = link_to("delete", story_path(story), :method => :delete, :class => "delete tooltipped-e", :title => "delete", :confirm => "Are you SURE you want to delete this?")
+                .byline by #{@user.name}
+                = link_to(image_tag(story.thumbnail(:medium)), story, :class => "thumbnail")
           
         
   - if me?(@user) && @user.is_admin?

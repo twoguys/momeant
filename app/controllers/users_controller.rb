@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!, :except => [:show, :billing_updates, :top_curators]
   before_filter :get_adverts, :only => :top_curators
-  before_filter :find_user, :only => [:show, :momeants, :bio, :rewarded, :patrons, :bookmarks]
+  before_filter :find_user, :only => [:show, :momeants, :bio, :rewarded, :patrons, :bookmarks, :following]
   skip_before_filter :verify_authenticity_token, :only => :billing_updates
   skip_before_filter :release_lockdown, :only => :billing_updates
   
@@ -44,6 +44,10 @@ class UsersController < ApplicationController
   
   def patrons
     @patrons = @user.patrons[0,10]
+  end
+  
+  def following
+    @users = @user.subscribed_to
   end
   
   def analytics
