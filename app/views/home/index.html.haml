@@ -2,7 +2,17 @@
   = javascript_include_tag "flipbook"
 
 .homepage
-  = #render "home/editorials/openingUp"
+  - if @sidenav == "global"
+    .tagline
+      %h1
+        Reward and
+        %br
+        be Rewarded.
+      %h3
+        %span The Web is full of free content. We get that, we love it.
+        %em But we believe creators deserve to be rewarded for their work.
+        %span If you feel as we do, participate. Share your content. Find other cool content. Reward and be Rewarded.
+        = link_to("Read more...", about_path)
 
   %section#flipbook
     .flipbook
@@ -12,10 +22,16 @@
       .flipstrip
         .slides
           = #render "home/editorials/creatorflipbook"
+  
+  .info-bar
+    - if @sidenav == "global"
+      This is the global discovery stream. It shows what's being rewarded across Mo&#149;meant.
+    - elsif @sidenav == "following"
+      This is your personal discovery stream, made up of rewards from the people you follow.
     
   %section.lists
-    - if @sidenav == "following" && @rewards.empty? && current_user.subscribed_to.empty?
-      %h3 You are not currently following anyone. Once you start following people, you will see content they have rewarded.
+    - if @sidenav == "following" && current_user.subscribed_to.empty?
+      = render "not_following_anyone"
     %ul.reward-thumbnails
       = render @rewards
     

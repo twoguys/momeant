@@ -1,7 +1,20 @@
 .search
-  %h1 Results for #{params[:query]}
 
-  %ul.users.stories
-    - @results.each do |result|
-      = render result if result.is_a?(Story)
-      = render :partial => "users/user", :locals => {:user => result} if result.is_a?(User)
+  - if params[:query].blank?
+    %h1.enter-a-term
+      %span Please enter a search term
+
+  - else
+    - if @results.empty?
+      %h1
+        %span No results for
+        %strong #{params[:query]}
+    - else
+      %h1
+        %span Results for
+        %strong #{params[:query]}
+
+      %ul.users.stories
+        - @results.each do |result|
+          = render result if result.is_a?(Story)
+          = render :partial => "users/user", :locals => {:user => result} if result.is_a?(User)

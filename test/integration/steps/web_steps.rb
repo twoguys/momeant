@@ -47,11 +47,4 @@ module WebSteps
       instance_variable_set("@#{model_type}", Factory(model_type))
     end
   end
-  
-  def when_i_search_for(term)
-    When "I search for '#{term}'" do
-      fill_in "query", :with => term
-      click_button "search-submit"
-    end
-  end
 end

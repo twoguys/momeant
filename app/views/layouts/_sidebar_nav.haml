@@ -19,15 +19,15 @@
   = link_to("Join / Login", "#signup-modal", :class => "join-login button")
   
 %ul.nav
-  %li.header Rewarded Content
+  %li.header Rewards
   - if current_user
     %li{:class => @sidenav == "following" ? "active" : ""}
-      = link_to("Following Stream", following_path, :class => "following")
+      = link_to("Following", following_path, :class => "following")
   - else
     %li.disabled
       %span.following Following Stream
   %li{:class => @sidenav == "global" ? "active" : ""}
-    = link_to("Global Stream", global_path, :class => "global")
+    = link_to("Global", global_path, :class => "global")
   
   %li.header.break Your Stuff
   - if current_user

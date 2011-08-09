@@ -24,11 +24,6 @@ ActiveRecord::Schema.define(:version => 20110726152523) do
     t.datetime "updated_at"
   end
 
-  create_table "bookmarked_stories_users", :id => false, :force => true do |t|
-    t.integer "user_id"
-    t.integer "story_id"
-  end
-
   create_table "credit_cards", :force => true do |t|
     t.string   "last_four_digits"
     t.string   "braintree_token"
@@ -190,7 +185,6 @@ ActiveRecord::Schema.define(:version => 20110726152523) do
   create_table "users", :force => true do |t|
     t.string   "email"
     t.string   "encrypted_password",           :limit => 128, :default => "",    :null => false
-    t.string   "password_salt",                               :default => "",    :null => false
     t.string   "reset_password_token"
     t.string   "remember_token"
     t.datetime "remember_created_at"
