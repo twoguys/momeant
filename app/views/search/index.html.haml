@@ -14,7 +14,14 @@
         %span Results for
         %strong #{params[:query]}
 
-      %ul.users.stories
+      %ul.reward-thumbnails
         - @results.each do |result|
-          = render result if result.is_a?(Story)
-          = render :partial => "users/user", :locals => {:user => result} if result.is_a?(User)
+          - if result.is_a?(User)
+            = render :partial => "users/user", :locals => {:user => result}
+          - else
+            %li.reward
+              .what
+                .text
+                  = link_to(result.title, result, :class => "title")
+                  .author by #{link_to(result.user.name, user_path(result.user))}
+                .thumbnail= link_to(image_tag(result.thumbnail.url(:medium)), result)

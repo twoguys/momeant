@@ -1,3 +1,10 @@
-%li.user.medium
-  = link_to(image_tag(user.avatar.url(:thumbnail)), user_path(user), :class => "avatar")
-  = link_to(user.name, user_path(user), :class => "name")
+%li.reward.person
+  .avatar-name-occupation
+    = link_to(image_tag(user.avatar.url(:thumbnail)), user_path(user), :class => "avatar")
+    .name= user.name
+    .occupation= user.occupation
+  - if user.tagline.present?
+    .about= truncate(user.tagline, :length => 250)
+  .interests
+    %h3 Interests:
+    %span= user_interest_links(user)
