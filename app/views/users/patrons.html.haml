@@ -2,6 +2,8 @@
   = render "user_info"
   = render "user_tabs"
   
+  .info-bar A list of the folks who have rewarded #{@user.first_name} the most.
+  
   %ul.patrons
     - rank = 1
     - @patrons.each do |patron|

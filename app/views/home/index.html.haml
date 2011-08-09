@@ -27,7 +27,8 @@
     - if @sidenav == "global"
       This is the global discovery stream. It shows what's being rewarded across Mo&#149;meant.
     - elsif @sidenav == "following"
-      This is your personal discovery stream, made up of rewards from the people you follow.
+      %span This is your personal discovery stream, made up of rewards from
+      = link_to("the people you follow.", following_user_path(current_user))
     
   %section.lists
     - if @sidenav == "following" && current_user.subscribed_to.empty?
