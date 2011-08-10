@@ -1,6 +1,7 @@
 class PagesController < ApplicationController
   before_filter :authenticate_user!
   before_filter :find_story
+  skip_before_filter :verify_authenticity_token, :only => [:add_or_update_image]
   
   def create
     if page = Page.create_or_update_page_with(nil, params, @story)

@@ -1,0 +1,14 @@
+- sidebar ||= false
+%ul.user-stats
+  %li.followers
+    %span.icon
+    - if sidebar
+      %span.text.tooltipped-e{:title => "followers"}= user.subscribers.count
+    - else
+      %span.text= pluralize(user.subscribers.count, "follower")
+  %li.rewards
+    %span.icon
+    - if sidebar
+      %span.text.tooltipped-e{:title => "rewards"}= user.lifetime_rewards    
+    - else
+      %span.text= pluralize(user.lifetime_rewards, "reward")

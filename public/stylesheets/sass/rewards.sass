@@ -1,0 +1,275 @@
+ul.reward-thumbnails
+	li.reward
+		width: 230px
+		padding: 10px
+		background: #fff
+		@include boxshadow(5px,0.2,2px,2px)
+		float: left
+		display: inline
+		margin: 0 16px 20px 0
+		.what
+			.thumbnail
+				margin: 5px 0
+				img
+					width: 230px
+			.text
+				color: #aaa
+				.title
+					color: #000
+					text-transform: uppercase
+					font-weight: 900
+					font-size: 13px
+				.author
+					color: #000
+					position: relative
+					top: -2px
+					a
+						color: $link_color
+		.who
+			padding: 8px
+			background: #f4f4f4
+			width: 214px
+			@include boxshadow(3px,0.2,1px,1px)
+			.avatar
+				float: left
+				width: 40px
+				height: 40px
+				margin-right: 5px
+				img
+					width: 40px
+					height: 40px
+			.amount-and-who
+				.reward
+					float: left
+					margin-right: 5px
+					background-color: $blue
+					color: #fff
+					padding: 6px 6px 6px 10px
+					@include rounded
+					.inner
+						padding-right: 18px
+						font-weight: 700
+						background: transparent url(../images/icons/recommendWhite.png) no-repeat 100% 0
+				.author
+					font-size: 1.2em
+					font-weight: 700
+					text-transform: uppercase
+					margin-bottom: 2px
+					font-size: 12px
+					display: block
+					position: relative
+					top: -1px
+			.comment
+				color: #555
+		.others
+			background: #f4f4f4
+			padding: 4px 8px
+			.handle
+				display: block
+				font-weight: 700
+				text-transform: uppercase
+				color: #aeaeae
+				font-size: 11px
+				background: transparent url(../images/dropDownArrow.png) no-repeat 100% 0
+			ul
+				display: none
+				li
+					.who
+						padding: 8px 0 0
+						@include boxshadow(0,0.0,0,0)
+	li.reward.person
+		background: #000
+		color: #ddd
+		.avatar-name-occupation, .interests
+			border-bottom: 1px solid #555
+			padding-bottom: 10px
+		.avatar-name-occupation
+			min-height: 66px
+			.avatar
+				display: block
+				float: left
+				margin-right: 10px
+				border: 3px solid $blue
+				width: 60px
+				height: 60px
+				img
+					width: 60px
+					height: 60px
+			.name
+				font-size: 20px
+				font-weight: 700
+				text-transform: uppercase
+				line-height: 1em
+				margin-bottom: 3px
+			.occupation
+				font-weight: 700
+		.about
+			margin: 10px 0
+			line-height: 1.2em
+		.interests
+			margin: 10px 0
+			h3
+				text-transform: uppercase
+				font-weight: 700
+		.who
+			background: #333
+			.comment
+				color: #fff
+		.others
+			background-color: #555
+			.who
+				background: none
+						
+#fancybox-content
+	background: rgba(0,0,0,0.2)
+	@include rounded(5px)
+#reward-box
+	width: 515px
+	float: left
+	.inner
+		width: 485px
+		height: 382px
+		@include rounded(5px)
+		padding: 15px
+		background-color: #eee
+		.yourself
+			padding-top: 100px
+			h1
+				text-align: center
+		h1
+			font-family: $typewriter
+			font-size: 40px
+			text-transform: uppercase
+			font-weight: 100
+			letter-spacing: -0.7px
+			margin-bottom: 0
+		h2
+			font-size: 16px
+			font-weight: 900
+			color: #000
+			background: none
+			padding: 0
+		h1, h2
+			text-align: center
+		form#reward-form
+			margin-top: 20px
+			.from, .amount, .to
+				float: left
+			.from, .to
+				width: 66px
+				height: 88px
+				background-color: $blue
+				position: relative
+				img.avatar
+					width: 60px
+					height: 60px
+					display: block
+					margin: 3px
+				.rewards
+					position: absolute
+					bottom: -13px
+					margin: 0 auto
+					text-align: center
+					.count
+						display: inline-block
+						color: #fff
+						font-weight: 700
+						padding: 0 17px 0 4px
+						height: 22px
+						background: transparent url(../images/icons/recommendWhite.png) no-repeat 100% 0
+					.text
+						font-size: 8px
+			.amount
+				width: 310px
+				margin: 30px 20px 0
+				p
+					margin-top: 10px
+					span, input
+						float: left
+						font-size: 11px
+					input[type="text"]
+						background: none
+						border: none
+						width: auto
+						font-size: 15px
+						font-weight: 700
+						width: 22px
+						height: 20px
+						padding: 0 3px
+						text-align: center
+		.comment
+			clear: both
+			padding-top: 40px
+			textarea
+				width: 96%
+				height: 80px
+			input[type="submit"]
+				background-color: #000
+				color: #fff
+				display: block
+				margin: 10px auto
+				width: 200px
+				padding: 8px 5px 7px
+#reward-box.loading .inner
+	background: #eee url(../images/spinner.gif) no-repeat 50% 50%
+	h1, h2, form
+		display: none
+#reward-box.thanks .inner
+	padding: 0
+	width: 515px
+#reward-thank-you
+	.header
+		background: $blue
+		.header-inner
+			background: transparent url(../images/icons/recommendWhite.png) no-repeat 10px 13px
+			padding: 10px 10px 10px 30px
+			color: #fff
+			font-family: $typewriter
+			font-weight: 100
+			font-size: 15px
+			.name
+				font-weight: 700
+				text-transform: uppercase
+				font-family: $block
+	.rest
+		padding: 20px
+		.message
+			padding-bottom: 30px
+			border-bottom: 1px solid #ccc
+			min-height: 70px
+			.avatar
+				display: block
+				float: left
+				border: 3px solid #000
+				margin: 0 15px 10px 0
+				img
+					width: 60px
+					height: 60px
+			.thanks
+				font-family: $typewriter
+				font-size: 30px
+				font-weight: 100
+				text-transform: uppercase
+			.text
+				font-size: 11px
+				padding-top: 5px
+		.share
+			border-top: 1px solid #fff
+			padding-top: 30px
+
+a#load-more
+	display: block
+	clear: both
+	width: 200px
+	padding: 10px 0
+	background: $blue
+	color: $lightblue
+	text-transform: uppercase
+	font-size: 16px
+	font-weight: 700
+	margin: 20px auto 0
+	@include rounded
+	@include gradient
+	text-align: center
+#hidden-reward-appender
+	display: none

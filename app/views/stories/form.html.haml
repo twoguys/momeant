@@ -14,9 +14,9 @@
     #story-saved Your story will be automatically saved as you edit it
     
     .finished-links
-      = link_to "Preview", preview_story_path(@story), :id => "preview-link"
-      = link_to "Publish", publish_story_path(@story), :id => "publish-link", :method => :post unless @story.published?
-      = link_to "Delete", story_path(@story), :id => "delete-link", :method => :delete, :confirm => "Are you sure you want to delete this story?"
+      = #link_to "Preview", preview_story_path(@story), :id => "preview-link"
+      = #link_to "Publish", publish_story_path(@story), :id => "publish-link", :method => :post unless @story.published?
+      = #link_to "Delete", story_path(@story), :id => "delete-link", :method => :delete, :confirm => "Are you sure you want to delete this story?"
   
     - if !@story.valid?
       .banner
@@ -39,16 +39,26 @@
                 %input{:type => "file", :name => "story[thumbnail]"}
                 .loader
             .example Preferably 630 pixels wide and 420 pixels tall. We use this to represent your story throughout the site (in various sizes).
+
       %li
         .title-input
           = label_tag :story_title, "Title"
           = text_field_tag :story_title, @story.title, :class => "monitor-story-typing", :update => "title"
           .example What's in a name? Give your story one! (ie. Around the World in 80 Days)
+
       %li
         .excerpt-input
           = label_tag :story_synopsis, "Synopsis"
           = text_area_tag :story_synopsis, @story.synopsis, :class => "monitor-story-typing", :update => "synopsis"
           .example Give a teaser or brief description of your story. Make sure it stands out from the crowd, and that viewers know what to expect!
+      
+      %li
+        .gallery
+          = label_tag :story_gallery, "Add to Gallery?"
+          = select(:story, :gallery_id, galleries_list(current_user), {:include_blank => true})
+          .example You can organize your content into "galleries" of similar work.
+          - content_for :modals do
+            = render "gallery_creator"
           
       %li.metadata
         .tags
@@ -62,16 +72,6 @@
           = label_tag :story_thankyou, "Thank You Note"
           = text_area_tag :story_thankyou, @story.thankyou, :class => "monitor-story-typing", :update => "thankyou"
           .example Leave a personalized note that your viewers will see at the end of your story.
-
-      %li.topics
-        %label Categories
-        .example
-          Select one or more categories that describe your story.
-          This makes it easier for viewers browsing the category hubs to find and buy your work!
-        %ul
-          - parent_topics = @topics.reject {|topic| topic.topic_id != nil}
-          - parent_topics.each do |topic|
-            = topic_checkbox(topic, @story, @topics)
           
       %li#page-previews
         = hidden_field_tag :story_thumbnail_page, @story.thumbnail_page ? @story.thumbnail_page : 1

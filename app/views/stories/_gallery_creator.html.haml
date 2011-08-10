@@ -1,0 +1,16 @@
+#gallery-creator
+  .overlay
+  .inner
+    %h1 Create a Gallery
+    = form_for :gallery, :url => user_galleries_path(current_user), :html => {:id => "gallery-form"} do |form|
+      %fieldset
+        %ul
+          %li
+            = form.label :name
+            = form.text_field :name
+          %li
+            = form.label :description
+            = form.text_area :description
+          %li.submit
+            = form.submit "Create Gallery"
+            = link_to("Cancel", "#", :id => "cancel-gallery-creation", :class => "button")

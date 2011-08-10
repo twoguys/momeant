@@ -1,6 +1,6 @@
 // Basic colors for site
 
-$background_color: #f4f4f4
+$background_color: #e0e0e0
 $text_color: #252525
 $black: #000000
 $blue: #00aeef
@@ -14,6 +14,7 @@ $yellow: #fff10f
 $purple: #985faf
 $lightpurple: #F5DEFF
 $lightblue: #C0EEFF
+$yellow: #ffbf03
 $link_color: $blue
 
 $category_color: #d35151
@@ -124,9 +125,11 @@ body > #wrap
 	height: auto
 	min-height: 100%
 
+body
+	min-width: 645px
+
 header .insides, #mid .insides, #footer .insides
-	width: 950px
-	padding: 0px 0 0
+	padding: 0
 	margin: 0 auto
 	position: relative
 
@@ -149,9 +152,16 @@ body.fullscreen
 		top: 0
 		min-height: 100%
 		padding: 0
-		.insides
-			margin-top: 0
+		#center
 			height: 100%
+			border: none
+			float: none
+			.center-insides
+				margin-top: 0
+				height: 100%
+				padding: 0
+		#left-sidebar, #right-sidebar
+			display: none
 	#footer
 		display: none
 	.fullscreen-hidden
@@ -159,11 +169,24 @@ body.fullscreen
 
 #main
 	width: 100%
-	padding-bottom: 50px
+	padding: 42px 0 50px
+	#header
+		position: absolute
+		top: 0
+		width: 100%
 
 #mid
-	min-height: 400px
-	padding: 10px 0
+	.column
+		position: relative
+		float: left	
+	#center
+		width: 100%
+		min-height: 550px
+		background-color: #f4f4f4
+		border: 1px solid #ccc
+		border-top: none
+		.center-insides
+			padding: 20px
 
 #footer
 	position: relative
@@ -204,6 +227,7 @@ body.fullscreen
 				background-color: $lightblue
 
 @import "toolbar"
+@import "sidenavs"
 @import "flash"
 @import "errors"
 @import "forms"
@@ -223,9 +247,20 @@ body.fullscreen
 @import "about"
 @import "faq"
 @import "analytics"
+@import "rewards"
 
 .hidden
 	display: none
+
+.info-bar
+	background-color: $blue
+	color: #fff
+	padding: 7px 10px
+	margin-bottom: 20px
+	a
+		color: #fff
+		font-style: italic
+		text-decoration: underline
 
 .tabs
 	height: 29px

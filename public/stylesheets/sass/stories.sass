@@ -388,10 +388,29 @@ ul.stories
 	li.story
 		float: left
 		background-color: white
+		width: 230px
+		margin: 0 20px 20px 0
+		padding: 10px
 		-webkit-box-shadow: 3px 3px 5px #BBBBBB
 		-moz-box-shadow: 3px 3px 5px #BBBBBB
 		box-shadow: 3px 3px 5px #BBBBBB
 		position: relative
+		@include boxshadow(5px,0.2,2px,2px)
+		.title
+			font-weight: 700
+			text-transform: uppercase
+			color: #000
+			display: inline-block
+			width: 195px
+		.byline
+			color: #000
+			font-size: 11px
+		a.thumbnail
+			display: block
+			width: 230px
+			margin-top: 8px
+			img
+				width: 230px
 		
 	li.medium.story
 		margin-bottom: 25px
@@ -444,12 +463,6 @@ ul.stories
 				.name, .occupation
 					margin-left: 70px
 					color: $text_color
-
-	li.story:nth-child(3n+3)
-		margin-right: 0px
-
-	.title, .author, .excerpt
-		margin: 0 10px
 
 	.title a
 		color: black
@@ -651,98 +664,3 @@ ul.stories
 			span
 				color: #fff !important
 				text-shadow: none
-
-#reward-box
-	width: 430px
-	float: left
-	.tab
-		font-family: $block
-		font-weight: 900
-		text-transform: uppercase
-		background: transparent url(../images/tab213x29.png) no-repeat 0 0
-		width: 173px
-		padding: 0 20px
-		vertical-align: middle
-		text-align: center
-		.tab-inner
-			line-height: 28px
-			height: 28px
-			background: transparent url(../images/coinBlack18.png) no-repeat 5px 50%
-			padding-left: 10px
-	.inner
-		width: 410px
-		height: 281px
-		padding: 10px
-		background-color: #eee
-		.amount
-			p
-				float: left
-				width: 49%
-				text-align: center
-				font-size: 0.9em
-				line-height: 1.3em
-				margin: 22px 0 0 1%
-			ul.coins
-				float: right
-				margin-top: 10px
-				width: 50%
-				li
-					float: left
-					clear: none
-					width: 30%
-					height: 63px
-					text-align: center
-					cursor: pointer
-					input
-						display: none
-				li.bronze
-					background: transparent url(../images/coinBronze.png) no-repeat 0 5px
-					margin-left: 14px
-				li.silver
-					background: transparent url(../images/coinSilver.png) no-repeat 0 5px
-				li.gold
-					background: transparent url(../images/coinGold.png) no-repeat 0 5px
-				li:hover, li.selected
-					background-position: 0 -53px
-		.comment
-			textarea
-				width: 96%
-				height: 80px
-			p
-				font-size: 11px
-				line-height: 16px
-				text-align: center
-				margin: 7px 0 12px
-			input[type="submit"]
-				background-color: #ffc92a
-				color: #fff
-				display: block
-				margin: 10px auto
-				width: 100px
-				padding: 6px 5px 6px
-#reward-box.loading .inner
-	background: #eee url(../images/spinner.gif) no-repeat 50% 50%
-	form
-		display: none
-#you-rewarded
-	.amount
-		width: 116px
-		height: 116px
-		margin: 25px auto 23px
-	.amount.bronze
-		background: transparent url(../images/coinBronzeLg.png) no-repeat 0 0
-	.amount.silver
-		background: transparent url(../images/coinSilverLg.png) no-repeat 0 0
-	.amount.gold
-		background: transparent url(../images/coinGoldLg.png) no-repeat 0 0
-	.comment
-		padding: 0 20px
-		text-align: center
-		font-family: $typewriter
-		font-size: 16px
-		font-weight: 100
-		line-height: 19px
-	.note
-		text-align: center
-		margin-top: 15px
-		font-size: 0.9em

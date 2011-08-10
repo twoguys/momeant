@@ -5,13 +5,13 @@ class SubscriptionsController < ApplicationController
   
   def create
     Subscription.create(:subscriber_id => current_user.id, :user_id => @user.id)
-    redirect_to user_path(@user), :notice => "You are now subscribed to #{@user.name}."
+    redirect_to user_path(@user), :notice => "You are now following #{@user.name}."
   end
   
   def destroy
     Rails.logger.info "HIHIHIHIHI"
     Subscription.where(:subscriber_id => current_user.id, :user_id => @user.id).destroy_all
-    redirect_to user_path(@user), :notice => "You are no longer subscribed to #{@user.name}."
+    redirect_to user_path(@user), :notice => "You are no longer following #{@user.name}."
   end
   
   private

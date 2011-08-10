@@ -60,9 +60,13 @@ module StoriesHelper
             checkbox += label_tag "topics_#{topic.id}", child.name
           end
         end
-        html
+        html.html_safe
       end
     end
+  end
+  
+  def galleries_list(user)
+    user.galleries.collect {|g| [g.name, g.id]} + [["Create new gallery...","-1"]]
   end
   
 end

@@ -17,7 +17,7 @@
 		cursor: help
 
 	.data
-		width: 745px
+		width: 100%
 		float: left
 		header
 			border-bottom: 1px dashed #999
@@ -38,7 +38,7 @@
 			height: 65px
 			.views, .rewards, .conversion, .money
 				float: left
-				width: 187px
+				width: 20%
 				font-size: 15px
 				margin-top: 5px
 			.views, .rewards
@@ -47,7 +47,7 @@
 				color: $blue
 				background: transparent url(../images/icons/viewsBlue.png) no-repeat 0 50%
 			.rewards
-				width: 250px
+				width: 35%
 				color: $red
 				background: transparent url(../images/icons/rewardRed.png) no-repeat 0 50%
 			.conversion
@@ -63,7 +63,7 @@
 			@include rounded(3px)
 			margin: 20px 0
 		#line-chart
-			width: 725px
+			width: 100%
 			height: 200px
 		#story-list, #patron-list
 			margin-bottom: 60px
@@ -71,21 +71,18 @@
 				.rewards, .views, .money
 					line-height: 69px
 					vertical-align: middle
-					padding-left: 20px
 					font-size: 13px
 					font-weight: 700
-					margin-left: 20px
+					width: 17%
+					padding-left: 20px
 				.rewards
-					width: 105px
 					color: $red
 					background: transparent url(../images/icons/rewardRed.png) no-repeat 0 50%
 				.views
-					width: 100px
 					margin-left: 4px
 					color: $blue
 					background: transparent url(../images/icons/viewsBlue.png) no-repeat 0 50%
 				.money
-					width: 90px
 					margin: 0
 					padding-left: 5px
 					color: $green
@@ -98,15 +95,10 @@
 					float: left
 					text-transform: uppercase
 					color: #aaa
-				a.date
-					margin-left: 118px
-					width: 267px
-				a.rewards
-					width: 140px
-				a.views
-					width: 120px
-				a.money
-					width: 95px
+					width: 20%
+				.date
+					width: 35%
+					margin-left: 110px
 			ul#stories
 				li
 					width: 100%
@@ -121,8 +113,8 @@
 						margin: 5px 0 0
 						padding: 0
 					.title-and-date
-						width: 265px
 						padding: 5px
+						width: 37%
 						h2
 							color: $text_color
 							background: none
@@ -130,7 +122,6 @@
 							text-transform: none
 							margin: 0
 							padding: 10px 10px 5px
-							width: 245px
 							overflow: hidden
 							text-overflow: ellipsis
 							white-space: nowrap
@@ -227,43 +218,43 @@
 					a
 						position: relative
 
-	.sidebar
-		width: 155px
-		float: right
-		.box
-			padding: 10px
-			background-color: #2a2a2a
-			@include rounded(3px)
-			margin-bottom: 20px
-			color: $background_color
-			h3
-				font-size: 13px
-				font-weight: 900
-				text-transform: uppercase
-				text-align: center
-				border-bottom: 1px dashed #555
-				padding-bottom: 5px
-				margin-bottom: 5px
-			h4
-				text-transform: uppercase
-				text-align: center
-				font-weight: 500
-				font-size: 11px
-			.sparkline
-				margin-bottom: 10px
-		.current-balance
-			.amount
-				font-family: $typewriter
-				font-size: 24px
-				font-weight: 100
-				padding: 20px 0
-				text-align: center
-			a
-				display: block
-				width: 115px
-				font-size: 13px
-				text-align: center
-				margin-top: 10px
+#analytics-sidebar
+	width: 165px
+	float: right
+	.box
+		padding: 10px
+		background-color: #2a2a2a
+		@include rounded(3px)
+		margin-bottom: 20px
+		color: $background_color
+		h3
+			font-size: 13px
+			font-weight: 900
+			text-transform: uppercase
+			text-align: center
+			border-bottom: 1px dashed #555
+			padding-bottom: 5px
+			margin-bottom: 5px
+		h4
+			text-transform: uppercase
+			text-align: center
+			font-weight: 500
+			font-size: 11px
+		.sparkline
+			margin-bottom: 10px
+	.current-balance
+		.amount
+			font-family: $typewriter
+			font-size: 24px
+			font-weight: 100
+			padding: 20px 0
+			text-align: center
+		a
+			display: block
+			width: 125px
+			font-size: 13px
+			text-align: center
+			margin-top: 10px
 
 .jqplot-highlighter-tooltip
 	background: rgba(0,0,0,0.9) !important

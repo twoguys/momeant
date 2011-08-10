@@ -26,6 +26,7 @@ var story_page_editor = function() {
 		$('#pane .expander-tab').click(pages_editor.open_or_close_pane);
 
 		setup_page_type_chooser();
+		setup_gallery_creation();
 		this.setup_preview_thumbnail_switching($('#page-previews li.page a.choose-thumbnail'));
 		this.setup_preview_clicking($('#page-previews li.page'));
 		setup_page_adding();
@@ -44,6 +45,40 @@ var story_page_editor = function() {
 			pages_editor.choose_page_theme(page_type);
 		});
 		$('#page-type-chooser .dark, #page-type-chooser .close').click(pages_editor.hide_page_type_chooser);
+	};
+	
+	var setup_gallery_creation = function() {
+		$('#gallery-creator .overlay').click(function() {
+			$('#gallery-creator').hide();
+		});
+		$('#story_gallery_id').change(function() {
+			var $select = $(this);
+			// creating a new gallery
+			if ($select.val() == '-1') {
+				$('#gallery-creator').show();
+				$('#cancel-gallery-creation').click(function() {
+					$('#gallery-creator').hide();
+				});
+				$('#gallery-form').submit(function(event) {
+					event.preventDefault(); 
+
+					var $form = $(this);
+					var name = $form.find('#gallery_name').val();
+					var description = $form.find("#gallery_description").val();
+					var url = $form.attr('action');
+
+					$('#gallery-creator').addClass('loading');
+					$.post(url, { "gallery[name]":name, "gallery[description]":description }, function(data) {
+						if (data.success) {
+							$select.find('option:eq(0)').after('<option value="' + data.id + '">' + name + '</option>');
+							$select.find('option:eq(1)').attr('selected','selected');
+							auto_saver.update_gallery(data.id);
+							$('#gallery-creator').removeClass('loading').hide();
+						}
+					});
+				});
+			}
+		});
 	};
 	
 	this.setup_preview_clicking = function($elements) {
@@ -338,6 +373,7 @@ var story_auto_saver = function() {
 		this.monitor_details_typing();
 		this.monitor_topic_clicking();
 		this.monitor_existing_pages();
+		this.monitor_gallery_choosing();
 	};
 	
 	this.monitor_thumbnail_choosing = function() {		
@@ -369,6 +405,30 @@ var story_auto_saver = function() {
 			return false;
 		});
 	};
+	
+	this.monitor_gallery_choosing = function() {
+		$('#story_gallery_id').change(function() {
+			var gallery_id = parseInt($(this).val());
+			auto_saver.update_gallery(gallery_id);
+		});
+	};
+	
+	this.update_gallery = function(gallery_id) {
+		// make sure they're choosing an existing gallery
+		if (gallery_id >= 0) {
+			auto_saver.show_metadata_spinner();
+			$.ajax({
+				type: 'PUT',
+				url: '/stories/' + pages_editor.story_id + '/autosave',
+				data: {
+					'story[gallery_id]': gallery_id
+				},
+				success: function(data) {
+					auto_saver.hide_metadata_spinner();
+				}
+			});
+		}
+	}
 	
 	this.show_metadata_spinner = function() {
 		auto_saver.metadata_spinner_count += 1;

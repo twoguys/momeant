@@ -3,70 +3,60 @@
 
 .story-viewer
 
-  #number-of-pages.hidden= @story.pages.count + 1
+  #number-of-pages.hidden= @story.pages.count
   
   %ul#pages
-    - @story.pages.each do |page|
+    - pages = @story.pages
+    - pages = @story.pages[0,1] if !current_user
+    - pages.each do |page|
       - @page = page
       %li{:id => "page_#{page.number}", :class => page.number == 1 ? "#{page.css_class}" : "#{page.css_class} hidden"}
         = render "/stories/page_themes/#{page.partial_name}"
-    %li.page.last{:id => "page_#{@story.pages.count + 1}"}
-      .inner
-        - unless @story.thankyou.blank?
-          .thank-you
-            %h3 A quick note from the creator:
-            %p= @story.thankyou
-        = render :partial => "reward_modal", :locals => {:story => @story}
-        .stories
-          .tabs
-            = link_to("you might like", "you-might-like", :class => "active first")
-            = link_to("by this creator", "by-this-creator", :class => "last")
-          %ul.stories.you-might-like.tabcontent
-            - @story.similar_stories_different_creator.each do |story|
-              %li
-                %a.thumbnail.petite{:href => preview_story_path(story)}
-                  = image_tag(story.thumbnail.url(:petite))
-                .info
-                  = link_to(story.title, preview_story_path(story), :class => "title")
-                  .author by #{story.user.name}
-          %ul.stories.by-this-creator.tabcontent.hidden
-            - @story.user.created_stories.published.where("id != #{@story.id}").each do |story|
-              %li
-                %a.thumbnail.petite{:href => preview_story_path(story)}
-                  = image_tag(story.thumbnail.url(:petite))
-                .info
-                  = link_to(story.title, preview_story_path(story), :class => "title")
-                  .author by #{story.user.name}
   
   #previous-page
     .button{:title => "Previous page"} previous page
   #next-page
     .button{:title => "Next page"} next page
   
-  = link_to("back to preview", preview_story_path(@story), :id => "back-to-preview")
+  = link_to("Home", root_path, :id => "back-to-home", :class => "tooltipped", :title => "Home")
+  = link_to("Reward", "#reward-box", :id => "activity-flag", :class => "reward tooltipped", :title => "Reward")
   
-  #previewer.open
-    .handle
-    .preview-inner
-      .info
-        .title= @story.title
-        .author by #{link_to(@story.user.name, user_path(@story.user))}
-        .excerpt= truncate(@story.synopsis, :length => 250)
-        .actions
-          = views_link(@story)
-          = rewards_link(@story, true)
-          = #render "stories/reward_modal"
-      .slider
-        .scrollbar-me
-          .viewport
-            .overview
-              %ul.pages
-                - @story.pages.each do |page|
-                  - @page = page
-                  %li.page{:class => page.css_class, "page-number" => page.number, :id => "page_#{page.number}"}
-                    .inner= render :partial => "/stories/page_themes/#{page.partial_name}", :locals => {:preview => true, :size => "medium"}
-                %li.page.last{"page-number" => @story.pages.count + 1} ...
-          .scrollbar
-            .track
-              .thumb
-                .end
+  #activity
+    = link_to("Hide", "#", :id => "close-activity")
+    .scroller
+      %ul.list
+        - if current_user && !@story.owner?(current_user)
+          %li.reward-box
+            = link_to(image_tag(current_user.avatar.url(:thumbnail)), user_path(current_user), :class => "avatar")
+            .the-rest
+              Rewarding action will go here
+        - if @story.rewards.empty?
+          %li.empty Be the first to reward this content!
+        - @story.rewards.public.each do |curation|
+          %li
+            = link_to(image_tag(curation.user.avatar.url(:thumbnail)), user_path(curation.user), :class => "avatar")
+            .the-rest
+              .who-when
+                .icon{:class => curation.class.to_s.downcase}
+                  = curation.amount if curation.is_a?(Reward)
+                .author= link_to(curation.user.name, user_path(curation.user))
+                .date= curation.created_at.strftime("%m/%d/%y")
+              - if curation.comment.present?
+                .comment= curation.comment
+  
+  #metadata
+    .info
+      .title= @story.title
+      .author by #{link_to(@story.user.name, user_path(@story.user))}
+      .excerpt
+        .full= @story.synopsis
+    .pages
+      - 1.upto @story.pages.count do |page|
+        = link_to(page, "#", :class => page == 1 ? "selected" : "", :page => page)
+        
+- if !current_user
+  - content_for :javascript do
+    :javascript
+      prevent_closing_of_signup_modal = true;
+      $('#join-login-modal .close').hide();
+      $('#join-login-modal').show();

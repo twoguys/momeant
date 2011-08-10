@@ -1,15 +1,12 @@
 class RewardsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :find_story
   
   def create
-    reward = current_user.reward(@story, params[:reward][:amount], params[:reward][:comment])
-    render :partial => "stories/you_rewarded", :locals => {:reward => reward}
-  end
-  
-  private
-
-  def find_story
-    @story = Story.find(params[:story_id])
+    @user = User.find_by_id(params[:user_id])
+    return if @user.nil?
+    @story = Story.find_by_id(params[:story_id])
+    
+    @reward = current_user.reward(params[:user_id], params[:reward][:amount], params[:reward][:comment], params[:reward][:story_id])
+    render :partial => "users/thank_you"
   end
 end

@@ -2,7 +2,17 @@
   = javascript_include_tag "flipbook"
 
 .homepage
-  = render "home/editorials/openingUp"
+  - if @sidenav == "global"
+    .tagline
+      %h1
+        Reward and
+        %br
+        be Rewarded.
+      %h3
+        %span The Web is full of free content. We get that, we love it.
+        %em But we believe creators deserve to be rewarded for their work.
+        %span If you feel as we do, participate. Share your content. Find other cool content. Reward and be Rewarded.
+        = link_to("Read more...", about_path)
 
   %section#flipbook
     .flipbook
@@ -12,25 +22,19 @@
       .flipstrip
         .slides
           = #render "home/editorials/creatorflipbook"
+  
+  .info-bar
+    - if @sidenav == "global"
+      This is the global discovery stream. It shows what's being rewarded across Mo&#149;meant.
+    - elsif @sidenav == "following"
+      %span This is your personal discovery stream, made up of rewards from
+      = link_to("the people you follow.", following_user_path(current_user))
     
   %section.lists
-    .home-tabs
-      = link_to_active("Most Rewarded Stories", root_path)
-      = link_to_active("Latest Stories", recent_stories_path)
-      .pagination
-        = paginate @most_rewarded_stories if @most_rewarded_stories
-        = paginate @recent_stories if @recent_stories
-    - if @most_rewarded_stories
-      %ul.most-rewarded.stories= render @most_rewarded_stories
-    - elsif @recent_stories
-      %ul.recent.stories= render @recent_stories
-    .home-tabs
-      .pagination
-        = paginate @most_rewarded_stories if @most_rewarded_stories
-        = paginate @top_curators if @top_curators
-        = paginate @recent_stories if @recent_stories
-  
-  - if @adverts.length > 0
-    %section.adverts
-      = render @adverts
-      .clear
+    - if @sidenav == "following" && current_user.subscribed_to.empty?
+      = render "not_following_anyone"
+    %ul.reward-thumbnails
+      = render @rewards
+    
+    = link_to("load more", @load_more_url, :id => "load-more") unless @rewards.empty?
+    #hidden-reward-appender

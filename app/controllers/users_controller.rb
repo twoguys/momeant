@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!, :except => [:show, :billing_updates, :top_curators]
   before_filter :get_adverts, :only => :top_curators
-  before_filter :set_nav_active, :only => [:show, :edit, :bookmarks, :analytics]
+  before_filter :find_user, :only => [:show, :momeants, :bio, :rewarded, :patrons, :bookmarks, :following]
   skip_before_filter :verify_authenticity_token, :only => :billing_updates
   skip_before_filter :release_lockdown, :only => :billing_updates
   
@@ -11,37 +11,50 @@ class UsersController < ApplicationController
   end
   
   def show
-    @user = User.find(params[:id])
-    return unless @user
-    if @user.is_a?(Creator)
-      @stories = @user.created_stories
-      @stories = @stories.published unless @user == current_user
-    else
-      @stories = @user.rewarded_stories
-    end  
-    @stories = @stories.newest_first
   end
   
   def edit
     @user = current_user
+    @nav = "home"
+    @sidenav = "profile"
   end
   
   def update
     @user = current_user
     if @user.update_attributes(params[:user])
-      redirect_to edit_user_path(@user), :notice => "Info updated!"
+      redirect_to bio_user_path(@user), :notice => "Info updated!"
     else
+      @nav = "home"
+      @sidenav = "profile"
       render 'edit'
     end
   end
   
   def bookmarks
-    @user = User.find_by_id(params[:user_id])
+    @sidenav = "bookmarks"
+  end
+  
+  def momeants
+    render "show"
+  end
+  
+  def rewarded
+    @rewards = @user.given_rewards
+  end
+  
+  def patrons
+    @patrons = @user.patrons[0,10]
+  end
+  
+  def following
+    @users = @user.subscribed_to
   end
   
   def analytics
     @user = current_user
     @patrons = @user.rewards.group_by {|r| r.user_id}
+    @sidenav = "analytics"
+    @nav = "home"
   end
   
   def billing_updates
@@ -54,7 +67,12 @@ class UsersController < ApplicationController
     head :ok
   end
   
-  def set_nav_active
-    @nav = "profile" if @user == current_user
-  end
+  private
+    
+    def find_user
+      @user = User.find(params[:id])
+      @page_title = @user.name if @user
+      @nav = "home"
+      @sidenav = "profile" if current_user.present? && @user == current_user
+    end
 end

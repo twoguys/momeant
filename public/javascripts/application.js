@@ -29,6 +29,7 @@ function tag_deletions() {
 	});
 }
 
+var prevent_closing_of_signup_modal = false;
 function setup_signup_modal() {
 	$('#join, a[href="#signup-modal"]').click(function() {
 		var $modal = $('#join-login-modal');
@@ -36,7 +37,9 @@ function setup_signup_modal() {
 		return false;
 	});
 	$('#join-login-modal .cover, #join-login-modal .close').click(function() {
-		$('#join-login-modal').stop().fadeOut('fast');
+		if (!prevent_closing_of_signup_modal) {
+			$('#join-login-modal').stop().fadeOut('fast');
+		}
 	});
 	$(document).keyup(function(e) {
 	  if (e.keyCode == 27) { $('#join-login-modal').stop().fadeOut('fast'); } // escape
@@ -45,24 +48,19 @@ function setup_signup_modal() {
 
 function setup_rewarding() {
 	$("a.reward:not(.disabled), a.rewarded:not(.disabled)").fancybox({scrolling: 'no'});
-	$('#reward-form ul.coins li').click(function() {
-		var $coin = $(this);
-		$coin.addClass('selected').find('input').attr('checked', true);
-		$coin.siblings().removeClass('selected').find('input').attr('checked', false);
-	});
 	$('#reward-form').submit(function(event) {
 		event.preventDefault(); 
 
 		var $form = $(this);
-		var amount = $form.find('input:radio[name="reward[amount]"]:checked').val();
+		var amount = $form.find('#reward_amount').val();
 		var comment = $form.find("#reward_comment").val();
+		var story_id = $form.find("#reward_story_id").val();
 		var url = $form.attr('action');
 
 		$('#reward-box').addClass('loading');
-		$.post(url, { "reward[amount]":amount, "reward[comment]":comment }, function(data) {
+		$.post(url, { "reward[amount]":amount, "reward[comment]":comment, "reward[story_id]":story_id }, function(data) {
 			$("#reward-box .inner").html(data);
-			$('#reward-box').removeClass('loading');
-			$('.story-preview .actions a.reward').removeClass('reward').addClass('rewarded').attr('title','You rewarded this story.');
+			$('#reward-box').removeClass('loading').addClass('thanks');
 		});
 	});
 }
@@ -133,6 +131,19 @@ function handle_signup_login_form_validation() {
 	});
 }
 
+function handle_reward_thumbnail_interactivity() {
+	$('ul.reward-thumbnails li.reward .others a.handle').click(function() {
+		$(this).siblings('ul').toggle();
+		$('.reward-thumbnails').masonry();
+		return false;
+	});
+}
+
+function setup_reward_and_story_columns() {
+	var $container = $('ul.reward-thumbnails');
+	$container.masonry();
+}
+
 $(document).ready(function() {
 	setup_tooltips();
 	setup_tab_switching();
@@ -144,6 +155,18 @@ $(document).ready(function() {
 	setup_recommendation_tabs();
 	setup_thumbnail_flipping();
 	handle_signup_login_form_validation();
+	// try {
+	// 	Typekit.load({
+	// 		active: function() {setup_reward_and_story_columns();}
+	// 	});
+	// } catch(e) {}
+	// for some reason, calling masonry after Typekit loads gets it close, but not perfect...
+	// we have to run this again (after a small delay) to get masonry to make the final touches on alignment.
+	setTimeout(setup_reward_and_story_columns, 2000);
+	
+	// reward lists
+	handle_reward_thumbnail_interactivity();
+	
 	$("a.disabled").click(function() {return false;})
 	
 	$.fn.colorPicker.defaultColors = ['000', '666', '999', 'ccc', 'fff', 'f42652', 'f7d3db', 'ffa801', 'ffebc5', 'fff10f', 'fffcd2', '1ea337', 'c8f2d0', '00aeef', 'c0eeff', '985faf', 'f5deff', '7a5116', 'e1d5c3'];

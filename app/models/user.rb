@@ -5,9 +5,14 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, #:confirmable,
        :recoverable, :rememberable, :trackable, :validatable
        
-   searchable do
-     text :name, :boost => 2.0
-   end
+  searchable do
+    text :name, :boost => 2.0
+    text :interests do
+      interests.map { |interest| interest.name }
+    end
+  end
+  
+  acts_as_taggable_on :interests
        
   # ASSOCIATIONS
   
@@ -29,6 +34,8 @@ class User < ActiveRecord::Base
   has_many :inverse_subscriptions, :class_name => "Subscription", :foreign_key => :subscriber_id
   has_many :subscribers, :through => :subscriptions
   has_many :subscribed_to, :through => :inverse_subscriptions, :source => :user
+  
+  has_many :galleries
   
   has_many :credit_cards
   
@@ -84,7 +91,7 @@ class User < ActiveRecord::Base
   
   # Setup accessible (or protected) attributes for your model
   attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :remember_me, :tos_accepted,
-    :avatar, :credits, :stored_in_braintree, :invitation_code, :tagline, :occupation, :paypal_email
+    :avatar, :credits, :stored_in_braintree, :invitation_code, :tagline, :occupation, :paypal_email, :interest_list
   
   def extra_validations
     safe = true
@@ -111,6 +118,12 @@ class User < ActiveRecord::Base
     "#{self.first_name} #{self.last_name}"
   end
   
+  def profile_complete?
+    !self.avatar.url.include?("missing") &&
+    self.occupation.present? &&
+    self.tagline.present?
+  end
+  
   def can_view_stories?
     self.trial? || self.active_subscription?
   end
@@ -119,15 +132,22 @@ class User < ActiveRecord::Base
     Reward.where(:user_id => self.id, :story_id => story.id).present?
   end
   
-  def reward(story, amount, comment)
-    return if amount.nil?
+  def reward(user_id, amount, comment, story_id)
+    user = User.find_by_id(user_id)
+    return if amount.nil? || user.nil?
     amount = amount.to_i
     if can_afford?(amount)
-      options = {:amount => amount, :user_id => self.id, :recipient_id => story.user_id, :story_id => story.id, :comment => comment}
-      options.merge!({:given_during_trial => true}) if self.trial?
+      options = {:amount => amount, :user_id => self.id, :recipient_id => user_id, :comment => comment}
+
+      if story_id
+        options.merge!({:story_id => story_id})
+        story = Story.find_by_id(story_id)
+        story.increment!(:reward_count, amount) if story
+      end
+
       reward = Reward.create!(options)
-      story.increment!(:reward_count, amount)
       self.decrement!(:coins, amount)
+      user.increment!(:lifetime_rewards, amount)
       return reward
     end
   end

@@ -1,8 +1,9 @@
 class StoriesController < ApplicationController
-  before_filter :authenticate_user!, :except => [:index, :recent, :preview, :tagged_with]
-  load_and_authorize_resource :except => [:index, :recent, :preview, :tagged_with]
+  before_filter :authenticate_user!, :except => [:index, :recent, :show, :tagged_with]
+  load_and_authorize_resource :except => [:index, :recent, :show, :tagged_with]
   before_filter :get_topics, :only => [:new, :edit]
   before_filter :get_adverts, :only => :recent
+  skip_before_filter :verify_authenticity_token, :only => [:update_thumbnail]
   
   def index
     redirect_to root_path
@@ -25,6 +26,13 @@ class StoriesController < ApplicationController
     return if params[:tag].blank?
     
     @stories = Story.published.tagged_with(params[:tag])
+  end
+  
+  def show
+    @story = Story.find_by_id(params[:id])
+    View.record(@story, current_user) if current_user && current_user != @story.user
+    @fullscreen = true
+    @user = @story.user
   end
   
   def new
@@ -68,6 +76,7 @@ class StoriesController < ApplicationController
     
     @story.autosaving = true
     @story.thumbnail = params[:image]
+    @story.determine_thumbnail_colors
     if @story.save
       render :json => {:result => "success", :thumbnail => @story.thumbnail.url(:petite)}
     else
@@ -77,7 +86,7 @@ class StoriesController < ApplicationController
   
   def destroy
     @story.destroy
-    redirect_to user_path(current_user), :notice => "Your story was deleted."
+    redirect_to user_path(current_user), :notice => "Your content was deleted."
   end
   
   def autosave
@@ -202,11 +211,6 @@ class StoriesController < ApplicationController
     else  
       render :json => {:result => "failure", :message => "No topic id sent"}
     end
-  end
-  
-  def show
-    View.record(@story, current_user) unless current_user == @story.user
-    @fullscreen = true
   end
   
   def render_page_form

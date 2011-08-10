@@ -41,7 +41,6 @@ Repo::Application.routes.draw do
       post :add_or_update_image, :on => :member
     end
     
-    resources :rewards
     resources :curations
   end
   match "/stories/tagged_with/:tag",    :to => "stories#tagged_with",  :as => :stories_tagged_with
@@ -53,7 +52,17 @@ Repo::Application.routes.draw do
   
   resources :users do
     resources :subscriptions
+    resources :rewards
+    resources :galleries
     get :bookmarks
+    
+    member do
+      get :bio
+      get :momeants
+      get :rewarded
+      get :patrons
+      get :following
+    end
     
     # Homepage tab
     get :top_curators, :on => :collection
@@ -87,6 +96,8 @@ Repo::Application.routes.draw do
   match '/privacy',             :to => 'home#privacy',              :as => :privacy
 
   match '/',                    :to => 'home#index',                :as => :home
+  match '/global',              :to => 'home#global',               :as => :global
+  match '/following',           :to => 'home#following',            :as => :following
   root :to => "home#index"
   
 end

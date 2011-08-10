@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110627170707) do
+ActiveRecord::Schema.define(:version => 20110726152523) do
 
   create_table "adverts", :force => true do |t|
     t.string   "title"
@@ -22,11 +22,6 @@ ActiveRecord::Schema.define(:version => 20110627170707) do
     t.boolean  "enabled",            :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "bookmarked_stories_users", :id => false, :force => true do |t|
-    t.integer "user_id"
-    t.integer "story_id"
   end
 
   create_table "credit_cards", :force => true do |t|
@@ -49,6 +44,14 @@ ActiveRecord::Schema.define(:version => 20110627170707) do
     t.boolean  "given_during_trial", :default => false
   end
 
+  create_table "galleries", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "invitations", :force => true do |t|
     t.integer  "inviter_id"
     t.boolean  "accepted",      :default => false
@@ -60,7 +63,7 @@ ActiveRecord::Schema.define(:version => 20110627170707) do
     t.integer  "invitee_id"
   end
 
-  create_table "page_medias", :force => true do |t|
+  create_table "page_media", :force => true do |t|
     t.string   "type"
     t.text     "text"
     t.string   "image_file_name"
@@ -126,6 +129,8 @@ ActiveRecord::Schema.define(:version => 20110627170707) do
     t.string   "thumbnail_file_type"
     t.integer  "thumbnail_file_size"
     t.datetime "thumbnail_updated_at"
+    t.string   "thumbnail_hex_color"
+    t.integer  "gallery_id"
   end
 
   create_table "stories_topics", :id => false, :force => true do |t|
@@ -180,7 +185,6 @@ ActiveRecord::Schema.define(:version => 20110627170707) do
   create_table "users", :force => true do |t|
     t.string   "email"
     t.string   "encrypted_password",           :limit => 128, :default => "",    :null => false
-    t.string   "password_salt",                               :default => "",    :null => false
     t.string   "reset_password_token"
     t.string   "remember_token"
     t.datetime "remember_created_at"
@@ -215,6 +219,8 @@ ActiveRecord::Schema.define(:version => 20110627170707) do
     t.integer  "subscriptions_count",                         :default => 0
     t.boolean  "tos_accepted",                                :default => false
     t.string   "paypal_email"
+    t.integer  "lifetime_rewards",                            :default => 0
+    t.text     "thankyou"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

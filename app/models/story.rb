@@ -5,8 +5,8 @@ class Story < ActiveRecord::Base
     text :title, :boost => 2.0
     text(:author_name) { user.name }
     text :synopsis
-    text :topics do
-      topics.map { |topic| topic.name }
+    text :tags do
+      tags.map { |tag| tag.name }
     end
     text :pages do
       pages.inject("") { |x,n| x << "#{n.text} " }
@@ -25,14 +25,15 @@ class Story < ActiveRecord::Base
     :bucket        => ENV['S3_BUCKET']
   
   belongs_to :user
+  belongs_to :gallery
   has_and_belongs_to_many :topics
   
-  has_many :curations
+  has_many :curations, :dependent => :destroy
 
   has_many :bookmarks, :dependent => :destroy
   has_many :users_who_bookmarked, :through => :bookmarks, :source => :user
 
-  has_many :rewards, :dependent => :destroy
+  has_many :rewards
   has_many :users_who_rewarded, :through => :rewards, :source => :user
 
   has_many :views, :dependent => :destroy
@@ -51,9 +52,10 @@ class Story < ActiveRecord::Base
   scope :published, where(:published => true)
   scope :newest_first, order("created_at DESC")
   scope :most_rewarded, where("reward_count > 0").order("reward_count DESC")
+  scope :no_gallery, where(:gallery_id => nil)
   
   attr_accessor :autosaving
-  
+    
   def to_param
     if title.blank?
       "#{id}"
@@ -93,16 +95,6 @@ class Story < ActiveRecord::Base
     user.present? && self.users_who_recommended.include?(user)
   end
   
-  # def thumbnail
-  #   thumbnail = self.thumbnail_page || 1
-  #   page_index = thumbnail - 1
-  #   if self.pages[page_index]
-  #     return self.pages[page_index]
-  #   else
-  #     return self.pages.first
-  #   end
-  # end
-  
   def page_at(number)
     return self.pages.find_by_number(number)
   end
@@ -125,5 +117,24 @@ class Story < ActiveRecord::Base
     stories = []
     stories += Story.published.joins(:topics).where("topics.id IN (#{my_topic_ids})").where("user_id != #{self.user_id}") unless my_topic_ids.blank?
     stories
+  end
+  
+  def determine_thumbnail_colors
+    begin
+      image =  Magick::Image.read(self.thumbnail.url).first
+      histogram = image.color_histogram
+    
+      # sort by decreasing frequency
+      sorted = histogram.keys.sort_by {|p| -histogram[p]}
+      most_common_color = sorted.last
+
+      rgb = [sorted.last.red / 257,sorted.last.green / 257,sorted.last.blue / 257]
+      hex = rgb.inject("") do |code, color|
+        code += color.to_s(16).rjust(2, '0').upcase
+      end
+    
+      self.thumbnail_hex_color = hex
+    rescue
+    end
   end
 end

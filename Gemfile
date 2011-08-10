@@ -1,16 +1,18 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.0'
+gem 'arel', :path => "vendor/private_gems/arel-2.0.10"
+gem 'rails', '3.0.9'
 
 # Postgres for our database
 gem 'pg'
 #gem 'sqlite3-ruby', :require => 'sqlite3'
 
-gem 'devise'
+gem 'devise', "~> 1.4.2"
 gem 'haml'
 gem 'sass'
 gem 'aws-s3'
 gem 'paperclip'
+gem 'rmagick'
 gem 'inherited_resources'
 gem 'cancan'
 gem 'fastercsv'

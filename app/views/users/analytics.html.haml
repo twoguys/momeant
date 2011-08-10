@@ -18,7 +18,11 @@
         %span.count= @user.rewards.past_thirty_days.sum(:amount)
         %span reward coins
       .conversion
-        %span.count= number_with_precision(@user.rewards.past_thirty_days.count / @user.views.past_thirty_days.count * 100, :precision => 0)
+        %span.count
+          - if @user.views.past_thirty_days.count > 0
+            = number_with_precision(@user.rewards.past_thirty_days.count / @user.views.past_thirty_days.count * 100, :precision => 0)
+          - else
+            0
         %span %
         %span.help.tooltipped-n{:title => "A rough judge of how likely users are to reward"} ?
       .money
@@ -54,27 +58,6 @@
             .rewards= story.rewards.past_thirty_days.sum(:amount)
             .views= story.views.past_thirty_days.count
             .money
-    
-    #patron-list
-      %header
-        %h1 Your Patrons
-        = link_to("Name", "#", :class => "name")
-        = link_to("All-time Rewards", "#", :class => "rewards")
-        = link_to("All-time Views", "#", :class => "views")
-        = link_to("Money", "#", :class => "money")
-      %ul#patrons
-        - position = 1
-        - @user.patrons.each do |patron|
-          %li
-            .number= position
-            - position += 1
-            = link_to(image_tag(patron.avatar.url(:thumbnail)), user_path(patron), :class => "avatar")
-            .info
-              = link_to(patron.name, user_path(patron), :class => "name")
-              .occupation occupation: #{patron.occupation}
-            .rewards= @user.rewards.where(:user_id => patron.id).sum(:amount)
-            .views= @user.views.where(:user_id => patron.id).count
-            .money
 
     #follower-list
       %header
@@ -84,20 +67,21 @@
         - @user.subscribers.each do |subscriber|
           %li= link_to(image_tag(subscriber.avatar.url(:thumbnail)), user_path(subscriber), :class => "tooltipped", :title => subscriber.name)
   
-  %section.sidebar
+  - content_for :right_sidebar do
+    %section#analytics-sidebar
     
-    .current-balance.box
-      %h3 Current Balance
-      .amount $0
-      = link_to("View Details", "#", :class => "button blue")
-      = link_to("Cash Out", "#", :class => "button green")
+      .current-balance.box
+        %h3 Current Balance
+        .amount $0
+        = link_to("View Details", "#", :class => "button blue")
+        = link_to("Cash Out", "#", :class => "button green")
     
-    #profile-views.box
-      .sparkline
-      %h4 0 profile views
+      #profile-views.box
+        .sparkline
+        %h4 0 profile views
     
-    #story-previews.box
-      .sparkline
-      %h4 0 story previews
+      #story-previews.box
+        .sparkline
+        %h4 0 story previews
       
 = render "analytics_js"

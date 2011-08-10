@@ -3,6 +3,8 @@ class Reward < Curation
   belongs_to :story
   belongs_to :recipient, :class_name => "User"
   
+  paginates_per 9
+  
   def level
     case self.amount
     when 1

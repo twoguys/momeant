@@ -1,0 +1,46 @@
+- if current_user
+  .personal-info
+    .avatar-coins
+      = link_to(image_tag(current_user.avatar.url(:thumbnail)), user_path(current_user), :class => "avatar")
+      .coins
+        %span.count= current_user.coins
+    = link_to(current_user.first_name, user_path(current_user), :class => "name")
+    .patron
+      - if current_user.active_subscription?
+        %span.badge patron
+        %span 0 days
+      - else
+        %span not a
+        = link_to("patron", subscribe_path, :class => "badge dull")
+  
+    = render "users/stats", :user => current_user, :sidebar => true
+    
+- else
+  = link_to("Join / Login", "#signup-modal", :class => "join-login button")
+  
+%ul.nav
+  %li.header Rewards
+  - if current_user
+    %li{:class => @sidenav == "following" ? "active" : ""}
+      = link_to("Following", following_path, :class => "following")
+  - else
+    %li.disabled
+      %span.following Following
+  %li{:class => @sidenav == "global" ? "active" : ""}
+    = link_to("Global", global_path, :class => "global")
+  
+  %li.header.break Your Stuff
+  - if current_user
+    %li{:class => @sidenav == "profile" ? "active" : ""}
+      = link_to("Profile", user_path(current_user), :class => "profile")
+    %li{:class => @sidenav == "analytics" ? "active" : ""}
+      = link_to("Analytics", analytics_path, :class => "analytics")
+  - else
+    %li.disabled
+      %span.profile Profile
+    %li.disabled
+      %span.analytics Analytics
+  - if @user && @user != current_user
+    %li.header.break Community
+    %li.active
+      = link_to(@user.name, user_path(@user), :class => "profile")
