@@ -20,6 +20,7 @@
   
   = link_to("Home", root_path, :id => "back-to-home", :class => "tooltipped", :title => "Home")
   = link_to("Reward", "#reward-box", :id => "activity-flag", :class => "reward tooltipped", :title => "Reward")
+  .hidden= render "shared/reward_modal"
   
   #activity
     = link_to("Hide", "#", :id => "close-activity")

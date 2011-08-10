@@ -23,7 +23,7 @@
         .slides
           = #render "home/editorials/creatorflipbook"
   
-  .info-bar
+  .info-bar{:class => params[:alternate].present? ? "alternate" : ""}
     - if @sidenav == "global"
       This is the global discovery stream. It shows what's being rewarded across Mo&#149;meant.
     - elsif @sidenav == "following"
@@ -33,8 +33,8 @@
   %section.lists
     - if @sidenav == "following" && current_user.subscribed_to.empty?
       = render "not_following_anyone"
-    %ul.reward-thumbnails
+    %ul.reward-thumbnails{:class => params[:alternate].present? ? "alternate" : ""}
       = render @rewards
     
-    = link_to("load more", @load_more_url, :id => "load-more") unless @rewards.empty?
+    = link_to("load more", @load_more_url, :id => "load-more") unless @rewards.size < 9
     #hidden-reward-appender
