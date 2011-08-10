@@ -57,6 +57,6 @@
       - else
         = link_to(image_tag(reward.story.thumbnail.url(:medium)), reward.story, :class => "thumbnail")
         = link_to(reward.story.title, reward.story, :class => "title")
-        %span.synopsis= truncate(reward.story.synopsis, :length => 150)
+        %span.synopsis= truncate(reward.story.synopsis, :length => 50)
     - if reward[:other_rewards]
       .others Also rewarded by #{pluralize(reward[:other_rewards].count, "other")}
