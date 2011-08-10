@@ -47,7 +47,6 @@
       %span rewarded
       %span.reward
         %span.inner= reward.amount
-      %span to
       - if reward.comment.present?
         .comment &ldquo;#{truncate(reward.comment, :length => 100)}&rdquo;
     .what{:class => for_person ? "person" : ""}
@@ -60,15 +59,4 @@
         = link_to(reward.story.title, reward.story, :class => "title")
         %span.synopsis= truncate(reward.story.synopsis, :length => 150)
     - if reward[:other_rewards]
-      .others
-        = link_to(pluralize(reward[:other_rewards].size, "more reward"), "#", :class => "handle")
-        %ul
-          - reward[:other_rewards].each do |other|
-            %li
-              .who.clearfix
-                = link_to(image_tag(other.user.avatar(:thumbnail)), user_path(other.user), :class => "avatar")
-                %span.amount-and-who
-                  %span.reward
-                    %span.inner= other.amount
-                  = link_to("rewarded by #{other.user.name}", user_path(other.user), :class => "author")
-                %span.comment &ldquo;#{other.comment}&rdquo;
+      .others Also rewarded by #{pluralize(reward[:other_rewards].count, "other")}
