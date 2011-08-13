@@ -169,9 +169,9 @@ class StoriesController < ApplicationController
   def publish
     if @story.valid?
       @story.update_attribute(:published, true)
-      redirect_to preview_story_path(@story), :notice => "Your story has been published!"
+      redirect_to user_path(@story.user), :notice => "Your content has been published!"
     else
-      redirect_to edit_story_path(@story), :alert => "Please fix the errors with your story."
+      redirect_to edit_story_path(@story), :alert => "Please fix the errors below."
     end
   end
   

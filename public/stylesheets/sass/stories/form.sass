@@ -10,7 +10,6 @@
 	padding-top: 0
 form.new_story, form.edit_story, .story-form
 	position: relative
-	padding-top: 20px
 	height: 100%
 	.finished-links
 		position: absolute
@@ -28,7 +27,7 @@ form.new_story, form.edit_story, .story-form
 			@include gradient ($redgradient1, $redgradient2)
 	.banner
 		padding-top: 15px
-		margin: 20px 0 10px
+		margin: 0 0 10px
 		background-color: $lightred
 		.before
 			font-weight: bold
@@ -41,12 +40,13 @@ form.new_story, form.edit_story, .story-form
 		padding-top: 20px
 	#story-spinner
 		display: none
-		height: 16px
-		background: transparent url(../images/spinner.gif) no-repeat 0 0
+		width: 32px
+		height: 32px
+		background: transparent url(../images/spinnerLarge.gif) no-repeat 0 0
 		position: absolute
-		top: 10px
-		left: -20px
-		padding-left: 20px
+		top: 400px
+		left: 130px
+		text-indent: -9999px
 	#story-saved
 		height: 16px
 		font-family: $typewriter
@@ -56,6 +56,100 @@ form.new_story, form.edit_story, .story-form
 		color: #999
 		font-style: italic
 		font-weight: 100
+	section.step
+		position: relative
+		background: #e8e8e8
+		padding: 30px
+		margin-bottom: 30px
+		h2
+			background: none
+			text-transform: none
+			color: $text_color
+			padding: 0
+		.info
+			margin: 15px 0
+			font-size: 10px
+			color: #777
+			em.strong
+				color: #000
+			strong
+				font-weight: 500
+				color: $text_color
+		input[type="text"], textarea
+			width: 98%
+		label
+			font-size: 13px
+			color: $text_color
+			text-transform: none
+			font-weight: 700
+	.step#editor a
+		display: block
+		padding: 10px
+		text-align: center
+		background: $blue
+		color: #fff
+		text-transform: uppercase
+		font-weight: 700
+		font-size: 18px
+		border: 3px solid #009fdb
+		@include rounded(3px)
+	.step#describe
+		padding-left: 300px
+		h2
+			margin-left: -270px
+			margin-bottom: 20px
+		#thumbnail-preview
+			position: absolute
+			top: 75px
+			left: 30px
+			.box
+				background: #fff
+				border: 1px solid #d7d7d7
+				@include boxshadow(2px,0.1,1px,1px)
+				padding: 10px
+				width: 200px
+				.title
+					font-weight: 700
+					text-transform: uppercase
+				.author
+					font-size: 11px
+				.thumbnail
+					margin-top: 5px
+					background: $lightblue url(../images/creatorThumbnailDefaultBG.png) no-repeat 50% 50%
+					border: 1px solid #ccc
+					height: 128px
+			.note
+				width: 160px
+				text-align: center
+				margin: 10px 0 0 35px
+				color: #777
+		ul.fields
+			li.image
+				.info strong
+					display: block
+			li.tags
+				label em
+					font-size: 11px
+					font-weight: 500
+			li.tags .info, li.gallery .info
+				margin-top: 3px
+	#done
+		height: 50px
+		margin-top: -10px
+		input
+			float: right
+			display: block
+			width: 100px
+			padding: 10px 0
+			font-size: 16px
+			color: #fff
+			font-weight: 700
+			text-transform: uppercase
+			background-color: $green
+			border: 3px solid #56c127
+			text-align: center
+			@include rounded(3px)
+			
 	#thumbnail
 		border-top: 1px solid #dedede
 		.thumbnail-container

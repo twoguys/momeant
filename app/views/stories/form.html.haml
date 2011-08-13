@@ -2,30 +2,79 @@
   = javascript_include_tag "stories/form"
   = javascript_include_tag "tiny_mce/tiny_mce.js"
 
-.fullscreen-hidden
-  .new-story-copy
-    Mo&#149;meant stories are a new form of digital media. You simply take your creative content and plug it into our customizable story blocks. The blocks allow you to layer and mash up content however you like.
-
-    We’ve already got some great storytelling tools, but we’re always looking for feedback on how we can improve them and on what new tools you want to see. So get in touch with us!
-
 .form.story-form
-  .fullscreen-hidden
-    #story-spinner Saving story...
-    #story-saved Your story will be automatically saved as you edit it
+
+  - if !@story.valid?
+    .banner
+      .before Before you can publish your story, please fix these issues:
+      %ul
+        - @story.errors.full_messages.each do |msg|
+          %li= msg
+  
+  = hidden_field_tag :story_id, @story.id
+  
+  %section.step#editor
+    %h2 Create and share great content using our Fullscreen Editor.
+    %p.info
+      %em You'll be able to see your content come to life
+      %em.strong as you edit it.
+      %em.weak Go ahead and dive right in!
+    = link_to("Launch fullscreen editor", "#", :id => "launch-editor")
+  
+  %section.step#describe
+    %h2 Describe your content so that others can find and reward it!
+    #thumbnail-preview
+      .box
+        .title TITLE
+        .author by #{current_user.name}
+        .thumbnail
+      .note Your content will show up in streams like this.
+      
+    #story-spinner
+      Saving...
     
-    .finished-links
-      = #link_to "Preview", preview_story_path(@story), :id => "preview-link"
-      = #link_to "Publish", publish_story_path(@story), :id => "publish-link", :method => :post unless @story.published?
-      = #link_to "Delete", story_path(@story), :id => "delete-link", :method => :delete, :confirm => "Are you sure you want to delete this story?"
+    %ul.fields
+    
+      %li.image
+        %label{:for => "story_thumbnail"} Upload an image that best represents what you've created.
+        %p.info
+          %strong For best results, upload a JPG or PNG at least 280px wide.
+          %em Don't have that size? Don't worry, we'll resize it for you.
+        .file-uploader
+          %form
+            %input{:type => "hidden", :value => form_authenticity_token, :name => "authenticity_token"}
+            .file-input
+              %input{:type => "file", :name => "story[thumbnail]", :id => "story_thumbnail"}
+              .loader
+
+      %li.title
+        = label_tag :story_title, "Choose a TITLE for your content:"
+        = text_field_tag :story_title, @story.title, :class => "monitor-story-typing", :update => "title"
+      
+      %li.synopsis
+        = label_tag :story_synopsis, "Describe it in more detail with a synopsis:"
+        = text_area_tag :story_synopsis, @story.synopsis, :class => "monitor-story-typing", :update => "synopsis"
+      
+      %li.tags
+        %label{:for => "story_tags"}
+          %span Tag your content
+          %em (so we can show it to folks who like similarly-tagged things):
+        = text_field_tag :story_tag_list, @story.tag_list, :class => "monitor-story-typing", :update => "tag_list"
+        .info
+          %em Separate tags with commas. Example: art, oil painting, fresco
+        
+      %li.gallery
+        = label_tag :story_gallery, "Add this content to a Gallery?"
+        = select(:story, :gallery_id, galleries_list(current_user), {:include_blank => true})
+        .info
+          %em You can organize your content into "galleries" of similar work.
+        - content_for :modals do
+          = render "gallery_creator"
   
-    - if !@story.valid?
-      .banner
-        .before Before you can publish your story, please fix these issues:
-        %ul
-          - @story.errors.full_messages.each do |msg|
-            %li= msg
+  %section#done
+    = button_to("Save", publish_story_path(@story))
   
-  %fieldset
+  %fieldset.hidden
     %ul
       %li#thumbnail
         = hidden_field_tag :story_id, @story.id

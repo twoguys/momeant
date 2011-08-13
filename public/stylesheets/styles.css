@@ -703,7 +703,7 @@ header.hide-nav {
 /* Flash notices */
 #flash {
   width: 100%;
-  margin: 0px auto 13px;
+  margin: 0px auto;
   text-align: center;
   color: black;
   font-weight: 900;
@@ -880,7 +880,6 @@ table {
 
 form.new_story, form.edit_story, .story-form {
   position: relative;
-  padding-top: 20px;
   height: 100%; }
   form.new_story .finished-links, form.edit_story .finished-links, .story-form .finished-links {
     position: absolute;
@@ -913,7 +912,7 @@ form.new_story, form.edit_story, .story-form {
       background: -webkit-gradient(linear, left top, left bottom, from(#ff7593), to(#f42653)); }
   form.new_story .banner, form.edit_story .banner, .story-form .banner {
     padding-top: 15px;
-    margin: 20px 0 10px;
+    margin: 0 0 10px;
     background-color: #f7d3db; }
     form.new_story .banner .before, form.edit_story .banner .before, .story-form .banner .before {
       font-weight: bold; }
@@ -926,12 +925,13 @@ form.new_story, form.edit_story, .story-form {
     padding-top: 20px; }
   form.new_story #story-spinner, form.edit_story #story-spinner, .story-form #story-spinner {
     display: none;
-    height: 16px;
-    background: transparent url(../images/spinner.gif) no-repeat 0 0;
+    width: 32px;
+    height: 32px;
+    background: transparent url(../images/spinnerLarge.gif) no-repeat 0 0;
     position: absolute;
-    top: 10px;
-    left: -20px;
-    padding-left: 20px; }
+    top: 400px;
+    left: 130px;
+    text-indent: -9999px; }
   form.new_story #story-saved, form.edit_story #story-saved, .story-form #story-saved {
     height: 16px;
     font-family: "museo-slab-1", "museo-slab-2", serif;
@@ -941,6 +941,102 @@ form.new_story, form.edit_story, .story-form {
     color: #999999;
     font-style: italic;
     font-weight: 100; }
+  form.new_story section.step, form.edit_story section.step, .story-form section.step {
+    position: relative;
+    background: #e8e8e8;
+    padding: 30px;
+    margin-bottom: 30px; }
+    form.new_story section.step h2, form.edit_story section.step h2, .story-form section.step h2 {
+      background: none;
+      text-transform: none;
+      color: #252525;
+      padding: 0; }
+    form.new_story section.step .info, form.edit_story section.step .info, .story-form section.step .info {
+      margin: 15px 0;
+      font-size: 10px;
+      color: #777777; }
+      form.new_story section.step .info em.strong, form.edit_story section.step .info em.strong, .story-form section.step .info em.strong {
+        color: black; }
+      form.new_story section.step .info strong, form.edit_story section.step .info strong, .story-form section.step .info strong {
+        font-weight: 500;
+        color: #252525; }
+    form.new_story section.step input[type="text"], form.new_story section.step textarea, form.edit_story section.step input[type="text"], form.edit_story section.step textarea, .story-form section.step input[type="text"], .story-form section.step textarea {
+      width: 98%; }
+    form.new_story section.step label, form.edit_story section.step label, .story-form section.step label {
+      font-size: 13px;
+      color: #252525;
+      text-transform: none;
+      font-weight: 700; }
+  form.new_story .step#editor a, form.edit_story .step#editor a, .story-form .step#editor a {
+    display: block;
+    padding: 10px;
+    text-align: center;
+    background: #00aeef;
+    color: white;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 18px;
+    border: 3px solid #009fdb;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px; }
+  form.new_story .step#describe, form.edit_story .step#describe, .story-form .step#describe {
+    padding-left: 300px; }
+    form.new_story .step#describe h2, form.edit_story .step#describe h2, .story-form .step#describe h2 {
+      margin-left: -270px;
+      margin-bottom: 20px; }
+    form.new_story .step#describe #thumbnail-preview, form.edit_story .step#describe #thumbnail-preview, .story-form .step#describe #thumbnail-preview {
+      position: absolute;
+      top: 75px;
+      left: 30px; }
+      form.new_story .step#describe #thumbnail-preview .box, form.edit_story .step#describe #thumbnail-preview .box, .story-form .step#describe #thumbnail-preview .box {
+        background: white;
+        border: 1px solid #d7d7d7;
+        -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+        width: 200px; }
+        form.new_story .step#describe #thumbnail-preview .box .title, form.edit_story .step#describe #thumbnail-preview .box .title, .story-form .step#describe #thumbnail-preview .box .title {
+          font-weight: 700;
+          text-transform: uppercase; }
+        form.new_story .step#describe #thumbnail-preview .box .author, form.edit_story .step#describe #thumbnail-preview .box .author, .story-form .step#describe #thumbnail-preview .box .author {
+          font-size: 11px; }
+        form.new_story .step#describe #thumbnail-preview .box .thumbnail, form.edit_story .step#describe #thumbnail-preview .box .thumbnail, .story-form .step#describe #thumbnail-preview .box .thumbnail {
+          margin-top: 5px;
+          background: #c0eeff url(../images/creatorThumbnailDefaultBG.png) no-repeat 50% 50%;
+          border: 1px solid #cccccc;
+          height: 128px; }
+      form.new_story .step#describe #thumbnail-preview .note, form.edit_story .step#describe #thumbnail-preview .note, .story-form .step#describe #thumbnail-preview .note {
+        width: 160px;
+        text-align: center;
+        margin: 10px 0 0 35px;
+        color: #777777; }
+    form.new_story .step#describe ul.fields li.image .info strong, form.edit_story .step#describe ul.fields li.image .info strong, .story-form .step#describe ul.fields li.image .info strong {
+      display: block; }
+    form.new_story .step#describe ul.fields li.tags label em, form.edit_story .step#describe ul.fields li.tags label em, .story-form .step#describe ul.fields li.tags label em {
+      font-size: 11px;
+      font-weight: 500; }
+    form.new_story .step#describe ul.fields li.tags .info, form.new_story .step#describe ul.fields li.gallery .info, form.edit_story .step#describe ul.fields li.tags .info, form.edit_story .step#describe ul.fields li.gallery .info, .story-form .step#describe ul.fields li.tags .info, .story-form .step#describe ul.fields li.gallery .info {
+      margin-top: 3px; }
+  form.new_story #done, form.edit_story #done, .story-form #done {
+    height: 50px;
+    margin-top: -10px; }
+    form.new_story #done input, form.edit_story #done input, .story-form #done input {
+      float: right;
+      display: block;
+      width: 100px;
+      padding: 10px 0;
+      font-size: 16px;
+      color: white;
+      font-weight: 700;
+      text-transform: uppercase;
+      background-color: #34b44c;
+      border: 3px solid #56c127;
+      text-align: center;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      border-radius: 3px; }
   form.new_story #thumbnail, form.edit_story #thumbnail, .story-form #thumbnail {
     border-top: 1px solid #dedede; }
     form.new_story #thumbnail .thumbnail-container, form.edit_story #thumbnail .thumbnail-container, .story-form #thumbnail .thumbnail-container {
