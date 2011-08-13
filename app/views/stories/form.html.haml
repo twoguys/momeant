@@ -13,120 +13,71 @@
   
   = hidden_field_tag :story_id, @story.id
   
-  %section.step#editor
-    %h2 Create and share great content using our Fullscreen Editor.
-    %p.info
-      %em You'll be able to see your content come to life
-      %em.strong as you edit it.
-      %em.weak Go ahead and dive right in!
-    = link_to("Launch fullscreen editor", "#", :id => "launch-editor")
+  .fullscreen-hidden
   
-  %section.step#describe
-    %h2 Describe your content so that others can find and reward it!
-    #thumbnail-preview
-      .box
-        .title TITLE
-        .author by #{current_user.name}
-        .thumbnail
-      .note Your content will show up in streams like this.
+    %section.step#editor
+      %h2 Create and share great content using our Fullscreen Editor.
+      %p.info
+        %em You'll be able to see your content come to life
+        %em.strong as you edit it.
+        %em.weak Go ahead and dive right in!
+      = link_to("Launch fullscreen editor", "#", :id => "open-page-editor-button")
+  
+    %section.step#describe
+      %h2 Describe your content so that others can find and reward it!
+      #thumbnail-preview
+        .box
+          .title TITLE
+          .author by #{current_user.name}
+          .thumbnail
+        .note Your content will show up in streams like this.
       
-    #story-spinner
-      Saving...
+      #story-spinner
+        Saving...
     
-    %ul.fields
+      %ul.fields
     
-      %li.image
-        %label{:for => "story_thumbnail"} Upload an image that best represents what you've created.
-        %p.info
-          %strong For best results, upload a JPG or PNG at least 280px wide.
-          %em Don't have that size? Don't worry, we'll resize it for you.
-        .file-uploader
-          %form
-            %input{:type => "hidden", :value => form_authenticity_token, :name => "authenticity_token"}
-            .file-input
-              %input{:type => "file", :name => "story[thumbnail]", :id => "story_thumbnail"}
-              .loader
-
-      %li.title
-        = label_tag :story_title, "Choose a TITLE for your content:"
-        = text_field_tag :story_title, @story.title, :class => "monitor-story-typing", :update => "title"
-      
-      %li.synopsis
-        = label_tag :story_synopsis, "Describe it in more detail with a synopsis:"
-        = text_area_tag :story_synopsis, @story.synopsis, :class => "monitor-story-typing", :update => "synopsis"
-      
-      %li.tags
-        %label{:for => "story_tags"}
-          %span Tag your content
-          %em (so we can show it to folks who like similarly-tagged things):
-        = text_field_tag :story_tag_list, @story.tag_list, :class => "monitor-story-typing", :update => "tag_list"
-        .info
-          %em Separate tags with commas. Example: art, oil painting, fresco
-        
-      %li.gallery
-        = label_tag :story_gallery, "Add this content to a Gallery?"
-        = select(:story, :gallery_id, galleries_list(current_user), {:include_blank => true})
-        .info
-          %em You can organize your content into "galleries" of similar work.
-        - content_for :modals do
-          = render "gallery_creator"
-  
-  %section#done
-    = button_to("Save", publish_story_path(@story))
-  
-  %fieldset.hidden
-    %ul
-      %li#thumbnail
-        = hidden_field_tag :story_id, @story.id
-        = label_tag :story_thumbnail, "Choose an image thumbnail"
-        .thumbnail-container
-          .preview{:style => @story.thumbnail ? "background: #fff url(#{@story.thumbnail.url(:petite)})" : ""}
+        %li.image
+          %label{:for => "story_thumbnail"} Upload an image that best represents what you've created.
+          %p.info
+            %strong For best results, upload a JPG or PNG at least 280px wide.
+            %em Don't have that size? Don't worry, we'll resize it for you.
           .file-uploader
             %form
               %input{:type => "hidden", :value => form_authenticity_token, :name => "authenticity_token"}
               .file-input
-                %input{:type => "file", :name => "story[thumbnail]"}
+                %input{:type => "file", :name => "story[thumbnail]", :id => "story_thumbnail"}
                 .loader
-            .example Preferably 630 pixels wide and 420 pixels tall. We use this to represent your story throughout the site (in various sizes).
 
-      %li
-        .title-input
-          = label_tag :story_title, "Title"
+        %li.title
+          = label_tag :story_title, "Choose a TITLE for your content:"
           = text_field_tag :story_title, @story.title, :class => "monitor-story-typing", :update => "title"
-          .example What's in a name? Give your story one! (ie. Around the World in 80 Days)
-
-      %li
-        .excerpt-input
-          = label_tag :story_synopsis, "Synopsis"
-          = text_area_tag :story_synopsis, @story.synopsis, :class => "monitor-story-typing", :update => "synopsis"
-          .example Give a teaser or brief description of your story. Make sure it stands out from the crowd, and that viewers know what to expect!
       
-      %li
-        .gallery
-          = label_tag :story_gallery, "Add to Gallery?"
+        %li.synopsis
+          = label_tag :story_synopsis, "Describe it in more detail with a synopsis:"
+          = text_area_tag :story_synopsis, @story.synopsis, :class => "monitor-story-typing", :update => "synopsis"
+      
+        %li.tags
+          %label{:for => "story_tags"}
+            %span Tag your content
+            %em (so we can show it to folks who like similarly-tagged things):
+          = text_field_tag :story_tag_list, @story.tag_list, :class => "monitor-story-typing", :update => "tag_list"
+          .info
+            %em Separate tags with commas. Example: art, oil painting, fresco
+        
+        %li.gallery
+          = label_tag :story_gallery, "Add this content to a Gallery?"
           = select(:story, :gallery_id, galleries_list(current_user), {:include_blank => true})
-          .example You can organize your content into "galleries" of similar work.
+          .info
+            %em You can organize your content into "galleries" of similar work.
           - content_for :modals do
             = render "gallery_creator"
-          
-      %li.metadata
-        .tags
-          = label_tag :story_tag_list, "Tags"
-          = text_field_tag :story_tag_list, @story.tag_list, :class => "monitor-story-typing", :update => "tag_list"
-          .example
-            Choose keywords that describe your story. These help make it searchable.
-            %br/
-            ie. Firecracker, John Smith, X-ray
-        .thank-you
-          = label_tag :story_thankyou, "Thank You Note"
-          = text_area_tag :story_thankyou, @story.thankyou, :class => "monitor-story-typing", :update => "thankyou"
-          .example Leave a personalized note that your viewers will see at the end of your story.
-          
-      %li#page-previews
-        = hidden_field_tag :story_thumbnail_page, @story.thumbnail_page ? @story.thumbnail_page : 1
-        .actions
-          = link_to("Launch Slide Editor", "#", :id => "open-page-editor-button", :class => @story.pages.count == 0 ? "launch" : "")
-        
+  
+    %section#done
+      = button_to("Save", publish_story_path(@story))
+  
+  %fieldset
+    %ul
       %li#page-editor.hidden
         #editor-header
           .title Mo&#149meant story builder
@@ -139,7 +90,7 @@
           .actions
             = link_to("Add a slide", "#", :class => "add")
             = link_to("Delete slide", "#", :class => "delete")
-            = link_to("Save and close", "#", :class => "save", :id => "close-page-editor-button")
+            = link_to("Exit Fullscreen", "#", :class => "save", :id => "close-page-editor-button")
         #pane    
           .expander-tab
           %ul.pages
