@@ -111,8 +111,7 @@ body.fullscreen {
   margin-top: -51px;
   height: 50px;
   clear: both;
-  text-align: center;
-  background-color: white; }
+  text-align: center; }
   #footer .insides {
     font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
     color: #eaeaea;
@@ -912,7 +911,7 @@ form.new_story, form.edit_story, .story-form {
       background: -webkit-gradient(linear, left top, left bottom, from(#ff7593), to(#f42653)); }
   form.new_story .banner, form.edit_story .banner, .story-form .banner {
     padding-top: 15px;
-    margin: 0 0 10px;
+    margin: 0 0 30px;
     background-color: #f7d3db; }
     form.new_story .banner .before, form.edit_story .banner .before, .story-form .banner .before {
       font-weight: bold; }
@@ -941,9 +940,16 @@ form.new_story, form.edit_story, .story-form {
     color: #999999;
     font-style: italic;
     font-weight: 100; }
-  form.new_story #editor, form.new_story #describe, form.new_story #done, form.edit_story #editor, form.edit_story #describe, form.edit_story #done, .story-form #editor, .story-form #describe, .story-form #done {
+  form.new_story #editor, form.new_story #describe, form.new_story #done, form.new_story .banner, form.edit_story #editor, form.edit_story #describe, form.edit_story #done, form.edit_story .banner, .story-form #editor, .story-form #describe, .story-form #done, .story-form .banner {
     max-width: 900px;
-    margin: 0 auto; }
+    margin-left: auto;
+    margin-right: auto; }
+  form.new_story #describe, form.edit_story #describe, .story-form #describe {
+    max-width: 630px; }
+  form.new_story #done, form.edit_story #done, .story-form #done {
+    max-width: 960px; }
+  form.new_story .banner, form.edit_story .banner, .story-form .banner {
+    max-width: 920px; }
   form.new_story section.step, form.edit_story section.step, .story-form section.step {
     position: relative;
     background: #e8e8e8;
@@ -953,7 +959,8 @@ form.new_story, form.edit_story, .story-form {
       background: none;
       text-transform: none;
       color: #252525;
-      padding: 0; }
+      padding: 0 0 5px;
+      border-bottom: 1px solid #cccccc; }
     form.new_story section.step .info, form.edit_story section.step .info, .story-form section.step .info {
       margin: 15px 0;
       font-size: 10px;
@@ -970,15 +977,52 @@ form.new_story, form.edit_story, .story-form {
       color: #252525;
       text-transform: none;
       font-weight: 700; }
-  form.new_story .step#editor a, form.edit_story .step#editor a, .story-form .step#editor a {
+  form.new_story .step#editor .choice, form.edit_story .step#editor .choice, .story-form .step#editor .choice {
+    width: 45%;
+    float: left;
+    cursor: pointer; }
+    form.new_story .step#editor .choice .choice-inner, form.edit_story .step#editor .choice .choice-inner, .story-form .step#editor .choice .choice-inner {
+      padding: 15px;
+      background: #dddddd;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      border-radius: 3px; }
+      form.new_story .step#editor .choice .choice-inner input, form.edit_story .step#editor .choice .choice-inner input, .story-form .step#editor .choice .choice-inner input {
+        width: 94%; }
+    form.new_story .step#editor .choice .description, form.edit_story .step#editor .choice .description, .story-form .step#editor .choice .description {
+      padding: 0 0 10px 22px;
+      height: 20px;
+      font-size: 13px;
+      background: transparent url(../images/fakeCheckbox.png) no-repeat 0 -1px;
+      font-weight: 700;
+      text-transform: uppercase; }
+    form.new_story .step#editor .choice .info, form.edit_story .step#editor .choice .info, .story-form .step#editor .choice .info {
+      margin: 5px 0 0; }
+  form.new_story .step#editor .choice.selected .choice-inner, form.edit_story .step#editor .choice.selected .choice-inner, .story-form .step#editor .choice.selected .choice-inner {
+    background: #444444; }
+    form.new_story .step#editor .choice.selected .choice-inner .description, form.edit_story .step#editor .choice.selected .choice-inner .description, .story-form .step#editor .choice.selected .choice-inner .description {
+      color: white;
+      background-position: 0 -33px; }
+    form.new_story .step#editor .choice.selected .choice-inner .info, form.edit_story .step#editor .choice.selected .choice-inner .info, .story-form .step#editor .choice.selected .choice-inner .info {
+      color: #aaaaaa; }
+  form.new_story .step#editor .or, form.edit_story .step#editor .or, .story-form .step#editor .or {
+    width: 10%;
+    float: left;
+    height: 110px;
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 110px; }
+  form.new_story .step#editor .choice#creator a, form.edit_story .step#editor .choice#creator a, .story-form .step#editor .choice#creator a {
     display: block;
-    padding: 10px;
+    padding: 5px;
     text-align: center;
     background: #00aeef;
     color: white;
     text-transform: uppercase;
     font-weight: 700;
-    font-size: 18px;
+    font-size: 12px;
     border: 3px solid #009fdb;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
@@ -1046,31 +1090,29 @@ form.new_story, form.edit_story, .story-form {
       -webkit-border-radius: 3px;
       -moz-border-radius: 3px;
       border-radius: 3px; }
-  form.new_story #thumbnail, form.edit_story #thumbnail, .story-form #thumbnail {
-    border-top: 1px solid #dedede; }
-    form.new_story #thumbnail .thumbnail-container, form.edit_story #thumbnail .thumbnail-container, .story-form #thumbnail .thumbnail-container {
+  form.new_story #thumbnail .thumbnail-container, form.edit_story #thumbnail .thumbnail-container, .story-form #thumbnail .thumbnail-container {
+    padding-top: 5px;
+    height: 80px;
+    border-bottom: 1px solid #dedede; }
+    form.new_story #thumbnail .thumbnail-container .preview, form.edit_story #thumbnail .thumbnail-container .preview, .story-form #thumbnail .thumbnail-container .preview {
+      float: left;
+      width: 95px;
+      height: 60px;
+      background: white;
+      border: 1px solid #cccccc;
+      margin-right: 20px; }
+    form.new_story #thumbnail .thumbnail-container .file-uploader, form.edit_story #thumbnail .thumbnail-container .file-uploader, .story-form #thumbnail .thumbnail-container .file-uploader {
       padding-top: 5px;
-      height: 80px;
-      border-bottom: 1px solid #dedede; }
-      form.new_story #thumbnail .thumbnail-container .preview, form.edit_story #thumbnail .thumbnail-container .preview, .story-form #thumbnail .thumbnail-container .preview {
-        float: left;
-        width: 95px;
-        height: 60px;
-        background: white;
-        border: 1px solid #cccccc;
-        margin-right: 20px; }
-      form.new_story #thumbnail .thumbnail-container .file-uploader, form.edit_story #thumbnail .thumbnail-container .file-uploader, .story-form #thumbnail .thumbnail-container .file-uploader {
-        padding-top: 5px;
-        float: left; }
-        form.new_story #thumbnail .thumbnail-container .file-uploader .file-input, form.edit_story #thumbnail .thumbnail-container .file-uploader .file-input, .story-form #thumbnail .thumbnail-container .file-uploader .file-input {
-          height: 25px; }
-        form.new_story #thumbnail .thumbnail-container .file-uploader .loader, form.edit_story #thumbnail .thumbnail-container .file-uploader .loader, .story-form #thumbnail .thumbnail-container .file-uploader .loader {
-          width: 220px;
-          height: 19px;
-          background: transparent url(../images/loading.gif) no-repeat 0 0;
-          display: none; }
-        form.new_story #thumbnail .thumbnail-container .file-uploader .example, form.edit_story #thumbnail .thumbnail-container .file-uploader .example, .story-form #thumbnail .thumbnail-container .file-uploader .example {
-          border: none; }
+      float: left; }
+      form.new_story #thumbnail .thumbnail-container .file-uploader .file-input, form.edit_story #thumbnail .thumbnail-container .file-uploader .file-input, .story-form #thumbnail .thumbnail-container .file-uploader .file-input {
+        height: 25px; }
+      form.new_story #thumbnail .thumbnail-container .file-uploader .loader, form.edit_story #thumbnail .thumbnail-container .file-uploader .loader, .story-form #thumbnail .thumbnail-container .file-uploader .loader {
+        width: 220px;
+        height: 19px;
+        background: transparent url(../images/loading.gif) no-repeat 0 0;
+        display: none; }
+      form.new_story #thumbnail .thumbnail-container .file-uploader .example, form.edit_story #thumbnail .thumbnail-container .file-uploader .example, .story-form #thumbnail .thumbnail-container .file-uploader .example {
+        border: none; }
   form.new_story .title-input, form.new_story .excerpt-input, form.edit_story .title-input, form.edit_story .excerpt-input, .story-form .title-input, .story-form .excerpt-input {
     height: auto;
     position: relative;

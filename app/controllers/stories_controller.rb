@@ -84,22 +84,47 @@ class StoriesController < ApplicationController
     end
   end
   
+  def change_to_external
+    @story.pages.destroy_all
+    @story.pages << ExternalPage.new(:number => 1)
+    @story.update_attribute(:is_external, true)
+    render :json => {:result => "success"}
+  end
+  
+  def change_to_creator
+    @story.pages.destroy_all
+    @story.update_attribute(:is_external, false)
+    render :json => {:result => "success"}
+  end
+  
   def destroy
     @story.destroy
     redirect_to user_path(current_user), :notice => "Your content was deleted."
   end
   
   def autosave
-    if params[:story]
-      @story.autosaving = true
-      if @story.update_attributes(params[:story])
-        Rails.logger.info "SUCCESS! #{Story.last.inspect}"
-        render :json => {:result => "success"}
-      else
-        render :json => {:result => "failure", :message => @story.errors.full_messages}
+    if params[:story].blank?
+      render :json => {:result => "failure", :message => "No story data sent"} and return
+    end
+    
+    # are we updating the external link page?
+    if params[:story][:external_link].present?
+      external_page = @story.pages.first
+      if external_page.text_media.nil?
+        external_page.medias << PageText.new
       end
+      link = params[:story][:external_link]
+      link.gsub!(/^http:\/\//,"")
+      external_page.text_media.update_attribute(:text, link)
+      render :json => {:result => "success"}
+      return
+    end
+
+    @story.autosaving = true
+    if @story.update_attributes(params[:story])
+      render :json => {:result => "success"}
     else
-      render :json => {:result => "failure", :message => "No story data sent"}
+      render :json => {:result => "failure", :message => @story.errors.full_messages}
     end
   end
   

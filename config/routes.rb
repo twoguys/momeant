@@ -24,6 +24,8 @@ Repo::Application.routes.draw do
       post :add_topic_to
       post :remove_topic_from
       post :update_thumbnail
+      post :change_to_external
+      post :change_to_creator
     end
     collection do
       get :bookmarked
