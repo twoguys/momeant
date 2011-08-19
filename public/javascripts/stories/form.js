@@ -26,6 +26,7 @@ var story_page_editor = function() {
 		$('#pane .expander-tab').click(pages_editor.open_or_close_pane);
 
 		setup_page_type_chooser();
+		setup_title_mirroring();
 		setup_gallery_creation();
 		this.setup_preview_thumbnail_switching($('#page-previews li.page a.choose-thumbnail'));
 		this.setup_preview_clicking($('#page-previews li.page'));
@@ -77,6 +78,19 @@ var story_page_editor = function() {
 						}
 					});
 				});
+			}
+		});
+	};
+	
+	var setup_title_mirroring = function() {
+		$('#story_title').keyup(function() {
+			var $thumbnail_title = $('#thumbnail-preview .title');
+			var title = $(this).val();
+			log(title);
+			if (title.length > 0) {
+				$thumbnail_title.text(title);
+			} else {
+				$thumbnail_title.text("Title");
 			}
 		});
 	};
@@ -378,7 +392,7 @@ var story_auto_saver = function() {
 	
 	this.monitor_thumbnail_choosing = function() {		
 		var $uploader = $('#thumbnail .file-uploader');
-		var $preview = $('#thumbnail .preview')
+		var $preview = $('#thumbnail-preview .thumbnail')
 		var $loader = $uploader.find('.loader');
 		var $file_input = $uploader.find('input[type="file"]');
 		var url = '/stories/' + pages_editor.story_id + '/update_thumbnail';

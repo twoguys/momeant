@@ -27,9 +27,9 @@
       %h2 Describe your content so that others can find and reward it!
       #thumbnail-preview
         .box
-          .title TITLE
+          .title= @story && @story.title.present? ? @story.title : "TITLE"
           .author by #{current_user.name}
-          .thumbnail
+          .thumbnail{:style => @story && @story.thumbnail.present? ? "background: url(#{@story.thumbnail.url(:medium)})" : ""}
         .note Your content will show up in streams like this.
       
       #story-spinner
@@ -37,7 +37,7 @@
     
       %ul.fields
     
-        %li.image
+        %li.image#thumbnail
           %label{:for => "story_thumbnail"} Upload an image that best represents what you've created.
           %p.info
             %strong For best results, upload a JPG or PNG at least 280px wide.

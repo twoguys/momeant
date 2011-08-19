@@ -78,7 +78,7 @@ class StoriesController < ApplicationController
     @story.thumbnail = params[:image]
     @story.determine_thumbnail_colors
     if @story.save
-      render :json => {:result => "success", :thumbnail => @story.thumbnail.url(:petite)}
+      render :json => {:result => "success", :thumbnail => @story.thumbnail.url(:medium)}
     else
       render :json => {:result => "failure", :message => "Unable to save image"}
     end
