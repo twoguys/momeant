@@ -21,7 +21,7 @@
         %em You'll be able to see your content come to life
         %em.strong as you edit it.
         %em.weak Go ahead and dive right in!
-      = link_to("Launch fullscreen editor", "#", :id => "open-page-editor-button")
+      = link_to("Launch fullscreen editor", "#", :id => "open-page-editor-button", :class => @story.pages.empty? ? "launch" : "")
   
     %section.step#describe
       %h2 Describe your content so that others can find and reward it!
