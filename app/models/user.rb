@@ -132,7 +132,7 @@ class User < ActiveRecord::Base
     Reward.where(:user_id => self.id, :story_id => story.id).present?
   end
   
-  def reward(user_id, amount, comment, story_id)
+  def reward(user_id, amount, comment, story_id, impacted_by)
     user = User.find_by_id(user_id)
     return if amount.nil? || user.nil?
     amount = amount.to_i
@@ -148,6 +148,15 @@ class User < ActiveRecord::Base
       reward = Reward.create!(options)
       self.decrement!(:coins, amount)
       user.increment!(:lifetime_rewards, amount)
+      
+      if impacted_by
+        parent_reward = Reward.find_by_id(impacted_by)
+        if parent_reward
+          reward.move_to_child_of(parent_reward)
+          reward.update_attribute(:depth, reward.ancestors.count)
+        end
+      end
+      
       return reward
     end
   end

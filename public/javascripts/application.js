@@ -55,13 +55,22 @@ function setup_rewarding() {
 		var amount = $form.find('#reward_amount').val();
 		var comment = $form.find("#reward_comment").val();
 		var story_id = $form.find("#reward_story_id").val();
+		var impacted_by = $form.find("#reward_impacted_by").val();
 		var url = $form.attr('action');
 
 		$('#reward-box').addClass('loading');
-		$.post(url, { "reward[amount]":amount, "reward[comment]":comment, "reward[story_id]":story_id }, function(data) {
-			$("#reward-box .inner").html(data);
-			$('#reward-box').removeClass('loading').addClass('thanks');
-		});
+		$.post(url,
+			{
+				"reward[amount]":amount,
+				"reward[comment]":comment,
+				"reward[story_id]":story_id,
+				"reward[impacted_by]":impacted_by
+			},
+			function(data) {
+				$("#reward-box .inner").html(data);
+				$('#reward-box').removeClass('loading').addClass('thanks');
+			}
+		);
 	});
 }
 
