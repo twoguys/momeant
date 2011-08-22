@@ -2,82 +2,91 @@
   = javascript_include_tag "stories/form"
   = javascript_include_tag "tiny_mce/tiny_mce.js"
 
-.fullscreen-hidden
-  .new-story-copy
-    Mo&#149;meant stories are a new form of digital media. You simply take your creative content and plug it into our customizable story blocks. The blocks allow you to layer and mash up content however you like.
-
-    We’ve already got some great storytelling tools, but we’re always looking for feedback on how we can improve them and on what new tools you want to see. So get in touch with us!
-
 .form.story-form
+
+  - if !@story.valid?
+    .banner
+      .before In order to publish your story, please fix these issues:
+      %ul
+        - @story.errors.full_messages.each do |msg|
+          %li= msg
+  
+  = hidden_field_tag :story_id, @story.id
+  
   .fullscreen-hidden
-    #story-spinner Saving story...
-    #story-saved Your story will be automatically saved as you edit it
+  
+    %section.step#editor
+      %h2 1. Choose what you would like to share.
+      .choice#creator{:class => @story.is_external? ? "" : "selected"}
+        .choice-inner
+          .description Create something new
+          = link_to("Launch fullscreen editor", "#", :id => "open-page-editor-button", :class => @story.pages.empty? ? "launch" : "")
+          %p.info
+            %em Share images &amp; text with many layout &amp; formatting options.
+      .or OR
+      .choice#external{:class => @story.is_external? ? "selected" : ""}
+        .choice-inner
+          .description Show your existing web content
+          = text_field_tag :story_external_link, "http://", :class => "monitor-story-typing", :update => "external_link"
+          %p.info
+            %em Show something you've created elsewhere on the web.
+      .clear
+  
+    %section.step#describe
+      %h2 2. Describe your content so that others can find and reward it!
+      #thumbnail-preview
+        .box
+          .title= @story && @story.title.present? ? @story.title : "TITLE"
+          .author by #{current_user.name}
+          .thumbnail{:style => @story && @story.thumbnail.present? ? "background: url(#{@story.thumbnail.url(:medium)})" : ""}
+        .note Your content will show up around the site like this.
+      
+      #story-spinner
+        Saving...
     
-    .finished-links
-      = #link_to "Preview", preview_story_path(@story), :id => "preview-link"
-      = #link_to "Publish", publish_story_path(@story), :id => "publish-link", :method => :post unless @story.published?
-      = #link_to "Delete", story_path(@story), :id => "delete-link", :method => :delete, :confirm => "Are you sure you want to delete this story?"
-  
-    - if !@story.valid?
-      .banner
-        .before Before you can publish your story, please fix these issues:
-        %ul
-          - @story.errors.full_messages.each do |msg|
-            %li= msg
-  
-  %fieldset
-    %ul
-      %li#thumbnail
-        = hidden_field_tag :story_id, @story.id
-        = label_tag :story_thumbnail, "Choose an image thumbnail"
-        .thumbnail-container
-          .preview{:style => @story.thumbnail ? "background: #fff url(#{@story.thumbnail.url(:petite)})" : ""}
+      %ul.fields
+    
+        %li.image#thumbnail
+          %label{:for => "story_thumbnail"} Upload an image that best represents what you've created.
+          %p.info
+            %strong For best results, upload a JPG or PNG at least 280px wide.
+            %em Don't have that size? Don't worry, we'll resize it for you.
           .file-uploader
             %form
               %input{:type => "hidden", :value => form_authenticity_token, :name => "authenticity_token"}
               .file-input
-                %input{:type => "file", :name => "story[thumbnail]"}
+                %input{:type => "file", :name => "story[thumbnail]", :id => "story_thumbnail"}
                 .loader
-            .example Preferably 630 pixels wide and 420 pixels tall. We use this to represent your story throughout the site (in various sizes).
 
-      %li
-        .title-input
-          = label_tag :story_title, "Title"
+        %li.title
+          = label_tag :story_title, "Choose a TITLE for your content:"
           = text_field_tag :story_title, @story.title, :class => "monitor-story-typing", :update => "title"
-          .example What's in a name? Give your story one! (ie. Around the World in 80 Days)
-
-      %li
-        .excerpt-input
-          = label_tag :story_synopsis, "Synopsis"
-          = text_area_tag :story_synopsis, @story.synopsis, :class => "monitor-story-typing", :update => "synopsis"
-          .example Give a teaser or brief description of your story. Make sure it stands out from the crowd, and that viewers know what to expect!
       
-      %li
-        .gallery
-          = label_tag :story_gallery, "Add to Gallery?"
+        %li.synopsis
+          = label_tag :story_synopsis, "Describe it in more detail with a synopsis:"
+          = text_area_tag :story_synopsis, @story.synopsis, :class => "monitor-story-typing", :update => "synopsis"
+      
+        %li.tags
+          %label{:for => "story_tags"}
+            %span Tag your content
+            %em (so we can show it to folks who like similarly-tagged things):
+          = text_field_tag :story_tag_list, @story.tag_list, :class => "monitor-story-typing", :update => "tag_list"
+          .info
+            %em Separate tags with commas. Example: art, oil painting, fresco
+        
+        %li.gallery
+          = label_tag :story_gallery, "Add this content to a Gallery?"
           = select(:story, :gallery_id, galleries_list(current_user), {:include_blank => true})
-          .example You can organize your content into "galleries" of similar work.
+          .info
+            %em You can organize your content into "galleries" of similar work.
           - content_for :modals do
             = render "gallery_creator"
-          
-      %li.metadata
-        .tags
-          = label_tag :story_tag_list, "Tags"
-          = text_field_tag :story_tag_list, @story.tag_list, :class => "monitor-story-typing", :update => "tag_list"
-          .example
-            Choose keywords that describe your story. These help make it searchable.
-            %br/
-            ie. Firecracker, John Smith, X-ray
-        .thank-you
-          = label_tag :story_thankyou, "Thank You Note"
-          = text_area_tag :story_thankyou, @story.thankyou, :class => "monitor-story-typing", :update => "thankyou"
-          .example Leave a personalized note that your viewers will see at the end of your story.
-          
-      %li#page-previews
-        = hidden_field_tag :story_thumbnail_page, @story.thumbnail_page ? @story.thumbnail_page : 1
-        .actions
-          = link_to("Launch Slide Editor", "#", :id => "open-page-editor-button", :class => @story.pages.count == 0 ? "launch" : "")
-        
+  
+    %section#done
+      = button_to("Save", publish_story_path(@story))
+  
+  %fieldset
+    %ul
       %li#page-editor.hidden
         #editor-header
           .title Mo&#149meant story builder
@@ -90,7 +99,7 @@
           .actions
             = link_to("Add a slide", "#", :class => "add")
             = link_to("Delete slide", "#", :class => "delete")
-            = link_to("Save and close", "#", :class => "save", :id => "close-page-editor-button")
+            = link_to("Exit Fullscreen", "#", :class => "save", :id => "close-page-editor-button")
         #pane    
           .expander-tab
           %ul.pages

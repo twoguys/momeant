@@ -111,8 +111,7 @@ body.fullscreen {
   margin-top: -51px;
   height: 50px;
   clear: both;
-  text-align: center;
-  background-color: white; }
+  text-align: center; }
   #footer .insides {
     font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
     color: #eaeaea;
@@ -703,7 +702,7 @@ header.hide-nav {
 /* Flash notices */
 #flash {
   width: 100%;
-  margin: 0px auto 13px;
+  margin: 0px auto;
   text-align: center;
   color: black;
   font-weight: 900;
@@ -880,7 +879,6 @@ table {
 
 form.new_story, form.edit_story, .story-form {
   position: relative;
-  padding-top: 20px;
   height: 100%; }
   form.new_story .finished-links, form.edit_story .finished-links, .story-form .finished-links {
     position: absolute;
@@ -913,7 +911,7 @@ form.new_story, form.edit_story, .story-form {
       background: -webkit-gradient(linear, left top, left bottom, from(#ff7593), to(#f42653)); }
   form.new_story .banner, form.edit_story .banner, .story-form .banner {
     padding-top: 15px;
-    margin: 20px 0 10px;
+    margin: 0 0 30px;
     background-color: #f7d3db; }
     form.new_story .banner .before, form.edit_story .banner .before, .story-form .banner .before {
       font-weight: bold; }
@@ -926,12 +924,13 @@ form.new_story, form.edit_story, .story-form {
     padding-top: 20px; }
   form.new_story #story-spinner, form.edit_story #story-spinner, .story-form #story-spinner {
     display: none;
-    height: 16px;
-    background: transparent url(../images/spinner.gif) no-repeat 0 0;
+    width: 32px;
+    height: 32px;
+    background: transparent url(../images/spinnerLarge.gif) no-repeat 0 0;
     position: absolute;
-    top: 10px;
-    left: -20px;
-    padding-left: 20px; }
+    top: 400px;
+    left: 130px;
+    text-indent: -9999px; }
   form.new_story #story-saved, form.edit_story #story-saved, .story-form #story-saved {
     height: 16px;
     font-family: "museo-slab-1", "museo-slab-2", serif;
@@ -941,31 +940,179 @@ form.new_story, form.edit_story, .story-form {
     color: #999999;
     font-style: italic;
     font-weight: 100; }
-  form.new_story #thumbnail, form.edit_story #thumbnail, .story-form #thumbnail {
-    border-top: 1px solid #dedede; }
-    form.new_story #thumbnail .thumbnail-container, form.edit_story #thumbnail .thumbnail-container, .story-form #thumbnail .thumbnail-container {
-      padding-top: 5px;
-      height: 80px;
-      border-bottom: 1px solid #dedede; }
-      form.new_story #thumbnail .thumbnail-container .preview, form.edit_story #thumbnail .thumbnail-container .preview, .story-form #thumbnail .thumbnail-container .preview {
-        float: left;
-        width: 95px;
-        height: 60px;
+  form.new_story #editor, form.new_story #describe, form.new_story #done, form.new_story .banner, form.edit_story #editor, form.edit_story #describe, form.edit_story #done, form.edit_story .banner, .story-form #editor, .story-form #describe, .story-form #done, .story-form .banner {
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto; }
+  form.new_story #describe, form.edit_story #describe, .story-form #describe {
+    max-width: 630px; }
+  form.new_story #done, form.edit_story #done, .story-form #done {
+    max-width: 960px; }
+  form.new_story .banner, form.edit_story .banner, .story-form .banner {
+    max-width: 920px; }
+  form.new_story section.step, form.edit_story section.step, .story-form section.step {
+    position: relative;
+    background: #e8e8e8;
+    padding: 30px;
+    margin-bottom: 30px; }
+    form.new_story section.step h2, form.edit_story section.step h2, .story-form section.step h2 {
+      background: none;
+      text-transform: none;
+      color: #252525;
+      padding: 0 0 5px;
+      border-bottom: 1px solid #cccccc; }
+    form.new_story section.step .info, form.edit_story section.step .info, .story-form section.step .info {
+      margin: 15px 0;
+      font-size: 10px;
+      color: #777777; }
+      form.new_story section.step .info em.strong, form.edit_story section.step .info em.strong, .story-form section.step .info em.strong {
+        color: black; }
+      form.new_story section.step .info strong, form.edit_story section.step .info strong, .story-form section.step .info strong {
+        font-weight: 500;
+        color: #252525; }
+    form.new_story section.step input[type="text"], form.new_story section.step textarea, form.edit_story section.step input[type="text"], form.edit_story section.step textarea, .story-form section.step input[type="text"], .story-form section.step textarea {
+      width: 98%; }
+    form.new_story section.step label, form.edit_story section.step label, .story-form section.step label {
+      font-size: 13px;
+      color: #252525;
+      text-transform: none;
+      font-weight: 700; }
+  form.new_story .step#editor .choice, form.edit_story .step#editor .choice, .story-form .step#editor .choice {
+    width: 45%;
+    float: left;
+    cursor: pointer; }
+    form.new_story .step#editor .choice .choice-inner, form.edit_story .step#editor .choice .choice-inner, .story-form .step#editor .choice .choice-inner {
+      padding: 15px;
+      background: #dddddd;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      border-radius: 3px; }
+      form.new_story .step#editor .choice .choice-inner input, form.edit_story .step#editor .choice .choice-inner input, .story-form .step#editor .choice .choice-inner input {
+        width: 94%; }
+    form.new_story .step#editor .choice .description, form.edit_story .step#editor .choice .description, .story-form .step#editor .choice .description {
+      padding: 0 0 10px 22px;
+      height: 20px;
+      font-size: 13px;
+      background: transparent url(../images/fakeCheckbox.png) no-repeat 0 -1px;
+      font-weight: 700;
+      text-transform: uppercase; }
+    form.new_story .step#editor .choice .info, form.edit_story .step#editor .choice .info, .story-form .step#editor .choice .info {
+      margin: 5px 0 0; }
+  form.new_story .step#editor .choice.selected .choice-inner, form.edit_story .step#editor .choice.selected .choice-inner, .story-form .step#editor .choice.selected .choice-inner {
+    background: #444444; }
+    form.new_story .step#editor .choice.selected .choice-inner .description, form.edit_story .step#editor .choice.selected .choice-inner .description, .story-form .step#editor .choice.selected .choice-inner .description {
+      color: white;
+      background-position: 0 -33px; }
+    form.new_story .step#editor .choice.selected .choice-inner .info, form.edit_story .step#editor .choice.selected .choice-inner .info, .story-form .step#editor .choice.selected .choice-inner .info {
+      color: #aaaaaa; }
+  form.new_story .step#editor .or, form.edit_story .step#editor .or, .story-form .step#editor .or {
+    width: 10%;
+    float: left;
+    height: 110px;
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 110px; }
+  form.new_story .step#editor .choice#creator a, form.edit_story .step#editor .choice#creator a, .story-form .step#editor .choice#creator a {
+    display: block;
+    padding: 5px;
+    text-align: center;
+    background: #00aeef;
+    color: white;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 12px;
+    border: 3px solid #009fdb;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px; }
+  form.new_story .step#describe, form.edit_story .step#describe, .story-form .step#describe {
+    padding-left: 300px; }
+    form.new_story .step#describe h2, form.edit_story .step#describe h2, .story-form .step#describe h2 {
+      margin-left: -270px;
+      margin-bottom: 20px; }
+    form.new_story .step#describe #thumbnail-preview, form.edit_story .step#describe #thumbnail-preview, .story-form .step#describe #thumbnail-preview {
+      position: absolute;
+      top: 75px;
+      left: 30px; }
+      form.new_story .step#describe #thumbnail-preview .box, form.edit_story .step#describe #thumbnail-preview .box, .story-form .step#describe #thumbnail-preview .box {
         background: white;
-        border: 1px solid #cccccc;
-        margin-right: 20px; }
-      form.new_story #thumbnail .thumbnail-container .file-uploader, form.edit_story #thumbnail .thumbnail-container .file-uploader, .story-form #thumbnail .thumbnail-container .file-uploader {
-        padding-top: 5px;
-        float: left; }
-        form.new_story #thumbnail .thumbnail-container .file-uploader .file-input, form.edit_story #thumbnail .thumbnail-container .file-uploader .file-input, .story-form #thumbnail .thumbnail-container .file-uploader .file-input {
-          height: 25px; }
-        form.new_story #thumbnail .thumbnail-container .file-uploader .loader, form.edit_story #thumbnail .thumbnail-container .file-uploader .loader, .story-form #thumbnail .thumbnail-container .file-uploader .loader {
-          width: 220px;
-          height: 19px;
-          background: transparent url(../images/loading.gif) no-repeat 0 0;
-          display: none; }
-        form.new_story #thumbnail .thumbnail-container .file-uploader .example, form.edit_story #thumbnail .thumbnail-container .file-uploader .example, .story-form #thumbnail .thumbnail-container .file-uploader .example {
-          border: none; }
+        border: 1px solid #d7d7d7;
+        -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+        width: 200px; }
+        form.new_story .step#describe #thumbnail-preview .box .title, form.edit_story .step#describe #thumbnail-preview .box .title, .story-form .step#describe #thumbnail-preview .box .title {
+          font-weight: 700;
+          text-transform: uppercase; }
+        form.new_story .step#describe #thumbnail-preview .box .author, form.edit_story .step#describe #thumbnail-preview .box .author, .story-form .step#describe #thumbnail-preview .box .author {
+          font-size: 11px; }
+        form.new_story .step#describe #thumbnail-preview .box .thumbnail, form.edit_story .step#describe #thumbnail-preview .box .thumbnail, .story-form .step#describe #thumbnail-preview .box .thumbnail {
+          margin-top: 5px;
+          background: #c0eeff url(../images/creatorThumbnailDefaultBG.png) no-repeat 50% 50%;
+          height: 128px; }
+      form.new_story .step#describe #thumbnail-preview .note, form.edit_story .step#describe #thumbnail-preview .note, .story-form .step#describe #thumbnail-preview .note {
+        width: 160px;
+        text-align: center;
+        margin: 10px 0 0 35px;
+        color: #777777; }
+    form.new_story .step#describe ul.fields li.image .file-input, form.edit_story .step#describe ul.fields li.image .file-input, .story-form .step#describe ul.fields li.image .file-input {
+      height: 30px; }
+    form.new_story .step#describe ul.fields li.image .loader, form.edit_story .step#describe ul.fields li.image .loader, .story-form .step#describe ul.fields li.image .loader {
+      width: 100%;
+      background: transparent url(../images/loading.gif) no-repeat 0 0;
+      height: 19px;
+      display: none; }
+    form.new_story .step#describe ul.fields li.image .info strong, form.edit_story .step#describe ul.fields li.image .info strong, .story-form .step#describe ul.fields li.image .info strong {
+      display: block; }
+    form.new_story .step#describe ul.fields li.tags label em, form.edit_story .step#describe ul.fields li.tags label em, .story-form .step#describe ul.fields li.tags label em {
+      font-size: 11px;
+      font-weight: 500; }
+    form.new_story .step#describe ul.fields li.tags .info, form.new_story .step#describe ul.fields li.gallery .info, form.edit_story .step#describe ul.fields li.tags .info, form.edit_story .step#describe ul.fields li.gallery .info, .story-form .step#describe ul.fields li.tags .info, .story-form .step#describe ul.fields li.gallery .info {
+      margin-top: 3px; }
+  form.new_story #done, form.edit_story #done, .story-form #done {
+    height: 50px;
+    margin-top: -10px; }
+    form.new_story #done input, form.edit_story #done input, .story-form #done input {
+      float: right;
+      display: block;
+      width: 100px;
+      padding: 10px 0;
+      font-size: 16px;
+      color: white;
+      font-weight: 700;
+      text-transform: uppercase;
+      background-color: #34b44c;
+      border: 3px solid #56c127;
+      text-align: center;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      border-radius: 3px; }
+  form.new_story #thumbnail .thumbnail-container, form.edit_story #thumbnail .thumbnail-container, .story-form #thumbnail .thumbnail-container {
+    padding-top: 5px;
+    height: 80px;
+    border-bottom: 1px solid #dedede; }
+    form.new_story #thumbnail .thumbnail-container .preview, form.edit_story #thumbnail .thumbnail-container .preview, .story-form #thumbnail .thumbnail-container .preview {
+      float: left;
+      width: 95px;
+      height: 60px;
+      background: white;
+      border: 1px solid #cccccc;
+      margin-right: 20px; }
+    form.new_story #thumbnail .thumbnail-container .file-uploader, form.edit_story #thumbnail .thumbnail-container .file-uploader, .story-form #thumbnail .thumbnail-container .file-uploader {
+      padding-top: 5px;
+      float: left; }
+      form.new_story #thumbnail .thumbnail-container .file-uploader .file-input, form.edit_story #thumbnail .thumbnail-container .file-uploader .file-input, .story-form #thumbnail .thumbnail-container .file-uploader .file-input {
+        height: 25px; }
+      form.new_story #thumbnail .thumbnail-container .file-uploader .loader, form.edit_story #thumbnail .thumbnail-container .file-uploader .loader, .story-form #thumbnail .thumbnail-container .file-uploader .loader {
+        width: 220px;
+        height: 19px;
+        background: transparent url(../images/loading.gif) no-repeat 0 0;
+        display: none; }
+      form.new_story #thumbnail .thumbnail-container .file-uploader .example, form.edit_story #thumbnail .thumbnail-container .file-uploader .example, .story-form #thumbnail .thumbnail-container .file-uploader .example {
+        border: none; }
   form.new_story .title-input, form.new_story .excerpt-input, form.edit_story .title-input, form.edit_story .excerpt-input, .story-form .title-input, .story-form .excerpt-input {
     height: auto;
     position: relative;
@@ -6568,6 +6715,94 @@ a#load-more {
 
 #hidden-reward-appender {
   display: none; }
+
+.info-bar.alternate {
+  background-color: #fcfccf;
+  color: #252525; }
+  .info-bar.alternate a {
+    color: #252525; }
+
+ul.reward-thumbnails.alternate li.reward {
+  position: relative;
+  padding-left: 80px;
+  -webkit-box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  -moz-box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  background: none;
+  width: 250px;
+  min-height: 145px;
+  border-bottom: 1px solid #dddddd; }
+  ul.reward-thumbnails.alternate li.reward a.avatar {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 60px;
+    height: 60px; }
+    ul.reward-thumbnails.alternate li.reward a.avatar img {
+      width: 60px;
+      height: 60px; }
+  ul.reward-thumbnails.alternate li.reward .who {
+    background: none;
+    padding: 0 0 5px;
+    -webkit-box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    -moz-box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    width: auto;
+    font-size: 13px; }
+    ul.reward-thumbnails.alternate li.reward .who a.author {
+      font-weight: 700;
+      color: #252525; }
+    ul.reward-thumbnails.alternate li.reward .who .reward {
+      margin-right: 5px;
+      background-color: #00aeef;
+      color: white;
+      padding: 2px 3px 2px 7px;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px; }
+      ul.reward-thumbnails.alternate li.reward .who .reward .inner {
+        padding-right: 18px;
+        font-weight: 700;
+        background: transparent url(../images/icons/recommendWhite.png) no-repeat 100% 0; }
+    ul.reward-thumbnails.alternate li.reward .who .comment {
+      padding: 7px 0 5px;
+      font-size: 11px;
+      font-style: italic; }
+  ul.reward-thumbnails.alternate li.reward .what {
+    position: relative;
+    padding-left: 105px;
+    height: 60px;
+    overflow: hidden; }
+    ul.reward-thumbnails.alternate li.reward .what a.thumbnail {
+      position: absolute;
+      top: 0;
+      left: 0;
+      margin: 0; }
+      ul.reward-thumbnails.alternate li.reward .what a.thumbnail img {
+        width: 95px;
+        height: 60px; }
+    ul.reward-thumbnails.alternate li.reward .what a.title {
+      display: block;
+      font-weight: 700; }
+    ul.reward-thumbnails.alternate li.reward .what .synopsis {
+      font-size: 11px; }
+  ul.reward-thumbnails.alternate li.reward .what.person {
+    padding-left: 50px;
+    height: 40px; }
+    ul.reward-thumbnails.alternate li.reward .what.person a.avatar {
+      top: 0;
+      left: 0;
+      width: 40px;
+      height: 40px; }
+      ul.reward-thumbnails.alternate li.reward .what.person a.avatar img {
+        width: 40px;
+        height: 40px; }
+    ul.reward-thumbnails.alternate li.reward .what.person a.name {
+      font-weight: 700; }
+    ul.reward-thumbnails.alternate li.reward .what.person .occupation {
+      font-size: 11px; }
+  ul.reward-thumbnails.alternate li.reward .others {
+    display: none; }
 
 .hidden {
   display: none; }

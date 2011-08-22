@@ -1,0 +1,82 @@
+.info-bar.alternate
+	background-color: #fcfccf
+	color: $text_color
+	a
+		color: $text_color
+
+
+ul.reward-thumbnails.alternate li.reward
+	position: relative
+	padding-left: 80px
+	@include boxshadow(0,0,0,0)
+	background: none
+	width: 250px
+	min-height: 145px
+	border-bottom: 1px solid #ddd
+	a.avatar
+		position: absolute
+		top: 10px
+		left: 10px
+		width: 60px
+		height: 60px
+		img
+			width: 60px
+			height: 60px
+	.who
+		background: none
+		padding: 0 0 5px
+		@include boxshadow(0,0,0,0)
+		width: auto
+		font-size: 13px
+		a.author
+			font-weight: 700
+			color: $text_color
+		.reward
+			margin-right: 5px
+			background-color: $blue
+			color: #fff
+			padding: 2px 3px 2px 7px
+			@include rounded
+			.inner
+				padding-right: 18px
+				font-weight: 700
+				background: transparent url(../images/icons/recommendWhite.png) no-repeat 100% 0
+		.comment
+			padding: 7px 0 5px
+			font-size: 11px
+			font-style: italic
+	.what
+		position: relative
+		padding-left: 105px
+		height: 60px
+		overflow: hidden
+		a.thumbnail
+			position: absolute
+			top: 0
+			left: 0
+			margin: 0
+			img
+				width: 95px
+				height: 60px
+		a.title
+			display: block
+			font-weight: 700
+		.synopsis
+			font-size: 11px
+	.what.person
+		padding-left: 50px
+		height: 40px
+		a.avatar
+			top: 0
+			left: 0
+			width: 40px
+			height: 40px
+			img
+				width: 40px
+				height: 40px
+		a.name
+			font-weight: 700
+		.occupation
+			font-size: 11px
+	.others
+		display: none

@@ -78,10 +78,23 @@ class StoriesController < ApplicationController
     @story.thumbnail = params[:image]
     @story.determine_thumbnail_colors
     if @story.save
-      render :json => {:result => "success", :thumbnail => @story.thumbnail.url(:petite)}
+      render :json => {:result => "success", :thumbnail => @story.thumbnail.url(:medium)}
     else
       render :json => {:result => "failure", :message => "Unable to save image"}
     end
+  end
+  
+  def change_to_external
+    @story.pages.destroy_all
+    @story.pages << ExternalPage.new(:number => 1)
+    @story.update_attribute(:is_external, true)
+    render :json => {:result => "success"}
+  end
+  
+  def change_to_creator
+    @story.pages.destroy_all
+    @story.update_attribute(:is_external, false)
+    render :json => {:result => "success"}
   end
   
   def destroy
@@ -90,16 +103,28 @@ class StoriesController < ApplicationController
   end
   
   def autosave
-    if params[:story]
-      @story.autosaving = true
-      if @story.update_attributes(params[:story])
-        Rails.logger.info "SUCCESS! #{Story.last.inspect}"
-        render :json => {:result => "success"}
-      else
-        render :json => {:result => "failure", :message => @story.errors.full_messages}
+    if params[:story].blank?
+      render :json => {:result => "failure", :message => "No story data sent"} and return
+    end
+    
+    # are we updating the external link page?
+    if params[:story][:external_link].present?
+      external_page = @story.pages.first
+      if external_page.text_media.nil?
+        external_page.medias << PageText.new
       end
+      link = params[:story][:external_link]
+      link.gsub!(/^http:\/\//,"")
+      external_page.text_media.update_attribute(:text, link)
+      render :json => {:result => "success"}
+      return
+    end
+
+    @story.autosaving = true
+    if @story.update_attributes(params[:story])
+      render :json => {:result => "success"}
     else
-      render :json => {:result => "failure", :message => "No story data sent"}
+      render :json => {:result => "failure", :message => @story.errors.full_messages}
     end
   end
   
@@ -169,9 +194,9 @@ class StoriesController < ApplicationController
   def publish
     if @story.valid?
       @story.update_attribute(:published, true)
-      redirect_to preview_story_path(@story), :notice => "Your story has been published!"
+      redirect_to user_path(@story.user), :notice => "Your content has been published!"
     else
-      redirect_to edit_story_path(@story), :alert => "Please fix the errors with your story."
+      redirect_to edit_story_path(@story), :alert => "Please fix the errors below."
     end
   end
   

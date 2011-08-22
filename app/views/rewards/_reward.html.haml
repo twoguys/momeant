@@ -1,39 +1,62 @@
 - for_person = reward.story_id.nil?
-%li.reward{:class => for_person  ? "person" : ""}
-  - if for_person
-    .avatar-name-occupation
-      = link_to(image_tag(reward.recipient.avatar.url(:thumbnail)), user_path(reward.recipient), :class => "avatar")
-      .name= reward.recipient.name
-      .occupation= reward.recipient.occupation
-    - if reward.recipient.tagline.present?
-      .about= truncate(reward.recipient.tagline, :length => 250)
-    .interests
-      %h3 Interests:
-      %span= user_interest_links(reward.recipient)
-  - else
-    .what
-      .text
-        = link_to(reward.story.title, reward.story, :class => "title")
-        .author by #{link_to(reward.recipient.name, user_path(reward.recipient))}
-      .thumbnail= link_to(image_tag(reward.story.thumbnail.url(:medium)), reward.story)
-  .who.clearfix
+- if params[:alternate].blank?
+  %li.reward{:class => for_person  ? "person" : ""}
+    - if for_person
+      .avatar-name-occupation
+        = link_to(image_tag(reward.recipient.avatar.url(:thumbnail)), user_path(reward.recipient), :class => "avatar")
+        .name= reward.recipient.name
+        .occupation= reward.recipient.occupation
+      - if reward.recipient.tagline.present?
+        .about= truncate(reward.recipient.tagline, :length => 250)
+      .interests
+        %h3 Interests:
+        %span= user_interest_links(reward.recipient)
+    - else
+      .what
+        .text
+          = link_to(reward.story.title, reward.story, :class => "title")
+          .author by #{link_to(reward.recipient.name, user_path(reward.recipient))}
+        .thumbnail= link_to(image_tag(reward.story.thumbnail.url(:medium)), reward.story)
+    .who.clearfix
+      = link_to(image_tag(reward.user.avatar(:thumbnail)), user_path(reward.user), :class => "avatar")
+      %span.amount-and-who
+        %span.reward
+          %span.inner= reward.amount
+        = link_to("rewarded by #{reward.user.name}", user_path(reward.user), :class => "author")
+      - if reward.comment.present?
+        %span.comment &ldquo;#{reward.comment}&rdquo;
+    - if reward[:other_rewards]
+      .others
+        = link_to(pluralize(reward[:other_rewards].size, "more reward"), "#", :class => "handle")
+        %ul
+          - reward[:other_rewards].each do |other|
+            %li
+              .who.clearfix
+                = link_to(image_tag(other.user.avatar(:thumbnail)), user_path(other.user), :class => "avatar")
+                %span.amount-and-who
+                  %span.reward
+                    %span.inner= other.amount
+                  = link_to("rewarded by #{other.user.name}", user_path(other.user), :class => "author")
+                %span.comment &ldquo;#{other.comment}&rdquo;
+
+- else
+  %li.reward
     = link_to(image_tag(reward.user.avatar(:thumbnail)), user_path(reward.user), :class => "avatar")
-    %span.amount-and-who
+    .who
+      = link_to(reward.user.name, user_path(reward.user), :class => "author")
+      %span rewarded
       %span.reward
         %span.inner= reward.amount
-      = link_to("rewarded by #{reward.user.name}", user_path(reward.user), :class => "author")
-    - if reward.comment.present?
-      %span.comment &ldquo;#{reward.comment}&rdquo;
-  - if reward[:other_rewards]
-    .others
-      = link_to(pluralize(reward[:other_rewards].size, "more reward"), "#", :class => "handle")
-      %ul
-        - reward[:other_rewards].each do |other|
-          %li
-            .who.clearfix
-              = link_to(image_tag(other.user.avatar(:thumbnail)), user_path(other.user), :class => "avatar")
-              %span.amount-and-who
-                %span.reward
-                  %span.inner= other.amount
-                = link_to("rewarded by #{other.user.name}", user_path(other.user), :class => "author")
-              %span.comment &ldquo;#{other.comment}&rdquo;
+      - if reward.comment.present?
+        .comment &ldquo;#{truncate(reward.comment, :length => 100)}&rdquo;
+    .what{:class => for_person ? "person" : ""}
+      - if for_person
+        = link_to(image_tag(reward.recipient.avatar.url(:thumbnail)), user_path(reward.recipient), :class => "avatar")
+        = link_to(reward.recipient.name, user_path(reward.recipient), :class => "name")
+        .occupation= reward.recipient.occupation
+      - else
+        = link_to(image_tag(reward.story.thumbnail.url(:medium)), reward.story, :class => "thumbnail")
+        = link_to(reward.story.title, reward.story, :class => "title")
+        %span.synopsis= truncate(reward.story.synopsis, :length => 50)
+    - if reward[:other_rewards]
+      .others Also rewarded by #{pluralize(reward[:other_rewards].count, "other")}
