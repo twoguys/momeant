@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(:version => 20110822143301) do
     t.integer  "parent_id"
     t.integer  "lft"
     t.integer  "rgt"
-    t.integer  "depth"
+    t.integer  "depth",              :default => 0
   end
 
   create_table "galleries", :force => true do |t|
