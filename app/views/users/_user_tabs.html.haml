@@ -1,10 +1,6 @@
 .horizontal-tabs
   %ul
-    %li.bio
-      = link_to_active("bio", bio_user_path(@user), :class => current_page?(edit_user_path(current_user)) ? "active" : "")
-      - if @user == current_user && !@user.profile_complete?
-        = image_tag("/images/tabNotification.png", :class => "notification")
-    %li= link_to_active("momeants", momeants_user_path(@user), :class => current_page?(user_path(@user)) ? "active" : "")
-    %li= link_to_active("rewarded", rewarded_user_path(@user))
-    %li= link_to_active("top patrons", patrons_user_path(@user))
-    %li= link_to_active("following", following_user_path(@user))
+    %li= link_to_active("Patronage", user_path(@user), :class => current_page?(root_path) ? "active" : "")
+    %li= link_to_active("Creations", creations_user_path(@user))
+    %li= link_to_active("Followers", followers_user_path(@user))
+    %li= link_to_active("Following", following_user_path(@user))

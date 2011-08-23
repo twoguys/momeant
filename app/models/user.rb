@@ -161,6 +161,24 @@ class User < ActiveRecord::Base
     end
   end
   
+  def following_stream(page = 1)
+    rewards = []
+
+    subscribed_to = self.subscribed_to
+    if subscribed_to.size > 0
+      following_ids = subscribed_to.map { |user| user.id }
+      # show my rewards too
+      following_ids = (following_ids + [self.id]).join(",")
+      rewards = Reward.select("DISTINCT ON (story_id,recipient_id) curations.*").where("user_id IN (#{following_ids})").page page
+    end
+    
+    rewards
+  end
+  
+  def impact_on(user)
+    Reward.where(:user_id => self.id, :recipient_id => user.id).map {|reward| reward.impact}.inject(:+) || 0
+  end
+  
   def last_reward_for(story)
     Reward.where(:user_id => self.id, :story_id => story.id).first
   end

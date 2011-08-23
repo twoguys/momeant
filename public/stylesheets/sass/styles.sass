@@ -1,6 +1,6 @@
 // Basic colors for site
 
-$background_color: #e0e0e0
+$background_color: #f4f4f4
 $text_color: #252525
 $black: #000000
 $blue: #00aeef
@@ -118,77 +118,30 @@ h2
 
 /* Layout */
 
-html, body, #wrap
+html, body
 	height: 100%
 
-body > #wrap
-	height: auto
-	min-height: 100%
-
-body
-	min-width: 645px
-
-header .insides, #mid .insides, #footer .insides
-	padding: 0
-	margin: 0 auto
+#container
+	height: 100%
+	margin-top: -42px
 	position: relative
-
-body.fullscreen
-	position: static
-.fullscreen
-	header
-		display: none
-	header #user-nav, header .insides, #mid .insides, #footer .insides
-		width: 100%
-		min-width: 950px
-	#mid, #mid .insides, form, form fieldset, form ul
-		height: 100%
-	#main
-		padding: 0
-	#mid
-		height: 100%
-		position: absolute
-		width: 100%
-		top: 0
-		min-height: 100%
-		padding: 0
-		#center
-			height: 100%
-			border: none
-			float: none
-			.center-insides
-				margin-top: 0
-				height: 100%
-				padding: 0
-		#left-sidebar, #right-sidebar
-			display: none
-	#footer
-		display: none
-	.fullscreen-hidden
-		display: none
-
-#main
-	width: 100%
-	padding: 42px 0 50px
-	#header
-		position: absolute
-		top: 0
-		width: 100%
-
-#mid
 	.column
-		position: relative
-		float: left	
-	#center
-		width: 100%
-		min-height: 550px
-		background-color: #f4f4f4
-		border: 1px solid #ccc
-		border-top: none
-		.center-insides
-			padding: 20px
+		padding-top: 52px
+		position: absolute
+		top: 0
+		bottom: 0
+		overflow-y: auto
+
+	#main
+		left: 0
+		right: 200px
+	
+	#right-sidebar
+		right: 0
+		background: #ccc
 
 #footer
+	display: none
 	position: relative
 	margin-top: -51px
 	height: 50px

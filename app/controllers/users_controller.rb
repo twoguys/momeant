@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!, :except => [:show, :billing_updates, :top_curators]
   before_filter :get_adverts, :only => :top_curators
-  before_filter :find_user, :only => [:show, :momeants, :bio, :rewarded, :patrons, :bookmarks, :following]
+  before_filter :find_user, :only => [:show, :creations, :bio, :rewarded, :patrons, :bookmarks, :followers, :following]
   skip_before_filter :verify_authenticity_token, :only => :billing_updates
   skip_before_filter :release_lockdown, :only => :billing_updates
   
@@ -11,6 +11,7 @@ class UsersController < ApplicationController
   end
   
   def show
+    @creators = @user.given_rewards.group_by {|r| r.recipient}
   end
   
   def edit
@@ -33,17 +34,18 @@ class UsersController < ApplicationController
   def bookmarks
     @sidenav = "bookmarks"
   end
-  
-  def momeants
-    render "show"
-  end
-  
+    
   def rewarded
     @rewards = @user.given_rewards
   end
   
   def patrons
     @patrons = @user.patrons[0,10]
+  end
+  
+  def followers
+    @users = @user.subscribers
+    render "following"
   end
   
   def following

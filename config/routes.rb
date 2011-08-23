@@ -60,9 +60,10 @@ Repo::Application.routes.draw do
     
     member do
       get :bio
-      get :momeants
+      get :creations
       get :rewarded
       get :patrons
+      get :followers
       get :following
     end
     

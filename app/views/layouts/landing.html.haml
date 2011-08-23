@@ -1,0 +1,26 @@
+!!!
+%html{html_attrs('en')}
+  %head
+    %meta{ :content => "text/html; charset=utf-8", "http-equiv" => "Content-Type" }
+    %meta{ :name => "Description", "http-equiv" => "Description", :content => "Reinventing patronage for the digital renaissance." }
+    %meta{ :name => "Keywords", "http-equiv" => "Keywords", :content => "momeant, digital content, creators, reward, patron, art, community, sustainable" }
+    %link{ :id => 'favicon', :href => '/images/favicon.png', :rel => 'icon', :type => 'image/x-icon' }
+    %title Mo&#149;meant
+    
+    = csrf_meta_tag
+    
+    = stylesheet_link_tag "reset", "tipsy", "jquery.fancybox-1.3.4", "styles", "extras"
+
+    = javascript_include_tag "jquery-1.4.3.min", "jquery-ui-1.8.6.min", "jquery.scrollTo-1.4.2-min", "jquery.tipsy", "jquery.placeholder", "jquery.fileuploader", "jquery.fancybox-1.3.4.pack", "jquery.tinyscrollbar.min", "jquery.touchSwipe", "jquery.colorPicker", "jquery.validate.min", "jquery.masonry.min"
+    = javascript_include_tag "underscore-min", "rails", "application"
+    / [if lt IE 9]
+      = javascript_include_tag "http://html5shiv.googlecode.com/svn/trunk/html5.js"
+    = javascript_include_tag "http://use.typekit.com/sji8gns.js"
+    :javascript
+      try{Typekit.load();}catch(e){}
+      var typekit_id = 'sji8gns';
+    
+  %body#landing
+    = yield
+    
+    = render "shared/join_login_modal"

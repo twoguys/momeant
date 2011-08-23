@@ -3,7 +3,7 @@ html, body {
   font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
   font-size: 12px;
   color: #252525;
-  background: #e0e0e0;
+  background: #f4f4f4;
   min-height: 100%;
   overflow-x: hidden;
   text-rendering: optimizelegibility;
@@ -37,76 +37,28 @@ h2 {
   font-size: 1.3em; }
 
 /* Layout */
-html, body, #wrap {
+html, body {
   height: 100%; }
 
-body > #wrap {
-  height: auto;
-  min-height: 100%; }
-
-body {
-  min-width: 645px; }
-
-header .insides, #mid .insides, #footer .insides {
-  padding: 0;
-  margin: 0 auto;
-  position: relative; }
-
-body.fullscreen {
-  position: static; }
-
-.fullscreen header {
-  display: none; }
-.fullscreen header #user-nav, .fullscreen header .insides, .fullscreen #mid .insides, .fullscreen #footer .insides {
-  width: 100%;
-  min-width: 950px; }
-.fullscreen #mid, .fullscreen #mid .insides, .fullscreen form, .fullscreen form fieldset, .fullscreen form ul {
-  height: 100%; }
-.fullscreen #main {
-  padding: 0; }
-.fullscreen #mid {
+#container {
   height: 100%;
-  position: absolute;
-  width: 100%;
-  top: 0;
-  min-height: 100%;
-  padding: 0; }
-  .fullscreen #mid #center {
-    height: 100%;
-    border: none;
-    float: none; }
-    .fullscreen #mid #center .center-insides {
-      margin-top: 0;
-      height: 100%;
-      padding: 0; }
-  .fullscreen #mid #left-sidebar, .fullscreen #mid #right-sidebar {
-    display: none; }
-.fullscreen #footer {
-  display: none; }
-.fullscreen .fullscreen-hidden {
-  display: none; }
-
-#main {
-  width: 100%;
-  padding: 42px 0 50px; }
-  #main #header {
+  margin-top: -42px;
+  position: relative; }
+  #container .column {
+    padding-top: 52px;
     position: absolute;
     top: 0;
-    width: 100%; }
-
-#mid .column {
-  position: relative;
-  float: left; }
-#mid #center {
-  width: 100%;
-  min-height: 550px;
-  background-color: #f4f4f4;
-  border: 1px solid #cccccc;
-  border-top: none; }
-  #mid #center .center-insides {
-    padding: 20px; }
+    bottom: 0;
+    overflow-y: auto; }
+  #container #main {
+    left: 0;
+    right: 200px; }
+  #container #right-sidebar {
+    right: 0;
+    background: #cccccc; }
 
 #footer {
+  display: none;
   position: relative;
   margin-top: -51px;
   height: 50px;
@@ -164,10 +116,9 @@ body.fullscreen {
       #header #user-nav ul.links li {
         float: left; }
       #header #user-nav ul.links li.active {
-        background: transparent url(../images/navActive.png) no-repeat 50% 100%; }
+        background: #00aeef; }
     #header #user-nav #logo, #header #user-nav #home, #header #user-nav #create, #header #user-nav #profile, #header #user-nav #faq {
-      width: 46px;
-      height: 52px; }
+      width: 46px; }
       #header #user-nav #logo a, #header #user-nav #home a, #header #user-nav #create a, #header #user-nav #profile a, #header #user-nav #faq a {
         width: 46px;
         height: 42px;
@@ -254,7 +205,7 @@ body.fullscreen {
       word-spacing: 2px; }
     #header #user-nav #signin, #header #user-nav #signout {
       position: absolute;
-      right: 390px;
+      right: 20px;
       padding-top: 10px; }
       #header #user-nav #signin a, #header #user-nav #signout a {
         height: 28px;
@@ -308,7 +259,7 @@ body.fullscreen {
         position: absolute;
         top: 35px; }
         #header #user-nav #recommendations .stream-inner .recommendation-stream {
-          background-color: #e0e0e0;
+          background-color: #f4f4f4;
           -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
           -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
           box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
@@ -412,6 +363,7 @@ body.fullscreen {
         letter-spacing: 0.3px;
         padding-left: 10px; }
     #header #user-nav #search {
+      display: none;
       padding-top: 9px;
       float: right;
       width: 200px;
@@ -508,7 +460,7 @@ body.fullscreen {
         -webkit-border-radius: 5px;
         -moz-border-radius: 5px;
         border-radius: 5px;
-        border: 1px solid #e0e0e0;
+        border: 1px solid #f4f4f4;
         padding: 15px 45px 10px 14px;
         height: 30px;
         color: #00aeef;
@@ -545,7 +497,7 @@ header.hide-nav {
       font-weight: 700;
       font-size: 13px;
       padding: 8px 0 7px;
-      border-bottom: 1px solid #e0e0e0; }
+      border-bottom: 1px solid #f4f4f4; }
       #call-to-action .insides .message a {
         -webkit-border-radius: 3px;
         -moz-border-radius: 3px;
@@ -567,22 +519,10 @@ header.hide-nav {
     #call-to-action .red a {
       background-color: #f42652; }
 
-#mid {
-  padding: 0 185px;
-  min-width: 555px; }
-  #mid #left-sidebar {
-    width: 183px;
-    right: 185px;
-    margin-left: -100%; }
-  #mid #right-sidebar {
-    width: 165px;
-    padding: 10px;
-    right: 0;
-    margin-right: -185px; }
-
-/* IE6 Fix */
-* html #left-sidebar {
-  left: 185px; }
+#right-sidebar {
+  width: 179px;
+  padding: 10px;
+  border-left: 1px solid #cccccc; }
 
 #left-sidebar {
   padding-top: 10px; }
@@ -4517,9 +4457,9 @@ ul.stories .excerpt {
     .recommendation-stream .tabs a:first-child {
       border: none; }
     .recommendation-stream .tabs a.subscribed-to-recommendations {
-      border-right: 1px solid #e0e0e0; }
+      border-right: 1px solid #f4f4f4; }
     .recommendation-stream .tabs a.momeant-recommendations {
-      border-left: 1px solid #e0e0e0; }
+      border-left: 1px solid #f4f4f4; }
   .recommendation-stream ul {
     padding: 10px 10px 0 10px; }
     .recommendation-stream ul li {
@@ -4705,13 +4645,13 @@ ul.avatars li {
 
 .user-profile .info {
   position: relative;
-  padding-left: 70px;
+  padding: 10px 20px 0 90px;
   height: 62px;
   margin-bottom: 20px; }
   .user-profile .info .avatar {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 10px;
+    left: 20px;
     display: block;
     border: 1px solid white;
     width: 60px;
@@ -4720,7 +4660,7 @@ ul.avatars li {
     position: relative;
     top: -4px; }
     .user-profile .info .name-occupation-follow .name {
-      font-size: 22px;
+      font-size: 20px;
       font-weight: 700;
       text-transform: uppercase;
       color: black;
@@ -4757,8 +4697,8 @@ ul.avatars li {
       background-color: #ff1345; }
   .user-profile .info .reward-and-stats {
     position: absolute;
-    top: 0;
-    right: 0; }
+    top: 10px;
+    right: 20px; }
     .user-profile .info .reward-and-stats .hidden {
       display: none; }
     .user-profile .info .reward-and-stats .reward, .user-profile .info .reward-and-stats .user-stats {
@@ -4827,48 +4767,50 @@ ul.avatars li {
   border-bottom: 1px solid #cccccc;
   padding-top: 10px;
   width: 100%; }
-  .user-profile ul.galleries li.gallery ul.stories li.story .edit-links, .user-profile ul.galleries li.no-gallery ul.stories li.story .edit-links {
-    position: absolute;
-    top: 10px;
-    right: 10px; }
-    .user-profile ul.galleries li.gallery ul.stories li.story .edit-links a, .user-profile ul.galleries li.no-gallery ul.stories li.story .edit-links a {
-      text-indent: -9999px;
+  .user-profile ul.galleries li.gallery ul.stories, .user-profile ul.galleries li.no-gallery ul.stories {
+    padding: 0 20px; }
+    .user-profile ul.galleries li.gallery ul.stories li.story .edit-links, .user-profile ul.galleries li.no-gallery ul.stories li.story .edit-links {
+      position: absolute;
+      top: 10px;
+      right: 10px; }
+      .user-profile ul.galleries li.gallery ul.stories li.story .edit-links a, .user-profile ul.galleries li.no-gallery ul.stories li.story .edit-links a {
+        text-indent: -9999px;
+        display: block;
+        width: 12px;
+        height: 12px;
+        background-repeat: no-repeat; }
+      .user-profile ul.galleries li.gallery ul.stories li.story .edit-links a.edit, .user-profile ul.galleries li.no-gallery ul.stories li.story .edit-links a.edit {
+        background-image: url(../images/icons/pencilTiny.png);
+        margin-bottom: 5px; }
+      .user-profile ul.galleries li.gallery ul.stories li.story .edit-links a.delete, .user-profile ul.galleries li.no-gallery ul.stories li.story .edit-links a.delete {
+        background-image: url(../images/icons/trashTiny.png); }
+    .user-profile ul.galleries li.gallery ul.stories li.about, .user-profile ul.galleries li.no-gallery ul.stories li.about {
+      background: none;
+      padding: 0;
+      width: 250px;
+      -webkit-box-shadow: 0 0 0px rgba(0, 0, 0, 0);
+      -moz-box-shadow: 0 0 0px rgba(0, 0, 0, 0);
+      box-shadow: 0 0 0px rgba(0, 0, 0, 0); }
+      .user-profile ul.galleries li.gallery ul.stories li.about .name, .user-profile ul.galleries li.no-gallery ul.stories li.about .name {
+        font-size: 18px;
+        margin-bottom: 5px; }
+      .user-profile ul.galleries li.gallery ul.stories li.about .description, .user-profile ul.galleries li.no-gallery ul.stories li.about .description {
+        font-size: 11px; }
+    .user-profile ul.galleries li.gallery ul.stories li.add, .user-profile ul.galleries li.gallery ul.stories li.add-description, .user-profile ul.galleries li.no-gallery ul.stories li.add, .user-profile ul.galleries li.no-gallery ul.stories li.add-description {
+      float: left;
+      margin: 0 20px 20px 0; }
+    .user-profile ul.galleries li.gallery ul.stories li.add a, .user-profile ul.galleries li.no-gallery ul.stories li.add a {
       display: block;
-      width: 12px;
-      height: 12px;
-      background-repeat: no-repeat; }
-    .user-profile ul.galleries li.gallery ul.stories li.story .edit-links a.edit, .user-profile ul.galleries li.no-gallery ul.stories li.story .edit-links a.edit {
-      background-image: url(../images/icons/pencilTiny.png);
-      margin-bottom: 5px; }
-    .user-profile ul.galleries li.gallery ul.stories li.story .edit-links a.delete, .user-profile ul.galleries li.no-gallery ul.stories li.story .edit-links a.delete {
-      background-image: url(../images/icons/trashTiny.png); }
-  .user-profile ul.galleries li.gallery ul.stories li.about, .user-profile ul.galleries li.no-gallery ul.stories li.about {
-    background: none;
-    padding: 0;
-    width: 250px;
-    -webkit-box-shadow: 0 0 0px rgba(0, 0, 0, 0);
-    -moz-box-shadow: 0 0 0px rgba(0, 0, 0, 0);
-    box-shadow: 0 0 0px rgba(0, 0, 0, 0); }
-    .user-profile ul.galleries li.gallery ul.stories li.about .name, .user-profile ul.galleries li.no-gallery ul.stories li.about .name {
-      font-size: 18px;
-      margin-bottom: 5px; }
-    .user-profile ul.galleries li.gallery ul.stories li.about .description, .user-profile ul.galleries li.no-gallery ul.stories li.about .description {
-      font-size: 11px; }
-  .user-profile ul.galleries li.gallery ul.stories li.add, .user-profile ul.galleries li.gallery ul.stories li.add-description, .user-profile ul.galleries li.no-gallery ul.stories li.add, .user-profile ul.galleries li.no-gallery ul.stories li.add-description {
-    float: left;
-    margin: 0 20px 20px 0; }
-  .user-profile ul.galleries li.gallery ul.stories li.add a, .user-profile ul.galleries li.no-gallery ul.stories li.add a {
-    display: block;
-    width: 248px;
-    height: 204px;
-    border: 1px dashed #cccccc;
-    color: #aaaaaa;
-    background: white url(../images/addMomeantBg.png) no-repeat 50% 50%;
-    text-indent: -9999px; }
-  .user-profile ul.galleries li.gallery ul.stories li.add-description, .user-profile ul.galleries li.no-gallery ul.stories li.add-description {
-    width: 460px;
-    color: #999999;
-    line-height: 2em; }
+      width: 248px;
+      height: 204px;
+      border: 1px dashed #cccccc;
+      color: #aaaaaa;
+      background: white url(../images/addMomeantBg.png) no-repeat 50% 50%;
+      text-indent: -9999px; }
+    .user-profile ul.galleries li.gallery ul.stories li.add-description, .user-profile ul.galleries li.no-gallery ul.stories li.add-description {
+      width: 460px;
+      color: #999999;
+      line-height: 2em; }
 .user-profile ul.galleries li.gallery:first-child, .user-profile ul.galleries li.no-gallery:first-child {
   padding-top: 0; }
 .user-profile .bio .incomplete-profile {
@@ -5075,7 +5017,7 @@ form.user_edit #user_interest_list {
 .deposits form {
   margin-top: 1em;
   padding: 1em;
-  background-color: #d0d0d0; }
+  background-color: #e4e4e4; }
   .deposits form h3 {
     border-bottom: 1px dotted #aaaaaa;
     padding-bottom: 0.5em;
@@ -5286,7 +5228,7 @@ form.user_edit #user_interest_list {
   #join-login-modal .padder {
     width: 480px;
     margin: 0 auto;
-    background-color: #e0e0e0;
+    background-color: #f4f4f4;
     padding: 15px 20px 10px;
     position: relative;
     top: 170px;
@@ -5431,7 +5373,7 @@ form.user_edit #user_interest_list {
     font-size: 33px;
     font-weight: 700;
     text-transform: uppercase;
-    text-shadow: #e0e0e0 -1px 1px 0, #00aeef -2px 2px 0;
+    text-shadow: #f4f4f4 -1px 1px 0, #00aeef -2px 2px 0;
     margin-bottom: 5px; }
   #subscribe-pitch .byline h3 {
     font-family: "museo-slab-1", "museo-slab-2", serif;
@@ -5833,7 +5775,7 @@ header .topic-icon {
     font-size: 33px;
     font-weight: 700;
     text-transform: uppercase;
-    text-shadow: #e0e0e0 -1px 1px 0, #34b44c -2px 2px 0;
+    text-shadow: #f4f4f4 -1px 1px 0, #34b44c -2px 2px 0;
     margin-bottom: 5px; }
   #invite-pitch .byline h3 {
     font-family: "museo-slab-1", "museo-slab-2", serif;
@@ -6002,7 +5944,7 @@ header .topic-icon {
     font-size: 33px;
     font-weight: 700;
     text-transform: uppercase;
-    text-shadow: #e0e0e0 -1px 1px 0, #00aeef -2px 2px 0;
+    text-shadow: #f4f4f4 -1px 1px 0, #00aeef -2px 2px 0;
     margin-bottom: 5px; }
   #about-pitch .byline h3 {
     font-family: "museo-slab-1", "museo-slab-2", serif;
@@ -6119,7 +6061,7 @@ header .topic-icon {
     font-size: 33px;
     font-weight: 700;
     text-transform: uppercase;
-    text-shadow: #e0e0e0 -1px 1px 0, #985faf -2px 2px 0;
+    text-shadow: #f4f4f4 -1px 1px 0, #985faf -2px 2px 0;
     margin-bottom: 5px; }
 #faq-pitch ul.questions {
   height: 440px;
@@ -6386,7 +6328,7 @@ header .topic-icon {
     -moz-border-radius: 3px;
     border-radius: 3px;
     margin-bottom: 20px;
-    color: #e0e0e0; }
+    color: #f4f4f4; }
     #analytics-sidebar .box h3 {
       font-size: 13px;
       font-weight: 900;

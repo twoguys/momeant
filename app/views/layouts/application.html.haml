@@ -29,47 +29,35 @@
     = yield :head
     
   %body{:class => @fullscreen.nil? ? "" : "fullscreen"}
-    #wrap
-      #main.clearfix
-        %header#header{:class => private_beta? && !current_user ? "hide-nav" : ""}
-          - unless @fullscreen.present?
-            = render "layouts/user_nav" unless @hide_nav
-            .insides
-              .momeant-header
-                = link_to("Home", root_path, :id => "logo-large") unless @hide_momeant
-                - if !current_user
-                  = link_to("Join", new_user_registration_path, :id => "join", :class => "round-button")
-                - elsif !@hide_rewards
-                  = render "shared/reward_bank"
-                = yield :header
-        
-        #mid
-          #center.column
-            = render "layouts/flash", :flash => flash
-            #call-to-action
-              - unless private_beta?
-                - if current_user && current_user.trial?
-                  = #render :partial => "shared/calls_to_action/subscribe", :locals => {:message => "You have #{pluralize(current_user.days_left_in_trial, "day")} and #{pluralize(current_user.coins, "coin")} left in your trial. Loving it?"}
-                - else
-                  = yield :call_to_action
-              - if current_user && current_user.is_a?(Creator)
-                - if current_user.created_stories.empty?
-                  = #render :partial => "shared/calls_to_action/create_a_story"
-                - elsif current_user.paypal_email.blank?
-                  = #render :partial => "shared/calls_to_action/enter_payment_info"
-            .center-insides
-              = yield
-          - unless @fullscreen.present?
-            #left-sidebar.column
-              = render "layouts/sidebar_nav"
-              = yield :left_sidebar
-            #right-sidebar.column
-              - if @adverts && @adverts.length > 0
-                %section.adverts
-                  = #render @adverts
-                  .clear
-              = yield :right_sidebar
-          .clear
+    %header#header{:class => private_beta? && !current_user ? "hide-nav" : ""}
+      = render "layouts/user_nav" unless @hide_nav
+      .header-insides
+        .momeant-header
+          = link_to("Home", root_path, :id => "logo-large") unless @hide_momeant
+          - if !current_user
+            = link_to("Join", new_user_registration_path, :id => "join", :class => "round-button")
+          - elsif !@hide_rewards
+            = render "shared/reward_bank"
+          = yield :header
+
+    #container
+      #main.column
+        = render "layouts/flash", :flash => flash
+        #call-to-action
+          - unless private_beta?
+            - if current_user && current_user.trial?
+              = #render :partial => "shared/calls_to_action/subscribe", :locals => {:message => "You have #{pluralize(current_user.days_left_in_trial, "day")} and #{pluralize(current_user.coins, "coin")} left in your trial. Loving it?"}
+            - else
+              = yield :call_to_action
+          - if current_user && current_user.is_a?(Creator)
+            - if current_user.created_stories.empty?
+              = #render :partial => "shared/calls_to_action/create_a_story"
+            - elsif current_user.paypal_email.blank?
+              = #render :partial => "shared/calls_to_action/enter_payment_info"
+        = yield
+      #right-sidebar.column
+        %ul.reward-thumbnails
+          = render @following_stream
 
     #footer
       .insides
