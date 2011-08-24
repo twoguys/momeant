@@ -10,7 +10,7 @@ class HomeController < ApplicationController
     
     @nav = "home"
     @user = current_user
-    @creators = current_user.given_rewards.group_by {|r| r.recipient}
+    @creators = current_user.given_rewards.for_content.group_by {|r| r.recipient}
     render "users/show"
   end
   

@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   end
   
   def show
-    @creators = @user.given_rewards.group_by {|r| r.recipient}
+    @creators = @user.given_rewards.for_content.group_by {|r| r.recipient}
   end
   
   def stream
