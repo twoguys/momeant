@@ -56,8 +56,10 @@
               = #render :partial => "shared/calls_to_action/enter_payment_info"
         = yield
       #right-sidebar.column
-        %ul.reward-thumbnails
-          = render @following_stream
+        %ul.rewards
+          = render @following_stream, :size => :small
+        .spinner
+        #user_id= current_user.id
 
     #footer
       .insides

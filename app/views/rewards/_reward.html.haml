@@ -1,3 +1,4 @@
+- size ||= :medium
 - for_person = reward.story_id.nil?
 - if params[:alternate].blank?
   %li.reward{:class => for_person  ? "person" : ""}
@@ -14,9 +15,9 @@
     - else
       .what
         .text
-          = link_to(reward.story.title, story_path(reward.story, :impacted_by => reward.id), :class => "title")
+          = link_to(reward.story.title, story_path(reward.story, :impacted_by => reward.id), :class => "title modal")
           .author by #{link_to(reward.recipient.name, user_path(reward.recipient))}
-        .thumbnail= link_to(image_tag(reward.story.thumbnail.url(:medium)), story_path(reward.story, :impacted_by => reward.id))
+        .thumbnail= link_to(image_tag(reward.story.thumbnail.url(size)), story_path(reward.story, :impacted_by => reward.id), :class => "modal")
     .who.clearfix
       = link_to(image_tag(reward.user.avatar(:thumbnail)), user_path(reward.user), :class => "avatar")
       %span.amount-and-who

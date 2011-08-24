@@ -1,0 +1,79 @@
+// Basic colors for site
+
+$background_color: #f4f4f4
+$text_color: #252525
+$black: #000000
+$blue: #00aeef
+$red: #f42652
+$lightred: #f7d3db
+$orange: #ffa801
+$green: #34B44C
+$lightgreen: #c8f2d0
+$buttongreen: #1EA337
+$yellow: #fff10f
+$purple: #985faf
+$lightpurple: #F5DEFF
+$lightblue: #C0EEFF
+$yellow: #ffbf03
+$link_color: $blue
+
+$category_color: #d35151
+$job_type_color: #5197d3
+$payment_type_color: #16be36
+$term_color: #d27442
+
+// Gradient colors for buttons
+
+$greygradient1: #d0d0d0
+$greygradient2: #888888
+$bluegradient1: #43baf0
+$bluegradient2: #3a94e6
+$greengradient1: #62e079
+$greengradient2: #12b32f
+$redgradient1: #ff7593
+$redgradient2: #f42653
+
+// Font families
+
+$block: "facitweb-1","facitweb-2",helvetica,sans-serif
+$serif: Georgia,serif
+$typewriter: "museo-slab-1","museo-slab-2",serif 
+$caps: "museo-sans-1","museo-sans-2",sans-serif
+$dropcaps: "ambroise-std-1","ambroise-std-2",serif
+
+$border_type: 1px dotted #aaa
+$border_solid: 1px solid #DEDEDE
+
+@mixin rounded($radius: 5px)
+	-webkit-border-radius: $radius
+	-moz-border-radius: $radius
+	border-radius: $radius
+@mixin boxshadow($radius: 10px, $opacity: 0.7, $x: 0, $y: 0)
+	-webkit-box-shadow: $x $y $radius rgba(0,0,0,$opacity)
+	-moz-box-shadow: $x $y $radius rgba(0,0,0,$opacity)
+	box-shadow: $x $y $radius rgba(0,0,0,$opacity)
+@mixin bgcover
+	-webkit-background-size: cover
+	-moz-background-size: cover
+	-o-background-size: cover
+	background-size: cover
+@mixin bgcontain
+	-webkit-background-size: contain
+	-moz-background-size: contain
+	-o-background-size: contain
+	background-size: contain
+@mixin button
+	height: 28px
+	line-height: 30px
+	padding: 0 20px
+	vertical-align: middle
+	text-transform: uppercase
+	color: #fff
+	font-weight: 700
+	@include rounded(3px)
+	font-size: 12px
+	letter-spacing: .5px
+	font-family: $block
+@mixin gradient($color1: #43baf0, $color2: #3a94e6)
+	background: -moz-linear-gradient(top, $color1 0%, $color2)
+	background: -webkit-gradient(linear, left top, left bottom, from($color1), to($color2))

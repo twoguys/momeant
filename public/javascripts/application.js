@@ -153,6 +153,43 @@ function setup_reward_and_story_columns() {
 	$container.masonry();
 }
 
+function setup_modal_presenter_links() {
+	$('a.modal').fancybox({
+		width: '98%',
+		height: '98%',
+		padding: 0,
+		autoScale: false,
+		autoDimensions: false
+	});
+}
+
+var infinite_loading = false;
+var infinite_page = 2;
+var infinite_done = false;
+function setup_following_stream_infinite_scroll() {
+	var $container = $('#right-sidebar');
+	var $stream = $('#right-sidebar ul.rewards');
+	var $spinner = $('#right-sidebar .spinner');
+	var user_id = $('#right-sidebar #user_id').text();
+	$container.scroll(function() {
+		var heightOfStream = $stream.height();
+		var pixelsScrolled = $container.scrollTop() + $container.height();
+		if (pixelsScrolled > heightOfStream && !infinite_loading && !infinite_done) {
+			$spinner.show();
+			infinite_loading = true;
+			$.get('/users/' + user_id + '/stream?page=' + infinite_page, function(data) {
+				$stream.append(data);
+				infinite_loading = false;
+				infinite_page += 1;
+				if (data.trim() == "") {
+					$('#right-sidebar .spinner').addClass('done').text('No more rewards.');
+					infinite_done = true;
+				}
+			});
+		}
+	});
+}
+
 $(document).ready(function() {
 	setup_tooltips();
 	setup_tab_switching();
@@ -164,14 +201,10 @@ $(document).ready(function() {
 	setup_recommendation_tabs();
 	setup_thumbnail_flipping();
 	handle_signup_login_form_validation();
-	// try {
-	// 	Typekit.load({
-	// 		active: function() {setup_reward_and_story_columns();}
-	// 	});
-	// } catch(e) {}
-	// for some reason, calling masonry after Typekit loads gets it close, but not perfect...
-	// we have to run this again (after a small delay) to get masonry to make the final touches on alignment.
 	setTimeout(setup_reward_and_story_columns, 2000);
+	
+	setup_modal_presenter_links();
+	setup_following_stream_infinite_scroll();
 	
 	// reward lists
 	handle_reward_thumbnail_interactivity();

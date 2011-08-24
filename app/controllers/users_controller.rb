@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!, :except => [:show, :billing_updates, :top_curators]
   before_filter :get_adverts, :only => :top_curators
-  before_filter :find_user, :only => [:show, :creations, :bio, :rewarded, :patrons, :bookmarks, :followers, :following]
+  before_filter :find_user, :only => [:show, :stream, :creations, :bio, :rewarded, :patrons, :bookmarks, :followers, :following]
   skip_before_filter :verify_authenticity_token, :only => :billing_updates
   skip_before_filter :release_lockdown, :only => :billing_updates
   
@@ -12,6 +12,10 @@ class UsersController < ApplicationController
   
   def show
     @creators = @user.given_rewards.group_by {|r| r.recipient}
+  end
+  
+  def stream
+    render @user.following_stream(params[:page])
   end
   
   def edit

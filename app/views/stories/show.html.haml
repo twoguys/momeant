@@ -33,7 +33,7 @@
               Rewarding action will go here
         - if @story.rewards.empty?
           %li.empty Be the first to reward this content!
-        - @story.rewards.public.each do |curation|
+        - @story.rewards.each do |curation|
           %li
             = link_to(image_tag(curation.user.avatar.url(:thumbnail)), user_path(curation.user), :class => "avatar")
             .the-rest

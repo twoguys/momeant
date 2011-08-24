@@ -59,7 +59,7 @@ Repo::Application.routes.draw do
     get :bookmarks
     
     member do
-      get :bio
+      get :stream
       get :creations
       get :rewarded
       get :patrons

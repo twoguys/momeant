@@ -33,6 +33,7 @@ class StoriesController < ApplicationController
     View.record(@story, current_user) if current_user && current_user != @story.user
     @fullscreen = true
     @user = @story.user
+    render :layout => "presenter"
   end
   
   def new

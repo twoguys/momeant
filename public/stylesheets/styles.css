@@ -45,17 +45,16 @@ html, body {
   margin-top: -42px;
   position: relative; }
   #container .column {
-    padding-top: 52px;
     position: absolute;
-    top: 0;
+    top: 42px;
     bottom: 0;
+    padding-top: 10px;
     overflow-y: auto; }
   #container #main {
     left: 0;
     right: 200px; }
   #container #right-sidebar {
-    right: 0;
-    background: #cccccc; }
+    right: 0; }
 
 #footer {
   display: none;
@@ -521,8 +520,25 @@ header.hide-nav {
 
 #right-sidebar {
   width: 179px;
-  padding: 10px;
-  border-left: 1px solid #cccccc; }
+  padding: 0 10px 10px;
+  border-left: 1px solid #cccccc;
+  background: #cccccc; }
+  #right-sidebar .spinner {
+    height: 30px;
+    background: transparent url(../images/spinnerLightGreyBg.gif) no-repeat 50% 0;
+    font-size: 11px;
+    text-align: center;
+    font-style: italic;
+    color: #999999;
+    line-height: 30px;
+    display: none; }
+  #right-sidebar .spinner.done {
+    background: none; }
+  #right-sidebar #user_id {
+    display: none; }
+  #right-sidebar ul.rewards li .thumbnail a img {
+    width: 150px;
+    height: 100px; }
 
 #left-sidebar {
   padding-top: 10px; }
