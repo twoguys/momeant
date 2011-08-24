@@ -77,3 +77,43 @@ $border_solid: 1px solid #DEDEDE
 @mixin gradient($color1: #43baf0, $color2: #3a94e6)
 	background: -moz-linear-gradient(top, $color1 0%, $color2)
 	background: -webkit-gradient(linear, left top, left bottom, from($color1), to($color2))
+
+/* Element styles */
+
+html, body
+	font-family: $block
+	font-size: 12px
+	color: $text_color
+	background: $background_color
+	min-height: 100%
+	overflow-x: hidden
+	text-rendering: optimizelegibility
+	position: relative
+
+h1, h2
+	font-weight: normal
+h2
+	background: none repeat scroll 0 0 #EAEAEA
+	color: #B2B2B2
+	font-family: $block
+	font-size: 13px
+	font-weight: 700
+	padding: 11px 13px 9px
+	text-transform: uppercase
+	clear: both
+
+p
+	line-height: 1.8em
+	margin: 20px 0
+
+a, a:visited
+	color: $link_color
+	outline: none
+
+h1
+	font-size: 1.7em
+h2
+	font-size: 1.3em
+
+.hidden
+	display: none

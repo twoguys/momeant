@@ -101,7 +101,7 @@ var story_viewer = function() {
 
 $(document).ready(function() {
 	viewer = new story_viewer();
-	viewer.initialize();
+	//viewer.initialize();
 	
 	$('#previewer a.rewarded, #previewer a.reward').click(function(event) {
 		viewer.goto_page(viewer.total_pages);

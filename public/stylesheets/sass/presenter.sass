@@ -1,6 +1,3 @@
-@import "presets"
-@import "stories"
-
 /* Story viewing */
 
 .story-viewer
@@ -23,7 +20,7 @@
 		@include boxshadow(5px, .1, 0, 1px)
 		z-index: 3
 	#back-to-home
-		position: fixed
+		position: absolute
 		top: 0
 		left: 35px
 		width: 46px
@@ -32,9 +29,9 @@
 		z-index: 3
 		text-indent: -9999px
 	#activity-flag
-		position: fixed
+		position: absolute
 		top: 0
-		left: 94px
+		left: 35px
 		width: 46px
 		height: 60px
 		background: transparent url(../images/activityFlag.png) no-repeat 50% 0
@@ -120,7 +117,7 @@
 				color: #aaa
 	
 	#metadata
-		position: fixed
+		position: absolute
 		left: 0
 		bottom: 0
 		z-index: 5
@@ -176,7 +173,7 @@
 				color: $link_color
 
 	ul#pages
-		position: fixed
+		position: absolute
 		width: 100%
 		height: 100%
 		li
@@ -306,10 +303,10 @@
 	#previous-page, #next-page
 		width: 100px
 		height: 140px
-		position: fixed
+		position: absolute
 		top: 45%
 		z-index: 3
-		opacity: 0.2
+		opacity: 0.4
 		-webkit-transition: opacity linear 0.2s
 		-moz-transition: opacity linear 0.2s
 		.button

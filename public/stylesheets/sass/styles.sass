@@ -1,42 +1,5 @@
 @import "presets"
 
-/* Element styles */
-
-html, body
-	font-family: $block
-	font-size: 12px
-	color: $text_color
-	background: $background_color
-	min-height: 100%
-	overflow-x: hidden
-	text-rendering: optimizelegibility
-	position: relative
-
-h1, h2
-	font-weight: normal
-h2
-	background: none repeat scroll 0 0 #EAEAEA
-	color: #B2B2B2
-	font-family: $block
-	font-size: 13px
-	font-weight: 700
-	padding: 11px 13px 9px
-	text-transform: uppercase
-	clear: both
-
-p
-	line-height: 1.8em
-	margin: 20px 0
-
-a, a:visited
-	color: $link_color
-	outline: none
-
-h1
-	font-size: 1.7em
-h2
-	font-size: 1.3em
-
 /* Layout */
 
 html, body
@@ -50,7 +13,6 @@ html, body
 		position: absolute
 		top: 42px
 		bottom: 0
-		padding-top: 10px
 		overflow-y: auto
 
 	#main
@@ -59,6 +21,16 @@ html, body
 	
 	#right-sidebar
 		right: 0
+
+.fullscreen
+	.fullscreen-hidden, #header, #right-sidebar
+		display: none
+	#container
+		margin: 0
+		#main
+			padding: 0
+			top: 0
+			right: 0
 
 #footer
 	display: none
@@ -121,9 +93,6 @@ html, body
 @import "analytics"
 @import "rewards"
 @import "alternates"
-
-.hidden
-	display: none
 
 .info-bar
 	background-color: $blue

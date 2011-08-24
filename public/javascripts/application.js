@@ -159,7 +159,12 @@ function setup_modal_presenter_links() {
 		height: '98%',
 		padding: 0,
 		autoScale: false,
-		autoDimensions: false
+		autoDimensions: false,
+		overlayOpacity: 0.7,
+		scrolling: 'no',
+		onComplete: function() {
+			viewer.initialize();
+		}
 	});
 }
 
