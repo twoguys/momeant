@@ -584,15 +584,25 @@ header.hide-nav {
         #right-sidebar ul.rewards li .what .title {
           display: none;
           position: absolute;
-          top: 10px;
-          left: 10px; }
+          top: 0;
+          left: 0;
+          padding: 10px;
+          width: 210px;
+          height: 124px;
+          color: white;
+          font-weight: 700;
+          text-transform: uppercase;
+          font-size: 14px;
+          background: rgba(0, 0, 0, 0.5);
+          z-index: 2; }
         #right-sidebar ul.rewards li .what .comment-pointer {
           background: transparent url(../images/streamCommentPointer.png) no-repeat 0 0;
           width: 13px;
           height: 12px;
           position: absolute;
           bottom: 0;
-          left: 20px; }
+          left: 20px;
+          z-index: 3; }
       #right-sidebar ul.rewards li .who {
         background: #f4f4f4;
         padding: 8px;
@@ -632,6 +642,8 @@ header.hide-nav {
         #right-sidebar ul.rewards li .who .comment {
           color: #555555;
           font-size: 11px; }
+    #right-sidebar ul.rewards li:hover .title {
+      display: block; }
 
 /* Flash notices */
 #flash {

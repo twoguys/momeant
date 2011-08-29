@@ -3,7 +3,7 @@
 %li.reward{:class => for_person  ? "person" : ""}
   .what
     = link_to(image_tag(reward.story.thumbnail.url(size)), story_path(reward.story, :impacted_by => reward.id), :class => "thumbnail modal")
-    .title= reward.story.title
+    = link_to(reward.story.title, story_path(reward.story, :impacted_by => reward.id), :class => "title modal")
     .comment-pointer
   .who
     = link_to(image_tag(reward.user.avatar(:thumbnail)), user_path(reward.user), :class => "avatar")

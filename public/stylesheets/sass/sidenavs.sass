@@ -53,8 +53,17 @@
 				.title
 					display: none
 					position: absolute
-					top: 10px
-					left: 10px
+					top: 0
+					left: 0
+					padding: 10px
+					width: 210px
+					height: 124px
+					color: #fff
+					font-weight: 700
+					text-transform: uppercase
+					font-size: 14px
+					background: rgba(0,0,0,0.5)
+					z-index: 2
 				.comment-pointer
 					background: transparent url(../images/streamCommentPointer.png) no-repeat 0 0
 					width: 13px
@@ -62,6 +71,7 @@
 					position: absolute
 					bottom: 0
 					left: 20px
+					z-index: 3
 			.who
 				background: $background_color
 				padding: 8px
@@ -100,3 +110,6 @@
 				.comment
 					color: #555
 					font-size: 11px
+		li:hover
+			.title
+				display: block
