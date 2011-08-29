@@ -47,7 +47,15 @@ function setup_signup_modal() {
 }
 
 function setup_rewarding() {
-	$("a.reward:not(.disabled), a.rewarded:not(.disabled)").fancybox({scrolling: 'no'});
+	$("a.reward:not(.disabled), a.rewarded:not(.disabled)").click(function() {
+		var $reward_box = $('#reward-box');
+		if ($reward_box.hasClass('open')) {
+			$reward_box.removeClass('open').animate({top:'-422px'}, 500);
+		} else {
+			$reward_box.addClass('open').animate({top:'0'}, 500);
+		}
+		return false;
+	});
 	$('#reward-form').submit(function(event) {
 		event.preventDefault(); 
 
@@ -164,6 +172,7 @@ function setup_modal_presenter_links() {
 		scrolling: 'no',
 		onComplete: function() {
 			viewer.initialize();
+			setup_rewarding();
 		}
 	});
 }

@@ -3,7 +3,6 @@ class UsersController < ApplicationController
   before_filter :get_adverts, :only => :top_curators
   before_filter :find_user, :only => [:show, :stream, :creations, :bio, :rewarded, :patrons, :bookmarks, :followers, :following]
   skip_before_filter :verify_authenticity_token, :only => :billing_updates
-  skip_before_filter :release_lockdown, :only => :billing_updates
   
   def top_curators
     @top_curators = User.order(:subscriptions_count).page params[:page]

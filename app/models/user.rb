@@ -169,7 +169,8 @@ class User < ActiveRecord::Base
       following_ids = subscribed_to.map { |user| user.id }
       # show my rewards too
       following_ids = (following_ids + [self.id]).join(",")
-      rewards = Reward.select("DISTINCT ON (story_id) curations.*").where("story_id IS NOT NULL").where("user_id IN (#{following_ids})").page page
+      # removed -> select("DISTINCT ON (story_id) curations.*").
+      rewards = Reward.where("story_id IS NOT NULL").where("user_id IN (#{following_ids})").page page
     end
     
     rewards

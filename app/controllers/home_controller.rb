@@ -1,5 +1,4 @@
 class HomeController < ApplicationController
-  skip_before_filter :release_lockdown
   before_filter :authenticate_user!, :except => [:index]
   before_filter :get_adverts
   
