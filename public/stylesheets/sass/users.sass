@@ -73,17 +73,18 @@ ul.avatars
 		background-image: url(../images/icons/starGreySmall.png)
 
 .user-profile
+	.top.info
+		background: #e0e0e0
 	.info
 		position: relative
-		padding: 20px 20px 0 90px
+		padding: 20px 20px 20px 95px
 		height: 62px
-		margin-bottom: 20px
 		.avatar
 			position: absolute
 			top: 20px
 			left: 20px
 			display: block
-			border: 1px solid #fff
+			border: 3px solid #000
 			width: 60px
 			height: 60px
 		.name-occupation-follow
@@ -95,6 +96,8 @@ ul.avatars
 				text-transform: uppercase
 				color: #000
 				margin-bottom: -4px
+				float: left
+				margin-right: 10px
 				.badge
 					@include rounded(2px)
 					background: $yellow
@@ -106,7 +109,9 @@ ul.avatars
 			.occupation
 				font-size: 11px
 				padding-bottom: 1px
+				clear: both
 			.follow
+				float: left
 				a, input[type="submit"]
 					display: block
 					height: 25px
@@ -143,56 +148,144 @@ ul.avatars
 				border: 1px solid #ddd
 	
 	.horizontal-tabs
-		background: transparent url(../images/greyHorizontalLine.gif) repeat-x 50% 50%
 		ul
-			height: 27px
-			width: 450px
-			margin: 0 auto 30px
+			height: 35px
+			background: #e0e0e0
+			padding-left: 20px
 		li
 			display: block
 			float: left
-			height: 27px
+			height: 35px
 			position: relative
 			img.notification
 				position: absolute
 				top: -12px
 				right: 0
 			a
+				display: block
 				position: relative
-				top: 5px
-				color: #555
-				text-shadow: 0 1px 1px #fff
-				border-top: 1px solid #ccc
-				border-bottom: 1px solid #ccc
-				border-right: 1px solid #ccc
-				border-left: 1px solid #eee
-				background: #f4f4f4
+				color: #ddd
+				background: #aaa
 				padding: 5px 18px
-				font-size: 11px
+				height: 25px
+				text-transform: uppercase
+				line-height: 25px
 				font-weight: 700
-				background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0.09, rgb(205,205,205)),color-stop(0.78, rgb(253,253,253)))
-				background-image: -moz-linear-gradient(center bottom,rgb(205,205,205) 9%,rgb(253,253,253) 78%)
+				-webkit-border-top-left-radius: 3px
+				-moz-border-radius-topleft: 3px
+				border-top-left-radius: 3px
+				-webkit-border-top-right-radius: 3px
+				-moz-border-radius-topright: 3px
+				border-top-right-radius: 3px
+				margin-right: 5px
 			a.active
-				background: #000
-				color: #fff
+				background: $background_color
+				color: #000
 				text-shadow: none
-				border: 1px solid #000
-		li:first-child a
-			border-left: 1px solid #ccc
-			-webkit-border-top-left-radius: 3px
-			-webkit-border-bottom-left-radius: 3px
-			-moz-border-radius-topleft: 3px
-			-moz-border-radius-bottomleft: 3px
-			border-top-left-radius: 3px
-			border-bottom-left-radius: 3px
-			border-left: 1px solid #ccc
-		li:last-child a
-			-webkit-border-top-right-radius: 3px
-			-webkit-border-bottom-right-radius: 3px
-			-moz-border-radius-topright: 3px
-			-moz-border-radius-bottomright: 3px
-			border-top-right-radius: 3px
-			border-bottom-right-radius: 3px
+
+	.tabbed
+		padding: 20px 0
+		.what-is-this
+			padding: 15px
+			background: $blue url(../images/slightlyDarkDiagonals.png) repeat-x 0 0
+			color: #fff
+			text-transform: uppercase
+			margin: 0 20px
+			font-weight: 700
+	
+	.patronee
+		margin: 20px 20px 0
+		border: 1px solid #e0e0e0
+		@include boxshadow(3px,0.2,2px,2px)
+		.heading
+			height: 50px
+			padding: 20px
+			background: #f6f6f6
+			background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0.2, rgb(235,235,235)),color-stop(0.6, rgb(252,252,252)))
+			background-image: -moz-linear-gradient(center bottom,rgb(235,235,235) 20%,rgb(252,252,252) 60%)
+			border-bottom: 1px solid #e0e0e0
+		.info
+			float: left
+			padding: 0 0 0 65px
+			.avatar
+				width: 45px
+				height: 45px
+				top: 0
+				left: 0
+				img
+					width: 45px
+					height: 45px
+			.name
+				font-weight: 700
+				text-transform: uppercase
+				font-size: 18px
+				line-height: 20px
+				color: $text_color
+				span
+					display: block
+		.impact
+			float: right
+			.given, .helped-get
+				float: left
+				font-size: 11px
+				height: 60px
+				margin-top: -5px
+				.text, .value
+					float: left
+				.text
+					padding: 25px 5px 0 0
+					text-align: right
+				.value
+					font-family: $numerals
+					font-size: 68px
+					font-weight: 200
+					padding-right: 20px
+					background: transparent url(../images/icons/starBlackSmall.png) no-repeat 100% 3px
+			.given
+				border-right: 1px solid #ccc
+				padding-right: 20px
+			.helped-get
+				border-left: 1px solid #fff
+				padding-left: 20px
+		ul.content
+			clear: both
+			padding-left: 20px
+			li
+				float: left
+				border: 1px solid #e0e0e0
+				@include boxshadow(2px,0.2,0,0)
+				margin: 20px 20px 0 0
+				padding-bottom: 5px
+				.title
+					color: $text-color
+					text-transform: uppercase
+					font-weight: 700
+					padding: 10px
+					display: block
+				.thumbnail img
+					width: 230px
+				.gave, .people, .impact
+					padding: 5px 10px
+					font-size: 11px
+				.gave
+					border-bottom: 1px solid #e0e0e0
+					margin-bottom: 3px
+					.reward
+						padding-right: 13px
+						background: transparent url(../images/icons/starBlackTiny.png) no-repeat 100% 2px
+						margin: 0 2px
+				.people, .impact
+					padding: 3px 0 3px 35px
+					background-position: 10px 50%
+					background-repeat: no-repeat
+				.people
+					background-image: url(../images/icons/person.png)
+				.impact
+					background-image: url(../images/icons/starBlackSmall.png)
+					float: none
+			li:hover .title
+				color: $link_color
+			
 			
 	ul.galleries
 		li.gallery, li.no-gallery

@@ -4670,17 +4670,18 @@ ul.avatars li {
   .user-stats li.rewards .icon {
     background-image: url(../images/icons/starGreySmall.png); }
 
+.user-profile .top.info {
+  background: #e0e0e0; }
 .user-profile .info {
   position: relative;
-  padding: 20px 20px 0 90px;
-  height: 62px;
-  margin-bottom: 20px; }
+  padding: 20px 20px 20px 95px;
+  height: 62px; }
   .user-profile .info .avatar {
     position: absolute;
     top: 20px;
     left: 20px;
     display: block;
-    border: 1px solid white;
+    border: 3px solid black;
     width: 60px;
     height: 60px; }
   .user-profile .info .name-occupation-follow {
@@ -4691,7 +4692,9 @@ ul.avatars li {
       font-weight: 700;
       text-transform: uppercase;
       color: black;
-      margin-bottom: -4px; }
+      margin-bottom: -4px;
+      float: left;
+      margin-right: 10px; }
       .user-profile .info .name-occupation-follow .name .badge {
         -webkit-border-radius: 2px;
         -moz-border-radius: 2px;
@@ -4704,24 +4707,27 @@ ul.avatars li {
         top: -4px; }
     .user-profile .info .name-occupation-follow .occupation {
       font-size: 11px;
-      padding-bottom: 1px; }
-    .user-profile .info .name-occupation-follow .follow a, .user-profile .info .name-occupation-follow .follow input[type="submit"] {
-      display: block;
-      height: 25px;
-      padding: 3px 10px 3px 22px;
-      background: black url(../images/icons/checkWhite.png) no-repeat 8px 5px;
-      font-size: 11px;
-      color: white;
-      font-weight: 700; }
-    .user-profile .info .name-occupation-follow .follow a {
-      width: 63px;
-      height: 20px;
-      line-height: 20px;
-      padding-left: 24px; }
-    .user-profile .info .name-occupation-follow .follow input[type="submit"]:hover {
-      background-color: #16be36; }
-    .user-profile .info .name-occupation-follow .follow a:hover {
-      background-color: #ff1345; }
+      padding-bottom: 1px;
+      clear: both; }
+    .user-profile .info .name-occupation-follow .follow {
+      float: left; }
+      .user-profile .info .name-occupation-follow .follow a, .user-profile .info .name-occupation-follow .follow input[type="submit"] {
+        display: block;
+        height: 25px;
+        padding: 3px 10px 3px 22px;
+        background: black url(../images/icons/checkWhite.png) no-repeat 8px 5px;
+        font-size: 11px;
+        color: white;
+        font-weight: 700; }
+      .user-profile .info .name-occupation-follow .follow a {
+        width: 63px;
+        height: 20px;
+        line-height: 20px;
+        padding-left: 24px; }
+      .user-profile .info .name-occupation-follow .follow input[type="submit"]:hover {
+        background-color: #16be36; }
+      .user-profile .info .name-occupation-follow .follow a:hover {
+        background-color: #ff1345; }
   .user-profile .info .reward-and-stats {
     position: absolute;
     top: 20px;
@@ -4739,57 +4745,144 @@ ul.avatars li {
     .user-profile .info .reward-and-stats .user-stats {
       margin-left: 10px;
       border: 1px solid #dddddd; }
-.user-profile .horizontal-tabs {
-  background: transparent url(../images/greyHorizontalLine.gif) repeat-x 50% 50%; }
-  .user-profile .horizontal-tabs ul {
-    height: 27px;
-    width: 450px;
-    margin: 0 auto 30px; }
-  .user-profile .horizontal-tabs li {
+.user-profile .horizontal-tabs ul {
+  height: 35px;
+  background: #e0e0e0;
+  padding-left: 20px; }
+.user-profile .horizontal-tabs li {
+  display: block;
+  float: left;
+  height: 35px;
+  position: relative; }
+  .user-profile .horizontal-tabs li img.notification {
+    position: absolute;
+    top: -12px;
+    right: 0; }
+  .user-profile .horizontal-tabs li a {
     display: block;
-    float: left;
-    height: 27px;
-    position: relative; }
-    .user-profile .horizontal-tabs li img.notification {
-      position: absolute;
-      top: -12px;
-      right: 0; }
-    .user-profile .horizontal-tabs li a {
-      position: relative;
-      top: 5px;
-      color: #555555;
-      text-shadow: 0 1px 1px white;
-      border-top: 1px solid #cccccc;
-      border-bottom: 1px solid #cccccc;
-      border-right: 1px solid #cccccc;
-      border-left: 1px solid #eeeeee;
-      background: #f4f4f4;
-      padding: 5px 18px;
-      font-size: 11px;
-      font-weight: 700;
-      background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.09, #cdcdcd), color-stop(0.78, #fdfdfd));
-      background-image: -moz-linear-gradient(center bottom, #cdcdcd 9%, #fdfdfd 78%); }
-    .user-profile .horizontal-tabs li a.active {
-      background: black;
-      color: white;
-      text-shadow: none;
-      border: 1px solid black; }
-  .user-profile .horizontal-tabs li:first-child a {
-    border-left: 1px solid #cccccc;
+    position: relative;
+    color: #dddddd;
+    background: #aaaaaa;
+    padding: 5px 18px;
+    height: 25px;
+    text-transform: uppercase;
+    line-height: 25px;
+    font-weight: 700;
     -webkit-border-top-left-radius: 3px;
-    -webkit-border-bottom-left-radius: 3px;
     -moz-border-radius-topleft: 3px;
-    -moz-border-radius-bottomleft: 3px;
     border-top-left-radius: 3px;
-    border-bottom-left-radius: 3px;
-    border-left: 1px solid #cccccc; }
-  .user-profile .horizontal-tabs li:last-child a {
     -webkit-border-top-right-radius: 3px;
-    -webkit-border-bottom-right-radius: 3px;
     -moz-border-radius-topright: 3px;
-    -moz-border-radius-bottomright: 3px;
     border-top-right-radius: 3px;
-    border-bottom-right-radius: 3px; }
+    margin-right: 5px; }
+  .user-profile .horizontal-tabs li a.active {
+    background: #f4f4f4;
+    color: black;
+    text-shadow: none; }
+.user-profile .tabbed {
+  padding: 20px 0; }
+  .user-profile .tabbed .what-is-this {
+    padding: 15px;
+    background: #00aeef url(../images/slightlyDarkDiagonals.png) repeat-x 0 0;
+    color: white;
+    text-transform: uppercase;
+    margin: 0 20px;
+    font-weight: 700; }
+.user-profile .patronee {
+  margin: 20px 20px 0;
+  border: 1px solid #e0e0e0;
+  -webkit-box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2); }
+  .user-profile .patronee .heading {
+    height: 50px;
+    padding: 20px;
+    background: #f6f6f6;
+    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.2, #ebebeb), color-stop(0.6, #fcfcfc));
+    background-image: -moz-linear-gradient(center bottom, #ebebeb 20%, #fcfcfc 60%);
+    border-bottom: 1px solid #e0e0e0; }
+  .user-profile .patronee .info {
+    float: left;
+    padding: 0 0 0 65px; }
+    .user-profile .patronee .info .avatar {
+      width: 45px;
+      height: 45px;
+      top: 0;
+      left: 0; }
+      .user-profile .patronee .info .avatar img {
+        width: 45px;
+        height: 45px; }
+    .user-profile .patronee .info .name {
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 18px;
+      line-height: 20px;
+      color: #252525; }
+      .user-profile .patronee .info .name span {
+        display: block; }
+  .user-profile .patronee .impact {
+    float: right; }
+    .user-profile .patronee .impact .given, .user-profile .patronee .impact .helped-get {
+      float: left;
+      font-size: 11px;
+      height: 60px;
+      margin-top: -5px; }
+      .user-profile .patronee .impact .given .text, .user-profile .patronee .impact .given .value, .user-profile .patronee .impact .helped-get .text, .user-profile .patronee .impact .helped-get .value {
+        float: left; }
+      .user-profile .patronee .impact .given .text, .user-profile .patronee .impact .helped-get .text {
+        padding: 25px 5px 0 0;
+        text-align: right; }
+      .user-profile .patronee .impact .given .value, .user-profile .patronee .impact .helped-get .value {
+        font-family: "ff-dagny-web-pro", sans-serif;
+        font-size: 68px;
+        font-weight: 200;
+        padding-right: 20px;
+        background: transparent url(../images/icons/starBlackSmall.png) no-repeat 100% 3px; }
+    .user-profile .patronee .impact .given {
+      border-right: 1px solid #cccccc;
+      padding-right: 20px; }
+    .user-profile .patronee .impact .helped-get {
+      border-left: 1px solid white;
+      padding-left: 20px; }
+  .user-profile .patronee ul.content {
+    clear: both;
+    padding-left: 20px; }
+    .user-profile .patronee ul.content li {
+      float: left;
+      border: 1px solid #e0e0e0;
+      -webkit-box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+      -moz-box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+      margin: 20px 20px 0 0; }
+      .user-profile .patronee ul.content li .title {
+        color: #252525;
+        text-transform: uppercase;
+        font-weight: 700;
+        padding: 10px;
+        display: block; }
+      .user-profile .patronee ul.content li .thumbnail img {
+        width: 230px; }
+      .user-profile .patronee ul.content li .gave, .user-profile .patronee ul.content li .people, .user-profile .patronee ul.content li .impact {
+        padding: 5px 10px;
+        font-size: 11px; }
+      .user-profile .patronee ul.content li .gave {
+        border-bottom: 1px solid #e0e0e0;
+        margin-bottom: 3px; }
+        .user-profile .patronee ul.content li .gave .reward {
+          padding-right: 15px;
+          background: transparent url(../images/icons/starBlackTiny.png) no-repeat 100% 50%;
+          margin: 0 2px; }
+      .user-profile .patronee ul.content li .people, .user-profile .patronee ul.content li .impact {
+        padding: 3px 0 3px 35px;
+        background-position: 10px 50%;
+        background-repeat: no-repeat; }
+      .user-profile .patronee ul.content li .people {
+        background-image: url(../images/icons/person.png); }
+      .user-profile .patronee ul.content li .impact {
+        background-image: url(../images/icons/starBlackSmall.png);
+        float: none; }
+    .user-profile .patronee ul.content li:hover .title {
+      color: #00aeef; }
 .user-profile ul.galleries li.gallery, .user-profile ul.galleries li.no-gallery {
   border-bottom: 1px solid #cccccc;
   padding-top: 10px;

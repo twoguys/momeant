@@ -176,6 +176,10 @@ class User < ActiveRecord::Base
     rewards
   end
   
+  def rewards_given_to(user)
+    Reward.where(:user_id => self.id, :recipient_id => user.id).sum(:amount)
+  end
+  
   def impact_on(user)
     Reward.where(:user_id => self.id, :recipient_id => user.id).map {|reward| reward.impact}.inject(:+) || 0
   end

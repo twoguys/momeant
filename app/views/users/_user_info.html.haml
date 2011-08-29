@@ -1,12 +1,12 @@
-.info
+.info.top
   = image_tag(@user.avatar.url(:thumbnail), :class => "avatar")
   .name-occupation-follow
     .name
       = @user.name
       - if @user.active_subscription?
         %span.badge patron
-    .occupation= @user.tagline
     .follow= follow_button(@user)
+    .occupation= @user.tagline
     
   .reward-and-stats
     = render "users/stats", :user => @user
