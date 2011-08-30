@@ -1,5 +1,5 @@
 %li.story
-  = link_to(truncate(story.title, :length => 30) || "Untitled", story, :class => "title modal")
+  = link_to(truncate(story.title, :length => 25) || "Untitled", story, :class => "title modal")
   - if story.owner?(current_user)
     .edit-links
       = link_to("edit", edit_story_path(story), :class => "edit tooltipped-e", :title => "edit")
