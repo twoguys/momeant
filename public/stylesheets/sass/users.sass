@@ -323,21 +323,25 @@ ul.avatars
 		li.patrons .value
 			background: transparent url(../images/icons/person.png) no-repeat 100% 3px
 	
-	ul.galleries
+	ul.galleries		
+		li.separator
+			clear: both
+			border-top: 1px solid #e0e0e0
+			border-bottom: 1px solid #fff
 		li.gallery, li.no-gallery
-			border-bottom: 1px solid #ccc
-			padding-top: 10px
 			width: 100%
 			ul.stories
-				padding: 0 20px
+				padding: 20px
 				li.about
 					background: none
 					padding: 0
 					width: 230px
 					@include boxshadow(0px,0,0,0)
 					.name
-						font-size: 18px
+						font-size: 16px
 						margin-bottom: 5px
+						text-transform: uppercase
+						font-weight: 700
 					.description
 						font-size: 11px
 				li.add, li.add-description
@@ -347,7 +351,7 @@ ul.avatars
 					a
 						display: block
 						width: 230px
-						height: 184px
+						height: 204px
 						border: 1px dashed #ccc
 						color: #aaa
 						background: #fff url(../images/addMomeantBg.png) no-repeat 50% 50%
@@ -357,7 +361,8 @@ ul.avatars
 					color: #999
 					line-height: 2em
 		li.gallery:first-child, li.no-gallery:first-child
-			padding-top: 0
+			ul.stories
+				padding-top: 0
 	
 	.bio
 		.incomplete-profile

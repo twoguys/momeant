@@ -99,6 +99,14 @@ class Story < ActiveRecord::Base
     return self.pages.find_by_number(number)
   end
   
+  def external_text_or_http
+    if self.is_external? && self.pages.first.present? && self.pages.first.is_a?(ExternalPage)
+      "http://#{self.pages.first.text}"
+    else
+      "http://"
+    end
+  end
+  
   def similar_stories
     # find other stories by my creator
     stories = self.user.created_stories
