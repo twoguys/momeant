@@ -49,10 +49,10 @@ $border_solid: 1px solid #DEDEDE
 	-webkit-border-radius: $radius
 	-moz-border-radius: $radius
 	border-radius: $radius
-@mixin boxshadow($radius: 10px, $opacity: 0.7, $x: 0, $y: 0)
-	-webkit-box-shadow: $x $y $radius rgba(0,0,0,$opacity)
-	-moz-box-shadow: $x $y $radius rgba(0,0,0,$opacity)
-	box-shadow: $x $y $radius rgba(0,0,0,$opacity)
+@mixin boxshadow($radius: 10px, $opacity: 0.7, $x: 0, $y: 0, $r: 0, $g: 0, $b: 0)
+	-webkit-box-shadow: $x $y $radius rgba($r,$g,$b,$opacity)
+	-moz-box-shadow: $x $y $radius rgba($r,$g,$b,$opacity)
+	box-shadow: $x $y $radius rgba($r,$g,$b,$opacity)
 @mixin bgcover
 	-webkit-background-size: cover
 	-moz-background-size: cover

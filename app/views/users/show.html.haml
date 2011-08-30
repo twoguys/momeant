@@ -16,17 +16,17 @@
               %span= creator.last_name
           .impact
             .given
-              %div.text
+              .text
                 #{@user.first_name} has given
                 %br
                 #{creator.name}:
-              %div.value= @user.rewards_given_to(creator)
+              .value= @user.rewards_given_to(creator)
             .helped-get
-              %div.text
+              .text
                 #{@user.first_name} has helped
                 %br
                 #{creator.first_name} get:
-              %div.value= @user.impact_on(creator)
+              .value= @user.impact_on(creator)
         %ul.content.clearfix
           - rewards.each do |reward|
             %li

@@ -129,23 +129,18 @@ ul.avatars
 					background-color: #16be36
 				a:hover
 					background-color: #ff1345
-		.reward-and-stats
+		.impact-shield
 			position: absolute
-			top: 20px
-			right: 20px
-			.hidden
-				display: none
-			.reward, .user-stats
-				float: left
-			.reward.button
-				background: $blue url(../images/icons/starWhite.png) no-repeat 50% 4px
-				color: #fff
-				padding-top: 35px
-				font-size: 13px
-				font-weight: 700
-			.user-stats
-				margin-left: 10px
-				border: 1px solid #ddd
+			top: 30px
+			right: 50px
+			background: transparent url(../images/shieldBlue.png) no-repeat 0 0
+			width: 56px
+			height: 67px
+			color: #fff
+			font-weight: 700
+			font-size: 30px
+			line-height: 62px
+			text-align: center
 	
 	.horizontal-tabs
 		ul
@@ -192,6 +187,8 @@ ul.avatars
 			text-transform: uppercase
 			margin: 0 20px
 			font-weight: 700
+	
+	/* Patronage Tab */
 	
 	.patronee
 		margin: 20px 20px 0
@@ -288,7 +285,44 @@ ul.avatars
 			li:hover .title
 				color: $link_color
 			
-			
+	/* Creations Tab */
+	
+	ul.stats-bar
+		height: 50px
+		margin: 0 20px 20px
+		padding: 20px
+		background: #f6f6f6
+		background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0.2, rgb(235,235,235)),color-stop(0.6, rgb(252,252,252)))
+		background-image: -moz-linear-gradient(center bottom,rgb(235,235,235) 20%,rgb(252,252,252) 60%)
+		border: 1px solid #e0e0e0
+		li
+			float: left
+			font-size: 11px
+			height: 60px
+			margin-top: -5px
+			.text, .value
+				float: left
+			.text
+				padding: 30px 5px 0 0
+				text-align: right
+			.value
+				font-family: $numerals
+				font-size: 70px
+				line-height: 1em
+				font-weight: 200
+				padding-right: 20px
+				background: transparent url(../images/icons/starBlackSmall.png) no-repeat 100% 3px
+		li.rewards
+			padding-left: 10px
+		li.rewards, li.patrons
+			border-right: 1px solid #fff
+			padding-right: 30px
+		li.patrons, li.until-payment
+			border-left: 1px solid #ccc
+			padding-left: 30px
+		li.patrons .value
+			background: transparent url(../images/icons/person.png) no-repeat 100% 3px
+	
 	ul.galleries
 		li.gallery, li.no-gallery
 			border-bottom: 1px solid #ccc
@@ -296,26 +330,10 @@ ul.avatars
 			width: 100%
 			ul.stories
 				padding: 0 20px
-				li.story
-					.edit-links
-						position: absolute
-						top: 10px
-						right: 10px
-						a
-							text-indent: -9999px
-							display: block
-							width: 12px
-							height: 12px
-							background-repeat: no-repeat
-						a.edit
-							background-image: url(../images/icons/pencilTiny.png)
-							margin-bottom: 5px
-						a.delete
-							background-image: url(../images/icons/trashTiny.png)
 				li.about
 					background: none
 					padding: 0
-					width: 250px
+					width: 230px
 					@include boxshadow(0px,0,0,0)
 					.name
 						font-size: 18px
@@ -328,8 +346,8 @@ ul.avatars
 				li.add
 					a
 						display: block
-						width: 248px
-						height: 204px
+						width: 230px
+						height: 184px
 						border: 1px dashed #ccc
 						color: #aaa
 						background: #fff url(../images/addMomeantBg.png) no-repeat 50% 50%

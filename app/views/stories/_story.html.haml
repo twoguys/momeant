@@ -1,16 +1,8 @@
-%li.story.medium
-  %a.thumbnail.medium{:href => preview_story_path(story)}
-    = image_tag(story.thumbnail.url(:medium))
-  .title= link_to(truncate(story.title, :length => 40) || "Incomplete Story", preview_story_path(story))
-  .author by #{link_to(story.user.name, user_path(story.user))}
-  .excerpt= truncate(story.synopsis, :length => 100)
-  .rewards{:class => current_user && current_user.has_rewarded?(story) ? "rewarded" : ""}= story.reward_count
-  .views= story.view_count
-  .back
-    %p.title This story was created by:
-    %a.author-info{:href => preview_story_path(story)}
-      = image_tag(story.user.avatar.url(:thumbnail), :class => "avatar")
-      .name= story.user.name
-      .occupation
-        %span occupation:
-        = story.user.occupation
+%li.story
+  = link_to(truncate(story.title, :length => 30) || "Untitled", story, :class => "title modal")
+  - if story.owner?(current_user)
+    .edit-links
+      = link_to("edit", edit_story_path(story), :class => "edit tooltipped-e", :title => "edit")
+      = link_to("delete", story_path(story), :method => :delete, :class => "delete tooltipped-e", :title => "delete", :confirm => "Are you SURE you want to delete this?")
+  = link_to(image_tag(story.thumbnail(:medium)), story, :class => "thumbnail modal")
+  .reward-count= pluralize(story.reward_count, "reward")
