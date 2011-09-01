@@ -78,7 +78,7 @@ class UsersController < ApplicationController
       @tags = Story.tag_counts.order("count DESC").limit(20)
     end
     
-    content_ids = Story.tagged_with(@tags).map{|story| story.id}
+    content_ids = Story.tagged_with(@tags, :any => true).map{|story| story.id}
     return if content_ids.empty?
     @users = User.joins("LEFT OUTER JOIN curations ON curations.user_id = users.id").where("curations.story_id IN (#{content_ids.join(',')})").where("curations.type = 'Reward'")
   end

@@ -18,7 +18,7 @@
           - url = community_path(:tags => (current_tags.split(",") + [tag.name]).join(","))
         %li
           %a{:href => url, :class => is_active ? "active" : ""}
-            %span.name= tag.name
+            %span.name= truncate(tag.name, :length => 30)
             %span.count= tag.count
 
     %ul.users
