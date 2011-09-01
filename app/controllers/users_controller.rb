@@ -62,6 +62,27 @@ class UsersController < ApplicationController
     @nav = "home"
   end
   
+  def community
+    @users = []
+    @nav = "community"
+    
+    if params[:tags].present?
+      @tags = Story.tagged_with(params[:tags]).tag_counts.order("count DESC").limit(50).sort do |x, y|
+        if params[:tags].include?(x.name)
+          -1
+        else
+          1
+        end
+      end
+      content_ids = Story.tagged_with(@tags).map{|story| story.id}
+      return if content_ids.empty?
+      @users = User.joins("LEFT OUTER JOIN curations ON curations.user_id = users.id").where("curations.story_id IN (#{content_ids.join(',')})").where("curations.type = 'Reward'")
+    else
+      @tags = Story.tag_counts.order("count DESC").limit(50)
+      @users = User.all
+    end
+  end
+  
   def billing_updates
     subscriber_ids = params[:subscriber_ids].split(",")
     subscriber_ids.each do |subscriber_id|

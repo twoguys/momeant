@@ -32,14 +32,6 @@
   %body{:class => @fullscreen.nil? ? "" : "fullscreen"}
     %header#header{:class => private_beta? && !current_user ? "hide-nav" : ""}
       = render "layouts/user_nav" unless @hide_nav
-      .header-insides
-        .momeant-header
-          = link_to("Home", root_path, :id => "logo-large") unless @hide_momeant
-          - if !current_user
-            = link_to("Join", new_user_registration_path, :id => "join", :class => "round-button")
-          - elsif !@hide_rewards
-            = render "shared/reward_bank"
-          = yield :header
 
     #container
       #main.column

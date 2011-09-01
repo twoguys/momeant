@@ -4,14 +4,9 @@
     %li#logo= link_to("Momeant", root_path)
     %li#home{:class => @nav == "home" ? "active" : ""}
       = link_to("Momeant", root_path, :class => "tooltipped", :title => "Home")
-    - if user_signed_in? && can?(:create, Story)
-      %li#create{:class => @nav == "create" ? "active" : ""}
-        = link_to("Create", new_story_path, :class => "tooltipped", :title => "Create") if can? :create, Story
+    %li#community{:class => @nav == "community" ? "active": ""}
+      = link_to("Community", community_path, :class => "tooltipped", :title => "Community")
     %li#faq{:class => @nav == "about" ? "active" : ""}
       = link_to("About Us", about_path, :class => "tooltipped", :title => "Tell me more".html_safe)
     - if user_signed_in?
       %li#signout= link_to("Logout", destroy_user_session_path)
-    %li#search
-      = form_tag search_path, :method => :get do
-        = text_field_tag :query, params[:query], :placeholder => "search mo•meant"
-        = submit_tag "Search", :id => "search-submit", :name => ""

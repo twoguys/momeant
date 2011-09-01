@@ -1,0 +1,40 @@
+.community
+	h1.top
+		background: #e0e0e0
+		padding: 20px
+		margin: 0
+		text-transform: uppercase
+		font-weight: 700
+		font-size: 18px
+		text-shadow: 0 1px 0 #fff
+		em
+			font-style: normal
+			color: #ff1345
+	
+	ul.tags
+		padding-left: 20px
+		li
+			width: 215px
+			a
+				height: 15px
+				padding: 5px 8px
+				display: block
+				font-size: 11px
+				@include rounded(5px)
+				.name
+					float: left
+				.count
+					float: right
+					background: #eee
+					color: #aaa
+					padding: 2px 5px
+					@include rounded(2px)
+			a:hover .name
+				text-decoration: underline
+			a.active
+				background: transparent url(../images/tagActive.png) no-repeat 100% 50%
+				color: #fff
+				.count
+					display: none
+			a.active:hover .name
+				text-decoration: none

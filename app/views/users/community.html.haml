@@ -1,0 +1,29 @@
+.community
+  %h1.top
+    %span See the most
+    %em impactful people
+    %span in our most
+    %em popular interest areas.
+
+  = render "users/community_tabs"
+  .tabbed
+    
+    %ul.tags
+      - current_tags = params[:tags] || ""
+      - @tags.each do |tag|
+        - is_active = params[:tags].present? && params[:tags].include?(tag.name)
+        - if is_active
+          - url = community_path(:tags => (current_tags.split(",") - [tag.name]).join(","))
+        - else
+          - url = community_path(:tags => (current_tags.split(",") + [tag.name]).join(","))
+        %li
+          %a{:href => url, :class => is_active ? "active" : ""}
+            %span.name= tag.name
+            %span.count= tag.count
+
+    %ul.users
+      - @users.each do |user|
+        %li
+          = link_to(image_tag(user.avatar.url(:thumbnail)), user_path(user), :class => "avatar")
+          = link_to(user.name, user_path(user), :class => "name")
+          %span.impact= user.impact

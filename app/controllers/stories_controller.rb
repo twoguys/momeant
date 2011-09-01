@@ -38,7 +38,7 @@ class StoriesController < ApplicationController
   
   def new
     @story = Story.create(:thumbnail_page => 1, :user_id => current_user.id, :autosaving => true, :price => 0)
-    @nav = "create"
+    @nav = "home"
     render "form"
   end
   
@@ -56,7 +56,7 @@ class StoriesController < ApplicationController
   end
   
   def edit
-    @nav = "create"
+    @nav = "home"
     render "form"
   end
   
