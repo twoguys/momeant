@@ -74,13 +74,13 @@ class UsersController < ApplicationController
           1
         end
       end
-      content_ids = Story.tagged_with(@tags).map{|story| story.id}
-      return if content_ids.empty?
-      @users = User.joins("LEFT OUTER JOIN curations ON curations.user_id = users.id").where("curations.story_id IN (#{content_ids.join(',')})").where("curations.type = 'Reward'")
     else
       @tags = Story.tag_counts.order("count DESC").limit(20)
-      @users = User.all
     end
+    
+    content_ids = Story.tagged_with(@tags).map{|story| story.id}
+    return if content_ids.empty?
+    @users = User.joins("LEFT OUTER JOIN curations ON curations.user_id = users.id").where("curations.story_id IN (#{content_ids.join(',')})").where("curations.type = 'Reward'")
   end
   
   def billing_updates
