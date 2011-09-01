@@ -185,7 +185,7 @@ class User < ActiveRecord::Base
   end
   
   def impact
-    self.rewards.map {|reward| reward.impact}.inject(:+) || 0
+    self.given_rewards.map {|reward| reward.impact}.inject(:+) || 0
   end
   
   def last_reward_for(story)
