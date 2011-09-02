@@ -75,8 +75,7 @@ Repo::Application.routes.draw do
   end
   match '/analytics',           :to => "users#analytics",           :as => :analytics
   match '/community',           :to => "users#community",           :as => :community
-  match '/community/patrons',   :to => "users#community_patrons",   :as => :community_creators
-  match '/community/creators',  :to => "users#community_creators",  :as => :community_patrons
+  match '/community/creators',  :to => "users#community_creators",  :as => :community_creators
   
   namespace :admin do
     match '/', :to =>"dashboard#index", :as => :dashboard

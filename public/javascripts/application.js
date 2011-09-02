@@ -168,6 +168,7 @@ function setup_modal_presenter_links() {
 		padding: 0,
 		autoScale: false,
 		autoDimensions: false,
+		overlayColor: '#000',
 		overlayOpacity: 0.7,
 		scrolling: 'no',
 		onComplete: function() {

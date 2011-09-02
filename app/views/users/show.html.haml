@@ -30,8 +30,8 @@
         %ul.content.clearfix
           - rewards.each do |reward|
             %li
-              = link_to(truncate(reward.story.title, :length => 25), story_path(reward.story, :impacted_by => reward.id), :class => "title")
-              = link_to(image_tag(reward.story.thumbnail.url(:medium)), story_path(reward.story, :impacted_by => reward.id), :class => "thumbnail")
+              = link_to(truncate(reward.story.title, :length => 25), story_path(reward.story, :impacted_by => reward.id), :class => "title modal")
+              = link_to(image_tag(reward.story.thumbnail.url(:medium)), story_path(reward.story, :impacted_by => reward.id), :class => "thumbnail modal")
               .gave
                 %span You gave this
                 %span.reward #{reward.amount}

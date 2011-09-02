@@ -374,14 +374,6 @@ module CollectiveIdea #:nodoc:
             end.join("\n")
           end
 
-          # on creation, set automatically lft and rgt to the end of the tree
-          def set_default_left_and_right
-            maxright = nested_set_scope.maximum(right_column_name) || 0
-            # adds the new node to the right of all existing nodes
-            self[left_column_name] = maxright + 1
-            self[right_column_name] = maxright + 2
-          end
-
         protected
 
           def without_self(scope)
@@ -411,6 +403,14 @@ module CollectiveIdea #:nodoc:
             elsif @move_to_new_parent_id
               move_to_child_of(@move_to_new_parent_id)
             end
+          end
+
+          # on creation, set automatically lft and rgt to the end of the tree
+          def set_default_left_and_right
+            maxright = nested_set_scope.maximum(right_column_name) || 0
+            # adds the new node to the right of all existing nodes
+            self[left_column_name] = maxright + 1
+            self[right_column_name] = maxright + 2
           end
 
           # Prunes a branch off of the tree, shifting all of the elements on the right
