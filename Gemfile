@@ -26,7 +26,7 @@ gem 'aasm'
 gem 'spreedly', :require => false
 gem 'kaminari'
 gem 'pusher'
-gem "awesome_nested_set", "~> 2.0.1"
+gem "awesome_nested_set", :path => "vendor/private_gems/awesome_nested_set-2.0.1"
 
 group :test do
   gem 'shoulda'
