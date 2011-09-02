@@ -4873,11 +4873,25 @@ form.user_edit #user_interest_list {
   .community h1.top em {
     font-style: normal;
     color: #ff1345; }
-.community ul.tags {
-  padding-left: 20px; }
-  .community ul.tags li {
-    width: 215px; }
-    .community ul.tags li a {
+.community section.tags {
+  position: relative;
+  z-index: 2;
+  float: left;
+  width: 200px;
+  padding: 5px 0 0 20px; }
+  .community section.tags .heading {
+    text-transform: uppercase;
+    color: #999999;
+    font-weight: 700;
+    padding-bottom: 5px;
+    margin: 0 8px;
+    border-bottom: 1px solid #cccccc; }
+  .community section.tags ul.tags {
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    padding: 5px 0 9px; }
+    .community section.tags ul.tags li a {
       height: 15px;
       padding: 5px 8px;
       display: block;
@@ -4885,25 +4899,62 @@ form.user_edit #user_interest_list {
       -webkit-border-radius: 5px;
       -moz-border-radius: 5px;
       border-radius: 5px; }
-      .community ul.tags li a .name {
+      .community section.tags ul.tags li a .name {
         float: left; }
-      .community ul.tags li a .count {
+      .community section.tags ul.tags li a .count {
         float: right;
-        background: #eeeeee;
+        background: #f1edea;
         color: #aaaaaa;
         padding: 2px 5px;
         -webkit-border-radius: 2px;
         -moz-border-radius: 2px;
         border-radius: 2px; }
-    .community ul.tags li a:hover .name {
+    .community section.tags ul.tags li a:hover .name {
       text-decoration: underline; }
-    .community ul.tags li a.active {
+    .community section.tags ul.tags li a.active {
       background: transparent url(../images/tagActive.png) no-repeat 100% 50%;
       color: white; }
-      .community ul.tags li a.active .count {
+      .community section.tags ul.tags li a.active .count {
         display: none; }
-    .community ul.tags li a.active:hover .name {
+    .community section.tags ul.tags li a.active:hover .name {
       text-decoration: none; }
+.community .user-list {
+  position: relative;
+  z-index: 1;
+  float: left;
+  margin-left: -235px;
+  width: 100%; }
+  .community .user-list .user-list-inner {
+    padding-left: 275px; }
+    .community .user-list .user-list-inner table.users {
+      width: 100%; }
+      .community .user-list .user-list-inner table.users th {
+        color: #999999; }
+      .community .user-list .user-list-inner table.users tr td {
+        vertical-align: middle; }
+        .community .user-list .user-list-inner table.users tr td a.avatar, .community .user-list .user-list-inner table.users tr td a.name, .community .user-list .user-list-inner table.users tr td .impact {
+          display: block;
+          float: left; }
+        .community .user-list .user-list-inner table.users tr td a.avatar img {
+          width: 30px;
+          height: 30px; }
+        .community .user-list .user-list-inner table.users tr td a.name {
+          margin-left: 5px;
+          font-weight: 700;
+          font-size: 12px;
+          text-transform: uppercase;
+          line-height: 15px;
+          padding-top: 3px; }
+          .community .user-list .user-list-inner table.users tr td a.name span {
+            display: block; }
+      .community .user-list .user-list-inner table.users tr td.impact, .community .user-list .user-list-inner table.users tr td.rewards, .community .user-list .user-list-inner table.users tr td.rewardees {
+        font-size: 14px;
+        text-align: center; }
+        .community .user-list .user-list-inner table.users tr td.impact span, .community .user-list .user-list-inner table.users tr td.rewards span, .community .user-list .user-list-inner table.users tr td.rewardees span {
+          padding-right: 20px;
+          background: transparent url(../images/icons/starBlackSmall.png) no-repeat 100% 0; }
+      .community .user-list .user-list-inner table.users tr .rewardees span {
+        background: transparent url(../images/icons/person.png) no-repeat 100% 0; }
 
 .deposits form {
   margin-top: 1em;

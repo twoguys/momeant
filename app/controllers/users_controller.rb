@@ -80,7 +80,7 @@ class UsersController < ApplicationController
     
     content_ids = Story.tagged_with(@tags, :any => true).map{|story| story.id}
     return if content_ids.empty?
-    @users = User.joins("LEFT OUTER JOIN curations ON curations.user_id = users.id").where("curations.story_id IN (#{content_ids.join(',')})").where("curations.type = 'Reward'")
+    @users = User.select("DISTINCT ON(id) users.*").joins("LEFT OUTER JOIN curations ON curations.user_id = users.id").where("curations.story_id IN (#{content_ids.join(',')})").where("curations.type = 'Reward'")
   end
   
   def billing_updates

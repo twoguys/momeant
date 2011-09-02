@@ -11,30 +11,82 @@
 			font-style: normal
 			color: #ff1345
 	
-	ul.tags
-		padding-left: 20px
-		li
-			width: 215px
-			a
-				height: 15px
-				padding: 5px 8px
-				display: block
-				font-size: 11px
-				@include rounded(5px)
-				.name
-					float: left
-				.count
-					float: right
-					background: #eee
-					color: #aaa
-					padding: 2px 5px
-					@include rounded(2px)
-			a:hover .name
-				text-decoration: underline
-			a.active
-				background: transparent url(../images/tagActive.png) no-repeat 100% 50%
-				color: #fff
-				.count
-					display: none
-			a.active:hover .name
-				text-decoration: none
+	section.tags
+		position: relative
+		z-index: 2
+		float: left
+		width: 200px
+		padding: 5px 0 0 20px
+		.heading
+			text-transform: uppercase
+			color: #999
+			font-weight: 700
+			padding-bottom: 5px
+			margin: 0 8px
+			border-bottom: 1px solid #ccc
+		ul.tags
+			@include rounded(3px)
+			padding: 5px 0 9px
+			li
+				a
+					height: 15px
+					padding: 5px 8px
+					display: block
+					font-size: 11px
+					@include rounded(5px)
+					.name
+						float: left
+					.count
+						float: right
+						background: #F1EDEA
+						color: #aaa
+						padding: 2px 5px
+						@include rounded(2px)
+				a:hover .name
+					text-decoration: underline
+				a.active
+					background: transparent url(../images/tagActive.png) no-repeat 100% 50%
+					color: #fff
+					.count
+						display: none
+				a.active:hover .name
+					text-decoration: none
+	
+	.user-list
+		position: relative
+		z-index: 1
+		float: left
+		margin-left: -235px
+		width: 100%
+		.user-list-inner
+			padding-left: 275px
+			table.users
+				width: 100%
+				th
+					color: #999
+				tr
+					td
+						vertical-align: middle
+						a.avatar, a.name, .impact
+							display: block
+							float: left
+						a.avatar img
+							width: 30px
+							height: 30px
+						a.name
+							margin-left: 5px
+							font-weight: 700
+							font-size: 12px
+							text-transform: uppercase
+							line-height: 15px
+							padding-top: 3px
+							span
+								display: block
+					td.impact, td.rewards, td.rewardees
+						font-size: 14px
+						text-align: center
+						span
+							padding-right: 20px
+							background: transparent url(../images/icons/starBlackSmall.png) no-repeat 100% 0
+					.rewardees span
+						background: transparent url(../images/icons/person.png) no-repeat 100% 0
