@@ -119,16 +119,17 @@ module CollectiveIdea #:nodoc:
           end
 
           def no_duplicates_for_columns?
-            scope_string = Array(acts_as_nested_set_options[:scope]).map do |c|
-              connection.quote_column_name(c)
-            end.push(nil).join(", ")
-            [quoted_left_column_name, quoted_right_column_name].all? do |column|
-              # No duplicates
-              select("#{scope_string}#{column}, COUNT(#{column})").
-                  group("#{scope_string}#{column}").
-                  having("COUNT(#{column}) > 1").
-                  first.nil?
-            end
+            true # group doesnt work in Postgres!!!!!
+            # scope_string = Array(acts_as_nested_set_options[:scope]).map do |c|
+            #   connection.quote_column_name(c)
+            # end.push(nil).join(", ")
+            # [quoted_left_column_name, quoted_right_column_name].all? do |column|
+            #   # No duplicates
+            #   select("#{scope_string}#{column}, COUNT(#{column})").
+            #       group("#{scope_string}#{column}").
+            #       having("COUNT(#{column}) > 1").
+            #       first.nil?
+            # end
           end
 
           # Wrapper for each_root_valid? that can deal with scope.
