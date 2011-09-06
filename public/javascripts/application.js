@@ -173,6 +173,7 @@ function setup_modal_presenter_links() {
 		scrolling: 'no',
 		onComplete: function() {
 			viewer.initialize();
+			viewer.goto_page(viewer.total_pages);
 			setup_rewarding();
 		}
 	});
