@@ -61,3 +61,12 @@
 
     = render "shared/analytics" if Rails.env.production?
     = yield :javascript
+    
+    - if session[:show_content]
+      - story = Story.find_by_id(session[:show_content])
+      .hidden= link_to(story.title, story_path(story), :id => "auto-launch-story-link")
+      :javascript
+        $(document).ready(function() {
+          setup_modal_presenter_links('#auto-launch-story-link',true);
+        });
+      - session[:show_content] = nil

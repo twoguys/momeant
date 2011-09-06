@@ -113,8 +113,8 @@ function handle_signup_login_form_validation() {
 	});
 }
 
-function setup_modal_presenter_links() {
-	$('a.modal').fancybox({
+function setup_modal_presenter_links(selector, autoTrigger) {
+	var fancybox = $(selector).fancybox({
 		width: '98%',
 		height: '98%',
 		padding: 0,
@@ -123,12 +123,18 @@ function setup_modal_presenter_links() {
 		overlayColor: '#000',
 		overlayOpacity: 0.7,
 		scrolling: 'no',
+		ajax: {
+			data: 'modal=1'
+		},
 		onComplete: function() {
 			viewer.initialize();
 			viewer.goto_page(1);
 			setup_rewarding();
 		}
 	});
+	if (autoTrigger) {
+		fancybox.trigger('click');
+	}
 }
 
 var infinite_loading = false;
@@ -166,7 +172,7 @@ $(document).ready(function() {
 	setup_signup_modal();
 	setup_rewarding();
 	handle_signup_login_form_validation();	
-	setup_modal_presenter_links();
+	setup_modal_presenter_links('a.modal');
 	setup_following_stream_infinite_scroll();
 	
 	$("a.disabled").click(function() {return false;})

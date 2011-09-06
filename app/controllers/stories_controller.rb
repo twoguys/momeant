@@ -28,11 +28,20 @@ class StoriesController < ApplicationController
   end
   
   def show
-    @story = Story.find_by_id(params[:id])
-    View.record(@story, current_user) if current_user && current_user != @story.user
-    @fullscreen = true
-    @user = @story.user
-    render :layout => false
+    if params[:modal]
+      @story = Story.find_by_id(params[:id])
+      View.record(@story, current_user) if current_user && current_user != @story.user
+      @fullscreen = true
+      @user = @story.user
+      render :layout => false
+    elsif params[:impacted_by]
+      reward = Reward.find_by_id(params[:impacted_by])
+      session[:show_content] = params[:id]
+      redirect_to user_path(reward.user)
+    else  
+      session[:show_content] = params[:id]
+      redirect_to root_path
+    end
   end
   
   def new
