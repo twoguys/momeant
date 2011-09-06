@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!, :only => [:edit, :update, :analytics]
-  before_filter :find_user, :except => [:community, :analytics, :billing_updates]
+  before_filter :find_user, :except => [:community, :community_creators, :analytics, :billing_updates]
   skip_before_filter :verify_authenticity_token, :only => :billing_updates
   
   def show
