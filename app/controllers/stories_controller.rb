@@ -36,10 +36,10 @@ class StoriesController < ApplicationController
       render :layout => false
     elsif params[:impacted_by]
       reward = Reward.find_by_id(params[:impacted_by])
-      session[:show_content] = params[:id]
+      session[:show_content] = story_path(reward.story, :impacted_by => params[:impacted_by])
       redirect_to user_path(reward.user)
     else  
-      session[:show_content] = params[:id]
+      session[:show_content] = story_path(params[:id])
       redirect_to root_path
     end
   end

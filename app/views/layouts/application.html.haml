@@ -63,8 +63,7 @@
     = yield :javascript
     
     - if session[:show_content]
-      - story = Story.find_by_id(session[:show_content])
-      .hidden= link_to(story.title, story_path(story), :id => "auto-launch-story-link")
+      .hidden= link_to("", session[:show_content], :id => "auto-launch-story-link")
       :javascript
         $(document).ready(function() {
           setup_modal_presenter_links('#auto-launch-story-link',true);
