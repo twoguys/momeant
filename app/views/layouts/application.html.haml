@@ -37,23 +37,13 @@
       #main.column
         = render "layouts/flash", :flash => flash
         #call-to-action
-          - unless private_beta?
-            - if current_user && current_user.trial?
-              = #render :partial => "shared/calls_to_action/subscribe", :locals => {:message => "You have #{pluralize(current_user.days_left_in_trial, "day")} and #{pluralize(current_user.coins, "coin")} left in your trial. Loving it?"}
-            - else
-              = yield :call_to_action
-          - if current_user && current_user.is_a?(Creator)
-            - if current_user.created_stories.empty?
-              = #render :partial => "shared/calls_to_action/create_a_story"
-            - elsif current_user.paypal_email.blank?
-              = #render :partial => "shared/calls_to_action/enter_payment_info"
+          = yield :call_to_action
         = yield
       #right-sidebar.column
         %h3.sidebar-label Following Stream
         %span.sidebar-description content rewarded by those you follow
         %ul.rewards
-          - if current_user
-            = render @following_stream
+          = render @following_stream if current_user
         .spinner
         #user_id= current_user.id if current_user
 
