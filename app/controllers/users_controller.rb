@@ -1,19 +1,13 @@
 class UsersController < ApplicationController
-  before_filter :authenticate_user!, :except => [:show, :billing_updates, :top_curators]
-  before_filter :get_adverts, :only => :top_curators
-  before_filter :find_user, :only => [:show, :stream, :creations, :bio, :rewarded, :patrons, :bookmarks, :followers, :following]
+  before_filter :authenticate_user!, :only => [:edit, :update, :analytics]
+  before_filter :find_user, :except => [:community, :analytics, :billing_updates]
   skip_before_filter :verify_authenticity_token, :only => :billing_updates
-  
-  def top_curators
-    @top_curators = User.order(:subscriptions_count).page params[:page]
-    render "home/index"
-  end
   
   def show
     @creators = @user.given_rewards.for_content.group_by {|r| r.recipient}
   end
   
-  def stream
+  def stream #ajax requests
     render @user.following_stream(params[:page])
   end
   

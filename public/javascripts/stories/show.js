@@ -75,6 +75,7 @@ var story_viewer = function() {
 			viewer.page = page_number;
 			$('#metadata .pages a[page="'+page_number+'"]').addClass('selected').siblings().removeClass('selected');		
 		}
+		log(page_number);
 		if (page_number == 1) {
 			viewer.hide_prev_button();
 		} else {

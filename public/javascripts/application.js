@@ -82,41 +82,6 @@ function setup_rewarding() {
 	});
 }
 
-function setup_story_gallery() {
-	if ($('.story-gallery .scrollbar-me').length > 0 ) {
-		var small_preview_width = 100, large_preview_width = 630;
-		var count = $('.scrollbar-me .overview .preview').length;
-		$('.story-gallery .scrollbar-me .overview').css('width', count * small_preview_width);
-		$('.story-gallery .scrollbar-me').tinyscrollbar({axis:'x'});
-		$('.story-gallery .preview').click(function() {
-			var page = $(this).attr('counter');
-			var position = page * large_preview_width;
-			$('.story-gallery .large-preview').scrollTo({top: 0, left: position}, {duration: 200});
-		});
-	}
-	if ($('.story-gallery').length > 0) {
-		var story_count = $('.story-gallery .large-preview .pages a').length;
-		$('.story-gallery .large-preview .pages').css('width', story_count * 630);
-	}
-}
-
-function setup_recommendation_tabs() {
-	$('#subscribed-to-recommendations').click(function() {
-		$('.momeant-recommended-stream').hide();
-		$('.subscribed-to-stream').show();
-		return false;
-	});
-	$('#momeant-recommendations').click(function() {
-		$('.subscribed-to-stream').hide();
-		$('.momeant-recommended-stream').show();
-		return false;
-	});
-}
-
-function setup_thumbnail_flipping() {
-	$('ul.stories li.story.medium').hover(function(){$(this).addClass('flip')},function(){$(this).removeClass('flip')});
-}
-
 function handle_signup_login_form_validation() {
 	// we have to remove the extra checkbox Rails inserts for the 0 value
 	$('#join-form input[name="user[tos_accepted]"][value="0"]').remove();
@@ -148,19 +113,6 @@ function handle_signup_login_form_validation() {
 	});
 }
 
-function handle_reward_thumbnail_interactivity() {
-	$('ul.reward-thumbnails li.reward .others a.handle').click(function() {
-		$(this).siblings('ul').toggle();
-		$('.reward-thumbnails').masonry();
-		return false;
-	});
-}
-
-function setup_reward_and_story_columns() {
-	var $container = $('ul.reward-thumbnails');
-	$container.masonry();
-}
-
 function setup_modal_presenter_links() {
 	$('a.modal').fancybox({
 		width: '98%',
@@ -173,7 +125,7 @@ function setup_modal_presenter_links() {
 		scrolling: 'no',
 		onComplete: function() {
 			viewer.initialize();
-			viewer.goto_page(viewer.total_pages);
+			viewer.goto_page(1);
 			setup_rewarding();
 		}
 	});
@@ -213,17 +165,9 @@ $(document).ready(function() {
 	tag_deletions();
 	setup_signup_modal();
 	setup_rewarding();
-	setup_story_gallery();
-	setup_recommendation_tabs();
-	setup_thumbnail_flipping();
-	handle_signup_login_form_validation();
-	setTimeout(setup_reward_and_story_columns, 2000);
-	
+	handle_signup_login_form_validation();	
 	setup_modal_presenter_links();
 	setup_following_stream_infinite_scroll();
-	
-	// reward lists
-	handle_reward_thumbnail_interactivity();
 	
 	$("a.disabled").click(function() {return false;})
 	

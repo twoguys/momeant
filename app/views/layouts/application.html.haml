@@ -30,7 +30,7 @@
     = yield :head
     
   %body{:class => @fullscreen.nil? ? "" : "fullscreen"}
-    %header#header{:class => private_beta? && !current_user ? "hide-nav" : ""}
+    %header#header
       = render "layouts/user_nav" unless @hide_nav
 
     #container
@@ -52,9 +52,10 @@
         %h3.sidebar-label Following Stream
         %span.sidebar-description content rewarded by those you follow
         %ul.rewards
-          = render @following_stream
+          - if current_user
+            = render @following_stream
         .spinner
-        #user_id= current_user.id
+        #user_id= current_user.id if current_user
 
     #footer
       .insides
