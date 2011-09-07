@@ -5,7 +5,7 @@
 		z-index: 100
 		height: 42px
 		.bg
-			background-color: #000
+			background-color: $black
 			height: 42px
 			width: 100%
 			position: absolute
@@ -19,10 +19,9 @@
 			li
 				float: left
 			li.active
-				background: transparent url(../images/navActive.png) no-repeat 50% 100%
-		#logo, #home, #create, #profile, #faq
+				background: $blue
+		#logo, #home, #community, #faq
 			width: 46px
-			height: 52px
 			a
 				width: 46px
 				height: 42px
@@ -41,74 +40,13 @@
 				background: transparent url(../images/logoBlackSmall.png) no-repeat -12px 0px
 		#home a
 			background-image: url(../images/icons/momeantHomeWhite.png)
-		#create a
-			background: transparent url(../images/icons/momeantAddStoryWhite.png) no-repeat 50% 7px
+		#community a
+			background-image: url(../images/icons/community.png)
 		#faq a
 			background-image: url(../images/icons/faqWhite.png)
-		#profile
-			position: relative
-			a.icon
-				background-image: url(../images/icons/momeantProfileWhite.png)
-			.inner
-				background: transparent url(../images/topTriangle.png) no-repeat 10px 0
-				padding-top: 7px
-				position: absolute
-				top: 41px
-				display: none
-				.heading
-					background-color: #000
-					color: #fff
-					font-size: 18px
-					font-weight: 900
-					text-transform: uppercase
-					text-align: center
-					height: 22px
-					line-height: 25px
-					vertical-align: middle
-					padding: 3px 0
-			ul
-				border: 3px solid #000
-				@include boxshadow
-				.odd
-					background-color: #f0f0f0
-				.even
-					background-color: #fff
-				li
-					float: none
-					a
-						width: 130px
-						height: 1.1em
-						padding: 12px 10px
-						text-indent: 0
-						font-weight: bold
-						font-size: 1.1em
-						text-transform: uppercase
-						color: #000
-				li:hover
-					background-color: #b8e6ff
-		#profile:hover .inner
-			display: block
-		#create:hover, #balance:hover, #subscriptions:hover, #recommendations:hover, #topics:hover
-			.tip
-				display: block
-				left: 14px
-		#rewards
-			position: absolute
-			left: 430px
-			height: 40px
-			line-height: 43px
-			vertical-align: middle
-			background: transparent url(../images/icons/recommendBlue.png) no-repeat 0 50%
-			padding-left: 20px
-			font-weight: 700
-			font-size: 12px
-			color: white
-			text-transform: uppercase
-			letter-spacing: .5px
-			word-spacing: 2px
 		#signin, #signout
 			position: absolute
-			right: 390px
+			right: 20px
 			padding-top: 10px
 			a
 				@include button
@@ -120,239 +58,7 @@
 				display: block
 		#signout a
 			@include gradient ($greygradient1, $greygradient2)
-		#balance
-			background: transparent url(../images/topNavBreak.gif) no-repeat 0 5px
-			a
-				display: block
-				color: #000
-				font-weight: bold
-				font-size: 1.1em
-				padding: 12px 10px 7px
-		#subscriptions a
-			background-image: url(../images/icons/person.png)
-		#recommendations
-			background: transparent url(../images/topNavBreak.gif) no-repeat 0 5px
-			width: 46px
-			height: 36px
-			span.icon
-				position: absolute
-				display: block
-				width: 46px
-				height: 36px
-				background: transparent url(../images/icons/momeantStreamB.png) no-repeat 50% 9px
-				cursor: pointer
-			.stream-inner
-				display: none
-				background: transparent url(../images/topTriangle.png) no-repeat 10px 0
-				padding-top: 7px
-				position: absolute
-				top: 35px
-				.recommendation-stream
-					background-color: $background-color
-					@include boxshadow
-					height: auto
-		#recommendations:hover
-			.stream-inner
-				display: block
-		#topics	
-			background: transparent url(../images/topNavBreak.gif) no-repeat 0 5px
-			span
-				position: absolute
-				display: block
-				width: 46px
-				height: 36px
-				background: transparent url(../images/icons/momeantTopics.png) 50% 6px no-repeat
-				cursor: pointer
-			.inner
-				background: transparent url(../images/topTriangle.png) no-repeat 10px 0
-				padding-top: 7px
-				position: absolute
-				top: 35px
-				display: none
-				.heading
-					background-color: #000
-					color: #fff
-					font-size: 18px
-					font-weight: 900
-					text-transform: uppercase
-					text-align: center
-					height: 22px
-					line-height: 25px
-					vertical-align: middle
-					padding: 3px 0
-			.topic-list
-				border: 3px solid #000
-				@include boxshadow
-				.odd
-					background-color: #f0f0f0
-				.even
-					background-color: #fff
-				li
-					float: none
-					a
-						width: 130px
-						height: 1.1em
-						padding: 12px 10px
-						text-indent: 0
-						font-weight: bold
-						font-size: 1.1em
-						text-transform: uppercase
-						color: #000
-						background: transparent url(../images/topicIconsAll.png) no-repeat 120px 0
-				li:hover
-					background-color: #b8e6ff
-				li.business a
-					background-position: 120px -39px
-				li.culture a
-					background-position: 120px -624px
-				li.design a
-					background-position: 120px -78px
-				li.diy a
-					background-position: 120px -585px
-				li.education a
-					background-position: 120px -117px
-				li.environment a
-					background-position: 120px -156px
-				li.fashion a
-					background-position: 120px -78px
-				li.gastronomy a
-					background-position: 120px -195px
-				li.health a
-					background-position: 120px -234px
-				li.history a
-					background-position: 120px -273px
-				li.literature a
-					background-position: 120px -351px
-				li.music a
-					background-position: 120px -390px
-				li.journalism a
-					background-position: 120px -312px
-				li.science a
-					background-position: 120px -429px
-				li.sports a
-					background-position: 120px -468px
-				li.technology a
-					background-position: 120px -507px
-				li.travel a
-					background-position: 120px -546px
-		#topics:hover
-			.inner
-				display: block
-		#hi
-			background: transparent url(../images/topNavBreak.gif) no-repeat 0 5px
-			padding: 13px 10px 5px 12px
-			font-size: 1.1em
-			font-weight: 900
-			text-transform: uppercase
-			text-shadow: none
-			.signout-link
-				color: #bbbbbb
-				letter-spacing: .3px
-				padding-left: 10px
-		#search
-			padding-top: 9px
-			float: right
-			width: 200px
-			margin-right: 168px
-			label
-				color: #999999
-				font-family: georgia
-				font-size: 10px
-				font-style: oblique
-				font-weight: normal
-				letter-spacing: 0.4px
-				padding: 5px 0 0 10px
-				text-transform: lowercase
-			input[type="text"]
-				width: 160px
-				height: 8px
-				font-family: georgia
-				font-size: 11px
-				font-style: oblique
-				font-weight: normal
-				letter-spacing: 0.4px
-				text-transform: lowercase
-				border: none
-				-webkit-border-radius: 0 0 3px 3px
-				-moz-border-radius: 0 0 3px 3px
-				border-radius: 3px 0 0 3px
-				color: #00aeef
-			input[type="submit"]
-				width: 23px
-				height: 23px
-				padding: 0
-				margin: 0
-				background: transparent url(../images/icons/searchBlue.png) no-repeat 0 1px
-				-webkit-box-shadow: none
-				-moz-box-shadow: none
-				box-shadow: none
-				text-indent: -9999px
-				margin-left: -4px
-				@include rounded(0px)
-	.momeant-header
-		display: none
-		text-indent: -9999px
-		height: 130px
-		background: transparent url(../images/diagStripeBG.png) repeat-x 0 100%
-		margin-bottom: 10px
-		z-index: 1
-		#logo-large
-			height: 100px
-			width: 700px
-			float: left
-			background: transparent url(../images/logoSm.png) no-repeat 0 0
-		.round-button
-			display: block
-			width: 99px
-			height: 99px
-			float: right
-			margin-top: 5px
-		#join
-			background: transparent url(../images/buttonJoinLogin.png) no-repeat 0 0
-		#stumble
-			background: transparent url(../images/stumbleDot.png) no-repeat 0 0
-		#beta
-			background: transparent url(../images/betaDot.png) no-repeat 0 0
-		#rewards-bank
-			position: relative
-			z-index: 2
-			width: 78px
-			height: 78px
-			margin-top: 15px
-			background: transparent url(../images/coinCountBlue.png) no-repeat 0 0
-			text-indent: 0
-			font-weight: 900
-			font-size: 24px
-			line-height: 83px
-			vertical-align: middle
-			text-align: center
-		#rewards-bank.expired, #rewards-bank.disabled
-			background-image: url(../images/coinCountRed.png)
-			color: $red
-		#rewards-bank-slider
-			position: absolute
-			right: 40px
-			top: 23px
-			width: 180px
-			padding: 3px
-			@include rounded
-			background-color: $lightblue
-			z-index: 1
-			.inner
-				@include rounded
-				border: 1px solid $background_color
-				padding: 15px 45px 10px 14px
-				height: 30px
-				color: $blue
-				text-indent: 0
-				font-weight: 900
-				font-size: 12px
-				text-transform: uppercase
-				line-height: 14px
-		#rewards-bank-slider.expired, #rewards-bank-slider.disabled
-			background-color: $lightred
-			.inner
-				color: $red
+			
 #header.hide-nav
 	background: none
 .fullscreen .momeant-header

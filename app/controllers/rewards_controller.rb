@@ -6,7 +6,13 @@ class RewardsController < ApplicationController
     return if @user.nil?
     @story = Story.find_by_id(params[:story_id])
     
-    @reward = current_user.reward(params[:user_id], params[:reward][:amount], params[:reward][:comment], params[:reward][:story_id])
+    @reward = current_user.reward(
+      params[:user_id],
+      params[:reward][:amount],
+      params[:reward][:comment],
+      params[:reward][:story_id],
+      params[:reward][:impacted_by]
+    )
     render :partial => "users/thank_you"
   end
 end

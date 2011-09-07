@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   include SslRequirement
   protect_from_forgery
   
-  before_filter :release_lockdown, :check_for_trial_expiration, :push_to_sender
+  before_filter :load_following_stream, :check_for_trial_expiration, :push_to_sender
   
   @nav = "home"
   @sidenav = ""
@@ -13,8 +13,9 @@ class ApplicationController < ActionController::Base
     ENV["CURRENT_RELEASE"] == "private-beta"
   end
   
-  def release_lockdown
-    redirect_to root_path if private_beta? && current_user.nil?
+  def load_following_stream
+    return if current_user.nil?
+    @following_stream = current_user.following_stream
   end
   
   def check_for_trial_expiration

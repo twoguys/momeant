@@ -1,19 +1,11 @@
-.info
+.info.top
   = image_tag(@user.avatar.url(:thumbnail), :class => "avatar")
   .name-occupation-follow
     .name
       = @user.name
       - if @user.active_subscription?
         %span.badge patron
-    .occupation occupation: #{@user.occupation}
     .follow= follow_button(@user)
+    .occupation= @user.tagline
     
-  .reward-and-stats
-    - if current_user
-      = link_to("Reward", "#reward-box", :class => "reward button")
-    - else
-      = link_to("Reward", "#signup-modal", :class => "reward button disabled")
-    .hidden
-      = render "shared/reward_modal"
-    
-    = render "users/stats", :user => @user
+  .impact-shield.tooltipped-w{:title => "Level 1 Patron"} 1

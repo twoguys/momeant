@@ -1,200 +1,46 @@
-// Basic colors for site
-
-$background_color: #e0e0e0
-$text_color: #252525
-$black: #000000
-$blue: #00aeef
-$red: #f42652
-$lightred: #f7d3db
-$orange: #ffa801
-$green: #34B44C
-$lightgreen: #c8f2d0
-$buttongreen: #1EA337
-$yellow: #fff10f
-$purple: #985faf
-$lightpurple: #F5DEFF
-$lightblue: #C0EEFF
-$yellow: #ffbf03
-$link_color: $blue
-
-$category_color: #d35151
-$job_type_color: #5197d3
-$payment_type_color: #16be36
-$term_color: #d27442
-
-// Gradient colors for buttons
-
-$greygradient1: #d0d0d0
-$greygradient2: #888888
-$bluegradient1: #43baf0
-$bluegradient2: #3a94e6
-$greengradient1: #62e079
-$greengradient2: #12b32f
-$redgradient1: #ff7593
-$redgradient2: #f42653
-
-// Font families
-
-$block: "facitweb-1","facitweb-2",helvetica,sans-serif
-$serif: Georgia,serif
-$typewriter: "museo-slab-1","museo-slab-2",serif 
-$caps: "museo-sans-1","museo-sans-2",sans-serif
-$dropcaps: "ambroise-std-1","ambroise-std-2",serif
-
-$border_type: 1px dotted #aaa
-$border_solid: 1px solid #DEDEDE
-
-@mixin rounded($radius: 5px)
-	-webkit-border-radius: $radius
-	-moz-border-radius: $radius
-	border-radius: $radius
-@mixin boxshadow($radius: 10px, $opacity: 0.7, $x: 0, $y: 0)
-	-webkit-box-shadow: $x $y $radius rgba(0,0,0,$opacity)
-	-moz-box-shadow: $x $y $radius rgba(0,0,0,$opacity)
-	box-shadow: $x $y $radius rgba(0,0,0,$opacity)
-@mixin bgcover
-	-webkit-background-size: cover
-	-moz-background-size: cover
-	-o-background-size: cover
-	background-size: cover
-@mixin bgcontain
-	-webkit-background-size: contain
-	-moz-background-size: contain
-	-o-background-size: contain
-	background-size: contain
-@mixin button
-	height: 28px
-	line-height: 30px
-	padding: 0 20px
-	vertical-align: middle
-	text-transform: uppercase
-	color: #fff
-	font-weight: 700
-	@include rounded(3px)
-	font-size: 12px
-	letter-spacing: .5px
-	font-family: $block
-@mixin gradient($color1: #43baf0, $color2: #3a94e6)
-	background: -moz-linear-gradient(top, $color1 0%, $color2)
-	background: -webkit-gradient(linear, left top, left bottom, from($color1), to($color2))
-
-
-/* Element styles */
-
-html, body
-	font-family: $block
-	font-size: 12px
-	color: $text_color
-	background: $background_color
-	min-height: 100%
-	overflow-x: hidden
-	text-rendering: optimizelegibility
-	position: relative
-
-h1, h2
-	font-weight: normal
-h2
-	background: none repeat scroll 0 0 #EAEAEA
-	color: #B2B2B2
-	font-family: $block
-	font-size: 13px
-	font-weight: 700
-	padding: 11px 13px 9px
-	text-transform: uppercase
-	clear: both
-
-p
-	line-height: 1.8em
-	margin: 20px 0
-
-a, a:visited
-	color: $link_color
-	outline: none
-
-h1
-	font-size: 1.7em
-h2
-	font-size: 1.3em
+@import "presets"
 
 /* Layout */
 
-html, body, #wrap
+html, body
 	height: 100%
 
-body > #wrap
-	height: auto
-	min-height: 100%
-
-body
-	min-width: 645px
-
-header .insides, #mid .insides, #footer .insides
-	padding: 0
-	margin: 0 auto
+#container
+	height: 100%
+	margin-top: -42px
 	position: relative
-
-body.fullscreen
-	position: static
-.fullscreen
-	header
-		display: none
-	header #user-nav, header .insides, #mid .insides, #footer .insides
-		width: 100%
-		min-width: 950px
-	#mid, #mid .insides, form, form fieldset, form ul
-		height: 100%
-	#main
-		padding: 0
-	#mid
-		height: 100%
-		position: absolute
-		width: 100%
-		top: 0
-		min-height: 100%
-		padding: 0
-		#center
-			height: 100%
-			border: none
-			float: none
-			.center-insides
-				margin-top: 0
-				height: 100%
-				padding: 0
-		#left-sidebar, #right-sidebar
-			display: none
-	#footer
-		display: none
-	.fullscreen-hidden
-		display: none
-
-#main
-	width: 100%
-	padding: 42px 0 50px
-	#header
-		position: absolute
-		top: 0
-		width: 100%
-
-#mid
 	.column
-		position: relative
-		float: left	
-	#center
-		width: 100%
-		min-height: 550px
-		background-color: #f4f4f4
-		border: 1px solid #ccc
-		border-top: none
-		.center-insides
-			padding: 20px
+		position: absolute
+		top: 42px
+		bottom: 0
+		overflow-y: auto
+
+	#main
+		left: 0
+		right: 276px
+	#main.full-width
+		right: 0
+	
+	#right-sidebar
+		right: 0
+
+.fullscreen
+	.fullscreen-hidden, #header, #right-sidebar
+		display: none
+	#container
+		margin: 0
+		#main
+			padding: 0
+			top: 0
+			right: 0
 
 #footer
+	display: none
 	position: relative
 	margin-top: -51px
 	height: 50px
 	clear: both
 	text-align: center
-	background-color: white
 	.insides
 		font-family: $block
 		color: #eaeaea
@@ -231,9 +77,11 @@ body.fullscreen
 @import "flash"
 @import "errors"
 @import "forms"
+@import "tabs"
 @import "tables"
 @import "stories"
 @import "users"
+@import "community"
 @import "deposits"
 @import "homepage"
 @import "join_login"
@@ -249,9 +97,6 @@ body.fullscreen
 @import "analytics"
 @import "rewards"
 @import "alternates"
-
-.hidden
-	display: none
 
 .info-bar
 	background-color: $blue

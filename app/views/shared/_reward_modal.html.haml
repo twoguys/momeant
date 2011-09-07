@@ -33,6 +33,8 @@
           .comment
             = form.text_area :comment, :placeholder => "Why does this work/creator deserve your reward?"
             = form.hidden_field :story_id, :value => @story.present? ? @story.id : ""
+            - if params[:impacted_by].present?
+              = form.hidden_field :impacted_by, :value => params[:impacted_by]
             = form.submit "Give Reward"
         
         :javascript

@@ -14,6 +14,7 @@
     = csrf_meta_tag
       
     = javascript_include_tag "jquery-1.4.3.min", "jquery-ui-1.8.6.min", "jquery.scrollTo-1.4.2-min", "jquery.tipsy", "jquery.placeholder", "jquery.fileuploader", "jquery.fancybox-1.3.4.pack", "jquery.tinyscrollbar.min", "jquery.touchSwipe", "jquery.colorPicker", "jquery.validate.min", "jquery.masonry.min"
+    = javascript_include_tag "stories/show"
     = javascript_include_tag "underscore-min", "rails", "streams", "application"
     / [if lt IE 9]
       = javascript_include_tag "http://html5shiv.googlecode.com/svn/trunk/html5.js"
@@ -29,47 +30,22 @@
     = yield :head
     
   %body{:class => @fullscreen.nil? ? "" : "fullscreen"}
-    #wrap
-      #main.clearfix
-        %header#header{:class => private_beta? && !current_user ? "hide-nav" : ""}
-          - unless @fullscreen.present?
-            = render "layouts/user_nav" unless @hide_nav
-            .insides
-              .momeant-header
-                = link_to("Home", root_path, :id => "logo-large") unless @hide_momeant
-                - if !current_user
-                  = link_to("Join", new_user_registration_path, :id => "join", :class => "round-button")
-                - elsif !@hide_rewards
-                  = render "shared/reward_bank"
-                = yield :header
-        
-        #mid
-          #center.column
-            = render "layouts/flash", :flash => flash
-            #call-to-action
-              - unless private_beta?
-                - if current_user && current_user.trial?
-                  = #render :partial => "shared/calls_to_action/subscribe", :locals => {:message => "You have #{pluralize(current_user.days_left_in_trial, "day")} and #{pluralize(current_user.coins, "coin")} left in your trial. Loving it?"}
-                - else
-                  = yield :call_to_action
-              - if current_user && current_user.is_a?(Creator)
-                - if current_user.created_stories.empty?
-                  = #render :partial => "shared/calls_to_action/create_a_story"
-                - elsif current_user.paypal_email.blank?
-                  = #render :partial => "shared/calls_to_action/enter_payment_info"
-            .center-insides
-              = yield
-          - unless @fullscreen.present?
-            #left-sidebar.column
-              = render "layouts/sidebar_nav"
-              = yield :left_sidebar
-            #right-sidebar.column
-              - if @adverts && @adverts.length > 0
-                %section.adverts
-                  = #render @adverts
-                  .clear
-              = yield :right_sidebar
-          .clear
+    %header#header
+      = render "layouts/user_nav" unless @hide_nav
+
+    #container
+      #main.column
+        = render "layouts/flash", :flash => flash
+        #call-to-action
+          = yield :call_to_action
+        = yield
+      #right-sidebar.column
+        %h3.sidebar-label Following Stream
+        %span.sidebar-description content rewarded by those you follow
+        %ul.rewards
+          = render @following_stream if current_user
+        .spinner
+        #user_id= current_user.id if current_user
 
     #footer
       .insides
@@ -85,3 +61,11 @@
 
     = render "shared/analytics" if Rails.env.production?
     = yield :javascript
+    
+    - if session[:show_content]
+      .hidden= link_to("", session[:show_content], :id => "auto-launch-story-link")
+      :javascript
+        $(document).ready(function() {
+          setup_modal_presenter_links('#auto-launch-story-link',true);
+        });
+      - session[:show_content] = nil

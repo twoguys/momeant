@@ -1,0 +1,55 @@
+.community
+  %h1.top
+    %span See the most
+    %em impactful people
+    %span in our most
+    %em popular interest areas.
+
+  = render "users/community_tabs"
+  .tabbed
+    
+    %section.tags
+      .heading By Tag
+      %ul.tags
+        - current_tags = params[:tags] || ""
+        - @tags.each do |tag|
+          - is_active = params[:tags].present? && params[:tags].include?(tag.name)
+          - if is_active
+            - url = community_path(:tags => (current_tags.split(",") - [tag.name]).join(","))
+          - else
+            - url = community_path(:tags => (current_tags.split(",") + [tag.name]).join(","))
+          %li
+            %a{:href => url, :class => is_active ? "active" : ""}
+              %span.name= truncate(tag.name, :length => 30)
+              %span.count= tag.count
+
+    .user-list
+      .user-list-inner
+        %table.users
+          %thead
+            %tr
+              %th.patron
+                Patrons
+              %th.impact 
+                Impact
+                %span.tooltipped-n{:title => "Rewards they've helped others get"}
+              %th.rewards
+                Rewards given
+                %span.tooltipped-n{:title => "Rewards they've given to others"}
+              %th.rewardees
+                Rewarded
+                %span.tooltipped-n{:title => "# of folks they've rewarded"}
+          %tbody
+            - @users.each do |user|
+              %tr
+                %td.patron
+                  = link_to(image_tag(user.avatar.url(:thumbnail)), user_path(user), :class => "avatar")
+                  %a.name{:href => user_path(user)}
+                    %span= user.first_name
+                    %span= user.last_name
+                %td.impact
+                  %span= user.impact
+                %td.rewards
+                  %span= user.given_rewards.sum(:amount)
+                %td.rewardees
+                  %span= user.rewarded_creators.count

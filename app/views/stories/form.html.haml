@@ -6,7 +6,7 @@
 
   - if !@story.valid?
     .banner
-      .before Before you can publish your story, please fix these issues:
+      .before In order to publish your story, please fix these issues:
       %ul
         - @story.errors.full_messages.each do |msg|
           %li= msg
@@ -16,28 +16,37 @@
   .fullscreen-hidden
   
     %section.step#editor
-      %h2 Create and share great content using our Fullscreen Editor.
-      %p.info
-        %em You'll be able to see your content come to life
-        %em.strong as you edit it.
-        %em.weak Go ahead and dive right in!
-      = link_to("Launch fullscreen editor", "#", :id => "open-page-editor-button")
+      %h2 1. Choose what you would like to share.
+      .choice#creator{:class => @story.is_external? ? "" : "selected"}
+        .choice-inner
+          .description Create something new
+          = link_to("Launch fullscreen editor", "#", :id => "open-page-editor-button", :class => @story.pages.empty? ? "launch" : "")
+          %p.info
+            %em Share images &amp; text with many layout &amp; formatting options.
+      .or OR
+      .choice#external{:class => @story.is_external? ? "selected" : ""}
+        .choice-inner
+          .description Show your existing web content
+          = text_field_tag :story_external_link, @story.external_text_or_http, :class => "monitor-story-typing", :update => "external_link"
+          %p.info
+            %em Show something you've created elsewhere on the web.
+      .clear
   
     %section.step#describe
-      %h2 Describe your content so that others can find and reward it!
+      %h2 2. Describe your content so that others can find and reward it!
       #thumbnail-preview
         .box
-          .title TITLE
+          .title= @story && @story.title.present? ? @story.title : "TITLE"
           .author by #{current_user.name}
-          .thumbnail
-        .note Your content will show up in streams like this.
+          .thumbnail{:style => @story && @story.thumbnail.present? ? "background: url(#{@story.thumbnail.url(:medium)})" : ""}
+        .note Your content will show up around the site like this.
       
       #story-spinner
         Saving...
     
       %ul.fields
     
-        %li.image
+        %li.image#thumbnail
           %label{:for => "story_thumbnail"} Upload an image that best represents what you've created.
           %p.info
             %strong For best results, upload a JPG or PNG at least 280px wide.

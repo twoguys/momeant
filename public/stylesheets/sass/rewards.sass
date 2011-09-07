@@ -122,14 +122,16 @@ ul.reward-thumbnails
 						
 #fancybox-content
 	background: rgba(0,0,0,0.2)
-	@include rounded(5px)
 #reward-box
 	width: 515px
-	float: left
+	position: absolute
+	top: -422px
+	left: 50%
+	margin-left: -267px
+	@include boxshadow(5px,0.7,0,0)
 	.inner
 		width: 485px
 		height: 382px
-		@include rounded(5px)
 		padding: 15px
 		background-color: #eee
 		.yourself
@@ -256,6 +258,18 @@ ul.reward-thumbnails
 		.share
 			border-top: 1px solid #fff
 			padding-top: 30px
+			a
+				display: block
+				height: 64px
+				line-height: 60px
+				font-size: 1.3em
+				padding-left: 70px
+				background-repeat: no-repeat
+				background-position: 0 0
+			a:hover
+				background-position: 0 -62px
+			.twitter
+				background-image: url(../images/tweetThis.png)
 
 a#load-more
 	display: block

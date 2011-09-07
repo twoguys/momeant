@@ -47,7 +47,15 @@ function setup_signup_modal() {
 }
 
 function setup_rewarding() {
-	$("a.reward:not(.disabled), a.rewarded:not(.disabled)").fancybox({scrolling: 'no'});
+	$("a.reward:not(.disabled), a.rewarded:not(.disabled)").click(function() {
+		var $reward_box = $('#reward-box');
+		if ($reward_box.hasClass('open')) {
+			$reward_box.removeClass('open').animate({top:'-422px'}, 500);
+		} else {
+			$reward_box.addClass('open').animate({top:'0'}, 500);
+		}
+		return false;
+	});
 	$('#reward-form').submit(function(event) {
 		event.preventDefault(); 
 
@@ -55,49 +63,23 @@ function setup_rewarding() {
 		var amount = $form.find('#reward_amount').val();
 		var comment = $form.find("#reward_comment").val();
 		var story_id = $form.find("#reward_story_id").val();
+		var impacted_by = $form.find("#reward_impacted_by").val();
 		var url = $form.attr('action');
 
 		$('#reward-box').addClass('loading');
-		$.post(url, { "reward[amount]":amount, "reward[comment]":comment, "reward[story_id]":story_id }, function(data) {
-			$("#reward-box .inner").html(data);
-			$('#reward-box').removeClass('loading').addClass('thanks');
-		});
+		$.post(url,
+			{
+				"reward[amount]":amount,
+				"reward[comment]":comment,
+				"reward[story_id]":story_id,
+				"reward[impacted_by]":impacted_by
+			},
+			function(data) {
+				$("#reward-box .inner").html(data);
+				$('#reward-box').removeClass('loading').addClass('thanks');
+			}
+		);
 	});
-}
-
-function setup_story_gallery() {
-	if ($('.story-gallery .scrollbar-me').length > 0 ) {
-		var small_preview_width = 100, large_preview_width = 630;
-		var count = $('.scrollbar-me .overview .preview').length;
-		$('.story-gallery .scrollbar-me .overview').css('width', count * small_preview_width);
-		$('.story-gallery .scrollbar-me').tinyscrollbar({axis:'x'});
-		$('.story-gallery .preview').click(function() {
-			var page = $(this).attr('counter');
-			var position = page * large_preview_width;
-			$('.story-gallery .large-preview').scrollTo({top: 0, left: position}, {duration: 200});
-		});
-	}
-	if ($('.story-gallery').length > 0) {
-		var story_count = $('.story-gallery .large-preview .pages a').length;
-		$('.story-gallery .large-preview .pages').css('width', story_count * 630);
-	}
-}
-
-function setup_recommendation_tabs() {
-	$('#subscribed-to-recommendations').click(function() {
-		$('.momeant-recommended-stream').hide();
-		$('.subscribed-to-stream').show();
-		return false;
-	});
-	$('#momeant-recommendations').click(function() {
-		$('.subscribed-to-stream').hide();
-		$('.momeant-recommended-stream').show();
-		return false;
-	});
-}
-
-function setup_thumbnail_flipping() {
-	$('ul.stories li.story.medium').hover(function(){$(this).addClass('flip')},function(){$(this).removeClass('flip')});
 }
 
 function handle_signup_login_form_validation() {
@@ -131,17 +113,55 @@ function handle_signup_login_form_validation() {
 	});
 }
 
-function handle_reward_thumbnail_interactivity() {
-	$('ul.reward-thumbnails li.reward .others a.handle').click(function() {
-		$(this).siblings('ul').toggle();
-		$('.reward-thumbnails').masonry();
-		return false;
+function setup_modal_presenter_links(selector, autoTrigger) {
+	var fancybox = $(selector).fancybox({
+		width: '98%',
+		height: '98%',
+		padding: 0,
+		autoScale: false,
+		autoDimensions: false,
+		overlayColor: '#000',
+		overlayOpacity: 0.7,
+		scrolling: 'no',
+		ajax: {
+			data: 'modal=1'
+		},
+		onComplete: function() {
+			viewer.initialize();
+			viewer.goto_page(1);
+			setup_rewarding();
+		}
 	});
+	if (autoTrigger) {
+		fancybox.trigger('click');
+	}
 }
 
-function setup_reward_and_story_columns() {
-	var $container = $('ul.reward-thumbnails');
-	$container.masonry();
+var infinite_loading = false;
+var infinite_page = 2;
+var infinite_done = false;
+function setup_following_stream_infinite_scroll() {
+	var $container = $('#right-sidebar');
+	var $stream = $('#right-sidebar ul.rewards');
+	var $spinner = $('#right-sidebar .spinner');
+	var user_id = $('#right-sidebar #user_id').text();
+	$container.scroll(function() {
+		var heightOfStream = $stream.height();
+		var pixelsScrolled = $container.scrollTop() + $container.height();
+		if (pixelsScrolled > heightOfStream && !infinite_loading && !infinite_done) {
+			$spinner.show();
+			infinite_loading = true;
+			$.get('/users/' + user_id + '/stream?page=' + infinite_page, function(data) {
+				$stream.append(data);
+				infinite_loading = false;
+				infinite_page += 1;
+				if (data.trim() == "") {
+					$('#right-sidebar .spinner').addClass('done').text('No more rewards.');
+					infinite_done = true;
+				}
+			});
+		}
+	});
 }
 
 $(document).ready(function() {
@@ -151,21 +171,9 @@ $(document).ready(function() {
 	tag_deletions();
 	setup_signup_modal();
 	setup_rewarding();
-	setup_story_gallery();
-	setup_recommendation_tabs();
-	setup_thumbnail_flipping();
-	handle_signup_login_form_validation();
-	// try {
-	// 	Typekit.load({
-	// 		active: function() {setup_reward_and_story_columns();}
-	// 	});
-	// } catch(e) {}
-	// for some reason, calling masonry after Typekit loads gets it close, but not perfect...
-	// we have to run this again (after a small delay) to get masonry to make the final touches on alignment.
-	setTimeout(setup_reward_and_story_columns, 2000);
-	
-	// reward lists
-	handle_reward_thumbnail_interactivity();
+	handle_signup_login_form_validation();	
+	setup_modal_presenter_links('a.modal');
+	setup_following_stream_infinite_scroll();
 	
 	$("a.disabled").click(function() {return false;})
 	

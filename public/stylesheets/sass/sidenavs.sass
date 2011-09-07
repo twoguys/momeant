@@ -1,120 +1,115 @@
-#mid
-	padding: 0 185px
-	min-width: 555px
-	#left-sidebar
-		width: 183px
-		right: 185px
-		margin-left: -100%
-	#right-sidebar
-		width: 165px
-		padding: 10px
-		right: 0
-		margin-right: -185px
-/* IE6 Fix */
-* html #left-sidebar
-	left: 185px
-
-#left-sidebar
-	padding-top: 10px
-	
-	.join-login
-		@include button
-		@include gradient
-		display: block
-		width: 100px
+#right-sidebar
+	width: 235px
+	padding: 20px 20px 10px
+	border-left: 1px solid #ccc
+	background: #ccc
+	.spinner
 		height: 30px
-		line-height: 30px
-		margin: 15px 0 0 20px
+		background: transparent url(../images/spinnerLightGreyBg.gif) no-repeat 50% 0
+		font-size: 11px
 		text-align: center
+		font-style: italic
+		color: #999
+		line-height: 30px
+		display: none
+	.spinner.done
+		background: none
+	#user_id
+		display: none
 	
-	.personal-info
-		padding-left: 10px
-		position: relative
-		height: 90px
-		.avatar-coins
-			position: absolute
-			width: 60px
-			height: 83px
-			background: #000
-			padding: 2px
-			img
-				display: block
-				width: 60px
-				height: 60px
-			.coins
-				color: #fff
-				padding: 5px 0 0 14px
-				.count
-					padding-right: 18px
-					font-weight: 700
-					background: transparent url(../images/icons/coinStarWhite.png) no-repeat 100% 0
-		.name, .patron
-			margin-left: 70px
-		.name
-			display: block
-			color: #000
-			font-size: 15px
-			font-weight: 700
-			width: 118px
-			overflow: hidden
-			text-transform: uppercase
-			padding: 6px 0 1px
-		.patron
-			display: none
-			font-size: 10px
-			.badge
-				@include rounded(2px)
-				background: $yellow
-				padding: 2px 4px
-				color: #fff
-			.badge.dull
-				background-color: #555
-				
-	.user-stats
-		margin: 5px 13px -5px 70px
-		.text
-			width: 52px
+	h3.sidebar-label, span.sidebar-description
+		width: 110px
+		text-shadow: 0 1px 1px #eee
+	h3.sidebar-label
+		text-transform: uppercase
+		font-size: 14px
+		float: left
+		font-weight: 900
+		line-height: 1.1em
+	span.sidebar-description
+		float: right
+		text-align: right
+		font-size: 10px
+		padding: 3px 0
+		color: #777
 	
-	ul.nav
+	ul.rewards
+		clear: both
+		padding-top: 20px
 		li
-			padding-left: 25px
-			background: transparent url(../images/sidebarRowBG.png) no-repeat 0 0
-			a, span
-				display: block
-				height: 38px
-				line-height: 38px
-				vertical-align: middle
-				color: #000
-				padding-left: 27px
-				background-repeat: no-repeat
-				background-position: 0 9px
-			.following
-				background-image: url(../images/sidenav/check.png)
-			.global
-				background-image: url(../images/sidenav/global.png)
-			.profile
-				background-image: url(../images/sidenav/user.png)
-			.analytics
-				background-image: url(../images/sidenav/stats.png)
-			.bookmarks
-				background-image: url(../images/sidenav/bookmark.png)
-		li.disabled span
-			opacity: 0.4
-		li.header
-			padding-left: 10px
-			text-transform: uppercase
-			color: #aaa
-			font-weight: 700
-			font-size: 13px
-			letter-spacing: -0.1px
-			text-shadow: 0 1px 1px #fff
-			padding-top: 30px
-			padding-bottom: 5px
-			background: none
-		li.header.break
-			background: transparent url(../images/sidebarRowBG.png) no-repeat 0 0
-		li.active
-			background: transparent url(../images/sidebarRowActiveBG.png) no-repeat 0 0
+			width: 230px
+			margin-bottom: 20px
 			position: relative
-			right: -1px
-			padding-left: 24px
+			@include boxshadow(2px,0.2,1px,1px)
+			.what
+				position: relative
+				.thumbnail
+					display: block
+					width: 230px
+					height: 144px
+					img
+						width: 230px
+						height: 144px
+				.title
+					display: none
+					position: absolute
+					top: 0
+					left: 0
+					padding: 10px
+					width: 210px
+					height: 124px
+					color: #fff
+					font-weight: 700
+					text-transform: uppercase
+					font-size: 14px
+					background: rgba(0,0,0,0.5)
+					z-index: 2
+				.comment-pointer
+					background: transparent url(../images/streamCommentPointer.png) no-repeat 0 0
+					width: 13px
+					height: 12px
+					position: absolute
+					bottom: 0
+					left: 20px
+					z-index: 3
+			.who
+				background: $background_color
+				padding: 8px
+				width: 214px
+				min-height: 40px
+				.avatar
+					float: left
+					width: 40px
+					height: 40px
+					margin-right: 5px
+					img
+						width: 40px
+						height: 40px
+				.amount-and-who
+					.reward
+						float: left
+						margin-right: 5px
+						background-color: $blue
+						color: #fff
+						padding: 6px 6px 6px 10px
+						@include rounded(3px)
+						.inner
+							padding-right: 18px
+							font-weight: 700
+							background: transparent url(../images/icons/recommendWhite.png) no-repeat 100% 0
+					.author
+						font-size: 1.2em
+						font-weight: 700
+						text-transform: uppercase
+						margin-bottom: 2px
+						font-size: 11px
+						display: block
+						position: relative
+						top: -1px
+						color: #000
+				.comment
+					color: #555
+					font-size: 11px
+		li:hover
+			.title
+				display: block

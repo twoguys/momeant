@@ -26,6 +26,8 @@ var story_page_editor = function() {
 		$('#pane .expander-tab').click(pages_editor.open_or_close_pane);
 
 		setup_page_type_chooser();
+		setup_creation_or_external_choosing();
+		setup_title_mirroring();
 		setup_gallery_creation();
 		this.setup_preview_thumbnail_switching($('#page-previews li.page a.choose-thumbnail'));
 		this.setup_preview_clicking($('#page-previews li.page'));
@@ -45,6 +47,37 @@ var story_page_editor = function() {
 			pages_editor.choose_page_theme(page_type);
 		});
 		$('#page-type-chooser .dark, #page-type-chooser .close').click(pages_editor.hide_page_type_chooser);
+	};
+	
+	var setup_creation_or_external_choosing = function() {
+		var change_to_external = function() {
+			if ($('#creator').hasClass('selected')) {
+				$('#external').addClass('selected');
+				$('#creator').removeClass('selected');
+				$.post('/stories/' + pages_editor.story_id + '/change_to_external');
+				var link_value = $('#story_external_link').val()
+				if (link_value != "http://" && link_value != "") {
+					$.ajax({
+						type: 'PUT',
+						url: '/stories/' + pages_editor.story_id + '/autosave',
+						data: {'story[external_link]': link_value}
+					});
+				}
+			}
+		};
+		$('#external').click(change_to_external);
+		
+		var change_to_creator = function() {
+			if ($('#external').hasClass('selected')) {
+				$('#external').removeClass('selected');
+				$('#creator').addClass('selected');
+				$.post('/stories/' + pages_editor.story_id + '/change_to_creator');
+				$('ul#pages li.page, #page-editor ul.pages li.pane-insides').remove();
+				pages_editor.page_chooser_mode = 'add';
+			}
+		}
+		$('#creator').click(change_to_creator);
+		$('#open-page-editor-button').click(change_to_creator);
 	};
 	
 	var setup_gallery_creation = function() {
@@ -77,6 +110,19 @@ var story_page_editor = function() {
 						}
 					});
 				});
+			}
+		});
+	};
+	
+	var setup_title_mirroring = function() {
+		$('#story_title').keyup(function() {
+			var $thumbnail_title = $('#thumbnail-preview .title');
+			var title = $(this).val();
+			log(title);
+			if (title.length > 0) {
+				$thumbnail_title.text(title);
+			} else {
+				$thumbnail_title.text("Title");
 			}
 		});
 	};
@@ -378,7 +424,7 @@ var story_auto_saver = function() {
 	
 	this.monitor_thumbnail_choosing = function() {		
 		var $uploader = $('#thumbnail .file-uploader');
-		var $preview = $('#thumbnail .preview')
+		var $preview = $('#thumbnail-preview .thumbnail')
 		var $loader = $uploader.find('.loader');
 		var $file_input = $uploader.find('input[type="file"]');
 		var url = '/stories/' + pages_editor.story_id + '/update_thumbnail';

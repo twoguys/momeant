@@ -24,6 +24,8 @@ Repo::Application.routes.draw do
       post :add_topic_to
       post :remove_topic_from
       post :update_thumbnail
+      post :change_to_external
+      post :change_to_creator
     end
     collection do
       get :bookmarked
@@ -57,10 +59,11 @@ Repo::Application.routes.draw do
     get :bookmarks
     
     member do
-      get :bio
-      get :momeants
+      get :stream
+      get :creations
       get :rewarded
       get :patrons
+      get :followers
       get :following
     end
     
@@ -71,6 +74,8 @@ Repo::Application.routes.draw do
     post :billing_updates, :on => :collection
   end
   match '/analytics',           :to => "users#analytics",           :as => :analytics
+  match '/community',           :to => "users#community",           :as => :community
+  match '/community/creators',  :to => "users#community_creators",  :as => :community_creators
   
   namespace :admin do
     match '/', :to =>"dashboard#index", :as => :dashboard

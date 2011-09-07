@@ -25,4 +25,9 @@ module ApplicationHelper
     return if user.nil?
     user.interests.map {|interest| link_to(interest.name, search_path(:query => interest.name))}.join(", ").html_safe
   end
+  
+  def twitter_url(reward)
+    text = URI.escape("Check out this awesome content on @mo_meant: #{story_url(reward.story, :impacted_by => reward.id)}")
+    "http://twitter.com/?status=#{text}"
+  end
 end
