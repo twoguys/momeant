@@ -78,6 +78,10 @@ class UsersController < ApplicationController
     @users = @users.sort_by{|user| -user.impact}
   end
   
+  def community_creators
+    # Rewards this week -> rewardees -> top content -> top impacter
+  end
+  
   def billing_updates
     subscriber_ids = params[:subscriber_ids].split(",")
     subscriber_ids.each do |subscriber_id|
