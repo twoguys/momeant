@@ -1,0 +1,69 @@
+#transactions
+
+  #current
+    .heading You currently have
+    .amount
+      .value= current_user.coins
+      .text
+        %span reward coins
+        %span to give out
+
+  #purchase
+    %h1 Need more reward coins? Choose a package:
+
+    - form_for @payment, :url => buy_coins_path do |form|
+      = form.hidden_field :amount, :value => 5
+      .package
+        .amount 25
+        %span.text reward coins
+      .price $5
+      .bonus
+      = form.submit
+
+    - form_for @payment, :url => buy_coins_path do |form|
+      = form.hidden_field :amount, :value => 10
+      .package
+        .amount 70
+        %span.text reward coins
+      .price $10
+      .bonus 20 coins free!
+      = form.submit
+
+    - form_for @payment, :url => buy_coins_path do |form|
+      = form.hidden_field :amount, :value => 20
+      .package
+        .amount 160
+        %span.text reward coins
+      .price $20
+      .bonus 60 coins free!
+      = form.submit
+
+    - form_for @payment, :url => buy_coins_path do |form|
+      = form.hidden_field :amount, :value => 100
+      .package
+        .amount 900
+        %span.text reward coins
+      .price $100
+      .bonus 400 coins free!
+      = form.submit
+
+  #past
+    %h1 Your past purchases
+    %table
+      %thead
+        %tr
+          %th Package
+          %th Price
+          %th Purchased
+      %tbody
+        - @past_payments.each do |payment|
+          %tr
+            %td= payment.coin_string
+            %td= number_to_currency(payment.amount)
+            %td #{time_ago_in_words(payment.created_at)} ago
+        - unless @past_payments.empty?
+          %tr.total
+            %td #{@past_payments.map(&:coins).inject(:+)} reward coins
+            %td= number_to_currency(@past_payments.map(&:amount).inject(:+))
+            %td
+            

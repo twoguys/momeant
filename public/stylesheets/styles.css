@@ -153,6 +153,20 @@ html, body {
       background-image: url(../images/icons/community.png); }
     #header #user-nav #faq a {
       background-image: url(../images/icons/faqWhite.png); }
+    #header #user-nav #coins {
+      padding: 8px 0 0 20px; }
+      #header #user-nav #coins a {
+        color: white; }
+        #header #user-nav #coins a .amount, #header #user-nav #coins a .text {
+          float: left; }
+        #header #user-nav #coins a .amount {
+          margin-right: 5px;
+          font-size: 26px;
+          color: #00aeef; }
+        #header #user-nav #coins a .text {
+          font-size: 11px; }
+          #header #user-nav #coins a .text span {
+            display: block; }
     #header #user-nav #signin, #header #user-nav #signout {
       position: absolute;
       right: 20px;
@@ -6623,6 +6637,57 @@ a#load-more {
 
 #hidden-reward-appender {
   display: none; }
+
+#transactions {
+  padding: 20px; }
+  #transactions #current {
+    margin-bottom: 30px; }
+    #transactions #current .heading {
+      color: #777777;
+      font-style: italic; }
+    #transactions #current .amount {
+      height: 40px;
+      padding-top: 10px; }
+      #transactions #current .amount .value, #transactions #current .amount .text {
+        float: left; }
+      #transactions #current .amount .value {
+        font-size: 40px;
+        font-weight: 700;
+        margin-right: 5px; }
+      #transactions #current .amount .text span {
+        display: block; }
+  #transactions #purchase form {
+    width: 20%;
+    padding: 0 2%;
+    float: left;
+    border-right: 1px solid #dddddd;
+    text-align: center; }
+    #transactions #purchase form .package .amount {
+      font-size: 24px;
+      font-weight: 700; }
+    #transactions #purchase form .price {
+      font-size: 16px;
+      margin: 10px 0; }
+    #transactions #purchase form .bonus {
+      height: 15px;
+      font-weight: 700;
+      color: #00aeef;
+      text-transform: uppercase; }
+    #transactions #purchase form input[type="submit"] {
+      background: transparent url(../images/payWithAmazon.gif) no-repeat;
+      width: 126px;
+      height: 40px;
+      padding: 0;
+      text-indent: -9999px;
+      margin-top: 10px; }
+  #transactions #purchase form:last-child {
+    border: none; }
+  #transactions #past {
+    clear: both;
+    padding-top: 50px; }
+    #transactions #past .total td {
+      border-top: 1px solid #cccccc;
+      font-weight: 700; }
 
 .horizontal-tabs li a {
   background-color: #c9c6c3;

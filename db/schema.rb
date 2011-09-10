@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110822143301) do
+ActiveRecord::Schema.define(:version => 20110910170917) do
 
   create_table "adverts", :force => true do |t|
     t.string   "title"
@@ -185,6 +185,9 @@ ActiveRecord::Schema.define(:version => 20110822143301) do
     t.integer  "pay_period_line_item_id"
     t.string   "braintree_order_id"
     t.text     "comment"
+    t.string   "state"
+    t.string   "amazon_token"
+    t.string   "amazon_transaction_id"
   end
 
   create_table "users", :force => true do |t|

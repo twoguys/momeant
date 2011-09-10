@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
   
   has_many :galleries
   
-  has_many :credit_cards
+  has_many :amazon_payments, :foreign_key => :payer_id, :order => "created_at DESC"
   
   has_attached_file :avatar,
     :styles => { :thumbnail => "60x60#" },
