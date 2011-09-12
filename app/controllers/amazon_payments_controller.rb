@@ -4,6 +4,7 @@ class AmazonPaymentsController < ApplicationController
   def index
     @payment = AmazonPayment.new(:amount => 10)
     @past_payments = current_user.amazon_payments
+    @nav = "coins"
   end
   
   def create

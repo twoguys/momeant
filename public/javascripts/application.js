@@ -30,19 +30,27 @@ function tag_deletions() {
 }
 
 var prevent_closing_of_signup_modal = false;
-function setup_signup_modal() {
+function setup_signup_and_join_modals() {
 	$('#join, a[href="#signup-modal"]').click(function() {
-		var $modal = $('#join-login-modal');
+		var $modal = $('#join-modal');
 		$modal.stop().fadeIn('fast');
 		return false;
 	});
-	$('#join-login-modal .cover, #join-login-modal .close').click(function() {
+	$('#join-modal .cover, #join-modal .close').click(function() {
 		if (!prevent_closing_of_signup_modal) {
-			$('#join-login-modal').stop().fadeOut('fast');
+			$('#join-modal').stop().fadeOut('fast');
 		}
 	});
+	$('a[href="#login-modal"]').click(function() {
+		var $modal = $('#login-modal');
+		$modal.stop().fadeIn('fast');
+		return false;
+	});
+	$('#login-modal .cover, #login-modal .close').click(function() {
+		$('#login-modal').stop().fadeOut('fast');
+	});
 	$(document).keyup(function(e) {
-	  if (e.keyCode == 27) { $('#join-login-modal').stop().fadeOut('fast'); } // escape
+	  if (e.keyCode == 27) { $('#join-modal, #login-modal').stop().fadeOut('fast'); } // escape
 	});
 }
 
@@ -169,7 +177,7 @@ $(document).ready(function() {
 	setup_tab_switching();
 	setup_placeholder_text();
 	tag_deletions();
-	setup_signup_modal();
+	setup_signup_and_join_modals();
 	setup_rewarding();
 	handle_signup_login_form_validation();	
 	setup_modal_presenter_links('a.modal');

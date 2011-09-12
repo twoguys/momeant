@@ -1,15 +1,19 @@
 #transactions
 
-  #current
-    .heading You currently have
-    .amount
-      .value= current_user.coins
-      .text
-        %span reward coins
-        %span to give out
+  #explanation
+    %h2
+      Purchase reward coins and become a Momeant Patron! 
+    %p
+      %strong Momeant rewards coins are the currency of Momeant.
+      Use them to reward creators, which promotes their content so others can reward.
+      The more you reward, the more you gain status in the community, which you can check out in the #{link_to("community section", community_path)}.
+      Creators get paid out every time they accumulate 250 coins.
+      So go ahead and purchase reward coins and start rewarding people!
+    %p
+      We use Amazon to accept payments. If you have an Amazon account, this process is a snap.
+      If you don't have an Amazon account, just select "I am a new customer" on the next page.
 
   #purchase
-    %h1 Need more reward coins? Choose a package:
 
     - form_for @payment, :url => buy_coins_path do |form|
       = form.hidden_field :amount, :value => 5
@@ -48,7 +52,7 @@
       = form.submit
 
   #past
-    %h1 Your past purchases
+    %h2 Your past purchases
     %table
       %thead
         %tr

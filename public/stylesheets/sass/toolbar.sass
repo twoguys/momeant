@@ -45,19 +45,30 @@
 		#faq a
 			background-image: url(../images/icons/faqWhite.png)
 		#coins
-			padding: 8px 0 0 20px
+			margin-left: 20px
 			a
+				display: block
+				height: 36px
+				padding: 6px 10px 0
 				color: #fff
 				.amount, .text
 					float: left
 				.amount
 					margin-right: 5px
 					font-size: 26px
+					line-height: 30px
 					color: $blue
 				.text
 					font-size: 11px
+					line-height: 12px
+					padding-top: 1px
 					span
 						display: block
+		#coins.active a
+			.amount
+				color: #fff
+			.text
+				color: #000
 		#signin, #signout
 			position: absolute
 			right: 20px

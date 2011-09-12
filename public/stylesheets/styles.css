@@ -14,7 +14,6 @@ h1, h2 {
 
 h2 {
   background: none repeat scroll 0 0 #eaeaea;
-  color: #b2b2b2;
   font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
   font-size: 13px;
   font-weight: 700;
@@ -59,6 +58,11 @@ html, body {
     right: 0; }
   #container #right-sidebar {
     right: 0; }
+
+#container.landing #main {
+  right: 0; }
+#container.landing #right-sidebar {
+  display: none; }
 
 .fullscreen .fullscreen-hidden, .fullscreen #header, .fullscreen #right-sidebar {
   display: none; }
@@ -154,19 +158,29 @@ html, body {
     #header #user-nav #faq a {
       background-image: url(../images/icons/faqWhite.png); }
     #header #user-nav #coins {
-      padding: 8px 0 0 20px; }
+      margin-left: 20px; }
       #header #user-nav #coins a {
+        display: block;
+        height: 36px;
+        padding: 6px 10px 0;
         color: white; }
         #header #user-nav #coins a .amount, #header #user-nav #coins a .text {
           float: left; }
         #header #user-nav #coins a .amount {
           margin-right: 5px;
           font-size: 26px;
+          line-height: 30px;
           color: #00aeef; }
         #header #user-nav #coins a .text {
-          font-size: 11px; }
+          font-size: 11px;
+          line-height: 12px;
+          padding-top: 1px; }
           #header #user-nav #coins a .text span {
             display: block; }
+    #header #user-nav #coins.active a .amount {
+      color: white; }
+    #header #user-nav #coins.active a .text {
+      color: black; }
     #header #user-nav #signin, #header #user-nav #signout {
       position: absolute;
       right: 20px;
@@ -274,88 +288,6 @@ header.hide-nav {
     font-size: 10px;
     padding: 3px 0;
     color: #777777; }
-  #right-sidebar ul.rewards {
-    clear: both;
-    padding-top: 20px; }
-    #right-sidebar ul.rewards li {
-      width: 230px;
-      margin-bottom: 20px;
-      position: relative;
-      -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-      -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-      box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); }
-      #right-sidebar ul.rewards li .what {
-        position: relative; }
-        #right-sidebar ul.rewards li .what .thumbnail {
-          display: block;
-          width: 230px;
-          height: 144px; }
-          #right-sidebar ul.rewards li .what .thumbnail img {
-            width: 230px;
-            height: 144px; }
-        #right-sidebar ul.rewards li .what .title {
-          display: none;
-          position: absolute;
-          top: 0;
-          left: 0;
-          padding: 10px;
-          width: 210px;
-          height: 124px;
-          color: white;
-          font-weight: 700;
-          text-transform: uppercase;
-          font-size: 14px;
-          background: rgba(0, 0, 0, 0.5);
-          z-index: 2; }
-        #right-sidebar ul.rewards li .what .comment-pointer {
-          background: transparent url(../images/streamCommentPointer.png) no-repeat 0 0;
-          width: 13px;
-          height: 12px;
-          position: absolute;
-          bottom: 0;
-          left: 20px;
-          z-index: 3; }
-      #right-sidebar ul.rewards li .who {
-        background: #f4f4f4;
-        padding: 8px;
-        width: 214px;
-        min-height: 40px; }
-        #right-sidebar ul.rewards li .who .avatar {
-          float: left;
-          width: 40px;
-          height: 40px;
-          margin-right: 5px; }
-          #right-sidebar ul.rewards li .who .avatar img {
-            width: 40px;
-            height: 40px; }
-        #right-sidebar ul.rewards li .who .amount-and-who .reward {
-          float: left;
-          margin-right: 5px;
-          background-color: #00aeef;
-          color: white;
-          padding: 6px 6px 6px 10px;
-          -webkit-border-radius: 3px;
-          -moz-border-radius: 3px;
-          border-radius: 3px; }
-          #right-sidebar ul.rewards li .who .amount-and-who .reward .inner {
-            padding-right: 18px;
-            font-weight: 700;
-            background: transparent url(../images/icons/recommendWhite.png) no-repeat 100% 0; }
-        #right-sidebar ul.rewards li .who .amount-and-who .author {
-          font-size: 1.2em;
-          font-weight: 700;
-          text-transform: uppercase;
-          margin-bottom: 2px;
-          font-size: 11px;
-          display: block;
-          position: relative;
-          top: -1px;
-          color: black; }
-        #right-sidebar ul.rewards li .who .comment {
-          color: #555555;
-          font-size: 11px; }
-    #right-sidebar ul.rewards li:hover .title {
-      display: block; }
 
 /* Flash notices */
 #flash {
@@ -568,6 +500,81 @@ table {
     font-weight: 700;
     text-transform: uppercase;
     border-bottom: 1px solid #cccccc; }
+
+#landing {
+  background: #d1cecb;
+  min-height: 100%;
+  font-family: "museo-slab-1", "museo-slab-2", serif; }
+  #landing #letter {
+    width: 620px;
+    padding: 25px 50px 30px;
+    background: #fef9ec url(../images/landingLetterBG.jpg) no-repeat 0 0;
+    margin: 0 auto 40px;
+    -webkit-box-shadow: 0 0 7px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 0 7px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 7px rgba(0, 0, 0, 0.2);
+    font-size: 14px; }
+    #landing #letter p {
+      margin: 15px 0; }
+    #landing #letter .join {
+      height: 60px; }
+      #landing #letter .join a {
+        display: block;
+        float: right;
+        width: 200px;
+        padding: 9px 0;
+        color: white;
+        text-align: center;
+        font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        background: -moz-linear-gradient(top, #43baf0 0%, #3a94e6);
+        background: -webkit-gradient(linear, left top, left bottom, from(#43baf0), to(#3a94e6)); }
+      #landing #letter .join span {
+        float: right;
+        clear: both;
+        width: 200px;
+        display: block;
+        text-align: center;
+        font-size: 12px;
+        padding-top: 3px; }
+  #landing #rewarded, #landing #guide {
+    width: 710px;
+    margin: 0 auto; }
+    #landing #rewarded h3, #landing #guide h3 {
+      font-size: 16px;
+      text-shadow: 0 1px 0 white; }
+  #landing #rewarded h3 {
+    padding-bottom: 5px;
+    border-bottom: 1px solid #bbbbbb; }
+  #landing #rewarded li {
+    float: left;
+    margin: 0 10px 0 0; }
+  #landing #rewarded li:last-child {
+    margin: 0; }
+  #landing #guide {
+    clear: both;
+    padding-top: 50px; }
+    #landing #guide a {
+      color: #252525;
+      display: block;
+      float: left;
+      width: 300px;
+      padding: 20px;
+      background-color: #ebe7e4;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      border-radius: 3px; }
+      #landing #guide a h3 {
+        display: inline-block;
+        padding-right: 25px;
+        background: transparent url(../images/whiteArrowRight.png) no-repeat 100% 1px; }
+      #landing #guide a p {
+        margin: 10px 0 0;
+        text-shadow: 0 1px 0 white; }
+    #landing #guide a:first-child {
+      margin-right: 30px; }
 
 /* Story creation */
 .new-story-copy {
@@ -5175,7 +5182,7 @@ form.user_edit #user_interest_list {
         border-top-left-radius: 0;
         border-bottom-left-radius: 0; }
 
-#join-login-modal {
+#join-modal, #login-modal {
   display: none;
   position: fixed;
   top: 0;
@@ -5186,14 +5193,14 @@ form.user_edit #user_interest_list {
   color: white;
   width: 100%;
   height: 100%; }
-  #join-login-modal .cover {
+  #join-modal .cover, #login-modal .cover {
     width: 100%;
     height: 100%;
     background: transparent url(../images/modalCover.png) repeat;
     background: rgba(0, 0, 0, 0.7);
     position: absolute;
     z-index: 1; }
-  #join-login-modal .padder {
+  #join-modal .padder, #login-modal .padder {
     width: 480px;
     margin: 0 auto;
     background-color: #f4f4f4;
@@ -5207,7 +5214,7 @@ form.user_edit #user_interest_list {
     -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
     -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.7); }
-    #join-login-modal .padder a.close {
+    #join-modal .padder a.close, #login-modal .padder a.close {
       position: absolute;
       top: -15px;
       right: -15px;
@@ -5215,12 +5222,12 @@ form.user_edit #user_interest_list {
       height: 30px;
       display: block;
       background: transparent url(../images/modalClose.png) no-repeat 0 0; }
-  #join-login-modal .placeholder {
+  #join-modal .placeholder, #login-modal .placeholder {
     color: #aaaaaa;
     font-style: italic;
     font-family: Georgia, serif;
     font-size: 12px; }
-  #join-login-modal h2 {
+  #join-modal h2, #login-modal h2 {
     font-family: "museo-slab-1", "museo-slab-2", serif;
     font-size: 30px;
     color: black;
@@ -5231,24 +5238,24 @@ form.user_edit #user_interest_list {
     background-color: transparent;
     font-weight: 100;
     padding-top: 0px; }
-  #join-login-modal input[type="text"], #join-login-modal input[type="password"] {
+  #join-modal input[type="text"], #join-modal input[type="password"], #login-modal input[type="text"], #login-modal input[type="password"] {
     width: 194px; }
-  #join-login-modal input[type="submit"] {
+  #join-modal input[type="submit"], #login-modal input[type="submit"] {
     color: black;
     text-shadow: none;
     font-size: 14px;
     padding: 8px 10px 6px; }
-  #join-login-modal li {
+  #join-modal li, #login-modal li {
     margin-bottom: 10px;
     height: 31px; }
-  #join-login-modal li.remember-me {
+  #join-modal li.remember-me, #login-modal li.remember-me {
     margin-top: -5px;
     margin-bottom: 0px; }
-    #join-login-modal li.remember-me label {
+    #join-modal li.remember-me label, #login-modal li.remember-me label {
       color: #252525; }
-  #join-login-modal .spaced-a-bit {
+  #join-modal .spaced-a-bit, #login-modal .spaced-a-bit {
     margin-bottom: 5px; }
-  #join-login-modal li.copy {
+  #join-modal li.copy, #login-modal li.copy {
     color: #999999;
     font-size: 13px;
     font-family: "museo-slab-1", "museo-slab-2", serif;
@@ -5256,9 +5263,9 @@ form.user_edit #user_interest_list {
     margin-bottom: 0;
     font-weight: 100;
     text-align: center; }
-  #join-login-modal form li {
+  #join-modal form li, #login-modal form li {
     position: relative; }
-    #join-login-modal form li label.placeholder {
+    #join-modal form li label.placeholder, #login-modal form li label.placeholder {
       color: #999999;
       font-style: italic;
       font-family: Georgia, serif;
@@ -5269,23 +5276,23 @@ form.user_edit #user_interest_list {
       font-weight: 100;
       margin: 0;
       padding: 0 0 0 10px; }
-    #join-login-modal form li label.error {
+    #join-modal form li label.error, #login-modal form li label.error {
       font-family: Georgia, serif;
       font-size: 11px;
       font-weight: 100;
       color: #00aeef;
       text-transform: none;
       margin: 0 0 5px 0; }
-    #join-login-modal form li span {
+    #join-modal form li span, #login-modal form li span {
       width: 102px;
       float: left;
       margin-right: 5px;
       position: relative; }
-      #join-login-modal form li span input[type="text"] {
+      #join-modal form li span input[type="text"], #login-modal form li span input[type="text"] {
         width: 87px; }
-    #join-login-modal form li span.last {
+    #join-modal form li span.last, #login-modal form li span.last {
       margin-right: 0; }
-    #join-login-modal form li input[type="submit"] {
+    #join-modal form li input[type="submit"], #login-modal form li input[type="submit"] {
       background-color: #c0eeff;
       -webkit-border-radius: 4px;
       -moz-border-radius: 4px;
@@ -5295,35 +5302,35 @@ form.user_edit #user_interest_list {
       text-transform: uppercase;
       font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
       width: 210px; }
-    #join-login-modal form li input[type="submit"]:disabled {
+    #join-modal form li input[type="submit"]:disabled, #login-modal form li input[type="submit"]:disabled {
       background-color: #dfdfdf;
       color: #787878;
       cursor: default; }
-    #join-login-modal form li input[type="submit"]:disabled:active {
+    #join-modal form li input[type="submit"]:disabled:active, #login-modal form li input[type="submit"]:disabled:active {
       top: 0; }
-  #join-login-modal form li.filled label {
+  #join-modal form li.filled label, #login-modal form li.filled label {
     display: none; }
-  #join-login-modal form li.checkbox label.error {
+  #join-modal form li.checkbox label.error, #login-modal form li.checkbox label.error {
     position: absolute;
     bottom: -10px;
     padding-left: 23px; }
-  #join-login-modal .join, #join-login-modal .login {
+  #join-modal .join, #join-modal .login, #login-modal .join, #login-modal .login {
     float: left;
     width: 210px;
     position: relative; }
-    #join-login-modal .join img, #join-login-modal .login img {
+    #join-modal .join img, #join-modal .login img, #login-modal .join img, #login-modal .login img {
       margin: 15px 37%; }
-  #join-login-modal .join {
+  #join-modal .join, #login-modal .join {
     padding-right: 25px;
     border-right: 1px solid #cccccc;
     padding-left: 5px; }
-  #join-login-modal .login {
+  #join-modal .login, #login-modal .login {
     float: right;
     padding-left: 25px; }
-    #join-login-modal .login input[type="checkbox"] {
+    #join-modal .login input[type="checkbox"], #login-modal .login input[type="checkbox"] {
       float: left;
       height: 25px; }
-    #join-login-modal .login label {
+    #join-modal .login label, #login-modal .login label {
       font-weight: 600;
       color: #999999;
       text-transform: uppercase;
@@ -5331,6 +5338,17 @@ form.user_edit #user_interest_list {
       font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
       text-shadow: none;
       line-height: 11px; }
+
+#join-modal .copy {
+  width: 200px;
+  float: right;
+  padding-left: 25px;
+  color: #252525; }
+
+#login-modal .padder {
+  width: 210px; }
+#login-modal .login {
+  padding: 0; }
 
 #subscribe-pitch .byline {
   width: 550px;
@@ -6335,131 +6353,88 @@ header .topic-icon {
   padding: 4px 6px !important;
   font-size: 12px !important; }
 
-ul.reward-thumbnails li.reward {
-  width: 230px;
-  padding: 10px;
-  background: white;
-  -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-  -moz-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-  float: left;
-  display: inline;
-  margin: 0 16px 20px 0; }
-  ul.reward-thumbnails li.reward .what .thumbnail {
-    margin: 5px 0; }
-    ul.reward-thumbnails li.reward .what .thumbnail img {
-      width: 230px; }
-  ul.reward-thumbnails li.reward .what .text {
-    color: #aaaaaa; }
-    ul.reward-thumbnails li.reward .what .text .title {
-      color: black;
-      text-transform: uppercase;
-      font-weight: 900;
-      font-size: 13px; }
-    ul.reward-thumbnails li.reward .what .text .author {
-      color: black;
-      position: relative;
-      top: -2px; }
-      ul.reward-thumbnails li.reward .what .text .author a {
-        color: #00aeef; }
-  ul.reward-thumbnails li.reward .who {
-    padding: 8px;
-    background: #f4f4f4;
-    width: 214px;
-    -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
-    -moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
-    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2); }
-    ul.reward-thumbnails li.reward .who .avatar {
-      float: left;
-      width: 40px;
-      height: 40px;
-      margin-right: 5px; }
-      ul.reward-thumbnails li.reward .who .avatar img {
-        width: 40px;
-        height: 40px; }
-    ul.reward-thumbnails li.reward .who .amount-and-who .reward {
-      float: left;
-      margin-right: 5px;
-      background-color: #00aeef;
-      color: white;
-      padding: 6px 6px 6px 10px;
-      -webkit-border-radius: 5px;
-      -moz-border-radius: 5px;
-      border-radius: 5px; }
-      ul.reward-thumbnails li.reward .who .amount-and-who .reward .inner {
-        padding-right: 18px;
+ul.rewards {
+  clear: both;
+  padding-top: 20px; }
+  ul.rewards li {
+    width: 230px;
+    margin-bottom: 20px;
+    position: relative;
+    -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); }
+    ul.rewards li .what {
+      position: relative; }
+      ul.rewards li .what .thumbnail {
+        display: block;
+        width: 230px;
+        height: 144px; }
+        ul.rewards li .what .thumbnail img {
+          width: 230px;
+          height: 144px; }
+      ul.rewards li .what .title {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 10px;
+        width: 210px;
+        height: 124px;
+        color: white;
         font-weight: 700;
-        background: transparent url(../images/icons/recommendWhite.png) no-repeat 100% 0; }
-    ul.reward-thumbnails li.reward .who .amount-and-who .author {
-      font-size: 1.2em;
-      font-weight: 700;
-      text-transform: uppercase;
-      margin-bottom: 2px;
-      font-size: 12px;
-      display: block;
-      position: relative;
-      top: -1px; }
-    ul.reward-thumbnails li.reward .who .comment {
-      color: #555555; }
-  ul.reward-thumbnails li.reward .others {
-    background: #f4f4f4;
-    padding: 4px 8px; }
-    ul.reward-thumbnails li.reward .others .handle {
-      display: block;
-      font-weight: 700;
-      text-transform: uppercase;
-      color: #aeaeae;
-      font-size: 11px;
-      background: transparent url(../images/dropDownArrow.png) no-repeat 100% 0; }
-    ul.reward-thumbnails li.reward .others ul {
-      display: none; }
-      ul.reward-thumbnails li.reward .others ul li .who {
-        padding: 8px 0 0;
-        -webkit-box-shadow: 0 0 0 rgba(0, 0, 0, 0);
-        -moz-box-shadow: 0 0 0 rgba(0, 0, 0, 0);
-        box-shadow: 0 0 0 rgba(0, 0, 0, 0); }
-ul.reward-thumbnails li.reward.person {
-  background: black;
-  color: #dddddd; }
-  ul.reward-thumbnails li.reward.person .avatar-name-occupation, ul.reward-thumbnails li.reward.person .interests {
-    border-bottom: 1px solid #555555;
-    padding-bottom: 10px; }
-  ul.reward-thumbnails li.reward.person .avatar-name-occupation {
-    min-height: 66px; }
-    ul.reward-thumbnails li.reward.person .avatar-name-occupation .avatar {
-      display: block;
-      float: left;
-      margin-right: 10px;
-      border: 3px solid #00aeef;
-      width: 60px;
-      height: 60px; }
-      ul.reward-thumbnails li.reward.person .avatar-name-occupation .avatar img {
-        width: 60px;
-        height: 60px; }
-    ul.reward-thumbnails li.reward.person .avatar-name-occupation .name {
-      font-size: 20px;
-      font-weight: 700;
-      text-transform: uppercase;
-      line-height: 1em;
-      margin-bottom: 3px; }
-    ul.reward-thumbnails li.reward.person .avatar-name-occupation .occupation {
-      font-weight: 700; }
-  ul.reward-thumbnails li.reward.person .about {
-    margin: 10px 0;
-    line-height: 1.2em; }
-  ul.reward-thumbnails li.reward.person .interests {
-    margin: 10px 0; }
-    ul.reward-thumbnails li.reward.person .interests h3 {
-      text-transform: uppercase;
-      font-weight: 700; }
-  ul.reward-thumbnails li.reward.person .who {
-    background: #333333; }
-    ul.reward-thumbnails li.reward.person .who .comment {
-      color: white; }
-  ul.reward-thumbnails li.reward.person .others {
-    background-color: #555555; }
-    ul.reward-thumbnails li.reward.person .others .who {
-      background: none; }
+        text-transform: uppercase;
+        font-size: 14px;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 2; }
+      ul.rewards li .what .comment-pointer {
+        background: transparent url(../images/streamCommentPointer.png) no-repeat 0 0;
+        width: 13px;
+        height: 12px;
+        position: absolute;
+        bottom: 0;
+        left: 20px;
+        z-index: 3; }
+    ul.rewards li .who {
+      background: #f4f4f4;
+      padding: 8px;
+      width: 214px;
+      min-height: 40px; }
+      ul.rewards li .who .avatar {
+        float: left;
+        width: 40px;
+        height: 40px;
+        margin-right: 5px; }
+        ul.rewards li .who .avatar img {
+          width: 40px;
+          height: 40px; }
+      ul.rewards li .who .amount-and-who .reward {
+        float: left;
+        margin-right: 5px;
+        background-color: #00aeef;
+        color: white;
+        padding: 6px 6px 6px 10px;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px; }
+        ul.rewards li .who .amount-and-who .reward .inner {
+          padding-right: 18px;
+          font-weight: 700;
+          background: transparent url(../images/icons/recommendWhite.png) no-repeat 100% 0; }
+      ul.rewards li .who .amount-and-who .author {
+        font-size: 1.2em;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin-bottom: 2px;
+        font-size: 11px;
+        display: block;
+        position: relative;
+        top: -1px;
+        color: black; }
+      ul.rewards li .who .comment {
+        color: #555555;
+        font-size: 11px; }
+  ul.rewards li:hover .title {
+    display: block; }
 
 #fancybox-content {
   background: rgba(0, 0, 0, 0.2); }
@@ -6640,21 +6615,21 @@ a#load-more {
 
 #transactions {
   padding: 20px; }
-  #transactions #current {
+  #transactions #explanation {
     margin-bottom: 30px; }
-    #transactions #current .heading {
+    #transactions #explanation .heading {
       color: #777777;
       font-style: italic; }
-    #transactions #current .amount {
+    #transactions #explanation .amount {
       height: 40px;
       padding-top: 10px; }
-      #transactions #current .amount .value, #transactions #current .amount .text {
+      #transactions #explanation .amount .value, #transactions #explanation .amount .text {
         float: left; }
-      #transactions #current .amount .value {
+      #transactions #explanation .amount .value {
         font-size: 40px;
         font-weight: 700;
         margin-right: 5px; }
-      #transactions #current .amount .text span {
+      #transactions #explanation .amount .text span {
         display: block; }
   #transactions #purchase form {
     width: 20%;

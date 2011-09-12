@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110910170917) do
+ActiveRecord::Schema.define(:version => 20110912172111) do
 
   create_table "adverts", :force => true do |t|
     t.string   "title"
@@ -39,13 +39,14 @@ ActiveRecord::Schema.define(:version => 20110910170917) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "comment"
-    t.integer  "amount",             :default => 0
+    t.integer  "amount",               :default => 0
     t.integer  "recipient_id"
-    t.boolean  "given_during_trial", :default => false
+    t.boolean  "given_during_trial",   :default => false
     t.integer  "parent_id"
     t.integer  "lft"
     t.integer  "rgt"
-    t.integer  "depth",              :default => 0
+    t.integer  "depth",                :default => 0
+    t.boolean  "show_on_landing_page", :default => false
   end
 
   create_table "galleries", :force => true do |t|

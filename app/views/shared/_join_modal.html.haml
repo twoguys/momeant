@@ -1,25 +1,9 @@
-#join-login-modal
+#join-modal
   .cover
   .padder
     %a.close{:href => "#"}
     .insides.clearfix
       .forms
-        .login
-          %h2 Login
-          = form_for(User.new, :as => :user, :url => session_path(:user), :html => {:id => "login-form"}) do |f|
-            %fieldset
-              %ul
-                %li
-                  = f.text_field :email, :id => "login_email", :placeholder => "email address"
-                %li
-                  = f.password_field :password, :id => "login_password", :placeholder => "password"
-                %li.remember-me
-                  = f.check_box :remember_me
-                  = f.label :remember_me
-                %li.submit
-                  = f.submit "login"
-                %li.copy
-                  Mo&#149;meant is currently in public beta; as a new user you'll receive a free trial of 25 reward coins.
         .join
           %h2 Join
           = form_for(User.new, :as => :user, :url => registration_path(:user), :html => {:id => "join-form"}) do |f|
@@ -39,3 +23,12 @@
                   %label{:for => "user_tos_accepted"} I agree to the #{link_to("Terms of Service", tos_path, :target => "new")}
                 %li.submit
                   = f.submit "sign up"
+        .copy
+          %p
+            We all create content online these days. Most of that content is free.
+
+          %p
+            But when we create great content that others enjoy, we all deserve to be rewarded.
+
+          %p
+            Momeant is a community for rewarding and being rewarded.

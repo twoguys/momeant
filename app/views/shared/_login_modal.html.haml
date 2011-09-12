@@ -1,0 +1,20 @@
+#login-modal
+  .cover
+  .padder
+    %a.close{:href => "#"}
+    .insides.clearfix
+      .forms
+        .login
+          %h2 Login
+          = form_for(User.new, :as => :user, :url => session_path(:user), :html => {:id => "login-form"}) do |f|
+            %fieldset
+              %ul
+                %li
+                  = f.text_field :email, :id => "login_email", :placeholder => "email address"
+                %li
+                  = f.password_field :password, :id => "login_password", :placeholder => "password"
+                %li.remember-me
+                  = f.check_box :remember_me
+                  = f.label :remember_me
+                %li.submit
+                  = f.submit "login"

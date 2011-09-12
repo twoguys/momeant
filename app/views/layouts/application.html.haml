@@ -33,7 +33,7 @@
     %header#header
       = render "layouts/user_nav" unless @hide_nav
 
-    #container
+    #container{:class => @landing ? "landing" : ""}
       #main.column
         = render "layouts/flash", :flash => flash
         #call-to-action
@@ -56,7 +56,9 @@
           = link_to("privacy policy", privacy_path)
           = link_to("terms of service", tos_path)
     
-    = render "shared/join_login_modal" if !private_beta? && !current_user
+    - if !current_user
+      = render "shared/join_modal"
+      = render "shared/login_modal"
     = yield :modals
 
     = render "shared/analytics" if Rails.env.production?

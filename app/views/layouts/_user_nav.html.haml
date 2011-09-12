@@ -9,7 +9,7 @@
     %li#faq{:class => @nav == "about" ? "active" : ""}
       = link_to("About Us", about_path, :class => "tooltipped", :title => "Tell me more".html_safe)
     - if user_signed_in?
-      %li#coins
+      %li#coins{:class => @nav == "coins" ? "active" : ""}
         %a{:href => coins_path}
           .amount= current_user.coins
           .text
@@ -17,4 +17,4 @@
             %span to give out
       %li#signout= link_to("Logout", destroy_user_session_path)
     - else
-      %li#signin= link_to("Join/Login", "#signup-modal")
+      %li#signin= link_to("Login", "#login-modal")

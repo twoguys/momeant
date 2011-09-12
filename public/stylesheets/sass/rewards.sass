@@ -1,35 +1,47 @@
-ul.reward-thumbnails
-	li.reward
+ul.rewards
+	clear: both
+	padding-top: 20px
+	li
 		width: 230px
-		padding: 10px
-		background: #fff
-		@include boxshadow(5px,0.2,2px,2px)
-		float: left
-		display: inline
-		margin: 0 16px 20px 0
+		margin-bottom: 20px
+		position: relative
+		@include boxshadow(2px,0.2,1px,1px)
 		.what
+			position: relative
 			.thumbnail
-				margin: 5px 0
+				display: block
+				width: 230px
+				height: 144px
 				img
 					width: 230px
-			.text
-				color: #aaa
-				.title
-					color: #000
-					text-transform: uppercase
-					font-weight: 900
-					font-size: 13px
-				.author
-					color: #000
-					position: relative
-					top: -2px
-					a
-						color: $link_color
+					height: 144px
+			.title
+				display: none
+				position: absolute
+				top: 0
+				left: 0
+				padding: 10px
+				width: 210px
+				height: 124px
+				color: #fff
+				font-weight: 700
+				text-transform: uppercase
+				font-size: 14px
+				background: rgba(0,0,0,0.5)
+				z-index: 2
+			.comment-pointer
+				background: transparent url(../images/streamCommentPointer.png) no-repeat 0 0
+				width: 13px
+				height: 12px
+				position: absolute
+				bottom: 0
+				left: 20px
+				z-index: 3
 		.who
+			background: $background_color
 			padding: 8px
-			background: #f4f4f4
 			width: 214px
-			@include boxshadow(3px,0.2,1px,1px)
+			min-height: 40px
 			.avatar
 				float: left
 				width: 40px
@@ -45,7 +57,7 @@ ul.reward-thumbnails
 					background-color: $blue
 					color: #fff
 					padding: 6px 6px 6px 10px
-					@include rounded
+					@include rounded(3px)
 					.inner
 						padding-right: 18px
 						font-weight: 700
@@ -55,70 +67,17 @@ ul.reward-thumbnails
 					font-weight: 700
 					text-transform: uppercase
 					margin-bottom: 2px
-					font-size: 12px
+					font-size: 11px
 					display: block
 					position: relative
 					top: -1px
+					color: #000
 			.comment
 				color: #555
-		.others
-			background: #f4f4f4
-			padding: 4px 8px
-			.handle
-				display: block
-				font-weight: 700
-				text-transform: uppercase
-				color: #aeaeae
 				font-size: 11px
-				background: transparent url(../images/dropDownArrow.png) no-repeat 100% 0
-			ul
-				display: none
-				li
-					.who
-						padding: 8px 0 0
-						@include boxshadow(0,0.0,0,0)
-	li.reward.person
-		background: #000
-		color: #ddd
-		.avatar-name-occupation, .interests
-			border-bottom: 1px solid #555
-			padding-bottom: 10px
-		.avatar-name-occupation
-			min-height: 66px
-			.avatar
-				display: block
-				float: left
-				margin-right: 10px
-				border: 3px solid $blue
-				width: 60px
-				height: 60px
-				img
-					width: 60px
-					height: 60px
-			.name
-				font-size: 20px
-				font-weight: 700
-				text-transform: uppercase
-				line-height: 1em
-				margin-bottom: 3px
-			.occupation
-				font-weight: 700
-		.about
-			margin: 10px 0
-			line-height: 1.2em
-		.interests
-			margin: 10px 0
-			h3
-				text-transform: uppercase
-				font-weight: 700
-		.who
-			background: #333
-			.comment
-				color: #fff
-		.others
-			background-color: #555
-			.who
-				background: none
+	li:hover
+		.title
+			display: block
 						
 #fancybox-content
 	background: rgba(0,0,0,0.2)
