@@ -33,6 +33,9 @@ class StoriesController < ApplicationController
       View.record(@story, current_user) if current_user && current_user != @story.user
       @fullscreen = true
       @user = @story.user
+      if params[:impacted_by].present?
+        @impacting_reward = Reward.find(params[:impacted_by])
+      end
       render :layout => false
     elsif params[:impacted_by]
       reward = Reward.find_by_id(params[:impacted_by])

@@ -3188,44 +3188,76 @@ form.new_story, form.edit_story, .story-form {
     background-color: white;
     overflow-y: auto;
     border-right: 1px solid black; }
-    .story-viewer .reward-stream ul li#give-reward label {
-      float: left;
-      text-transform: none;
-      font-weight: 500;
-      font-size: 12px;
-      color: #252525;
-      margin: 0;
-      display: inline;
-      width: auto; }
-    .story-viewer .reward-stream ul li#give-reward .amount-input {
-      float: left;
-      padding-right: 15px;
-      background: transparent url(../images/icons/starBlackSmall.png) no-repeat 100% 2px; }
-      .story-viewer .reward-stream ul li#give-reward .amount-input input[type="text"] {
-        width: 20px;
-        border: none;
-        border-bottom: 1px solid black;
-        padding: 0 2px;
-        font-weight: 700;
-        font-size: 14px; }
-    .story-viewer .reward-stream ul li#give-reward input[type="text"], .story-viewer .reward-stream ul li#give-reward textarea {
-      -webkit-border-radius: 0;
-      -moz-border-radius: 0;
-      border-radius: 0; }
-    .story-viewer .reward-stream ul li#give-reward textarea {
-      width: 92%;
-      height: 50px;
-      margin: 5px 0; }
-    .story-viewer .reward-stream ul li#give-reward .impacter-and-submit {
-      height: 33px; }
-      .story-viewer .reward-stream ul li#give-reward .impacter-and-submit input[type="submit"] {
-        background-color: #fbf593;
+    .story-viewer .reward-stream ul li#give-reward {
+      background: #eeeeee;
+      padding-top: 15px;
+      padding-bottom: 5px;
+      height: 155px; }
+      .story-viewer .reward-stream ul li#give-reward label {
+        float: left;
+        text-transform: none;
+        font-weight: 500;
+        font-size: 12px;
         color: #252525;
-        padding: 4px 8px;
-        -webkit-border-radius: 3px;
-        -moz-border-radius: 3px;
-        border-radius: 3px;
-        float: right; }
+        margin: 0;
+        display: inline;
+        width: auto;
+        line-height: 27px; }
+      .story-viewer .reward-stream ul li#give-reward .amount-input {
+        float: left; }
+        .story-viewer .reward-stream ul li#give-reward .amount-input input[type="text"] {
+          width: 24px;
+          padding: 4px 4px 4px 22px;
+          font-weight: 700;
+          font-size: 14px;
+          background: white url(../images/icons/starBlackSmall.png) no-repeat 4px 5px;
+          -webkit-border-radius: 3px;
+          -moz-border-radius: 3px;
+          border-radius: 3px; }
+        .story-viewer .reward-stream ul li#give-reward .amount-input .out-of {
+          padding-left: 2px; }
+      .story-viewer .reward-stream ul li#give-reward input[type="text"], .story-viewer .reward-stream ul li#give-reward textarea {
+        -webkit-border-radius: 0;
+        -moz-border-radius: 0;
+        border-radius: 0; }
+      .story-viewer .reward-stream ul li#give-reward textarea {
+        width: 94%;
+        height: 40px;
+        margin: 10px 0; }
+      .story-viewer .reward-stream ul li#give-reward .impacter-and-submit {
+        height: 33px; }
+        .story-viewer .reward-stream ul li#give-reward .impacter-and-submit .impacter {
+          float: left; }
+          .story-viewer .reward-stream ul li#give-reward .impacter-and-submit .impacter a.avatar {
+            display: block;
+            float: left;
+            margin-right: 5px;
+            width: 28px;
+            height: 28px; }
+            .story-viewer .reward-stream ul li#give-reward .impacter-and-submit .impacter a.avatar img {
+              width: 28px;
+              height: 28px; }
+          .story-viewer .reward-stream ul li#give-reward .impacter-and-submit .impacter .name {
+            font-size: 10px;
+            color: #777777;
+            float: left;
+            width: 130px; }
+        .story-viewer .reward-stream ul li#give-reward .impacter-and-submit input[type="submit"] {
+          padding: 4px 8px;
+          -webkit-border-radius: 3px;
+          -moz-border-radius: 3px;
+          border-radius: 3px;
+          float: right; }
+    .story-viewer .reward-stream ul li#give-reward.loading {
+      background: #eeeeee url(../images/spinner.gif) no-repeat 50% 50%; }
+      .story-viewer .reward-stream ul li#give-reward.loading form {
+        display: none; }
+    .story-viewer .reward-stream ul li#give-reward.no-user {
+      height: 50px;
+      text-align: center; }
+      .story-viewer .reward-stream ul li#give-reward.no-user a {
+        position: relative;
+        top: 12px; }
     .story-viewer .reward-stream ul li {
       clear: both;
       padding: 10px;
@@ -3250,9 +3282,10 @@ form.new_story, form.edit_story, .story-form {
             font-weight: 700; }
         .story-viewer .reward-stream ul li .rewarder .amount {
           float: right;
-          padding-right: 15px;
-          background: transparent url(../images/icons/starBlackTiny.png) no-repeat 100% 0;
-          font-weight: 700; }
+          padding-right: 17px;
+          background: transparent url(../images/icons/starBlackSmall.png) no-repeat 100% 3px;
+          font-weight: 700;
+          font-size: 17px; }
       .story-viewer .reward-stream ul li .comment, .story-viewer .reward-stream ul li .when {
         clear: both; }
       .story-viewer .reward-stream ul li .comment {
@@ -3262,6 +3295,47 @@ form.new_story, form.edit_story, .story-form {
         font-size: 10px;
         color: #cccccc;
         text-align: right; }
+    .story-viewer .reward-stream ul li.highlighted {
+      background: #fffaba; }
+    .story-viewer .reward-stream ul li#new-reward {
+      display: none; }
+    .story-viewer .reward-stream #reward-thank-you .message {
+      padding-bottom: 10px;
+      border-bottom: 1px solid #cccccc;
+      min-height: 70px; }
+      .story-viewer .reward-stream #reward-thank-you .message .avatar {
+        display: block;
+        float: left;
+        border: 3px solid black;
+        margin: 0 15px 2px 0; }
+        .story-viewer .reward-stream #reward-thank-you .message .avatar img {
+          width: 60px;
+          height: 60px; }
+      .story-viewer .reward-stream #reward-thank-you .message .thanks {
+        font-family: "museo-slab-1", "museo-slab-2", serif;
+        font-size: 30px;
+        font-weight: 100;
+        text-transform: uppercase; }
+      .story-viewer .reward-stream #reward-thank-you .message .text {
+        font-size: 11px;
+        padding-top: 5px; }
+    .story-viewer .reward-stream #reward-thank-you .share {
+      border-top: 1px solid white;
+      padding-top: 5px; }
+      .story-viewer .reward-stream #reward-thank-you .share a {
+        display: block;
+        height: 30px;
+        font-size: 11px;
+        line-height: 30px;
+        padding-left: 36px;
+        background-repeat: no-repeat;
+        background-position: 0 0;
+        color: #252525; }
+      .story-viewer .reward-stream #reward-thank-you .share a:hover {
+        background-position: 0 -31px;
+        color: #00aeef; }
+      .story-viewer .reward-stream #reward-thank-you .share .twitter {
+        background-image: url(../images/tweetThis.png); }
   .story-viewer .content {
     width: 75%;
     float: right;
@@ -5290,7 +5364,7 @@ form.user_edit #user_interest_list {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 999;
+  z-index: 9999;
   text-shadow: none;
   font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
   color: white;
@@ -6643,57 +6717,6 @@ ul.rewards {
 #reward-box.thanks .inner {
   padding: 0;
   width: 515px; }
-
-#reward-thank-you .header {
-  background: #00aeef; }
-  #reward-thank-you .header .header-inner {
-    background: transparent url(../images/icons/recommendWhite.png) no-repeat 10px 13px;
-    padding: 10px 10px 10px 30px;
-    color: white;
-    font-family: "museo-slab-1", "museo-slab-2", serif;
-    font-weight: 100;
-    font-size: 15px; }
-    #reward-thank-you .header .header-inner .name {
-      font-weight: 700;
-      text-transform: uppercase;
-      font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif; }
-#reward-thank-you .rest {
-  padding: 20px; }
-  #reward-thank-you .rest .message {
-    padding-bottom: 30px;
-    border-bottom: 1px solid #cccccc;
-    min-height: 70px; }
-    #reward-thank-you .rest .message .avatar {
-      display: block;
-      float: left;
-      border: 3px solid black;
-      margin: 0 15px 10px 0; }
-      #reward-thank-you .rest .message .avatar img {
-        width: 60px;
-        height: 60px; }
-    #reward-thank-you .rest .message .thanks {
-      font-family: "museo-slab-1", "museo-slab-2", serif;
-      font-size: 30px;
-      font-weight: 100;
-      text-transform: uppercase; }
-    #reward-thank-you .rest .message .text {
-      font-size: 11px;
-      padding-top: 5px; }
-  #reward-thank-you .rest .share {
-    border-top: 1px solid white;
-    padding-top: 30px; }
-    #reward-thank-you .rest .share a {
-      display: block;
-      height: 64px;
-      line-height: 60px;
-      font-size: 1.3em;
-      padding-left: 70px;
-      background-repeat: no-repeat;
-      background-position: 0 0; }
-    #reward-thank-you .rest .share a:hover {
-      background-position: 0 -62px; }
-    #reward-thank-you .rest .share .twitter {
-      background-image: url(../images/tweetThis.png); }
 
 a#load-more {
   display: block;

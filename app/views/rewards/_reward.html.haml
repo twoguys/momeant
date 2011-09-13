@@ -12,4 +12,4 @@
         %span.inner= reward.amount
       = link_to("rewarded by #{reward.user.name}", user_path(reward.user), :class => "author")
     - if reward.comment.present?
-      %span.comment &ldquo;#{reward.comment}&rdquo;
+      %span.comment= reward.comment

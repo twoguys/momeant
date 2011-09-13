@@ -30,40 +30,36 @@ function tag_deletions() {
 }
 
 var prevent_closing_of_signup_modal = false;
-function setup_signup_and_join_modals() {
-	$('#join, a[href="#signup-modal"]').click(function() {
+function setup_signup_and_join_modals(selector) {
+	if (selector == undefined)
+		selector = '';
+	$(selector + ' a[href="#signup-modal"]').click(function() {
 		var $modal = $('#join-modal');
 		$modal.stop().fadeIn('fast');
 		return false;
 	});
-	$('#join-modal .cover, #join-modal .close').click(function() {
-		if (!prevent_closing_of_signup_modal) {
-			$('#join-modal').stop().fadeOut('fast');
-		}
-	});
-	$('a[href="#login-modal"]').click(function() {
+	$(selector + ' a[href="#login-modal"]').click(function() {
 		var $modal = $('#login-modal');
 		$modal.stop().fadeIn('fast');
 		return false;
 	});
-	$('#login-modal .cover, #login-modal .close').click(function() {
-		$('#login-modal').stop().fadeOut('fast');
-	});
-	$(document).keyup(function(e) {
-	  if (e.keyCode == 27) { $('#join-modal, #login-modal').stop().fadeOut('fast'); } // escape
-	});
+	if (!selector) {
+		$('#join-modal .cover, #join-modal .close').click(function() {
+			if (!prevent_closing_of_signup_modal) {
+				$('#join-modal').stop().fadeOut('fast');
+			}
+			return false;
+		});
+		$('#login-modal .cover, #login-modal .close').click(function() {
+			$('#login-modal').stop().fadeOut('fast');
+		});
+		$(document).keyup(function(e) {
+		  if (e.keyCode == 27) { $('#join-modal, #login-modal').stop().fadeOut('fast'); } // escape
+		});
+	}
 }
 
 function setup_rewarding() {
-	$("a.reward:not(.disabled), a.rewarded:not(.disabled)").click(function() {
-		var $reward_box = $('#reward-box');
-		if ($reward_box.hasClass('open')) {
-			$reward_box.removeClass('open').animate({top:'-422px'}, 500);
-		} else {
-			$reward_box.addClass('open').animate({top:'0'}, 500);
-		}
-		return false;
-	});
 	$('#reward-form').submit(function(event) {
 		event.preventDefault(); 
 
@@ -74,7 +70,7 @@ function setup_rewarding() {
 		var impacted_by = $form.find("#reward_impacted_by").val();
 		var url = $form.attr('action');
 
-		$('#reward-box').addClass('loading');
+		$('#give-reward').addClass('loading');
 		$.post(url,
 			{
 				"reward[amount]":amount,
@@ -83,8 +79,12 @@ function setup_rewarding() {
 				"reward[impacted_by]":impacted_by
 			},
 			function(data) {
-				$("#reward-box .inner").html(data);
-				$('#reward-box').removeClass('loading').addClass('thanks');
+				$("#give-reward").html(data);
+				$('#give-reward').removeClass('loading').addClass('thanks');
+				var $new_reward = $('#new-reward');
+				$new_reward.find('.amount').text(amount);
+				$new_reward.find('.comment').text(comment);
+				$new_reward.slideDown();
 			}
 		);
 	});
@@ -138,6 +138,7 @@ function setup_modal_presenter_links(selector, autoTrigger) {
 			viewer.initialize();
 			viewer.goto_page(1);
 			setup_rewarding();
+			setup_signup_and_join_modals('.story-viewer');
 		}
 	});
 	if (autoTrigger) {
