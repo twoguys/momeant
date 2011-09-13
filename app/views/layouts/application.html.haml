@@ -33,7 +33,7 @@
     %header#header
       = render "layouts/user_nav" unless @hide_nav
 
-    #container{:class => @landing ? "landing" : ""}
+    #container{:class => current_user.nil? ? "no-sidebar" : ""}
       #main.column
         = render "layouts/flash", :flash => flash
         #call-to-action

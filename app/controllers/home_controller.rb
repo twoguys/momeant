@@ -3,7 +3,6 @@ class HomeController < ApplicationController
   def index
     @nav = "home"
     if current_user.nil?
-      @landing = true
       @rewards = Reward.for_landing_page.limit(3)
       render "landing" and return
     end
