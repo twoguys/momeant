@@ -1,24 +1,35 @@
 /*
-Syntax error: Undefined variable: "$text_color".
-        on line 28 of /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/presenter.sass
+Syntax error: Undefined mixin 'rounded'.
+        on line 39 of /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/presenter.sass, in `rounded'
+        from line 39 of /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/presenter.sass
 
-23: 				label
-24: 					float: left
-25: 					text-transform: none
-26: 					font-weight: 500
-27: 					font-size: 12px
-28: 					color: $text_color
-29: 					margin: 0
-30: 					display: inline
-31: 					width: auto
-32: 					line-height: 27px
-33: 				.amount-input
+34: 						width: 24px
+35: 						padding: 4px 4px 4px 22px
+36: 						font-weight: 700
+37: 						font-size: 14px
+38: 						background: #fff url(../images/icons/starBlackSmall.png) no-repeat 4px 5px
+39: 						@include rounded(3px)
+40: 				input[type="text"], textarea
+41: 					@include rounded(0)
+42: 				textarea
+43: 					width: 94%
+44: 					height: 40px
 
 Backtrace:
-/Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/presenter.sass:28
-/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/script/variable.rb:45:in `_perform'
-/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/script/node.rb:40:in `perform'
-/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:215:in `visit_prop'
+/Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/presenter.sass:39:in `rounded'
+/Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/presenter.sass:39
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:169:in `visit_mixin'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:37:in `send'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:18:in `visit'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:53:in `visit_children'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:53:in `map'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:53:in `visit_children'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:27:in `visit_children'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:39:in `with_environment'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:26:in `visit_children'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:230:in `visit_rule'
 /Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:37:in `send'
 /Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
 /Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:18:in `visit'
@@ -147,4 +158,4 @@ Backtrace:
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Syntax error: Undefined variable: \"$text_color\".\A         on line 28 of /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/presenter.sass\A \A 23: 				label\A 24: 					float: left\A 25: 					text-transform: none\A 26: 					font-weight: 500\A 27: 					font-size: 12px\A 28: 					color: $text_color\A 29: 					margin: 0\A 30: 					display: inline\A 31: 					width: auto\A 32: 					line-height: 27px\A 33: 				.amount-input"; }
+  content: "Syntax error: Undefined mixin 'rounded'.\A         on line 39 of /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/presenter.sass, in `rounded'\A         from line 39 of /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/presenter.sass\A \A 34: 						width: 24px\A 35: 						padding: 4px 4px 4px 22px\A 36: 						font-weight: 700\A 37: 						font-size: 14px\A 38: 						background: #fff url(../images/icons/starBlackSmall.png) no-repeat 4px 5px\A 39: 						@include rounded(3px)\A 40: 				input[type=\"text\"], textarea\A 41: 					@include rounded(0)\A 42: 				textarea\A 43: 					width: 94%\A 44: 					height: 40px"; }

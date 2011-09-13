@@ -7,37 +7,38 @@
     .what-is-this These are the creators and their work that #{@user.first_name} has rewarded.
     
     - @creators.each do |creator, rewards|
-      .patronee
-        .heading
-          .info
-            = link_to(image_tag(creator.avatar.url(:thumbnail)), user_path(creator), :class => "avatar")
-            %a.name{:href => user_path(creator)}
-              %span= creator.first_name
-              %span= creator.last_name
-          .impact
-            .given
-              .text
-                #{@user.first_name} has given
-                %br
-                #{creator.name}:
-              .value= @user.rewards_given_to(creator)
-            .helped-get
-              .text
-                #{@user.first_name} has helped
-                %br
-                #{creator.first_name} get:
-              .value= @user.impact_on(creator)
-        %ul.content.clearfix
-          - rewards.each do |reward|
-            %li
-              = link_to(truncate(reward.story.title, :length => 25), story_path(reward.story, :impacted_by => reward.id), :class => "title modal")
-              = link_to(image_tag(reward.story.thumbnail.url(:medium)), story_path(reward.story, :impacted_by => reward.id), :class => "thumbnail modal")
-              .gave
-                %span You gave this
-                %span.reward #{reward.amount}
-                %span , which led to:
-              .people #{pluralize(reward.descendants.count, "more person")} rewarding
-              .impact= pluralize(reward.impact, "more reward star")
+      - if creator != @user
+        .patronee
+          .heading
+            .info
+              = link_to(image_tag(creator.avatar.url(:thumbnail)), user_path(creator), :class => "avatar")
+              %a.name{:href => user_path(creator)}
+                %span= creator.first_name
+                %span= creator.last_name
+            .impact
+              .given
+                .text
+                  #{@user.first_name} has given
+                  %br
+                  #{creator.name}:
+                .value= @user.rewards_given_to(creator)
+              .helped-get
+                .text
+                  #{@user.first_name} has helped
+                  %br
+                  #{creator.first_name} get:
+                .value= @user.impact_on(creator)
+          %ul.content.clearfix
+            - rewards.each do |reward|
+              %li
+                = link_to(truncate(reward.story.title, :length => 25), story_path(reward.story, :impacted_by => reward.id), :class => "title modal")
+                = link_to(image_tag(reward.story.thumbnail.url(:medium)), story_path(reward.story, :impacted_by => reward.id), :class => "thumbnail modal")
+                .gave
+                  %span You gave this
+                  %span.reward #{reward.amount}
+                  %span , which led to:
+                .people #{pluralize(reward.descendants.count, "more person")} rewarding
+                .impact= pluralize(reward.impact, "more reward star")
           
         
     - if me?(@user) && @user.is_admin?
