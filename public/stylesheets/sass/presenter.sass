@@ -5,6 +5,99 @@
 	height: 100%
 	overflow: hidden
 	
+	.reward-stream
+		width: 25%
+		position: absolute
+		top: 0
+		bottom: 0
+		left: 0
+		background-color: #fff
+		overflow-y: auto
+		border-right: 1px solid #000
+		ul
+			li#give-reward
+				label
+					float: left
+					text-transform: none
+					font-weight: 500
+					font-size: 12px
+					color: $text_color
+					margin: 0
+					display: inline
+					width: auto
+				.amount-input
+					float: left
+					padding-right: 15px
+					background: transparent url(../images/icons/starBlackSmall.png) no-repeat 100% 2px
+					input[type="text"]
+						width: 20px
+						border: none
+						border-bottom: 1px solid #000
+						padding: 0 2px
+						font-weight: 700
+						font-size: 14px
+				input[type="text"], textarea
+					@include rounded(0)
+				textarea
+					width: 92%
+					height: 50px
+					margin: 5px 0
+				.impacter-and-submit
+					height: 33px
+					input[type="submit"]
+						background-color: #fbf593
+						color: $text_color
+						padding: 4px 8px
+						@include rounded(3px)
+						float: right
+			li
+				clear: both
+				padding: 10px
+				border-top: 1px solid #eee
+				.rewarder
+					height: 28px
+					.avatar
+						display: block
+						width: 28px
+						height: 28px
+						float: left
+						margin-right: 5px
+						img
+							width: 28px
+							height: 28px
+					.name
+						float: left
+						color: $text_color
+						span
+							display: block
+							text-transform: uppercase
+							font-weight: 700
+					.amount
+						float: right
+						padding-right: 15px
+						background: transparent url(../images/icons/starBlackTiny.png) no-repeat 100% 0
+						font-weight: 700
+				.comment, .when
+					clear: both
+				.comment
+					font-size: 11px
+					padding: 5px 0
+				.when
+					font-size: 10px
+					color: #ccc
+					text-align: right
+						
+	
+	.content
+		width: 75%
+		float: right
+		position: absolute
+		top: 0
+		left: 25%
+		bottom: 0
+		right: 0
+		margin-left: 1px
+	
 	#back-to-preview
 		position: absolute
 		top: 0
@@ -304,7 +397,8 @@
 		width: 100px
 		height: 140px
 		position: absolute
-		top: 45%
+		top: 50%
+		margin-top: -70px
 		z-index: 3
 		opacity: 0.4
 		-webkit-transition: opacity linear 0.2s
