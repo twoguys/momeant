@@ -17,18 +17,25 @@
 	#user_id
 		display: none
 	
-	h3.sidebar-label, span.sidebar-description
-		width: 110px
-		text-shadow: 0 1px 1px #eee
-	h3.sidebar-label
-		text-transform: uppercase
-		font-size: 14px
-		float: left
-		font-weight: 900
-		line-height: 1.1em
-	span.sidebar-description
-		float: right
-		text-align: right
-		font-size: 10px
-		padding: 3px 0
-		color: #777
+	.heading
+		padding: 10px
+		background: #f7f7f7
+		@include gradient
+		height: 26px
+		@include boxshadow(2px,0.2,1px,1px)
+		width: 210px
+		h3.sidebar-label, span.sidebar-description
+			text-shadow: 0 1px 1px #eee
+		h3.sidebar-label
+			text-transform: uppercase
+			font-size: 13px
+			float: left
+			font-weight: 900
+			line-height: 1.1em
+			width: 85px
+		span.sidebar-description
+			float: right
+			text-align: right
+			font-size: 10px
+			color: #777
+			width: 110px

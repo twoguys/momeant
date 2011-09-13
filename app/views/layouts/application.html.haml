@@ -40,8 +40,9 @@
           = yield :call_to_action
         = yield
       #right-sidebar.column
-        %h3.sidebar-label Following Stream
-        %span.sidebar-description content rewarded by those you follow
+        .heading
+          %h3.sidebar-label Following Stream
+          %span.sidebar-description content rewarded by those you follow
         %ul.rewards
           = render @following_stream if current_user
         .spinner

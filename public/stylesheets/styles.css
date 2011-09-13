@@ -200,8 +200,8 @@ html, body {
         font-size: 12px;
         letter-spacing: 0.5px;
         font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
-        background-image: -moz-linear-gradient(center top, #43baf0 4%, #3a94e6 52%);
-        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #43baf0), color-stop(0.52, #3a94e6));
+        background-image: -moz-linear-gradient(center top, #fdfdfd 4%, #f0f0f0 52%);
+        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #fdfdfd), color-stop(0.52, #f0f0f0));
         height: 22px;
         line-height: 24px;
         padding: 0 15px;
@@ -274,21 +274,30 @@ header.hide-nav {
     background: none; }
   #right-sidebar #user_id {
     display: none; }
-  #right-sidebar h3.sidebar-label, #right-sidebar span.sidebar-description {
-    width: 110px;
-    text-shadow: 0 1px 1px #eeeeee; }
-  #right-sidebar h3.sidebar-label {
-    text-transform: uppercase;
-    font-size: 14px;
-    float: left;
-    font-weight: 900;
-    line-height: 1.1em; }
-  #right-sidebar span.sidebar-description {
-    float: right;
-    text-align: right;
-    font-size: 10px;
-    padding: 3px 0;
-    color: #777777; }
+  #right-sidebar .heading {
+    padding: 10px;
+    background: #f7f7f7;
+    background-image: -moz-linear-gradient(center top, #fdfdfd 4%, #f0f0f0 52%);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #fdfdfd), color-stop(0.52, #f0f0f0));
+    height: 26px;
+    -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); }
+    #right-sidebar .heading h3.sidebar-label, #right-sidebar .heading span.sidebar-description {
+      text-shadow: 0 1px 1px #eeeeee; }
+    #right-sidebar .heading h3.sidebar-label {
+      text-transform: uppercase;
+      font-size: 13px;
+      float: left;
+      font-weight: 900;
+      line-height: 1.1em;
+      width: 85px; }
+    #right-sidebar .heading span.sidebar-description {
+      float: right;
+      text-align: right;
+      font-size: 10px;
+      color: #777777;
+      width: 110px; }
 
 /* Flash notices */
 #flash {
@@ -498,7 +507,7 @@ table {
   border: 1px solid #e0e0e0; }
   table th, table td {
     text-align: left;
-    padding: 20px;
+    padding: 10px 20px;
     border-bottom: 1px solid #e0e0e0; }
   table th {
     font-weight: 700;
@@ -510,8 +519,10 @@ table {
   table tr:nth-child(odd) td {
     background: #fafafa; }
   table tr.heading th {
+    font-size: 13px;
     font-weight: 700;
-    color: #9f9f9f;
+    color: #555555;
+    text-shadow: 0 1px 0 white;
     padding: 20px;
     text-transform: none;
     background: #f7f7f7;
@@ -520,20 +531,21 @@ table {
   table td.numerals {
     text-align: center;
     font-family: "ff-dagny-web-pro-1", "ff-dagny-web-pro-2", sans-serif;
-    font-size: 40px;
+    font-size: 56px;
     font-weight: 200; }
     table td.numerals div {
       float: left; }
     table td.numerals .count {
-      padding-right: 16px;
-      background: transparent url(../images/icons/starBlackSmall.png) no-repeat 100% 10px; }
+      padding-right: 18px;
+      background: transparent url(../images/icons/starBlackSmall.png) no-repeat 100% 14px;
+      letter-spacing: -0.07em; }
     table td.numerals .tiny {
       font-family: "ff-dagny-web-pro-1", "ff-dagny-web-pro-2", sans-serif;
       font-size: 10px;
       text-transform: uppercase;
       width: 45px;
       text-align: right;
-      margin: 10px 5px 0 0; }
+      margin: 15px 5px 0 0; }
 
 #landing {
   background: #d1cecb;
@@ -562,8 +574,8 @@ table {
         -webkit-border-radius: 3px;
         -moz-border-radius: 3px;
         border-radius: 3px;
-        background-image: -moz-linear-gradient(center top, #43baf0 4%, #3a94e6 52%);
-        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #43baf0), color-stop(0.52, #3a94e6)); }
+        background-image: -moz-linear-gradient(center top, #fdfdfd 4%, #f0f0f0 52%);
+        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #fdfdfd), color-stop(0.52, #f0f0f0)); }
       #landing #letter .join span {
         float: right;
         clear: both;
@@ -654,8 +666,8 @@ form.new_story, form.edit_story, .story-form {
       float: left;
       margin-left: 10px; }
     form.new_story .finished-links #preview-link, form.edit_story .finished-links #preview-link, .story-form .finished-links #preview-link {
-      background-image: -moz-linear-gradient(center top, #43baf0 4%, #3a94e6 52%);
-      background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #43baf0), color-stop(0.52, #3a94e6)); }
+      background-image: -moz-linear-gradient(center top, #fdfdfd 4%, #f0f0f0 52%);
+      background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #fdfdfd), color-stop(0.52, #f0f0f0)); }
     form.new_story .finished-links #publish-link, form.edit_story .finished-links #publish-link, .story-form .finished-links #publish-link {
       background-image: -moz-linear-gradient(center top, #62e079 4%, #12b32f 52%);
       background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #62e079), color-stop(0.52, #12b32f)); }
@@ -889,8 +901,8 @@ form.new_story, form.edit_story, .story-form {
     padding-top: 15px;
     text-align: center; }
     form.new_story #page-previews a#open-page-editor-button, form.edit_story #page-previews a#open-page-editor-button, .story-form #page-previews a#open-page-editor-button {
-      background-image: -moz-linear-gradient(center top, #43baf0 4%, #3a94e6 52%);
-      background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #43baf0), color-stop(0.52, #3a94e6));
+      background-image: -moz-linear-gradient(center top, #fdfdfd 4%, #f0f0f0 52%);
+      background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #fdfdfd), color-stop(0.52, #f0f0f0));
       display: inline-block;
       height: 44px;
       line-height: 45px;
@@ -2426,8 +2438,8 @@ form.new_story, form.edit_story, .story-form {
           float: left;
           margin-left: 10px; }
         .story-preview .preview .actions .owner-links #edit-link {
-          background-image: -moz-linear-gradient(center top, #43baf0 4%, #3a94e6 52%);
-          background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #43baf0), color-stop(0.52, #3a94e6));
+          background-image: -moz-linear-gradient(center top, #fdfdfd 4%, #f0f0f0 52%);
+          background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #fdfdfd), color-stop(0.52, #f0f0f0));
           border-right: none; }
         .story-preview .preview .actions .owner-links #publish-link {
           background-image: -moz-linear-gradient(center top, #62e079 4%, #12b32f 52%);
@@ -2626,8 +2638,8 @@ form.new_story, form.edit_story, .story-form {
         font-size: 12px;
         letter-spacing: 0.5px;
         font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
-        background-image: -moz-linear-gradient(center top, #43baf0 4%, #3a94e6 52%);
-        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #43baf0), color-stop(0.52, #3a94e6));
+        background-image: -moz-linear-gradient(center top, #fdfdfd 4%, #f0f0f0 52%);
+        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #fdfdfd), color-stop(0.52, #f0f0f0));
         float: left;
         height: 55px;
         margin-top: 40px; }
@@ -5164,16 +5176,6 @@ form.user_edit #user_interest_list {
     padding-left: 255px; }
     .community .user-list .user-list-inner table.users {
       width: 100%; }
-      .community .user-list .user-list-inner table.users th {
-        color: #999999; }
-        .community .user-list .user-list-inner table.users th span {
-          display: inline-block;
-          position: relative;
-          top: 3px;
-          width: 16px;
-          height: 16px;
-          background: transparent url(../images/helpGray.png) no-repeat;
-          cursor: help; }
       .community .user-list .user-list-inner table.users th.impact, .community .user-list .user-list-inner table.users th.rewards, .community .user-list .user-list-inner table.users th.rewardees {
         text-align: center; }
       .community .user-list .user-list-inner table.users tr td {
@@ -5195,7 +5197,7 @@ form.user_edit #user_interest_list {
           .community .user-list .user-list-inner table.users tr td a.name span {
             display: block; }
       .community .user-list .user-list-inner table.users tr td.rewardees .count {
-        background: transparent url(../images/icons/person.png) no-repeat 100% 10px; }
+        background: transparent url(../images/icons/person.png) no-repeat 100% 14px; }
 
 .deposits form {
   margin-top: 1em;
@@ -5924,8 +5926,8 @@ header .topic-icon {
         font-size: 12px;
         letter-spacing: 0.5px;
         font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
-        background-image: -moz-linear-gradient(center top, #43baf0 4%, #3a94e6 52%);
-        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #43baf0), color-stop(0.52, #3a94e6));
+        background-image: -moz-linear-gradient(center top, #fdfdfd 4%, #f0f0f0 52%);
+        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #fdfdfd), color-stop(0.52, #f0f0f0));
         height: 22px;
         line-height: 24px;
         padding: 0 15px;
@@ -6763,8 +6765,8 @@ a#load-more {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
-  background-image: -moz-linear-gradient(center top, #43baf0 4%, #3a94e6 52%);
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #43baf0), color-stop(0.52, #3a94e6));
+  background-image: -moz-linear-gradient(center top, #fdfdfd 4%, #f0f0f0 52%);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #fdfdfd), color-stop(0.52, #f0f0f0));
   text-align: center; }
 
 #hidden-reward-appender {
