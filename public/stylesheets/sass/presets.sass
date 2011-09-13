@@ -40,7 +40,7 @@ $serif: Georgia,serif
 $typewriter: "museo-slab-1","museo-slab-2",serif 
 $caps: "museo-sans-1","museo-sans-2",sans-serif
 $dropcaps: "ambroise-std-1","ambroise-std-2",serif
-$numerals: "ff-dagny-web-pro",sans-serif
+$numerals: "ff-dagny-web-pro-1","ff-dagny-web-pro-2",sans-serif
 
 $border_type: 1px dotted #aaa
 $border_solid: 1px solid #DEDEDE
@@ -76,8 +76,8 @@ $border_solid: 1px solid #DEDEDE
 	letter-spacing: .5px
 	font-family: $block
 @mixin gradient($color1: #43baf0, $color2: #3a94e6)
-	background: -moz-linear-gradient(top, $color1 0%, $color2)
-	background: -webkit-gradient(linear, left top, left bottom, from($color1), to($color2))
+	background-image: -moz-linear-gradient(center top, $color1 4%, $color2 52%)
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, $color1), color-stop(0.52, $color2))
 
 /* Element styles */
 

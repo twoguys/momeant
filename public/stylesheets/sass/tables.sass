@@ -1,9 +1,41 @@
 table
-	border-collapse: collapse
-	th,td
+	border-spacing: 0
+	border: 1px solid #e0e0e0
+	th, td
 		text-align: left
-		padding: 5px 20px 5px 0
+		padding: 20px
+		border-bottom: 1px solid #e0e0e0
 	th
 		font-weight: 700
 		text-transform: uppercase
 		border-bottom: 1px solid #ccc
+	td
+		border-top: 1px solid #fff
+		background: #f4f4f4
+	tr:nth-child(odd) td
+		background: #fafafa
+	tr.heading
+		th
+			font-weight: 700
+			color: #9f9f9f
+			padding: 20px
+			text-transform: none
+			background: #f7f7f7
+			@include gradient(#fdfdfd, #f0f0f0)
+	td.numerals
+		text-align: center
+		font-family: $numerals
+		font-size: 40px
+		font-weight: 200
+		div
+			float: left
+		.count
+			padding-right: 16px
+			background: transparent url(../images/icons/starBlackSmall.png) no-repeat 100% 10px
+		.tiny
+			font-family: $numerals
+			font-size: 10px
+			text-transform: uppercase
+			width: 45px
+			text-align: right
+			margin: 10px 5px 0 0

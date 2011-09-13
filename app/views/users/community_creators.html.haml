@@ -1,9 +1,30 @@
 .community
-  %h1.top
-    %span See the most
-    %em impactful people
-    %span in our most
-    %em popular interest areas.
+  .top
+    .what-is-this Welcome to the mo&#149;meant community. Take a look at who's rewarding what!
 
   = render "users/community_tabs"
   .tabbed
+    
+    .user-list
+      .user-list-inner
+        %table.users
+          %thead
+            %tr.heading
+              %th{:colspan => 4} Explore the best of mo&#149;meant's CREATORS
+          %tbody
+            - @users.each do |user|
+              %tr
+                %td.patron
+                  = link_to(image_tag(user.avatar.url(:thumbnail)), user_path(user), :class => "avatar")
+                  %a.name{:href => user_path(user)}
+                    %span= user.first_name
+                    %span= user.last_name
+                %td.impact.numerals
+                  .tiny impact
+                  .count= user.impact
+                %td.rewards.numerals
+                  .tiny rewards given
+                  .count= user.given_rewards.sum(:amount)
+                %td.rewardees.numerals
+                  .tiny rewarded
+                  .count= user.rewarded_creators.count

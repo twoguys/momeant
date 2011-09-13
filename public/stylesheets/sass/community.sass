@@ -1,33 +1,39 @@
 .community
-	h1.top
+	.top
 		background: #e0e0e0
-		padding: 20px
-		margin: 0
-		text-transform: uppercase
-		font-weight: 700
-		font-size: 18px
-		text-shadow: 0 1px 0 #fff
-		em
-			font-style: normal
-			color: #ff1345
-	
-	section.tags
+		padding: 20px 0
+		
+	#filter
+		border: 1px solid #d0d0d0
+		margin-left: 20px
 		position: relative
 		z-index: 2
 		float: left
 		width: 200px
-		padding: 5px 0 0 20px
-		.heading
-			text-transform: uppercase
-			color: #999
+		h2
+			font-size: 20px
 			font-weight: 700
-			padding-bottom: 5px
-			margin: 0 8px
-			border-bottom: 1px solid #ccc
+			text-transform: uppercase
+			background: #cdcdcd
+			color: #fff
+			padding: 5px
+			margin: 0
+		section
+			background: #e0e0e0
+			.heading
+				font-size: 12px
+				font-weight: 700
+				text-transform: uppercase
+				padding: 5px
+				background: #fff url(../images/filterHeaderArrow.png) no-repeat 180px 7px
+				color: #848484
+			.body
+				padding: 5px
+	
+	section.tags
 		ul.tags
-			@include rounded(3px)
-			padding: 5px 0 9px
 			li
+				clear: both
 				a
 					height: 15px
 					padding: 5px 8px
@@ -56,10 +62,10 @@
 		position: relative
 		z-index: 1
 		float: left
-		margin-left: -235px
+		margin-left: -237px
 		width: 100%
 		.user-list-inner
-			padding-left: 275px
+			padding-left: 255px
 			table.users
 				width: 100%
 				th
@@ -81,22 +87,17 @@
 							display: block
 							float: left
 						a.avatar img
-							width: 30px
-							height: 30px
+							width: 45px
+							height: 45px
+							border: 2px solid #000
 						a.name
-							margin-left: 5px
+							margin-left: 8px
 							font-weight: 700
-							font-size: 12px
+							font-size: 18px
 							text-transform: uppercase
-							line-height: 15px
-							padding-top: 3px
+							line-height: 18px
+							padding-top: 6px
 							span
 								display: block
-					td.impact, td.rewards, td.rewardees
-						font-size: 14px
-						text-align: center
-						span
-							padding-right: 20px
-							background: transparent url(../images/icons/starBlackSmall.png) no-repeat 100% 0
-					td.rewardees span
-						background: transparent url(../images/icons/person.png) no-repeat 100% 0
+					td.rewardees .count
+						background: transparent url(../images/icons/person.png) no-repeat 100% 10px

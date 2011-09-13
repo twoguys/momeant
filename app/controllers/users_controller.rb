@@ -80,6 +80,7 @@ class UsersController < ApplicationController
   
   def community_creators
     # Rewards this week -> rewardees -> top content -> top impacter
+    @users = []
   end
   
   def billing_updates
