@@ -24,7 +24,9 @@
                     .name #{@impacting_reward.user.name} helped you find this content.
                 = form.submit "Reward"
           - else
-            = link_to("Sign up to reward this!", "#signup-modal", :class => "button")
+            %h3 Want to reward this?
+            = link_to("Join Momeant", "#signup-modal", :class => "button")
+            = link_to("Login", "#login-modal", :class => "button login")
 
       - if current_user
         %li#new-reward
