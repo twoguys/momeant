@@ -80,7 +80,7 @@ class UsersController < ApplicationController
   
   def community_creators
     # Rewards this week -> rewardees -> top content -> top impacter
-    @users = Reward.select("DISTINCT ON(story_id) curations.*").this_month.order("amount DESC").group_by(&:user)
+    @users = Reward.select("DISTINCT ON(story_id) curations.*").this_month.order("amount DESC").group_by(&:recipient)
   end
   
   def billing_updates
