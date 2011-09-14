@@ -70,20 +70,25 @@
 				color: #fff
 			.text
 				color: #000
-		#signin, #signout
+		#signin, #signout, #join
 			position: absolute
 			right: 20px
 			padding-top: 10px
 			a
 				@include button
-				@include gradient($bluegradient1, $bluegradient2)
 				height: 22px
 				line-height: 24px
 				padding: 0 15px
 				font-size: 10px
 				display: block
+		#signin a
+			@include gradient($greengradient1, $greengradient2)
+		#join
+			right: 90px
+			a
+				@include gradient($bluegradient1, $bluegradient2)
 		#signout a
-			@include gradient ($greygradient1, $greygradient2)
+			@include gradient($greygradient1, $greygradient2)
 			
 #header.hide-nav
 	background: none
