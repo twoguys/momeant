@@ -61,7 +61,7 @@ class UsersController < ApplicationController
     @nav = "community"
     
     if params[:tags].present?
-      @tags = Story.tagged_with(params[:tags]).tag_counts.order("count DESC").limit(20).sort do |x, y|
+      @tags = Story.joins(:curations).where("curations.type = 'Reward'").tagged_with(params[:tags]).tag_counts.order("count DESC").limit(20).sort do |x, y|
         if params[:tags].include?(x.name)
           -1
         else
@@ -69,7 +69,7 @@ class UsersController < ApplicationController
         end
       end
     else
-      @tags = Story.tag_counts.order("count DESC").limit(20)
+      @tags = Story.joins(:curations).where("curations.type = 'Reward'").tag_counts.order("count DESC").limit(20)
     end
     
     content_ids = Story.tagged_with(@tags, :any => true).map{|story| story.id}
