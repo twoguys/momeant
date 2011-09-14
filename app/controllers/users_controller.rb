@@ -75,14 +75,13 @@ class UsersController < ApplicationController
     content_ids = Story.tagged_with(@tags, :any => true).map{|story| story.id}
     return if content_ids.empty?
     @users = User.select("DISTINCT ON(id) users.*").joins("LEFT OUTER JOIN curations ON curations.user_id = users.id").where("curations.story_id IN (#{content_ids.join(',')})").where("curations.type = 'Reward'")
-    @users = @users.sort_by{|user| -user.impact}
+    @users = @users.sort_by {|user| -user.impact}
   end
   
   def community_creators
     # Rewards this week -> rewardees -> top content -> top impacter
-    @users = Reward.this_month.order("amount DESC").group_by(&:recipient)
-    array_of_users = @users.to_a
-    array_of_users.sort_by {|array| -array.second.inject(0){|sum,r| sum+r.amount}}
+    @users = Reward.this_month.group_by(&:recipient).to_a
+    @users = @users.sort_by {|array| -array.second.inject(0) {|sum,r| r.amount}}
   end
   
   def billing_updates
