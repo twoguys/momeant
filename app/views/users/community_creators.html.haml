@@ -33,5 +33,6 @@
               %tr.content{:id => "content_for_#{user.id}", :style => first ? "display:table-row;" : ""}
                 %td{:colspan => 3}
                   %ul.rewards
-                    = render rewards
+                    - rewards.group_by(&:story).each do |story, rewards|
+                      = render rewards.first
               - first = false
