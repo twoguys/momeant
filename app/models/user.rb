@@ -132,22 +132,16 @@ class User < ActiveRecord::Base
     Reward.where(:user_id => self.id, :story_id => story.id).present?
   end
   
-  def reward(user_id, amount, comment, story_id, impacted_by)
-    user = User.find_by_id(user_id)
-    return if amount.nil? || user.nil?
+  def reward(story, amount, comment, impacted_by)
+    return if amount.nil?
     amount = amount.to_i
     if can_afford?(amount)
-      options = {:amount => amount, :user_id => self.id, :recipient_id => user_id, :comment => comment}
-
-      if story_id
-        options.merge!({:story_id => story_id})
-        story = Story.find_by_id(story_id)
-        story.increment!(:reward_count, amount) if story
-      end
+      options = {:story_id => story.id, :amount => amount, :user_id => self.id, :recipient_id => story.user.id, :comment => comment}
 
       reward = Reward.create!(options)
+      story.increment!(:reward_count, amount)
       self.decrement!(:coins, amount)
-      user.increment!(:lifetime_rewards, amount)
+      story.user.increment!(:lifetime_rewards, amount)
       
       if impacted_by
         parent_reward = Reward.find_by_id(impacted_by)

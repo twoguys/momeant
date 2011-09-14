@@ -82,8 +82,7 @@ class UsersController < ApplicationController
     # Rewards this week -> rewardees -> top content -> top impacter
     @users = Reward.this_month.order("amount DESC").group_by(&:recipient)
     array_of_users = @users.to_a
-    array_of_users.sort_by {|array| array.second.inject(0){|sum,r| sum+r.amount}}
-    @users = ActiveSupport::OrderedHash[array_of_users]
+    array_of_users.sort_by {|array| -array.second.inject(0){|sum,r| sum+r.amount}}
   end
   
   def billing_updates
