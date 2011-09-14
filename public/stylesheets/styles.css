@@ -168,6 +168,7 @@ html, body {
         #header #user-nav #coins a .amount, #header #user-nav #coins a .text {
           float: left; }
         #header #user-nav #coins a .amount {
+          font-family: "ff-dagny-web-pro-1", "ff-dagny-web-pro-2", sans-serif;
           margin-right: 5px;
           font-size: 26px;
           line-height: 30px;
@@ -5135,7 +5136,7 @@ form.user_edit #user_interest_list {
     text-transform: uppercase;
     background: #cdcdcd;
     color: white;
-    padding: 5px;
+    padding: 2px 5px 0;
     margin: 0; }
   .community #filter section {
     background: #e0e0e0; }
@@ -5189,26 +5190,62 @@ form.user_edit #user_interest_list {
       width: 100%; }
       .community .user-list .user-list-inner table.users th.impact, .community .user-list .user-list-inner table.users th.rewards, .community .user-list .user-list-inner table.users th.rewardees {
         text-align: center; }
-      .community .user-list .user-list-inner table.users tr td {
+      .community .user-list .user-list-inner table.users tr td.patron, .community .user-list .user-list-inner table.users tr td.creator {
         vertical-align: middle; }
-        .community .user-list .user-list-inner table.users tr td a.avatar, .community .user-list .user-list-inner table.users tr td a.name, .community .user-list .user-list-inner table.users tr td .impact {
+        .community .user-list .user-list-inner table.users tr td.patron a.avatar, .community .user-list .user-list-inner table.users tr td.patron a.name, .community .user-list .user-list-inner table.users tr td.patron .impact, .community .user-list .user-list-inner table.users tr td.creator a.avatar, .community .user-list .user-list-inner table.users tr td.creator a.name, .community .user-list .user-list-inner table.users tr td.creator .impact {
           display: block;
           float: left; }
-        .community .user-list .user-list-inner table.users tr td a.avatar img {
+        .community .user-list .user-list-inner table.users tr td.patron a.avatar img, .community .user-list .user-list-inner table.users tr td.creator a.avatar img {
           width: 45px;
           height: 45px;
           border: 2px solid black; }
-        .community .user-list .user-list-inner table.users tr td a.name {
+        .community .user-list .user-list-inner table.users tr td.patron a.name, .community .user-list .user-list-inner table.users tr td.creator a.name {
           margin-left: 8px;
           font-weight: 700;
           font-size: 18px;
           text-transform: uppercase;
           line-height: 18px;
-          padding-top: 6px; }
-          .community .user-list .user-list-inner table.users tr td a.name span {
+          padding-top: 6px;
+          color: #252525; }
+          .community .user-list .user-list-inner table.users tr td.patron a.name span, .community .user-list .user-list-inner table.users tr td.creator a.name span {
             display: block; }
       .community .user-list .user-list-inner table.users tr td.rewardees .count {
         background: transparent url(../images/icons/person.png) no-repeat 100% 14px; }
+      .community .user-list .user-list-inner table.users tr td.creator-rewards {
+        border-right: 1px solid #e0e0e0; }
+        .community .user-list .user-list-inner table.users tr td.creator-rewards div {
+          float: right; }
+      .community .user-list .user-list-inner table.users tr td.content-toggler {
+        border-left: 1px solid white;
+        width: 20px;
+        background-image: url(../images/icons/tableOpenClose.png);
+        background-repeat: no-repeat;
+        background-position: 50% -47px; }
+      .community .user-list .user-list-inner table.users tr.content {
+        display: none; }
+        .community .user-list .user-list-inner table.users tr.content td {
+          background: white; }
+          .community .user-list .user-list-inner table.users tr.content td ul.rewards {
+            padding: 10px 0 0 0; }
+            .community .user-list .user-list-inner table.users tr.content td ul.rewards li.reward {
+              float: left;
+              margin-right: 10px; }
+      .community .user-list .user-list-inner table.users tr.open td {
+        background-color: #e6f9ff;
+        border-bottom: 1px solid #c2f0ff; }
+      .community .user-list .user-list-inner table.users tr.open td.creator a.avatar img {
+        border: 2px solid #00aeef; }
+      .community .user-list .user-list-inner table.users tr.open td.creator a.name {
+        color: #00aeef; }
+      .community .user-list .user-list-inner table.users tr.open td.creator-rewards {
+        color: #00aeef;
+        border-right: 1px solid #c2f0ff; }
+        .community .user-list .user-list-inner table.users tr.open td.creator-rewards .count {
+          background: transparent url(../images/icons/starBlueSmall.png) no-repeat 100% 14px; }
+      .community .user-list .user-list-inner table.users tr.open td.content-toggler {
+        background-position: 50% 38px; }
+    .community .user-list .user-list-inner table.users.creators tr.user {
+      cursor: pointer; }
 
 .deposits form {
   margin-top: 1em;

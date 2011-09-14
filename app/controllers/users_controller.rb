@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => :billing_updates
   
   def show
-    @creators = @user.given_rewards.for_content.group_by {|r| r.recipient}
+    @creators = @user.given_rewards.for_content.group_by(&:recipient)
   end
   
   def stream #ajax requests
@@ -80,7 +80,7 @@ class UsersController < ApplicationController
   
   def community_creators
     # Rewards this week -> rewardees -> top content -> top impacter
-    @users = []
+    @users = Reward.select("DISTINCT ON(story_id) curations.*").this_month.order("amount DESC").group_by(&:user)
   end
   
   def billing_updates

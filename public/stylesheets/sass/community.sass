@@ -16,7 +16,7 @@
 			text-transform: uppercase
 			background: #cdcdcd
 			color: #fff
-			padding: 5px
+			padding: 2px 5px 0
 			margin: 0
 		section
 			background: #e0e0e0
@@ -71,7 +71,7 @@
 				th.impact, th.rewards, th.rewardees
 					text-align: center
 				tr
-					td
+					td.patron, td.creator
 						vertical-align: middle
 						a.avatar, a.name, .impact
 							display: block
@@ -87,7 +87,45 @@
 							text-transform: uppercase
 							line-height: 18px
 							padding-top: 6px
+							color: $text_color
 							span
 								display: block
 					td.rewardees .count
 						background: transparent url(../images/icons/person.png) no-repeat 100% 14px
+					td.creator-rewards
+						border-right: 1px solid #e0e0e0
+						div
+							float: right
+					td.content-toggler
+						border-left: 1px solid #fff
+						width: 20px
+						background-image: url(../images/icons/tableOpenClose.png)
+						background-repeat: no-repeat
+						background-position: 50% -47px
+				tr.content
+					display: none
+					td
+						background: #fff
+						ul.rewards
+							padding: 10px 0 0 0
+							li.reward
+								float: left
+								margin-right: 10px
+				tr.open
+					td
+						background-color: #e6f9ff
+						border-bottom: 1px solid #c2f0ff
+					td.creator
+						a.avatar img
+							border: 2px solid $blue
+						a.name
+							color: $blue
+					td.creator-rewards
+						color: $blue
+						border-right: 1px solid #c2f0ff
+						.count
+							background: transparent url(../images/icons/starBlueSmall.png) no-repeat 100% 14px
+					td.content-toggler
+						background-position: 50% 38px
+			table.users.creators tr.user
+				cursor: pointer

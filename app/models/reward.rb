@@ -5,6 +5,8 @@ class Reward < Curation
   
   scope :for_content, where("story_id IS NOT NULL")
   scope :for_landing_page, where(:show_on_landing_page => true)
+  scope :this_week, where("created_at > '#{7.days.ago}'")
+  scope :this_month, where("created_at > '#{1.month.ago}'")
   
   acts_as_nested_set
   
