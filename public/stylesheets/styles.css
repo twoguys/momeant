@@ -282,7 +282,8 @@ header.hide-nav {
     height: 26px;
     -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
     -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); }
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    width: 210px; }
     #right-sidebar .heading h3.sidebar-label, #right-sidebar .heading span.sidebar-description {
       text-shadow: 0 1px 1px #eeeeee; }
     #right-sidebar .heading h3.sidebar-label {
@@ -3233,8 +3234,49 @@ form.new_story, form.edit_story, .story-form {
     background-color: white;
     overflow-y: auto;
     border-right: 1px solid black; }
+    .story-viewer .reward-stream ul li {
+      clear: both;
+      padding: 10px;
+      border-top: 1px solid white;
+      border-bottom: 1px solid #dddddd;
+      background: #f4f4f4; }
+      .story-viewer .reward-stream ul li .rewarder {
+        height: 28px; }
+        .story-viewer .reward-stream ul li .rewarder .avatar {
+          display: block;
+          width: 28px;
+          height: 28px;
+          float: left;
+          margin-right: 5px; }
+          .story-viewer .reward-stream ul li .rewarder .avatar img {
+            width: 28px;
+            height: 28px; }
+        .story-viewer .reward-stream ul li .rewarder .name {
+          float: left;
+          color: #252525;
+          font-size: 11px; }
+          .story-viewer .reward-stream ul li .rewarder .name span {
+            display: block;
+            text-transform: uppercase;
+            font-weight: 700; }
+        .story-viewer .reward-stream ul li .rewarder .amount {
+          float: right;
+          padding-right: 17px;
+          background: transparent url(../images/icons/starBlackSmall.png) no-repeat 100% 3px;
+          font-weight: 700;
+          font-size: 17px;
+          font-family: "ff-dagny-web-pro-1", "ff-dagny-web-pro-2", sans-serif; }
+      .story-viewer .reward-stream ul li .comment, .story-viewer .reward-stream ul li .when {
+        clear: both; }
+      .story-viewer .reward-stream ul li .comment {
+        font-size: 11px;
+        padding: 5px 0; }
+      .story-viewer .reward-stream ul li .when {
+        font-size: 10px;
+        color: #cccccc;
+        text-align: right; }
     .story-viewer .reward-stream ul li#give-reward {
-      background: #eeeeee;
+      background: #dddddd;
       padding-top: 15px;
       padding-bottom: 5px;
       height: 145px; }
@@ -3263,7 +3305,10 @@ form.new_story, form.edit_story, .story-form {
       .story-viewer .reward-stream ul li#give-reward textarea {
         width: 94%;
         height: 40px;
-        margin: 11px 0 13px; }
+        margin: 11px 0 13px;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px; }
       .story-viewer .reward-stream ul li#give-reward .impacter-and-submit {
         height: 33px; }
         .story-viewer .reward-stream ul li#give-reward .impacter-and-submit .impacter {
@@ -3306,43 +3351,8 @@ form.new_story, form.edit_story, .story-form {
         background: #c8f2d0;
         color: #34b44c;
         margin-left: 5px; }
-    .story-viewer .reward-stream ul li {
-      clear: both;
-      padding: 10px;
-      border-top: 1px solid #eeeeee; }
-      .story-viewer .reward-stream ul li .rewarder {
-        height: 28px; }
-        .story-viewer .reward-stream ul li .rewarder .avatar {
-          display: block;
-          width: 28px;
-          height: 28px;
-          float: left;
-          margin-right: 5px; }
-          .story-viewer .reward-stream ul li .rewarder .avatar img {
-            width: 28px;
-            height: 28px; }
-        .story-viewer .reward-stream ul li .rewarder .name {
-          float: left;
-          color: #252525; }
-          .story-viewer .reward-stream ul li .rewarder .name span {
-            display: block;
-            text-transform: uppercase;
-            font-weight: 700; }
-        .story-viewer .reward-stream ul li .rewarder .amount {
-          float: right;
-          padding-right: 17px;
-          background: transparent url(../images/icons/starBlackSmall.png) no-repeat 100% 3px;
-          font-weight: 700;
-          font-size: 17px; }
-      .story-viewer .reward-stream ul li .comment, .story-viewer .reward-stream ul li .when {
-        clear: both; }
-      .story-viewer .reward-stream ul li .comment {
-        font-size: 11px;
-        padding: 5px 0; }
-      .story-viewer .reward-stream ul li .when {
-        font-size: 10px;
-        color: #cccccc;
-        text-align: right; }
+    .story-viewer .reward-stream ul li:nth-child(odd) {
+      background: #fafafa; }
     .story-viewer .reward-stream ul li.highlighted {
       background: #fffaba; }
     .story-viewer .reward-stream ul li#new-reward {
@@ -3560,9 +3570,10 @@ form.new_story, form.edit_story, .story-form {
       .story-viewer #metadata .pages a.selected {
         color: #00aeef; }
   .story-viewer ul#pages {
-    position: absolute;
     width: 100%;
-    height: 100%; }
+    position: absolute;
+    top: 0;
+    bottom: 35px; }
     .story-viewer ul#pages li {
       width: 100%;
       height: 100%;
@@ -5151,7 +5162,7 @@ form.user_edit #user_interest_list {
       float: left; }
     .community section.tags ul.tags li a .count {
       float: right;
-      background: #f1edea;
+      background: #f4f4f4;
       color: #aaaaaa;
       padding: 2px 5px;
       -webkit-border-radius: 2px;
