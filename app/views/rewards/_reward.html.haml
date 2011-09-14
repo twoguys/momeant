@@ -1,15 +1,34 @@
 - size ||= :medium
+- community ||= false
 - for_person = reward.story_id.nil?
 %li.reward{:class => for_person  ? "person" : ""}
   .what
     = link_to(image_tag(reward.story.thumbnail.url(size)), story_path(reward.story, :impacted_by => reward.id), :class => "thumbnail modal")
     = link_to(reward.story.title, story_path(reward.story, :impacted_by => reward.id), :class => "title modal")
     .comment-pointer
-  .who
-    = link_to(image_tag(reward.user.avatar(:thumbnail)), user_path(reward.user), :class => "avatar")
-    %span.amount-and-who
-      %span.reward
-        %span.inner= reward.amount
-      = link_to("rewarded by #{reward.user.name}", user_path(reward.user), :class => "author")
-    - if reward.comment.present?
-      %span.comment= reward.comment
+  - if community
+    .stats
+      .this-week
+        %span.amount= reward.story.rewards.this_month.sum(:amount)
+        %span.text this month
+      .total
+        %span.amount= reward.story.rewards.sum(:amount)
+        %span.text all time
+    .impacter
+      - user_reward = user_who_impacted_most(reward.story.rewards.this_month)
+      - impacter = user_reward.first
+      - impacting_amount = user_reward.second
+      = link_to(image_tag(impacter.avatar(:thumbnail)), user_path(impacter), :class => "avatar")
+      .text
+        %h3 Biggest Impacter:
+        %span #{impacter.name} with
+        %span.amount= impacting_amount
+  - else
+    .who
+      = link_to(image_tag(reward.user.avatar(:thumbnail)), user_path(reward.user), :class => "avatar")
+      %span.amount-and-who
+        %span.reward
+          %span.inner= reward.amount
+        = link_to("rewarded by #{reward.user.name}", user_path(reward.user), :class => "author")
+      - if reward.comment.present?
+        %span.comment= reward.comment

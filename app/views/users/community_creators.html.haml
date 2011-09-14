@@ -34,5 +34,5 @@
                 %td{:colspan => 3}
                   %ul.rewards
                     - rewards.group_by(&:story).each do |story, rewards|
-                      = render rewards.first
+                      = render rewards.first, :community => true
               - first = false
