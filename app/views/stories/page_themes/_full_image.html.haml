@@ -1,22 +1,21 @@
 - if @page
   - caption = @page.text_media
   - if @page.has_styles? || (caption && caption.has_styles?)
-    - content_for :head do
-      - if @page && @page.background_color
-        :css
-          #story_#{@page.story_id}_page_#{@page.number} {
-            background-color: #{@page.background_color};
-          }
-      - if caption && caption.background_color
-        :css
-          ul#pages #page_#{@page.number} .caption, .page_#{@page.number}_userstyles .caption {
-            background-color: ##{caption.background_color} !important;
-          }      
-      - if caption && caption.text_color
-        :css
-          ul#pages #page_#{@page.number} .caption, .page_#{@page.number}_userstyles .caption {
-            color: ##{caption.text_color} !important;
-          }
+    - if @page && @page.background_color
+      :css
+        #story_#{@page.story_id}_page_#{@page.number} {
+          background-color: #{@page.background_color};
+        }
+    - if caption && caption.background_color
+      :css
+        ul#pages #page_#{@page.number} .caption, .page_#{@page.number}_userstyles .caption {
+          background-color: ##{caption.background_color} !important;
+        }      
+    - if caption && caption.text_color
+      :css
+        ul#pages #page_#{@page.number} .caption, .page_#{@page.number}_userstyles .caption {
+          color: ##{caption.text_color} !important;
+        }
 
 - size ||= "original"
 .inner.bg-affected{:id => @page ? "story_#{@page.story_id}_page_#{@page.number}" : "", :class => @page && @page.image_media ? @page.image_media.placement : "fill-screen"}

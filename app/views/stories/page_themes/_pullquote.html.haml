@@ -1,10 +1,9 @@
 - if @page && @page.has_styles?
-  - content_for :head do
-    :css
-      #story_#{@page.story_id}_page_#{@page.number} {
-        background-color: #{@page.background_color};
-        color: #{@page.text_color};
-      }
+  :css
+    #story_#{@page.story_id}_page_#{@page.number} {
+      background-color: #{@page.background_color};
+      color: #{@page.text_color};
+    }
 
 .pullquote-inner
   - text_style = @page && @page.text_media ? @page.text_media.text_style : ""
