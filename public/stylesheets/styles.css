@@ -555,105 +555,116 @@ table {
       text-align: right;
       margin: 15px 5px 0 0; }
 
-body.landing {
-  background: #d1cecb url(https://momeant-production.s3.amazonaws.com/assets/barn-door-optimal.jpg) no-repeat 50% 50% fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover; }
-
-.page {
+#landing {
   width: 100%;
-  position: relative;
+  height: 100%;
   font-family: "ff-dagny-web-pro-1", "ff-dagny-web-pro-2", sans-serif;
-  font-weight: 200; }
-  .page div.inner {
-    background: #00aeef;
-    width: 790px;
-    height: 400px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin: -300px 0 0 -395px;
-    color: white;
-    text-transform: uppercase;
-    font-size: 35px; }
-    .page div.inner strong {
-      font-weight: 200;
-      color: black;
-      display: inline; }
-    .page div.inner .padded {
-      padding: 40px; }
-    .page div.inner span {
-      display: block;
-      margin-bottom: 1em; }
-    .page div.inner .join {
-      margin-top: 1em;
-      text-align: center; }
-      .page div.inner .join a {
-        padding: 20px;
-        background: white;
-        color: black;
-        -webkit-border-radius: 10px;
-        -moz-border-radius: 10px;
-        border-radius: 10px;
-        font-size: 20px;
-        font-family: "museo-slab-1", "museo-slab-2", serif;
-        font-weight: 700; }
-  .page #internet {
-    font-size: 100px;
-    line-height: 85px; }
-    .page #internet span {
-      margin-bottom: 0; }
-  .page #rewarded ul.rewards {
-    padding-top: 0; }
-    .page #rewarded ul.rewards li.reward {
-      float: left;
-      font-size: 12px;
-      font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
-      text-transform: none;
-      margin-right: 10px; }
-      .page #rewarded ul.rewards li.reward span {
-        display: inline;
-        margin: 0; }
-      .page #rewarded ul.rewards li.reward span.reward {
-        margin-right: 5px; }
-    .page #rewarded ul.rewards li.reward:last-child {
-      margin: 0; }
-  .page #rewarded .join {
-    clear: both;
-    padding-top: 1em; }
-  .page a.next, .page a.top-link {
-    position: absolute;
-    top: 72%;
-    left: 50%;
-    width: 150px;
-    height: 75px;
-    margin-left: -100px;
-    padding: 20px 25px 30px;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
-    background: white url(../images/arrowDownWhite.png) no-repeat 50% 80px;
-    background: rgba(0, 0, 0, 0.75) url(../images/arrowDownWhite.png) no-repeat 50% 80px;
-    color: white;
-    font-size: 17px;
-    text-transform: uppercase;
-    text-align: center;
-    cursor: pointer; }
-  .page a.next:hover, .page a.top-link:hover {
-    background-color: black; }
-  .page a.top-link {
-    background-image: url(../images/arrowUpWhite.png);
-    background-position: 50% 13px;
-    padding: 55px 25px 0;
-    height: 70px; }
-  .page #guide {
+  font-weight: 200;
+  position: fixed; }
+  #landing #background {
+    background: #d1cecb url(https://momeant-production.s3.amazonaws.com/assets/barn-door-optimal.jpg) no-repeat 50% 50% fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1; }
+  #landing ul#letter {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    position: relative;
+    z-index: 2; }
+    #landing ul#letter li.page {
+      width: 100%;
+      height: 100%;
+      position: relative; }
+      #landing ul#letter li.page div.inner {
+        background: #00aeef;
+        width: 790px;
+        height: 400px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin: -300px 0 0 -395px;
+        color: white;
+        text-transform: uppercase;
+        font-size: 35px; }
+        #landing ul#letter li.page div.inner strong {
+          font-weight: 200;
+          color: black;
+          display: inline; }
+        #landing ul#letter li.page div.inner .padded {
+          padding: 40px; }
+        #landing ul#letter li.page div.inner span {
+          display: block;
+          margin-bottom: 1em; }
+        #landing ul#letter li.page div.inner .join {
+          margin-top: 1em;
+          text-align: center; }
+          #landing ul#letter li.page div.inner .join a {
+            padding: 20px;
+            background: white;
+            color: black;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            border-radius: 10px;
+            font-size: 20px;
+            font-family: "museo-slab-1", "museo-slab-2", serif;
+            font-weight: 700; }
+      #landing ul#letter li.page #internet {
+        font-size: 100px;
+        line-height: 85px; }
+        #landing ul#letter li.page #internet span {
+          margin-bottom: 0; }
+      #landing ul#letter li.page #rewarded ul.rewards {
+        padding-top: 0; }
+        #landing ul#letter li.page #rewarded ul.rewards li.reward {
+          float: left;
+          font-size: 12px;
+          font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
+          text-transform: none;
+          margin-right: 10px; }
+          #landing ul#letter li.page #rewarded ul.rewards li.reward span {
+            display: inline;
+            margin: 0; }
+          #landing ul#letter li.page #rewarded ul.rewards li.reward span.reward {
+            margin-right: 5px; }
+        #landing ul#letter li.page #rewarded ul.rewards li.reward:last-child {
+          margin: 0; }
+      #landing ul#letter li.page #rewarded .join {
+        clear: both;
+        padding-top: 1em; }
+    #landing ul#letter a.next {
+      position: absolute;
+      top: 72%;
+      left: 50%;
+      width: 150px;
+      height: 75px;
+      margin-left: -100px;
+      padding: 20px 25px 30px;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      border-radius: 10px;
+      background: white url(../images/arrowDownWhite.png) no-repeat 50% 80px;
+      background: rgba(0, 0, 0, 0.75) url(../images/arrowDownWhite.png) no-repeat 50% 80px;
+      color: white;
+      font-size: 17px;
+      text-transform: uppercase;
+      text-align: center;
+      cursor: pointer; }
+    #landing ul#letter a.next:hover {
+      background-color: black; }
+  #landing #guide {
     display: none;
     margin-top: 40px;
     height: 115px;
     padding-bottom: 30px; }
-    .page #guide a {
+    #landing #guide a {
       color: #252525;
       border-bottom: 1px solid #bbbbbb;
       display: block;
@@ -664,16 +675,16 @@ body.landing {
       -webkit-border-radius: 3px;
       -moz-border-radius: 3px;
       border-radius: 3px; }
-      .page #guide a h3 {
+      #landing #guide a h3 {
         display: inline-block;
         padding-right: 25px;
         background: transparent url(../images/whiteArrowRight.png) no-repeat 100% 1px; }
-      .page #guide a p {
+      #landing #guide a p {
         margin: 10px 0 0;
         text-shadow: 0 1px 0 white; }
-    .page #guide a:first-child {
+    #landing #guide a:first-child {
       margin-right: 30px; }
-    .page #guide a:hover {
+    #landing #guide a:hover {
       background: white; }
 
 /* Story creation */
