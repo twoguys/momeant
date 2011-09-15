@@ -27,7 +27,8 @@
               %option{:value => v, :selected => @page && @page.image_media && @page.image_media.placement == v}= k
         %li
           %label Pick a background color
-          = text_field_tag "pages[#{@page_number}][background_color]", "#f2f2f2", :class => "color-picker bgcolor"
+          - background_color = @page && @page.background_color ? @page.background_color : "#ffffff"
+          = text_field_tag "pages[#{@page_number}][background_color]", background_color, :class => "color-picker bgcolor"
         %li.break
           %label
             %span Write a caption
