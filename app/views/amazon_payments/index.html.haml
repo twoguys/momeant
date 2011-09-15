@@ -1,73 +1,62 @@
 #transactions
 
   #explanation
-    %h2
-      Purchase reward coins and become a Momeant Patron! 
     %p
-      %strong Momeant rewards coins are the currency of Momeant.
-      Use them to reward creators, which promotes their content so others can reward.
-      The more you reward, the more you gain status in the community, which you can check out in the #{link_to("community section", community_path)}.
-      Creators get paid out every time they accumulate 250 coins.
-      So go ahead and purchase reward coins and start rewarding people!
+      %span Momeant rewards coins are the currency of Momeant. Use them to
+      %em reward creators,
+      %span which promotes their content so others can reward.
+
     %p
-      We use Amazon to accept payments. If you have an Amazon account, this process is a snap.
-      If you don't have an Amazon account, just select "I am a new customer" on the next page.
+      %span The more you reward, the more you
+      %em gain status
+      %span in the community. Find out who's hot by visiting the
+      = link_to("community section", community_path)
+      %span= "."
+    
+    %p
+      %span Creators
+      %em get paid
+      %span out every time they accumulate 250 coins. So go ahead and purchase reward coins and start rewarding people!
 
   #purchase
 
     - form_for @payment, :url => buy_coins_path do |form|
       = form.hidden_field :amount, :value => 5
-      .package
-        .amount 25
-        %span.text reward coins
-      .price $5
+      .package.one 25
+      .text reward coins
       .bonus
-      = form.submit
+      .price $5
+      = form.submit "buy thru amazon"
 
     - form_for @payment, :url => buy_coins_path do |form|
       = form.hidden_field :amount, :value => 10
-      .package
-        .amount 70
-        %span.text reward coins
-      .price $10
+      .package.two 70
+      .text reward coins
       .bonus 20 coins free!
-      = form.submit
+      .price $10
+      = form.submit "buy thru amazon"
 
     - form_for @payment, :url => buy_coins_path do |form|
       = form.hidden_field :amount, :value => 20
-      .package
-        .amount 160
-        %span.text reward coins
-      .price $20
+      .package.three 160
+      .text reward coins
       .bonus 60 coins free!
-      = form.submit
+      .price $20
+      = form.submit "buy thru amazon"
 
     - form_for @payment, :url => buy_coins_path do |form|
       = form.hidden_field :amount, :value => 100
-      .package
-        .amount 900
-        %span.text reward coins
-      .price $100
+      .package.four 900
+      .text reward coins
       .bonus 400 coins free!
-      = form.submit
-
-  #past
-    %h2 Your past purchases
-    %table
-      %thead
-        %tr
-          %th Package
-          %th Price
-          %th Purchased
-      %tbody
-        - @past_payments.each do |payment|
-          %tr
-            %td= payment.coin_string
-            %td= number_to_currency(payment.amount)
-            %td #{time_ago_in_words(payment.created_at)} ago
-        - unless @past_payments.empty?
-          %tr.total
-            %td #{@past_payments.map(&:coins).inject(:+)} reward coins
-            %td= number_to_currency(@past_payments.map(&:amount).inject(:+))
-            %td
-            
+      .price $100
+      = form.submit "buy thru amazon"
+    
+    .amazon-text
+      %p
+        %span * We use
+        %span.amazon
+        %span to accept payments.
+        %span.line If you have an account, this process is a snap.
+        %span.line If you don't have an account, just select
+        %span.line "I am a new customer" after choosing a package above.

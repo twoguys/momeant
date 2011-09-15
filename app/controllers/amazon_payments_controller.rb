@@ -5,6 +5,7 @@ class AmazonPaymentsController < ApplicationController
     @payment = AmazonPayment.new(:amount => 10)
     @past_payments = current_user.amazon_payments
     @nav = "coins"
+    @nosidebar = true
   end
   
   def create

@@ -4,6 +4,7 @@ class HomeController < ApplicationController
     @nav = "home"
     if current_user.nil?
       @rewards = Reward.for_landing_page.limit(3)
+      @nosidebar = true
       render "landing" and return
     end
     
@@ -14,5 +15,6 @@ class HomeController < ApplicationController
   
   def about
     @nav = "about"
+    @nosidebar = true
   end
 end

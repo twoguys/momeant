@@ -6912,49 +6912,91 @@ a#load-more {
   display: none; }
 
 #transactions {
-  padding: 20px; }
+  padding-top: 20px;
+  font-family: "ff-dagny-web-pro-1", "ff-dagny-web-pro-2", sans-serif; }
   #transactions #explanation {
-    margin-bottom: 30px; }
-    #transactions #explanation .heading {
-      color: #777777;
-      font-style: italic; }
-    #transactions #explanation .amount {
-      height: 40px;
-      padding-top: 10px; }
-      #transactions #explanation .amount .value, #transactions #explanation .amount .text {
-        float: left; }
-      #transactions #explanation .amount .value {
-        font-size: 40px;
+    margin-right: 615px;
+    max-width: 500px;
+    font-size: 24px;
+    background: white;
+    padding: 10px 30px;
+    -webkit-box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3); }
+    #transactions #explanation p {
+      line-height: 1.4em; }
+    #transactions #explanation em {
+      font-style: normal;
+      color: #00aeef; }
+    #transactions #explanation a {
+      text-decoration: underline; }
+  #transactions #purchase {
+    position: absolute;
+    top: 20px;
+    right: 0; }
+    #transactions #purchase form {
+      width: 125px;
+      padding: 20px 0;
+      float: left;
+      margin-right: 20px;
+      background: #00aeef;
+      -webkit-box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
+      -moz-box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
+      box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      color: white; }
+      #transactions #purchase form .package {
+        font-size: 24px;
+        height: 90px;
+        background-position: 50% 0;
+        background-repeat: no-repeat;
+        text-indent: -9999px; }
+      #transactions #purchase form .package.one {
+        background-image: url(../images/coinPackage1.png); }
+      #transactions #purchase form .package.two {
+        background-image: url(../images/coinPackage2.png); }
+      #transactions #purchase form .package.three {
+        background-image: url(../images/coinPackage3.png); }
+      #transactions #purchase form .package.four {
+        background-image: url(../images/coinPackage4.png); }
+      #transactions #purchase form .text, #transactions #purchase form .bonus {
+        font-size: 14px; }
+      #transactions #purchase form .bonus {
+        height: 18px;
+        color: black; }
+      #transactions #purchase form .price {
+        font-size: 16px;
+        margin: 30px 0 0;
         font-weight: 700;
-        margin-right: 5px; }
-      #transactions #explanation .amount .text span {
-        display: block; }
-  #transactions #purchase form {
-    width: 20%;
-    padding: 0 2%;
-    float: left;
-    border-right: 1px solid #dddddd;
-    text-align: center; }
-    #transactions #purchase form .package .amount {
-      font-size: 24px;
-      font-weight: 700; }
-    #transactions #purchase form .price {
-      font-size: 16px;
-      margin: 10px 0; }
-    #transactions #purchase form .bonus {
-      height: 15px;
-      font-weight: 700;
-      color: #00aeef;
-      text-transform: uppercase; }
-    #transactions #purchase form input[type="submit"] {
-      background: transparent url(../images/payWithAmazon.gif) no-repeat;
-      width: 126px;
-      height: 40px;
-      padding: 0;
-      text-indent: -9999px;
-      margin-top: 10px; }
-  #transactions #purchase form:last-child {
-    border: none; }
+        font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif; }
+      #transactions #purchase form input[type="submit"] {
+        background: white;
+        margin-top: 10px;
+        padding: 3px;
+        text-transform: none;
+        font-weight: 700;
+        font-size: 11px;
+        box-shadow: 0 -2px 2px rgba(0, 0, 0, 0.2) inset; }
+    #transactions #purchase form:last-child {
+      border: none; }
+    #transactions #purchase .amazon-text {
+      clear: both;
+      padding-right: 20px;
+      font-size: 19px;
+      color: #777777; }
+      #transactions #purchase .amazon-text p {
+        float: right;
+        text-align: right;
+        line-height: 1.2em; }
+        #transactions #purchase .amazon-text p span.line {
+          display: block; }
+        #transactions #purchase .amazon-text p span.amazon {
+          display: inline-block;
+          width: 67px;
+          height: 24px;
+          background: transparent url(../images/amazonLogo.png) no-repeat 0 0;
+          position: relative;
+          top: 10px; }
   #transactions #past {
     clear: both;
     padding-top: 50px; }

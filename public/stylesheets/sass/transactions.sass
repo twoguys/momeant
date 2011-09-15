@@ -1,52 +1,87 @@
 #transactions
-	padding: 20px
+	padding-top: 20px
+	font-family: $numerals
 	
 	#explanation
-		margin-bottom: 30px
-		.heading
-			color: #777
-			font-style: italic
-		.amount
-			height: 40px
-			padding-top: 10px
-			.value, .text
-				float: left
-			.value
-				font-size: 40px
-				font-weight: 700
-				margin-right: 5px
-			.text
-				span
-					display: block
+		margin-right: 615px
+		max-width: 500px
+		font-size: 24px
+		background: #fff
+		padding: 10px 30px
+		@include boxshadow(3px, 0.3, 2px, 2px)
+		p
+			line-height: 1.4em
+		em
+			font-style: normal
+			color: $blue
+		a
+			text-decoration: underline
 	
 	#purchase
+		position: absolute
+		top: 20px
+		right: 0
 		form
-			width: 20%
-			padding: 0 2%
+			width: 125px
+			padding: 20px 0
 			float: left
-			border-right: 1px solid #ddd
+			margin-right: 20px
+			background: $blue
+			@include boxshadow(3px, 0.3, 2px, 2px)
 			text-align: center
+			color: #fff
 			.package
-				.amount
-					font-size: 24px
-					font-weight: 700
+				font-size: 24px
+				height: 90px
+				background-position: 50% 0
+				background-repeat: no-repeat
+				text-indent: -9999px
+			.package.one
+				background-image: url(../images/coinPackage1.png)
+			.package.two
+				background-image: url(../images/coinPackage2.png)
+			.package.three
+				background-image: url(../images/coinPackage3.png)
+			.package.four
+				background-image: url(../images/coinPackage4.png)
+			.text, .bonus
+				font-size: 14px
+			.bonus
+				height: 18px
+				color: #000
 			.price
 				font-size: 16px
-				margin: 10px 0
-			.bonus
-				height: 15px
+				margin: 30px 0 0
 				font-weight: 700
-				color: $blue
-				text-transform: uppercase
+				font-family: $block
 			input[type="submit"]
-				background: transparent url(../images/payWithAmazon.gif) no-repeat
-				width: 126px
-				height: 40px
-				padding: 0
-				text-indent: -9999px
+				background: #fff
 				margin-top: 10px
+				padding: 3px
+				text-transform: none
+				font-weight: 700
+				font-size: 11px
+				box-shadow: 0 -2px 2px rgba(0,0,0,0.2) inset
 		form:last-child
 			border: none
+		.amazon-text
+			clear: both
+			padding-right: 20px
+			font-size: 19px
+			color: #777
+			p
+				float: right
+				text-align: right
+				line-height: 1.2em
+				span.line
+					display: block
+				span.amazon
+					display: inline-block
+					width: 67px
+					height: 24px
+					background: transparent url(../images/amazonLogo.png) no-repeat 0 0
+					position: relative
+					top: 10px
 	
 	#past
 		clear: both
