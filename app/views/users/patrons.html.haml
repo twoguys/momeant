@@ -2,25 +2,25 @@
   = render "user_info"
   = render "user_tabs"
   
-  .info-bar A list of the folks who have rewarded #{@user.first_name} the most.
-  
-  %ul.patrons
-    - rank = 1
-    - @patrons.each do |patron|
-      %li.patron
-        .user-info
-          = link_to(image_tag(patron.avatar.url(:thumbnail)), user_path(patron), :class => "avatar")
-          %span.rank= rank
-          .name= link_to(patron.name, user_path(patron))
-          .occupation occupation: #{patron.occupation}
-        .rewards-given
-          .rewards-inner= patron.rewards_given
-        .patron
-          .patron-inner for #{pluralize(0, "day")}
-        - rank += 1
-    - if @patrons.size < 10
-      - (@patrons.size + 1).upto(10) do
-        %li.patron
-          .user-info
-          .rewards-given
-          .patron
+  .tabbed.supporters
+    %table.users
+      %tbody
+        - rank = 1
+        - @patrons.each do |patron|
+          %tr.patron
+            %td
+              .user-info
+                = link_to(image_tag(patron.avatar.url(:thumbnail)), user_path(patron), :class => "avatar")
+                %span.rank= rank
+                %a.name{:href => user_path(patron)}
+                  %span= patron.first_name
+                  %span= patron.last_name
+            %td.numerals
+              .tiny impact on #{@user.first_name}
+              .count= patron.rewards_given
+          - rank += 1
+        - if @patrons.size < 10
+          - (@patrons.size + 1).upto(10) do
+            %tr.patron
+              %td.user-info
+              %td.rewards-given

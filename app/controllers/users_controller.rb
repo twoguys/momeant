@@ -36,8 +36,9 @@ class UsersController < ApplicationController
     @rewards = @user.given_rewards
   end
   
-  def patrons
+  def supporters
     @patrons = @user.patrons[0,10]
+    render "patrons"
   end
   
   def followers

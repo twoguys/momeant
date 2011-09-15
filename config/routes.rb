@@ -66,6 +66,7 @@ Repo::Application.routes.draw do
       get :patrons
       get :followers
       get :following
+      get :supporters
     end
     
     # Homepage tab
