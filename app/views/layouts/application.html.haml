@@ -29,7 +29,7 @@
       var typekit_id = 'sji8gns';
     = yield :head
     
-  %body{:class => @fullscreen.nil? ? "" : "fullscreen"}
+  %body{:class => @body_class}
     %header#header
       = render "layouts/user_nav" unless @hide_nav
 

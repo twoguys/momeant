@@ -4,6 +4,7 @@ class HomeController < ApplicationController
     @nav = "home"
     if current_user.nil?
       @rewards = Reward.for_landing_page.limit(3)
+      @body_class = "landing"
       render "landing" and return
     end
     
