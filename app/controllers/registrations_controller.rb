@@ -1,5 +1,4 @@
 class RegistrationsController < Devise::RegistrationsController
-  before_filter :release_lockdown, :except => [:create]
   
   def create
     resource = Creator.new(params[:user])

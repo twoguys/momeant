@@ -1,0 +1,48 @@
+.community
+  .top
+    .what-is-this Welcome to the mo&#149;meant community. Take a look at who's rewarding what!
+
+  = render "users/community_tabs"
+  .tabbed
+    
+    #filter
+      %h2 Filter
+      %section.tags
+        .heading By Tag
+        .body
+          %ul.tags
+            - current_tags = params[:tags] || ""
+            - @tags.each do |tag|
+              - is_active = params[:tags].present? && params[:tags].include?(tag.name)
+              - if is_active
+                - url = community_path(:tags => (current_tags.split(",") - [tag.name]).join(","))
+              - else
+                - url = community_path(:tags => (current_tags.split(",") + [tag.name]).join(","))
+              %li
+                %a{:href => url, :class => is_active ? "active" : ""}
+                  %span.name= truncate(tag.name, :length => 30)
+                  %span.count= tag.count
+
+    .user-list
+      .user-list-inner
+        %table.users
+          %thead
+            %tr.heading
+              %th{:colspan => 4} Explore the best PATRONS
+          %tbody
+            - @users.each do |user|
+              %tr
+                %td.patron
+                  = link_to(image_tag(user.avatar.url(:thumbnail)), user_path(user), :class => "avatar")
+                  %a.name{:href => user_path(user)}
+                    %span= user.first_name
+                    %span= user.last_name
+                %td.impact.numerals
+                  .tiny impact
+                  .count= user.impact
+                %td.rewards.numerals
+                  .tiny rewards given
+                  .count= user.given_rewards.sum(:amount)
+                %td.rewardees.numerals
+                  .tiny creators rewarded
+                  .count= user.rewarded_creators.count

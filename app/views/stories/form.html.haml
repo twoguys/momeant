@@ -27,7 +27,7 @@
       .choice#external{:class => @story.is_external? ? "selected" : ""}
         .choice-inner
           .description Show your existing web content
-          = text_field_tag :story_external_link, "http://", :class => "monitor-story-typing", :update => "external_link"
+          = text_field_tag :story_external_link, @story.external_text_or_http, :class => "monitor-story-typing", :update => "external_link"
           %p.info
             %em Show something you've created elsewhere on the web.
       .clear

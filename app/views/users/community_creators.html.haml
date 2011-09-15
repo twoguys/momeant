@@ -1,0 +1,38 @@
+- content_for :head do
+  = javascript_include_tag "community"
+
+.community
+  .top
+    .what-is-this Welcome to the mo&#149;meant community. Take a look at who's rewarding what!
+
+  = render "users/community_tabs"
+  .tabbed
+    #filter
+      %h2 Filter
+      
+    
+    .user-list
+      .user-list-inner
+        %table.users.creators
+          %thead
+            %tr.heading
+              %th{:colspan => 4} Explore the best CREATORS
+          %tbody
+            - first = true
+            - @users.each do |user, rewards|
+              %tr.user{:user_id => user.id, :class => first ? "open" : ""}
+                %td.creator
+                  = link_to(image_tag(user.avatar.url(:thumbnail)), user_path(user), :class => "avatar")
+                  %a.name{:href => user_path(user)}
+                    %span= user.first_name
+                    %span= user.last_name
+                %td.creator-rewards.numerals
+                  .count= rewards.inject(0){ |sum,r| sum + r.amount }
+                  .tiny rewards this month
+                %td.content-toggler
+              %tr.content{:id => "content_for_#{user.id}", :style => first ? "display:table-row;" : ""}
+                %td{:colspan => 3}
+                  %ul.rewards
+                    - rewards.group_by(&:story).each do |story, rewards|
+                      = render rewards.first, :community => true
+              - first = false

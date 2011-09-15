@@ -73,28 +73,39 @@ ul.avatars
 		background-image: url(../images/icons/starGreySmall.png)
 
 .user-profile
+	.top.info
+		background: #e0e0e0
 	.info
 		position: relative
-		padding-left: 70px
+		padding: 20px 20px 20px 95px
 		height: 62px
-		margin-bottom: 20px
 		.avatar
 			position: absolute
-			top: 0
-			left: 0
+			top: 20px
+			left: 20px
 			display: block
-			border: 1px solid #fff
+			border: 3px solid #000
 			width: 60px
 			height: 60px
-		.name-occupation-follow
+		.name-tagline-follow
 			position: relative
 			top: -4px
 			.name
-				font-size: 22px
+				font-size: 20px
 				font-weight: 700
 				text-transform: uppercase
 				color: #000
 				margin-bottom: -4px
+				float: left
+				margin-right: 10px
+				a.edit
+					@include rounded(2px)
+					background: $blue
+					color: #fff
+					padding: 2px 4px
+					font-size: 12px
+					position: relative
+					top: -4px
 				.badge
 					@include rounded(2px)
 					background: $yellow
@@ -103,10 +114,13 @@ ul.avatars
 					font-size: 12px
 					position: relative
 					top: -4px
-			.occupation
+			.tagline
 				font-size: 11px
 				padding-bottom: 1px
+				clear: both
+				width: 60%
 			.follow
+				float: left
 				a, input[type="submit"]
 					display: block
 					height: 25px
@@ -124,106 +138,175 @@ ul.avatars
 					background-color: #16be36
 				a:hover
 					background-color: #ff1345
-		.reward-and-stats
+		.impact-shield
 			position: absolute
-			top: 0
-			right: 0
-			.hidden
-				display: none
-			.reward, .user-stats
-				float: left
-			.reward.button
-				background: $blue url(../images/icons/starWhite.png) no-repeat 50% 4px
-				color: #fff
-				padding-top: 35px
-				font-size: 13px
-				font-weight: 700
-			.user-stats
-				margin-left: 10px
-				border: 1px solid #ddd
+			top: 30px
+			right: 50px
+			background: transparent url(../images/shieldBlue.png) no-repeat 0 0
+			width: 56px
+			height: 67px
+			color: #fff
+			font-weight: 700
+			font-size: 30px
+			line-height: 62px
+			text-align: center
 	
-	.horizontal-tabs
-		background: transparent url(../images/greyHorizontalLine.gif) repeat-x 50% 50%
-		ul
-			height: 27px
-			width: 450px
-			margin: 0 auto 30px
-		li
-			display: block
+	/* Patronage Tab */
+	
+	.patronee
+		margin: 20px 20px 0
+		border: 1px solid #e0e0e0
+		@include boxshadow(3px,0.2,2px,2px)
+		background: #fff
+		.heading
+			height: 50px
+			padding: 20px
+			background: #f6f6f6
+			background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0.2, rgb(235,235,235)),color-stop(0.6, rgb(252,252,252)))
+			background-image: -moz-linear-gradient(center bottom,rgb(235,235,235) 20%,rgb(252,252,252) 60%)
+			border-bottom: 1px solid #e0e0e0
+		.info
 			float: left
-			height: 27px
-			position: relative
-			img.notification
-				position: absolute
-				top: -12px
-				right: 0
-			a
-				position: relative
-				top: 5px
-				color: #555
-				text-shadow: 0 1px 1px #fff
-				border-top: 1px solid #ccc
-				border-bottom: 1px solid #ccc
-				border-right: 1px solid #ccc
-				border-left: 1px solid #eee
-				background: #f4f4f4
-				padding: 5px 18px
-				font-size: 11px
+			padding: 0 0 0 65px
+			.avatar
+				width: 45px
+				height: 45px
+				top: 0
+				left: 0
+				img
+					width: 45px
+					height: 45px
+			.name
 				font-weight: 700
-				background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0.09, rgb(205,205,205)),color-stop(0.78, rgb(253,253,253)))
-				background-image: -moz-linear-gradient(center bottom,rgb(205,205,205) 9%,rgb(253,253,253) 78%)
-			a.active
-				background: #000
-				color: #fff
-				text-shadow: none
-				border: 1px solid #000
-		li:first-child a
-			border-left: 1px solid #ccc
-			-webkit-border-top-left-radius: 3px
-			-webkit-border-bottom-left-radius: 3px
-			-moz-border-radius-topleft: 3px
-			-moz-border-radius-bottomleft: 3px
-			border-top-left-radius: 3px
-			border-bottom-left-radius: 3px
-			border-left: 1px solid #ccc
-		li:last-child a
-			-webkit-border-top-right-radius: 3px
-			-webkit-border-bottom-right-radius: 3px
-			-moz-border-radius-topright: 3px
-			-moz-border-radius-bottomright: 3px
-			border-top-right-radius: 3px
-			border-bottom-right-radius: 3px
+				text-transform: uppercase
+				font-size: 20px
+				line-height: 18px
+				padding-top: 5px
+				color: $text_color
+				span
+					display: block
+					padding-top: 5px
+		.impact
+			float: right
+			.given, .helped-get
+				float: left
+				font-size: 11px
+				height: 60px
+				margin-top: -5px
+				.text, .value
+					float: left
+				.text
+					padding: 30px 5px 0 0
+					text-align: right
+				.value
+					font-family: $numerals
+					font-size: 70px
+					line-height: 1em
+					font-weight: 200
+					padding-right: 20px
+					background: transparent url(../images/icons/starBlackSmall.png) no-repeat 100% 3px
+			.given
+				border-right: 1px solid #ccc
+				padding-right: 20px
+			.helped-get
+				border-left: 1px solid #fff
+				padding-left: 20px
+		ul.content
+			clear: both
+			padding: 0 0 20px 20px
+			li
+				float: left
+				border: 1px solid #e0e0e0
+				@include boxshadow(2px,0.2,0,0)
+				margin: 20px 20px 0 0
+				padding-bottom: 5px
+				.title
+					color: $text-color
+					text-transform: uppercase
+					font-weight: 700
+					padding: 10px
+					display: block
+				.thumbnail img
+					width: 230px
+				.gave, .people, .impact
+					padding: 5px 10px
+					font-size: 11px
+				.gave
+					border-bottom: 1px solid #e0e0e0
+					margin-bottom: 3px
+					.reward
+						padding-right: 13px
+						background: transparent url(../images/icons/starBlackTiny.png) no-repeat 100% 2px
+						margin: 0 2px
+				.people, .impact
+					padding: 3px 0 3px 35px
+					background-position: 10px 50%
+					background-repeat: no-repeat
+				.people
+					background-image: url(../images/icons/person.png)
+				.impact
+					background-image: url(../images/icons/starBlackSmall.png)
+					float: none
+			li:hover .title
+				color: $link_color
 			
-	ul.galleries
+	/* Creations Tab */
+	
+	ul.stats-bar
+		height: 50px
+		margin: 0 20px 20px
+		padding: 20px
+		background: #f6f6f6
+		background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0.2, rgb(235,235,235)),color-stop(0.6, rgb(252,252,252)))
+		background-image: -moz-linear-gradient(center bottom,rgb(235,235,235) 20%,rgb(252,252,252) 60%)
+		border: 1px solid #e0e0e0
+		li
+			float: left
+			font-size: 11px
+			height: 60px
+			margin-top: -5px
+			.text, .value
+				float: left
+			.text
+				padding: 30px 5px 0 0
+				text-align: right
+			.value
+				font-family: $numerals
+				font-size: 70px
+				line-height: 1em
+				font-weight: 200
+				padding-right: 20px
+				background: transparent url(../images/icons/starBlackSmall.png) no-repeat 100% 3px
+		li.rewards
+			padding-left: 10px
+		li.rewards, li.patrons
+			border-right: 1px solid #fff
+			padding-right: 30px
+		li.patrons, li.until-payment
+			border-left: 1px solid #ccc
+			padding-left: 30px
+		li.patrons .value
+			background: transparent url(../images/icons/person.png) no-repeat 100% 3px
+	
+	ul.galleries		
+		li.separator
+			clear: both
+			border-top: 1px solid #e0e0e0
+			border-bottom: 1px solid #fff
 		li.gallery, li.no-gallery
-			border-bottom: 1px solid #ccc
-			padding-top: 10px
 			width: 100%
 			ul.stories
-				li.story
-					.edit-links
-						position: absolute
-						top: 10px
-						right: 10px
-						a
-							text-indent: -9999px
-							display: block
-							width: 12px
-							height: 12px
-							background-repeat: no-repeat
-						a.edit
-							background-image: url(../images/icons/pencilTiny.png)
-							margin-bottom: 5px
-						a.delete
-							background-image: url(../images/icons/trashTiny.png)
+				padding: 20px
 				li.about
 					background: none
 					padding: 0
-					width: 250px
+					width: 230px
 					@include boxshadow(0px,0,0,0)
 					.name
-						font-size: 18px
+						font-size: 16px
 						margin-bottom: 5px
+						text-transform: uppercase
+						font-weight: 700
 					.description
 						font-size: 11px
 				li.add, li.add-description
@@ -232,7 +315,7 @@ ul.avatars
 				li.add
 					a
 						display: block
-						width: 248px
+						width: 230px
 						height: 204px
 						border: 1px dashed #ccc
 						color: #aaa
@@ -243,7 +326,80 @@ ul.avatars
 					color: #999
 					line-height: 2em
 		li.gallery:first-child, li.no-gallery:first-child
-			padding-top: 0
+			ul.stories
+				padding-top: 0
+	
+	/* Followers, Following Tabs */
+	
+	.followingers
+		padding: 20px
+		table
+			width: 100%
+			a.avatar, a.name
+				display: block
+				float: left
+			a.avatar img
+				width: 45px
+				height: 45px
+				border: 2px solid #000
+			a.name
+				margin-left: 8px
+				font-weight: 700
+				font-size: 18px
+				text-transform: uppercase
+				line-height: 18px
+				padding-top: 6px
+				color: $text_color
+				span
+					display: block
+	
+	/* Supporters Tab */
+	.supporters
+		padding: 20px
+		table.users
+			width: 100%
+			td
+				height: 70px
+				.user-info
+					position: relative
+					.avatar
+						display: block
+						float: left
+						margin-right: 10px
+						width: 40px
+						height: 40px
+						border: 1px solid #ccc
+						img
+							width: 40px
+							height: 40px
+					.rank
+						position: absolute
+						top: -7px
+						left: -7px
+						display: block
+						height: 15px
+						width: 15px
+						font-weight: 700
+						text-align: center
+						line-height: 15px
+						background: #f4f4f4
+						@include rounded(10px)
+						@include boxshadow(3px,0.4,1px,1px)
+					.name
+						font-size: 18px
+						font-weight: 700
+						text-transform: uppercase
+						margin-top: 3px
+						color: $text_color
+						span
+							display: block
+					.occupation
+						font-style: italic
+						font-size: 11px
+	
+	/* Edit Profile */
+	.user-edit
+		padding: 20px
 	
 	.bio
 		.incomplete-profile
@@ -264,112 +420,6 @@ ul.avatars
 			background: transparent url(../images/icons/pencilBlue.png) no-repeat 0 1px
 		.tagline, .interests
 			margin-bottom: 10px
-				
-	ul.patrons
-		border-top: 1px solid #ccc
-		li:nth-child(2n)
-			background-color: #fff
-		li
-			border: 1px solid #ccc
-			border-top: none
-			height: 70px
-			.user-info, .patron, .rewards-given
-				padding: 15px
-				height: 40px
-				line-height: 40px
-				border-left: 1px solid #ccc
-				float: right
-			.user-info
-				position: relative
-				float: left
-				border: none
-				.avatar
-					position: absolute
-					display: block
-					width: 40px
-					height: 40px
-					border: 1px solid #ccc
-					img
-						width: 40px
-						height: 40px
-				.rank
-					position: absolute
-					top: 10px
-					left: 8px
-					display: block
-					height: 15px
-					width: 15px
-					font-weight: 700
-					text-align: center
-					line-height: 15px
-					background: #f4f4f4
-					@include rounded(10px)
-					@include boxshadow(3px,0.4,1px,1px)
-				.name, .occupation
-					margin-left: 50px
-					height: 20px
-					line-height: 20px
-				.name
-					font-size: 18px
-					font-weight: 700
-					text-transform: uppercase
-					margin-top: 3px
-					a
-						color: $text_color
-				.occupation
-					font-style: italic
-					font-size: 11px
-			.patron
-				width: 115px
-				.patron-inner
-					padding: 6px 0 0 35px
-					height: 27px
-					line-height: 27px
-					color: #777
-					font-size: 11px
-					background: transparent url(../images/icons/patronBadgeBlue.png) no-repeat 10px 6px
-			.rewards-given
-				width: 80px
-				.rewards-inner
-					@include rounded(3px)
-					background: $blue url(../images/icons/recommendWhite.png) no-repeat 32px 5px
-					padding: 5px 35px 5px 0
-					margin: 8px
-					color: #fff
-					font-weight: 700
-					width: 29px
-					text-align: right
-					height: 15px
-					line-height: 15px
-			.number, .avatar, .info
-				float: left
-				margin-right: 20px
-			.number
-				background-color: #000
-				color: #fff
-				@include rounded(40px)
-				width: 40px
-				height: 40px
-				text-align: center
-				line-height: 40px
-				vertical-align: middle
-				font-family: $typewriter
-				font-size: 24px
-				margin-top: 5px
-			.info
-				.name
-					font-weight: 700
-					font-size: 22px
-				.occupation
-					font-style: italic
-			.rewards
-				float: right
-				background: transparent url(../images/icons/recommendOff.png) no-repeat 0 17px
-				padding: 0 10px 0 20px
-				font-size: 16px
-				height: 50px
-				line-height: 50px
-				vertical-align: middle
 	
 	.subscribing-to
 		clear: both

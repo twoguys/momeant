@@ -49,8 +49,9 @@ Repo::Application.routes.draw do
   
   match "/topics/:name", :to => "topics#show", :as => :topic
   
-  match '/credits', :to => "deposits#index", :as => :credits
-  match '/credits/buy', :to => "deposits#create", :as => :deposit
+  match '/coins', :to => "amazon_payments#index", :as => :coins
+  match '/coins/buy', :to => "amazon_payments#create", :as => :buy_coins
+  match '/coins/accept', :to => "amazon_payments#accept", :as => :accept_coins
   
   resources :users do
     resources :subscriptions
@@ -59,11 +60,13 @@ Repo::Application.routes.draw do
     get :bookmarks
     
     member do
-      get :bio
-      get :momeants
+      get :stream
+      get :creations
       get :rewarded
       get :patrons
+      get :followers
       get :following
+      get :supporters
     end
     
     # Homepage tab
@@ -73,6 +76,8 @@ Repo::Application.routes.draw do
     post :billing_updates, :on => :collection
   end
   match '/analytics',           :to => "users#analytics",           :as => :analytics
+  match '/community',           :to => "users#community",           :as => :community
+  match '/community/creators',  :to => "users#community_creators",  :as => :community_creators
   
   namespace :admin do
     match '/', :to =>"dashboard#index", :as => :dashboard

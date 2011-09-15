@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
   
   has_many :galleries
   
-  has_many :credit_cards
+  has_many :amazon_payments, :foreign_key => :payer_id, :order => "created_at DESC"
   
   has_attached_file :avatar,
     :styles => { :thumbnail => "60x60#" },
@@ -132,24 +132,54 @@ class User < ActiveRecord::Base
     Reward.where(:user_id => self.id, :story_id => story.id).present?
   end
   
-  def reward(user_id, amount, comment, story_id)
-    user = User.find_by_id(user_id)
-    return if amount.nil? || user.nil?
+  def reward(story, amount, comment, impacted_by)
+    return if amount.nil?
     amount = amount.to_i
     if can_afford?(amount)
-      options = {:amount => amount, :user_id => self.id, :recipient_id => user_id, :comment => comment}
-
-      if story_id
-        options.merge!({:story_id => story_id})
-        story = Story.find_by_id(story_id)
-        story.increment!(:reward_count, amount) if story
-      end
+      options = {:story_id => story.id, :amount => amount, :user_id => self.id, :recipient_id => story.user.id, :comment => comment}
 
       reward = Reward.create!(options)
+      story.increment!(:reward_count, amount)
       self.decrement!(:coins, amount)
-      user.increment!(:lifetime_rewards, amount)
+      story.user.increment!(:lifetime_rewards, amount)
+      
+      if impacted_by
+        parent_reward = Reward.find_by_id(impacted_by)
+        if parent_reward
+          reward.move_to_child_of(parent_reward)
+          reward.update_attribute(:depth, reward.ancestors.count)
+        end
+      end
+      
       return reward
     end
+  end
+  
+  def following_stream(page = 1)
+    rewards = []
+
+    subscribed_to = self.subscribed_to
+    if subscribed_to.size > 0
+      following_ids = subscribed_to.map { |user| user.id }
+      # show my rewards too
+      following_ids = (following_ids + [self.id]).join(",")
+      # removed -> select("DISTINCT ON (story_id) curations.*").
+      rewards = Reward.where("story_id IS NOT NULL").where("user_id IN (#{following_ids})").page page
+    end
+    
+    rewards
+  end
+  
+  def rewards_given_to(user)
+    Reward.where(:user_id => self.id, :recipient_id => user.id).sum(:amount)
+  end
+  
+  def impact_on(user)
+    Reward.where(:user_id => self.id, :recipient_id => user.id).map {|reward| reward.impact}.inject(:+) || 0
+  end
+  
+  def impact
+    self.given_rewards.map {|reward| reward.impact}.inject(:+) || 0
   end
   
   def last_reward_for(story)

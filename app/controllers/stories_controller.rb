@@ -2,7 +2,6 @@ class StoriesController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :recent, :show, :tagged_with]
   load_and_authorize_resource :except => [:index, :recent, :show, :tagged_with]
   before_filter :get_topics, :only => [:new, :edit]
-  before_filter :get_adverts, :only => :recent
   skip_before_filter :verify_authenticity_token, :only => [:update_thumbnail]
   
   def index
@@ -29,15 +28,28 @@ class StoriesController < ApplicationController
   end
   
   def show
-    @story = Story.find_by_id(params[:id])
-    View.record(@story, current_user) if current_user && current_user != @story.user
-    @fullscreen = true
-    @user = @story.user
+    if params[:modal]
+      @story = Story.find_by_id(params[:id])
+      View.record(@story, current_user) if current_user && current_user != @story.user
+      @fullscreen = true
+      @user = @story.user
+      if params[:impacted_by].present?
+        @impacting_reward = Reward.find(params[:impacted_by])
+      end
+      render :layout => false
+    elsif params[:impacted_by]
+      reward = Reward.find_by_id(params[:impacted_by])
+      session[:show_content] = story_path(reward.story, :impacted_by => params[:impacted_by])
+      redirect_to user_path(reward.user)
+    else  
+      session[:show_content] = story_path(params[:id])
+      redirect_to root_path
+    end
   end
   
   def new
     @story = Story.create(:thumbnail_page => 1, :user_id => current_user.id, :autosaving => true, :price => 0)
-    @nav = "create"
+    @nav = "home"
     render "form"
   end
   
@@ -55,7 +67,7 @@ class StoriesController < ApplicationController
   end
   
   def edit
-    @nav = "create"
+    @nav = "home"
     render "form"
   end
   
@@ -194,7 +206,7 @@ class StoriesController < ApplicationController
   def publish
     if @story.valid?
       @story.update_attribute(:published, true)
-      redirect_to user_path(@story.user), :notice => "Your content has been published!"
+      redirect_to creations_user_path(@story.user), :notice => "Your content has been published!"
     else
       redirect_to edit_story_path(@story), :alert => "Please fix the errors below."
     end

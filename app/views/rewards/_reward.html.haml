@@ -1,62 +1,34 @@
+- size ||= :medium
+- community ||= false
 - for_person = reward.story_id.nil?
-- if params[:alternate].blank?
-  %li.reward{:class => for_person  ? "person" : ""}
-    - if for_person
-      .avatar-name-occupation
-        = link_to(image_tag(reward.recipient.avatar.url(:thumbnail)), user_path(reward.recipient), :class => "avatar")
-        .name= reward.recipient.name
-        .occupation= reward.recipient.occupation
-      - if reward.recipient.tagline.present?
-        .about= truncate(reward.recipient.tagline, :length => 250)
-      .interests
-        %h3 Interests:
-        %span= user_interest_links(reward.recipient)
-    - else
-      .what
-        .text
-          = link_to(reward.story.title, reward.story, :class => "title")
-          .author by #{link_to(reward.recipient.name, user_path(reward.recipient))}
-        .thumbnail= link_to(image_tag(reward.story.thumbnail.url(:medium)), reward.story)
-    .who.clearfix
+%li.reward{:class => for_person  ? "person" : ""}
+  .what
+    = link_to(image_tag(reward.story.thumbnail.url(size)), story_path(reward.story, :impacted_by => reward.id), :class => "thumbnail modal")
+    = link_to(reward.story.title, story_path(reward.story, :impacted_by => reward.id), :class => "title modal")
+    .comment-pointer
+  - if community
+    .stats
+      .this-week
+        %span.amount= reward.story.rewards.this_month.sum(:amount)
+        %span.text this month
+      .total
+        %span.amount= reward.story.rewards.sum(:amount)
+        %span.text all time
+    .impacter
+      - user_reward = user_who_impacted_most(reward.story.rewards.this_month)
+      - impacter = user_reward.first
+      - impacting_amount = user_reward.second
+      = link_to(image_tag(impacter.avatar(:thumbnail)), user_path(impacter), :class => "avatar")
+      .text
+        %h3 Biggest Impacter:
+        %span #{impacter.name} with
+        %span.amount= impacting_amount
+  - else
+    .who
       = link_to(image_tag(reward.user.avatar(:thumbnail)), user_path(reward.user), :class => "avatar")
       %span.amount-and-who
         %span.reward
           %span.inner= reward.amount
         = link_to("rewarded by #{reward.user.name}", user_path(reward.user), :class => "author")
       - if reward.comment.present?
-        %span.comment &ldquo;#{reward.comment}&rdquo;
-    - if reward[:other_rewards]
-      .others
-        = link_to(pluralize(reward[:other_rewards].size, "more reward"), "#", :class => "handle")
-        %ul
-          - reward[:other_rewards].each do |other|
-            %li
-              .who.clearfix
-                = link_to(image_tag(other.user.avatar(:thumbnail)), user_path(other.user), :class => "avatar")
-                %span.amount-and-who
-                  %span.reward
-                    %span.inner= other.amount
-                  = link_to("rewarded by #{other.user.name}", user_path(other.user), :class => "author")
-                %span.comment &ldquo;#{other.comment}&rdquo;
-
-- else
-  %li.reward
-    = link_to(image_tag(reward.user.avatar(:thumbnail)), user_path(reward.user), :class => "avatar")
-    .who
-      = link_to(reward.user.name, user_path(reward.user), :class => "author")
-      %span rewarded
-      %span.reward
-        %span.inner= reward.amount
-      - if reward.comment.present?
-        .comment &ldquo;#{truncate(reward.comment, :length => 100)}&rdquo;
-    .what{:class => for_person ? "person" : ""}
-      - if for_person
-        = link_to(image_tag(reward.recipient.avatar.url(:thumbnail)), user_path(reward.recipient), :class => "avatar")
-        = link_to(reward.recipient.name, user_path(reward.recipient), :class => "name")
-        .occupation= reward.recipient.occupation
-      - else
-        = link_to(image_tag(reward.story.thumbnail.url(:medium)), reward.story, :class => "thumbnail")
-        = link_to(reward.story.title, reward.story, :class => "title")
-        %span.synopsis= truncate(reward.story.synopsis, :length => 50)
-    - if reward[:other_rewards]
-      .others Also rewarded by #{pluralize(reward[:other_rewards].count, "other")}
+        %span.comment= reward.comment

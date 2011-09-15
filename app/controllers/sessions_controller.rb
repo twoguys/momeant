@@ -1,6 +1,9 @@
 class SessionsController < Devise::SessionsController
-  before_filter :release_lockdown, :except => [:new, :create]
   before_filter :store_return_to, :only => :create
+  
+  def new
+    redirect_to session[:return_to] || root_path, :alert => flash.alert || ""
+  end
   
   private
     def store_return_to

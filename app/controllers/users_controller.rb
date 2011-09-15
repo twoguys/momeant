@@ -1,16 +1,14 @@
 class UsersController < ApplicationController
-  before_filter :authenticate_user!, :except => [:show, :billing_updates, :top_curators]
-  before_filter :get_adverts, :only => :top_curators
-  before_filter :find_user, :only => [:show, :momeants, :bio, :rewarded, :patrons, :bookmarks, :following]
+  before_filter :authenticate_user!, :only => [:edit, :update, :analytics]
+  before_filter :find_user, :except => [:community, :community_creators, :analytics, :billing_updates]
   skip_before_filter :verify_authenticity_token, :only => :billing_updates
-  skip_before_filter :release_lockdown, :only => :billing_updates
-  
-  def top_curators
-    @top_curators = User.order(:subscriptions_count).page params[:page]
-    render "home/index"
-  end
   
   def show
+    @creators = @user.given_rewards.for_content.group_by(&:recipient)
+  end
+  
+  def stream #ajax requests
+    render @user.following_stream(params[:page])
   end
   
   def edit
@@ -22,7 +20,7 @@ class UsersController < ApplicationController
   def update
     @user = current_user
     if @user.update_attributes(params[:user])
-      redirect_to bio_user_path(@user), :notice => "Info updated!"
+      redirect_to user_path(@user), :notice => "Info updated!"
     else
       @nav = "home"
       @sidenav = "profile"
@@ -33,17 +31,20 @@ class UsersController < ApplicationController
   def bookmarks
     @sidenav = "bookmarks"
   end
-  
-  def momeants
-    render "show"
-  end
-  
+    
   def rewarded
     @rewards = @user.given_rewards
   end
   
-  def patrons
+  def supporters
     @patrons = @user.patrons[0,10]
+    render "patrons"
+  end
+  
+  def followers
+    @users = @user.subscribers
+    @followers = true
+    render "following"
   end
   
   def following
@@ -55,6 +56,34 @@ class UsersController < ApplicationController
     @patrons = @user.rewards.group_by {|r| r.user_id}
     @sidenav = "analytics"
     @nav = "home"
+  end
+  
+  def community
+    @users = []
+    @nav = "community"
+    
+    if params[:tags].present?
+      @tags = Story.joins(:curations).where("curations.type = 'Reward'").tagged_with(params[:tags]).tag_counts.order("count DESC").limit(20).sort do |x, y|
+        if params[:tags].include?(x.name)
+          -1
+        else
+          1
+        end
+      end
+    else
+      @tags = Story.joins(:curations).where("curations.type = 'Reward'").tag_counts.order("count DESC").limit(20)
+    end
+    
+    content_ids = Story.tagged_with(@tags, :any => true).map{|story| story.id}
+    return if content_ids.empty?
+    @users = User.select("DISTINCT ON(id) users.*").joins("LEFT OUTER JOIN curations ON curations.user_id = users.id").where("curations.story_id IN (#{content_ids.join(',')})").where("curations.type = 'Reward'")
+    @users = @users.sort_by {|user| -user.impact}
+  end
+  
+  def community_creators
+    # Rewards this week -> rewardees -> top content -> top impacter
+    @users = Reward.this_month.group_by(&:recipient).to_a
+    @users = @users.sort_by {|array| -array.second.inject(0) {|sum,r| r.amount}}
   end
   
   def billing_updates

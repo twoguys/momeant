@@ -95,7 +95,7 @@ class Page < ActiveRecord::Base
       page.background_color = options[:background_color] if options[:background_color]
       image_media = page.image_media
       if image_media.blank?
-        page.medias << PageImage.new
+        page.medias << PageImage.new(:placement => "fill-screen")
         image_media = page.image_media
       end
       if options[:image]
