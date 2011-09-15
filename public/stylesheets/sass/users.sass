@@ -87,7 +87,7 @@ ul.avatars
 			border: 3px solid #000
 			width: 60px
 			height: 60px
-		.name-occupation-follow
+		.name-tagline-follow
 			position: relative
 			top: -4px
 			.name
@@ -98,6 +98,14 @@ ul.avatars
 				margin-bottom: -4px
 				float: left
 				margin-right: 10px
+				a.edit
+					@include rounded(2px)
+					background: $blue
+					color: #fff
+					padding: 2px 4px
+					font-size: 12px
+					position: relative
+					top: -4px
 				.badge
 					@include rounded(2px)
 					background: $yellow
@@ -106,10 +114,11 @@ ul.avatars
 					font-size: 12px
 					position: relative
 					top: -4px
-			.occupation
+			.tagline
 				font-size: 11px
 				padding-bottom: 1px
 				clear: both
+				width: 60%
 			.follow
 				float: left
 				a, input[type="submit"]
@@ -387,6 +396,10 @@ ul.avatars
 					.occupation
 						font-style: italic
 						font-size: 11px
+	
+	/* Edit Profile */
+	.user-edit
+		padding: 20px
 	
 	.bio
 		.incomplete-profile

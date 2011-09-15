@@ -4738,7 +4738,8 @@ ul.avatars li {
   /* Patronage Tab */
   /* Creations Tab */
   /* Followers, Following Tabs */
-  /* Supporters Tab */ }
+  /* Supporters Tab */
+  /* Edit Profile */ }
   .user-profile .top.info {
     background: #e0e0e0; }
   .user-profile .info {
@@ -4753,10 +4754,10 @@ ul.avatars li {
       border: 3px solid black;
       width: 60px;
       height: 60px; }
-    .user-profile .info .name-occupation-follow {
+    .user-profile .info .name-tagline-follow {
       position: relative;
       top: -4px; }
-      .user-profile .info .name-occupation-follow .name {
+      .user-profile .info .name-tagline-follow .name {
         font-size: 20px;
         font-weight: 700;
         text-transform: uppercase;
@@ -4764,7 +4765,17 @@ ul.avatars li {
         margin-bottom: -4px;
         float: left;
         margin-right: 10px; }
-        .user-profile .info .name-occupation-follow .name .badge {
+        .user-profile .info .name-tagline-follow .name a.edit {
+          -webkit-border-radius: 2px;
+          -moz-border-radius: 2px;
+          border-radius: 2px;
+          background: #00aeef;
+          color: white;
+          padding: 2px 4px;
+          font-size: 12px;
+          position: relative;
+          top: -4px; }
+        .user-profile .info .name-tagline-follow .name .badge {
           -webkit-border-radius: 2px;
           -moz-border-radius: 2px;
           border-radius: 2px;
@@ -4774,13 +4785,14 @@ ul.avatars li {
           font-size: 12px;
           position: relative;
           top: -4px; }
-      .user-profile .info .name-occupation-follow .occupation {
+      .user-profile .info .name-tagline-follow .tagline {
         font-size: 11px;
         padding-bottom: 1px;
-        clear: both; }
-      .user-profile .info .name-occupation-follow .follow {
+        clear: both;
+        width: 60%; }
+      .user-profile .info .name-tagline-follow .follow {
         float: left; }
-        .user-profile .info .name-occupation-follow .follow a, .user-profile .info .name-occupation-follow .follow input[type="submit"] {
+        .user-profile .info .name-tagline-follow .follow a, .user-profile .info .name-tagline-follow .follow input[type="submit"] {
           display: block;
           height: 25px;
           padding: 3px 10px 3px 22px;
@@ -4788,14 +4800,14 @@ ul.avatars li {
           font-size: 11px;
           color: white;
           font-weight: 700; }
-        .user-profile .info .name-occupation-follow .follow a {
+        .user-profile .info .name-tagline-follow .follow a {
           width: 63px;
           height: 20px;
           line-height: 20px;
           padding-left: 24px; }
-        .user-profile .info .name-occupation-follow .follow input[type="submit"]:hover {
+        .user-profile .info .name-tagline-follow .follow input[type="submit"]:hover {
           background-color: #16be36; }
-        .user-profile .info .name-occupation-follow .follow a:hover {
+        .user-profile .info .name-tagline-follow .follow a:hover {
           background-color: #ff1345; }
     .user-profile .info .impact-shield {
       position: absolute;
@@ -5050,6 +5062,8 @@ ul.avatars li {
           .user-profile .supporters table.users td .user-info .occupation {
             font-style: italic;
             font-size: 11px; }
+  .user-profile .user-edit {
+    padding: 20px; }
   .user-profile .bio .incomplete-profile {
     background: transparent url(../images/tabNotification.png) no-repeat 0 0;
     padding: 4px 0 4px 25px;
