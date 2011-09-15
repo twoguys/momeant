@@ -2,8 +2,20 @@
   = render "user_info"
   = render "user_tabs"
   
-  .tabbed
-    %ul.avatars
-      - @users.each do |user|
-        %li
-          = link_to(image_tag(user.avatar.url(:thumbnail)), user_path(user), :class => "tooltipped", :title => user.name)
+  .tabbed.followingers
+    %table.users
+      %tbody
+        - @users.each do |user|
+          %tr
+            %td
+              = link_to(image_tag(user.avatar.url(:thumbnail)), user_path(user), :class => "avatar")
+              %a.name{:href => user_path(user)}
+                %span= user.first_name
+                %span= user.last_name
+            %td.impact.numerals
+              - if @followers
+                .tiny #{@user.first_name}'s impact on them
+                .count= @user.impact_on(user)
+              - else
+                .tiny impact on #{@user.first_name}
+                .count= user.impact_on(@user)

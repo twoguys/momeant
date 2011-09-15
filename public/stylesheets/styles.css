@@ -516,7 +516,8 @@ table {
   table th, table td {
     text-align: left;
     padding: 10px 20px;
-    border-bottom: 1px solid #e0e0e0; }
+    border-bottom: 1px solid #e0e0e0;
+    vertical-align: middle; }
   table th {
     font-weight: 700;
     text-transform: uppercase;
@@ -4733,7 +4734,8 @@ ul.avatars li {
 
 .user-profile {
   /* Patronage Tab */
-  /* Creations Tab */ }
+  /* Creations Tab */
+  /* Followers, Following Tabs */ }
   .user-profile .top.info {
     background: #e0e0e0; }
   .user-profile .info {
@@ -4978,6 +4980,27 @@ ul.avatars li {
         line-height: 2em; }
   .user-profile ul.galleries li.gallery:first-child ul.stories, .user-profile ul.galleries li.no-gallery:first-child ul.stories {
     padding-top: 0; }
+  .user-profile .followingers {
+    padding: 20px; }
+    .user-profile .followingers table {
+      width: 100%; }
+      .user-profile .followingers table a.avatar, .user-profile .followingers table a.name {
+        display: block;
+        float: left; }
+      .user-profile .followingers table a.avatar img {
+        width: 45px;
+        height: 45px;
+        border: 2px solid black; }
+      .user-profile .followingers table a.name {
+        margin-left: 8px;
+        font-weight: 700;
+        font-size: 18px;
+        text-transform: uppercase;
+        line-height: 18px;
+        padding-top: 6px;
+        color: #252525; }
+        .user-profile .followingers table a.name span {
+          display: block; }
   .user-profile .bio .incomplete-profile {
     background: transparent url(../images/tabNotification.png) no-repeat 0 0;
     padding: 4px 0 4px 25px;
@@ -6947,7 +6970,7 @@ a#load-more {
       color: white; }
       #transactions #purchase form .package {
         font-size: 24px;
-        height: 90px;
+        height: 115px;
         background-position: 50% 0;
         background-repeat: no-repeat;
         text-indent: -9999px; }
@@ -6966,7 +6989,7 @@ a#load-more {
         color: black; }
       #transactions #purchase form .price {
         font-size: 16px;
-        margin: 30px 0 0;
+        margin: 20px 0 0;
         font-weight: 700;
         font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif; }
       #transactions #purchase form input[type="submit"] {

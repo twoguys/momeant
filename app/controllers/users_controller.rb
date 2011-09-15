@@ -42,6 +42,7 @@ class UsersController < ApplicationController
   
   def followers
     @users = @user.subscribers
+    @followers = true
     render "following"
   end
   
