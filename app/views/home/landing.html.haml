@@ -42,7 +42,7 @@
             see the great content others are rewarding,
           %strong Reward and be Rewarded.
           .join
-            = link_to("Join mo&#149;meant", "#signup-modal")
+            = link_to("Join mo&#149;meant".html_safe, "#signup-modal")
       %a.next Show me what's being rewarded!
     %li.page
       #rewarded.inner
@@ -50,7 +50,7 @@
           %ul.rewards
             = render @rewards
           .join
-            = link_to("Join mo&#149;meant", "#signup-modal")
+            = link_to("Join mo&#149;meant".html_safe, "#signup-modal")
       %a.top-link Take me back to the top.
   
   #guide
