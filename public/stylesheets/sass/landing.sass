@@ -1,61 +1,107 @@
 #landing
-	background: #d1cecb
-	min-height: 100%
-	height: auto
-	font-family: $typewriter
-	#letter
-		width: 620px
-		height: 311px
-		padding: 35px 60px
-		background: transparent url(../images/landingLetterBG.jpg) no-repeat 0 0
-		margin: 0 auto 40px
-		font-size: 14px
-		p
-			margin: 15px 0
-		.join
-			height: 60px
-			a
-				display: block
-				float: right
-				width: 200px
-				padding: 9px 0
+	width: 100%
+	height: 100%
+	font-family: $numerals
+	font-weight: 200
+	position: fixed
+	
+	#background
+		background: #d1cecb url(https://momeant-production.s3.amazonaws.com/assets/barn-door-optimal.jpg) no-repeat 50% 50% fixed
+		@include bgcover
+		position: fixed
+		top: 0
+		bottom: 0
+		left: 0
+		right: 0
+		z-index: 1
+	
+	ul#letter	
+		width: 100%
+		height: 100%
+		overflow-y: auto
+		position: relative
+		z-index: 2
+		li.page
+			width: 100%
+			height: 100%
+			position: relative
+			div.inner
+				background: $blue
+				width: 60%
+				height: 50%
+				position: absolute
+				top: 15%
+				left: 20%
 				color: #fff
-				text-align: center
-				font-family: $block
-				@include rounded(3px)
-				@include gradient($bluegradient1, $bluegradient2)
-			span
-				float: right
-				clear: both
-				width: 200px
-				display: block
-				text-align: center
-				font-size: 12px
-				padding-top: 3px
-	
-	#rewarded, #guide
-		width: 710px
-		margin: 0 auto
-		h3
-			font-size: 16px
-			text-shadow: 0 1px 0 #fff
-	
-	#rewarded
-		border-bottom: 1px solid #bbb
-		padding: 0 0 12px
-		h3
-			padding-bottom: 5px
-			border-bottom: 1px solid #bbb
-		ul
-			padding: 10px 0 0
-			li
-				font-family: $block
-				float: left
-				margin: 0 10px 0 0
-			li:last-child
-				margin: 0
+				text-transform: uppercase
+				font-size: 35px
+				strong
+					font-weight: 200
+					color: #000
+					display: inline
+				.padded
+					padding: 40px
+				span
+					display: block
+					margin-bottom: 1em
+				.join
+					margin-top: 1em
+					text-align: center
+					a
+						padding: 20px
+						background: #fff
+						color: #000
+						@include rounded(10px)
+						font-size: 20px
+						font-family: $typewriter
+						font-weight: 700
+			#internet
+				font-size: 100px
+				line-height: 85px
+				span
+					margin-bottom: 0
+			#rewarded
+				width: 790px
+				left: 50%
+				margin-left: -395px
+				ul.rewards
+					padding-top: 0
+					li.reward
+						float: left
+						font-size: 12px
+						font-family: $block
+						text-transform: none
+						margin-right: 10px
+						span
+							display: inline
+							margin: 0
+						span.reward
+							margin-right: 5px
+					li.reward:last-child
+						margin: 0
+				.join
+					clear: both
+					padding-top: 1em
+		a.next
+			position: absolute
+			top: 72%
+			left: 40%
+			width: 150px
+			height: 75px
+			padding: 20px 25px 30px
+			@include rounded(10px)
+			background: #fff url(../images/arrowDownWhite.png) no-repeat 50% 80px
+			background: rgba(0,0,0,0.75) url(../images/arrowDownWhite.png) no-repeat 50% 80px
+			color: #fff
+			font-size: 17px
+			text-transform: uppercase
+			text-align: center
+			cursor: pointer
+		a.next:hover
+			background-color: rgba(0,0,0,1)
 		
 	#guide
+		display: none
 		margin-top: 40px
 		height: 115px
 		padding-bottom: 30px

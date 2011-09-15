@@ -210,7 +210,7 @@ html, body {
       background-image: -moz-linear-gradient(center top, #62e079 4%, #12b32f 52%);
       background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #62e079), color-stop(0.52, #12b32f)); }
     #header #user-nav #join {
-      right: 120px; }
+      right: 90px; }
       #header #user-nav #join a {
         background-image: -moz-linear-gradient(center top, #43baf0 4%, #3a94e6 52%);
         background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #43baf0), color-stop(0.52, #3a94e6)); }
@@ -556,63 +556,113 @@ table {
       margin: 15px 5px 0 0; }
 
 #landing {
-  background: #d1cecb;
-  min-height: 100%;
-  height: auto;
-  font-family: "museo-slab-1", "museo-slab-2", serif; }
-  #landing #letter {
-    width: 620px;
-    height: 311px;
-    padding: 35px 60px;
-    background: transparent url(../images/landingLetterBG.jpg) no-repeat 0 0;
-    margin: 0 auto 40px;
-    font-size: 14px; }
-    #landing #letter p {
-      margin: 15px 0; }
-    #landing #letter .join {
-      height: 60px; }
-      #landing #letter .join a {
-        display: block;
-        float: right;
-        width: 200px;
-        padding: 9px 0;
+  width: 100%;
+  height: 100%;
+  font-family: "ff-dagny-web-pro-1", "ff-dagny-web-pro-2", sans-serif;
+  font-weight: 200;
+  position: fixed; }
+  #landing #background {
+    background: #d1cecb url(https://momeant-production.s3.amazonaws.com/assets/barn-door-optimal.jpg) no-repeat 50% 50% fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1; }
+  #landing ul#letter {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    position: relative;
+    z-index: 2; }
+    #landing ul#letter li.page {
+      width: 100%;
+      height: 100%;
+      position: relative; }
+      #landing ul#letter li.page div.inner {
+        background: #00aeef;
+        width: 60%;
+        height: 50%;
+        position: absolute;
+        top: 15%;
+        left: 20%;
         color: white;
-        text-align: center;
-        font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
-        -webkit-border-radius: 3px;
-        -moz-border-radius: 3px;
-        border-radius: 3px;
-        background-image: -moz-linear-gradient(center top, #43baf0 4%, #3a94e6 52%);
-        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #43baf0), color-stop(0.52, #3a94e6)); }
-      #landing #letter .join span {
-        float: right;
-        clear: both;
-        width: 200px;
-        display: block;
-        text-align: center;
-        font-size: 12px;
-        padding-top: 3px; }
-  #landing #rewarded, #landing #guide {
-    width: 710px;
-    margin: 0 auto; }
-    #landing #rewarded h3, #landing #guide h3 {
-      font-size: 16px;
-      text-shadow: 0 1px 0 white; }
-  #landing #rewarded {
-    border-bottom: 1px solid #bbbbbb;
-    padding: 0 0 12px; }
-    #landing #rewarded h3 {
-      padding-bottom: 5px;
-      border-bottom: 1px solid #bbbbbb; }
-    #landing #rewarded ul {
-      padding: 10px 0 0; }
-      #landing #rewarded ul li {
-        font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
-        float: left;
-        margin: 0 10px 0 0; }
-      #landing #rewarded ul li:last-child {
-        margin: 0; }
+        text-transform: uppercase;
+        font-size: 35px; }
+        #landing ul#letter li.page div.inner strong {
+          font-weight: 200;
+          color: black;
+          display: inline; }
+        #landing ul#letter li.page div.inner .padded {
+          padding: 40px; }
+        #landing ul#letter li.page div.inner span {
+          display: block;
+          margin-bottom: 1em; }
+        #landing ul#letter li.page div.inner .join {
+          margin-top: 1em;
+          text-align: center; }
+          #landing ul#letter li.page div.inner .join a {
+            padding: 20px;
+            background: white;
+            color: black;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            border-radius: 10px;
+            font-size: 20px;
+            font-family: "museo-slab-1", "museo-slab-2", serif;
+            font-weight: 700; }
+      #landing ul#letter li.page #internet {
+        font-size: 100px;
+        line-height: 85px; }
+        #landing ul#letter li.page #internet span {
+          margin-bottom: 0; }
+      #landing ul#letter li.page #rewarded {
+        width: 790px;
+        left: 50%;
+        margin-left: -395px; }
+        #landing ul#letter li.page #rewarded ul.rewards {
+          padding-top: 0; }
+          #landing ul#letter li.page #rewarded ul.rewards li.reward {
+            float: left;
+            font-size: 12px;
+            font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
+            text-transform: none;
+            margin-right: 10px; }
+            #landing ul#letter li.page #rewarded ul.rewards li.reward span {
+              display: inline;
+              margin: 0; }
+            #landing ul#letter li.page #rewarded ul.rewards li.reward span.reward {
+              margin-right: 5px; }
+          #landing ul#letter li.page #rewarded ul.rewards li.reward:last-child {
+            margin: 0; }
+        #landing ul#letter li.page #rewarded .join {
+          clear: both;
+          padding-top: 1em; }
+    #landing ul#letter a.next {
+      position: absolute;
+      top: 72%;
+      left: 40%;
+      width: 150px;
+      height: 75px;
+      padding: 20px 25px 30px;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      border-radius: 10px;
+      background: white url(../images/arrowDownWhite.png) no-repeat 50% 80px;
+      background: rgba(0, 0, 0, 0.75) url(../images/arrowDownWhite.png) no-repeat 50% 80px;
+      color: white;
+      font-size: 17px;
+      text-transform: uppercase;
+      text-align: center;
+      cursor: pointer; }
+    #landing ul#letter a.next:hover {
+      background-color: black; }
   #landing #guide {
+    display: none;
     margin-top: 40px;
     height: 115px;
     padding-bottom: 30px; }
