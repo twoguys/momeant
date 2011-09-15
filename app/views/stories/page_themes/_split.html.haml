@@ -1,25 +1,24 @@
 - if @page && @page.has_styles?
-  - content_for :head do
-    - if @page.image_at_position(1) && @page.image_at_position(1).background_color
-      :css
-        #story_#{@page.story_id}_page_#{@page.number} .image1 {
-          background-color: #{@page.image_at_position(1).background_color};
-        }
-    - if @page.image_at_position(2) && @page.image_at_position(2).background_color
-      :css
-        #story_#{@page.story_id}_page_#{@page.number} .image2 {
-          background-color: #{@page.image_at_position(2).background_color};
-        }
-    - if @page.text_at_position(1) && @page.text_at_position(1).background_color
-      :css
-        #story_#{@page.story_id}_page_#{@page.number} .text1 {
-          background-color: #{@page.text_at_position(1).background_color};
-        }
-    - if @page.text_at_position(2) && @page.text_at_position(2).background_color
-      :css
-        #story_#{@page.story_id}_page_#{@page.number} .text2 {
-          background-color: #{@page.text_at_position(2).background_color};
-        }
+  - if @page.image_at_position(1) && @page.image_at_position(1).background_color
+    :css
+      #story_#{@page.story_id}_page_#{@page.number} .image1 {
+        background-color: #{@page.image_at_position(1).background_color};
+      }
+  - if @page.image_at_position(2) && @page.image_at_position(2).background_color
+    :css
+      #story_#{@page.story_id}_page_#{@page.number} .image2 {
+        background-color: #{@page.image_at_position(2).background_color};
+      }
+  - if @page.text_at_position(1) && @page.text_at_position(1).background_color
+    :css
+      #story_#{@page.story_id}_page_#{@page.number} .text1 {
+        background-color: #{@page.text_at_position(1).background_color};
+      }
+  - if @page.text_at_position(2) && @page.text_at_position(2).background_color
+    :css
+      #story_#{@page.story_id}_page_#{@page.number} .text2 {
+        background-color: #{@page.text_at_position(2).background_color};
+      }
 
 - size ||= "original"
 - split_layout = @page && @page.layout ? @page.layout : "image-text"
