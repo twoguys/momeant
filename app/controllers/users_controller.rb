@@ -81,7 +81,7 @@ class UsersController < ApplicationController
       if a.impact != b.impact
         b.impact <=> a.impact
       else
-        b.user.given_rewards.sum(:amount) <=> a.given_rewards.sum(:amount)
+        b.given_rewards.sum(:amount) <=> a.given_rewards.sum(:amount)
       end
     end
   end
