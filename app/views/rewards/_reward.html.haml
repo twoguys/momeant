@@ -4,7 +4,9 @@
 %li.reward{:class => for_person  ? "person" : ""}
   .what
     = link_to(image_tag(reward.story.thumbnail.url(size)), story_path(reward.story, :impacted_by => reward.id), :class => "thumbnail modal")
-    = link_to(reward.story.title, story_path(reward.story, :impacted_by => reward.id), :class => "title modal")
+    %a.title.modal{:href => story_path(reward.story, :impacted_by => reward.id)}
+      %span= reward.story.title
+      %span.synopsis= truncate(reward.story.synopsis, :length => 200)
     .comment-pointer
   - if community
     .stats
