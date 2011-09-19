@@ -5,6 +5,7 @@ class HomeController < ApplicationController
     if current_user.nil?
       @rewards = Reward.for_landing_page.limit(3)
       @nosidebar = true
+      @background_url = "https://momeant-production.s3.amazonaws.com/assets/MomeantWallpaper0#{rand(6) + 1}.jpg"
       render "landing" and return
     end
     
@@ -17,4 +18,5 @@ class HomeController < ApplicationController
     @nav = "about"
     @nosidebar = true
   end
+
 end
