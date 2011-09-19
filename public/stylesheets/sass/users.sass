@@ -124,20 +124,21 @@ ul.avatars
 				a, input[type="submit"]
 					display: block
 					height: 25px
-					padding: 3px 10px 3px 22px
-					background: #000 url(../images/icons/checkWhite.png) no-repeat 8px 5px
+					padding: 2px 6px
+					background: $green
+					@include gradient($greengradient1, $greengradient2)
 					font-size: 11px
 					color: #fff
 					font-weight: 700
+					text-transform: uppercase
 				a
-					width: 63px
+					@include rounded(3px)
+					width: auto
 					height: 20px
 					line-height: 20px
-					padding-left: 24px
-				input[type="submit"]:hover
-					background-color: #16be36
-				a:hover
-					background-color: #ff1345
+				a.unfollow
+					background: #ff1345
+					@include gradient($redgradient1, $redgradient2)
 		.impact-shield
 			position: absolute
 			top: 30px

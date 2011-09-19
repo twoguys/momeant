@@ -156,18 +156,14 @@ class User < ActiveRecord::Base
   end
   
   def following_stream(page = 1)
-    rewards = []
-
     subscribed_to = self.subscribed_to
-    if subscribed_to.size > 0
-      following_ids = subscribed_to.map { |user| user.id }
-      # show my rewards too
-      following_ids = (following_ids + [self.id]).join(",")
-      # removed -> select("DISTINCT ON (story_id) curations.*").
-      rewards = Reward.where("story_id IS NOT NULL").where("user_id IN (#{following_ids})").page page
-    end
-    
-    rewards
+    following_ids = subscribed_to.map { |user| user.id }
+
+    # show my rewards too
+    following_ids = following_ids.push(self.id).join(",")
+
+    # removed -> select("DISTINCT ON (story_id) curations.*").
+    Reward.where("story_id IS NOT NULL").where("user_id IN (#{following_ids})").page page
   end
   
   def rewards_given_to(user)
