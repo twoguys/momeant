@@ -22,8 +22,8 @@
             - @users.each do |user, rewards|
               %tr.user{:user_id => user.id, :class => first ? "open" : ""}
                 %td.creator
-                  = link_to(image_tag(user.avatar.url(:thumbnail)), user_path(user), :class => "avatar")
-                  %a.name{:href => user_path(user)}
+                  = link_to(image_tag(user.avatar.url(:thumbnail)), creations_user_path(user), :class => "avatar")
+                  %a.name{:href => creations_user_path(user)}
                     %span= user.first_name
                     %span= user.last_name
                 %td.creator-rewards.numerals
