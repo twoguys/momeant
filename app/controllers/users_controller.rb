@@ -61,21 +61,9 @@ class UsersController < ApplicationController
   def community
     @users = []
     @nav = "community"
-    
-    if params[:tags].present?
-      @tags = Story.joins(:curations).where("curations.type = 'Reward'").tagged_with(params[:tags]).tag_counts.order("count DESC").limit(20).sort do |x, y|
-        if params[:tags].include?(x.name)
-          -1
-        else
-          1
-        end
-      end
-    else
-      @tags = Story.joins(:curations).where("curations.type = 'Reward'").tag_counts.order("count DESC").limit(20)
-    end
-    
-    content_ids = Story.tagged_with(@tags, :any => true).map{|story| story.id}
+    content_ids = get_tags_and_stories
     return if content_ids.empty?
+    
     @users = User.select("DISTINCT ON(id) users.*").joins("LEFT OUTER JOIN curations ON curations.user_id = users.id").where("curations.story_id IN (#{content_ids.join(',')})").where("curations.type = 'Reward'")
     @users = @users.sort do |a,b|
       if a.impact != b.impact
@@ -87,8 +75,13 @@ class UsersController < ApplicationController
   end
   
   def community_creators
-    # Rewards this week -> rewardees -> top content -> top impacter
-    @users = Reward.this_month.group_by(&:recipient).to_a
+    # Tags -> rewards this week -> rewardees -> top content -> top impacter
+    
+    @users = []
+    content_ids = get_tags_and_stories
+    return if content_ids.empty?
+    
+    @users = Reward.where("curations.story_id IN (#{content_ids.join(',')})").where("curations.type = 'Reward'").group_by(&:recipient).to_a
     @users = @users.sort_by {|array| -array.second.inject(0) {|sum,r| r.amount}}
   end
   
@@ -109,5 +102,21 @@ class UsersController < ApplicationController
       @page_title = @user.name if @user
       @nav = "home"
       @sidenav = "profile" if current_user.present? && @user == current_user
+    end
+    
+    def get_tags_and_stories
+      if params[:tags].blank?
+        @tags = Story.joins(:curations).where("curations.type = 'Reward'").tag_counts.order("count DESC").limit(20) 
+      else      
+        @tags = Story.joins(:curations).where("curations.type = 'Reward'").tagged_with(params[:tags]).tag_counts.order("count DESC").limit(20).sort do |x, y|
+          if params[:tags].include?(x.name)
+            -1
+          else
+            1
+          end
+        end
+      end
+      
+      return Story.tagged_with(@tags, :any => true).map{|story| story.id}
     end
 end
