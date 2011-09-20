@@ -1,45 +1,55 @@
-- content_for :head do
-  = javascript_include_tag "invite"
+#about.clearfix
 
-#about-pitch
-  .byline
-    %h1 What’s it all about?
+  #explanation
+    %ul.steps
+      %li Share your work
+      %li See your impact
+      %li Reward others
+    .welcome
+      %h1 Welcome to mo&#149;meant
+      %p
+        We are a community
+        %br
+        that values &amp; rewards online content.
+      %p Mo&#149;meant allows you to reward people, creating great content all over the Web.
+      %ul
+        %li
+          .number 1.
+          .text
+            We all create content online these days. Most of that content is free.
+            %br
+            Even pros like writers, musicians, and journalists are giving their work away.
+        %li
+          .number 2.
+          .text
+            But when we create great content that others enjoy,
+            %br
+            we all deserve to be rewarded.
+        %li
+          .number 3.
+          .text
+            Mo&#149;meant is a community for rewarding and getting rewarded.
+            %br
+            Let's truly value each other's work!
+
+  .faq
+    %h3 How do I start representing myself and my content?
+    %p Go to your #{link_to("profile page", root_path)} (the home button at the top), and click on the tab "creations".
+    %p Once there, you'll get some instructions and see a big box to "add content".
+    %p Use this to link to your content, create it from scratch, and organize it for others to see.
+  .faq
     %h3
-      The web gives us unprecedented access to free content —
+      What are
       %br
-      but at Mo•meant, we believe that the best way to promote and enjoy creativity is to recognize its value.
+      Reward Coins?
+    %p Reward coins are the currency of Mo&#149;meant's community. Give a reward coin to show appreciation and support.
+    %p As you reward, you build status in the mo&#149;meant community so your own content can be found.
+    %p #{link_to("Purchase reward coins", coins_path)} to start rewarding.
+  .faq
+    %h3
+      Is there a
       %br
-  .characters      
-  .ampersand  
-    %ul.halves
-      %li.patron
-        %h3
-          %span Creativity
-        %p
-          Our online platform allows creators
-          %br
-          to tell digital stories, moving beyond the blog
-          %br
-          to a more immersive form of media.
-      %li.create
-        %h3
-          %span Patronage
-        %p
-          Introducing a new model of digital patronage.
-          %br
-          As a patron, you show appreciation
-          %br
-          by rewarding stories you like.
-    %ul.questions
-      %p.small
-        %span.title How do I start making a story?
-        Click on the + sign in the top nav bar to start creating a new story. To edit stories you’ve already made (whether published or not) go to your creator page and click on the story thumbnail you’d like to edit. Once on that stories preview page you’ll see an edit button.
-      %p.small
-        %span.title What are Rewards Coins?
-        Rewards coins are the currency of Mo•meant’s community. If you appreciate a story on the site, you show your appreciation by rewarding the creator with momeant coins.
-      %p.small
-        %span.title What is the free trial?
-        In the near future Mo•meant will introduce it’s full Patronage model designed to enable all members to support creativity. For now we are in a free trial and are giving you coins to freely distribute as you wish to show your appreciation for other creators' work. We’ll make sure to let you know well before this free trial expires and what's coming next.
-  .get-in-touch
-    %h3 Have more questions?
-    = mail_to("team@momeant.com", "Get in touch", :class => "button")
+      free trial?
+    %p Yes! Once you sign up as a user, which is free, you receive 5 reward coins to give out.
+    %p While they are a free trial, those are real rewards that we will pay out to the creators you choose.
+    %p So enjoy, and make sure to purchase more rewards when you run out.
