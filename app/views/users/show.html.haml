@@ -3,8 +3,6 @@
   = render "users/user_tabs"
 
   .tabbed
-  
-    .what-is-this These are the creators and their work that #{@user.first_name} has rewarded.
     
     - @creators.each do |creator, rewards|
       - if creator != @user
@@ -28,17 +26,8 @@
                   %br
                   #{creator.first_name} get:
                 .value= @user.impact_on(creator)
-          %ul.content.clearfix
-            - rewards.each do |reward|
-              %li
-                = link_to(truncate(reward.story.title, :length => 25), story_path(reward.story, :impacted_by => reward.id), :class => "title")
-                = link_to(image_tag(reward.story.thumbnail.url(:medium)), story_path(reward.story, :impacted_by => reward.id), :class => "thumbnail")
-                .gave
-                  %span You gave this
-                  %span.reward #{reward.amount}
-                  %span , which led to:
-                .people #{pluralize(reward.descendants.count, "more person")} rewarding
-                .impact= pluralize(reward.impact, "more reward star")
+          %ul.rewards.clearfix
+            = render rewards, :user_profile => true
           
         
     - if me?(@user) && @user.is_admin?

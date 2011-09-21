@@ -1,5 +1,6 @@
 - size ||= :medium
 - community ||= false
+- user_profile ||= false
 - for_person = reward.story_id.nil?
 %li.reward{:class => for_person  ? "person" : ""}
   .what
@@ -25,6 +26,13 @@
         %h3 Biggest Impacter:
         %span #{impacter.name} with
         %span.amount= impacting_amount
+  - elsif user_profile
+    .gave
+      %span You gave this
+      %span.reward #{reward.amount}
+      %span , which led to:
+    .people #{pluralize(reward.descendants.count, "more person")} rewarding
+    .impact= pluralize(reward.impact, "more reward star")
   - else
     .who
       = link_to(image_tag(reward.user.avatar(:thumbnail)), user_path(reward.user), :class => "avatar")

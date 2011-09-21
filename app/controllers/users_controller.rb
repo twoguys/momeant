@@ -61,6 +61,7 @@ class UsersController < ApplicationController
   def community
     @users = []
     @nav = "community"
+    
     content_ids = get_tags_and_stories
     return if content_ids.empty?
     
@@ -78,6 +79,8 @@ class UsersController < ApplicationController
     # Tags -> rewards this week -> rewardees -> top content -> top impacter
     
     @users = []
+    @nav = "community"
+    
     content_ids = get_tags_and_stories
     return if content_ids.empty?
     

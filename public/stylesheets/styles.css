@@ -116,9 +116,10 @@ html, body {
       margin: 0 auto;
       padding: 0 15px; }
       #header #user-nav ul.links li {
-        float: left; }
+        float: left;
+        height: 60px; }
       #header #user-nav ul.links li.active {
-        background: #00aeef; }
+        background: transparent url(../images/navActive.png) no-repeat 50% -7px; }
     #header #user-nav #logo, #header #user-nav #home, #header #user-nav #community, #header #user-nav #faq {
       width: 46px; }
       #header #user-nav #logo a, #header #user-nav #home a, #header #user-nav #community a, #header #user-nav #faq a {
@@ -165,10 +166,12 @@ html, body {
           padding-top: 1px; }
           #header #user-nav #coins a .text span {
             display: block; }
-    #header #user-nav #coins.active a .amount {
-      color: white; }
-    #header #user-nav #coins.active a .text {
-      color: black; }
+    #header #user-nav #coins.active a {
+      background-color: #00aeef; }
+      #header #user-nav #coins.active a .amount {
+        color: white; }
+      #header #user-nav #coins.active a .text {
+        color: black; }
     #header #user-nav #signin, #header #user-nav #signout, #header #user-nav #join {
       position: absolute;
       right: 20px;
@@ -4376,7 +4379,7 @@ ul.avatars li {
       line-height: 62px;
       text-align: center; }
   .user-profile .patronee {
-    margin: 20px 20px 0;
+    margin: 0 20px 20px;
     border: 1px solid #e0e0e0;
     -webkit-box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
     -moz-box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
@@ -4435,46 +4438,27 @@ ul.avatars li {
       .user-profile .patronee .impact .helped-get {
         border-left: 1px solid white;
         padding-left: 20px; }
-    .user-profile .patronee ul.content {
-      clear: both;
-      padding: 0 0 20px 20px; }
-      .user-profile .patronee ul.content li {
-        float: left;
-        border: 1px solid #e0e0e0;
-        -webkit-box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
-        -moz-box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
-        box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
-        margin: 20px 20px 0 0;
-        padding-bottom: 5px; }
-        .user-profile .patronee ul.content li .title {
-          color: #252525;
-          text-transform: uppercase;
-          font-weight: 700;
-          padding: 10px;
-          display: block; }
-        .user-profile .patronee ul.content li .thumbnail img {
-          width: 230px; }
-        .user-profile .patronee ul.content li .gave, .user-profile .patronee ul.content li .people, .user-profile .patronee ul.content li .impact {
-          padding: 5px 10px;
-          font-size: 11px; }
-        .user-profile .patronee ul.content li .gave {
-          border-bottom: 1px solid #e0e0e0;
-          margin-bottom: 3px; }
-          .user-profile .patronee ul.content li .gave .reward {
-            padding-right: 13px;
-            background: transparent url(../images/icons/starBlackTiny.png) no-repeat 100% 2px;
-            margin: 0 2px; }
-        .user-profile .patronee ul.content li .people, .user-profile .patronee ul.content li .impact {
-          padding: 3px 0 3px 35px;
-          background-position: 10px 50%;
-          background-repeat: no-repeat; }
-        .user-profile .patronee ul.content li .people {
-          background-image: url(../images/icons/person.png); }
-        .user-profile .patronee ul.content li .impact {
-          background-image: url(../images/icons/starBlackSmall.png);
-          float: none; }
-      .user-profile .patronee ul.content li:hover .title {
-        color: #00aeef; }
+    .user-profile .patronee ul.rewards {
+      padding: 20px 0 0 20px; }
+      .user-profile .patronee ul.rewards li .gave, .user-profile .patronee ul.rewards li .people, .user-profile .patronee ul.rewards li .impact {
+        padding: 5px 10px;
+        font-size: 11px; }
+      .user-profile .patronee ul.rewards li .gave {
+        border-bottom: 1px solid #e0e0e0;
+        margin-bottom: 3px; }
+        .user-profile .patronee ul.rewards li .gave .reward {
+          padding-right: 13px;
+          background: transparent url(../images/icons/starBlackTiny.png) no-repeat 100% 2px;
+          margin: 0 2px; }
+      .user-profile .patronee ul.rewards li .people, .user-profile .patronee ul.rewards li .impact {
+        padding: 3px 0 3px 35px;
+        background-position: 10px 50%;
+        background-repeat: no-repeat; }
+      .user-profile .patronee ul.rewards li .people {
+        background-image: url(../images/icons/person.png); }
+      .user-profile .patronee ul.rewards li .impact {
+        background-image: url(../images/icons/starBlackSmall.png);
+        float: none; }
   .user-profile ul.stats-bar {
     height: 50px;
     margin: 0 20px 20px;
@@ -4709,7 +4693,7 @@ form.user_edit #user_interest_list {
 
 .community .top {
   background: #e0e0e0;
-  padding: 20px 0; }
+  padding: 20px 0 0; }
 .community #filter {
   border: 1px solid #d0d0d0;
   margin-left: 20px;
@@ -6192,7 +6176,8 @@ ul.rewards {
   padding-top: 20px; }
   ul.rewards li {
     width: 230px;
-    margin-bottom: 20px;
+    float: left;
+    margin: 0 20px 20px 0;
     position: relative;
     -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
     -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
