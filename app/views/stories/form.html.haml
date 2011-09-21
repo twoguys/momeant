@@ -6,7 +6,7 @@
 
   - if !@story.valid?
     .banner
-      .before In order to publish your story, please fix these issues:
+      .before In order to post your story, please fix these issues:
       %ul
         - @story.errors.full_messages.each do |msg|
           %li= msg
@@ -83,7 +83,8 @@
             = render "gallery_creator"
   
     %section#done
-      = button_to("Save", publish_story_path(@story))
+      = button_to("Post", publish_story_path(@story))
+      = link_to("Preview", story_path(@story), :target => :new, :class => "preview")
   
   %fieldset
     %ul
