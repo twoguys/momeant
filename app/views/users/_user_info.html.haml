@@ -1,5 +1,5 @@
 .info.top
-  = image_tag(@user.avatar.url(:thumbnail), :class => "avatar")
+  = link_to(image_tag(@user.avatar.url(:thumbnail), :class => "avatar"), user_path(@user))
   .name-tagline-follow
     .name
       = @user.name
