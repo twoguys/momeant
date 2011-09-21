@@ -4,18 +4,13 @@ class ApplicationController < ActionController::Base
   include SslRequirement
   protect_from_forgery
   
-  before_filter :load_following_stream, :check_for_trial_expiration, :push_to_sender
+  before_filter :check_for_trial_expiration, :push_to_sender
   
   @nav = "home"
   @sidenav = ""
   
   def private_beta?
     ENV["CURRENT_RELEASE"] == "private-beta"
-  end
-  
-  def load_following_stream
-    return if current_user.nil?
-    @following_stream = current_user.following_stream
   end
   
   def check_for_trial_expiration

@@ -34,19 +34,11 @@
       = render "layouts/user_nav" unless @hide_nav
 
     #container{:class => @nosidebar ? "no-sidebar" : ""}
-      #main.column
+      #main
         = render "layouts/flash", :flash => flash
         #call-to-action
           = yield :call_to_action
         = yield
-      #right-sidebar.column
-        .heading
-          %h3.sidebar-label Following Stream
-          %span.sidebar-description content rewarded by those you follow
-        %ul.rewards
-          = render @following_stream if current_user
-        .spinner
-        #user_id= current_user.id if current_user
 
     #footer
       .insides
