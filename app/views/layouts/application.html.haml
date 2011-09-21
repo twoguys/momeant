@@ -51,6 +51,8 @@
     - if !current_user
       = render "shared/join_modal"
       = render "shared/login_modal"
+    - else
+      = render "shared/feedback_modal"
     = yield :modals
 
     = render "shared/analytics" if Rails.env.production?

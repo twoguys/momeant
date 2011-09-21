@@ -29,34 +29,21 @@ function tag_deletions() {
 	});
 }
 
-var prevent_closing_of_signup_modal = false;
-function setup_signup_and_join_modals(selector) {
-	if (selector == undefined)
-		selector = '';
-	$(selector + ' a[href="#signup-modal"]').click(function() {
-		var $modal = $('#join-modal');
-		$modal.stop().fadeIn('fast');
-		return false;
-	});
-	$(selector + ' a[href="#login-modal"]').click(function() {
-		var $modal = $('#login-modal');
-		$modal.stop().fadeIn('fast');
-		return false;
-	});
-	if (!selector) {
-		$('#join-modal .cover, #join-modal .close').click(function() {
-			if (!prevent_closing_of_signup_modal) {
-				$('#join-modal').stop().fadeOut('fast');
-			}
+function setup_modals() {
+	_.each(['#join', '#login', '#feedback'], function(id) {
+		$('a[href="' + id + '-modal"]').click(function() {
+			$(id + '-modal').fadeIn('fast');
+			return false;
+		})
+		$(id + '-modal .cover, ' + id + '-modal .close').click(function() {
+			$(id + '-modal').stop().fadeOut('fast');
 			return false;
 		});
-		$('#login-modal .cover, #login-modal .close').click(function() {
-			$('#login-modal').stop().fadeOut('fast');
-		});
-		$(document).keyup(function(e) {
-		  if (e.keyCode == 27) { $('#join-modal, #login-modal').stop().fadeOut('fast'); } // escape
-		});
-	}
+	});
+	
+	$(document).keyup(function(e) {
+	  if (e.keyCode == 27) { $('#join-modal, #login-modal, #feedback-modal').stop().fadeOut('fast'); } // escape
+	});
 }
 
 function setup_rewarding() {
@@ -121,14 +108,30 @@ function handle_signup_login_form_validation() {
 	});
 }
 
+function handle_feedback_form() {
+	$('#feedback-form').submit(function(event) {
+		event.preventDefault(); 
+
+		var $form = $(this);
+		var comment = $form.find("#feedback_comment");
+		var url = $form.attr('action');
+		
+		$.post(url, { comment:comment.val() });
+		
+		comment.val('');
+		$('#feedback-modal').fadeOut('fast');
+	});
+}
+
 $(document).ready(function() {
 	setup_tooltips();
 	setup_tab_switching();
 	setup_placeholder_text();
 	tag_deletions();
-	setup_signup_and_join_modals();
+	setup_modals();
 	setup_rewarding();
 	handle_signup_login_form_validation();
+	handle_feedback_form();
 	
 	$("a.disabled").click(function() {return false;})
 	

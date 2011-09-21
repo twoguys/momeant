@@ -74,6 +74,9 @@ Repo::Application.routes.draw do
 
     # Spreedly updates come here
     post :billing_updates, :on => :collection
+    
+    # Feedback
+    post :feedback, :on => :collection
   end
   match '/analytics',           :to => "users#analytics",           :as => :analytics
   match '/community',           :to => "users#community",           :as => :community

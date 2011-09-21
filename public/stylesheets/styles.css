@@ -172,11 +172,11 @@ html, body {
         color: white; }
       #header #user-nav #coins.active a .text {
         color: black; }
-    #header #user-nav #signin, #header #user-nav #signout, #header #user-nav #join {
+    #header #user-nav #signin, #header #user-nav #signout, #header #user-nav #join, #header #user-nav #feedback {
       position: absolute;
       right: 20px;
       padding-top: 10px; }
-      #header #user-nav #signin a, #header #user-nav #signout a, #header #user-nav #join a {
+      #header #user-nav #signin a, #header #user-nav #signout a, #header #user-nav #join a, #header #user-nav #feedback a {
         height: 28px;
         line-height: 30px;
         padding: 0 20px;
@@ -206,6 +206,11 @@ html, body {
     #header #user-nav #signout a {
       background-image: -moz-linear-gradient(center top, #d0d0d0 4%, #888888 52%);
       background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #d0d0d0), color-stop(0.52, #888888)); }
+    #header #user-nav #feedback {
+      right: 100px; }
+      #header #user-nav #feedback a {
+        background-image: -moz-linear-gradient(center top, #43baf0 4%, #3a94e6 52%);
+        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #43baf0), color-stop(0.52, #3a94e6)); }
 
 #header.hide-nav {
   background: none; }
@@ -5044,7 +5049,7 @@ form.user_edit #user_interest_list {
         border-top-left-radius: 0;
         border-bottom-left-radius: 0; }
 
-#join-modal, #login-modal {
+#join-modal, #login-modal, #feedback-modal {
   display: none;
   position: fixed;
   top: 0;
@@ -5055,14 +5060,14 @@ form.user_edit #user_interest_list {
   color: white;
   width: 100%;
   height: 100%; }
-  #join-modal .cover, #login-modal .cover {
+  #join-modal .cover, #login-modal .cover, #feedback-modal .cover {
     width: 100%;
     height: 100%;
     background: transparent url(../images/modalCover.png) repeat;
     background: rgba(0, 0, 0, 0.7);
     position: absolute;
     z-index: 1; }
-  #join-modal .padder, #login-modal .padder {
+  #join-modal .padder, #login-modal .padder, #feedback-modal .padder {
     width: 480px;
     margin: 0 auto;
     background-color: #f4f4f4;
@@ -5076,7 +5081,7 @@ form.user_edit #user_interest_list {
     -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
     -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.7); }
-    #join-modal .padder a.close, #login-modal .padder a.close {
+    #join-modal .padder a.close, #login-modal .padder a.close, #feedback-modal .padder a.close {
       position: absolute;
       top: -15px;
       right: -15px;
@@ -5084,12 +5089,12 @@ form.user_edit #user_interest_list {
       height: 30px;
       display: block;
       background: transparent url(../images/modalClose.png) no-repeat 0 0; }
-  #join-modal .placeholder, #login-modal .placeholder {
+  #join-modal .placeholder, #login-modal .placeholder, #feedback-modal .placeholder {
     color: #aaaaaa;
     font-style: italic;
     font-family: Georgia, serif;
     font-size: 12px; }
-  #join-modal h2, #login-modal h2 {
+  #join-modal h2, #login-modal h2, #feedback-modal h2 {
     font-family: "museo-slab-1", "museo-slab-2", serif;
     font-size: 30px;
     color: black;
@@ -5100,24 +5105,24 @@ form.user_edit #user_interest_list {
     background-color: transparent;
     font-weight: 100;
     padding-top: 0px; }
-  #join-modal input[type="text"], #join-modal input[type="password"], #login-modal input[type="text"], #login-modal input[type="password"] {
+  #join-modal input[type="text"], #join-modal input[type="password"], #login-modal input[type="text"], #login-modal input[type="password"], #feedback-modal input[type="text"], #feedback-modal input[type="password"] {
     width: 194px; }
-  #join-modal input[type="submit"], #login-modal input[type="submit"] {
+  #join-modal input[type="submit"], #login-modal input[type="submit"], #feedback-modal input[type="submit"] {
     color: black;
     text-shadow: none;
     font-size: 14px;
     padding: 8px 10px 6px; }
-  #join-modal li, #login-modal li {
+  #join-modal li, #login-modal li, #feedback-modal li {
     margin-bottom: 10px;
     height: 31px; }
-  #join-modal li.remember-me, #login-modal li.remember-me {
+  #join-modal li.remember-me, #login-modal li.remember-me, #feedback-modal li.remember-me {
     margin-top: -5px;
     margin-bottom: 0px; }
-    #join-modal li.remember-me label, #login-modal li.remember-me label {
+    #join-modal li.remember-me label, #login-modal li.remember-me label, #feedback-modal li.remember-me label {
       color: #252525; }
-  #join-modal .spaced-a-bit, #login-modal .spaced-a-bit {
+  #join-modal .spaced-a-bit, #login-modal .spaced-a-bit, #feedback-modal .spaced-a-bit {
     margin-bottom: 5px; }
-  #join-modal li.copy, #login-modal li.copy {
+  #join-modal li.copy, #login-modal li.copy, #feedback-modal li.copy {
     color: #999999;
     font-size: 13px;
     font-family: "museo-slab-1", "museo-slab-2", serif;
@@ -5125,9 +5130,9 @@ form.user_edit #user_interest_list {
     margin-bottom: 0;
     font-weight: 100;
     text-align: center; }
-  #join-modal form li, #login-modal form li {
+  #join-modal form li, #login-modal form li, #feedback-modal form li {
     position: relative; }
-    #join-modal form li label.placeholder, #login-modal form li label.placeholder {
+    #join-modal form li label.placeholder, #login-modal form li label.placeholder, #feedback-modal form li label.placeholder {
       color: #999999;
       font-style: italic;
       font-family: Georgia, serif;
@@ -5138,23 +5143,23 @@ form.user_edit #user_interest_list {
       font-weight: 100;
       margin: 0;
       padding: 0 0 0 10px; }
-    #join-modal form li label.error, #login-modal form li label.error {
+    #join-modal form li label.error, #login-modal form li label.error, #feedback-modal form li label.error {
       font-family: Georgia, serif;
       font-size: 11px;
       font-weight: 100;
       color: #00aeef;
       text-transform: none;
       margin: 0 0 5px 0; }
-    #join-modal form li span, #login-modal form li span {
+    #join-modal form li span, #login-modal form li span, #feedback-modal form li span {
       width: 102px;
       float: left;
       margin-right: 5px;
       position: relative; }
-      #join-modal form li span input[type="text"], #login-modal form li span input[type="text"] {
+      #join-modal form li span input[type="text"], #login-modal form li span input[type="text"], #feedback-modal form li span input[type="text"] {
         width: 87px; }
-    #join-modal form li span.last, #login-modal form li span.last {
+    #join-modal form li span.last, #login-modal form li span.last, #feedback-modal form li span.last {
       margin-right: 0; }
-    #join-modal form li input[type="submit"], #login-modal form li input[type="submit"] {
+    #join-modal form li input[type="submit"], #login-modal form li input[type="submit"], #feedback-modal form li input[type="submit"] {
       background-color: #c0eeff;
       -webkit-border-radius: 4px;
       -moz-border-radius: 4px;
@@ -5164,35 +5169,35 @@ form.user_edit #user_interest_list {
       text-transform: uppercase;
       font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
       width: 210px; }
-    #join-modal form li input[type="submit"]:disabled, #login-modal form li input[type="submit"]:disabled {
+    #join-modal form li input[type="submit"]:disabled, #login-modal form li input[type="submit"]:disabled, #feedback-modal form li input[type="submit"]:disabled {
       background-color: #dfdfdf;
       color: #787878;
       cursor: default; }
-    #join-modal form li input[type="submit"]:disabled:active, #login-modal form li input[type="submit"]:disabled:active {
+    #join-modal form li input[type="submit"]:disabled:active, #login-modal form li input[type="submit"]:disabled:active, #feedback-modal form li input[type="submit"]:disabled:active {
       top: 0; }
-  #join-modal form li.filled label, #login-modal form li.filled label {
+  #join-modal form li.filled label, #login-modal form li.filled label, #feedback-modal form li.filled label {
     display: none; }
-  #join-modal form li.checkbox label.error, #login-modal form li.checkbox label.error {
+  #join-modal form li.checkbox label.error, #login-modal form li.checkbox label.error, #feedback-modal form li.checkbox label.error {
     position: absolute;
     bottom: -10px;
     padding-left: 23px; }
-  #join-modal .join, #join-modal .login, #login-modal .join, #login-modal .login {
+  #join-modal .join, #join-modal .login, #login-modal .join, #login-modal .login, #feedback-modal .join, #feedback-modal .login {
     float: left;
     width: 210px;
     position: relative; }
-    #join-modal .join img, #join-modal .login img, #login-modal .join img, #login-modal .login img {
+    #join-modal .join img, #join-modal .login img, #login-modal .join img, #login-modal .login img, #feedback-modal .join img, #feedback-modal .login img {
       margin: 15px 37%; }
-  #join-modal .join, #login-modal .join {
+  #join-modal .join, #login-modal .join, #feedback-modal .join {
     padding-right: 25px;
     border-right: 1px solid #cccccc;
     padding-left: 5px; }
-  #join-modal .login, #login-modal .login {
+  #join-modal .login, #login-modal .login, #feedback-modal .login {
     float: right;
     padding-left: 25px; }
-    #join-modal .login input[type="checkbox"], #login-modal .login input[type="checkbox"] {
+    #join-modal .login input[type="checkbox"], #login-modal .login input[type="checkbox"], #feedback-modal .login input[type="checkbox"] {
       float: left;
       height: 25px; }
-    #join-modal .login label, #login-modal .login label {
+    #join-modal .login label, #login-modal .login label, #feedback-modal .login label {
       font-weight: 600;
       color: #999999;
       text-transform: uppercase;
@@ -5211,6 +5216,17 @@ form.user_edit #user_interest_list {
   width: 210px; }
 #login-modal .login {
   padding: 0; }
+
+#feedback-modal .insides {
+  width: 480px;
+  height: 200px; }
+  #feedback-modal .insides li.text {
+    height: 90px; }
+  #feedback-modal .insides textarea {
+    width: 463px;
+    height: 70px; }
+  #feedback-modal .insides input[type="submit"] {
+    float: right; }
 
 #subscribe-pitch .byline {
   width: 550px;

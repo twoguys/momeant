@@ -15,6 +15,7 @@
           .text
             %span reward coins
             %span to give out
+      %li#feedback= link_to("Give Us Feedback", "#feedback-modal")
       %li#signout= link_to("Logout", destroy_user_session_path)
     - else
       %li#join= link_to("Join", "#signup-modal")

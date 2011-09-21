@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_filter :authenticate_user!, :only => [:edit, :update, :analytics]
-  before_filter :find_user, :except => [:community, :community_creators, :analytics, :billing_updates]
+  before_filter :authenticate_user!, :only => [:edit, :update, :analytics, :feedback]
+  before_filter :find_user, :except => [:community, :community_creators, :analytics, :billing_updates, :feedback]
   skip_before_filter :verify_authenticity_token, :only => :billing_updates
   
   def show
@@ -86,6 +86,13 @@ class UsersController < ApplicationController
     
     @users = Reward.where("curations.story_id IN (#{content_ids.join(',')})").where("curations.type = 'Reward'").group_by(&:recipient).to_a
     @users = @users.sort_by {|array| -array.second.inject(0) {|sum,r| r.amount}}
+  end
+  
+  def feedback
+    if current_user
+      FeedbackMailer.give_feedback(params[:comment], current_user).deliver
+    end
+    render :json => {:success => true}
   end
   
   def billing_updates
