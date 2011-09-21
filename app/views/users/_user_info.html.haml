@@ -5,7 +5,6 @@
       = @user.name
       - if @user == current_user
         = link_to("Edit Profile", edit_user_path(current_user), :class => "edit")
-    .follow= follow_button(@user)
     .tagline= truncate(@user.tagline, :length => 240)
     
   .impact-shield.tooltipped-w{:title => "Level 1 Patron"} 1
