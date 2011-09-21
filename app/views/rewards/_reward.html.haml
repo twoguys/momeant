@@ -18,14 +18,15 @@
         %span.amount= reward.story.rewards.sum(:amount)
         %span.text all time
     .impacter
-      - user_reward = user_who_impacted_most(reward.story.rewards.this_month)
-      - impacter = user_reward.first
-      - impacting_amount = user_reward.second
-      = link_to(image_tag(impacter.avatar(:thumbnail)), user_path(impacter), :class => "avatar")
-      .text
-        %h3 Biggest Impacter:
-        %span #{impacter.name} with
-        %span.amount= impacting_amount
+      - user_reward = user_who_impacted_most(reward.story.rewards)
+      - unless user_reward.nil?
+        - impacter = user_reward.first
+        - impacting_amount = user_reward.second
+        = link_to(image_tag(impacter.avatar(:thumbnail)), user_path(impacter), :class => "avatar")
+        .text
+          %h3 Biggest Impacter:
+          %span #{impacter.name} with
+          %span.amount= impacting_amount
   - elsif user_profile
     .gave
       %span You gave this
