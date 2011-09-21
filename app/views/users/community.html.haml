@@ -18,12 +18,19 @@
                   %a.name{:href => user_path(user)}
                     %span= user.first_name
                     %span= user.last_name
-                %td.impact.numerals
-                  .tiny impact
-                  .count= user.impact
-                %td.rewards.numerals
-                  .tiny rewards given
-                  .count= user.given_rewards.sum(:amount)
-                %td.rewardees.numerals
-                  .tiny creators rewarded
-                  .count= user.rewarded_creators.count
+                  .info
+                    .tagline= truncate(user.tagline, :length => 140)
+                    .interests= truncate(user.interests.join(", "), :length => 60)
+                  .stats
+                    %span.impact.numerals
+                      .count= user.impact
+                      .tiny impact
+                    %span.rewards.numerals  
+                      .count= user.given_rewards.sum(:amount)
+                      .tiny rewards given
+                    %span.rewardees.numerals  
+                      .count= user.rewarded_creators.count
+                      .tiny creators rewarded
+                %td.content
+                  %ul.rewards
+                    = render user.given_rewards[0..2]

@@ -526,6 +526,24 @@ table {
     background: #f4f4f4; }
   table tr:nth-child(odd) td {
     background: #fafafa; }
+  table td .stats {
+    clear: both;
+    padding-top: 10px; }
+    table td .stats span.impact, table td .stats span.rewards, table td .stats span.rewardees {
+      display: block;
+      float: left;
+      width: 30%; }
+    table td .stats .count {
+      padding-left: 18px;
+      background: transparent url(../images/icons/starBlackSmall.png) no-repeat 0 0;
+      letter-spacing: -0.07em; }
+    table td .stats .tiny {
+      font-family: "ff-dagny-web-pro-1", "ff-dagny-web-pro-2", sans-serif;
+      font-size: 10px;
+      text-transform: uppercase;
+      margin-top: 5px; }
+    table td .stats .rewardees .count {
+      background-image: url(../images/icons/personSmall.png); }
   table tr.heading th {
     font-size: 13px;
     font-weight: 700;
@@ -541,19 +559,6 @@ table {
     font-family: "ff-dagny-web-pro-1", "ff-dagny-web-pro-2", sans-serif;
     font-size: 56px;
     font-weight: 200; }
-    table td.numerals div {
-      float: left; }
-    table td.numerals .count {
-      padding-right: 18px;
-      background: transparent url(../images/icons/starBlackSmall.png) no-repeat 100% 14px;
-      letter-spacing: -0.07em; }
-    table td.numerals .tiny {
-      font-family: "ff-dagny-web-pro-1", "ff-dagny-web-pro-2", sans-serif;
-      font-size: 10px;
-      text-transform: uppercase;
-      width: 45px;
-      text-align: right;
-      margin: 15px 5px 0 0; }
 
 #landing {
   width: 100%;
@@ -4768,8 +4773,11 @@ form.user_edit #user_interest_list {
       width: 100%; }
       .community .user-list .user-list-inner table.users th.impact, .community .user-list .user-list-inner table.users th.rewards, .community .user-list .user-list-inner table.users th.rewardees {
         text-align: center; }
+      .community .user-list .user-list-inner table.users tr td.patron, .community .user-list .user-list-inner table.users tr td.creator, .community .user-list .user-list-inner table.users tr td.content {
+        padding: 20px;
+        vertical-align: top; }
       .community .user-list .user-list-inner table.users tr td.patron, .community .user-list .user-list-inner table.users tr td.creator {
-        vertical-align: middle; }
+        width: 220px; }
         .community .user-list .user-list-inner table.users tr td.patron a.avatar, .community .user-list .user-list-inner table.users tr td.patron a.name, .community .user-list .user-list-inner table.users tr td.patron .impact, .community .user-list .user-list-inner table.users tr td.creator a.avatar, .community .user-list .user-list-inner table.users tr td.creator a.name, .community .user-list .user-list-inner table.users tr td.creator .impact {
           display: block;
           float: left; }
@@ -4787,60 +4795,56 @@ form.user_edit #user_interest_list {
           color: #252525; }
           .community .user-list .user-list-inner table.users tr td.patron a.name span, .community .user-list .user-list-inner table.users tr td.creator a.name span {
             display: block; }
-      .community .user-list .user-list-inner table.users tr td.rewardees .count {
-        background: transparent url(../images/icons/person.png) no-repeat 100% 14px; }
-      .community .user-list .user-list-inner table.users tr td.creator-rewards {
-        border-right: 1px solid #e0e0e0; }
-        .community .user-list .user-list-inner table.users tr td.creator-rewards div {
-          float: right; }
+        .community .user-list .user-list-inner table.users tr td.patron .info, .community .user-list .user-list-inner table.users tr td.creator .info {
+          clear: both;
+          padding-top: 10px; }
+          .community .user-list .user-list-inner table.users tr td.patron .info .tagline, .community .user-list .user-list-inner table.users tr td.patron .info .interests, .community .user-list .user-list-inner table.users tr td.creator .info .tagline, .community .user-list .user-list-inner table.users tr td.creator .info .interests {
+            font-size: 11px;
+            margin-bottom: 10px; }
+      .community .user-list .user-list-inner table.users tr td.content ul.rewards {
+        padding: 0; }
+        .community .user-list .user-list-inner table.users tr td.content ul.rewards li.reward {
+          float: left;
+          margin-right: 10px;
+          background: white; }
+          .community .user-list .user-list-inner table.users tr td.content ul.rewards li.reward .stats {
+            border-bottom: 1px solid #eeeeee;
+            padding: 10px 0;
+            height: 15px;
+            font-size: 11px; }
+            .community .user-list .user-list-inner table.users tr td.content ul.rewards li.reward .stats .this-week, .community .user-list .user-list-inner table.users tr td.content ul.rewards li.reward .stats .total {
+              padding: 0 10px;
+              float: left; }
+              .community .user-list .user-list-inner table.users tr td.content ul.rewards li.reward .stats .this-week .amount, .community .user-list .user-list-inner table.users tr td.content ul.rewards li.reward .stats .total .amount {
+                padding-right: 12px;
+                background: transparent url(../images/icons/starBlackTiny.png) no-repeat 100% 2px;
+                margin-right: 3px; }
+            .community .user-list .user-list-inner table.users tr td.content ul.rewards li.reward .stats .this-week {
+              border-right: 1px solid #cccccc; }
+          .community .user-list .user-list-inner table.users tr td.content ul.rewards li.reward .impacter {
+            padding: 10px;
+            font-size: 11px; }
+            .community .user-list .user-list-inner table.users tr td.content ul.rewards li.reward .impacter a.avatar {
+              display: block;
+              width: 28px;
+              height: 28px;
+              border: 1px solid black;
+              float: left;
+              margin-right: 5px; }
+              .community .user-list .user-list-inner table.users tr td.content ul.rewards li.reward .impacter a.avatar img {
+                width: 28px;
+                height: 28px; }
+            .community .user-list .user-list-inner table.users tr td.content ul.rewards li.reward .impacter .text h3 {
+              text-transform: uppercase; }
+            .community .user-list .user-list-inner table.users tr td.content ul.rewards li.reward .impacter .text .amount {
+              padding-right: 12px;
+              background: transparent url(../images/icons/starBlackTiny.png) no-repeat 100% 2px; }
       .community .user-list .user-list-inner table.users tr td.content-toggler {
         border-left: 1px solid white;
         width: 20px;
         background-image: url(../images/icons/tableOpenClose.png);
         background-repeat: no-repeat;
         background-position: 50% -47px; }
-      .community .user-list .user-list-inner table.users tr.content {
-        display: none; }
-        .community .user-list .user-list-inner table.users tr.content td {
-          background: #e6f9ff; }
-          .community .user-list .user-list-inner table.users tr.content td ul.rewards {
-            padding: 10px 0 0 0; }
-            .community .user-list .user-list-inner table.users tr.content td ul.rewards li.reward {
-              float: left;
-              margin-right: 10px;
-              background: white; }
-              .community .user-list .user-list-inner table.users tr.content td ul.rewards li.reward .stats {
-                border-bottom: 1px solid #eeeeee;
-                padding: 10px 0;
-                height: 15px;
-                font-size: 11px; }
-                .community .user-list .user-list-inner table.users tr.content td ul.rewards li.reward .stats .this-week, .community .user-list .user-list-inner table.users tr.content td ul.rewards li.reward .stats .total {
-                  padding: 0 10px;
-                  float: left; }
-                  .community .user-list .user-list-inner table.users tr.content td ul.rewards li.reward .stats .this-week .amount, .community .user-list .user-list-inner table.users tr.content td ul.rewards li.reward .stats .total .amount {
-                    padding-right: 12px;
-                    background: transparent url(../images/icons/starBlackTiny.png) no-repeat 100% 2px;
-                    margin-right: 3px; }
-                .community .user-list .user-list-inner table.users tr.content td ul.rewards li.reward .stats .this-week {
-                  border-right: 1px solid #cccccc; }
-              .community .user-list .user-list-inner table.users tr.content td ul.rewards li.reward .impacter {
-                padding: 10px;
-                font-size: 11px; }
-                .community .user-list .user-list-inner table.users tr.content td ul.rewards li.reward .impacter a.avatar {
-                  display: block;
-                  width: 28px;
-                  height: 28px;
-                  border: 1px solid black;
-                  float: left;
-                  margin-right: 5px; }
-                  .community .user-list .user-list-inner table.users tr.content td ul.rewards li.reward .impacter a.avatar img {
-                    width: 28px;
-                    height: 28px; }
-                .community .user-list .user-list-inner table.users tr.content td ul.rewards li.reward .impacter .text h3 {
-                  text-transform: uppercase; }
-                .community .user-list .user-list-inner table.users tr.content td ul.rewards li.reward .impacter .text .amount {
-                  padding-right: 12px;
-                  background: transparent url(../images/icons/starBlackTiny.png) no-repeat 100% 2px; }
       .community .user-list .user-list-inner table.users tr.open td {
         background-color: #e6f9ff;
         border-bottom: 1px solid #c2f0ff; }

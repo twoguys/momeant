@@ -70,8 +70,11 @@
 				th.impact, th.rewards, th.rewardees
 					text-align: center
 				tr
+					td.patron, td.creator, td.content
+						padding: 20px
+						vertical-align: top
 					td.patron, td.creator
-						vertical-align: middle
+						width: 220px
 						a.avatar, a.name, .impact
 							display: block
 							float: left
@@ -89,24 +92,15 @@
 							color: $text_color
 							span
 								display: block
-					td.rewardees .count
-						background: transparent url(../images/icons/person.png) no-repeat 100% 14px
-					td.creator-rewards
-						border-right: 1px solid #e0e0e0
-						div
-							float: right
-					td.content-toggler
-						border-left: 1px solid #fff
-						width: 20px
-						background-image: url(../images/icons/tableOpenClose.png)
-						background-repeat: no-repeat
-						background-position: 50% -47px
-				tr.content
-					display: none
-					td
-						background: #e6f9ff
+						.info
+							clear: both
+							padding-top: 10px
+							.tagline, .interests
+								font-size: 11px
+								margin-bottom: 10px
+					td.content
 						ul.rewards
-							padding: 10px 0 0 0
+							padding: 0
 							li.reward
 								float: left
 								margin-right: 10px
@@ -144,6 +138,12 @@
 										.amount
 											padding-right: 12px
 											background: transparent url(../images/icons/starBlackTiny.png) no-repeat 100% 2px
+					td.content-toggler
+						border-left: 1px solid #fff
+						width: 20px
+						background-image: url(../images/icons/tableOpenClose.png)
+						background-repeat: no-repeat
+						background-position: 50% -47px
 				tr.open
 					td
 						background-color: #e6f9ff
