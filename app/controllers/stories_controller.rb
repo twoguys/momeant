@@ -32,23 +32,6 @@ class StoriesController < ApplicationController
     if !@story.published? && current_user != @story.user
       redirect_to root_path, :alert => "Sorry, that story is not published yet."
     end
-    # if params[:modal]
-    #   @story = Story.find_by_id(params[:id])
-    #   View.record(@story, current_user) if current_user && current_user != @story.user
-    #   @fullscreen = true
-    #   @user = @story.user
-    #   if params[:impacted_by].present?
-    #     @impacting_reward = Reward.find(params[:impacted_by])
-    #   end
-    #   render :layout => false
-    # elsif params[:impacted_by]
-    #   reward = Reward.find_by_id(params[:impacted_by])
-    #   session[:show_content] = story_path(reward.story, :impacted_by => params[:impacted_by])
-    #   redirect_to user_path(reward.user)
-    # else  
-    #   session[:show_content] = story_path(params[:id])
-    #   redirect_to root_path
-    # end
   end
   
   def new

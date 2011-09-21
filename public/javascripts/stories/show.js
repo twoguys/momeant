@@ -6,6 +6,7 @@ var story_viewer = function() {
 	this.previewer_open = true;
 	
 	this.initialize = function() {
+		log('initialize');
 		viewer.total_pages = parseInt($('#number-of-pages').text());
 		
 		$('#next-page').click(viewer.goto_next_page);
@@ -75,7 +76,6 @@ var story_viewer = function() {
 			viewer.page = page_number;
 			$('#metadata .pages a[page="'+page_number+'"]').addClass('selected').siblings().removeClass('selected');		
 		}
-		log(page_number);
 		if (page_number == 1) {
 			viewer.hide_prev_button();
 		} else {
@@ -101,11 +101,5 @@ var story_viewer = function() {
 
 $(document).ready(function() {
 	viewer = new story_viewer();
-	//viewer.initialize();
-	
-	$('#previewer a.rewarded, #previewer a.reward').click(function(event) {
-		viewer.goto_page(viewer.total_pages);
-		$('.viewport').scrollTo(viewer.total_pages * 210, 0);
-		return false;
-	});
+	viewer.initialize();
 });

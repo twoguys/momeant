@@ -75,10 +75,3 @@
       .pages
         - 1.upto @story.pages.count do |page|
           = link_to(page, "#", :class => page == 1 ? "selected" : "", :page => page)
-        
-- if !current_user
-  - content_for :javascript do
-    :javascript
-      prevent_closing_of_signup_modal = true;
-      $('#join-login-modal .close').hide();
-      $('#join-login-modal').show();

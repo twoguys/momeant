@@ -52,7 +52,8 @@ html, body {
 .fullscreen .fullscreen-hidden, .fullscreen #header, .fullscreen #right-sidebar {
   display: none; }
 .fullscreen #container {
-  margin: 0; }
+  margin: 0;
+  top: 0; }
   .fullscreen #container #main {
     padding: 0;
     top: 0;
@@ -681,8 +682,10 @@ table {
   padding-top: 0; }
 
 form.new_story, form.edit_story, .story-form {
-  position: relative;
-  height: 100%; }
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%; }
   form.new_story .finished-links, form.edit_story .finished-links, .story-form .finished-links {
     position: absolute;
     top: 0;
@@ -2837,6 +2840,7 @@ form.new_story, form.edit_story, .story-form {
   height: 100%;
   overflow: hidden; }
   .story-viewer .reward-stream {
+    display: none;
     width: 290px;
     position: absolute;
     top: 0;
@@ -3005,13 +3009,6 @@ form.new_story, form.edit_story, .story-form {
         color: #00aeef; }
       .story-viewer .reward-stream #reward-thank-you .share .twitter {
         background-image: url(../images/tweetThis.png); }
-  .story-viewer .content {
-    position: absolute;
-    top: 0;
-    left: 290px;
-    bottom: 0;
-    right: 0;
-    margin-left: 1px; }
   .story-viewer #back-to-preview {
     position: absolute;
     top: 0;
@@ -3186,8 +3183,10 @@ form.new_story, form.edit_story, .story-form {
     top: 0;
     bottom: 35px; }
     .story-viewer ul#pages li {
+      position: absolute;
+      top: 0;
+      bottom: 0;
       width: 100%;
-      height: 100%;
       overflow-y: auto;
       text-shadow: none; }
       .story-viewer ul#pages li .number {

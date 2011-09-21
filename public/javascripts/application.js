@@ -121,58 +121,6 @@ function handle_signup_login_form_validation() {
 	});
 }
 
-function setup_modal_presenter_links(selector, autoTrigger) {
-	var fancybox = $(selector).fancybox({
-		width: '98%',
-		height: '98%',
-		padding: 0,
-		autoScale: false,
-		autoDimensions: false,
-		overlayColor: '#000',
-		overlayOpacity: 0.7,
-		scrolling: 'no',
-		ajax: {
-			data: 'modal=1'
-		},
-		onComplete: function() {
-			viewer.initialize();
-			viewer.goto_page(1);
-			setup_rewarding();
-			setup_signup_and_join_modals('.story-viewer');
-		}
-	});
-	if (autoTrigger) {
-		fancybox.trigger('click');
-	}
-}
-
-var infinite_loading = false;
-var infinite_page = 2;
-var infinite_done = false;
-function setup_following_stream_infinite_scroll() {
-	var $container = $('#right-sidebar');
-	var $stream = $('#right-sidebar ul.rewards');
-	var $spinner = $('#right-sidebar .spinner');
-	var user_id = $('#right-sidebar #user_id').text();
-	$container.scroll(function() {
-		var heightOfStream = $stream.height();
-		var pixelsScrolled = $container.scrollTop() + $container.height();
-		if (pixelsScrolled > heightOfStream && !infinite_loading && !infinite_done) {
-			$spinner.show();
-			infinite_loading = true;
-			$.get('/users/' + user_id + '/stream?page=' + infinite_page, function(data) {
-				$stream.append(data);
-				infinite_loading = false;
-				infinite_page += 1;
-				if (data.trim() == "") {
-					$('#right-sidebar .spinner').addClass('done').text('No more rewards.');
-					infinite_done = true;
-				}
-			});
-		}
-	});
-}
-
 $(document).ready(function() {
 	setup_tooltips();
 	setup_tab_switching();
@@ -180,9 +128,7 @@ $(document).ready(function() {
 	tag_deletions();
 	setup_signup_and_join_modals();
 	setup_rewarding();
-	handle_signup_login_form_validation();	
-	setup_modal_presenter_links('a.modal');
-	setup_following_stream_infinite_scroll();
+	handle_signup_login_form_validation();
 	
 	$("a.disabled").click(function() {return false;})
 	
