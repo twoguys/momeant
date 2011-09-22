@@ -39,6 +39,8 @@ class User < ActiveRecord::Base
   
   has_many :amazon_payments, :foreign_key => :payer_id, :order => "created_at DESC"
   
+  has_many :authentications
+  
   has_attached_file :avatar,
     :styles => { :thumbnail => "60x60#" },
     :path          => "avatars/:id/:style.:extension",
@@ -194,6 +196,42 @@ class User < ActiveRecord::Base
   def has_viewed_this_period?(story)
     View.where(:user_id => self.id, :story_id => story.id).where("created_at > ?", self.subscription_last_updated_at).present?
   end
+  
+  
+  # Sharing content with external services
+  
+  def post_to_facebook(object, url)
+    message = ""
+    
+    if object.is_a?(Story)
+      message = "I just posted content on Momeant. Reward me if you like it! #{object.title} - #{url}"
+    elsif object.is_a?(Reward)
+      message = "I just rewarded something on Momeant. Check it out! #{object.title} - #{url}"
+    end
+    
+    access_token = self.authentications.find_by_provider("facebook").token
+    RestClient.post 'https://graph.facebook.com/me/feed', { :access_token => access_token, :message => message }
+  end
+  
+  def post_to_twitter(object, url)
+    auth = self.authentications.find_by_provider("twitter")
+    Twitter.configure do |config|
+      config.oauth_token = auth.token
+      config.oauth_token_secret = auth.secret
+    end
+    
+    message = ""
+    if object.is_a?(Story)
+      title = object.title[0..55]
+      message = "I just posted content on @mo_meant. Reward me if you like it: #{title} #{url}"
+    elsif object.is_a?(Reward)
+      title = object.story.title[0..65]
+      message = "I just rewarded something on Momeant. Check it out: #{title} #{url}"
+    end
+    
+    Twitter.update(message)
+  end
+  
   
   def update_subscription_time
     self.update_attribute(:subscription_last_updated_at, Time.now)

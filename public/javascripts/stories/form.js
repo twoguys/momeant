@@ -34,6 +34,7 @@ var story_page_editor = function() {
 		setup_page_adding();
 		$('#editor-header a.delete').click(pages_editor.delete_current_page);
 		setup_launch_when_no_pages();
+		setup_sharing_toggles();
 
 		this.total_pages = $('ul#pages').children().length;
 	};
@@ -161,6 +162,24 @@ var story_page_editor = function() {
 			pages_editor.page_chooser_mode = 'add';
 			pages_editor.show_page_type_chooser();
 			return false;
+		});
+	};
+	
+	var setup_sharing_toggles = function() {
+		$('.toggle').click(function() {
+			var $toggle = $(this);
+			var $handle = $toggle.find('.handle');
+			var $hidden_field = $($toggle.attr('update'));
+
+			if ($toggle.hasClass('off')) {
+				$handle.animate({left: '0'}, 200);
+				$toggle.removeClass('off');
+				$hidden_field.val('yes')
+			} else {
+				$handle.animate({left: '40px'}, 200);
+				$toggle.addClass('off');
+				$hidden_field.val('')
+			}
 		});
 	};
 	

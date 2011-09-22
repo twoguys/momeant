@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110921182331) do
+ActiveRecord::Schema.define(:version => 20110922163129) do
 
   create_table "adverts", :force => true do |t|
     t.string   "title"
@@ -22,6 +22,16 @@ ActiveRecord::Schema.define(:version => 20110921182331) do
     t.boolean  "enabled",            :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "authentications", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "provider"
+    t.string   "uid"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "token"
+    t.string   "secret"
   end
 
   create_table "credit_cards", :force => true do |t|

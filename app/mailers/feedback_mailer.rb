@@ -5,6 +5,6 @@ class FeedbackMailer < ActionMailer::Base
     @comment = comment
     @user = user
     
-    mail :to => "team@momeant.com", :subject => "User Feedback"
+    mail :to => "support@momeant.com", :from => "#{@user.name} <#{@user.email}>", :subject => "User Feedback"
   end
 end

@@ -81,9 +81,35 @@
             %em You can organize your content into "galleries" of similar work.
           - content_for :modals do
             = render "gallery_creator"
+    
+    %section.step#share
+      %h2 3. Share this with your networks.
+      %table
+        %tbody
+          %tr
+            %td Twitter
+            %td.link
+              - if @twitter_auth
+                .switch
+                  .toggle.off{:update => "#share_twitter"}
+                    .handle
+              - else
+                = link_to("Configure", "/auth/twitter/configure", :class => "configure")
+          %tr
+            %td Facebook
+            %td.link
+              - if @facebook_auth
+                .switch
+                  .toggle.off{:update => "#share_facebook"}
+                    .handle
+              - else
+                = link_to("Configure", "/auth/facebook/configure", :class => "configure")
   
     %section#done
-      = button_to("Share", publish_story_path(@story))
+      = form_tag publish_story_path(@story) do
+        = hidden_field_tag :share_twitter, "", :name => "share[twitter]"
+        = hidden_field_tag :share_facebook, "", :name => "share[facebook]"
+        = submit_tag "Share"
       = link_to("Preview", story_path(@story), :target => :new, :class => "preview")
   
   %fieldset

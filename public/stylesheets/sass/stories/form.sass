@@ -61,16 +61,6 @@ form.new_story, form.edit_story, .story-form
 		color: #999
 		font-style: italic
 		font-weight: 100
-	#editor, #describe, #done, .banner
-		max-width: 900px
-		margin-left: auto
-		margin-right: auto
-	#describe
-		max-width: 630px
-	#done
-		max-width: 960px
-	.banner
-		max-width: 920px
 	section.step
 		position: relative
 		background: #e8e8e8
@@ -97,7 +87,41 @@ form.new_story, form.edit_story, .story-form
 			font-size: 13px
 			color: $text_color
 			text-transform: none
-			font-weight: 700
+			font-weight: 700		
+	.step, .banner
+		max-width: 900px
+		margin-left: auto
+		margin-right: auto
+	#describe
+		max-width: 630px
+	#share
+		table
+			width: 300px
+			td.link
+				text-align: right
+			.switch
+				float: right
+				.toggle
+					width: 84px
+					height: 28px
+					background: transparent url(../images/onOffSwitchBG.png) no-repeat 0 0
+					position: relative
+					cursor: pointer
+					.handle
+						width: 44px
+						height: 28px
+						position: absolute
+						top: 0
+						left: 0
+						background: transparent url(../images/onOffSwitchHandle.png) no-repeat 0 0
+				.toggle.off .handle
+					left: 40px
+	#done
+		max-width: 960px
+		margin-left: auto
+		margin-right: auto
+	.banner
+		max-width: 920px
 	.step#editor
 		.choice
 			width: 45%
