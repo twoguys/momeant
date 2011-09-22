@@ -17,19 +17,19 @@
   
     %section.step#editor
       %h2 1. Choose what you would like to share.
-      .choice#creator{:class => @story.is_external? ? "" : "selected"}
-        .choice-inner
-          .description Create something new
-          = link_to("Launch fullscreen editor", "#", :id => "open-page-editor-button", :class => @story.pages.empty? ? "launch" : "")
-          %p.info
-            %em Share images &amp; text with many layout &amp; formatting options.
-      .or OR
       .choice#external{:class => @story.is_external? ? "selected" : ""}
         .choice-inner
           .description Show your existing web content
           = text_field_tag :story_external_link, @story.external_text_or_http, :class => "monitor-story-typing", :update => "external_link"
           %p.info
             %em Show something you've created elsewhere on the web.
+      .or OR
+      .choice#creator{:class => @story.is_external? ? "" : "selected"}
+        .choice-inner
+          .description Create something new
+          = link_to("Launch fullscreen editor", "#", :id => "open-page-editor-button", :class => @story.is_external? || @story.pages.empty? ? "launch" : "")
+          %p.info
+            %em Share images &amp; text with many layout &amp; formatting options.
       .clear
   
     %section.step#describe

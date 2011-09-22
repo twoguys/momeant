@@ -119,7 +119,6 @@ var story_page_editor = function() {
 		$('#story_title').keyup(function() {
 			var $thumbnail_title = $('#thumbnail-preview .title');
 			var title = $(this).val();
-			log(title);
 			if (title.length > 0) {
 				$thumbnail_title.text(title);
 			} else {

@@ -6,7 +6,6 @@ var story_viewer = function() {
 	this.previewer_open = true;
 	
 	this.initialize = function() {
-		log('initialize');
 		viewer.total_pages = parseInt($('#number-of-pages').text());
 		
 		$('#next-page').click(viewer.goto_next_page);
@@ -16,7 +15,7 @@ var story_viewer = function() {
 		$.scrollTo('42');
 		setup_page_number_clicking();
 		setup_key_bindings();
-		goto_page_in_url_or_hide_prev_button();
+		goto_page_in_url_or_default();
 	};
 	
 	this.show_next_button = function() {
@@ -88,13 +87,13 @@ var story_viewer = function() {
 		}
 	};
 	
-	var goto_page_in_url_or_hide_prev_button = function() {
+	var goto_page_in_url_or_default = function() {
 		var url = window.location.href;
 		if (url.indexOf('#page') != -1) {
 			var page = parseInt(url.substring(url.indexOf('#page') + 5));
 			viewer.goto_page(page);
 		} else {
-			viewer.hide_prev_button();
+			viewer.goto_page(1);
 		}
 	};
 }

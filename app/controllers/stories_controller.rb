@@ -28,7 +28,8 @@ class StoriesController < ApplicationController
   end
   
   def new
-    @story = Story.create(:thumbnail_page => 1, :user_id => current_user.id, :autosaving => true, :price => 0)
+    @story = Story.create(:thumbnail_page => 1, :user_id => current_user.id, :autosaving => true, :is_external => true)
+    @story.pages << ExternalPage.new(:number => 1)
     @nav = "home"
     render "form"
   end
