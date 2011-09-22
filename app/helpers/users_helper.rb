@@ -8,7 +8,7 @@ module UsersHelper
         button_to("follow", user_subscriptions_path(user))
       end
     elsif current_user.blank?
-      link_to("follow", "#signup-modal", :class => "follow")
+      link_to("follow", "#join-modal", :class => "follow")
     end
   end
   
