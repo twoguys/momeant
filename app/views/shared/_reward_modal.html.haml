@@ -30,11 +30,35 @@
               .count{:original => @user.lifetime_rewards}= @user.lifetime_rewards
               .text total rewards
           .comment
-            = form.text_area :comment, :placeholder => "Why does this work/creator deserve your reward?"
+            = form.text_area :comment, :placeholder => "Tell others why you're rewarding this..."
             = form.hidden_field :story_id, :value => @story.present? ? @story.id : ""
             - if params[:impacted_by].present?
               = form.hidden_field :impacted_by, :value => params[:impacted_by]
-            = form.submit "Give Reward"
+          #share
+            %h3 Tell your networks that you've rewarded.
+            %table
+              %tbody
+                %tr
+                  %td.text Twitter
+                  %td.link
+                    - if @twitter_auth
+                      .switch
+                        = hidden_field_tag :share_twitter, "", :name => "share[twitter]"
+                        .toggle.off{:update => "#share_twitter"}
+                          .handle
+                    - else
+                      = link_to("Configure", "/auth/twitter/configure", :class => "configure")
+                %tr
+                  %td.text Facebook
+                  %td.link
+                    - if @facebook_auth
+                      .switch
+                        = hidden_field_tag :share_facebook, "", :name => "share[facebook]"
+                        .toggle.off{:update => "#share_facebook"}
+                          .handle
+                    - else
+                      = link_to("Configure", "/auth/facebook/configure", :class => "configure")
+          = form.submit "Give Reward"
         
         :javascript
           $('#reward-form .slider').slider({

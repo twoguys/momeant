@@ -27,28 +27,29 @@
         - @user = @story.user
         = render "shared/reward_modal"
 
-      %ul#reward-list.closed
-        - if current_user
-          %li#new-reward
-            .rewarder
-              = link_to(image_tag(current_user.avatar(:thumbnail)), user_path(current_user), :class => "avatar")
-              %a.name{:href => user_path(current_user)}
-                %span= current_user.first_name
-                %span= current_user.last_name
-              .amount
-            .comment
-            .when just now
-        - @story.rewards.each do |reward|
-          %li{:class => reward == @impacting_reward ? "highlighted" : ""}
-            .rewarder
-              = link_to(image_tag(reward.user.avatar(:thumbnail)), user_path(reward.user), :class => "avatar")
-              %a.name{:href => user_path(reward.user)}
-                %span= reward.user.first_name
-                %span= reward.user.last_name
-              .amount= reward.amount
-            - if reward.comment.present?
-              .comment= reward.comment
-            .when #{time_ago_in_words(reward.created_at)} ago
+      #reward-list.closed
+        %ul
+          - if current_user
+            %li#new-reward
+              .rewarder
+                = link_to(image_tag(current_user.avatar(:thumbnail)), user_path(current_user), :class => "avatar")
+                %a.name{:href => user_path(current_user)}
+                  %span= current_user.first_name
+                  %span= current_user.last_name
+                .amount
+              .comment
+              .when just now
+          - @story.rewards.each do |reward|
+            %li{:class => reward == @impacting_reward ? "highlighted" : ""}
+              .rewarder
+                = link_to(image_tag(reward.user.avatar(:thumbnail)), user_path(reward.user), :class => "avatar")
+                %a.name{:href => user_path(reward.user)}
+                  %span= reward.user.first_name
+                  %span= reward.user.last_name
+                .amount= reward.amount
+              - if reward.comment.present?
+                .comment= reward.comment
+              .when #{time_ago_in_words(reward.created_at)} ago
   
   .content
   

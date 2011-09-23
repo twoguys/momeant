@@ -137,7 +137,9 @@ $(function() {
 		el: $('#reward-modal'),
 		
 		events: {
-			'click #reward-modal-tab':  'toggle_modal'
+			'click #reward-modal-tab':     'toggle_modal',
+			'click #share .toggle':        'toggle_switch',
+			'submit #reward-form':         'submit_reward'
 		},
 		
 		initialize: function() {
@@ -151,7 +153,7 @@ $(function() {
 		},
 		
 		hide_modal: function() {
-			$(this.el).animate({top: '-70%'}, 300);
+			$(this.el).animate({top: '-80%'}, 300);
 			this.modal_open = false;
 		},
 		
@@ -162,6 +164,55 @@ $(function() {
 				this.show_modal();
 			}
 			return false;
+		},
+		
+		toggle_switch: function(e) {
+			var $toggle = $(e.currentTarget);
+			var $handle = $toggle.find('.handle');
+			var $hidden_field = $($toggle.attr('update'));
+
+			if ($toggle.hasClass('off')) {
+				$handle.animate({left: '0'}, 200);
+				$toggle.removeClass('off');
+				$hidden_field.val('yes')
+			} else {
+				$handle.animate({left: '40px'}, 200);
+				$toggle.addClass('off');
+				$hidden_field.val('')
+			}
+		},
+		
+		submit_reward: function(e) {
+			var $form = $(e.currentTarget);
+			e.preventDefault(); 
+
+			var amount = $form.find('#reward_amount').val();
+			var comment = $form.find("#reward_comment").val();
+			var story_id = $form.find("#reward_story_id").val();
+			var impacted_by = $form.find("#reward_impacted_by").val();
+			var share_with_twitter = $form.find("#share_twitter").val();
+			var share_with_facebook = $form.find("#share_facebook").val();
+			var url = $form.attr('action');
+
+			$('#reward-box').addClass('loading');
+			$.post(url,
+				{
+					"reward[amount]":amount,
+					"reward[comment]":comment,
+					"reward[story_id]":story_id,
+					"reward[impacted_by]":impacted_by,
+					"share[twitter]":share_with_twitter,
+					"share[facebook]":share_with_facebook
+				},
+				function(data) {
+					$("#reward-box").html(data);
+					$('#reward-box').removeClass('loading').addClass('thanks');
+					var $new_reward = $('#new-reward');
+					$new_reward.find('.amount').text(amount);
+					$new_reward.find('.comment').text(comment);
+					$new_reward.slideDown();
+				}
+			);
 		},
 
 		setup_key_bindings: function() {

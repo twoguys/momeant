@@ -46,37 +46,6 @@ function setup_modals() {
 	});
 }
 
-function setup_rewarding() {
-	$('#reward-form').submit(function(event) {
-		event.preventDefault(); 
-
-		var $form = $(this);
-		var amount = $form.find('#reward_amount').val();
-		var comment = $form.find("#reward_comment").val();
-		var story_id = $form.find("#reward_story_id").val();
-		var impacted_by = $form.find("#reward_impacted_by").val();
-		var url = $form.attr('action');
-
-		$('#give-reward').addClass('loading');
-		$.post(url,
-			{
-				"reward[amount]":amount,
-				"reward[comment]":comment,
-				"reward[story_id]":story_id,
-				"reward[impacted_by]":impacted_by
-			},
-			function(data) {
-				$("#give-reward").html(data);
-				$('#give-reward').removeClass('loading').addClass('thanks');
-				var $new_reward = $('#new-reward');
-				$new_reward.find('.amount').text(amount);
-				$new_reward.find('.comment').text(comment);
-				$new_reward.slideDown();
-			}
-		);
-	});
-}
-
 function handle_signup_login_form_validation() {
 	// we have to remove the extra checkbox Rails inserts for the 0 value
 	$('#join-form input[name="user[tos_accepted]"][value="0"]').remove();
@@ -129,7 +98,6 @@ $(document).ready(function() {
 	setup_placeholder_text();
 	tag_deletions();
 	setup_modals();
-	setup_rewarding();
 	handle_signup_login_form_validation();
 	handle_feedback_form();
 	

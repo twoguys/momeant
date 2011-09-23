@@ -2,7 +2,7 @@ class StoriesController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :recent, :show]
   load_and_authorize_resource :except => [:index, :recent, :show]
   before_filter :get_topics, :only => [:new, :edit]
-  before_filter :get_authentications, :only => [:new, :edit]
+  before_filter :get_authentications, :only => [:new, :edit, :show]
   skip_before_filter :verify_authenticity_token, :only => [:update_thumbnail]
   
   def index
@@ -194,8 +194,10 @@ class StoriesController < ApplicationController
   end
   
   def get_authentications
-    @twitter_auth = current_user.authentications.find_by_provider("twitter")
-    @facebook_auth = current_user.authentications.find_by_provider("facebook")
+    if current_user
+      @twitter_auth = current_user.authentications.find_by_provider("twitter")
+      @facebook_auth = current_user.authentications.find_by_provider("facebook")
+    end
   end
           
 end
