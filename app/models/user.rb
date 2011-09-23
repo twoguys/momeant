@@ -208,7 +208,11 @@ class User < ActiveRecord::Base
       message = "I just posted content on Momeant. Reward me if you like it!"
       picture = object.thumbnail.url(:small)
     elsif object.is_a?(Reward)
-      message = "I just rewarded something on Momeant. #{object.comment}"
+      if object.comment.blank?
+        message = "I just rewarded something on Momeant."
+      else
+        message = object.comment
+      end
       picture = object.story.thumbnail.url(:small)
     end
     
