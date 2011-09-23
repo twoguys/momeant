@@ -2956,13 +2956,8 @@ form.new_story, form.edit_story, .story-form {
       border: 1px solid #aaaaaa; }
       #presenter #reward-modal .modal-inner #your-reward {
         margin-right: 65px; }
-      #presenter #reward-modal .modal-inner #reward-list.closed {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        right: 0; }
       #presenter #reward-modal .modal-inner #your-reward.closed {
-        width: 50%; }
+        margin-right: 265px; }
     #presenter #reward-modal #creator-info {
       position: relative;
       padding: 10px 10px 10px 126px;
@@ -3107,7 +3102,7 @@ form.new_story, form.edit_story, .story-form {
             #presenter #reward-modal #reward-box .inner #share table .switch .toggle.off .handle {
               left: 40px; }
     #presenter #reward-modal #reward-box.loading .inner {
-      height: 500px;
+      height: 440px;
       background: transparent url(../images/spinner.gif) no-repeat 50% 50%; }
       #presenter #reward-modal #reward-box.loading .inner * {
         display: none; }
@@ -3115,9 +3110,21 @@ form.new_story, form.edit_story, .story-form {
       padding: 0;
       width: 515px; }
     #presenter #reward-modal #reward-list {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
       border-left: 1px solid #dddddd;
       overflow-y: auto;
       background: #eeeeee; }
+      #presenter #reward-modal #reward-list .header {
+        font-size: 14px;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: #555555;
+        position: absolute;
+        top: 11px;
+        left: 50px; }
       #presenter #reward-modal #reward-list ul {
         padding-top: 40px;
         background: transparent url(../images/icons/communityDark.png) no-repeat 5px 5px; }
@@ -3147,8 +3154,8 @@ form.new_story, form.edit_story, .story-form {
                 font-weight: 700; }
             #presenter #reward-modal #reward-list ul li .rewarder .amount {
               float: right;
-              padding-right: 17px;
-              background: transparent url(../images/icons/starBlackTiny.png) no-repeat 0 5px;
+              padding-right: 12px;
+              background: transparent url(../images/icons/starBlackTiny.png) no-repeat 100% 6px;
               font-size: 17px;
               font-family: "ff-dagny-web-pro-1", "ff-dagny-web-pro-2", sans-serif; }
           #presenter #reward-modal #reward-list ul li .comment, #presenter #reward-modal #reward-list ul li .when {
@@ -3164,6 +3171,8 @@ form.new_story, form.edit_story, .story-form {
           background: #fffaba; }
         #presenter #reward-modal #reward-list ul li#new-reward {
           display: none; }
+    #presenter #reward-modal #reward-list.closed .header {
+      display: none; }
     #presenter #reward-modal #reward-list.closed li {
       width: 44px; }
       #presenter #reward-modal #reward-list.closed li .rewarder {

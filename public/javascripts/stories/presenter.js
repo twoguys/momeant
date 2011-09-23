@@ -139,6 +139,7 @@ $(function() {
 		events: {
 			'click #reward-modal-tab':     'toggle_modal',
 			'click #share .toggle':        'toggle_switch',
+			'click #reward-list':          'open_rewards',
 			'submit #reward-form':         'submit_reward'
 		},
 		
@@ -180,6 +181,11 @@ $(function() {
 				$toggle.addClass('off');
 				$hidden_field.val('')
 			}
+		},
+		
+		open_rewards: function() {
+			var $list = $('#reward-list');
+			$list.toggleClass('closed').siblings('#your-reward').toggleClass('closed');
 		},
 		
 		submit_reward: function(e) {
