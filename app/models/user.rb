@@ -202,15 +202,18 @@ class User < ActiveRecord::Base
   
   def post_to_facebook(object, url)
     message = ""
+    picture = ""
     
     if object.is_a?(Story)
       message = "I just posted content on Momeant. Reward me if you like it!"
+      picture = object.thumbnail.url(:small)
     elsif object.is_a?(Reward)
       message = "I just rewarded something on Momeant. #{object.comment}"
+      picture = object.story.thumbnail.url(:small)
     end
     
     access_token = self.authentications.find_by_provider("facebook").token
-    RestClient.post 'https://graph.facebook.com/me/feed', { :access_token => access_token, :link => url, :message => message }
+    RestClient.post 'https://graph.facebook.com/me/feed', { :access_token => access_token, :link => url, :picture => picture, :message => message }
   end
   
   def post_to_twitter(object, url)
