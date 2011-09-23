@@ -2,13 +2,19 @@
 %html{html_attrs('en')}
   %head
     %meta{ :content => "text/html; charset=utf-8", "http-equiv" => "Content-Type" }
-    %meta{ :name => "Description", "http-equiv" => "Description", :content => "Reinventing patronage for the digital renaissance." }
-    %meta{ :name => "Keywords", "http-equiv" => "Keywords", :content => "momeant, digital content, creators, reward, patron, art, community, sustainable" }
-    = yield :meta
     
+    - if @story
+      %meta{ :name => "Description", "http-equiv" => "Description", :content => @story.synopsis }
+      %meta{ :name => "og:image", :property => "og:image", :content => @story.thumbnail.url(:tiny)}
+    - else
+      %meta{ :name => "Description", "http-equiv" => "Description", :content => "Reinventing patronage for the digital renaissance." }
+    
+    %meta{ :name => "Keywords", "http-equiv" => "Keywords", :content => "momeant, digital content, creators, reward, patron, art, community, sustainable" }
     %link{ :id => 'favicon', :href => '/images/favicon.png', :rel => 'icon', :type => 'image/x-icon' }
     %title
-      - if @page_title
+      - if @story
+        = @story.title
+      - elsif @page_title
         = "Momeant - #{@page_title}"
       - else
         Momeant
