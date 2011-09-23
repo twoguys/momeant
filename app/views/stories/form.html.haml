@@ -107,7 +107,7 @@
   
     %section#done
       .owner
-        = check_box_tag :i_own_this
+        = check_box_tag :i_own_this, '1', @story.i_own_this
         %span I promise that I own this content.
       .rest
         = form_tag publish_story_path(@story) do
