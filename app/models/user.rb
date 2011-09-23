@@ -206,7 +206,7 @@ class User < ActiveRecord::Base
     if object.is_a?(Story)
       message = "I just posted content on Momeant. Reward me if you like it! #{object.title}"
     elsif object.is_a?(Reward)
-      message = "I just rewarded something on Momeant. Check it out! #{object.title}"
+      message = "I just rewarded something on Momeant. Check it out! #{object.story.title}"
     end
     
     access_token = self.authentications.find_by_provider("facebook").token
