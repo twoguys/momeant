@@ -1,58 +1,63 @@
 - content_for :head do
-  = javascript_include_tag "stories/show"
+  = javascript_include_tag "stories/presenter"
 
-.story-viewer
+#presenter
 
-  .reward-stream
+  #reward-modal
 
-    %ul.reward-list
-      - unless current_user && @story.owner?(current_user)
-        %li#give-reward{:class => current_user.nil? ? "no-user" : ""}
-          - if current_user 
-            = form_for :reward, :url => user_rewards_path(current_user), :html => {:id => "reward-form"} do |form|
-              = form.hidden_field :story_id, :value => @story.id
-              = form.hidden_field :impacted_by, :value => @impacting_reward.id if @impacting_reward
-              .how-much
-                %span.amount-text I want to reward this
-                = form.text_field :amount, :value => 1
-                %span.out-of of my #{current_user.coins}
-              = form.text_area :comment, :placeholder => "Tell your followers why you're rewarding this..."
-              .impacter-and-submit
-                - if @impacting_reward
-                  .impacter
-                    = link_to(image_tag(@impacting_reward.user.avatar(:thumbnail)), user_path(@impacting_reward.user), :class => "avatar")
-                    .name #{@impacting_reward.user.name} helped you find this content.
-                = form.submit "Reward"
-          - else
-            %h3 Want to reward this?
-            = link_to("Join Momeant", "#join-modal", :class => "button")
-            = link_to("Login", "#login-modal", :class => "button login")
+    %a#reward-modal-tab
+      = image_tag(@story.user.avatar.url(:thumbnail), :class => "avatar")
+      %span Reward
+      %span= @story.user.name
 
-      - if current_user
-        %li#new-reward
-          .rewarder
-            = link_to(image_tag(current_user.avatar(:thumbnail)), user_path(current_user), :class => "avatar")
-            %a.name{:href => user_path(current_user)}
-              %span= current_user.first_name
-              %span= current_user.last_name
-            .amount
-          .comment
-          .when just now
-      - @story.rewards.each do |reward|
-        %li{:class => reward == @impacting_reward ? "highlighted" : ""}
-          .rewarder
-            = link_to(image_tag(reward.user.avatar(:thumbnail)), user_path(reward.user), :class => "avatar")
-            %a.name{:href => user_path(reward.user)}
-              %span= reward.user.first_name
-              %span= reward.user.last_name
-            .amount= reward.amount
-          - if reward.comment.present?
-            .comment= reward.comment
-          .when #{time_ago_in_words(reward.created_at)} ago
+    .inner
+
+      %ul.reward-list
+        - unless current_user && @story.owner?(current_user)
+          %li#give-reward{:class => current_user.nil? ? "no-user" : ""}
+            - if current_user 
+              = form_for :reward, :url => user_rewards_path(current_user), :html => {:id => "reward-form"} do |form|
+                = form.hidden_field :story_id, :value => @story.id
+                = form.hidden_field :impacted_by, :value => @impacting_reward.id if @impacting_reward
+                .how-much
+                  %span.amount-text I want to reward this
+                  = form.text_field :amount, :value => 1
+                  %span.out-of of my #{current_user.coins}
+                = form.text_area :comment, :placeholder => "Tell your followers why you're rewarding this..."
+                .impacter-and-submit
+                  - if @impacting_reward
+                    .impacter
+                      = link_to(image_tag(@impacting_reward.user.avatar(:thumbnail)), user_path(@impacting_reward.user), :class => "avatar")
+                      .name #{@impacting_reward.user.name} helped you find this content.
+                  = form.submit "Reward"
+            - else
+              %h3 Want to reward this?
+              = link_to("Join Momeant", "#join-modal", :class => "button")
+              = link_to("Login", "#login-modal", :class => "button login")
+
+        - if current_user
+          %li#new-reward
+            .rewarder
+              = link_to(image_tag(current_user.avatar(:thumbnail)), user_path(current_user), :class => "avatar")
+              %a.name{:href => user_path(current_user)}
+                %span= current_user.first_name
+                %span= current_user.last_name
+              .amount
+            .comment
+            .when just now
+        - @story.rewards.each do |reward|
+          %li{:class => reward == @impacting_reward ? "highlighted" : ""}
+            .rewarder
+              = link_to(image_tag(reward.user.avatar(:thumbnail)), user_path(reward.user), :class => "avatar")
+              %a.name{:href => user_path(reward.user)}
+                %span= reward.user.first_name
+                %span= reward.user.last_name
+              .amount= reward.amount
+            - if reward.comment.present?
+              .comment= reward.comment
+            .when #{time_ago_in_words(reward.created_at)} ago
   
   .content
-
-    #number-of-pages.hidden= @story.pages.count
   
     %ul#pages
       - pages = @story.pages
