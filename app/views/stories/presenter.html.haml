@@ -1,8 +1,9 @@
 - content_for :head do
   = javascript_include_tag "stories/presenter"
+- content_for :meta do
   %meta{:property => "og:title", :content => @story.title}
   %meta{:property => "og:description", :content => @story.synopsis}
-  %meta{:property => "og:image", :content => @story.thumbnail.url(:small)}
+  %meta{:property => "og:image", :content => @story.thumbnail.url(:tiny)}
 
 #presenter
 
