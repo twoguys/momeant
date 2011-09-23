@@ -438,6 +438,7 @@ var story_auto_saver = function() {
 		this.monitor_topic_clicking();
 		this.monitor_existing_pages();
 		this.monitor_gallery_choosing();
+		this.monitor_own_this_content_checkbox();
 	};
 	
 	this.monitor_thumbnail_choosing = function() {		
@@ -694,6 +695,25 @@ var story_auto_saver = function() {
 					} else {
 						log('error when updating thumbnail to: ' + number);
 					}
+				}
+			});
+		});
+	};
+	
+	this.monitor_own_this_content_checkbox = function() {
+		$('#i_own_this').change(function() {
+			var $check = $(this);
+			var checked = $check.is(':checked') ? '1' : '0';
+			
+			auto_saver.show_metadata_spinner();
+			$.ajax({
+				type: 'PUT',
+				url: '/stories/' + pages_editor.story_id + '/autosave',
+				data: {
+					'story[i_own_this]': checked
+				},
+				success: function(data) {
+					auto_saver.hide_metadata_spinner();
 				}
 			});
 		});

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110922163129) do
+ActiveRecord::Schema.define(:version => 20110923131100) do
 
   create_table "adverts", :force => true do |t|
     t.string   "title"
@@ -147,6 +147,7 @@ ActiveRecord::Schema.define(:version => 20110922163129) do
     t.string   "thumbnail_hex_color"
     t.integer  "gallery_id"
     t.boolean  "is_external",          :default => false
+    t.boolean  "i_own_this",           :default => true
   end
 
   create_table "stories_topics", :id => false, :force => true do |t|

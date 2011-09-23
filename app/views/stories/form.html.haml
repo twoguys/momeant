@@ -106,11 +106,15 @@
                 = link_to("Configure", "/auth/facebook/configure", :class => "configure")
   
     %section#done
-      = form_tag publish_story_path(@story) do
-        = hidden_field_tag :share_twitter, "", :name => "share[twitter]"
-        = hidden_field_tag :share_facebook, "", :name => "share[facebook]"
-        = submit_tag "Share"
-      = link_to("Preview", story_path(@story), :target => :new, :class => "preview")
+      .owner
+        = check_box_tag :i_own_this
+        %span I promise that I own this content.
+      .rest
+        = form_tag publish_story_path(@story) do
+          = hidden_field_tag :share_twitter, "", :name => "share[twitter]"
+          = hidden_field_tag :share_facebook, "", :name => "share[facebook]"
+          = submit_tag "Share"
+        = link_to("Preview", story_path(@story), :target => :new, :class => "preview")
   
   %fieldset
     %ul
