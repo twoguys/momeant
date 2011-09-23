@@ -23,8 +23,9 @@ class StoriesController < ApplicationController
   def show
     @story = Story.find_by_id(params[:id])
     if !@story.published? && current_user != @story.user
-      redirect_to root_path, :alert => "Sorry, that story is not published yet."
+      redirect_to root_path, :alert => "Sorry, that story is not published yet." and return
     end
+    render "presenter"
   end
   
   def new

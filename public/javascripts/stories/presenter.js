@@ -151,7 +151,7 @@ $(function() {
 		},
 		
 		hide_modal: function() {
-			$(this.el).animate({top: '-80%'}, 300);
+			$(this.el).animate({top: '-70%'}, 300);
 			this.modal_open = false;
 		},
 		

@@ -1,5 +1,5 @@
 - if current_user
-  #reward-box.modal
+  #reward-box
     .inner
       - if current_user == @user
         .yourself
@@ -8,9 +8,8 @@
             %br
             Nice try ;)
       - else
-        %h1 Awesome!
         %h2
-          Like #{@user.name} &amp; their work?
+          Like this creator's work?
           %br
           Show them your support by rewarding!
         = form_for :reward, :url => user_rewards_path(@user), :html => {:id => "reward-form"} do |form|
@@ -51,3 +50,8 @@
               $to_count.text(new_to);
             }
           });
+
+- else
+  %h3 Want to reward this?
+  = link_to("Join Momeant", "#join-modal", :class => "button")
+  = link_to("Login", "#login-modal", :class => "button login")

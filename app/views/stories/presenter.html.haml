@@ -7,34 +7,27 @@
 
     %a#reward-modal-tab
       = image_tag(@story.user.avatar.url(:thumbnail), :class => "avatar")
-      %span Reward
-      %span= @story.user.name
+      .text
+        %span Reward
+        %span= @story.user.name
+      .rewards= @story.rewards.sum(:amount)
 
-    .inner
+    .modal-inner
+    
+      #your-reward
+        #creator-info
+          = link_to(image_tag(@story.user.avatar.url), user_path(@story.user), :class => "avatar")
+          = link_to(@story.user.name, user_path(@story.user), :class => "name")
+          - unless @story.user.tagline.blank?
+            .tagline= truncate(@story.user.tagline, :length => 300)
+          .links
+            = link_to("view other work", creations_user_path(@story.user))
+            = link_to("view full profile", user_path(@story.user))
+          
+        - @user = @story.user
+        = render "shared/reward_modal"
 
-      %ul.reward-list
-        - unless current_user && @story.owner?(current_user)
-          %li#give-reward{:class => current_user.nil? ? "no-user" : ""}
-            - if current_user 
-              = form_for :reward, :url => user_rewards_path(current_user), :html => {:id => "reward-form"} do |form|
-                = form.hidden_field :story_id, :value => @story.id
-                = form.hidden_field :impacted_by, :value => @impacting_reward.id if @impacting_reward
-                .how-much
-                  %span.amount-text I want to reward this
-                  = form.text_field :amount, :value => 1
-                  %span.out-of of my #{current_user.coins}
-                = form.text_area :comment, :placeholder => "Tell your followers why you're rewarding this..."
-                .impacter-and-submit
-                  - if @impacting_reward
-                    .impacter
-                      = link_to(image_tag(@impacting_reward.user.avatar(:thumbnail)), user_path(@impacting_reward.user), :class => "avatar")
-                      .name #{@impacting_reward.user.name} helped you find this content.
-                  = form.submit "Reward"
-            - else
-              %h3 Want to reward this?
-              = link_to("Join Momeant", "#join-modal", :class => "button")
-              = link_to("Login", "#login-modal", :class => "button login")
-
+      %ul#reward-list.closed
         - if current_user
           %li#new-reward
             .rewarder

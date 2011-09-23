@@ -490,13 +490,15 @@ a.button.green {
     -webkit-border-top-right-radius: 3px;
     -moz-border-radius-topright: 3px;
     border-top-right-radius: 3px;
-    margin-right: 5px; }
+    margin-right: 5px;
+    box-shadow: 2px 2px 3px rgba(255, 255, 255, 0.2) inset, 0 -1px 3px rgba(0, 0, 0, 0.15) inset; }
   .horizontal-tabs li a.active {
     background: #f4f4f4;
     color: black;
     text-shadow: none;
     padding: 5px 18px;
-    top: 0; }
+    top: 0;
+    box-shadow: 2px 2px 3px white inset; }
 
 .tabbed {
   padding: 20px 0; }
@@ -2890,29 +2892,29 @@ form.new_story, form.edit_story, .story-form {
   height: 100%;
   overflow: hidden; }
   #presenter #reward-modal {
-    height: 80%;
-    width: 90%;
+    height: 70%;
+    width: 70%;
     position: absolute;
-    top: -80%;
-    left: 5%;
+    top: -70%;
+    left: 15%;
     background-color: white;
-    border-right: 1px solid black;
     z-index: 2; }
     #presenter #reward-modal #reward-modal-tab {
       position: absolute;
       bottom: -43px;
-      left: 0;
+      left: 50%;
+      margin-left: -70px;
       height: 33px;
       width: auto;
       z-index: 2;
       background: white;
-      border: 1px solid black;
+      border: 1px solid #999999;
       border-top: none;
       font-weight: 700;
       color: black;
-      box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2) inset;
+      box-shadow: 0 -2px 2px rgba(0, 0, 0, 0.2) inset;
       text-transform: uppercase;
-      padding: 5px 5px 5px 50px;
+      padding: 5px 5px 5px 45px;
       cursor: pointer;
       -webkit-border-bottom-right-radius: 3px;
       -webkit-border-bottom-left-radius: 3px;
@@ -2927,137 +2929,209 @@ form.new_story, form.edit_story, .story-form {
         position: absolute;
         top: 5px;
         left: 5px; }
-      #presenter #reward-modal #reward-modal-tab span {
-        display: block; }
-    #presenter #reward-modal .inner {
+      #presenter #reward-modal #reward-modal-tab .text, #presenter #reward-modal #reward-modal-tab .rewards {
+        display: inline-block; }
+      #presenter #reward-modal #reward-modal-tab .text {
+        position: relative;
+        top: -2px; }
+        #presenter #reward-modal #reward-modal-tab .text span {
+          display: block; }
+      #presenter #reward-modal #reward-modal-tab .rewards {
+        margin-left: 10px;
+        font-family: "ff-dagny-web-pro-1", "ff-dagny-web-pro-2", sans-serif;
+        font-size: 30px;
+        line-height: 25px;
+        padding: 10px 10px 0 5px;
+        height: 32px;
+        position: relative;
+        top: -4px;
+        background: transparent url(../images/icons/starBlackTiny.png) no-repeat 100% 7px;
+        border-left: 1px solid #aaaaaa; }
+    #presenter #reward-modal .modal-inner {
       position: absolute;
       top: 0;
       bottom: 0;
       width: 100%;
       overflow-y: auto;
-      border: 1px solid black; }
-    #presenter #reward-modal ul li {
-      clear: both;
-      padding: 10px;
-      border-top: 1px solid white;
-      border-bottom: 1px solid #dddddd;
-      background: #f4f4f4; }
-      #presenter #reward-modal ul li .rewarder {
-        height: 28px; }
-        #presenter #reward-modal ul li .rewarder .avatar {
-          display: block;
-          width: 28px;
-          height: 28px;
-          float: left;
-          margin-right: 5px; }
-          #presenter #reward-modal ul li .rewarder .avatar img {
-            width: 28px;
-            height: 28px; }
-        #presenter #reward-modal ul li .rewarder .name {
-          float: left;
-          color: #252525;
-          font-size: 11px; }
-          #presenter #reward-modal ul li .rewarder .name span {
-            display: block;
-            text-transform: uppercase;
-            font-weight: 700; }
-        #presenter #reward-modal ul li .rewarder .amount {
-          float: right;
-          padding-right: 17px;
-          background: transparent url(../images/icons/starBlackSmall.png) no-repeat 100% 3px;
-          font-weight: 700;
-          font-size: 17px;
-          font-family: "ff-dagny-web-pro-1", "ff-dagny-web-pro-2", sans-serif; }
-      #presenter #reward-modal ul li .comment, #presenter #reward-modal ul li .when {
-        clear: both; }
-      #presenter #reward-modal ul li .comment {
-        font-size: 11px;
-        padding: 5px 0; }
-      #presenter #reward-modal ul li .when {
-        font-size: 10px;
-        color: #cccccc;
-        text-align: right; }
-    #presenter #reward-modal ul li#give-reward {
-      background: #dddddd;
-      padding-top: 15px;
-      padding-bottom: 5px;
-      height: 145px; }
-      #presenter #reward-modal ul li#give-reward .how-much .amount-text, #presenter #reward-modal ul li#give-reward .how-much input, #presenter #reward-modal ul li#give-reward .how-much .out-of {
-        float: left; }
-      #presenter #reward-modal ul li#give-reward .how-much .amount-text, #presenter #reward-modal ul li#give-reward .how-much .out-of {
-        padding-top: 7px; }
-      #presenter #reward-modal ul li#give-reward .how-much .amount-text {
-        padding-right: 4px; }
-      #presenter #reward-modal ul li#give-reward .how-much .out-of {
-        padding-left: 4px; }
-      #presenter #reward-modal ul li#give-reward .how-much input[type="text"] {
+      border: 1px solid #aaaaaa; }
+      #presenter #reward-modal .modal-inner #your-reward {
         float: left;
-        width: 24px;
-        padding: 4px 4px 4px 22px;
+        width: 90%; }
+      #presenter #reward-modal .modal-inner #reward-list.closed {
+        width: 10%; }
+      #presenter #reward-modal .modal-inner #reward-list {
+        width: 50%; }
+      #presenter #reward-modal .modal-inner #your-reward.closed {
+        width: 50%; }
+    #presenter #reward-modal #creator-info {
+      position: relative;
+      padding: 10px 10px 10px 126px;
+      min-height: 106px; }
+      #presenter #reward-modal #creator-info a.avatar {
+        position: absolute;
+        top: 10px;
+        left: 10px; }
+        #presenter #reward-modal #creator-info a.avatar img {
+          width: 100px;
+          height: 100px;
+          border: 3px solid black; }
+      #presenter #reward-modal #creator-info a.name {
+        display: block;
+        text-transform: uppercase;
+        font-size: 20px;
         font-weight: 700;
-        font-size: 14px;
-        background: white url(../images/icons/starBlackSmall.png) no-repeat 4px 5px;
-        -webkit-border-radius: 3px;
-        -moz-border-radius: 3px;
-        border-radius: 3px; }
-      #presenter #reward-modal ul li#give-reward input[type="text"], #presenter #reward-modal ul li#give-reward textarea {
-        -webkit-border-radius: 0;
-        -moz-border-radius: 0;
-        border-radius: 0; }
-      #presenter #reward-modal ul li#give-reward textarea {
-        width: 94%;
-        height: 40px;
-        margin: 11px 0 13px;
-        -webkit-border-radius: 3px;
-        -moz-border-radius: 3px;
-        border-radius: 3px; }
-      #presenter #reward-modal ul li#give-reward .impacter-and-submit {
-        height: 33px; }
-        #presenter #reward-modal ul li#give-reward .impacter-and-submit .impacter {
+        color: black;
+        margin-bottom: 5px; }
+      #presenter #reward-modal #creator-info .tagline {
+        font-size: 11px;
+        max-height: 50px;
+        overflow: hidden;
+        margin-bottom: 10px; }
+      #presenter #reward-modal #creator-info .links a {
+        margin-right: 20px;
+        text-transform: uppercase;
+        font-weight: 700; }
+    #presenter #reward-modal #reward-box .inner {
+      width: 485px;
+      height: 382px;
+      padding: 15px; }
+      #presenter #reward-modal #reward-box .inner .yourself {
+        padding-top: 100px; }
+        #presenter #reward-modal #reward-box .inner .yourself h1 {
+          text-align: center; }
+      #presenter #reward-modal #reward-box .inner h1 {
+        font-family: "museo-slab-1", "museo-slab-2", serif;
+        font-size: 40px;
+        text-transform: uppercase;
+        font-weight: 100;
+        letter-spacing: -0.7px;
+        margin-bottom: 0; }
+      #presenter #reward-modal #reward-box .inner h2 {
+        font-size: 16px;
+        font-weight: 900;
+        color: black;
+        background: none;
+        padding: 0; }
+      #presenter #reward-modal #reward-box .inner h1, #presenter #reward-modal #reward-box .inner h2 {
+        text-align: center; }
+      #presenter #reward-modal #reward-box .inner form#reward-form {
+        margin-top: 20px; }
+        #presenter #reward-modal #reward-box .inner form#reward-form .from, #presenter #reward-modal #reward-box .inner form#reward-form .amount, #presenter #reward-modal #reward-box .inner form#reward-form .to {
           float: left; }
-          #presenter #reward-modal ul li#give-reward .impacter-and-submit .impacter a.avatar {
+        #presenter #reward-modal #reward-box .inner form#reward-form .from, #presenter #reward-modal #reward-box .inner form#reward-form .to {
+          width: 66px;
+          height: 88px;
+          background-color: #00aeef;
+          position: relative; }
+          #presenter #reward-modal #reward-box .inner form#reward-form .from img.avatar, #presenter #reward-modal #reward-box .inner form#reward-form .to img.avatar {
+            width: 60px;
+            height: 60px;
             display: block;
-            float: left;
-            margin-right: 5px;
+            margin: 3px; }
+          #presenter #reward-modal #reward-box .inner form#reward-form .from .rewards, #presenter #reward-modal #reward-box .inner form#reward-form .to .rewards {
+            position: absolute;
+            bottom: -13px;
+            margin: 0 auto;
+            text-align: center; }
+            #presenter #reward-modal #reward-box .inner form#reward-form .from .rewards .count, #presenter #reward-modal #reward-box .inner form#reward-form .to .rewards .count {
+              display: inline-block;
+              color: white;
+              font-weight: 700;
+              padding: 0 17px 0 4px;
+              height: 22px;
+              background: transparent url(../images/icons/recommendWhite.png) no-repeat 100% 0; }
+            #presenter #reward-modal #reward-box .inner form#reward-form .from .rewards .text, #presenter #reward-modal #reward-box .inner form#reward-form .to .rewards .text {
+              font-size: 8px; }
+        #presenter #reward-modal #reward-box .inner form#reward-form .amount {
+          width: 310px;
+          margin: 30px 20px 0; }
+          #presenter #reward-modal #reward-box .inner form#reward-form .amount p {
+            margin-top: 10px; }
+            #presenter #reward-modal #reward-box .inner form#reward-form .amount p span, #presenter #reward-modal #reward-box .inner form#reward-form .amount p input {
+              float: left;
+              font-size: 11px; }
+            #presenter #reward-modal #reward-box .inner form#reward-form .amount p input[type="text"] {
+              background: none;
+              border: none;
+              width: auto;
+              font-size: 15px;
+              font-weight: 700;
+              width: 22px;
+              height: 20px;
+              padding: 0 3px;
+              text-align: center; }
+      #presenter #reward-modal #reward-box .inner .comment {
+        clear: both;
+        padding-top: 40px; }
+        #presenter #reward-modal #reward-box .inner .comment textarea {
+          width: 96%;
+          height: 80px; }
+        #presenter #reward-modal #reward-box .inner .comment input[type="submit"] {
+          background-color: black;
+          color: white;
+          display: block;
+          margin: 10px auto;
+          width: 200px;
+          padding: 8px 5px 7px; }
+    #presenter #reward-modal #reward-box.loading .inner {
+      background: #eeeeee url(../images/spinner.gif) no-repeat 50% 50%; }
+      #presenter #reward-modal #reward-box.loading .inner h1, #presenter #reward-modal #reward-box.loading .inner h2, #presenter #reward-modal #reward-box.loading .inner form {
+        display: none; }
+    #presenter #reward-modal #reward-box.thanks .inner {
+      padding: 0;
+      width: 515px; }
+    #presenter #reward-modal ul#reward-list {
+      float: right; }
+      #presenter #reward-modal ul#reward-list li {
+        clear: both;
+        padding: 10px;
+        border-top: 1px solid white;
+        border-bottom: 1px solid #dddddd;
+        background: #f4f4f4; }
+        #presenter #reward-modal ul#reward-list li .rewarder {
+          height: 28px; }
+          #presenter #reward-modal ul#reward-list li .rewarder .avatar {
+            display: block;
             width: 28px;
-            height: 28px; }
-            #presenter #reward-modal ul li#give-reward .impacter-and-submit .impacter a.avatar img {
+            height: 28px;
+            float: left;
+            margin-right: 5px; }
+            #presenter #reward-modal ul#reward-list li .rewarder .avatar img {
               width: 28px;
               height: 28px; }
-          #presenter #reward-modal ul li#give-reward .impacter-and-submit .impacter .name {
-            font-size: 10px;
-            color: #777777;
+          #presenter #reward-modal ul#reward-list li .rewarder .name {
             float: left;
-            width: 130px; }
-        #presenter #reward-modal ul li#give-reward .impacter-and-submit input[type="submit"] {
-          padding: 4px 8px;
-          -webkit-border-radius: 3px;
-          -moz-border-radius: 3px;
-          border-radius: 3px;
-          float: right; }
-    #presenter #reward-modal ul li#give-reward.loading {
-      background: #eeeeee url(../images/spinner.gif) no-repeat 50% 50%; }
-      #presenter #reward-modal ul li#give-reward.loading form {
+            color: #252525;
+            font-size: 11px; }
+            #presenter #reward-modal ul#reward-list li .rewarder .name span {
+              display: block;
+              text-transform: uppercase;
+              font-weight: 700; }
+          #presenter #reward-modal ul#reward-list li .rewarder .amount {
+            float: right;
+            padding-right: 17px;
+            background: transparent url(../images/icons/starBlackSmall.png) no-repeat 100% 3px;
+            font-weight: 700;
+            font-size: 17px;
+            font-family: "ff-dagny-web-pro-1", "ff-dagny-web-pro-2", sans-serif; }
+        #presenter #reward-modal ul#reward-list li .comment, #presenter #reward-modal ul#reward-list li .when {
+          clear: both; }
+        #presenter #reward-modal ul#reward-list li .comment {
+          font-size: 11px;
+          padding: 5px 0; }
+        #presenter #reward-modal ul#reward-list li .when {
+          font-size: 10px;
+          color: #cccccc;
+          text-align: right; }
+      #presenter #reward-modal ul#reward-list li:nth-child(odd) {
+        background: #fafafa; }
+      #presenter #reward-modal ul#reward-list li.highlighted {
+        background: #fffaba; }
+      #presenter #reward-modal ul#reward-list li#new-reward {
         display: none; }
-    #presenter #reward-modal ul li#give-reward.no-user {
-      height: 70px;
-      text-align: center; }
-      #presenter #reward-modal ul li#give-reward.no-user h3 {
-        font-size: 13px;
-        text-transform: uppercase;
-        margin-bottom: 5px; }
-      #presenter #reward-modal ul li#give-reward.no-user a {
-        position: relative;
-        top: 12px; }
-      #presenter #reward-modal ul li#give-reward.no-user a.login {
-        background: #c8f2d0;
-        color: #34b44c;
-        margin-left: 5px; }
-    #presenter #reward-modal ul li:nth-child(odd) {
-      background: #fafafa; }
-    #presenter #reward-modal ul li.highlighted {
-      background: #fffaba; }
-    #presenter #reward-modal ul li#new-reward {
+    #presenter #reward-modal ul#reward-list.closed li .rewarder .name {
+      display: none; }
+    #presenter #reward-modal ul#reward-list.closed li .comment, #presenter #reward-modal ul#reward-list.closed li .when {
       display: none; }
     #presenter #reward-modal #reward-thank-you .message {
       padding-bottom: 10px;
@@ -3098,109 +3172,6 @@ form.new_story, form.edit_story, .story-form {
         background-image: url(../images/tweetThis.png); }
   #presenter .content {
     z-index: 1; }
-  #presenter #back-to-preview {
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: white url(../images/icons/fullscreenOff.png) no-repeat 10px 50%;
-    color: black;
-    font-weight: bold;
-    display: inline-block;
-    padding: 8px 10px 8px 32px;
-    -webkit-border-bottom-right-radius: 5px;
-    -moz-border-radius-bottomright: 5px;
-    border-bottom-right-radius: 5px;
-    -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
-    -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
-    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
-    z-index: 3; }
-  #presenter #back-to-home {
-    position: absolute;
-    top: 0;
-    left: 35px;
-    width: 46px;
-    height: 60px;
-    background: transparent url(../images/backToHome.png) no-repeat 50% 0;
-    z-index: 3;
-    text-indent: -9999px; }
-  #presenter #activity {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 385px;
-    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
-    -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
-    overflow: hidden;
-    background: white;
-    border: 1px solid #cccccc;
-    border-top: none;
-    border-bottom: none;
-    -webkit-transition: all linear 0.2s;
-    -moz-transition: all linear 0.2s;
-    display: none; }
-    #presenter #activity a#close-activity {
-      display: block;
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 30px;
-      width: 345px;
-      color: white;
-      line-height: 30px;
-      vertical-align: middle;
-      padding: 0 30px 0 10px;
-      font-size: 14px;
-      text-transform: uppercase;
-      font-weight: 900;
-      background: black url(../images/white-close-xSm.png) no-repeat 98% 6px;
-      text-align: right; }
-    #presenter #activity .scroller {
-      height: 100%;
-      overflow-y: auto;
-      margin-top: 30px; }
-    #presenter #activity ul.list .reward-box .the-rest {
-      height: 100px; }
-    #presenter #activity ul.list li {
-      background-color: #d7d7d7;
-      position: relative;
-      border-bottom: 1px solid #aaaaaa; }
-      #presenter #activity ul.list li a.avatar {
-        position: absolute;
-        top: 10px;
-        left: 10px;
-        width: 30px;
-        height: 30px; }
-        #presenter #activity ul.list li a.avatar img {
-          width: 30px;
-          height: 30px; }
-      #presenter #activity ul.list li .the-rest {
-        background-color: white;
-        margin-left: 50px;
-        padding: 10px;
-        min-height: 30px; }
-        #presenter #activity ul.list li .the-rest .who-when {
-          height: 30px; }
-          #presenter #activity ul.list li .the-rest .who-when .icon, #presenter #activity ul.list li .the-rest .who-when .author, #presenter #activity ul.list li .the-rest .who-when .date {
-            float: left;
-            height: 30px;
-            line-height: 30px;
-            vertical-align: middle;
-            margin-right: 10px; }
-          #presenter #activity ul.list li .the-rest .who-when .author {
-            font-size: 16px;
-            font-weight: 900;
-            text-transform: uppercase; }
-          #presenter #activity ul.list li .the-rest .who-when .date {
-            color: #aaaaaa; }
-        #presenter #activity ul.list li .the-rest .comment {
-          margin-top: 5px; }
-    #presenter #activity ul.list li.empty {
-      padding: 10px 0;
-      background-color: white;
-      font-style: italic;
-      text-align: center;
-      color: #aaaaaa; }
   #presenter #metadata {
     position: absolute;
     left: 0;
@@ -3519,109 +3490,6 @@ form.new_story, form.edit_story, .story-form {
         height: 100%; }
     #presenter ul#pages li.external .inner {
       overflow-y: hidden; }
-    #presenter ul#pages li.last {
-      background-color: #111111; }
-      #presenter ul#pages li.last .inner {
-        width: 745px;
-        margin: 0 auto;
-        padding-top: 150px; }
-        #presenter ul#pages li.last .inner .thank-you {
-          color: white;
-          border-bottom: 1px dotted #444444;
-          padding-bottom: 15px;
-          margin-bottom: 25px; }
-          #presenter ul#pages li.last .inner .thank-you h3 {
-            font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
-            text-transform: uppercase;
-            font-size: 18px;
-            font-weight: 700; }
-          #presenter ul#pages li.last .inner .thank-you p {
-            font-family: "museo-slab-1", "museo-slab-2", serif;
-            font-size: 18px;
-            margin: 2px 0 5px;
-            line-height: 20px;
-            letter-spacing: 0.3px;
-            font-weight: 100; }
-        #presenter ul#pages li.last .inner #reward-box .inner {
-          width: 410px;
-          padding: 10px; }
-        #presenter ul#pages li.last .inner .stories {
-          width: 300px;
-          float: right; }
-          #presenter ul#pages li.last .inner .stories .tabs {
-            margin-bottom: 0;
-            background-color: transparent;
-            height: 29px;
-            min-height: 0;
-            position: relative; }
-            #presenter ul#pages li.last .inner .stories .tabs a {
-              top: 0;
-              padding: 0;
-              position: absolute;
-              height: 29px;
-              line-height: 29px;
-              vertical-align: middle;
-              font-size: 12px;
-              background: transparent url(../images/tab155x29Dark.png) no-repeat 0 0;
-              color: white;
-              width: 155px;
-              z-index: 1;
-              -webkit-box-shadow: none;
-              -moz-box-shadow: none;
-              box-shadow: none; }
-            #presenter ul#pages li.last .inner .stories .tabs a.first {
-              left: 0; }
-            #presenter ul#pages li.last .inner .stories .tabs a.last {
-              right: 0; }
-            #presenter ul#pages li.last .inner .stories .tabs a.active {
-              background: transparent url(../images/tab155x29.png) no-repeat 0 0;
-              color: #252525;
-              z-index: 2; }
-            #presenter ul#pages li.last .inner .stories .tabs a, #presenter ul#pages li.last .inner .stories .tabs a.active, #presenter ul#pages li.last .inner .stories .tabs a:first-child {
-              border: 0 none; }
-          #presenter ul#pages li.last .inner .stories ul.stories {
-            background-color: white;
-            width: 278px;
-            height: 269px;
-            padding: 10px 5px;
-            border: 6px solid #eeeeee;
-            overflow-y: auto; }
-            #presenter ul#pages li.last .inner .stories ul.stories li {
-              display: block;
-              width: 263px;
-              height: 60px;
-              background: transparent url(../images/simpleDotBG.png) repeat-x 50% 100%;
-              padding-bottom: 10px;
-              margin-bottom: 10px;
-              position: relative; }
-              #presenter ul#pages li.last .inner .stories ul.stories li a.thumbnail {
-                width: 95px;
-                height: 60px;
-                display: block;
-                float: left;
-                margin: 0 8px 0 0;
-                overflow: hidden; }
-              #presenter ul#pages li.last .inner .stories ul.stories li .info {
-                width: 160px;
-                float: left;
-                line-height: 12px; }
-                #presenter ul#pages li.last .inner .stories ul.stories li .info .title {
-                  font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
-                  color: black;
-                  font-weight: 700;
-                  margin: 0; }
-                #presenter ul#pages li.last .inner .stories ul.stories li .info .author {
-                  border: none;
-                  margin: 0;
-                  font-size: 10px; }
-              #presenter ul#pages li.last .inner .stories ul.stories li .price {
-                width: 50px;
-                float: left;
-                right: 0;
-                bottom: 20px; }
-            #presenter ul#pages li.last .inner .stories ul.stories li:last-child {
-              background: none;
-              margin-bottom: 0; }
   #presenter #previous-page, #presenter #next-page {
     width: 100px;
     height: 140px;
@@ -6351,108 +6219,6 @@ ul.rewards {
 
 #fancybox-content {
   background: rgba(0, 0, 0, 0.2); }
-
-#reward-box {
-  width: 515px;
-  position: absolute;
-  top: -422px;
-  left: 50%;
-  margin-left: -267px;
-  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
-  -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.7); }
-  #reward-box .inner {
-    width: 485px;
-    height: 382px;
-    padding: 15px;
-    background-color: #eeeeee; }
-    #reward-box .inner .yourself {
-      padding-top: 100px; }
-      #reward-box .inner .yourself h1 {
-        text-align: center; }
-    #reward-box .inner h1 {
-      font-family: "museo-slab-1", "museo-slab-2", serif;
-      font-size: 40px;
-      text-transform: uppercase;
-      font-weight: 100;
-      letter-spacing: -0.7px;
-      margin-bottom: 0; }
-    #reward-box .inner h2 {
-      font-size: 16px;
-      font-weight: 900;
-      color: black;
-      background: none;
-      padding: 0; }
-    #reward-box .inner h1, #reward-box .inner h2 {
-      text-align: center; }
-    #reward-box .inner form#reward-form {
-      margin-top: 20px; }
-      #reward-box .inner form#reward-form .from, #reward-box .inner form#reward-form .amount, #reward-box .inner form#reward-form .to {
-        float: left; }
-      #reward-box .inner form#reward-form .from, #reward-box .inner form#reward-form .to {
-        width: 66px;
-        height: 88px;
-        background-color: #00aeef;
-        position: relative; }
-        #reward-box .inner form#reward-form .from img.avatar, #reward-box .inner form#reward-form .to img.avatar {
-          width: 60px;
-          height: 60px;
-          display: block;
-          margin: 3px; }
-        #reward-box .inner form#reward-form .from .rewards, #reward-box .inner form#reward-form .to .rewards {
-          position: absolute;
-          bottom: -13px;
-          margin: 0 auto;
-          text-align: center; }
-          #reward-box .inner form#reward-form .from .rewards .count, #reward-box .inner form#reward-form .to .rewards .count {
-            display: inline-block;
-            color: white;
-            font-weight: 700;
-            padding: 0 17px 0 4px;
-            height: 22px;
-            background: transparent url(../images/icons/recommendWhite.png) no-repeat 100% 0; }
-          #reward-box .inner form#reward-form .from .rewards .text, #reward-box .inner form#reward-form .to .rewards .text {
-            font-size: 8px; }
-      #reward-box .inner form#reward-form .amount {
-        width: 310px;
-        margin: 30px 20px 0; }
-        #reward-box .inner form#reward-form .amount p {
-          margin-top: 10px; }
-          #reward-box .inner form#reward-form .amount p span, #reward-box .inner form#reward-form .amount p input {
-            float: left;
-            font-size: 11px; }
-          #reward-box .inner form#reward-form .amount p input[type="text"] {
-            background: none;
-            border: none;
-            width: auto;
-            font-size: 15px;
-            font-weight: 700;
-            width: 22px;
-            height: 20px;
-            padding: 0 3px;
-            text-align: center; }
-    #reward-box .inner .comment {
-      clear: both;
-      padding-top: 40px; }
-      #reward-box .inner .comment textarea {
-        width: 96%;
-        height: 80px; }
-      #reward-box .inner .comment input[type="submit"] {
-        background-color: black;
-        color: white;
-        display: block;
-        margin: 10px auto;
-        width: 200px;
-        padding: 8px 5px 7px; }
-
-#reward-box.loading .inner {
-  background: #eeeeee url(../images/spinner.gif) no-repeat 50% 50%; }
-  #reward-box.loading .inner h1, #reward-box.loading .inner h2, #reward-box.loading .inner form {
-    display: none; }
-
-#reward-box.thanks .inner {
-  padding: 0;
-  width: 515px; }
 
 a#load-more {
   display: block;
