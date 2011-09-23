@@ -1,9 +1,10 @@
 - content_for :head do
   = javascript_include_tag "stories/presenter"
+  %meta{:property => "og:title", :content => @story.title}
+  %meta{:property => "og:description", :content => @story.synopsis}
+  %meta{:property => "og:image", :content => @story.thumbnail.url(:small)}
 
 #presenter
-
-  #thumbnail= image_tag(@story.thumbnail.url(:small))
 
   #reward-modal
 
