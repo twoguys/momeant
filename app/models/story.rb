@@ -109,12 +109,20 @@ class Story < ActiveRecord::Base
     end
   end
   
+  def update_with_opengraph_data(metadata)
+    # download image and set as thumbnail
+    if metadata.image
+      io = open(URI.parse(metadata.image))
+      def io.original_filename; base_uri.path.split('/').last; end
+      self.thumbnail = io.original_filename.blank? ? nil : io
+    end
+    self.title = metadata.title if metadata.title.present?
+    self.synopsis = metadata.description if metadata.description.present?
+    
+    self.save
+  end
+  
   def download_thumbnail(image_url)
-    Rails.logger.info "ASDFSADFASDFASDFADSFASDFASDFSADFSADFSA - #{image_url}"
-    io = open(URI.parse(image_url))
-    def io.original_filename; base_uri.path.split('/').last; end
-    Rails.logger.info "ASDFASDFASDFASDFASDFASDFSDA - #{io.original_filename}"
-    self.update_attribute(:thumbnail, io.original_filename.blank? ? nil : io)
   end
   
   def similar_stories
