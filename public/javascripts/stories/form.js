@@ -423,6 +423,14 @@ var story_page_editor = function() {
 		return false;
 	};
 	
+	this.update_metadata = function(metadata) {
+		if (!metadata) { return; }
+		
+		$('#story_title').val(metadata.title);
+		$('#story_synopsis').val(metadata.description);
+		$('#thumbnail-preview .thumbnail').css('background-image', 'url(' + metadata.image + ')');
+	};
+	
 }
 
 var auto_saver;
@@ -670,6 +678,9 @@ var story_auto_saver = function() {
 						auto_saver.hide_metadata_spinner();
 						if (data.result == "success") {
 							log('successfully updated story with: ' + value);
+							if (attribute_to_update == 'external_link') {
+								pages_editor.update_metadata(data.metadata);
+							}
 						} else {
 							log('error when updating page with: ' + value);
 						}

@@ -194,7 +194,11 @@ form.new_story, form.edit_story, .story-form
 					font-size: 11px
 				.thumbnail
 					margin-top: 10px
-					background: $lightblue url(../images/creatorThumbnailDefaultBG.png) no-repeat 50% 50%
+					background-color: $lightblue
+					background-image: url(../images/creatorThumbnailDefaultBG.png)
+					background-repeat: no-repeat
+					background-position: 50% 50%
+					@include bgcover
 					height: 180px
 			.note
 				width: 160px

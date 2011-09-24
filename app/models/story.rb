@@ -1,3 +1,5 @@
+require "open-uri"
+
 class Story < ActiveRecord::Base
   acts_as_taggable
   
@@ -101,10 +103,18 @@ class Story < ActiveRecord::Base
   
   def external_text_or_http
     if self.is_external? && self.pages.first.present? && self.pages.first.is_a?(ExternalPage)
-      "http://#{self.pages.first.text}"
+      self.pages.first.text
     else
       "http://"
     end
+  end
+  
+  def download_thumbnail(image_url)
+    Rails.logger.info "ASDFSADFASDFASDFADSFASDFASDFSADFSADFSA - #{image_url}"
+    io = open(URI.parse(image_url))
+    def io.original_filename; base_uri.path.split('/').last; end
+    Rails.logger.info "ASDFASDFASDFASDFASDFASDFSDA - #{io.original_filename}"
+    self.update_attribute(:thumbnail, io.original_filename.blank? ? nil : io)
   end
   
   def similar_stories

@@ -93,15 +93,21 @@ class StoriesController < ApplicationController
     end
     
     # are we updating the external link page?
-    if params[:story][:external_link].present?
+    if params[:story][:external_link]
       external_page = @story.pages.first
       if external_page.text_media.nil?
         external_page.medias << PageText.new
       end
       link = params[:story][:external_link]
-      link.gsub!(/^http:\/\//,"")
+      
+      # lookup OG data to help the user pre-populate metadata
+      site = OpenGraph.fetch(params[:story][:external_link]) unless link.blank?
+      if site && site.image
+        @story.download_thumbnail(site.image) if site.image.present?
+      end
+
       external_page.text_media.update_attribute(:text, link)
-      render :json => {:result => "success"}
+      render :json => {:result => "success", :metadata => site}
       return
     end
 

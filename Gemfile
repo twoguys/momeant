@@ -31,6 +31,7 @@ gem 'rest-client'
 gem 'nokogiri'
 gem 'omniauth'
 gem 'twitter'
+gem 'opengraph'
 
 group :test do
   gem 'shoulda'
