@@ -46,7 +46,7 @@ class Story < ActiveRecord::Base
   has_many :pages, :order => "number ASC", :dependent => :destroy
     
   validates :title, :presence => true, :length => (2..256), :unless => :autosaving
-  validates :synopsis, :length => (2..1024), :unless => :autosaving
+  validates :synopsis, :length => (0..1024), :unless => :autosaving
   validates_attachment_presence :thumbnail, :unless => :autosaving, :message => "must be chosen"
   
   validate  :at_least_one_page, :unless => :autosaving
@@ -109,15 +109,61 @@ class Story < ActiveRecord::Base
     end
   end
   
+  def update_via_opengraph(link)
+    metadata = {:title => "", :description => "", :image => ""}
+    return metadata if link.blank?
+    
+    begin
+      # lookup OG data to help the user pre-populate metadata
+      site = OpenGraph.fetch(link)
+      if site
+        metadata[:title] = site.title if site.title.present?
+        metadata[:description] = site.description if site.description.present?
+        metadata[:image] = site.image if site.image.present?
+      else
+        site = Nokogiri::HTML(open(link))
+        title = site.css('title').first
+        metadata[:title] = title.content if title
+        description = site.css('meta[name="description"]').first
+        metadata[:description] = description.content if description
+      
+        # check for <link rel="image_src">
+        image = site.css('link[rel="image_src"]').first
+        image = image.attribute("href").to_s if image
+      
+        # still no image? grab the first <img> tag on the page
+        if image.nil?
+          image = site.css('img').first
+          image = image.attribute("src").to_s if image
+        end
+        
+        # fix relative paths
+        if image && !image.match(/^http/)
+          image = link + image
+        end
+
+        metadata[:image] = image if image
+      end
+      self.update_with_opengraph_data(metadata)
+      self.reload
+      metadata[:image] = self.thumbnail.url(:medium)
+    rescue
+    end
+    
+    return metadata
+  end
+  
   def update_with_opengraph_data(metadata)
     # download image and set as thumbnail
-    if metadata.image
-      io = open(URI.parse(metadata.image))
+    if metadata[:image].present?
+      io = open(URI.parse(metadata[:image]))
       def io.original_filename; base_uri.path.split('/').last; end
       self.thumbnail = io.original_filename.blank? ? nil : io
     end
-    self.title = metadata.title if metadata.title.present?
-    self.synopsis = metadata.description if metadata.description.present?
+    self.title = metadata[:title]
+    self.synopsis = metadata[:description]
+    Rails.logger.info "XXXXXXXXXXX - #{self.synopsis}"
+    self.autosaving = true
     
     self.save
   end

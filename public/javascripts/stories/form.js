@@ -426,9 +426,12 @@ var story_page_editor = function() {
 	this.update_metadata = function(metadata) {
 		if (!metadata) { return; }
 		
-		$('#story_title').val(metadata.title);
-		$('#story_synopsis').val(metadata.description);
-		$('#thumbnail-preview .thumbnail').css('background-image', 'url(' + metadata.image + ')');
+		if (metadata.title != undefined)
+			$('#story_title').val(metadata.title);
+		if (metadata.description != undefined)
+			$('#story_synopsis').val(metadata.description);
+		if (metadata.image != undefined)
+			$('#thumbnail-preview .thumbnail').css('background-image', 'url(' + metadata.image + ')');
 	};
 	
 }
