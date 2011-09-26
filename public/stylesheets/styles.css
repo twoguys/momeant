@@ -4326,87 +4326,52 @@ ul.avatars li {
   /* Followers, Following Tabs */
   /* Supporters Tab */
   /* Edit Profile */ }
-  .user-profile .top.info {
-    background: #e0e0e0; }
-  .user-profile .info {
-    position: relative;
-    padding: 20px 20px 20px 95px;
-    height: 62px; }
-    .user-profile .info .avatar {
+  .user-profile .profile-info {
+    position: fixed;
+    top: 45px;
+    bottom: 0;
+    left: 0;
+    width: 187px;
+    padding: 10px;
+    border-right: 1px solid #cccccc; }
+    .user-profile .profile-info .avatar {
       position: absolute;
-      top: 20px;
-      left: 20px;
+      top: 10px;
+      left: 10px;
       display: block;
       border: 3px solid black;
-      width: 60px;
-      height: 60px; }
-    .user-profile .info .name-tagline-follow {
+      width: 50px;
+      height: 50px; }
+    .user-profile .profile-info .name {
+      font-size: 18px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: black;
+      padding-left: 63px;
+      padding-top: 3px;
+      min-height: 54px;
+      margin-bottom: 10px; }
+      .user-profile .profile-info .name span {
+        display: block; }
+    .user-profile .profile-info .stats {
+      margin-bottom: 10px; }
+    .user-profile .profile-info a.edit {
+      -webkit-border-radius: 2px;
+      -moz-border-radius: 2px;
+      border-radius: 2px;
+      background: #00aeef;
+      color: white;
+      padding: 2px 4px;
+      font-size: 12px;
       position: relative;
-      top: -4px; }
-      .user-profile .info .name-tagline-follow .name {
-        font-size: 20px;
-        font-weight: 700;
-        text-transform: uppercase;
-        color: black;
-        margin-bottom: -4px;
-        float: left;
-        margin-right: 10px; }
-        .user-profile .info .name-tagline-follow .name a.edit {
-          -webkit-border-radius: 2px;
-          -moz-border-radius: 2px;
-          border-radius: 2px;
-          background: #00aeef;
-          color: white;
-          padding: 2px 4px;
-          font-size: 12px;
-          position: relative;
-          top: -4px;
-          box-shadow: 1px 1px 1px rgba(255, 255, 255, 0.5) inset, -1px -1px 1px rgba(0, 0, 0, 0.15) inset; }
-        .user-profile .info .name-tagline-follow .name .badge {
-          -webkit-border-radius: 2px;
-          -moz-border-radius: 2px;
-          border-radius: 2px;
-          background: #ffbf03;
-          padding: 2px 4px;
-          color: white;
-          font-size: 12px;
-          position: relative;
-          top: -4px; }
-      .user-profile .info .name-tagline-follow .tagline {
-        font-size: 11px;
-        padding-bottom: 1px;
-        clear: both;
-        width: 60%;
-        padding-top: 4px; }
-      .user-profile .info .name-tagline-follow .follow {
-        float: left; }
-        .user-profile .info .name-tagline-follow .follow a, .user-profile .info .name-tagline-follow .follow input[type="submit"] {
-          display: block;
-          height: 25px;
-          padding: 2px 6px;
-          background: #34b44c;
-          background-image: -moz-linear-gradient(center top, #62e079 4%, #12b32f 52%);
-          background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #62e079), color-stop(0.52, #12b32f));
-          font-size: 11px;
-          color: white;
-          font-weight: 700;
-          text-transform: uppercase;
-          box-shadow: 1px 1px 1px rgba(255, 255, 255, 0.5) inset, -1px -1px 1px rgba(0, 0, 0, 0.15) inset; }
-        .user-profile .info .name-tagline-follow .follow a {
-          -webkit-border-radius: 3px;
-          -moz-border-radius: 3px;
-          border-radius: 3px;
-          width: auto;
-          height: 20px;
-          line-height: 20px; }
-        .user-profile .info .name-tagline-follow .follow a.unfollow {
-          background: #ff1345;
-          background-image: -moz-linear-gradient(center top, #ff7593 4%, #f42653 52%);
-          background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #ff7593), color-stop(0.52, #f42653)); }
-    .user-profile .info .impact-shield {
-      position: absolute;
-      top: 30px;
-      right: 50px;
+      top: -4px;
+      box-shadow: 1px 1px 1px rgba(255, 255, 255, 0.5) inset, -1px -1px 1px rgba(0, 0, 0, 0.15) inset; }
+    .user-profile .profile-info .tagline {
+      font-size: 11px;
+      padding-bottom: 1px;
+      clear: both;
+      padding-top: 4px; }
+    .user-profile .profile-info .impact-shield {
       background: transparent url(../images/shieldBlue.png) no-repeat 0 0;
       width: 56px;
       height: 67px;
@@ -4415,85 +4380,41 @@ ul.avatars li {
       font-size: 30px;
       line-height: 62px;
       text-align: center; }
-  .user-profile .patronee {
-    margin: 0 20px 20px;
-    border: 1px solid #e0e0e0;
-    -webkit-box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
-    -moz-box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
-    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
-    background: white; }
-    .user-profile .patronee .heading {
-      height: 50px;
-      padding: 20px;
-      background: #f6f6f6;
-      background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.2, #ebebeb), color-stop(0.6, #fcfcfc));
-      background-image: -moz-linear-gradient(center bottom, #ebebeb 20%, #fcfcfc 60%);
-      border-bottom: 1px solid #e0e0e0; }
-    .user-profile .patronee .info {
-      float: left;
-      padding: 0 0 0 65px; }
-      .user-profile .patronee .info .avatar {
-        width: 45px;
-        height: 45px;
-        top: 0;
-        left: 0; }
-        .user-profile .patronee .info .avatar img {
-          width: 45px;
-          height: 45px; }
-      .user-profile .patronee .info .name {
-        font-weight: 700;
-        text-transform: uppercase;
-        font-size: 20px;
-        line-height: 18px;
-        padding-top: 5px;
-        color: #252525; }
-        .user-profile .patronee .info .name span {
-          display: block;
-          padding-top: 5px; }
-    .user-profile .patronee .impact {
-      float: right; }
-      .user-profile .patronee .impact .given, .user-profile .patronee .impact .helped-get {
-        float: left;
-        font-size: 11px;
-        height: 60px;
-        margin-top: -5px; }
-        .user-profile .patronee .impact .given .text, .user-profile .patronee .impact .given .value, .user-profile .patronee .impact .helped-get .text, .user-profile .patronee .impact .helped-get .value {
-          float: left; }
-        .user-profile .patronee .impact .given .text, .user-profile .patronee .impact .helped-get .text {
-          padding: 30px 5px 0 0;
-          text-align: right; }
-        .user-profile .patronee .impact .given .value, .user-profile .patronee .impact .helped-get .value {
-          font-family: "ff-dagny-web-pro-1", "ff-dagny-web-pro-2", sans-serif;
-          font-size: 70px;
-          line-height: 1em;
-          font-weight: 200;
-          padding-right: 20px;
-          background: transparent url(../images/icons/starBlackSmall.png) no-repeat 100% 3px; }
-      .user-profile .patronee .impact .given {
-        border-right: 1px solid #cccccc;
-        padding-right: 20px; }
-      .user-profile .patronee .impact .helped-get {
-        border-left: 1px solid white;
-        padding-left: 20px; }
-    .user-profile .patronee ul.rewards {
-      padding: 20px 0 0 20px; }
-      .user-profile .patronee ul.rewards li .gave, .user-profile .patronee ul.rewards li .people, .user-profile .patronee ul.rewards li .impact {
+  .user-profile .the-rest {
+    margin-left: 208px;
+    min-height: 100%;
+    display: inline-block; }
+    .user-profile .the-rest:after {
+      content: ".";
+      display: block;
+      height: 0;
+      clear: both;
+      visibility: hidden; }
+    .user-profile .the-rest .horizontal-tabs ul {
+      padding-top: 20px; }
+    .user-profile .the-rest .tabbed {
+      padding: 20px; }
+  .user-profile ul.rewards {
+    padding: 20px 0 0 20px; }
+    .user-profile ul.rewards li {
+      background: white; }
+      .user-profile ul.rewards li .gave, .user-profile ul.rewards li .people, .user-profile ul.rewards li .impact {
         padding: 5px 10px;
         font-size: 11px; }
-      .user-profile .patronee ul.rewards li .gave {
+      .user-profile ul.rewards li .gave {
         border-bottom: 1px solid #e0e0e0;
         margin-bottom: 3px; }
-        .user-profile .patronee ul.rewards li .gave .reward {
+        .user-profile ul.rewards li .gave .reward {
           padding-right: 13px;
           background: transparent url(../images/icons/starBlackTiny.png) no-repeat 100% 2px;
           margin: 0 2px; }
-      .user-profile .patronee ul.rewards li .people, .user-profile .patronee ul.rewards li .impact {
+      .user-profile ul.rewards li .people, .user-profile ul.rewards li .impact {
         padding: 3px 0 3px 35px;
         background-position: 10px 50%;
         background-repeat: no-repeat; }
-      .user-profile .patronee ul.rewards li .people {
+      .user-profile ul.rewards li .people {
         background-image: url(../images/icons/person.png); }
-      .user-profile .patronee ul.rewards li .impact {
+      .user-profile ul.rewards li .impact {
         background-image: url(../images/icons/starBlackSmall.png);
         float: none; }
   .user-profile ul.stats-bar {

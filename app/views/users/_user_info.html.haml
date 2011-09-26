@@ -1,10 +1,15 @@
-.info.top
+.profile-info
   = link_to(image_tag(@user.avatar.url(:thumbnail), :class => "avatar"), user_path(@user))
-  .name-tagline-follow
-    .name
-      = @user.name
-      - if @user == current_user
-        = link_to("Edit Profile", edit_user_path(current_user), :class => "edit")
-    .tagline= truncate(@user.tagline, :length => 240)
+  
+  .name
+    %span= @user.first_name
+    %span= @user.last_name
     
-  .impact-shield.tooltipped-w{:title => "Level 1 Patron"} 1
+  .stats
+    .impact-shield.tooltipped{:title => "Level 1 Patron"} 1
+  
+  - if @user == current_user
+    = link_to("Edit Profile", edit_user_path(current_user), :class => "edit")
+  
+  .tagline= truncate(@user.tagline, :length => 240)
+    

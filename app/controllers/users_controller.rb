@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => :billing_updates
   
   def show
-    @creators = @user.given_rewards.for_content.group_by(&:recipient)
+    @rewards = @user.given_rewards.for_content
   end
   
   def stream #ajax requests

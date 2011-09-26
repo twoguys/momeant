@@ -73,79 +73,50 @@ ul.avatars
 		background-image: url(../images/icons/starGreySmall.png)
 
 .user-profile
-	.top.info
-		background: #e0e0e0
-	.info
-		position: relative
-		padding: 20px 20px 20px 95px
-		height: 62px
+	.profile-info
+		position: fixed
+		top: 45px
+		bottom: 0
+		left: 0
+		width: 187px
+		padding: 10px
+		border-right: 1px solid #ccc
 		.avatar
 			position: absolute
-			top: 20px
-			left: 20px
+			top: 10px
+			left: 10px
 			display: block
 			border: 3px solid #000
-			width: 60px
-			height: 60px
-		.name-tagline-follow
+			width: 50px
+			height: 50px
+		.name
+			font-size: 18px
+			font-weight: 700
+			text-transform: uppercase
+			color: #000
+			padding-left: 63px
+			padding-top: 3px
+			min-height: 54px
+			margin-bottom: 10px
+			span
+				display: block
+		.stats
+			margin-bottom: 10px
+		a.edit
+			@include rounded(2px)
+			background: $blue
+			color: #fff
+			padding: 2px 4px
+			font-size: 12px
 			position: relative
 			top: -4px
-			.name
-				font-size: 20px
-				font-weight: 700
-				text-transform: uppercase
-				color: #000
-				margin-bottom: -4px
-				float: left
-				margin-right: 10px
-				a.edit
-					@include rounded(2px)
-					background: $blue
-					color: #fff
-					padding: 2px 4px
-					font-size: 12px
-					position: relative
-					top: -4px
-					box-shadow: 1px 1px 1px rgba(255,255,255,0.5) inset, -1px -1px 1px rgba(0,0,0,0.15) inset
-				.badge
-					@include rounded(2px)
-					background: $yellow
-					padding: 2px 4px
-					color: #fff
-					font-size: 12px
-					position: relative
-					top: -4px
-			.tagline
-				font-size: 11px
-				padding-bottom: 1px
-				clear: both
-				width: 60%
-				padding-top: 4px
-			.follow
-				float: left
-				a, input[type="submit"]
-					display: block
-					height: 25px
-					padding: 2px 6px
-					background: $green
-					@include gradient($greengradient1, $greengradient2)
-					font-size: 11px
-					color: #fff
-					font-weight: 700
-					text-transform: uppercase
-					box-shadow: 1px 1px 1px rgba(255,255,255,0.5) inset, -1px -1px 1px rgba(0,0,0,0.15) inset
-				a
-					@include rounded(3px)
-					width: auto
-					height: 20px
-					line-height: 20px
-				a.unfollow
-					background: #ff1345
-					@include gradient($redgradient1, $redgradient2)
+			box-shadow: 1px 1px 1px rgba(255,255,255,0.5) inset, -1px -1px 1px rgba(0,0,0,0.15) inset
+		.tagline
+			font-size: 11px
+			padding-bottom: 1px
+			clear: both
+			padding-top: 4px
 		.impact-shield
-			position: absolute
-			top: 30px
-			right: 50px
 			background: transparent url(../images/shieldBlue.png) no-repeat 0 0
 			width: 56px
 			height: 67px
@@ -155,88 +126,40 @@ ul.avatars
 			line-height: 62px
 			text-align: center
 	
+	.the-rest
+		margin-left: 208px
+		min-height: 100%
+		@include clearfix
+		.horizontal-tabs ul
+			padding-top: 20px
+		.tabbed
+			padding: 20px
+	
 	/* Patronage Tab */
 	
-	.patronee
-		margin: 0 20px 20px
-		border: 1px solid #e0e0e0
-		@include boxshadow(3px,0.2,2px,2px)
-		background: #fff
-		.heading
-			height: 50px
-			padding: 20px
-			background: #f6f6f6
-			background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0.2, rgb(235,235,235)),color-stop(0.6, rgb(252,252,252)))
-			background-image: -moz-linear-gradient(center bottom,rgb(235,235,235) 20%,rgb(252,252,252) 60%)
-			border-bottom: 1px solid #e0e0e0
-		.info
-			float: left
-			padding: 0 0 0 65px
-			.avatar
-				width: 45px
-				height: 45px
-				top: 0
-				left: 0
-				img
-					width: 45px
-					height: 45px
-			.name
-				font-weight: 700
-				text-transform: uppercase
-				font-size: 20px
-				line-height: 18px
-				padding-top: 5px
-				color: $text_color
-				span
-					display: block
-					padding-top: 5px
-		.impact
-			float: right
-			.given, .helped-get
-				float: left
+	ul.rewards
+		padding: 20px 0 0 20px
+		li
+			background: #fff
+			.gave, .people, .impact
+				padding: 5px 10px
 				font-size: 11px
-				height: 60px
-				margin-top: -5px
-				.text, .value
-					float: left
-				.text
-					padding: 30px 5px 0 0
-					text-align: right
-				.value
-					font-family: $numerals
-					font-size: 70px
-					line-height: 1em
-					font-weight: 200
-					padding-right: 20px
-					background: transparent url(../images/icons/starBlackSmall.png) no-repeat 100% 3px
-			.given
-				border-right: 1px solid #ccc
-				padding-right: 20px
-			.helped-get
-				border-left: 1px solid #fff
-				padding-left: 20px
-		ul.rewards
-			padding: 20px 0 0 20px
-			li
-				.gave, .people, .impact
-					padding: 5px 10px
-					font-size: 11px
-				.gave
-					border-bottom: 1px solid #e0e0e0
-					margin-bottom: 3px
-					.reward
-						padding-right: 13px
-						background: transparent url(../images/icons/starBlackTiny.png) no-repeat 100% 2px
-						margin: 0 2px
-				.people, .impact
-					padding: 3px 0 3px 35px
-					background-position: 10px 50%
-					background-repeat: no-repeat
-				.people
-					background-image: url(../images/icons/person.png)
-				.impact
-					background-image: url(../images/icons/starBlackSmall.png)
-					float: none
+			.gave
+				border-bottom: 1px solid #e0e0e0
+				margin-bottom: 3px
+				.reward
+					padding-right: 13px
+					background: transparent url(../images/icons/starBlackTiny.png) no-repeat 100% 2px
+					margin: 0 2px
+			.people, .impact
+				padding: 3px 0 3px 35px
+				background-position: 10px 50%
+				background-repeat: no-repeat
+			.people
+				background-image: url(../images/icons/person.png)
+			.impact
+				background-image: url(../images/icons/starBlackSmall.png)
+				float: none
 			
 	/* Creations Tab */
 	
