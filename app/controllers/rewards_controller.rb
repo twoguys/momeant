@@ -13,6 +13,14 @@ class RewardsController < ApplicationController
       params[:reward][:impacted_by]
     )
     
+    if !@reward
+      @not_enough = true
+      comment = params[:reward] ? params[:reward][:comment] : ""
+      @reward = Reward.new(:comment => comment)
+      get_authentications
+      render :partial => "shared/reward_modal" and return
+    end
+    
     sharing = params[:share]
     if sharing
       current_user.post_to_twitter(@reward, story_url(@story, :impacted_by => @reward.id)) unless sharing[:twitter].blank?
@@ -20,5 +28,14 @@ class RewardsController < ApplicationController
     end
     
     render :partial => "after_reward"
+  end
+  
+  private
+  
+  def get_authentications
+    if current_user
+      @twitter_auth = current_user.authentications.find_by_provider("twitter")
+      @facebook_auth = current_user.authentications.find_by_provider("facebook")
+    end
   end
 end

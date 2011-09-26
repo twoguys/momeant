@@ -4,12 +4,16 @@
       %h2
         Sorry, you can't reward yourself ;).
   - else
+    - if @not_enough
+      .alert Oops, you tried to reward more coins than you have.
     .inner
       #avatars
         = image_tag(@user.avatar.url(:thumbnail), :class => "them")
         = image_tag(current_user.avatar.url(:thumbnail), :class => "you")
       = form_for :reward, :url => user_rewards_path(@user), :html => {:id => "reward-form"} do |form|
         = form.hidden_field :story_id, :value => @story.id
+        - if @impacted_by
+          = form.hidden_field :impacted_by, :value => @impacted_by
         #how-much
           %span I want to
           %strong REWARD #{@user.first_name}
@@ -21,7 +25,8 @@
           %span of my
           %strong= current_user.coins
           %span reward coins.
-        = form.text_area :comment, :placeholder => "Tell others why you're rewarding this..."
+        .comment
+          = form.text_area :comment, :placeholder => "Tell others why you're rewarding this..."
         #share
           .header Share with your networks
           %table

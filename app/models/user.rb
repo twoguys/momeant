@@ -138,24 +138,25 @@ class User < ActiveRecord::Base
   def reward(story, amount, comment, impacted_by)
     return if amount.nil?
     amount = amount.to_i
-    if can_afford?(amount)
-      options = {:story_id => story.id, :amount => amount, :user_id => self.id, :recipient_id => story.user.id, :comment => comment}
-
-      reward = Reward.create!(options)
-      story.increment!(:reward_count, amount)
-      self.decrement!(:coins, amount)
-      story.user.increment!(:lifetime_rewards, amount)
-      
-      if impacted_by
-        parent_reward = Reward.find_by_id(impacted_by)
-        if parent_reward
-          reward.move_to_child_of(parent_reward)
-          reward.update_attribute(:depth, reward.ancestors.count)
-        end
-      end
-      
-      return reward
+    if !can_afford?(amount)
+      return false
     end
+    options = {:story_id => story.id, :amount => amount, :user_id => self.id, :recipient_id => story.user.id, :comment => comment}
+
+    reward = Reward.create!(options)
+    story.increment!(:reward_count, amount)
+    self.decrement!(:coins, amount)
+    story.user.increment!(:lifetime_rewards, amount)
+    
+    if impacted_by
+      parent_reward = Reward.find_by_id(impacted_by)
+      if parent_reward
+        reward.move_to_child_of(parent_reward)
+        reward.update_attribute(:depth, reward.ancestors.count)
+      end
+    end
+    
+    return reward
   end
   
   def following_stream(page = 1)

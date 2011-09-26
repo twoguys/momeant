@@ -34,13 +34,19 @@
               = link_to("view other work", creations_user_path(@story.user))
               = link_to("view full profile", user_path(@story.user))
           
-            - @user = @story.user
-            - if current_user
-              = render "shared/reward_modal"
-            - else
-              %h3 Want to reward this?
-              = link_to("Join Momeant", "#join-modal", :class => "button")
-              = link_to("Login", "#login-modal", :class => "button login")
+            #reward-box-outer
+              - if current_user && current_user.coins > 0
+                - @user = @story.user
+                = render "shared/reward_modal"
+              - elsif current_user && current_user.coins == 0
+                .explanation
+                  %h3 Oops! You're out of reward coins.
+                  %p If you want to reward this content, please #{link_to("purchase more reward coins",coins_path)}.
+              - else
+                %h3 Want to reward this?
+                = link_to("Join Momeant", "#join-modal", :class => "button")
+                = link_to("Login", "#login-modal", :class => "button login")
+              
         #toggle-reward-stream.tooltipped-w{:title => "Expand/Contract"}
         
       #reward-list.closed

@@ -203,7 +203,7 @@ $(function() {
 			var share_with_facebook = $form.find("#share_facebook").val();
 			var url = $form.attr('action');
 
-			$('#reward-box').addClass('loading');
+			$('#reward-box-outer').addClass('loading');
 			$.post(url,
 				{
 					"reward[amount]":amount,
@@ -214,8 +214,8 @@ $(function() {
 					"share[facebook]":share_with_facebook
 				},
 				function(data) {
-					$("#reward-box").html(data);
-					$('#reward-box').removeClass('loading').addClass('thanks');
+					$("#reward-box-outer").html(data);
+					$('#reward-box-outer').removeClass('loading').addClass('thanks');
 					var $new_reward = $('#new-reward');
 					$new_reward.find('.amount').text(amount);
 					$new_reward.find('.comment').text(comment);
