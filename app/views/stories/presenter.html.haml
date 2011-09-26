@@ -22,18 +22,28 @@
     
       #your-reward
         #creator-info
-          = link_to(image_tag(@story.user.avatar.url), user_path(@story.user), :class => "avatar")
-          = link_to(@story.user.name, user_path(@story.user), :class => "name")
-          - unless @story.user.tagline.blank?
-            .tagline= truncate(@story.user.tagline, :length => 300)
-          .links
-            = link_to("view other work", creations_user_path(@story.user))
-            = link_to("view full profile", user_path(@story.user))
+          = link_to(image_tag(@story.user.avatar.url(:large)), user_path(@story.user), :class => "avatar")
+          .the-rest
+            = link_to(@story.user.name, user_path(@story.user), :class => "name")
+            - unless @story.user.tagline.blank?
+              .tagline= truncate(@story.user.tagline, :length => 300)
+            .tags
+              - @story.user.interests.each do |tag|
+                = link_to(tag.name, "#")
+            .links
+              = link_to("view other work", creations_user_path(@story.user))
+              = link_to("view full profile", user_path(@story.user))
           
-        - @user = @story.user
-        = render "shared/reward_modal"
+            - @user = @story.user
+            - if current_user
+              = render "shared/reward_modal"
+            - else
+              %h3 Want to reward this?
+              = link_to("Join Momeant", "#join-modal", :class => "button")
+              = link_to("Login", "#login-modal", :class => "button login")
 
       #reward-list.closed
+        #toggle-reward-stream
         .header Community Rewards
         %ul
           - if current_user

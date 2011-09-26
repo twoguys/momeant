@@ -72,172 +72,204 @@
 			width: 100%
 			overflow-y: auto
 			border: 1px solid #aaa
-			#your-reward
-				margin-right: 65px
-			#your-reward.closed
-				margin-right: 265px
+
+		#your-reward
+			position: absolute
+			top: 0
+			bottom: 0
+			left: 0
+			right: 65px
+			overflow-y: auto
+			z-index: 1
+		#your-reward.closed
+			right: 265px
 			
 			
 		#creator-info
 			position: relative
-			padding: 10px 10px 10px 126px
+			padding: 20px 20px 20px 132px
 			min-height: 106px
-			border-bottom: 1px solid #ccc
 			a.avatar
 				position: absolute
-				top: 10px
-				left: 10px
+				top: 20px
+				left: 20px
 				img
 					width: 100px
 					height: 100px
-					border: 3px solid #000
-			a.name
-				display: block
-				text-transform: uppercase
-				font-size: 20px
-				font-weight: 700
-				color: #000
-				margin-bottom: 5px
-			.tagline
-				font-size: 11px
-				max-height: 50px
-				overflow: hidden
-				margin-bottom: 10px
-			.links a
-				margin-right: 20px
-				text-transform: uppercase
-				font-weight: 700
-				
-		#reward-box
-			.inner
-				width: 485px
-				padding: 20px
-				margin: 0 auto
-				.yourself
-					padding-top: 100px
-					h1
-						text-align: center
-				h1
-					font-family: $typewriter
-					font-size: 40px
+					border: 1px solid #cacaca
+			.the-rest
+				a.name
+					display: block
 					text-transform: uppercase
-					font-weight: 100
-					letter-spacing: -0.7px
-					margin-bottom: 0
-				h2
-					font-size: 16px
-					font-weight: 900
+					font-size: 20px
+					font-weight: 700
 					color: #000
-					background: none
-					padding: 0
-				h1, h2
-					text-align: center
-				form#reward-form
-					margin-top: 20px
-					.from, .amount, .to
-						float: left
-					.from, .to
-						width: 66px
-						height: 88px
-						background-color: $blue
+					margin-bottom: 5px
+				.tagline
+					font-size: 11px
+					max-height: 50px
+					overflow: hidden
+					margin-bottom: 10px
+				.tags a
+					background: $blue
+					color: #fff
+					@include rounded(2px)
+					padding: 2px 4px
+					margin-right: 2px
+					font-size: 11px
+				.links
+					margin-top: 12px
+					a
+						margin-right: 20px
+						text-transform: uppercase
+						font-weight: 700
+				
+				#reward-box
+					margin-top: 12px
+					border-top: 1px dashed #ccc
+					padding-top: 20px
+					.inner
 						position: relative
-						img.avatar
-							width: 60px
-							height: 60px
-							display: block
-							margin: 3px
-						.rewards
+						padding-left: 80px
+						#avatars
 							position: absolute
-							bottom: -13px
-							margin: 0 auto
-							text-align: center
-							.count
-								display: inline-block
-								color: #fff
-								font-weight: 700
-								padding: 0 17px 0 4px
-								height: 22px
-								background: transparent url(../images/icons/recommendWhite.png) no-repeat 100% 0
-							.text
-								font-size: 8px
-					.amount
-						width: 310px
-						margin: 30px 20px 0
-						p
-							margin-top: 10px
-							span, input
-								float: left
-								font-size: 11px
-							input[type="text"]
-								background: none
+							top: 0
+							left: 0
+							img
+								position: absolute
+								width: 45px
+								height: 45px
+								border: 1px solid #cacaca
+							.them
+								top: 0
+								left: 0
+							.you
+								top: 15px
+								left: 15px
+						form#reward-form
+							input[type="text"], textarea
+								@include rounded(0)
+							#how-much
+								@include clearfix
+								span, strong
+									padding: 3px 0
+									font-size: 14px
+									float: left
+									margin-right: 4px
+								strong
+									text-transform: uppercase
+								.input
+									float: left
+									position: relative
+									margin-right: 5px
+									input[type="text"]
+										background: #f7f7f7 url(../images/icons/starBlackTiny.png) no-repeat 5px 50%
+										border: 1px solid #c6c6c6
+										width: 20px
+										height: 17px
+										padding: 2px 16px
+										text-align: center
+										font-size: 14px
+										font-weight: 700
+									#ticker
+										position: absolute
+										top: 1px
+										right: 1px
+										border-left: 1px solid #c6c6c6
+										background: transparent url(../images/rewardModalTickerBG.png) no-repeat
+										width: 11px
+										height: 21px
+										.up, .down
+											width: 10px
+											height: 10px
+											cursor: pointer
+							textarea
+								background: transparent url(../images/rewardModalCommentBG.png) no-repeat
 								border: none
-								width: auto
-								font-size: 15px
-								font-weight: 700
-								width: 22px
-								height: 20px
-								padding: 0 3px
-								text-align: center
-				.comment
-					clear: both
-					padding-top: 25px
-					textarea
-						width: 96%
-						height: 50px
-						@include rounded(0)
-					input[type="submit"]
-						background-color: #000
-						color: #fff
-						display: block
-						margin: 10px auto
-						width: 200px
-						padding: 8px 5px 7px
-				#share
-					padding: 10px 0 20px
-					h3
-						margin-bottom: 5px
-					table
-						width: 300px
-						td
-							padding: 5px 10px
-						td.text
-							text-shadow: 0 1px 0 #fff
-						td.link
-							text-align: right
-						.switch
-							float: right
-							.toggle
-								width: 84px
-								height: 28px
-								background: transparent url(../images/onOffSwitchBG.png) no-repeat 0 0
-								position: relative
-								cursor: pointer
-								.handle
-									width: 44px
-									height: 28px
-									position: absolute
-									top: 0
-									left: 0
-									background: transparent url(../images/onOffSwitchHandle.png) no-repeat 0 0
-							.toggle.off .handle
-								left: 40px
-		#reward-box.loading .inner
-			height: 440px
-			background: transparent url(../images/spinner.gif) no-repeat 50% 50%
-			*
-				display: none
-		#reward-box.thanks .inner
-			padding: 0
-			width: 515px
+								width: 316px
+								height: 50px
+								padding: 10px 15px
+							#share
+								margin: 20px 0 10px 7px
+								border-top: 1px dashed #ccc
+								border-bottom: 1px dashed #ccc
+								width: 334px
+								padding-bottom: 7px
+								.header
+									background: #fff
+									display: inline
+									padding: 0 5px
+									margin: 0 auto
+									position: relative
+									top: -9px
+									left: 87px
+								table
+									width: 100%
+									border: none
+									margin-top: -5px
+									td
+										padding: 5px 10px
+										background: none
+										border: none
+									td.text
+										text-shadow: 0 1px 0 #fff
+									td.link
+										text-align: right
+									.switch
+										float: right
+										.toggle
+											width: 84px
+											height: 28px
+											background: transparent url(../images/onOffSwitchBG.png) no-repeat 0 0
+											position: relative
+											cursor: pointer
+											.handle
+												width: 44px
+												height: 28px
+												position: absolute
+												top: 0
+												left: 0
+												background: transparent url(../images/onOffSwitchHandle.png) no-repeat 0 0
+										.toggle.off .handle
+											left: 40px
+						input[type="submit"]
+							margin-left: 7px
+							width: 333px
+							@include gradient($bluegradient1, $bluegradient2)
+							border: 1px solid #528294
+							color: #fff
+							text-shadow: 0 -1px 0 rgba(0,0,0,0.75)
+							padding-top: 12px
+				#reward-box.loading .inner
+					height: 440px
+					background: transparent url(../images/spinner.gif) no-repeat 50% 50%
+					*
+						display: none
+				#reward-box.thanks .inner
+					padding: 0
+					width: 515px
 					
+		#reward-list.closed
+			width: auto
+			#toggle-reward-stream
+				background-position: 0 0
 		#reward-list
+			width: 265px
 			position: absolute
 			top: 0
 			bottom: 0
 			right: 0
+			z-index: 2
 			border-left: 1px solid #ddd
 			overflow-y: auto
 			background: #eee
+			#toggle-reward-stream
+				position: absolute
+				top: 5px
+				left: -20px
+				width: 21px
+				height: 22px
+				background: transparent url(../images/rewardModalToggleStream.png) no-repeat 0 22px
 			.header
 				font-size: 14px
 				font-weight: 700

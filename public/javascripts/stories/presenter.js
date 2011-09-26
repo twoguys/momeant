@@ -140,7 +140,9 @@ $(function() {
 			'click #reward-modal-tab':     'toggle_modal',
 			'click #share .toggle':        'toggle_switch',
 			'click #reward-list':          'open_rewards',
-			'submit #reward-form':         'submit_reward'
+			'submit #reward-form':         'submit_reward',
+			'click #how-much #ticker .up':    'increment_reward_amount',
+			'click #how-much #ticker .down':  'decrement_reward_amount',
 		},
 		
 		initialize: function() {
@@ -219,6 +221,28 @@ $(function() {
 					$new_reward.slideDown();
 				}
 			);
+		},
+		
+		increment_reward_amount: function() {
+			var $amount = $('#reward_amount');
+			var value = parseInt($amount.val());
+			if (isNaN(value)) {
+				$amount.val('1');
+			} else {
+				$amount.val(value + 1);
+			}
+		},
+
+		decrement_reward_amount: function() {
+			var $amount = $('#reward_amount');
+			var value = parseInt($amount.val());
+			if (isNaN(value)) {
+				$amount.val('1');
+			}	else if (value == 1) {
+				// do nothing
+			} else {
+				$amount.val(value - 1);
+			}
 		},
 
 		setup_key_bindings: function() {

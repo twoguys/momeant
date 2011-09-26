@@ -42,7 +42,7 @@ class User < ActiveRecord::Base
   has_many :authentications
   
   has_attached_file :avatar,
-    :styles => { :thumbnail => "60x60#" },
+    :styles => { :thumbnail => "60x60#", :large => "100x100#" },
     :path          => "avatars/:id/:style.:extension",
     :storage        => :s3,
     :s3_credentials => {
