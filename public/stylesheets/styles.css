@@ -120,6 +120,8 @@ html, body {
         height: 60px; }
       #header #user-nav ul.links li.active {
         background: transparent url(../images/navActive.png) no-repeat 50% -7px; }
+    #header #user-nav #feedback, #header #user-nav #join, #header #user-nav #signin, #header #user-nav #signout {
+      height: 42px; }
     #header #user-nav #logo, #header #user-nav #home, #header #user-nav #community, #header #user-nav #faq {
       width: 46px; }
       #header #user-nav #logo a, #header #user-nav #home a, #header #user-nav #community a, #header #user-nav #faq a {
@@ -2902,10 +2904,10 @@ form.new_story, form.edit_story, .story-form {
     display: none; }
   #presenter #reward-modal {
     height: 80%;
-    width: 70%;
+    width: 80%;
     position: absolute;
     top: -80%;
-    left: 15%;
+    left: 10%;
     background-color: white;
     z-index: 2; }
     #presenter #reward-modal #reward-modal-tab {
@@ -2970,9 +2972,22 @@ form.new_story, form.edit_story, .story-form {
       left: 0;
       right: 65px;
       overflow-y: auto;
-      z-index: 1; }
+      z-index: 1;
+      -webkit-transition: right 0.1s linear;
+      -moz-transition: right 0.1s linear; }
+      #presenter #reward-modal #your-reward #toggle-reward-stream {
+        position: absolute;
+        background: transparent url(../images/rewardModalToggleStream.png) no-repeat;
+        top: 10px;
+        right: 0;
+        text-align: center;
+        width: 21px;
+        height: 22px;
+        cursor: pointer; }
     #presenter #reward-modal #your-reward.closed {
       right: 265px; }
+      #presenter #reward-modal #your-reward.closed #toggle-reward-stream {
+        background-position: 0 -22px; }
     #presenter #reward-modal #creator-info {
       position: relative;
       padding: 20px 20px 20px 132px;
@@ -2994,7 +3009,7 @@ form.new_story, form.edit_story, .story-form {
         margin-bottom: 5px; }
       #presenter #reward-modal #creator-info .the-rest .tagline {
         font-size: 11px;
-        max-height: 50px;
+        max-height: 60px;
         overflow: hidden;
         margin-bottom: 10px; }
       #presenter #reward-modal #creator-info .the-rest .tags a {
@@ -3145,9 +3160,7 @@ form.new_story, form.edit_story, .story-form {
         padding: 0;
         width: 515px; }
     #presenter #reward-modal #reward-list.closed {
-      width: auto; }
-      #presenter #reward-modal #reward-list.closed #toggle-reward-stream {
-        background-position: 0 0; }
+      width: 65px; }
     #presenter #reward-modal #reward-list {
       width: 265px;
       position: absolute;
@@ -3157,14 +3170,10 @@ form.new_story, form.edit_story, .story-form {
       z-index: 2;
       border-left: 1px solid #dddddd;
       overflow-y: auto;
-      background: #eeeeee; }
-      #presenter #reward-modal #reward-list #toggle-reward-stream {
-        position: absolute;
-        top: 5px;
-        left: -20px;
-        width: 21px;
-        height: 22px;
-        background: transparent url(../images/rewardModalToggleStream.png) no-repeat 0 22px; }
+      overflow-x: hidden;
+      background: #eeeeee;
+      -webkit-transition: width 0.1s linear;
+      -moz-transition: width 0.1s linear; }
       #presenter #reward-modal #reward-list .header {
         font-size: 14px;
         font-weight: 700;
@@ -3175,7 +3184,8 @@ form.new_story, form.edit_story, .story-form {
         left: 50px; }
       #presenter #reward-modal #reward-list ul {
         padding-top: 40px;
-        background: transparent url(../images/icons/communityDark.png) no-repeat 5px 5px; }
+        background: transparent url(../images/icons/communityDark.png) no-repeat 5px 5px;
+        border-top: 1px solid #dddddd; }
         #presenter #reward-modal #reward-list ul li {
           clear: both;
           padding: 10px;

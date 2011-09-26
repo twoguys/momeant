@@ -137,10 +137,11 @@ $(function() {
 		el: $('#reward-modal'),
 		
 		events: {
-			'click #reward-modal-tab':     'toggle_modal',
-			'click #share .toggle':        'toggle_switch',
-			'click #reward-list':          'open_rewards',
-			'submit #reward-form':         'submit_reward',
+			'click #reward-modal-tab':        'toggle_modal',
+			'click #share .toggle':           'toggle_switch',
+			'click #toggle-reward-stream':    'toggle_reward_list',
+			'submit #reward-form':            'submit_reward',
+			'keyup #reward_amount':           'reward_amount_keypress',
 			'click #how-much #ticker .up':    'increment_reward_amount',
 			'click #how-much #ticker .down':  'decrement_reward_amount',
 		},
@@ -185,7 +186,7 @@ $(function() {
 			}
 		},
 		
-		open_rewards: function() {
+		toggle_reward_list: function() {
 			var $list = $('#reward-list');
 			$list.toggleClass('closed').siblings('#your-reward').toggleClass('closed');
 		},
@@ -221,6 +222,15 @@ $(function() {
 					$new_reward.slideDown();
 				}
 			);
+		},
+		
+		reward_amount_keypress: function(e) {
+			if (e.keyCode == 38) { // up arrow
+				this.increment_reward_amount();
+			}
+			else if (e.keyCode == 40) { // down arrow
+				this.decrement_reward_amount();
+			}
 		},
 		
 		increment_reward_amount: function() {

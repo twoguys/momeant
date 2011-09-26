@@ -1,19 +1,17 @@
 #reward-box
-  .inner
-    - if current_user == @user
-      .yourself
-        %h1
-          You can't reward yourself, silly!
-          %br
-          Nice try ;)
-    - else
+  - if current_user == @user
+    .yourself
+      %h2
+        Sorry, you can't reward yourself ;).
+  - else
+    .inner
       #avatars
         = image_tag(@user.avatar.url(:thumbnail), :class => "them")
         = image_tag(current_user.avatar.url(:thumbnail), :class => "you")
       = form_for :reward, :url => user_rewards_path(@user), :html => {:id => "reward-form"} do |form|
         = form.hidden_field :story_id, :value => @story.id
         #how-much
-          %span I would like to
+          %span I want to
           %strong REWARD #{@user.first_name}
           .input
             = form.text_field :amount, :value => 1

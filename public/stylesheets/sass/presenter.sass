@@ -10,10 +10,10 @@
 	
 	#reward-modal
 		height: 80%
-		width: 70%
+		width: 80%
 		position: absolute
 		top: -80%
-		left: 15%
+		left: 10%
 		background-color: #fff
 		z-index: 2
 		#reward-modal-tab
@@ -81,8 +81,21 @@
 			right: 65px
 			overflow-y: auto
 			z-index: 1
+			-webkit-transition: right 0.1s linear
+			-moz-transition: right 0.1s linear
+			#toggle-reward-stream
+				position: absolute
+				background: transparent url(../images/rewardModalToggleStream.png) no-repeat
+				top: 10px
+				right: 0
+				text-align: center
+				width: 21px
+				height: 22px
+				cursor: pointer
 		#your-reward.closed
 			right: 265px
+			#toggle-reward-stream
+				background-position: 0 -22px
 			
 			
 		#creator-info
@@ -107,7 +120,7 @@
 					margin-bottom: 5px
 				.tagline
 					font-size: 11px
-					max-height: 50px
+					max-height: 60px
 					overflow: hidden
 					margin-bottom: 10px
 				.tags a
@@ -248,11 +261,9 @@
 				#reward-box.thanks .inner
 					padding: 0
 					width: 515px
-					
+			
 		#reward-list.closed
-			width: auto
-			#toggle-reward-stream
-				background-position: 0 0
+			width: 65px
 		#reward-list
 			width: 265px
 			position: absolute
@@ -262,14 +273,10 @@
 			z-index: 2
 			border-left: 1px solid #ddd
 			overflow-y: auto
+			overflow-x: hidden
 			background: #eee
-			#toggle-reward-stream
-				position: absolute
-				top: 5px
-				left: -20px
-				width: 21px
-				height: 22px
-				background: transparent url(../images/rewardModalToggleStream.png) no-repeat 0 22px
+			-webkit-transition: width 0.1s linear
+			-moz-transition: width 0.1s linear
 			.header
 				font-size: 14px
 				font-weight: 700
@@ -281,6 +288,7 @@
 			ul
 				padding-top: 40px
 				background: transparent url(../images/icons/communityDark.png) no-repeat 5px 5px
+				border-top: 1px solid #ddd
 				li
 					clear: both
 					padding: 10px
