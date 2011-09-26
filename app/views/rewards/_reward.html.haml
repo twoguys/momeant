@@ -32,7 +32,7 @@
       %span You gave this
       %span.reward #{reward.amount}
       %span , which led to:
-    .people #{pluralize(reward.descendants.count, "more person")} rewarding
+    .people #{pluralize(reward.descendants.map(&:user_id).uniq.length, "more person")} rewarding
     .impact= pluralize(reward.impact, "more reward star")
   - else
     .who
