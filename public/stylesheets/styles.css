@@ -436,19 +436,21 @@ form .sidenote, .form .sidenote {
 
 input[type="submit"], a.button {
   position: relative;
-  padding: 10px;
+  padding: 7px 12px;
   line-height: 1;
   border: none;
   cursor: pointer;
-  background-color: #c0eeff;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
-  color: #00aeef;
-  font-weight: 900;
+  background: #00aeef;
+  background-image: -moz-linear-gradient(center top, #43baf0 4%, #3a94e6 52%);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #43baf0), color-stop(0.52, #3a94e6));
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  color: white;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
+  font-weight: 700;
   text-transform: uppercase;
-  font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
-  font-size: 14px; }
+  font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif; }
 
 input[type="submit"]:active, a.button:active {
   top: 1px; }
@@ -459,8 +461,8 @@ label[for="user_remember_me"] {
   width: auto; }
 
 a.button.green {
-  background-color: #c8f2d0;
-  color: #34b44c; }
+  background-image: -moz-linear-gradient(center top, #62e079 4%, #12b32f 52%);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #62e079), color-stop(0.52, #12b32f)); }
 
 .horizontal-tabs ul {
   height: 35px;
@@ -2912,30 +2914,40 @@ form.new_story, form.edit_story, .story-form {
     z-index: 2; }
     #presenter #reward-modal #reward-modal-tab {
       position: absolute;
-      bottom: -43px;
+      bottom: -39px;
       left: 50%;
-      margin-left: -90px;
-      height: 33px;
-      width: auto;
-      z-index: 2;
-      background: white;
-      border: 1px solid #999999;
+      margin-left: -100px;
+      -webkit-border-bottom-right-radius: 5px;
+      -webkit-border-bottom-left-radius: 5px;
+      -moz-border-radius-bottomright: 5px;
+      -moz-border-radius-bottomleft: 5px;
+      border-bottom-right-radius: 5px;
+      border-bottom-left-radius: 5px;
+      height: 39px;
+      border: 1px solid #aaaaaa;
       border-top: none;
-      font-weight: 700;
-      color: black;
-      box-shadow: 0 -2px 2px rgba(0, 0, 0, 0.2) inset;
-      text-transform: uppercase;
-      padding: 5px 5px 5px 45px;
-      cursor: pointer;
-      -webkit-border-bottom-right-radius: 3px;
-      -webkit-border-bottom-left-radius: 3px;
-      -moz-border-radius-bottomright: 3px;
-      -moz-border-radius-bottomleft: 3px;
-      border-bottom-right-radius: 3px;
-      border-bottom-left-radius: 3px; }
+      width: auto;
+      z-index: 2; }
+      #presenter #reward-modal #reward-modal-tab .inner {
+        width: auto;
+        position: relative;
+        height: 29px;
+        background: white;
+        font-weight: 700;
+        color: black;
+        line-height: 13px;
+        text-transform: uppercase;
+        padding: 5px 5px 5px 39px;
+        cursor: pointer;
+        -webkit-border-bottom-right-radius: 5px;
+        -webkit-border-bottom-left-radius: 5px;
+        -moz-border-radius-bottomright: 5px;
+        -moz-border-radius-bottomleft: 5px;
+        border-bottom-right-radius: 5px;
+        border-bottom-left-radius: 5px; }
       #presenter #reward-modal #reward-modal-tab .avatar {
-        width: 30px;
-        height: 30px;
+        width: 27px;
+        height: 27px;
         border: 1px solid black;
         position: absolute;
         top: 5px;
@@ -2943,21 +2955,18 @@ form.new_story, form.edit_story, .story-form {
       #presenter #reward-modal #reward-modal-tab .text, #presenter #reward-modal #reward-modal-tab .rewards {
         display: inline-block; }
       #presenter #reward-modal #reward-modal-tab .text {
-        position: relative;
-        top: -2px; }
+        padding-top: 1px; }
         #presenter #reward-modal #reward-modal-tab .text span {
           display: block; }
       #presenter #reward-modal #reward-modal-tab .rewards {
-        margin-left: 10px;
-        font-family: "ff-dagny-web-pro-1", "ff-dagny-web-pro-2", sans-serif;
-        font-size: 30px;
-        line-height: 25px;
-        padding: 10px 10px 0 5px;
-        height: 32px;
         position: relative;
-        top: -4px;
-        background: transparent url(../images/icons/starBlackTiny.png) no-repeat 100% 7px;
-        border-left: 1px solid #aaaaaa; }
+        top: -5px;
+        width: 20px;
+        margin-left: 20px;
+        padding: 10px 10px 0 5px;
+        height: 20px;
+        text-indent: -9999px;
+        background: transparent url(../images/icons/starBlue.png) no-repeat 50% 50%; }
     #presenter #reward-modal .modal-inner {
       position: absolute;
       top: 0;
@@ -3144,12 +3153,41 @@ form.new_story, form.edit_story, .story-form {
           border: 1px solid #528294;
           color: white;
           text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.75);
-          padding-top: 12px; }
+          padding-top: 12px;
+          font-size: 14px; }
       #presenter #reward-modal #creator-info #reward-box-outer.loading .inner {
         height: 250px;
         background: transparent url(../images/spinner.gif) no-repeat 50% 50%; }
         #presenter #reward-modal #creator-info #reward-box-outer.loading .inner * {
           display: none; }
+      #presenter #reward-modal #creator-info #reward-box-outer .not-logged-in h2 {
+        background: none;
+        padding: 0; }
+      #presenter #reward-modal #creator-info #reward-box-outer .not-logged-in ul {
+        padding-bottom: 20px; }
+        #presenter #reward-modal #creator-info #reward-box-outer .not-logged-in ul li {
+          font-family: "ff-dagny-web-pro-1", "ff-dagny-web-pro-2", sans-serif;
+          margin-bottom: 10px;
+          position: relative; }
+          #presenter #reward-modal #creator-info #reward-box-outer .not-logged-in ul li .number {
+            font-size: 40px;
+            text-align: right;
+            position: absolute;
+            left: 0;
+            top: 0; }
+          #presenter #reward-modal #creator-info #reward-box-outer .not-logged-in ul li .text {
+            font-size: 16px;
+            line-height: 16px;
+            padding-top: 10px;
+            margin-left: 40px; }
+      #presenter #reward-modal #creator-info #reward-box-outer .not-logged-in a {
+        margin-right: 10px; }
+      #presenter #reward-modal #creator-info #reward-box-outer .not-logged-in a.about {
+        background-image: -moz-linear-gradient(center top, #ff7593 4%, #f42653 52%);
+        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #ff7593), color-stop(0.52, #f42653)); }
+      #presenter #reward-modal #creator-info #reward-box-outer .not-logged-in a.login {
+        background-image: -moz-linear-gradient(center top, #62e079 4%, #12b32f 52%);
+        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #62e079), color-stop(0.52, #12b32f)); }
     #presenter #reward-modal #reward-list.closed {
       width: 65px; }
     #presenter #reward-modal #reward-list {
@@ -5057,10 +5095,8 @@ form.user_edit {
   #join-modal input[type="text"], #join-modal input[type="email"], #join-modal input[type="password"], #login-modal input[type="text"], #login-modal input[type="email"], #login-modal input[type="password"], #feedback-modal input[type="text"], #feedback-modal input[type="email"], #feedback-modal input[type="password"] {
     width: 194px; }
   #join-modal input[type="submit"], #login-modal input[type="submit"], #feedback-modal input[type="submit"] {
-    color: black;
-    text-shadow: none;
-    font-size: 14px;
-    padding: 8px 10px 6px; }
+    width: 100%;
+    font-size: 14px; }
   #join-modal li, #login-modal li, #feedback-modal li {
     margin-bottom: 10px;
     height: 31px; }
@@ -5108,16 +5144,6 @@ form.user_edit {
         width: 87px; }
     #join-modal form li span.last, #login-modal form li span.last, #feedback-modal form li span.last {
       margin-right: 0; }
-    #join-modal form li input[type="submit"], #login-modal form li input[type="submit"], #feedback-modal form li input[type="submit"] {
-      background-color: #c0eeff;
-      -webkit-border-radius: 4px;
-      -moz-border-radius: 4px;
-      border-radius: 4px;
-      color: #00aeef;
-      font-weight: 900;
-      text-transform: uppercase;
-      font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
-      width: 210px; }
     #join-modal form li input[type="submit"]:disabled, #login-modal form li input[type="submit"]:disabled, #feedback-modal form li input[type="submit"]:disabled {
       background-color: #dfdfdf;
       color: #787878;
@@ -5165,6 +5191,9 @@ form.user_edit {
   width: 210px; }
 #login-modal .login {
   padding: 0; }
+#login-modal input[type="submit"] {
+  background-image: -moz-linear-gradient(center top, #62e079 4%, #12b32f 52%);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #62e079), color-stop(0.52, #12b32f)); }
 
 #feedback-modal .insides {
   width: 480px;

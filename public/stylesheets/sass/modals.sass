@@ -53,10 +53,8 @@
 	input[type="text"], input[type="email"], input[type="password"]
 		width: 194px
 	input[type="submit"]
-		color: #000
-		text-shadow: none
+		width: 100%
 		font-size: 14px
-		padding: 8px 10px 6px
 	li
 		margin-bottom: 10px
 		height: 31px
@@ -105,14 +103,6 @@
 					width: 87px
 			span.last
 				margin-right: 0
-			input[type="submit"]
-				background-color: $lightblue
-				@include rounded(4px)
-				color: $blue
-				font-weight: 900
-				text-transform: uppercase
-				font-family: $block
-				width: 210px
 			input[type="submit"]:disabled
 				background-color: #dfdfdf
 				color: #787878
@@ -165,6 +155,8 @@
 		width: 210px
 	.login
 		padding: 0
+	input[type="submit"]
+		@include gradient($greengradient1, $greengradient2)
 
 #feedback-modal
 	.insides

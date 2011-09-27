@@ -90,17 +90,18 @@ form, .form
 
 input[type="submit"], a.button
 	position: relative
-	padding: 10px
+	padding: 7px 12px
 	line-height: 1
 	border: none
 	cursor: pointer
-	background-color: $lightblue
-	@include rounded(4px)
-	color: $blue
-	font-weight: 900
+	background: $blue
+	@include gradient($bluegradient1, $bluegradient2)
+	@include rounded(3px)
+	color: #fff
+	text-shadow: 0 -1px 0 rgba(0,0,0,0.3)
+	font-weight: 700
 	text-transform: uppercase
 	font-family: $block
-	font-size: 14px
 input[type="submit"]:active, a.button:active
 	top: 1px
 label[for="user_remember_me"]
@@ -108,5 +109,4 @@ label[for="user_remember_me"]
 	line-height: 12px
 	width: auto
 a.button.green
-	background-color: $lightgreen
-	color: $green
+	@include gradient($greengradient1, $greengradient2)

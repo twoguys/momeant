@@ -18,30 +18,40 @@
 		z-index: 2
 		#reward-modal-tab
 			position: absolute
-			bottom: -43px
+			bottom: -39px
 			left: 50%
-			margin-left: -90px
-			height: 33px
+			margin-left: -100px
+			-webkit-border-bottom-right-radius: 5px
+			-webkit-border-bottom-left-radius: 5px
+			-moz-border-radius-bottomright: 5px
+			-moz-border-radius-bottomleft: 5px
+			border-bottom-right-radius: 5px
+			border-bottom-left-radius: 5px
+			height: 39px
+			border: 1px solid #aaa
+			border-top: none
 			width: auto
 			z-index: 2
-			background: #fff
-			border: 1px solid #999
-			border-top: none
-			font-weight: 700
-			color: #000
-			box-shadow: 0 -2px 2px rgba(0,0,0,0.2) inset
-			text-transform: uppercase
-			padding: 5px 5px 5px 45px
-			cursor: pointer
-			-webkit-border-bottom-right-radius: 3px
-			-webkit-border-bottom-left-radius: 3px
-			-moz-border-radius-bottomright: 3px
-			-moz-border-radius-bottomleft: 3px
-			border-bottom-right-radius: 3px
-			border-bottom-left-radius: 3px
+			.inner
+				width: auto
+				position: relative
+				height: 29px
+				background: #fff
+				font-weight: 700
+				color: #000
+				line-height: 13px
+				text-transform: uppercase
+				padding: 5px 5px 5px 39px
+				cursor: pointer
+				-webkit-border-bottom-right-radius: 5px
+				-webkit-border-bottom-left-radius: 5px
+				-moz-border-radius-bottomright: 5px
+				-moz-border-radius-bottomleft: 5px
+				border-bottom-right-radius: 5px
+				border-bottom-left-radius: 5px
 			.avatar
-				width: 30px
-				height: 30px
+				width: 27px
+				height: 27px
 				border: 1px solid #000
 				position: absolute
 				top: 5px
@@ -49,21 +59,18 @@
 			.text, .rewards
 				display: inline-block
 			.text
-				position: relative
-				top: -2px
+				padding-top: 1px
 				span
 					display: block
 			.rewards
-				margin-left: 10px
-				font-family: $numerals
-				font-size: 30px
-				line-height: 25px
-				padding: 10px 10px 0 5px
-				height: 32px
 				position: relative
-				top: -4px
-				background: transparent url(../images/icons/starBlackTiny.png) no-repeat 100% 7px
-				border-left: 1px solid #aaa
+				top: -5px
+				width: 20px
+				margin-left: 20px
+				padding: 10px 10px 0 5px
+				height: 20px
+				text-indent: -9999px
+				background: transparent url(../images/icons/starBlue.png) no-repeat 50% 50%
 				
 		.modal-inner
 			position: absolute
@@ -257,11 +264,39 @@
 							color: #fff
 							text-shadow: 0 -1px 0 rgba(0,0,0,0.75)
 							padding-top: 12px
+							font-size: 14px
 			#reward-box-outer.loading .inner
 				height: 250px
 				background: transparent url(../images/spinner.gif) no-repeat 50% 50%
 				*
 					display: none
+			#reward-box-outer .not-logged-in
+				h2
+					background: none
+					padding: 0
+				ul
+					padding-bottom: 20px
+					li
+						font-family: $numerals
+						margin-bottom: 10px
+						position: relative
+						.number
+							font-size: 40px
+							text-align: right
+							position: absolute
+							left: 0
+							top: 0
+						.text
+							font-size: 16px
+							line-height: 16px
+							padding-top: 10px
+							margin-left: 40px
+				a
+					margin-right: 10px
+				a.about
+					@include gradient($redgradient1, $redgradient2)
+				a.login
+					@include gradient($greengradient1, $greengradient2)
 			
 		#reward-list.closed
 			width: 65px

@@ -52,7 +52,8 @@ $(function() {
 		events: {
 			'click #previous-page': 'goto_previous_page',
 			'click #next-page':     'goto_next_page',
-			'click .pages a':       'jump_to_page'
+			'click .pages a':       'jump_to_page',
+			'click #pages':         'close_reward_modal'
 		},
 		
 		initialize: function() {
@@ -111,6 +112,10 @@ $(function() {
 			var $link = $(e.currentTarget);
 			var number = parseInt($link.attr('page'));
 			this.goto_page(number);
+		},
+		
+		close_reward_modal: function() {
+			log('BAM');
 		},
 		
 		goto_page_in_url_or_default: function() {
