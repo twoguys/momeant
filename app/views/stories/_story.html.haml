@@ -5,5 +5,8 @@
       = link_to("edit", edit_story_path(story), :class => "edit tooltipped-e", :title => "edit")
       = link_to("delete", story_path(story), :method => :delete, :class => "delete tooltipped-e", :title => "delete", :confirm => "Are you SURE you want to delete this?")
   = link_to(image_tag(story.thumbnail.url(:medium)), story, :class => "thumbnail")
-  .reward-count= pluralize(story.reward_count, "reward")
+  .how-much
+    %span.reward-count= story.reward_count
+    %span from
+    %span.people= story.users_who_rewarded.count
   .synopsis= truncate(story.synopsis, :length => 100)
