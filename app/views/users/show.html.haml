@@ -6,6 +6,27 @@
 
     .tabbed
     
+      - if me?(@user) && @rewards.empty?
+        .have-not.rewarded
+          %h3
+            %span You have not
+            %em rewarded
+            %span anything yet.
+          %a.box-button{:href => community_path}
+            .inner
+              %span.text Discover content being rewarded by the community.
+              %span.arrow
+        - if @user.created_stories.count == 0
+          .have-not.shared
+            %h3
+              %span You have not
+              %em shared
+              %span anything yet.
+            %a.box-button{:href => new_story_path}
+              .inner
+                %span.text Share something so that others can reward you!
+                %span.arrow
+    
       %ul.rewards
         = render @rewards, :user_profile => true
         

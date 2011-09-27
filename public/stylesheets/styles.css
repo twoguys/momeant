@@ -2966,7 +2966,7 @@ form.new_story, form.edit_story, .story-form {
         padding: 10px 10px 0 5px;
         height: 20px;
         text-indent: -9999px;
-        background: transparent url(../images/icons/starBlue.png) no-repeat 50% 50%; }
+        background: transparent url(../images/icons/starBlue.png) no-repeat 90% 50%; }
     #presenter #reward-modal .modal-inner {
       position: absolute;
       top: 0;
@@ -4331,6 +4331,7 @@ ul.avatars li {
     background-image: url(../images/icons/starGreySmall.png); }
 
 .user-profile {
+  /* First-time Users */
   /* Patronage Tab */
   /* Creations Tab */
   /* Followers, Following Tabs */
@@ -4420,6 +4421,44 @@ ul.avatars li {
       padding-top: 20px; }
     .user-profile .the-rest .tabbed {
       padding: 20px; }
+  .user-profile .have-not {
+    width: 300px;
+    float: left;
+    margin-right: 20px;
+    padding: 10px 0 0 10px; }
+    .user-profile .have-not h3 {
+      text-transform: uppercase;
+      margin-bottom: 10px; }
+      .user-profile .have-not h3 em {
+        font-style: normal;
+        color: #00aeef; }
+    .user-profile .have-not .box-button {
+      display: block;
+      width: 260px;
+      height: 35px;
+      background: white;
+      color: #252525;
+      background-image: -moz-linear-gradient(center top, #fdfdfd 4%, #f0f0f0 52%);
+      background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #fdfdfd), color-stop(0.52, #f0f0f0));
+      border: 1px solid #d9d9d9;
+      padding: 30px 20px; }
+      .user-profile .have-not .box-button .inner {
+        padding-left: 50px;
+        height: 35px; }
+        .user-profile .have-not .box-button .inner span.text {
+          display: block;
+          float: left;
+          width: 180px; }
+        .user-profile .have-not .box-button .inner span.arrow {
+          display: block;
+          float: right;
+          width: 13px;
+          height: 30px;
+          background: transparent url(../images/icons/lineArrow.png) no-repeat 0 5px; }
+  .user-profile .have-not.rewarded .box-button .inner {
+    background: transparent url(../images/icons/communityDark.png) no-repeat 0 2px; }
+  .user-profile .have-not.shared .box-button .inner {
+    background: transparent url(../images/icons/momeantAddStoryGrey.png) no-repeat 5px 2px; }
   .user-profile ul.rewards {
     padding: 0;
     display: inline-block; }
