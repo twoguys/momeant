@@ -62,10 +62,11 @@ class UsersController < ApplicationController
     @users = []
     @nav = "community"
     
-    content_ids = get_tags_and_stories
-    return if content_ids.empty?
+    #content_ids = get_tags_and_stories
+    #return if content_ids.empty?
+    #@users = User.select("DISTINCT ON(id) users.*").joins("LEFT OUTER JOIN curations ON curations.user_id = users.id").where("curations.story_id IN (#{content_ids.join(',')})").where("curations.type = 'Reward'")
     
-    @users = User.select("DISTINCT ON(id) users.*").joins("LEFT OUTER JOIN curations ON curations.user_id = users.id").where("curations.story_id IN (#{content_ids.join(',')})").where("curations.type = 'Reward'")
+    @users = User.select("DISTINCT ON(id) users.*").joins("LEFT OUTER JOIN curations ON curations.user_id = users.id").where("curations.type = 'Reward'").where("curations.created_at > '#{30.days.ago}'")
     @users = @users.sort do |a,b|
       if a.impact != b.impact
         b.impact <=> a.impact
@@ -81,11 +82,13 @@ class UsersController < ApplicationController
     @users = []
     @nav = "community"
     
-    content_ids = get_tags_and_stories
-    return if content_ids.empty?
+    #content_ids = get_tags_and_stories
+    #return if content_ids.empty?
+    #@users = Reward.where("curations.story_id IN (#{content_ids.join(',')})").where("curations.type = 'Reward'").group_by(&:recipient).to_a
+    #@users = @users.sort_by {|array| -array.second.inject(0) {|sum,r| r.amount}}
     
-    @users = Reward.where("curations.story_id IN (#{content_ids.join(',')})").where("curations.type = 'Reward'").group_by(&:recipient).to_a
-    @users = @users.sort_by {|array| -array.second.inject(0) {|sum,r| r.amount}}
+    @users = User.select("DISTINCT ON(id) users.*").joins("LEFT OUTER JOIN curations ON curations.recipient_id = users.id").where("curations.type = 'Reward'").where("curations.created_at > '#{30.days.ago}'")
+    @users = @users.sort_by {|u| -u.rewards.this_month.sum(:amount)}
   end
   
   def feedback

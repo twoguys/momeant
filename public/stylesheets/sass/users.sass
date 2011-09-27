@@ -102,34 +102,53 @@ ul.avatars
 				display: block
 		.stats
 			margin-bottom: 10px
-		a.edit
-			@include rounded(2px)
-			background: $blue
-			color: #fff
-			padding: 2px 4px
-			font-size: 12px
+			padding-left: 70px
 			position: relative
-			top: -4px
-			box-shadow: 1px 1px 1px rgba(255,255,255,0.5) inset, -1px -1px 1px rgba(0,0,0,0.15) inset
+			.impact-shield
+				background: transparent url(../images/shieldBlue.png) no-repeat 0 0
+				width: 56px
+				height: 67px
+				color: #fff
+				font-weight: 700
+				font-size: 30px
+				line-height: 62px
+				text-align: center
+				position: absolute
+				top: 0
+				left: 0
+			.rewards-given, .impact, .rewards-received
+				padding: 4px 0
+				font-size: 11px
+				.amount
+					background: transparent url(../images/icons/starBlackTiny.png) no-repeat 100% 2px
+					padding-right: 13px
+					margin-right: 3px
+			.rewards-given, .impact
+				border-bottom: 1px solid #ddd
+		a.edit
+			@include rounded(3px)
+			background: $blue
+			@include gradient($bluegradient1, $bluegradient2)
+			text-transform: uppercase
+			font-weight: 700
+			color: #fff
+			padding: 6px 0
+			display: block
+			text-align: center
+			font-size: 12px
+			text-shadow: 0 -1px 0 rgba(0,0,0,0.3)
 		.tagline
 			font-size: 11px
 			padding-bottom: 1px
 			clear: both
 			padding-top: 4px
-		.impact-shield
-			background: transparent url(../images/shieldBlue.png) no-repeat 0 0
-			width: 56px
-			height: 67px
-			color: #fff
-			font-weight: 700
-			font-size: 30px
-			line-height: 62px
-			text-align: center
+			margin: 10px 0 15px
+		.tags
+			overflow: hidden
 	
 	.the-rest
 		margin-left: 208px
 		min-height: 100%
-		@include clearfix
 		.horizontal-tabs ul
 			padding-top: 20px
 		.tabbed
@@ -139,27 +158,9 @@ ul.avatars
 	
 	ul.rewards
 		padding: 20px 0 0 20px
+		@include clearfix
 		li
 			background: #fff
-			.gave, .people, .impact
-				padding: 5px 10px
-				font-size: 11px
-			.gave
-				border-bottom: 1px solid #e0e0e0
-				margin-bottom: 3px
-				.reward
-					padding-right: 13px
-					background: transparent url(../images/icons/starBlackTiny.png) no-repeat 100% 2px
-					margin: 0 2px
-			.people, .impact
-				padding: 3px 0 3px 35px
-				background-position: 10px 50%
-				background-repeat: no-repeat
-			.people
-				background-image: url(../images/icons/person.png)
-			.impact
-				background-image: url(../images/icons/starBlackSmall.png)
-				float: none
 			
 	/* Creations Tab */
 	

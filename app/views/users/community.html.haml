@@ -20,8 +20,11 @@
                     %span= user.last_name
                   .info
                     .tagline= truncate(user.tagline, :length => 140)
-                    .interests= truncate(user.interests.join(", "), :length => 60)
+                    .interests
+                      - user.interests.each do |tag|
+                        = link_to(tag.name, "#", :class => "tag")
                   .stats
+                    %h3 This month
                     %span.impact.numerals
                       .count= user.impact
                       .tiny impact
@@ -33,4 +36,4 @@
                       .tiny creators rewarded
                 %td.content
                   %ul.rewards
-                    = render user.given_rewards
+                    = render user.given_rewards, :user_profile => true

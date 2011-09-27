@@ -14,7 +14,7 @@
             %tr.heading
               %th{:colspan => 4} Explore the best CREATORS
           %tbody
-            - @users.each do |user, rewards|
+            - @users.each do |user|
               %tr.user
                 %td.creator
                   = link_to(image_tag(user.avatar.url(:thumbnail)), creations_user_path(user), :class => "avatar")
@@ -26,9 +26,9 @@
                     .interests= truncate(user.interests.join(", "), :length => 60)
                   .stats
                     .rewards
-                      .count= rewards.inject(0){ |sum,r| sum + r.amount }
+                      .count= user.rewards.this_month.sum(:amount)
                       .tiny rewards this month
                 %td.content
                   %ul.rewards
-                    - rewards.group_by(&:story).each do |story, rewards|
+                    - user.rewards.this_month.group_by(&:story).each do |story, rewards|
                       = render rewards.first, :community => true

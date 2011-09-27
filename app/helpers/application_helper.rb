@@ -4,8 +4,8 @@ module ApplicationHelper
     current_user && current_user == user
   end
   
-  def you_or_user_names(user)
-    me?(user) ? "you're" : "#{user.name}'s"
+  def you_or_first_name(user)
+    me?(user) ? "you" : user.first_name
   end
   
   def private_beta?

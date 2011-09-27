@@ -29,7 +29,7 @@
               .tagline= truncate(@story.user.tagline, :length => 300)
             .tags
               - @story.user.interests.each do |tag|
-                = link_to(tag.name, "#")
+                = link_to(tag.name, "#", :class => "tag")
             .links
               = link_to("view other work", creations_user_path(@story.user))
               = link_to("view full profile", user_path(@story.user))
@@ -63,7 +63,7 @@
               .comment
               .when just now
           - @story.rewards.each do |reward|
-            %li{:class => reward == @impacting_reward ? "highlighted" : ""}
+            %li{:class => reward.id.to_s == params[:impacted_by] ? "highlighted" : ""}
               .rewarder
                 = link_to(image_tag(reward.user.avatar(:thumbnail)), user_path(reward.user), :class => "avatar")
                 %a.name{:href => user_path(reward.user)}
