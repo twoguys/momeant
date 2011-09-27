@@ -249,6 +249,7 @@ ul.avatars
 		li.gallery, li.no-gallery
 			width: 100%
 			ul.stories
+				@include clearfix
 				padding: 20px 0
 				li.about
 					background: none
@@ -260,6 +261,13 @@ ul.avatars
 						margin-bottom: 5px
 						text-transform: uppercase
 						font-weight: 700
+						a.reorder
+							text-indent: -9999px
+							display: inline-block
+							width: 16px
+							height: 16px
+							background: transparent url(../images/icons/moveUpDown.png) no-repeat 0 0
+							cursor: move
 					.description
 						font-size: 11px
 				li.add, li.add-description
@@ -278,6 +286,13 @@ ul.avatars
 					width: 460px
 					color: #999
 					line-height: 2em
+		li.no-gallery
+			border-bottom: 1px solid #ddd
+		li.gallery
+			border-top: 1px solid #fff
+			border-bottom: 1px solid #ddd
+		li.gallery:last-child
+			border-bottom: none
 		li.gallery:first-child, li.no-gallery:first-child
 			ul.stories
 				padding-top: 0

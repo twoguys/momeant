@@ -4513,7 +4513,14 @@ ul.avatars li {
   .user-profile ul.galleries li.gallery, .user-profile ul.galleries li.no-gallery {
     width: 100%; }
     .user-profile ul.galleries li.gallery ul.stories, .user-profile ul.galleries li.no-gallery ul.stories {
+      display: inline-block;
       padding: 20px 0; }
+      .user-profile ul.galleries li.gallery ul.stories:after, .user-profile ul.galleries li.no-gallery ul.stories:after {
+        content: ".";
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden; }
       .user-profile ul.galleries li.gallery ul.stories li.about, .user-profile ul.galleries li.no-gallery ul.stories li.about {
         background: none;
         padding: 0;
@@ -4526,6 +4533,13 @@ ul.avatars li {
           margin-bottom: 5px;
           text-transform: uppercase;
           font-weight: 700; }
+          .user-profile ul.galleries li.gallery ul.stories li.about .name a.reorder, .user-profile ul.galleries li.no-gallery ul.stories li.about .name a.reorder {
+            text-indent: -9999px;
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            background: transparent url(../images/icons/moveUpDown.png) no-repeat 0 0;
+            cursor: move; }
         .user-profile ul.galleries li.gallery ul.stories li.about .description, .user-profile ul.galleries li.no-gallery ul.stories li.about .description {
           font-size: 11px; }
       .user-profile ul.galleries li.gallery ul.stories li.add, .user-profile ul.galleries li.gallery ul.stories li.add-description, .user-profile ul.galleries li.no-gallery ul.stories li.add, .user-profile ul.galleries li.no-gallery ul.stories li.add-description {
@@ -4543,6 +4557,13 @@ ul.avatars li {
         width: 460px;
         color: #999999;
         line-height: 2em; }
+  .user-profile ul.galleries li.no-gallery {
+    border-bottom: 1px solid #dddddd; }
+  .user-profile ul.galleries li.gallery {
+    border-top: 1px solid white;
+    border-bottom: 1px solid #dddddd; }
+  .user-profile ul.galleries li.gallery:last-child {
+    border-bottom: none; }
   .user-profile ul.galleries li.gallery:first-child ul.stories, .user-profile ul.galleries li.no-gallery:first-child ul.stories {
     padding-top: 0; }
   .user-profile .followingers {
