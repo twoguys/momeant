@@ -1,7 +1,6 @@
 .user-profile
   = render "user_info"
-  = render "user_tabs"
-
+  
   .user-edit
     = form_for @user, :as => :user, :url => user_path(@user), :html => {:multipart => true} do |form|
       = render "shared/error_messages", :target => @user

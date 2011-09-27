@@ -12,6 +12,10 @@ class Reward < Curation
   
   paginates_per 9
   
+  def self.cashout_threshold
+    100
+  end
+  
   def impact
     self.descendants.sum(:amount)
   end

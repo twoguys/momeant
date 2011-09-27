@@ -20,7 +20,7 @@
             %br
             have rewarded
         %li.until-payment    
-          .value 0
+          .value= Reward.cashout_threshold - @user.rewards.sum(:amount)
           .text
             rewards needed
             %br
