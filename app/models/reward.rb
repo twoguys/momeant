@@ -17,6 +17,6 @@ class Reward < Curation
   end
   
   def impact
-    self.descendants.sum(:amount)
+    self.descendants.where("user_id != #{self.user_id}").sum(:amount)
   end
 end
