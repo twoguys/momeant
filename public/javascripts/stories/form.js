@@ -15,7 +15,7 @@ var story_page_editor = function() {
 			pages_editor.goto_page(pages_editor.page);
 			pages_editor.open();
 			if ($(this).hasClass('launch')) {
-				pages_editor.page_chooser_mode = 'add';
+				//pages_editor.page_chooser_mode = 'change';
 				pages_editor.show_page_type_chooser();
 			}
 			return false;
@@ -55,8 +55,9 @@ var story_page_editor = function() {
 			if ($('#creator').hasClass('selected')) {
 				$('#external').addClass('selected');
 				$('#creator').removeClass('selected');
+				$('#open-page-editor-button').addClass('launch');
 				$.post('/stories/' + pages_editor.story_id + '/change_to_external');
-				var link_value = $('#story_external_link').val()
+				var link_value = $('#story_external_link').val();
 				if (link_value != "http://" && link_value != "") {
 					$.ajax({
 						type: 'PUT',
@@ -75,6 +76,7 @@ var story_page_editor = function() {
 				$.post('/stories/' + pages_editor.story_id + '/change_to_creator');
 				$('ul#pages li.page, #page-editor ul.pages li.pane-insides').remove();
 				pages_editor.page_chooser_mode = 'add';
+				pages_editor.total_pages = 0;
 			}
 		}
 		$('#creator').click(change_to_creator);
