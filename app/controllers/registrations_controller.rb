@@ -19,11 +19,7 @@ class RegistrationsController < Devise::RegistrationsController
     else
       @user = resource
       clean_up_passwords(resource)
-      if private_beta?
-        render "home/beta"
-      else
-        render_with_scope :new
-      end
+      redirect_to root_path, :alert => @user.errors.full_messages
     end
   end
   
