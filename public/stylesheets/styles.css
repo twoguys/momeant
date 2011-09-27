@@ -4693,12 +4693,15 @@ form.user_edit {
   .community .user-list .user-list-inner {
     padding: 0 20px; }
     .community .user-list .user-list-inner table.users {
-      width: 100%; }
+      width: 100%;
+      border: none; }
       .community .user-list .user-list-inner table.users th.impact, .community .user-list .user-list-inner table.users th.rewards, .community .user-list .user-list-inner table.users th.rewardees {
         text-align: center; }
       .community .user-list .user-list-inner table.users tr td.patron, .community .user-list .user-list-inner table.users tr td.creator, .community .user-list .user-list-inner table.users tr td.content {
-        padding: 20px;
+        padding: 20px 0;
         vertical-align: top; }
+      .community .user-list .user-list-inner table.users tr td.patron {
+        padding-right: 20px; }
       .community .user-list .user-list-inner table.users tr td.patron, .community .user-list .user-list-inner table.users tr td.creator {
         width: 220px; }
         .community .user-list .user-list-inner table.users tr td.patron a.avatar, .community .user-list .user-list-inner table.users tr td.patron a.name, .community .user-list .user-list-inner table.users tr td.patron .impact, .community .user-list .user-list-inner table.users tr td.creator a.avatar, .community .user-list .user-list-inner table.users tr td.creator a.name, .community .user-list .user-list-inner table.users tr td.creator .impact {
@@ -4733,6 +4736,8 @@ form.user_edit {
         font-size: 11px;
         text-transform: uppercase; }
       .community .user-list .user-list-inner table.users tr td.content ul.rewards {
+        height: 270px;
+        overflow: hidden;
         padding: 0; }
         .community .user-list .user-list-inner table.users tr td.content ul.rewards li.reward {
           float: left;
@@ -4790,6 +4795,13 @@ form.user_edit {
           background: transparent url(../images/icons/starBlueSmall.png) no-repeat 100% 14px; }
       .community .user-list .user-list-inner table.users tr.open td.content-toggler {
         background-position: 50% 38px; }
+      .community .user-list .user-list-inner table.users td {
+        background: none; }
+      .community .user-list .user-list-inner table.users tr:first-child td {
+        border-top: none;
+        padding-top: 0; }
+      .community .user-list .user-list-inner table.users tr:last-child td {
+        border-bottom: none; }
     .community .user-list .user-list-inner table.users.creators tr.user {
       cursor: pointer; }
 

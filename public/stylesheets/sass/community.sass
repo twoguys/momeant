@@ -67,12 +67,15 @@
 			padding: 0 20px
 			table.users
 				width: 100%
+				border: none
 				th.impact, th.rewards, th.rewardees
 					text-align: center
 				tr
 					td.patron, td.creator, td.content
-						padding: 20px
+						padding: 20px 0
 						vertical-align: top
+					td.patron
+						padding-right: 20px
 					td.patron, td.creator
 						width: 220px
 						a.avatar, a.name, .impact
@@ -108,6 +111,8 @@
 						text-transform: uppercase
 					td.content
 						ul.rewards
+							height: 270px
+							overflow: hidden
 							padding: 0
 							li.reward
 								float: left
@@ -167,6 +172,13 @@
 						.count
 							background: transparent url(../images/icons/starBlueSmall.png) no-repeat 100% 14px
 					td.content-toggler
-						background-position: 50% 38px
+						background-position: 50% 38px				
+				td
+					background: none
+				tr:first-child td
+					border-top: none
+					padding-top: 0
+				tr:last-child td
+					border-bottom: none
 			table.users.creators tr.user
 				cursor: pointer
