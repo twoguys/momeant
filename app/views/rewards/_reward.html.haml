@@ -29,7 +29,7 @@
           %span.amount= impacting_amount
   - elsif user_profile
     .gave
-      %span #{you_or_first_name(reward.user).capitalize} gave this
+      %span #{you_or_first_name(reward.user).capitalize} gave
       %span.reward #{reward.amount}
       %span , which led to:
     .people #{pluralize(reward.descendants.map(&:user_id).uniq.length, "more person")} rewarding
