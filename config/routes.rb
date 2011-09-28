@@ -67,7 +67,7 @@ Repo::Application.routes.draw do
       get :stream
       get :creations
       get :rewarded
-      get :patrons
+      get :patronage
       get :followers
       get :following
       get :supporters

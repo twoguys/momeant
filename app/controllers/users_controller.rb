@@ -41,6 +41,10 @@ class UsersController < ApplicationController
     render "patrons"
   end
   
+  def patronage
+    @users = @user.rewarded_creators
+  end
+  
   def followers
     @users = @user.subscribers
     @followers = true

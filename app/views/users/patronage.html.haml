@@ -1,0 +1,14 @@
+- content_for :head do
+  = javascript_include_tag "jquery.masonry.min"
+
+.avatar-wall
+  - user = User.first
+  - 20.times do
+    - size = avatar_size_for_impact(rand(50))
+    = link_to(image_tag(user.avatar.url(:large), :style => size), user_path(user), :style => size)
+    
+
+:javascript
+  $(document).ready(function() {
+    $('.avatar-wall').masonry({columnWidth:30});
+  });

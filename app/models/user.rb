@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
   has_many :bookmarked_stories, :through => :bookmarks, :source => :story
   
   has_many :given_rewards, :class_name => "Reward"
-  has_many :rewarded_creators, :through => :given_rewards, :source => :recipient
+  has_many :rewarded_creators, :through => :given_rewards, :source => :recipient, :uniq => true
   has_many :rewarded_stories, :through => :given_rewards, :source => :story
   
   has_many :views
