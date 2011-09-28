@@ -1,27 +1,30 @@
-.search
+.community
+  .top
+  
+  = render "users/community_tabs"
+  .tabbed.search
 
-  - if params[:query].blank?
-    %h1.enter-a-term
-      %span Please enter a search term
+    = form_tag search_path, :method => :get do
+      = text_field_tag :query, params[:query], :placeholder => "search users and rewards"
+      = submit_tag "Search", :id => "search-submit", :name => ""
 
-  - else
-    - if @results.empty?
-      %h1
-        %span No results for
-        %strong #{params[:query]}
-    - else
-      %h1
-        %span Results for
-        %strong #{params[:query]}
-
-      %ul.reward-thumbnails
-        - @results.each do |result|
-          - if result.is_a?(User)
-            = render :partial => "users/user", :locals => {:user => result}
+    - if params[:query].present?
+      
+      %section.users
+        %h3 Users
+        .data
+          - if @users.empty?
+            %p No users found
           - else
-            %li.reward
-              .what
-                .text
-                  = link_to(result.title, result, :class => "title")
-                  .author by #{link_to(result.user.name, user_path(result.user))}
-                .thumbnail= link_to(image_tag(result.thumbnail.url(:medium)), result)
+            %ul.users
+              - @users.each do |user|
+                %li= link_to(image_tag(user.avatar.url(:thumbnail)), user_path(user), :class => "tooltipped", :title => user.name)
+
+      %section.rewards
+        %h3 Rewards
+        .data
+          - if @rewards.empty?
+            %p No rewards found
+          - else
+            %ul.rewards
+              = render @rewards, :user_profile => true

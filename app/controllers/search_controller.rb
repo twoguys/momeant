@@ -1,17 +1,15 @@
 class SearchController < ApplicationController
   
   def index
-    @results = []
+    @rewards = []
+    @users = []
     return if params[:query].blank?
     
-    @search = Sunspot.search(Story,User) do
+    @search = Sunspot.search(Reward,User) do
       keywords params[:query]
-      any_of do
-        with :published, true
-        with :published, nil
-      end
     end
-    @results = @search.results
+    @rewards = @search.results.reject{|result| !result.is_a?(Reward)}
+    @users = @search.results.reject{|result| !result.is_a?(User)}
   end
   
 end

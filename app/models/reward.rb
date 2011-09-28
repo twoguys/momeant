@@ -10,6 +10,16 @@ class Reward < Curation
   
   acts_as_nested_set
   
+  searchable do
+    text(:title) { story.title }
+    text(:rewarder) { user.name }
+    text(:rewardee) { recipient.name }
+    text :comment
+    # text :tags do
+    #   story.tags.map { |tag| tag.name }
+    # end
+  end
+  
   paginates_per 9
   
   def self.cashout_threshold
