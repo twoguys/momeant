@@ -14,7 +14,7 @@
         %h3 Users
         .data
           - if @users.empty?
-            %p No users found
+            No users found
           - else
             %ul.users
               - @users.each do |user|
@@ -24,7 +24,7 @@
         %h3 Rewards
         .data
           - if @rewards.empty?
-            %p No rewards found
+            No rewards found
           - else
             %ul.rewards
               = render @rewards, :user_profile => true
