@@ -18,8 +18,11 @@
 			padding: 0 15px
 			li
 				float: left
+				height: 60px
 			li.active
-				background: $blue
+				background: transparent url(../images/navActive.png) no-repeat 50% -7px
+		#feedback, #join, #signin, #signout
+			height: 42px
 		#logo, #home, #community, #faq
 			width: 46px
 			a
@@ -42,6 +45,7 @@
 			background-image: url(../images/icons/momeantHomeWhite.png)
 		#community a
 			background-image: url(../images/icons/community.png)
+			background-position: 50% 7px
 		#faq a
 			background-image: url(../images/icons/faqWhite.png)
 		#coins
@@ -66,11 +70,12 @@
 					span
 						display: block
 		#coins.active a
+			background-color: $blue
 			.amount
 				color: #fff
 			.text
 				color: #000
-		#signin, #signout, #join
+		#signin, #signout, #join, #feedback
 			position: absolute
 			right: 20px
 			padding-top: 10px
@@ -89,6 +94,10 @@
 				@include gradient($bluegradient1, $bluegradient2)
 		#signout a
 			@include gradient($greygradient1, $greygradient2)
+		#feedback
+			right: 100px
+			a
+				@include gradient($bluegradient1,$bluegradient2)
 			
 #header.hide-nav
 	background: none

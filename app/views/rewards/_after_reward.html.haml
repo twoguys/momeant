@@ -1,0 +1,17 @@
+#reward-thank-you
+  %h2 THANK YOU!
+
+  - if @story.user.thankyou.present?
+    %p.custom-message
+      = @story.user.thankyou
+      %strong= "- #{@story.user.first_name}"
+
+  .explanation
+    %h3 This reward can generate impact!
+    %p
+      Impact is the measure of how your reward helps generate more rewards from others.
+      To see how you've helped impact others, #{link_to("visit your homepage", user_path(current_user))}.
+    
+    %h3 Discover awesome people and their work
+    %p
+      Visit the #{link_to("community area", community_path)} to see who the top patrons and creators are right now.

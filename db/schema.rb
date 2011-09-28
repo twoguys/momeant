@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110912172111) do
+ActiveRecord::Schema.define(:version => 20110928004146) do
 
   create_table "adverts", :force => true do |t|
     t.string   "title"
@@ -22,6 +22,16 @@ ActiveRecord::Schema.define(:version => 20110912172111) do
     t.boolean  "enabled",            :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "authentications", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "provider"
+    t.string   "uid"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "token"
+    t.string   "secret"
   end
 
   create_table "credit_cards", :force => true do |t|
@@ -55,6 +65,7 @@ ActiveRecord::Schema.define(:version => 20110912172111) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "position"
   end
 
   create_table "invitations", :force => true do |t|
@@ -137,6 +148,7 @@ ActiveRecord::Schema.define(:version => 20110912172111) do
     t.string   "thumbnail_hex_color"
     t.integer  "gallery_id"
     t.boolean  "is_external",          :default => false
+    t.boolean  "i_own_this",           :default => true
   end
 
   create_table "stories_topics", :id => false, :force => true do |t|
@@ -230,6 +242,7 @@ ActiveRecord::Schema.define(:version => 20110912172111) do
     t.string   "paypal_email"
     t.integer  "lifetime_rewards",                            :default => 0
     t.text     "thankyou"
+    t.string   "location"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

@@ -37,7 +37,7 @@ module StoriesHelper
     elsif current_user
       link_to("subscribe to view", subscribe_path, :class => "view")
     else
-      link_to("join/login to view", "#signup-modal", :class => "view")
+      link_to("join/login to view", "#join-modal", :class => "view")
     end
   end
   

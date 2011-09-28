@@ -1,9 +1,10 @@
 .community
 	.top
 		background: #e0e0e0
-		padding: 20px 0
+		padding: 20px 0 0
 		
 	#filter
+		display: none
 		border: 1px solid #d0d0d0
 		margin-left: 20px
 		position: relative
@@ -61,18 +62,22 @@
 	.user-list
 		position: relative
 		z-index: 1
-		float: left
-		margin-left: -237px
 		width: 100%
 		.user-list-inner
-			padding-left: 255px
+			padding: 0 20px
 			table.users
 				width: 100%
+				border: none
 				th.impact, th.rewards, th.rewardees
 					text-align: center
 				tr
+					td.patron, td.creator, td.content
+						padding: 20px 0
+						vertical-align: top
+					td.patron
+						padding-right: 20px
 					td.patron, td.creator
-						vertical-align: middle
+						width: 220px
 						a.avatar, a.name, .impact
 							display: block
 							float: left
@@ -90,27 +95,29 @@
 							color: $text_color
 							span
 								display: block
-					td.rewardees .count
-						background: transparent url(../images/icons/person.png) no-repeat 100% 14px
-					td.creator-rewards
-						border-right: 1px solid #e0e0e0
-						div
-							float: right
-					td.content-toggler
-						border-left: 1px solid #fff
-						width: 20px
-						background-image: url(../images/icons/tableOpenClose.png)
-						background-repeat: no-repeat
-						background-position: 50% -47px
-				tr.content
-					display: none
-					td
-						background: #fff
+						.info
+							clear: both
+							padding-top: 10px
+							.tagline, .interests
+								font-size: 11px
+							.tagline
+								margin-bottom: 10px
+					td.patron .stats h3
+						font-weight: 500
+						border-bottom: 1px solid #ccc
+						padding-bottom: 3px
+						margin-bottom: 3px
+						font-size: 11px
+						text-transform: uppercase
+					td.content
 						ul.rewards
-							padding: 10px 0 0 0
+							height: 270px
+							overflow: hidden
+							padding: 0
 							li.reward
 								float: left
 								margin-right: 10px
+								background: #fff
 								.stats
 									border-bottom: 1px solid #eee
 									padding: 10px 0
@@ -144,6 +151,12 @@
 										.amount
 											padding-right: 12px
 											background: transparent url(../images/icons/starBlackTiny.png) no-repeat 100% 2px
+					td.content-toggler
+						border-left: 1px solid #fff
+						width: 20px
+						background-image: url(../images/icons/tableOpenClose.png)
+						background-repeat: no-repeat
+						background-position: 50% -47px
 				tr.open
 					td
 						background-color: #e6f9ff
@@ -159,6 +172,13 @@
 						.count
 							background: transparent url(../images/icons/starBlueSmall.png) no-repeat 100% 14px
 					td.content-toggler
-						background-position: 50% 38px
+						background-position: 50% 38px				
+				td
+					background: none
+				tr:first-child td
+					border-top: none
+					padding-top: 0
+				tr:last-child td
+					border-bottom: none
 			table.users.creators tr.user
 				cursor: pointer

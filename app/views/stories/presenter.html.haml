@@ -1,0 +1,122 @@
+- content_for :head do
+  = javascript_include_tag "stories/presenter"
+  %meta{:property => "og:title", :content => @story.title}
+  %meta{:property => "og:type", :content => "image"}
+  %meta{:property => "og:image", :content => @story.thumbnail.url(:small)}
+  %meta{:property => "og:url", :content => story_url(@story)}
+  %meta{:property => "og:site_name", :content => "Momeant"}
+  %meta{:property => "og:description", :content => @story.synopsis}
+
+#presenter
+
+  #reward-modal
+
+    %a#reward-modal-tab
+      .inner
+        = image_tag(@story.user.avatar.url(:thumbnail), :class => "avatar")
+        .text
+          %span Reward
+          %span= @story.user.name
+        .rewards= @story.rewards.sum(:amount)
+
+    .modal-inner
+    
+      #your-reward
+        #creator-info
+          = link_to(image_tag(@story.user.avatar.url(:large)), user_path(@story.user), :class => "avatar")
+          .the-rest
+            = link_to(@story.user.name, user_path(@story.user), :class => "name")
+            - unless @story.user.tagline.blank?
+              .tagline= truncate(@story.user.tagline, :length => 300)
+            .tags
+              - @story.user.interests.each do |tag|
+                = link_to(tag.name, "#", :class => "tag")
+            .links
+              = link_to("view other work", creations_user_path(@story.user))
+              = link_to("view full profile", user_path(@story.user))
+          
+            #reward-box-outer
+              - if current_user && current_user.coins > 0
+                - @user = @story.user
+                = render "shared/reward_modal"
+              - elsif current_user && current_user.coins == 0
+                .explanation
+                  %h3 Oops! You're out of reward coins.
+                  %p If you want to reward this content, please #{link_to("purchase more reward coins",coins_path)}.
+              - else
+                .not-logged-in
+                  %h2 Mo&#149;meant is a community that values &amp; rewards online content.
+                  %ul
+                    %li
+                      .number 1.
+                      .text
+                        We all create content online these days. Most of that content is free.
+                        %br
+                        Even pros like writers, musicians, and journalists are giving their work away.
+                    %li
+                      .number 2.
+                      .text
+                        But when we create great content that others enjoy,
+                        %br
+                        we all deserve to be rewarded.
+                    %li
+                      .number 3.
+                      .text
+                        Mo&#149;meant is a community for rewarding and getting rewarded.
+                        %br
+                        Let's truly value each other's work!
+                  .links
+                    = link_to("About Momeant", about_path, :class => "button about")
+                    = link_to("Join Momeant", "#join-modal", :class => "button join")
+                    = link_to("Login", "#login-modal", :class => "button login")
+              
+        #toggle-reward-stream.tooltipped-w{:title => "Expand/Contract"}
+        
+      #reward-list.closed
+        .header Community Rewards
+        %ul
+          - if current_user
+            %li#new-reward
+              .rewarder
+                = link_to(image_tag(current_user.avatar(:thumbnail)), user_path(current_user), :class => "avatar")
+                %a.name{:href => user_path(current_user)}
+                  %span= current_user.first_name
+                  %span= current_user.last_name
+                .amount
+              .comment
+              .when just now
+          - @story.rewards.each do |reward|
+            %li{:class => reward.id.to_s == params[:impacted_by] ? "highlighted" : ""}
+              .rewarder
+                = link_to(image_tag(reward.user.avatar(:thumbnail)), user_path(reward.user), :class => "avatar")
+                %a.name{:href => user_path(reward.user)}
+                  %span= reward.user.first_name
+                  %span= reward.user.last_name
+                .amount= reward.amount
+              - if reward.comment.present?
+                .comment= reward.comment
+              .when #{time_ago_in_words(reward.created_at)} ago
+  
+  .content
+  
+    %ul#pages
+      - pages = @story.pages
+      - pages.each do |page|
+        - @page = page
+        %li{:id => "page_#{page.number}", :class => page.number == 1 ? "#{page.css_class}" : "#{page.css_class} hidden"}
+          = render "/stories/page_themes/#{page.partial_name}"
+  
+    #previous-page
+      .button{:title => "Previous page"} previous page
+    #next-page
+      .button{:title => "Next page"} next page
+  
+    #metadata
+      .info
+        .title= @story.title
+        .author by #{link_to(@story.user.name, user_path(@story.user))}
+        .excerpt
+          .full= @story.synopsis
+      .pages
+        - 1.upto @story.pages.count do |page|
+          = link_to(page, "#", :class => page == 1 ? "selected" : "", :page => page)

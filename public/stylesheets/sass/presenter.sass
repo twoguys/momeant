@@ -1,294 +1,409 @@
 /* Story viewing */
 
-.story-viewer
+#presenter
 	width: 100%
 	height: 100%
 	overflow: hidden
 	
-	.reward-stream
-		width: 290px
+	#thumbnail
+		display: none
+	
+	#reward-modal
+		height: 80%
+		width: 900px
 		position: absolute
-		top: 0
-		bottom: 0
-		left: 0
+		top: -80%
+		left: 50%
+		margin-left: -450px
 		background-color: #fff
-		overflow-y: auto
-		border-right: 1px solid #000
-		ul
-			li
-				clear: both
-				padding: 10px
-				border-top: 1px solid #fff
-				border-bottom: 1px solid #ddd
-				background: #f4f4f4
-				.rewarder
-					height: 28px
-					.avatar
-						display: block
-						width: 28px
+		z-index: 2
+		#reward-modal-tab
+			position: absolute
+			bottom: -39px
+			left: 50%
+			margin-left: -100px
+			-webkit-border-bottom-right-radius: 5px
+			-webkit-border-bottom-left-radius: 5px
+			-moz-border-radius-bottomright: 5px
+			-moz-border-radius-bottomleft: 5px
+			border-bottom-right-radius: 5px
+			border-bottom-left-radius: 5px
+			height: 39px
+			border: 1px solid #aaa
+			border-top: none
+			width: auto
+			z-index: 2
+			.inner
+				width: auto
+				position: relative
+				height: 29px
+				background: #fff
+				font-weight: 700
+				color: #000
+				line-height: 13px
+				text-transform: uppercase
+				padding: 5px 5px 5px 39px
+				cursor: pointer
+				-webkit-border-bottom-right-radius: 5px
+				-webkit-border-bottom-left-radius: 5px
+				-moz-border-radius-bottomright: 5px
+				-moz-border-radius-bottomleft: 5px
+				border-bottom-right-radius: 5px
+				border-bottom-left-radius: 5px
+			.avatar
+				width: 27px
+				height: 27px
+				border: 1px solid #000
+				position: absolute
+				top: 5px
+				left: 5px
+			.text, .rewards
+				display: inline-block
+			.text
+				padding-top: 1px
+				span
+					display: block
+			.rewards
+				position: relative
+				top: -5px
+				width: 20px
+				margin-left: 20px
+				padding: 10px 10px 0 5px
+				height: 20px
+				text-indent: -9999px
+				background: transparent url(../images/icons/starBlue.png) no-repeat 90% 50%
+				
+		.modal-inner
+			position: absolute
+			top: 0
+			bottom: 0
+			width: 100%
+			overflow-y: auto
+			border: 1px solid #aaa
+
+		#your-reward
+			position: absolute
+			top: 0
+			bottom: 0
+			left: 0
+			right: 65px
+			overflow-y: auto
+			z-index: 1
+			-webkit-transition: right 0.1s linear
+			-moz-transition: right 0.1s linear
+			#toggle-reward-stream
+				position: absolute
+				background: transparent url(../images/rewardModalToggleStream.png) no-repeat
+				top: 10px
+				right: 0
+				text-align: center
+				width: 21px
+				height: 22px
+				cursor: pointer
+		#your-reward.closed
+			right: 265px
+			#toggle-reward-stream
+				background-position: 0 -22px
+			
+			
+		#creator-info
+			position: relative
+			padding: 20px 20px 20px 132px
+			min-height: 106px
+			a.avatar
+				position: absolute
+				top: 20px
+				left: 20px
+				img
+					width: 100px
+					height: 100px
+					border: 1px solid #cacaca
+			.the-rest
+				a.name
+					display: block
+					text-transform: uppercase
+					font-size: 20px
+					font-weight: 700
+					color: #000
+					margin-bottom: 5px
+				.tagline
+					font-size: 11px
+					max-width: 700px
+					max-height: 60px
+					overflow: hidden
+					margin-bottom: 10px
+				.links
+					margin-top: 12px
+					a
+						margin-right: 20px
+						text-transform: uppercase
+						font-weight: 700
+				
+				#reward-box-outer
+					margin-top: 12px
+					border-top: 1px dashed #ccc
+					padding-top: 20px
+				#reward-box
+					.alert
+						background-color: $lightred
+						color: $red
+						padding: 5px 10px
+						font-weight: 700
+						text-transform: uppercase
+						margin-bottom: 20px
+					.inner
+						position: relative
+						padding-left: 80px
+						#avatars
+							position: absolute
+							top: 0
+							left: 0
+							img
+								position: absolute
+								width: 45px
+								height: 45px
+								border: 1px solid #cacaca
+							.them
+								top: 0
+								left: 0
+							.you
+								top: 15px
+								left: 15px
+						form#reward-form
+							input[type="text"], textarea
+								@include rounded(0)
+							#how-much
+								span, strong
+									padding: 3px 0
+									font-size: 14px
+									float: left
+									margin-right: 5px
+								strong
+									text-transform: uppercase
+								.input
+									float: left
+									position: relative
+									margin-right: 5px
+									input[type="text"]
+										background: #f7f7f7 url(../images/icons/starBlackTiny.png) no-repeat 5px 50%
+										border: 1px solid #c6c6c6
+										width: 20px
+										height: 17px
+										padding: 2px 16px
+										text-align: center
+										font-size: 14px
+										font-weight: 700
+									#ticker
+										position: absolute
+										top: 1px
+										right: 1px
+										border-left: 1px solid #c6c6c6
+										background: transparent url(../images/rewardModalTickerBG.png) no-repeat
+										width: 11px
+										height: 21px
+										.up, .down
+											width: 10px
+											height: 10px
+											cursor: pointer
+							.comment
+								clear: both
+								padding-top: 10px
+								textarea
+									background: transparent url(../images/rewardModalCommentBG.png) no-repeat
+									border: none
+									width: 316px
+									height: 50px
+									padding: 10px 15px
+							#share
+								margin: 20px 0 10px 7px
+								border-top: 1px dashed #ccc
+								border-bottom: 1px dashed #ccc
+								width: 334px
+								padding-bottom: 7px
+								.header
+									background: #fff
+									display: inline
+									padding: 0 5px
+									margin: 0 auto
+									position: relative
+									top: -9px
+									left: 87px
+								table
+									width: 100%
+									border: none
+									margin-top: -5px
+									td
+										padding: 5px 10px
+										background: none
+										border: none
+									td.text
+										text-shadow: 0 1px 0 #fff
+									td.link
+										text-align: right
+									.switch
+										float: right
+										.toggle
+											width: 84px
+											height: 28px
+											background: transparent url(../images/onOffSwitchBG.png) no-repeat 0 0
+											position: relative
+											cursor: pointer
+											.handle
+												width: 44px
+												height: 28px
+												position: absolute
+												top: 0
+												left: 0
+												background: transparent url(../images/onOffSwitchHandle.png) no-repeat 0 0
+										.toggle.off .handle
+											left: 40px
+						input[type="submit"]
+							margin-left: 7px
+							width: 333px
+							@include gradient($bluegradient1, $bluegradient2)
+							border: 1px solid #528294
+							color: #fff
+							text-shadow: 0 -1px 0 rgba(0,0,0,0.75)
+							padding-top: 12px
+							font-size: 14px
+			#reward-box-outer.loading .inner
+				height: 250px
+				background: transparent url(../images/spinner.gif) no-repeat 50% 50%
+				*
+					display: none
+			#reward-box-outer .not-logged-in
+				h2
+					background: none
+					padding: 0
+				ul
+					padding-bottom: 20px
+					li
+						font-family: $numerals
+						margin-bottom: 10px
+						position: relative
+						.number
+							font-size: 40px
+							text-align: right
+							position: absolute
+							left: 0
+							top: 0
+						.text
+							font-size: 16px
+							line-height: 16px
+							padding-top: 10px
+							margin-left: 40px
+				a
+					margin-right: 10px
+				a.about
+					@include gradient($redgradient1, $redgradient2)
+				a.login
+					@include gradient($greengradient1, $greengradient2)
+			
+		#reward-list.closed
+			width: 65px
+		#reward-list
+			width: 265px
+			position: absolute
+			top: 0
+			bottom: 0
+			right: 0
+			z-index: 2
+			border-left: 1px solid #ddd
+			overflow-y: auto
+			overflow-x: hidden
+			background: #eee
+			-webkit-transition: width 0.1s linear
+			-moz-transition: width 0.1s linear
+			.header
+				font-size: 14px
+				font-weight: 700
+				text-transform: uppercase
+				color: #555
+				position: absolute
+				top: 11px
+				left: 50px
+			ul
+				padding-top: 40px
+				background: transparent url(../images/icons/communityDark.png) no-repeat 5px 5px
+				li
+					clear: both
+					padding: 10px
+					border-top: 1px solid #fff
+					border-bottom: 1px solid #ddd
+					.rewarder
 						height: 28px
-						float: left
-						margin-right: 5px
-						img
+						.avatar
+							display: block
 							width: 28px
 							height: 28px
-					.name
-						float: left
-						color: $text_color
-						font-size: 11px
-						span
-							display: block
-							text-transform: uppercase
-							font-weight: 700
-					.amount
-						float: right
-						padding-right: 17px
-						background: transparent url(../images/icons/starBlackSmall.png) no-repeat 100% 3px
-						font-weight: 700
-						font-size: 17px
-						font-family: $numerals
-				.comment, .when
-					clear: both
-				.comment
-					font-size: 11px
-					padding: 5px 0
-				.when
-					font-size: 10px
-					color: #ccc
-					text-align: right
-			li#give-reward
-				background: #ddd
-				padding-top: 15px
-				padding-bottom: 5px
-				height: 145px
-				.how-much
-					.amount-text, input, .out-of
-						float: left
-					.amount-text, .out-of
-						padding-top: 7px
-					.amount-text
-						padding-right: 4px
-					.out-of
-						padding-left: 4px
-					input[type="text"]
-						float: left
-						width: 24px
-						padding: 4px 4px 4px 22px
-						font-weight: 700
-						font-size: 14px
-						background: #fff url(../images/icons/starBlackSmall.png) no-repeat 4px 5px
-						@include rounded(3px)
-				input[type="text"], textarea
-					@include rounded(0)
-				textarea
-					width: 94%
-					height: 40px
-					margin: 11px 0 13px
-					@include rounded(3px)
-				.impacter-and-submit
-					height: 33px
-					.impacter
-						float: left
-						a.avatar
-							display: block
 							float: left
 							margin-right: 5px
-							width: 28px
-							height: 28px
 							img
 								width: 28px
 								height: 28px
 						.name
-							font-size: 10px
-							color: #777
 							float: left
-							width: 130px
-					input[type="submit"]
-						padding: 4px 8px
-						@include rounded(3px)
-						float: right
-			li#give-reward.loading
-				background: #eee url(../images/spinner.gif) no-repeat 50% 50%
-				form
+							color: $text_color
+							font-size: 11px
+							span
+								display: block
+								text-transform: uppercase
+								font-weight: 700
+						.amount
+							float: right
+							padding-right: 12px
+							background: transparent url(../images/icons/starBlackTiny.png) no-repeat 100% 6px
+							font-size: 17px
+							font-family: $numerals
+					.comment, .when
+						clear: both
+					.comment
+						font-size: 11px
+						padding: 5px 0
+					.when
+						font-size: 10px
+						color: #ccc
+						text-align: right
+				li.highlighted
+					background: #fffaba
+				li#new-reward
 					display: none
-			li#give-reward.no-user
-				height: 70px
-				text-align: center
-				h3
-					font-size: 13px
-					text-transform: uppercase
-					margin-bottom: 5px
-				a
-					position: relative
-					top: 12px
-				a.login
-					background: $lightgreen
-					color: $green
-					margin-left: 5px
-			li:nth-child(odd)
-				background: #fafafa
-			li.highlighted
-				background: #fffaba
-			li#new-reward
+		#reward-list.closed
+			.header
 				display: none
+			li
+				width: 44px
+				.rewarder
+					height: 45px
+					.name
+						display: none
+					.avatar
+						float: none
+						margin: 0
+					.amount
+						clear: both
+						float: none
+						background-position: 0 8px
+						padding: 3px 3px 3px 11px
+						font-size: 14px
+				.comment, .when
+					display: none
 		
 		#reward-thank-you
-			.message
-				padding-bottom: 10px
-				border-bottom: 1px solid #ccc
-				min-height: 70px
-				.avatar
+			max-width: 700px
+			.custom-message
+				strong
 					display: block
-					float: left
-					border: 3px solid #000
-					margin: 0 15px 2px 0
-					img
-						width: 60px
-						height: 60px
-				.thanks
-					font-family: $typewriter
-					font-size: 30px
-					font-weight: 100
-					text-transform: uppercase
-				.text
-					font-size: 11px
 					padding-top: 5px
-			.share
-				border-top: 1px solid #fff
-				padding-top: 5px
-				a
-					display: block
-					height: 30px
-					font-size: 11px
-					line-height: 30px
-					padding-left: 36px
-					background-repeat: no-repeat
-					background-position: 0 0
-					color: $text_color
-				a:hover
-					background-position: 0 -31px
-					color: $blue
-				.twitter
-					background-image: url(../images/tweetThis.png)
+					text-transform: uppercase
+			.explanation
+				h3
+					font-size: 15px
+				p
+					margin: 10px 0 20px
 	
 	.content
-		position: absolute
-		top: 0
-		left: 290px
-		bottom: 0
-		right: 0
-		margin-left: 1px
-	
-	#back-to-preview
-		position: absolute
-		top: 0
-		left: 0
-		background: #fff url(../images/icons/fullscreenOff.png) no-repeat 10px 50%
-		color: #000
-		font-weight: bold
-		display: inline-block
-		padding: 8px 10px 8px 32px
-		-webkit-border-bottom-right-radius: 5px
-		-moz-border-radius-bottomright: 5px
-		border-bottom-right-radius: 5px
-		@include boxshadow(5px, .1, 0, 1px)
-		z-index: 3
-	#back-to-home
-		position: absolute
-		top: 0
-		left: 35px
-		width: 46px
-		height: 60px
-		background: transparent url(../images/backToHome.png) no-repeat 50% 0
-		z-index: 3
-		text-indent: -9999px
-	#activity-flag
-		position: absolute
-		top: 0
-		left: 35px
-		width: 46px
-		height: 60px
-		background: transparent url(../images/activityFlag.png) no-repeat 50% 0
-		z-index 3
-		text-indent: -9999px
-	#activity
-		position: absolute
-		top: 0
-		right: 0
-		width: 385px
-		@include boxshadow
-		overflow: hidden
-		background: #fff
-		border: 1px solid #ccc
-		border-top: none
-		border-bottom: none
-		-webkit-transition: all linear 0.2s
-		-moz-transition: all linear 0.2s
-		display: none
-		a#close-activity
-			display: block
-			position: absolute
-			top: 0
-			left: 0
-			height: 30px
-			width: 345px
-			color: #fff
-			line-height: 30px
-			vertical-align: middle
-			padding: 0 30px 0 10px
-			font-size: 14px
-			text-transform: uppercase
-			font-weight: 900
-			background: #000 url(../images/white-close-xSm.png) no-repeat 98% 6px
-			text-align: right
-		.scroller
-			height: 100%
-			overflow-y: auto
-			margin-top: 30px
-		ul.list
-			.reward-box
-				.the-rest
-					height: 100px
-			li
-				background-color: #d7d7d7
-				position: relative
-				border-bottom: 1px solid #aaa
-				a.avatar
-					position: absolute
-					top: 10px
-					left: 10px
-					width: 30px
-					height: 30px
-					img
-						width: 30px
-						height: 30px
-				.the-rest
-					background-color: #fff
-					margin-left: 50px
-					padding: 10px
-					min-height: 30px
-					.who-when
-						height: 30px
-						.icon, .author, .date
-							float: left
-							height: 30px
-							line-height: 30px
-							vertical-align: middle
-							margin-right: 10px
-						.author
-							font-size: 16px
-							font-weight: 900
-							text-transform: uppercase
-						.date
-							color: #aaa
-					.comment
-						margin-top: 5px
-			li.empty
-				padding: 10px 0
-				background-color: #fff
-				font-style: italic
-				text-align: center
-				color: #aaa
+		z-index: 1
 	
 	#metadata
 		position: absolute
@@ -351,9 +466,12 @@
 		position: absolute
 		top: 0
 		bottom: 35px
+		z-index: 1
 		li
+			position: absolute
+			top: 0
+			bottom: 0
 			width: 100%
-			height: 100%
 			overflow-y: auto
 			text-shadow: none
 			.number
@@ -372,109 +490,6 @@
 			@include gridSlideFullsize
 		li.external
 			@include externalSlideFullsize
-		li.last
-			background-color: #111
-			.inner
-				width: 745px
-				margin: 0 auto
-				padding-top: 150px
-				.thank-you
-					color: #fff
-					border-bottom: 1px dotted #444
-					padding-bottom: 15px
-					margin-bottom: 25px
-					h3
-						font-family: $block
-						text-transform: uppercase
-						font-size: 18px
-						font-weight: 700
-					p
-						font-family: $typewriter
-						font-size: 18px
-						margin: 2px 0 5px
-						line-height: 20px
-						letter-spacing: .3px
-						font-weight: 100
-				#reward-box .inner
-					width: 410px
-					padding: 10px
-				.stories
-					width: 300px
-					float: right
-					.tabs
-						margin-bottom: 0
-						background-color: transparent
-						height: 29px
-						min-height: 0
-						position: relative
-						a
-							top: 0
-							padding: 0
-							position: absolute
-							height: 29px
-							line-height: 29px
-							vertical-align: middle
-							font-size: 12px
-							background: transparent url(../images/tab155x29Dark.png) no-repeat 0 0
-							color: #fff
-							width: 155px
-							z-index: 1
-							-webkit-box-shadow: none
-							-moz-box-shadow: none
-							box-shadow: none
-						a.first
-							left: 0
-						a.last
-							right: 0
-						a.active
-							background: transparent url(../images/tab155x29.png) no-repeat 0 0
-							color: $text_color
-							z-index: 2
-						a, a.active, a:first-child
-							border: 0 none
-					ul.stories
-						background-color: #fff
-						width: 278px
-						height: 269px
-						padding: 10px 5px
-						border: 6px solid #eee
-						overflow-y: auto
-						li
-							display: block
-							width: 263px
-							height: 60px
-							background: transparent url(../images/simpleDotBG.png) repeat-x 50% 100%
-							padding-bottom: 10px
-							margin-bottom: 10px
-							position: relative
-							a.thumbnail
-								width: 95px
-								height: 60px
-								display: block
-								float: left
-								margin: 0 8px 0 0
-								overflow: hidden
-							.info
-								width: 160px
-								float: left
-								line-height: 12px
-								.title
-									font-family: $block
-									color: #000
-									font-weight: 700
-									margin: 0
-								.author
-									border: none
-									margin: 0
-									font-size: 10px
-							.price
-								width: 50px
-								float: left
-								right: 0
-								bottom: 20px
-						li:last-child
-							background: none
-							margin-bottom: 0
 	#previous-page, #next-page
 		width: 100px
 		height: 140px

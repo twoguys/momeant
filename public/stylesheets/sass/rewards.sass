@@ -3,7 +3,8 @@ ul.rewards
 	padding-top: 20px
 	li
 		width: 230px
-		margin-bottom: 20px
+		float: left
+		margin: 0 20px 20px 0
 		position: relative
 		@include boxshadow(2px,0.2,1px,1px)
 		.what
@@ -24,11 +25,22 @@ ul.rewards
 				width: 210px
 				height: 124px
 				color: #fff
-				font-weight: 700
 				text-transform: uppercase
 				font-size: 14px
-				background: rgba(0,0,0,0.5)
+				background: rgba(0,0,0,0.75)
 				z-index: 2
+				.avatar
+					position: absolute
+					top: 3px
+					right: 3px
+					width: 28px
+					height: 28px
+				span
+					display: block
+				span.synopsis
+					font-size: 11px
+					padding-top: 5px
+					text-transform: none
 			.comment-pointer
 				background: transparent url(../images/streamCommentPointer.png) no-repeat 0 0
 				width: 13px
@@ -75,109 +87,38 @@ ul.rewards
 			.comment
 				color: #555
 				font-size: 11px
+		.gave, .people, .impact
+			font-size: 11px
+		.gave
+			padding: 5px 10px 3px
+			.reward
+				padding-right: 13px
+				background: transparent url(../images/icons/starBlackTiny.png) no-repeat 100% 2px
+				margin: 0 2px
+		.people, .impact
+			padding: 2px 0 2px 35px
+			background-position: 10px 2px
+			background-repeat: no-repeat
+		.people
+			background-image: url(../images/icons/person.png)
+		.impact
+			background-image: url(../images/icons/starBlackSmall.png)
+			float: none
+			padding-bottom: 5px
+			border-bottom: 1px solid #e0e0e0
+		.comment
+			font-size: 11px
+			padding: 5px 10px
+			height: 45px
+			overflow: hidden
+			background: transparent url(../images/icons/commentBlackTiny.png) no-repeat 11px 5px
+			text-indent: 25px
 	li:hover
 		.title
 			display: block
 						
 #fancybox-content
 	background: rgba(0,0,0,0.2)
-#reward-box
-	width: 515px
-	position: absolute
-	top: -422px
-	left: 50%
-	margin-left: -267px
-	@include boxshadow(5px,0.7,0,0)
-	.inner
-		width: 485px
-		height: 382px
-		padding: 15px
-		background-color: #eee
-		.yourself
-			padding-top: 100px
-			h1
-				text-align: center
-		h1
-			font-family: $typewriter
-			font-size: 40px
-			text-transform: uppercase
-			font-weight: 100
-			letter-spacing: -0.7px
-			margin-bottom: 0
-		h2
-			font-size: 16px
-			font-weight: 900
-			color: #000
-			background: none
-			padding: 0
-		h1, h2
-			text-align: center
-		form#reward-form
-			margin-top: 20px
-			.from, .amount, .to
-				float: left
-			.from, .to
-				width: 66px
-				height: 88px
-				background-color: $blue
-				position: relative
-				img.avatar
-					width: 60px
-					height: 60px
-					display: block
-					margin: 3px
-				.rewards
-					position: absolute
-					bottom: -13px
-					margin: 0 auto
-					text-align: center
-					.count
-						display: inline-block
-						color: #fff
-						font-weight: 700
-						padding: 0 17px 0 4px
-						height: 22px
-						background: transparent url(../images/icons/recommendWhite.png) no-repeat 100% 0
-					.text
-						font-size: 8px
-			.amount
-				width: 310px
-				margin: 30px 20px 0
-				p
-					margin-top: 10px
-					span, input
-						float: left
-						font-size: 11px
-					input[type="text"]
-						background: none
-						border: none
-						width: auto
-						font-size: 15px
-						font-weight: 700
-						width: 22px
-						height: 20px
-						padding: 0 3px
-						text-align: center
-		.comment
-			clear: both
-			padding-top: 40px
-			textarea
-				width: 96%
-				height: 80px
-			input[type="submit"]
-				background-color: #000
-				color: #fff
-				display: block
-				margin: 10px auto
-				width: 200px
-				padding: 8px 5px 7px
-#reward-box.loading .inner
-	background: #eee url(../images/spinner.gif) no-repeat 50% 50%
-	h1, h2, form
-		display: none
-#reward-box.thanks .inner
-	padding: 0
-	width: 515px
 
 a#load-more
 	display: block

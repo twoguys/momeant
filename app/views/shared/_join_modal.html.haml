@@ -11,11 +11,11 @@
               %ul
                 %li
                   %span
-                    = f.text_field :first_name, :placeholder => "first name"
+                    = f.text_field :first_name, :placeholder => "first name", :autocorrect => "off"
                   %span.last
-                    = f.text_field :last_name, :placeholder => "last name"
+                    = f.text_field :last_name, :placeholder => "last name", :autocorrect => "off"
                 %li
-                  = f.text_field :email, :placeholder => "email address"
+                  = f.email_field :email, :placeholder => "email address", :autocorrect => "off", :autocapitalize => "off"
                 %li
                   = f.password_field :password, :placeholder => "password (6+ characters)"
                 %li.checkbox

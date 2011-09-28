@@ -56,7 +56,11 @@ Repo::Application.routes.draw do
   resources :users do
     resources :subscriptions
     resources :rewards
-    resources :galleries
+    resources :galleries do
+      get :move_up, :on => :member
+      get :move_down, :on => :member
+      post :update_description, :on => :collection
+    end
     get :bookmarks
     
     member do
@@ -74,6 +78,9 @@ Repo::Application.routes.draw do
 
     # Spreedly updates come here
     post :billing_updates, :on => :collection
+    
+    # Feedback
+    post :feedback, :on => :collection
   end
   match '/analytics',           :to => "users#analytics",           :as => :analytics
   match '/community',           :to => "users#community",           :as => :community
@@ -91,6 +98,9 @@ Repo::Application.routes.draw do
       post :toggle_enabled, :on => :member
     end
   end
+  
+  match '/auth/:provider/configure' => 'authentications#configure'
+  match '/auth/:provider/callback' => 'authentications#create'
   
   match '/search',              :to => "search#index",              :as => :search
   match '/subscribe',           :to => 'home#subscribe',            :as => :subscribe

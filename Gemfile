@@ -29,6 +29,9 @@ gem 'pusher'
 gem 'awesome_nested_set', :path => 'vendor/private_gems/awesome_nested_set-2.0.1'
 gem 'rest-client'
 gem 'nokogiri'
+gem 'omniauth'
+gem 'twitter'
+gem 'opengraph'
 
 group :test do
   gem 'shoulda'

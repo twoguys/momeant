@@ -1,10 +1,14 @@
 - size ||= :medium
 - community ||= false
+- user_profile ||= false
 - for_person = reward.story_id.nil?
 %li.reward{:class => for_person  ? "person" : ""}
   .what
-    = link_to(image_tag(reward.story.thumbnail.url(size)), story_path(reward.story, :impacted_by => reward.id), :class => "thumbnail modal")
-    = link_to(reward.story.title, story_path(reward.story, :impacted_by => reward.id), :class => "title modal")
+    = link_to(image_tag(reward.story.thumbnail.url(size)), story_path(reward.story, :impacted_by => reward.id), :class => "thumbnail")
+    %a.title{:href => story_path(reward.story, :impacted_by => reward.id)}
+      = image_tag(reward.story.user.avatar.url(:thumbnail), :class => "avatar tooltipped-e", :title => reward.story.user.name)
+      %span= reward.story.title
+      %span.synopsis= truncate(reward.story.synopsis, :length => 200)
     .comment-pointer
   - if community
     .stats
@@ -15,14 +19,23 @@
         %span.amount= reward.story.rewards.sum(:amount)
         %span.text all time
     .impacter
-      - user_reward = user_who_impacted_most(reward.story.rewards.this_month)
-      - impacter = user_reward.first
-      - impacting_amount = user_reward.second
-      = link_to(image_tag(impacter.avatar(:thumbnail)), user_path(impacter), :class => "avatar")
-      .text
-        %h3 Biggest Impacter:
-        %span #{impacter.name} with
-        %span.amount= impacting_amount
+      - user_reward = user_who_impacted_most(reward.story.rewards)
+      - unless user_reward.nil?
+        - impacter = user_reward.first
+        - impacting_amount = user_reward.second
+        = link_to(image_tag(impacter.avatar(:thumbnail)), user_path(impacter), :class => "avatar")
+        .text
+          %h3 Biggest Impacter:
+          %span #{impacter.name} with
+          %span.amount= impacting_amount
+  - elsif user_profile
+    .gave
+      %span #{you_or_first_name(reward.user).capitalize} gave
+      %span.reward #{reward.amount}
+      %span , which led to:
+    .people #{pluralize(reward.descendants.map(&:user_id).uniq.length, "more person")} rewarding
+    .impact= pluralize(reward.impact, "more reward star")
+    .comment= truncate(reward.comment, :length => 100)
   - else
     .who
       = link_to(image_tag(reward.user.avatar(:thumbnail)), user_path(reward.user), :class => "avatar")

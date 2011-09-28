@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
-  before_filter :authenticate_user!, :only => [:edit, :update, :analytics]
-  before_filter :find_user, :except => [:community, :community_creators, :analytics, :billing_updates]
+  before_filter :authenticate_user!, :only => [:edit, :update, :analytics, :feedback]
+  before_filter :find_user, :except => [:community, :community_creators, :analytics, :billing_updates, :feedback]
   skip_before_filter :verify_authenticity_token, :only => :billing_updates
   
   def show
-    @creators = @user.given_rewards.for_content.group_by(&:recipient)
+    @rewards = @user.given_rewards.for_content
   end
   
   def stream #ajax requests
@@ -62,28 +62,40 @@ class UsersController < ApplicationController
     @users = []
     @nav = "community"
     
-    if params[:tags].present?
-      @tags = Story.joins(:curations).where("curations.type = 'Reward'").tagged_with(params[:tags]).tag_counts.order("count DESC").limit(20).sort do |x, y|
-        if params[:tags].include?(x.name)
-          -1
-        else
-          1
-        end
-      end
-    else
-      @tags = Story.joins(:curations).where("curations.type = 'Reward'").tag_counts.order("count DESC").limit(20)
-    end
+    #content_ids = get_tags_and_stories
+    #return if content_ids.empty?
+    #@users = User.select("DISTINCT ON(id) users.*").joins("LEFT OUTER JOIN curations ON curations.user_id = users.id").where("curations.story_id IN (#{content_ids.join(',')})").where("curations.type = 'Reward'")
     
-    content_ids = Story.tagged_with(@tags, :any => true).map{|story| story.id}
-    return if content_ids.empty?
-    @users = User.select("DISTINCT ON(id) users.*").joins("LEFT OUTER JOIN curations ON curations.user_id = users.id").where("curations.story_id IN (#{content_ids.join(',')})").where("curations.type = 'Reward'")
-    @users = @users.sort_by {|user| -user.impact}
+    @users = User.select("DISTINCT ON(id) users.*").joins("LEFT OUTER JOIN curations ON curations.user_id = users.id").where("curations.type = 'Reward'").where("curations.created_at > '#{30.days.ago}'")
+    @users = @users.sort do |a,b|
+      if a.impact != b.impact
+        b.impact <=> a.impact
+      else
+        b.given_rewards.sum(:amount) <=> a.given_rewards.sum(:amount)
+      end
+    end
   end
   
   def community_creators
-    # Rewards this week -> rewardees -> top content -> top impacter
-    @users = Reward.this_month.group_by(&:recipient).to_a
-    @users = @users.sort_by {|array| -array.second.inject(0) {|sum,r| r.amount}}
+    # Tags -> rewards this week -> rewardees -> top content -> top impacter
+    
+    @users = []
+    @nav = "community"
+    
+    #content_ids = get_tags_and_stories
+    #return if content_ids.empty?
+    #@users = Reward.where("curations.story_id IN (#{content_ids.join(',')})").where("curations.type = 'Reward'").group_by(&:recipient).to_a
+    #@users = @users.sort_by {|array| -array.second.inject(0) {|sum,r| r.amount}}
+    
+    @users = User.select("DISTINCT ON(id) users.*").joins("LEFT OUTER JOIN curations ON curations.recipient_id = users.id").where("curations.type = 'Reward'").where("curations.created_at > '#{30.days.ago}'")
+    @users = @users.sort_by {|u| -u.rewards.this_month.sum(:amount)}
+  end
+  
+  def feedback
+    if current_user
+      FeedbackMailer.give_feedback(params[:comment], current_user).deliver
+    end
+    render :json => {:success => true}
   end
   
   def billing_updates
@@ -103,5 +115,21 @@ class UsersController < ApplicationController
       @page_title = @user.name if @user
       @nav = "home"
       @sidenav = "profile" if current_user.present? && @user == current_user
+    end
+    
+    def get_tags_and_stories
+      if params[:tags].blank?
+        @tags = Story.joins(:curations).where("curations.type = 'Reward'").tag_counts.order("count DESC").limit(20) 
+      else      
+        @tags = Story.joins(:curations).where("curations.type = 'Reward'").tagged_with(params[:tags]).tag_counts.order("count DESC").limit(20).sort do |x, y|
+          if params[:tags].include?(x.name)
+            -1
+          else
+            1
+          end
+        end
+      end
+      
+      return Story.tagged_with(@tags, :any => true).map{|story| story.id}
     end
 end

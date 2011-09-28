@@ -1,62 +1,47 @@
 - content_for :head do
   = javascript_include_tag "landing"
+  :css
+    #landing #background {
+      background-image: url(#{@background_url})
+    }
 
 #landing
   #background
   
-  %ul#letter
-    %li.page
-      #internet.inner
-        .padded
-          %span Dear
-          %span Internet,
-      %a.next Please tell me more
-    %li.page
-      #problem.inner
-        .padded
-          %span You’ve given us so much free content over the years, and we love you for it,
-          %span
-            but we also believe that the folks who create the really good stuff deserve to be
-            %strong rewarded
-            in return.
-      %a.next
-        .padded
-          How do we fix this problem?
-    %li.page
-      #solution.inner
-        .padded
-          %span
-            That’s why we’ve created mo&#149;meant, a place to
-            %strong reward and be rewarded.
-          %span
-            By
-            %strong rewarding
-            each other, we recognize the value of our online creations, and show appreciation for works from our hearts and minds.
-      %a.next Nice! I totally agree.
-    %li.page
-      #join.inner
-        .padded 
-          %span
-            So sign up, share your content,
-            %br
-            see the great content others are rewarding,
-          %strong Reward and be Rewarded.
-          .join
-            = link_to("Join mo&#149;meant".html_safe, "#signup-modal")
-      %a.next Show me what's being rewarded!
-    %li.page
-      #rewarded.inner
-        .padded
-          %ul.rewards
-            = render @rewards
-          .join
-            = link_to("Join mo&#149;meant".html_safe, "#signup-modal")
-      %a.top-link Take me back to the top.
-  
-  #guide
-    %a{:href => about_path}
-      %h3 Find Out More
-      %p Learn more about the problem we're trying to solve and how mo&#149;meant works.
-    %a{:href => community_path}
-      %h3 Meet Our Community
-      %p Find out who our top patrons are and see which creators are being rewarded the most.
+  #insides
+    %a.previous
+    %ul#letter
+      %li.page
+        #internet.inner
+          .padded
+            %span Dear
+            %span Internet,
+      %li.page
+        #problem.inner
+          .padded
+            %span You’ve given us so much free content over the years, and we love you for it,
+            %span
+              but we also believe that the folks who create the really good stuff deserve to be
+              %strong rewarded
+              in return.
+      %li.page
+        #solution.inner
+          .padded
+            %span
+              That’s why we’ve created mo&#149;meant, a place to
+              %strong reward and be rewarded.
+            %span
+              By
+              %strong rewarding
+              each other, we recognize the value of our online creations, and show appreciation for works from our hearts and minds.
+      %li.page
+        #join.inner
+          .padded 
+            %span
+              So sign up, share your content,
+              %br
+              see the great content others are rewarding,
+            %strong Reward and be Rewarded.
+            .join
+              = link_to("Join mo&#149;meant".html_safe, "#join-modal")
+    %a.next

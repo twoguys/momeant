@@ -6,7 +6,7 @@
 
   - if !@story.valid?
     .banner
-      .before In order to publish your story, please fix these issues:
+      .before In order to post your story, please fix these issues:
       %ul
         - @story.errors.full_messages.each do |msg|
           %li= msg
@@ -17,19 +17,19 @@
   
     %section.step#editor
       %h2 1. Choose what you would like to share.
-      .choice#creator{:class => @story.is_external? ? "" : "selected"}
-        .choice-inner
-          .description Create something new
-          = link_to("Launch fullscreen editor", "#", :id => "open-page-editor-button", :class => @story.pages.empty? ? "launch" : "")
-          %p.info
-            %em Share images &amp; text with many layout &amp; formatting options.
-      .or OR
       .choice#external{:class => @story.is_external? ? "selected" : ""}
         .choice-inner
           .description Show your existing web content
           = text_field_tag :story_external_link, @story.external_text_or_http, :class => "monitor-story-typing", :update => "external_link"
           %p.info
             %em Show something you've created elsewhere on the web.
+      .or OR
+      .choice#creator{:class => @story.is_external? ? "" : "selected"}
+        .choice-inner
+          .description Create something new
+          = link_to("Launch fullscreen editor", "#", :id => "open-page-editor-button", :class => @story.is_external? || @story.pages.empty? ? "launch" : "")
+          %p.info
+            %em Share images &amp; text with many layout &amp; formatting options.
       .clear
   
     %section.step#describe
@@ -81,9 +81,40 @@
             %em You can organize your content into "galleries" of similar work.
           - content_for :modals do
             = render "gallery_creator"
+    
+    %section.step#share
+      %h2 3. Share this with your networks.
+      %table
+        %tbody
+          %tr
+            %td Twitter
+            %td.link
+              - if @twitter_auth
+                .switch
+                  .toggle.off{:update => "#share_twitter"}
+                    .handle
+              - else
+                = link_to("Configure", "/auth/twitter/configure", :class => "configure")
+          %tr
+            %td Facebook
+            %td.link
+              - if @facebook_auth
+                .switch
+                  .toggle.off{:update => "#share_facebook"}
+                    .handle
+              - else
+                = link_to("Configure", "/auth/facebook/configure", :class => "configure")
   
     %section#done
-      = button_to("Save", publish_story_path(@story))
+      .owner
+        = check_box_tag :i_own_this, '1', @story.i_own_this
+        %span I promise that I own this content.
+      .rest
+        = form_tag publish_story_path(@story) do
+          = hidden_field_tag :share_twitter, "", :name => "share[twitter]"
+          = hidden_field_tag :share_facebook, "", :name => "share[facebook]"
+          = submit_tag "Share"
+        = link_to("Preview", story_path(@story), :target => :new, :class => "preview")
   
   %fieldset
     %ul

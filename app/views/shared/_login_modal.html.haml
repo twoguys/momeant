@@ -10,7 +10,7 @@
             %fieldset
               %ul
                 %li
-                  = f.text_field :email, :id => "login_email", :placeholder => "email address"
+                  = f.email_field :email, :id => "login_email", :placeholder => "email address", :autocorrect => "off", :autocapitalize => "off"
                 %li
                   = f.password_field :password, :id => "login_password", :placeholder => "password"
                 %li.remember-me

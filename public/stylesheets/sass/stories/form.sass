@@ -9,8 +9,10 @@
 .fullscreen .story-form
 	padding-top: 0
 form.new_story, form.edit_story, .story-form
-	position: relative
-	height: 100%
+	position: absolute
+	top: 0
+	bottom: 0
+	width: 100%
 	.finished-links
 		position: absolute
 		top: 0
@@ -26,11 +28,14 @@ form.new_story, form.edit_story, .story-form
 		#delete-link
 			@include gradient($redgradient1, $redgradient2)
 	.banner
-		padding-top: 15px
-		margin: 0 0 30px
+		padding: 20px
+		margin: 30px 0
 		background-color: $lightred
 		.before
 			font-weight: bold
+			margin-bottom: 10px
+			text-transform: uppercase
+			font-size: 1.2em
 		li
 			margin-bottom: 0.5em
 	label
@@ -56,16 +61,6 @@ form.new_story, form.edit_story, .story-form
 		color: #999
 		font-style: italic
 		font-weight: 100
-	#editor, #describe, #done, .banner
-		max-width: 900px
-		margin-left: auto
-		margin-right: auto
-	#describe
-		max-width: 630px
-	#done
-		max-width: 960px
-	.banner
-		max-width: 920px
 	section.step
 		position: relative
 		background: #e8e8e8
@@ -92,7 +87,41 @@ form.new_story, form.edit_story, .story-form
 			font-size: 13px
 			color: $text_color
 			text-transform: none
-			font-weight: 700
+			font-weight: 700		
+	.step, .banner
+		max-width: 900px
+		margin-left: auto
+		margin-right: auto
+	#describe
+		max-width: 580px
+	#share
+		table
+			width: 300px
+			td.link
+				text-align: right
+			.switch
+				float: right
+				.toggle
+					width: 84px
+					height: 28px
+					background: transparent url(../images/onOffSwitchBG.png) no-repeat 0 0
+					position: relative
+					cursor: pointer
+					.handle
+						width: 44px
+						height: 28px
+						position: absolute
+						top: 0
+						left: 0
+						background: transparent url(../images/onOffSwitchHandle.png) no-repeat 0 0
+				.toggle.off .handle
+					left: 40px
+	#done
+		max-width: 960px
+		margin-left: auto
+		margin-right: auto
+	.banner
+		max-width: 920px
 	.step#editor
 		.choice
 			width: 45%
@@ -142,9 +171,9 @@ form.new_story, form.edit_story, .story-form
 				border: 3px solid #009fdb
 				@include rounded(3px)
 	.step#describe
-		padding-left: 300px
+		padding-left: 350px
 		h2
-			margin-left: -270px
+			margin-left: -320px
 			margin-bottom: 20px
 		#thumbnail-preview
 			position: absolute
@@ -154,21 +183,27 @@ form.new_story, form.edit_story, .story-form
 				background: #fff
 				border: 1px solid #d7d7d7
 				@include boxshadow(2px,0.1,1px,1px)
-				padding: 10px
-				width: 200px
+				padding-top: 10px
+				width: 288px
+				.title, .author
+					padding: 0 10px
 				.title
 					font-weight: 700
 					text-transform: uppercase
 				.author
 					font-size: 11px
 				.thumbnail
-					margin-top: 5px
-					background: $lightblue url(../images/creatorThumbnailDefaultBG.png) no-repeat 50% 50%
-					height: 128px
+					margin-top: 10px
+					background-color: $lightblue
+					background-image: url(../images/creatorThumbnailDefaultBG.png)
+					background-repeat: no-repeat
+					background-position: 50% 50%
+					@include bgcover
+					height: 180px
 			.note
 				width: 160px
 				text-align: center
-				margin: 10px 0 0 35px
+				margin: 10px 0 0 65px
 				color: #777
 		ul.fields
 			li.image
@@ -188,9 +223,17 @@ form.new_story, form.edit_story, .story-form
 			li.tags .info, li.gallery .info
 				margin-top: 3px
 	#done
-		height: 50px
+		height: 80px
 		margin-top: -10px
-		input
+		.owner
+			float: right
+			span
+				font-size: 13px
+				font-weight: 700
+		.rest
+			clear: both
+			padding-top: 10px
+		input[type="submit"], a
 			float: right
 			display: block
 			width: 100px
@@ -203,6 +246,11 @@ form.new_story, form.edit_story, .story-form
 			border: 3px solid #56c127
 			text-align: center
 			@include rounded(3px)
+		a.preview
+			background-color: #777
+			border: 3px solid #999
+			margin-right: 20px
+			height: 24px
 			
 	#thumbnail
 		.thumbnail-container
@@ -540,8 +588,8 @@ form.new_story, form.edit_story, .story-form
 			height: 50px
 			margin-bottom: 10px
 	#cancel-gallery-creation
-		background-color: $lightred
-		color: $red
+		background-color: $red
+		@include gradient($redgradient1, $redgradient2)
 #gallery-creator.loading
 	.inner
 		background: #fff url(../images/spinner.gif) no-repeat 50% 50%
@@ -716,7 +764,7 @@ form.new_story, form.edit_story, .story-form
 				a
 					font-size: 11px
 			.copy
-				margin: 17px 23px
+				margin: 17px 23px 0
 				font-size: 15px
 				line-height: 24px
 				font-family: $typewriter

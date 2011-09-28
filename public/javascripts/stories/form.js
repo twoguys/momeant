@@ -15,7 +15,7 @@ var story_page_editor = function() {
 			pages_editor.goto_page(pages_editor.page);
 			pages_editor.open();
 			if ($(this).hasClass('launch')) {
-				pages_editor.page_chooser_mode = 'add';
+				//pages_editor.page_chooser_mode = 'change';
 				pages_editor.show_page_type_chooser();
 			}
 			return false;
@@ -34,6 +34,7 @@ var story_page_editor = function() {
 		setup_page_adding();
 		$('#editor-header a.delete').click(pages_editor.delete_current_page);
 		setup_launch_when_no_pages();
+		setup_sharing_toggles();
 
 		this.total_pages = $('ul#pages').children().length;
 	};
@@ -54,8 +55,9 @@ var story_page_editor = function() {
 			if ($('#creator').hasClass('selected')) {
 				$('#external').addClass('selected');
 				$('#creator').removeClass('selected');
+				$('#open-page-editor-button').addClass('launch');
 				$.post('/stories/' + pages_editor.story_id + '/change_to_external');
-				var link_value = $('#story_external_link').val()
+				var link_value = $('#story_external_link').val();
 				if (link_value != "http://" && link_value != "") {
 					$.ajax({
 						type: 'PUT',
@@ -74,6 +76,7 @@ var story_page_editor = function() {
 				$.post('/stories/' + pages_editor.story_id + '/change_to_creator');
 				$('ul#pages li.page, #page-editor ul.pages li.pane-insides').remove();
 				pages_editor.page_chooser_mode = 'add';
+				pages_editor.total_pages = 0;
 			}
 		}
 		$('#creator').click(change_to_creator);
@@ -118,7 +121,6 @@ var story_page_editor = function() {
 		$('#story_title').keyup(function() {
 			var $thumbnail_title = $('#thumbnail-preview .title');
 			var title = $(this).val();
-			log(title);
 			if (title.length > 0) {
 				$thumbnail_title.text(title);
 			} else {
@@ -161,6 +163,24 @@ var story_page_editor = function() {
 			pages_editor.page_chooser_mode = 'add';
 			pages_editor.show_page_type_chooser();
 			return false;
+		});
+	};
+	
+	var setup_sharing_toggles = function() {
+		$('.toggle').click(function() {
+			var $toggle = $(this);
+			var $handle = $toggle.find('.handle');
+			var $hidden_field = $($toggle.attr('update'));
+
+			if ($toggle.hasClass('off')) {
+				$handle.animate({left: '0'}, 200);
+				$toggle.removeClass('off');
+				$hidden_field.val('yes')
+			} else {
+				$handle.animate({left: '40px'}, 200);
+				$toggle.addClass('off');
+				$hidden_field.val('')
+			}
 		});
 	};
 	
@@ -405,6 +425,17 @@ var story_page_editor = function() {
 		return false;
 	};
 	
+	this.update_metadata = function(metadata) {
+		if (!metadata) { return; }
+		
+		if (metadata.title != undefined)
+			$('#story_title').val(metadata.title);
+		if (metadata.description != undefined)
+			$('#story_synopsis').val(metadata.description);
+		if (metadata.image != undefined)
+			$('#thumbnail-preview .thumbnail').css('background-image', 'url(' + metadata.image + ')');
+	};
+	
 }
 
 var auto_saver;
@@ -420,6 +451,7 @@ var story_auto_saver = function() {
 		this.monitor_topic_clicking();
 		this.monitor_existing_pages();
 		this.monitor_gallery_choosing();
+		this.monitor_own_this_content_checkbox();
 	};
 	
 	this.monitor_thumbnail_choosing = function() {		
@@ -651,6 +683,9 @@ var story_auto_saver = function() {
 						auto_saver.hide_metadata_spinner();
 						if (data.result == "success") {
 							log('successfully updated story with: ' + value);
+							if (attribute_to_update == 'external_link') {
+								pages_editor.update_metadata(data.metadata);
+							}
 						} else {
 							log('error when updating page with: ' + value);
 						}
@@ -676,6 +711,25 @@ var story_auto_saver = function() {
 					} else {
 						log('error when updating thumbnail to: ' + number);
 					}
+				}
+			});
+		});
+	};
+	
+	this.monitor_own_this_content_checkbox = function() {
+		$('#i_own_this').change(function() {
+			var $check = $(this);
+			var checked = $check.is(':checked') ? '1' : '0';
+			
+			auto_saver.show_metadata_spinner();
+			$.ajax({
+				type: 'PUT',
+				url: '/stories/' + pages_editor.story_id + '/autosave',
+				data: {
+					'story[i_own_this]': checked
+				},
+				success: function(data) {
+					auto_saver.hide_metadata_spinner();
 				}
 			});
 		});

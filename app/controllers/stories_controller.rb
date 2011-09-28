@@ -1,7 +1,8 @@
 class StoriesController < ApplicationController
-  before_filter :authenticate_user!, :except => [:index, :recent, :show, :tagged_with]
-  load_and_authorize_resource :except => [:index, :recent, :show, :tagged_with]
+  before_filter :authenticate_user!, :except => [:index, :recent, :show]
+  load_and_authorize_resource :except => [:index, :recent, :show]
   before_filter :get_topics, :only => [:new, :edit]
+  before_filter :get_authentications, :only => [:new, :edit, :show]
   skip_before_filter :verify_authenticity_token, :only => [:update_thumbnail]
   
   def index
@@ -19,51 +20,20 @@ class StoriesController < ApplicationController
     render "home/index"
   end
   
-  def tagged_with
-    @stories = []
-    @tags = Story.published.tag_counts_on(:tags)
-    return if params[:tag].blank?
-    
-    @stories = Story.published.tagged_with(params[:tag])
-  end
-  
   def show
-    if params[:modal]
-      @story = Story.find_by_id(params[:id])
-      View.record(@story, current_user) if current_user && current_user != @story.user
-      @fullscreen = true
-      @user = @story.user
-      if params[:impacted_by].present?
-        @impacting_reward = Reward.find(params[:impacted_by])
-      end
-      render :layout => false
-    elsif params[:impacted_by]
-      reward = Reward.find_by_id(params[:impacted_by])
-      session[:show_content] = story_path(reward.story, :impacted_by => params[:impacted_by])
-      redirect_to user_path(reward.user)
-    else  
-      session[:show_content] = story_path(params[:id])
-      redirect_to root_path
+    @story = Story.find_by_id(params[:id])
+    if !@story.published? && current_user != @story.user
+      redirect_to root_path, :alert => "Sorry, that story is not published yet." and return
     end
+    @impacted_by = params[:impacted_by] if params[:impacted_by]
+    render "presenter"
   end
   
   def new
-    @story = Story.create(:thumbnail_page => 1, :user_id => current_user.id, :autosaving => true, :price => 0)
+    @story = Story.create(:thumbnail_page => 1, :user_id => current_user.id, :autosaving => true, :is_external => true)
+    @story.pages << ExternalPage.new(:number => 1)
     @nav = "home"
     render "form"
-  end
-  
-  def create
-    @story = Story.new(params[:story])
-    @story.published = false # draft state by default
-    attach_topics
-    attach_pages(params[:pages])
-    if current_user.created_stories << @story
-      redirect_to preview_story_path(@story), :notice => "Great story!"
-    else
-      get_topics
-      render "form"
-    end
   end
   
   def edit
@@ -71,16 +41,20 @@ class StoriesController < ApplicationController
     render "form"
   end
   
-  def update
-    @story.topics = []
-    attach_topics
-    update_pages(params[:pages])
-    if @story.update_attributes(params[:story])
-      redirect_to preview_story_path(@story), :notice => "Story saved."
-    else
-      get_topics
-      render "form"
+  def publish
+    if !@story.valid?
+      redirect_to edit_story_path(@story), :alert => "Please fix the errors below." and return
     end
+      
+    @story.update_attribute(:published, true)
+    
+    sharing = params[:share]
+    if sharing
+      current_user.post_to_twitter(@story, story_url(@story)) unless sharing[:twitter].blank?
+      current_user.post_to_facebook(@story, story_url(@story)) unless sharing[:facebook].blank?
+    end
+    
+    redirect_to creations_user_path(@story.user), :notice => "Your content has been shared!"
   end
   
   def update_thumbnail
@@ -120,15 +94,15 @@ class StoriesController < ApplicationController
     end
     
     # are we updating the external link page?
-    if params[:story][:external_link].present?
+    if params[:story][:external_link]
       external_page = @story.pages.first
       if external_page.text_media.nil?
         external_page.medias << PageText.new
       end
       link = params[:story][:external_link]
-      link.gsub!(/^http:\/\//,"")
+      metadata = @story.update_via_opengraph(link)
       external_page.text_media.update_attribute(:text, link)
-      render :json => {:result => "success"}
+      render :json => {:result => "success", :metadata => metadata}
       return
     end
 
@@ -137,30 +111,6 @@ class StoriesController < ApplicationController
       render :json => {:result => "success"}
     else
       render :json => {:result => "failure", :message => @story.errors.full_messages}
-    end
-  end
-  
-  def preview
-    @story = Story.find(params[:id])
-    if @story.draft? && !@story.owner?(current_user)
-      redirect_to root_path, :alert => "Sorry, that story has not been published yet."
-    end
-  end
-  
-  def purchase
-    if @story
-      if @story.user == current_user
-        redirect_to @story, :notice => "You created this story silly, you don't need to purchase it!"
-      elsif current_user.stories.include?(@story)
-        redirect_to @story, :notice => "You already own this story, silly!"
-      elsif current_user.purchase(@story)
-        # PurchasesMailer.purchase_receipt(current_user, @story).deliver
-        redirect_to @story
-      else
-        redirect_to credits_path, :alert => "You need more credits in order to purchase that story."
-      end
-    else
-      redirect_to home_path, :alert => "Sorry, that story does not exist."
     end
   end
   
@@ -203,51 +153,12 @@ class StoriesController < ApplicationController
     redirect_to preview_story_path(@story)
   end
   
-  def publish
-    if @story.valid?
-      @story.update_attribute(:published, true)
-      redirect_to creations_user_path(@story.user), :notice => "Your content has been published!"
-    else
-      redirect_to edit_story_path(@story), :alert => "Please fix the errors below."
-    end
-  end
-  
   def remove_tag_from
     story = Story.find_by_id(params[:id])
     render :text => "" and return if story.nil? || params[:tag].blank?
     story.tag_list.remove(params[:tag])
     story.save
     render :text => ""
-  end
-  
-  def add_topic_to
-    if params[:topic_id]
-      topics = Topic.where(:id => params[:topic_id])
-      # add the parent topic as well, if there is one
-      topics += Topic.where(:id => topics.first.topic_id) if topics.first && topics.first.topic_id
-      if @story.topics << topics
-        render :json => {:result => "success"}
-      else  
-        render :json => {:result => "failure", :message => "Unable to attach topic"}
-      end
-    else  
-      render :json => {:result => "failure", :message => "No topic id sent"}
-    end
-  end
-  
-  def remove_topic_from
-    if params[:topic_id]
-      topics = Topic.where(:id => params[:topic_id])
-      # remove the children topics as well, if there are any
-      #topics += Topic.where(:topic_id => params[:topic_id])
-      if @story.topics.delete(topics)
-        render :json => {:result => "success"}
-      else  
-        render :json => {:result => "failure", :message => "Unable to remove topic"}
-      end
-    else  
-      render :json => {:result => "failure", :message => "No topic id sent"}
-    end
   end
   
   def render_page_form
@@ -279,31 +190,15 @@ class StoriesController < ApplicationController
   
   private
     
-    def get_topics
-      @topics = Topic.all
-    end
-    
-    def attach_topics
-      topic_ids = params[:topics]
-      if topic_ids
-        @story.topics << Topic.where("id IN (#{topic_ids.keys.join(',')})")
-      end
-    end
-    
-    def attach_pages(pages)
-      return unless pages.is_a?(Hash)
-      pages.each_pair do |number, options|
-        options.merge!({:number => number})
-        Page.create_or_update_page_with(@story.page_at(number), options, @story)
-      end
-    end
-    
-    def update_pages(pages)
-      return unless pages.is_a?(Hash)
-      pages.each_pair do |number, options|
-        options.merge!({:number => number})
-        Page.create_or_update_page_with(@story.page_at(number), options, @story)
-      end
-    end
+  def get_topics
+    @topics = Topic.all
+  end
   
+  def get_authentications
+    if current_user
+      @twitter_auth = current_user.authentications.find_by_provider("twitter")
+      @facebook_auth = current_user.authentications.find_by_provider("facebook")
+    end
+  end
+          
 end

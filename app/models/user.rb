@@ -35,12 +35,14 @@ class User < ActiveRecord::Base
   has_many :subscribers, :through => :subscriptions
   has_many :subscribed_to, :through => :inverse_subscriptions, :source => :user
   
-  has_many :galleries
+  has_many :galleries, :order => :position
   
   has_many :amazon_payments, :foreign_key => :payer_id, :order => "created_at DESC"
   
+  has_many :authentications
+  
   has_attached_file :avatar,
-    :styles => { :thumbnail => "60x60#" },
+    :styles => { :thumbnail => "60x60#", :large => "100x100#" },
     :path          => "avatars/:id/:style.:extension",
     :storage        => :s3,
     :s3_credentials => {
@@ -91,7 +93,8 @@ class User < ActiveRecord::Base
   
   # Setup accessible (or protected) attributes for your model
   attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :remember_me, :tos_accepted,
-    :avatar, :credits, :stored_in_braintree, :invitation_code, :tagline, :occupation, :paypal_email, :interest_list
+    :avatar, :credits, :stored_in_braintree, :invitation_code, :tagline, :occupation, :paypal_email, :interest_list,
+    :location, :thankyou
   
   def extra_validations
     safe = true
@@ -135,39 +138,36 @@ class User < ActiveRecord::Base
   def reward(story, amount, comment, impacted_by)
     return if amount.nil?
     amount = amount.to_i
-    if can_afford?(amount)
-      options = {:story_id => story.id, :amount => amount, :user_id => self.id, :recipient_id => story.user.id, :comment => comment}
-
-      reward = Reward.create!(options)
-      story.increment!(:reward_count, amount)
-      self.decrement!(:coins, amount)
-      story.user.increment!(:lifetime_rewards, amount)
-      
-      if impacted_by
-        parent_reward = Reward.find_by_id(impacted_by)
-        if parent_reward
-          reward.move_to_child_of(parent_reward)
-          reward.update_attribute(:depth, reward.ancestors.count)
-        end
-      end
-      
-      return reward
+    if !can_afford?(amount)
+      return false
     end
+    options = {:story_id => story.id, :amount => amount, :user_id => self.id, :recipient_id => story.user.id, :comment => comment}
+
+    reward = Reward.create!(options)
+    story.increment!(:reward_count, amount)
+    self.decrement!(:coins, amount)
+    story.user.increment!(:lifetime_rewards, amount)
+    
+    if impacted_by
+      parent_reward = Reward.find_by_id(impacted_by)
+      if parent_reward
+        reward.move_to_child_of(parent_reward)
+        reward.update_attribute(:depth, reward.ancestors.count)
+      end
+    end
+    
+    return reward
   end
   
   def following_stream(page = 1)
-    rewards = []
-
     subscribed_to = self.subscribed_to
-    if subscribed_to.size > 0
-      following_ids = subscribed_to.map { |user| user.id }
-      # show my rewards too
-      following_ids = (following_ids + [self.id]).join(",")
-      # removed -> select("DISTINCT ON (story_id) curations.*").
-      rewards = Reward.where("story_id IS NOT NULL").where("user_id IN (#{following_ids})").page page
-    end
-    
-    rewards
+    following_ids = subscribed_to.map { |user| user.id }
+
+    # show my rewards too
+    following_ids = following_ids.push(self.id).join(",")
+
+    # removed -> select("DISTINCT ON (story_id) curations.*").
+    Reward.where("story_id IS NOT NULL").where("user_id IN (#{following_ids})").page page
   end
   
   def rewards_given_to(user)
@@ -197,6 +197,49 @@ class User < ActiveRecord::Base
   def has_viewed_this_period?(story)
     View.where(:user_id => self.id, :story_id => story.id).where("created_at > ?", self.subscription_last_updated_at).present?
   end
+  
+  
+  # Sharing content with external services
+  
+  def post_to_facebook(object, url)
+    message = ""
+    picture = ""
+    
+    if object.is_a?(Story)
+      message = "I just posted content on Momeant. Reward me if you like it!"
+      picture = object.thumbnail.url(:small)
+    elsif object.is_a?(Reward)
+      if object.comment.blank?
+        message = "I just rewarded something on Momeant."
+      else
+        message = object.comment
+      end
+      picture = object.story.thumbnail.url(:small)
+    end
+    
+    access_token = self.authentications.find_by_provider("facebook").token
+    RestClient.post 'https://graph.facebook.com/me/feed', { :access_token => access_token, :link => url, :picture => picture, :message => message }
+  end
+  
+  def post_to_twitter(object, url)
+    auth = self.authentications.find_by_provider("twitter")
+    Twitter.configure do |config|
+      config.oauth_token = auth.token
+      config.oauth_token_secret = auth.secret
+    end
+    
+    message = ""
+    if object.is_a?(Story)
+      title = object.title[0..55]
+      message = "I just posted content on @mo_meant. Reward me if you like it: #{title} #{url} #momeant"
+    elsif object.is_a?(Reward)
+      title = object.story.title[0..65]
+      message = "I just rewarded something on Momeant. Check it out: #{title} #{url} #momeant"
+    end
+    
+    Twitter.update(message)
+  end
+  
   
   def update_subscription_time
     self.update_attribute(:subscription_last_updated_at, Time.now)

@@ -1,11 +1,27 @@
-.info.top
-  = image_tag(@user.avatar.url(:thumbnail), :class => "avatar")
-  .name-tagline-follow
-    .name
-      = @user.name
-      - if @user == current_user
-        = link_to("Edit Profile", edit_user_path(current_user), :class => "edit")
-    .follow= follow_button(@user)
-    .tagline= truncate(@user.tagline, :length => 240)
+.profile-info
+  = link_to(image_tag(@user.avatar.url(:thumbnail), :class => "avatar"), user_path(@user))
+  
+  .name
+    %span= @user.first_name
+    %span= @user.last_name
     
-  .impact-shield.tooltipped-w{:title => "Level 1 Patron"} 1
+  .stats
+    .impact-shield.tooltipped{:title => "Level 1 Patron"} 1
+    .rewards-given
+      %span.amount= @user.given_rewards.sum(:amount)
+      %span.text given
+    .impact
+      %span.amount= @user.impact
+      %span.text impact
+    .rewards-received
+      %span.amount= @user.rewards.sum(:amount)
+      %span.text received
+  
+  - if @user == current_user
+    = link_to("Edit Your Profile", edit_user_path(current_user), :class => "edit")
+  
+  .tagline= truncate(@user.tagline, :length => 240)
+  
+  .tags
+    - @user.interests.each do |tag|
+      = link_to(tag.name, "#", :class => "tag")

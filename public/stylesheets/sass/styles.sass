@@ -6,36 +6,18 @@ html, body
 	height: 100%
 
 #container
-	height: 100%
-	margin-top: -42px
-	position: relative
-	.column
-		position: absolute
-		top: 42px
-		bottom: 0
-		overflow-y: auto
-
-	#main
-		left: 0
-		right: 276px
-	#main.full-width
-		right: 0
-	
-	#right-sidebar
-		right: 0
-	
-#container.no-sidebar
-	#main
-		right: 0
-		overflow: visible
-	#right-sidebar
-		display: none
+	position: absolute
+	top: 42px
+	bottom: 0
+	overflow-y: auto
+	width: 100%
 
 .fullscreen
 	.fullscreen-hidden, #header, #right-sidebar
 		display: none
 	#container
 		margin: 0
+		top: 0
 		#main
 			padding: 0
 			top: 0
@@ -92,7 +74,7 @@ html, body
 @import "community"
 @import "deposits"
 @import "homepage"
-@import "join_login"
+@import "modals"
 @import "subscribe"
 @import "topics"
 @import "fancybox"
@@ -105,6 +87,7 @@ html, body
 @import "analytics"
 @import "rewards"
 @import "transactions"
+@import "tags"
 //@import "alternates"
 
 

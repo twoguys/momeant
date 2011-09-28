@@ -1,10 +1,32 @@
 function handle_nav_button_clicks() {
-	$('#landing a.next').click(function() {
-		var height = $(window).height();
-		$('#letter').scrollTo('+=' + height + 'px', { duration: 500 });
+	var height = $('#landing #insides').height();
+	var $letter = $('#letter');
+	var $next = $('#landing a.next');
+	var $previous = $('#landing a.previous');
+
+	$next.click(function() {
+		if ($next.hasClass('disabled'))
+			return;
+			
+		$next.addClass('disabled');
+		$letter.animate({top: '-=' + height}, 300, function() {
+			$next.removeClass('disabled');
+			$previous.show();
+			if ($letter.css('top') == '-1200px')
+				$next.hide();
+		});
 	});
-	$("#landing a.top-link").click(function() {
-		$('#letter').scrollTo(0, { duration: 500 });
+	$previous.click(function() {
+		if ($previous.hasClass('disabled'))
+			return;
+			
+		$previous.addClass('disabled');
+		$letter.animate({top: '+=' + height }, 300, function() {
+			$previous.removeClass('disabled');
+			$next.show();
+			if ($letter.css('top') == '0px')
+				$previous.hide();
+		});
 	});
 }
 

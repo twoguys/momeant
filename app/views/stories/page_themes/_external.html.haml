@@ -1,3 +1,7 @@
 .inner
-  - url = @page && @page.text ? "http://#{@page.text}" : ""
-  %iframe{:src => url}
+  - url = @page && @page.text ? @page.text : ""
+  - if url.include?("vimeo.com")
+    - url.gsub!("http://vimeo.com/","")
+    %iframe{:src => "http://player.vimeo.com/video/#{url}"}
+  - else
+    %iframe{:src => url}
