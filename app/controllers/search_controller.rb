@@ -3,6 +3,7 @@ class SearchController < ApplicationController
   def index
     @rewards = []
     @users = []
+    @nav = "community"
     return if params[:query].blank?
     
     @search = Sunspot.search(Reward,User) do
