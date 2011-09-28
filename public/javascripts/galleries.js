@@ -1,3 +1,9 @@
 $(document).ready(function() {
-	$('li.gallery').sortable({handle: 'a.reorder', axis: 'y'});
+	$('.gallery li.about .description').editInPlace({
+		url: "/blah",
+		field_type: "textarea",
+		textarea_rows: "14",
+		textarea_cols: "27",
+		show_buttons: true
+	});
 });

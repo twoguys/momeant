@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
   has_many :subscribers, :through => :subscriptions
   has_many :subscribed_to, :through => :inverse_subscriptions, :source => :user
   
-  has_many :galleries
+  has_many :galleries, :order => :position
   
   has_many :amazon_payments, :foreign_key => :payer_id, :order => "created_at DESC"
   

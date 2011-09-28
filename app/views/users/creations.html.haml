@@ -1,3 +1,6 @@
+- content_for :head do
+  = javascript_include_tag "jquery.editinplace"
+
 .user-profile
   = render "user_info"
 
@@ -47,5 +50,23 @@
                 %li.story.about
                   .name
                     = gallery.name
-                  .description= gallery.description
+                    - if me?(@user)
+                      - unless gallery.first?
+                        = link_to("Move up", move_up_user_gallery_path(current_user, gallery), :class => "move-up tooltipped-n", :title => "Move gallery up")
+                      - unless gallery.last?
+                        = link_to("Move down", move_down_user_gallery_path(current_user, gallery), :class => "move-down tooltipped-n", :title => "Move gallery down")
+                  .description{:id => gallery.id}= gallery.description
                 = render gallery_stories
+
+- if me?(@user)
+  :javascript
+    $(document).ready(function() {
+    	$('.gallery li.about .description').editInPlace({
+    		url: "/users/#{current_user.id}/galleries/update_description",
+    		field_type: "textarea",
+    		textarea_rows: "14",
+    		textarea_cols: "27",
+    		show_buttons: true,
+    		default_text: "(Click here to add a description)"
+    	});
+    });
