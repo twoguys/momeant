@@ -1,3 +1,5 @@
+require "open-uri"
+
 class User < ActiveRecord::Base
   include AASM
   
@@ -357,5 +359,12 @@ class User < ActiveRecord::Base
     (rewards_from_people_i_subscribe_to + stories_similar_to_my_bookmarks_and_rewards).sort do |x,y|
       x.created_at <=> y.created_at
     end
+  end
+  
+  def reload_avatar
+    return false if self.avatar.url.include?("missing")
+    io = open(URI.parse(self.avatar.url))
+    self.avatar = io
+    self.save
   end
 end
