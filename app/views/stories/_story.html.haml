@@ -1,6 +1,13 @@
 - show_tags ||= false
+- hover_title ||= false
 %li.story
-  = link_to(truncate(story.title, :length => 25) || "Untitled", story, :class => "title")
+  - if hover_title
+    %a.title{:href => story_path(story)}
+      = image_tag(story.user.avatar.url(:thumbnail), :class => "avatar tooltipped-e", :title => story.user.name)
+      %span= story.title
+      %span.synopsis= truncate(story.synopsis, :length => 200)
+  - else
+    = link_to(truncate(story.title, :length => 25) || "Untitled", story, :class => "title")
   - if story.owner?(current_user)
     .edit-links
       = link_to("edit", edit_story_path(story), :class => "edit tooltipped-e", :title => "edit")

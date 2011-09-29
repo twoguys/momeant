@@ -4285,8 +4285,36 @@ ul.stories .excerpt {
 .interesting {
   padding: 20px; }
   .interesting ul.stories li.story {
-    padding-top: 0; }
-    .interesting ul.stories li.story a.title, .interesting ul.stories li.story .edit-links {
+    padding-top: 0;
+    position: relative; }
+    .interesting ul.stories li.story .title {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 10px;
+      width: 210px;
+      height: 124px;
+      color: white;
+      text-transform: uppercase;
+      font-size: 14px;
+      background: rgba(0, 0, 0, 0.75);
+      z-index: 2;
+      font-weight: 500; }
+      .interesting ul.stories li.story .title .avatar {
+        position: absolute;
+        top: 3px;
+        right: 3px;
+        width: 28px;
+        height: 28px; }
+      .interesting ul.stories li.story .title span {
+        display: block; }
+      .interesting ul.stories li.story .title span.synopsis {
+        font-size: 11px;
+        text-transform: none;
+        border: none;
+        padding: 5px 0 0 0; }
+    .interesting ul.stories li.story .edit-links {
       display: none; }
     .interesting ul.stories li.story a.thumbnail {
       margin-top: 0; }
@@ -4304,6 +4332,8 @@ ul.stories .excerpt {
         border-radius: 3px;
         margin-right: 1px;
         margin-bottom: 5px; }
+  .interesting ul.stories li.story:hover .title {
+    display: block; }
 
 ul.users li.user {
   background-color: white;

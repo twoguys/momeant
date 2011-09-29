@@ -685,7 +685,35 @@ ul.stories
 	ul.stories
 		li.story
 			padding-top: 0
-			a.title, .edit-links
+			position: relative
+			.title
+				display: none
+				position: absolute
+				top: 0
+				left: 0
+				padding: 10px
+				width: 210px
+				height: 124px
+				color: #fff
+				text-transform: uppercase
+				font-size: 14px
+				background: rgba(0,0,0,0.75)
+				z-index: 2
+				font-weight: 500
+				.avatar
+					position: absolute
+					top: 3px
+					right: 3px
+					width: 28px
+					height: 28px
+				span
+					display: block
+				span.synopsis
+					font-size: 11px
+					text-transform: none
+					border: none
+					padding: 5px 0 0 0
+			.edit-links
 				display: none
 			a.thumbnail
 				margin-top: 0
@@ -701,3 +729,5 @@ ul.stories
 					@include rounded(3px)
 					margin-right: 1px
 					margin-bottom: 5px
+		li.story:hover .title
+			display: block
