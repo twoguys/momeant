@@ -164,7 +164,7 @@ $(function() {
 		
 		hide_modal: function() {
 			$(this.el).animate({top: '-80%'}, 300);
-			$('#content-cover').show();
+			$('#content-cover').hide();
 			this.modal_open = false;
 		},
 		
