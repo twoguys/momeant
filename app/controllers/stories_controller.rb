@@ -34,7 +34,7 @@ class StoriesController < ApplicationController
     @fullscreen = true
 
     @exit_presenter_url = request.env["HTTP_REFERER"]
-    url = URI.parse(@exit_presenter_url)
+    url = URI.parse(@exit_presenter_url) unless @exit_presenter_url.nil?
     if @exit_presenter_url.nil? || !["momeant.dev","localhost","momeant.heroku.com","momeant.com"].include?(url.host)
        @exit_presenter_url = community_path
     end
