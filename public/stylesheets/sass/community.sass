@@ -1,8 +1,6 @@
 .community
-	width: 1022px
+	max-width: 1064px
 	margin: 0 auto
-	background: #fff
-	border: 1px solid #ccc
 	
 	ul.nav
 		padding: 20px
@@ -24,7 +22,7 @@
 				text-decoration: none
 	
 	.tabbed
-		padding: 20px
+		padding: 20px 0 20px 20px
 		
 		.header
 			margin-bottom: 20px
@@ -40,6 +38,7 @@
 		li.story
 			padding-top: 0
 			position: relative
+			border: 3px solid #fff
 			.title
 				display: none
 				position: absolute
@@ -79,8 +78,6 @@
 				height: 17px
 				overflow: hidden
 				z-index: 3
-		li.story:nth-child(4n+4)
-			margin-right: 0
 		li.story:hover .title
 			display: block
 	
@@ -92,6 +89,9 @@
 			float: left
 			margin-right: 30px
 			margin-bottom: 30px
+			background: #fff
+			padding: 3px
+			@include boxshadow(5px,0.2,2px,2px)
 			.name
 				display: block
 				color: #000
@@ -114,4 +114,4 @@
 			text-transform: uppercase
 			margin-bottom: 10px
 			padding-bottom: 5px
-			border-bottom: 1px solid #eee
+			border-bottom: 1px solid #ddd

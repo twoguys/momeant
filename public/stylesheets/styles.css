@@ -4761,10 +4761,8 @@ form.user_edit {
     margin: 0; }
 
 .community {
-  width: 1022px;
-  margin: 0 auto;
-  background: white;
-  border: 1px solid #cccccc; }
+  max-width: 1064px;
+  margin: 0 auto; }
   .community ul.nav {
     padding: 20px;
     height: 20px; }
@@ -4784,7 +4782,7 @@ form.user_edit {
       .community ul.nav li a.active:hover {
         text-decoration: none; }
   .community .tabbed {
-    padding: 20px; }
+    padding: 20px 0 20px 20px; }
     .community .tabbed .header {
       margin-bottom: 20px; }
       .community .tabbed .header h3 {
@@ -4801,7 +4799,8 @@ form.user_edit {
       visibility: hidden; }
     .community ul.stories li.story {
       padding-top: 0;
-      position: relative; }
+      position: relative;
+      border: 3px solid white; }
       .community ul.stories li.story .title {
         display: none;
         position: absolute;
@@ -4841,8 +4840,6 @@ form.user_edit {
         height: 17px;
         overflow: hidden;
         z-index: 3; }
-    .community ul.stories li.story:nth-child(4n+4) {
-      margin-right: 0; }
     .community ul.stories li.story:hover .title {
       display: block; }
   .community ul.users {
@@ -4858,7 +4855,12 @@ form.user_edit {
       width: 166px;
       float: left;
       margin-right: 30px;
-      margin-bottom: 30px; }
+      margin-bottom: 30px;
+      background: white;
+      padding: 3px;
+      -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+      -moz-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); }
       .community ul.users li.user .name {
         display: block;
         color: black;
@@ -4879,7 +4881,7 @@ form.user_edit {
     text-transform: uppercase;
     margin-bottom: 10px;
     padding-bottom: 5px;
-    border-bottom: 1px solid #eeeeee; }
+    border-bottom: 1px solid #dddddd; }
 
 .deposits form {
   margin-top: 1em;
