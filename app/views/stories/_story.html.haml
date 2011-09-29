@@ -20,6 +20,6 @@
   - if show_tags
     .tags
       - story.tags.each do |tag|
-        = link_to(tag.name, "#", :class => "tag")
+        = link_to(tag.name, community_path(:tag => tag.name), :class => "tag")
   - else
     .synopsis= truncate(story.synopsis, :length => 100)
