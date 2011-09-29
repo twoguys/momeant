@@ -6,7 +6,12 @@ class StoriesController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => [:update_thumbnail]
   
   def index
-    redirect_to root_path
+    redirect_to community_path
+  end
+  
+  def interesting
+    @stories = Story.published.most_rewarded.page params[:page]
+    @nav = "community"
   end
   
   def recent

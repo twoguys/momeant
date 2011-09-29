@@ -53,7 +53,7 @@ class Story < ActiveRecord::Base
   
   scope :published, where(:published => true)
   scope :newest_first, order("created_at DESC")
-  scope :most_rewarded, where("reward_count > 0").order("reward_count DESC")
+  scope :most_rewarded, order("reward_count DESC")
   scope :no_gallery, where(:gallery_id => nil)
   
   attr_accessor :autosaving

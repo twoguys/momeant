@@ -1,3 +1,4 @@
+- show_tags ||= false
 %li.story
   = link_to(truncate(story.title, :length => 25) || "Untitled", story, :class => "title")
   - if story.owner?(current_user)
@@ -9,4 +10,9 @@
     %span.reward-count= story.reward_count
     %span from
     %span.people= story.users_who_rewarded.count
-  .synopsis= truncate(story.synopsis, :length => 100)
+  - if show_tags
+    %ul.tags
+      - story.tag_list.each do |tag|
+        %li.tag= tag
+  - else
+    .synopsis= truncate(story.synopsis, :length => 100)
