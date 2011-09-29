@@ -6,7 +6,7 @@ class CommunityController < ApplicationController
     if params[:tag]
       @stories = @stories.tagged_with(params[:tag])
     else
-      @tags = Story.tag_counts.order("count DESC").limit(20)
+      @tags = Story.tag_counts.order("count DESC").limit(10)
     end
   end
   
@@ -16,7 +16,7 @@ class CommunityController < ApplicationController
     if params[:tag]
       @users = @users.tagged_with(params[:tag])
     else
-      @tags = User.interest_counts.order("count DESC").limit(20)
+      @tags = User.interest_counts.order("count DESC").limit(10)
     end
 
     @users = @users.sort do |a,b|
