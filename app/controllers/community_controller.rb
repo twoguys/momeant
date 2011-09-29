@@ -1,4 +1,5 @@
 class CommunityController < ApplicationController
+  before_filter :set_nav
   
   def content
     @stories = Story.published.most_rewarded.limit(12)
@@ -35,6 +36,12 @@ class CommunityController < ApplicationController
   
   def index
     redirect_to community_path
+  end
+  
+  private
+  
+  def set_nav
+    @nav = "community"
   end
   
 end
