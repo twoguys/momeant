@@ -18,8 +18,8 @@
     %span from
     %span.people= story.users_who_rewarded.count
   - if show_tags
-    %ul.tags
-      - story.tag_list.each do |tag|
-        %li.tag= tag
+    .tags
+      - story.tags.each do |tag|
+        = link_to(tag.name, "#", :class => "tag")
   - else
     .synopsis= truncate(story.synopsis, :length => 100)

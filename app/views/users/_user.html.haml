@@ -1,10 +1,7 @@
-%li.reward.person
-  .avatar-name-occupation
-    = link_to(image_tag(user.avatar.url(:thumbnail)), user_path(user), :class => "avatar")
-    .name= user.name
-    .occupation= user.occupation
-  - if user.tagline.present?
-    .about= truncate(user.tagline, :length => 250)
-  .interests
-    %h3 Interests:
-    %span= user_interest_links(user)
+%li.user
+  = link_to(image_tag(user.avatar.url(:large)), user_path(user), :class => "avatar")
+  .name= user.name
+  .impact #{user.impact} impact
+  .tags
+    - user.interests.each do |tag|
+      = link_to(tag.name, community_people_path(:tag => tag.name))

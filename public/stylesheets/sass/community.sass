@@ -1,184 +1,116 @@
 .community
-	.top
-		background: #e0e0e0
-		padding: 20px 0 0
+	width: 1022px
+	margin: 0 auto
+	
+	ul.nav
+		padding: 20px
+		height: 20px
+		li
+			float: left
+			margin-right: 20px
+			a
+				font-size: 13px
+				font-weight: 700
+				text-transform: uppercase
+				padding: 5px 10px 15px
+			a:hover
+				text-decoration: underline
+			a.active
+				background: transparent url(../images/blueLinkPointer.png) no-repeat 50% 100%
+				color: #fff
+			a.active:hover
+				text-decoration: none
+	
+	.tabbed
+		background: #fff
+		border: 1px solid #ccc
+		padding: 20px
 		
-	#filter
-		display: none
-		border: 1px solid #d0d0d0
-		margin-left: 20px
-		position: relative
-		z-index: 2
-		float: left
-		width: 200px
-		h2
-			font-size: 20px
-			font-weight: 700
-			text-transform: uppercase
-			background: #cdcdcd
-			color: #fff
-			padding: 2px 5px 0
-			margin: 0
-		section
-			background: #e0e0e0
-			.heading
+		.header
+			margin-bottom: 20px
+			h3
+				text-transform: uppercase
+				font-size: 13px
+				margin-bottom: 5px
+			a
+				
+	
+	ul.stories
+		@include clearfix
+		li.story
+			padding-top: 0
+			position: relative
+			.title
+				display: none
+				position: absolute
+				top: 0
+				left: 0
+				padding: 10px
+				width: 210px
+				height: 124px
+				color: #fff
+				text-transform: uppercase
+				font-size: 14px
+				background: rgba(0,0,0,0.75)
+				z-index: 2
+				font-weight: 500
+				.avatar
+					position: absolute
+					top: 3px
+					right: 3px
+					width: 28px
+					height: 28px
+				span
+					display: block
+				span.synopsis
+					font-size: 11px
+					text-transform: none
+					border: none
+					padding: 5px 0 0 0
+			.edit-links, .how-much
+				display: none
+			a.thumbnail
+				margin-top: 0
+			.tags
+				position: absolute
+				top: 117px
+				left: 0
+				padding: 5px
+				height: 17px
+				overflow: hidden
+				z-index: 3
+		li.story:nth-child(4n+4)
+			margin-right: 0
+		li.story:hover .title
+			display: block
+	
+	ul.users
+		@include clearfix
+		padding-bottom: 40px
+		li.user
+			width: 200px
+			float: left
+			margin-right: 30px
+			.name
+				display: block
+				color: #000
 				font-size: 12px
 				font-weight: 700
 				text-transform: uppercase
-				padding: 5px
-				background: #fff url(../images/filterHeaderArrow.png) no-repeat 180px 7px
-				color: #848484
-			.body
-				padding: 5px
+				margin-bottom: 1px
+			.impact
+				padding-left: 15px
+				font-size: 11px
+				background: transparent url(../images/icons/starBlackTiny.png) no-repeat 0 2px
+				margin-bottom: 4px
+			.tags
+				height: 17px
+				overflow: hidden
 	
-	section.tags
-		ul.tags
-			li
-				clear: both
-				a
-					height: 15px
-					padding: 5px 8px
-					display: block
-					font-size: 11px
-					@include rounded(5px)
-					.name
-						float: left
-					.count
-						float: right
-						background: #f4f4f4
-						color: #aaa
-						padding: 2px 5px
-						@include rounded(2px)
-				a:hover .name
-					text-decoration: underline
-				a.active
-					background: transparent url(../images/tagActive.png) no-repeat 100% 50%
-					color: #fff
-					.count
-						display: none
-				a.active:hover .name
-					text-decoration: none
-	
-	.user-list
-		position: relative
-		z-index: 1
-		width: 100%
-		.user-list-inner
-			padding: 0 20px
-			table.users
-				width: 100%
-				border: none
-				th.impact, th.rewards, th.rewardees
-					text-align: center
-				tr
-					td.patron, td.creator, td.content
-						padding: 20px 0
-						vertical-align: top
-					td.patron
-						padding-right: 20px
-					td.patron, td.creator
-						width: 220px
-						a.avatar, a.name, .impact
-							display: block
-							float: left
-						a.avatar img
-							width: 45px
-							height: 45px
-							border: 2px solid #000
-						a.name
-							margin-left: 8px
-							font-weight: 700
-							font-size: 18px
-							text-transform: uppercase
-							line-height: 18px
-							padding-top: 6px
-							color: $text_color
-							span
-								display: block
-						.info
-							clear: both
-							padding-top: 10px
-							.tagline, .interests
-								font-size: 11px
-							.tagline
-								margin-bottom: 10px
-					td.patron .stats h3
-						font-weight: 500
-						border-bottom: 1px solid #ccc
-						padding-bottom: 3px
-						margin-bottom: 3px
-						font-size: 11px
-						text-transform: uppercase
-					td.content
-						ul.rewards
-							height: 270px
-							overflow: hidden
-							padding: 0
-							li.reward
-								float: left
-								margin-right: 10px
-								background: #fff
-								.stats
-									border-bottom: 1px solid #eee
-									padding: 10px 0
-									height: 15px
-									font-size: 11px
-									.this-week, .total
-										padding: 0 10px
-										float: left
-										.amount
-											padding-right: 12px
-											background: transparent url(../images/icons/starBlackTiny.png) no-repeat 100% 2px
-											margin-right: 3px
-									.this-week
-										border-right: 1px solid #ccc
-								.impacter
-									padding: 10px
-									font-size: 11px
-									a.avatar
-										display: block
-										width: 28px
-										height: 28px
-										border: 1px solid #000
-										float: left
-										margin-right: 5px
-										img
-											width: 28px
-											height: 28px
-									.text
-										h3
-											text-transform: uppercase
-										.amount
-											padding-right: 12px
-											background: transparent url(../images/icons/starBlackTiny.png) no-repeat 100% 2px
-					td.content-toggler
-						border-left: 1px solid #fff
-						width: 20px
-						background-image: url(../images/icons/tableOpenClose.png)
-						background-repeat: no-repeat
-						background-position: 50% -47px
-				tr.open
-					td
-						background-color: #e6f9ff
-						border-bottom: 1px solid #c2f0ff
-					td.creator
-						a.avatar img
-							border: 2px solid $blue
-						a.name
-							color: $blue
-					td.creator-rewards
-						color: $blue
-						border-right: 1px solid #c2f0ff
-						.count
-							background: transparent url(../images/icons/starBlueSmall.png) no-repeat 100% 14px
-					td.content-toggler
-						background-position: 50% 38px				
-				td
-					background: none
-				tr:first-child td
-					border-top: none
-					padding-top: 0
-				tr:last-child td
-					border-bottom: none
-			table.users.creators tr.user
-				cursor: pointer
+	.tag-cloud
+		h3
+			font-size: 13px
+			text-transform: uppercase
+			margin-bottom: 10px
+			padding-bottom: 5px
+			border-bottom: 1px solid #eee

@@ -1,0 +1,19 @@
+.community
+  = render "users/community_tabs"
+
+  .tabbed
+  
+    - if params[:tag]
+      .header
+        %h3= params[:tag]
+        = link_to("< Back", community_path)
+
+    %ul.stories
+      = render @stories, :show_tags => true, :hover_title => true
+    
+    - unless params[:tag]
+      .tag-cloud
+        %h3 Popular Tags
+        .tags
+          - @tags.each do |tag|
+            = link_to(tag.name, community_path(:tag => tag.name), :class => "tag")

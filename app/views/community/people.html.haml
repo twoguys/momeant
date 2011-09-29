@@ -1,0 +1,26 @@
+.community
+  = render "users/community_tabs"
+
+  .tabbed
+    
+    - if params[:tag]
+      .header
+        %h3= params[:tag]
+        = link_to("< Back", community_people_path)
+        
+    %ul.users
+      - @users.each do |user|
+        %li.user
+          = link_to(image_tag(user.avatar.url(:large)), user_path(user), :class => "avatar")
+          = link_to(user.name, user_path(user), :class => "name")
+          .impact #{user.impact} impact
+          .tags
+            - user.interests.each do |tag|
+              = link_to(tag.name, community_people_path(:tag => tag.name), :class => "tag")
+              
+    - unless params[:tag]
+      .tag-cloud
+        %h3 Popular Tags
+        .tags
+          - @tags.each do |tag|
+            = link_to(tag.name, community_people_path(:tag => tag.name), :class => "tag")

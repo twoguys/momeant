@@ -83,9 +83,9 @@ Repo::Application.routes.draw do
     post :feedback, :on => :collection
   end
   match '/analytics',           :to => "users#analytics",           :as => :analytics
-  match '/community',           :to => "users#community",           :as => :community
-  match '/community/creators',  :to => "users#community_creators",  :as => :community_creators
-  match '/interesting',         :to => "stories#interesting",       :as => :interesting
+  
+  match '/community/content',   :to => "community#content",         :as => :community
+  match '/community/creators',  :to => "community#people",          :as => :community_people
   
   namespace :admin do
     match '/', :to =>"dashboard#index", :as => :dashboard
