@@ -8,6 +8,8 @@ class CommunityController < ApplicationController
     else
       @tags = Story.tag_counts.order("count DESC").limit(10)
     end
+    
+    @page_title = "Most Rewarded Content"
   end
   
   def people
@@ -27,6 +29,8 @@ class CommunityController < ApplicationController
       end
     end
     @users = @users[0..18]
+    
+    @page_title = "Most Impactful People"
   end
   
   def index
