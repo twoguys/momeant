@@ -53,7 +53,7 @@ $(function() {
 			'click #previous-page': 'goto_previous_page',
 			'click #next-page':     'goto_next_page',
 			'click .pages a':       'jump_to_page',
-			'click #pages':         'close_reward_modal'
+			'click #content-cover': 'close_reward_modal'
 		},
 		
 		initialize: function() {
@@ -115,7 +115,7 @@ $(function() {
 		},
 		
 		close_reward_modal: function() {
-			log('BAM');
+			RewardModal.hide_modal();
 		},
 		
 		goto_page_in_url_or_default: function() {
@@ -148,7 +148,7 @@ $(function() {
 			'submit #reward-form':            'submit_reward',
 			'keyup #reward_amount':           'reward_amount_keypress',
 			'click #how-much #ticker .up':    'increment_reward_amount',
-			'click #how-much #ticker .down':  'decrement_reward_amount',
+			'click #how-much #ticker .down':  'decrement_reward_amount'
 		},
 		
 		initialize: function() {
@@ -158,11 +158,13 @@ $(function() {
 		
 		show_modal: function() {
 			$(this.el).animate({top: 0}, 300);
+			$('#content-cover').show();
 			this.modal_open = true;
 		},
 		
 		hide_modal: function() {
 			$(this.el).animate({top: '-80%'}, 300);
+			$('#content-cover').show();
 			this.modal_open = false;
 		},
 		
