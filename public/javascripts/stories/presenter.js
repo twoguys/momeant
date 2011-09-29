@@ -88,12 +88,12 @@ $(function() {
 				Pages.turn_on_page(this.current_page);
 			}
 			
-			if (number == 1) {
+			if (this.current_page == 1) {
 				this.previous_button.fadeOut('fast');
 			} else {
 				this.previous_button.fadeIn('fast');
 			}
-			if (number == Pages.length) {
+			if (this.current_page == Pages.length) {
 				this.next_button.fadeOut('fast');
 			} else {
 				this.next_button.fadeIn('fast');

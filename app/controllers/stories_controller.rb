@@ -31,6 +31,7 @@ class StoriesController < ApplicationController
       redirect_to root_path, :alert => "Sorry, that story is not published yet." and return
     end
     @impacted_by = params[:impacted_by] if params[:impacted_by]
+    @fullscreen = true
     render "presenter"
   end
   
