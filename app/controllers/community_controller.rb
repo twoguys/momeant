@@ -29,4 +29,8 @@ class CommunityController < ApplicationController
     @users = @users[0..18]
   end
   
+  def index
+    redirect_to community_path
+  end
+  
 end
