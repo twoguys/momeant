@@ -32,6 +32,13 @@ class StoriesController < ApplicationController
     end
     @impacted_by = params[:impacted_by] if params[:impacted_by]
     @fullscreen = true
+
+    @exit_presenter_url = request.env["HTTP_REFERER"]
+    url = URI.parse(@exit_presenter_url)
+    if @exit_presenter_url.nil? || !["momeant.dev","localhost","momeant.heroku.com","momeant.com"].include?(url.host)
+       @exit_presenter_url = community_path
+    end
+
     render "presenter"
   end
   
