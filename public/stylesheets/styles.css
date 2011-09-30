@@ -4753,7 +4753,7 @@ form.user_edit {
 
 .avatar-wall {
   margin: 20px;
-  width: 400px;
+  width: 390px;
   background: #eeeeee; }
   .avatar-wall a {
     display: block;
@@ -4789,6 +4789,16 @@ form.user_edit {
         text-transform: uppercase;
         font-size: 13px;
         margin-bottom: 5px; }
+    .community .tabbed .search {
+      margin-bottom: 20px; }
+      .community .tabbed .search input[type="text"] {
+        height: 15px;
+        padding: 5px 13px;
+        -webkit-border-radius: 20px;
+        -moz-border-radius: 20px;
+        border-radius: 20px;
+        width: 200px;
+        background: white url(../images/icons/search.png) 98% 50% no-repeat; }
   .community ul.stories {
     display: inline-block; }
     .community ul.stories:after {
@@ -6235,6 +6245,7 @@ ul.rewards {
     float: left;
     margin: 0 20px 20px 0;
     position: relative;
+    background: white;
     -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
     -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); }
@@ -6485,6 +6496,33 @@ a.tag {
 a.tag:hover {
   background: white;
   color: black; }
+
+#visualization {
+  width: 800px;
+  height: 400px;
+  background: white; }
+  #visualization #content-rewarded-by {
+    display: inline-block;
+    background: #eeeeee;
+    padding: 20px; }
+    #visualization #content-rewarded-by:after {
+      content: ".";
+      display: block;
+      height: 0;
+      clear: both;
+      visibility: hidden; }
+    #visualization #content-rewarded-by h3 {
+      text-transform: uppercase;
+      font-size: 16px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #dddddd; }
+    #visualization #content-rewarded-by ul.rewards {
+      padding-top: 0; }
+
+#visualization.loading {
+  background: white url(../images/spinner.gif) no-repeat 50% 50%; }
+  #visualization.loading * {
+    display: none; }
 
 .info-bar {
   background-color: #00aeef;

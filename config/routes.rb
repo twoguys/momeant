@@ -82,6 +82,8 @@ Repo::Application.routes.draw do
     # Feedback
     post :feedback, :on => :collection
   end
+  match '/users/:id/content_rewarded_by/:rewarder_id', :to => "users#content_rewarded_by", :as => :user_content_rewarded_by
+  match '/rewards/:id/visualize', :to => "rewards#visualize",       :as => :visualize_reward
   match '/analytics',           :to => "users#analytics",           :as => :analytics
   
   match '/community',           :to => "community#index"

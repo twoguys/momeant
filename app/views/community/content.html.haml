@@ -7,6 +7,10 @@
       .header
         %h3= params[:tag]
         = link_to("< Back", community_path)
+    - elsif false
+      .search
+        = form_tag search_path, :method => :get do
+          = text_field_tag :query, params[:query], :placeholder => "search rewarded content"
 
     %ul.stories
       = render @stories, :show_tags => true, :hover_title => true

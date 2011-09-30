@@ -55,6 +55,12 @@ class UsersController < ApplicationController
     @users = @user.subscribed_to
   end
   
+  def content_rewarded_by
+    @rewarder = User.find_by_id(params[:rewarder_id])
+    @rewards = @rewarder.given_rewards.where(:recipient_id => @user.id)
+    render :layout => false
+  end
+  
   def analytics
     @user = current_user
     @patrons = @user.rewards.group_by {|r| r.user_id}

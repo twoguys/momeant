@@ -30,6 +30,12 @@ class RewardsController < ApplicationController
     render :partial => "after_reward"
   end
   
+  def visualize
+    @reward = Reward.find_by_id(params[:id])
+    @re_rewards = @reward.descendants.group_by(&:depth).to_a.sort{|a,b| a[0] <=> b[0]}
+    render :layout => false
+  end
+  
   private
   
   def get_authentications

@@ -1,0 +1,16 @@
+#visualization
+  #content-rewarded-by
+    %h3 Rewards #{@rewarder.first_name} has given #{@user.first_name}.
+    %ul.rewards
+      = render @rewards, :user_profile => true
+
+:javascript
+  $('ul.rewards li a').click(function() {
+    var $visualization = $('#visualization');
+    $visualization.addClass('loading');
+    var reward_id = $(this).parents('li:eq(0)').attr('reward_id');
+    $.get('/rewards/' + reward_id + '/visualize', function(data) {
+      $visualization.html(data).removeClass('loading');
+    });
+    return false;
+  });
