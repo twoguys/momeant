@@ -23,7 +23,7 @@ class AmazonPayment < Transaction
   end
   
   def amazon_cbui_url(return_url)
-    Amazon::FPS::Payments.get_cobranded_url(self.amount, self.coins, self.id, return_url)
+    Amazon::FPS::Payments.get_cobranded_url(self.amount, "#{self.coins} reward coins", self.id, return_url)
   end
   
   def settle_with_amazon
