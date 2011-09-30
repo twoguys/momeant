@@ -13,10 +13,12 @@
         %li.user
           = link_to(image_tag(user.avatar.url(:large)), user_path(user), :class => "avatar")
           = link_to(user.name, user_path(user), :class => "name")
-          .impact #{user.impact} impact
           .tags
             - user.interests.each do |tag|
               = link_to(tag.name, community_people_path(:tag => tag.name), :class => "tag")
+          .impact
+            %span.amount= user.impact
+            %span.text impact
               
     - unless params[:tag]
       .tag-cloud

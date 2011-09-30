@@ -86,22 +86,39 @@
 		@include clearfix
 		padding-bottom: 40px
 		li.user
-			width: 166px
+			width: 200px
+			height: 100px
 			float: left
 			margin-right: 30px
 			margin-bottom: 30px
+			position: relative
+			padding-left: 110px
+			padding-right: 10px
+			background: #fff
+			border: 3px solid #fff
+			@include boxshadow(5px,0.2,2px,2px)
+			.avatar
+				position: absolute
+				top: 0
+				left: 0
 			.name
 				display: block
 				color: #000
-				font-size: 12px
+				font-size: 14px
 				font-weight: 700
 				text-transform: uppercase
-				margin-bottom: 1px
+				padding-top: 5px
+				margin-bottom: 5px
 			.impact
-				padding-left: 15px
-				font-size: 11px
-				background: transparent url(../images/icons/starBlackTiny.png) no-repeat 0 2px
 				margin-bottom: 4px
+				.amount
+					font-family: $numerals
+					font-size: 40px
+					padding-right: 16px
+					background: transparent url(../images/icons/starBlackSmall.png) no-repeat 100% 10px
+					margin-right: -17px
+				.text
+					font-size: 11px
 			.tags
 				height: 17px
 				overflow: hidden
