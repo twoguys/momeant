@@ -13,7 +13,7 @@ function handle_nav_button_clicks() {
 			$next.removeClass('disabled');
 			$previous.show();
 			log($letter.css('top'));
-			if ($letter.css('top') == '-1350px')
+			if ($letter.css('top') == '-900px')
 				$next.hide();
 		});
 	});
