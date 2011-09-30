@@ -11,6 +11,7 @@ class CommunityController < ApplicationController
     end
     
     @page_title = "Most Rewarded Content"
+    @stories = @stories.page params[:page]
   end
   
   def people
@@ -42,6 +43,8 @@ class CommunityController < ApplicationController
     else
       @tags = Story.tag_counts.order("count DESC").limit(10)
     end
+    
+    @stories = @stories.page params[:page]
   end
   
   def index

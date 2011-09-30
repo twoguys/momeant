@@ -57,6 +57,8 @@ class Story < ActiveRecord::Base
   scope :most_rewarded, order("reward_count DESC")
   scope :no_gallery, where(:gallery_id => nil)
   
+  paginates_per 12
+  
   attr_accessor :autosaving
     
   def to_param
