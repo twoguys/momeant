@@ -89,6 +89,7 @@ Repo::Application.routes.draw do
   match '/community',           :to => "community#index"
   match '/community/content',   :to => "community#content",         :as => :community
   match '/community/people',    :to => "community#people",          :as => :community_people
+  match '/community/newest_content', :to => "community#newest_content", :as => :community_newest_content
   
   namespace :admin do
     match '/', :to =>"dashboard#index", :as => :dashboard

@@ -45,14 +45,9 @@
               Example: web design, writer, photographer
       
           %li
-            = form.label :tagline
+            = form.label :tagline, "About yourself in less than 200 characters"
             = form.text_area :tagline
             .example Tell everyone a little about yourself
-    
-          %li
-            = form.label :thankyou, "Thank You Note"
-            = form.text_area :thankyou
-            .example Write a personal message that people see when they reward you.
     
           - if @user.is_a?(Creator)
             %li

@@ -34,6 +34,16 @@ class CommunityController < ApplicationController
     @page_title = "Most Impactful People"
   end
   
+  def newest_content
+    @stories = Story.published.newest_first.limit(12)
+
+    if params[:tag]
+      @stories = @stories.tagged_with(params[:tag])
+    else
+      @tags = Story.tag_counts.order("count DESC").limit(10)
+    end
+  end
+  
   def index
     redirect_to community_path
   end

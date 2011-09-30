@@ -261,6 +261,10 @@ html, body {
       #header #user-nav #feedback a {
         background-image: -moz-linear-gradient(center top, #43baf0 4%, #3a94e6 52%);
         background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #43baf0), color-stop(0.52, #3a94e6)); }
+  #header #user-nav ul.search-hidden #signin {
+    right: 20px; }
+  #header #user-nav ul.search-hidden #join {
+    right: 90px; }
 
 #header.hide-nav {
   background: none; }
@@ -4408,6 +4412,7 @@ ul.avatars li {
     padding: 10px;
     border-right: 1px solid #cccccc;
     z-index: 99;
+    font-size: 11px;
     background: #f4f4f4; }
     .user-profile .profile-info .avatar {
       position: absolute;
@@ -4453,29 +4458,24 @@ ul.avatars li {
           margin-right: 3px; }
       .user-profile .profile-info .stats .rewards-given, .user-profile .profile-info .stats .impact {
         border-bottom: 1px solid #dddddd; }
-    .user-profile .profile-info a.edit {
-      -webkit-border-radius: 3px;
-      -moz-border-radius: 3px;
-      border-radius: 3px;
-      background: #00aeef;
-      background-image: -moz-linear-gradient(center top, #43baf0 4%, #3a94e6 52%);
-      background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #43baf0), color-stop(0.52, #3a94e6));
-      text-transform: uppercase;
-      font-weight: 700;
-      color: white;
-      padding: 6px 0;
-      display: block;
-      text-align: center;
-      font-size: 12px;
-      text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3); }
+    .user-profile .profile-info .occupation {
+      margin-bottom: 10px; }
     .user-profile .profile-info .tagline {
-      font-size: 11px;
-      padding-bottom: 1px;
       clear: both;
       padding-top: 4px;
-      margin: 10px 0 15px; }
+      margin-bottom: 12px; }
+    .user-profile .profile-info .location {
+      padding: 1px 0 0 18px;
+      background: transparent url(../images/icons/location.png) no-repeat 0 0;
+      margin-bottom: 17px; }
     .user-profile .profile-info .tags {
-      overflow: hidden; }
+      margin-bottom: 13px; }
+    .user-profile .profile-info a.edit {
+      background: transparent url(../images/icons/pencilBlue.png) no-repeat 0 0;
+      padding-left: 18px;
+      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: 700; }
   .user-profile .the-rest {
     margin-left: 208px;
     min-height: 100%; }
