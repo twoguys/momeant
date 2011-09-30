@@ -1,30 +1,22 @@
-.community
-  .top
-  
-  = render "users/community_tabs"
-  .tabbed.search
+#search-results.community
 
-    = form_tag search_path, :method => :get do
-      = text_field_tag :query, params[:query], :placeholder => "search users and rewards"
-      = submit_tag "Search", :id => "search-submit", :name => ""
+  - if params[:query].present?
+    
+    %section.users
+      %h3 Users
+      .data
+        - if @users.empty?
+          No users found
+        - else
+          %ul.users
+            - @users.each do |user|
+              %li= link_to(image_tag(user.avatar.url(:thumbnail)), user_path(user), :class => "tooltipped", :title => user.name)
 
-    - if params[:query].present?
-      
-      %section.users
-        %h3 Users
-        .data
-          - if @users.empty?
-            No users found
-          - else
-            %ul.users
-              - @users.each do |user|
-                %li= link_to(image_tag(user.avatar.url(:thumbnail)), user_path(user), :class => "tooltipped", :title => user.name)
-
-      %section.rewards
-        %h3 Rewards
-        .data
-          - if @rewards.empty?
-            No rewards found
-          - else
-            %ul.rewards
-              = render @rewards, :user_profile => true
+    %section.content
+      %h3 Content
+      .data
+        - if @stories.empty?
+          No content found
+        - else
+          %ul.stories
+            = render @stories, :show_tags => true, :hover_title => true

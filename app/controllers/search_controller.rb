@@ -6,11 +6,20 @@ class SearchController < ApplicationController
     @nav = "community"
     return if params[:query].blank?
     
-    @search = Sunspot.search(Reward,User) do
+    @stories = Sunspot.search(Story) do
+      keywords params[:query]
+      any_of do
+        with :published, true
+        with :published, nil
+      end
+      order_by :reward_count, :desc
+    end
+    @stories = @stories.results
+    
+    @users = Sunspot.search(User) do
       keywords params[:query]
     end
-    @rewards = @search.results.reject{|result| !result.is_a?(Reward)}
-    @users = @search.results.reject{|result| !result.is_a?(User)}
+    @users = @users.results
   end
   
 end

@@ -14,6 +14,7 @@ class Story < ActiveRecord::Base
       pages.inject("") { |x,n| x << "#{n.text} " }
     end
     boolean :published
+    integer :reward_count
   end
   
   has_attached_file :thumbnail,
