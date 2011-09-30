@@ -18,16 +18,23 @@
       %span.text received
       
   - if @user.occupation.present?
-    .occupation= @user.occupation
+    .occupation
+      %h3 Occupation
+      = @user.occupation
   
   - if @user.tagline.present?
-    .tagline= truncate(@user.tagline, :length => 200)
+    .tagline
+      %h3 About
+      = truncate(@user.tagline, :length => 200)
   
   - if @user.location.present?
-    .location= @user.location
+    .location
+      %h3 Location
+      .insides= @user.location
   
   - unless @user.interests.empty?
     .tags
+      %h3 Tags
       - @user.interests.each do |tag|
         = link_to(tag.name, "#", :class => "tag")
       
