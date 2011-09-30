@@ -42,4 +42,15 @@ module UsersHelper
       rewards_on_date.inject(0) {|sum,reward| sum + reward.amount.to_i}
     end.inspect.html_safe
   end
+  
+  def avatar_size_for_impact(impact)
+    case impact
+    when (0..15)
+      "width:30px;height:30px"
+    when (16..33)
+      "width:60px;height:60px"
+    else
+      "width:90px;height:90px"
+    end
+  end
 end

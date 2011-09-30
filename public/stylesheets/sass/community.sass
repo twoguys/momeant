@@ -1,184 +1,160 @@
 .community
-	.top
-		background: #e0e0e0
-		padding: 20px 0 0
-		
-	#filter
-		display: none
-		border: 1px solid #d0d0d0
-		margin-left: 20px
-		position: relative
-		z-index: 2
-		float: left
-		width: 200px
-		h2
-			font-size: 20px
-			font-weight: 700
-			text-transform: uppercase
-			background: #cdcdcd
-			color: #fff
-			padding: 2px 5px 0
-			margin: 0
-		section
-			background: #e0e0e0
-			.heading
-				font-size: 12px
+	max-width: 1064px
+	margin: 0 auto
+	
+	ul.nav
+		padding: 30px 20px 10px
+		height: 20px
+		li
+			float: left
+			margin-right: 20px
+			a
+				font-size: 13px
 				font-weight: 700
 				text-transform: uppercase
-				padding: 5px
-				background: #fff url(../images/filterHeaderArrow.png) no-repeat 180px 7px
-				color: #848484
-			.body
-				padding: 5px
+				padding: 5px 10px 15px
+			a:hover
+				text-decoration: underline
+			a.active
+				background: transparent url(../images/blueLinkPointer.png) no-repeat 50% 100%
+				color: #fff
+			a.active:hover
+				text-decoration: none
 	
-	section.tags
-		ul.tags
-			li
-				clear: both
-				a
-					height: 15px
-					padding: 5px 8px
+	.tabbed
+		padding: 20px 0 20px 20px
+		
+		.header
+			margin-bottom: 20px
+			h3
+				text-transform: uppercase
+				font-size: 13px
+				margin-bottom: 5px
+			a
+		
+		.search
+			margin-bottom: 20px
+			input[type="text"]
+				height: 15px
+				padding: 5px 13px
+				@include rounded(20px)
+				width: 200px
+				background: #fff url(../images/icons/search.png) 98% 50% no-repeat
+				
+	
+	ul.stories
+		@include clearfix
+		li.story
+			padding-top: 0
+			position: relative
+			border: 1px solid #ccc
+			padding: 3px
+			.title
+				display: none
+				position: absolute
+				top: 3px
+				left: 3px
+				padding: 10px
+				width: 210px
+				height: 124px
+				color: #fff
+				text-transform: uppercase
+				font-size: 14px
+				background: rgba(0,0,0,0.75)
+				z-index: 2
+				font-weight: 500
+				.avatar
+					position: absolute
+					top: 3px
+					right: 3px
+					width: 28px
+					height: 28px
+				span
 					display: block
+				span.synopsis
 					font-size: 11px
-					@include rounded(5px)
-					.name
-						float: left
-					.count
-						float: right
-						background: #f4f4f4
-						color: #aaa
-						padding: 2px 5px
-						@include rounded(2px)
-				a:hover .name
-					text-decoration: underline
-				a.active
-					background: transparent url(../images/tagActive.png) no-repeat 100% 50%
-					color: #fff
-					.count
-						display: none
-				a.active:hover .name
-					text-decoration: none
+					text-transform: none
+					border: none
+					padding: 5px 0 0 0
+					height: 75px
+			.edit-links, .how-much
+				display: none
+			a.thumbnail
+				margin-top: 0
+			.tags
+				position: absolute
+				top: 125px
+				left: 8px
+				height: 17px
+				overflow: hidden
+				z-index: 3
+		li.story:hover .title
+			display: block
 	
-	.user-list
-		position: relative
-		z-index: 1
-		width: 100%
-		.user-list-inner
-			padding: 0 20px
-			table.users
-				width: 100%
-				border: none
-				th.impact, th.rewards, th.rewardees
-					text-align: center
-				tr
-					td.patron, td.creator, td.content
-						padding: 20px 0
-						vertical-align: top
-					td.patron
-						padding-right: 20px
-					td.patron, td.creator
-						width: 220px
-						a.avatar, a.name, .impact
-							display: block
-							float: left
-						a.avatar img
-							width: 45px
-							height: 45px
-							border: 2px solid #000
-						a.name
-							margin-left: 8px
-							font-weight: 700
-							font-size: 18px
-							text-transform: uppercase
-							line-height: 18px
-							padding-top: 6px
-							color: $text_color
-							span
-								display: block
-						.info
-							clear: both
-							padding-top: 10px
-							.tagline, .interests
-								font-size: 11px
-							.tagline
-								margin-bottom: 10px
-					td.patron .stats h3
-						font-weight: 500
-						border-bottom: 1px solid #ccc
-						padding-bottom: 3px
-						margin-bottom: 3px
-						font-size: 11px
-						text-transform: uppercase
-					td.content
-						ul.rewards
-							height: 270px
-							overflow: hidden
-							padding: 0
-							li.reward
-								float: left
-								margin-right: 10px
-								background: #fff
-								.stats
-									border-bottom: 1px solid #eee
-									padding: 10px 0
-									height: 15px
-									font-size: 11px
-									.this-week, .total
-										padding: 0 10px
-										float: left
-										.amount
-											padding-right: 12px
-											background: transparent url(../images/icons/starBlackTiny.png) no-repeat 100% 2px
-											margin-right: 3px
-									.this-week
-										border-right: 1px solid #ccc
-								.impacter
-									padding: 10px
-									font-size: 11px
-									a.avatar
-										display: block
-										width: 28px
-										height: 28px
-										border: 1px solid #000
-										float: left
-										margin-right: 5px
-										img
-											width: 28px
-											height: 28px
-									.text
-										h3
-											text-transform: uppercase
-										.amount
-											padding-right: 12px
-											background: transparent url(../images/icons/starBlackTiny.png) no-repeat 100% 2px
-					td.content-toggler
-						border-left: 1px solid #fff
-						width: 20px
-						background-image: url(../images/icons/tableOpenClose.png)
-						background-repeat: no-repeat
-						background-position: 50% -47px
-				tr.open
-					td
-						background-color: #e6f9ff
-						border-bottom: 1px solid #c2f0ff
-					td.creator
-						a.avatar img
-							border: 2px solid $blue
-						a.name
-							color: $blue
-					td.creator-rewards
-						color: $blue
-						border-right: 1px solid #c2f0ff
-						.count
-							background: transparent url(../images/icons/starBlueSmall.png) no-repeat 100% 14px
-					td.content-toggler
-						background-position: 50% 38px				
-				td
-					background: none
-				tr:first-child td
-					border-top: none
-					padding-top: 0
-				tr:last-child td
-					border-bottom: none
-			table.users.creators tr.user
-				cursor: pointer
+	ul.users
+		@include clearfix
+		padding-bottom: 40px
+		li.user
+			width: 192px
+			height: 100px
+			float: left
+			margin-right: 30px
+			margin-bottom: 30px
+			position: relative
+			padding-left: 110px
+			padding-right: 10px
+			background: #fff
+			border: 3px solid #fff
+			@include boxshadow(5px,0.2,2px,2px)
+			.avatar
+				position: absolute
+				top: 0
+				left: 0
+			.name
+				display: block
+				color: #000
+				font-size: 14px
+				font-weight: 700
+				text-transform: uppercase
+				padding-top: 5px
+				margin-bottom: 5px
+			.impact
+				margin-bottom: 4px
+				.amount
+					font-family: $numerals
+					font-size: 40px
+					padding-right: 16px
+					background: transparent url(../images/icons/starBlackSmall.png) no-repeat 100% 10px
+					margin-right: -17px
+				.text
+					font-size: 11px
+			.tags
+				height: 17px
+				overflow: hidden
+	
+	.tag-cloud
+		margin-right: 35px
+		margin-left: 5px
+		h3
+			font-size: 13px
+			text-transform: uppercase
+			margin-bottom: 10px
+			padding-bottom: 5px
+			border-bottom: 1px solid #ddd
+
+	nav.pagination
+		clear: both
+		text-align: center
+		margin-bottom: 20px
+		font-size: 11px
+		.first, .last, .gap
+			display: none
+		.page
+			padding: 2px 4px
+			background: #fff
+			border: 1px solid #ddd
+			@include rounded(3px)
+			margin-right: 4px
+		.next a, .prev a
+			text-transform: uppercase
+			font-weight: 700

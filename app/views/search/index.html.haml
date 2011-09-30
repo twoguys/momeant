@@ -1,27 +1,22 @@
-.search
+#search-results.community
 
-  - if params[:query].blank?
-    %h1.enter-a-term
-      %span Please enter a search term
+  - if params[:query].present?
+    
+    %section.users
+      %h3 Users
+      .data
+        - if @users.empty?
+          No users found
+        - else
+          %ul.users
+            - @users.each do |user|
+              %li= link_to(image_tag(user.avatar.url(:thumbnail)), user_path(user), :class => "tooltipped", :title => user.name)
 
-  - else
-    - if @results.empty?
-      %h1
-        %span No results for
-        %strong #{params[:query]}
-    - else
-      %h1
-        %span Results for
-        %strong #{params[:query]}
-
-      %ul.reward-thumbnails
-        - @results.each do |result|
-          - if result.is_a?(User)
-            = render :partial => "users/user", :locals => {:user => result}
-          - else
-            %li.reward
-              .what
-                .text
-                  = link_to(result.title, result, :class => "title")
-                  .author by #{link_to(result.user.name, user_path(result.user))}
-                .thumbnail= link_to(image_tag(result.thumbnail.url(:medium)), result)
+    %section.content
+      %h3 Content
+      .data
+        - if @stories.empty?
+          No content found
+        - else
+          %ul.stories
+            = render @stories, :show_tags => true, :hover_title => true

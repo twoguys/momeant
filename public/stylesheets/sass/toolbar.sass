@@ -77,7 +77,7 @@
 				color: #000
 		#signin, #signout, #join, #feedback
 			position: absolute
-			right: 20px
+			right: 204px
 			padding-top: 10px
 			a
 				@include button
@@ -89,16 +89,70 @@
 		#signin a
 			@include gradient($greengradient1, $greengradient2)
 		#join
-			right: 90px
+			right: 275px
 			a
 				@include gradient($bluegradient1, $bluegradient2)
-		#signout a
-			@include gradient($greygradient1, $greygradient2)
+		#search
+			position: absolute
+			top: 10px
+			right: 20px
+			width: 176px
+			input[type="text"]
+				height: 14px
+				width: 141px
+				padding: 3px 4px
+				font-size: 11px
+				position: absolute
+				top: 0
+				left: 0
+				-webkit-border-top-left-radius: 3px
+				-webkit-border-bottom-left-radius: 3px
+				-moz-border-radius-topleft: 3px
+				-moz-border-radius-bottomleft: 3px
+				border-top-left-radius: 3px
+				border-bottom-left-radius: 3px
+				-webkit-border-top-right-radius: 0
+				-webkit-border-bottom-right-radius: 0
+				-moz-border-radius-topright: 0
+				-moz-border-radius-bottomright: 0
+				border-top-right-radius: 0
+				border-bottom-right-radius: 0
+			input[type="submit"]
+				height: 22px
+				width: 25px
+				position: absolute
+				top: 0
+				right: 0
+				padding: 0
+				text-indent: -9999px
+				background: $blue url(../images/icons/search.png) no-repeat 50% 50%
+				-webkit-border-top-left-radius: 0
+				-webkit-border-bottom-left-radius: 0
+				-moz-border-radius-topleft: 0
+				-moz-border-radius-bottomleft: 0
+				border-top-left-radius: 0
+				border-bottom-left-radius: 0
+				-webkit-border-top-right-radius: 3px
+				-webkit-border-bottom-right-radius: 3px
+				-moz-border-radius-topright: 3px
+				-moz-border-radius-bottomright: 3px
+				border-top-right-radius: 3px
+				border-bottom-right-radius: 3px
+		#signout
+			right: 204px
+			a
+				@include gradient($greygradient1, $greygradient2)
 		#feedback
-			right: 100px
+			right: 285px
 			a
 				@include gradient($bluegradient1,$bluegradient2)
+	#user-nav ul.search-hidden
+		#signin
+			right: 20px
+		#join
+			right: 90px
 			
+
 #header.hide-nav
 	background: none
 .fullscreen .momeant-header

@@ -6,7 +6,12 @@ class StoriesController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => [:update_thumbnail]
   
   def index
-    redirect_to root_path
+    redirect_to community_path
+  end
+  
+  def interesting
+    @stories = Story.published.most_rewarded.page params[:page]
+    @nav = "community"
   end
   
   def recent
@@ -26,6 +31,14 @@ class StoriesController < ApplicationController
       redirect_to root_path, :alert => "Sorry, that story is not published yet." and return
     end
     @impacted_by = params[:impacted_by] if params[:impacted_by]
+    @fullscreen = true
+
+    @exit_presenter_url = request.env["HTTP_REFERER"]
+    url = URI.parse(@exit_presenter_url) unless @exit_presenter_url.nil?
+    if @exit_presenter_url.nil? || !["momeant.dev","localhost","momeant.heroku.com","momeant.com"].include?(url.host)
+       @exit_presenter_url = community_path
+    end
+
     render "presenter"
   end
   

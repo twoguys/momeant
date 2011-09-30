@@ -176,7 +176,7 @@ html, body {
         color: black; }
     #header #user-nav #signin, #header #user-nav #signout, #header #user-nav #join, #header #user-nav #feedback {
       position: absolute;
-      right: 20px;
+      right: 204px;
       padding-top: 10px; }
       #header #user-nav #signin a, #header #user-nav #signout a, #header #user-nav #join a, #header #user-nav #feedback a {
         height: 28px;
@@ -201,18 +201,70 @@ html, body {
       background-image: -moz-linear-gradient(center top, #62e079 4%, #12b32f 52%);
       background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #62e079), color-stop(0.52, #12b32f)); }
     #header #user-nav #join {
-      right: 90px; }
+      right: 275px; }
       #header #user-nav #join a {
         background-image: -moz-linear-gradient(center top, #43baf0 4%, #3a94e6 52%);
         background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #43baf0), color-stop(0.52, #3a94e6)); }
-    #header #user-nav #signout a {
-      background-image: -moz-linear-gradient(center top, #d0d0d0 4%, #888888 52%);
-      background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #d0d0d0), color-stop(0.52, #888888)); }
+    #header #user-nav #search {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      width: 176px; }
+      #header #user-nav #search input[type="text"] {
+        height: 14px;
+        width: 141px;
+        padding: 3px 4px;
+        font-size: 11px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        -webkit-border-top-left-radius: 3px;
+        -webkit-border-bottom-left-radius: 3px;
+        -moz-border-radius-topleft: 3px;
+        -moz-border-radius-bottomleft: 3px;
+        border-top-left-radius: 3px;
+        border-bottom-left-radius: 3px;
+        -webkit-border-top-right-radius: 0;
+        -webkit-border-bottom-right-radius: 0;
+        -moz-border-radius-topright: 0;
+        -moz-border-radius-bottomright: 0;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0; }
+      #header #user-nav #search input[type="submit"] {
+        height: 22px;
+        width: 25px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 0;
+        text-indent: -9999px;
+        background: #00aeef url(../images/icons/search.png) no-repeat 50% 50%;
+        -webkit-border-top-left-radius: 0;
+        -webkit-border-bottom-left-radius: 0;
+        -moz-border-radius-topleft: 0;
+        -moz-border-radius-bottomleft: 0;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        -webkit-border-top-right-radius: 3px;
+        -webkit-border-bottom-right-radius: 3px;
+        -moz-border-radius-topright: 3px;
+        -moz-border-radius-bottomright: 3px;
+        border-top-right-radius: 3px;
+        border-bottom-right-radius: 3px; }
+    #header #user-nav #signout {
+      right: 204px; }
+      #header #user-nav #signout a {
+        background-image: -moz-linear-gradient(center top, #d0d0d0 4%, #888888 52%);
+        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #d0d0d0), color-stop(0.52, #888888)); }
     #header #user-nav #feedback {
-      right: 100px; }
+      right: 285px; }
       #header #user-nav #feedback a {
         background-image: -moz-linear-gradient(center top, #43baf0 4%, #3a94e6 52%);
         background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #43baf0), color-stop(0.52, #3a94e6)); }
+  #header #user-nav ul.search-hidden #signin {
+    right: 20px; }
+  #header #user-nav ul.search-hidden #join {
+    right: 90px; }
 
 #header.hide-nav {
   background: none; }
@@ -588,13 +640,14 @@ table {
   #landing #insides {
     background: #00aeef;
     width: 790px;
-    height: 400px;
+    height: 450px;
     position: absolute;
     top: 50%;
     left: 0;
-    margin-top: -200px;
+    margin-top: -225px;
     color: white;
-    font-size: 35px;
+    font-size: 38px;
+    line-height: 41px;
     z-index: 2;
     overflow: hidden; }
     #landing #insides ul#letter {
@@ -608,28 +661,36 @@ table {
           color: black;
           display: inline; }
         #landing #insides ul#letter li.page div.inner .padded {
-          padding: 60px; }
+          padding: 60px 40px; }
         #landing #insides ul#letter li.page div.inner span {
           display: block;
           margin-bottom: 1em; }
-        #landing #insides ul#letter li.page div.inner .join {
-          margin-top: 1em; }
-          #landing #insides ul#letter li.page div.inner .join a {
-            padding: 20px;
-            background: white;
-            color: black;
-            -webkit-border-radius: 10px;
-            -moz-border-radius: 10px;
-            border-radius: 10px;
-            font-size: 20px;
-            font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
-            font-weight: 700;
-            text-transform: uppercase; }
-        #landing #insides ul#letter li.page #internet {
-          font-size: 100px;
-          line-height: 85px; }
-          #landing #insides ul#letter li.page #internet span {
-            margin-bottom: 0; }
+        #landing #insides ul#letter li.page #internet .large {
+          font-size: 120px;
+          line-height: 95px;
+          letter-spacing: -10px;
+          text-transform: uppercase;
+          text-shadow: 1px 1px 1px #00aeef; }
+        #landing #insides ul#letter li.page #internet .spaced {
+          margin-bottom: 40px; }
+        #landing #insides ul#letter li.page #internet .padded {
+          padding: 55px 40px; }
+        #landing #insides ul#letter li.page #internet span {
+          margin-bottom: 0; }
+        #landing #insides ul#letter li.page #solution a {
+          padding: 10px 30px;
+          background: black;
+          color: white;
+          -webkit-border-radius: 5px;
+          -moz-border-radius: 5px;
+          border-radius: 5px;
+          font-size: 14px;
+          font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
+          font-weight: 700;
+          text-transform: uppercase;
+          position: relative;
+          top: -7px;
+          margin-right: 3px; }
         #landing #insides ul#letter li.page #rewarded {
           background: none; }
           #landing #insides ul#letter li.page #rewarded ul.rewards {
@@ -2903,8 +2964,32 @@ form.new_story, form.edit_story, .story-form {
   width: 100%;
   height: 100%;
   overflow: hidden; }
+  #presenter #exit-presenter {
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 10px 10px 10px 24px;
+    background: white url(../images/icons/closeSmall.png) no-repeat 7px 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: black;
+    -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+    -webkit-border-bottom-right-radius: 5px;
+    -moz-border-radius-bottomright: 5px;
+    border-bottom-right-radius: 5px;
+    z-index: 99; }
   #presenter #thumbnail {
     display: none; }
+  #presenter #content-cover {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: none;
+    z-index: 2; }
   #presenter #reward-modal {
     height: 80%;
     width: 900px;
@@ -2913,7 +2998,10 @@ form.new_story, form.edit_story, .story-form {
     left: 50%;
     margin-left: -450px;
     background-color: white;
-    z-index: 2; }
+    z-index: 3;
+    -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3); }
     #presenter #reward-modal #reward-modal-tab {
       position: absolute;
       bottom: -39px;
@@ -2929,7 +3017,10 @@ form.new_story, form.edit_story, .story-form {
       border: 1px solid #aaaaaa;
       border-top: none;
       width: auto;
-      z-index: 2; }
+      z-index: 2;
+      -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+      -moz-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3); }
       #presenter #reward-modal #reward-modal-tab .inner {
         width: auto;
         position: relative;
@@ -3291,6 +3382,7 @@ form.new_story, form.edit_story, .story-form {
   #presenter .content {
     z-index: 1; }
   #presenter #metadata {
+    display: none;
     position: absolute;
     left: 0;
     bottom: 0;
@@ -3351,7 +3443,7 @@ form.new_story, form.edit_story, .story-form {
     width: 100%;
     position: absolute;
     top: 0;
-    bottom: 35px;
+    bottom: 0;
     z-index: 1; }
     #presenter ul#pages li {
       position: absolute;
@@ -4267,38 +4359,6 @@ ul.stories .excerpt {
       color: white !important;
       text-shadow: none; }
 
-ul.users li.user {
-  background-color: white;
-  float: left;
-  -webkit-box-shadow: 3px 3px 5px #bbbbbb;
-  -moz-box-shadow: 3px 3px 5px #bbbbbb;
-  box-shadow: 3px 3px 5px #bbbbbb;
-  position: relative;
-  height: 300px;
-  margin-bottom: 25px;
-  margin-right: 25px;
-  width: 300px; }
-  ul.users li.user a.avatar {
-    display: block;
-    float: left;
-    width: 60px;
-    height: 60px;
-    margin: 6px;
-    overflow: hidden; }
-  ul.users li.user a.name {
-    width: 228px;
-    float: left;
-    font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
-    font-size: 2em;
-    font-weight: 700;
-    text-transform: uppercase;
-    color: #252525;
-    margin-top: 16px; }
-ul.users li.user:nth-child(3n+3) {
-  margin-right: 0px; }
-ul.users li.user:nth-child(3n+3) {
-  margin-right: 0px; }
-
 ul.avatars li {
   float: left;
   margin: 0 10px 10px 0; }
@@ -4355,6 +4415,7 @@ ul.avatars li {
     padding: 10px;
     border-right: 1px solid #cccccc;
     z-index: 99;
+    font-size: 11px;
     background: #f4f4f4; }
     .user-profile .profile-info .avatar {
       position: absolute;
@@ -4400,29 +4461,32 @@ ul.avatars li {
           margin-right: 3px; }
       .user-profile .profile-info .stats .rewards-given, .user-profile .profile-info .stats .impact {
         border-bottom: 1px solid #dddddd; }
-    .user-profile .profile-info a.edit {
-      -webkit-border-radius: 3px;
-      -moz-border-radius: 3px;
-      border-radius: 3px;
-      background: #00aeef;
-      background-image: -moz-linear-gradient(center top, #43baf0 4%, #3a94e6 52%);
-      background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #43baf0), color-stop(0.52, #3a94e6));
+    .user-profile .profile-info .occupation h3, .user-profile .profile-info .tagline h3, .user-profile .profile-info .location h3, .user-profile .profile-info .tags h3 {
+      font-size: 10px;
       text-transform: uppercase;
-      font-weight: 700;
-      color: white;
-      padding: 6px 0;
-      display: block;
-      text-align: center;
-      font-size: 12px;
-      text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3); }
+      color: #aaaaaa;
+      border-bottom: 1px solid #e0e0e0;
+      margin-bottom: 2px; }
+    .user-profile .profile-info .occupation {
+      margin-bottom: 10px; }
     .user-profile .profile-info .tagline {
-      font-size: 11px;
-      padding-bottom: 1px;
       clear: both;
       padding-top: 4px;
-      margin: 10px 0 15px; }
+      margin-bottom: 12px; }
+    .user-profile .profile-info .location .insides {
+      padding: 1px 0 0 18px;
+      background: transparent url(../images/icons/location.png) no-repeat 0 0;
+      margin-bottom: 17px; }
     .user-profile .profile-info .tags {
-      overflow: hidden; }
+      margin-bottom: 13px; }
+      .user-profile .profile-info .tags h3 {
+        margin-bottom: 5px; }
+    .user-profile .profile-info a.edit {
+      background: transparent url(../images/icons/pencilBlue.png) no-repeat 0 0;
+      padding-left: 18px;
+      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: 700; }
   .user-profile .the-rest {
     margin-left: 208px;
     min-height: 100%; }
@@ -4430,6 +4494,21 @@ ul.avatars li {
       padding-top: 20px; }
     .user-profile .the-rest .tabbed {
       padding: 20px; }
+  .user-profile .horizontal-tabs li a {
+    padding-left: 32px;
+    background-position: 10px 9px;
+    background-repeat: no-repeat; }
+  .user-profile .horizontal-tabs li.rewards a {
+    background-image: url(../images/icons/starBlackSmallWhite.png); }
+  .user-profile .horizontal-tabs li.rewards a.active {
+    background-image: url(../images/icons/starBlackSmall.png);
+    background-position: 10px 10px; }
+  .user-profile .horizontal-tabs li.creations a {
+    background-image: url(../images/icons/momeantAddStorySmallWhite.png);
+    background-position: 10px 8px; }
+  .user-profile .horizontal-tabs li.creations a.active {
+    background-image: url(../images/icons/momeantAddStorySmall.png);
+    background-position: 10px 9px; }
   .user-profile .have-not {
     width: 300px;
     float: left;
@@ -4559,7 +4638,7 @@ ul.avatars li {
       .user-profile ul.galleries li.gallery ul.stories li.add a, .user-profile ul.galleries li.no-gallery ul.stories li.add a {
         display: block;
         width: 230px;
-        height: 204px;
+        height: 260px;
         border: 1px dashed #cccccc;
         color: #aaaaaa;
         background: white url(../images/addMomeantBg.png) no-repeat 50% 50%;
@@ -4737,183 +4816,183 @@ form.user_edit {
   form.user_edit #user_interest_list {
     width: 98%; }
 
-.community .top {
-  background: #e0e0e0;
-  padding: 20px 0 0; }
-.community #filter {
-  display: none;
-  border: 1px solid #d0d0d0;
-  margin-left: 20px;
-  position: relative;
-  z-index: 2;
-  float: left;
-  width: 200px; }
-  .community #filter h2 {
-    font-size: 20px;
-    font-weight: 700;
-    text-transform: uppercase;
-    background: #cdcdcd;
-    color: white;
-    padding: 2px 5px 0;
-    margin: 0; }
-  .community #filter section {
-    background: #e0e0e0; }
-    .community #filter section .heading {
-      font-size: 12px;
-      font-weight: 700;
-      text-transform: uppercase;
-      padding: 5px;
-      background: white url(../images/filterHeaderArrow.png) no-repeat 180px 7px;
-      color: #848484; }
-    .community #filter section .body {
-      padding: 5px; }
-.community section.tags ul.tags li {
-  clear: both; }
-  .community section.tags ul.tags li a {
-    height: 15px;
-    padding: 5px 8px;
+.avatar-wall {
+  margin: 20px;
+  width: 390px;
+  background: #eeeeee; }
+  .avatar-wall a {
     display: block;
-    font-size: 11px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px; }
-    .community section.tags ul.tags li a .name {
-      float: left; }
-    .community section.tags ul.tags li a .count {
-      float: right;
-      background: #f4f4f4;
-      color: #aaaaaa;
-      padding: 2px 5px;
-      -webkit-border-radius: 2px;
-      -moz-border-radius: 2px;
-      border-radius: 2px; }
-  .community section.tags ul.tags li a:hover .name {
-    text-decoration: underline; }
-  .community section.tags ul.tags li a.active {
-    background: transparent url(../images/tagActive.png) no-repeat 100% 50%;
-    color: white; }
-    .community section.tags ul.tags li a.active .count {
-      display: none; }
-  .community section.tags ul.tags li a.active:hover .name {
-    text-decoration: none; }
-.community .user-list {
-  position: relative;
-  z-index: 1;
-  width: 100%; }
-  .community .user-list .user-list-inner {
-    padding: 0 20px; }
-    .community .user-list .user-list-inner table.users {
-      width: 100%;
-      border: none; }
-      .community .user-list .user-list-inner table.users th.impact, .community .user-list .user-list-inner table.users th.rewards, .community .user-list .user-list-inner table.users th.rewardees {
-        text-align: center; }
-      .community .user-list .user-list-inner table.users tr td.patron, .community .user-list .user-list-inner table.users tr td.creator, .community .user-list .user-list-inner table.users tr td.content {
-        padding: 20px 0;
-        vertical-align: top; }
-      .community .user-list .user-list-inner table.users tr td.patron {
-        padding-right: 20px; }
-      .community .user-list .user-list-inner table.users tr td.patron, .community .user-list .user-list-inner table.users tr td.creator {
-        width: 220px; }
-        .community .user-list .user-list-inner table.users tr td.patron a.avatar, .community .user-list .user-list-inner table.users tr td.patron a.name, .community .user-list .user-list-inner table.users tr td.patron .impact, .community .user-list .user-list-inner table.users tr td.creator a.avatar, .community .user-list .user-list-inner table.users tr td.creator a.name, .community .user-list .user-list-inner table.users tr td.creator .impact {
-          display: block;
-          float: left; }
-        .community .user-list .user-list-inner table.users tr td.patron a.avatar img, .community .user-list .user-list-inner table.users tr td.creator a.avatar img {
-          width: 45px;
-          height: 45px;
-          border: 2px solid black; }
-        .community .user-list .user-list-inner table.users tr td.patron a.name, .community .user-list .user-list-inner table.users tr td.creator a.name {
-          margin-left: 8px;
-          font-weight: 700;
-          font-size: 18px;
-          text-transform: uppercase;
-          line-height: 18px;
-          padding-top: 6px;
-          color: #252525; }
-          .community .user-list .user-list-inner table.users tr td.patron a.name span, .community .user-list .user-list-inner table.users tr td.creator a.name span {
-            display: block; }
-        .community .user-list .user-list-inner table.users tr td.patron .info, .community .user-list .user-list-inner table.users tr td.creator .info {
-          clear: both;
-          padding-top: 10px; }
-          .community .user-list .user-list-inner table.users tr td.patron .info .tagline, .community .user-list .user-list-inner table.users tr td.patron .info .interests, .community .user-list .user-list-inner table.users tr td.creator .info .tagline, .community .user-list .user-list-inner table.users tr td.creator .info .interests {
-            font-size: 11px; }
-          .community .user-list .user-list-inner table.users tr td.patron .info .tagline, .community .user-list .user-list-inner table.users tr td.creator .info .tagline {
-            margin-bottom: 10px; }
-      .community .user-list .user-list-inner table.users tr td.patron .stats h3 {
-        font-weight: 500;
-        border-bottom: 1px solid #cccccc;
-        padding-bottom: 3px;
-        margin-bottom: 3px;
-        font-size: 11px;
-        text-transform: uppercase; }
-      .community .user-list .user-list-inner table.users tr td.content ul.rewards {
-        height: 270px;
+    padding: 0;
+    margin: 0; }
+
+.community {
+  max-width: 1064px;
+  margin: 0 auto; }
+  .community ul.nav {
+    padding: 30px 20px 10px;
+    height: 20px; }
+    .community ul.nav li {
+      float: left;
+      margin-right: 20px; }
+      .community ul.nav li a {
+        font-size: 13px;
+        font-weight: 700;
+        text-transform: uppercase;
+        padding: 5px 10px 15px; }
+      .community ul.nav li a:hover {
+        text-decoration: underline; }
+      .community ul.nav li a.active {
+        background: transparent url(../images/blueLinkPointer.png) no-repeat 50% 100%;
+        color: white; }
+      .community ul.nav li a.active:hover {
+        text-decoration: none; }
+  .community .tabbed {
+    padding: 20px 0 20px 20px; }
+    .community .tabbed .header {
+      margin-bottom: 20px; }
+      .community .tabbed .header h3 {
+        text-transform: uppercase;
+        font-size: 13px;
+        margin-bottom: 5px; }
+    .community .tabbed .search {
+      margin-bottom: 20px; }
+      .community .tabbed .search input[type="text"] {
+        height: 15px;
+        padding: 5px 13px;
+        -webkit-border-radius: 20px;
+        -moz-border-radius: 20px;
+        border-radius: 20px;
+        width: 200px;
+        background: white url(../images/icons/search.png) 98% 50% no-repeat; }
+  .community ul.stories {
+    display: inline-block; }
+    .community ul.stories:after {
+      content: ".";
+      display: block;
+      height: 0;
+      clear: both;
+      visibility: hidden; }
+    .community ul.stories li.story {
+      padding-top: 0;
+      position: relative;
+      border: 1px solid #cccccc;
+      padding: 3px; }
+      .community ul.stories li.story .title {
+        display: none;
+        position: absolute;
+        top: 3px;
+        left: 3px;
+        padding: 10px;
+        width: 210px;
+        height: 124px;
+        color: white;
+        text-transform: uppercase;
+        font-size: 14px;
+        background: rgba(0, 0, 0, 0.75);
+        z-index: 2;
+        font-weight: 500; }
+        .community ul.stories li.story .title .avatar {
+          position: absolute;
+          top: 3px;
+          right: 3px;
+          width: 28px;
+          height: 28px; }
+        .community ul.stories li.story .title span {
+          display: block; }
+        .community ul.stories li.story .title span.synopsis {
+          font-size: 11px;
+          text-transform: none;
+          border: none;
+          padding: 5px 0 0 0;
+          height: 75px; }
+      .community ul.stories li.story .edit-links, .community ul.stories li.story .how-much {
+        display: none; }
+      .community ul.stories li.story a.thumbnail {
+        margin-top: 0; }
+      .community ul.stories li.story .tags {
+        position: absolute;
+        top: 125px;
+        left: 8px;
+        height: 17px;
         overflow: hidden;
-        padding: 0; }
-        .community .user-list .user-list-inner table.users tr td.content ul.rewards li.reward {
-          float: left;
-          margin-right: 10px;
-          background: white; }
-          .community .user-list .user-list-inner table.users tr td.content ul.rewards li.reward .stats {
-            border-bottom: 1px solid #eeeeee;
-            padding: 10px 0;
-            height: 15px;
-            font-size: 11px; }
-            .community .user-list .user-list-inner table.users tr td.content ul.rewards li.reward .stats .this-week, .community .user-list .user-list-inner table.users tr td.content ul.rewards li.reward .stats .total {
-              padding: 0 10px;
-              float: left; }
-              .community .user-list .user-list-inner table.users tr td.content ul.rewards li.reward .stats .this-week .amount, .community .user-list .user-list-inner table.users tr td.content ul.rewards li.reward .stats .total .amount {
-                padding-right: 12px;
-                background: transparent url(../images/icons/starBlackTiny.png) no-repeat 100% 2px;
-                margin-right: 3px; }
-            .community .user-list .user-list-inner table.users tr td.content ul.rewards li.reward .stats .this-week {
-              border-right: 1px solid #cccccc; }
-          .community .user-list .user-list-inner table.users tr td.content ul.rewards li.reward .impacter {
-            padding: 10px;
-            font-size: 11px; }
-            .community .user-list .user-list-inner table.users tr td.content ul.rewards li.reward .impacter a.avatar {
-              display: block;
-              width: 28px;
-              height: 28px;
-              border: 1px solid black;
-              float: left;
-              margin-right: 5px; }
-              .community .user-list .user-list-inner table.users tr td.content ul.rewards li.reward .impacter a.avatar img {
-                width: 28px;
-                height: 28px; }
-            .community .user-list .user-list-inner table.users tr td.content ul.rewards li.reward .impacter .text h3 {
-              text-transform: uppercase; }
-            .community .user-list .user-list-inner table.users tr td.content ul.rewards li.reward .impacter .text .amount {
-              padding-right: 12px;
-              background: transparent url(../images/icons/starBlackTiny.png) no-repeat 100% 2px; }
-      .community .user-list .user-list-inner table.users tr td.content-toggler {
-        border-left: 1px solid white;
-        width: 20px;
-        background-image: url(../images/icons/tableOpenClose.png);
-        background-repeat: no-repeat;
-        background-position: 50% -47px; }
-      .community .user-list .user-list-inner table.users tr.open td {
-        background-color: #e6f9ff;
-        border-bottom: 1px solid #c2f0ff; }
-      .community .user-list .user-list-inner table.users tr.open td.creator a.avatar img {
-        border: 2px solid #00aeef; }
-      .community .user-list .user-list-inner table.users tr.open td.creator a.name {
-        color: #00aeef; }
-      .community .user-list .user-list-inner table.users tr.open td.creator-rewards {
-        color: #00aeef;
-        border-right: 1px solid #c2f0ff; }
-        .community .user-list .user-list-inner table.users tr.open td.creator-rewards .count {
-          background: transparent url(../images/icons/starBlueSmall.png) no-repeat 100% 14px; }
-      .community .user-list .user-list-inner table.users tr.open td.content-toggler {
-        background-position: 50% 38px; }
-      .community .user-list .user-list-inner table.users td {
-        background: none; }
-      .community .user-list .user-list-inner table.users tr:first-child td {
-        border-top: none;
-        padding-top: 0; }
-      .community .user-list .user-list-inner table.users tr:last-child td {
-        border-bottom: none; }
-    .community .user-list .user-list-inner table.users.creators tr.user {
-      cursor: pointer; }
+        z-index: 3; }
+    .community ul.stories li.story:hover .title {
+      display: block; }
+  .community ul.users {
+    display: inline-block;
+    padding-bottom: 40px; }
+    .community ul.users:after {
+      content: ".";
+      display: block;
+      height: 0;
+      clear: both;
+      visibility: hidden; }
+    .community ul.users li.user {
+      width: 192px;
+      height: 100px;
+      float: left;
+      margin-right: 30px;
+      margin-bottom: 30px;
+      position: relative;
+      padding-left: 110px;
+      padding-right: 10px;
+      background: white;
+      border: 3px solid white;
+      -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+      -moz-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); }
+      .community ul.users li.user .avatar {
+        position: absolute;
+        top: 0;
+        left: 0; }
+      .community ul.users li.user .name {
+        display: block;
+        color: black;
+        font-size: 14px;
+        font-weight: 700;
+        text-transform: uppercase;
+        padding-top: 5px;
+        margin-bottom: 5px; }
+      .community ul.users li.user .impact {
+        margin-bottom: 4px; }
+        .community ul.users li.user .impact .amount {
+          font-family: "ff-dagny-web-pro-1", "ff-dagny-web-pro-2", sans-serif;
+          font-size: 40px;
+          padding-right: 16px;
+          background: transparent url(../images/icons/starBlackSmall.png) no-repeat 100% 10px;
+          margin-right: -17px; }
+        .community ul.users li.user .impact .text {
+          font-size: 11px; }
+      .community ul.users li.user .tags {
+        height: 17px;
+        overflow: hidden; }
+  .community .tag-cloud {
+    margin-right: 35px;
+    margin-left: 5px; }
+    .community .tag-cloud h3 {
+      font-size: 13px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      padding-bottom: 5px;
+      border-bottom: 1px solid #dddddd; }
+  .community nav.pagination {
+    clear: both;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 11px; }
+    .community nav.pagination .first, .community nav.pagination .last, .community nav.pagination .gap {
+      display: none; }
+    .community nav.pagination .page {
+      padding: 2px 4px;
+      background: white;
+      border: 1px solid #dddddd;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      border-radius: 3px;
+      margin-right: 4px; }
+    .community nav.pagination .next a, .community nav.pagination .prev a {
+      text-transform: uppercase;
+      font-weight: 700; }
 
 .deposits form {
   margin-top: 1em;
@@ -5660,25 +5739,26 @@ header .topic-icon {
 #flipbook {
   display: none; }
 
-.search h1 {
-  font-size: 16px; }
-.search h1.enter-a-term {
-  background: transparent url(../images/longDashedArrow.png) no-repeat 100% 2px; }
-  .search h1.enter-a-term span {
-    background: #f4f4f4;
-    padding-right: 10px; }
-.search ul.users.stories li {
-  width: 300px;
-  height: 300px;
-  margin: 0 25px 25px 0;
-  float: left;
-  clear: none;
-  background-color: white;
-  -webkit-box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
-  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3); }
-.search ul.users.stories li:nth-child(3n+3) {
-  margin-right: 0; }
+#search-results {
+  padding: 20px; }
+  #search-results section h3 {
+    font-size: 16px;
+    text-transform: uppercase;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #dddddd; }
+    #search-results section h3 strong {
+      font-weight: 700; }
+  #search-results section .data {
+    border-top: 1px solid white;
+    padding-top: 10px;
+    margin-bottom: 20px; }
+    #search-results section .data ul {
+      padding: 0; }
+    #search-results section .data ul.users li {
+      margin-right: 10px;
+      float: left; }
+      #search-results section .data ul.users li img {
+        border: 3px solid black; }
 
 #invite-pitch .byline {
   width: 550px;
@@ -6245,6 +6325,7 @@ ul.rewards {
     float: left;
     margin: 0 20px 20px 0;
     position: relative;
+    background: white;
     -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
     -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); }
@@ -6479,17 +6560,49 @@ a#load-more {
 
 a.tag {
   display: inline-block;
-  background: transparent url(../images/tagBG.png) no-repeat 0 0;
-  color: white;
-  padding: 2px 5px 2px 14px;
+  background: #dddddd;
+  color: #333333;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  padding: 1px 4px;
   font-size: 11px;
   margin-bottom: 3px;
+  margin-right: 1px;
   overflow: hidden;
   white-space: nowrap;
-  height: 16px;
-  border-right: 1px solid rgba(0, 0, 0, 0.15);
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
-  cursor: default; }
+  text-shadow: 0 1px 0 white; }
+
+a.tag:hover {
+  background: white;
+  color: black; }
+
+#visualization {
+  width: 800px;
+  height: 400px;
+  background: white; }
+  #visualization #content-rewarded-by {
+    display: inline-block;
+    background: #eeeeee;
+    padding: 20px; }
+    #visualization #content-rewarded-by:after {
+      content: ".";
+      display: block;
+      height: 0;
+      clear: both;
+      visibility: hidden; }
+    #visualization #content-rewarded-by h3 {
+      text-transform: uppercase;
+      font-size: 16px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #dddddd; }
+    #visualization #content-rewarded-by ul.rewards {
+      padding-top: 0; }
+
+#visualization.loading {
+  background: white url(../images/spinner.gif) no-repeat 50% 50%; }
+  #visualization.loading * {
+    display: none; }
 
 .info-bar {
   background-color: #00aeef;

@@ -67,7 +67,7 @@ Repo::Application.routes.draw do
       get :stream
       get :creations
       get :rewarded
-      get :patrons
+      get :patronage
       get :followers
       get :following
       get :supporters
@@ -82,9 +82,14 @@ Repo::Application.routes.draw do
     # Feedback
     post :feedback, :on => :collection
   end
+  match '/users/:id/content_rewarded_by/:rewarder_id', :to => "users#content_rewarded_by", :as => :user_content_rewarded_by
+  match '/rewards/:id/visualize', :to => "rewards#visualize",       :as => :visualize_reward
   match '/analytics',           :to => "users#analytics",           :as => :analytics
-  match '/community',           :to => "users#community",           :as => :community
-  match '/community/creators',  :to => "users#community_creators",  :as => :community_creators
+  
+  match '/community',           :to => "community#index"
+  match '/community/content',   :to => "community#content",         :as => :community
+  match '/community/people',    :to => "community#people",          :as => :community_people
+  match '/community/newest_content', :to => "community#newest_content", :as => :community_newest_content
   
   namespace :admin do
     match '/', :to =>"dashboard#index", :as => :dashboard

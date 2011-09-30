@@ -1,8 +1,7 @@
 - size ||= :medium
 - community ||= false
 - user_profile ||= false
-- for_person = reward.story_id.nil?
-%li.reward{:class => for_person  ? "person" : ""}
+%li.reward{:reward_id => reward.id}
   .what
     = link_to(image_tag(reward.story.thumbnail.url(size)), story_path(reward.story, :impacted_by => reward.id), :class => "thumbnail")
     %a.title{:href => story_path(reward.story, :impacted_by => reward.id)}

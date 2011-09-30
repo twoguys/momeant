@@ -1,37 +1,3 @@
-ul.users
-	li.user
-		background-color: white
-		float: left
-		-webkit-box-shadow: 3px 3px 5px #BBBBBB
-		-moz-box-shadow: 3px 3px 5px #BBBBBB
-		box-shadow: 3px 3px 5px #BBBBBB
-		position: relative
-		height: 300px
-		margin-bottom: 25px
-		margin-right: 25px
-		width: 300px
-		a.avatar
-			display: block
-			float: left
-			width: 60px
-			height: 60px
-			margin: 6px
-			overflow: hidden
-		a.name
-			width: 228px
-			float: left
-			font-family: $block
-			font-size: 2em
-			font-weight: 700
-			text-transform: uppercase
-			color: $text_color
-			margin-top: 16px
-
-	li.user:nth-child(3n+3)
-		margin-right: 0px
-	li.user:nth-child(3n+3)
-		margin-right: 0px
-
 ul.avatars
 	li
 		float: left
@@ -82,6 +48,7 @@ ul.avatars
 		padding: 10px
 		border-right: 1px solid #ccc
 		z-index: 99
+		font-size: 11px
 		background: $background_color
 		.avatar
 			position: absolute
@@ -127,26 +94,33 @@ ul.avatars
 					margin-right: 3px
 			.rewards-given, .impact
 				border-bottom: 1px solid #ddd
-		a.edit
-			@include rounded(3px)
-			background: $blue
-			@include gradient($bluegradient1, $bluegradient2)
-			text-transform: uppercase
-			font-weight: 700
-			color: #fff
-			padding: 6px 0
-			display: block
-			text-align: center
-			font-size: 12px
-			text-shadow: 0 -1px 0 rgba(0,0,0,0.3)
+		.occupation, .tagline, .location, .tags
+			h3
+				font-size: 10px
+				text-transform: uppercase
+				color: #aaa
+				border-bottom: 1px solid #e0e0e0
+				margin-bottom: 2px
+		.occupation
+			margin-bottom: 10px
 		.tagline
-			font-size: 11px
-			padding-bottom: 1px
 			clear: both
 			padding-top: 4px
-			margin: 10px 0 15px
+			margin-bottom: 12px
+		.location .insides
+			padding: 1px 0 0 18px
+			background: transparent url(../images/icons/location.png) no-repeat 0 0
+			margin-bottom: 17px
 		.tags
-			overflow: hidden
+			h3
+				margin-bottom: 5px
+			margin-bottom: 13px
+		a.edit
+			background: transparent url(../images/icons/pencilBlue.png) no-repeat 0 0
+			padding-left: 18px
+			text-transform: uppercase
+			font-size: 12px
+			font-weight: 700
 	
 	.the-rest
 		margin-left: 208px
@@ -156,7 +130,25 @@ ul.avatars
 		.tabbed
 			padding: 20px
 	
+	.horizontal-tabs
+		li a
+			padding-left: 32px
+			background-position: 10px 9px
+			background-repeat: no-repeat
+		li.rewards a
+			background-image: url(../images/icons/starBlackSmallWhite.png)
+		li.rewards a.active	
+			background-image: url(../images/icons/starBlackSmall.png)
+			background-position: 10px 10px
+		li.creations a
+			background-image: url(../images/icons/momeantAddStorySmallWhite.png)
+			background-position: 10px 8px
+		li.creations a.active
+			background-image: url(../images/icons/momeantAddStorySmall.png)
+			background-position: 10px 9px
+	
 	/* First-time Users */
+	
 	.have-not
 		width: 300px
 		float: left
@@ -280,7 +272,7 @@ ul.avatars
 					a
 						display: block
 						width: 230px
-						height: 204px
+						height: 260px
 						border: 1px dashed #ccc
 						color: #aaa
 						background: #fff url(../images/addMomeantBg.png) no-repeat 50% 50%
@@ -469,3 +461,12 @@ form.user_edit
 		font-weight: 100
 	#user_interest_list
 		width: 98%
+
+.avatar-wall
+	margin: 20px
+	width: 390px
+	background: #eee
+	a
+		display: block
+		padding: 0
+		margin: 0

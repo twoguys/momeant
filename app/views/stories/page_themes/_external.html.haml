@@ -1,7 +1,14 @@
 .inner
   - url = @page && @page.text ? @page.text : ""
   - if url.include?("vimeo.com")
-    - url.gsub!("http://vimeo.com/","")
+    - url.gsub!("http://vimeo.com/","").gsub!("http://www.vimeo.com/","")
     %iframe{:src => "http://player.vimeo.com/video/#{url}"}
+  - elsif url.starts_with?("http://youtube.com/embed/")
+    %iframe{:src => "#{url}?wmode=opaque"}
+  - elsif url.include?("youtube.com")
+    %iframe{:src => "http://youtube.com/embed/#{@page.parse_youtube_embed}?wmode=opaque"}
+  - elsif url.include?("youtu.be")
+    - url.gsub!("http://youtu.be/","")
+    %iframe{:src => "http://youtube.com/embed/#{url}?wmode=opaque"}
   - else
     %iframe{:src => url}

@@ -5,8 +5,32 @@
 	height: 100%
 	overflow: hidden
 	
+	#exit-presenter
+		position: fixed
+		top: 0
+		left: 0
+		padding: 10px 10px 10px 24px
+		background: #fff url(../images/icons/closeSmall.png) no-repeat 7px 12px
+		font-weight: 700
+		text-transform: uppercase
+		color: #000
+		@include boxshadow(2px,0.3,0,2px)
+		-webkit-border-bottom-right-radius: 5px
+		-moz-border-radius-bottomright: 5px
+		border-bottom-right-radius: 5px
+		z-index: 99
+	
 	#thumbnail
 		display: none
+	
+	#content-cover
+		position: absolute
+		top: 0
+		bottom: 0
+		left: 0
+		right: 0
+		display: none
+		z-index: 2
 	
 	#reward-modal
 		height: 80%
@@ -16,7 +40,8 @@
 		left: 50%
 		margin-left: -450px
 		background-color: #fff
-		z-index: 2
+		z-index: 3
+		@include boxshadow(2px,0.3,0,2px)
 		#reward-modal-tab
 			position: absolute
 			bottom: -39px
@@ -33,6 +58,7 @@
 			border-top: none
 			width: auto
 			z-index: 2
+			@include boxshadow(2px,0.3,0,2px)
 			.inner
 				width: auto
 				position: relative
@@ -406,6 +432,7 @@
 		z-index: 1
 	
 	#metadata
+		display: none
 		position: absolute
 		left: 0
 		bottom: 0
@@ -465,7 +492,7 @@
 		width: 100%
 		position: absolute
 		top: 0
-		bottom: 35px
+		bottom: 0
 		z-index: 1
 		li
 			position: absolute

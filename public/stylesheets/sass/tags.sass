@@ -1,13 +1,15 @@
 a.tag
 	display: inline-block
-	background: transparent url(../images/tagBG.png) no-repeat 0 0
-	color: #fff
-	padding: 2px 5px 2px 14px
+	background: #ddd
+	color: #333
+	@include rounded(3px)
+	padding: 1px 4px
 	font-size: 11px
 	margin-bottom: 3px
+	margin-right: 1px
 	overflow: hidden
 	white-space: nowrap
-	height: 16px
-	border-right: 1px solid rgba(0,0,0,0.15)
-	text-shadow: 0 -1px 0 rgba(0,0,0,0.3)
-	cursor: default
+	text-shadow: 0 1px 0 #fff
+a.tag:hover
+	background: #fff
+	color: #000

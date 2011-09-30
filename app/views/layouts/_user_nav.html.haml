@@ -1,6 +1,6 @@
 #user-nav
   .bg
-  %ul.links
+  %ul.links{:class => @hide_search ? "search-hidden" : ""}
     %li#logo= link_to("Momeant", root_path)
     %li#home{:class => @nav == "home" ? "active" : ""}
       = link_to("Momeant", root_path, :class => "tooltipped", :title => "Home")
@@ -15,8 +15,13 @@
           .text
             %span reward coins
             %span to give out
-      %li#feedback= link_to("Give Us Feedback", "#feedback-modal")
+      %li#feedback= link_to("Feedback", "#feedback-modal")
       %li#signout= link_to("Logout", destroy_user_session_path)
     - else
       %li#join= link_to("Join", "#join-modal")
       %li#signin= link_to("Login", "#login-modal")
+    - unless @hide_search
+      %li#search
+        = form_tag search_path, :method => :get do
+          = text_field_tag :query, params[:query], :placeholder => "search users and content"
+          = submit_tag "Search", :id => "search-submit", :name => ""

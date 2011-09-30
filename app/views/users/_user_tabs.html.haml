@@ -1,4 +1,4 @@
 .horizontal-tabs
   %ul
-    %li= link_to_active("Rewards", user_path(@user), :class => current_page?(root_path) ? "active" : "")
-    %li= link_to_active("Creations", creations_user_path(@user))
+    %li.rewards= link_to_active("Rewards", user_path(@user), :class => current_page?(root_path) ? "active" : "")
+    %li.creations= link_to_active("Creations", creations_user_path(@user))

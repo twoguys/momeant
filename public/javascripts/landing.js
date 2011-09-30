@@ -12,7 +12,8 @@ function handle_nav_button_clicks() {
 		$letter.animate({top: '-=' + height}, 300, function() {
 			$next.removeClass('disabled');
 			$previous.show();
-			if ($letter.css('top') == '-1200px')
+			log($letter.css('top'));
+			if ($letter.css('top') == '-900px')
 				$next.hide();
 		});
 	});

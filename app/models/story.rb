@@ -14,6 +14,7 @@ class Story < ActiveRecord::Base
       pages.inject("") { |x,n| x << "#{n.text} " }
     end
     boolean :published
+    integer :reward_count
   end
   
   has_attached_file :thumbnail,
@@ -53,8 +54,10 @@ class Story < ActiveRecord::Base
   
   scope :published, where(:published => true)
   scope :newest_first, order("created_at DESC")
-  scope :most_rewarded, where("reward_count > 0").order("reward_count DESC")
+  scope :most_rewarded, order("reward_count DESC")
   scope :no_gallery, where(:gallery_id => nil)
+  
+  paginates_per 12
   
   attr_accessor :autosaving
     
