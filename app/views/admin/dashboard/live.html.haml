@@ -9,8 +9,7 @@
 :javascript
   var pusher = new Pusher('4f572d1c91854205b7b9');
   var myChannel = pusher.subscribe('admin');
-  myChannel.bind('request', function(url) {
-    log(url);
+  myChannel.bind('request', function(data) {
     var time = new Date();
-    $('#live-updates').prepend('<li><span class="url">' + url +'</span><span class="time">' + time.toLocaleString() + '</span></li>');
+    $('#live-updates').prepend('<li><span class="url">' + data.url +'</span><span class="user">' + data.user + '</span><span class="time">' + time.toLocaleString() + '</span></li>');
   });
