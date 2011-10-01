@@ -149,12 +149,35 @@
 		font-size: 11px
 		.first, .last, .gap
 			display: none
-		.page
-			padding: 2px 4px
-			background: #fff
-			border: 1px solid #ddd
-			@include rounded(3px)
+		.page, .next, .prev
 			margin-right: 4px
+			a
+				display: inline-block
+				background: #fff
+				@include gradient(#fff,#fafafa)
+				border: 1px solid #ddd
+				@include rounded(3px)
+				padding: 5px 8px
+				color: #717171
+				font-weight: 700
+				box-shadow: 0 0 1px rgba(0,0,0,0.1)
+				text-shadow: 0 1px 0 #fff
+		.page:hover a, .next:hover a, .prev:hover a
+			color: $blue
+		.page:active a, .next:active a, .prev:active a
+			box-shadow: 0 0 3px rgba(0,0,0,0.3) inset
+			border: 1px solid #fff
+		.page.current		
+			padding: 5px 6px 5px 8px
+			background: #606060
+			background-image: none
+			@include rounded(3px)
+			box-shadow: 0 0 3px rgba(0,0,0,1) inset
+			border: none
+			color: #f2f2f2
+			font-weight: 700
+			text-shadow: 0 1px 0 rgba(0,0,0,0.13)
+			margin-right: 6px
 		.next a, .prev a
 			text-transform: uppercase
 			font-weight: 700
