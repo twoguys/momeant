@@ -3195,6 +3195,8 @@ form.new_story, form.edit_story, .story-form {
             width: 316px;
             height: 50px;
             padding: 10px 15px; }
+          #presenter #reward-modal #creator-info .the-rest #reward-box .inner form#reward-form .comment textarea:focus {
+            outline: none; }
         #presenter #reward-modal #creator-info .the-rest #reward-box .inner form#reward-form #share {
           margin: 20px 0 10px 7px;
           border-top: 1px dashed #cccccc;
@@ -3701,6 +3703,7 @@ form.new_story, form.edit_story, .story-form {
     #presenter ul#pages li.external .inner {
       overflow-y: hidden; }
   #presenter #previous-page, #presenter #next-page {
+    display: none;
     width: 100px;
     height: 140px;
     position: absolute;
@@ -4982,14 +4985,40 @@ form.user_edit {
     font-size: 11px; }
     .community nav.pagination .first, .community nav.pagination .last, .community nav.pagination .gap {
       display: none; }
-    .community nav.pagination .page {
-      padding: 2px 4px;
-      background: white;
-      border: 1px solid #dddddd;
+    .community nav.pagination .page, .community nav.pagination .next, .community nav.pagination .prev {
+      margin-right: 4px; }
+      .community nav.pagination .page a, .community nav.pagination .next a, .community nav.pagination .prev a {
+        display: inline-block;
+        background: white;
+        background-image: -moz-linear-gradient(center top, white 4%, #fafafa 52%);
+        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, white), color-stop(0.52, #fafafa));
+        border: 1px solid #dddddd;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        padding: 5px 8px;
+        color: #717171;
+        font-weight: 700;
+        box-shadow: 0 0 1px rgba(0, 0, 0, 0.075);
+        text-shadow: 0 1px 0 white; }
+    .community nav.pagination .page:hover a, .community nav.pagination .next:hover a, .community nav.pagination .prev:hover a {
+      color: #00aeef; }
+    .community nav.pagination .page:active a, .community nav.pagination .next:active a, .community nav.pagination .prev:active a {
+      box-shadow: 0 0 3px rgba(0, 0, 0, 0.3) inset;
+      border: 1px solid white; }
+    .community nav.pagination .page.current {
+      padding: 5px 6px 5px 8px;
+      background: #606060;
+      background-image: none;
       -webkit-border-radius: 3px;
       -moz-border-radius: 3px;
       border-radius: 3px;
-      margin-right: 4px; }
+      box-shadow: 0 0 3px black inset;
+      border: none;
+      color: #f2f2f2;
+      font-weight: 700;
+      text-shadow: 0 1px 0 rgba(0, 0, 0, 0.13);
+      margin-right: 6px; }
     .community nav.pagination .next a, .community nav.pagination .prev a {
       text-transform: uppercase;
       font-weight: 700; }

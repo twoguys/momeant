@@ -10,7 +10,7 @@
 
     %ul.stories
       = render @stories, :show_tags => true, :hover_title => true
-    = paginate @stories
+    = paginate @stories, :window => 2
     
     - unless params[:tag]
       .tag-cloud
