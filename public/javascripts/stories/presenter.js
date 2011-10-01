@@ -131,14 +131,15 @@ $(function() {
 		setup_key_bindings: function() {
 			var presenter = this;
 			$(document).keyup(function(e) {
-			  if (e.keyCode == 39) { presenter.goto_next_page(); } 			// right arrow
-				if (e.keyCode == 37) { presenter.goto_previous_page(); }			// left arrow
+				if (!RewardModal.modal_open) {
+				  if (e.keyCode == 39) { presenter.goto_next_page(); } 					// right arrow
+					if (e.keyCode == 37) { presenter.goto_previous_page(); }			// left arrow
+				}
 			});
 		}
 	});
 	
 	window.RewardModalView = Backbone.View.extend({
-		
 		el: $('#reward-modal'),
 		
 		events: {
