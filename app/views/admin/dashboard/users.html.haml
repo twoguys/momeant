@@ -1,5 +1,12 @@
-%table
-  - User.order("created_at ASC").each do |user|
-    %tr
-      %td= link_to(user.name, user_path(user))
-      %td= user.email
+.admin
+  = render "admin/tabs"
+
+  %table
+    %thead
+      %tr
+        %th{:colspan => 2} All Users
+    %tbody
+      - User.order("created_at ASC").each do |user|
+        %tr
+          %td= link_to(user.name, user_path(user))
+          %td= user.email

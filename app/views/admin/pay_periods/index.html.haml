@@ -1,6 +1,9 @@
-= button_to("End current pay period", admin_pay_periods_path)
+.admin
+  = render "admin/tabs"
+  
+  = button_to("End current pay period", admin_pay_periods_path)
 
-%h2 Previous Pay Periods
+  %h3 Previous Pay Periods
 
-%ul.pay-periods
-  = render @pay_periods
+  %ul.pay-periods
+    = render @pay_periods
