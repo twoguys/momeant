@@ -122,9 +122,9 @@ html, body {
         background: transparent url(../images/navActive.png) no-repeat 50% -7px; }
     #header #user-nav #feedback, #header #user-nav #join, #header #user-nav #signin, #header #user-nav #signout {
       height: 42px; }
-    #header #user-nav #logo, #header #user-nav #home, #header #user-nav #community, #header #user-nav #faq {
+    #header #user-nav #logo, #header #user-nav #home, #header #user-nav #community, #header #user-nav #faq, #header #user-nav #admin {
       width: 46px; }
-      #header #user-nav #logo a, #header #user-nav #home a, #header #user-nav #community a, #header #user-nav #faq a {
+      #header #user-nav #logo a, #header #user-nav #home a, #header #user-nav #community a, #header #user-nav #faq a, #header #user-nav #admin a {
         width: 46px;
         height: 42px;
         display: block;
@@ -147,6 +147,8 @@ html, body {
       background-position: 50% 7px; }
     #header #user-nav #faq a {
       background-image: url(../images/icons/faqWhite.png); }
+    #header #user-nav #admin a {
+      background-image: url(../images/icons/lock.png); }
     #header #user-nav #coins {
       margin-left: 20px; }
       #header #user-nav #coins a {
@@ -5539,61 +5541,87 @@ header .topic-icon {
     height: 50px;
     margin: 18px auto; }
 
-.admin .invitations table {
+.admin {
+  padding: 0 20px; }
+  .admin ul.nav {
+    padding: 30px 0 10px;
+    height: 20px;
+    margin-bottom: 20px; }
+    .admin ul.nav li {
+      float: left;
+      margin-right: 20px; }
+      .admin ul.nav li a {
+        font-size: 13px;
+        font-weight: 700;
+        text-transform: uppercase;
+        padding: 5px 10px 15px; }
+      .admin ul.nav li a:hover {
+        text-decoration: underline; }
+      .admin ul.nav li a.active {
+        background: transparent url(../images/blueLinkPointer.png) no-repeat 50% 100%;
+        color: white; }
+      .admin ul.nav li a.active:hover {
+        text-decoration: none; }
+  .admin #live-updates li {
+    padding: 3px 6px;
+    font-size: 11px;
+    text-shadow: 0 1px 1px white;
+    height: 15px;
+    margin-bottom: 3px; }
+    .admin #live-updates li .url {
+      font-weight: bold;
+      float: left;
+      width: 70%; }
+    .admin #live-updates li .time {
+      color: #999999;
+      float: right;
+      width: 30%;
+      text-align: right; }
+  .admin #live-updates li:first-child {
+    background: rgba(0, 102, 204, 0.05); }
+
+.admin.live h3 {
+  margin-bottom: 20px; }
+
+.admin.invitations table {
   margin-top: 10px; }
-  .admin .invitations table th, .admin .invitations table td {
+  .admin.invitations table th, .admin.invitations table td {
     min-width: 100px; }
-.admin .adverts {
+
+.admin.adverts {
   background: none;
   padding-top: 0; }
-  .admin .adverts form {
+  .admin.adverts form {
     width: 928px;
     padding: 10px;
     background-color: #eeeeee; }
-    .admin .adverts form li span {
+    .admin.adverts form li span {
       margin-right: 50px; }
-  .admin .adverts div {
+  .admin.adverts div {
     height: auto; }
-  .admin .adverts .advert-list {
+  .admin.adverts .advert-list {
     margin-top: 10px; }
-    .admin .adverts .advert-list li {
+    .admin.adverts .advert-list li {
       border-bottom: 1px solid #cccccc;
       padding-bottom: 5px;
       margin-bottom: 5px;
       height: 200px; }
-    .admin .adverts .advert-list .title {
+    .admin.adverts .advert-list .title {
       font-weight: 700;
       font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
       font-size: 2em;
       text-transform: uppercase; }
-    .admin .adverts .advert-list .title, .admin .adverts .advert-list .enabled, .admin .adverts .advert-list .delete {
+    .admin.adverts .advert-list .title, .admin.adverts .advert-list .enabled, .admin.adverts .advert-list .delete {
       float: left;
       line-height: 30px;
       vertical-align: middle;
       margin-right: 20px;
       padding: 5px 0; }
-    .admin .adverts .advert-list .enabled .disabled {
+    .admin.adverts .advert-list .enabled .disabled {
       color: #777777;
       font-style: italic; }
-    .admin .adverts .advert-list .image {
+    .admin.adverts .advert-list .image {
       clear: both; }
-.admin #live-updates li {
-  padding: 3px 6px;
-  font-size: 11px;
-  text-shadow: 0 1px 1px white;
-  height: 15px;
-  margin-bottom: 3px; }
-  .admin #live-updates li .url {
-    font-weight: bold;
-    float: left;
-    width: 70%; }
-  .admin #live-updates li .time {
-    color: #999999;
-    float: right;
-    width: 30%;
-    text-align: right; }
-.admin #live-updates li:first-child {
-  background: rgba(0, 102, 204, 0.05); }
 
 .flipbook {
   width: 950px;

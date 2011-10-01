@@ -1,46 +1,25 @@
 .admin
-
-	.invitations
-		table
-			margin-top: 10px
-			th, td
-				min-width: 100px
-
-	.adverts
-		background: none
-		padding-top: 0
-		form
-			width: 928px
-			padding: 10px
-			background-color: #eee
-			li span
-				margin-right: 50px
-		div
-			height: auto
-		.advert-list
-			margin-top: 10px
-			li
-				border-bottom: 1px solid #ccc
-				padding-bottom: 5px
-				margin-bottom: 5px
-				height: 200px
-			.title
+	padding: 0 20px
+	
+	ul.nav
+		padding: 30px 0 10px
+		height: 20px
+		margin-bottom: 20px
+		li
+			float: left
+			margin-right: 20px
+			a
+				font-size: 13px
 				font-weight: 700
-				font-family: $block
-				font-size: 2em
 				text-transform: uppercase
-			.title, .enabled, .delete
-				float: left
-				line-height: 30px
-				vertical-align: middle
-				margin-right: 20px
-				padding: 5px 0
-			.enabled
-				.disabled
-					color: #777
-					font-style: italic
-			.image
-				clear: both
+				padding: 5px 10px 15px
+			a:hover
+				text-decoration: underline
+			a.active
+				background: transparent url(../images/blueLinkPointer.png) no-repeat 50% 100%
+				color: #fff
+			a.active:hover
+				text-decoration: none
 
 	#live-updates
 		li
@@ -60,3 +39,49 @@
 				text-align: right
 		li:first-child
 			background: rgba(0, 102, 204, 0.05)
+
+.admin.live
+	h3
+		margin-bottom: 20px
+
+.admin.invitations
+	table
+		margin-top: 10px
+		th, td
+			min-width: 100px
+
+.admin.adverts
+	background: none
+	padding-top: 0
+	form
+		width: 928px
+		padding: 10px
+		background-color: #eee
+		li span
+			margin-right: 50px
+	div
+		height: auto
+	.advert-list
+		margin-top: 10px
+		li
+			border-bottom: 1px solid #ccc
+			padding-bottom: 5px
+			margin-bottom: 5px
+			height: 200px
+		.title
+			font-weight: 700
+			font-family: $block
+			font-size: 2em
+			text-transform: uppercase
+		.title, .enabled, .delete
+			float: left
+			line-height: 30px
+			vertical-align: middle
+			margin-right: 20px
+			padding: 5px 0
+		.enabled
+			.disabled
+				color: #777
+				font-style: italic
+		.image
+			clear: both
