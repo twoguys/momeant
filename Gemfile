@@ -32,6 +32,7 @@ gem 'nokogiri'
 gem 'omniauth'
 gem 'twitter'
 gem 'opengraph'
+gem 'mixpanel'
 
 group :test do
   gem 'shoulda'

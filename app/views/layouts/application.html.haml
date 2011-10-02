@@ -27,13 +27,11 @@
       = javascript_include_tag "http://html5shiv.googlecode.com/svn/trunk/html5.js"
     
     = stylesheet_link_tag "reset", "tipsy", "jquery-ui-1.8.14.custom", "jquery.fancybox-1.3.4", "colorpicker", "creator_text_styles", "styles", "extras"
-    
     /[if lt IE 7]
       = stylesheet_link_tag "ie"
-    = javascript_include_tag "http://use.typekit.com/sji8gns.js"
-    :javascript
-      try{Typekit.load();}catch(e){}
-      var typekit_id = 'sji8gns';
+    
+    = render "shared/typekit"
+    = render "shared/mixpanel"
     = yield :head
     
   %body{:class => @fullscreen.nil? ? "" : "fullscreen"}

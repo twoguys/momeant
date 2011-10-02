@@ -14,7 +14,10 @@ class RegistrationsController < Devise::RegistrationsController
       invitation.update_attribute(:accepted, true) if invitation
       session[:accepting_invitation_id] = nil
       
-      #set_flash_message :notice, :signed_up
+      # record signup event
+      Mixpanel::Tracker.new("f18bd5e5e5afaaae82315ccaef6fafb2", request.env, true)
+      @mixpanel.track_event("Sign up", {:user_id => resource.id, :name => resource.name})
+      
       sign_in_and_redirect(resource_name, resource)
     else
       @user = resource
