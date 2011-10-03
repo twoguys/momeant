@@ -9,6 +9,7 @@ class HomeController < ApplicationController
     end
     
     @user = current_user
+    @users = @user.rewarded_creators
     @rewards = current_user.given_rewards.for_content
     render "users/show"
   end
