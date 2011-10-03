@@ -6638,9 +6638,10 @@ a.tag:hover {
   color: black; }
 
 #visualization {
-  width: 800px;
-  height: 400px;
-  background: white; }
+  width: 100%;
+  height: 600px;
+  background: white;
+  position: relative; }
   #visualization #content-rewarded-by {
     display: inline-block;
     background: #eeeeee;
@@ -6663,6 +6664,53 @@ a.tag:hover {
   background: white url(../images/spinner.gif) no-repeat 50% 50%; }
   #visualization.loading * {
     display: none; }
+
+#reward-chain {
+  background: white;
+  position: relative;
+  width: 600px;
+  height: 600px;
+  margin: 0 auto;
+  overflow: hidden;
+  cursor: move; }
+  #reward-chain .person {
+    cursor: help; }
+    #reward-chain .person img {
+      width: 100%;
+      height: 100%; }
+  #reward-chain .person:hover .tooltip {
+    display: block; }
+  #reward-chain .tooltip {
+    display: none;
+    position: absolute;
+    z-index: 99;
+    top: 64px;
+    left: -35px;
+    width: 140px;
+    color: #333333; }
+    #reward-chain .tooltip .inner {
+      background: #eeeeee;
+      border: 1px solid #cccccc;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      border-radius: 3px;
+      box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5), 0 0 3px white inset;
+      font-size: 10px;
+      padding: 5px;
+      min-height: 10px; }
+    #reward-chain .tooltip .name {
+      font-weight: 700;
+      float: left;
+      margin-right: 10px;
+      text-transform: uppercase; }
+    #reward-chain .tooltip .amount {
+      float: right;
+      padding-right: 12px;
+      font-weight: 700;
+      background: transparent url(../images/icons/starBlackTiny.png) no-repeat 100% 1px; }
+    #reward-chain .tooltip .comment {
+      clear: both;
+      padding-top: 5px; }
 
 .info-bar {
   background-color: #00aeef;
