@@ -92,6 +92,10 @@ function handle_feedback_form() {
 	});
 }
 
+function setup_reward_visualizing() {
+	$('li.reward .visualize a').fancybox();
+}
+
 $(document).ready(function() {
 	setup_tooltips();
 	setup_tab_switching();
@@ -100,6 +104,7 @@ $(document).ready(function() {
 	setup_modals();
 	handle_signup_login_form_validation();
 	handle_feedback_form();
+	setup_reward_visualizing();
 	
 	$("a.disabled").click(function() {return false;})
 	

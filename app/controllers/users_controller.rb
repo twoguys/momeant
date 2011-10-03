@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => :billing_updates
   
   def show
+    @users = @user.rewarded_creators
     @rewards = @user.given_rewards.for_content
   end
   
