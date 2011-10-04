@@ -1,7 +1,3 @@
-require "open-uri"
-require "base64"
-require "json"
-
 class RegistrationsController < Devise::RegistrationsController
   
   def create
