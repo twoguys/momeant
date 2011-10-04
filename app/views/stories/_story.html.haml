@@ -21,5 +21,6 @@
     .tags
       - story.tags.each do |tag|
         = link_to(tag.name, community_path(:tag => tag.name), :class => "tag")
+    .rewards= story.reward_count
   - else
     .synopsis= truncate(story.synopsis, :length => 100)

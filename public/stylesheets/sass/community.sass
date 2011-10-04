@@ -82,11 +82,21 @@
 			a.thumbnail
 				margin-top: 0
 			.tags
+				width: 185px
 				position: absolute
 				top: 125px
 				left: 8px
 				height: 17px
 				overflow: hidden
+				z-index: 3
+			.rewards
+				position: absolute
+				top: 125px
+				right: 8px
+				padding: 1px 4px 1px 14px
+				color: #fff
+				background: #000 url(../images/icons/starWhiteTiny.png) no-repeat 2px 3px
+				@include rounded(3px)
 				z-index: 3
 		li.story:hover .title
 			display: block
@@ -141,6 +151,8 @@
 			margin-bottom: 10px
 			padding-bottom: 5px
 			border-bottom: 1px solid #ddd
+		a.tag
+			font-size: 14px
 
 	nav.pagination
 		clear: both
