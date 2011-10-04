@@ -22,7 +22,7 @@
               
     - unless params[:tag]
       .tag-cloud
-        %h3 Popular Tags
+        %h3 Filter people by tag:
         .tags
           - @tags.each do |tag|
             = link_to(tag.name, community_people_path(:tag => tag.name), :class => "tag")
