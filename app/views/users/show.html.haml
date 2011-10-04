@@ -44,7 +44,15 @@
               - size = avatar_size_for_impact(@user.impact_on(user))
               = link_to(image_tag(user.avatar.url(:large), :style => size), user_content_rewarded_by_path(user, @user), :class => "tooltipped", :title => user.name)    
       
-      %section.patronage
-        %h3 Rewards #{@user == current_user ? "you've" : "#{@user.first_name} has"} given
-        %ul.rewards
-          = render @rewards, :user_profile => true
+      - unless @rewards.empty?
+        %section.patronage
+          %h3 Rewards #{@user == current_user ? "you've" : "#{@user.first_name} has"} given
+          %ul.rewards
+            = render @rewards, :user_profile => true
+
+- if me?(@user)
+  :javascript
+    mpq.track('Viewed My Profile Rewards', {anonymous_id: '#{session[:analytics_anonymous_id]}'});
+- else
+  :javascript
+    mpq.track('Viewed Profile Rewards', {anonymous_id: '#{session[:analytics_anonymous_id]}', mp_note: '#{@user.name}'});

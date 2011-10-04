@@ -70,3 +70,7 @@
     		default_text: "(Click here to add a description)"
     	});
     });
+    mpq.track('Viewed My Profile Creations', {anonymous_id: '#{session[:analytics_anonymous_id]}'});
+- else
+  :javascript
+    mpq.track('Viewed Profile Creations', {anonymous_id: '#{session[:analytics_anonymous_id]}', mp_note: '#{@user.name}'})

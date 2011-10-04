@@ -122,3 +122,10 @@
               - if reward.comment.present?
                 .comment= reward.comment
               .when #{time_ago_in_words(reward.created_at)} ago
+              
+- if current_user
+  :javascript
+    mpq.track('Viewed Content', {anonymous_id: '#{session[:analytics_anonymous_id]}', mp_note: '#{@story.title}', user: true})  
+- else
+  :javascript
+    mpq.track('Viewed Content', {anonymous_id: '#{session[:analytics_anonymous_id]}', mp_note: '#{@story.title}', user: false})

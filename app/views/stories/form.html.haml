@@ -167,3 +167,6 @@
               %h2 Image & Caption Page
               %span Feature one image with or without an accompanying caption.
         .clear
+
+:javascript
+  mpq.track('Editing Content', {anonymous_id: '#{session[:analytics_anonymous_id]}', story_id: '#{@story.id}'});

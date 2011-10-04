@@ -20,6 +20,7 @@ class AmazonPaymentsController < ApplicationController
     
     # post to Amazon to charge it
     @payment.settle_with_amazon
+    flash[:track_coin_purchase] = @payment.amount
     redirect_to root_path, :notice => "THANK YOU! #{@payment.coins} coins were added to your account."
   end
   

@@ -67,6 +67,9 @@ class StoriesController < ApplicationController
       current_user.post_to_facebook(@story, story_url(@story)) unless sharing[:facebook].blank?
     end
     
+    # track analytics across redirect
+    flash[:track_story_publish] = @story.id
+    
     redirect_to creations_user_path(@story.user), :notice => "Your content has been shared!"
   end
   

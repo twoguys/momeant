@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   def show
     @users = @user.rewarded_creators
     @rewards = @user.given_rewards.for_content
+    flash[:track_user_view] = true
   end
   
   def stream #ajax requests

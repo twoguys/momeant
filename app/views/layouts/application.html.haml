@@ -71,3 +71,18 @@
           setup_modal_presenter_links('#auto-launch-story-link',true);
         });
       - session[:show_content] = nil
+
+
+- if current_user
+  :javascript
+    mpq.name_tag('#{current_user.name}');
+    
+  - if flash[:track_signup].present?
+    :javascript
+      mpq.track('Signed up', {anonymous_id: '#{session[:analytics_anonymous_id]}', id: '#{current_user.id}'})
+  - if flash[:track_story_publish]
+    :javascript
+      mpq.track('Published Story', {anonymous_id: '#{session[:analytics_anonymous_id]}', story_id: '#{flash[:track_story_publish]}'})
+  - if flash[:track_coin_purchase]
+    :javascript
+      mpq.track('Purchased Coin Package', {anonymous_id: '#{session[:analytics_anonymous_id]}', amount: '$#{flash[:track_coin_purchase]}', mp_note: '$#{flash[:track_coin_purchase]}'})

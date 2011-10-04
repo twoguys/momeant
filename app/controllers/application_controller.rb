@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   include SslRequirement
   protect_from_forgery
   
-  before_filter :check_for_trial_expiration, :push_to_sender
+  before_filter :check_for_trial_expiration, :push_to_sender, :create_anonymous_tracker
   
   @nav = "home"
   @sidenav = ""
@@ -36,6 +36,13 @@ class ApplicationController < ActionController::Base
   def push_to_sender
     user = current_user ? current_user.name : ""
     Pusher['admin'].trigger('request', {:url => request.path, :user => user}) if ENV["SEND_ADMIN_LIVE_UPDATES"] == "yes"
+  end
+  
+  def create_anonymous_tracker
+    # if the user isn't logged in, set a unique cookie to track them
+    if session[:analytics_anonymous_id].nil?
+      session[:analytics_anonymous_id] = ActiveSupport::SecureRandom.hex(24)
+    end
   end
   
   rescue_from CanCan::AccessDenied do |exception|
