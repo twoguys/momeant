@@ -3,8 +3,8 @@
   
   :javascript
     $(document).ready(function() {
-      $('.avatar-wall').masonry({columnWidth:30});
-      $('.avatar-wall a').fancybox();
+      $('.avatar-wall .wall').masonry({columnWidth:30});
+      $('.avatar-wall .wall a').fancybox({padding:0});
     });
 
 .user-profile
@@ -40,9 +40,10 @@
         %section.patronage.rewarded-creators
           %h3 Creators #{@user == current_user ? "you've" : "#{@user.first_name} has"} rewarded
           .avatar-wall
-            - @users.each do |user|
-              - size = avatar_size_for_impact(@user.impact_on(user))
-              = link_to(image_tag(user.avatar.url(:large), :style => size), user_content_rewarded_by_path(user, @user), :class => "tooltipped", :title => user.name)    
+            .wall
+              - @users.each do |user|
+                - size = avatar_size_for_impact(@user.impact_on(user))
+                = link_to(image_tag(user.avatar.url(:large), :style => size), user_content_rewarded_by_path(user, @user), :class => "tooltipped", :title => user.name)    
       
       - unless @rewards.empty?
         %section.patronage

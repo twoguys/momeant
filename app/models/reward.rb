@@ -31,7 +31,7 @@ class Reward < Curation
   end
   
   def descendants_tree(descendants)
-    tree = {:id => self.id, :data => {:name => self.user.name, :avatar => self.user.avatar.url(:thumbnail), :comment => self.comment, :amount => self.amount}}
+    tree = {:id => self.id, :data => {:name => self.user.name, :avatar => self.user.avatar.url(:thumbnail), :comment => self.comment[0..140], :amount => self.amount}}
 
     tree[:children] = []
     descendants.reject{|c| c.parent_id != self.id}.each do |reward|

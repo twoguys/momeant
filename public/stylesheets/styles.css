@@ -4558,12 +4558,12 @@ ul.avatars li {
     border-bottom: 1px solid #dddddd;
     margin-bottom: 10px; }
   .user-profile .rewarded-creators .avatar-wall {
-    width: 390px;
-    margin-bottom: 30px; }
-    .user-profile .rewarded-creators .avatar-wall a {
+    height: 600px;
+    margin-bottom: 30px;
+    background: transparent url(../images/mosaicBG.gif) no-repeat 0 0; }
+    .user-profile .rewarded-creators .avatar-wall .wall a {
       display: block;
-      padding: 0;
-      margin: 0; }
+      padding: 3px; }
   .user-profile ul.rewards {
     padding: 0;
     display: inline-block; }
@@ -6665,27 +6665,85 @@ a.tag:hover {
   color: black; }
 
 #visualization {
-  width: 100%;
+  width: 600px;
   height: 600px;
   background: white;
   position: relative; }
-  #visualization #content-rewarded-by {
-    display: inline-block;
-    background: #eeeeee;
-    padding: 20px; }
-    #visualization #content-rewarded-by:after {
-      content: ".";
-      display: block;
-      height: 0;
-      clear: both;
-      visibility: hidden; }
-    #visualization #content-rewarded-by h3 {
+  #visualization #rewardee {
+    position: relative;
+    padding: 10px 10px 10px 80px;
+    height: 60px; }
+    #visualization #rewardee .avatar {
+      position: absolute;
+      top: 10px;
+      left: 10px; }
+    #visualization #rewardee .name {
+      font-weight: 700;
       text-transform: uppercase;
-      font-size: 16px;
-      margin-bottom: 20px;
-      border-bottom: 1px solid #dddddd; }
+      color: #252525;
+      font-size: 20px;
+      display: block;
+      margin-bottom: 5px; }
+    #visualization #rewardee .profile.button {
+      font-size: 11px;
+      padding: 5px 10px; }
+  #visualization #content-rewarded-by {
+    width: 600px;
+    height: 520px;
+    background: #eeeeee; }
     #visualization #content-rewarded-by ul.rewards {
-      padding-top: 0; }
+      padding: 0;
+      width: 580px; }
+      #visualization #content-rewarded-by ul.rewards li.reward {
+        width: 150px;
+        height: 160px;
+        padding: 10px;
+        -webkit-box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+        -moz-box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+        box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+        margin: 0;
+        background: none; }
+        #visualization #content-rewarded-by ul.rewards li.reward .inner {
+          -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+          -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+          box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+          width: 150px;
+          background: white; }
+          #visualization #content-rewarded-by ul.rewards li.reward .inner a.thumbnail {
+            width: 150px;
+            height: 100px; }
+            #visualization #content-rewarded-by ul.rewards li.reward .inner a.thumbnail img {
+              width: 150px;
+              height: 100px; }
+          #visualization #content-rewarded-by ul.rewards li.reward .inner a.title {
+            width: 140px;
+            height: 90px;
+            padding: 5px;
+            font-size: 12px; }
+            #visualization #content-rewarded-by ul.rewards li.reward .inner a.title span.synopsis {
+              font-size: 10px; }
+          #visualization #content-rewarded-by ul.rewards li.reward .inner .gave {
+            padding: 5px 5px 0; }
+          #visualization #content-rewarded-by ul.rewards li.reward .inner .comment {
+            background: none;
+            text-indent: 0;
+            font-size: 10px;
+            padding: 5px; }
+    #visualization #content-rewarded-by #rewards-viz {
+      clear: both;
+      width: 600px;
+      height: 340px; }
+      #visualization #content-rewarded-by #rewards-viz #reward-chain {
+        height: 340px; }
+    #visualization #content-rewarded-by #rewards-viz.loading {
+      background-image: url(../images/graySpinner.gif);
+      background-repeat: no-repeat;
+      background-position: 50% 50%; }
+      #visualization #content-rewarded-by #rewards-viz.loading * {
+        display: none; }
+
+#visualization #content-rewarded-by ul.rewards li.reward.selected, #rewards-viz, #rewards-chain {
+  background: #555555; }
 
 #visualization.loading {
   background: white url(../images/spinner.gif) no-repeat 50% 50%; }
@@ -6693,10 +6751,9 @@ a.tag:hover {
     display: none; }
 
 #reward-chain {
-  background: white;
   position: relative;
   width: 600px;
-  height: 600px;
+  height: 300px;
   margin: 0 auto;
   overflow: hidden;
   cursor: move; }
@@ -6714,8 +6771,8 @@ a.tag:hover {
     position: absolute;
     z-index: 99;
     top: 64px;
-    left: -35px;
-    width: 140px;
+    left: -50px;
+    width: 200px;
     color: #333333; }
     #reward-chain .tooltip .inner {
       background: #eeeeee;

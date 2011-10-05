@@ -1,19 +1,80 @@
 #visualization
-	width: 100%
+	width: 600px
 	height: 600px
 	background: #fff
 	position: relative
-	#content-rewarded-by
-		@include clearfix
-		background: #eee
-		padding: 20px
-		h3
+	#rewardee
+		position: relative
+		padding: 10px 10px 10px 80px
+		height: 60px
+		.avatar
+			position: absolute
+			top: 10px
+			left: 10px
+		.name
+			font-weight: 700
 			text-transform: uppercase
-			font-size: 16px
-			margin-bottom: 20px
-			border-bottom: 1px solid #ddd
+			color: $text_color
+			font-size: 20px
+			display: block
+			margin-bottom: 5px
+		.profile.button
+			font-size: 11px
+			padding: 5px 10px
+	#content-rewarded-by
+		width: 600px
+		height: 520px
+		background: #eee
 		ul.rewards
-			padding-top: 0
+			padding: 0
+			width: 580px
+			li.reward
+				width: 150px
+				height: 160px
+				padding: 10px
+				@include boxshadow(0,0,0,0)
+				margin: 0
+				background: none
+				.inner
+					@include boxshadow(2px, 0.2, 1px, 1px)
+					width: 150px
+					background: #fff
+					a.thumbnail
+						width: 150px
+						height: 100px
+						img
+							width: 150px
+							height: 100px
+					a.title
+						width: 140px
+						height: 90px
+						padding: 5px
+						font-size: 12px
+						span.synopsis
+							font-size: 10px
+					.gave
+						padding: 5px 5px 0
+					.comment
+						background: none
+						text-indent: 0
+						font-size: 10px
+						padding: 5px
+				
+		#rewards-viz
+			clear: both
+			width: 600px
+			height: 340px
+			#reward-chain
+				height: 340px
+		#rewards-viz.loading
+			background-image: url(../images/graySpinner.gif)
+			background-repeat: no-repeat
+			background-position: 50% 50%
+			*
+				display: none
+				
+#visualization #content-rewarded-by ul.rewards li.reward.selected, #rewards-viz, #rewards-chain
+	background: #555
 
 #visualization.loading
 	background: #fff url(../images/spinner.gif) no-repeat 50% 50%
@@ -21,10 +82,9 @@
 		display: none
 
 #reward-chain
-	background: #fff
 	position: relative
 	width: 600px
-	height: 600px
+	height: 300px
 	margin: 0 auto
 	overflow: hidden
 	cursor: move
@@ -42,8 +102,8 @@
 		position: absolute
 		z-index: 99
 		top: 64px
-		left: -35px
-		width: 140px
+		left: -50px
+		width: 200px
 		color: #333
 		.inner
 			background: #eee

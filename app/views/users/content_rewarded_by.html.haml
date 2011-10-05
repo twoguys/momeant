@@ -1,14 +1,36 @@
 #visualization
+  #rewardee
+    = link_to(image_tag(@user.avatar.url(:thumbnail)), user_path(@user), :class => "avatar")
+    = link_to(@user.name, user_path(@user), :class => "name")
+    = link_to("Go to Profile", user_path(@user), :class => "profile button")
   #content-rewarded-by
-    %h3 Rewards #{@rewarder.first_name} has given #{@user.first_name}.
     %ul.rewards
-      = render @rewards, :user_profile => true
+      - first = true
+      - @rewards.each do |reward|
+        %li.reward{:class => first ? "selected" : "", :reward_id => reward.id}
+          - first = false
+          .inner
+            .what
+              = link_to(image_tag(reward.story.thumbnail.url(:small)), story_path(reward.story, :impacted_by => reward.id), :class => "thumbnail")
+              %a.title{:href => story_path(reward.story, :impacted_by => reward.id)}
+                %span= reward.story.title
+                %span.synopsis= truncate(reward.story.synopsis, :length => 100)
+              .comment-pointer
+            .comment= truncate(reward.comment, :length => 80)
+    - if @rewards.first
+      #rewards-viz
+        - @reward = @rewards.first
+        #reward-chain
+        = render "rewards/visualize_js"
+      
 
 :javascript
-  $('ul.rewards li a').click(function() {
-    var $visualization = $('#visualization');
+  $('ul.rewards li').click(function() {
+    var $li = $(this);
+    $li.addClass('selected').siblings().removeClass('selected');
+    var $visualization = $('#rewards-viz');
     $visualization.addClass('loading');
-    var reward_id = $(this).parents('li:eq(0)').attr('reward_id');
+    var reward_id = $li.attr('reward_id');
     $.get('/rewards/' + reward_id + '/visualize', function(data) {
       $visualization.html(data).removeClass('loading');
     });
