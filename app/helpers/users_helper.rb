@@ -46,11 +46,11 @@ module UsersHelper
   def avatar_size_for_impact(impact)
     case impact
     when (0..15)
-      "width:50px;height:50px"
+      50
     when (16..33)
-      "width:106px;height:106px"
+      100
     else
-      "width:162px;height:162px"
+      150
     end
   end
 end
