@@ -15,6 +15,20 @@
 
     .tabbed
     
+      %ul.stats-bar
+        %li.rewards
+          .value= @user.given_rewards.sum(:amount)
+          .text
+            rewards
+            %br
+            given
+        %li.patrons    
+          .value= @user.impact
+          .text
+            impact
+            %br
+            made
+    
       - if me?(@user) && @rewards.empty?
         .have-not.rewarded
           %h3
