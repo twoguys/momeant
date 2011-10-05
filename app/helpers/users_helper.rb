@@ -49,8 +49,10 @@ module UsersHelper
       44
     when (16..33)
       94
-    else
+    when (34..46)
       144
+    else
+      194
     end
   end
 end
