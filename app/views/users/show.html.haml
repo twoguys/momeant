@@ -45,7 +45,7 @@
                 - size = avatar_size_for_impact(@user.impact_on(user))
                 %a.tooltipped{:href => user_content_rewarded_by_path(user, @user), :title => user.name}
                   = image_tag(user.avatar.url(:large), :style => "width:#{size}px;height:#{size}px")
-                  .border{:style => "width:#{size-3}px;height:#{size-3}px"}
+                  .border{:style => "width:#{size}px;height:#{size}px"}
       
       - unless @rewards.empty?
         %section.patronage

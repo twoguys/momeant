@@ -46,11 +46,11 @@ module UsersHelper
   def avatar_size_for_impact(impact)
     case impact
     when (0..15)
-      50
+      44
     when (16..33)
-      100
+      94
     else
-      150
+      144
     end
   end
 end
