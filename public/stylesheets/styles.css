@@ -4075,29 +4075,44 @@ form.new_story, form.edit_story, .story-form {
     margin: 1px 0; }
 
 ul.stories li.story {
+  position: relative;
   float: left;
   background-color: white;
+  border: 1px solid #cccccc;
+  padding: 3px;
   width: 230px;
   margin: 0 20px 20px 0;
-  padding: 10px 0 0;
-  -webkit-box-shadow: 3px 3px 5px #bbbbbb;
-  -moz-box-shadow: 3px 3px 5px #bbbbbb;
-  box-shadow: 3px 3px 5px #bbbbbb;
-  position: relative;
   -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
   -moz-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); }
   ul.stories li.story .title {
-    font-weight: 700;
+    display: none;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    padding: 10px;
+    width: 210px;
+    height: 124px;
+    color: white;
     text-transform: uppercase;
-    color: black;
-    display: inline-block;
-    width: 195px;
-    padding-left: 10px; }
-  ul.stories li.story .byline {
-    color: black;
-    font-size: 11px;
-    padding-left: 10px; }
+    font-size: 14px;
+    background: rgba(0, 0, 0, 0.75);
+    z-index: 2;
+    font-weight: 500; }
+    ul.stories li.story .title .avatar {
+      position: absolute;
+      top: 3px;
+      right: 3px;
+      width: 28px;
+      height: 28px; }
+    ul.stories li.story .title span {
+      display: block; }
+    ul.stories li.story .title span.synopsis {
+      font-size: 11px;
+      text-transform: none;
+      border: none;
+      padding: 5px 0 0 0;
+      height: 75px; }
   ul.stories li.story .edit-links {
     position: absolute;
     top: 10px;
@@ -4118,11 +4133,29 @@ ul.stories li.story {
   ul.stories li.story a.thumbnail {
     display: block;
     width: 230px;
-    height: 144px;
-    margin-top: 10px; }
+    height: 144px; }
     ul.stories li.story a.thumbnail img {
       width: 230px;
       height: 144px; }
+  ul.stories li.story .tags {
+    width: 185px;
+    position: absolute;
+    top: 125px;
+    left: 8px;
+    height: 17px;
+    overflow: hidden;
+    z-index: 3; }
+  ul.stories li.story .rewards {
+    position: absolute;
+    top: 125px;
+    right: 8px;
+    padding: 1px 4px 1px 14px;
+    color: white;
+    background: black url(../images/icons/starWhiteTiny.png) no-repeat 2px 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    z-index: 3; }
   ul.stories li.story .how-much {
     padding: 6px 5px 5px;
     font-size: 11px; }
@@ -4134,12 +4167,8 @@ ul.stories li.story {
       margin-left: 3px;
       padding-right: 13px;
       background: transparent url(../images/icons/personTiny.png) no-repeat 100% 2px; }
-  ul.stories li.story .synopsis {
-    border-top: 1px solid #eeeeee;
-    padding: 5px;
-    font-size: 11px;
-    height: 45px;
-    overflow: hidden; }
+ul.stories li.story:hover .title {
+  display: block; }
 ul.stories li.medium.story {
   margin-bottom: 25px;
   margin-right: 25px;
@@ -4878,72 +4907,6 @@ form.user_edit {
         border-radius: 20px;
         width: 200px;
         background: white url(../images/icons/search.png) 98% 50% no-repeat; }
-  .community ul.stories {
-    display: inline-block; }
-    .community ul.stories:after {
-      content: ".";
-      display: block;
-      height: 0;
-      clear: both;
-      visibility: hidden; }
-    .community ul.stories li.story {
-      padding-top: 0;
-      position: relative;
-      border: 1px solid #cccccc;
-      padding: 3px; }
-      .community ul.stories li.story .title {
-        display: none;
-        position: absolute;
-        top: 3px;
-        left: 3px;
-        padding: 10px;
-        width: 210px;
-        height: 124px;
-        color: white;
-        text-transform: uppercase;
-        font-size: 14px;
-        background: rgba(0, 0, 0, 0.75);
-        z-index: 2;
-        font-weight: 500; }
-        .community ul.stories li.story .title .avatar {
-          position: absolute;
-          top: 3px;
-          right: 3px;
-          width: 28px;
-          height: 28px; }
-        .community ul.stories li.story .title span {
-          display: block; }
-        .community ul.stories li.story .title span.synopsis {
-          font-size: 11px;
-          text-transform: none;
-          border: none;
-          padding: 5px 0 0 0;
-          height: 75px; }
-      .community ul.stories li.story .edit-links, .community ul.stories li.story .how-much {
-        display: none; }
-      .community ul.stories li.story a.thumbnail {
-        margin-top: 0; }
-      .community ul.stories li.story .tags {
-        width: 185px;
-        position: absolute;
-        top: 125px;
-        left: 8px;
-        height: 17px;
-        overflow: hidden;
-        z-index: 3; }
-      .community ul.stories li.story .rewards {
-        position: absolute;
-        top: 125px;
-        right: 8px;
-        padding: 1px 4px 1px 14px;
-        color: white;
-        background: black url(../images/icons/starWhiteTiny.png) no-repeat 2px 3px;
-        -webkit-border-radius: 3px;
-        -moz-border-radius: 3px;
-        border-radius: 3px;
-        z-index: 3; }
-    .community ul.stories li.story:hover .title {
-      display: block; }
   .community ul.users {
     display: inline-block;
     padding-bottom: 40px; }
@@ -6671,73 +6634,56 @@ a.tag:hover {
   color: black; }
 
 #visualization {
-  width: 600px;
+  width: 780px;
   height: 600px;
   background: white;
   position: relative; }
-  #visualization #rewardee {
-    position: relative;
-    padding: 10px 10px 10px 80px;
-    height: 60px; }
-    #visualization #rewardee .avatar {
-      position: absolute;
-      top: 10px;
-      left: 10px; }
-    #visualization #rewardee .name {
-      font-weight: 700;
-      text-transform: uppercase;
-      color: #252525;
-      font-size: 20px;
-      display: block;
-      margin-bottom: 5px; }
-    #visualization #rewardee .profile.button {
-      font-size: 11px;
-      padding: 5px 10px; }
+  #visualization #context {
+    padding: 10px;
+    height: 35px; }
+    #visualization #context .info {
+      float: left; }
+      #visualization #context .info .name {
+        padding-top: 5px;
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 20px;
+        display: block;
+        margin-bottom: 5px; }
+      #visualization #context .info .profile.button {
+        font-size: 11px;
+        padding: 5px 10px; }
+    #visualization #context .stats {
+      float: right; }
+      #visualization #context .stats .rewards, #visualization #context .stats .impact {
+        float: left;
+        margin-right: 20px; }
+        #visualization #context .stats .rewards .amount, #visualization #context .stats .impact .amount {
+          font-size: 30px;
+          font-family: "ff-dagny-web-pro-1", "ff-dagny-web-pro-2", sans-serif; }
+        #visualization #context .stats .rewards .text, #visualization #context .stats .impact .text {
+          font-size: 11px; }
   #visualization #content-rewarded-by {
-    width: 600px;
-    height: 520px;
-    background: #eeeeee; }
-    #visualization #content-rewarded-by ul.rewards {
-      padding: 0;
-      width: 580px; }
-      #visualization #content-rewarded-by ul.rewards li.reward {
-        width: 150px;
-        height: 160px;
-        padding: 10px;
-        -webkit-box-shadow: 0 0 0 rgba(0, 0, 0, 0);
-        -moz-box-shadow: 0 0 0 rgba(0, 0, 0, 0);
-        box-shadow: 0 0 0 rgba(0, 0, 0, 0);
-        margin: 0;
-        background: none; }
-        #visualization #content-rewarded-by ul.rewards li.reward .inner {
-          -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-          -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-          box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-          width: 150px;
-          background: white; }
-          #visualization #content-rewarded-by ul.rewards li.reward .inner a.thumbnail {
-            width: 150px;
-            height: 100px; }
-            #visualization #content-rewarded-by ul.rewards li.reward .inner a.thumbnail img {
-              width: 150px;
-              height: 100px; }
-          #visualization #content-rewarded-by ul.rewards li.reward .inner a.title {
-            width: 140px;
-            height: 90px;
-            padding: 5px;
-            font-size: 12px; }
-            #visualization #content-rewarded-by ul.rewards li.reward .inner a.title span.synopsis {
-              font-size: 10px; }
-          #visualization #content-rewarded-by ul.rewards li.reward .inner .gave {
-            padding: 5px 5px 0; }
-          #visualization #content-rewarded-by ul.rewards li.reward .inner .comment {
-            background: none;
-            text-indent: 0;
-            font-size: 10px;
-            padding: 5px; }
+    width: 780px;
+    height: 520px; }
+    #visualization #content-rewarded-by ul.carousel li.item {
+      float: left;
+      width: 240px;
+      height: 153px;
+      padding: 10px 10px 42px; }
+      #visualization #content-rewarded-by ul.carousel li.item a.visualize {
+        padding-left: 20px;
+        margin-left: 50px;
+        position: relative;
+        bottom: 5px;
+        background: transparent url(../images/icons/tree.png) no-repeat 0 0; }
+    #visualization #content-rewarded-by ul.carousel li.item.selected {
+      background: transparent url(../images/darkGrayTopPointer.png) no-repeat 50% 100%; }
+      #visualization #content-rewarded-by ul.carousel li.item.selected a.visualize {
+        display: none; }
     #visualization #content-rewarded-by #rewards-viz {
       clear: both;
-      width: 600px;
+      width: 780px;
       height: 340px; }
       #visualization #content-rewarded-by #rewards-viz #reward-chain {
         height: 340px; }
@@ -6748,7 +6694,7 @@ a.tag:hover {
       #visualization #content-rewarded-by #rewards-viz.loading * {
         display: none; }
 
-#visualization #content-rewarded-by ul.rewards li.reward.selected, #rewards-viz, #reward-chain {
+#rewards-viz, #reward-chain {
   background: #555555; }
 
 #visualization.loading {
@@ -6758,7 +6704,7 @@ a.tag:hover {
 
 #reward-chain {
   position: relative;
-  width: 600px;
+  width: 780px;
   height: 300px;
   margin: 0 auto;
   overflow: hidden;
@@ -6776,12 +6722,12 @@ a.tag:hover {
     display: none;
     position: absolute;
     z-index: 99;
-    top: 64px;
-    left: -65px;
+    top: 0;
+    left: 70px;
     width: 200px;
     color: #333333; }
     #reward-chain .tooltip .inner {
-      background: #eeeeee;
+      background: white;
       border: 1px solid #cccccc;
       -webkit-border-radius: 3px;
       -moz-border-radius: 3px;
@@ -6803,6 +6749,8 @@ a.tag:hover {
     #reward-chain .tooltip .comment {
       clear: both;
       padding-top: 5px; }
+  #reward-chain .tooltip.first {
+    display: block; }
 
 .info-bar {
   background-color: #00aeef;

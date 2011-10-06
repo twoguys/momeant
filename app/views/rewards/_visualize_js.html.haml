@@ -29,7 +29,7 @@
           injectInto: 'reward-chain',
           //set duration for the animation
           duration: 200,
-          width: 600,
+          width: 780,
           height: 300,
           orientation: 'top',
           //set animation transition type
@@ -55,15 +55,20 @@
 
           Edge: {
               type: 'bezier',
-              overridable: true
+              overridable: true,
+              color: '#555'
           },
 
           //This method is called on DOM label creation.
           //Use this method to add event handlers and styles to
           //your node.
           onCreateLabel: function(domElement, node){
+              var first = '';
+              if (node.getParents().length == 0) {
+                first = ' first';
+              }
               var html = '<div class="person"><img src="' + node.data.avatar + '"/>';
-              html += '<span class="tooltip"><div class="inner"><div class="name">' + node.data.name + '</div><div class="amount">' + node.data.amount + '</div>';
+              html += '<span class="tooltip' + first + '"><div class="inner"><div class="name">' + node.data.name + '</div><div class="amount">' + node.data.amount + '</div>';
               if (node.data.comment) {
                 html += '<div class="comment">' + node.data.comment + '</div>';
               }

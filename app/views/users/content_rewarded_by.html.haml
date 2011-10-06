@@ -1,22 +1,37 @@
 #visualization
-  #rewardee
-    = link_to(image_tag(@user.avatar.url(:thumbnail)), user_path(@user), :class => "avatar")
-    = link_to(@user.name, user_path(@user), :class => "name")
-    = link_to("Go to Profile", user_path(@user), :class => "profile button")
+  #context
+    - if @rewarder
+      .info
+        .name #{@rewarder.first_name}'s rewards of #{link_to(@user.name, user_path(@user))}
+      .stats
+        .rewards
+          %span.amount= @rewards.length
+          %span.text= @rewards.length == 1 ? "reward" : "rewards"
+        .impact
+          %span.amount= @rewarder.impact_on(@user)
+          %span.text impact
   #content-rewarded-by
-    %ul.rewards
-      - first = true
-      - @rewards.each do |reward|
-        %li.reward{:class => first ? "selected" : "", :reward_id => reward.id}
-          - first = false
-          .inner
-            .what
-              = link_to(image_tag(reward.story.thumbnail.url(:small)), story_path(reward.story, :impacted_by => reward.id), :class => "thumbnail")
-              %a.title{:href => story_path(reward.story, :impacted_by => reward.id)}
-                %span= reward.story.title
-                %span.synopsis= truncate(reward.story.synopsis, :length => 100)
-              .comment-pointer
-            .comment= truncate(reward.comment, :length => 80)
+    %ul.carousel
+      - @rewards[0..2].each do |reward|
+        %li.item{:reward_id => reward.id}
+          %ul.stories
+            - story = reward.story
+            %li.story
+              %a.title{:href => story_path(story, :impacted_by => reward.id)}
+                = image_tag(story.user.avatar.url(:thumbnail), :class => "avatar tooltipped-e", :title => story.user.name)
+                %span= story.title
+                %span.synopsis= truncate(story.synopsis, :length => 170)
+              - if story.owner?(current_user)
+                .edit-links
+                  = link_to("edit", edit_story_path(story), :class => "edit tooltipped-e", :title => "edit")
+                  = link_to("delete", story_path(story), :method => :delete, :class => "delete tooltipped-e", :title => "delete", :confirm => "Are you SURE you want to delete this?")
+              = link_to(image_tag(story.thumbnail.url(:medium)), story, :class => "thumbnail")
+              .tags
+                - story.tags.each do |tag|
+                  = link_to(tag.name, community_path(:tag => tag.name), :class => "tag")
+              .rewards= story.reward_count
+          = link_to("show impact chain", "#", :class => "visualize")
+
     - if @rewards.first
       #rewards-viz
         - @reward = @rewards.first
@@ -25,8 +40,9 @@
       
 
 :javascript
-  $('#visualization #content-rewarded-by ul.rewards li').click(function() {
-    var $li = $(this);
+  $('#visualization #content-rewarded-by ul.carousel li.item:first-child').addClass('selected');
+  $('#visualization #content-rewarded-by ul.carousel li.item a.visualize').click(function() {
+    var $li = $(this).parent();
     $li.addClass('selected').siblings().removeClass('selected');
     var $visualization = $('#rewards-viz');
     $visualization.addClass('loading');

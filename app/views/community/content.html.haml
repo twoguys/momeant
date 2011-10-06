@@ -9,7 +9,7 @@
         = link_to("< Back", community_path)
 
     %ul.stories
-      = render @stories, :show_tags => true, :hover_title => true
+      = render @stories
     = paginate @stories, :window => 2
     
     - unless params[:tag]

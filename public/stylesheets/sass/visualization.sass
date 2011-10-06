@@ -1,68 +1,57 @@
 #visualization
-	width: 600px
+	width: 780px
 	height: 600px
 	background: #fff
 	position: relative
-	#rewardee
-		position: relative
-		padding: 10px 10px 10px 80px
-		height: 60px
-		.avatar
-			position: absolute
-			top: 10px
-			left: 10px
-		.name
-			font-weight: 700
-			text-transform: uppercase
-			color: $text_color
-			font-size: 20px
-			display: block
-			margin-bottom: 5px
-		.profile.button
-			font-size: 11px
-			padding: 5px 10px
+	#context
+		padding: 10px
+		height: 35px
+		.info
+			float: left
+			.name
+				padding-top: 5px
+				font-weight: 700
+				text-transform: uppercase
+				font-size: 20px
+				display: block
+				margin-bottom: 5px
+			.profile.button
+				font-size: 11px
+				padding: 5px 10px
+		.stats
+			float: right
+			.rewards, .impact
+				float: left
+				margin-right: 20px
+				.amount
+					font-size: 30px
+					font-family: $numerals
+				.text
+					font-size: 11px
 	#content-rewarded-by
-		width: 600px
+		width: 780px
 		height: 520px
-		background: #eee
-		ul.rewards
-			padding: 0
-			width: 580px
-			li.reward
-				width: 150px
-				height: 160px
-				padding: 10px
-				@include boxshadow(0,0,0,0)
-				margin: 0
-				background: none
-				.inner
-					@include boxshadow(2px, 0.2, 1px, 1px)
-					width: 150px
-					background: #fff
-					a.thumbnail
-						width: 150px
-						height: 100px
-						img
-							width: 150px
-							height: 100px
-					a.title
-						width: 140px
-						height: 90px
-						padding: 5px
-						font-size: 12px
-						span.synopsis
-							font-size: 10px
-					.gave
-						padding: 5px 5px 0
-					.comment
-						background: none
-						text-indent: 0
-						font-size: 10px
-						padding: 5px
+		
+		ul.carousel
+			li.item
+				float: left
+				width: 240px
+				height: 153px
+				padding: 10px 10px 42px
+				a.visualize
+					padding-left: 20px
+					margin-left: 50px
+					position: relative
+					bottom: 5px
+					background: transparent url(../images/icons/tree.png) no-repeat 0 0
+			li.item.selected
+				background: transparent url(../images/darkGrayTopPointer.png) no-repeat 50% 100%
+				a.visualize
+					display: none
 				
 		#rewards-viz
 			clear: both
-			width: 600px
+			width: 780px
 			height: 340px
 			#reward-chain
 				height: 340px
@@ -72,8 +61,8 @@
 			background-position: 50% 50%
 			*
 				display: none
-				
-#visualization #content-rewarded-by ul.rewards li.reward.selected, #rewards-viz, #reward-chain
+
+#rewards-viz, #reward-chain
 	background: #555
 
 #visualization.loading
@@ -83,7 +72,7 @@
 
 #reward-chain
 	position: relative
-	width: 600px
+	width: 780px
 	height: 300px
 	margin: 0 auto
 	overflow: hidden
@@ -101,12 +90,12 @@
 		display: none
 		position: absolute
 		z-index: 99
-		top: 64px
-		left: -65px
+		top: 0
+		left: 70px
 		width: 200px
 		color: #333
 		.inner
-			background: #eee
+			background: #fff
 			border: 1px solid #ccc
 			@include rounded(3px)
 			box-shadow: 1px 1px 3px rgba(0,0,0,0.5), 0 0 3px #fff inset
@@ -126,3 +115,5 @@
 		.comment
 			clear: both
 			padding-top: 5px
+	.tooltip.first
+		display: block
