@@ -4085,6 +4085,15 @@ ul.stories li.story {
   -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
   -moz-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); }
+  ul.stories li.story a.title-link {
+    text-transform: uppercase;
+    color: #252525;
+    font-weight: 700;
+    margin: 8px 5px 9px;
+    display: block;
+    width: 170px;
+    height: 13px;
+    overflow: hidden; }
   ul.stories li.story .title {
     display: none;
     position: absolute;
@@ -4533,7 +4542,7 @@ ul.avatars li {
     background-position: 10px 9px;
     background-repeat: no-repeat; }
   .user-profile .horizontal-tabs li.rewards a {
-    background-image: url(../images/icons/starBlackSmallWhite.png); }
+    background-image: url(../images/icons/starWhiteSmall.png); }
   .user-profile .horizontal-tabs li.rewards a.active {
     background-image: url(../images/icons/starBlackSmall.png);
     background-position: 10px 10px; }
@@ -4666,7 +4675,8 @@ ul.avatars li {
         width: 230px;
         -webkit-box-shadow: 0 0 0px rgba(0, 0, 0, 0);
         -moz-box-shadow: 0 0 0px rgba(0, 0, 0, 0);
-        box-shadow: 0 0 0px rgba(0, 0, 0, 0); }
+        box-shadow: 0 0 0px rgba(0, 0, 0, 0);
+        border: none; }
         .user-profile ul.galleries li.gallery ul.stories li.about .name, .user-profile ul.galleries li.no-gallery ul.stories li.about .name {
           font-size: 16px;
           margin-bottom: 5px;
@@ -6665,18 +6675,25 @@ a.tag:hover {
           font-size: 11px; }
   #visualization #content-rewarded-by {
     width: 780px;
-    height: 520px; }
+    height: 545px; }
     #visualization #content-rewarded-by ul.carousel li.item {
       float: left;
       width: 240px;
       height: 153px;
-      padding: 10px 10px 42px; }
+      padding: 5px 10px 42px; }
       #visualization #content-rewarded-by ul.carousel li.item a.visualize {
-        padding-left: 20px;
+        padding: 5px 5px 5px 25px;
         margin-left: 50px;
         position: relative;
-        bottom: 5px;
-        background: transparent url(../images/icons/tree.png) no-repeat 0 0; }
+        bottom: 7px;
+        background: #00aeef url(../images/icons/tree.png) no-repeat 5px 50%;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        color: white; }
+      #visualization #content-rewarded-by ul.carousel li.item a.visualize:hover {
+        background-color: #dddddd;
+        color: #252525; }
     #visualization #content-rewarded-by ul.carousel li.item.selected {
       background: transparent url(../images/darkGrayTopPointer.png) no-repeat 50% 100%; }
       #visualization #content-rewarded-by ul.carousel li.item.selected a.visualize {
@@ -6684,9 +6701,32 @@ a.tag:hover {
     #visualization #content-rewarded-by #rewards-viz {
       clear: both;
       width: 780px;
-      height: 340px; }
+      height: 345px;
+      position: relative; }
+      #visualization #content-rewarded-by #rewards-viz #reward-data {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 3;
+        padding: 10px 0;
+        text-indent: 10px;
+        width: 100%;
+        color: white;
+        text-transform: uppercase;
+        font-size: 17px;
+        font-weight: 700;
+        text-align: center; }
+        #visualization #content-rewarded-by #rewards-viz #reward-data span {
+          margin-right: 3px; }
+        #visualization #content-rewarded-by #rewards-viz #reward-data .rewards {
+          padding-right: 18px;
+          background: transparent url(../images/icons/starWhiteSmall.png) no-repeat 100% 3px; }
+        #visualization #content-rewarded-by #rewards-viz #reward-data .people {
+          padding-right: 18px;
+          background: transparent url(../images/icons/personWhiteSmall.png) no-repeat 100% 3px; }
       #visualization #content-rewarded-by #rewards-viz #reward-chain {
-        height: 340px; }
+        height: 340px;
+        z-index: 1; }
     #visualization #content-rewarded-by #rewards-viz.loading {
       background-image: url(../images/graySpinner.gif);
       background-repeat: no-repeat;
@@ -6694,7 +6734,7 @@ a.tag:hover {
       #visualization #content-rewarded-by #rewards-viz.loading * {
         display: none; }
 
-#rewards-viz, #reward-chain {
+#rewards-viz, #reward-chain, #reward-data {
   background: #555555; }
 
 #visualization.loading {
@@ -6721,7 +6761,7 @@ a.tag:hover {
   #reward-chain .tooltip {
     display: none;
     position: absolute;
-    z-index: 99;
+    z-index: 2;
     top: 0;
     left: 70px;
     width: 200px;

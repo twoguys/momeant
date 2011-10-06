@@ -32,7 +32,7 @@ class RewardsController < ApplicationController
   
   def visualize
     @reward = Reward.find_by_id(params[:id])
-    render :layout => false
+    render :partial => "rewards/visualize", :layout => false
   end
   
   private

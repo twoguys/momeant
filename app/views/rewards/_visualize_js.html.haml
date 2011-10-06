@@ -40,7 +40,7 @@
           Navigation: {
             enable:true,
             panning:true,
-            zooming: 50
+            zooming: false
           },
           //set node and edge styles
           //set overridable=true for styling individual
@@ -56,7 +56,7 @@
           Edge: {
               type: 'bezier',
               overridable: true,
-              color: '#555'
+              color: '#eee'
           },
 
           //This method is called on DOM label creation.
@@ -74,22 +74,6 @@
               }
               html += '</div></div>';
               domElement.innerHTML = html;
-          },
-
-          //This method is called right before plotting
-          //an edge. It's useful for changing an individual edge
-          //style properties before plotting it.
-          //Edge data proprties prefixed with a dollar sign will
-          //override the Edge global style properties.
-          onBeforePlotLine: function(adj){
-              if (adj.nodeFrom.selected && adj.nodeTo.selected) {
-                  adj.data.$color = "#eed";
-                  adj.data.$lineWidth = 3;
-              }
-              else {
-                  delete adj.data.$color;
-                  delete adj.data.$lineWidth;
-              }
           }
       });
       //load json data

@@ -30,20 +30,25 @@
 					font-size: 11px
 	#content-rewarded-by
 		width: 780px
-		height: 520px
+		height: 545px
 		
 		ul.carousel
 			li.item
 				float: left
 				width: 240px
 				height: 153px
-				padding: 10px 10px 42px
+				padding: 5px 10px 42px
 				a.visualize
-					padding-left: 20px
+					padding: 5px 5px 5px 25px
 					margin-left: 50px
 					position: relative
-					bottom: 5px
-					background: transparent url(../images/icons/tree.png) no-repeat 0 0
+					bottom: 7px
+					background: $blue url(../images/icons/tree.png) no-repeat 5px 50%
+					@include rounded(3px)
+					color: #fff
+				a.visualize:hover
+					background-color: #ddd
+					color: $text_color
 			li.item.selected
 				background: transparent url(../images/darkGrayTopPointer.png) no-repeat 50% 100%
 				a.visualize
@@ -52,9 +57,32 @@
 		#rewards-viz
 			clear: both
 			width: 780px
-			height: 340px
+			height: 345px
+			position: relative
+			#reward-data
+				position: absolute
+				top: 0
+				left: 0
+				z-index: 3
+				padding: 10px 0
+				text-indent: 10px
+				width: 100%
+				color: #fff
+				text-transform: uppercase
+				font-size: 17px
+				font-weight: 700
+				text-align: center
+				span
+					margin-right: 3px
+				.rewards
+					padding-right: 18px
+					background: transparent url(../images/icons/starWhiteSmall.png) no-repeat 100% 3px
+				.people
+					padding-right: 18px
+					background: transparent url(../images/icons/personWhiteSmall.png) no-repeat 100% 3px
 			#reward-chain
 				height: 340px
+				z-index: 1
 		#rewards-viz.loading
 			background-image: url(../images/graySpinner.gif)
 			background-repeat: no-repeat
@@ -62,7 +90,7 @@
 			*
 				display: none
 
-#rewards-viz, #reward-chain
+#rewards-viz, #reward-chain, #reward-data
 	background: #555
 
 #visualization.loading
@@ -89,7 +117,7 @@
 	.tooltip
 		display: none
 		position: absolute
-		z-index: 99
+		z-index: 2
 		top: 0
 		left: 70px
 		width: 200px

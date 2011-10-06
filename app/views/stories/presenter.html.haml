@@ -50,9 +50,9 @@
     
       #your-reward
         #creator-info
-          = link_to(image_tag(@story.user.avatar.url(:large)), user_path(@story.user), :class => "avatar")
+          = link_to(image_tag(@story.user.avatar.url(:large)), creations_user_path(@story.user), :class => "avatar")
           .the-rest
-            = link_to(@story.user.name, user_path(@story.user), :class => "name")
+            = link_to(@story.user.name, creations_user_path(@story.user), :class => "name")
             - unless @story.user.tagline.blank?
               .tagline= truncate(@story.user.tagline, :length => 300)
             .tags
