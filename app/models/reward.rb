@@ -29,4 +29,15 @@ class Reward < Curation
   def impact
     self.descendants.where("user_id != #{self.user_id}").sum(:amount)
   end
+  
+  def descendants_tree(descendants)
+    tree = {:id => self.id, :data => {:name => self.user.name, :avatar => self.user.avatar.url(:thumbnail), :comment => self.comment[0..140], :amount => self.amount}}
+
+    tree[:children] = []
+    descendants.reject{|c| c.parent_id != self.id}.each do |reward|
+      tree[:children].push reward.descendants_tree(descendants)
+    end
+    
+    tree
+  end
 end

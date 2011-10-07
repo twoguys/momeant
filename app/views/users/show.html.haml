@@ -1,3 +1,12 @@
+- content_for :head do
+  = javascript_include_tag "jquery.masonry.min"
+  
+  :javascript
+    $(document).ready(function() {
+      $('.avatar-wall .wall').masonry({columnWidth:50});
+      $('.avatar-wall .wall a').fancybox({padding:0});
+    });
+
 .user-profile
   = render "users/user_info"
   
@@ -5,6 +14,20 @@
     = render "users/user_tabs"
 
     .tabbed
+    
+      %ul.stats-bar
+        %li.rewards
+          .value= @user.given_rewards.sum(:amount)
+          .text
+            rewards
+            %br
+            given
+        %li.impact
+          .value= @user.impact
+          .text
+            impact
+            %br
+            made
     
       - if me?(@user) && @rewards.empty?
         .have-not.rewarded
@@ -26,6 +49,27 @@
               .inner
                 %span.text Share something so that others can reward you!
                 %span.arrow
-    
-      %ul.rewards
-        = render @rewards, :user_profile => true
+
+      - unless @users.empty?
+        %section.patronage.rewarded-creators
+          %h3 Creators #{@user == current_user ? "you've" : "#{@user.first_name} has"} rewarded
+          .avatar-wall
+            .wall
+              - @users.each do |user|
+                - size = avatar_size_for_impact(@user.impact_on(user))
+                %a.tooltipped{:href => user_content_rewarded_by_path(user, @user), :title => user.name}
+                  = image_tag(user.avatar.url(:large), :style => "width:#{size}px;height:#{size}px")
+                  .border{:style => "width:#{size}px;height:#{size}px"}
+      
+      - unless @rewards.empty?
+        %section.patronage
+          %h3 Rewards #{@user == current_user ? "you've" : "#{@user.first_name} has"} given
+          %ul.rewards
+            = render @rewards, :user_profile => true
+
+- if me?(@user)
+  :javascript
+    mpq.track('Viewed My Profile Rewards', {anonymous_id: '#{session[:analytics_anonymous_id]}'});
+- else
+  :javascript
+    mpq.track('Viewed Profile Rewards', {anonymous_id: '#{session[:analytics_anonymous_id]}', mp_note: '#{@user.name}'});

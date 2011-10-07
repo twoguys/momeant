@@ -38,3 +38,7 @@
               So, #{link_to("Join mo&#149;meant".html_safe, "#join-modal")}, share your content, discover other great content,
               %strong reward and be rewarded.
     %a.next
+
+
+:javascript
+  mpq.track('Viewed Landing Page', {anonymous_id: '#{session[:analytics_anonymous_id]}'})

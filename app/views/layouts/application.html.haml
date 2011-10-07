@@ -21,19 +21,17 @@
       
     = csrf_meta_tag
       
-    = javascript_include_tag "jquery-1.4.3.min", "jquery-ui-1.8.6.min", "jquery.scrollTo-1.4.2-min", "jquery.tipsy", "jquery.placeholder", "jquery.fileuploader", "jquery.fancybox-1.3.4.pack", "jquery.tinyscrollbar.min", "jquery.touchSwipe", "jquery.colorPicker", "jquery.validate.min", "jquery.masonry.min"
+    = javascript_include_tag "jquery-1.4.3.min", "jquery-ui-1.8.6.min", "jquery.scrollTo-1.4.2-min", "jquery.tipsy", "jquery.placeholder", "jquery.fileuploader", "jquery.fancybox-1.3.4.pack", "jquery.tinyscrollbar.min", "jquery.touchSwipe", "jquery.colorPicker", "jquery.validate.min", "jquery.masonry.min", "jit-yc"
     = javascript_include_tag "underscore-min", "backbone-min", "rails", "streams", "application"
     / [if lt IE 9]
       = javascript_include_tag "http://html5shiv.googlecode.com/svn/trunk/html5.js"
     
     = stylesheet_link_tag "reset", "tipsy", "jquery-ui-1.8.14.custom", "jquery.fancybox-1.3.4", "colorpicker", "creator_text_styles", "styles", "extras"
-    
     /[if lt IE 7]
       = stylesheet_link_tag "ie"
-    = javascript_include_tag "http://use.typekit.com/sji8gns.js"
-    :javascript
-      try{Typekit.load();}catch(e){}
-      var typekit_id = 'sji8gns';
+    
+    = render "shared/typekit"
+    = render "shared/mixpanel"
     = yield :head
     
   %body{:class => @fullscreen.nil? ? "" : "fullscreen"}
@@ -73,3 +71,18 @@
           setup_modal_presenter_links('#auto-launch-story-link',true);
         });
       - session[:show_content] = nil
+
+
+- if current_user
+  :javascript
+    mpq.name_tag('#{current_user.name}');
+    
+  - if flash[:track_signup].present?
+    :javascript
+      mpq.track('Signed up', {anonymous_id: '#{session[:analytics_anonymous_id]}', id: '#{current_user.id}'})
+  - if flash[:track_story_publish]
+    :javascript
+      mpq.track('Published Story', {anonymous_id: '#{session[:analytics_anonymous_id]}', story_id: '#{flash[:track_story_publish]}'})
+  - if flash[:track_coin_purchase]
+    :javascript
+      mpq.track('Purchased Coin Package', {anonymous_id: '#{session[:analytics_anonymous_id]}', amount: '$#{flash[:track_coin_purchase]}', mp_note: '$#{flash[:track_coin_purchase]}'})

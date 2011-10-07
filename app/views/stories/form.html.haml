@@ -114,7 +114,7 @@
           = hidden_field_tag :share_twitter, "", :name => "share[twitter]"
           = hidden_field_tag :share_facebook, "", :name => "share[facebook]"
           = submit_tag "Share"
-        = link_to("Preview", story_path(@story), :target => :new, :class => "preview")
+        = link_to("Preview", story_path(@story, :return_to => edit_story_url(@story)), :class => "preview")
   
   %fieldset
     %ul
@@ -167,3 +167,6 @@
               %h2 Image & Caption Page
               %span Feature one image with or without an accompanying caption.
         .clear
+
+:javascript
+  mpq.track('Editing Content', {anonymous_id: '#{session[:analytics_anonymous_id]}', story_id: '#{@story.id}'});

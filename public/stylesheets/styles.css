@@ -1020,7 +1020,7 @@ form.new_story, form.edit_story, .story-form {
       font-weight: 700;
       text-transform: uppercase;
       background-color: #34b44c;
-      border: 3px solid #56c127;
+      border: 3px solid #40b4f7;
       text-align: center;
       -webkit-border-radius: 3px;
       -moz-border-radius: 3px;
@@ -4075,29 +4075,60 @@ form.new_story, form.edit_story, .story-form {
     margin: 1px 0; }
 
 ul.stories li.story {
+  position: relative;
   float: left;
   background-color: white;
+  border: 1px solid #cccccc;
+  padding: 3px;
   width: 230px;
   margin: 0 20px 20px 0;
-  padding: 10px 0 0;
-  -webkit-box-shadow: 3px 3px 5px #bbbbbb;
-  -moz-box-shadow: 3px 3px 5px #bbbbbb;
-  box-shadow: 3px 3px 5px #bbbbbb;
-  position: relative;
   -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
   -moz-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); }
-  ul.stories li.story .title {
-    font-weight: 700;
+  ul.stories li.story a.title-link {
     text-transform: uppercase;
-    color: black;
-    display: inline-block;
-    width: 195px;
-    padding-left: 10px; }
-  ul.stories li.story .byline {
-    color: black;
-    font-size: 11px;
-    padding-left: 10px; }
+    color: #252525;
+    font-weight: 700;
+    margin: 8px 5px 9px;
+    display: block;
+    width: 170px;
+    height: 13px;
+    overflow: hidden; }
+  ul.stories li.story .title {
+    display: none;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    padding: 10px;
+    width: 210px;
+    height: 124px;
+    color: white;
+    text-transform: uppercase;
+    font-size: 14px;
+    background: rgba(0, 0, 0, 0.75);
+    z-index: 2;
+    font-weight: 500; }
+    ul.stories li.story .title span {
+      display: block; }
+    ul.stories li.story .title span.title-text {
+      width: 175px; }
+    ul.stories li.story .title span.synopsis {
+      font-size: 11px;
+      text-transform: none;
+      border: none;
+      padding: 5px 0 0 0;
+      height: 75px; }
+  ul.stories li.story .avatar {
+    position: absolute;
+    top: 11px;
+    right: 11px;
+    display: none;
+    width: 28px;
+    height: 28px;
+    z-index: 3; }
+    ul.stories li.story .avatar img {
+      width: 28px;
+      height: 28px; }
   ul.stories li.story .edit-links {
     position: absolute;
     top: 10px;
@@ -4118,11 +4149,29 @@ ul.stories li.story {
   ul.stories li.story a.thumbnail {
     display: block;
     width: 230px;
-    height: 144px;
-    margin-top: 10px; }
+    height: 144px; }
     ul.stories li.story a.thumbnail img {
       width: 230px;
       height: 144px; }
+  ul.stories li.story .tags {
+    width: 185px;
+    position: absolute;
+    top: 125px;
+    left: 8px;
+    height: 17px;
+    overflow: hidden;
+    z-index: 3; }
+  ul.stories li.story .rewards {
+    position: absolute;
+    top: 125px;
+    right: 8px;
+    padding: 1px 4px 1px 14px;
+    color: white;
+    background: black url(../images/icons/starWhiteTiny.png) no-repeat 2px 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    z-index: 3; }
   ul.stories li.story .how-much {
     padding: 6px 5px 5px;
     font-size: 11px; }
@@ -4134,12 +4183,8 @@ ul.stories li.story {
       margin-left: 3px;
       padding-right: 13px;
       background: transparent url(../images/icons/personTiny.png) no-repeat 100% 2px; }
-  ul.stories li.story .synopsis {
-    border-top: 1px solid #eeeeee;
-    padding: 5px;
-    font-size: 11px;
-    height: 45px;
-    overflow: hidden; }
+ul.stories li.story:hover .title, ul.stories li.story:hover .avatar {
+  display: block; }
 ul.stories li.medium.story {
   margin-bottom: 25px;
   margin-right: 25px;
@@ -4416,31 +4461,37 @@ ul.avatars li {
     top: 42px;
     bottom: 0;
     left: 0;
-    width: 187px;
-    padding: 10px;
+    width: 167px;
+    padding: 10px 20px;
     border-right: 1px solid #cccccc;
     z-index: 99;
     font-size: 11px;
     background: #f4f4f4; }
-    .user-profile .profile-info .avatar {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      display: block;
-      border: 3px solid black;
-      width: 50px;
-      height: 50px; }
-    .user-profile .profile-info .name {
-      font-size: 18px;
-      font-weight: 700;
-      text-transform: uppercase;
-      color: black;
-      padding-left: 63px;
-      padding-top: 3px;
-      min-height: 54px;
-      margin-bottom: 10px; }
-      .user-profile .profile-info .name span {
-        display: block; }
+    .user-profile .profile-info .avatar-badge-name {
+      position: relative;
+      padding: 10px 0 0 5px;
+      margin-bottom: 15px;
+      margin-left: -5px; }
+      .user-profile .profile-info .avatar-badge-name .avatar img {
+        width: 165px;
+        height: 165px;
+        border: 3px solid black; }
+      .user-profile .profile-info .avatar-badge-name .name {
+        font-size: 14px;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: white;
+        background: black;
+        width: 161px;
+        position: absolute;
+        top: 152px;
+        left: 5px;
+        padding: 5px;
+        overflow: hidden; }
+      .user-profile .profile-info .avatar-badge-name .badge {
+        position: absolute;
+        top: 0;
+        left: 0; }
     .user-profile .profile-info .stats {
       margin-bottom: 10px;
       padding-left: 70px;
@@ -4504,7 +4555,7 @@ ul.avatars li {
     background-position: 10px 9px;
     background-repeat: no-repeat; }
   .user-profile .horizontal-tabs li.rewards a {
-    background-image: url(../images/icons/starBlackSmallWhite.png); }
+    background-image: url(../images/icons/starWhiteSmall.png); }
   .user-profile .horizontal-tabs li.rewards a.active {
     background-image: url(../images/icons/starBlackSmall.png);
     background-position: 10px 10px; }
@@ -4552,6 +4603,24 @@ ul.avatars li {
     background: transparent url(../images/icons/communityDark.png) no-repeat 0 2px; }
   .user-profile .have-not.shared .box-button .inner {
     background: transparent url(../images/icons/momeantAddStoryGrey.png) no-repeat 5px 2px; }
+  .user-profile section.patronage h3 {
+    text-transform: uppercase;
+    font-size: 13px;
+    border-bottom: 1px solid #dddddd;
+    margin-bottom: 10px; }
+  .user-profile .rewarded-creators .avatar-wall {
+    height: 600px;
+    margin-bottom: 30px;
+    background: transparent url(../images/mosaicBG.png) no-repeat 0 0; }
+    .user-profile .rewarded-creators .avatar-wall .wall a {
+      display: block; }
+      .user-profile .rewarded-creators .avatar-wall .wall a img {
+        padding: 3px; }
+      .user-profile .rewarded-creators .avatar-wall .wall a .border {
+        border: 3px solid white;
+        position: absolute;
+        top: 0;
+        left: 0; }
   .user-profile ul.rewards {
     padding: 0;
     display: inline-block; }
@@ -4593,7 +4662,7 @@ ul.avatars li {
     .user-profile ul.stats-bar li.rewards, .user-profile ul.stats-bar li.patrons {
       border-right: 1px solid white;
       padding-right: 30px; }
-    .user-profile ul.stats-bar li.patrons, .user-profile ul.stats-bar li.until-payment {
+    .user-profile ul.stats-bar li.patrons, .user-profile ul.stats-bar li.until-payment, .user-profile ul.stats-bar li.impact {
       border-left: 1px solid #cccccc;
       padding-left: 30px; }
     .user-profile ul.stats-bar li.patrons .value {
@@ -4619,7 +4688,8 @@ ul.avatars li {
         width: 230px;
         -webkit-box-shadow: 0 0 0px rgba(0, 0, 0, 0);
         -moz-box-shadow: 0 0 0px rgba(0, 0, 0, 0);
-        box-shadow: 0 0 0px rgba(0, 0, 0, 0); }
+        box-shadow: 0 0 0px rgba(0, 0, 0, 0);
+        border: none; }
         .user-profile ul.galleries li.gallery ul.stories li.about .name, .user-profile ul.galleries li.no-gallery ul.stories li.about .name {
           font-size: 16px;
           margin-bottom: 5px;
@@ -4821,15 +4891,6 @@ form.user_edit {
   form.user_edit #user_interest_list {
     width: 98%; }
 
-.avatar-wall {
-  margin: 20px;
-  width: 390px;
-  background: #eeeeee; }
-  .avatar-wall a {
-    display: block;
-    padding: 0;
-    margin: 0; }
-
 .community {
   max-width: 1064px;
   margin: 0 auto; }
@@ -4877,52 +4938,6 @@ form.user_edit {
       height: 0;
       clear: both;
       visibility: hidden; }
-    .community ul.stories li.story {
-      padding-top: 0;
-      position: relative;
-      border: 1px solid #cccccc;
-      padding: 3px; }
-      .community ul.stories li.story .title {
-        display: none;
-        position: absolute;
-        top: 3px;
-        left: 3px;
-        padding: 10px;
-        width: 210px;
-        height: 124px;
-        color: white;
-        text-transform: uppercase;
-        font-size: 14px;
-        background: rgba(0, 0, 0, 0.75);
-        z-index: 2;
-        font-weight: 500; }
-        .community ul.stories li.story .title .avatar {
-          position: absolute;
-          top: 3px;
-          right: 3px;
-          width: 28px;
-          height: 28px; }
-        .community ul.stories li.story .title span {
-          display: block; }
-        .community ul.stories li.story .title span.synopsis {
-          font-size: 11px;
-          text-transform: none;
-          border: none;
-          padding: 5px 0 0 0;
-          height: 75px; }
-      .community ul.stories li.story .edit-links, .community ul.stories li.story .how-much {
-        display: none; }
-      .community ul.stories li.story a.thumbnail {
-        margin-top: 0; }
-      .community ul.stories li.story .tags {
-        position: absolute;
-        top: 125px;
-        left: 8px;
-        height: 17px;
-        overflow: hidden;
-        z-index: 3; }
-    .community ul.stories li.story:hover .title {
-      display: block; }
   .community ul.users {
     display: inline-block;
     padding-bottom: 40px; }
@@ -4980,6 +4995,8 @@ form.user_edit {
       margin-bottom: 10px;
       padding-bottom: 5px;
       border-bottom: 1px solid #dddddd; }
+    .community .tag-cloud a.tag {
+      font-size: 14px; }
   .community nav.pagination {
     clear: both;
     text-align: center;
@@ -6470,6 +6487,16 @@ ul.rewards {
       ul.rewards li .who .comment {
         color: #555555;
         font-size: 11px; }
+    ul.rewards li .visualize {
+      position: absolute;
+      top: 180px;
+      right: 12px; }
+      ul.rewards li .visualize a {
+        text-indent: -9999px;
+        display: block;
+        width: 16px;
+        height: 16px;
+        background: transparent url(../images/icons/tree.png) no-repeat 0 0; }
     ul.rewards li .gave, ul.rewards li .people, ul.rewards li .impact {
       font-size: 11px; }
     ul.rewards li .gave {
@@ -6638,31 +6665,154 @@ a.tag:hover {
   color: black; }
 
 #visualization {
-  width: 800px;
-  height: 400px;
-  background: white; }
+  width: 780px;
+  height: 600px;
+  background: #f4f4f4;
+  position: relative; }
+  #visualization #context {
+    padding: 10px;
+    height: 35px; }
+    #visualization #context .info {
+      float: left; }
+      #visualization #context .info .name {
+        padding-top: 5px;
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 20px;
+        display: block;
+        margin-bottom: 5px; }
+      #visualization #context .info .profile.button {
+        font-size: 11px;
+        padding: 5px 10px; }
+    #visualization #context .stats {
+      float: right; }
+      #visualization #context .stats .rewards, #visualization #context .stats .impact {
+        float: left;
+        margin-right: 20px; }
+        #visualization #context .stats .rewards .amount, #visualization #context .stats .impact .amount {
+          font-size: 30px;
+          font-family: "ff-dagny-web-pro-1", "ff-dagny-web-pro-2", sans-serif; }
+        #visualization #context .stats .rewards .text, #visualization #context .stats .impact .text {
+          font-size: 11px; }
   #visualization #content-rewarded-by {
-    display: inline-block;
-    background: #eeeeee;
-    padding: 20px; }
-    #visualization #content-rewarded-by:after {
-      content: ".";
-      display: block;
-      height: 0;
+    width: 780px;
+    height: 545px; }
+    #visualization #content-rewarded-by ul.carousel li.item {
+      float: left;
+      width: 240px;
+      height: 153px;
+      padding: 5px 10px 42px; }
+      #visualization #content-rewarded-by ul.carousel li.item a.visualize {
+        padding: 5px 5px 5px 25px;
+        margin-left: 50px;
+        position: relative;
+        bottom: 7px;
+        background: #00aeef url(../images/icons/tree.png) no-repeat 5px 50%;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        color: white; }
+      #visualization #content-rewarded-by ul.carousel li.item a.visualize:hover {
+        background-color: #dddddd;
+        color: #252525; }
+    #visualization #content-rewarded-by ul.carousel li.item.selected {
+      background: transparent url(../images/darkGrayTopPointer.png) no-repeat 50% 100%; }
+      #visualization #content-rewarded-by ul.carousel li.item.selected a.visualize {
+        display: none; }
+    #visualization #content-rewarded-by #rewards-viz {
       clear: both;
-      visibility: hidden; }
-    #visualization #content-rewarded-by h3 {
-      text-transform: uppercase;
-      font-size: 16px;
-      margin-bottom: 20px;
-      border-bottom: 1px solid #dddddd; }
-    #visualization #content-rewarded-by ul.rewards {
-      padding-top: 0; }
+      width: 780px;
+      height: 345px;
+      position: relative; }
+      #visualization #content-rewarded-by #rewards-viz #reward-data {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 3;
+        padding: 10px 0;
+        text-indent: 10px;
+        width: 100%;
+        color: white;
+        text-transform: uppercase;
+        font-size: 17px;
+        font-weight: 700;
+        text-align: center;
+        text-shadow: 0 1px 0 black; }
+        #visualization #content-rewarded-by #rewards-viz #reward-data span {
+          margin-right: 3px; }
+        #visualization #content-rewarded-by #rewards-viz #reward-data .rewards {
+          padding-right: 18px;
+          background: transparent url(../images/icons/starWhiteSmall.png) no-repeat 100% 3px; }
+        #visualization #content-rewarded-by #rewards-viz #reward-data .people {
+          padding-right: 18px;
+          background: transparent url(../images/icons/personWhiteSmall.png) no-repeat 100% 3px; }
+      #visualization #content-rewarded-by #rewards-viz #reward-chain {
+        height: 340px;
+        z-index: 1; }
+    #visualization #content-rewarded-by #rewards-viz.loading {
+      background-image: url(../images/graySpinner.gif);
+      background-repeat: no-repeat;
+      background-position: 50% 50%; }
+      #visualization #content-rewarded-by #rewards-viz.loading * {
+        display: none; }
+
+#rewards-viz, #reward-chain, #reward-data {
+  background: #555555; }
 
 #visualization.loading {
   background: white url(../images/spinner.gif) no-repeat 50% 50%; }
   #visualization.loading * {
     display: none; }
+
+#reward-chain {
+  position: relative;
+  width: 780px;
+  height: 300px;
+  margin: 0 auto;
+  overflow: hidden;
+  cursor: move; }
+  #reward-chain .person {
+    width: 60px;
+    height: 60px;
+    cursor: help; }
+    #reward-chain .person img {
+      width: 60px;
+      height: 60px; }
+  #reward-chain .person:hover .tooltip {
+    display: block; }
+  #reward-chain .tooltip {
+    display: none;
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 70px;
+    width: 200px;
+    color: #333333; }
+    #reward-chain .tooltip .inner {
+      background: white;
+      border: 1px solid #cccccc;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      border-radius: 3px;
+      box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5), 0 0 3px white inset;
+      font-size: 10px;
+      padding: 5px;
+      min-height: 10px; }
+    #reward-chain .tooltip .name {
+      font-weight: 700;
+      float: left;
+      margin-right: 10px;
+      text-transform: uppercase; }
+    #reward-chain .tooltip .amount {
+      float: right;
+      padding-right: 12px;
+      font-weight: 700;
+      background: transparent url(../images/icons/starBlackTiny.png) no-repeat 100% 1px; }
+    #reward-chain .tooltip .comment {
+      clear: both;
+      padding-top: 5px; }
+  #reward-chain .tooltip.first {
+    display: block; }
 
 .info-bar {
   background-color: #00aeef;

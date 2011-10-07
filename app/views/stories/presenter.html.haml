@@ -50,14 +50,11 @@
     
       #your-reward
         #creator-info
-          = link_to(image_tag(@story.user.avatar.url(:large)), user_path(@story.user), :class => "avatar")
+          = link_to(image_tag(@story.user.avatar.url(:large)), creations_user_path(@story.user), :class => "avatar")
           .the-rest
-            = link_to(@story.user.name, user_path(@story.user), :class => "name")
+            = link_to(@story.user.name, creations_user_path(@story.user), :class => "name")
             - unless @story.user.tagline.blank?
               .tagline= truncate(@story.user.tagline, :length => 300)
-            .tags
-              - @story.user.interests.each do |tag|
-                = link_to(tag.name, "#", :class => "tag")
             .links
               = link_to("view other content", creations_user_path(@story.user))
           
@@ -122,3 +119,10 @@
               - if reward.comment.present?
                 .comment= reward.comment
               .when #{time_ago_in_words(reward.created_at)} ago
+              
+- if current_user
+  :javascript
+    mpq.track('Viewed Content', {anonymous_id: '#{session[:analytics_anonymous_id]}', mp_note: '#{@story.title}', user: true})  
+- else
+  :javascript
+    mpq.track('Viewed Content', {anonymous_id: '#{session[:analytics_anonymous_id]}', mp_note: '#{@story.title}', user: false})

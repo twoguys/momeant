@@ -15,3 +15,6 @@
     %h3 Discover awesome people and their work
     %p
       Visit the #{link_to("community area", community_path)} to see who the top patrons and creators are right now.
+
+:javascript
+  mpq.track('Rewarded Content', {anonymous_id: '#{session[:analytics_anonymous_id]}', story_id: '#{@story.id}', mp_note: '#{@reward.amount} reward coins'});

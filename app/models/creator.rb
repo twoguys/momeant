@@ -15,7 +15,7 @@ class Creator < User
   
   def patrons
     patrons = []
-    self.rewards.group_by {|r| r.user}.each do |user, rewards|
+    self.rewards.group_by(&:user).each do |user, rewards|
       user.rewards_given = rewards.inject(0){ |sum,r| sum + r.amount }
       patrons << user
     end

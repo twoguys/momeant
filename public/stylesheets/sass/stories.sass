@@ -386,27 +386,58 @@
 
 ul.stories
 	li.story
+		position: relative
 		float: left
 		background-color: white
+		border: 1px solid #ccc
+		padding: 3px
 		width: 230px
 		margin: 0 20px 20px 0
-		padding: 10px 0 0
-		-webkit-box-shadow: 3px 3px 5px #BBBBBB
-		-moz-box-shadow: 3px 3px 5px #BBBBBB
-		box-shadow: 3px 3px 5px #BBBBBB
-		position: relative
 		@include boxshadow(5px,0.2,2px,2px)
-		.title
-			font-weight: 700
+		a.title-link
 			text-transform: uppercase
-			color: #000
-			display: inline-block
-			width: 195px
-			padding-left: 10px
-		.byline
-			color: #000
-			font-size: 11px
-			padding-left: 10px			
+			color: $text_color
+			font-weight: 700
+			margin: 8px 5px 9px
+			display: block
+			width: 170px
+			height: 13px
+			overflow: hidden
+		.title
+			display: none
+			position: absolute
+			top: 3px
+			left: 3px
+			padding: 10px
+			width: 210px
+			height: 124px
+			color: #fff
+			text-transform: uppercase
+			font-size: 14px
+			background: rgba(0,0,0,0.75)
+			z-index: 2
+			font-weight: 500
+			span
+				display: block
+			span.title-text
+				width: 175px
+			span.synopsis
+				font-size: 11px
+				text-transform: none
+				border: none
+				padding: 5px 0 0 0
+				height: 75px
+		.avatar
+			position: absolute
+			top: 11px
+			right: 11px
+			display: none
+			width: 28px
+			height: 28px
+			z-index: 3
+			img
+				width: 28px
+				height: 28px
 		.edit-links
 			position: absolute
 			top: 10px
@@ -428,10 +459,26 @@ ul.stories
 			display: block
 			width: 230px
 			height: 144px
-			margin-top: 10px
 			img
 				width: 230px
 				height: 144px
+		.tags
+			width: 185px
+			position: absolute
+			top: 125px
+			left: 8px
+			height: 17px
+			overflow: hidden
+			z-index: 3
+		.rewards
+			position: absolute
+			top: 125px
+			right: 8px
+			padding: 1px 4px 1px 14px
+			color: #fff
+			background: #000 url(../images/icons/starWhiteTiny.png) no-repeat 2px 3px
+			@include rounded(3px)
+			z-index: 3
 		.how-much
 			padding: 6px 5px 5px
 			font-size: 11px
@@ -443,12 +490,8 @@ ul.stories
 				margin-left: 3px
 				padding-right: 13px
 				background: transparent url(../images/icons/personTiny.png) no-repeat 100% 2px
-		.synopsis
-			border-top: 1px solid #eee
-			padding: 5px
-			font-size: 11px
-			height: 45px
-			overflow: hidden
+	li.story:hover .title, li.story:hover .avatar
+		display: block
 		
 	li.medium.story
 		margin-bottom: 25px

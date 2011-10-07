@@ -9,12 +9,20 @@
         = link_to("< Back", community_path)
 
     %ul.stories
-      = render @stories, :show_tags => true, :hover_title => true
+      = render @stories
     = paginate @stories, :window => 2
     
     - unless params[:tag]
       .tag-cloud
-        %h3 Popular Tags
+        %h3 Filter content by tag:
         .tags
           - @tags.each do |tag|
             = link_to(tag.name, community_path(:tag => tag.name), :class => "tag")
+
+:javascript
+  var options = {anonymous_id: '#{session[:analytics_anonymous_id]}'};
+- if params[:tag]
+  :javascript
+    options['mp_note'] = 'tag: #{params[:tag]}'
+:javascript
+  mpq.track('Viewed Most Rewarded Content', options)

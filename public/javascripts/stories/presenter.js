@@ -161,6 +161,7 @@ $(function() {
 			$(this.el).animate({top: 0}, 300);
 			$('#content-cover').show();
 			this.modal_open = true;
+			mpq.track('Opened Reward Modal', {anonymous_id: '#{session[:analytics_anonymous_id]}'})
 		},
 		
 		hide_modal: function() {

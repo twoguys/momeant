@@ -32,8 +32,12 @@ class StoriesController < ApplicationController
     end
     @impacted_by = params[:impacted_by] if params[:impacted_by]
     @fullscreen = true
-
-    @exit_presenter_url = request.env["HTTP_REFERER"]
+    
+    if params[:return_to]
+      @exit_presenter_url = params[:return_to]
+    else
+      @exit_presenter_url = request.env["HTTP_REFERER"]
+    end
     url = URI.parse(@exit_presenter_url) unless @exit_presenter_url.nil?
     if @exit_presenter_url.nil? || !["momeant.dev","localhost","momeant.heroku.com","momeant.com"].include?(url.host)
        @exit_presenter_url = community_path
@@ -66,6 +70,9 @@ class StoriesController < ApplicationController
       current_user.post_to_twitter(@story, story_url(@story)) unless sharing[:twitter].blank?
       current_user.post_to_facebook(@story, story_url(@story)) unless sharing[:facebook].blank?
     end
+    
+    # track analytics across redirect
+    flash[:track_story_publish] = @story.id
     
     redirect_to creations_user_path(@story.user), :notice => "Your content has been shared!"
   end

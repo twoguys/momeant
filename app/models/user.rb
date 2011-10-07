@@ -22,29 +22,29 @@ class User < ActiveRecord::Base
   has_many :purchased_stories, :through => :purchases, :source => :story
   has_many :stories, :through => :purchases, :foreign_key => :payer_id
 
-  has_many :bookmarks
+  has_many :bookmarks, :dependent => :destroy
   has_many :bookmarked_stories, :through => :bookmarks, :source => :story
   
-  has_many :given_rewards, :class_name => "Reward"
+  has_many :given_rewards, :class_name => "Reward", :dependent => :destroy
   has_many :rewarded_creators, :through => :given_rewards, :source => :recipient, :uniq => true
   has_many :rewarded_stories, :through => :given_rewards, :source => :story
   
-  has_many :views
+  has_many :views, :dependent => :destroy
   has_many :viewed_stories, :through => :views, :source => :story
 
-  has_many :subscriptions
-  has_many :inverse_subscriptions, :class_name => "Subscription", :foreign_key => :subscriber_id
+  has_many :subscriptions, :dependent => :destroy
+  has_many :inverse_subscriptions, :class_name => "Subscription", :foreign_key => :subscriber_id, :dependent => :destroy
   has_many :subscribers, :through => :subscriptions
   has_many :subscribed_to, :through => :inverse_subscriptions, :source => :user
   
-  has_many :galleries, :order => :position
+  has_many :galleries, :order => :position, :dependent => :destroy
   
   has_many :amazon_payments, :foreign_key => :payer_id, :order => "created_at DESC"
   
   has_many :authentications
   
   has_attached_file :avatar,
-    :styles => { :thumbnail => "60x60#", :large => "100x100#" },
+    :styles => { :thumbnail => "60x60#", :large => "200x200#" },
     :path          => "avatars/:id/:style.:extension",
     :storage        => :s3,
     :s3_credentials => {
@@ -184,6 +184,17 @@ class User < ActiveRecord::Base
     self.given_rewards.map {|reward| reward.impact}.inject(:+) || 0
   end
   
+  def tags
+    tags = self.given_rewards.map{|r| r.story.tags}.flatten
+    tag_hash = Hash.new(0)
+    tags.each do |tag|
+      tag_hash[tag.name] += 1
+    end
+    tags.uniq.sort do |x,y|
+      tag_hash[y.name] <=> tag_hash[x.name]
+    end
+  end
+  
   def last_reward_for(story)
     Reward.where(:user_id => self.id, :story_id => story.id).first
   end
@@ -198,6 +209,20 @@ class User < ActiveRecord::Base
   
   def has_viewed_this_period?(story)
     View.where(:user_id => self.id, :story_id => story.id).where("created_at > ?", self.subscription_last_updated_at).present?
+  end
+  
+  # Badge calculation
+  
+  def badge_level
+    return 1 if self.amazon_payments.empty?
+    return 2 if self.impact < 20
+    return 3 if self.impact < 100
+    return 4 if self.impact < 200
+    return 5 if self.impact < 400
+    return 6 if self.impact < 800
+    return 7 if self.impact < 1600
+    return 8 if self.impact < 3200
+    return 9
   end
   
   

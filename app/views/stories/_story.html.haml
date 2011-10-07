@@ -1,25 +1,25 @@
-- show_tags ||= false
-- hover_title ||= false
+- editable ||= false
+- how_much ||= false
 %li.story
-  - if hover_title
-    %a.title{:href => story_path(story)}
-      = image_tag(story.user.avatar.url(:thumbnail), :class => "avatar tooltipped-e", :title => story.user.name)
-      %span= story.title
-      %span.synopsis= truncate(story.synopsis, :length => 170)
+  - if editable
+    = link_to(story.title || "Untitled", story, :class => "title-link")
   - else
-    = link_to(truncate(story.title, :length => 25) || "Untitled", story, :class => "title")
-  - if story.owner?(current_user)
+    %a.title{:href => story_path(story)}
+      %span.title-text= story.title
+      %span.synopsis= truncate(story.synopsis, :length => 170)
+    = link_to(image_tag(story.user.avatar.url(:thumbnail)), creations_user_path(story.user), :class => "avatar tooltipped-e", :title => story.user.name)
+  - if story.owner?(current_user) && editable
     .edit-links
       = link_to("edit", edit_story_path(story), :class => "edit tooltipped-e", :title => "edit")
       = link_to("delete", story_path(story), :method => :delete, :class => "delete tooltipped-e", :title => "delete", :confirm => "Are you SURE you want to delete this?")
   = link_to(image_tag(story.thumbnail.url(:medium)), story, :class => "thumbnail")
-  .how-much
-    %span.reward-count= story.reward_count
-    %span from
-    %span.people= story.users_who_rewarded.count
-  - if show_tags
+  - if how_much
+    .how-much
+      %span.reward-count= story.reward_count
+      %span from
+      %span.people= story.users_who_rewarded.count
+  - unless editable
     .tags
       - story.tags.each do |tag|
         = link_to(tag.name, community_path(:tag => tag.name), :class => "tag")
-  - else
-    .synopsis= truncate(story.synopsis, :length => 100)
+    .rewards= story.reward_count

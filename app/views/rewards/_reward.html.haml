@@ -35,6 +35,7 @@
     .people #{pluralize(reward.descendants.map(&:user_id).uniq.length, "more person")} rewarding
     .impact= pluralize(reward.impact, "more reward star")
     .comment= truncate(reward.comment, :length => 100)
+    .visualize= link_to("visualize", visualize_reward_path(reward), :class => "tooltipped", :title => "Visualize impact chain")
   - else
     .who
       = link_to(image_tag(reward.user.avatar(:thumbnail)), user_path(reward.user), :class => "avatar")
