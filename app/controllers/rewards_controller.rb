@@ -1,5 +1,5 @@
 class RewardsController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :except => [:visualize]
   
   def create
     @user = User.find_by_id(params[:user_id])
