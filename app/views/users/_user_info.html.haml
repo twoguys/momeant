@@ -1,21 +1,8 @@
 .profile-info
-  = link_to(image_tag(@user.avatar.url(:thumbnail), :class => "avatar"), user_path(@user))
-  
-  .name
-    %span= @user.first_name
-    %span= @user.last_name
-    
-  .stats
-    .impact-shield.tooltipped{:title => "Level 1 Patron"} 1
-    .rewards-given
-      %span.amount= @user.given_rewards.sum(:amount)
-      %span.text given
-    .impact
-      %span.amount= @user.impact
-      %span.text impact
-    .rewards-received
-      %span.amount= @user.rewards.sum(:amount)
-      %span.text received
+  .avatar-badge-name
+    = link_to(image_tag(@user.avatar.url(:large)), user_path(@user), :class => "avatar")
+    = image_tag("badges/#{@user.badge_level}.png", :class => "badge")
+    .name= @user.name
       
   - if @user.occupation.present?
     .occupation
@@ -34,9 +21,9 @@
   
   - unless @user.tags.empty?
     .tags
-      %h3 Tags
+      %h3 Most Rewarded Tags
       - @user.tags[0..10].each do |tag|
-        = link_to(tag.name, "#", :class => "tag")
+        = link_to(tag.name, community_path(:tag => tag.name), :class => "tag")
       
   - if @user == current_user
     = link_to("Edit Your Profile", edit_user_path(current_user), :class => "edit")

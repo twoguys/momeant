@@ -211,6 +211,20 @@ class User < ActiveRecord::Base
     View.where(:user_id => self.id, :story_id => story.id).where("created_at > ?", self.subscription_last_updated_at).present?
   end
   
+  # Badge calculation
+  
+  def badge_level
+    return 1 if self.amazon_payments.empty?
+    return 2 if self.impact < 20
+    return 3 if self.impact < 100
+    return 4 if self.impact < 200
+    return 5 if self.impact < 400
+    return 6 if self.impact < 800
+    return 7 if self.impact < 1600
+    return 8 if self.impact < 3200
+    return 9
+  end
+  
   
   # Sharing content with external services
   
