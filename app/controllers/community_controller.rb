@@ -56,7 +56,7 @@ class CommunityController < ApplicationController
     if params[:tag].blank?
      @tags = Story.joins(:curations).where("curations.type = 'Reward'").tag_counts.order("count DESC").limit(20) 
     else      
-     @tags = Story.joins(:curations).where("curations.type = 'Reward'").tagged_with(params[:tag]).tag_counts.order("count DESC").limit(20).sort do |x, y|
+     @tags = Story.joins(:curations).where("curations.type = 'Reward'").tagged_with(params[:tag]).tag_counts.order("count DESC").limit(10).sort do |x, y|
        if params[:tag].include?(x.name)
          -1
        else
