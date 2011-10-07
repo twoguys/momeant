@@ -35,7 +35,7 @@
   - unless @user.tags.empty?
     .tags
       %h3 Tags
-      - @user.tags.each do |tag|
+      - @user.tags[0..10].each do |tag|
         = link_to(tag.name, "#", :class => "tag")
       
   - if @user == current_user

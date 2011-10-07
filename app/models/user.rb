@@ -185,7 +185,14 @@ class User < ActiveRecord::Base
   end
   
   def tags
-    self.given_rewards.map{|r| r.story.tags}.flatten.uniq
+    tags = self.given_rewards.map{|r| r.story.tags}.flatten
+    tag_hash = Hash.new(0)
+    tags.each do |tag|
+      tag_hash[tag.name] += 1
+    end
+    tags.uniq.sort do |x,y|
+      tag_hash[y.name] <=> tag_hash[x.name]
+    end
   end
   
   def last_reward_for(story)
