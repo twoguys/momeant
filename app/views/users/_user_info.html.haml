@@ -32,10 +32,10 @@
       %h3 Location
       .insides= @user.location
   
-  - unless @user.interests.empty?
+  - unless @user.tags.empty?
     .tags
       %h3 Tags
-      - @user.interests.each do |tag|
+      - @user.tags.each do |tag|
         = link_to(tag.name, "#", :class => "tag")
       
   - if @user == current_user

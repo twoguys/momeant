@@ -22,22 +22,22 @@ class User < ActiveRecord::Base
   has_many :purchased_stories, :through => :purchases, :source => :story
   has_many :stories, :through => :purchases, :foreign_key => :payer_id
 
-  has_many :bookmarks
+  has_many :bookmarks, :dependent => :destroy
   has_many :bookmarked_stories, :through => :bookmarks, :source => :story
   
-  has_many :given_rewards, :class_name => "Reward"
+  has_many :given_rewards, :class_name => "Reward", :dependent => :destroy
   has_many :rewarded_creators, :through => :given_rewards, :source => :recipient, :uniq => true
   has_many :rewarded_stories, :through => :given_rewards, :source => :story
   
-  has_many :views
+  has_many :views, :dependent => :destroy
   has_many :viewed_stories, :through => :views, :source => :story
 
-  has_many :subscriptions
-  has_many :inverse_subscriptions, :class_name => "Subscription", :foreign_key => :subscriber_id
+  has_many :subscriptions, :dependent => :destroy
+  has_many :inverse_subscriptions, :class_name => "Subscription", :foreign_key => :subscriber_id, :dependent => :destroy
   has_many :subscribers, :through => :subscriptions
   has_many :subscribed_to, :through => :inverse_subscriptions, :source => :user
   
-  has_many :galleries, :order => :position
+  has_many :galleries, :order => :position, :dependent => :destroy
   
   has_many :amazon_payments, :foreign_key => :payer_id, :order => "created_at DESC"
   
@@ -182,6 +182,10 @@ class User < ActiveRecord::Base
   
   def impact
     self.given_rewards.map {|reward| reward.impact}.inject(:+) || 0
+  end
+  
+  def tags
+    self.given_rewards.map{|r| r.story.tags}.flatten.uniq
   end
   
   def last_reward_for(story)

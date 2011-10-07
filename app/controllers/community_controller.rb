@@ -15,14 +15,10 @@ class CommunityController < ApplicationController
   end
   
   def people
-    @users = User.select("DISTINCT ON(id) users.*").joins("LEFT OUTER JOIN curations ON curations.user_id = users.id").where("curations.type = 'Reward'").limit(12) #.where("curations.created_at > '#{30.days.ago}'")
-
-    if params[:tag]
-      @users = @users.tagged_with(params[:tag])
-    else
-      @tags = User.interest_counts.order("count DESC").limit(10)
-    end
-
+    content_ids = get_tags_and_stories
+    
+    @users = User.select("DISTINCT ON(id) users.*").joins("LEFT OUTER JOIN curations ON curations.user_id = users.id").where("curations.type = 'Reward'").where("curations.story_id IN (#{content_ids.join(',')})").limit(10)
+    # this sort is going to make A LOT of SQL calls, need to cache impact on the user
     @users = @users.sort do |a,b|
       if a.impact != b.impact
         b.impact <=> a.impact
@@ -30,7 +26,6 @@ class CommunityController < ApplicationController
         b.given_rewards.sum(:amount) <=> a.given_rewards.sum(:amount)
       end
     end
-    @users = @users[0..18]
     
     @page_title = "Most Impactful People"
   end
@@ -55,6 +50,22 @@ class CommunityController < ApplicationController
   
   def set_nav
     @nav = "community"
+  end
+  
+  def get_tags_and_stories
+    if params[:tag].blank?
+     @tags = Story.joins(:curations).where("curations.type = 'Reward'").tag_counts.order("count DESC").limit(20) 
+    else      
+     @tags = Story.joins(:curations).where("curations.type = 'Reward'").tagged_with(params[:tag]).tag_counts.order("count DESC").limit(20).sort do |x, y|
+       if params[:tag].include?(x.name)
+         -1
+       else
+         1
+       end
+     end
+    end
+
+    return Story.tagged_with(@tags, :any => true).map{|story| story.id}
   end
   
 end

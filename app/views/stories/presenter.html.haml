@@ -55,9 +55,6 @@
             = link_to(@story.user.name, creations_user_path(@story.user), :class => "name")
             - unless @story.user.tagline.blank?
               .tagline= truncate(@story.user.tagline, :length => 300)
-            .tags
-              - @story.user.interests.each do |tag|
-                = link_to(tag.name, "#", :class => "tag")
             .links
               = link_to("view other content", creations_user_path(@story.user))
           

@@ -14,7 +14,7 @@
           = link_to(image_tag(user.avatar.url(:large)), user_path(user), :class => "avatar")
           = link_to(user.name, user_path(user), :class => "name")
           .tags
-            - user.interests.each do |tag|
+            - user.tags.each do |tag|
               = link_to(tag.name, community_people_path(:tag => tag.name), :class => "tag")
           .impact
             %span.amount= user.impact
