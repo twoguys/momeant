@@ -417,20 +417,27 @@ ul.stories
 			background: rgba(0,0,0,0.75)
 			z-index: 2
 			font-weight: 500
-			.avatar
-				position: absolute
-				top: 3px
-				right: 3px
-				width: 28px
-				height: 28px
 			span
 				display: block
+			span.title-text
+				width: 175px
 			span.synopsis
 				font-size: 11px
 				text-transform: none
 				border: none
 				padding: 5px 0 0 0
-				height: 75px	
+				height: 75px
+		.avatar
+			position: absolute
+			top: 11px
+			right: 11px
+			display: none
+			width: 28px
+			height: 28px
+			z-index: 3
+			img
+				width: 28px
+				height: 28px
 		.edit-links
 			position: absolute
 			top: 10px
@@ -483,7 +490,7 @@ ul.stories
 				margin-left: 3px
 				padding-right: 13px
 				background: transparent url(../images/icons/personTiny.png) no-repeat 100% 2px
-	li.story:hover .title
+	li.story:hover .title, li.story:hover .avatar
 		display: block
 		
 	li.medium.story

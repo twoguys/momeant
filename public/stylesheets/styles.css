@@ -4108,20 +4108,27 @@ ul.stories li.story {
     background: rgba(0, 0, 0, 0.75);
     z-index: 2;
     font-weight: 500; }
-    ul.stories li.story .title .avatar {
-      position: absolute;
-      top: 3px;
-      right: 3px;
-      width: 28px;
-      height: 28px; }
     ul.stories li.story .title span {
       display: block; }
+    ul.stories li.story .title span.title-text {
+      width: 175px; }
     ul.stories li.story .title span.synopsis {
       font-size: 11px;
       text-transform: none;
       border: none;
       padding: 5px 0 0 0;
       height: 75px; }
+  ul.stories li.story .avatar {
+    position: absolute;
+    top: 11px;
+    right: 11px;
+    display: none;
+    width: 28px;
+    height: 28px;
+    z-index: 3; }
+    ul.stories li.story .avatar img {
+      width: 28px;
+      height: 28px; }
   ul.stories li.story .edit-links {
     position: absolute;
     top: 10px;
@@ -4176,7 +4183,7 @@ ul.stories li.story {
       margin-left: 3px;
       padding-right: 13px;
       background: transparent url(../images/icons/personTiny.png) no-repeat 100% 2px; }
-ul.stories li.story:hover .title {
+ul.stories li.story:hover .title, ul.stories li.story:hover .avatar {
   display: block; }
 ul.stories li.medium.story {
   margin-bottom: 25px;
@@ -4917,6 +4924,14 @@ form.user_edit {
         border-radius: 20px;
         width: 200px;
         background: white url(../images/icons/search.png) 98% 50% no-repeat; }
+  .community ul.stories {
+    display: inline-block; }
+    .community ul.stories:after {
+      content: ".";
+      display: block;
+      height: 0;
+      clear: both;
+      visibility: hidden; }
   .community ul.users {
     display: inline-block;
     padding-bottom: 40px; }
@@ -6646,7 +6661,7 @@ a.tag:hover {
 #visualization {
   width: 780px;
   height: 600px;
-  background: white;
+  background: #f4f4f4;
   position: relative; }
   #visualization #context {
     padding: 10px;
@@ -6715,7 +6730,8 @@ a.tag:hover {
         text-transform: uppercase;
         font-size: 17px;
         font-weight: 700;
-        text-align: center; }
+        text-align: center;
+        text-shadow: 0 1px 0 black; }
         #visualization #content-rewarded-by #rewards-viz #reward-data span {
           margin-right: 3px; }
         #visualization #content-rewarded-by #rewards-viz #reward-data .rewards {
