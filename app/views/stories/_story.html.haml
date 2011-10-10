@@ -19,7 +19,8 @@
       %span from
       %span.people= story.users_who_rewarded.count
   - unless editable
-    .tags
-      - story.tags.each do |tag|
-        = link_to(tag.name, community_path(:tag => tag.name), :class => "tag")
+    - unless story.tags.empty?
+      .tags
+        - story.tags.each do |tag|
+          = link_to(tag.name, community_path(:tag => tag.name), :class => "tag")
     .rewards= story.reward_count
