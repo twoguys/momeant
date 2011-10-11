@@ -144,7 +144,7 @@ $(function() {
 		
 		events: {
 			'click #reward-modal-tab':        'toggle_modal',
-			'click #share .toggle':           'toggle_switch',
+			'click #share input':           	'toggle_sharing',
 			'click #toggle-reward-stream':    'toggle_reward_list',
 			'submit #reward-form':            'submit_reward',
 			'keyup #reward_amount':           'reward_amount_keypress',
@@ -179,18 +179,13 @@ $(function() {
 			return false;
 		},
 		
-		toggle_switch: function(e) {
-			var $toggle = $(e.currentTarget);
-			var $handle = $toggle.find('.handle');
-			var $hidden_field = $($toggle.attr('update'));
+		toggle_sharing: function(e) {
+			var $checkbox = $(e.currentTarget);
+			var $hidden_field = $('#share_' + $checkbox.attr('id'));
 
-			if ($toggle.hasClass('off')) {
-				$handle.animate({left: '0'}, 200);
-				$toggle.removeClass('off');
+			if ($checkbox.is(':checked')) {
 				$hidden_field.val('yes')
 			} else {
-				$handle.animate({left: '40px'}, 200);
-				$toggle.addClass('off');
 				$hidden_field.val('')
 			}
 		},

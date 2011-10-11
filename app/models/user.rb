@@ -261,7 +261,7 @@ class User < ActiveRecord::Base
       message = "I just posted content on @mo_meant. Reward me if you like it: #{title} #{url} #momeant"
     elsif object.is_a?(Reward)
       title = object.story.title[0..65]
-      message = "I just rewarded something on Momeant. Check it out: #{title} #{url} #momeant"
+      message = "I just rewarded something on @mo_meant. Check it out: #{title} #{url} #momeant"
     end
     
     Twitter.update(message)

@@ -34,11 +34,11 @@
 	
 	#reward-modal
 		height: 80%
-		width: 900px
+		width: 600px
 		position: absolute
 		top: -80%
 		left: 50%
-		margin-left: -450px
+		margin-left: -300px
 		background-color: #fff
 		z-index: 3
 		@include boxshadow(2px,0.3,0,2px)
@@ -108,6 +108,7 @@
 			border: 1px solid #aaa
 
 		#your-reward
+			background: #e2e2e2
 			position: absolute
 			top: 0
 			bottom: 0
@@ -134,198 +135,155 @@
 			
 		#creator-info
 			position: relative
-			padding: 20px 20px 20px 132px
-			min-height: 106px
-			a.avatar
-				position: absolute
-				top: 20px
-				left: 20px
-				img
-					width: 100px
-					height: 100px
-					border: 1px solid #cacaca
-			.the-rest
-				a.name
-					display: block
-					text-transform: uppercase
-					font-size: 20px
-					font-weight: 700
-					color: #000
-					margin-bottom: 5px
-				.tagline
-					font-size: 11px
-					max-width: 700px
-					max-height: 60px
-					overflow: hidden
-					margin-bottom: 10px
-				.links
-					margin-top: 12px
-					a
-						margin-right: 20px
-						text-transform: uppercase
-						font-weight: 700
+			padding: 20px
+			background: #eee
+			h1
+				font-size: 18px
+				font-weight: 700
+				text-transform: uppercase
+				margin-bottom: 0
+			.tagline
+				font-size: 11px
 				
-				#reward-box-outer
-					margin-top: 12px
-					border-top: 1px dashed #ccc
-					padding-top: 20px
-				#reward-box
-					.alert
-						background-color: $lightred
-						color: $red
-						padding: 5px 10px
-						font-weight: 700
+		#reward-box-outer
+			background: transparent url(../images/rewardModalFormBG.png) no-repeat 50% 0
+			padding: 35px 20px 20px
+		#reward-box
+			.alert
+				background-color: $lightred
+				color: $red
+				padding: 5px 10px
+				font-weight: 700
+				text-transform: uppercase
+				margin-bottom: 20px
+			.inner
+				position: relative
+				form#reward-form
+					input[type="text"], textarea
+						@include rounded(0)
+					.from, .amount, .to
+						float: left
+					.from, .to
+						width: 66px
+						height: 88px
+						background-color: $blue
+						position: relative
+						img.avatar
+							width: 60px
+							height: 60px
+							display: block
+							margin: 3px
+						.rewards
+							position: absolute
+							bottom: -13px
+							margin: 0 auto
+							text-align: center
+							width: 66px
+							.count
+								display: inline-block
+								color: #fff
+								font-weight: 700
+								padding: 0 17px 0 4px
+								height: 22px
+								background: transparent url(../images/icons/recommendWhite.png) no-repeat 100% 0
+							.text
+								font-size: 8px
+								color: #555
+					.amount
+						position: relative
+						width: 310px
+						margin: 30px 20px 0
+						#reward-tooltip
+							background: #fff
+							padding: 3px 6px
+							@include rounded(3px)
+							position: absolute
+							top: -30px
+							left: -10px
+						p
+							margin-top: 10px
+							text-align: center
+							font-size: 11px
+							color: #555
+					.comment
+						clear: both
+						padding-top: 20px
+						textarea
+							background: transparent url(../images/rewardModalCommentBG.png) no-repeat
+							border: none
+							width: 460px
+							height: 50px
+							padding: 17px 15px
+							margin-left: -5px
+						textarea:focus
+							outline: none
+					#share
+						margin: 10px 0 15px 5px
+						@include rounded
+						background: #fff
+						width: 135px
+						padding: 4px 8px
 						text-transform: uppercase
-						margin-bottom: 20px
-					.inner
-						position: relative
-						padding-left: 80px
-						#avatars
-							position: absolute
-							top: 0
-							left: 0
-							img
-								position: absolute
-								width: 45px
-								height: 45px
-								border: 1px solid #cacaca
-							.them
-								top: 0
-								left: 0
-							.you
-								top: 15px
-								left: 15px
-						form#reward-form
-							input[type="text"], textarea
-								@include rounded(0)
-							#how-much
-								span, strong
-									padding: 3px 0
-									font-size: 14px
-									float: left
-									margin-right: 5px
-								strong
-									text-transform: uppercase
-								.input
-									float: left
-									position: relative
-									margin-right: 5px
-									input[type="text"]
-										background: #f7f7f7 url(../images/icons/starBlackTiny.png) no-repeat 5px 50%
-										border: 1px solid #c6c6c6
-										width: 20px
-										height: 17px
-										padding: 2px 16px
-										text-align: center
-										font-size: 14px
-										font-weight: 700
-									#ticker
-										position: absolute
-										top: 1px
-										right: 1px
-										border-left: 1px solid #c6c6c6
-										background: transparent url(../images/rewardModalTickerBG.png) no-repeat
-										width: 11px
-										height: 21px
-										.up, .down
-											width: 10px
-											height: 10px
-											cursor: pointer
-							.comment
-								clear: both
-								padding-top: 10px
-								textarea
-									background: transparent url(../images/rewardModalCommentBG.png) no-repeat
-									border: none
-									width: 316px
-									height: 50px
-									padding: 10px 15px
-								textarea:focus
-									outline: none
-							#share
-								margin: 20px 0 10px 7px
-								border-top: 1px dashed #ccc
-								border-bottom: 1px dashed #ccc
-								width: 334px
-								padding-bottom: 7px
-								.header
-									background: #fff
-									display: inline
-									padding: 0 5px
-									margin: 0 auto
-									position: relative
-									top: -9px
-									left: 87px
-								table
-									width: 100%
-									border: none
-									margin-top: -5px
-									td
-										padding: 5px 10px
-										background: none
-										border: none
-									td.text
-										text-shadow: 0 1px 0 #fff
-									td.link
-										text-align: right
-									.switch
-										float: right
-										.toggle
-											width: 84px
-											height: 28px
-											background: transparent url(../images/onOffSwitchBG.png) no-repeat 0 0
-											position: relative
-											cursor: pointer
-											.handle
-												width: 44px
-												height: 28px
-												position: absolute
-												top: 0
-												left: 0
-												background: transparent url(../images/onOffSwitchHandle.png) no-repeat 0 0
-										.toggle.off .handle
-											left: 40px
-						input[type="submit"]
-							margin-left: 7px
-							width: 333px
-							@include gradient($bluegradient1, $bluegradient2)
-							border: 1px solid #528294
-							color: #fff
-							text-shadow: 0 -1px 0 rgba(0,0,0,0.75)
-							padding-top: 12px
-							font-size: 14px
-			#reward-box-outer.loading .inner
-				height: 250px
-				background: transparent url(../images/spinner.gif) no-repeat 50% 50%
-				*
-					display: none
-			#reward-box-outer .not-logged-in
-				h2
-					background: none
-					padding: 0
-				ul
-					padding-bottom: 20px
-					li
-						font-family: $numerals
-						margin-bottom: 10px
-						position: relative
-						.number
-							font-size: 40px
-							text-align: right
-							position: absolute
-							left: 0
-							top: 0
-						.text
-							font-size: 16px
-							line-height: 16px
-							padding-top: 10px
-							margin-left: 40px
-				a
-					margin-right: 10px
-				a.about
-					@include gradient($redgradient1, $redgradient2)
-				a.login
-					@include gradient($greengradient1, $greengradient2)
+						font-weight: 700
+						height: 16px
+						.text, .service
+							float: left
+							margin-right: 10px
+						.service
+							width: 20px
+							padding-left: 12px
+							background-position: 0 1px
+							background-repeat: no-repeat
+							position: relative
+							input
+								position: relative
+								top: -3px
+						#facebook
+							background-image: url(../images/icons/facebookTiny.png)
+						#twitter
+							background-image: url(../images/icons/twitterTiny.png)
+							margin-right: 0
+				input[type="submit"]
+					margin-left: 7px
+					width: 478px
+					@include gradient($bluegradient1, $bluegradient2)
+					border: 1px solid #528294
+					color: #fff
+					text-shadow: 0 -1px 0 rgba(0,0,0,0.75)
+					padding-top: 12px
+					font-size: 14px
+		#reward-box-outer.loading .inner
+			height: 250px
+			background: transparent url(../images/spinner.gif) no-repeat 50% 50%
+			*
+				display: none
+		#reward-box-outer .not-logged-in
+			h2
+				background: none
+				padding: 0
+			ul
+				padding-bottom: 20px
+				li
+					font-family: $numerals
+					margin-bottom: 10px
+					position: relative
+					.number
+						font-size: 40px
+						text-align: right
+						position: absolute
+						left: 0
+						top: 0
+					.text
+						font-size: 16px
+						line-height: 16px
+						padding-top: 10px
+						margin-left: 40px
+			a
+				margin-right: 10px
+			a.about
+				@include gradient($redgradient1, $redgradient2)
+			a.login
+				@include gradient($greengradient1, $greengradient2)
 			
 		#reward-list.closed
 			width: 65px

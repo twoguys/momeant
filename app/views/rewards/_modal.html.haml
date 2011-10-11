@@ -1,0 +1,31 @@
+#reward-modal
+
+  %a#reward-modal-tab
+    .inner
+      = image_tag(@story.user.avatar.url(:thumbnail), :class => "avatar")
+      .text
+        %span Reward
+        %span= @story.user.name
+      .rewards= @story.rewards.sum(:amount)
+
+  .modal-inner
+  
+    #your-reward
+      #creator-info
+        %h1 Reward #{link_to(@story.user.name, creations_user_path(@story.user))}
+        - unless @story.user.tagline.blank?
+          .tagline
+            %span= truncate(@story.user.tagline, :length => 300)
+      #reward-box-outer
+        - if current_user.nil?
+          = render "rewards/modal/no_user"
+        - elsif current_user.coins < 0
+          .explanation
+            %h3 Oops! You're out of reward coins.
+            %p If you want to reward this content, please #{link_to("purchase more reward coins",coins_path)}.
+        - else
+          = render "rewards/modal/form"
+            
+      #toggle-reward-stream.tooltipped-w{:title => "Expand/Contract"}
+      
+    = render "rewards/modal/list"
