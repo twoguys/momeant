@@ -52,6 +52,7 @@
     slide: function(event, ui) {
       var distance = $(ui.handle).position().left;
       var $tooltip = $('#reward-tooltip');
+      log(event.currentTarget);
       $tooltip.text(ui.value).css('left', distance);
       $('#reward-form #reward_amount').val(ui.value);
       var $from_count = $('#reward-form .from .count');

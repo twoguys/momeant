@@ -165,7 +165,7 @@ $(function() {
 		},
 		
 		hide_modal: function() {
-			$(this.el).animate({top: '-80%'}, 300);
+			$(this.el).animate({top: '-500px'}, 300);
 			$('#content-cover').hide();
 			this.modal_open = false;
 		},
@@ -191,8 +191,7 @@ $(function() {
 		},
 		
 		toggle_reward_list: function() {
-			var $list = $('#reward-list');
-			$list.toggleClass('closed').siblings('#your-reward').toggleClass('closed');
+			$('#reward-list, #your-reward').toggleClass('closed');
 		},
 		
 		submit_reward: function(e) {
