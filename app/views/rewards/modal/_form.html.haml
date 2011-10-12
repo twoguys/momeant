@@ -11,38 +11,40 @@
         = form.hidden_field :story_id, :value => @story.id
         - if @impacted_by
           = form.hidden_field :impacted_by, :value => @impacted_by
-        .from
-          = image_tag(current_user.avatar.url(:thumbnail), :class => "avatar")
-          .rewards
-            .count{:original => current_user.coins}= current_user.coins
-            .text coins available
-        .amount
-          #reward-tooltip 1
-          .slider
-          = form.hidden_field :amount, :value => 1
-          %p
-            Use the slider above to choose how much to reward
-        .to
-          = image_tag(@story.user.avatar.url(:thumbnail), :class => "avatar")
-          .rewards
-            .count{:original => @story.user.lifetime_rewards}= @story.user.lifetime_rewards
-            .text total rewards
+        .avatars
+          .from
+            = image_tag(current_user.avatar.url(:thumbnail), :class => "avatar")
+            .rewards
+              .count{:original => current_user.coins}= current_user.coins
+              .text coins available
+          .amount
+            #reward-tooltip 1
+            .slider
+            = form.hidden_field :amount, :value => 1
+            %p
+              Use the slider above to choose how much to reward
+          .to
+            = image_tag(@story.user.avatar.url(:thumbnail), :class => "avatar")
+            .rewards
+              .count{:original => @story.user.lifetime_rewards}= @story.user.lifetime_rewards
+              .text total rewards
         .comment
           = form.text_area :comment, :placeholder => "Tell others why you're rewarding this..."
-        #share
-          .text Share:
-          = hidden_field_tag :share_facebook
-          = hidden_field_tag :share_twitter
-          .service#facebook
-            - if @facebook_auth
-              = check_box_tag :facebook
-            - else
-              = link_to("Configure", "/auth/facebook/configure", :class => "configure")
-          .service#twitter
-            - if @twitter_auth
-              = check_box_tag :twitter
-            - else
-              = link_to("Configure", "/auth/twitter/configure", :class => "configure")
+          #share
+            .text Promote:
+            = hidden_field_tag :share_facebook
+            = hidden_field_tag :share_twitter
+            .service#facebook
+              - if @facebook_auth
+                = check_box_tag :facebook
+              - else
+                = link_to("Configure", "/auth/facebook/configure", :class => "configure")
+            .service#twitter
+              - if @twitter_auth
+                = check_box_tag :twitter
+              - else
+                = link_to("Configure", "/auth/twitter/configure", :class => "configure")
+          #nib
         = form.submit "Give Reward"
 
 :javascript
