@@ -31,19 +31,19 @@
         .comment
           = form.text_area :comment, :placeholder => "Tell others why you're rewarding this..."
           #share
-            .text Promote:
+            .text Increase your impact:
             = hidden_field_tag :share_facebook
             = hidden_field_tag :share_twitter
             .service#facebook
               - if @facebook_auth
                 = check_box_tag :facebook
               - else
-                = link_to("Configure", "/auth/facebook/configure", :class => "configure")
+                = link_to("Setup", "/auth/facebook/configure", :class => "configure")
             .service#twitter
               - if @twitter_auth
                 = check_box_tag :twitter
               - else
-                = link_to("Configure", "/auth/twitter/configure", :class => "configure")
+                = link_to("Setup", "/auth/twitter/configure", :class => "configure")
           #nib
         = form.submit "Give Reward"
 

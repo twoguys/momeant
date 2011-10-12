@@ -27,6 +27,10 @@ class RewardsController < ApplicationController
       current_user.post_to_facebook(@reward, story_url(@story, :impacted_by => @reward.id)) unless sharing[:facebook].blank?
     end
     
+    Rails.logger.info "ASDFSADFSADFASDFASDFSD"
+    Rails.logger.info @reward.inspect
+    NotificationsMailer.reward_notice(@reward).deliver
+    
     render :partial => "after_reward"
   end
   

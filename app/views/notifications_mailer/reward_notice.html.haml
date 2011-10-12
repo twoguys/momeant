@@ -1,0 +1,14 @@
+#notice{:style => "font-family: 'Helvetica Neue',Arial,Helvetica,sans-serif;height:100%;width:600px;margin:0 auto;padding:20px;"}
+
+  #logo{:style => "padding:3px 5px 8px;margin-bottom:20px;background:#000"}= image_tag("http://momeant.com/images/logoWhiteSmall.png")
+
+  %h3
+    #{link_to(@reward.user.name, user_url(@reward.user), :style => "color:#00aeff")} just rewarded #{link_to(@reward.story.title, story_url(@reward.story), :style => "color:#00aeff")}
+    - if @reward.comment.present?
+      and said:
+    - else
+      !
+
+  - if @reward.comment.present?
+    %p{:style => "font-style:italic;color:#777"}
+      "#{@reward.comment}"
