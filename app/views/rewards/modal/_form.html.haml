@@ -31,7 +31,9 @@
         .comment
           = form.text_area :comment, :placeholder => "Tell others why you're rewarding this..."
           #share
-            .text Increase your impact:
+            .text
+              %span Increase your
+              %abbr.tooltipped-n{:title => "When you promote this content and others reward it because of you, you gain impact!"} impact:
             = hidden_field_tag :share_facebook
             = hidden_field_tag :share_twitter
             .service#facebook

@@ -112,12 +112,12 @@
 			top: 0
 			bottom: 0
 			left: 0
-			right: 65px
+			right: 66px
 			overflow-y: auto
 			z-index: 1
 			#toggle-reward-stream
 				position: absolute
-				background: transparent url(../images/rewardModalToggleStream.png) no-repeat
+				background: transparent url(../images/rewardModalToggleStream.png) no-repeat 1px 0
 				top: 10px
 				right: 0
 				text-align: center
@@ -225,10 +225,16 @@
 								background: #f4f4f4
 								border-top: 1px solid #ccc
 								text-transform: uppercase
-								font-weight: 700
+								font-size: 11px
 								height: 15px
 								padding: 5px
 								color: #777
+								abbr
+									border-bottom: 1px dashed #999
+									padding-left: 1px
+									cursor: help
+								.text
+									color: #333
 								.text, .service
 									float: left
 									margin-right: 10px
@@ -238,7 +244,6 @@
 									background-repeat: no-repeat
 									position: relative
 									a
-										font-size: 11px
 										padding: 2px 0 0 4px
 										font-weight: 500
 									input
@@ -300,7 +305,7 @@
 		#your-reward.closed
 			right: 265px
 			#toggle-reward-stream
-				background-position: 0 -22px	
+				background-position: 1px -22px	
 			#reward-box .inner
 				form#reward-form
 					width: 285px
@@ -334,48 +339,58 @@
 				font-size: 14px
 				font-weight: 700
 				text-transform: uppercase
-				color: #555
+				color: #fff
 				position: absolute
 				top: 11px
-				left: 50px
+				left: 59px
 			ul
 				padding-top: 40px
-				background: transparent url(../images/icons/communityDark.png) no-repeat 5px 5px
+				background: #111 url(../images/icons/quotesWhite.png) no-repeat 13px 10px
 				li
 					clear: both
-					padding: 10px
+					padding: 5px 5px 5px 55px
 					border-top: 1px solid #fff
 					border-bottom: 1px solid #ddd
+					min-height: 60px
+					background: #fff
+					position: relative
 					.rewarder
-						height: 28px
+						position: absolute
+						top: 5px
+						left: 5px
 						.avatar
 							display: block
-							width: 28px
-							height: 28px
-							float: left
-							margin-right: 5px
+							width: 38px
+							height: 38px
 							img
-								width: 28px
-								height: 28px
-						.name
-							float: left
-							color: $text_color
-							font-size: 11px
-							span
-								display: block
-								text-transform: uppercase
-								font-weight: 700
+								width: 38px
+								height: 38px
+								border: 1px solid #cbcbcb
+								border-bottom: none
 						.amount
-							float: right
-							padding-right: 12px
-							background: transparent url(../images/icons/starBlackTiny.png) no-repeat 100% 6px
-							font-size: 17px
-							font-family: $numerals
-					.comment, .when
-						clear: both
+							background: #cbcbcb
+							padding: 4px 20px 3px 5px
+							background: #cbcbcb url(../images/icons/starWhiteSmall.png) no-repeat 20px 4px
+							font-weight: 700
+							color: #fff
+							width: 15px
+							-webkit-border-bottom-right-radius: 3px
+							-webkit-border-bottom-left-radius: 3px
+							-moz-border-radius-bottomright: 3px
+							-moz-border-radius-bottomleft: 3px
+							border-bottom-right-radius: 3px
+							border-bottom-left-radius: 3px
 					.comment
 						font-size: 11px
 						padding: 5px 0
+						width: 185px
+						line-height: 12px
+						margin-bottom: 5px
+						min-height: 30px
+						.name
+							text-transform: uppercase
+							font-weight: 700
+							font-size: 10px
 					.when
 						font-size: 10px
 						color: #ccc
@@ -389,19 +404,9 @@
 				display: none
 			li
 				width: 44px
+				background: #eee
 				.rewarder
 					height: 45px
-					.name
-						display: none
-					.avatar
-						float: none
-						margin: 0
-					.amount
-						clear: both
-						float: none
-						background-position: 0 8px
-						padding: 3px 3px 3px 11px
-						font-size: 14px
 				.comment, .when
 					display: none
 		

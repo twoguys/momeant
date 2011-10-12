@@ -20,7 +20,6 @@ class AuthenticationsController < ApplicationController
       auth.update_attributes(:token => data["credentials"]["token"])
     end
     
-    flash[:notice] = "#{auth['provider'].titleize} configuration successful."
     redirect_to session[:return_to]
   end
 end
