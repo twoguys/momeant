@@ -4,22 +4,22 @@
     = image_tag("badges/#{@user.badge_level}.png", :class => "badge")
     .name= @user.name
       
-  - if @user.occupation.present?
+  - if @user.occupation.present? || me?(@user)
     .occupation
       %h3 Occupation
       = @user.occupation
   
-  - if @user.tagline.present?
+  - if @user.tagline.present? || me?(@user)
     .tagline
       %h3 About
       = truncate(@user.tagline, :length => 200)
   
-  - if @user.location.present?
+  - if @user.location.present? || me?(@user)
     .location
       %h3 Location
       .insides= @user.location
   
-  - unless @user.tags.empty?
+  - unless @user.tags.empty? || me?(@user)
     .tags
       %h3 Most Rewarded Tags
       - @user.tags[0..10].each do |tag|
