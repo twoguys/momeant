@@ -1,25 +1,35 @@
-.not-logged-in
-  %h2 Mo&#149;meant is a community that values &amp; rewards online content.
-  %ul
-    %li
-      .number 1.
-      .text
-        We all create content online these days. Most of that content is free.
-        %br
-        Even pros like writers, musicians, and journalists are giving their work away.
-    %li
-      .number 2.
-      .text
-        But when we create great content that others enjoy,
-        %br
-        we all deserve to be rewarded.
-    %li
-      .number 3.
-      .text
-        Mo&#149;meant is a community for rewarding and getting rewarded.
-        %br
-        Let's truly value each other's work!
+#not-logged-in
+  .creator
+    = link_to(image_tag(@story.user.avatar.url(:large)), creations_user_path(@story.user), :class => "avatar")
+    %span Reward
+    %span #{@story.user.first_name}!
+  .explanation
+    .inner
+      .what-is-momeant
+        %p #{@story.user.first_name} is a creator on mo&#149;meant, a community that believes in rewarding good content creators on the Web.
+        %p 
+          %span Sign up to join the community.
+          %strong Reward
+          %span the people behind good content, and
+          %strong Share
+          %span your content to get rewarded.
+  .buttons
+    .inner
+      = link_to("Join mo&#149;meant".html_safe, "#join-modal", :class => "join")
+      %span - OR -
+      = link_to("Login", "#login-modal", :class => "login")
   .links
-    = link_to("About Momeant", about_path, :class => "button about")
-    = link_to("Join Momeant", "#join-modal", :class => "button join")
-    = link_to("Login", "#login-modal", :class => "button login")
+    = link_to("About", about_path, :class => "about tooltipped-n", :title => "About Momeant")
+    = link_to("Community", community_path, :class => "community tooltipped-n", :title => "Community")
+
+:javascript
+  var forms_updated = false;
+  $('#not-logged-in .buttons a').click(function() {
+
+    if (forms_updated)
+      return;
+          
+    forms_updated = true;
+    $('#join-form, #login-form').append('<input type="hidden" name="open_reward_modal" value="yes"></input>');
+
+  });

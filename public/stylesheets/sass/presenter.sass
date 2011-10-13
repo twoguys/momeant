@@ -33,7 +33,7 @@
 		z-index: 2
 	
 	#reward-modal
-		height: 500px
+		height: 501px
 		width: 600px
 		position: absolute
 		top: -500px
@@ -314,6 +314,94 @@
 				a.login
 					@include gradient($greengradient1, $greengradient2)
 			
+			#not-logged-in
+				background: #03a1dc
+				color: #fff
+				height: 500px
+				.creator
+					padding: 30px
+					font-size: 42px
+					font-family: $numerals
+					line-height: 36px
+					text-transform: uppercase
+					height: 68px
+					overflow: hidden
+					span
+						display: block
+					.avatar
+						display: block
+						width: 68px
+						height: 68px
+						margin-right: 10px
+						float: left
+						img
+							width: 65px
+							height: 65px
+							border: 3px solid #fff
+				.explanation, .buttons
+					padding-bottom: 30px
+				.explanation .inner, .buttons .inner
+					height: 292px
+				.explanation .inner
+					border-right: 1px solid #00aae7
+				.buttons .inner
+					border-left: 1px solid #0097d0
+				.explanation
+					width: 300px
+					float: left
+					.what-is-momeant
+						padding: 0 30px
+						font-size: 16px
+						letter-spacing: -0.02em
+						p
+							line-height: 1.4em
+							margin: 0 0 20px
+						strong
+							color: #000
+							font-size: 22px
+							font-weight: 700
+							text-transform: uppercase
+							position: relative
+							top: 2px
+				.buttons
+					width: 234px
+					float: right
+					span
+						font-size: 40px
+						display: block
+						padding: 20px 0
+						text-align: center
+						font-family: $numerals
+					a.join, a.login
+						display: block
+						background: #000
+						color: #fff
+						@include rounded(3px)
+						padding: 17px 0
+						width: 160px
+						margin: 0 auto
+						text-align: center
+						text-transform: uppercase
+						font-size: 13px
+						font-weight: 700
+				.links
+					clear: both
+					background: #f4f4f4
+					height: 26px
+					padding: 12px 20px
+					a
+						display: block
+						width: 36px
+						height: 25px
+						float: left
+						margin-right: 10px
+						text-indent: -9999px
+						background-repeat: no-repeat
+						background-position: 50% 0
+					a.about
+						background-image: url(../images/icons/faqBlack.png)
+					a.community
+						background-image: url(../images/icons/communityBlack.png)
 				
 		#your-reward.closed
 			right: 265px
