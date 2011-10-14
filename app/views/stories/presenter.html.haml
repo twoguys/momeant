@@ -31,9 +31,10 @@
         .author by #{link_to(@story.user.name, user_path(@story.user))}
         .excerpt
           .full= @story.synopsis
-      .pages
-        - 1.upto @story.pages.count do |page|
-          = link_to(page, "#", :class => page == 1 ? "selected" : "", :page => page)
+      - unless @story.pages.count == 1
+        .pages
+          - 1.upto @story.pages.count do |page|
+            = link_to(page, "#", :class => page == 1 ? "selected" : "", :page => page)
 
   #content-cover
   = render "rewards/modal"

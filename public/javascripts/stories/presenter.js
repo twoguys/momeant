@@ -112,6 +112,7 @@ $(function() {
 			var $link = $(e.currentTarget);
 			var number = parseInt($link.attr('page'));
 			this.goto_page(number);
+			return false;
 		},
 		
 		close_reward_modal: function() {

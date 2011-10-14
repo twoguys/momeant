@@ -3587,15 +3587,14 @@ form.new_story, form.edit_story, .story-form {
   #presenter .content {
     z-index: 1; }
   #presenter #metadata {
-    display: none;
     position: absolute;
     left: 0;
     bottom: 0;
     z-index: 5;
     width: 100%;
-    background: black;
     height: 35px; }
     #presenter #metadata .info {
+      display: none;
       float: left;
       margin-left: 10px; }
       #presenter #metadata .info .title, #presenter #metadata .info .author {
@@ -3635,9 +3634,17 @@ form.new_story, form.edit_story, .story-form {
       #presenter #metadata .info .excerpt:hover .full {
         display: block; }
     #presenter #metadata .pages {
+      background: rgba(0, 0, 0, 0.75);
       float: right;
       height: 15px;
-      margin: 10px 20px 10px 0; }
+      margin: 10px 20px 0 0;
+      padding: 5px 15px 5px 10px;
+      -webkit-border-top-left-radius: 3px;
+      -webkit-border-top-right-radius: 3px;
+      -moz-border-radius-topleft: 3px;
+      -moz-border-radius-topright: 3px;
+      border-top-left-radius: 3px;
+      border-top-right-radius: 3px; }
       #presenter #metadata .pages a {
         font-size: 10px;
         margin-left: 5px;
