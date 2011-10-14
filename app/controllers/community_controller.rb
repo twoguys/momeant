@@ -17,15 +17,16 @@ class CommunityController < ApplicationController
   def people
     content_ids = get_tags_and_stories
     
-    @users = User.select("DISTINCT ON(id) users.*").joins("LEFT OUTER JOIN curations ON curations.user_id = users.id").where("curations.type = 'Reward'").where("curations.story_id IN (#{content_ids.join(',')})").limit(10)
+    @users = User.select("DISTINCT ON(id) users.*").joins("LEFT OUTER JOIN curations ON curations.user_id = users.id").where("curations.type = 'Reward'").where("curations.story_id IN (#{content_ids.join(',')})")
     # this sort is going to make A LOT of SQL calls, need to cache impact on the user
     @users = @users.sort do |a,b|
-      if a.impact != b.impact
-        b.impact <=> a.impact
+      if a.badge_level != b.badge_level
+        b.badge_level <=> a.badge_level
       else
-        b.given_rewards.sum(:amount) <=> a.given_rewards.sum(:amount)
+        b.impact <=> a.impact
       end
     end
+    @users = @users[0..11]
     
     @page_title = "Most Impactful People"
   end
