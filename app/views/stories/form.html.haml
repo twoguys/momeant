@@ -82,8 +82,13 @@
           - content_for :modals do
             = render "gallery_creator"
     
+    %section.step#thankyou
+      %h2 3. Write a thank you note to all of folks that reward this content.
+      .info This note will be shown to a person after they reward you. It's a chance to express your appreciation.
+      = text_area_tag :story_thankyou, @story.thankyou, :class => "monitor-story-typing", :update => "thankyou"
+    
     %section.step#share
-      %h2 3. Share this with your networks.
+      %h2 4. Share this with your networks.
       %table
         %tbody
           %tr

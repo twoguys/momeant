@@ -3000,14 +3000,24 @@ form.new_story, form.edit_story, .story-form {
     right: 0;
     display: none;
     z-index: 2; }
-  #presenter #reward-modal {
-    height: 80%;
-    width: 900px;
+  #presenter #its-you-arrow {
+    display: none;
     position: absolute;
-    top: -80%;
+    top: 60px;
     left: 50%;
-    margin-left: -450px;
-    background-color: white;
+    margin-left: 310px;
+    width: 117px;
+    height: 38px;
+    background: transparent url(../images/lookItsYou.png) no-repeat 0 0;
+    z-index: 3; }
+  #presenter #reward-modal {
+    height: 501px;
+    width: 600px;
+    position: absolute;
+    top: -500px;
+    left: 50%;
+    margin-left: -300px;
+    background-color: #f4f4f4;
     z-index: 3;
     -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
     -moz-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
@@ -3035,7 +3045,7 @@ form.new_story, form.edit_story, .story-form {
         width: auto;
         position: relative;
         height: 29px;
-        background: white;
+        background: #f4f4f4;
         font-weight: 700;
         color: black;
         line-height: 13px;
@@ -3076,223 +3086,325 @@ form.new_story, form.edit_story, .story-form {
       bottom: 0;
       width: 100%;
       overflow-y: auto;
-      border: 1px solid #aaaaaa; }
+      border: 1px solid #aaaaaa;
+      border-top: none; }
     #presenter #reward-modal #your-reward {
       position: absolute;
       top: 0;
       bottom: 0;
       left: 0;
-      right: 65px;
+      right: 66px;
       overflow-y: auto;
-      z-index: 1;
-      -webkit-transition: right 0.1s linear;
-      -moz-transition: right 0.1s linear; }
+      z-index: 1; }
       #presenter #reward-modal #your-reward #toggle-reward-stream {
         position: absolute;
-        background: transparent url(../images/rewardModalToggleStream.png) no-repeat;
+        background: transparent url(../images/rewardModalToggleStream.png) no-repeat 1px 0;
         top: 10px;
         right: 0;
         text-align: center;
         width: 21px;
         height: 22px;
         cursor: pointer; }
-    #presenter #reward-modal #your-reward.closed {
-      right: 265px; }
-      #presenter #reward-modal #your-reward.closed #toggle-reward-stream {
-        background-position: 0 -22px; }
-    #presenter #reward-modal #creator-info {
-      position: relative;
-      padding: 20px 20px 20px 132px;
-      min-height: 106px; }
-      #presenter #reward-modal #creator-info a.avatar {
-        position: absolute;
-        top: 20px;
-        left: 20px; }
-        #presenter #reward-modal #creator-info a.avatar img {
-          width: 100px;
-          height: 100px;
-          border: 1px solid #cacaca; }
-      #presenter #reward-modal #creator-info .the-rest a.name {
-        display: block;
-        text-transform: uppercase;
-        font-size: 20px;
-        font-weight: 700;
-        color: black;
-        margin-bottom: 5px; }
-      #presenter #reward-modal #creator-info .the-rest .tagline {
-        font-size: 11px;
-        max-width: 700px;
-        max-height: 60px;
-        overflow: hidden;
-        margin-bottom: 10px; }
-      #presenter #reward-modal #creator-info .the-rest .links {
-        margin-top: 12px; }
-        #presenter #reward-modal #creator-info .the-rest .links a {
-          margin-right: 20px;
+      #presenter #reward-modal #your-reward #creator-info {
+        position: relative;
+        padding: 20px;
+        background: #eeeeee; }
+        #presenter #reward-modal #your-reward #creator-info h1 {
+          font-size: 18px;
+          font-weight: 700;
           text-transform: uppercase;
-          font-weight: 700; }
-      #presenter #reward-modal #creator-info .the-rest #reward-box-outer {
-        margin-top: 12px;
-        border-top: 1px dashed #cccccc;
-        padding-top: 20px; }
-      #presenter #reward-modal #creator-info .the-rest #reward-box .alert {
+          margin-bottom: 0; }
+        #presenter #reward-modal #your-reward #creator-info .tagline {
+          font-size: 11px; }
+      #presenter #reward-modal #your-reward #reward-box-outer {
+        background: transparent url(../images/rewardModalFormBG.png) no-repeat 50% 0;
+        padding: 35px 20px 20px; }
+      #presenter #reward-modal #your-reward #reward-box .alert {
         background-color: #f7d3db;
         color: #f42652;
         padding: 5px 10px;
         font-weight: 700;
         text-transform: uppercase;
         margin-bottom: 20px; }
-      #presenter #reward-modal #creator-info .the-rest #reward-box .inner {
-        position: relative;
-        padding-left: 80px; }
-        #presenter #reward-modal #creator-info .the-rest #reward-box .inner #avatars {
-          position: absolute;
-          top: 0;
-          left: 0; }
-          #presenter #reward-modal #creator-info .the-rest #reward-box .inner #avatars img {
-            position: absolute;
-            width: 45px;
-            height: 45px;
-            border: 1px solid #cacaca; }
-          #presenter #reward-modal #creator-info .the-rest #reward-box .inner #avatars .them {
-            top: 0;
-            left: 0; }
-          #presenter #reward-modal #creator-info .the-rest #reward-box .inner #avatars .you {
-            top: 15px;
-            left: 15px; }
-        #presenter #reward-modal #creator-info .the-rest #reward-box .inner form#reward-form input[type="text"], #presenter #reward-modal #creator-info .the-rest #reward-box .inner form#reward-form textarea {
-          -webkit-border-radius: 0;
-          -moz-border-radius: 0;
-          border-radius: 0; }
-        #presenter #reward-modal #creator-info .the-rest #reward-box .inner form#reward-form #how-much span, #presenter #reward-modal #creator-info .the-rest #reward-box .inner form#reward-form #how-much strong {
-          padding: 3px 0;
-          font-size: 14px;
-          float: left;
-          margin-right: 5px; }
-        #presenter #reward-modal #creator-info .the-rest #reward-box .inner form#reward-form #how-much strong {
-          text-transform: uppercase; }
-        #presenter #reward-modal #creator-info .the-rest #reward-box .inner form#reward-form #how-much .input {
-          float: left;
-          position: relative;
-          margin-right: 5px; }
-          #presenter #reward-modal #creator-info .the-rest #reward-box .inner form#reward-form #how-much .input input[type="text"] {
-            background: #f7f7f7 url(../images/icons/starBlackTiny.png) no-repeat 5px 50%;
-            border: 1px solid #c6c6c6;
-            width: 20px;
-            height: 17px;
-            padding: 2px 16px;
-            text-align: center;
-            font-size: 14px;
-            font-weight: 700; }
-          #presenter #reward-modal #creator-info .the-rest #reward-box .inner form#reward-form #how-much .input #ticker {
-            position: absolute;
-            top: 1px;
-            right: 1px;
-            border-left: 1px solid #c6c6c6;
-            background: transparent url(../images/rewardModalTickerBG.png) no-repeat;
-            width: 11px;
-            height: 21px; }
-            #presenter #reward-modal #creator-info .the-rest #reward-box .inner form#reward-form #how-much .input #ticker .up, #presenter #reward-modal #creator-info .the-rest #reward-box .inner form#reward-form #how-much .input #ticker .down {
-              width: 10px;
-              height: 10px;
-              cursor: pointer; }
-        #presenter #reward-modal #creator-info .the-rest #reward-box .inner form#reward-form .comment {
-          clear: both;
-          padding-top: 10px; }
-          #presenter #reward-modal #creator-info .the-rest #reward-box .inner form#reward-form .comment textarea {
-            background: transparent url(../images/rewardModalCommentBG.png) no-repeat;
-            border: none;
-            width: 316px;
-            height: 50px;
-            padding: 10px 15px; }
-          #presenter #reward-modal #creator-info .the-rest #reward-box .inner form#reward-form .comment textarea:focus {
-            outline: none; }
-        #presenter #reward-modal #creator-info .the-rest #reward-box .inner form#reward-form #share {
-          margin: 20px 0 10px 7px;
-          border-top: 1px dashed #cccccc;
-          border-bottom: 1px dashed #cccccc;
-          width: 334px;
-          padding-bottom: 7px; }
-          #presenter #reward-modal #creator-info .the-rest #reward-box .inner form#reward-form #share .header {
-            background: white;
-            display: inline;
-            padding: 0 5px;
-            margin: 0 auto;
+      #presenter #reward-modal #your-reward #reward-box .inner {
+        position: relative; }
+        #presenter #reward-modal #your-reward #reward-box .inner form#reward-form {
+          padding-left: 10px; }
+          #presenter #reward-modal #your-reward #reward-box .inner form#reward-form input[type="text"], #presenter #reward-modal #your-reward #reward-box .inner form#reward-form textarea {
+            -webkit-border-radius: 0;
+            -moz-border-radius: 0;
+            border-radius: 0; }
+          #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .avatars {
+            height: 110px; }
+          #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .from, #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .amount, #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .to {
+            float: left; }
+          #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .from, #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .to {
+            width: 66px;
+            height: 88px;
+            background-color: #00aeef;
+            position: relative; }
+            #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .from img.avatar, #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .to img.avatar {
+              width: 60px;
+              height: 60px;
+              display: block;
+              margin: 3px; }
+            #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .from .rewards, #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .to .rewards {
+              position: absolute;
+              bottom: -13px;
+              margin: 0 auto;
+              text-align: center;
+              width: 66px; }
+              #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .from .rewards .count, #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .to .rewards .count {
+                display: inline-block;
+                color: white;
+                font-weight: 700;
+                padding: 0 17px 0 4px;
+                height: 22px;
+                background: transparent url(../images/icons/recommendWhite.png) no-repeat 100% 0; }
+              #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .from .rewards .text, #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .to .rewards .text {
+                font-size: 8px;
+                color: #555555; }
+          #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .amount {
             position: relative;
-            top: -9px;
-            left: 87px; }
-          #presenter #reward-modal #creator-info .the-rest #reward-box .inner form#reward-form #share table {
-            width: 100%;
-            border: none;
-            margin-top: -5px; }
-            #presenter #reward-modal #creator-info .the-rest #reward-box .inner form#reward-form #share table td {
-              padding: 5px 10px;
-              background: none;
-              border: none; }
-            #presenter #reward-modal #creator-info .the-rest #reward-box .inner form#reward-form #share table td.text {
-              text-shadow: 0 1px 0 white; }
-            #presenter #reward-modal #creator-info .the-rest #reward-box .inner form#reward-form #share table td.link {
-              text-align: right; }
-            #presenter #reward-modal #creator-info .the-rest #reward-box .inner form#reward-form #share table .switch {
-              float: right; }
-              #presenter #reward-modal #creator-info .the-rest #reward-box .inner form#reward-form #share table .switch .toggle {
-                width: 84px;
-                height: 28px;
-                background: transparent url(../images/onOffSwitchBG.png) no-repeat 0 0;
-                position: relative;
-                cursor: pointer; }
-                #presenter #reward-modal #creator-info .the-rest #reward-box .inner form#reward-form #share table .switch .toggle .handle {
-                  width: 44px;
-                  height: 28px;
-                  position: absolute;
-                  top: 0;
-                  left: 0;
-                  background: transparent url(../images/onOffSwitchHandle.png) no-repeat 0 0; }
-              #presenter #reward-modal #creator-info .the-rest #reward-box .inner form#reward-form #share table .switch .toggle.off .handle {
-                left: 40px; }
-        #presenter #reward-modal #creator-info .the-rest #reward-box .inner input[type="submit"] {
-          margin-left: 7px;
-          width: 333px;
-          background-image: -moz-linear-gradient(center top, #43baf0 4%, #3a94e6 52%);
-          background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #43baf0), color-stop(0.52, #3a94e6));
-          border: 1px solid #528294;
+            width: 297px;
+            margin: 30px 20px 0; }
+            #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .amount #reward-tooltip {
+              background: transparent url(../images/rewardModalSliderTooltipBG.png) no-repeat 0 0;
+              width: 40px;
+              height: 32px;
+              padding-top: 8px;
+              font-size: 11px;
+              text-align: center;
+              -webkit-border-radius: 3px;
+              -moz-border-radius: 3px;
+              border-radius: 3px;
+              position: absolute;
+              top: -37px;
+              left: -6px;
+              font-weight: 700;
+              color: #00aeef; }
+            #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .amount p {
+              margin-top: 10px;
+              text-align: center;
+              font-size: 11px;
+              color: #555555; }
+            #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .amount .ui-slider a.ui-slider-handle {
+              background: transparent url(../images/rewardModalStarSlider.png) no-repeat 0 0;
+              border: none;
+              width: 27px;
+              height: 28px;
+              left: -13.5px;
+              top: -10px;
+              cursor: pointer; }
+            #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .amount .ui-slider .ui-slider-range {
+              background: #00aeef; }
+          #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .comment {
+            clear: both;
+            margin: 10px 0 20px;
+            border: 1px solid #cccccc;
+            padding-bottom: 20px;
+            position: relative;
+            width: 470px;
+            background: white; }
+            #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .comment textarea {
+              background: transparent;
+              border: none;
+              width: 454px;
+              height: 55px;
+              padding: 8px; }
+            #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .comment textarea:focus {
+              outline: none; }
+            #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .comment #share {
+              position: absolute;
+              bottom: 0;
+              left: 0;
+              width: 460px;
+              background: #f4f4f4;
+              border-top: 1px solid #cccccc;
+              text-transform: uppercase;
+              font-size: 11px;
+              height: 15px;
+              padding: 5px;
+              color: #777777; }
+              #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .comment #share abbr {
+                border-bottom: 1px dashed #999999;
+                padding-left: 1px;
+                cursor: help; }
+              #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .comment #share .text {
+                color: #333333; }
+              #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .comment #share .text, #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .comment #share .service {
+                float: left;
+                margin-right: 10px; }
+              #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .comment #share .service {
+                padding-left: 12px;
+                background-position: 0 2px;
+                background-repeat: no-repeat;
+                position: relative; }
+                #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .comment #share .service a {
+                  padding: 2px 0 0 4px;
+                  font-weight: 500; }
+                #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .comment #share .service input {
+                  margin: 0 0 0 4px; }
+              #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .comment #share #facebook {
+                background-image: url(../images/icons/facebookTiny.png); }
+              #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .comment #share #twitter {
+                background-image: url(../images/icons/twitterTiny.png);
+                margin-right: 0; }
+            #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .comment #nib {
+              background: transparent url(../images/rewardModalCommentNib.png) no-repeat 0 0;
+              width: 11px;
+              height: 12px;
+              position: absolute;
+              top: -11px;
+              left: 20px; }
+        #presenter #reward-modal #your-reward #reward-box .inner input[type="submit"] {
+          background: black;
           color: white;
-          text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.75);
-          padding-top: 12px;
-          font-size: 14px; }
-      #presenter #reward-modal #creator-info #reward-box-outer.loading .inner {
+          padding-top: 10px; }
+      #presenter #reward-modal #your-reward #reward-box-outer.loading .inner {
         height: 250px;
         background: transparent url(../images/spinner.gif) no-repeat 50% 50%; }
-        #presenter #reward-modal #creator-info #reward-box-outer.loading .inner * {
+        #presenter #reward-modal #your-reward #reward-box-outer.loading .inner * {
           display: none; }
-      #presenter #reward-modal #creator-info #reward-box-outer .not-logged-in h2 {
+      #presenter #reward-modal #your-reward #reward-box-outer .not-logged-in h2 {
         background: none;
         padding: 0; }
-      #presenter #reward-modal #creator-info #reward-box-outer .not-logged-in ul {
+      #presenter #reward-modal #your-reward #reward-box-outer .not-logged-in ul {
         padding-bottom: 20px; }
-        #presenter #reward-modal #creator-info #reward-box-outer .not-logged-in ul li {
+        #presenter #reward-modal #your-reward #reward-box-outer .not-logged-in ul li {
           font-family: "ff-dagny-web-pro-1", "ff-dagny-web-pro-2", sans-serif;
           margin-bottom: 10px;
           position: relative; }
-          #presenter #reward-modal #creator-info #reward-box-outer .not-logged-in ul li .number {
+          #presenter #reward-modal #your-reward #reward-box-outer .not-logged-in ul li .number {
             font-size: 40px;
             text-align: right;
             position: absolute;
             left: 0;
             top: 0; }
-          #presenter #reward-modal #creator-info #reward-box-outer .not-logged-in ul li .text {
+          #presenter #reward-modal #your-reward #reward-box-outer .not-logged-in ul li .text {
             font-size: 16px;
             line-height: 16px;
             padding-top: 10px;
             margin-left: 40px; }
-      #presenter #reward-modal #creator-info #reward-box-outer .not-logged-in a {
+      #presenter #reward-modal #your-reward #reward-box-outer .not-logged-in a {
         margin-right: 10px; }
-      #presenter #reward-modal #creator-info #reward-box-outer .not-logged-in a.about {
+      #presenter #reward-modal #your-reward #reward-box-outer .not-logged-in a.about {
         background-image: -moz-linear-gradient(center top, #ff7593 4%, #f42653 52%);
         background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #ff7593), color-stop(0.52, #f42653)); }
-      #presenter #reward-modal #creator-info #reward-box-outer .not-logged-in a.login {
+      #presenter #reward-modal #your-reward #reward-box-outer .not-logged-in a.login {
         background-image: -moz-linear-gradient(center top, #62e079 4%, #12b32f 52%);
         background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #62e079), color-stop(0.52, #12b32f)); }
+      #presenter #reward-modal #your-reward .out-of-coins h3 {
+        font-size: 20px;
+        text-transform: uppercase; }
+      #presenter #reward-modal #your-reward #not-logged-in {
+        background: #03a1dc;
+        color: white;
+        height: 500px; }
+        #presenter #reward-modal #your-reward #not-logged-in .creator {
+          padding: 30px;
+          font-size: 42px;
+          font-family: "ff-dagny-web-pro-1", "ff-dagny-web-pro-2", sans-serif;
+          line-height: 36px;
+          text-transform: uppercase;
+          height: 68px;
+          overflow: hidden; }
+          #presenter #reward-modal #your-reward #not-logged-in .creator span {
+            display: block; }
+          #presenter #reward-modal #your-reward #not-logged-in .creator .avatar {
+            display: block;
+            width: 68px;
+            height: 68px;
+            margin-right: 10px;
+            float: left; }
+            #presenter #reward-modal #your-reward #not-logged-in .creator .avatar img {
+              width: 65px;
+              height: 65px;
+              border: 3px solid white; }
+        #presenter #reward-modal #your-reward #not-logged-in .explanation, #presenter #reward-modal #your-reward #not-logged-in .buttons {
+          padding-bottom: 30px; }
+        #presenter #reward-modal #your-reward #not-logged-in .explanation .inner, #presenter #reward-modal #your-reward #not-logged-in .buttons .inner {
+          height: 292px; }
+        #presenter #reward-modal #your-reward #not-logged-in .explanation .inner {
+          border-right: 1px solid #00aae7; }
+        #presenter #reward-modal #your-reward #not-logged-in .buttons .inner {
+          border-left: 1px solid #0097d0; }
+        #presenter #reward-modal #your-reward #not-logged-in .explanation {
+          width: 300px;
+          float: left; }
+          #presenter #reward-modal #your-reward #not-logged-in .explanation .what-is-momeant {
+            padding: 0 30px;
+            font-size: 16px;
+            letter-spacing: -0.02em; }
+            #presenter #reward-modal #your-reward #not-logged-in .explanation .what-is-momeant p {
+              line-height: 1.4em;
+              margin: 0 0 20px; }
+            #presenter #reward-modal #your-reward #not-logged-in .explanation .what-is-momeant strong {
+              color: black;
+              font-size: 22px;
+              font-weight: 700;
+              text-transform: uppercase;
+              position: relative;
+              top: 2px; }
+        #presenter #reward-modal #your-reward #not-logged-in .buttons {
+          width: 234px;
+          float: right; }
+          #presenter #reward-modal #your-reward #not-logged-in .buttons span {
+            font-size: 40px;
+            display: block;
+            padding: 20px 0;
+            text-align: center;
+            font-family: "ff-dagny-web-pro-1", "ff-dagny-web-pro-2", sans-serif; }
+          #presenter #reward-modal #your-reward #not-logged-in .buttons a.join, #presenter #reward-modal #your-reward #not-logged-in .buttons a.login {
+            display: block;
+            background: black;
+            color: white;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+            padding: 17px 0;
+            width: 160px;
+            margin: 0 auto;
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 13px;
+            font-weight: 700; }
+        #presenter #reward-modal #your-reward #not-logged-in .links {
+          clear: both;
+          background: #f4f4f4;
+          height: 26px;
+          padding: 12px 20px; }
+          #presenter #reward-modal #your-reward #not-logged-in .links a {
+            display: block;
+            width: 36px;
+            height: 25px;
+            float: left;
+            margin-right: 10px;
+            text-indent: -9999px;
+            background-repeat: no-repeat;
+            background-position: 50% 0; }
+          #presenter #reward-modal #your-reward #not-logged-in .links a.about {
+            background-image: url(../images/icons/faqBlack.png); }
+          #presenter #reward-modal #your-reward #not-logged-in .links a.community {
+            background-image: url(../images/icons/communityBlack.png); }
+    #presenter #reward-modal #your-reward.closed {
+      right: 265px; }
+      #presenter #reward-modal #your-reward.closed #toggle-reward-stream {
+        background-position: 1px -22px; }
+      #presenter #reward-modal #your-reward.closed #reward-box .inner form#reward-form {
+        width: 285px; }
+        #presenter #reward-modal #your-reward.closed #reward-box .inner form#reward-form .amount {
+          width: 98px; }
+          #presenter #reward-modal #your-reward.closed #reward-box .inner form#reward-form .amount p {
+            display: none; }
+        #presenter #reward-modal #your-reward.closed #reward-box .inner form#reward-form .comment {
+          width: 273px; }
+          #presenter #reward-modal #your-reward.closed #reward-box .inner form#reward-form .comment textarea {
+            width: 257px; }
+          #presenter #reward-modal #your-reward.closed #reward-box .inner form#reward-form .comment #share {
+            width: 263px; }
+      #presenter #reward-modal #your-reward.closed #reward-thank-you .thank-you .header .who, #presenter #reward-modal #your-reward.closed #reward-thank-you .thank-you .message .text, #presenter #reward-modal #your-reward.closed #reward-thank-you .explanation .diagram {
+        display: none; }
     #presenter #reward-modal #reward-list.closed {
       width: 65px; }
     #presenter #reward-modal #reward-list {
@@ -3305,55 +3417,63 @@ form.new_story, form.edit_story, .story-form {
       border-left: 1px solid #dddddd;
       overflow-y: auto;
       overflow-x: hidden;
-      background: #eeeeee;
-      -webkit-transition: width 0.1s linear;
-      -moz-transition: width 0.1s linear; }
+      background: #eeeeee; }
       #presenter #reward-modal #reward-list .header {
         font-size: 14px;
         font-weight: 700;
         text-transform: uppercase;
-        color: #555555;
+        color: white;
         position: absolute;
         top: 11px;
-        left: 50px; }
+        left: 59px; }
       #presenter #reward-modal #reward-list ul {
         padding-top: 40px;
-        background: transparent url(../images/icons/communityDark.png) no-repeat 5px 5px; }
+        background: #111111 url(../images/icons/quotesWhite.png) no-repeat 13px 10px; }
         #presenter #reward-modal #reward-list ul li {
           clear: both;
-          padding: 10px;
+          padding: 5px 5px 5px 55px;
           border-top: 1px solid white;
-          border-bottom: 1px solid #dddddd; }
+          border-bottom: 1px solid #dddddd;
+          min-height: 60px;
+          background: white;
+          position: relative; }
           #presenter #reward-modal #reward-list ul li .rewarder {
-            height: 28px; }
+            position: absolute;
+            top: 5px;
+            left: 5px; }
             #presenter #reward-modal #reward-list ul li .rewarder .avatar {
               display: block;
-              width: 28px;
-              height: 28px;
-              float: left;
-              margin-right: 5px; }
+              width: 38px;
+              height: 38px; }
               #presenter #reward-modal #reward-list ul li .rewarder .avatar img {
-                width: 28px;
-                height: 28px; }
-            #presenter #reward-modal #reward-list ul li .rewarder .name {
-              float: left;
-              color: #252525;
-              font-size: 11px; }
-              #presenter #reward-modal #reward-list ul li .rewarder .name span {
-                display: block;
-                text-transform: uppercase;
-                font-weight: 700; }
+                width: 38px;
+                height: 38px;
+                border: 1px solid #cbcbcb;
+                border-bottom: none; }
             #presenter #reward-modal #reward-list ul li .rewarder .amount {
-              float: right;
-              padding-right: 12px;
-              background: transparent url(../images/icons/starBlackTiny.png) no-repeat 100% 6px;
-              font-size: 17px;
-              font-family: "ff-dagny-web-pro-1", "ff-dagny-web-pro-2", sans-serif; }
-          #presenter #reward-modal #reward-list ul li .comment, #presenter #reward-modal #reward-list ul li .when {
-            clear: both; }
+              background: #cbcbcb;
+              padding: 4px 20px 3px 5px;
+              background: #cbcbcb url(../images/icons/starWhiteSmall.png) no-repeat 20px 4px;
+              font-weight: 700;
+              color: white;
+              width: 15px;
+              -webkit-border-bottom-right-radius: 3px;
+              -webkit-border-bottom-left-radius: 3px;
+              -moz-border-radius-bottomright: 3px;
+              -moz-border-radius-bottomleft: 3px;
+              border-bottom-right-radius: 3px;
+              border-bottom-left-radius: 3px; }
           #presenter #reward-modal #reward-list ul li .comment {
             font-size: 11px;
-            padding: 5px 0; }
+            padding: 5px 0;
+            width: 185px;
+            line-height: 12px;
+            margin-bottom: 5px;
+            min-height: 30px; }
+            #presenter #reward-modal #reward-list ul li .comment .name {
+              text-transform: uppercase;
+              font-weight: 700;
+              font-size: 10px; }
           #presenter #reward-modal #reward-list ul li .when {
             font-size: 10px;
             color: #cccccc;
@@ -3362,47 +3482,119 @@ form.new_story, form.edit_story, .story-form {
           background: #fffaba; }
         #presenter #reward-modal #reward-list ul li#new-reward {
           display: none; }
+          #presenter #reward-modal #reward-list ul li#new-reward .rewarder .avatar img {
+            border-color: #ffa800; }
+          #presenter #reward-modal #reward-list ul li#new-reward .rewarder .amount {
+            background-color: #ffa800; }
     #presenter #reward-modal #reward-list.closed .header {
       display: none; }
     #presenter #reward-modal #reward-list.closed li {
-      width: 44px; }
+      width: 44px;
+      background: #eeeeee; }
       #presenter #reward-modal #reward-list.closed li .rewarder {
         height: 45px; }
-        #presenter #reward-modal #reward-list.closed li .rewarder .name {
-          display: none; }
-        #presenter #reward-modal #reward-list.closed li .rewarder .avatar {
-          float: none;
-          margin: 0; }
-        #presenter #reward-modal #reward-list.closed li .rewarder .amount {
-          clear: both;
-          float: none;
-          background-position: 0 8px;
-          padding: 3px 3px 3px 11px;
-          font-size: 14px; }
       #presenter #reward-modal #reward-list.closed li .comment, #presenter #reward-modal #reward-list.closed li .when {
         display: none; }
-    #presenter #reward-modal #reward-thank-you {
-      max-width: 700px; }
-      #presenter #reward-modal #reward-thank-you .custom-message strong {
-        display: block;
-        padding-top: 5px;
+    #presenter #reward-modal #reward-thank-you .thank-you {
+      background: #e3e3e3;
+      padding: 30px;
+      height: 150px; }
+      #presenter #reward-modal #reward-thank-you .thank-you .header {
+        height: 40px;
+        margin-bottom: 20px;
         text-transform: uppercase; }
-      #presenter #reward-modal #reward-thank-you .explanation h3 {
-        font-size: 15px; }
-      #presenter #reward-modal #reward-thank-you .explanation p {
-        margin: 10px 0 20px; }
+        #presenter #reward-modal #reward-thank-you .thank-you .header h1 {
+          font-size: 40px;
+          font-family: "ff-dagny-web-pro-1", "ff-dagny-web-pro-2", sans-serif;
+          float: left;
+          margin: -8px 10px 0 0; }
+        #presenter #reward-modal #reward-thank-you .thank-you .header .who {
+          font-size: 17px;
+          font-weight: 700;
+          line-height: 17px;
+          float: left; }
+          #presenter #reward-modal #reward-thank-you .thank-you .header .who span {
+            display: block; }
+      #presenter #reward-modal #reward-thank-you .thank-you .message {
+        clear: both; }
+        #presenter #reward-modal #reward-thank-you .thank-you .message .creator {
+          border: 3px solid #00aeef;
+          margin-right: 10px;
+          float: left; }
+          #presenter #reward-modal #reward-thank-you .thank-you .message .creator .avatar {
+            display: block;
+            width: 70px;
+            height: 70px; }
+            #presenter #reward-modal #reward-thank-you .thank-you .message .creator .avatar img {
+              width: 70px;
+              height: 70px; }
+          #presenter #reward-modal #reward-thank-you .thank-you .message .creator .rewards {
+            background: #00aeef;
+            color: white;
+            text-align: center;
+            padding: 5px 0 0; }
+            #presenter #reward-modal #reward-thank-you .thank-you .message .creator .rewards span {
+              background: transparent url(../images/icons/starWhiteSmall.png) no-repeat 100% 0;
+              padding-right: 20px;
+              font-weight: 700; }
+        #presenter #reward-modal #reward-thank-you .thank-you .message .text {
+          background: transparent url(../images/rewardModalThankYouMessageBG.png) no-repeat 0 0;
+          width: 345px;
+          padding: 15px 15px 15px 25px;
+          float: left;
+          font-size: 11px;
+          max-height: 60px;
+          overflow: hidden; }
+    #presenter #reward-modal #reward-thank-you .explanation {
+      height: 240px;
+      background: #00aeef;
+      padding: 25px 0 25px 30px; }
+      #presenter #reward-modal #reward-thank-you .explanation .text {
+        width: 140px;
+        float: left;
+        color: white;
+        margin-right: 20px; }
+        #presenter #reward-modal #reward-thank-you .explanation .text h2 {
+          font-size: 18px;
+          font-weight: 700;
+          color: black;
+          text-transform: uppercase;
+          background: none;
+          line-height: 30px;
+          padding: 0;
+          margin-bottom: 10px; }
+          #presenter #reward-modal #reward-thank-you .explanation .text h2 span {
+            letter-spacing: -0.03em; }
+          #presenter #reward-modal #reward-thank-you .explanation .text h2 strong {
+            font-size: 40px;
+            font-family: "ff-dagny-web-pro-1", "ff-dagny-web-pro-2", sans-serif;
+            color: white; }
+        #presenter #reward-modal #reward-thank-you .explanation .text p {
+          font-size: 11px;
+          margin: 0; }
+      #presenter #reward-modal #reward-thank-you .explanation .diagram {
+        float: left;
+        width: 319px;
+        height: 220px;
+        background: transparent url(../images/rewardModalImpactDiagram.png) no-repeat 0 0;
+        position: relative; }
+        #presenter #reward-modal #reward-thank-you .explanation .diagram .avatar {
+          position: absolute;
+          top: 21px;
+          left: 141px;
+          width: 33px;
+          height: 33px; }
   #presenter .content {
     z-index: 1; }
   #presenter #metadata {
-    display: none;
     position: absolute;
     left: 0;
     bottom: 0;
     z-index: 5;
     width: 100%;
-    background: black;
     height: 35px; }
     #presenter #metadata .info {
+      display: none;
       float: left;
       margin-left: 10px; }
       #presenter #metadata .info .title, #presenter #metadata .info .author {
@@ -3442,9 +3634,17 @@ form.new_story, form.edit_story, .story-form {
       #presenter #metadata .info .excerpt:hover .full {
         display: block; }
     #presenter #metadata .pages {
+      background: rgba(0, 0, 0, 0.75);
       float: right;
       height: 15px;
-      margin: 10px 20px 10px 0; }
+      margin: 10px 20px 0 0;
+      padding: 5px 15px 5px 10px;
+      -webkit-border-top-left-radius: 3px;
+      -webkit-border-top-right-radius: 3px;
+      -moz-border-radius-topleft: 3px;
+      -moz-border-radius-topright: 3px;
+      border-top-left-radius: 3px;
+      border-top-right-radius: 3px; }
       #presenter #metadata .pages a {
         font-size: 10px;
         margin-left: 5px;
@@ -4110,22 +4310,24 @@ ul.stories li.story {
     padding: 10px;
     width: 210px;
     height: 124px;
-    color: white;
     text-transform: uppercase;
-    font-size: 14px;
-    background: rgba(0, 0, 0, 0.75);
+    font-size: 13px;
+    background: rgba(255, 255, 255, 0.95);
+    color: #252525;
     z-index: 2;
     font-weight: 500; }
     ul.stories li.story .title span {
       display: block; }
     ul.stories li.story .title span.title-text {
-      width: 175px; }
+      width: 175px;
+      font-weight: 700; }
     ul.stories li.story .title span.synopsis {
       font-size: 11px;
       text-transform: none;
       border: none;
       padding: 5px 0 0 0;
-      height: 75px; }
+      height: 75px;
+      color: #555555; }
   ul.stories li.story .avatar {
     position: absolute;
     top: 11px;
@@ -4136,7 +4338,8 @@ ul.stories li.story {
     z-index: 3; }
     ul.stories li.story .avatar img {
       width: 28px;
-      height: 28px; }
+      height: 28px;
+      border: 1px solid #dddddd; }
   ul.stories li.story .edit-links {
     position: absolute;
     top: 10px;

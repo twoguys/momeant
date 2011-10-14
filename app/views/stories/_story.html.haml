@@ -11,7 +11,7 @@
   - if story.owner?(current_user) && editable
     .edit-links
       = link_to("edit", edit_story_path(story), :class => "edit tooltipped-e", :title => "edit")
-      = link_to("delete", story_path(story), :method => :delete, :class => "delete tooltipped-e", :title => "delete", :confirm => "Are you SURE you want to delete this?")
+      = link_to("delete", story_path(story), :method => :delete, :class => "delete tooltipped-e", :title => "delete", :confirm => "WHOA WAIT UP! If you delete this you will lose ALL REWARDS on this content. Are you SURE you want to delete it?")
   = link_to(image_tag(story.thumbnail.url(:medium)), story, :class => "thumbnail")
   - if how_much
     .how-much
@@ -19,7 +19,8 @@
       %span from
       %span.people= story.users_who_rewarded.count
   - unless editable
-    .tags
-      - story.tags.each do |tag|
-        = link_to(tag.name, community_path(:tag => tag.name), :class => "tag")
+    - unless story.tags.empty?
+      .tags
+        - story.tags.each do |tag|
+          = link_to(tag.name, community_path(:tag => tag.name), :class => "tag")
     .rewards= story.reward_count

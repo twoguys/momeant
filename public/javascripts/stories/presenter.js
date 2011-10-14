@@ -58,7 +58,7 @@ $(function() {
 		
 		initialize: function() {
 			var page_number = 1;
-			$('#pages li').each(function(page) {
+			$('#pages').children().each(function(page) {
 				var $page_li = $(this);
 				var page = new Page({number: page_number, visible: (page_number == 1)});
 				var page_view = new PageView({model: page});
@@ -93,6 +93,8 @@ $(function() {
 			} else {
 				this.previous_button.fadeIn('fast');
 			}
+			log('current page: ' + this.current_page);
+			log('total pages: ' + Pages.length);
 			if (this.current_page == Pages.length) {
 				this.next_button.fadeOut('fast');
 			} else {
@@ -112,6 +114,7 @@ $(function() {
 			var $link = $(e.currentTarget);
 			var number = parseInt($link.attr('page'));
 			this.goto_page(number);
+			return false;
 		},
 		
 		close_reward_modal: function() {
@@ -144,7 +147,7 @@ $(function() {
 		
 		events: {
 			'click #reward-modal-tab':        'toggle_modal',
-			'click #share .toggle':           'toggle_switch',
+			'click #share input':           	'toggle_sharing',
 			'click #toggle-reward-stream':    'toggle_reward_list',
 			'submit #reward-form':            'submit_reward',
 			'keyup #reward_amount':           'reward_amount_keypress',
@@ -161,13 +164,14 @@ $(function() {
 			$(this.el).animate({top: 0}, 300);
 			$('#content-cover').show();
 			this.modal_open = true;
-			mpq.track('Opened Reward Modal', {anonymous_id: '#{session[:analytics_anonymous_id]}'})
+			mpq.track('Opened Reward Modal', {anonymous_id: '#{session[:analytics_anonymous_id]}'});
 		},
 		
 		hide_modal: function() {
-			$(this.el).animate({top: '-80%'}, 300);
+			$(this.el).animate({top: '-500px'}, 300);
 			$('#content-cover').hide();
 			this.modal_open = false;
+			$('#its-you-arrow').hide();
 		},
 		
 		toggle_modal: function() {
@@ -179,25 +183,19 @@ $(function() {
 			return false;
 		},
 		
-		toggle_switch: function(e) {
-			var $toggle = $(e.currentTarget);
-			var $handle = $toggle.find('.handle');
-			var $hidden_field = $($toggle.attr('update'));
+		toggle_sharing: function(e) {
+			var $checkbox = $(e.currentTarget);
+			var $hidden_field = $('#share_' + $checkbox.attr('id'));
 
-			if ($toggle.hasClass('off')) {
-				$handle.animate({left: '0'}, 200);
-				$toggle.removeClass('off');
+			if ($checkbox.is(':checked')) {
 				$hidden_field.val('yes')
 			} else {
-				$handle.animate({left: '40px'}, 200);
-				$toggle.addClass('off');
 				$hidden_field.val('')
 			}
 		},
 		
 		toggle_reward_list: function() {
-			var $list = $('#reward-list');
-			$list.toggleClass('closed').siblings('#your-reward').toggleClass('closed');
+			$('#reward-list, #your-reward').toggleClass('closed');
 		},
 		
 		submit_reward: function(e) {
@@ -223,12 +221,12 @@ $(function() {
 					"share[facebook]":share_with_facebook
 				},
 				function(data) {
-					$("#reward-box-outer").html(data);
-					$('#reward-box-outer').removeClass('loading').addClass('thanks');
+					$("#your-reward .inner").html(data);
 					var $new_reward = $('#new-reward');
 					$new_reward.find('.amount').text(amount);
-					$new_reward.find('.comment').text(comment);
+					$new_reward.find('.comment .text').text(comment);
 					$new_reward.slideDown();
+					$('#its-you-arrow').show();
 				}
 			);
 		},

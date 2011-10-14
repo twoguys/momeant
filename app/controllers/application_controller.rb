@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   include SslRequirement
   protect_from_forgery
   
-  before_filter :check_for_trial_expiration, :push_to_sender, :create_anonymous_tracker
+  before_filter :check_for_trial_expiration, :push_to_sender, :create_anonymous_tracker, :open_reward_modal?
   
   @nav = "home"
   @sidenav = ""
@@ -42,6 +42,12 @@ class ApplicationController < ActionController::Base
     # if the user isn't logged in, set a unique cookie to track them
     if session[:analytics_anonymous_id].nil?
       session[:analytics_anonymous_id] = ActiveSupport::SecureRandom.hex(24)
+    end
+  end
+  
+  def open_reward_modal?
+    if params[:open_reward_modal].present?
+      session[:open_reward_modal] = true
     end
   end
   

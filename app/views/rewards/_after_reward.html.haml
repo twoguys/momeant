@@ -1,20 +1,34 @@
 #reward-thank-you
-  %h2 THANK YOU!
-
-  - if @story.user.thankyou.present?
-    %p.custom-message
-      = @story.user.thankyou
-      %strong= "- #{@story.user.first_name}"
+  .thank-you
+    .header
+      %h1 Thanks!
+      .who
+        %span You just rewarded
+        = link_to @reward.recipient.name, creations_user_path(@reward.recipient)
+    .message
+      .creator
+        = link_to(image_tag(@reward.recipient.avatar.url(:large)), creations_user_path(@reward.recipient), :class => "avatar")
+        .rewards
+          %span= @reward.recipient.lifetime_rewards
+      .text
+        - if @story.thankyou.present?
+          = truncate(@story.thankyou, :length => 220)
+        - elsif @story.user.thankyou.present?
+          = truncate(@story.user.thankyou, :length => 220)
+        - else
+          Wow, thank you so much for your support!
 
   .explanation
-    %h3 This reward can generate impact!
-    %p
-      Impact is the measure of how your reward helps generate more rewards from others.
-      To see how you've helped impact others, #{link_to("visit your homepage", user_path(current_user))}.
+    .text
+      %h2
+        %span Measure your
+        %strong Impact
+      %p
+        Impact is the amount of total rewards YOU have generated for someone. When you reward, others see it on Momeant,
+        Facebook, and Twitter. If they reward too, that creates impact for you.
+    .diagram
+      = image_tag(@reward.user.avatar.url(:thumbnail), :class => "avatar")
     
-    %h3 Discover awesome people and their work
-    %p
-      Visit the #{link_to("community area", community_path)} to see who the top patrons and creators are right now.
 
 :javascript
-  mpq.track('Rewarded Content', {anonymous_id: '#{session[:analytics_anonymous_id]}', story_id: '#{@story.id}', mp_note: '#{@reward.amount} reward coins'});
+  mpq.track('Rewarded Content', {story_id: '#{@story.id}', mp_note: '#{@reward.amount} reward coins'});

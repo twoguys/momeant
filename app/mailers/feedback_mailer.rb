@@ -1,5 +1,5 @@
 class FeedbackMailer < ActionMailer::Base
-  default :from => "Momeant <noreply@momeant.com>"
+  default :from => "Momeant <team@momeant.com>"
   
   def give_feedback(comment, user)
     @comment = comment

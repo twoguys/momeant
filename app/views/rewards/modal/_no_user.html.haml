@@ -1,0 +1,35 @@
+#not-logged-in
+  .creator
+    = link_to(image_tag(@story.user.avatar.url(:large)), creations_user_path(@story.user), :class => "avatar")
+    %span Reward
+    %span #{@story.user.first_name}!
+  .explanation
+    .inner
+      .what-is-momeant
+        %p #{@story.user.first_name} is a creator on mo&#149;meant, a community that believes in rewarding good content creators on the Web.
+        %p 
+          %span Sign up to join the community.
+          %strong Reward
+          %span the people behind good content, and
+          %strong Share
+          %span your content to get rewarded.
+  .buttons
+    .inner
+      = link_to("Join mo&#149;meant".html_safe, "#join-modal", :class => "join")
+      %span - OR -
+      = link_to("Login", "#login-modal", :class => "login")
+  .links
+    = link_to("About", about_path, :class => "about tooltipped-n", :title => "About Momeant")
+    = link_to("Community", community_path, :class => "community tooltipped-n", :title => "Community")
+
+:javascript
+  var forms_updated = false;
+  $('#not-logged-in .buttons a').click(function() {
+
+    if (forms_updated)
+      return;
+          
+    forms_updated = true;
+    $('#join-form, #login-form').append('<input type="hidden" name="open_reward_modal" value="yes"></input>');
+
+  });

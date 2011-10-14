@@ -92,7 +92,7 @@ class UsersController < ApplicationController
     def find_user
       @user = User.find(params[:id])
       @page_title = @user.name if @user
-      @nav = "home"
+      @nav = "home" if current_user == @user
       @sidenav = "profile" if current_user.present? && @user == current_user
     end
 end
