@@ -60,12 +60,6 @@
                 %a.tooltipped{:href => user_content_rewarded_by_path(user, @user), :title => user.name}
                   = image_tag(user.avatar.url(:large), :style => "width:#{size}px;height:#{size}px")
                   .border{:style => "width:#{size}px;height:#{size}px"}
-      
-      - unless @rewards.empty?
-        %section.patronage
-          %h3 Rewards #{@user == current_user ? "you've" : "#{@user.first_name} has"} given
-          %ul.rewards
-            = render @rewards, :user_profile => true
 
 - if me?(@user)
   :javascript
