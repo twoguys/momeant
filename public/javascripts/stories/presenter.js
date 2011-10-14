@@ -161,13 +161,14 @@ $(function() {
 			$(this.el).animate({top: 0}, 300);
 			$('#content-cover').show();
 			this.modal_open = true;
-			mpq.track('Opened Reward Modal', {anonymous_id: '#{session[:analytics_anonymous_id]}'})
+			mpq.track('Opened Reward Modal', {anonymous_id: '#{session[:analytics_anonymous_id]}'});
 		},
 		
 		hide_modal: function() {
 			$(this.el).animate({top: '-500px'}, 300);
 			$('#content-cover').hide();
 			this.modal_open = false;
+			$('#its-you-arrow').hide();
 		},
 		
 		toggle_modal: function() {
@@ -217,12 +218,12 @@ $(function() {
 					"share[facebook]":share_with_facebook
 				},
 				function(data) {
-					$("#reward-box-outer").html(data);
-					$('#reward-box-outer').removeClass('loading').addClass('thanks');
+					$("#your-reward .inner").html(data);
 					var $new_reward = $('#new-reward');
 					$new_reward.find('.amount').text(amount);
-					$new_reward.find('.comment').text(comment);
+					$new_reward.find('.comment .text').text(comment);
 					$new_reward.slideDown();
+					$('#its-you-arrow').show();
 				}
 			);
 		},

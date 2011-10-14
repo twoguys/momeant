@@ -3,13 +3,12 @@
   %ul
     - if current_user
       %li#new-reward
+        .arrow
         .rewarder
           = link_to(image_tag(current_user.avatar(:thumbnail)), user_path(current_user), :class => "avatar")
           .amount
         .comment
-          %a.name{:href => user_path(current_user)}
-            %span= current_user.first_name
-            %span= current_user.last_name
+          = link_to("#{current_user.name}:", user_path(current_user), :class => "name")
           %span.text
         .when just now
     - @story.rewards.each do |reward|

@@ -3000,6 +3000,16 @@ form.new_story, form.edit_story, .story-form {
     right: 0;
     display: none;
     z-index: 2; }
+  #presenter #its-you-arrow {
+    display: none;
+    position: absolute;
+    top: 60px;
+    left: 50%;
+    margin-left: 310px;
+    width: 117px;
+    height: 38px;
+    background: transparent url(../images/lookItsYou.png) no-repeat 0 0;
+    z-index: 3; }
   #presenter #reward-modal {
     height: 501px;
     width: 600px;
@@ -3284,6 +3294,9 @@ form.new_story, form.edit_story, .story-form {
       #presenter #reward-modal #your-reward #reward-box-outer .not-logged-in a.login {
         background-image: -moz-linear-gradient(center top, #62e079 4%, #12b32f 52%);
         background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #62e079), color-stop(0.52, #12b32f)); }
+      #presenter #reward-modal #your-reward .out-of-coins h3 {
+        font-size: 20px;
+        text-transform: uppercase; }
       #presenter #reward-modal #your-reward #not-logged-in {
         background: #03a1dc;
         color: white;
@@ -3390,6 +3403,8 @@ form.new_story, form.edit_story, .story-form {
             width: 257px; }
           #presenter #reward-modal #your-reward.closed #reward-box .inner form#reward-form .comment #share {
             width: 263px; }
+      #presenter #reward-modal #your-reward.closed #reward-thank-you .thank-you .header .who, #presenter #reward-modal #your-reward.closed #reward-thank-you .thank-you .message .text, #presenter #reward-modal #your-reward.closed #reward-thank-you .explanation .diagram {
+        display: none; }
     #presenter #reward-modal #reward-list.closed {
       width: 65px; }
     #presenter #reward-modal #reward-list {
@@ -3467,6 +3482,10 @@ form.new_story, form.edit_story, .story-form {
           background: #fffaba; }
         #presenter #reward-modal #reward-list ul li#new-reward {
           display: none; }
+          #presenter #reward-modal #reward-list ul li#new-reward .rewarder .avatar img {
+            border-color: #ffa800; }
+          #presenter #reward-modal #reward-list ul li#new-reward .rewarder .amount {
+            background-color: #ffa800; }
     #presenter #reward-modal #reward-list.closed .header {
       display: none; }
     #presenter #reward-modal #reward-list.closed li {
@@ -3476,16 +3495,95 @@ form.new_story, form.edit_story, .story-form {
         height: 45px; }
       #presenter #reward-modal #reward-list.closed li .comment, #presenter #reward-modal #reward-list.closed li .when {
         display: none; }
-    #presenter #reward-modal #reward-thank-you {
-      max-width: 700px; }
-      #presenter #reward-modal #reward-thank-you .custom-message strong {
-        display: block;
-        padding-top: 5px;
+    #presenter #reward-modal #reward-thank-you .thank-you {
+      background: #e3e3e3;
+      padding: 30px;
+      height: 150px; }
+      #presenter #reward-modal #reward-thank-you .thank-you .header {
+        height: 40px;
+        margin-bottom: 20px;
         text-transform: uppercase; }
-      #presenter #reward-modal #reward-thank-you .explanation h3 {
-        font-size: 15px; }
-      #presenter #reward-modal #reward-thank-you .explanation p {
-        margin: 10px 0 20px; }
+        #presenter #reward-modal #reward-thank-you .thank-you .header h1 {
+          font-size: 40px;
+          font-family: "ff-dagny-web-pro-1", "ff-dagny-web-pro-2", sans-serif;
+          float: left;
+          margin: -8px 10px 0 0; }
+        #presenter #reward-modal #reward-thank-you .thank-you .header .who {
+          font-size: 17px;
+          font-weight: 700;
+          line-height: 17px;
+          float: left; }
+          #presenter #reward-modal #reward-thank-you .thank-you .header .who span {
+            display: block; }
+      #presenter #reward-modal #reward-thank-you .thank-you .message {
+        clear: both; }
+        #presenter #reward-modal #reward-thank-you .thank-you .message .creator {
+          border: 3px solid #00aeef;
+          margin-right: 10px;
+          float: left; }
+          #presenter #reward-modal #reward-thank-you .thank-you .message .creator .avatar {
+            display: block;
+            width: 70px;
+            height: 70px; }
+            #presenter #reward-modal #reward-thank-you .thank-you .message .creator .avatar img {
+              width: 70px;
+              height: 70px; }
+          #presenter #reward-modal #reward-thank-you .thank-you .message .creator .rewards {
+            background: #00aeef;
+            color: white;
+            text-align: center;
+            padding: 5px 0 0; }
+            #presenter #reward-modal #reward-thank-you .thank-you .message .creator .rewards span {
+              background: transparent url(../images/icons/starWhiteSmall.png) no-repeat 100% 0;
+              padding-right: 20px;
+              font-weight: 700; }
+        #presenter #reward-modal #reward-thank-you .thank-you .message .text {
+          background: #ececec;
+          width: 345px;
+          padding: 20px;
+          float: left;
+          font-size: 11px;
+          max-height: 60px;
+          overflow: hidden; }
+    #presenter #reward-modal #reward-thank-you .explanation {
+      height: 240px;
+      background: #00aeef;
+      padding: 25px 0 25px 30px; }
+      #presenter #reward-modal #reward-thank-you .explanation .text {
+        width: 140px;
+        float: left;
+        color: white;
+        margin-right: 20px; }
+        #presenter #reward-modal #reward-thank-you .explanation .text h2 {
+          font-size: 18px;
+          font-weight: 700;
+          color: black;
+          text-transform: uppercase;
+          background: none;
+          line-height: 30px;
+          padding: 0;
+          margin-bottom: 10px; }
+          #presenter #reward-modal #reward-thank-you .explanation .text h2 span {
+            letter-spacing: -0.03em; }
+          #presenter #reward-modal #reward-thank-you .explanation .text h2 strong {
+            font-size: 40px;
+            font-family: "ff-dagny-web-pro-1", "ff-dagny-web-pro-2", sans-serif;
+            color: white; }
+        #presenter #reward-modal #reward-thank-you .explanation .text p {
+          font-size: 11px;
+          margin: 0; }
+      #presenter #reward-modal #reward-thank-you .explanation .diagram {
+        float: left;
+        width: 319px;
+        height: 220px;
+        background: transparent url(../images/rewardModalImpactDiagram.png) no-repeat 0 0;
+        position: relative; }
+        #presenter #reward-modal #reward-thank-you .explanation .diagram .avatar {
+          position: absolute;
+          top: 21px;
+          left: 141px;
+          width: 33px;
+          height: 33px; }
   #presenter .content {
     z-index: 1; }
   #presenter #metadata {
