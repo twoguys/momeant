@@ -58,7 +58,7 @@ $(function() {
 		
 		initialize: function() {
 			var page_number = 1;
-			$('#pages li').each(function(page) {
+			$('#pages').children().each(function(page) {
 				var $page_li = $(this);
 				var page = new Page({number: page_number, visible: (page_number == 1)});
 				var page_view = new PageView({model: page});
@@ -93,6 +93,8 @@ $(function() {
 			} else {
 				this.previous_button.fadeIn('fast');
 			}
+			log('current page: ' + this.current_page);
+			log('total pages: ' + Pages.length);
 			if (this.current_page == Pages.length) {
 				this.next_button.fadeOut('fast');
 			} else {
