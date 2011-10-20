@@ -382,7 +382,7 @@
 				.buttons
 					width: 234px
 					float: right
-					span
+					span.or
 						font-size: 40px
 						display: block
 						padding: 20px 0
@@ -422,7 +422,33 @@
 		#your-reward.closed
 			right: 265px
 			#toggle-reward-stream
-				background-position: 1px -22px	
+				background-position: 1px -22px
+
+			#not-logged-in
+				.explanation, .buttons
+					float: none
+					.inner
+						border: none
+				.explanation .inner
+					height: 215px
+				.buttons
+					width: 300px
+					.inner
+						height: 47px
+						padding-left: 30px
+					a
+						width: 100px
+						font-size: 12px
+						float: left
+						padding: 10px 0
+						width: 80px
+						span
+							display: none
+					span.or
+						float: left
+						padding: 0 10px
+						font-size: 30px
+					
 			#reward-box .inner
 				form#reward-form
 					width: 285px
@@ -436,6 +462,7 @@
 							width: 257px
 						#share
 							width: 263px
+
 			#reward-thank-you
 				.thank-you .header .who, .thank-you .message .text, .explanation .diagram
 					display: none
