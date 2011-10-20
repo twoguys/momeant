@@ -125,6 +125,8 @@ class StoriesController < ApplicationController
       render :json => {:result => "success", :metadata => metadata}
       return
     end
+    
+    params[:story][:tag_list].downcase! if params[:story][:tag_list]
 
     @story.autosaving = true
     if @story.update_attributes(params[:story])
