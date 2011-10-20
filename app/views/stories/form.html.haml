@@ -31,9 +31,24 @@
           %p.info
             %em Share images &amp; text with many layout &amp; formatting options.
       .clear
-  
+
+    %section.step#share
+      %h2 2. Tell your networks so you can get rewarded.
+      = hidden_field_tag :share_twitter
+      = hidden_field_tag :share_facebook
+      .service#twitter
+        - if @twitter_auth
+          = check_box_tag :twitter
+        - else
+          = link_to("Setup", "#{root_url}auth/twitter", :class => "configure", :service => "twitter")
+      .service#facebook
+        - if @facebook_auth
+          = check_box_tag :facebook
+        - else
+          = link_to("Setup", "#{root_url}auth/facebook", :class => "configure", :service => "facebook")
+
     %section.step#describe
-      %h2 2. Describe your content so that others can find and reward it!
+      %h2 3. Describe your content so that others can find and reward it!
       #thumbnail-preview
         .box
           .title= @story && @story.title.present? ? @story.title : "TITLE"
@@ -83,32 +98,9 @@
             = render "gallery_creator"
     
     %section.step#thankyou
-      %h2 3. Write a thank you note to all of folks that reward this content.
+      %h2 4. Write a thank you note to all of folks that reward this content.
       .info This note will be shown to a person after they reward you. It's a chance to express your appreciation.
       = text_area_tag :story_thankyou, @story.thankyou, :class => "monitor-story-typing", :update => "thankyou"
-    
-    %section.step#share
-      %h2 4. Share this with your networks.
-      %table
-        %tbody
-          %tr
-            %td Twitter
-            %td.link
-              - if @twitter_auth
-                .switch
-                  .toggle.off{:update => "#share_twitter"}
-                    .handle
-              - else
-                = link_to("Configure", "/auth/twitter/configure", :class => "configure")
-          %tr
-            %td Facebook
-            %td.link
-              - if @facebook_auth
-                .switch
-                  .toggle.off{:update => "#share_facebook"}
-                    .handle
-              - else
-                = link_to("Configure", "/auth/facebook/configure", :class => "configure")
   
     %section#done
       .owner

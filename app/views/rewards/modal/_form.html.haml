@@ -39,12 +39,12 @@
               - if @facebook_auth
                 = check_box_tag :facebook
               - else
-                = link_to("Setup", "/auth/facebook/configure", :class => "configure")
+                = link_to("Setup", "#{root_url}auth/facebook", :class => "configure", :service => "facebook")
             .service#twitter
               - if @twitter_auth
                 = check_box_tag :twitter
               - else
-                = link_to("Setup", "/auth/twitter/configure", :class => "configure")
+                = link_to("Setup", "#{root_url}auth/twitter", :class => "configure", :service => "twitter")
           #nib
         = form.submit "Give Reward"
 
