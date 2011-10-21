@@ -92,6 +92,30 @@ function handle_feedback_form() {
 	});
 }
 
+function setup_oauth_process() {
+	$('#share a.configure').click(function() {
+		var service = $(this).attr('service');
+		var callback = function() {
+			var $service = $('#share #' + service);
+			$.get('/auth/' + service + '/check', function(result) {
+				if(result) {
+					$service.find('a.configure').remove();
+					$service.append('<input type="checkbox" value="1" name="' + service + '" id="' + service + '" checked=checked">');
+					$('#share_' + service).val('yes');
+				}
+			});
+		};
+		window.oauth_window = window.open($(this).attr('href'),'Linking ' + service,'height=500,width=900');
+		window.oauth_interval = window.setInterval(function() {
+			if (window.oauth_window.closed) {
+				window.clearInterval(window.oauth_interval);
+				callback();
+			}
+		}, 1000)
+		return false;
+	});
+}
+
 function setup_reward_visualizing() {
 	$('li.reward .visualize a').fancybox();
 }
@@ -105,6 +129,7 @@ $(document).ready(function() {
 	handle_signup_login_form_validation();
 	handle_feedback_form();
 	setup_reward_visualizing();
+	setup_oauth_process();
 	
 	$("a.disabled").click(function() {return false;})
 	

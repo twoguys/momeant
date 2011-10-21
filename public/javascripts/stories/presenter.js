@@ -93,8 +93,6 @@ $(function() {
 			} else {
 				this.previous_button.fadeIn('fast');
 			}
-			log('current page: ' + this.current_page);
-			log('total pages: ' + Pages.length);
 			if (this.current_page == Pages.length) {
 				this.next_button.fadeOut('fast');
 			} else {

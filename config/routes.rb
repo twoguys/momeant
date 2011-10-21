@@ -106,6 +106,7 @@ Repo::Application.routes.draw do
   
   match '/auth/:provider/configure' => 'authentications#configure'
   match '/auth/:provider/callback' => 'authentications#create'
+  match '/auth/:provider/check' => 'authentications#check'
   
   match '/search',              :to => "search#index",              :as => :search
   match '/subscribe',           :to => 'home#subscribe',            :as => :subscribe

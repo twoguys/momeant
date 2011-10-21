@@ -14,7 +14,7 @@ class UsersController < ApplicationController
   end
   
   def edit
-    @user = current_user
+    redirect_to edit_user_path(current_user) and return if current_user != @user
     @nav = "home"
     @sidenav = "profile"
   end

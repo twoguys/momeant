@@ -27,39 +27,23 @@
           .text
             impact
             %br
-            made
+            score
+          - if @user.impact == 0
+            .notification
     
-      - if me?(@user) && @rewards.empty?
-        .have-not.rewarded
-          %h3
-            %span You have not
-            %em rewarded
-            %span anything yet.
-          %a.box-button{:href => community_path}
-            .inner
-              %span.text Discover content being rewarded by the community.
-              %span.arrow
-        - if @user.created_stories.count == 0
-          .have-not.shared
-            %h3
-              %span You have not
-              %em shared
-              %span anything yet.
-            %a.box-button{:href => creations_user_path(@user)}
-              .inner
-                %span.text Share something so that others can reward you!
-                %span.arrow
-
-      - unless @users.empty?
-        %section.patronage.rewarded-creators
-          %h3 Creators #{@user == current_user ? "you've" : "#{@user.first_name} has"} rewarded
-          .avatar-wall
-            .wall
-              - @users.each do |user|
-                - size = avatar_size_for_impact(@user.impact_on(user))
-                %a.tooltipped{:href => user_content_rewarded_by_path(user, @user), :title => user.name}
-                  = image_tag(user.avatar.url(:large), :style => "width:#{size}px;height:#{size}px")
-                  .border{:style => "width:#{size}px;height:#{size}px"}
+      %section.patronage.rewarded-creators
+        %h3 Creators #{@user == current_user ? "you've" : "#{@user.first_name} has"} rewarded
+        .avatar-wall
+          .wall
+            - @users.each do |user|
+              - size = avatar_size_for_impact(@user.impact_on(user))
+              %a.tooltipped{:href => user_content_rewarded_by_path(user, @user), :title => user.name}
+                = image_tag(user.avatar.url(:large), :style => "width:#{size}px;height:#{size}px")
+                .border{:style => "width:#{size}px;height:#{size}px"}
+            - if @users.empty?
+              %a.example{:href => "#"}
+                = image_tag("exampleAvatarWallFace.png")
+                .border{:style => "width:44px;height:44px"}
 
 - if me?(@user)
   :javascript

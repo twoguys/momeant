@@ -114,10 +114,8 @@ ul.avatars
 			clear: both
 			padding-top: 4px
 			margin-bottom: 12px
-		.location .insides
-			padding: 1px 0 0 18px
-			background: transparent url(../images/icons/location.png) no-repeat 0 0
-			margin-bottom: 17px
+		.location
+			margin-bottom: 13px
 		.tags
 			h3
 				margin-bottom: 5px
@@ -132,25 +130,64 @@ ul.avatars
 	.the-rest
 		margin-left: 208px
 		min-height: 100%
-		.horizontal-tabs ul
-			padding-top: 20px
+		.horizontal-tabs
+			border-bottom: 1px solid #ccc
+			ul
+				padding-top: 20px
+				a
+					border: 1px solid #ccc
+					border-bottom: none
 		.tabbed
 			padding: 20px
+			background: #fff
 	
+	
+	.guides
+		padding: 25px
+		a
+			@include orangebutton
+			padding: 0
+			position: relative
+			display: block
+			width: 31%
+			height: 48px
+			min-width: 250px
+			float: left
+			margin-right: 2%
+			span.text
+				display: block
+				width: 175px
+				position: absolute
+				top: 10px
+				left: 10px
+				padding-left: 33px
+				background: transparent url(../images/icons/communitySmall.png) no-repeat 0 3px
+				line-height: 13px
+			span.arrow
+				position: absolute
+				top: 16px
+				right: 15px
+				width: 11px
+				height: 16px
+				background: transparent url(../images/arrowThinRightWhite.png) no-repeat 0 0
+		a.create span.text
+			background-image: url(../images/icons/momeantAddStorySmallWhite.png)
+			background-position: 4px 5px
+		a.profile span.text
+			background-image: url(../images/icons/profileWhite.png)
+		a:last-child
+			margin-right: 0
+			
 	.horizontal-tabs
+		clear: both
 		li a
 			padding-left: 32px
 			background-position: 10px 9px
 			background-repeat: no-repeat
 		li.rewards a
-			background-image: url(../images/icons/starWhiteSmall.png)
-		li.rewards a.active	
 			background-image: url(../images/icons/starBlackSmall.png)
 			background-position: 10px 10px
 		li.creations a
-			background-image: url(../images/icons/momeantAddStorySmallWhite.png)
-			background-position: 10px 8px
-		li.creations a.active
 			background-image: url(../images/icons/momeantAddStorySmall.png)
 			background-position: 10px 9px
 	
@@ -206,7 +243,7 @@ ul.avatars
 		.avatar-wall
 			height: 600px
 			margin-bottom: 30px
-			background: transparent url(../images/mosaicBG.png) no-repeat 0 0
+			background: transparent url(../images/mosaicBG.png) repeat 0 0
 			.wall
 				a
 					display: block
@@ -217,6 +254,8 @@ ul.avatars
 						position: absolute
 						top: 0
 						left: 0
+				a.example
+					display: none
 			
 	ul.rewards
 		padding: 0
@@ -224,7 +263,7 @@ ul.avatars
 		li
 			background: #fff
 			
-	/* Creations Tab */
+	/* Stats Bar */
 	
 	ul.stats-bar
 		height: 50px
@@ -239,6 +278,7 @@ ul.avatars
 			font-size: 11px
 			height: 60px
 			margin-top: -5px
+			position: relative
 			.text, .value
 				float: left
 			.text
@@ -256,11 +296,22 @@ ul.avatars
 		li.rewards, li.patrons
 			border-right: 1px solid #fff
 			padding-right: 30px
-		li.patrons, li.until-payment, li.impact
+		li.patrons, li.cash, li.impact
 			border-left: 1px solid #ccc
 			padding-left: 30px
 		li.patrons .value
 			background: transparent url(../images/icons/person.png) no-repeat 100% 3px
+		li.cash .value
+			background: none
+		li.impact .notification
+			position: absolute
+			top: 13px
+			right: -306px
+			width: 306px
+			height: 37px
+			background: transparent url(../images/profileImpactGrowNotification.png) no-repeat 0 0
+			
+	/* Creations Tab */
 	
 	ul.galleries		
 		li.separator

@@ -18,4 +18,8 @@ class Transaction < ActiveRecord::Base
   aasm_event :accept do
     transitions :to => :accepted, :from => :started
   end
+  
+  aasm_event :mark_as_paid do
+    transitions :to => :paid, :from => :accepted
+  end
 end

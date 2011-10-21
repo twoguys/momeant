@@ -1,29 +1,40 @@
 .profile-info
   .avatar-badge-name
-    = link_to(image_tag(@user.avatar.url(:large)), user_path(@user), :class => "avatar")
+    - if @user.avatar.url.include?("missing")
+      = link_to(image_tag(@user.avatar.url(:large)), edit_user_path(@user), :class => "avatar")
+    - else
+      = link_to(image_tag(@user.avatar.url(:large)), user_path(@user), :class => "avatar")
     = image_tag("badges/#{@user.badge_level}.png", :class => "badge")
     .name= @user.name
       
-  - if @user.occupation.present? || me?(@user)
-    .occupation
-      %h3 Occupation
+  .occupation
+    %h3 Occupation
+    - if @user.occupation.present?
       = @user.occupation
+    - elsif me?(@user)
+      = link_to "what do you do?", edit_user_path(@user)
   
-  - if @user.tagline.present? || me?(@user)
-    .tagline
-      %h3 About
+  .tagline
+    %h3 About
+    - if @user.tagline.present?
       = truncate(@user.tagline, :length => 200)
+    - elsif me?(@user)
+      = link_to "tell us what makes you tick!", edit_user_path(@user)
   
-  - if @user.location.present? || me?(@user)
-    .location
-      %h3 Location
-      .insides= @user.location
+  .location
+    %h3 Location
+    - if @user.location.present?
+      = @user.location
+    - elsif me?(@user)
+      = link_to "where in the world are you?", edit_user_path(@user)
   
-  - unless @user.tags.empty? || me?(@user)
-    .tags
-      %h3 Most Rewarded Tags
+  .tags
+    %h3 Most Rewarded Tags
+    - if !@user.tags.empty?
       - @user.tags[0..10].each do |tag|
         = link_to(tag.name, community_path(:tag => tag.name), :class => "tag")
+    - elsif me?(@user)
+      start rewarding to generate a list of tags related to your favorite content on mo&#149;meant
       
   - if @user == current_user
     = link_to("Edit Your Profile", edit_user_path(current_user), :class => "edit")

@@ -95,27 +95,19 @@ form.new_story, form.edit_story, .story-form
 	#describe
 		max-width: 580px
 	#share
-		table
-			width: 300px
-			td.link
-				text-align: right
-			.switch
-				float: right
-				.toggle
-					width: 84px
-					height: 28px
-					background: transparent url(../images/onOffSwitchBG.png) no-repeat 0 0
-					position: relative
-					cursor: pointer
-					.handle
-						width: 44px
-						height: 28px
-						position: absolute
-						top: 0
-						left: 0
-						background: transparent url(../images/onOffSwitchHandle.png) no-repeat 0 0
-				.toggle.off .handle
-					left: 40px
+		.service
+			padding: 8px 0 8px 34px
+			background-position: 0 0
+			background-repeat: no-repeat
+			position: relative
+			a
+				padding: 2px 0 0 4px
+				font-weight: 500
+		#facebook
+			background-image: url(../images/icons/facebookSmall.png)
+		#twitter
+			background-image: url(../images/icons/twitterSmall.png)
+			margin-right: 0
 	#done
 		max-width: 960px
 		margin-left: auto
@@ -243,12 +235,10 @@ form.new_story, form.edit_story, .story-form
 			font-weight: 700
 			text-transform: uppercase
 			background-color: $green
-			border: 3px solid #40b4f7
 			text-align: center
 			@include rounded(3px)
 		a.preview
 			background-color: #777
-			border: 3px solid #999
 			margin-right: 20px
 			height: 24px
 			

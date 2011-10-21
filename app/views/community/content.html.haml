@@ -5,7 +5,7 @@
   
     - if params[:tag]
       .header
-        %h3= params[:tag]
+        %h3= params[:tag].downcase
         = link_to("< Back", community_path)
 
     %ul.stories
@@ -17,7 +17,7 @@
         %h3 Filter content by tag:
         .tags
           - @tags.each do |tag|
-            = link_to(tag.name, community_path(:tag => tag.name), :class => "tag")
+            = link_to(tag.name.downcase, community_path(:tag => tag.name), :class => "tag")
 
 :javascript
   var options = {anonymous_id: '#{session[:analytics_anonymous_id]}'};

@@ -22,13 +22,12 @@
             patrons that
             %br
             have rewarded
-        %li.until-payment
-          - cashout = Reward.cashout_threshold - @user.rewards.sum(:amount)
-          .value= cashout > 0 ? cashout : 0
+        %li.cash
+          .value= number_to_currency(@user.rewards.sum(:amount) * 0.10)
           .text
-            rewards needed
+            earned from rewards
             %br
-            for next cash out
+            (cash out at $10)
   
       %ul.galleries
         - no_gallery_stories = @user == current_user ? @user.created_stories.no_gallery : @user.created_stories.no_gallery.published

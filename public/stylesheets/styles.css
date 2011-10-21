@@ -130,9 +130,9 @@ html, body {
         background: transparent url(../images/navActive.png) no-repeat 50% -7px; }
     #header #user-nav #feedback, #header #user-nav #join, #header #user-nav #signin, #header #user-nav #signout {
       height: 42px; }
-    #header #user-nav #logo, #header #user-nav #home, #header #user-nav #community, #header #user-nav #faq, #header #user-nav #admin {
+    #header #user-nav #logo, #header #user-nav #home, #header #user-nav #community, #header #user-nav #faq, #header #user-nav #admin, #header #user-nav #create {
       width: 46px; }
-      #header #user-nav #logo a, #header #user-nav #home a, #header #user-nav #community a, #header #user-nav #faq a, #header #user-nav #admin a {
+      #header #user-nav #logo a, #header #user-nav #home a, #header #user-nav #community a, #header #user-nav #faq a, #header #user-nav #admin a, #header #user-nav #create a {
         width: 46px;
         height: 42px;
         display: block;
@@ -155,6 +155,8 @@ html, body {
       background-position: 50% 7px; }
     #header #user-nav #faq a {
       background-image: url(../images/icons/faqWhite.png); }
+    #header #user-nav #create a {
+      background-image: url(../images/icons/momeantAddStoryWhite.png); }
     #header #user-nav #admin a {
       background-image: url(../images/icons/lock.png); }
     #header #user-nav #coins {
@@ -169,13 +171,16 @@ html, body {
         #header #user-nav #coins a .amount {
           font-family: "ff-dagny-web-pro-1", "ff-dagny-web-pro-2", sans-serif;
           margin-right: 5px;
-          font-size: 26px;
+          font-size: 30px;
           line-height: 30px;
-          color: #00aeef; }
+          color: #00aeef;
+          padding-right: 18px;
+          background: transparent url(../images/icons/coinStarWhite.png) no-repeat 100% 1px; }
         #header #user-nav #coins a .text {
-          font-size: 11px;
-          line-height: 12px;
-          padding-top: 1px; }
+          font-size: 9px;
+          line-height: 10px;
+          padding: 6px 6px 0 0;
+          text-align: right; }
           #header #user-nav #coins a .text span {
             display: block; }
     #header #user-nav #coins.active a {
@@ -528,7 +533,6 @@ a.button.green {
 
 .horizontal-tabs ul {
   height: 35px;
-  background: #e0e0e0;
   padding-left: 20px; }
 .horizontal-tabs li {
   display: block;
@@ -541,8 +545,8 @@ a.button.green {
     right: 0; }
   .horizontal-tabs li a {
     display: block;
-    color: white;
-    background: #bbbbbb;
+    color: #252525;
+    background: #f4f4f4;
     height: 25px;
     padding: 4px 18px 4px;
     position: relative;
@@ -557,9 +561,9 @@ a.button.green {
     -moz-border-radius-topright: 3px;
     border-top-right-radius: 3px;
     margin-right: 5px;
-    box-shadow: 2px 2px 3px rgba(255, 255, 255, 0.2) inset, 0 -1px 3px rgba(0, 0, 0, 0.15) inset; }
+    box-shadow: 2px 2px 3px rgba(255, 255, 255, 0.2) inset, 0 -2px 6px rgba(0, 0, 0, 0.1) inset, 0 -1px 0 rgba(0, 0, 0, 0.05) inset; }
   .horizontal-tabs li a.active {
-    background: #f4f4f4;
+    background: white;
     color: black;
     text-shadow: none;
     padding: 5px 18px;
@@ -876,27 +880,19 @@ form.new_story, form.edit_story, .story-form {
     margin-right: auto; }
   form.new_story #describe, form.edit_story #describe, .story-form #describe {
     max-width: 580px; }
-  form.new_story #share table, form.edit_story #share table, .story-form #share table {
-    width: 300px; }
-    form.new_story #share table td.link, form.edit_story #share table td.link, .story-form #share table td.link {
-      text-align: right; }
-    form.new_story #share table .switch, form.edit_story #share table .switch, .story-form #share table .switch {
-      float: right; }
-      form.new_story #share table .switch .toggle, form.edit_story #share table .switch .toggle, .story-form #share table .switch .toggle {
-        width: 84px;
-        height: 28px;
-        background: transparent url(../images/onOffSwitchBG.png) no-repeat 0 0;
-        position: relative;
-        cursor: pointer; }
-        form.new_story #share table .switch .toggle .handle, form.edit_story #share table .switch .toggle .handle, .story-form #share table .switch .toggle .handle {
-          width: 44px;
-          height: 28px;
-          position: absolute;
-          top: 0;
-          left: 0;
-          background: transparent url(../images/onOffSwitchHandle.png) no-repeat 0 0; }
-      form.new_story #share table .switch .toggle.off .handle, form.edit_story #share table .switch .toggle.off .handle, .story-form #share table .switch .toggle.off .handle {
-        left: 40px; }
+  form.new_story #share .service, form.edit_story #share .service, .story-form #share .service {
+    padding: 8px 0 8px 34px;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    position: relative; }
+    form.new_story #share .service a, form.edit_story #share .service a, .story-form #share .service a {
+      padding: 2px 0 0 4px;
+      font-weight: 500; }
+  form.new_story #share #facebook, form.edit_story #share #facebook, .story-form #share #facebook {
+    background-image: url(../images/icons/facebookSmall.png); }
+  form.new_story #share #twitter, form.edit_story #share #twitter, .story-form #share #twitter {
+    background-image: url(../images/icons/twitterSmall.png);
+    margin-right: 0; }
   form.new_story #done, form.edit_story #done, .story-form #done {
     max-width: 960px;
     margin-left: auto;
@@ -1028,14 +1024,12 @@ form.new_story, form.edit_story, .story-form {
       font-weight: 700;
       text-transform: uppercase;
       background-color: #34b44c;
-      border: 3px solid #40b4f7;
       text-align: center;
       -webkit-border-radius: 3px;
       -moz-border-radius: 3px;
       border-radius: 3px; }
     form.new_story #done a.preview, form.edit_story #done a.preview, .story-form #done a.preview {
       background-color: #777777;
-      border: 3px solid #999999;
       margin-right: 20px;
       height: 24px; }
   form.new_story #thumbnail .thumbnail-container, form.edit_story #thumbnail .thumbnail-container, .story-form #thumbnail .thumbnail-container {
@@ -3349,7 +3343,7 @@ form.new_story, form.edit_story, .story-form {
         #presenter #reward-modal #your-reward #not-logged-in .buttons {
           width: 234px;
           float: right; }
-          #presenter #reward-modal #your-reward #not-logged-in .buttons span {
+          #presenter #reward-modal #your-reward #not-logged-in .buttons span.or {
             font-size: 40px;
             display: block;
             padding: 20px 0;
@@ -3391,6 +3385,29 @@ form.new_story, form.edit_story, .story-form {
       right: 265px; }
       #presenter #reward-modal #your-reward.closed #toggle-reward-stream {
         background-position: 1px -22px; }
+      #presenter #reward-modal #your-reward.closed #not-logged-in .explanation, #presenter #reward-modal #your-reward.closed #not-logged-in .buttons {
+        float: none; }
+        #presenter #reward-modal #your-reward.closed #not-logged-in .explanation .inner, #presenter #reward-modal #your-reward.closed #not-logged-in .buttons .inner {
+          border: none; }
+      #presenter #reward-modal #your-reward.closed #not-logged-in .explanation .inner {
+        height: 215px; }
+      #presenter #reward-modal #your-reward.closed #not-logged-in .buttons {
+        width: 300px; }
+        #presenter #reward-modal #your-reward.closed #not-logged-in .buttons .inner {
+          height: 47px;
+          padding-left: 30px; }
+        #presenter #reward-modal #your-reward.closed #not-logged-in .buttons a {
+          width: 100px;
+          font-size: 12px;
+          float: left;
+          padding: 10px 0;
+          width: 80px; }
+          #presenter #reward-modal #your-reward.closed #not-logged-in .buttons a span {
+            display: none; }
+        #presenter #reward-modal #your-reward.closed #not-logged-in .buttons span.or {
+          float: left;
+          padding: 0 10px;
+          font-size: 30px; }
       #presenter #reward-modal #your-reward.closed #reward-box .inner form#reward-form {
         width: 285px; }
         #presenter #reward-modal #your-reward.closed #reward-box .inner form#reward-form .amount {
@@ -4663,6 +4680,7 @@ ul.avatars li {
 .user-profile {
   /* First-time Users */
   /* Patronage Tab */
+  /* Stats Bar */
   /* Creations Tab */
   /* Followers, Following Tabs */
   /* Supporters Tab */
@@ -4740,10 +4758,8 @@ ul.avatars li {
       clear: both;
       padding-top: 4px;
       margin-bottom: 12px; }
-    .user-profile .profile-info .location .insides {
-      padding: 1px 0 0 18px;
-      background: transparent url(../images/icons/location.png) no-repeat 0 0;
-      margin-bottom: 17px; }
+    .user-profile .profile-info .location {
+      margin-bottom: 13px; }
     .user-profile .profile-info .tags {
       margin-bottom: 13px; }
       .user-profile .profile-info .tags h3 {
@@ -4757,25 +4773,88 @@ ul.avatars li {
   .user-profile .the-rest {
     margin-left: 208px;
     min-height: 100%; }
-    .user-profile .the-rest .horizontal-tabs ul {
-      padding-top: 20px; }
+    .user-profile .the-rest .horizontal-tabs {
+      border-bottom: 1px solid #cccccc; }
+      .user-profile .the-rest .horizontal-tabs ul {
+        padding-top: 20px; }
+        .user-profile .the-rest .horizontal-tabs ul a {
+          border: 1px solid #cccccc;
+          border-bottom: none; }
     .user-profile .the-rest .tabbed {
-      padding: 20px; }
-  .user-profile .horizontal-tabs li a {
-    padding-left: 32px;
-    background-position: 10px 9px;
-    background-repeat: no-repeat; }
-  .user-profile .horizontal-tabs li.rewards a {
-    background-image: url(../images/icons/starWhiteSmall.png); }
-  .user-profile .horizontal-tabs li.rewards a.active {
-    background-image: url(../images/icons/starBlackSmall.png);
-    background-position: 10px 10px; }
-  .user-profile .horizontal-tabs li.creations a {
-    background-image: url(../images/icons/momeantAddStorySmallWhite.png);
-    background-position: 10px 8px; }
-  .user-profile .horizontal-tabs li.creations a.active {
-    background-image: url(../images/icons/momeantAddStorySmall.png);
-    background-position: 10px 9px; }
+      padding: 20px;
+      background: white; }
+  .user-profile .guides {
+    padding: 25px; }
+    .user-profile .guides a {
+      height: 28px;
+      line-height: 30px;
+      padding: 0 20px;
+      vertical-align: middle;
+      text-transform: uppercase;
+      color: white;
+      font-weight: 700;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      border-radius: 3px;
+      font-size: 12px;
+      letter-spacing: 0.5px;
+      font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
+      padding: 10px;
+      background: #ffa801;
+      background-image: -moz-linear-gradient(center top, #ffbb01 4%, #ff9501 52%);
+      background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #ffbb01), color-stop(0.52, #ff9501));
+      text-transform: none;
+      border: 1px solid #ffa801;
+      letter-spacing: 0;
+      font-weight: 500;
+      font-size: 12px;
+      text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
+      padding: 0;
+      position: relative;
+      display: block;
+      width: 31%;
+      height: 48px;
+      min-width: 250px;
+      float: left;
+      margin-right: 2%; }
+      .user-profile .guides a:hover {
+        background-image: -moz-linear-gradient(center top, #ffc320 4%, #ffa220 52%);
+        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #ffc320), color-stop(0.52, #ffa220)); }
+      .user-profile .guides a span.text {
+        display: block;
+        width: 175px;
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        padding-left: 33px;
+        background: transparent url(../images/icons/communitySmall.png) no-repeat 0 3px;
+        line-height: 13px; }
+      .user-profile .guides a span.arrow {
+        position: absolute;
+        top: 16px;
+        right: 15px;
+        width: 11px;
+        height: 16px;
+        background: transparent url(../images/arrowThinRightWhite.png) no-repeat 0 0; }
+    .user-profile .guides a.create span.text {
+      background-image: url(../images/icons/momeantAddStorySmallWhite.png);
+      background-position: 4px 5px; }
+    .user-profile .guides a.profile span.text {
+      background-image: url(../images/icons/profileWhite.png); }
+    .user-profile .guides a:last-child {
+      margin-right: 0; }
+  .user-profile .horizontal-tabs {
+    clear: both; }
+    .user-profile .horizontal-tabs li a {
+      padding-left: 32px;
+      background-position: 10px 9px;
+      background-repeat: no-repeat; }
+    .user-profile .horizontal-tabs li.rewards a {
+      background-image: url(../images/icons/starBlackSmall.png);
+      background-position: 10px 10px; }
+    .user-profile .horizontal-tabs li.creations a {
+      background-image: url(../images/icons/momeantAddStorySmall.png);
+      background-position: 10px 9px; }
   .user-profile .have-not {
     width: 300px;
     float: left;
@@ -4822,7 +4901,7 @@ ul.avatars li {
   .user-profile .rewarded-creators .avatar-wall {
     height: 600px;
     margin-bottom: 30px;
-    background: transparent url(../images/mosaicBG.png) no-repeat 0 0; }
+    background: transparent url(../images/mosaicBG.png) repeat 0 0; }
     .user-profile .rewarded-creators .avatar-wall .wall a {
       display: block; }
       .user-profile .rewarded-creators .avatar-wall .wall a img {
@@ -4832,6 +4911,8 @@ ul.avatars li {
         position: absolute;
         top: 0;
         left: 0; }
+    .user-profile .rewarded-creators .avatar-wall .wall a.example {
+      display: none; }
   .user-profile ul.rewards {
     padding: 0;
     display: inline-block; }
@@ -4855,7 +4936,8 @@ ul.avatars li {
       float: left;
       font-size: 11px;
       height: 60px;
-      margin-top: -5px; }
+      margin-top: -5px;
+      position: relative; }
       .user-profile ul.stats-bar li .text, .user-profile ul.stats-bar li .value {
         float: left; }
       .user-profile ul.stats-bar li .text {
@@ -4873,11 +4955,20 @@ ul.avatars li {
     .user-profile ul.stats-bar li.rewards, .user-profile ul.stats-bar li.patrons {
       border-right: 1px solid white;
       padding-right: 30px; }
-    .user-profile ul.stats-bar li.patrons, .user-profile ul.stats-bar li.until-payment, .user-profile ul.stats-bar li.impact {
+    .user-profile ul.stats-bar li.patrons, .user-profile ul.stats-bar li.cash, .user-profile ul.stats-bar li.impact {
       border-left: 1px solid #cccccc;
       padding-left: 30px; }
     .user-profile ul.stats-bar li.patrons .value {
       background: transparent url(../images/icons/person.png) no-repeat 100% 3px; }
+    .user-profile ul.stats-bar li.cash .value {
+      background: none; }
+    .user-profile ul.stats-bar li.impact .notification {
+      position: absolute;
+      top: 13px;
+      right: -306px;
+      width: 306px;
+      height: 37px;
+      background: transparent url(../images/profileImpactGrowNotification.png) no-repeat 0 0; }
   .user-profile ul.galleries li.separator {
     clear: both;
     border-top: 1px solid #e0e0e0;
