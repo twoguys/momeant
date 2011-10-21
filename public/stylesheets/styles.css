@@ -528,7 +528,6 @@ a.button.green {
 
 .horizontal-tabs ul {
   height: 35px;
-  background: #e0e0e0;
   padding-left: 20px; }
 .horizontal-tabs li {
   display: block;
@@ -541,8 +540,8 @@ a.button.green {
     right: 0; }
   .horizontal-tabs li a {
     display: block;
-    color: white;
-    background: #bbbbbb;
+    color: #252525;
+    background: #f4f4f4;
     height: 25px;
     padding: 4px 18px 4px;
     position: relative;
@@ -557,9 +556,9 @@ a.button.green {
     -moz-border-radius-topright: 3px;
     border-top-right-radius: 3px;
     margin-right: 5px;
-    box-shadow: 2px 2px 3px rgba(255, 255, 255, 0.2) inset, 0 -1px 3px rgba(0, 0, 0, 0.15) inset; }
+    box-shadow: 2px 2px 3px rgba(255, 255, 255, 0.2) inset, 0 -2px 6px rgba(0, 0, 0, 0.1) inset, 0 -1px 0 rgba(0, 0, 0, 0.05) inset; }
   .horizontal-tabs li a.active {
-    background: #f4f4f4;
+    background: white;
     color: black;
     text-shadow: none;
     padding: 5px 18px;
@@ -4676,6 +4675,7 @@ ul.avatars li {
 .user-profile {
   /* First-time Users */
   /* Patronage Tab */
+  /* Stats Bar */
   /* Creations Tab */
   /* Followers, Following Tabs */
   /* Supporters Tab */
@@ -4753,10 +4753,8 @@ ul.avatars li {
       clear: both;
       padding-top: 4px;
       margin-bottom: 12px; }
-    .user-profile .profile-info .location .insides {
-      padding: 1px 0 0 18px;
-      background: transparent url(../images/icons/location.png) no-repeat 0 0;
-      margin-bottom: 17px; }
+    .user-profile .profile-info .location {
+      margin-bottom: 13px; }
     .user-profile .profile-info .tags {
       margin-bottom: 13px; }
       .user-profile .profile-info .tags h3 {
@@ -4770,25 +4768,88 @@ ul.avatars li {
   .user-profile .the-rest {
     margin-left: 208px;
     min-height: 100%; }
-    .user-profile .the-rest .horizontal-tabs ul {
-      padding-top: 20px; }
+    .user-profile .the-rest .horizontal-tabs {
+      border-bottom: 1px solid #cccccc; }
+      .user-profile .the-rest .horizontal-tabs ul {
+        padding-top: 20px; }
+        .user-profile .the-rest .horizontal-tabs ul a {
+          border: 1px solid #cccccc;
+          border-bottom: none; }
     .user-profile .the-rest .tabbed {
-      padding: 20px; }
-  .user-profile .horizontal-tabs li a {
-    padding-left: 32px;
-    background-position: 10px 9px;
-    background-repeat: no-repeat; }
-  .user-profile .horizontal-tabs li.rewards a {
-    background-image: url(../images/icons/starWhiteSmall.png); }
-  .user-profile .horizontal-tabs li.rewards a.active {
-    background-image: url(../images/icons/starBlackSmall.png);
-    background-position: 10px 10px; }
-  .user-profile .horizontal-tabs li.creations a {
-    background-image: url(../images/icons/momeantAddStorySmallWhite.png);
-    background-position: 10px 8px; }
-  .user-profile .horizontal-tabs li.creations a.active {
-    background-image: url(../images/icons/momeantAddStorySmall.png);
-    background-position: 10px 9px; }
+      padding: 20px;
+      background: white; }
+  .user-profile .guides {
+    padding: 25px; }
+    .user-profile .guides a {
+      height: 28px;
+      line-height: 30px;
+      padding: 0 20px;
+      vertical-align: middle;
+      text-transform: uppercase;
+      color: white;
+      font-weight: 700;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      border-radius: 3px;
+      font-size: 12px;
+      letter-spacing: 0.5px;
+      font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
+      padding: 10px;
+      background: #ffa801;
+      background-image: -moz-linear-gradient(center top, #ffbb01 4%, #ff9501 52%);
+      background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #ffbb01), color-stop(0.52, #ff9501));
+      text-transform: none;
+      border: 1px solid #ffa801;
+      letter-spacing: 0;
+      font-weight: 500;
+      font-size: 12px;
+      text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
+      padding: 0;
+      position: relative;
+      display: block;
+      width: 31%;
+      height: 48px;
+      min-width: 250px;
+      float: left;
+      margin-right: 2%; }
+      .user-profile .guides a:hover {
+        background-image: -moz-linear-gradient(center top, #ffc320 4%, #ffa220 52%);
+        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #ffc320), color-stop(0.52, #ffa220)); }
+      .user-profile .guides a span.text {
+        display: block;
+        width: 175px;
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        padding-left: 33px;
+        background: transparent url(../images/icons/communitySmall.png) no-repeat 0 3px;
+        line-height: 13px; }
+      .user-profile .guides a span.arrow {
+        position: absolute;
+        top: 16px;
+        right: 15px;
+        width: 11px;
+        height: 16px;
+        background: transparent url(../images/arrowThinRightWhite.png) no-repeat 0 0; }
+    .user-profile .guides a.create span.text {
+      background-image: url(../images/icons/momeantAddStorySmallWhite.png);
+      background-position: 4px 5px; }
+    .user-profile .guides a.profile span.text {
+      background-image: url(../images/icons/profileWhite.png); }
+    .user-profile .guides a:last-child {
+      margin-right: 0; }
+  .user-profile .horizontal-tabs {
+    clear: both; }
+    .user-profile .horizontal-tabs li a {
+      padding-left: 32px;
+      background-position: 10px 9px;
+      background-repeat: no-repeat; }
+    .user-profile .horizontal-tabs li.rewards a {
+      background-image: url(../images/icons/starBlackSmall.png);
+      background-position: 10px 10px; }
+    .user-profile .horizontal-tabs li.creations a {
+      background-image: url(../images/icons/momeantAddStorySmall.png);
+      background-position: 10px 9px; }
   .user-profile .have-not {
     width: 300px;
     float: left;
@@ -4845,6 +4906,8 @@ ul.avatars li {
         position: absolute;
         top: 0;
         left: 0; }
+    .user-profile .rewarded-creators .avatar-wall .wall a.example {
+      display: none; }
   .user-profile ul.rewards {
     padding: 0;
     display: inline-block; }
@@ -4868,7 +4931,8 @@ ul.avatars li {
       float: left;
       font-size: 11px;
       height: 60px;
-      margin-top: -5px; }
+      margin-top: -5px;
+      position: relative; }
       .user-profile ul.stats-bar li .text, .user-profile ul.stats-bar li .value {
         float: left; }
       .user-profile ul.stats-bar li .text {
@@ -4893,6 +4957,13 @@ ul.avatars li {
       background: transparent url(../images/icons/person.png) no-repeat 100% 3px; }
     .user-profile ul.stats-bar li.cash .value {
       background: none; }
+    .user-profile ul.stats-bar li.impact .notification {
+      position: absolute;
+      top: 13px;
+      right: -306px;
+      width: 306px;
+      height: 37px;
+      background: transparent url(../images/profileImpactGrowNotification.png) no-repeat 0 0; }
   .user-profile ul.galleries li.separator {
     clear: both;
     border-top: 1px solid #e0e0e0;
