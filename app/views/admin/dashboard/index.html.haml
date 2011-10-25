@@ -28,6 +28,10 @@
     %p= number_to_currency(@cashouts_requested.map(&:dollars).inject(:+) || 0)
   
   %section
+    %h3 Non-cashed-out rewards
+    %p= number_to_currency(Reward.not_cashed_out.sum(:amount) * Reward.dollar_exchange)
+  
+  %section
     %h3 Unused reward coins
-    %p #{User.sum(:coins)} (#{number_to_currency(User.sum(:coins) * Reward.dollar_exchange)})
+    %p= number_to_currency(User.sum(:coins) * Reward.dollar_exchange)
   
