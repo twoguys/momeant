@@ -9,6 +9,10 @@ class UsersController < ApplicationController
     flash[:track_user_view] = true
   end
   
+  def creations
+    @nav = "create" if @user == current_user
+  end
+  
   def stream #ajax requests
     render @user.following_stream(params[:page])
   end
@@ -36,11 +40,6 @@ class UsersController < ApplicationController
     
   def rewarded
     @rewards = @user.given_rewards
-  end
-  
-  def supporters
-    @patrons = @user.patrons[0,10]
-    render "patrons"
   end
   
   def patronage

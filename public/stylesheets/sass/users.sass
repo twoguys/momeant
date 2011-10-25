@@ -313,6 +313,19 @@ ul.avatars
 			
 	/* Creations Tab */
 	
+	ul.stats-bar li.cash
+		position: relative
+		a#cashout
+			position: absolute
+			top: 0
+			right: 0
+			padding: 8px 15px 7px
+			&.disabled
+				background-color: $greygradient1
+				@include gradient($greygradient1, $greygradient2)
+				cursor: help
+			
+	
 	ul.galleries		
 		li.separator
 			clear: both
@@ -352,8 +365,8 @@ ul.avatars
 				li.add
 					a
 						display: block
-						width: 230px
-						height: 207px
+						width: 236px
+						height: 205px
 						border: 1px dashed #ccc
 						color: #aaa
 						background: #fff url(../images/addMomeantBg.png) no-repeat 50% 50%
@@ -372,6 +385,11 @@ ul.avatars
 		li.gallery:first-child, li.no-gallery:first-child
 			ul.stories
 				padding-top: 0
+	
+	/* Cashouts */
+	#cashouts
+		table
+			margin-top: 1em
 	
 	/* Followers, Following Tabs */
 	
@@ -464,6 +482,9 @@ ul.avatars
 			background: transparent url(../images/icons/pencilBlue.png) no-repeat 0 1px
 		.tagline, .interests
 			margin-bottom: 10px
+	
+	#user_tagline
+		height: 50px
 	
 	.subscribing-to
 		clear: both

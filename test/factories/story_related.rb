@@ -43,12 +43,6 @@ Factory.define :recommendation do |recommendation|
   recommendation.story    { Factory :story }
 end
 
-Factory.define :reward do |reward|
-  reward.user               { Factory :user }
-  reward.recipient          { Factory :creator }
-  reward.story              { |r| Factory :story, :user => r.recipient }
-end
-
 Factory.define :page, :class => "TitlePage" do |p|
 end
 

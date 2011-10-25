@@ -25,9 +25,12 @@
         %li.cash
           .value= number_to_currency(@user.rewards.sum(:amount) * 0.10)
           .text
-            earned from rewards
+            money earned
             %br
-            (cash out at $10)
+            from rewards
+          - if me?(@user)
+            = link_to "Cash Out", user_cashouts_path(@user), :id => "cashout", :class => "button"
+          
   
       %ul.galleries
         - no_gallery_stories = @user == current_user ? @user.created_stories.no_gallery : @user.created_stories.no_gallery.published

@@ -56,6 +56,7 @@ Repo::Application.routes.draw do
   resources :users do
     resources :subscriptions
     resources :rewards
+    resources :cashouts
     resources :galleries do
       get :move_up, :on => :member
       get :move_down, :on => :member

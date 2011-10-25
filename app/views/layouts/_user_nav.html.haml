@@ -8,13 +8,13 @@
       = link_to("Community", community_path, :class => "tooltipped", :title => "Community")
     - if user_signed_in?
       %li#create{:class => @nav == "create" ? "active" : ""}
-        = link_to("Share", new_story_path, :class => "tooltipped", :title => "Share your content")
+        = link_to("Share", creations_user_path(current_user), :class => "tooltipped", :title => "Share your content")
     %li#faq{:class => @nav == "about" ? "active" : ""}
       = link_to("About Us", about_path, :class => "tooltipped", :title => "Tell me more")
     - if user_signed_in?
       - if current_user.is_admin?
         %li#admin{:class => @nav == "admin" ? "active" : ""}
-          = link_to("Admin", admin_live_path, :class => "tooltipped", :title => "Admin")
+          = link_to("Admin", admin_dashboard_path, :class => "tooltipped", :title => "Admin")
       %li#coins{:class => @nav == "coins" ? "active" : ""}
         %a{:href => coins_path}
           .text

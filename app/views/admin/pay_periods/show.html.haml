@@ -4,10 +4,6 @@
   = link_to("Back to pay periods", admin_pay_periods_path)
 
   %h1 Pay Period ending #{@pay_period.print_date}
-  = mark_paid_button(@pay_period)
-
-  %h3 Total: #{number_to_currency(@pay_period.total)}
+  
+  %h3 Total: #{number_to_currency(@pay_period.cashouts.sum(:amount) * Reward.dollar_exchange)}
   = link_to("Download CSV", admin_pay_period_path(@pay_period, :format => :csv))
-
-  %ul.pay-period-line-items
-    = render :partial => "admin/pay_periods/line_item", :collection => @pay_period.line_items, :as => :line_item

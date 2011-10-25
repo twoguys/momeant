@@ -156,7 +156,8 @@ html, body {
     #header #user-nav #faq a {
       background-image: url(../images/icons/faqWhite.png); }
     #header #user-nav #create a {
-      background-image: url(../images/icons/momeantAddStoryWhite.png); }
+      background-image: url(../images/icons/momeantAddStoryWhite.png);
+      background-position: 50% 7px; }
     #header #user-nav #admin a {
       background-image: url(../images/icons/lock.png); }
     #header #user-nav #coins {
@@ -561,7 +562,7 @@ a.button.green {
     -moz-border-radius-topright: 3px;
     border-top-right-radius: 3px;
     margin-right: 5px;
-    box-shadow: 2px 2px 3px rgba(255, 255, 255, 0.2) inset, 0 -2px 6px rgba(0, 0, 0, 0.1) inset, 0 -1px 0 rgba(0, 0, 0, 0.05) inset; }
+    box-shadow: 2px 2px 3px rgba(255, 255, 255, 0.2) inset, 0 -2px 6px rgba(0, 0, 0, 0.1) inset, 0 -1px 0 rgba(0, 0, 0, 0.1) inset; }
   .horizontal-tabs li a.active {
     background: white;
     color: black;
@@ -4682,6 +4683,7 @@ ul.avatars li {
   /* Patronage Tab */
   /* Stats Bar */
   /* Creations Tab */
+  /* Cashouts */
   /* Followers, Following Tabs */
   /* Supporters Tab */
   /* Edit Profile */ }
@@ -4969,6 +4971,18 @@ ul.avatars li {
       width: 306px;
       height: 37px;
       background: transparent url(../images/profileImpactGrowNotification.png) no-repeat 0 0; }
+  .user-profile ul.stats-bar li.cash {
+    position: relative; }
+    .user-profile ul.stats-bar li.cash a#cashout {
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: 8px 15px 7px; }
+      .user-profile ul.stats-bar li.cash a#cashout.disabled {
+        background-color: #d0d0d0;
+        background-image: -moz-linear-gradient(center top, #d0d0d0 4%, #888888 52%);
+        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #d0d0d0), color-stop(0.52, #888888));
+        cursor: help; }
   .user-profile ul.galleries li.separator {
     clear: both;
     border-top: 1px solid #e0e0e0;
@@ -5014,8 +5028,8 @@ ul.avatars li {
         margin: 0 20px 20px 0; }
       .user-profile ul.galleries li.gallery ul.stories li.add a, .user-profile ul.galleries li.no-gallery ul.stories li.add a {
         display: block;
-        width: 230px;
-        height: 207px;
+        width: 236px;
+        height: 205px;
         border: 1px dashed #cccccc;
         color: #aaaaaa;
         background: white url(../images/addMomeantBg.png) no-repeat 50% 50%;
@@ -5033,6 +5047,8 @@ ul.avatars li {
     border-bottom: none; }
   .user-profile ul.galleries li.gallery:first-child ul.stories, .user-profile ul.galleries li.no-gallery:first-child ul.stories {
     padding-top: 0; }
+  .user-profile #cashouts table {
+    margin-top: 1em; }
   .user-profile .followingers {
     padding: 20px; }
     .user-profile .followingers table {
@@ -5120,6 +5136,8 @@ ul.avatars li {
     background: transparent url(../images/icons/pencilBlue.png) no-repeat 0 1px; }
   .user-profile .bio .tagline, .user-profile .bio .interests {
     margin-bottom: 10px; }
+  .user-profile #user_tagline {
+    height: 50px; }
   .user-profile .subscribing-to {
     clear: both;
     margin-bottom: 20px; }
@@ -5911,6 +5929,26 @@ header .topic-icon {
   .admin #live-updates li:first-child {
     background: rgba(0, 102, 204, 0.05); }
 
+.admin.dashboard section {
+  float: left;
+  margin: 0 30px 30px 0; }
+  .admin.dashboard section h3 {
+    text-transform: uppercase;
+    text-align: center; }
+  .admin.dashboard section p {
+    margin: 10px 0 0;
+    padding: 10px 20px;
+    background: #dddddd;
+    font-size: 30px;
+    font-family: "ff-dagny-web-pro-1", "ff-dagny-web-pro-2", sans-serif;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px; }
+.admin.dashboard section.plus p {
+  background: #c7e79a; }
+.admin.dashboard section.minus p {
+  background: #ffb9b9; }
+
 .admin.live h3 {
   margin-bottom: 20px; }
 
@@ -5953,6 +5991,9 @@ header .topic-icon {
       font-style: italic; }
     .admin.adverts .advert-list .image {
       clear: both; }
+
+.admin.payperiods .current {
+  margin-bottom: 20px; }
 
 .flipbook {
   width: 950px;

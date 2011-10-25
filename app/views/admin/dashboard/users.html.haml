@@ -4,9 +4,11 @@
   %table
     %thead
       %tr
-        %th{:colspan => 2} All Users
+        %th{:colspan => 4} All Users
     %tbody
       - User.order("created_at ASC").each do |user|
         %tr
           %td= link_to(user.name, user_path(user))
           %td= user.email
+          %td last logged in #{time_ago_in_words(user.last_sign_in_at)} ago
+          %td signed up #{time_ago_in_words(user.created_at)} ago

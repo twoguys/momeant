@@ -1,2 +1,33 @@
-.admin
+.admin.dashboard
   = render "admin/tabs"
+  
+  %section.plus
+    %h3 Money In
+    %p= number_to_currency @payments.sum(:amount)
+  
+  %section.minus
+    %h3 Fees
+    %p= number_to_currency @payments.map(&:fees).inject(:+)
+  
+  %section.minus
+    %h3 Money Out
+    %p= number_to_currency @cashouts_paid.map(&:dollars).inject(:+)
+    
+  %section.plus
+    %h3 Momeant Revenue
+    %p= number_to_currency @payments.map(&:momeant_revenue).inject(:+)
+
+  .clear
+
+  %section
+    %h3 Money remaining
+    %p= number_to_currency(@payments.sum(:amount) - (@cashouts_paid.map(&:dollars).inject(:+) || 0))
+  
+  %section
+    %h3 Unpaid cashouts
+    %p= number_to_currency(@cashouts_requested.map(&:dollars).inject(:+) || 0)
+  
+  %section
+    %h3 Unused reward coins
+    %p #{User.sum(:coins)} (#{number_to_currency(User.sum(:coins) * Reward.dollar_exchange)})
+  

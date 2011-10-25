@@ -1,0 +1,19 @@
+.user-profile
+  = render "users/user_info"
+
+  .the-rest
+    = render "users/user_tabs"
+  
+    .tabbed#cashouts
+      %h1 Cashing Out
+      %p Copy will go here explaining what this stuff is.
+      
+      = button_to "Cash Out Now", user_cashouts_path
+      
+      - unless @user.cashouts.empty?
+        %table
+          %tbody
+            - @user.cashouts.each do |cashout|
+              %tr
+                %td= number_to_currency(cashout.dollars)
+                %td #{cashout.state} #{time_ago_in_words(cashout.updated_at)} ago

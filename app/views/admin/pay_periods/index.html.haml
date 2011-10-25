@@ -1,9 +1,46 @@
-.admin
+.admin.payperiods
   = render "admin/tabs"
   
-  = button_to("End current pay period", admin_pay_periods_path)
+  .current
+    Total requested cashouts: #{number_to_currency(@requested_cashouts.sum(:amount) * Reward.dollar_exchange)}
+    = link_to "Show/Hide Details", "#", :id => "show-cashouts"
+    %table#cashout-list{:style => "display:none"}
+      %thead
+        %tr
+          %th Name
+          %th Amazon Email
+          %th Amount
+          %th Requested
+      %tbody
+        - @requested_cashouts.each do |cashout|
+          %tr
+            %td= link_to(cashout.user.name, user_path(cashout.user))
+            %td= cashout.user.amazon_email
+            %td= number_to_currency(cashout.dollars)
+            %td requested #{time_ago_in_words(cashout.created_at)} ago
+    %p= button_to("End Pay Period", admin_pay_periods_path)
 
   %h3 Previous Pay Periods
 
-  %ul.pay-periods
-    = render @pay_periods
+  %table
+    %thead
+      %tr
+        %th Ended
+        %th Amount
+        %th By Who
+        %th CSV
+    %tbody
+      - @pay_periods.each do |pay_period|
+        %tr
+          %td= pay_period.print_date
+          %td= number_to_currency(pay_period.dollars)
+          %td ended by #{pay_period.user.name}
+          %td= link_to("Download CSV", admin_pay_period_path(pay_period, :format => :csv))
+
+
+:javascript
+  $(function() {
+    $('#show-cashouts').click(function() {
+      $('#cashout-list').toggle();
+    });
+  });
