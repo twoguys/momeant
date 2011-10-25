@@ -7,15 +7,15 @@
   
   %section.minus
     %h3 Fees
-    %p= number_to_currency @payments.map(&:fees).inject(:+)
+    %p= number_to_currency(@payments.map(&:fees).inject(:+) || 0)
   
   %section.minus
     %h3 Money Out
-    %p= number_to_currency @cashouts_paid.map(&:dollars).inject(:+)
+    %p= number_to_currency(@cashouts_paid.map(&:dollars).inject(:+) || 0)
     
   %section.plus
     %h3 Momeant Revenue
-    %p= number_to_currency @payments.map(&:momeant_revenue).inject(:+)
+    %p= number_to_currency(@payments.map(&:momeant_revenue).inject(:+) || 0)
 
   .clear
 
