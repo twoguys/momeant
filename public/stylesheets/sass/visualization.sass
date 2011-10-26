@@ -107,42 +107,60 @@
 	overflow: hidden
 	cursor: move
 	.person
-		width: 60px
-		height: 60px
-		cursor: help
+		padding: 5px
+		background: #fff
+		@include rounded
+		height: 40px
+		width: 150px
 		img
-			width: 60px
-			height: 60px
-	.person:hover .tooltip
-		display: block
-	.tooltip
-		display: none
-		position: absolute
-		z-index: 2
-		top: 0
-		left: 70px
-		width: 200px
-		color: #333
-		.inner
-			background: #fff
-			border: 1px solid #ccc
-			@include rounded(3px)
-			box-shadow: 1px 1px 3px rgba(0,0,0,0.5), 0 0 3px #fff inset
-			font-size: 10px
-			padding: 5px
-			min-height: 10px
-		.name
-			font-weight: 700
-			float: left
-			margin-right: 10px
-			text-transform: uppercase
-		.amount
+			width: 40px
+			height: 40px
+		.rewards, .comment
+			display: none
+		.text
+			width: 92px
 			float: right
-			padding-right: 12px
-			font-weight: 700
-			background: transparent url(../images/icons/starBlackTiny.png) no-repeat 100% 1px
-		.comment
-			clear: both
-			padding-top: 5px
-	.tooltip.first
-		display: block
+			padding: 7px
+			background: #000
+			color: #fff
+			@include rounded
+			.name
+				float: left
+				text-transform: uppercase
+				font-weight: 700
+				font-size: 13px
+				line-height: 13px
+				span
+					display: block
+			.rewards
+				float: right
+				font-family: $numerals
+				font-size: 30px
+				line-height: 28px
+				padding-right: 15px
+				background: transparent url(../images/icons/starWhiteSmall.png) no-repeat 100% 0
+				display: none
+			.comment
+				clear: both
+				border-top: 2px solid #fff
+				padding-top: 5px
+				color: #ffbb01
+				font-size: 9px
+				height: 27px
+				line-height: 12px
+				display: none
+	.person:hover, .person.first
+		height: 100px
+		width: 275px
+		img
+			width: 100px
+			height: 100px
+		.text
+			width: 155px
+			.name, .rewards
+				padding-bottom: 5px
+			.name
+				font-size: 14px
+				line-height: 14px
+			.rewards, .comment
+				display: block

@@ -4697,7 +4697,8 @@ ul.avatars li {
     border-right: 1px solid #cccccc;
     z-index: 99;
     font-size: 11px;
-    background: #f4f4f4; }
+    background: #f4f4f4;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); }
     .user-profile .profile-info .avatar-badge-name {
       position: relative;
       padding: 10px 0 0 5px;
@@ -4820,8 +4821,8 @@ ul.avatars li {
       float: left;
       margin-right: 2%; }
       .user-profile .guides a:hover {
-        background-image: -moz-linear-gradient(center top, #ffc320 4%, #ffa220 52%);
-        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #ffc320), color-stop(0.52, #ffa220)); }
+        background-image: -moz-linear-gradient(center top, #ffbb01 4%, #f18c00 52%);
+        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #ffbb01), color-stop(0.52, #f18c00)); }
       .user-profile .guides a span.text {
         display: block;
         width: 175px;
@@ -4929,11 +4930,7 @@ ul.avatars li {
   .user-profile ul.stats-bar {
     height: 50px;
     margin: 0 0 20px;
-    padding: 20px;
-    background: #f6f6f6;
-    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.2, #ebebeb), color-stop(0.6, #fcfcfc));
-    background-image: -moz-linear-gradient(center bottom, #ebebeb 20%, #fcfcfc 60%);
-    border: 1px solid #e0e0e0; }
+    padding: 20px 0; }
     .user-profile ul.stats-bar li {
       float: left;
       font-size: 11px;
@@ -7134,47 +7131,67 @@ a.tag:hover {
   overflow: hidden;
   cursor: move; }
   #reward-chain .person {
-    width: 60px;
-    height: 60px;
-    cursor: help; }
+    padding: 5px;
+    background: white;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    height: 40px;
+    width: 150px; }
     #reward-chain .person img {
-      width: 60px;
-      height: 60px; }
-  #reward-chain .person:hover .tooltip {
-    display: block; }
-  #reward-chain .tooltip {
-    display: none;
-    position: absolute;
-    z-index: 2;
-    top: 0;
-    left: 70px;
-    width: 200px;
-    color: #333333; }
-    #reward-chain .tooltip .inner {
-      background: white;
-      border: 1px solid #cccccc;
-      -webkit-border-radius: 3px;
-      -moz-border-radius: 3px;
-      border-radius: 3px;
-      box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5), 0 0 3px white inset;
-      font-size: 10px;
-      padding: 5px;
-      min-height: 10px; }
-    #reward-chain .tooltip .name {
-      font-weight: 700;
-      float: left;
-      margin-right: 10px;
-      text-transform: uppercase; }
-    #reward-chain .tooltip .amount {
+      width: 40px;
+      height: 40px; }
+    #reward-chain .person .rewards, #reward-chain .person .comment {
+      display: none; }
+    #reward-chain .person .text {
+      width: 92px;
       float: right;
-      padding-right: 12px;
-      font-weight: 700;
-      background: transparent url(../images/icons/starBlackTiny.png) no-repeat 100% 1px; }
-    #reward-chain .tooltip .comment {
-      clear: both;
-      padding-top: 5px; }
-  #reward-chain .tooltip.first {
-    display: block; }
+      padding: 7px;
+      background: black;
+      color: white;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px; }
+      #reward-chain .person .text .name {
+        float: left;
+        text-transform: uppercase;
+        font-weight: 700;
+        font-size: 13px;
+        line-height: 13px; }
+        #reward-chain .person .text .name span {
+          display: block; }
+      #reward-chain .person .text .rewards {
+        float: right;
+        font-family: "ff-dagny-web-pro-1", "ff-dagny-web-pro-2", sans-serif;
+        font-size: 30px;
+        line-height: 28px;
+        padding-right: 15px;
+        background: transparent url(../images/icons/starWhiteSmall.png) no-repeat 100% 0;
+        display: none; }
+      #reward-chain .person .text .comment {
+        clear: both;
+        border-top: 2px solid white;
+        padding-top: 5px;
+        color: #ffbb01;
+        font-size: 9px;
+        height: 27px;
+        line-height: 12px;
+        display: none; }
+  #reward-chain .person:hover, #reward-chain .person.first {
+    height: 100px;
+    width: 275px; }
+    #reward-chain .person:hover img, #reward-chain .person.first img {
+      width: 100px;
+      height: 100px; }
+    #reward-chain .person:hover .text, #reward-chain .person.first .text {
+      width: 155px; }
+      #reward-chain .person:hover .text .name, #reward-chain .person:hover .text .rewards, #reward-chain .person.first .text .name, #reward-chain .person.first .text .rewards {
+        padding-bottom: 5px; }
+      #reward-chain .person:hover .text .name, #reward-chain .person.first .text .name {
+        font-size: 14px;
+        line-height: 14px; }
+      #reward-chain .person:hover .text .rewards, #reward-chain .person:hover .text .comment, #reward-chain .person.first .text .rewards, #reward-chain .person.first .text .comment {
+        display: block; }
 
 .info-bar {
   background-color: #00aeef;
