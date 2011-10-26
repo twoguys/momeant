@@ -32,7 +32,9 @@
             .notification
     
       %section.patronage.rewarded-creators
-        %h3 Creators #{@user == current_user ? "you've" : "#{@user.first_name} has"} rewarded
+        %h3
+          Creators #{@user == current_user ? "you've" : "#{@user.first_name} has"} rewarded
+          %em Click on a profile picture to see #{@user == current_user ? "your" : "#{@user.first_name}'s"} impact on that creator.
         .avatar-wall
           .wall
             - @users.each do |user|
