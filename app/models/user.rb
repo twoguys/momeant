@@ -214,14 +214,15 @@ class User < ActiveRecord::Base
   # Badge calculation
   
   def badge_level
+    return 0 if self.given_rewards.count == 0
     return 1 if self.amazon_payments.empty?
     return 2 if self.impact < 20
     return 3 if self.impact < 100
-    return 4 if self.impact < 200
-    return 5 if self.impact < 400
-    return 6 if self.impact < 800
-    return 7 if self.impact < 1600
-    return 8 if self.impact < 3200
+    return 4 if self.impact < 400
+    return 5 if self.impact < 1600
+    return 6 if self.impact < 3200
+    return 7 if self.impact < 6400
+    return 8 if self.impact < 12800
     return 9
   end
   
