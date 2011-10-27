@@ -4922,8 +4922,6 @@ ul.avatars li {
         position: absolute;
         top: 0;
         left: 0; }
-    .user-profile .rewarded-creators .avatar-wall .wall a.example {
-      display: none; }
   .user-profile ul.rewards {
     padding: 0;
     display: inline-block; }
@@ -5215,6 +5213,63 @@ form.user_edit {
     font-weight: 100; }
   form.user_edit #user_interest_list {
     width: 98%; }
+
+#reward-viz-example {
+  width: 607px;
+  height: 499px;
+  background: transparent url(../images/rewardVizExplanation.png) no-repeat 0 0;
+  position: relative; }
+  #reward-viz-example .tip {
+    position: absolute; }
+    #reward-viz-example .tip .hover {
+      width: 35px;
+      height: 35px;
+      cursor: help; }
+    #reward-viz-example .tip .tipsy {
+      display: none;
+      position: absolute;
+      width: 125px; }
+      #reward-viz-example .tip .tipsy .tipsy-inner {
+        background: white;
+        color: black; }
+    #reward-viz-example .tip .twitter, #reward-viz-example .tip .facebook {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      background: transparent url(../images/icons/twitterTiny.png) no-repeat;
+      position: relative;
+      top: 2px; }
+    #reward-viz-example .tip .facebook {
+      background-image: url(../images/icons/facebookTiny.png); }
+  #reward-viz-example .tip:hover .tipsy {
+    display: block; }
+  #reward-viz-example #avatar-tooltip {
+    top: 110px;
+    left: 131px; }
+    #reward-viz-example #avatar-tooltip .tipsy {
+      left: -125px;
+      top: -13px; }
+  #reward-viz-example #rewards-tooltip {
+    top: 79px;
+    left: 407px; }
+    #reward-viz-example #rewards-tooltip .tipsy {
+      width: 150px;
+      right: -150px;
+      top: -6px; }
+  #reward-viz-example #impact-tooltip {
+    top: 210px;
+    left: 396px; }
+    #reward-viz-example #impact-tooltip .tipsy {
+      width: 170px;
+      right: -170px;
+      top: -28px; }
+  #reward-viz-example #sharing-tooltip {
+    top: 363px;
+    left: 247px; }
+    #reward-viz-example #sharing-tooltip .tipsy {
+      width: 185px;
+      left: -79px;
+      bottom: -40px; }
 
 .community {
   max-width: 1064px;
@@ -7183,7 +7238,6 @@ a.tag:hover {
         clear: both;
         border-top: 2px solid white;
         padding-top: 5px;
-        color: #ffbb01;
         font-size: 9px;
         height: 27px;
         line-height: 12px;
