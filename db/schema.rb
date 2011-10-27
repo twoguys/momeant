@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110928004146) do
+ActiveRecord::Schema.define(:version => 20111025134633) do
 
   create_table "adverts", :force => true do |t|
     t.string   "title"
@@ -32,6 +32,15 @@ ActiveRecord::Schema.define(:version => 20110928004146) do
     t.datetime "updated_at"
     t.string   "token"
     t.string   "secret"
+  end
+
+  create_table "cashouts", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "pay_period_id"
+    t.string   "state"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "amount"
   end
 
   create_table "credit_cards", :force => true do |t|
@@ -57,6 +66,7 @@ ActiveRecord::Schema.define(:version => 20110928004146) do
     t.integer  "rgt"
     t.integer  "depth",                :default => 0
     t.boolean  "show_on_landing_page", :default => false
+    t.integer  "cashout_id"
   end
 
   create_table "galleries", :force => true do |t|
@@ -239,10 +249,10 @@ ActiveRecord::Schema.define(:version => 20110928004146) do
     t.string   "spreedly_token"
     t.integer  "subscriptions_count",                         :default => 0
     t.boolean  "tos_accepted",                                :default => false
-    t.string   "paypal_email"
     t.integer  "lifetime_rewards",                            :default => 0
     t.text     "thankyou"
     t.string   "location"
+    t.string   "amazon_email"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

@@ -2,11 +2,14 @@ class Reward < Curation
   default_scope :order => 'amount DESC'
   belongs_to :story
   belongs_to :recipient, :class_name => "User"
+  belongs_to :cashout
   
   scope :for_content, where("story_id IS NOT NULL")
   scope :for_landing_page, where(:show_on_landing_page => true)
   scope :this_week, where("created_at > '#{7.days.ago}'")
   scope :this_month, where("created_at > '#{1.month.ago}'")
+  scope :cashed_out, where("cashout_id IS NOT NULL")
+  scope :not_cashed_out, where("cashout_id IS NULL")
   
   acts_as_nested_set
   
@@ -25,13 +28,18 @@ class Reward < Curation
   def self.cashout_threshold
     100
   end
+  def self.dollar_exchange
+    0.1
+  end
   
   def impact
     self.descendants.sum(:amount) + self.amount
   end
   
   def descendants_tree(descendants)
-    tree = {:id => self.id, :data => {:name => self.user.name, :avatar => self.user.avatar.url(:thumbnail), :comment => self.comment[0..140], :amount => self.amount}}
+    comment = self.comment
+    comment = "#{comment[0..120]}..." if comment.length > 120
+    tree = {:id => self.id, :data => {:first_name => self.user.first_name, :last_name => self.user.last_name, :avatar => self.user.avatar.url(:large), :comment => comment, :amount => self.amount}}
 
     tree[:children] = []
     descendants.reject{|c| c.parent_id != self.id}.each do |reward|

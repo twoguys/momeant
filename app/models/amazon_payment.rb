@@ -22,6 +22,36 @@ class AmazonPayment < Transaction
     "#{self.coins} reward coins"
   end
   
+  def fees
+    case self.amount
+    when 5
+      0.3
+    when 10
+      0.59
+    when 20
+      0.88
+    when 100
+      3.20
+    end
+  end
+  
+  def momeant_cut
+    case self.amount
+    when 5
+      2.5
+    when 10
+      3
+    when 20
+      4
+    when 100
+      10
+    end
+  end
+  
+  def momeant_revenue
+    self.momeant_cut - self.fees
+  end
+  
   def amazon_cbui_url(return_url)
     Amazon::FPS::Payments.get_cobranded_url(self.amount, "#{self.coins} reward coins", self.id, return_url)
   end

@@ -50,6 +50,7 @@ ul.avatars
 		z-index: 99
 		font-size: 11px
 		background: $background_color
+		box-shadow: 0 2px 5px rgba(0,0,0,0.2)
 		.avatar-badge-name
 			position: relative
 			padding: 10px 0 0 5px
@@ -101,6 +102,14 @@ ul.avatars
 					margin-right: 3px
 			.rewards-given, .impact
 				border-bottom: 1px solid #ddd
+		a.edit
+			background: transparent url(../images/icons/pencilBlue.png) no-repeat 0 0
+			padding-left: 18px
+			text-transform: uppercase
+			font-size: 12px
+			font-weight: 700
+			margin-bottom: 10px
+			display: block
 		.occupation, .tagline, .location, .tags
 			h3
 				font-size: 10px
@@ -120,12 +129,6 @@ ul.avatars
 			h3
 				margin-bottom: 5px
 			margin-bottom: 13px
-		a.edit
-			background: transparent url(../images/icons/pencilBlue.png) no-repeat 0 0
-			padding-left: 18px
-			text-transform: uppercase
-			font-size: 12px
-			font-weight: 700
 	
 	.the-rest
 		margin-left: 208px
@@ -235,9 +238,14 @@ ul.avatars
 	section.patronage
 		h3
 			text-transform: uppercase
-			font-size: 13px
+			font-size: 15px
 			border-bottom: 1px solid #ddd
 			margin-bottom: 10px
+			em
+				font-size: 11px
+				color: #777
+				text-transform: none
+				font-weight: 300
 
 	.rewarded-creators
 		.avatar-wall
@@ -254,8 +262,6 @@ ul.avatars
 						position: absolute
 						top: 0
 						left: 0
-				a.example
-					display: none
 			
 	ul.rewards
 		padding: 0
@@ -268,11 +274,11 @@ ul.avatars
 	ul.stats-bar
 		height: 50px
 		margin: 0 0 20px
-		padding: 20px
-		background: #f6f6f6
-		background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0.2, rgb(235,235,235)),color-stop(0.6, rgb(252,252,252)))
-		background-image: -moz-linear-gradient(center bottom,rgb(235,235,235) 20%,rgb(252,252,252) 60%)
-		border: 1px solid #e0e0e0
+		padding: 20px 0
+		//background: #f6f6f6
+		//background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0.2, rgb(235,235,235)),color-stop(0.6, rgb(252,252,252)))
+		//background-image: -moz-linear-gradient(center bottom,rgb(235,235,235) 20%,rgb(252,252,252) 60%)
+		//border: 1px solid #e0e0e0
 		li
 			float: left
 			font-size: 11px
@@ -313,6 +319,19 @@ ul.avatars
 			
 	/* Creations Tab */
 	
+	ul.stats-bar li.cash
+		position: relative
+		a#cashout
+			position: absolute
+			top: 0
+			right: 0
+			padding: 8px 15px 7px
+			&.disabled
+				background-color: $greygradient1
+				@include gradient($greygradient1, $greygradient2)
+				cursor: help
+			
+	
 	ul.galleries		
 		li.separator
 			clear: both
@@ -352,8 +371,8 @@ ul.avatars
 				li.add
 					a
 						display: block
-						width: 230px
-						height: 207px
+						width: 236px
+						height: 205px
 						border: 1px dashed #ccc
 						color: #aaa
 						background: #fff url(../images/addMomeantBg.png) no-repeat 50% 50%
@@ -372,6 +391,11 @@ ul.avatars
 		li.gallery:first-child, li.no-gallery:first-child
 			ul.stories
 				padding-top: 0
+	
+	/* Cashouts */
+	#cashouts
+		table
+			margin-top: 1em
 	
 	/* Followers, Following Tabs */
 	
@@ -465,6 +489,9 @@ ul.avatars
 		.tagline, .interests
 			margin-bottom: 10px
 	
+	#user_tagline
+		height: 50px
+	
 	.subscribing-to
 		clear: both
 		margin-bottom: 20px
@@ -542,3 +569,61 @@ form.user_edit
 		font-weight: 100
 	#user_interest_list
 		width: 98%
+		
+#reward-viz-example
+	width: 607px
+	height: 499px
+	background: transparent url(../images/rewardVizExplanation.png) no-repeat 0 0
+	position: relative
+	.tip
+		position: absolute
+		.hover
+			width: 35px
+			height: 35px
+			cursor: help
+		.tipsy
+			display: none
+			position: absolute
+			width: 125px
+			.tipsy-inner
+				background: #fff
+				color: #000
+		.twitter, .facebook
+			display: inline-block
+			width: 12px
+			height: 12px
+			background: transparent url(../images/icons/twitterTiny.png) no-repeat
+			position: relative
+			top: 2px
+		.facebook
+			background-image: url(../images/icons/facebookTiny.png)
+	.tip:hover
+		.tipsy
+			display: block
+	#avatar-tooltip
+		top: 110px
+		left: 131px
+		.tipsy
+			left: -125px
+			top: -13px
+	#rewards-tooltip
+		top: 79px
+		left: 407px
+		.tipsy
+			width: 150px
+			right: -150px
+			top: -6px
+	#impact-tooltip
+		top: 210px
+		left: 396px
+		.tipsy
+			width: 170px
+			right: -170px
+			top: -28px
+	#sharing-tooltip
+		top: 363px
+		left: 247px
+		.tipsy
+			width: 185px
+			left: -79px
+			bottom: -40px

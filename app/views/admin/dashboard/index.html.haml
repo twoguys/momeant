@@ -1,2 +1,51 @@
-.admin
+.admin.dashboard
   = render "admin/tabs"
+  
+  .date-rangeable
+  
+    = form_tag admin_dashboard_path, :method => :get do
+      Between
+      = text_field_tag :after, params[:after], :class => "date"
+      and
+      = text_field_tag :before, params[:before], :class => "date"
+      = submit_tag "Filter"
+  
+    %section.plus
+      %h3 Money In
+      %p= number_to_currency @payments.sum(:amount)
+  
+    %section.minus
+      %h3 Fees
+      %p= number_to_currency(@payments.map(&:fees).inject(:+) || 0)
+  
+    %section.minus
+      %h3 Money Out
+      %p= number_to_currency(@cashouts_paid.map(&:dollars).inject(:+) || 0)
+    
+    %section.plus
+      %h3 Momeant Revenue
+      %p= number_to_currency(@payments.map(&:momeant_revenue).inject(:+) || 0)
+
+    .clear
+
+  %section
+    %h3 Money remaining
+    %p= number_to_currency(@payments.sum(:amount) - (@cashouts_paid.map(&:dollars).inject(:+) || 0))
+  
+  %section
+    %h3 Unpaid cashouts
+    %p= number_to_currency(@cashouts_requested.map(&:dollars).inject(:+) || 0)
+  
+  %section
+    %h3 Non-cashed-out rewards
+    %p= number_to_currency(Reward.not_cashed_out.sum(:amount) * Reward.dollar_exchange)
+  
+  %section
+    %h3 Unused reward coins
+    %p= number_to_currency(User.sum(:coins) * Reward.dollar_exchange)
+
+
+:javascript
+  $(function() {
+    $('.date').datepicker();
+  });

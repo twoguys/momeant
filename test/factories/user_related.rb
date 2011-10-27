@@ -18,6 +18,7 @@ Factory.define :email_confirmed_user, :parent => :user do |user|
 end
 
 Factory.define :creator, :parent => :email_confirmed_user, :class => "Creator" do |creator|
+  creator.amazon_email        "amazon@example.com"
 end
 
 Factory.define :admin, :parent => :email_confirmed_user do |admin|

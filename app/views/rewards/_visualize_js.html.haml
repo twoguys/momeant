@@ -47,9 +47,9 @@
           //nodes or edges
           Node: {
               height: 60,
-              width: 60,
+              width: 160,
               type: 'rectangle',
-              color: '#fff',
+              color: 'transparent',
               overridable: true
           },
 
@@ -64,14 +64,14 @@
           //your node.
           onCreateLabel: function(domElement, node){
               var first = '';
+              // if the root node
               if (node.getParents().length == 0) {
                 first = ' first';
               }
-              var html = '<div class="person"><img src="' + node.data.avatar + '"/>';
-              html += '<span class="tooltip' + first + '"><div class="inner"><div class="name">' + node.data.name + '</div><div class="amount">' + node.data.amount + '</div>';
-              if (node.data.comment) {
-                html += '<div class="comment">' + node.data.comment + '</div>';
-              }
+              var html = '<div class="person' + first + '"><img src="' + node.data.avatar + '"/><div class="text">';
+              html += '<div class="name"><span>' + node.data.first_name + '</span><span>' + node.data.last_name + '</span></div>';
+              html += '<div class="rewards">' + node.data.amount + '</div>';
+              html += '<p class="comment">' + node.data.comment + '</p>';
               html += '</div></div>';
               domElement.innerHTML = html;
           }

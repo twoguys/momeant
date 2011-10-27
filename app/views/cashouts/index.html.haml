@@ -1,0 +1,32 @@
+.user-profile
+  = render "users/user_info"
+
+  .the-rest
+    = render "users/user_tabs"
+  
+    .tabbed#cashouts
+      %h1 Cashing Out
+      %p Every time you reach $10.00 in rewards you may request a cashout.
+      %p
+        We pay cashouts once a month using Amazon WebPay.
+        We send your earned rewards money to your Amazon account and you can withdraw it to your bank account free of charge.
+        This allows you to get all of your money without us having to ask for your financial information.
+      
+      - if current_user.amazon_email.blank?
+        %h3 Before you can cashout, we need the email address of the AMAZON ACCOUNT where you'd like to receive the money.
+        = form_for current_user, :url => update_amazon_email_user_cashouts_path(current_user), :method => :post do |form|
+          = form.label :amazon_email, "PLEASE DOUBLE CHECK THIS as we will be sending money to this account", :style => "color:red"
+          = form.text_field :amazon_email, :placeholder => "Amazon email address"
+          = form.submit "Save Email"
+      - elsif current_user.below_cashout_threshold?
+        %h3 You currently have #{number_to_currency(current_user.dollars)} from your rewards. Once you reach $10.00 you will see a REQUEST A CASH OUT button appear here.
+      - else
+        = button_to "Request a Cash Out", user_cashouts_path
+      
+      - unless @user.cashouts.empty?
+        %table
+          %tbody
+            - @user.cashouts.each do |cashout|
+              %tr
+                %td= number_to_currency(cashout.dollars)
+                %td #{cashout.state} #{time_ago_in_words(cashout.updated_at)} ago
