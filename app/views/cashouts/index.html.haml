@@ -13,8 +13,9 @@
         This allows you to get all of your money without us having to ask for your financial information.
       
       - if current_user.amazon_email.blank?
-        %h3 Before you can cashout, we need the email address of the Amazon account where you'd like to receive the money.
+        %h3 Before you can cashout, we need the email address of the AMAZON ACCOUNT where you'd like to receive the money.
         = form_for current_user, :url => update_amazon_email_user_cashouts_path(current_user), :method => :post do |form|
+          = form.label :amazon_email, "PLEASE DOUBLE CHECK THIS as we will be sending money to this account", :style => "color:red"
           = form.text_field :amazon_email, :placeholder => "Amazon email address"
           = form.submit "Save Email"
       - elsif current_user.below_cashout_threshold?
