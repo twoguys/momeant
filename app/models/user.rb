@@ -203,6 +203,14 @@ class User < ActiveRecord::Base
     self.coins >= amount
   end
   
+  def below_cashout_threshold?
+    self.rewards.not_cashed_out.sum(:amount) < Reward.cashout_threshold
+  end
+  
+  def dollars
+    self.rewards.not_cashed_out.sum(:amount) * Reward.dollar_exchange
+  end
+  
   def has_viewed?(story)
     View.where(:user_id => self.id, :story_id => story.id).present?
   end
