@@ -7,6 +7,9 @@
     = image_tag("badges/#{@user.badge_level}.png", :class => "badge")
     .name= @user.name
       
+  - if @user == current_user
+    = link_to("Edit Your Profile", edit_user_path(current_user), :class => "edit")
+    
   .occupation
     %h3 Occupation
     - if @user.occupation.present?
@@ -35,6 +38,3 @@
         = link_to(tag.name, community_path(:tag => tag.name), :class => "tag")
     - elsif me?(@user)
       start rewarding to generate a list of tags related to your favorite content on mo&#149;meant
-      
-  - if @user == current_user
-    = link_to("Edit Your Profile", edit_user_path(current_user), :class => "edit")
