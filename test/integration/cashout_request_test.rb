@@ -40,7 +40,7 @@ Feature "Creators can request cashouts for the rewards they've earned" do
     end
     
     And "I press the Cash Out Now button" do
-      click_button "Cash Out Now"
+      click_button "Request a Cash Out"
     end
     
     Then "I should see my requested cash out listed" do
