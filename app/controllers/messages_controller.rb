@@ -3,7 +3,7 @@ class MessagesController < ApplicationController
   
   def index
     if @user == current_user
-      @messages = @user.received_messages
+      @messages = @user.received_messages.map {|m| m.parent_id.nil? ? m : Message.find(m.parent_id)}.uniq
     else
       @messages = @user.messages_from(current_user)
     end
@@ -12,7 +12,8 @@ class MessagesController < ApplicationController
   
   def create
     options = params[:message]
-    options.merge!({:sender_id => current_user.id, :recipient_id => @user.id})
+    options.merge!({:sender_id => current_user.id})
+    options.merge!({:recipient_id => @user.id}) unless options[:recipient_id].present?
     @message = Message.new(options)
     if @message.save
       render :json => {:success => true, :avatar => current_user.avatar.url(:thumbnail)}

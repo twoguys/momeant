@@ -34,5 +34,6 @@
               = link_to "Reply", "#", :class => "show-form"
               = form_for Message.new, :url => user_messages_path(@user, Message.new), :html => {:class => "reply", :style => "display: none;"} do |form|
                 = form.hidden_field :parent_id, :value => message.id
+                = form.hidden_field :recipient_id, :value => message.not_me(current_user).id
                 = form.text_area :body
                 = form.submit "Reply"

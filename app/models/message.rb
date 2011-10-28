@@ -24,4 +24,9 @@ class Message < ActiveRecord::Base
     self.update_attribute(:sender_deleted, true) if self.sender == user
     self.update_attribute(:recipient_deleted, true) if self.recipient == user
   end
+  
+  def not_me(user)
+    self.sender if sender != user
+    self.recipient
+  end
 end

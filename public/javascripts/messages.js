@@ -6,12 +6,17 @@ function setup_message_posting() {
 		var body = $form.find('#message_body').val();
 		if (body.length == 0) { return false; }
 		var parent_id = $form.find('#message_parent_id').val();
+		var recipient_id = $form.find('#message_recipient_id').val();
 		var url = $form.attr('action');
 		
 		$form.find('#message_body, input[type="submit"]').attr('disabled','disabled');
 		$form.find('#message_body').val('').addClass('loading');
 		$.post(url,
-			{ "message[body]":body, "message[parent_id]":parent_id },
+			{
+				"message[body]":body,
+				"message[parent_id]":parent_id,
+				"message[recipient_id]":recipient_id
+			},
 			function(data) {
 				$form.find('#message_body, input[type="submit"]').removeAttr('disabled').removeClass('loading');
 				if (data.success) {
@@ -32,7 +37,7 @@ function setup_message_posting() {
 
 function setup_reply_showing() {
 	$('#messages .show-form').click(function() {
-		$(this).hide().siblings('form').show();
+		$(this).hide().siblings('form').show().find('textarea').focus();
 		return false;
 	});
 }
