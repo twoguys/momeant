@@ -12,3 +12,5 @@
   - if @reward.comment.present?
     %p{:style => "font-style:italic;color:#777"}
       "#{@reward.comment}"
+  
+  %p Want to thank #{@reward.user.first_name} or send them a private message? You can #{link_to("do that here", @messaging_url)}.
