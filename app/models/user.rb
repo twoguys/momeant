@@ -137,7 +137,7 @@ class User < ActiveRecord::Base
     Reward.where(:user_id => self.id, :story_id => story.id).present?
   end
   
-  def reward(story, amount, comment, impacted_by)
+  def reward(story, amount, comment, impacted_by = nil)
     return if amount.nil?
     amount = amount.to_i
     if !can_afford?(amount)

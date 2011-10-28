@@ -6,7 +6,7 @@
       .stats
         .rewards
           %span.amount= @rewards.sum(:amount)
-          %span.text= @rewards.length == 1 ? "reward" : "rewards"
+          %span.text= @rewards.sum(:amount) == 1 ? "reward" : "rewards"
         .impact
           %span.amount= @rewarder.impact_on(@user)
           %span.text impact
