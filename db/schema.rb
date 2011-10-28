@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111025134633) do
+ActiveRecord::Schema.define(:version => 20111028024111) do
 
   create_table "adverts", :force => true do |t|
     t.string   "title"
@@ -87,6 +87,18 @@ ActiveRecord::Schema.define(:version => 20111025134633) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "invitee_id"
+  end
+
+  create_table "messages", :force => true do |t|
+    t.integer  "sender_id"
+    t.integer  "recipient_id"
+    t.boolean  "sender_deleted",    :default => false
+    t.boolean  "recipient_deleted", :default => false
+    t.text     "body"
+    t.datetime "read_at"
+    t.integer  "parent_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "page_media", :force => true do |t|
@@ -216,6 +228,7 @@ ActiveRecord::Schema.define(:version => 20111025134633) do
   create_table "users", :force => true do |t|
     t.string   "email"
     t.string   "encrypted_password",           :limit => 128, :default => "",    :null => false
+    t.string   "password_salt",                               :default => "",    :null => false
     t.string   "reset_password_token"
     t.string   "remember_token"
     t.datetime "remember_created_at"

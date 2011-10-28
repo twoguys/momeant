@@ -1,0 +1,38 @@
+- content_for :head do
+  = javascript_include_tag "messages"
+
+.user-profile
+  = render "users/user_info"
+
+  .the-rest
+    = render "users/user_tabs"
+  
+    .tabbed#messages
+      - if me?(@user)
+        To send someone a message, visit their profile page and click the "Message" tab.
+      - else
+        #new-message-form
+          = image_tag(current_user.avatar.url(:thumbnail), :class => "avatar")
+          = form_for Message.new, :url => user_messages_path(@user, Message.new) do |form|
+            = form.text_area :body
+            = form.submit "Send Message"
+      
+      %ul#previous-messages
+        - @messages.each do |message|
+          %li.message
+            = link_to(image_tag(message.sender.avatar.url(:thumbnail)), user_path(message.sender), :class => "avatar")
+            .rest
+              .text= message.body
+              .when #{time_ago_in_words(message.created_at)} ago
+              %ul.children
+                - message.children.each do |child|
+                  %li.message
+                    = link_to(image_tag(child.sender.avatar.url(:thumbnail)), user_path(child.sender), :class => "avatar")
+                    .rest
+                      .text= child.body
+                      .when #{time_ago_in_words(child.created_at)} ago
+              = link_to "Reply", "#", :class => "show-form"
+              = form_for Message.new, :url => user_messages_path(@user, Message.new), :html => {:class => "reply", :style => "display: none;"} do |form|
+                = form.hidden_field :parent_id, :value => message.id
+                = form.text_area :body
+                = form.submit "Reply"

@@ -1,0 +1,66 @@
+#messages
+	#new-message-form
+		position: relative
+		padding-left: 50px
+		.avatar
+			position: absolute
+			top: 0
+			left: 0
+			width: 40px
+			height: 40px
+	form
+		width: 400px
+		textarea
+			width: 380px
+			height: 24px
+			display: block
+		textarea.loading
+			background: transparent url(../images/spinner.gif) no-repeat 5px 50%
+		input[type="submit"]
+			float: right
+			margin-top: 5px
+
+	ul#previous-messages
+		clear: both
+		padding-top: 15px
+		width: 450px
+		li.message
+			clear: both
+			position: relative
+			padding: 15px 0 15px 50px
+			border-bottom: 1px solid #eee
+			.avatar
+				position: absolute
+				top: 15px
+				left: 0
+				width: 40px
+				height: 40px
+				img
+					width: 40px
+					height: 40px
+			.rest
+				width: 400px
+				padding-top: 7px
+				.when
+					font-size: 10px
+					color: #999
+					margin-bottom: 10px
+				ul.children li.message
+					padding-top: 0
+					padding-bottom: 5px
+					border: none
+					.avatar
+						top: 0
+				form
+					height: 40px
+					textarea
+						width: 317px
+						height: 14px
+						float: left
+					textarea:focus
+						height: 40px
+					input[type="submit"]
+						float: right
+						background: #bbb
+						margin: 0
+						

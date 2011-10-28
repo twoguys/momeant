@@ -548,6 +548,17 @@ a.button.green {
     position: absolute;
     top: -12px;
     right: 0; }
+  .horizontal-tabs li div.notification {
+    position: absolute;
+    top: -7px;
+    right: -4px;
+    background: transparent url(../images/icons/notification.png) no-repeat 0 0;
+    width: 20px;
+    height: 19px;
+    color: white;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
+    padding-top: 2px;
+    text-align: center; }
   .horizontal-tabs li a {
     display: block;
     color: #252525;
@@ -4860,11 +4871,15 @@ ul.avatars li {
       background-position: 10px 9px;
       background-repeat: no-repeat; }
     .user-profile .horizontal-tabs li.rewards a {
-      background-image: url(../images/icons/starBlackSmall.png);
+      background-image: url(../images/icons/starBlackSmall.png); }
+    .user-profile .horizontal-tabs li.rewards a.active {
       background-position: 10px 10px; }
     .user-profile .horizontal-tabs li.creations a {
-      background-image: url(../images/icons/momeantAddStorySmall.png);
+      background-image: url(../images/icons/momeantAddStorySmall.png); }
+    .user-profile .horizontal-tabs li.creations a.active {
       background-position: 10px 9px; }
+    .user-profile .horizontal-tabs li.messages a {
+      background-image: url(../images/icons/commentBlackSmall.png); }
   .user-profile .have-not {
     width: 300px;
     float: left;
@@ -7267,6 +7282,70 @@ a.tag:hover {
     margin-top: -30px; }
   #reward-chain .person.first:hover {
     margin-top: -60px; }
+
+#messages #new-message-form {
+  position: relative;
+  padding-left: 50px; }
+  #messages #new-message-form .avatar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 40px; }
+#messages form {
+  width: 400px; }
+  #messages form textarea {
+    width: 380px;
+    height: 24px;
+    display: block; }
+  #messages form textarea.loading {
+    background: transparent url(../images/spinner.gif) no-repeat 5px 50%; }
+  #messages form input[type="submit"] {
+    float: right;
+    margin-top: 5px; }
+#messages ul#previous-messages {
+  clear: both;
+  padding-top: 15px;
+  width: 450px; }
+  #messages ul#previous-messages li.message {
+    clear: both;
+    position: relative;
+    padding: 15px 0 15px 50px;
+    border-bottom: 1px solid #eeeeee; }
+    #messages ul#previous-messages li.message .avatar {
+      position: absolute;
+      top: 15px;
+      left: 0;
+      width: 40px;
+      height: 40px; }
+      #messages ul#previous-messages li.message .avatar img {
+        width: 40px;
+        height: 40px; }
+    #messages ul#previous-messages li.message .rest {
+      width: 400px;
+      padding-top: 7px; }
+      #messages ul#previous-messages li.message .rest .when {
+        font-size: 10px;
+        color: #999999;
+        margin-bottom: 10px; }
+      #messages ul#previous-messages li.message .rest ul.children li.message {
+        padding-top: 0;
+        padding-bottom: 5px;
+        border: none; }
+        #messages ul#previous-messages li.message .rest ul.children li.message .avatar {
+          top: 0; }
+      #messages ul#previous-messages li.message .rest form {
+        height: 40px; }
+        #messages ul#previous-messages li.message .rest form textarea {
+          width: 317px;
+          height: 14px;
+          float: left; }
+        #messages ul#previous-messages li.message .rest form textarea:focus {
+          height: 40px; }
+        #messages ul#previous-messages li.message .rest form input[type="submit"] {
+          float: right;
+          background: #bbbbbb;
+          margin: 0; }
 
 .info-bar {
   background-color: #00aeef;
