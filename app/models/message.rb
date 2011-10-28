@@ -26,7 +26,7 @@ class Message < ActiveRecord::Base
   end
   
   def not_me(user)
-    self.sender if sender != user
+    return self.sender if sender != user
     self.recipient
   end
 end
