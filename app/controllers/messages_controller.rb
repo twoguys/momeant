@@ -5,7 +5,7 @@ class MessagesController < ApplicationController
     if @user == current_user
       @messages = @user.received_messages.map {|m| m.parent_id.nil? ? m : Message.find(m.parent_id)}.uniq
     else
-      @messages = @user.messages_from(current_user)
+      @messages = @user.messages_from(current_user).where(:recipient_id => @user.id)
     end
     current_user.received_messages.unread.update_all(:read_at => Time.now) if @user == current_user
   end
