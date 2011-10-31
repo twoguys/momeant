@@ -548,6 +548,17 @@ a.button.green {
     position: absolute;
     top: -12px;
     right: 0; }
+  .horizontal-tabs li div.notification {
+    position: absolute;
+    top: -7px;
+    right: -4px;
+    background: transparent url(../images/icons/notification.png) no-repeat 0 0;
+    width: 20px;
+    height: 19px;
+    color: white;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
+    padding-top: 2px;
+    text-align: center; }
   .horizontal-tabs li a {
     display: block;
     color: #252525;
@@ -4792,7 +4803,8 @@ ul.avatars li {
           border-bottom: none; }
     .user-profile .the-rest .tabbed {
       padding: 20px;
-      background: white; }
+      background: white;
+      border-bottom: 1px solid #cccccc; }
   .user-profile .guides {
     padding: 25px; }
     .user-profile .guides a {
@@ -4860,11 +4872,15 @@ ul.avatars li {
       background-position: 10px 9px;
       background-repeat: no-repeat; }
     .user-profile .horizontal-tabs li.rewards a {
-      background-image: url(../images/icons/starBlackSmall.png);
+      background-image: url(../images/icons/starBlackSmall.png); }
+    .user-profile .horizontal-tabs li.rewards a.active {
       background-position: 10px 10px; }
     .user-profile .horizontal-tabs li.creations a {
-      background-image: url(../images/icons/momeantAddStorySmall.png);
+      background-image: url(../images/icons/momeantAddStorySmall.png); }
+    .user-profile .horizontal-tabs li.creations a.active {
       background-position: 10px 9px; }
+    .user-profile .horizontal-tabs li.messages a {
+      background-image: url(../images/icons/commentBlackSmall.png); }
   .user-profile .have-not {
     width: 300px;
     float: left;
@@ -5235,7 +5251,11 @@ form.user_edit {
       width: 125px; }
       #reward-viz-example .tip .tipsy .tipsy-inner {
         background: white;
-        color: black; }
+        color: black;
+        font-family: "Swanky and Moo Moo", cursive;
+        font-size: 14px;
+        line-height: 1em;
+        letter-spacing: 0.04em; }
     #reward-viz-example .tip .twitter, #reward-viz-example .tip .facebook {
       display: inline-block;
       width: 12px;
@@ -5251,29 +5271,29 @@ form.user_edit {
     top: 110px;
     left: 131px; }
     #reward-viz-example #avatar-tooltip .tipsy {
-      left: -125px;
+      left: -127px;
       top: -13px; }
   #reward-viz-example #rewards-tooltip {
     top: 79px;
     left: 407px; }
     #reward-viz-example #rewards-tooltip .tipsy {
       width: 150px;
-      right: -150px;
-      top: -6px; }
+      right: -153px;
+      top: -13px; }
   #reward-viz-example #impact-tooltip {
     top: 210px;
     left: 396px; }
     #reward-viz-example #impact-tooltip .tipsy {
       width: 170px;
-      right: -170px;
-      top: -28px; }
+      right: -174px;
+      top: -27px; }
   #reward-viz-example #sharing-tooltip {
     top: 363px;
     left: 247px; }
     #reward-viz-example #sharing-tooltip .tipsy {
       width: 185px;
       left: -79px;
-      bottom: -40px; }
+      bottom: -55px; }
 
 .community {
   max-width: 1064px;
@@ -5628,7 +5648,7 @@ form.user_edit {
         border-top-left-radius: 0;
         border-bottom-left-radius: 0; }
 
-#join-modal, #login-modal, #feedback-modal {
+#join-modal, #login-modal, #feedback-modal, #about-diagram-modal {
   display: none;
   position: fixed;
   top: 0;
@@ -5639,14 +5659,14 @@ form.user_edit {
   color: white;
   width: 100%;
   height: 100%; }
-  #join-modal .cover, #login-modal .cover, #feedback-modal .cover {
+  #join-modal .cover, #login-modal .cover, #feedback-modal .cover, #about-diagram-modal .cover {
     width: 100%;
     height: 100%;
     background: transparent url(../images/modalCover.png) repeat;
     background: rgba(0, 0, 0, 0.7);
     position: absolute;
     z-index: 1; }
-  #join-modal .padder, #login-modal .padder, #feedback-modal .padder {
+  #join-modal .padder, #login-modal .padder, #feedback-modal .padder, #about-diagram-modal .padder {
     width: 480px;
     margin: 0 auto;
     background-color: #f4f4f4;
@@ -5660,7 +5680,7 @@ form.user_edit {
     -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
     -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.7); }
-    #join-modal .padder a.close, #login-modal .padder a.close, #feedback-modal .padder a.close {
+    #join-modal .padder a.close, #login-modal .padder a.close, #feedback-modal .padder a.close, #about-diagram-modal .padder a.close {
       position: absolute;
       top: -15px;
       right: -15px;
@@ -5668,12 +5688,12 @@ form.user_edit {
       height: 30px;
       display: block;
       background: transparent url(../images/modalClose.png) no-repeat 0 0; }
-  #join-modal .placeholder, #login-modal .placeholder, #feedback-modal .placeholder {
+  #join-modal .placeholder, #login-modal .placeholder, #feedback-modal .placeholder, #about-diagram-modal .placeholder {
     color: #aaaaaa;
     font-style: italic;
     font-family: Georgia, serif;
     font-size: 12px; }
-  #join-modal h2, #login-modal h2, #feedback-modal h2 {
+  #join-modal h2, #login-modal h2, #feedback-modal h2, #about-diagram-modal h2 {
     font-family: "museo-slab-1", "museo-slab-2", serif;
     font-size: 30px;
     color: black;
@@ -5684,22 +5704,22 @@ form.user_edit {
     background-color: transparent;
     font-weight: 100;
     padding-top: 0px; }
-  #join-modal input[type="text"], #join-modal input[type="email"], #join-modal input[type="password"], #login-modal input[type="text"], #login-modal input[type="email"], #login-modal input[type="password"], #feedback-modal input[type="text"], #feedback-modal input[type="email"], #feedback-modal input[type="password"] {
+  #join-modal input[type="text"], #join-modal input[type="email"], #join-modal input[type="password"], #login-modal input[type="text"], #login-modal input[type="email"], #login-modal input[type="password"], #feedback-modal input[type="text"], #feedback-modal input[type="email"], #feedback-modal input[type="password"], #about-diagram-modal input[type="text"], #about-diagram-modal input[type="email"], #about-diagram-modal input[type="password"] {
     width: 194px; }
-  #join-modal input[type="submit"], #login-modal input[type="submit"], #feedback-modal input[type="submit"] {
+  #join-modal input[type="submit"], #login-modal input[type="submit"], #feedback-modal input[type="submit"], #about-diagram-modal input[type="submit"] {
     width: 100%;
     font-size: 14px; }
-  #join-modal li, #login-modal li, #feedback-modal li {
+  #join-modal li, #login-modal li, #feedback-modal li, #about-diagram-modal li {
     margin-bottom: 10px;
     height: 31px; }
-  #join-modal li.remember-me, #login-modal li.remember-me, #feedback-modal li.remember-me {
+  #join-modal li.remember-me, #login-modal li.remember-me, #feedback-modal li.remember-me, #about-diagram-modal li.remember-me {
     margin-top: -5px;
     margin-bottom: 0px; }
-    #join-modal li.remember-me label, #login-modal li.remember-me label, #feedback-modal li.remember-me label {
+    #join-modal li.remember-me label, #login-modal li.remember-me label, #feedback-modal li.remember-me label, #about-diagram-modal li.remember-me label {
       color: #252525; }
-  #join-modal .spaced-a-bit, #login-modal .spaced-a-bit, #feedback-modal .spaced-a-bit {
+  #join-modal .spaced-a-bit, #login-modal .spaced-a-bit, #feedback-modal .spaced-a-bit, #about-diagram-modal .spaced-a-bit {
     margin-bottom: 5px; }
-  #join-modal li.copy, #login-modal li.copy, #feedback-modal li.copy {
+  #join-modal li.copy, #login-modal li.copy, #feedback-modal li.copy, #about-diagram-modal li.copy {
     color: #999999;
     font-size: 13px;
     font-family: "museo-slab-1", "museo-slab-2", serif;
@@ -5707,9 +5727,9 @@ form.user_edit {
     margin-bottom: 0;
     font-weight: 100;
     text-align: center; }
-  #join-modal form li, #login-modal form li, #feedback-modal form li {
+  #join-modal form li, #login-modal form li, #feedback-modal form li, #about-diagram-modal form li {
     position: relative; }
-    #join-modal form li label.placeholder, #login-modal form li label.placeholder, #feedback-modal form li label.placeholder {
+    #join-modal form li label.placeholder, #login-modal form li label.placeholder, #feedback-modal form li label.placeholder, #about-diagram-modal form li label.placeholder {
       color: #999999;
       font-style: italic;
       font-family: Georgia, serif;
@@ -5720,51 +5740,51 @@ form.user_edit {
       font-weight: 100;
       margin: 0;
       padding: 0 0 0 10px; }
-    #join-modal form li label.error, #login-modal form li label.error, #feedback-modal form li label.error {
+    #join-modal form li label.error, #login-modal form li label.error, #feedback-modal form li label.error, #about-diagram-modal form li label.error {
       font-family: Georgia, serif;
       font-size: 11px;
       font-weight: 100;
       color: #00aeef;
       text-transform: none;
       margin: 0 0 5px 0; }
-    #join-modal form li span, #login-modal form li span, #feedback-modal form li span {
+    #join-modal form li span, #login-modal form li span, #feedback-modal form li span, #about-diagram-modal form li span {
       width: 102px;
       float: left;
       margin-right: 5px;
       position: relative; }
-      #join-modal form li span input[type="text"], #login-modal form li span input[type="text"], #feedback-modal form li span input[type="text"] {
+      #join-modal form li span input[type="text"], #login-modal form li span input[type="text"], #feedback-modal form li span input[type="text"], #about-diagram-modal form li span input[type="text"] {
         width: 87px; }
-    #join-modal form li span.last, #login-modal form li span.last, #feedback-modal form li span.last {
+    #join-modal form li span.last, #login-modal form li span.last, #feedback-modal form li span.last, #about-diagram-modal form li span.last {
       margin-right: 0; }
-    #join-modal form li input[type="submit"]:disabled, #login-modal form li input[type="submit"]:disabled, #feedback-modal form li input[type="submit"]:disabled {
+    #join-modal form li input[type="submit"]:disabled, #login-modal form li input[type="submit"]:disabled, #feedback-modal form li input[type="submit"]:disabled, #about-diagram-modal form li input[type="submit"]:disabled {
       background-color: #dfdfdf;
       color: #787878;
       cursor: default; }
-    #join-modal form li input[type="submit"]:disabled:active, #login-modal form li input[type="submit"]:disabled:active, #feedback-modal form li input[type="submit"]:disabled:active {
+    #join-modal form li input[type="submit"]:disabled:active, #login-modal form li input[type="submit"]:disabled:active, #feedback-modal form li input[type="submit"]:disabled:active, #about-diagram-modal form li input[type="submit"]:disabled:active {
       top: 0; }
-  #join-modal form li.filled label, #login-modal form li.filled label, #feedback-modal form li.filled label {
+  #join-modal form li.filled label, #login-modal form li.filled label, #feedback-modal form li.filled label, #about-diagram-modal form li.filled label {
     display: none; }
-  #join-modal form li.checkbox label.error, #login-modal form li.checkbox label.error, #feedback-modal form li.checkbox label.error {
+  #join-modal form li.checkbox label.error, #login-modal form li.checkbox label.error, #feedback-modal form li.checkbox label.error, #about-diagram-modal form li.checkbox label.error {
     position: absolute;
     bottom: -10px;
     padding-left: 23px; }
-  #join-modal .join, #join-modal .login, #login-modal .join, #login-modal .login, #feedback-modal .join, #feedback-modal .login {
+  #join-modal .join, #join-modal .login, #login-modal .join, #login-modal .login, #feedback-modal .join, #feedback-modal .login, #about-diagram-modal .join, #about-diagram-modal .login {
     float: left;
     width: 210px;
     position: relative; }
-    #join-modal .join img, #join-modal .login img, #login-modal .join img, #login-modal .login img, #feedback-modal .join img, #feedback-modal .login img {
+    #join-modal .join img, #join-modal .login img, #login-modal .join img, #login-modal .login img, #feedback-modal .join img, #feedback-modal .login img, #about-diagram-modal .join img, #about-diagram-modal .login img {
       margin: 15px 37%; }
-  #join-modal .join, #login-modal .join, #feedback-modal .join {
+  #join-modal .join, #login-modal .join, #feedback-modal .join, #about-diagram-modal .join {
     padding-right: 25px;
     border-right: 1px solid #cccccc;
     padding-left: 5px; }
-  #join-modal .login, #login-modal .login, #feedback-modal .login {
+  #join-modal .login, #login-modal .login, #feedback-modal .login, #about-diagram-modal .login {
     float: right;
     padding-left: 25px; }
-    #join-modal .login input[type="checkbox"], #login-modal .login input[type="checkbox"], #feedback-modal .login input[type="checkbox"] {
+    #join-modal .login input[type="checkbox"], #login-modal .login input[type="checkbox"], #feedback-modal .login input[type="checkbox"], #about-diagram-modal .login input[type="checkbox"] {
       float: left;
       height: 25px; }
-    #join-modal .login label, #login-modal .login label, #feedback-modal .login label {
+    #join-modal .login label, #login-modal .login label, #feedback-modal .login label, #about-diagram-modal .login label {
       font-weight: 600;
       color: #999999;
       text-transform: uppercase;
@@ -5797,6 +5817,32 @@ form.user_edit {
     height: 70px; }
   #feedback-modal .insides input[type="submit"] {
     float: right; }
+
+#about-diagram-modal .padder {
+  width: 729px;
+  height: 610px;
+  padding: 10px;
+  position: relative;
+  background: rgba(0, 0, 0, 0.4);
+  box-shadow: none; }
+  #about-diagram-modal .padder a.close {
+    top: -5px;
+    right: -5px; }
+  #about-diagram-modal .padder #hi-there {
+    width: 103px;
+    height: 103px;
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    background: transparent url(../images/hiThereBanner.png) no-repeat 0 0; }
+  #about-diagram-modal .padder span {
+    position: absolute;
+    bottom: 17px;
+    right: 17px;
+    color: #777777;
+    width: 130px;
+    font-size: 11px;
+    text-align: right; }
 
 #subscribe-pitch .byline {
   width: 550px;
@@ -6428,77 +6474,41 @@ header .topic-icon {
   display: block; }
 
 #about {
-  padding: 40px 0;
-  font-family: "ff-dagny-web-pro-1", "ff-dagny-web-pro-2", sans-serif; }
-  #about #explanation {
-    color: white;
-    margin-right: 30px;
-    float: left; }
-    #about #explanation ul.steps {
-      height: 220px;
-      padding-bottom: 20px; }
-      #about #explanation ul.steps li {
-        width: 200px;
-        height: 120px;
-        padding: 50px;
-        float: left;
-        margin-right: 10px;
-        background: black;
+  background: #ececec url(../images/); }
+  #about #about-inner {
+    width: 784px;
+    margin: 0 auto;
+    padding: 40px 0;
+    font-family: "ff-dagny-web-pro-1", "ff-dagny-web-pro-2", sans-serif;
+    font-weight: 200; }
+    #about #about-inner #header-image {
+      background: transparent url(../images/aboutPageHeader.png) no-repeat 50% 0;
+      height: 183px;
+      margin-bottom: 40px; }
+    #about #about-inner #explanation {
+      width: 670px;
+      font-size: 22px;
+      padding: 20px 0;
+      border-bottom: 1px solid white;
+      margin: 0 auto 50px; }
+      #about #about-inner #explanation h2 {
+        font-family: "ff-dagny-web-pro-1", "ff-dagny-web-pro-2", sans-serif;
+        color: #00aeef;
+        text-transform: none;
+        background: none;
+        padding: 0;
         text-align: center;
-        font-size: 50px;
-        line-height: 40px;
-        text-transform: uppercase; }
-      #about #explanation ul.steps li.reward {
-        padding-top: 70px;
-        height: 100px; }
-      #about #explanation ul.steps li:last-child {
-        margin-right: 0; }
-    #about #explanation .welcome {
-      clear: both;
-      width: 800px;
-      padding: 60px;
-      background: #00aeef; }
-      #about #explanation .welcome h1 {
-        text-transform: uppercase;
-        font-weight: 200;
-        font-size: 100px;
-        line-height: 90px;
-        padding-bottom: 30px;
-        border-bottom: 1px solid white;
-        margin-bottom: 30px; }
-      #about #explanation .welcome p {
-        font-size: 50px;
-        line-height: 40px;
-        margin: 30px 0; }
-      #about #explanation .welcome ul li {
-        position: relative;
-        height: 100px;
-        margin-bottom: 20px; }
-        #about #explanation .welcome ul li .number {
-          font-size: 100px;
-          text-align: right;
-          position: absolute;
-          left: 0;
-          top: 0; }
-        #about #explanation .welcome ul li .text {
-          font-size: 24px;
-          line-height: 24px;
-          padding-top: 50px;
-          margin-left: 90px; }
-  #about .faq {
-    width: 330px;
-    float: left;
-    font-size: 21px;
-    margin: 30px 30px 0; }
-    #about .faq h3 {
-      color: #00aeef;
-      font-size: 28px;
-      line-height: 27px;
-      text-transform: uppercase;
-      border-bottom: 1px solid #00aeef;
-      font-weight: 200; }
-    #about .faq p {
-      line-height: 26px; }
+        line-height: 1.1em;
+        width: 450px;
+        margin: 0 auto; }
+      #about #about-inner #explanation h2, #about #about-inner #explanation strong {
+        font-weight: 400; }
+      #about #about-inner #explanation p {
+        text-align: justify;
+        line-height: 1.4em; }
+    #about #about-inner #illustration {
+      height: 553px;
+      background: transparent url(../images/aboutDiagram.png) no-repeat 0 0; }
 
 #faq-pitch .characters {
   width: 1008px;
@@ -7249,7 +7259,7 @@ a.tag:hover {
   #reward-chain .person:hover, #reward-chain .person.first {
     height: 100px;
     width: 275px;
-    margin: -50px 0 0 -60px;
+    margin: -60px 0 0 -60px;
     z-index: 2; }
     #reward-chain .person:hover img, #reward-chain .person.first img {
       width: 100px;
@@ -7263,6 +7273,80 @@ a.tag:hover {
         line-height: 14px; }
       #reward-chain .person:hover .text .rewards, #reward-chain .person:hover .text .comment, #reward-chain .person.first .text .rewards, #reward-chain .person.first .text .comment {
         display: block; }
+  #reward-chain .person:hover {
+    margin-top: -30px; }
+  #reward-chain .person.first:hover {
+    margin-top: -60px; }
+
+#messages #new-message-form {
+  position: relative;
+  padding-left: 50px; }
+  #messages #new-message-form .avatar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 40px; }
+#messages form {
+  width: 400px; }
+  #messages form textarea {
+    width: 380px;
+    height: 24px;
+    display: block; }
+  #messages form textarea.loading {
+    background: transparent url(../images/spinner.gif) no-repeat 5px 50%; }
+  #messages form input[type="submit"] {
+    float: right;
+    margin-top: 5px; }
+#messages ul#previous-messages {
+  clear: both;
+  padding-top: 15px;
+  width: 450px; }
+  #messages ul#previous-messages li.message {
+    clear: both;
+    position: relative;
+    padding: 15px 0 15px 50px;
+    border-top: 1px solid #eeeeee; }
+    #messages ul#previous-messages li.message .avatar {
+      position: absolute;
+      top: 15px;
+      left: 0;
+      width: 40px;
+      height: 40px; }
+      #messages ul#previous-messages li.message .avatar img {
+        width: 40px;
+        height: 40px; }
+    #messages ul#previous-messages li.message .rest {
+      width: 400px;
+      padding-top: 7px; }
+      #messages ul#previous-messages li.message .rest .text {
+        min-height: 16px; }
+      #messages ul#previous-messages li.message .rest .when {
+        font-size: 10px;
+        color: #999999;
+        margin-bottom: 10px; }
+      #messages ul#previous-messages li.message .rest ul.children li.message {
+        padding-top: 0;
+        padding-bottom: 5px;
+        border-bottom: none;
+        border-top: 1px solid #eeeeee; }
+        #messages ul#previous-messages li.message .rest ul.children li.message .rest {
+          width: 350px; }
+        #messages ul#previous-messages li.message .rest ul.children li.message .avatar {
+          top: 5px; }
+      #messages ul#previous-messages li.message .rest form {
+        height: 40px; }
+        #messages ul#previous-messages li.message .rest form textarea {
+          width: 383px;
+          height: 14px;
+          float: left;
+          -webkit-border-radius: 0;
+          -moz-border-radius: 0;
+          border-radius: 0; }
+        #messages ul#previous-messages li.message .rest form input[type="submit"] {
+          float: right;
+          background: #bbbbbb;
+          margin: 0; }
 
 .info-bar {
   background-color: #00aeef;

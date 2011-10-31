@@ -143,6 +143,7 @@ ul.avatars
 		.tabbed
 			padding: 20px
 			background: #fff
+			border-bottom: 1px solid #ccc
 	
 	
 	.guides
@@ -189,10 +190,14 @@ ul.avatars
 			background-repeat: no-repeat
 		li.rewards a
 			background-image: url(../images/icons/starBlackSmall.png)
+		li.rewards a.active
 			background-position: 10px 10px
 		li.creations a
 			background-image: url(../images/icons/momeantAddStorySmall.png)
+		li.creations a.active
 			background-position: 10px 9px
+		li.messages a
+			background-image: url(../images/icons/commentBlackSmall.png)
 	
 	/* First-time Users */
 	
@@ -588,6 +593,10 @@ form.user_edit
 			.tipsy-inner
 				background: #fff
 				color: #000
+				font-family: $handwritten
+				font-size: 14px
+				line-height: 1em
+				letter-spacing: 0.04em
 		.twitter, .facebook
 			display: inline-block
 			width: 12px
@@ -604,26 +613,26 @@ form.user_edit
 		top: 110px
 		left: 131px
 		.tipsy
-			left: -125px
+			left: -127px
 			top: -13px
 	#rewards-tooltip
 		top: 79px
 		left: 407px
 		.tipsy
 			width: 150px
-			right: -150px
-			top: -6px
+			right: -153px
+			top: -13px
 	#impact-tooltip
 		top: 210px
 		left: 396px
 		.tipsy
 			width: 170px
-			right: -170px
-			top: -28px
+			right: -174px
+			top: -27px
 	#sharing-tooltip
 		top: 363px
 		left: 247px
 		.tipsy
 			width: 185px
 			left: -79px
-			bottom: -40px
+			bottom: -55px

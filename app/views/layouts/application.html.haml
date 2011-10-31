@@ -27,6 +27,7 @@
       = javascript_include_tag "http://html5shiv.googlecode.com/svn/trunk/html5.js"
     
     = stylesheet_link_tag "reset", "tipsy", "jquery-ui-1.8.16", "jquery.fancybox-1.3.4", "colorpicker", "creator_text_styles", "styles", "extras"
+    = stylesheet_link_tag "http://fonts.googleapis.com/css?family=Swanky+and+Moo+Moo"
     /[if lt IE 7]
       = stylesheet_link_tag "ie"
     
@@ -78,6 +79,8 @@
     mpq.name_tag('#{current_user.name}');
     
   - if flash[:track_signup].present?
+    = link_to "Launch about diagram", "#about-diagram-modal", :style => "display:none;"
+    = render "shared/about_diagram_modal"
     :javascript
       mpq.track('Signed up', {anonymous_id: '#{session[:analytics_anonymous_id]}', id: '#{current_user.id}'})
   - if flash[:track_story_publish]

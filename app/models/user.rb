@@ -43,6 +43,17 @@ class User < ActiveRecord::Base
   
   has_many :authentications
   
+  has_many :sent_messages,
+    :class_name => "Message",
+    :foreign_key => "sender_id",
+    :order => "created_at DESC",
+    :conditions => ["sender_deleted = ?", false]
+  has_many :received_messages,
+    :class_name => "Message",
+    :foreign_key => "recipient_id",
+    :order => "created_at DESC",
+    :conditions => ["recipient_deleted = ?", false]
+  
   has_attached_file :avatar,
     :styles => { :thumbnail => "60x60#", :large => "200x200#" },
     :path          => "avatars/:id/:style.:extension",
@@ -137,7 +148,7 @@ class User < ActiveRecord::Base
     Reward.where(:user_id => self.id, :story_id => story.id).present?
   end
   
-  def reward(story, amount, comment, impacted_by)
+  def reward(story, amount, comment, impacted_by = nil)
     return if amount.nil?
     amount = amount.to_i
     if !can_afford?(amount)
@@ -359,6 +370,20 @@ class User < ActiveRecord::Base
   def is_subscribed_to?(user)
     self.subscribed_to.include?(user)
   end
+  
+  # Private Messages
+  def messages
+    Message.where("sender_id = ? or recipient_id = ?", self.id, self.id).where("parent_id IS NULL").order("created_at DESC")
+  end
+  
+  def messages_from(user)
+    Message.where("sender_id = ?", user.id).where("parent_id IS NULL").order("created_at DESC")
+  end
+  
+  def unread_message_count
+    Message.where(:recipient_id => self.id).where("read_at IS NULL").count
+  end
+  
   
   def rewarded_stories_from_people_i_subscribe_to
     stories = Story.where(:id => Reward.where(:user_id => self.subscribed_to).map{ |r| r.story_id })

@@ -64,6 +64,7 @@ Repo::Application.routes.draw do
       get :move_down, :on => :member
       post :update_description, :on => :collection
     end
+    resources :messages
     get :bookmarks
     
     member do
