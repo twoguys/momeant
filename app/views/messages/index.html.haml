@@ -9,7 +9,7 @@
   
     .tabbed#messages
       - if me?(@user)
-        To send someone a message, visit their profile page and click the "Message" tab.
+        To send someone a message, visit their profile page and click the "Message" tab. You can search for users up in the top right of the navigation bar.
       - else
         #new-message-form
           = image_tag(current_user.avatar.url(:thumbnail), :class => "avatar")
@@ -36,4 +36,3 @@
                 = form.hidden_field :parent_id, :value => message.id
                 = form.hidden_field :recipient_id, :value => message.not_me(current_user).id
                 = form.text_area :body
-                = form.submit "Reply"

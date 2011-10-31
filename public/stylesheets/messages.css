@@ -1,61 +1,160 @@
-#messages #new-message-form {
-  position: relative;
-  padding-left: 50px; }
-  #messages #new-message-form .avatar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 40px;
-    height: 40px; }
-#messages form {
-  width: 400px; }
-  #messages form textarea {
-    width: 380px;
-    height: 24px;
-    display: block; }
-  #messages form textarea.loading {
-    background: transparent url(../images/spinner.gif) no-repeat 5px 50%; }
-  #messages form input[type="submit"] {
-    float: right;
-    margin-top: 5px; }
-#messages ul#previous-messages {
-  clear: both;
-  padding-top: 15px;
-  width: 450px; }
-  #messages ul#previous-messages li.message {
-    clear: both;
-    position: relative;
-    padding: 15px 0 15px 50px;
-    border-bottom: 1px solid #eeeeee; }
-    #messages ul#previous-messages li.message .avatar {
-      position: absolute;
-      top: 15px;
-      left: 0;
-      width: 40px;
-      height: 40px; }
-      #messages ul#previous-messages li.message .avatar img {
-        width: 40px;
-        height: 40px; }
-    #messages ul#previous-messages li.message .rest {
-      width: 400px;
-      padding-top: 7px; }
-      #messages ul#previous-messages li.message .rest .when {
-        font-size: 10px;
-        color: #999999;
-        margin-bottom: 10px; }
-      #messages ul#previous-messages li.message .rest ul.children li.message {
-        padding-top: 0;
-        padding-bottom: 5px;
-        border: none; }
-        #messages ul#previous-messages li.message .rest ul.children li.message .avatar {
-          top: 0; }
-      #messages ul#previous-messages li.message .rest form {
-        height: 40px; }
-        #messages ul#previous-messages li.message .rest form textarea {
-          width: 317px;
-          height: 14px;
-          float: left; }
-        #messages ul#previous-messages li.message .rest form input[type="submit"] {
-          float: right;
-          background: #bbbbbb;
-          margin: 0; }
+/*
+Syntax error: Undefined mixin 'rounded'.
+        on line 65 of /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/messages.sass, in `rounded'
+        from line 65 of /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/messages.sass
+
+60: 					height: 40px
+61: 					textarea
+62: 						width: 383px
+63: 						height: 14px
+64: 						float: left
+65: 						@include rounded(0)
+66: 					input[type="submit"]
+67: 						float: right
+68: 						background: #bbb
+69: 						margin: 0
+
+Backtrace:
+/Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/messages.sass:65:in `rounded'
+/Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/messages.sass:65
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:169:in `visit_mixin'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:37:in `send'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:18:in `visit'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:53:in `visit_children'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:53:in `map'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:53:in `visit_children'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:27:in `visit_children'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:39:in `with_environment'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:26:in `visit_children'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:230:in `visit_rule'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:37:in `send'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:18:in `visit'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:53:in `visit_children'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:53:in `map'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:53:in `visit_children'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:27:in `visit_children'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:39:in `with_environment'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:26:in `visit_children'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:230:in `visit_rule'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:37:in `send'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:18:in `visit'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:53:in `visit_children'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:53:in `map'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:53:in `visit_children'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:27:in `visit_children'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:39:in `with_environment'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:26:in `visit_children'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:230:in `visit_rule'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:37:in `send'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:18:in `visit'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:53:in `visit_children'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:53:in `map'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:53:in `visit_children'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:27:in `visit_children'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:39:in `with_environment'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:26:in `visit_children'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:230:in `visit_rule'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:37:in `send'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:18:in `visit'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:53:in `visit_children'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:53:in `map'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:53:in `visit_children'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:27:in `visit_children'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:39:in `with_environment'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:26:in `visit_children'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:230:in `visit_rule'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:37:in `send'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:18:in `visit'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:53:in `visit_children'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:53:in `map'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:53:in `visit_children'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:27:in `visit_children'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:39:in `with_environment'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:26:in `visit_children'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:230:in `visit_rule'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:37:in `send'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:18:in `visit'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:53:in `visit_children'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:53:in `map'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:53:in `visit_children'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:27:in `visit_children'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:39:in `with_environment'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:26:in `visit_children'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:47:in `visit_root'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:37:in `send'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:18:in `visit'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:7:in `send'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:7:in `visit'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/root_node.rb:20:in `render'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/engine.rb:291:in `_render'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/engine.rb:239:in `render'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/util.rb:298:in `silence_sass_warnings'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/engine.rb:239:in `render'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/plugin/compiler.rb:319:in `update_stylesheet'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/plugin/compiler.rb:181:in `update_stylesheets'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/plugin/compiler.rb:175:in `each'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/plugin/compiler.rb:175:in `update_stylesheets'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/plugin/compiler.rb:173:in `each'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/plugin/compiler.rb:173:in `update_stylesheets'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/plugin.rb:81:in `update_stylesheets'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/plugin.rb:54:in `check_for_updates'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/plugin/rack.rb:51:in `call'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/warden-1.0.4/lib/warden/manager.rb:35:in `call'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/warden-1.0.4/lib/warden/manager.rb:34:in `catch'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/warden-1.0.4/lib/warden/manager.rb:34:in `call'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/head.rb:14:in `call'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/rack-1.2.4/lib/rack/methodoverride.rb:24:in `call'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/flash.rb:182:in `call'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/session/abstract_store.rb:149:in `call'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/cookies.rb:302:in `call'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/activerecord-3.0.9/lib/active_record/query_cache.rb:32:in `call'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/activerecord-3.0.9/lib/active_record/connection_adapters/abstract/query_cache.rb:28:in `cache'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/activerecord-3.0.9/lib/active_record/query_cache.rb:12:in `cache'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/activerecord-3.0.9/lib/active_record/query_cache.rb:31:in `call'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/activerecord-3.0.9/lib/active_record/connection_adapters/abstract/connection_pool.rb:354:in `call'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/callbacks.rb:46:in `call'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/activesupport-3.0.9/lib/active_support/callbacks.rb:416:in `_run_call_callbacks'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/callbacks.rb:44:in `call'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/rack-1.2.4/lib/rack/sendfile.rb:106:in `call'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/remote_ip.rb:48:in `call'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/show_exceptions.rb:47:in `call'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/railties-3.0.9/lib/rails/rack/logger.rb:13:in `call'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/rack-1.2.4/lib/rack/runtime.rb:17:in `call'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/activesupport-3.0.9/lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/rack-1.2.4/lib/rack/lock.rb:11:in `call'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/rack-1.2.4/lib/rack/lock.rb:11:in `synchronize'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/rack-1.2.4/lib/rack/lock.rb:11:in `call'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/static.rb:30:in `call'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/railties-3.0.9/lib/rails/application.rb:168:in `call'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/railties-3.0.9/lib/rails/application.rb:77:in `send'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/railties-3.0.9/lib/rails/application.rb:77:in `method_missing'
+/Users/djbrowning/Library/Application Support/Pow/Versions/0.3.2/node_modules/nack/lib/nack/server.rb:146:in `handle'
+/Users/djbrowning/Library/Application Support/Pow/Versions/0.3.2/node_modules/nack/lib/nack/server.rb:99:in `start'
+/Users/djbrowning/Library/Application Support/Pow/Versions/0.3.2/node_modules/nack/lib/nack/server.rb:86:in `each'
+/Users/djbrowning/Library/Application Support/Pow/Versions/0.3.2/node_modules/nack/lib/nack/server.rb:86:in `start'
+/Users/djbrowning/Library/Application Support/Pow/Versions/0.3.2/node_modules/nack/lib/nack/server.rb:66:in `loop'
+/Users/djbrowning/Library/Application Support/Pow/Versions/0.3.2/node_modules/nack/lib/nack/server.rb:66:in `start'
+/Users/djbrowning/Library/Application Support/Pow/Versions/0.3.2/node_modules/nack/lib/nack/server.rb:13:in `run'
+/Users/djbrowning/Library/Application Support/Pow/Versions/0.3.2/node_modules/nack/bin/nack_worker:4
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Syntax error: Undefined mixin 'rounded'.\A         on line 65 of /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/messages.sass, in `rounded'\A         from line 65 of /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/messages.sass\A \A 60: 					height: 40px\A 61: 					textarea\A 62: 						width: 383px\A 63: 						height: 14px\A 64: 						float: left\A 65: 						@include rounded(0)\A 66: 					input[type=\"submit\"]\A 67: 						float: right\A 68: 						background: #bbb\A 69: 						margin: 0"; }

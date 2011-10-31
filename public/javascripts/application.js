@@ -30,7 +30,7 @@ function tag_deletions() {
 }
 
 function setup_modals() {
-	_.each(['#join', '#login', '#feedback'], function(id) {
+	_.each(['#join', '#login', '#feedback', '#about-diagram'], function(id) {
 		$('a[href="' + id + '-modal"]').click(function() {
 			$(id + '-modal').fadeIn('fast');
 			return false;
@@ -42,7 +42,9 @@ function setup_modals() {
 	});
 	
 	$(document).keyup(function(e) {
-	  if (e.keyCode == 27) { $('#join-modal, #login-modal, #feedback-modal').stop().fadeOut('fast'); } // escape
+	  if (e.keyCode == 27) { // escape key
+			$('#join-modal, #login-modal, #feedback-modal, #about-diagram-modal').stop().fadeOut('fast');
+		}
 	});
 }
 
@@ -132,6 +134,9 @@ $(document).ready(function() {
 	setup_oauth_process();
 	
 	$("a.disabled").click(function() {return false;})
+	
+	// auto-launch the about diagram modal if it exists (after new signups)
+	$('a[href="#about-diagram-modal"]').click();
 	
 	$.fn.colorPicker.defaultColors = ['000', '666', '999', 'ccc', 'fff', 'f42652', 'f7d3db', 'ffa801', 'ffebc5', 'fff10f', 'fffcd2', '1ea337', 'c8f2d0', '00aeef', 'c0eeff', '985faf', 'f5deff', '7a5116', 'e1d5c3'];
 });

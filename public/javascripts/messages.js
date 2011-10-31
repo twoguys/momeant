@@ -33,6 +33,12 @@ function setup_message_posting() {
 			}
 		);
 	});
+	
+	$('#messages form textarea').keypress(function(event) {
+		if (event.which == 13 && $(this).val().trim() != "") {
+			$(this).parent().submit();
+		}
+	});
 }
 
 function setup_reply_showing() {
