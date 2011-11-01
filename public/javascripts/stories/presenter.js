@@ -145,17 +145,16 @@ $(function() {
 		
 		events: {
 			'click #reward-modal-tab':        'toggle_modal',
-			'click #share input':           	'toggle_sharing',
 			'click #toggle-reward-stream':    'toggle_reward_list',
-			'submit #reward-form':            'submit_reward',
-			'keyup #reward_amount':           'reward_amount_keypress',
-			'click #how-much #ticker .up':    'increment_reward_amount',
-			'click #how-much #ticker .down':  'decrement_reward_amount'
+			'click #stars a': 								'choose_reward_amount',
+			'focus #custom_amount': 					'choose_custom_amount',
+			'submit #reward-form':            'submit_reward'
 		},
 		
 		initialize: function() {
 			this.modal_open = false;
 			this.setup_key_bindings();
+			this.setup_custom_reward_amount_monitoring();
 		},
 		
 		show_modal: function() {
@@ -179,17 +178,6 @@ $(function() {
 				this.show_modal();
 			}
 			return false;
-		},
-		
-		toggle_sharing: function(e) {
-			var $checkbox = $(e.currentTarget);
-			var $hidden_field = $('#share_' + $checkbox.attr('id'));
-
-			if ($checkbox.is(':checked')) {
-				$hidden_field.val('yes')
-			} else {
-				$hidden_field.val('')
-			}
 		},
 		
 		toggle_reward_list: function() {
@@ -229,35 +217,27 @@ $(function() {
 			);
 		},
 		
-		reward_amount_keypress: function(e) {
-			if (e.keyCode == 38) { // up arrow
-				this.increment_reward_amount();
-			}
-			else if (e.keyCode == 40) { // down arrow
-				this.decrement_reward_amount();
-			}
+		turn_off_stars: function() {
+			$('#stars a').removeClass('selected');
 		},
 		
-		increment_reward_amount: function() {
-			var $amount = $('#reward_amount');
-			var value = parseInt($amount.val());
-			if (isNaN(value)) {
-				$amount.val('1');
-			} else {
-				$amount.val(value + 1);
-			}
-		},
+		choose_reward_amount: function(event) {
+			var $star_button = $(event.currentTarget);
 
-		decrement_reward_amount: function() {
-			var $amount = $('#reward_amount');
-			var value = parseInt($amount.val());
-			if (isNaN(value)) {
-				$amount.val('1');
-			}	else if (value == 1) {
-				// do nothing
-			} else {
-				$amount.val(value - 1);
+			RewardModal.turn_off_stars();
+			$star_button.addClass('selected');
+
+			$('#reward_amount').val($star_button.attr('amount'));
+			
+			var $comment = $('#comment');
+			if (!$comment.is(':visible')) {
+				$comment.fadeIn('fast');
 			}
+			return false;
+		},
+		
+		choose_custom_amount: function() {
+			RewardModal.turn_off_stars();
 		},
 
 		setup_key_bindings: function() {
@@ -265,12 +245,24 @@ $(function() {
 			$(document).keyup(function(e) {
 			  if (e.keyCode == 27) { modal.toggle_modal(); } 			// escape
 			});
+		},
+		
+		setup_custom_reward_amount_monitoring: function() {
+			var $amount = $('#custom_amount');
+			$amount.change(function() {
+				$('#reward_amount').val($(this).val());
+			});
+			$('#custom_amount').observe_field(1, function(value, object) {
+				
+				var $comment = $('#comment');
+				if (!$comment.is(':visible')) {
+					$comment.fadeIn('fast');
+				}
+			});
 		}
 	});
 	
 	window.Presenter = new PresenterView;
 	window.RewardModal = new RewardModalView;
-	
-	// TODO: move reward JS into the modal object here
 	
 });

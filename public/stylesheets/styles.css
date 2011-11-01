@@ -3118,8 +3118,19 @@ form.new_story, form.edit_story, .story-form {
         cursor: pointer; }
       #presenter #reward-modal #your-reward #creator-info {
         position: relative;
-        padding: 20px;
-        background: #eeeeee; }
+        padding: 20px 20px 20px 90px;
+        background: #eeeeee;
+        border-bottom: 1px solid #cccccc; }
+        #presenter #reward-modal #your-reward #creator-info .avatar {
+          display: block;
+          width: 50px;
+          height: 50px;
+          position: absolute;
+          left: 20px;
+          top: 20px; }
+          #presenter #reward-modal #your-reward #creator-info .avatar img {
+            width: 50px;
+            height: 50px; }
         #presenter #reward-modal #your-reward #creator-info h1 {
           font-size: 18px;
           font-weight: 700;
@@ -3128,8 +3139,7 @@ form.new_story, form.edit_story, .story-form {
         #presenter #reward-modal #your-reward #creator-info .tagline {
           font-size: 11px; }
       #presenter #reward-modal #your-reward #reward-box-outer {
-        background: transparent url(../images/rewardModalFormBG.png) no-repeat 50% 0;
-        padding: 35px 20px 20px; }
+        padding: 20px; }
       #presenter #reward-modal #your-reward #reward-box .alert {
         background-color: #f7d3db;
         color: #f42652;
@@ -3141,137 +3151,103 @@ form.new_story, form.edit_story, .story-form {
         position: relative; }
         #presenter #reward-modal #your-reward #reward-box .inner form#reward-form {
           padding-left: 10px; }
-          #presenter #reward-modal #your-reward #reward-box .inner form#reward-form input[type="text"], #presenter #reward-modal #your-reward #reward-box .inner form#reward-form textarea {
-            -webkit-border-radius: 0;
-            -moz-border-radius: 0;
-            border-radius: 0; }
-          #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .avatars {
-            height: 110px; }
-          #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .from, #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .amount, #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .to {
-            float: left; }
-          #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .from, #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .to {
-            width: 66px;
-            height: 88px;
-            background-color: #00aeef;
-            position: relative; }
-            #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .from img.avatar, #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .to img.avatar {
-              width: 60px;
-              height: 60px;
-              display: block;
-              margin: 3px; }
-            #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .from .rewards, #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .to .rewards {
-              position: absolute;
-              bottom: -13px;
-              margin: 0 auto;
-              text-align: center;
-              width: 66px; }
-              #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .from .rewards .count, #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .to .rewards .count {
-                display: inline-block;
-                color: white;
-                font-weight: 700;
-                padding: 0 17px 0 4px;
-                height: 22px;
-                background: transparent url(../images/icons/recommendWhite.png) no-repeat 100% 0; }
-              #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .from .rewards .text, #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .to .rewards .text {
-                font-size: 8px;
-                color: #555555; }
-          #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .amount {
-            position: relative;
-            width: 297px;
-            margin: 30px 20px 0; }
-            #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .amount #reward-tooltip {
-              background: transparent url(../images/rewardModalSliderTooltipBG.png) no-repeat 0 0;
-              width: 40px;
-              height: 32px;
-              padding-top: 8px;
-              font-size: 11px;
-              text-align: center;
-              -webkit-border-radius: 3px;
-              -moz-border-radius: 3px;
-              border-radius: 3px;
-              position: absolute;
-              top: -37px;
-              left: -6px;
-              font-weight: 700;
-              color: #00aeef; }
-            #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .amount p {
-              margin-top: 10px;
-              text-align: center;
-              font-size: 11px;
-              color: #555555; }
-            #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .amount .ui-slider a.ui-slider-handle {
-              background: transparent url(../images/rewardModalStarSlider.png) no-repeat 0 0;
-              border: none;
-              width: 27px;
-              height: 28px;
-              left: -13.5px;
-              top: -10px;
-              cursor: pointer; }
-            #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .amount .ui-slider .ui-slider-range {
-              background: #00aeef; }
-          #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .comment {
-            clear: both;
-            margin: 10px 0 20px;
-            border: 1px solid #cccccc;
-            padding-bottom: 20px;
-            position: relative;
-            width: 470px;
-            background: white; }
-            #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .comment textarea {
-              background: transparent;
-              border: none;
-              width: 454px;
-              height: 55px;
-              padding: 8px; }
-            #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .comment textarea:focus {
-              outline: none; }
-            #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .comment #share {
-              position: absolute;
-              bottom: 0;
-              left: 0;
-              width: 460px;
-              background: #f4f4f4;
-              border-top: 1px solid #cccccc;
-              text-transform: uppercase;
-              font-size: 11px;
-              height: 15px;
-              padding: 5px;
-              color: #777777; }
-              #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .comment #share abbr {
-                border-bottom: 1px dashed #999999;
-                padding-left: 1px;
-                cursor: help; }
-              #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .comment #share .text {
-                color: #333333; }
-              #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .comment #share .text, #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .comment #share .service {
+          #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .section h3 {
+            font-size: 15px;
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 0 1px 0 white; }
+          #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .section input[type="text"], #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .section textarea {
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2) inset, 0 1px 0 white; }
+          #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .section input[type="submit"] {
+            float: right; }
+          #presenter #reward-modal #your-reward #reward-box .inner form#reward-form #stars {
+            width: 425px;
+            height: 100px;
+            margin: 0 auto 20px; }
+            #presenter #reward-modal #your-reward #reward-box .inner form#reward-form #stars li {
+              width: 90px;
+              float: left;
+              clear: none; }
+              #presenter #reward-modal #your-reward #reward-box .inner form#reward-form #stars li a {
+                display: block;
+                width: 70px;
+                height: 70px;
+                background: transparent url(../images/rewardFormStars.png) no-repeat 0 0;
+                text-indent: -9999px; }
+              #presenter #reward-modal #your-reward #reward-box .inner form#reward-form #stars li a#one-star.selected {
+                background-position: 0 -100px; }
+              #presenter #reward-modal #your-reward #reward-box .inner form#reward-form #stars li a#three-star {
+                background-position: -100px 0; }
+              #presenter #reward-modal #your-reward #reward-box .inner form#reward-form #stars li a#three-star.selected {
+                background-position: -100px -100px; }
+              #presenter #reward-modal #your-reward #reward-box .inner form#reward-form #stars li a#five-star {
+                background-position: -200px 0; }
+              #presenter #reward-modal #your-reward #reward-box .inner form#reward-form #stars li a#five-star.selected {
+                background-position: -200px -100px; }
+              #presenter #reward-modal #your-reward #reward-box .inner form#reward-form #stars li input[type="text"] {
                 float: left;
-                margin-right: 10px; }
-              #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .comment #share .service {
-                padding-left: 12px;
-                background-position: 0 2px;
-                background-repeat: no-repeat;
-                position: relative; }
-                #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .comment #share .service a {
-                  padding: 2px 0 0 4px;
-                  font-weight: 500; }
-                #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .comment #share .service input {
-                  margin: 0 0 0 4px; }
-              #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .comment #share #facebook {
-                background-image: url(../images/icons/facebookTiny.png); }
-              #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .comment #share #twitter {
-                background-image: url(../images/icons/twitterTiny.png);
-                margin-right: 0; }
-            #presenter #reward-modal #your-reward #reward-box .inner form#reward-form .comment #nib {
-              background: transparent url(../images/rewardModalCommentNib.png) no-repeat 0 0;
-              width: 11px;
-              height: 12px;
-              position: absolute;
-              top: -11px;
-              left: 20px; }
-        #presenter #reward-modal #your-reward #reward-box .inner input[type="submit"] {
-          background: black;
-          color: white;
-          padding-top: 10px; }
+                font-size: 36px;
+                padding: 15px;
+                margin-right: 10px;
+                width: 50px; }
+              #presenter #reward-modal #your-reward #reward-box .inner form#reward-form #stars li span, #presenter #reward-modal #your-reward #reward-box .inner form#reward-form #stars li strong {
+                font-size: 10px;
+                text-transform: uppercase;
+                letter-spacing: 0.03em;
+                line-height: 18px; }
+              #presenter #reward-modal #your-reward #reward-box .inner form#reward-form #stars li span {
+                font-style: italic; }
+            #presenter #reward-modal #your-reward #reward-box .inner form#reward-form #stars li.custom {
+              width: 150px; }
+          #presenter #reward-modal #your-reward #reward-box .inner form#reward-form #comment {
+            display: none;
+            clear: both; }
+            #presenter #reward-modal #your-reward #reward-box .inner form#reward-form #comment textarea {
+              width: 400px; }
+          #presenter #reward-modal #your-reward #reward-box .inner form#reward-form #share {
+            display: none;
+            width: 460px;
+            background: #f4f4f4;
+            border-top: 1px solid #cccccc;
+            text-transform: uppercase;
+            font-size: 11px;
+            height: 15px;
+            padding: 5px;
+            color: #777777; }
+            #presenter #reward-modal #your-reward #reward-box .inner form#reward-form #share abbr {
+              border-bottom: 1px dashed #999999;
+              padding-left: 1px;
+              cursor: help; }
+            #presenter #reward-modal #your-reward #reward-box .inner form#reward-form #share .text {
+              color: #333333; }
+            #presenter #reward-modal #your-reward #reward-box .inner form#reward-form #share .text, #presenter #reward-modal #your-reward #reward-box .inner form#reward-form #share .service {
+              float: left;
+              margin-right: 10px; }
+            #presenter #reward-modal #your-reward #reward-box .inner form#reward-form #share .service {
+              padding-left: 12px;
+              background-position: 0 2px;
+              background-repeat: no-repeat;
+              position: relative; }
+              #presenter #reward-modal #your-reward #reward-box .inner form#reward-form #share .service a {
+                padding: 2px 0 0 4px;
+                font-weight: 500; }
+              #presenter #reward-modal #your-reward #reward-box .inner form#reward-form #share .service input {
+                margin: 0 0 0 4px; }
+            #presenter #reward-modal #your-reward #reward-box .inner form#reward-form #share #facebook {
+              background-image: url(../images/icons/facebookTiny.png); }
+            #presenter #reward-modal #your-reward #reward-box .inner form#reward-form #share #twitter {
+              background-image: url(../images/icons/twitterTiny.png);
+              margin-right: 0; }
+          #presenter #reward-modal #your-reward #reward-box .inner form#reward-form #nib {
+            background: transparent url(../images/rewardModalCommentNib.png) no-repeat 0 0;
+            width: 11px;
+            height: 12px;
+            position: absolute;
+            top: -11px;
+            left: 20px; }
       #presenter #reward-modal #your-reward #reward-box-outer.loading .inner {
         height: 250px;
         background: transparent url(../images/spinner.gif) no-repeat 50% 50%; }

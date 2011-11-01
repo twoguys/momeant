@@ -41,7 +41,7 @@
               
 - if current_user
   :javascript
-    mpq.track('Viewed Content', {anonymous_id: '#{session[:analytics_anonymous_id]}', mp_note: '#{@story.title}', user: true})  
+    mpq.track('Viewed Content', {anonymous_id: '#{session[:analytics_anonymous_id]}', mp_note: '#{@story.title.gsub("'","")}', user: true});
 - else
   :javascript
-    mpq.track('Viewed Content', {anonymous_id: '#{session[:analytics_anonymous_id]}', mp_note: '#{@story.title}', user: false})
+    mpq.track('Viewed Content', {anonymous_id: '#{session[:analytics_anonymous_id]}', mp_note: '#{@story.title.gsub("'","")}', user: false});
