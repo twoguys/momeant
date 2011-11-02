@@ -87,12 +87,17 @@ Repo::Application.routes.draw do
     post :feedback, :on => :collection
   end
   match '/users/:id/content_rewarded_by/:rewarder_id', :to => "users#content_rewarded_by", :as => :user_content_rewarded_by
-  match '/rewards/:id/visualize', :to => "rewards#visualize",       :as => :visualize_reward
-  match '/analytics',           :to => "users#analytics",           :as => :analytics
+  match '/rewards/:id/visualize', :to => "rewards#visualize",           :as => :visualize_reward
+  match '/analytics',             :to => "users#analytics",             :as => :analytics
   
-  match '/community',           :to => "community#index"
-  match '/community/content',   :to => "community#content",         :as => :community
-  match '/community/people',    :to => "community#people",          :as => :community_people
+  match '/share/twitter_form',    :to => "sharing#twitter_form"
+  match '/share/facebook_form',   :to => "sharing#facebook_form"
+  match '/share/twitter',         :to => "sharing#twitter",             :as => :share_twitter
+  match '/share/facebook',        :to => "sharing#facebook",            :as => :share_facebook
+  
+  match '/community',             :to => "community#index"
+  match '/community/content',     :to => "community#content",           :as => :community
+  match '/community/people',      :to => "community#people",            :as => :community_people
   match '/community/newest_content', :to => "community#newest_content", :as => :community_newest_content
   
   namespace :admin do

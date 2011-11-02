@@ -165,7 +165,7 @@ $(function() {
 		},
 		
 		hide_modal: function() {
-			$(this.el).animate({top: '-500px'}, 300);
+			$(this.el).animate({top: '-550px'}, 300);
 			$('#content-cover').hide();
 			this.modal_open = false;
 			$('#its-you-arrow').hide();
@@ -186,33 +186,36 @@ $(function() {
 		
 		submit_reward: function(e) {
 			var $form = $(e.currentTarget);
-			e.preventDefault(); 
+			e.preventDefault();
+			
+			if ($('#reward_amount').val() == '') {
+				alert('Please choose how much to reward.');
+				return false;
+			}
 
 			var amount = $form.find('#reward_amount').val();
 			var comment = $form.find("#reward_comment").val();
 			var story_id = $form.find("#reward_story_id").val();
 			var impacted_by = $form.find("#reward_impacted_by").val();
-			var share_with_twitter = $form.find("#share_twitter").val();
-			var share_with_facebook = $form.find("#share_facebook").val();
 			var url = $form.attr('action');
 
-			$('#reward-box-outer').addClass('loading');
+			$('#your-reward .inner').addClass('loading');
+			$('#reward-form').remove();
 			$.post(url,
 				{
 					"reward[amount]":amount,
 					"reward[comment]":comment,
 					"reward[story_id]":story_id,
-					"reward[impacted_by]":impacted_by,
-					"share[twitter]":share_with_twitter,
-					"share[facebook]":share_with_facebook
+					"reward[impacted_by]":impacted_by
 				},
 				function(data) {
-					$("#your-reward .inner").html(data);
+					$("#your-reward .inner").html(data).removeClass('loading');
 					var $new_reward = $('#new-reward');
 					$new_reward.find('.amount').text(amount);
 					$new_reward.find('.comment .text').text(comment);
 					$new_reward.slideDown();
 					$('#its-you-arrow').show();
+					$('#share').show();
 				}
 			);
 		},
@@ -228,6 +231,7 @@ $(function() {
 			$star_button.addClass('selected');
 
 			$('#reward_amount').val($star_button.attr('amount'));
+			$('#custom_amount').val('');
 			
 			var $comment = $('#comment');
 			if (!$comment.is(':visible')) {
@@ -238,6 +242,7 @@ $(function() {
 		
 		choose_custom_amount: function() {
 			RewardModal.turn_off_stars();
+			$('#reward_amount').val('');
 		},
 
 		setup_key_bindings: function() {
@@ -259,7 +264,86 @@ $(function() {
 					$comment.fadeIn('fast');
 				}
 			});
-		}
+		},
+		
+		monitor_sharing: function(reward_id) {
+			// Twitter configuration
+			var $configure_twitter = $('#configure-twitter');
+			if ($configure_twitter.length > 0) {
+				$configure_twitter.click(function() {
+					RewardModal.configure_twitter_sharing($configure_twitter.attr('href'), reward_id);
+					return false;
+				});
+			}
+			
+			// Twitter form submission
+			RewardModal.monitor_twitter_sharing();
+			
+			// Facebook configuration
+			var $configure_facebook = $('#configure-facebook');
+			if ($configure_facebook.length > 0) {
+				$configure_facebook.click(function() {
+					RewardModal.configure_facebook_sharing($configure_facebook.attr('href'), reward_id);
+					return false;
+				});
+			}
+			
+			// Facebook form submission
+			RewardModal.monitor_facebook_sharing();
+		},
+
+		monitor_twitter_sharing: function() {
+			$('#twitter_comment').change(function(event) {
+				var length = $(this).val().length;
+				$('#characters-left .count').text(115 - length);
+			});
+		},
+		
+		monitor_facebook_sharing: function() {
+			
+		},
+		
+		configure_twitter_sharing: function(url, reward_id) {
+			window.oauth_twitter_window = window.open(url,'Twitter Configuration','height=500,width=900');
+			window.oauth_twitter_interval = window.setInterval(function() {
+				if (window.oauth_twitter_window.closed) {
+					window.clearInterval(window.oauth_twitter_interval);
+					RewardModal.twitter_configuration_complete(reward_id);
+				}
+			}, 1000);
+		},
+		
+		twitter_configuration_complete: function(reward_id) {
+			$.get('/auth/twitter/check', function(result) {
+				if(result) {
+					$.get('/share/twitter_form?reward_id=' + reward_id, function(html) {
+						$('#twitter-sharing').html(html);
+						RewardModal.monitor_twitter_sharing();
+					});
+				}
+			});
+		},
+		
+		configure_facebook_sharing: function(url, reward_id) {
+			window.oauth_facebook_window = window.open(url,'Facebook Configuration','height=500,width=900');
+			window.oauth_facebook_interval = window.setInterval(function() {
+				if (window.oauth_facebook_window.closed) {
+					window.clearInterval(window.oauth_facebook_interval);
+					RewardModal.facebook_configuration_complete(reward_id);
+				}
+			}, 1000);
+		},
+		
+		facebook_configuration_complete: function(reward_id) {
+			$.get('/auth/facebook/check', function(result) {
+				if(result) {
+					$.get('/share/facebook_form?reward_id=' + reward_id, function(html) {
+						$('#facebook-sharing').html(html);
+						RewardModal.monitor_facebook_sharing();
+					});
+				}
+			});
+		},
 	});
 	
 	window.Presenter = new PresenterView;
