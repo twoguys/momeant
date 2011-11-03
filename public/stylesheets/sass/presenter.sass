@@ -319,6 +319,11 @@
 							@include gradient(#6481bd,#455d99)
 					
 					#twitter-sharing, #facebook-sharing
+						&.loading
+							background: transparent url(../images/spinner.gif) no-repeat 50% 50%
+							height: 100px
+							*
+								display: none
 						.padded
 							height: 50px
 						.not-configured
@@ -334,6 +339,10 @@
 								color: #0b2d39
 								@include rounded(3px)
 								text-transform: uppercase
+						.after
+							font-size: 11px
+							p
+								margin: 10px 0
 					#facebook-sharing .not-configured
 						background-image: url(../images/icons/facebookSmall.png)
 						margin-top: 0

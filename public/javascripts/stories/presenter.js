@@ -314,8 +314,11 @@ $(function() {
 					return false;
 				}
 				
-				$('#twitter-sharing .configured').html('<strong>Your tweet has been posted.</strong>');
-				$.post(url, { comment: comment, reward_id: reward_id });
+				$('#twitter-sharing').addClass('loading');
+				$.post(url, { comment: comment, reward_id: reward_id }, function(html) {
+					$('#twitter-sharing .configured').html(html);
+					$('#twitter-sharing').removeClass('loading');
+				});
 			});
 		},
 		
@@ -332,8 +335,9 @@ $(function() {
 					return false;
 				}
 				
-				$('#facebook-sharing').html('<strong>Your message has been posted.</strong>');
-				$.post(url, { comment: comment, reward_id: reward_id });
+				$.post(url, { comment: comment, reward_id: reward_id }, function(html) {
+					$('#facebook-sharing').html(html);
+				});
 			});
 		},
 		

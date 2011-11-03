@@ -5,13 +5,13 @@ class SharingController < ApplicationController
   def twitter
     comment = params[:comment]
     current_user.post_to_twitter(@reward, story_url(@reward.story, :impacted_by => @reward.id), comment)
-    render :json => {:success => true}
+    render :partial => "rewards/modal/after_tweeting"
   end
   
   def facebook
     comment = params[:comment]
     current_user.post_to_facebook(@reward, story_url(@reward.story, :impacted_by => @reward.id), comment)
-    render :json => {:success => true}
+    render :partial => "rewards/modal/after_facebooking"
   end
   
   def twitter_form
