@@ -293,14 +293,48 @@ $(function() {
 		},
 
 		monitor_twitter_sharing: function() {
-			$('#twitter_comment').change(function(event) {
-				var length = $(this).val().length;
-				$('#characters-left .count').text(115 - length);
+			$('#twitter_comment').keydown(function(event) {
+				var text = $(this).val()
+				$('#characters-left .count').text(110 - text.length);
+			});
+			$('#twitter_comment').keyup(function(event) {
+				var text = $(this).val()
+				$('#characters-left .count').text(110 - text.length);
+			});
+			
+			$('#twitter-sharing form').submit(function(event) {
+				event.preventDefault();
+				
+				var comment = $('#twitter_comment').val();
+				var reward_id = $('#twitter_reward_id').val();
+				var url = $(this).attr('action');
+
+				if (comment == '') {
+					alert('Please provide a message.');
+					return false;
+				}
+				
+				$('#twitter-sharing .configured').html('<strong>Your tweet has been posted.</strong>');
+				$.post(url, { comment: comment, reward_id: reward_id });
 			});
 		},
 		
 		monitor_facebook_sharing: function() {
-			
+			$('#facebook-sharing form').submit(function(event) {
+				event.preventDefault();
+				
+				var comment = $('#facebook_comment').val();
+				var reward_id = $('#facebook_reward_id').val();
+				var url = $(this).attr('action');
+
+				if (comment == '') {
+					alert('Please provide a message.');
+					return false;
+				}
+				
+				$('#facebook-sharing').html('<strong>Your message has been posted.</strong>');
+				$.post(url, { comment: comment, reward_id: reward_id });
+			});
 		},
 		
 		configure_twitter_sharing: function(url, reward_id) {

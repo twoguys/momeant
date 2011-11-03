@@ -22,7 +22,8 @@
 
     #twitter-sharing
       - if @twitter_configured
-        = render "rewards/modal/twitter_sharing"
+        .configured
+          = render "rewards/modal/twitter_sharing"
       - else  
         .padded
         .not-configured

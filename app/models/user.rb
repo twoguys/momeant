@@ -248,7 +248,7 @@ class User < ActiveRecord::Base
   
   # Sharing content with external services
   
-  def post_to_facebook(object, url)
+  def post_to_facebook(object, url, comment = "")
     message = ""
     picture = ""
     
@@ -256,11 +256,7 @@ class User < ActiveRecord::Base
       message = "I just posted content on Momeant. Reward me if you like it!"
       picture = object.thumbnail.url(:small)
     elsif object.is_a?(Reward)
-      if object.comment.blank?
-        message = "I just rewarded something on Momeant."
-      else
-        message = object.comment
-      end
+      message = comment
       picture = object.story.thumbnail.url(:small)
     end
     
@@ -268,7 +264,7 @@ class User < ActiveRecord::Base
     RestClient.post 'https://graph.facebook.com/me/feed', { :access_token => access_token, :link => url, :picture => picture, :message => message }
   end
   
-  def post_to_twitter(object, url)
+  def post_to_twitter(object, url, comment = "")
     auth = self.authentications.find_by_provider("twitter")
     Twitter.configure do |config|
       config.oauth_token = auth.token
@@ -280,11 +276,10 @@ class User < ActiveRecord::Base
       title = object.title[0..55]
       message = "I just posted content on @mo_meant. Reward me if you like it: #{title} #{url} #momeant"
     elsif object.is_a?(Reward)
-      title = object.story.title[0..65]
-      message = "I just rewarded something on @mo_meant. Check it out: #{title} #{url} #momeant"
+      message = "#{comment[0..109]} #{url} #momeant"
     end
     
-    Twitter.update(message)
+    Twitter.update(message, :wrap_links => true)
   end
   
   

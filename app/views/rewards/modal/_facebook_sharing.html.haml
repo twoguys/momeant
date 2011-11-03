@@ -1,5 +1,5 @@
 = form_tag share_facebook_path do
-  = hidden_field_tag @reward.id
+  = hidden_field_tag :facebook_reward_id, @reward.id
   = text_area_tag :facebook_comment
   #facebook-preview
     = image_tag(@reward.story.thumbnail.url(:petite), :class => "thumbnail")
