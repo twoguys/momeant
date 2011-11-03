@@ -335,6 +335,7 @@ $(function() {
 					return false;
 				}
 				
+				$('#facebook-sharing').addClass('loading');
 				$.post(url, { comment: comment, reward_id: reward_id }, function(html) {
 					$('#facebook-sharing').html(html);
 				});

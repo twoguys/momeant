@@ -1,8 +1,9 @@
-= form_tag share_twitter_path do
-  = hidden_field_tag :twitter_reward_id, @reward.id
-  = text_area_tag :twitter_comment
-  #what-we-add http://momeant.com/... #momeant
-  #characters-left
-    %span.count 110
-    %span characters left
-  = submit_tag "Share on Twitter"
+.configured
+  = form_tag share_twitter_path do
+    = hidden_field_tag :twitter_reward_id, @reward.id
+    = text_area_tag :twitter_comment
+    #what-we-add http://momeant.com/... #momeant
+    #characters-left
+      %span.count 110
+      %span characters left
+    = submit_tag "Share on Twitter"
