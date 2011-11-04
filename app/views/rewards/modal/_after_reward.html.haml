@@ -3,9 +3,9 @@
   %h1 Thanks!
   .message
     - if @story.thankyou.present?
-      = truncate(@story.thankyou, :length => 220)
+      = truncate(@story.thankyou, :length => 260)
     - elsif @story.user.thankyou.present?
-      = truncate(@story.user.thankyou, :length => 220)
+      = truncate(@story.user.thankyou, :length => 260)
     - else
       Thank you so much for your support!
 
