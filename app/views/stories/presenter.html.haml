@@ -9,7 +9,10 @@
 
 #presenter
 
-  = link_to("Exit", @exit_presenter_url, :id => "exit-presenter")
+  = link_to "Exit", @exit_presenter_url, :id => "exit-presenter"
+  #mini-nav
+    = link_to "Momeant", root_path, :id => "home-link", :class => "tooltipped", :title => "Home"
+    = link_to "Community", community_path, :id => "community-link", :class => "tooltipped", :title => "Community"
 
   .content
   

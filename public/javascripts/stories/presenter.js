@@ -184,10 +184,49 @@ $(function() {
 			$('#reward-list, #your-reward').toggleClass('closed');
 		},
 		
+		turn_off_stars: function() {
+			$('#stars a').removeClass('selected');
+		},
+		
+		choose_reward_amount: function(event) {
+			var $star_button = $(event.currentTarget);
+
+			RewardModal.turn_off_stars();
+			$star_button.addClass('selected');
+
+			$('#reward_amount').val($star_button.attr('amount'));
+			$('#custom_amount').val('');
+			
+			var $comment = $('#comment');
+			if (!$comment.is(':visible')) {
+				$comment.fadeIn('fast');
+			}
+			return false;
+		},
+		
+		choose_custom_amount: function() {
+			RewardModal.turn_off_stars();
+			$('#reward_amount').val('');
+		},
+		
+		setup_custom_reward_amount_monitoring: function() {
+			var $amount = $('#custom_amount');
+			$amount.change(function() {
+				$('#reward_amount').val($(this).val());
+			});
+			$('#custom_amount').observe_field(1, function(value, object) {
+				
+				var $comment = $('#comment');
+				if (!$comment.is(':visible')) {
+					$comment.fadeIn('fast');
+				}
+			});
+		},
+
 		submit_reward: function(e) {
 			var $form = $(e.currentTarget);
 			e.preventDefault();
-			
+
 			if ($('#reward_amount').val() == '') {
 				alert('Please choose how much to reward.');
 				return false;
@@ -216,54 +255,9 @@ $(function() {
 					$new_reward.slideDown();
 					$('#its-you-arrow').show();
 					$('#share').show();
+					$('#mini-nav').animate({top:'0'}, 500);
 				}
 			);
-		},
-		
-		turn_off_stars: function() {
-			$('#stars a').removeClass('selected');
-		},
-		
-		choose_reward_amount: function(event) {
-			var $star_button = $(event.currentTarget);
-
-			RewardModal.turn_off_stars();
-			$star_button.addClass('selected');
-
-			$('#reward_amount').val($star_button.attr('amount'));
-			$('#custom_amount').val('');
-			
-			var $comment = $('#comment');
-			if (!$comment.is(':visible')) {
-				$comment.fadeIn('fast');
-			}
-			return false;
-		},
-		
-		choose_custom_amount: function() {
-			RewardModal.turn_off_stars();
-			$('#reward_amount').val('');
-		},
-
-		setup_key_bindings: function() {
-			var modal = this;
-			$(document).keyup(function(e) {
-			  if (e.keyCode == 27) { modal.toggle_modal(); } 			// escape
-			});
-		},
-		
-		setup_custom_reward_amount_monitoring: function() {
-			var $amount = $('#custom_amount');
-			$amount.change(function() {
-				$('#reward_amount').val($(this).val());
-			});
-			$('#custom_amount').observe_field(1, function(value, object) {
-				
-				var $comment = $('#comment');
-				if (!$comment.is(':visible')) {
-					$comment.fadeIn('fast');
-				}
-			});
 		},
 		
 		monitor_sharing: function(reward_id) {
@@ -383,6 +377,13 @@ $(function() {
 				}
 			});
 		},
+
+		setup_key_bindings: function() {
+			var modal = this;
+			$(document).keyup(function(e) {
+			  if (e.keyCode == 27) { modal.toggle_modal(); } 			// escape
+			});
+		}
 	});
 	
 	window.Presenter = new PresenterView;
