@@ -19,6 +19,32 @@
 		-moz-border-radius-bottomright: 5px
 		border-bottom-right-radius: 5px
 		z-index: 99
+	#mini-nav
+		position: fixed
+		top: -46px
+		left: 70px
+		background: #000
+		width: 100px
+		height: 42px
+		z-index: 99
+		-webkit-border-bottom-right-radius: 5px
+		-moz-border-radius-bottomright: 5px
+		border-bottom-right-radius: 5px
+		-webkit-border-bottom-left-radius: 5px
+		-moz-border-radius-bottomleft: 5px
+		border-bottom-left-radius: 5px
+		@include boxshadow(2px,0.3,0,2px)
+		a
+			display: block
+			width: 46px
+			height: 42px
+			float: left
+			text-indent: -9999px
+			background: transparent url(../images/icons/momeantHomeWhite.png) no-repeat 50% 6px
+		a#community-link
+			background-image: url(../images/icons/community.png)
+			background-position: 50% 7px
+			
 	
 	#thumbnail
 		display: none
@@ -37,19 +63,19 @@
 		position: absolute
 		top: 60px
 		left: 50%
-		margin-left: 310px
+		margin-left: 405px
 		width: 117px
 		height: 38px
 		background: transparent url(../images/lookItsYou.png) no-repeat 0 0
 		z-index: 3
 	
 	#reward-modal
-		height: 501px
-		width: 600px
+		height: 550px
+		width: 800px
 		position: absolute
-		top: -500px
+		top: -550px
 		left: 50%
-		margin-left: -300px
+		margin-left: -400px
 		background-color: #f4f4f4
 		z-index: 3
 		@include boxshadow(2px,0.3,0,2px)
@@ -136,11 +162,28 @@
 				width: 21px
 				height: 22px
 				cursor: pointer
+			
+			.inner.loading
+				height: 500px
+				background: transparent url(../images/spinner.gif) no-repeat 50% 50%
+				*
+					display: none
 
 			#creator-info
 				position: relative
-				padding: 20px
+				padding: 20px 20px 20px 90px
 				background: #eee
+				border-bottom: 1px solid #ccc
+				.avatar
+					display: block
+					width: 50px
+					height: 50px
+					position: absolute
+					left: 20px
+					top: 20px
+					img
+						width: 50px
+						height: 50px
 				h1
 					font-size: 18px
 					font-weight: 700
@@ -148,155 +191,196 @@
 					margin-bottom: 0
 				.tagline
 					font-size: 11px
-				
-			#reward-box-outer
-				background: transparent url(../images/rewardModalFormBG.png) no-repeat 50% 0
-				padding: 35px 20px 20px
-			#reward-box
-				.alert
-					background-color: $lightred
-					color: $red
-					padding: 5px 10px
-					font-weight: 700
-					text-transform: uppercase
+			
+			.section
+				width: 390px
+				margin: 0 auto 20px
+				h3
+					font-size: 15px
+					text-align: center
 					margin-bottom: 20px
-				.inner
-					position: relative
-					form#reward-form
-						padding-left: 10px
-						input[type="text"], textarea
-							@include rounded(0)
-						.avatars
-							height: 110px
-						.from, .amount, .to
-							float: left
-						.from, .to
-							width: 66px
-							height: 88px
-							background-color: $blue
-							position: relative
-							img.avatar
-								width: 60px
-								height: 60px
-								display: block
-								margin: 3px
-							.rewards
-								position: absolute
-								bottom: -13px
-								margin: 0 auto
-								text-align: center
-								width: 66px
-								.count
-									display: inline-block
-									color: #fff
-									font-weight: 700
-									padding: 0 17px 0 4px
-									height: 22px
-									background: transparent url(../images/icons/recommendWhite.png) no-repeat 100% 0
-								.text
-									font-size: 8px
-									color: #555
-						.amount
-							position: relative
-							width: 297px
-							margin: 30px 20px 0
-							#reward-tooltip
-								background: transparent url(../images/rewardModalSliderTooltipBG.png) no-repeat 0 0
-								width: 40px
-								height: 32px
-								padding-top: 8px
-								font-size: 11px
-								text-align: center
-								@include rounded(3px)
-								position: absolute
-								top: -37px
-								left: -6px
-								font-weight: 700
-								color: $blue
-							p
-								margin-top: 10px
-								text-align: center
-								font-size: 11px
-								color: #555
-							.ui-slider
-								a.ui-slider-handle
-									background: transparent url(../images/rewardModalStarSlider.png) no-repeat 0 0
-									border: none
-									width: 27px
-									height: 28px
-									left: -13.5px
-									top: -10px
-									cursor: pointer
-								.ui-slider-range
-									background: $blue
-						.comment
-							clear: both
-							margin: 10px 0 20px
-							border: 1px solid #ccc
-							padding-bottom: 20px
-							position: relative
-							width: 470px
-							background: #fff
-							textarea
-								background: transparent
-								border: none
-								width: 454px
-								height: 55px
-								padding: 8px
-							textarea:focus
-								outline: none
-							#share
-								position: absolute
-								bottom: 0
-								left: 0
-								width: 460px
-								background: #f4f4f4
-								border-top: 1px solid #ccc
-								text-transform: uppercase
-								font-size: 11px
-								height: 15px
-								padding: 5px
-								color: #777
-								abbr
-									border-bottom: 1px dashed #999
-									padding-left: 1px
-									cursor: help
-								.text
-									color: #333
-								.text, .service
+					text-shadow: 0 1px 0 #fff
+				input[type="text"], textarea
+					@include rounded(3px)
+					box-shadow: 0 1px 2px rgba(0,0,0,0.2) inset, 0 1px 0 #fff
+				textarea
+					display: block
+					width: 370px
+					margin: 0 auto 10px
+				input[type="submit"]
+					float: right
+			
+			#reward-box-outer
+				padding: 20px
+				
+				#reward-box
+					.alert
+						background-color: $lightred
+						color: $red
+						padding: 5px 10px
+						font-weight: 700
+						text-transform: uppercase
+						margin-bottom: 20px
+					.inner
+						position: relative
+
+						form#reward-form
+							padding-left: 10px
+							#stars
+								width: 425px
+								height: 100px
+								li
+									width: 90px
 									float: left
-									margin-right: 10px
-								.service
-									padding-left: 12px
-									background-position: 0 2px
-									background-repeat: no-repeat
-									position: relative
+									clear: none
 									a
-										padding: 2px 0 0 4px
-										font-weight: 500
-									input
-										margin: 0 0 0 4px
-								#facebook
-									background-image: url(../images/icons/facebookTiny.png)
-								#twitter
-									background-image: url(../images/icons/twitterTiny.png)
-									margin-right: 0
-							#nib
-								background: transparent url(../images/rewardModalCommentNib.png) no-repeat 0 0
-								width: 11px
-								height: 12px
+										display: block
+										width: 70px
+										height: 70px
+										background: transparent url(../images/rewardFormStars.png) no-repeat 0 0
+										text-indent: -9999px
+									a#one-star.selected
+										background-position: 0 -100px
+									a#three-star
+										background-position: -100px 0
+									a#three-star.selected
+										background-position: -100px -100px
+									a#five-star
+										background-position: -200px 0
+									a#five-star.selected
+										background-position: -200px -100px
+								
+									input[type="text"]
+										float: left
+										font-size: 36px
+										padding: 15px
+										margin-right: 10px
+										width: 50px
+										text-align: center
+									span, strong
+										font-size: 10px
+										text-transform: uppercase
+										letter-spacing: 0.03em
+										line-height: 18px
+									span
+										font-style: italic
+							
+								li.custom
+									width: 150px
+							
+							#comment
+								display: none
+								clear: both
+								textarea
+									height: 50px
+
+				#share
+					h3
+						float: left
+						width: 150px
+						text-align: left
+					.info
+						float: right
+						width: 190px
+						font-size: 11px
+						text-align: right
+						padding-bottom: 10px
+						strong
+							padding-left: 18px
+							background: transparent url(../images/icons/impactTiny.png) no-repeat 0 0
+					
+					#twitter-sharing
+						margin-bottom: 30px
+						position: relative
+						clear: both
+						.configured
+							height: 100px
+						#what-we-add
+							position: absolute
+							top: 35px
+							right: 11px
+							color: #777
+							font-size: 11px
+						#characters-left
+							float: left
+							color: #999
+							font-style: italic
+							padding-left: 5px
+							.count
+								font-weight: 700
+								font-style: normal
+						textarea
+							height: 40px
+						input[type="submit"]
+							@include gradient(#66dfff,#4ccaff)
+							color: #0b2d39
+							text-shadow: 0 1px 0 rgba(255,255,255,0.5)
+					
+					#facebook-sharing
+						position: relative
+						textarea
+							height: 160px
+						#facebook-preview
+							position: absolute
+							top: 60px
+							left: 3px
+							width: 259px
+							border-top: 1px dashed #ccc
+							padding: 10px 10px 10px 115px
+							font-size: 11px
+							.thumbnail
 								position: absolute
-								top: -11px
-								left: 20px
-					input[type="submit"]
-						background: #000
-						color: #fff
-						padding-top: 10px
-			#reward-box-outer.loading .inner
-				height: 250px
-				background: transparent url(../images/spinner.gif) no-repeat 50% 50%
-				*
-					display: none
+								top: 10px
+								left: 10px
+								width: 95px
+								height: 60px
+							h3
+								font-size: 13px
+								text-align: left
+								margin-bottom: 5px
+								width: auto
+								height: 16px
+								overflow: hidden
+							.link
+								color: #999
+							p
+								margin: 5px 0 0
+								line-height: 13px
+						input[type="submit"]
+							@include gradient(#6481bd,#455d99)
+					
+					#twitter-sharing, #facebook-sharing
+						&.loading
+							background: transparent url(../images/spinner.gif) no-repeat 50% 50%
+							height: 100px
+							*
+								display: none
+						.padded
+							height: 50px
+						.not-configured
+							padding-left: 40px
+							background: transparent url(../images/icons/twitterSmall.png) no-repeat 0 50%
+							margin-top: 30px
+							span
+								display: block
+								margin-bottom: 5px
+							a
+								background: #66dfff
+								padding: 3px 6px
+								color: #0b2d39
+								@include rounded(3px)
+								text-transform: uppercase
+						.after
+							font-size: 11px
+							p
+								margin: 10px 0
+					#facebook-sharing .not-configured
+						background-image: url(../images/icons/facebookSmall.png)
+						margin-top: 0
+						a
+							background: #6481bd
+							color: #fff
+							
 			#reward-box-outer .not-logged-in
 				h2
 					background: none
@@ -357,13 +441,13 @@
 				.explanation, .buttons
 					padding-bottom: 30px
 				.explanation .inner, .buttons .inner
-					height: 292px
+					height: 341px
 				.explanation .inner
 					border-right: 1px solid #00aae7
 				.buttons .inner
 					border-left: 1px solid #0097d0
 				.explanation
-					width: 300px
+					width: 400px
 					float: left
 					.what-is-momeant
 						padding: 0 30px
@@ -380,7 +464,7 @@
 							position: relative
 							top: 2px
 				.buttons
-					width: 234px
+					width: 334px
 					float: right
 					span.or
 						font-size: 40px
@@ -425,29 +509,12 @@
 				background-position: 1px -22px
 
 			#not-logged-in
-				.explanation, .buttons
-					float: none
-					.inner
-						border: none
-				.explanation .inner
-					height: 215px
-				.buttons
+				.explanation
 					width: 300px
 					.inner
-						height: 47px
-						padding-left: 30px
-					a
-						width: 100px
-						font-size: 12px
-						float: left
-						padding: 10px 0
-						width: 80px
-						span
-							display: none
-					span.or
-						float: left
-						padding: 0 10px
-						font-size: 30px
+						height: 295px
+				.buttons
+					width: 235px
 					
 			#reward-box .inner
 				form#reward-form

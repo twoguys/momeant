@@ -14,21 +14,7 @@
     
     #your-reward
       .inner
-        - if current_user.nil?
-          = render "rewards/modal/no_user"
-        - else
-          #creator-info
-            %h1 Reward #{link_to(@story.user.name, creations_user_path(@story.user))}
-            - unless @story.user.tagline.blank?
-              .tagline
-                %span= truncate(@story.user.tagline, :length => 260)
-          #reward-box-outer
-            - if current_user.coins == 0
-              .explanation.out-of-coins
-                %h3 Oops! You're out of reward coins.
-                %p If you want to reward this content, please #{link_to("purchase more reward coins",coins_path)}.
-            - else
-              = render "rewards/modal/form"
+        = render "rewards/modal/form"
             
       #toggle-reward-stream.tooltipped-w{:title => "Expand/Contract"}
       

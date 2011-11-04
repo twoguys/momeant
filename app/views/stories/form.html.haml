@@ -23,6 +23,7 @@
           = text_field_tag :story_external_link, @story.external_text_or_http, :class => "monitor-story-typing", :update => "external_link"
           %p.info
             %em Show something you've created elsewhere on the web.
+            = link_to "Uncertain about your rights over your content?", "#content-rights", :id => "content-rights-link"
       .or OR
       .choice#creator{:class => @story.is_external? ? "" : "selected"}
         .choice-inner
@@ -105,7 +106,7 @@
     %section#done
       .owner
         = check_box_tag :i_own_this, '1', @story.i_own_this
-        %span I promise that I own this content.
+        %span I promise i am the author or creator of this content.
       .rest
         = form_tag publish_story_path(@story) do
           = hidden_field_tag :share_twitter, "", :name => "share[twitter]"
@@ -164,6 +165,20 @@
               %h2 Image & Caption Page
               %span Feature one image with or without an accompanying caption.
         .clear
+
+%div{:style => "display:none"}
+  #content-rights
+    %h3 Content Rights
+    %div
+      %strong 1. By agreeing, you are legally confirming your authorship of this content. You are further confirming your ability to publicly claim authorship and one of the following:
+      %ul
+        %li A. to link to the content in its unadulterated form wherever it exists on the Web, or
+        %li B. to re-publish the content in another medium (this requires ownership).
+    %div
+      %strong 2. If you're a professional content creator and worried about your contract and what you can and cannot publish, here's what you need to know: 
+      %ul
+        %li A. Although you can't see your link URL in the address bar, Momeant does refer and go to the URL you link to in its entirety within our site. Thus, any ad revenue, impressions, Web traffic, etc., that your link would normally generate, occurs exactly the way it would if you would land on that link itself. If you've written an article in a newspaper or magazine, for instance, they will get the same traffic, impressions, and ad generation revenue that they normally would, so you can link out without concerns about re-publishing.
+        %li B. The purpose of Momeant is to get people rewarded for the FREE content they post online. The content itself is never paid for, its always free. We reward the people behind the free content we like. If you are a professional content creator, and you have created or authored content, regardless of the circumstances in which it was created, its ownership, and your contract stipulations, as long as you are able to publicly refer to yourself as the author of the content, you can represent that content on Momeant (think of us as your content portfolio), and get rewarded based on being its author.
 
 :javascript
   mpq.track('Editing Content', {anonymous_id: '#{session[:analytics_anonymous_id]}', story_id: '#{@story.id}'});

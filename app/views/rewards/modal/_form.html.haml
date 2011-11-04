@@ -1,67 +1,47 @@
-#reward-box
-  - if current_user == @story.user
-    .yourself
-      %h2
-        Sorry, you can't reward yourself ;).
-  - else
-    - if @not_enough
-      .alert Oops, you tried to reward more coins than you have.
-    .inner
-      = form_for :reward, :url => user_rewards_path(@story.user), :html => {:id => "reward-form"} do |form|
-        = form.hidden_field :story_id, :value => @story.id
-        - if @impacted_by
-          = form.hidden_field :impacted_by, :value => @impacted_by
-        .avatars
-          .from
-            = image_tag(current_user.avatar.url(:thumbnail), :class => "avatar")
-            .rewards
-              .count{:original => current_user.coins}= current_user.coins
-              .text coins available
-          .amount
-            .slider
-            = form.hidden_field :amount, :value => 1
-            %p
-              Use the slider above to choose how much to reward
-          .to
-            = image_tag(@story.user.avatar.url(:thumbnail), :class => "avatar")
-            .rewards
-              .count{:original => @story.user.lifetime_rewards}= @story.user.lifetime_rewards
-              .text total rewards
-        .comment
-          = form.text_area :comment, :placeholder => "Tell others why you're rewarding this..."
-          #share
-            .text
-              %span Increase your
-              %abbr.tooltipped-n{:title => "Share this on Facebook or Twitter to increase your Momeant Impact and get more rewards for #{@story.user.first_name}."} impact:
-            = hidden_field_tag :share_facebook
-            = hidden_field_tag :share_twitter
-            .service#facebook
-              - if @facebook_auth
-                = check_box_tag :facebook
-              - else
-                = link_to("Setup", "#{root_url}auth/facebook", :class => "configure", :service => "facebook")
-            .service#twitter
-              - if @twitter_auth
-                = check_box_tag :twitter
-              - else
-                = link_to("Setup", "#{root_url}auth/twitter", :class => "configure", :service => "twitter")
-          #nib
-        = form.submit "Give Reward"
-
-:javascript
-  $('#reward-form .slider').slider({
-    range: 'min',
-    min: 1,
-    max: #{current_user.coins},
-    slide: function(event, ui) {
-      $('#reward-tooltip').text(ui.value);
-      $('#reward-form #reward_amount').val(ui.value);
-      var $from_count = $('#reward-form .from .count');
-      var new_from = parseInt($from_count.attr('original')) - ui.value;
-      $from_count.text(new_from);
-      var $to_count = $('#reward-form .to .count');
-      var new_to = parseInt($to_count.attr('original')) + ui.value;
-      $to_count.text(new_to);
-    }
-  });
-  $('.ui-slider-handle').append('<div id="reward-tooltip">1</div>');
+- if current_user.nil?
+  = render "rewards/modal/no_user"
+- else
+  #creator-info
+    = link_to(image_tag(@story.user.avatar.url(:large)), creations_user_path(@story.user), :class => "avatar")
+    %h1 Reward #{link_to(@story.user.name, creations_user_path(@story.user))}
+    - unless @story.user.tagline.blank?
+      .tagline
+        %span= truncate(@story.user.tagline, :length => 260)
+  #reward-box-outer
+    - if current_user.coins == 0
+      .explanation.out-of-coins
+        %h3 Oops! You're out of reward coins.
+        %p If you want to reward this content, please #{link_to("purchase more reward coins",coins_path)}.
+    - else
+      #reward-box
+        - if current_user == @story.user
+          .yourself
+            %h2
+              Sorry, you can't reward yourself ;).
+        - else
+          - if @not_enough
+            .alert Oops, you tried to reward more coins than you have.
+          .inner
+            = form_for :reward, :url => user_rewards_path(@story.user), :html => {:id => "reward-form"} do |form|
+              = form.hidden_field :story_id, :value => @story.id
+              - if @impacted_by
+                = form.hidden_field :impacted_by, :value => @impacted_by
+        
+              #amount.section
+                %h3 How much would you like to reward #{@story.user.first_name}?
+                %ul#stars
+                  %li= link_to "1", "#", :id => "one-star", :amount => 1
+                  %li= link_to "3", "#", :id => "three-star", :amount => 3
+                  %li= link_to "5", "#", :id => "five-star", :amount => 5
+                  %li.custom
+                    = text_field_tag :custom_amount, "", :placeholder => "10"
+                    %span or any of your
+                    %strong= current_user.coins
+                    %span reward coins
+              
+                = form.hidden_field :amount, :value => 1
+        
+              #comment.section
+                %h3 Tell #{@story.user.first_name} why you rewarded him/her.
+                = form.text_area :comment, :placeholder => "Enter a great comment..."
+                = form.submit "Give Reward"

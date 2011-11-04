@@ -11,8 +11,34 @@
         %strong The Reward,
         %span a voluntary contribution you choose to make if you've enjoyed a piece of content.
       %p
-        %span If you read an article you like, see a great blog post, or watch a cool video and see the mo&#149;meant
+        %span If you read an article you like, see a great blog post, or watch a cool video and see the momeant
         %strong Reward
-        %span button, show your support by rewarding that creator. By rewarding, you support and connect with the people behind great content and generate valuable impact data that mo&#149;meant tracks and redirects to you.
+        %span button, show your support by rewarding that creator. By rewarding, you support and connect with the people behind great content and generate valuable impact data that momeant tracks and redirects to you.
   
     #illustration
+    
+    #faq
+      %h2 Frequently Asked Questions
+      
+      %h3 How do I start representing myself and my content?
+      - if current_user.nil?
+        %p First, you need to #{link_to "Join", "#join-modal"} or #{link_to "Login", "#login-modal"}.
+      %p Go to your creations page (the + button in the top navigation bar).
+      %p Once there, you'll get some instructions and see a big box to "add content".
+      %p Use this to link to your content, create content from scratch, and organize it for others to see.
+      
+      %h3
+        What are Reward Coins?
+      %p Reward coins are the currency of Momeant's community. Give reward coins to show appreciation and support.
+      %p As you reward, you build status in the Momeant community so your own content can be found.
+      - if current_user.nil?
+        %p First, you need to #{link_to "Join", "#join-modal"} or #{link_to "Login", "#login-modal"}.
+        %p Then you can #{link_to("purchase reward coins", coins_path)} to start rewarding.
+      - else
+        %p You can #{link_to("purchase reward coins", coins_path)} to start rewarding.
+      
+      %h3
+        Is there a free trial?
+      %p Yes! Once you sign up, which is free, you receive 5 reward coins to give out.
+      %p While they are a free trial, those are real rewards that we will pay out to the creators you choose.
+      %p So enjoy, and make sure to #{link_to "purchase more rewards", coins_path} when you run out.

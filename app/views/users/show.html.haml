@@ -43,7 +43,7 @@
                 = image_tag(user.avatar.url(:large), :style => "width:#{size}px;height:#{size}px")
                 .border{:style => "width:#{size}px;height:#{size}px"}
             - if @users.empty?
-              %a#impact-example{:href => "#reward-viz-example"}
+              %a#impact-example.tooltipped{:href => "#reward-viz-example", :title => "Click to see an example of how you can track your impact as you start rewarding creators."}
                 = image_tag("exampleAvatarWallFace.png")
                 .border{:style => "width:44px;height:44px"}
               %div{:style => "display:none;"}

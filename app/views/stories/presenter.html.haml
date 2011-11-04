@@ -9,7 +9,10 @@
 
 #presenter
 
-  = link_to("Exit", @exit_presenter_url, :id => "exit-presenter")
+  = link_to "Exit", @exit_presenter_url, :id => "exit-presenter"
+  #mini-nav
+    = link_to "Momeant", root_path, :id => "home-link", :class => "tooltipped", :title => "Home"
+    = link_to "Community", community_path, :id => "community-link", :class => "tooltipped", :title => "Community"
 
   .content
   
@@ -41,7 +44,7 @@
               
 - if current_user
   :javascript
-    mpq.track('Viewed Content', {anonymous_id: '#{session[:analytics_anonymous_id]}', mp_note: '#{@story.title}', user: true})  
+    mpq.track('Viewed Content', {anonymous_id: '#{session[:analytics_anonymous_id]}', mp_note: '#{@story.title.gsub("'","")}', user: true});
 - else
   :javascript
-    mpq.track('Viewed Content', {anonymous_id: '#{session[:analytics_anonymous_id]}', mp_note: '#{@story.title}', user: false})
+    mpq.track('Viewed Content', {anonymous_id: '#{session[:analytics_anonymous_id]}', mp_note: '#{@story.title.gsub("'","")}', user: false});
