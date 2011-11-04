@@ -35,6 +35,7 @@ var story_page_editor = function() {
 		$('#editor-header a.delete').click(pages_editor.delete_current_page);
 		setup_launch_when_no_pages();
 		setup_sharing_toggles();
+		$('#content-rights-link').fancybox();
 
 		this.total_pages = $('ul#pages').children().length;
 	};
