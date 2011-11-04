@@ -10,7 +10,7 @@
       %li#create{:class => @nav == "create" ? "active" : ""}
         = link_to("Share", creations_user_path(current_user), :class => "tooltipped", :title => "Share your content")
     %li#faq{:class => @nav == "about" ? "active" : ""}
-      = link_to("About Us", about_path, :class => "tooltipped", :title => "About momeant".html_safe)
+      = link_to("About Us", about_path, :class => "tooltipped", :title => "About momeant")
     - if user_signed_in?
       - if current_user.is_admin?
         %li#admin{:class => @nav == "admin" ? "active" : ""}
