@@ -1,6 +1,6 @@
 class StoriesController < ApplicationController
-  before_filter :authenticate_user!, :except => [:index, :recent, :show]
-  load_and_authorize_resource :except => [:index, :recent, :show]
+  before_filter :authenticate_user!, :except => [:index, :show]
+  load_and_authorize_resource :except => [:index, :show]
   before_filter :get_topics, :only => [:new, :edit]
   before_filter :check_sharing_configured, :only => [:new, :edit]
   skip_before_filter :verify_authenticity_token, :only => [:update_thumbnail]
@@ -14,19 +14,13 @@ class StoriesController < ApplicationController
     @nav = "community"
   end
   
-  def recent
-    @recent_stories = Story.published.newest_first.page params[:page]
-    @nav = "home"
-    render "home/index"
-  end
-  
   def most_rewarded
     @most_rewarded_stories = Story.published.most_rewarded.page params[:page]
     render "home/index"
   end
   
   def show
-    @story = Story.find_by_id(params[:id])
+    @story = Story.find(params[:id])
     if !@story.published? && current_user != @story.user
       redirect_to root_path, :alert => "Sorry, that story is not published yet." and return
     end
@@ -47,7 +41,7 @@ class StoriesController < ApplicationController
   end
   
   def new
-    @story = Story.create(:thumbnail_page => 1, :user_id => current_user.id, :autosaving => true, :is_external => true)
+    @story = Story.create(:thumbnail_page => 1, :user_id => current_user.id, :autosaving => true, :is_external => true, :title => "")
     @story.pages << ExternalPage.new(:number => 1)
     @nav = "home"
     render "form"

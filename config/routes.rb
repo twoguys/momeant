@@ -35,7 +35,6 @@ Repo::Application.routes.draw do
       get :tagged_with
       get :search
       get :random
-      get :recent
       get :most_rewarded
     end
     
