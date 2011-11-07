@@ -4877,7 +4877,8 @@ impact ul.avatars li {
         margin-bottom: 5px; }
   .user-profile .the-rest {
     margin-left: 208px;
-    min-height: 100%; }
+    min-height: 100%;
+    min-width: 840px; }
     .user-profile .the-rest .horizontal-tabs {
       border-bottom: 1px solid #cccccc; }
       .user-profile .the-rest .horizontal-tabs ul {
@@ -5041,37 +5042,43 @@ impact ul.avatars li {
   .user-profile ul.stats-bar {
     height: 50px;
     margin: 0 0 20px;
-    padding: 20px 0; }
+    height: 80px; }
     .user-profile ul.stats-bar li {
       float: left;
       font-size: 11px;
-      height: 60px;
-      margin-top: -5px;
       position: relative; }
-      .user-profile ul.stats-bar li .text, .user-profile ul.stats-bar li .value {
-        float: left; }
-      .user-profile ul.stats-bar li .text {
-        padding: 30px 5px 0 0;
-        text-align: right; }
       .user-profile ul.stats-bar li .value {
         font-family: "ff-dagny-web-pro-1", "ff-dagny-web-pro-2", sans-serif;
-        font-size: 70px;
+        font-size: 50px;
         line-height: 1em;
         font-weight: 200;
+        float: left;
+        text-align: right;
         padding-right: 20px;
         background: transparent url(../images/icons/starBlackSmall.png) no-repeat 100% 3px; }
-    .user-profile ul.stats-bar li.rewards {
-      padding-left: 10px; }
-    .user-profile ul.stats-bar li.rewards, .user-profile ul.stats-bar li.patrons {
-      border-right: 1px solid white;
+        .user-profile ul.stats-bar li .value span {
+          line-height: 1em; }
+        .user-profile ul.stats-bar li .value .dollar-sign {
+          font-size: 20px;
+          position: relative;
+          top: -19px;
+          margin-right: -10px; }
+      .user-profile ul.stats-bar li .text {
+        clear: both; }
+    .user-profile ul.stats-bar li.rewards, .user-profile ul.stats-bar li.patrons, .user-profile ul.stats-bar li.cash {
       padding-right: 30px; }
     .user-profile ul.stats-bar li.patrons, .user-profile ul.stats-bar li.cash, .user-profile ul.stats-bar li.impact {
-      border-left: 1px solid #cccccc;
+      border-left: 1px solid #dddddd;
       padding-left: 30px; }
     .user-profile ul.stats-bar li.patrons .value {
       background: transparent url(../images/icons/person.png) no-repeat 100% 3px; }
+    .user-profile ul.stats-bar li.impact .value {
+      padding-right: 27px;
+      background: transparent url(../images/icons/impact.png) no-repeat 100% -2px; }
     .user-profile ul.stats-bar li.cash .value {
       background: none; }
+    .user-profile ul.stats-bar li.cash.last {
+      padding-right: 75px; }
     .user-profile ul.stats-bar li.impact .notification {
       position: absolute;
       top: 13px;
@@ -5083,7 +5090,7 @@ impact ul.avatars li {
     position: relative; }
     .user-profile ul.stats-bar li.cash a#cashout {
       position: absolute;
-      top: 0;
+      top: 6px;
       right: 0;
       padding: 8px 15px 7px; }
       .user-profile ul.stats-bar li.cash a#cashout.disabled {
