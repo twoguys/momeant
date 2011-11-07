@@ -11,7 +11,7 @@ class CommunityController < ApplicationController
     end
     
     @page_title = "Most Rewarded Content"
-    @stories = @stories.page params[:page]
+    @stories = @stories.page(params[:page]).per(24)
   end
   
   def people
@@ -26,7 +26,7 @@ class CommunityController < ApplicationController
         b.impact <=> a.impact
       end
     end
-    @users = @users[0..11]
+    @users = @users[0..15]
     
     @page_title = "Most Impactful People"
   end
@@ -40,7 +40,7 @@ class CommunityController < ApplicationController
       @tags = Story.tag_counts.order("count DESC").limit(10)
     end
     
-    @stories = @stories.page params[:page]
+    @stories = @stories.page(params[:page]).per(24)
   end
   
   def index

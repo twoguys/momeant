@@ -5388,7 +5388,7 @@ form.user_edit {
       bottom: -55px; }
 
 .community {
-  max-width: 1064px;
+  width: 1015px;
   margin: 0 auto; }
   .community ul.nav {
     padding: 30px 20px 10px;
@@ -5409,7 +5409,8 @@ form.user_edit {
       .community ul.nav li a.active:hover {
         text-decoration: none; }
   .community .tabbed {
-    padding: 20px 0 20px 20px; }
+    padding: 20px 220px 20px 20px;
+    position: relative; }
     .community .tabbed .header {
       margin-bottom: 20px; }
       .community .tabbed .header h3 {
@@ -5426,25 +5427,18 @@ form.user_edit {
         border-radius: 20px;
         width: 200px;
         background: white url(../images/icons/search.png) 98% 50% no-repeat; }
-  .community ul.stories {
+  .community ul.stories, .community ul.users {
     display: inline-block; }
-    .community ul.stories:after {
+    .community ul.stories:after, .community ul.users:after {
       content: ".";
       display: block;
       height: 0;
       clear: both;
       visibility: hidden; }
   .community ul.users {
-    display: inline-block;
     padding-bottom: 40px; }
-    .community ul.users:after {
-      content: ".";
-      display: block;
-      height: 0;
-      clear: both;
-      visibility: hidden; }
     .community ul.users li.user {
-      width: 192px;
+      width: 230px;
       height: 100px;
       float: left;
       margin-right: 30px;
@@ -5492,8 +5486,11 @@ form.user_edit {
         .community ul.users li.user .impact .text {
           font-size: 11px; }
   .community .tag-cloud {
-    margin-right: 35px;
-    margin-left: 5px; }
+    width: 200px;
+    position: absolute;
+    top: 0;
+    right: 20px;
+    overflow: hidden; }
     .community .tag-cloud h3 {
       font-size: 13px;
       text-transform: uppercase;
@@ -5502,6 +5499,15 @@ form.user_edit {
       border-bottom: 1px solid #dddddd; }
     .community .tag-cloud a.tag {
       font-size: 14px; }
+    .community .tag-cloud li.current span {
+      background: #333333;
+      color: white;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      border-radius: 3px;
+      padding: 1px 4px;
+      font-size: 14px;
+      text-shadow: 0 -1px 0 black; }
   .community nav.pagination {
     clear: both;
     text-align: center;
