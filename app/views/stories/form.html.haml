@@ -65,8 +65,7 @@
         %li.image#thumbnail
           %label{:for => "story_thumbnail"} Upload an image that best represents what you've created.
           %p.info
-            %strong Please upload a JPG or PNG. We crop thumbnails to 288px wide by 180px tall, and center the content.
-            %em Don't have that size? Don't worry, we'll resize it for you.
+            %strong Please upload a JPG or PNG. We resize thumbnails to an 8:5 ratio, and crop the extra vertical or horizontal content (but not both). For best results, please upload an image that is at least 288px wide by 180px tall.
           .file-uploader
             %form
               %input{:type => "hidden", :value => form_authenticity_token, :name => "authenticity_token"}
