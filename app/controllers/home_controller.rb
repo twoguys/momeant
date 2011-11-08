@@ -18,5 +18,9 @@ class HomeController < ApplicationController
     @nav = "about"
     @nosidebar = true
   end
+  
+  def faq
+    redirect_to about_path
+  end
 
 end
