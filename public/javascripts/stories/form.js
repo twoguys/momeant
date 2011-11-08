@@ -36,6 +36,7 @@ var story_page_editor = function() {
 		setup_launch_when_no_pages();
 		setup_sharing_toggles();
 		$('#content-rights-link').fancybox();
+		window.cropper_modal = $('#cropper-link').fancybox({onComplete:pages_editor.start_cropper});
 
 		this.total_pages = $('ul#pages').children().length;
 	};
@@ -310,6 +311,10 @@ var story_page_editor = function() {
 	};
 	
 	// EDITING
+	
+	this.start_cropper = function() {
+	  window.Cropper = new Cropper;
+	};
 	
 	this.change_page_type = function() {
 		pages_editor.page_chooser_mode = 'change';

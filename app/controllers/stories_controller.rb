@@ -84,6 +84,14 @@ class StoriesController < ApplicationController
     end
   end
   
+  def cropper
+    render :layout => false
+  end
+  
+  def crop
+    
+  end
+  
   def change_to_external
     @story.pages.destroy_all
     @story.pages << ExternalPage.new(:number => 1)

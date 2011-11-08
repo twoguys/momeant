@@ -1,0 +1,11 @@
+#cropper
+  = image_tag @story.thumbnail.url, :id => "thumbnail-to-be-cropped"
+
+  = form_tag crop_story_path(@story), :id => "cropper-form" do
+    = hidden_field_tag :x1
+    = hidden_field_tag :y1
+    = hidden_field_tag :x2
+    = hidden_field_tag :y2
+    = submit_tag "Crop Thumbnail"
+
+= stylesheet_link_tag "imgareaselect-default"

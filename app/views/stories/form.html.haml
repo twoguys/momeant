@@ -1,5 +1,6 @@
 - content_for :head do
-  = javascript_include_tag "stories/form"
+  = javascript_include_tag "jquery.imgareaselect.pack"
+  = javascript_include_tag "stories/form", "stories/cropper"
   = javascript_include_tag "tiny_mce/tiny_mce.js"
 
 .form.story-form
@@ -55,7 +56,9 @@
           .title= @story && @story.title.present? ? @story.title : "TITLE"
           .author by #{current_user.name}
           .thumbnail{:style => @story && @story.thumbnail.present? ? "background: url(#{@story.thumbnail.url(:medium)})" : ""}
-        .note Your content will show up around the site like this.
+        .note{:class => @story.thumbnail.url.include?("missing") ? "hidden" : ""}
+          Unhappy with the default crop?
+          = link_to "Re-crop it", cropper_story_path(@story), :id => "cropper-link"
       
       #story-spinner
         Saving...
@@ -65,7 +68,7 @@
         %li.image#thumbnail
           %label{:for => "story_thumbnail"} Upload an image that best represents what you've created.
           %p.info
-            %strong Please upload a JPG or PNG. We resize thumbnails to an 8:5 ratio, and crop the extra vertical or horizontal content (but not both). For best results, please upload an image that is at least 288px wide by 180px tall.
+            %strong Please upload a JPG or PNG.
           .file-uploader
             %form
               %input{:type => "hidden", :value => form_authenticity_token, :name => "authenticity_token"}
