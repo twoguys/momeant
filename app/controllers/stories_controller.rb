@@ -89,7 +89,9 @@ class StoriesController < ApplicationController
   end
   
   def crop
-    if @story.update_attributes(params[:story])
+    options = params[:story]
+    options.merge!({:autosaving => true})
+    if @story.update_attributes(options)
       redirect_to edit_story_path(@story)
     else
       render :crop

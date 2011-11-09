@@ -224,5 +224,7 @@ class Story < ActiveRecord::Base
   
   def reprocess_thumbnail
     thumbnail.reprocess!
+    self.crop_x = nil
+    save
   end
 end

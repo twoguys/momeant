@@ -429,8 +429,10 @@ var story_page_editor = function() {
 	this.update_metadata = function(metadata) {
 		if (!metadata) { return; }
 		
-		if (metadata.title != undefined)
+		if (metadata.title != undefined) {
 			$('#story_title').val(metadata.title);
+			$('#thumbnail-preview .title').text(metadata.title);
+		}
 		if (metadata.description != undefined)
 			$('#story_synopsis').val(metadata.description);
 		if (metadata.image != undefined)
