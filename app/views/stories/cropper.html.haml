@@ -12,14 +12,14 @@
     or
     = link_to "Cancel", edit_story_path(@story)
 
-= stylesheet_link_tag "imgareaselect-default"
-= javascript_include_tag "jquery.imgareaselect.pack"
+= stylesheet_link_tag "jquery.jcrop"
+= javascript_include_tag "jquery.jcrop.min"
 :javascript
   $(function() {
-    $('img#thumbnail-to-be-cropped').imgAreaSelect({
-      handles: true,
-      onSelectEnd: update_cropped_thumbnail,
-      aspectRatio: '8:5'
+    $('img#thumbnail-to-be-cropped').Jcrop({
+      onSelect: update_cropped_thumbnail,
+      onChange: update_cropped_thumbnail,
+      aspectRatio: 8 / 5
     });
     
     $('#cropper-form').submit(function(event) {
@@ -36,9 +36,9 @@
     });
   });
   
-  function update_cropped_thumbnail(img, selection) {
-    $('#crop_x').val(selection.x1);
-    $('#crop_y').val(selection.y1);
-    $('#crop_width').val(selection.width);
-    $('#crop_height').val(selection.height);
+  function update_cropped_thumbnail(selection) {
+    $('#crop_x').val(selection.x);
+    $('#crop_y').val(selection.y);
+    $('#crop_width').val(selection.w);
+    $('#crop_height').val(selection.h);
   }
