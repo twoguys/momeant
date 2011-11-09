@@ -1,11 +1,61 @@
 #cropper
+  .info Please select the part of the photo you want cropped by clicking and dragging your mouse on the photo.
+  
   = image_tag @story.thumbnail.url, :id => "thumbnail-to-be-cropped"
 
   = form_tag crop_story_path(@story), :id => "cropper-form" do
-    = hidden_field_tag :x1
-    = hidden_field_tag :y1
-    = hidden_field_tag :x2
-    = hidden_field_tag :y2
+    = hidden_field_tag :crop_x, "", :name => "story[crop_x]"
+    = hidden_field_tag :crop_y, "", :name => "story[crop_y]"
+    = hidden_field_tag :crop_width, "", :name => "story[crop_width]"
+    = hidden_field_tag :crop_height, "", :name => "story[crop_height]"
     = submit_tag "Crop Thumbnail"
+    or
+    = link_to "Cancel", edit_story_path(@story)
 
 = stylesheet_link_tag "imgareaselect-default"
+:css
+  #cropper { text-align: center; font-family: Arial, sans-serif; }
+  #cropper .info { margin: 20px 0; }
+  #cropper-form { height: 30px; margin-top: 10px; }
+  #cropper-form input {
+    background: #00aeff;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  #thumbnail-to-be-cropped { cursor: crosshair; }
+  
+= javascript_include_tag "jquery-1.4.3.min", "jquery.imgareaselect.pack"
+:javascript
+  $(function() {
+    $('img#thumbnail-to-be-cropped').imgAreaSelect({
+      handles: true,
+      onSelectEnd: update_cropped_thumbnail,
+      aspectRatio: '8:5'
+    });
+    
+    $('#cropper-form').submit(function(event) {
+      var x = $('#crop_x').val(),
+        y = $('#crop_y').val(),
+        width = $('#crop_width').val(),
+        height = $('#crop_height').val();
+
+      if (x == '' || y == '' || width == '' || height == '') {
+        alert('Please select the part of the photo you want cropped by clicking and dragging your mouse.');
+        event.preventDefault();
+        return false;
+      }
+    });
+  });
+  
+  function update_cropped_thumbnail(img, selection) {
+    $('#crop_x').val(selection.x1);
+    $('#crop_y').val(selection.y1);
+    $('#crop_width').val(selection.width);
+    $('#crop_height').val(selection.height);
+  }

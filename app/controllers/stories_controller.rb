@@ -89,7 +89,11 @@ class StoriesController < ApplicationController
   end
   
   def crop
-    
+    if @story.update_attributes(params[:story])
+      redirect_to edit_story_path(@story)
+    else
+      render :crop
+    end
   end
   
   def change_to_external

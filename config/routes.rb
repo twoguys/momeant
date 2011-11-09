@@ -27,7 +27,7 @@ Repo::Application.routes.draw do
       post :change_to_external
       post :change_to_creator
       get :cropper
-      put :crop
+      post :crop
     end
     collection do
       get :bookmarked
