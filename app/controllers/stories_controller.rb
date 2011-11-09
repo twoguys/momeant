@@ -84,10 +84,6 @@ class StoriesController < ApplicationController
     end
   end
   
-  def cropper
-    render :layout => false
-  end
-  
   def crop
     options = params[:story]
     options.merge!({:autosaving => true})

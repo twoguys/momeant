@@ -13,24 +13,7 @@
     = link_to "Cancel", edit_story_path(@story)
 
 = stylesheet_link_tag "imgareaselect-default"
-:css
-  #cropper { text-align: center; font-family: Arial, sans-serif; }
-  #cropper .info { margin: 20px 0; }
-  #cropper-form { height: 30px; margin-top: 10px; }
-  #cropper-form input {
-    background: #00aeff;
-    color: #fff;
-    font-size: 14px;
-    font-weight: 700;
-    text-transform: uppercase;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-  }
-  #thumbnail-to-be-cropped { cursor: crosshair; }
-  
-= javascript_include_tag "jquery-1.4.3.min", "jquery.imgareaselect.pack"
+= javascript_include_tag "jquery.imgareaselect.pack"
 :javascript
   $(function() {
     $('img#thumbnail-to-be-cropped').imgAreaSelect({
