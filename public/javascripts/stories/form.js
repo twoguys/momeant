@@ -435,8 +435,10 @@ var story_page_editor = function() {
 		}
 		if (metadata.description != undefined)
 			$('#story_synopsis').val(metadata.description);
-		if (metadata.image != undefined)
+		if (metadata.image != undefined) {
 			$('#thumbnail-preview .thumbnail').css('background-image', 'url(' + metadata.image + ')');
+			$('#thumbnail-preview .note').show();
+		}
 	};
 	
 }
@@ -476,6 +478,7 @@ var story_auto_saver = function() {
 			onFinishOne: function(event, response, name, number, total) {
 				json = $.parseJSON(response);
 				$preview.css('background','#fff url(' + json.thumbnail + ')');
+  			$('#thumbnail-preview .note').show();
 				$loader.hide().siblings().show();
 			}
 		});
