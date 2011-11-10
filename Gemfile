@@ -5,7 +5,6 @@ gem 'rails', '3.0.9'
 
 # Postgres for our database
 gem 'pg'
-#gem 'sqlite3-ruby', :require => 'sqlite3'
 
 gem 'devise', "~> 1.4.2"
 gem 'haml'
