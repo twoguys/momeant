@@ -78,7 +78,7 @@
 		margin-left: -400px
 		background-color: #f4f4f4
 		z-index: 3
-		@include boxshadow(2px,0.3,0,2px)
+		@include boxshadow(2px,0.3,0,1px)
 		#reward-modal-tab
 			position: absolute
 			bottom: -39px
@@ -95,7 +95,7 @@
 			border-top: none
 			width: auto
 			z-index: 2
-			@include boxshadow(2px,0.3,0,2px)
+			@include boxshadow(1px,0.3,0,1px)
 			.inner
 				width: auto
 				position: relative
@@ -155,12 +155,13 @@
 			z-index: 1
 			#toggle-reward-stream
 				position: absolute
-				background: transparent url(../images/rewardModalToggleStream.png) no-repeat 1px 0
-				top: 10px
+				background: transparent url(../images/rewardModalToggleStream.png) no-repeat 0 0
+				top: 50%
 				right: 0
+				margin-top: -28px
 				text-align: center
-				width: 21px
-				height: 22px
+				width: 24px
+				height: 56px
 				cursor: pointer
 			
 			.inner.loading
@@ -214,6 +215,7 @@
 				padding: 20px
 				
 				#reward-box
+					padding-top: 110px
 					.alert
 						background-color: $lightred
 						color: $red
@@ -275,19 +277,20 @@
 									height: 50px
 
 				#share
-					h3
-						float: left
-						width: 150px
-						text-align: left
 					.info
-						float: right
-						width: 190px
-						font-size: 11px
-						text-align: right
-						padding-bottom: 10px
-						strong
-							padding-left: 18px
-							background: transparent url(../images/icons/impactTiny.png) no-repeat 0 0
+						height: 60px
+						h3.impact
+							font-size: 21px
+							margin: 0
+							span
+								padding: 3px 0
+							span.icon
+								padding-left: 37px
+								background: transparent url(../images/icons/impact.png) no-repeat 0 0
+						a#what-is-impact
+							float: right
+							margin: -2px 20px 0 0
+							font-size: 11px
 					
 					#twitter-sharing
 						margin-bottom: 30px
@@ -338,7 +341,7 @@
 								font-size: 13px
 								text-align: left
 								margin-bottom: 5px
-								width: auto
+								width: 260px
 								height: 16px
 								overflow: hidden
 							.link
@@ -506,7 +509,7 @@
 		#your-reward.closed
 			right: 265px
 			#toggle-reward-stream
-				background-position: 1px -22px
+				background-position: 0 -56px
 
 			#not-logged-in
 				.explanation
@@ -842,3 +845,8 @@
 		right: 0
 		.button
 			background-position: -138px 0
+			
+#what-is-impact-modal
+	width: 831px
+	height: 258px
+	background: transparent url(../images/whatIsImpactModal.png) no-repeat 0 0

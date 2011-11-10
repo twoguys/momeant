@@ -13,21 +13,23 @@
         %li.rewards
           .value= @user.rewards.sum(:amount)
           .text
-            rewards
-            %br
-            received
+            rewards received
         %li.patrons    
           .value= @user.patrons.size
           .text
-            patrons that
-            %br
-            have rewarded
+            people have rewarded
         %li.cash
-          .value= number_to_currency(@user.rewards.sum(:amount) * 0.10)
+          .value
+            %span.dollar-sign $
+            %span= number_to_currency(@user.rewards.sum(:amount) * Reward.dollar_exchange)[1..-1]
           .text
-            money earned
-            %br
-            from rewards
+            all-time money earned
+        %li.cash.last
+          .value
+            %span.dollar-sign $
+            %span= number_to_currency(@user.rewards.not_cashed_out.sum(:amount) * Reward.dollar_exchange)[1..-1]
+          .text
+            not cashed out
           - if me?(@user)
             = link_to "Cash Out", user_cashouts_path(@user), :id => "cashout", :class => "button"
           

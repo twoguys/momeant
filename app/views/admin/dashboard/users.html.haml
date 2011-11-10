@@ -6,7 +6,7 @@
       %tr
         %th{:colspan => 4} All Users
     %tbody
-      - User.order("created_at ASC").each do |user|
+      - User.order("created_at DESC").each do |user|
         %tr
           %td= link_to(user.name, user_path(user))
           %td= user.email

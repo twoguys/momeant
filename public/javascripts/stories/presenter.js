@@ -197,10 +197,7 @@ $(function() {
 			$('#reward_amount').val($star_button.attr('amount'));
 			$('#custom_amount').val('');
 			
-			var $comment = $('#comment');
-			if (!$comment.is(':visible')) {
-				$comment.fadeIn('fast');
-			}
+			this.show_reward_comment();
 			return false;
 		},
 		
@@ -214,13 +211,18 @@ $(function() {
 			$amount.change(function() {
 				$('#reward_amount').val($(this).val());
 			});
-			$('#custom_amount').observe_field(1, function(value, object) {
-				
-				var $comment = $('#comment');
-				if (!$comment.is(':visible')) {
-					$comment.fadeIn('fast');
-				}
-			});
+			$('#custom_amount').observe_field(1, this.show_reward_comment);
+		},
+		
+		show_reward_comment: function() {
+		  var $comment = $('#comment');
+			if (!$comment.is(':visible')) {
+			  window.setTimeout(function() {
+			    $('#reward-box').animate({'padding-top':'45px'}, 300, function() {
+  			    $comment.fadeIn('fast');
+  			  });
+			  }, 300);
+			}
 		},
 
 		submit_reward: function(e) {
@@ -256,6 +258,7 @@ $(function() {
 					$('#its-you-arrow').show();
 					$('#share').show();
 					$('#mini-nav').animate({top:'0'}, 500);
+					$('#what-is-impact').fancybox();
 				}
 			);
 		},

@@ -137,6 +137,7 @@ impact ul.avatars
 	.the-rest
 		margin-left: 208px
 		min-height: 100%
+		min-width: 840px
 		.horizontal-tabs
 			border-bottom: 1px solid #ccc
 			ul
@@ -284,7 +285,7 @@ impact ul.avatars
 	ul.stats-bar
 		height: 50px
 		margin: 0 0 20px
-		padding: 20px 0
+		height: 80px
 		//background: #f6f6f6
 		//background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0.2, rgb(235,235,235)),color-stop(0.6, rgb(252,252,252)))
 		//background-image: -moz-linear-gradient(center bottom,rgb(235,235,235) 20%,rgb(252,252,252) 60%)
@@ -292,33 +293,39 @@ impact ul.avatars
 		li
 			float: left
 			font-size: 11px
-			height: 60px
-			margin-top: -5px
 			position: relative
-			.text, .value
-				float: left
-			.text
-				padding: 30px 5px 0 0
-				text-align: right
 			.value
 				font-family: $numerals
-				font-size: 70px
+				font-size: 50px
 				line-height: 1em
 				font-weight: 200
+				float: left
+				text-align: right
 				padding-right: 20px
 				background: transparent url(../images/icons/starBlackSmall.png) no-repeat 100% 3px
-		li.rewards
-			padding-left: 10px
-		li.rewards, li.patrons
-			border-right: 1px solid #fff
+				span
+					line-height: 1em
+				.dollar-sign
+					font-size: 20px
+					position: relative
+					top: -19px
+					margin-right: -10px
+			.text
+				clear: both
+		li.rewards, li.patrons, li.cash
 			padding-right: 30px
 		li.patrons, li.cash, li.impact
-			border-left: 1px solid #ccc
+			border-left: 1px solid #ddd
 			padding-left: 30px
 		li.patrons .value
 			background: transparent url(../images/icons/person.png) no-repeat 100% 3px
+		li.impact .value
+			padding-right: 27px
+			background: transparent url(../images/icons/impact.png) no-repeat 100% -2px
 		li.cash .value
 			background: none
+		li.cash.last
+			padding-right: 75px
 		li.impact .notification
 			position: absolute
 			top: 13px
@@ -333,7 +340,7 @@ impact ul.avatars
 		position: relative
 		a#cashout
 			position: absolute
-			top: 0
+			top: 6px
 			right: 0
 			padding: 8px 15px 7px
 			&.disabled

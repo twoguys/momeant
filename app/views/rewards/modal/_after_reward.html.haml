@@ -11,14 +11,13 @@
 
 #reward-box-outer
   #share.section
-    %h3
-      Increase your
-      %span Impact
-      Score!
     .info
-      %span When you promote content and get others to reward it, your
-      %strong Momeant Impact
-      %span grows!
+      %h3.impact
+        %span Increase your
+        %span.icon Momeant Impact
+      = link_to "what is Momeant Impact?", "#what-is-impact-modal", :id => "what-is-impact"
+      .hidden
+        #what-is-impact-modal
 
     #twitter-sharing
       - if @twitter_configured

@@ -25,7 +25,8 @@ class Story < ActiveRecord::Base
       :access_key_id       => ENV['S3_KEY'],
       :secret_access_key   => ENV['S3_SECRET']
     },
-    :bucket        => ENV['S3_BUCKET']
+    :bucket        => ENV['S3_BUCKET'],
+    :processors => [:cropper]
   
   belongs_to :user
   belongs_to :gallery
@@ -59,7 +60,9 @@ class Story < ActiveRecord::Base
   
   paginates_per 12
   
-  attr_accessor :autosaving
+  attr_accessor :autosaving, :crop_x, :crop_y, :crop_width, :crop_height
+  
+  after_update :reprocess_thumbnail, :if => :cropping?
     
   def to_param
     if title.blank?
@@ -211,5 +214,17 @@ class Story < ActiveRecord::Base
       self.thumbnail_hex_color = hex
     rescue
     end
+  end
+  
+  def cropping?
+    !crop_x.blank? && !crop_y.blank? && !crop_width.blank? && !crop_height.blank? 
+  end
+  
+  private
+  
+  def reprocess_thumbnail
+    thumbnail.reprocess!
+    self.crop_x = nil
+    save
   end
 end

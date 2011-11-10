@@ -2,28 +2,27 @@
   = render "users/community_tabs"
 
   .tabbed
-    
-    - if params[:tag]
-      .header
-        %h3= params[:tag].downcase
-        = link_to("< Back", community_people_path)
         
     %ul.users
       - @users.each do |user|
         %li.user
           = link_to(image_tag(user.avatar.url(:large)), user_path(user), :class => "avatar")
-          = link_to(user.name, user_path(user), :class => "name")
+          = link_to(truncate(user.name, :length => 25), user_path(user), :class => "name")
           = image_tag("badges/#{user.badge_level}.png", :class => "badge")
           .tags
             - user.tags.each do |tag|
               = link_to(tag.name.downcase, community_people_path(:tag => tag.name), :class => "tag")
               
-    - unless params[:tag]
-      .tag-cloud
-        %h3 Filter people by tag:
-        .tags
+    .tag-cloud
+      %h3 Popular tags:
+      %ul.tags
+        - if params[:tag]
+          %li.current
+            %span= params[:tag].downcase
+            = link_to "remove", community_path
+        - else
           - @tags.each do |tag|
-            = link_to(tag.name.downcase, community_people_path(:tag => tag.name), :class => "tag")
+            %li= link_to(tag.name.downcase, community_path(:tag => tag.name), :class => "tag")
 
 :javascript
   var options = {anonymous_id: '#{session[:analytics_anonymous_id]}'};

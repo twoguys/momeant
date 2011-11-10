@@ -84,6 +84,16 @@ class StoriesController < ApplicationController
     end
   end
   
+  def crop
+    options = params[:story]
+    options.merge!({:autosaving => true})
+    if @story.update_attributes(options)
+      redirect_to edit_story_path(@story)
+    else
+      render :crop
+    end
+  end
+  
   def change_to_external
     @story.pages.destroy_all
     @story.pages << ExternalPage.new(:number => 1)

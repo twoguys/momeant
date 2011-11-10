@@ -19,15 +19,11 @@
         %li.rewards
           .value= @user.given_rewards.sum(:amount)
           .text
-            rewards
-            %br
-            given
+            rewards given
         %li.impact
           .value= @user.impact
           .text
-            impact
-            %br
-            score
+            impact score
           - if @user.impact == 0
             .notification
     
