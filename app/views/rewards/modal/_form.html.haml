@@ -4,9 +4,8 @@
   #creator-info
     = link_to(image_tag(@story.user.avatar.url(:large)), creations_user_path(@story.user), :class => "avatar")
     %h1 Reward #{link_to(@story.user.name, creations_user_path(@story.user))}
-    - unless @story.user.tagline.blank?
-      .tagline
-        %span= truncate(@story.user.tagline, :length => 260)
+    .tagline
+      %span= truncate(@story.user.tagline, :length => 260)
   #reward-box-outer
     - if current_user.coins == 0
       .explanation.out-of-coins
