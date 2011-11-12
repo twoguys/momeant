@@ -3717,58 +3717,15 @@ form.new_story, form.edit_story, .story-form {
   #presenter .content {
     z-index: 1; }
   #presenter #metadata {
-    position: absolute;
-    left: 0;
+    position: fixed;
+    right: 35px;
     bottom: 0;
     z-index: 5;
-    width: 100%;
-    height: 35px; }
-    #presenter #metadata .info {
-      display: none;
-      float: left;
-      margin-left: 10px; }
-      #presenter #metadata .info .title, #presenter #metadata .info .author {
-        line-height: 35px;
-        vertical-align: middle;
-        float: left;
-        font-weight: 700; }
-      #presenter #metadata .info .title {
-        color: white;
-        text-transform: uppercase;
-        font-size: 18px; }
-      #presenter #metadata .info .author {
-        color: #555555;
-        margin-left: 5px;
-        font-size: 16px; }
-      #presenter #metadata .info .excerpt {
-        float: left;
-        width: 30px;
-        height: 30px;
-        margin-left: 10px;
-        background: transparent url(../images/storyShowSynopsis.png) no-repeat 50% 4px;
-        position: relative;
-        cursor: help; }
-        #presenter #metadata .info .excerpt .full {
-          width: 200px;
-          padding: 8px;
-          background-color: black;
-          color: white;
-          position: absolute;
-          bottom: 35px;
-          left: -90px;
-          opacity: 0.9;
-          display: none;
-          -webkit-border-radius: 3px;
-          -moz-border-radius: 3px;
-          border-radius: 3px; }
-      #presenter #metadata .info .excerpt:hover .full {
-        display: block; }
+    height: 25px; }
     #presenter #metadata .pages {
       background: rgba(0, 0, 0, 0.75);
       float: right;
-      height: 15px;
-      margin: 10px 20px 0 0;
-      padding: 5px 15px 5px 10px;
+      padding: 5px 7.5px;
       -webkit-border-top-left-radius: 3px;
       -webkit-border-top-right-radius: 3px;
       -moz-border-radius-topleft: 3px;
@@ -3777,7 +3734,7 @@ form.new_story, form.edit_story, .story-form {
       border-top-right-radius: 3px; }
       #presenter #metadata .pages a {
         font-size: 10px;
-        margin-left: 5px;
+        padding: 0 2.5px;
         color: white; }
       #presenter #metadata .pages a.selected {
         color: #00aeef; }

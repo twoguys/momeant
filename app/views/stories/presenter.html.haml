@@ -28,13 +28,8 @@
     #next-page
       .button{:title => "Next page"} next page
   
-    #metadata
-      .info
-        .title= @story.title
-        .author by #{link_to(@story.user.name, user_path(@story.user))}
-        .excerpt
-          .full= @story.synopsis
-      - unless @story.pages.count == 1
+    - unless @story.pages.count == 1
+      #metadata
         .pages
           - 1.upto @story.pages.count do |page|
             = link_to(page, "#", :class => page == 1 ? "selected" : "", :page => page)

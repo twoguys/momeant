@@ -726,56 +726,15 @@
 		z-index: 1
 	
 	#metadata
-		position: absolute
-		left: 0
+		position: fixed
+		right: 35px
 		bottom: 0
 		z-index: 5
-		width: 100%
-		height: 35px
-		.info
-			display: none
-			float: left
-			margin-left: 10px
-			.title, .author
-				line-height: 35px
-				vertical-align: middle
-				float: left
-				font-weight: 700
-			.title
-				color: #fff
-				text-transform: uppercase
-				font-size: 18px
-			.author
-				color: #555
-				margin-left: 5px
-				font-size: 16px
-			.excerpt
-				float: left
-				width: 30px
-				height: 30px
-				margin-left: 10px
-				background: transparent url(../images/storyShowSynopsis.png) no-repeat 50% 4px
-				position: relative
-				cursor: help
-				.full
-					width: 200px
-					padding: 8px
-					background-color: #000
-					color: #fff
-					position: absolute
-					bottom: 35px
-					left: -90px
-					opacity: 0.9
-					display: none
-					@include rounded(3px)
-			.excerpt:hover .full
-				display: block
+		height: 25px
 		.pages
 			background: rgba(0,0,0,0.75)
 			float: right
-			height: 15px
-			margin: 10px 20px 0 0
-			padding: 5px 15px 5px 10px
+			padding: 5px 7.5px
 			-webkit-border-top-left-radius: 3px
 			-webkit-border-top-right-radius: 3px
 			-moz-border-radius-topleft: 3px
@@ -784,7 +743,7 @@
 			border-top-right-radius: 3px
 			a
 				font-size: 10px
-				margin-left: 5px
+				padding: 0 2.5px
 				color: #fff
 			a.selected
 				color: $link_color
