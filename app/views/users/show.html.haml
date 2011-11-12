@@ -24,7 +24,7 @@
           .value= @user.impact
           .text
             impact score
-          - if @user.impact == 0
+          - if @user.impact == 0 && me?(@user)
             .notification
     
       %section.patronage.rewarded-creators
@@ -38,7 +38,7 @@
               %a.tooltipped{:href => user_content_rewarded_by_path(user, @user), :title => user.name}
                 = image_tag(user.avatar.url(:large), :style => "width:#{size}px;height:#{size}px")
                 .border{:style => "width:#{size}px;height:#{size}px"}
-            - if @users.empty?
+            - if @users.empty? && me?(@user)
               %a#impact-example.tooltipped{:href => "#reward-viz-example", :title => "Click to see an example of how you can track your impact as you start rewarding creators."}
                 = image_tag("exampleAvatarWallFace.png")
                 .border{:style => "width:44px;height:44px"}
