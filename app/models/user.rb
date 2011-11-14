@@ -262,6 +262,8 @@ class User < ActiveRecord::Base
     
     access_token = self.authentications.find_by_provider("facebook").token
     RestClient.post 'https://graph.facebook.com/me/feed', { :access_token => access_token, :link => url, :picture => picture, :message => message }
+    
+    object.update_attribute(:shared_to_facebook, true) if object.is_a?(Reward)
   end
   
   def post_to_twitter(object, url, comment = "")
@@ -280,6 +282,8 @@ class User < ActiveRecord::Base
     end
     
     Twitter.update(message, :wrap_links => true)
+    
+    object.update_attribute(:shared_to_twitter, true) if object.is_a?(Reward)
   end
   
   

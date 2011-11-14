@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111028024111) do
+ActiveRecord::Schema.define(:version => 20111114170855) do
 
   create_table "adverts", :force => true do |t|
     t.string   "title"
@@ -67,6 +67,8 @@ ActiveRecord::Schema.define(:version => 20111028024111) do
     t.integer  "depth",                :default => 0
     t.boolean  "show_on_landing_page", :default => false
     t.integer  "cashout_id"
+    t.boolean  "shared_to_twitter",    :default => false
+    t.boolean  "shared_to_facebook",   :default => false
   end
 
   create_table "galleries", :force => true do |t|
