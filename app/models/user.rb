@@ -156,10 +156,20 @@ class User < ActiveRecord::Base
     end
     options = {:story_id => story.id, :amount => amount, :user_id => self.id, :recipient_id => story.user.id, :comment => comment}
 
+    old_badge_level = self.badge_level
+
     reward = Reward.create!(options)
     story.increment!(:reward_count, amount)
     self.decrement!(:coins, amount)
     story.user.increment!(:lifetime_rewards, amount)
+    
+    reward.reload
+    Activity.create(:actor_id => self.id, :recipient_id => story.user.id, :action_type => "Reward", :action_id => reward.id)
+
+    new_badge_level = self.reload.badge_level
+    if new_badge_level != old_badge_level
+      Activity.create(:actor_id => self.id, :action_type => "Badge", :action_id => new_badge_level)
+    end
     
     if impacted_by
       parent_reward = Reward.find_by_id(impacted_by)

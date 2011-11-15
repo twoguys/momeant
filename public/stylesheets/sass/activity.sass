@@ -1,0 +1,127 @@
+ul#activity
+	
+	li
+		position: relative
+		background: #fff
+		@include rounded(3px)
+		border: 1px solid #ccc
+		@include boxshadow(3px,0.2,0,1px)
+		margin-bottom: 20px
+		
+		.header
+			position: relative
+			height: 15px
+			padding: 17.5px 10px 17.5px 50px
+			background: #f7f7f7
+			@include gradient(#fff,#f7f7f7)
+			border-bottom: 1px solid #ccc
+			color: #777
+			text-shadow: 0 1px 0 #fff
+			-webkit-border-top-left-radius: 3px
+			-webkit-border-top-right-radius: 3px
+			-moz-border-radius-topleft: 3px
+			-moz-border-radius-topright: 3px
+			border-top-left-radius: 3px
+			border-top-right-radius: 3px
+			a
+				text-transform: uppercase
+				font-weight: 700
+		
+			a.thumbnail
+				position: absolute
+				top: 10px
+				left: 10px
+				display: block
+				width: 30px
+				height: 30px
+				img
+					width: 30px
+					height: 30px
+		
+		.body
+			padding: 10px
+		
+			.comment
+				margin-bottom: 10px
+
+			.content
+				position: relative
+				min-height: 66px
+				padding-left: 109px
+				a.title
+					font-weight: 700
+					text-transform: uppercase
+				.byline
+					display: block
+					font-size: 11px
+				.content-thumbnail
+					position: absolute
+					top: 0
+					left: 0
+					background: #fff
+					padding: 2px
+					border: 1px solid #ddd
+					display: block
+					width: 95px
+					height: 60px
+			
+				.tags	
+					padding-top: 5px
+		
+		.footer
+			border-top: 1px solid #ddd
+			background: #f7f7f7
+			padding: 5px 10px
+			color: #aaa
+			font-size: 11px
+			-webkit-border-bottom-left-radius: 3px
+			-webkit-border-bottom-right-radius: 3px
+			-moz-border-radius-bottomleft: 3px
+			-moz-border-radius-bottomright: 3px
+			border-bottom-left-radius: 3px
+			border-bottom-right-radius: 3px
+			.when
+				margin-right: 10px
+			.twitter, .facebook
+				width: 12px
+				height: 12px
+				background: transparent url(../images/icons/twitterTiny.png) no-repeat
+				display: inline-block
+				margin-right: 5px
+				cursor: help
+				position: relative
+				top: 2px
+			.facebook
+				background-image: url(../images/icons/facebookTiny.png)
+	
+	li.reward
+		.header
+			.amount
+				margin: 0 3px
+				background: $blue url(../images/icons/starWhiteTiny.png) no-repeat 80% 5px
+				color: #fff
+				padding: 2px 19px 2px 6px
+				@include rounded(3px)
+				font-size: 11px
+				position: relative
+				top: -1px
+				box-shadow: 0 0 3px rgba(0,0,0,0.4) inset
+	
+	li.reward, li.content
+		a.thumbnail img
+			border: 1px solid #ccc
+	
+	li.purchase .header
+		-webkit-border-bottom-left-radius: 3px
+		-webkit-border-bottom-right-radius: 3px
+		-moz-border-radius-bottomleft: 3px
+		-moz-border-radius-bottomright: 3px
+		border-bottom-left-radius: 3px
+		border-bottom-right-radius: 3px
+	
+	li.badge
+		a.thumbnail
+			width: 25.6px
+			img
+				width: 25.6px
+				margin-left: 2px

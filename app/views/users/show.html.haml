@@ -1,78 +1,22 @@
-- content_for :head do
-  = javascript_include_tag "jquery.masonry.min"
-  
-  :javascript
-    $(document).ready(function() {
-      $('.avatar-wall .wall').masonry({columnWidth:50});
-      $('.avatar-wall .wall a').fancybox({padding:0});
-    });
-
 .user-profile
   = render "users/user_info"
   
   .the-rest
-    = render "users/user_tabs"
+    .tabbed.activity
+      
+      %ul#activity-nav
+        %li= link_to "All", user_path(@user), :class => "active"
+        %li= link_to "Rewarding", "#"
+        %li= link_to "Content", "#"
+        %li= link_to "Support", "#"
 
-    .tabbed
-    
-      %ul.stats-bar
-        %li.rewards
-          .value= @user.given_rewards.sum(:amount)
-          .text
-            rewards given
-        %li.impact
-          .value= @user.impact
-          .text
-            impact score
-          - if @user.impact == 0 && me?(@user)
-            .notification
-    
-      %section.patronage.rewarded-creators
-        %h3
-          Creators #{@user == current_user ? "you've" : "#{@user.first_name} has"} rewarded
-          %em Click on a profile picture to see #{@user == current_user ? "your" : "#{@user.first_name}'s"} impact on that creator.
-        .avatar-wall
-          .wall
-            - @users.each do |user|
-              - size = avatar_size_for_impact(@user.impact_on(user))
-              %a.tooltipped{:href => user_content_rewarded_by_path(user, @user), :title => user.name}
-                = image_tag(user.avatar.url(:large), :style => "width:#{size}px;height:#{size}px")
-                .border{:style => "width:#{size}px;height:#{size}px"}
-            - if @users.empty? && me?(@user)
-              %a#impact-example.tooltipped{:href => "#reward-viz-example", :title => "Click to see an example of how you can track your impact as you start rewarding creators."}
-                = image_tag("exampleAvatarWallFace.png")
-                .border{:style => "width:44px;height:44px"}
-              %div{:style => "display:none;"}
-                #reward-viz-example
-                  #avatar-tooltip.tip
-                    .hover
-                    .tipsy.tipsy-e
-                      .tipsy-arrow.white
-                      .tipsy-inner Your reward will sit at the top of the impact tree.
-                  #rewards-tooltip.tip
-                    .hover
-                    .tipsy.tipsy-w
-                      .tipsy-arrow.white
-                      .tipsy-inner You'll be able to see how many rewards you gave.
-                  #impact-tooltip.tip
-                    .hover
-                    .tipsy.tipsy-w
-                      .tipsy-arrow.white
-                      .tipsy-inner
-                        %span When you promote your reward (on
-                        %span.twitter
-                        %span and
-                        %span.facebook
-                        %span ) and it drives others to reward, your impact tree will grow.
-                  #sharing-tooltip.tip
-                    .hover
-                    .tipsy.tipsy-n
-                      .tipsy-arrow.white
-                      .tipsy-inner You'll be able to see where others found out about this content.
+      %ul#activity
+        - @activity.each do |activity|
+          = render :partial => "activity/#{activity.action_type.downcase}", :locals => {:activity => activity, activity.action_type.downcase.to_sym => activity.action}
 
 - if me?(@user)
   :javascript
-    mpq.track('Viewed My Profile Rewards', {anonymous_id: '#{session[:analytics_anonymous_id]}'});
+    mpq.track('Viewed My Activity');
 - else
   :javascript
-    mpq.track('Viewed Profile Rewards', {anonymous_id: '#{session[:analytics_anonymous_id]}', mp_note: '#{@user.name}'});
+    mpq.track('Viewed Activity', {mp_note: '#{@user.name}'});

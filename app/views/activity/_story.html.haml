@@ -1,0 +1,20 @@
+%li.content
+  
+  .header
+    = link_to image_tag(story.user.avatar.url(:thumbnail)), user_path(story.user), :class => "thumbnail"
+    = link_to story.user.name, user_path(story.user)
+    %span shared some content.
+    
+  .body
+    - if story.synopsis.present?
+      .comment= story.synopsis
+    
+    .content
+      = link_to image_tag(story.thumbnail.url(:petite)), story_path(story), :class => "content-thumbnail"
+      = link_to story.title, story_path(story), :class => "title"
+      .tags
+        - story.tags.each do |tag|
+          = link_to tag.name, "#", :class => "tag"
+  
+  .footer
+    %span.when #{time_ago_in_words story.created_at} ago

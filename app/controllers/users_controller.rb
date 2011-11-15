@@ -1,9 +1,11 @@
 class UsersController < ApplicationController
-  before_filter :authenticate_user!, :only => [:edit, :update, :analytics, :feedback]
+  before_filter :authenticate_user!, :only => [:edit, :update, :update_in_place, :udpate_avatar, :analytics, :feedback]
   before_filter :find_user, :except => [:community, :community_creators, :analytics, :billing_updates, :feedback]
-  skip_before_filter :verify_authenticity_token, :only => :billing_updates
+  skip_before_filter :verify_authenticity_token, :only => [:billing_updates, :update_avatar]
   
   def show
+    @activity = Activity.involving(@user)
+    
     @users = @user.rewarded_creators
     @rewards = @user.given_rewards.for_content
     flash[:track_user_view] = true
@@ -31,6 +33,27 @@ class UsersController < ApplicationController
       @nav = "home"
       @sidenav = "profile"
       render 'edit'
+    end
+  end
+  
+  def update_in_place
+    @user = current_user
+    if @user.update_attribute(params[:attribute], params[:update_value])
+      render :text => params[:update_value]
+    else
+      render :text => params[:original_value]
+    end
+  end
+  
+  def update_avatar
+    return if params[:avatar].blank?
+    
+    @user = current_user
+    @user.avatar = params[:avatar]
+    if @user.save
+      render :json => {:result => "success", :url => @user.avatar.url(:large)} and return
+    else
+      render :json => {:result => "failure", :message => "Unable to save image"} and return
     end
   end
   

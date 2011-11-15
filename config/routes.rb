@@ -76,6 +76,9 @@ Repo::Application.routes.draw do
       get :followers
       get :following
       get :supporters
+      get :info
+      post :update_in_place
+      post :update_avatar
     end
     
     # Homepage tab

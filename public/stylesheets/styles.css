@@ -4713,6 +4713,9 @@ ul.stories .excerpt {
       color: white !important;
       text-shadow: none; }
 
+body#users {
+  background: white; }
+
 impact ul.avatars li {
   float: left;
   margin: 0 10px 10px 0; }
@@ -4755,6 +4758,8 @@ impact ul.avatars li {
 
 .user-profile {
   /* First-time Users */
+  /* Activity */
+  /* Info */
   /* Patronage Tab */
   /* Stats Bar */
   /* Creations Tab */
@@ -4771,13 +4776,12 @@ impact ul.avatars li {
     padding: 10px 20px;
     border-right: 1px solid #cccccc;
     z-index: 99;
-    font-size: 11px;
     background: #f4f4f4;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     overflow: hidden; }
     .user-profile .profile-info .avatar-badge-name {
       position: relative;
-      padding: 152px 0 0 5px;
+      padding: 178px 0 0 5px;
       margin-bottom: 15px;
       margin-left: -5px; }
       .user-profile .profile-info .avatar-badge-name .avatar {
@@ -4805,6 +4809,31 @@ impact ul.avatars li {
         top: 0;
         left: 0;
         z-index: 3; }
+    .user-profile .profile-info ul.nav li a {
+      display: block;
+      height: 16px;
+      padding: 4px;
+      text-transform: uppercase;
+      font-size: 11px;
+      margin-bottom: 2px; }
+      .user-profile .profile-info ul.nav li a span {
+        padding-left: 22px;
+        background: transparent url(../images/icons/activity.png) no-repeat 0 -2px; }
+    .user-profile .profile-info ul.nav li a:hover {
+      color: #008ccd; }
+    .user-profile .profile-info ul.nav li a.info span {
+      background-image: url(../images/icons/user.png); }
+    .user-profile .profile-info ul.nav li a.content span {
+      background-image: url(../images/icons/content.png); }
+    .user-profile .profile-info ul.nav li a.message span {
+      background-image: url(../images/icons/message.png); }
+    .user-profile .profile-info ul.nav li a.edit span {
+      background-image: url(../images/icons/pencil.png); }
+    .user-profile .profile-info ul.nav li a.active {
+      background: transparent url(../images/navActiveBG.png) no-repeat 100% 0;
+      color: white; }
+      .user-profile .profile-info ul.nav li a.active span {
+        background-position: 0 -25px; }
     .user-profile .profile-info .stats {
       margin-bottom: 10px;
       padding-left: 70px;
@@ -4830,14 +4859,6 @@ impact ul.avatars li {
           margin-right: 3px; }
       .user-profile .profile-info .stats .rewards-given, .user-profile .profile-info .stats .impact {
         border-bottom: 1px solid #dddddd; }
-    .user-profile .profile-info a.edit {
-      background: transparent url(../images/icons/pencilBlue.png) no-repeat 0 0;
-      padding-left: 18px;
-      text-transform: uppercase;
-      font-size: 12px;
-      font-weight: 700;
-      margin-bottom: 10px;
-      display: block; }
     .user-profile .profile-info .occupation h3, .user-profile .profile-info .tagline h3, .user-profile .profile-info .location h3, .user-profile .profile-info .tags h3 {
       font-size: 10px;
       text-transform: uppercase;
@@ -4868,9 +4889,7 @@ impact ul.avatars li {
           border: 1px solid #cccccc;
           border-bottom: none; }
     .user-profile .the-rest .tabbed {
-      padding: 20px;
-      background: white;
-      border-bottom: 1px solid #cccccc; }
+      padding: 20px; }
   .user-profile .guides {
     padding: 25px; }
     .user-profile .guides a {
@@ -4986,6 +5005,45 @@ impact ul.avatars li {
     background: transparent url(../images/icons/communityDark.png) no-repeat 0 2px; }
   .user-profile .have-not.shared .box-button .inner {
     background: transparent url(../images/icons/momeantAddStoryGrey.png) no-repeat 5px 2px; }
+  .user-profile .tabbed.activity h1 {
+    font-weight: 700;
+    text-transform: uppercase; }
+  .user-profile .tabbed.activity ul#activity-nav {
+    display: none;
+    height: 20px;
+    margin: 0 0 15px;
+    padding-left: 10px; }
+    .user-profile .tabbed.activity ul#activity-nav li {
+      float: left;
+      margin-right: 80px;
+      text-transform: uppercase; }
+      .user-profile .tabbed.activity ul#activity-nav li a.active {
+        font-weight: 700; }
+  .user-profile .tabbed.info section {
+    margin-bottom: 20px; }
+  .user-profile .tabbed.info h3 {
+    text-transform: uppercase;
+    font-size: 1.1em;
+    margin-bottom: 5px; }
+  .user-profile .tabbed.info input[type="text"] {
+    width: 400px; }
+  .user-profile .tabbed.info .only-me {
+    border-top: 1px solid #cccccc;
+    padding-top: 10px; }
+    .user-profile .tabbed.info .only-me .info {
+      color: #777777;
+      font-size: 11px;
+      margin-bottom: 20px; }
+    .user-profile .tabbed.info .only-me form .example {
+      border: none;
+      padding-bottom: 0; }
+    .user-profile .tabbed.info .only-me .file-uploader .file-input {
+      height: 25px; }
+    .user-profile .tabbed.info .only-me .file-uploader .loader {
+      width: 220px;
+      height: 19px;
+      background: transparent url(../images/loading.gif) no-repeat 0 0;
+      display: none; }
   .user-profile section.patronage h3 {
     text-transform: uppercase;
     font-size: 15px;
@@ -7405,7 +7463,7 @@ a.tag:hover {
     clear: both;
     position: relative;
     padding: 15px 0 15px 50px;
-    border-top: 1px solid #eeeeee; }
+    border-top: 1px solid #dddddd; }
     #messages ul#previous-messages li.message .avatar {
       position: absolute;
       top: 15px;
@@ -7428,7 +7486,7 @@ a.tag:hover {
         padding-top: 0;
         padding-bottom: 5px;
         border-bottom: none;
-        border-top: 1px solid #eeeeee; }
+        border-top: 1px solid #dddddd; }
         #messages ul#previous-messages li.message .rest ul.children li.message .rest {
           width: 350px; }
         #messages ul#previous-messages li.message .rest ul.children li.message .avatar {
@@ -7446,6 +7504,124 @@ a.tag:hover {
           float: right;
           background: #bbbbbb;
           margin: 0; }
+
+ul#activity li {
+  position: relative;
+  background: white;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  border: 1px solid #cccccc;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px; }
+  ul#activity li .header {
+    position: relative;
+    height: 15px;
+    padding: 17.5px 10px 17.5px 50px;
+    background: #f7f7f7;
+    background-image: -moz-linear-gradient(center top, white 4%, #f7f7f7 52%);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, white), color-stop(0.52, #f7f7f7));
+    border-bottom: 1px solid #cccccc;
+    color: #777777;
+    text-shadow: 0 1px 0 white;
+    -webkit-border-top-left-radius: 3px;
+    -webkit-border-top-right-radius: 3px;
+    -moz-border-radius-topleft: 3px;
+    -moz-border-radius-topright: 3px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px; }
+    ul#activity li .header a {
+      text-transform: uppercase;
+      font-weight: 700; }
+    ul#activity li .header a.thumbnail {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      display: block;
+      width: 30px;
+      height: 30px; }
+      ul#activity li .header a.thumbnail img {
+        width: 30px;
+        height: 30px; }
+  ul#activity li .body {
+    padding: 10px; }
+    ul#activity li .body .comment {
+      margin-bottom: 10px; }
+    ul#activity li .body .content {
+      position: relative;
+      min-height: 66px;
+      padding-left: 109px; }
+      ul#activity li .body .content a.title {
+        font-weight: 700;
+        text-transform: uppercase; }
+      ul#activity li .body .content .byline {
+        display: block;
+        font-size: 11px; }
+      ul#activity li .body .content .content-thumbnail {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: white;
+        padding: 2px;
+        border: 1px solid #dddddd;
+        display: block;
+        width: 95px;
+        height: 60px; }
+      ul#activity li .body .content .tags {
+        padding-top: 5px; }
+  ul#activity li .footer {
+    border-top: 1px solid #dddddd;
+    background: #f7f7f7;
+    padding: 5px 10px;
+    color: #aaaaaa;
+    font-size: 11px;
+    -webkit-border-bottom-left-radius: 3px;
+    -webkit-border-bottom-right-radius: 3px;
+    -moz-border-radius-bottomleft: 3px;
+    -moz-border-radius-bottomright: 3px;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px; }
+    ul#activity li .footer .when {
+      margin-right: 10px; }
+    ul#activity li .footer .twitter, ul#activity li .footer .facebook {
+      width: 12px;
+      height: 12px;
+      background: transparent url(../images/icons/twitterTiny.png) no-repeat;
+      display: inline-block;
+      margin-right: 5px;
+      cursor: help;
+      position: relative;
+      top: 2px; }
+    ul#activity li .footer .facebook {
+      background-image: url(../images/icons/facebookTiny.png); }
+ul#activity li.reward .header .amount {
+  margin: 0 3px;
+  background: #00aeef url(../images/icons/starWhiteTiny.png) no-repeat 80% 5px;
+  color: white;
+  padding: 2px 19px 2px 6px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  font-size: 11px;
+  position: relative;
+  top: -1px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.4) inset; }
+ul#activity li.reward a.thumbnail img, ul#activity li.content a.thumbnail img {
+  border: 1px solid #cccccc; }
+ul#activity li.purchase .header {
+  -webkit-border-bottom-left-radius: 3px;
+  -webkit-border-bottom-right-radius: 3px;
+  -moz-border-radius-bottomleft: 3px;
+  -moz-border-radius-bottomright: 3px;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px; }
+ul#activity li.badge a.thumbnail {
+  width: 25.6px; }
+  ul#activity li.badge a.thumbnail img {
+    width: 25.6px;
+    margin-left: 2px; }
 
 .info-bar {
   background-color: #00aeef;

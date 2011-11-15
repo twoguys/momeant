@@ -64,5 +64,10 @@ class AmazonPayment < Transaction
     transaction_id = doc.search("TransactionId").first.content
     self.update_attribute(:amazon_transaction_id, transaction_id)
     self.payer.increment!(:coins, self.coins)
+    
+    Activity.create(:actor_id => self.payer_id, :action_type => "AmazonPayment", :action_id => self.id)
+    if self.payer.amazon_payments.paid.count == 1
+      Activity.create(:actor_id => self.payer_id, :action_type => "Badge", :action_id => 2)
+    end
   end
 end

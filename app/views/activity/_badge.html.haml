@@ -1,0 +1,8 @@
+- level = badge[:level]
+- user = User.find(badge[:user_id])
+%li.badge
+  
+  .header
+    = link_to image_tag("badges/#{level}.png"), about_path, :class => "thumbnail"
+    = link_to user.name, user_path(user)
+    %span achieved Badge Level #{level}.

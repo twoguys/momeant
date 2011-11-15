@@ -1,0 +1,6 @@
+%li.purchase
+  
+  .header
+    = link_to image_tag("coinCountBlue.png"), coins_path, :class => "thumbnail"
+    = link_to amazonpayment.payer.name, user_path(amazonpayment.payer)
+    %span purchased #{amazonpayment.coin_string}.

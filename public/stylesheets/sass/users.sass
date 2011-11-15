@@ -1,3 +1,6 @@
+body#users
+	background: #fff
+
 impact ul.avatars
 	li
 		float: left
@@ -48,13 +51,12 @@ impact ul.avatars
 		padding: 10px 20px
 		border-right: 1px solid #ccc
 		z-index: 99
-		font-size: 11px
 		background: $background_color
 		box-shadow: 0 2px 5px rgba(0,0,0,0.2)
 		overflow: hidden
 		.avatar-badge-name
 			position: relative
-			padding: 152px 0 0 5px
+			padding: 178px 0 0 5px
 			margin-bottom: 15px
 			margin-left: -5px
 			.avatar
@@ -82,6 +84,34 @@ impact ul.avatars
 				top: 0
 				left: 0
 				z-index: 3
+		
+		ul.nav
+			li
+				a
+					display: block
+					height: 16px
+					padding: 4px
+					text-transform: uppercase
+					font-size: 11px
+					margin-bottom: 2px
+					span
+						padding-left: 22px
+						background: transparent url(../images/icons/activity.png) no-repeat 0 -2px
+				a:hover
+					color: $blue - #222
+				a.info span
+					background-image: url(../images/icons/user.png)
+				a.content span
+					background-image: url(../images/icons/content.png)
+				a.message span
+					background-image: url(../images/icons/message.png)
+				a.edit span
+					background-image: url(../images/icons/pencil.png)
+				a.active
+					background: transparent url(../images/navActiveBG.png) no-repeat 100% 0
+					color: #fff
+					span
+						background-position: 0 -25px
 		.stats
 			margin-bottom: 10px
 			padding-left: 70px
@@ -107,14 +137,6 @@ impact ul.avatars
 					margin-right: 3px
 			.rewards-given, .impact
 				border-bottom: 1px solid #ddd
-		a.edit
-			background: transparent url(../images/icons/pencilBlue.png) no-repeat 0 0
-			padding-left: 18px
-			text-transform: uppercase
-			font-size: 12px
-			font-weight: 700
-			margin-bottom: 10px
-			display: block
 		.occupation, .tagline, .location, .tags
 			h3
 				font-size: 10px
@@ -148,8 +170,6 @@ impact ul.avatars
 					border-bottom: none
 		.tabbed
 			padding: 20px
-			background: #fff
-			border-bottom: 1px solid #ccc
 	
 	
 	.guides
@@ -245,6 +265,53 @@ impact ul.avatars
 		background: transparent url(../images/icons/communityDark.png) no-repeat 0 2px
 	.have-not.shared .box-button .inner
 		background: transparent url(../images/icons/momeantAddStoryGrey.png) no-repeat 5px 2px
+	
+	/* Activity */
+	.tabbed.activity
+		h1
+			font-weight: 700
+			text-transform: uppercase
+		ul#activity-nav
+			display: none
+			height: 20px
+			margin: 0 0 15px
+			padding-left: 10px
+			li
+				float: left
+				margin-right: 80px
+				text-transform: uppercase
+				a.active
+					font-weight: 700
+	
+	/* Info */
+	.tabbed.info
+		section
+			margin-bottom: 20px
+		h3
+			text-transform: uppercase
+			font-size: 1.1em
+			margin-bottom: 5px
+		input[type="text"]
+			width: 400px
+		
+		.only-me
+			border-top: 1px solid #ccc
+			padding-top: 10px
+			.info
+				color: #777
+				font-size: 11px
+				margin-bottom: 20px
+			form .example
+				border: none
+				padding-bottom: 0
+			.file-uploader
+				.file-input
+					height: 25px
+				.loader
+					width: 220px
+					height: 19px
+					background: transparent url(../images/loading.gif) no-repeat 0 0
+					display: none
 	
 	/* Patronage Tab */
 	section.patronage
