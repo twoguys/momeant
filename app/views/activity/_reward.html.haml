@@ -4,7 +4,8 @@
     = link_to image_tag(reward.user.avatar.url(:thumbnail)), user_path(reward.user), :class => "thumbnail"
     = link_to reward.user.name, user_path(reward.user)
     %span rewarded
-    = link_to reward.recipient.name, user_path(reward.recipient)
+    = link_to "#{reward.recipient.name}'s", user_path(reward.recipient)
+    %span content
     %span.amount= reward.amount
     
   .body
