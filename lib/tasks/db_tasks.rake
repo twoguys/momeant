@@ -48,7 +48,8 @@ namespace :momeant do
             :actor_id => reward.user_id,
             :recipient_id => ancestor.user_id,
             :action_type => "Impact",
-            :action_id => reward.id)
+            :action_id => reward.id,
+            :created_at => ancestor.created_at)
         end
       end
       
