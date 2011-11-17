@@ -79,6 +79,7 @@ Repo::Application.routes.draw do
       get :info
       post :update_in_place
       post :update_avatar
+      get :activity #ajax
     end
     
     # Homepage tab

@@ -16,3 +16,19 @@
       %li= link_to_active message_text.html_safe, user_messages_path(@user), :class => "message"
     - else
       %li= link_to "<span>Message #{@user.first_name}</span>".html_safe, user_messages_path(@user), :class => "message"
+  
+  %ul.stats    
+    %li.impact
+      %span.amount= @user.impact
+      %span impact
+    %li.all-time-money
+      %span.dollar $
+      %span.amount= number_to_currency(@user.rewards.sum(:amount) * Reward.dollar_exchange)[1..-1]
+      %span all time earnings
+    %li.current-money
+      %span.dollar $
+      %span.amount= number_to_currency(@user.rewards.not_cashed_out.sum(:amount) * Reward.dollar_exchange)[1..-1]
+      %span not cashed out
+
+  - if me?(@user)
+    = link_to "Cash Out", user_cashouts_path(@user), :id => "cashout", :class => "button"

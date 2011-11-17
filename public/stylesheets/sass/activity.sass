@@ -1,4 +1,16 @@
+#activity-loading
+	position: absolute
+	top: 50px
+	left: 50%
+	margin-left: -200px
+	padding-left: 20px
+	background: transparent url(../images/spinner.gif) no-repeat 0 0
+	text-transform: uppercase
+	font-weight: 700
+	display: none
+
 ul#activity
+	margin-right: 200px
 	
 	li
 		position: relative
@@ -90,7 +102,7 @@ ul#activity
 			.facebook
 				background-image: url(../images/icons/facebookTiny.png)
 	
-	li.reward
+	li.reward, li.impact
 		.header
 			.amount
 				margin: 0 3px
@@ -107,6 +119,9 @@ ul#activity
 		a.thumbnail img
 			border: 1px solid #ccc
 	
+	li.impact .header .amount
+		background: $blue url(../images/icons/impactBlueTiny.png) no-repeat 85% 2px
+	
 	li.purchase .header
 		-webkit-border-bottom-left-radius: 3px
 		-webkit-border-bottom-right-radius: 3px
@@ -121,3 +136,38 @@ ul#activity
 			img
 				width: 25.6px
 				margin-left: 2px
+
+#activity-filter
+	position: fixed
+	top: 62px
+	right: 30px
+	width: 185px
+	font-size: 11px
+	
+	.info
+		text-transform: uppercase
+		text-shadow: 0 1px 0 #fff
+		color: #999
+		margin-bottom: 5px
+	
+	ul#types
+		li
+			clear: both
+			a
+				display: block
+				padding: 4px 4px 4px 6px
+				color: #222
+				@include rounded(3px)
+				.amount
+					float: right
+					padding: 1px 3px 0
+					background: #222
+					color: #f4f4f4
+					font-size: 10px
+					@include rounded(3px)
+		li.selected a
+			background: #222
+			color: #fff
+			.amount
+				background: #fff
+				color: #222

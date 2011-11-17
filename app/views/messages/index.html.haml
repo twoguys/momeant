@@ -6,9 +6,9 @@
 
   .the-rest
   
-    .tabbed#messages
+    .tabbed#messages-inner
       - if me?(@user)
-        To send someone a message, visit their profile page and click the "Message" tab. You can search for users up in the top right of the navigation bar.
+        .note{:class => @messages.empty? ? "empty" : ""}
       - else
         #new-message-form
           = image_tag(current_user.avatar.url(:thumbnail), :class => "avatar")

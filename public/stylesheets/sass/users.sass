@@ -1,6 +1,3 @@
-body#users
-	background: #fff
-
 impact ul.avatars
 	li
 		float: left
@@ -45,19 +42,18 @@ impact ul.avatars
 	.profile-info
 		position: fixed
 		top: 42px
-		bottom: 0
+		//bottom: 0
 		left: 0
 		width: 167px
 		padding: 10px 20px
-		border-right: 1px solid #ccc
+		//border-right: 1px solid #ccc
 		z-index: 99
-		background: $background_color
-		box-shadow: 0 2px 5px rgba(0,0,0,0.2)
+		//background: $background_color
+		//box-shadow: 0 2px 5px rgba(0,0,0,0.2)
 		overflow: hidden
 		.avatar-badge-name
 			position: relative
 			padding: 178px 0 0 5px
-			margin-bottom: 15px
 			margin-left: -5px
 			.avatar
 				position: absolute
@@ -86,6 +82,7 @@ impact ul.avatars
 				z-index: 3
 		
 		ul.nav
+			margin: 20px 0
 			li
 				a
 					display: block
@@ -112,31 +109,29 @@ impact ul.avatars
 					color: #fff
 					span
 						background-position: 0 -25px
-		.stats
-			margin-bottom: 10px
-			padding-left: 70px
+		ul.stats
 			position: relative
-			.impact-shield
-				background: transparent url(../images/shieldBlue.png) no-repeat 0 0
-				width: 56px
-				height: 67px
-				color: #fff
-				font-weight: 700
-				font-size: 30px
-				line-height: 62px
-				text-align: center
-				position: absolute
-				top: 0
-				left: 0
-			.rewards-given, .impact, .rewards-received
+			margin-bottom: 10px
+			li
 				padding: 4px 0
 				font-size: 11px
-				.amount
-					background: transparent url(../images/icons/starBlackTiny.png) no-repeat 100% 2px
-					padding-right: 13px
-					margin-right: 3px
-			.rewards-given, .impact
 				border-bottom: 1px solid #ddd
+				&:last-child
+					border: none
+				.amount
+					font-weight: 700
+				.dollar
+					padding: 0 6px 0 5px
+			.impact .amount
+				background: transparent url(../images/icons/impactTiny.png) no-repeat 0 0
+				padding-left: 20px
+				margin-right: 3px
+		
+		#cashout
+			display: block
+			font-size: 11px
+			text-align: center
+				
 		.occupation, .tagline, .location, .tags
 			h3
 				font-size: 10px
@@ -161,6 +156,7 @@ impact ul.avatars
 		margin-left: 208px
 		min-height: 100%
 		min-width: 840px
+		position: relative
 		.horizontal-tabs
 			border-bottom: 1px solid #ccc
 			ul

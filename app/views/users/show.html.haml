@@ -10,10 +10,48 @@
         %li= link_to "Content", "#"
         %li= link_to "Support", "#"
 
+      #activity-loading Just a momeant...
       %ul#activity
-        - @activity.each do |activity|
-          = render :partial => "activity/#{activity.action_type.downcase}", :locals => {:activity => activity, activity.action_type.downcase.to_sym => activity.action}
+        = render @activity
+        - if @activity.empty?
+          %li No activity yet.
+      
+      #activity-filter
+        .info Filter by type of activity
+        %ul#types
+          %li.all.selected
+            %a{:href => "#", :filter => "all"}
+              All activity
+              %span.amount= Activity.involving(@user).count
+          %li.impact
+            %a{:href => "#", :filter => "impact"}
+              Impact made
+              %span.amount= Activity.on_impact.involving(@user).count
+          %li.rewards-given
+            %a{:href => "#", :filter => "rewards-given"}
+              Rewards given
+              %span.amount= Activity.on_rewards.where(:actor_id => @user.id).count
+          %li.rewards-received
+            %a{:href => "#", :filter => "rewards-received"}
+              Rewards received
+              %span.amount= Activity.on_rewards.where(:recipient_id => @user.id).count
+          %li.content
+            %a{:href => "#", :filter => "content"}
+              Content created
+              %span.amount= Activity.on_content.involving(@user).count
+          %li.badges
+            %a{:href => "#", :filter => "badges"}
+              Badges earned
+              %span.amount= Activity.on_badges.involving(@user).count
+          %li.coins
+            %a{:href => "#", :filter => "coins"}
+              Coins purchased
+              %span.amount= Activity.on_purchases.involving(@user).count
 
+:javascript
+  var user_id = #{@user.id};
+= javascript_include_tag "users/activity"
+  
 - if me?(@user)
   :javascript
     mpq.track('Viewed My Activity');

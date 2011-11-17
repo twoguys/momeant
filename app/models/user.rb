@@ -154,7 +154,7 @@ class User < ActiveRecord::Base
     if !can_afford?(amount)
       return false
     end
-    options = {:story_id => story.id, :amount => amount, :user_id => self.id, :recipient_id => story.user.id, :comment => comment}
+    options = {:story_id => story.id, :amount => amount, :user_id => self.id, :recipient_id => story.user_id, :comment => comment}
 
     old_badge_level = self.badge_level
 
@@ -164,7 +164,7 @@ class User < ActiveRecord::Base
     story.user.increment!(:lifetime_rewards, amount)
     
     reward.reload
-    Activity.create(:actor_id => self.id, :recipient_id => story.user.id, :action_type => "Reward", :action_id => reward.id)
+    Activity.create(:actor_id => self.id, :recipient_id => story.user_id, :action_type => "Reward", :action_id => reward.id)
 
     new_badge_level = self.reload.badge_level
     if new_badge_level != old_badge_level
@@ -176,6 +176,7 @@ class User < ActiveRecord::Base
       if parent_reward
         reward.move_to_child_of(parent_reward)
         reward.update_attribute(:depth, reward.ancestors.count)
+        Activity.create(:actor_id => self.id, :recipient_id => parent_reward.user_id, :action_type => "Impact", :action_id => reward.id)
       end
     end
     

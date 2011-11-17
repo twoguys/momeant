@@ -2,9 +2,9 @@
   
   .header
     = link_to image_tag(reward.user.avatar.url(:thumbnail)), user_path(reward.user), :class => "thumbnail"
-    = link_to reward.user.name, user_path(reward.user)
+    = link_to you_or_name(reward.user), user_path(reward.user)
     %span rewarded
-    = link_to "#{reward.recipient.name}'s", user_path(reward.recipient)
+    = link_to your_or_name(reward.recipient), user_path(reward.recipient)
     %span content
     %span.amount= reward.amount
     
@@ -18,7 +18,7 @@
       %span.byline by #{link_to reward.story.user.name, user_path(reward.story.user)}
       .tags
         - reward.story.tags.each do |tag|
-          = link_to tag.name, "#", :class => "tag"
+          = link_to tag.name, community_path(:tag => tag.name), :class => "tag"
   
   .footer
     %span.when #{time_ago_in_words reward.created_at} ago

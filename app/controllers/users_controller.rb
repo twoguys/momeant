@@ -19,6 +19,27 @@ class UsersController < ApplicationController
     render @user.following_stream(params[:page])
   end
   
+  def activity
+    activity = []
+    case params[:filter]
+    when "all"
+      activity = Activity.involving(@user)
+    when "impact"
+      activity = Activity.on_impact.involving(@user)
+    when "rewards-given"
+      activity = Activity.on_rewards.where(:actor_id => @user.id)
+    when "rewards-received"
+      activity = Activity.on_rewards.where(:recipient_id => @user.id)
+    when "content"
+      activity = Activity.on_content.involving(@user)
+    when "badges"
+      activity = Activity.on_badges.involving(@user)
+    when "coins"
+      activity = Activity.on_purchases.involving(@user)
+    end
+    render activity
+  end
+  
   def edit
     redirect_to edit_user_path(current_user) and return if current_user != @user
     @nav = "home"

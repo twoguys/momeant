@@ -17,20 +17,6 @@
           .value= @user.patrons.size
           .text
             people have rewarded
-        %li.cash
-          .value
-            %span.dollar-sign $
-            %span= number_to_currency(@user.rewards.sum(:amount) * Reward.dollar_exchange)[1..-1]
-          .text
-            all-time money earned
-        %li.cash.last
-          .value
-            %span.dollar-sign $
-            %span= number_to_currency(@user.rewards.not_cashed_out.sum(:amount) * Reward.dollar_exchange)[1..-1]
-          .text
-            not cashed out
-          - if me?(@user)
-            = link_to "Cash Out", user_cashouts_path(@user), :id => "cashout", :class => "button"
           
   
       %ul.galleries

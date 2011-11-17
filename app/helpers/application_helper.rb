@@ -9,7 +9,11 @@ module ApplicationHelper
   end
 
   def you_or_name(user)
-    me?(user) ? "you" : user.name
+    me?(user) ? "You" : user.name
+  end
+  
+  def your_or_name(user)
+    me?(user) ? "Your" : "#{user.name}'s"
   end
   
   def private_beta?

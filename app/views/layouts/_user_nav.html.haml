@@ -2,8 +2,12 @@
   .bg
   %ul.links{:class => @hide_search ? "search-hidden" : ""}
     %li#logo= link_to("Momeant", root_path)
-    %li#home{:class => @nav == "home" ? "active" : ""}
-      = link_to("Momeant", root_path, :class => "tooltipped", :title => "Home")
+    - if user_signed_in?
+      %li#home{:class => @nav == "home" ? "active" : ""}
+        = link_to("Momeant", user_path(current_user), :class => "tooltipped", :title => "Home")
+    - else
+      %li#home{:class => @nav == "home" ? "active" : ""}
+        = link_to("Momeant", root_path, :class => "tooltipped", :title => "Home")
     %li#community{:class => @nav == "community" ? "active": ""}
       = link_to("Community", community_path, :class => "tooltipped", :title => "Community")
     - if user_signed_in?
