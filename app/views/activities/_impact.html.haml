@@ -1,23 +1,24 @@
-%li.impact
+- if activity.recipient == @user
+  %li.impact
   
-  .header
-    = link_to image_tag(activity.recipient.avatar.url(:thumbnail)), user_path(activity.recipient), :class => "thumbnail"
-    = link_to activity.recipient.name, user_path(activity.recipient)
-    %span gained
-    %span.amount= impact.amount
-    %span impact
+    .header
+      = link_to image_tag(activity.recipient.avatar.url(:thumbnail)), user_path(activity.recipient), :class => "thumbnail"
+      = link_to you_or_name(activity.recipient), user_path(activity.recipient)
+      %span gained
+      %span.amount= impact.amount
+      %span impact
     
-  .body
-    .comment
-      #{link_to impact.user.name, user_path(impact.user)} rewarded #{link_to "#{impact.story.user.name}'s", user_path(impact.story.user)} content after seeing #{link_to activity.recipient.first_name, user_path(activity.recipient)} promote it.
+    .body
+      .comment
+        #{link_to you_or_name(impact.user), user_path(impact.user)} rewarded #{link_to your_or_name(impact.story.user), user_path(impact.story.user)} content after seeing #{link_to you_or_name(activity.recipient), user_path(activity.recipient)} promote it.
     
-    .content
-      = link_to image_tag(impact.story.thumbnail.url(:petite)), story_path(impact.story, :impacted_by => impact.id), :class => "content-thumbnail"
-      = link_to impact.story.title, story_path(impact.story, :impacted_by => impact.id), :class => "title"
-      %span.byline by #{link_to impact.story.user.name, user_path(impact.story.user)}
-      .tags
-        - impact.story.tags.each do |tag|
-          = link_to tag.name, community_path(:tag => tag.name), :class => "tag"
+      .content
+        = link_to image_tag(impact.story.thumbnail.url(:petite)), story_path(impact.story, :impacted_by => impact.id), :class => "content-thumbnail"
+        = link_to impact.story.title, story_path(impact.story, :impacted_by => impact.id), :class => "title"
+        %span.byline by #{link_to impact.story.user.name, user_path(impact.story.user)}
+        .tags
+          - impact.story.tags.each do |tag|
+            = link_to tag.name, community_path(:tag => tag.name), :class => "tag"
   
-  .footer
-    %span.when #{time_ago_in_words impact.created_at} ago
+    .footer
+      %span.when #{time_ago_in_words impact.created_at} ago

@@ -22,7 +22,7 @@
   
   .footer
     %span.when #{time_ago_in_words reward.created_at} ago
-    - if reward.shared_to_twitter
+    - if reward.shared_to_twitter?
       %span.twitter.tooltipped{:title => "Shared to Twitter"}
-    - if reward.shared_to_facebook
+    - if reward.shared_to_facebook?
       %span.facebook.tooltipped{:title => "Shared to Facebook"}

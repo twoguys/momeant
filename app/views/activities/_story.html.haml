@@ -2,7 +2,7 @@
   
   .header
     = link_to image_tag(story.user.avatar.url(:thumbnail)), user_path(story.user), :class => "thumbnail"
-    = link_to story.user.name, user_path(story.user)
+    = link_to you_or_name(story.user), user_path(story.user)
     %span shared some content.
     
   .body

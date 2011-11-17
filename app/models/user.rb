@@ -176,7 +176,9 @@ class User < ActiveRecord::Base
       if parent_reward
         reward.move_to_child_of(parent_reward)
         reward.update_attribute(:depth, reward.ancestors.count)
-        Activity.create(:actor_id => self.id, :recipient_id => parent_reward.user_id, :action_type => "Impact", :action_id => reward.id)
+        reward.ancestors.each do |ancestor|
+          Activity.create(:actor_id => self.id, :recipient_id => ancestor.user_id, :action_type => "Impact", :action_id => reward.id)
+        end
       end
     end
     
