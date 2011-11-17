@@ -14,7 +14,7 @@
       %ul#activity
         = render @activity
         - if @activity.empty?
-          %li No activity yet.
+          %li.none No activity yet.
       
       #activity-filter
         .info Filter by type of activity
@@ -25,7 +25,7 @@
               %span.amount= Activity.involving(@user).count
           %li.impact
             %a{:href => "#", :filter => "impact"}
-              Impact made
+              Impact gained
               %span.amount= Activity.on_impact.involving(@user).count
           %li.rewards-given
             %a{:href => "#", :filter => "rewards-given"}

@@ -31,7 +31,7 @@ $(function() {
 		},
 		
 		update_list: function(html) {
-  	  if ($.trim(html) == '') { html = '<li>No activity yet.</li>'; }
+  	  if ($.trim(html) == '') { html = '<li class="none">No activity yet.</li>'; }
 		  $('#activity').html(html);
 		  ActivityFilter.hide_loading();
 		},
