@@ -7540,9 +7540,9 @@ a.tag:hover {
   font-weight: 700;
   display: none; }
 
-ul#activity {
+ul#activity-list {
   margin-right: 200px; }
-  ul#activity li {
+  ul#activity-list li {
     position: relative;
     background: white;
     -webkit-border-radius: 3px;
@@ -7553,7 +7553,7 @@ ul#activity {
     -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
     margin-bottom: 20px; }
-    ul#activity li .header {
+    ul#activity-list li .header {
       position: relative;
       height: 15px;
       padding: 17.5px 10px 17.5px 50px;
@@ -7568,31 +7568,31 @@ ul#activity {
       -moz-border-radius-topright: 3px;
       border-top-left-radius: 3px;
       border-top-right-radius: 3px; }
-      ul#activity li .header a.thumbnail {
+      ul#activity-list li .header a.thumbnail {
         position: absolute;
         top: 10px;
         left: 10px;
         display: block;
         width: 30px;
         height: 30px; }
-        ul#activity li .header a.thumbnail img {
+        ul#activity-list li .header a.thumbnail img {
           width: 30px;
           height: 30px; }
-    ul#activity li .body {
+    ul#activity-list li .body {
       padding: 10px; }
-      ul#activity li .body .comment {
+      ul#activity-list li .body .comment {
         margin-bottom: 10px; }
-      ul#activity li .body .content {
+      ul#activity-list li .body .content {
         position: relative;
         min-height: 66px;
         padding-left: 109px; }
-        ul#activity li .body .content a.title {
+        ul#activity-list li .body .content a.title {
           font-weight: 700;
           text-transform: uppercase; }
-        ul#activity li .body .content .byline {
+        ul#activity-list li .body .content .byline {
           display: block;
           font-size: 11px; }
-        ul#activity li .body .content .content-thumbnail {
+        ul#activity-list li .body .content .content-thumbnail {
           position: absolute;
           top: 0;
           left: 0;
@@ -7602,9 +7602,9 @@ ul#activity {
           display: block;
           width: 95px;
           height: 60px; }
-        ul#activity li .body .content .tags {
+        ul#activity-list li .body .content .tags {
           padding-top: 5px; }
-    ul#activity li .footer {
+    ul#activity-list li .footer {
       border-top: 1px solid #dddddd;
       background: #f7f7f7;
       padding: 5px 10px;
@@ -7616,9 +7616,9 @@ ul#activity {
       -moz-border-radius-bottomright: 3px;
       border-bottom-left-radius: 3px;
       border-bottom-right-radius: 3px; }
-      ul#activity li .footer .when {
+      ul#activity-list li .footer .when {
         margin-right: 10px; }
-      ul#activity li .footer .twitter, ul#activity li .footer .facebook {
+      ul#activity-list li .footer .twitter, ul#activity-list li .footer .facebook {
         width: 12px;
         height: 12px;
         background: transparent url(../images/icons/twitterTiny.png) no-repeat;
@@ -7627,9 +7627,9 @@ ul#activity {
         cursor: help;
         position: relative;
         top: 2px; }
-      ul#activity li .footer .facebook {
+      ul#activity-list li .footer .facebook {
         background-image: url(../images/icons/facebookTiny.png); }
-  ul#activity li.reward .header .amount, ul#activity li.impact .header .amount {
+  ul#activity-list li.reward .header .amount, ul#activity-list li.impact .header .amount {
     margin: 0 3px;
     background: #00aeef url(../images/icons/starWhiteTiny.png) no-repeat 80% 5px;
     color: white;
@@ -7641,23 +7641,23 @@ ul#activity {
     position: relative;
     top: -1px;
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.4) inset; }
-  ul#activity li.reward a.thumbnail img, ul#activity li.content a.thumbnail img {
+  ul#activity-list li.reward a.thumbnail img, ul#activity-list li.content a.thumbnail img {
     border: 1px solid #cccccc; }
-  ul#activity li.impact .header .amount {
+  ul#activity-list li.impact .header .amount {
     background: #00aeef url(../images/icons/impactBlueTiny.png) no-repeat 85% 2px; }
-  ul#activity li.purchase .header {
+  ul#activity-list li.purchase .header {
     -webkit-border-bottom-left-radius: 3px;
     -webkit-border-bottom-right-radius: 3px;
     -moz-border-radius-bottomleft: 3px;
     -moz-border-radius-bottomright: 3px;
     border-bottom-left-radius: 3px;
     border-bottom-right-radius: 3px; }
-  ul#activity li.badge a.thumbnail {
+  ul#activity-list li.badge a.thumbnail {
     width: 25.6px; }
-    ul#activity li.badge a.thumbnail img {
+    ul#activity-list li.badge a.thumbnail img {
       width: 25.6px;
       margin-left: 2px; }
-  ul#activity li.none {
+  ul#activity-list li.none {
     background: none;
     border: none;
     box-shadow: none; }
@@ -7697,6 +7697,21 @@ ul#activity {
     #activity-filter ul#types li.selected a .amount {
       background: white;
       color: #222222; }
+
+a#load-more-activity {
+  display: block;
+  margin-right: 200px;
+  padding: 10px 0;
+  text-align: center;
+  background: #dddddd;
+  color: #333333;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px; }
+  a#load-more-activity:hover {
+    background: #cccccc; }
+  a#load-more-activity.loading {
+    background: #cccccc url(../images/spinnerLightGreyBg.gif) no-repeat 10px 50%; }
 
 .info-bar {
   background-color: #00aeef;

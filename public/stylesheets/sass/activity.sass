@@ -9,7 +9,7 @@
 	font-weight: 700
 	display: none
 
-ul#activity
+ul#activity-list
 	margin-right: 200px
 	
 	li
@@ -176,3 +176,16 @@ ul#activity
 			.amount
 				background: #fff
 				color: #222
+
+a#load-more-activity
+	display: block
+	margin-right: 200px
+	padding: 10px 0
+	text-align: center
+	background: #ddd
+	color: #333
+	@include rounded(3px)
+	&:hover
+		background: #ccc
+	&.loading
+		background: #ccc url(../images/spinnerLightGreyBg.gif) no-repeat 10px 50%

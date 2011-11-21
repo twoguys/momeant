@@ -11,6 +11,8 @@ class Activity < ActiveRecord::Base
   scope :on_purchases, where(:action_type => "AmazonPayment")
   scope :on_badges, where(:action_type => "Badge")
   
+  paginates_per 10
+  
   def action
     case self.action_type
     when "Badge"

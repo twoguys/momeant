@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => [:billing_updates, :update_avatar]
   
   def show
-    @activity = Activity.involving(@user)
+    @activity = Activity.involving(@user).page(params[:page])
     
     @users = @user.rewarded_creators
     @rewards = @user.given_rewards.for_content
@@ -37,6 +37,7 @@ class UsersController < ApplicationController
     when "coins"
       activity = Activity.on_purchases.involving(@user)
     end
+    activity = activity.page params[:page]
     render activity
   end
   
