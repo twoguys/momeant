@@ -10,9 +10,6 @@
         = link_to("Momeant", root_path, :class => "tooltipped", :title => "Home")
     %li#community{:class => @nav == "community" ? "active": ""}
       = link_to("Community", community_path, :class => "tooltipped", :title => "Community")
-    - if user_signed_in?
-      %li#create{:class => @nav == "create" ? "active" : ""}
-        = link_to("Share", creations_user_path(current_user), :class => "tooltipped", :title => "Share your content")
     %li#faq{:class => @nav == "about" ? "active" : ""}
       = link_to("About Us", about_path, :class => "tooltipped", :title => "About momeant")
     - if user_signed_in?

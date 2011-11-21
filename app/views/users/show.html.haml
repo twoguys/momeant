@@ -14,7 +14,21 @@
       %ul#activity
         = render @activity
         - if @activity.empty?
-          %li.none No activity yet.
+          #new-user-no-activity
+            %h1
+              %span Yay! We’ve given you 5 reward coins (
+              %span.coin
+              %span ) for free!
+            %p
+              %span Use these coins to reward others for their great content, which can be found on the
+              = link_to "Community Page.", community_path, :class => "community"
+            %p
+              %span As you start rewarding, and
+              = link_to "creating your own content", creations_user_path(current_user)
+              %span , you will see a list of that activity and its impact show up here.
+            
+            #activity-example
+              Example activity:
       
       #activity-filter
         .info Filter by type of activity
