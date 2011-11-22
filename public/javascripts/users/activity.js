@@ -30,7 +30,7 @@ $(function() {
 		  
 		  this.show_loading();
 		  $('#load-more-activity').hide();
-		  $.get('/users/' + user_id + '/activity', {filter: filter}, this.update_list);
+		  $.get(activity_url, {filter: filter}, this.update_list);
 		},
 		
 		update_list: function(html) {
@@ -69,7 +69,7 @@ $(function() {
 		  this.page = this.page + 1;
 		  
 		  $button.addClass('loading');
-		  $.get('/users/' + user_id + '/activity', {filter: this.filter, page: this.page}, function(html) {
+		  $.get(activity_url, {filter: this.filter, page: this.page}, function(html) {
 		    Activity.add_to_list(html);
 		    $button.removeClass('loading');
 		  });

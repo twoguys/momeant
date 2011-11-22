@@ -60,7 +60,7 @@
               %span.amount= Activity.on_purchases.involving(@user).count
 
 :javascript
-  var user_id = #{@user.id};
+  var activity_url = '/users/' + #{@user.id} + '/activity';
 = javascript_include_tag "users/activity"
   
 - if me?(@user)
