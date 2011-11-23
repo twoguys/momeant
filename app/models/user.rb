@@ -154,30 +154,51 @@ class User < ActiveRecord::Base
     if !can_afford?(amount)
       return false
     end
-    options = {:story_id => story.id, :amount => amount, :user_id => self.id, :recipient_id => story.user_id, :comment => comment}
-
+    
+    options = {:story_id => story.id, :amount => amount, :user_id => self.id, :recipient_id => story.user_id, :comment => comment, :impact => amount}
+    
+    # track previous badge level to compare in a second
     old_badge_level = self.badge_level
 
+    # create the reward and increment the necessary cache counters
     reward = Reward.create!(options)
     story.increment!(:reward_count, amount)
     self.decrement!(:coins, amount)
+    self.increment!(:impact, amount)
     story.user.increment!(:lifetime_rewards, amount)
     
-    reward.reload
+    # create the reward activity record
+    Rails.logger.info "ASDFASDFSADFASDFASDF #{reward.id}"
     Activity.create(:actor_id => self.id, :recipient_id => story.user_id, :action_type => "Reward", :action_id => reward.id)
 
+    # if the user's badge level changed, record a badge activity record
     new_badge_level = self.reload.badge_level
     if new_badge_level != old_badge_level
       Activity.create(:actor_id => self.id, :action_type => "Badge", :action_id => new_badge_level)
     end
     
+    # if this was impacted by another reward
     if impacted_by
       parent_reward = Reward.find_by_id(impacted_by)
       if parent_reward
+        # make the new reward a child of the impacter reward
         reward.move_to_child_of(parent_reward)
         reward.update_attribute(:depth, reward.ancestors.count)
+
+        # update all ancestor rewards' impact
+        reward.ancestors.update_all("impact = impact + #{reward.amount}")
+        
+        # update all ancestors' user's impact, except for this reward's user (no double points!)
+        ancestor_ids = reward.ancestors.map(&:user_id).reject{|user_id| user_id == reward.user_id}
+        unless ancestor_ids.empty?
+          User.where("id in (#{ancestor_ids.join(",")})").update_all("impact = impact + #{reward.amount}")
+        end
+        
+        # record an activity for each ancestor getting impact
         reward.ancestors.each do |ancestor|
-          Activity.create(:actor_id => self.id, :recipient_id => ancestor.user_id, :action_type => "Impact", :action_id => reward.id)
+          if ancestor.user_id != reward.user_id
+            Activity.create(:actor_id => self.id, :recipient_id => ancestor.user_id, :action_type => "Impact", :action_id => reward.id)
+          end
         end
       end
     end
@@ -204,9 +225,9 @@ class User < ActiveRecord::Base
     Reward.where(:user_id => self.id, :recipient_id => user.id).map {|reward| reward.impact}.inject(:+) || 0
   end
   
-  def impact
-    self.given_rewards.map {|reward| reward.impact}.inject(:+) || 0
-  end
+  # def impact
+  #   self.given_rewards.map {|reward| reward.impact}.inject(:+) || 0
+  # end
   
   def tags
     tags = self.given_rewards.map{|r| r.story.tags}.flatten

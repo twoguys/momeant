@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111114175015) do
+ActiveRecord::Schema.define(:version => 20111122140558) do
 
   create_table "activities", :force => true do |t|
     t.integer  "actor_id"
@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(:version => 20111114175015) do
     t.integer  "cashout_id"
     t.boolean  "shared_to_twitter",    :default => false
     t.boolean  "shared_to_facebook",   :default => false
+    t.integer  "impact",               :default => 0
   end
 
   create_table "galleries", :force => true do |t|
@@ -277,6 +278,7 @@ ActiveRecord::Schema.define(:version => 20111114175015) do
     t.text     "thankyou"
     t.string   "location"
     t.string   "amazon_email"
+    t.integer  "impact",                                      :default => 0
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

@@ -26,3 +26,5 @@
       %span.twitter.tooltipped{:title => "Shared to Twitter"}
     - if reward.shared_to_facebook?
       %span.facebook.tooltipped{:title => "Shared to Facebook"}
+    - if reward.impact > 0
+      %span.impact Led to #{pluralize reward.impact - reward.amount, "more reward"}

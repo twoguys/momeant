@@ -32,10 +32,6 @@ class Reward < Curation
     0.1
   end
   
-  def impact
-    self.descendants.sum(:amount) + self.amount
-  end
-  
   def descendants_tree(descendants)
     comment = self.comment
     comment = "#{comment[0..120]}..." if comment.length > 120
