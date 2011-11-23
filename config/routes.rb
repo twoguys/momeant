@@ -117,6 +117,7 @@ Repo::Application.routes.draw do
     resources :adverts do
       post :toggle_enabled, :on => :member
     end
+    resources :editorials
   end
   
   match '/auth/:provider/configure' => 'authentications#configure'

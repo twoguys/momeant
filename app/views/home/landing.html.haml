@@ -1,44 +1,47 @@
 - content_for :head do
   = javascript_include_tag "landing"
-  :css
-    #landing #background {
-      background-image: url(#{@background_url})
-    }
 
 #landing
-  #background
-  
-  #insides
-    %a.previous
-    %ul#letter
-      %li.page
-        #internet.inner
-          .padded
-            %span.large Dear
-            %span.large.spaced Internet,
-            %span You've given us so much free content over the years, and we love you for it, but...
-      %li.page
-        #problem.inner
-          .padded
-            %span
-              We also believe that the folks who create the really good stuff deserve to be
-              %strong rewarded
-              in return.
-            %span
-              That’s why we’ve created momeant, a place to
-              %strong reward and be rewarded.
-      %li.page
-        #solution.inner
-          .padded
-            %span
-              By
-              %strong rewarding
-              each other, we recognize the value of our online creations, and show real support for the people who make them.
-            %span
-              So, #{link_to("Join momeant", "#join-modal")}, share your content, discover other great content,
-              %strong reward and be rewarded.
-    %a.next
 
+  %h1#slogan
+    %span Reward the
+    %em people
+    %span behind great content on the web...and watch
+    %em creativity
+    %span grow.
+  
+  #faces
+    - first = true
+    - @editorials.each do |editorial|
+      = link_to image_tag(editorial.user.avatar.url(:large)), "#", :class => first ? "selected" : "", :info_id => editorial.id
+      - first = false
+    
+  - first = true
+  #info
+    - @editorials.each do |editorial|
+      .info{:id => "info_for_#{editorial.id}", :class => first ? "selected" : ""}
+
+        %h2
+          %span.name= editorial.user.name
+          %span creator
+
+        %p.quote= editorial.quote
+
+        .stats
+          - if editorial.show_as == "creator"
+            .rewards.stat
+              %span.amount= editorial.user.lifetime_rewards
+              %span.text rewards received
+            .earned.stat
+              %span.dollar $
+              %span.amount= number_to_currency(editorial.user.rewards.sum(:amount) * Reward.dollar_exchange)[1..-1]
+              %span.text money earned
+
+        .bottom
+          = link_to "view #{editorial.user.first_name}'s content", creations_user_path(editorial.user), :class => "content-link"            
+
+      - first = false
+        
 
 :javascript
   mpq.track('Viewed Landing Page', {anonymous_id: '#{session[:analytics_anonymous_id]}'})

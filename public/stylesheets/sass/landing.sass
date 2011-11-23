@@ -1,134 +1,108 @@
-#landing
-	width: 100%
-	height: 100%
-	font-family: $numerals
-	font-weight: 200
+#home.index
+	#main
+		height: 100%
+
+	#landing
+		position: relative
+		width: 100%
+		height: 100%
+		background: #fff url(../images/grass.jpg) repeat-x 0 100%
 	
-	#background
-		background: #d1cecb url(https://momeant-production.s3.amazonaws.com/assets/barn-door-optimal.jpg) no-repeat 50% 50% fixed
-		@include bgcover
-		position: fixed
-		top: 0
-		bottom: 0
-		left: 0
-		right: 0
-		z-index: 1
+		#slogan, #faces, #info
+			position: relative
+			z-index: 2
 	
-	#insides
-		background: $blue
-		width: 790px
-		height: 450px
-		position: absolute
-		top: 50%
-		left: 0
-		margin-top: -225px
-		color: #fff
-		font-size: 38px
-		line-height: 41px
-		z-index: 2
-		overflow: hidden
-	
-		ul#letter
-			height: 100%
+		#slogan
+			padding: 50px 50px 0 50px
+			font-family: $numerals
+			font-size: 28px
+			font-weight: 200
+			em
+				color: #6a9324
+			
+		#faces
 			position: absolute
-			top: 0
-			li.page
-				height: 100%
-				div.inner
-					strong
-						font-weight: 200
+			top: 140px
+			left: 50px
+		
+			a
+				display: block
+				float: left
+				margin-right: 25px
+				opacity: 0.5
+				img
+					width: 100px
+					height: 100px
+					border: 1px solid #fff
+					@include boxshadow(2px,0.3,0,0)
+		
+			a.selected
+				opacity: 1
+				img
+					width: 200px
+					height: 200px
+					@include boxshadow(4px,0.4,0,0)
+		
+		#info
+			position: absolute
+			top: 350px
+			left: 50px
+		
+			.info
+				clear: both
+				padding-top: 30px
+				display: none
+				
+				&.selected
+					display: block
+
+				h2
+					padding: 0
+					background: none
+					color: #aaa
+					span.name
 						color: #000
-						display: inline
-					.padded
-						padding: 60px 40px
-					span
-						display: block
-						margin-bottom: 1em
-				#internet
-					.large
-						font-size: 120px
-						line-height: 95px
-						letter-spacing: -10px
-						text-transform: uppercase
-						text-shadow: 1px 1px 1px #00AEEF
-					.spaced
-						margin-bottom: 40px
-					.padded
-						padding: 55px 40px
-					span
-						margin-bottom: 0
-				#solution
-					a
-						padding: 10px 30px
+				
+				.quote
+					width: 40%
+					float: left
+					margin: 0 30px 0 0
+
+				.stats
+					float: left
+					font-family: $numerals
+					font-weight: 200
+					.stat
+						position: relative
+						float: left
+						margin-right: 30px
+						.amount
+							font-size: 60px
+							line-height: 48px
+							padding-left: 18px
+							background: transparent url(../images/icons/starBlackSmall.png) no-repeat 0 16px
+						.text	
+							display: block
+							font-size: 13px
+							text-align: right
+					.earned
+						.amount
+							background: none
+						.dollar
+							position: absolute
+							top: -2px
+							left: 0
+							font-size: 16px
+							font-weight: 500
+				
+				.bottom
+					clear: both
+					padding-top: 20px
+					a.content-link
 						background: #000
 						color: #fff
-						@include rounded(5px)
+						font-family: $numerals
 						font-size: 14px
-						font-family: $block
-						font-weight: 700
-						text-transform: uppercase
-						position: relative
-						top: -7px
-						margin-right: 3px
-				#rewarded
-					background: none
-					ul.rewards
-						padding-top: 0
-						li.reward
-							float: left
-							font-size: 12px
-							font-family: $block
-							text-transform: none
-							margin-right: 10px
-							span
-								display: inline
-								margin: 0
-							span.reward
-								margin-right: 5px
-						li.reward:last-child
-							margin: 0
-					.join
-						clear: both
-						padding-top: 1em
-						
-		a.next, a.previous
-			position: absolute
-			bottom: 15px
-			left: 50%
-			width: 34px
-			height: 31px
-			margin-left: -17px
-			background: transparent url(../images/landingArrows.png) no-repeat 0 0
-			cursor: pointer
-			z-index: 3
-		a.previous
-			bottom: auto
-			top: 15px
-			background-position: 0 -31px
-			display: none
-		
-	#guide
-		display: none
-		margin-top: 40px
-		height: 115px
-		padding-bottom: 30px
-		a
-			color: $text_color
-			border-bottom: 1px solid #bbb
-			display: block
-			float: left
-			width: 300px
-			padding: 20px
-			background-color: #ebe7e4
-			@include rounded(3px)
-			h3
-				display: inline-block
-				padding-right: 25px
-				background: transparent url(../images/whiteArrowRight.png) no-repeat 100% 1px
-			p
-				margin: 10px 0 0
-				text-shadow: 0 1px 0 #fff
-		a:first-child
-			margin-right: 30px
-		a:hover
-			background: #fff
+						font-weight: 200
+						padding: 5px 8px
+						@include rounded(3px)

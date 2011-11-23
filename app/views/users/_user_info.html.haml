@@ -32,3 +32,7 @@
 
   - if me?(@user)
     = link_to "Cash Out", user_cashouts_path(@user), :id => "cashout", :class => "button"
+  
+    
+  - if current_user && current_user.is_admin?
+    = link_to "Editorialize", new_admin_editorial_path(:user => @user.id), :id => "editorialize"

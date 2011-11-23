@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111122140558) do
+ActiveRecord::Schema.define(:version => 20111123151356) do
 
   create_table "activities", :force => true do |t|
     t.integer  "actor_id"
@@ -79,6 +79,15 @@ ActiveRecord::Schema.define(:version => 20111122140558) do
     t.boolean  "shared_to_twitter",    :default => false
     t.boolean  "shared_to_facebook",   :default => false
     t.integer  "impact",               :default => 0
+  end
+
+  create_table "editorials", :force => true do |t|
+    t.integer  "user_id"
+    t.text     "quote"
+    t.boolean  "published",  :default => false
+    t.string   "show_as",    :default => "creator"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "galleries", :force => true do |t|
