@@ -32,14 +32,15 @@ class Reward < Curation
     0.1
   end
   
-  def descendants_tree(descendants)
+  def descendants_tree
     comment = self.comment
     comment = "#{comment[0..120]}..." if comment.length > 120
     tree = {:id => self.id, :data => {:first_name => self.user.first_name, :last_name => self.user.last_name, :avatar => self.user.avatar.url(:large), :comment => comment, :amount => self.amount}}
 
+    Rails.logger.info "I AM REWARD #{self.id}, adding children:"
     tree[:children] = []
-    descendants.reject{|c| c.parent_id != self.id}.each do |reward|
-      tree[:children].push reward.descendants_tree(descendants)
+    self.children.each do |reward|
+      tree[:children].push reward.descendants_tree
     end
     
     tree
