@@ -37,8 +37,12 @@ class UsersController < ApplicationController
     when "coins"
       activity = Activity.on_purchases.involving(@user)
     end
-    activity = activity.page params[:page]
-    render activity
+    if activity.empty?
+      render :text => ""
+    else
+      activity = activity.page params[:page]
+      render activity
+    end
   end
   
   def edit
