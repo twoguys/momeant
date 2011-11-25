@@ -26,5 +26,8 @@
       %span.twitter.tooltipped{:title => "Shared to Twitter"}
     - if reward.shared_to_facebook?
       %span.facebook.tooltipped{:title => "Shared to Facebook"}
-    - if reward.impact > 0
-      %span.impact Led to #{pluralize reward.impact - reward.amount, "more reward"}
+    - if reward.impact > reward.amount
+      %span.impact
+        = link_to "Led to #{reward.impact - reward.amount} more", visualize_reward_path(reward), :class => "visualize"
+    :javascript
+      $('a.visualize').fancybox();
