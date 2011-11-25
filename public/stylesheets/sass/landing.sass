@@ -1,19 +1,21 @@
 #home.index
 	#main
 		height: 100%
+		background: #fff url(../images/grass.jpg) repeat-x 0 100%
 
 	#landing
 		position: relative
 		width: 100%
+		max-width: 1200px
 		height: 100%
-		background: #fff url(../images/grass.jpg) repeat-x 0 100%
+		margin: 0 auto
 	
 		#slogan, #faces, #info
 			position: relative
 			z-index: 2
 	
 		#slogan
-			padding: 50px 50px 0 50px
+			padding: 40px 50px 0 50px
 			font-family: $numerals
 			font-size: 28px
 			font-weight: 200
@@ -22,7 +24,7 @@
 			
 		#faces
 			position: absolute
-			top: 140px
+			top: 120px
 			left: 50px
 		
 			a
@@ -31,21 +33,21 @@
 				margin-right: 25px
 				opacity: 0.5
 				img
-					width: 100px
-					height: 100px
+					width: 80px
+					height: 80px
 					border: 1px solid #fff
 					@include boxshadow(2px,0.3,0,0)
 		
 			a.selected
 				opacity: 1
 				img
-					width: 200px
-					height: 200px
+					width: 160px
+					height: 160px
 					@include boxshadow(4px,0.4,0,0)
 		
 		#info
 			position: absolute
-			top: 350px
+			top: 300px
 			left: 50px
 		
 			.info
@@ -64,7 +66,7 @@
 						color: #000
 				
 				.quote
-					width: 40%
+					width: 60%
 					float: left
 					margin: 0 30px 0 0
 
@@ -106,3 +108,7 @@
 						font-weight: 200
 						padding: 5px 8px
 						@include rounded(3px)
+
+@media screen and (max-height:780px) and (orientation:landscape)
+	#home.index #main
+		background-position: 0 276px

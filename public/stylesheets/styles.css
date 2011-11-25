@@ -654,17 +654,19 @@ table {
     font-weight: 200; }
 
 #home.index #main {
-  height: 100%; }
+  height: 100%;
+  background: white url(../images/grass.jpg) repeat-x 0 100%; }
 #home.index #landing {
   position: relative;
   width: 100%;
+  max-width: 1200px;
   height: 100%;
-  background: white url(../images/grass.jpg) repeat-x 0 100%; }
+  margin: 0 auto; }
   #home.index #landing #slogan, #home.index #landing #faces, #home.index #landing #info {
     position: relative;
     z-index: 2; }
   #home.index #landing #slogan {
-    padding: 50px 50px 0 50px;
+    padding: 40px 50px 0 50px;
     font-family: "ff-dagny-web-pro-1", "ff-dagny-web-pro-2", sans-serif;
     font-size: 28px;
     font-weight: 200; }
@@ -672,7 +674,7 @@ table {
       color: #6a9324; }
   #home.index #landing #faces {
     position: absolute;
-    top: 140px;
+    top: 120px;
     left: 50px; }
     #home.index #landing #faces a {
       display: block;
@@ -680,8 +682,8 @@ table {
       margin-right: 25px;
       opacity: 0.5; }
       #home.index #landing #faces a img {
-        width: 100px;
-        height: 100px;
+        width: 80px;
+        height: 80px;
         border: 1px solid white;
         -webkit-box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
         -moz-box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
@@ -689,14 +691,14 @@ table {
     #home.index #landing #faces a.selected {
       opacity: 1; }
       #home.index #landing #faces a.selected img {
-        width: 200px;
-        height: 200px;
+        width: 160px;
+        height: 160px;
         -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
         -moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
         box-shadow: 0 0 4px rgba(0, 0, 0, 0.4); }
   #home.index #landing #info {
     position: absolute;
-    top: 350px;
+    top: 300px;
     left: 50px; }
     #home.index #landing #info .info {
       clear: both;
@@ -711,7 +713,7 @@ table {
         #home.index #landing #info .info h2 span.name {
           color: black; }
       #home.index #landing #info .info .quote {
-        width: 40%;
+        width: 60%;
         float: left;
         margin: 0 30px 0 0; }
       #home.index #landing #info .info .stats {
@@ -753,6 +755,9 @@ table {
           -moz-border-radius: 3px;
           border-radius: 3px; }
 
+@media screen and (max-height:780px) and (orientation:landscape) {
+  #home.index #main {
+    background-position: 0 276px; } }
 /* Story creation */
 .new-story-copy {
   font-family: "museo-slab-1", "museo-slab-2", serif;

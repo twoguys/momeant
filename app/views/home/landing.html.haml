@@ -30,7 +30,7 @@
         .stats
           - if editorial.show_as == "creator"
             .rewards.stat
-              %span.amount= editorial.user.lifetime_rewards
+              %span.amount= editorial.user.rewards.sum(:amount)
               %span.text rewards received
             .earned.stat
               %span.dollar $
