@@ -10,5 +10,5 @@
         %tr
           %td= link_to(user.name, user_path(user))
           %td= user.email
-          %td last logged in #{time_ago_in_words(user.last_sign_in_at)} ago
+          %td last signed in #{time_ago_in_words(user.current_sign_in_at)} ago
           %td signed up #{time_ago_in_words(user.created_at)} ago

@@ -7,6 +7,14 @@ module ApplicationHelper
   def you_or_first_name(user)
     me?(user) ? "you" : user.first_name
   end
+
+  def you_or_name(user)
+    me?(user) ? "You" : user.name
+  end
+  
+  def your_or_name(user)
+    me?(user) ? "Your" : "#{user.name}'s"
+  end
   
   def private_beta?
     ENV["CURRENT_RELEASE"] == "private-beta"
@@ -17,7 +25,13 @@ module ApplicationHelper
   end
   
   def link_to_active(name, url, html_options = {})
-    html_options[:class] = "active" if current_page?(url)
+    if current_page?(url)
+      if html_options[:class].present?
+        html_options[:class] += " active"
+      else
+        html_options[:class] = "active"
+      end
+    end
     link_to(name, url, html_options)
   end
   

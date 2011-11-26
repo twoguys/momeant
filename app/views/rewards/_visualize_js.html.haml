@@ -19,7 +19,7 @@
 
   function init(){
       //init data
-      var json = #{@reward.descendants_tree(@reward.descendants).to_json};
+      var json = #{@reward.descendants_tree.to_json};
 
       //end
       //init Spacetree
@@ -30,8 +30,9 @@
           //set duration for the animation
           duration: 200,
           width: 780,
-          height: 300,
+          height: 600,
           orientation: 'top',
+          levelsToShow: 100,
           //set animation transition type
           transition: $jit.Trans.Quart.easeInOut,
           //set distance between node and its children

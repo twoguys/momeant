@@ -57,7 +57,10 @@ class StoriesController < ApplicationController
       redirect_to edit_story_path(@story), :alert => "Please fix the errors below." and return
     end
       
-    @story.update_attribute(:published, true)
+    unless @story.published?
+      @story.update_attribute(:published, true)
+      Activity.create(:actor_id => @story.user.id, :action_type => "Story", :action_id => @story.id)
+    end
     
     sharing = params[:share]
     if sharing

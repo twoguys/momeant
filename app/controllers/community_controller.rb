@@ -14,6 +14,14 @@ class CommunityController < ApplicationController
     @stories = @stories.page(params[:page]).per(24)
   end
   
+  def rewards
+    @activity = Activity.on_rewards.page params[:page]
+    respond_to do |format|
+      format.html { render "rewards" }
+      format.js { render @activity }
+    end
+  end
+  
   def people
     content_ids = get_tags_and_stories
     

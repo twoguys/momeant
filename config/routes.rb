@@ -76,6 +76,10 @@ Repo::Application.routes.draw do
       get :followers
       get :following
       get :supporters
+      get :info
+      post :update_in_place
+      post :update_avatar
+      get :activity #ajax
     end
     
     # Homepage tab
@@ -99,6 +103,7 @@ Repo::Application.routes.draw do
   match '/community',             :to => "community#index"
   match '/community/content',     :to => "community#content",           :as => :community
   match '/community/people',      :to => "community#people",            :as => :community_people
+  match '/community/rewards',     :to => "community#rewards",           :as => :community_rewards
   match '/community/newest_content', :to => "community#newest_content", :as => :community_newest_content
   
   namespace :admin do

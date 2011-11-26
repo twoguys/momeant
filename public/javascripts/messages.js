@@ -1,5 +1,5 @@
 function setup_message_posting() {
-	$('#messages form').submit(function(event) {
+	$('#messages-inner form').submit(function(event) {
 		var $form = $(this);
 		event.preventDefault(); 
 
@@ -34,7 +34,7 @@ function setup_message_posting() {
 		);
 	});
 	
-	$('#messages form textarea').keypress(function(event) {
+	$('#messages-inner form textarea').keypress(function(event) {
 		if (event.which == 13 && $(this).val().trim() != "") {
 			$(this).parent().submit();
 		}
@@ -42,7 +42,7 @@ function setup_message_posting() {
 }
 
 function setup_reply_showing() {
-	$('#messages .show-form').click(function() {
+	$('#messages-inner .show-form').click(function() {
 		$(this).hide().siblings('form').show().find('textarea').focus();
 		return false;
 	});

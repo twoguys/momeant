@@ -5,7 +5,6 @@
   = render "user_info"
 
   .the-rest
-    = render "user_tabs"
   
     .tabbed
   
@@ -18,20 +17,6 @@
           .value= @user.patrons.size
           .text
             people have rewarded
-        %li.cash
-          .value
-            %span.dollar-sign $
-            %span= number_to_currency(@user.rewards.sum(:amount) * Reward.dollar_exchange)[1..-1]
-          .text
-            all-time money earned
-        %li.cash.last
-          .value
-            %span.dollar-sign $
-            %span= number_to_currency(@user.rewards.not_cashed_out.sum(:amount) * Reward.dollar_exchange)[1..-1]
-          .text
-            not cashed out
-          - if me?(@user)
-            = link_to "Cash Out", user_cashouts_path(@user), :id => "cashout", :class => "button"
           
   
       %ul.galleries
@@ -74,7 +59,7 @@
     		default_text: "(Click here to add a description)"
     	});
     });
-    mpq.track('Viewed My Profile Creations', {anonymous_id: '#{session[:analytics_anonymous_id]}'});
+    mpq.track('Viewed My Content');
 - else
   :javascript
-    mpq.track('Viewed Profile Creations', {anonymous_id: '#{session[:analytics_anonymous_id]}', mp_note: '#{@user.name}'})
+    mpq.track('Viewed Content', {mp_note: '#{@user.name}'});

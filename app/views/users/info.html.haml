@@ -1,0 +1,68 @@
+- content_for :head do
+  = javascript_include_tag "jquery.editinplace"
+
+.user-profile
+  = render "user_info"
+
+  .the-rest
+  
+    .tabbed.info
+    
+      %section.occupation
+        %h3 Occupation
+        .text{:update => "occupation"}= @user.occupation
+
+      %section.tagline
+        %h3 About
+        .text{:update => "tagline"}= truncate(@user.tagline, :length => 200)
+      
+      %section.location
+        %h3 Location
+        .text{:update => "location"}= @user.location
+      
+      %section.tags
+        %h3 Most Rewarded Tags
+        - if !@user.tags.empty?
+          - @user.tags.each do |tag|
+            = link_to(tag.name, community_path(:tag => tag.name), :class => "tag")
+        - elsif me?(@user)
+          start rewarding to generate a list of tags related to your favorite content on momeant
+      
+      - if me?(@user)
+        .only-me
+          .info Only you can see the following:
+        
+          %section.profile-picture
+            %h3 Upload a profile picture
+            .file-uploader
+              %form
+                = token_tag
+                .file-input
+                  %input{:type => "file", :name => "user[avatar]", :id => "user_avatar"}
+                  .loader
+                .example For best results, upload a JPG or PNG at least 200px by 200px.
+            
+          %section.first_name
+            %h3 First Name
+            .text{:update => "first_name"}= @user.first_name
+          
+          %section.last_name
+            %h3 Last Name
+            .text{:update => "last_name"}= @user.last_name
+        
+          %section.email
+            %h3 Email Address
+            .text{:update => "email"}= @user.email
+            
+          %section.amazon_email
+            %h3
+              Amazon Email
+              %span.freak-out PLEASE DOUBLE CHECK THIS as we will be sending money to this account.
+            .text{:update => "amazon_email"}= @user.amazon_email
+            %form
+              .example Not in the United States? Please #{mail_to "support@momeant.com", "contact us"} for a custom pay out method.
+
+- if me?(@user)
+  :javascript
+    var user_id = #{current_user.id};
+  = javascript_include_tag "users/edit"

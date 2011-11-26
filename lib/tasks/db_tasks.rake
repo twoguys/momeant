@@ -29,4 +29,45 @@ namespace :momeant do
     end
     
   end
+  
+  namespace :activity do
+    desc "Create Activity records for past actions"
+    task :backdate => :environment do
+      Activity.destroy_all
+      
+      Reward.all.each do |reward|
+        Activity.create(
+          :actor_id => reward.user_id,
+          :recipient_id => reward.recipient_id,
+          :action_type => "Reward",
+          :action_id => reward.id,
+          :created_at => reward.created_at)
+        
+        reward.ancestors.each do |ancestor|
+          Activity.create(
+            :actor_id => reward.user_id,
+            :recipient_id => ancestor.user_id,
+            :action_type => "Impact",
+            :action_id => reward.id,
+            :created_at => ancestor.created_at)
+        end
+      end
+      
+      Story.published.each do |story|
+        Activity.create(
+          :actor_id => story.user_id,
+          :action_type => "Story",
+          :action_id => story.id,
+          :created_at => story.created_at)
+      end
+      
+      AmazonPayment.paid.each do |payment|
+        Activity.create(
+          :actor_id => payment.payer_id,
+          :action_type => "AmazonPayment",
+          :action_id => payment.id,
+          :created_at => payment.created_at)
+      end
+    end
+  end
 end

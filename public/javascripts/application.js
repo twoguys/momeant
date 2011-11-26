@@ -123,6 +123,10 @@ function setup_reward_visualizing() {
 }
 
 $(document).ready(function() {
+  $.ajaxSetup({ 
+    'beforeSend': function(xhr) {xhr.setRequestHeader("Accept", "text/javascript")}
+  })
+  
 	setup_tooltips();
 	setup_tab_switching();
 	setup_placeholder_text();
