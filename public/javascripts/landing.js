@@ -11,11 +11,11 @@ $(function() {
 	  
 	  $current_info.fadeOut(200);
 	  $current_face.animate({opacity:0.5}, 200, function() {
-	    $current_face.find('img').animate({width:'100px',height:'100px'}, 200, function() {
+	    $current_face.find('img').animate({width:'80px',height:'80px'}, 200, function() {
 	      $new_face.animate({opacity:1}, 200, function() {
-	        var new_left = new_index * -127 + 50;
+	        var new_left = new_index * -107 + 50;
 	        $('#faces').animate({left: new_left + 'px'}, 200);
-	        $new_face.find('img').animate({width:'200px',height:'200px'}, 200, function() {
+	        $new_face.find('img').animate({width:'160px',height:'160px'}, 200, function() {
 	          $new_info.fadeIn(200);
         	  $current_face.removeClass('selected');
         	  $new_face.addClass('selected');
