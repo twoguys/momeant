@@ -192,13 +192,13 @@ class StoriesController < ApplicationController
   
   def render_page_form
     @page_number = params[:page]
-    render :partial => "page_forms/#{params[:theme]}" if params[:theme]
+    render :partial => "/stories/page_forms/#{params[:theme]}" if params[:theme]
   end
   
   def render_page_theme
     @page_number = params[:page]
     #@page = Page.where(:story_id => params[:story_id], :number => params[:number]).first
-    render :partial => "page_themes/#{params[:theme]}" if params[:theme]
+    render :partial => "/stories/page_themes/#{params[:theme]}" if params[:theme]
   end
   
   def search
