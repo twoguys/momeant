@@ -33,8 +33,7 @@ $(function() {
 		  $.ajax({
 		    url: activity_url,
 		    data: {filter: filter},
-		    success: this.update_list,
-		    beforeSend: function(xhr) {xhr.setRequestHeader("Accept", "text/javascript")}
+		    success: this.update_list
       });
 		},
 		
