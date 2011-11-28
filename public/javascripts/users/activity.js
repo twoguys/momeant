@@ -30,7 +30,12 @@ $(function() {
 		  
 		  this.show_loading();
 		  $('#load-more-activity').hide();
-		  $.get(activity_url, {filter: filter}, this.update_list);
+		  $.ajax({
+		    url: activity_url,
+		    data: {filter: filter},
+		    success: this.update_list,
+		    beforeSend: function(xhr) {xhr.setRequestHeader("Accept", "text/javascript")}
+      });
 		},
 		
 		update_list: function(html) {
