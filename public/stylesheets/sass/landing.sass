@@ -31,18 +31,22 @@
 				display: block
 				float: left
 				margin-right: 25px
+				margin-top: 40px
 				opacity: 0.5
+				width: 80px
+				height: 80px
 				img
-					width: 80px
-					height: 80px
+					width: 100%
+					height: 100%
 					border: 1px solid #fff
 					@include boxshadow(2px,0.3,0,0)
 		
 			a.selected
 				opacity: 1
+				margin-top: 0
+				width: 160px
+				height: 160px
 				img
-					width: 160px
-					height: 160px
 					@include boxshadow(4px,0.4,0,0)
 		
 		#info
@@ -52,7 +56,7 @@
 		
 			.info
 				clear: both
-				padding-top: 30px
+				padding-top: 15px
 				display: none
 				
 				&.selected
@@ -64,6 +68,15 @@
 					color: #aaa
 					span.name
 						color: #000
+				
+				.metadata
+					font-size: 10px
+					text-transform: uppercase
+					margin: 10px 0
+					.weak
+						color: #aaa
+					.spaced
+						padding-right: 20px
 				
 				.quote
 					width: 60%
