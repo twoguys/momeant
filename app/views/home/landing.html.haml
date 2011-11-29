@@ -3,30 +3,19 @@
 
 #landing
 
-  %h1#slogan
-    %span Reward the
-    %em people
-    %span behind great content on the web...and watch
-    %em creativity
-    %span grow.
+  #slogan
+    %h1
+      %span Reward the
+      %em people
+      %span behind great content on the web.
+    #slogan-button= link_to "Join", "#join-modal"
   
   #faces
     - first = true
     - @editorials.each do |editorial|
-      = link_to image_tag(editorial.user.avatar.url(:large)), "#", :class => first ? "selected" : "", :info_id => editorial.id
-      - first = false
-    
-  - first = true
-  #info
-    - @editorials.each do |editorial|
-      .info{:id => "info_for_#{editorial.id}", :class => first ? "selected" : ""}
-
-        %h2
-          %span.name= editorial.user.name
-          %span creator
-
-        %p.quote= editorial.quote
-
+      .face{:class => first ? "selected" : ""}
+        = link_to image_tag(editorial.user.avatar.url(:large)), "#", :info_id => editorial.id, :class => "avatar"
+      
         .stats
           - if editorial.show_as == "creator"
             .rewards.stat
@@ -36,12 +25,18 @@
               %span.dollar $
               %span.amount= number_to_currency(editorial.user.rewards.sum(:amount) * Reward.dollar_exchange)[1..-1]
               %span.text money earned
+              
+        .info
+          %h2
+            %span.name= editorial.user.name
+            %span creator
 
+          %p.quote= editorial.quote
+              
         .bottom
           = link_to "view #{editorial.user.first_name}'s content", creations_user_path(editorial.user), :class => "content-link"            
-
+      
       - first = false
-        
 
 :javascript
   mpq.track('Viewed Landing Page', {anonymous_id: '#{session[:analytics_anonymous_id]}'})

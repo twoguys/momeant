@@ -653,110 +653,127 @@ table {
     font-size: 56px;
     font-weight: 200; }
 
-#home.index #main {
-  height: 100%;
+#home.index {
   background: white url(../images/grass.jpg) repeat-x 0 100%; }
-#home.index #landing {
-  position: relative;
-  width: 100%;
-  max-width: 1200px;
-  height: 100%;
-  margin: 0 auto; }
-  #home.index #landing #slogan, #home.index #landing #faces, #home.index #landing #info {
+  #home.index #landing {
     position: relative;
-    z-index: 2; }
-  #home.index #landing #slogan {
-    padding: 40px 50px 0 50px;
-    font-family: "ff-dagny-web-pro-1", "ff-dagny-web-pro-2", sans-serif;
-    font-size: 28px;
-    font-weight: 200; }
-    #home.index #landing #slogan em {
-      color: #6a9324; }
-  #home.index #landing #faces {
-    position: absolute;
-    top: 120px;
-    left: 50px; }
-    #home.index #landing #faces a {
-      display: block;
-      float: left;
-      margin-right: 25px;
-      opacity: 0.5; }
-      #home.index #landing #faces a img {
+    height: 100%; }
+    #home.index #landing #slogan, #home.index #landing #faces, #home.index #landing #info {
+      position: relative;
+      z-index: 2; }
+    #home.index #landing #slogan {
+      padding-top: 40px; }
+      #home.index #landing #slogan h1, #home.index #landing #slogan #slogan-button {
+        font-family: "ff-dagny-web-pro-1", "ff-dagny-web-pro-2", sans-serif;
+        font-weight: 200;
+        float: left; }
+      #home.index #landing #slogan h1 {
+        height: 43px;
+        padding: 5px 20px 0 40px;
+        font-size: 28px;
+        background: white;
+        color: black; }
+        #home.index #landing #slogan h1 em {
+          color: #00aeef; }
+      #home.index #landing #slogan #slogan-button {
+        height: 38px;
+        padding: 10px 15px 0;
+        background: #00aeef; }
+        #home.index #landing #slogan #slogan-button a {
+          font-size: 20px;
+          text-transform: uppercase;
+          color: white; }
+    #home.index #landing #faces {
+      position: absolute;
+      top: 120px;
+      left: 50px; }
+      #home.index #landing #faces .face {
+        display: block;
+        position: relative;
+        float: left;
+        margin-right: 25px;
+        opacity: 0.5;
+        background: white;
         width: 80px;
         height: 80px;
-        border: 1px solid white;
+        border: 1px solid black;
         -webkit-box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
         -moz-box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
         box-shadow: 0 0 2px rgba(0, 0, 0, 0.3); }
-    #home.index #landing #faces a.selected {
-      opacity: 1; }
-      #home.index #landing #faces a.selected img {
-        width: 160px;
-        height: 160px;
-        -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
-        -moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
-        box-shadow: 0 0 4px rgba(0, 0, 0, 0.4); }
-  #home.index #landing #info {
-    position: absolute;
-    top: 300px;
-    left: 50px; }
-    #home.index #landing #info .info {
-      clear: both;
-      padding-top: 30px;
-      display: none; }
-      #home.index #landing #info .info.selected {
-        display: block; }
-      #home.index #landing #info .info h2 {
-        padding: 0;
-        background: none;
-        color: #aaaaaa; }
-        #home.index #landing #info .info h2 span.name {
-          color: black; }
-      #home.index #landing #info .info .quote {
-        width: 60%;
-        float: left;
-        margin: 0 30px 0 0; }
-      #home.index #landing #info .info .stats {
-        float: left;
-        font-family: "ff-dagny-web-pro-1", "ff-dagny-web-pro-2", sans-serif;
-        font-weight: 200; }
-        #home.index #landing #info .info .stats .stat {
-          position: relative;
+        #home.index #landing #faces .face.selected {
+          opacity: 1;
+          width: 340px;
+          height: auto;
+          -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
+          -moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
+          box-shadow: 0 0 4px rgba(0, 0, 0, 0.4); }
+          #home.index #landing #faces .face.selected a.avatar {
+            border-right: 1px solid black; }
+          #home.index #landing #faces .face.selected a.avatar, #home.index #landing #faces .face.selected a.avatar img {
+            width: 160px;
+            height: 160px; }
+          #home.index #landing #faces .face.selected .stats, #home.index #landing #faces .face.selected .info, #home.index #landing #faces .face.selected .bottom {
+            display: block; }
+        #home.index #landing #faces .face a.avatar {
+          display: block;
           float: left;
-          margin-right: 30px; }
-          #home.index #landing #info .info .stats .stat .amount {
-            font-size: 60px;
-            line-height: 48px;
-            padding-left: 18px;
-            background: transparent url(../images/icons/starBlackSmall.png) no-repeat 0 16px; }
-          #home.index #landing #info .info .stats .stat .text {
-            display: block;
-            font-size: 13px;
-            text-align: right; }
-        #home.index #landing #info .info .stats .earned .amount {
-          background: none; }
-        #home.index #landing #info .info .stats .earned .dollar {
-          position: absolute;
-          top: -2px;
-          left: 0;
-          font-size: 16px;
-          font-weight: 500; }
-      #home.index #landing #info .info .bottom {
-        clear: both;
-        padding-top: 20px; }
-        #home.index #landing #info .info .bottom a.content-link {
-          background: black;
-          color: white;
+          width: 80px;
+          height: 80px; }
+          #home.index #landing #faces .face a.avatar img {
+            width: 80px;
+            height: 80px; }
+        #home.index #landing #faces .face .stats, #home.index #landing #faces .face .info, #home.index #landing #faces .face .bottom {
+          display: none; }
+        #home.index #landing #faces .face .stats {
+          float: left;
+          width: 179px;
           font-family: "ff-dagny-web-pro-1", "ff-dagny-web-pro-2", sans-serif;
-          font-size: 14px;
-          font-weight: 200;
-          padding: 5px 8px;
-          -webkit-border-radius: 3px;
-          -moz-border-radius: 3px;
-          border-radius: 3px; }
+          font-weight: 200; }
+          #home.index #landing #faces .face .stats .stat {
+            position: relative;
+            padding: 20px 20px 0; }
+            #home.index #landing #faces .face .stats .stat .amount {
+              font-size: 40px;
+              line-height: 35px;
+              padding-left: 18px;
+              background: transparent url(../images/icons/starBlackSmall.png) no-repeat 0 11px; }
+            #home.index #landing #faces .face .stats .stat .text {
+              display: block;
+              font-size: 13px;
+              text-indent: 20px; }
+          #home.index #landing #faces .face .stats .earned .amount {
+            background: none; }
+          #home.index #landing #faces .face .stats .earned .dollar {
+            position: absolute;
+            top: 18px;
+            left: 24px;
+            font-size: 16px;
+            font-weight: 500; }
+        #home.index #landing #faces .face .info {
+          clear: both;
+          padding: 20px;
+          border-top: 1px solid black; }
+          #home.index #landing #faces .face .info h2 {
+            padding: 0;
+            background: none;
+            color: #aaaaaa; }
+            #home.index #landing #faces .face .info h2 span.name {
+              color: black; }
+          #home.index #landing #faces .face .info p {
+            margin-bottom: 0; }
+        #home.index #landing #faces .face .bottom {
+          clear: both;
+          padding: 10px 0;
+          text-align: center;
+          background: black; }
+          #home.index #landing #faces .face .bottom a.content-link {
+            color: white;
+            font-family: "ff-dagny-web-pro-1", "ff-dagny-web-pro-2", sans-serif;
+            font-size: 14px;
+            font-weight: 200; }
 
 @media screen and (max-height:780px) and (orientation:landscape) {
-  #home.index #main {
+  #home.index {
     background-position: 0 276px; } }
 /* Story creation */
 .new-story-copy {

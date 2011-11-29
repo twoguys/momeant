@@ -1,114 +1,132 @@
 #home.index
-	#main
-		height: 100%
-		background: #fff url(../images/grass.jpg) repeat-x 0 100%
+	background: #fff url(../images/grass.jpg) repeat-x 0 100%
 
 	#landing
 		position: relative
-		width: 100%
-		max-width: 1200px
 		height: 100%
-		margin: 0 auto
 	
 		#slogan, #faces, #info
 			position: relative
 			z-index: 2
 	
 		#slogan
-			padding: 40px 50px 0 50px
-			font-family: $numerals
-			font-size: 28px
-			font-weight: 200
-			em
-				color: #6a9324
+			padding-top: 40px
+			h1, #slogan-button
+				font-family: $numerals
+				font-weight: 200
+				float: left
+			h1
+				height: 43px
+				padding: 5px 20px 0 40px
+				font-size: 28px
+				background: #fff
+				color: #000
+				em
+					color: $blue
+			#slogan-button
+				height: 38px
+				padding: 10px 15px 0
+				background: $blue
+				a
+					font-size: 20px
+					text-transform: uppercase
+					color: #fff
 			
 		#faces
 			position: absolute
 			top: 120px
 			left: 50px
-		
-			a
+			
+			.face
 				display: block
+				position: relative
 				float: left
 				margin-right: 25px
 				opacity: 0.5
-				img
+				background: #fff
+				width: 80px
+				height: 80px
+				border: 1px solid #000
+				@include boxshadow(2px,0.3,0,0)
+		
+				&.selected
+					opacity: 1
+					width: 340px
+					height: auto
+					@include boxshadow(4px,0.4,0,0)
+					a.avatar
+						border-right: 1px solid #000
+					a.avatar, a.avatar img
+						width: 160px
+						height: 160px
+					.stats, .info, .bottom
+						display: block
+				
+				a.avatar
+					display: block
+					float: left
 					width: 80px
 					height: 80px
-					border: 1px solid #fff
-					@include boxshadow(2px,0.3,0,0)
-		
-			a.selected
-				opacity: 1
-				img
-					width: 160px
-					height: 160px
-					@include boxshadow(4px,0.4,0,0)
-		
-		#info
-			position: absolute
-			top: 300px
-			left: 50px
-		
-			.info
-				clear: both
-				padding-top: 30px
-				display: none
+					img
+						width: 80px
+						height: 80px
 				
-				&.selected
-					display: block
-
-				h2
-					padding: 0
-					background: none
-					color: #aaa
-					span.name
-						color: #000
-				
-				.quote
-					width: 60%
-					float: left
-					margin: 0 30px 0 0
-
+				.stats, .info, .bottom
+					display: none
+					
 				.stats
 					float: left
+					width: 179px
 					font-family: $numerals
 					font-weight: 200
 					.stat
 						position: relative
-						float: left
-						margin-right: 30px
+						padding: 20px 20px 0
 						.amount
-							font-size: 60px
-							line-height: 48px
+							font-size: 40px
+							line-height: 35px
 							padding-left: 18px
-							background: transparent url(../images/icons/starBlackSmall.png) no-repeat 0 16px
+							background: transparent url(../images/icons/starBlackSmall.png) no-repeat 0 11px
 						.text	
 							display: block
 							font-size: 13px
-							text-align: right
+							text-indent: 20px
 					.earned
 						.amount
 							background: none
 						.dollar
 							position: absolute
-							top: -2px
-							left: 0
+							top: 18px
+							left: 24px
 							font-size: 16px
 							font-weight: 500
-				
+		
+				.info
+					clear: both
+					padding: 20px
+					border-top: 1px solid #000
+
+					h2
+						padding: 0
+						background: none
+						color: #aaa
+						span.name
+							color: #000
+					
+					p
+						margin-bottom: 0
+			
 				.bottom
 					clear: both
-					padding-top: 20px
+					padding: 10px 0
+					text-align: center
+					background: #000
 					a.content-link
-						background: #000
 						color: #fff
 						font-family: $numerals
 						font-size: 14px
 						font-weight: 200
-						padding: 5px 8px
-						@include rounded(3px)
 
 @media screen and (max-height:780px) and (orientation:landscape)
-	#home.index #main
+	#home.index
 		background-position: 0 276px

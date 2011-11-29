@@ -1,6 +1,6 @@
 $(function() {
 	
-	$('#faces a').click(function() {
+	$('#faces .face').click(function() {
     var $new_face = $(this);
     if ($new_face.hasClass('selected')) { return false; }
 
