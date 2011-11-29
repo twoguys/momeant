@@ -13,7 +13,7 @@
   #faces
     - first = true
     - @editorials.each do |editorial|
-      = link_to image_tag(editorial.user.avatar.url(:large)), "#", :class => first ? "selected" : "", :info_id => editorial.id
+      = link_to image_tag(editorial.user.avatar.url(:large)), user_path(editorial.user), :class => first ? "selected" : "", :info_id => editorial.id
       - first = false
     
   - first = true

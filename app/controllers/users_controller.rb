@@ -9,6 +9,7 @@ class UsersController < ApplicationController
     @users = @user.rewarded_creators
     @rewards = @user.given_rewards.for_content
     flash[:track_user_view] = true
+    @nav = "me" if @user == current_user
   end
   
   def creations

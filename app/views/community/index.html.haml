@@ -1,0 +1,11 @@
+.community#activity
+
+  .tabbed
+        
+    %ul#activity-list
+      = render @activity
+    = link_to "Load more...", "#", :id => "load-more-activity"
+
+:javascript
+  var activity_url = '/everyone';
+= javascript_include_tag "users/activity"

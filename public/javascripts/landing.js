@@ -2,7 +2,7 @@ $(function() {
 	
 	$('#faces a').click(function() {
     var $new_face = $(this);
-    if ($new_face.hasClass('selected')) { return false; }
+    if ($new_face.hasClass('selected')) { return true; }
 
 	  var $current_face = $('#faces a.selected');
 	  var $new_info = $('#info_for_' + $new_face.attr('info_id'));

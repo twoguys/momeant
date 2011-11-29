@@ -1,6 +1,14 @@
 class CommunityController < ApplicationController
   before_filter :set_nav
   
+  def index
+    @activity = Activity.page params[:page]
+    respond_to do |format|
+      format.html { render "index" }
+      format.js { render @activity }
+    end
+  end
+  
   def content
     @stories = Story.published.most_rewarded.limit(12)
 
@@ -49,10 +57,6 @@ class CommunityController < ApplicationController
     end
     
     @stories = @stories.page(params[:page]).per(24)
-  end
-  
-  def index
-    redirect_to community_path
   end
   
   private
