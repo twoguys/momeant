@@ -4,7 +4,7 @@
   .the-rest
     #activity
     
-      = render "users/activity_filter"
+      = render "users/activity_filter" unless @activity.empty?
       
       #activity-body
         #activity-loading Just a momeant...
@@ -32,24 +32,25 @@
               %li.none No activity.
           = link_to "Load more...", "#", :id => "load-more-activity"
       
-        #activity-sidebar
-          #leaderboards
+        - unless @activity.empty?
+          #activity-sidebar
+            #leaderboards
           
-            #top-supporters.list
-              .info Top Supporters
-              %ul
-                - @top_supporters.each do |patron_and_rewards|
-                  %li
-                    = link_to truncate(patron_and_rewards.first.name, :length => 20), user_path(patron_and_rewards.first)
-                    %span.rewards= patron_and_rewards.second
+              #top-supporters.list
+                .info Top Supporters
+                %ul
+                  - @top_supporters.each do |patron_and_rewards|
+                    %li
+                      = link_to truncate(patron_and_rewards.first.name, :length => 20), user_path(patron_and_rewards.first)
+                      %span.rewards= patron_and_rewards.second
 
-            #favorite-creators.list
-              .info Favorite Creators
-              %ul
-                - @favorite_creators.each do |patron_and_rewards|
-                  %li
-                    = link_to truncate(patron_and_rewards.first.name, :length => 20), user_path(patron_and_rewards.first)
-                    %span.rewards= patron_and_rewards.second
+              #favorite-creators.list
+                .info Favorite Creators
+                %ul
+                  - @favorite_creators.each do |patron_and_rewards|
+                    %li
+                      = link_to truncate(patron_and_rewards.first.name, :length => 20), user_path(patron_and_rewards.first)
+                      %span.rewards= patron_and_rewards.second
 
 
 :javascript
