@@ -1,7 +1,8 @@
 .admin.editorials
   = render "admin/tabs"
   
-  = form_for @editorial, :url => admin_editorials_path do |form|
+  - url = @editorial.new_record? ? admin_editorials_path : admin_editorial_path(@editorial)
+  = form_for @editorial, :url => url do |form|
     = form.hidden_field :user_id
 
     %fieldset

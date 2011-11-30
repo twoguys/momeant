@@ -13,4 +13,24 @@ class Admin::EditorialsController < Admin::BaseController
       render "form"
     end
   end
+  
+  def edit
+    @editorial = Editorial.find(params[:id])
+    render "form"
+  end
+  
+  def update
+    @editorial = Editorial.find(params[:id])
+    if @editorial.update_attributes(params[:editorial])
+      redirect_to admin_editorials_path
+    else
+      render "form"
+    end
+  end
+  
+  def destroy
+    @editorial = Editorial.find(params[:id])
+    @editorial.destroy
+    redirect_to admin_editorials_path
+  end
 end

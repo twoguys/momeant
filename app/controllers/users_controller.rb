@@ -25,7 +25,7 @@ class UsersController < ApplicationController
     when "all"
       activity = Activity.involving(@user)
     when "impact"
-      activity = Activity.on_impact.involving(@user)
+      activity = Activity.on_impact.where(:recipient_id => @user.id)
     when "rewards-given"
       activity = Activity.on_rewards.where(:actor_id => @user.id)
     when "rewards-received"
