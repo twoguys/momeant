@@ -1,6 +1,13 @@
+#activity-filter
+	height: 30px
+	margin-bottom: 20px
+
+#activity-body
+	position: relative
+
 #activity-loading
 	position: absolute
-	top: 50px
+	top: 80px
 	left: 50%
 	margin-left: -200px
 	padding-left: 20px
@@ -10,7 +17,7 @@
 	display: none
 
 ul#activity-list
-	margin-right: 200px
+	margin-right: 300px
 	
 	li
 		position: relative
@@ -151,40 +158,39 @@ ul#activity-list
 		border: none
 		box-shadow: none
 
-#activity-filter
-	position: fixed
-	top: 62px
-	right: 20px
-	width: 185px
+#activity-sidebar
+	position: absolute
+	top: 0
+	right: 0
+	width: 285px
 	font-size: 11px
-	
+
 	.info
 		text-transform: uppercase
 		text-shadow: 0 1px 0 #fff
 		color: #999
-		margin-bottom: 5px
-	
-	ul#types
+		padding-bottom: 3px
+		border-bottom: 1px solid #ddd
+		margin-bottom: 6px
+
+	#leaderboards
+		padding: 0 6px
+
 		li
-			clear: both
-			a
-				display: block
-				padding: 4px 4px 4px 6px
-				color: #222
-				@include rounded(3px)
-				.amount
-					float: right
-					padding: 1px 3px 0
-					background: #222
-					color: #f4f4f4
-					font-size: 10px
-					@include rounded(3px)
-		li.selected a
-			background: #222
-			color: #fff
-			.amount
-				background: #fff
-				color: #222
+			margin-bottom: 3px
+			
+		.list
+			margin-bottom: 20px
+
+			.impact
+				float: right
+				padding-right: 19px
+				background: transparent url(../images/icons/impactTiny.png) no-repeat 100% 0
+				
+			.rewards
+				float: right
+				padding-right: 19px
+				background: transparent url(../images/icons/starBlackTiny.png) no-repeat 100% 0
 
 a#load-more-activity
 	display: block
@@ -198,3 +204,8 @@ a#load-more-activity
 		background: #ccc
 	&.loading
 		background: #ccc url(../images/spinnerLightGreyBg.gif) no-repeat 10px 50%
+
+.dk_toggle
+	@include rounded(3px)
+.dk_options a
+	color: #555

@@ -3,9 +3,32 @@ class CommunityController < ApplicationController
   
   def index
     @activity = Activity.page params[:page]
-    respond_to do |format|
-      format.html { render "index" }
-      format.js { render @activity }
+    @top_patrons = User.where("impact > 0").order("impact DESC").limit(5)
+    @top_creators = User.most_rewarded.limit(5)
+  end
+  
+  def activity
+    activity = []
+    case params[:filter]
+    when "all"
+      activity = Activity.order("created_at DESC")
+    when "impact"
+      activity = Activity.on_impact
+    when "rewards"
+      activity = Activity.on_rewards
+    when "content"
+      activity = Activity.on_content
+    when "badges"
+      activity = Activity.on_badges
+    when "coins"
+      activity = Activity.on_purchases
+    end
+    if activity.empty?
+      render :text => ""
+    else
+      activity = activity.page params[:page]
+      Rails.logger.info "ASDFASDFSADFASDFSDAF #{activity.length}"
+      render activity
     end
   end
   
@@ -34,7 +57,6 @@ class CommunityController < ApplicationController
     content_ids = get_tags_and_stories
     
     @users = User.select("DISTINCT ON(id) users.*").joins("LEFT OUTER JOIN curations ON curations.user_id = users.id").where("curations.type = 'Reward'").where("curations.story_id IN (#{content_ids.join(',')})")
-    # this sort is going to make A LOT of SQL calls, need to cache impact on the user
     @users = @users.sort do |a,b|
       if a.badge_level != b.badge_level
         b.badge_level <=> a.badge_level

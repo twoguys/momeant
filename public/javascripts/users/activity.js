@@ -4,7 +4,6 @@ $(function() {
 		el: $('#activity'),
 		
 		events: {
-			'click #activity-filter #types a':        'select_filter',
 			'click #load-more-activity':              'load_more'
 		},
 		
@@ -12,28 +11,25 @@ $(function() {
 			this.filter = 'all';
 			this.user_id = undefined;
 			this.page = 1;
+			this.setup_custom_dropdown();
 		},
 		
-		select_filter: function(e) {
-		  var $link = $(e.currentTarget);
-		  var $list_item = $link.parent();
-		  
-		  if ($list_item.hasClass('selected')) { return false; }
-		  $list_item.addClass('selected').siblings().removeClass('selected');
-		  this.filter_activity($link.attr('filter'));
-		  
-		  return false;
+		setup_custom_dropdown: function() {
+		  $('#activity-filter select').dropkick({
+		    width:230,
+		    change: this.filter_activity
+		  });
 		},
 		
 		filter_activity: function(filter) {
-		  this.filter = filter;
+		  Activity.filter = filter;
 		  
-		  this.show_loading();
+		  Activity.show_loading();
 		  $('#load-more-activity').hide();
 		  $.ajax({
 		    url: activity_url,
 		    data: {filter: filter},
-		    success: this.update_list
+		    success: Activity.update_list
       });
 		},
 		

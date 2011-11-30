@@ -157,7 +157,7 @@ html, body {
     #header #user-nav #home a {
       background-image: url(../images/icons/momeantHomeWhite.png); }
     #header #user-nav #community a {
-      background-image: url(../images/icons/community.png);
+      background-image: url(../images/icons/activityNav.png);
       background-position: 50% 7px; }
     #header #user-nav #faq a {
       background-image: url(../images/icons/faqWhite.png); }
@@ -4744,7 +4744,6 @@ impact ul.avatars li {
 
 .user-profile {
   /* First-time Users */
-  /* Activity */
   /* Info */
   /* Patronage Tab */
   /* Stats Bar */
@@ -4754,90 +4753,108 @@ impact ul.avatars li {
   /* Supporters Tab */
   /* Edit Profile */ }
   .user-profile .profile-info {
-    position: fixed;
-    top: 42px;
-    left: 0;
-    width: 167px;
-    padding: 10px 20px;
-    z-index: 99;
-    overflow: hidden; }
-    .user-profile .profile-info .avatar-badge-name {
-      position: relative;
-      padding: 178px 0 0 5px;
-      margin-left: -5px; }
-      .user-profile .profile-info .avatar-badge-name .avatar {
+    position: relative;
+    background: white; }
+    .user-profile .profile-info .metadata {
+      padding: 28px 40px 0 210px;
+      height: 140px; }
+      .user-profile .profile-info .metadata .avatar-badge {
         position: absolute;
-        top: 10px;
-        left: 5px;
-        z-index: 1; }
-        .user-profile .profile-info .avatar-badge-name .avatar img {
-          width: 165px;
-          height: 165px;
-          border: 3px solid black; }
-      .user-profile .profile-info .avatar-badge-name .name {
-        position: relative;
-        z-index: 2;
-        font-size: 14px;
+        top: 20px;
+        left: 40px; }
+        .user-profile .profile-info .metadata .avatar-badge .avatar {
+          position: absolute;
+          top: 10px;
+          left: 5px;
+          z-index: 1; }
+          .user-profile .profile-info .metadata .avatar-badge .avatar img {
+            width: 130px;
+            height: 130px;
+            border: 3px solid black; }
+        .user-profile .profile-info .metadata .avatar-badge .badge {
+          position: absolute;
+          top: -5px;
+          left: -27px;
+          z-index: 3; }
+      .user-profile .profile-info .metadata .name {
+        font-size: 24px;
         font-weight: 700;
-        text-transform: uppercase;
-        color: white;
-        background: black;
-        width: 161px;
-        padding: 5px;
-        overflow: hidden; }
-      .user-profile .profile-info .avatar-badge-name .badge {
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: 3; }
-    .user-profile .profile-info ul.nav {
-      margin: 20px 0; }
-      .user-profile .profile-info ul.nav li a {
-        display: block;
-        height: 16px;
-        padding: 4px;
-        text-transform: uppercase;
+        text-transform: uppercase; }
+      .user-profile .profile-info .metadata ul.about, .user-profile .profile-info .metadata ul.stats {
+        float: left; }
+      .user-profile .profile-info .metadata ul.about {
+        width: 350px;
         font-size: 11px;
-        margin-bottom: 2px; }
-        .user-profile .profile-info ul.nav li a span {
-          padding-left: 22px;
-          background: transparent url(../images/icons/activity.png) no-repeat 0 -2px; }
-      .user-profile .profile-info ul.nav li a:hover {
-        color: #008ccd; }
-      .user-profile .profile-info ul.nav li a.info span {
-        background-image: url(../images/icons/user.png); }
-      .user-profile .profile-info ul.nav li a.content span {
-        background-image: url(../images/icons/content.png); }
-      .user-profile .profile-info ul.nav li a.message span {
-        background-image: url(../images/icons/message.png); }
-      .user-profile .profile-info ul.nav li a.edit span {
-        background-image: url(../images/icons/pencil.png); }
-      .user-profile .profile-info ul.nav li a.active {
-        background: transparent url(../images/navActiveBG.png) no-repeat 100% 0;
-        color: white; }
-        .user-profile .profile-info ul.nav li a.active span {
-          background-position: 0 -25px; }
-    .user-profile .profile-info ul.stats {
-      position: relative;
-      margin-bottom: 10px; }
-      .user-profile .profile-info ul.stats li {
-        padding: 4px 0;
-        font-size: 11px;
-        border-bottom: 1px solid #dddddd; }
-        .user-profile .profile-info ul.stats li:last-child {
+        margin: 10px 50px 0 0; }
+        .user-profile .profile-info .metadata ul.about li {
+          margin-bottom: 3px; }
+        .user-profile .profile-info .metadata ul.about .weak {
+          color: #999999;
+          text-transform: uppercase; }
+      .user-profile .profile-info .metadata ul.stats {
+        position: relative;
+        margin-top: 5px;
+        width: 200px; }
+        .user-profile .profile-info .metadata ul.stats li {
+          padding: 4px 0;
+          font-size: 11px;
+          border-bottom: 1px solid #dddddd; }
+          .user-profile .profile-info .metadata ul.stats li .amount {
+            font-weight: 700; }
+          .user-profile .profile-info .metadata ul.stats li .dollar {
+            padding: 0 6px 0 5px; }
+          .user-profile .profile-info .metadata ul.stats li #cashout {
+            display: block;
+            font-size: 11px;
+            text-align: center; }
+        .user-profile .profile-info .metadata ul.stats .current-money {
           border: none; }
-        .user-profile .profile-info ul.stats li .amount {
-          font-weight: 700; }
-        .user-profile .profile-info ul.stats li .dollar {
-          padding: 0 6px 0 5px; }
-      .user-profile .profile-info ul.stats .impact .amount {
-        background: transparent url(../images/icons/impactTiny.png) no-repeat 0 0;
-        padding-left: 20px;
-        margin-right: 3px; }
-    .user-profile .profile-info #cashout {
-      display: block;
-      font-size: 11px;
-      text-align: center; }
+        .user-profile .profile-info .metadata ul.stats .impact .amount {
+          background: transparent url(../images/icons/impactTiny.png) no-repeat 0 0;
+          padding-left: 20px;
+          margin-right: 3px; }
+        .user-profile .profile-info .metadata ul.stats li:last-child {
+          border: none; }
+    .user-profile .profile-info ul.nav {
+      margin-top: 20px;
+      padding: 0 20px;
+      height: 28px;
+      border-bottom: 1px solid #dddddd; }
+      .user-profile .profile-info ul.nav li {
+        float: left;
+        margin-right: 40px; }
+        .user-profile .profile-info ul.nav li a {
+          display: block;
+          height: 16px;
+          padding: 6px 14px 6px 8px;
+          text-transform: uppercase;
+          font-size: 11px; }
+          .user-profile .profile-info ul.nav li a span {
+            padding-left: 22px;
+            background: transparent url(../images/icons/activity.png) no-repeat 0 -2px; }
+        .user-profile .profile-info ul.nav li a:hover {
+          color: #008ccd; }
+        .user-profile .profile-info ul.nav li a.info span {
+          background-image: url(../images/icons/user.png); }
+        .user-profile .profile-info ul.nav li a.content span {
+          background-image: url(../images/icons/content.png); }
+        .user-profile .profile-info ul.nav li a.message span {
+          background-image: url(../images/icons/message.png); }
+        .user-profile .profile-info ul.nav li a.edit span {
+          background-image: url(../images/icons/pencil.png); }
+        .user-profile .profile-info ul.nav li a.active {
+          background: #f4f4f4;
+          color: black;
+          position: relative;
+          border: 1px solid #dddddd;
+          border-bottom: none; }
+          .user-profile .profile-info ul.nav li a.active span {
+            background-position: 0 -25px; }
+    .user-profile .profile-info #special-links {
+      position: absolute;
+      top: 0;
+      right: 10px;
+      width: 150px; }
     .user-profile .profile-info #editorialize {
       height: 28px;
       line-height: 30px;
@@ -4892,10 +4909,8 @@ impact ul.avatars li {
       .user-profile .profile-info .tags h3 {
         margin-bottom: 5px; }
   .user-profile .the-rest {
-    margin-left: 208px;
-    min-height: 100%;
-    min-width: 840px;
-    position: relative; }
+    position: relative;
+    padding: 20px; }
     .user-profile .the-rest .horizontal-tabs {
       border-bottom: 1px solid #cccccc; }
       .user-profile .the-rest .horizontal-tabs ul {
@@ -4903,8 +4918,6 @@ impact ul.avatars li {
         .user-profile .the-rest .horizontal-tabs ul a {
           border: 1px solid #cccccc;
           border-bottom: none; }
-    .user-profile .the-rest .tabbed {
-      padding: 20px; }
   .user-profile .guides {
     padding: 25px; }
     .user-profile .guides a {
@@ -5020,20 +5033,6 @@ impact ul.avatars li {
     background: transparent url(../images/icons/communityDark.png) no-repeat 0 2px; }
   .user-profile .have-not.shared .box-button .inner {
     background: transparent url(../images/icons/momeantAddStoryGrey.png) no-repeat 5px 2px; }
-  .user-profile .tabbed.activity h1 {
-    font-weight: 700;
-    text-transform: uppercase; }
-  .user-profile .tabbed.activity ul#activity-nav {
-    display: none;
-    height: 20px;
-    margin: 0 0 15px;
-    padding-left: 10px; }
-    .user-profile .tabbed.activity ul#activity-nav li {
-      float: left;
-      margin-right: 80px;
-      text-transform: uppercase; }
-      .user-profile .tabbed.activity ul#activity-nav li a.active {
-        font-weight: 700; }
   .user-profile #new-user-no-activity {
     padding-top: 20px; }
     .user-profile #new-user-no-activity h1 .coin {
@@ -5464,8 +5463,7 @@ form.user_edit {
       bottom: -55px; }
 
 .community {
-  width: 1015px;
-  margin: 0 auto; }
+  padding: 20px; }
   .community ul.nav {
     padding: 30px 20px 10px;
     height: 20px; }
@@ -5628,15 +5626,6 @@ form.user_edit {
     .community nav.pagination .next a, .community nav.pagination .prev a {
       text-transform: uppercase;
       font-weight: 700; }
-
-#community.rewards .community .tabbed {
-  padding-right: 20px; }
-#community.rewards #activity-list {
-  margin-right: 0; }
-  #community.rewards #activity-list .header {
-    margin-bottom: 0; }
-#community.rewards #load-more-activity {
-  margin-right: 0; }
 
 .deposits form {
   margin-top: 1em;
@@ -7580,9 +7569,16 @@ a.tag:hover {
             background: #bbbbbb;
             margin: 0; }
 
+#activity-filter {
+  height: 30px;
+  margin-bottom: 20px; }
+
+#activity-body {
+  position: relative; }
+
 #activity-loading {
   position: absolute;
-  top: 50px;
+  top: 80px;
   left: 50%;
   margin-left: -200px;
   padding-left: 20px;
@@ -7592,7 +7588,7 @@ a.tag:hover {
   display: none; }
 
 ul#activity-list {
-  margin-right: 200px; }
+  margin-right: 300px; }
   ul#activity-list li {
     position: relative;
     background: white;
@@ -7720,41 +7716,33 @@ ul#activity-list {
     border: none;
     box-shadow: none; }
 
-#activity-filter {
-  position: fixed;
-  top: 62px;
-  right: 20px;
-  width: 185px;
+#activity-sidebar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 285px;
   font-size: 11px; }
-  #activity-filter .info {
+  #activity-sidebar .info {
     text-transform: uppercase;
     text-shadow: 0 1px 0 white;
     color: #999999;
-    margin-bottom: 5px; }
-  #activity-filter ul#types li {
-    clear: both; }
-    #activity-filter ul#types li a {
-      display: block;
-      padding: 4px 4px 4px 6px;
-      color: #222222;
-      -webkit-border-radius: 3px;
-      -moz-border-radius: 3px;
-      border-radius: 3px; }
-      #activity-filter ul#types li a .amount {
+    padding-bottom: 3px;
+    border-bottom: 1px solid #dddddd;
+    margin-bottom: 6px; }
+  #activity-sidebar #leaderboards {
+    padding: 0 6px; }
+    #activity-sidebar #leaderboards li {
+      margin-bottom: 3px; }
+    #activity-sidebar #leaderboards .list {
+      margin-bottom: 20px; }
+      #activity-sidebar #leaderboards .list .impact {
         float: right;
-        padding: 1px 3px 0;
-        background: #222222;
-        color: #f4f4f4;
-        font-size: 10px;
-        -webkit-border-radius: 3px;
-        -moz-border-radius: 3px;
-        border-radius: 3px; }
-  #activity-filter ul#types li.selected a {
-    background: #222222;
-    color: white; }
-    #activity-filter ul#types li.selected a .amount {
-      background: white;
-      color: #222222; }
+        padding-right: 19px;
+        background: transparent url(../images/icons/impactTiny.png) no-repeat 100% 0; }
+      #activity-sidebar #leaderboards .list .rewards {
+        float: right;
+        padding-right: 19px;
+        background: transparent url(../images/icons/starBlackTiny.png) no-repeat 100% 0; }
 
 a#load-more-activity {
   display: block;
@@ -7770,6 +7758,14 @@ a#load-more-activity {
     background: #cccccc; }
   a#load-more-activity.loading {
     background: #cccccc url(../images/spinnerLightGreyBg.gif) no-repeat 10px 50%; }
+
+.dk_toggle {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px; }
+
+.dk_options a {
+  color: #555555; }
 
 .info-bar {
   background-color: #00aeef;

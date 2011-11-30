@@ -101,6 +101,7 @@ Repo::Application.routes.draw do
   match '/share/facebook',        :to => "sharing#facebook",            :as => :share_facebook
   
   match '/everyone',              :to => "community#index",             :as => :community
+  match '/everyone/activity',     :to => "community#activity"
   match "/community" => redirect("/everyone")
   match '/community/content',     :to => "community#content",           :as => :community_content
   match '/community/people',      :to => "community#people",            :as => :community_people
