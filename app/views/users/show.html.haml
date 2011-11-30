@@ -16,8 +16,7 @@
               %span.coin
               %span ) for free!
             %p
-              %span Use these coins to reward others for their great content, which can be found on the
-              = link_to "Community Page.", community_path, :class => "community"
+              %span Use these coins to reward others for their great content.
             %p
               %span As you start rewarding, and
               = link_to "creating your own content", creations_user_path(current_user)
@@ -30,7 +29,7 @@
             = render @activity
             - if @activity.empty?
               %li.none No activity.
-          = link_to "Load more...", "#", :id => "load-more-activity"
+          = link_to "Load more...", "#", :id => "load-more-activity" unless @activity.empty?
       
         - unless @activity.empty?
           #activity-sidebar
