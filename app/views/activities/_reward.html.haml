@@ -1,33 +1,41 @@
 %li.reward
   
-  .header
-    = link_to image_tag(reward.user.avatar.url(:thumbnail)), user_path(reward.user), :class => "thumbnail"
-    = link_to you_or_name(reward.user), user_path(reward.user)
-    %span rewarded
-    = link_to your_or_name(reward.recipient), user_path(reward.recipient)
-    %span content
-    %span.amount= reward.amount
+  .left-side
+    .faces
+      = link_to image_tag(reward.user.avatar.url(:thumbnail)), user_path(reward.user), :class => "face from"
+      = link_to image_tag(reward.recipient.avatar.url(:thumbnail)), user_path(reward.recipient), :class => "face to"
+    .amount
+      %span.count= reward.amount
     
-  .body
-    - if reward.comment.present?
-      .comment= reward.comment
-    
+  .middle
+    .title
+      = link_to you_or_name(reward.user), user_path(reward.user)
+      %span rewarded
+      = link_to you_or_name(reward.recipient), user_path(reward.recipient)
+      
     .content
       = link_to image_tag(reward.story.thumbnail.url(:petite)), story_path(reward.story, :impacted_by => reward.id), :class => "content-thumbnail"
       = link_to reward.story.title, story_path(reward.story, :impacted_by => reward.id), :class => "title"
       %span.byline by #{link_to reward.story.user.name, user_path(reward.story.user)}
       .tags
         - reward.story.tags.each do |tag|
-          = link_to tag.name, community_path(:tag => tag.name), :class => "tag"
-  
-  .footer
-    %span.when #{time_ago_in_words reward.created_at} ago
+          = link_to tag.name.downcase, "#"
+          %span ,
+                    
+    - if reward.comment.present?
+      .comment= reward.comment
+
     - if reward.shared_to_twitter?
       %span.twitter.tooltipped{:title => "Shared to Twitter"}
     - if reward.shared_to_facebook?
       %span.facebook.tooltipped{:title => "Shared to Facebook"}
     - if reward.impact > reward.amount
-      %span.impact
-        = link_to "Led to #{reward.impact - reward.amount} more", visualize_reward_path(reward), :class => "visualize"
-    :javascript
-      $('a.visualize').fancybox();
+      .led-to
+        %a.visualize{:href => visualize_reward_path(reward)}
+          Led to
+          %span.count= reward.impact - reward.amount
+      :javascript
+        $('a.visualize').fancybox();
+      
+  .right-side
+    %span.when #{time_ago_in_words reward.created_at} ago

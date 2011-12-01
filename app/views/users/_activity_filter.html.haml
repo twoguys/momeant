@@ -1,0 +1,9 @@
+#activity-filter
+  %select.pretty.dk{:tabindex => "1"}
+    %option{:value => "all"} All activity (#{Activity.involving(@user).count})
+    %option{:value => "impact"} Impact gained (#{Activity.on_impact.where(:recipient_id => @user.id).count})
+    %option{:value => "rewards-given"} Rewards given (#{Activity.on_rewards.where(:actor_id => @user.id).count})
+    %option{:value => "rewards-received"} Rewards received (#{Activity.on_rewards.where(:recipient_id => @user.id).count})
+    %option{:value => "content"} Content created (#{Activity.on_content.involving(@user).count})
+    %option{:value => "badges"} Badges earned (#{Activity.on_badges.involving(@user).count})
+    %option{:value => "coins"} Coins purchased (#{Activity.on_purchases.involving(@user).count})

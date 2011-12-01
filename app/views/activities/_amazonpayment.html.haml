@@ -1,7 +1,12 @@
 %li.purchase
   
-  .header
-    = link_to image_tag("coinCountBlue.png"), coins_path, :class => "thumbnail"
-    = link_to you_or_name(amazonpayment.payer), user_path(amazonpayment.payer)
-    %span purchased #{amazonpayment.coin_string}.
+  .left-side
+    = link_to image_tag("coinYellow.png"), coins_path, :class => "thumbnail"
+  
+  .middle
+    .title
+      = link_to you_or_name(amazonpayment.payer), user_path(amazonpayment.payer)
+      %span purchased #{amazonpayment.coin_string}.
+  
+  .right-side
     %span.when #{time_ago_in_words(amazonpayment.created_at)} ago

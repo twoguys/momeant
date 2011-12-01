@@ -1,0 +1,8 @@
+#activity-filter
+  %select.pretty.dk{:tabindex => "1"}
+    %option{:value => "all"} All activity (#{Activity.count})
+    %option{:value => "rewards"} Rewards given (#{Activity.on_rewards.count})
+    %option{:value => "impact"} Impact gained (#{Activity.on_impact.count})
+    %option{:value => "content"} Content created (#{Activity.on_content.count})
+    %option{:value => "badges"} Badges earned (#{Activity.on_badges.count})
+    %option{:value => "coins"} Coins purchased (#{Activity.on_purchases.count})

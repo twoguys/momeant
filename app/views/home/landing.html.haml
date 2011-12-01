@@ -1,40 +1,44 @@
 - content_for :head do
   = javascript_include_tag "landing"
-  :css
-    #home.index {
-      background: #fff url(#{@editorials.first.background.url}) no-repeat 0 0;
-    }
 
 #landing
 
-  %h1#slogan
-    Reward the people behind great content on the web.
+  - first = true
+  - @editorials.each do |editorial|
+    - z_index = first ? "z-index:2" : "z-index: 1"
+    .background{:id => "background_#{editorial.id}", :style => "background: #fff url(#{editorial.background.url}) repeat 0 0; #{z_index}"}
+    - first = false
+
+  #slogan
+    %h1 Reward the people behind great content on the web.
   
   #faces
     - first = true
     - @editorials.each do |editorial|
-      .face{:class => first ? "selected" : ""}
-        = link_to image_tag(editorial.user.avatar.url(:large)), "#", :info_id => editorial.id, :class => "avatar"
+      .face{:class => first ? "selected" : "", :editorial => editorial.id}
+        .preview
+          = link_to image_tag(editorial.user.avatar.url(:large)), user_path(editorial.user), :info_id => editorial.id, :class => "avatar"
+        .full
+          = link_to image_tag(editorial.user.avatar.url(:large)), user_path(editorial.user), :info_id => editorial.id, :class => "avatar"
       
-        .stats
-          - if editorial.show_as == "creator"
-            .rewards.stat
-              %span.amount= editorial.user.rewards.sum(:amount)
-              %span.text rewards received
-            .earned.stat
-              %span.dollar $
-              %span.amount= number_to_currency(editorial.user.rewards.sum(:amount) * Reward.dollar_exchange)[1..-1]
-              %span.text money earned
+          .stats
+            - if editorial.show_as == "creator"
+              .rewards.stat
+                %span.amount= editorial.user.rewards.sum(:amount)
+                %span.text rewards received
+              .earned.stat
+                %span.dollar $
+                %span.amount= number_to_currency(editorial.user.rewards.sum(:amount) * Reward.dollar_exchange)[1..-1]
+                %span.text money earned
               
-        .info
-          %h2
-            %span.name= editorial.user.name
-            %span creator
+          .info
+            %h2
+              %span.name= editorial.user.name
+              %span creator
 
-          %p.quote= editorial.quote
-              
-        .bottom
-          = link_to "view #{editorial.user.first_name}'s content", creations_user_path(editorial.user), :class => "content-link"            
+            %p.quote= editorial.quote
+          
+            = link_to "view #{editorial.user.first_name}'s content", creations_user_path(editorial.user), :class => "content-link"            
       
       - first = false
 

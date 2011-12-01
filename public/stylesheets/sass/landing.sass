@@ -1,118 +1,143 @@
 #home.index
-	@include bgcover
+	#main
+		height: 100%
 
 	#landing
 		position: relative
 		height: 100%
-	
+		
+		.background
+			@include bgcover
+			width: 100%
+			height: 100%
+			position: fixed
+			top: 0
+			left: 0
+
 		#slogan, #faces, #info
 			position: relative
 			z-index: 2
-	
+
 		#slogan
-			padding: 10px 0
-			text-align: center
-			background: #000
-			background: rgba(0,0,0,0.8)
-			color: #fff
-			font-size: 26px
-			margin-top: 30px
-			
+			padding-top: 40px
+			h1
+				padding: 10px 0
+				text-align: center
+				background: #000
+				background: rgba(0,0,0,0.8)
+				color: #fff
+				font-size: 26px
+				letter-spacing: -0.02em
+				margin: 0
+
 		#faces
 			position: absolute
-			top: 120px
-			left: 50px
-			
+			top: 140px
+			left: 50%
+			margin-left: -160px
+
 			.face
-				display: block
 				position: relative
 				float: left
 				margin-right: 25px
-				opacity: 0.5
-				background: #fff
 				width: 80px
-				height: 80px
-				border: 1px solid #000
-				@include boxshadow(2px,0.3,0,0)
-		
+				min-height: 80px
+				
 				&.selected
-					opacity: 1
-					width: 340px
-					height: auto
-					@include boxshadow(4px,0.4,0,0)
+					width: 320px
+					.full
+						display: block
+					.preview
+						display: none
+
+				.preview, .full
+					position: absolute
+					top: 0
+					left: 0
+
+				.preview
+					opacity: 0.7
+					width: 80px
+					height: 80px
+					@include boxshadow(2px,1.0,0,0)
 					a.avatar
-						border-right: 1px solid #000
+						display: block
+						width: 80px
+						height: 80px
+						img
+							width: 80px
+							height: 80px
+					
+				.full
+					display: none
+					background: #fff
+					@include rounded
+					opacity: 1
+					width: 320px
+					height: auto
+					@include boxshadow(4px,0.7,0,0)
+					a.avatar
+						float: left
 					a.avatar, a.avatar img
 						width: 160px
 						height: 160px
-					.stats, .info, .bottom
-						display: block
-				
-				a.avatar
-					display: block
-					float: left
-					width: 80px
-					height: 80px
-					img
-						width: 80px
-						height: 80px
-				
-				.stats, .info, .bottom
-					display: none
-					
-				.stats
-					float: left
-					width: 179px
-					font-family: $numerals
-					font-weight: 200
-					.stat
-						position: relative
-						padding: 20px 20px 0
-						.amount
-							font-size: 40px
-							line-height: 35px
-							padding-left: 18px
-							background: transparent url(../images/icons/starBlackSmall.png) no-repeat 0 11px
-						.text	
-							display: block
-							font-size: 13px
-							text-indent: 20px
-					.earned
-						.amount
-							background: none
-						.dollar
-							position: absolute
-							top: 18px
-							left: 24px
-							font-size: 16px
-							font-weight: 500
-		
-				.info
-					clear: both
-					padding: 20px
-					border-top: 1px solid #000
+						-webkit-border-top-left-radius: 5px
+						-moz-border-radius-topleft: 5px
+						border-top-left-radius: 5px
 
-					h2
-						padding: 0
-						background: none
-						color: #aaa
-						span.name
-							color: #000
-					
-					p
-						margin-bottom: 0
-			
-				.bottom
-					clear: both
-					padding: 10px 0
-					text-align: center
-					background: #000
-					a.content-link
+					.stats
+						float: left
+						width: 160px
+						height: 160px
+						background: #000
 						color: #fff
-						font-family: $numerals
-						font-size: 14px
-						font-weight: 200
+						-webkit-border-top-roght-radius: 5px
+						-moz-border-radius-topright: 5px
+						border-top-right-radius: 5px
+						.stat
+							position: relative
+							padding: 30px 10px 0
+							.amount
+								font-size: 26px
+								line-height: 20px
+								padding-left: 19px
+								font-weight: 700
+								background: transparent url(../images/icons/starWhiteSmall.png) no-repeat 0 4px
+							.text	
+								display: block
+								font-size: 11px
+								text-indent: 20px
+						.earned
+							.amount
+								background: none
+							.dollar
+								position: absolute
+								top: 25px
+								left: 14px
+								font-size: 16px
+								font-weight: 500
 
-@media screen and (max-height:780px) and (orientation:landscape)
-	#home.index
-		background-position: 0 276px
+					.info
+						clear: both
+						padding: 20px
+
+						h2
+							padding: 0
+							background: none
+							color: #aaa
+							span.name
+								color: #000
+
+						a.content-link
+							background: #bcbcbc
+							@include gradient(#c6c6c6,#b2b2b2)
+							@include rounded(3px)
+							color: #fff
+							font-size: 16px
+							font-weight: 700
+							text-transform: uppercase
+							display: block
+							padding: 10px 0
+							text-align: center
+							text-shadow: 0 -1px 0 rgba(0,0,0,0.2)
+							border: 1px solid #a9a9a9
