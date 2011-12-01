@@ -30,8 +30,10 @@
     - if reward.shared_to_facebook?
       %span.facebook.tooltipped{:title => "Shared to Facebook"}
     - if reward.impact > reward.amount
-      %span.impact
-        = link_to "Led to #{reward.impact - reward.amount} more", visualize_reward_path(reward), :class => "visualize"
+      .led-to
+        %a.visualize{:href => visualize_reward_path(reward)}
+          Led to
+          %span.count= reward.impact - reward.amount
       :javascript
         $('a.visualize').fancybox();
       

@@ -15,6 +15,12 @@
         - impact.story.tags.each do |tag|
           = link_to tag.name, "#"
           %span ,
+                
+    .led-to
+      %a.visualize{:href => visualize_reward_path(impact.root)}
+        View chain
+    :javascript
+      $('a.visualize').fancybox();
           
   .right-side
     %span.when #{time_ago_in_words impact.created_at} ago
