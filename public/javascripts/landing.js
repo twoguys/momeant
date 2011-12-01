@@ -3,7 +3,7 @@ $(function() {
   var half_page_width = $('body').width() / 2;
   $('#faces').css('left', half_page_width + 'px')
 	
-	$('#faces .face a').click(function() {
+	$('#faces .face a.avatar').click(function() {
     var $new_face = $(this).parent().parent();
     if ($new_face.hasClass('selected')) { return true; }
 
