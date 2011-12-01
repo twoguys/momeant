@@ -1,7 +1,7 @@
 .admin.editorials
   = render "admin/tabs"
   
-  = form_for @editorial, :url => admin_editorials_path do |form|
+  = form_for @editorial, :url => admin_editorials_path, :html => {:multipart => true} do |form|
     = form.hidden_field :user_id
 
     %fieldset
@@ -17,6 +17,10 @@
         %li
           = form.label :show_as
           = form.select :show_as, Editorial::SHOW_AS_OPTIONS
+          
+        %li
+          = form.label :background
+          = form.file_field :background
 
         %li  
           = form.submit "Put 'em on the homepage!"

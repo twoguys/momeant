@@ -1,14 +1,14 @@
 - content_for :head do
   = javascript_include_tag "landing"
+  :css
+    #home.index {
+      background: #fff url(#{@editorials.first.background.url}) no-repeat 0 0;
+    }
 
 #landing
 
-  #slogan
-    %h1
-      %span Reward the
-      %em people
-      %span behind great content on the web.
-    #slogan-button= link_to "Join", "#join-modal"
+  %h1#slogan
+    Reward the people behind great content on the web.
   
   #faces
     - first = true
