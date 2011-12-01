@@ -7581,157 +7581,184 @@ a.tag:hover {
             background: #bbbbbb;
             margin: 0; }
 
-#activity-filter {
-  height: 30px;
-  margin-bottom: 20px; }
+#activity {
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  margin-right: 300px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px; }
+
+#activity-head {
+  position: relative;
+  padding: 10px;
+  border: 1px solid #dddddd;
+  -webkit-border-top-left-radius: 3px;
+  -webkit-border-top-right-radius: 3px;
+  -moz-border-radius-topleft: 3px;
+  -moz-border-radius-topright: 3px; }
+  #activity-head #activity-filter {
+    height: 30px; }
 
 #activity-body {
-  position: relative; }
+  position: relative;
+  background: white;
+  min-height: 120px;
+  border: 1px solid #dddddd;
+  border-top: none;
+  -webkit-border-bottom-left-radius: 3px;
+  -webkit-border-bottom-right-radius: 3px;
+  -moz-border-radius-bottomleft: 3px;
+  -moz-border-radius-bottomright: 3px; }
+  #activity-body #activity-loading {
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    margin-left: -100px;
+    padding-left: 20px;
+    background: transparent url(../images/spinner.gif) no-repeat 0 0;
+    text-transform: uppercase;
+    font-weight: 700;
+    display: none; }
 
-#activity-loading {
-  position: absolute;
-  top: 80px;
-  left: 50%;
-  margin-left: -200px;
-  padding-left: 20px;
-  background: transparent url(../images/spinner.gif) no-repeat 0 0;
-  text-transform: uppercase;
-  font-weight: 700;
-  display: none; }
-
-ul#activity-list {
-  margin-right: 300px; }
-  ul#activity-list li {
-    position: relative;
-    background: white;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
-    border: 1px solid #cccccc;
-    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-    -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-    margin-bottom: 20px; }
-    ul#activity-list li .header {
+ul#activity-list li {
+  display: inline-block;
+  width: 100%;
+  position: relative;
+  border-bottom: 1px solid #eeeeee;
+  padding: 30px 0; }
+  ul#activity-list li:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden; }
+  ul#activity-list li .left-side {
+    width: 60px;
+    float: left;
+    margin-left: 20px; }
+  ul#activity-list li .middle {
+    margin: 0 20px;
+    float: left; }
+    ul#activity-list li .middle .title {
+      margin-bottom: 10px;
+      color: #707070; }
+      ul#activity-list li .middle .title a {
+        font-size: 13px;
+        font-weight: 700;
+        text-transform: uppercase; }
+    ul#activity-list li .middle .content {
       position: relative;
-      height: 15px;
-      padding: 17.5px 10px 17.5px 50px;
-      background: #f7f7f7;
-      background-image: -moz-linear-gradient(center top, white 4%, #f7f7f7 52%);
-      background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, white), color-stop(0.52, #f7f7f7));
-      border-bottom: 1px solid #cccccc;
-      text-shadow: 0 1px 0 white;
-      -webkit-border-top-left-radius: 3px;
-      -webkit-border-top-right-radius: 3px;
-      -moz-border-radius-topleft: 3px;
-      -moz-border-radius-topright: 3px;
-      border-top-left-radius: 3px;
-      border-top-right-radius: 3px; }
-      ul#activity-list li .header a.thumbnail {
+      min-height: 61px;
+      padding-left: 115px;
+      padding-top: 5px; }
+      ul#activity-list li .middle .content .content-thumbnail {
         position: absolute;
-        top: 10px;
-        left: 10px;
+        top: 0;
+        left: 0;
+        background: white;
+        padding: 2px;
+        border: 1px solid #dddddd;
         display: block;
-        width: 30px;
-        height: 30px; }
-        ul#activity-list li .header a.thumbnail img {
-          width: 30px;
-          height: 30px; }
-    ul#activity-list li .body {
-      padding: 10px; }
-      ul#activity-list li .body .comment {
-        margin-bottom: 10px; }
-      ul#activity-list li .body .content {
-        position: relative;
-        min-height: 66px;
-        padding-left: 109px; }
-        ul#activity-list li .body .content a.title {
-          font-weight: 700;
-          text-transform: uppercase; }
-        ul#activity-list li .body .content .byline {
-          display: block;
-          font-size: 11px; }
-        ul#activity-list li .body .content .content-thumbnail {
-          position: absolute;
-          top: 0;
-          left: 0;
-          background: white;
-          padding: 2px;
-          border: 1px solid #dddddd;
-          display: block;
-          width: 95px;
-          height: 60px; }
-        ul#activity-list li .body .content .tags {
-          padding-top: 5px; }
-    ul#activity-list li .footer {
-      border-top: 1px solid #dddddd;
-      background: #f7f7f7;
-      padding: 5px 10px;
-      color: #aaaaaa;
-      font-size: 11px;
-      -webkit-border-bottom-left-radius: 3px;
-      -webkit-border-bottom-right-radius: 3px;
-      -moz-border-radius-bottomleft: 3px;
-      -moz-border-radius-bottomright: 3px;
-      border-bottom-left-radius: 3px;
-      border-bottom-right-radius: 3px; }
-      ul#activity-list li .footer .when {
-        margin-right: 10px; }
-      ul#activity-list li .footer .twitter, ul#activity-list li .footer .facebook {
-        width: 12px;
-        height: 12px;
-        background: transparent url(../images/icons/twitterTiny.png) no-repeat;
-        display: inline-block;
-        margin-right: 5px;
-        cursor: help;
-        position: relative;
-        top: 2px; }
-      ul#activity-list li .footer .facebook {
-        background-image: url(../images/icons/facebookTiny.png); }
-      ul#activity-list li .footer .impact a {
-        padding: 1px 18px 0 0;
-        background: transparent url(../images/icons/starBlueSmall.png) no-repeat 100% 0; }
-  ul#activity-list li.reward .header .amount, ul#activity-list li.impact .header .amount {
-    margin: 0 3px;
-    background: #00aeef url(../images/icons/starWhiteTiny.png) no-repeat 80% 5px;
-    color: white;
-    padding: 2px 19px 2px 6px;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
+        width: 95px;
+        height: 60px; }
+      ul#activity-list li .middle .content a.title {
+        font-size: 1.2em;
+        font-weight: 700;
+        color: #252525; }
+      ul#activity-list li .middle .content .byline {
+        display: block;
+        font-size: 11px;
+        padding-top: 2px; }
+      ul#activity-list li .middle .content .tags {
+        padding-top: 2px; }
+        ul#activity-list li .middle .content .tags a, ul#activity-list li .middle .content .tags span {
+          color: #b1b1b1;
+          font-size: 11px;
+          font-style: italic; }
+        ul#activity-list li .middle .content .tags a:hover {
+          text-decoration: underline; }
+        ul#activity-list li .middle .content .tags span {
+          margin-left: -3px;
+          margin-right: 1px; }
+        ul#activity-list li .middle .content .tags span:last-child {
+          display: none; }
+      ul#activity-list li .middle .content .comment {
+        margin-top: 10px; }
+  ul#activity-list li .right-side {
+    width: 110px;
+    float: right;
+    margin-right: 20px;
+    color: #cccccc;
+    font-style: italic;
     font-size: 11px;
-    position: relative;
-    top: -1px;
-    box-shadow: 0 0 3px rgba(0, 0, 0, 0.4) inset; }
-  ul#activity-list li.reward a.thumbnail img, ul#activity-list li.content a.thumbnail img {
-    border: 1px solid #cccccc; }
-  ul#activity-list li.impact .header .amount {
-    background: #00aeef url(../images/icons/impactBlueTiny.png) no-repeat 85% 2px; }
-  ul#activity-list li.purchase .header {
-    -webkit-border-bottom-left-radius: 3px;
-    -webkit-border-bottom-right-radius: 3px;
-    -moz-border-radius-bottomleft: 3px;
-    -moz-border-radius-bottomright: 3px;
-    border-bottom-left-radius: 3px;
-    border-bottom-right-radius: 3px; }
-  ul#activity-list li.badge a.thumbnail {
-    width: 25.6px; }
-    ul#activity-list li.badge a.thumbnail img {
-      width: 25.6px;
-      margin-left: 2px; }
-  ul#activity-list li.purchase .header .when, ul#activity-list li.badge .header .when {
-    color: #aaaaaa;
-    font-size: 11px;
-    float: right; }
-  ul#activity-list li.none {
-    background: none;
-    border: none;
-    box-shadow: none; }
+    text-align: right; }
+ul#activity-list li.reward .left-side .faces {
+  position: relative;
+  height: 65px; }
+  ul#activity-list li.reward .left-side .faces a.face {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    display: block;
+    width: 38px;
+    height: 38px; }
+    ul#activity-list li.reward .left-side .faces a.face img {
+      background: white;
+      width: 32px;
+      height: 32px;
+      padding: 2px;
+      border: 1px solid #dddddd;
+      -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
+      -moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 0 1px rgba(0, 0, 0, 0.2); }
+  ul#activity-list li.reward .left-side .faces a.to {
+    top: 20px;
+    left: 20px;
+    z-index: 2; }
+ul#activity-list li.reward .left-side .amount {
+  background: #00aeef;
+  color: white;
+  padding: 3px 0;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  text-align: center; }
+  ul#activity-list li.reward .left-side .amount .count {
+    padding-right: 18px;
+    font-weight: 700;
+    background: transparent url(../images/icons/starWhiteSmall.png) no-repeat 100% 0; }
+ul#activity-list li.reward a.thumbnail img, ul#activity-list li.content a.thumbnail img {
+  border: 1px solid #cccccc; }
+ul#activity-list li.impact .left-side {
+  height: 60px;
+  background: transparent url(../images/impactStarburst.png) no-repeat 50% 0; }
+ul#activity-list li.purchase .header {
+  -webkit-border-bottom-left-radius: 3px;
+  -webkit-border-bottom-right-radius: 3px;
+  -moz-border-radius-bottomleft: 3px;
+  -moz-border-radius-bottomright: 3px;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px; }
+ul#activity-list li.badge .left-side, ul#activity-list li.purchase .left-side {
+  text-align: center; }
+  ul#activity-list li.badge .left-side img, ul#activity-list li.purchase .left-side img {
+    height: 52px; }
+ul#activity-list li.badge .middle, ul#activity-list li.badge .right-side, ul#activity-list li.purchase .middle, ul#activity-list li.purchase .right-side {
+  padding-top: 15px; }
+ul#activity-list li.purchase .header .when, ul#activity-list li.badge .header .when {
+  color: #aaaaaa;
+  font-size: 11px;
+  float: right; }
+ul#activity-list li.none {
+  text-indent: 10px; }
 
 #activity-sidebar {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 30px;
+  right: 20px;
   width: 285px;
   font-size: 11px; }
   #activity-sidebar .info {
@@ -7758,16 +7785,22 @@ ul#activity-list {
 
 a#load-more-activity {
   display: block;
-  margin-right: 300px;
   padding: 10px 0;
   text-align: center;
   background: #dddddd;
-  color: #333333;
+  background-image: -moz-linear-gradient(center top, #f4f4f4 4%, #eeeeee 52%);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #f4f4f4), color-stop(0.52, #eeeeee));
+  color: #999999;
+  text-shadow: 0 1px 0 white;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin: 20px;
+  border: 1px solid #dddddd;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px; }
   a#load-more-activity:hover {
-    background: #cccccc; }
+    background: #eeeeee; }
   a#load-more-activity.loading {
     background: #cccccc url(../images/spinnerLightGreyBg.gif) no-repeat 10px 50%; }
 

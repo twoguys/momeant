@@ -1,34 +1,37 @@
-.community#activity
-  
-  = render "community/activity_filter"
-    
-  #activity-body
+.community
 
-    #activity-loading Just a momeant...
+  #activity
   
-    %ul#activity-list
-      = render @activity
-    = link_to "Load more...", "#", :id => "load-more-activity"
+    #activity-head
+      = render "community/activity_filter"
+    
+    #activity-body
 
-    #activity-sidebar
-    
-      #leaderboards
-    
-        #top-patrons.list
-          .info Top Patrons
-          %ul
-            - @top_patrons.each do |patron|
-              %li
-                = link_to truncate(patron.name, :length => 20), user_path(patron)
-                %span.impact= patron.impact
-                
-        #top-creators.list
-          .info Top Creators
-          %ul
-            - @top_creators.each do |creator|
-              %li
-                = link_to truncate(creator.name, :length => 20), user_path(creator)
-                %span.rewards= creator.lifetime_rewards
+      #activity-loading Just a momeant...
+  
+      %ul#activity-list
+        = render @activity
+      = link_to "Load more...", "#", :id => "load-more-activity"
+
+  #activity-sidebar
+  
+    #leaderboards
+  
+      #top-patrons.list
+        .info Top Patrons
+        %ul
+          - @top_patrons.each do |patron|
+            %li
+              = link_to truncate(patron.name, :length => 20), user_path(patron)
+              %span.impact= patron.impact
+              
+      #top-creators.list
+        .info Top Creators
+        %ul
+          - @top_creators.each do |creator|
+            %li
+              = link_to truncate(creator.name, :length => 20), user_path(creator)
+              %span.rewards= creator.lifetime_rewards
 
 :javascript
   var activity_url = '/everyone/activity';
