@@ -4,9 +4,11 @@
 	position: relative
 
 #activity
-	@include boxshadow(3px,0.2,0,1px)
-	margin-right: 300px
+	@include boxshadow(3px,0.2,1px,1px)
+	margin-right: 400px
 	@include rounded(3px)
+	position: relative
+	z-index: 2
 
 #activity-head
 	position: relative
@@ -52,11 +54,12 @@ ul#activity-list
 		
 		.left-side
 			width: 60px
-			float: left
-			margin-left: 20px
+			position: absolute
+			top: 30px
+			left: 20px
 		
 		.middle
-			margin: 0 20px
+			margin: 0 20px 0 100px
 			float: left
 			
 			.title
@@ -202,10 +205,20 @@ ul#activity-list
 
 #activity-sidebar
 	position: absolute
-	top: 10px
+	top: 20px
 	right: 0
-	width: 285px
+	width: 359px
+	padding: 20px
 	font-size: 11px
+	background: #fff
+	border: 1px solid #ddd
+	-webkit-border-top-right-radius: 3px
+	-webkit-border-bottom-right-radius: 3px
+	-moz-border-radius-topright: 3px
+	-moz-border-radius-bottomright: 3px
+	border-top-right-radius: 3px
+	border-bottom-right-radius: 3px
+	z-index: 1
 
 	.info
 		text-transform: uppercase

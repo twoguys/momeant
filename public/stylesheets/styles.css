@@ -7615,13 +7615,15 @@ a.tag:hover {
   position: relative; }
 
 #activity {
-  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-  margin-right: 300px;
+  -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+  margin-right: 400px;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
-  border-radius: 3px; }
+  border-radius: 3px;
+  position: relative;
+  z-index: 2; }
 
 #activity-head {
   position: relative;
@@ -7669,10 +7671,11 @@ ul#activity-list li {
     visibility: hidden; }
   ul#activity-list li .left-side {
     width: 60px;
-    float: left;
-    margin-left: 20px; }
+    position: absolute;
+    top: 30px;
+    left: 20px; }
   ul#activity-list li .middle {
-    margin: 0 20px;
+    margin: 0 20px 0 100px;
     float: left; }
     ul#activity-list li .middle .title {
       margin-bottom: 10px;
@@ -7807,10 +7810,20 @@ ul#activity-list li.none {
 
 #activity-sidebar {
   position: absolute;
-  top: 10px;
+  top: 20px;
   right: 0;
-  width: 285px;
-  font-size: 11px; }
+  width: 359px;
+  padding: 20px;
+  font-size: 11px;
+  background: white;
+  border: 1px solid #dddddd;
+  -webkit-border-top-right-radius: 3px;
+  -webkit-border-bottom-right-radius: 3px;
+  -moz-border-radius-topright: 3px;
+  -moz-border-radius-bottomright: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  z-index: 1; }
   #activity-sidebar .info {
     text-transform: uppercase;
     text-shadow: 0 1px 0 white;
