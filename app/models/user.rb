@@ -190,15 +190,15 @@ class User < ActiveRecord::Base
         reward.ancestors.update_all("impact = impact + #{reward.amount}")
         
         # update all ancestors' user's impact, except for this reward's user (no double points!)
-        ancestor_ids = reward.ancestors.map(&:user_id).reject{|user_id| user_id == reward.user_id}
+        ancestor_ids = reward.ancestors.map(&:user_id).uniq.reject{|user_id| user_id == reward.user_id}
         unless ancestor_ids.empty?
           User.where("id in (#{ancestor_ids.join(",")})").update_all("impact = impact + #{reward.amount}")
         end
         
         # record an activity for each ancestor getting impact
-        reward.ancestors.each do |ancestor|
-          if ancestor.user_id != reward.user_id
-            Activity.create(:actor_id => self.id, :recipient_id => ancestor.user_id, :action_type => "Impact", :action_id => reward.id)
+        reward.ancestors.map(&:user_id).uniq.each do |user_id|
+          if user_id != reward.user_id
+            Activity.create(:recipient_id => user_id, :action_type => "Impact", :action_id => reward.id)
           end
         end
       end
