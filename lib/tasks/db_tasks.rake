@@ -45,7 +45,6 @@ namespace :momeant do
         
         reward.ancestors.each do |ancestor|
           Activity.create(
-            :actor_id => reward.user_id,
             :recipient_id => ancestor.user_id,
             :action_type => "Impact",
             :action_id => reward.id,
