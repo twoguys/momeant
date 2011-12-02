@@ -40,57 +40,90 @@ impact ul.avatars
 
 .user-profile
 	.profile-info
-		position: fixed
-		top: 42px
-		//bottom: 0
-		left: 0
-		width: 167px
-		padding: 10px 20px
-		//border-right: 1px solid #ccc
-		z-index: 99
-		//background: $background_color
-		//box-shadow: 0 2px 5px rgba(0,0,0,0.2)
-		overflow: hidden
-		.avatar-badge-name
-			position: relative
-			padding: 178px 0 0 5px
-			margin-left: -5px
-			.avatar
+		position: relative
+		background: #fff
+
+		.metadata
+			padding: 28px 40px 0 210px
+			height: 140px
+	
+			.avatar-badge
 				position: absolute
-				top: 10px
-				left: 5px
-				z-index: 1
-				img
-					width: 165px
-					height: 165px
-					border: 3px solid #000
+				top: 20px
+				left: 40px
+				.avatar
+					position: absolute
+					top: 10px
+					left: 5px
+					z-index: 1
+					img
+						width: 130px
+						height: 130px
+						border: 3px solid #000
+				.badge
+					position: absolute
+					top: -5px
+					left: -27px
+					z-index: 3
+
 			.name
-				position: relative
-				z-index: 2
-				font-size: 14px
+				font-size: 24px
 				font-weight: 700
 				text-transform: uppercase
-				color: #fff
-				background: #000
-				width: 161px
-				padding: 5px
-				overflow: hidden
-			.badge
-				position: absolute
-				top: 0
-				left: 0
-				z-index: 3
-		
+
+			ul.about, ul.stats
+				float: left
+
+			ul.about
+				width: 350px
+				font-size: 11px
+				margin: 10px 50px 0 0
+				li
+					margin-bottom: 3px
+				.weak
+					color: #999
+					text-transform: uppercase
+
+			ul.stats
+				position: relative
+				margin-top: 5px
+				width: 200px
+				li
+					padding: 4px 0
+					font-size: 11px
+					border-bottom: 1px solid #ddd
+					.amount
+						font-weight: 700
+					.dollar
+						padding: 0 6px 0 5px
+				
+					#cashout
+						display: block
+						font-size: 11px
+						text-align: center
+				.current-money
+					border: none
+				.impact .amount
+					background: transparent url(../images/icons/impactTiny.png) no-repeat 0 0
+					padding-left: 20px
+					margin-right: 3px
+				li:last-child
+					border: none
+				
 		ul.nav
-			margin: 20px 0
+			margin-top: 20px
+			padding: 0 20px
+			height: 28px
+			border-bottom: 1px solid #ddd
 			li
+				float: left
+				margin-right: 40px
 				a
 					display: block
 					height: 16px
-					padding: 4px
+					padding: 6px 14px 6px 8px
 					text-transform: uppercase
 					font-size: 11px
-					margin-bottom: 2px
 					span
 						padding-left: 22px
 						background: transparent url(../images/icons/activity.png) no-repeat 0 -2px
@@ -105,32 +138,30 @@ impact ul.avatars
 				a.edit span
 					background-image: url(../images/icons/pencil.png)
 				a.active
-					background: transparent url(../images/navActiveBG.png) no-repeat 100% 0
-					color: #fff
+					background: #f4f4f4
+					color: #000
+					position: relative
+					border: 1px solid #ddd
+					border-bottom: none
 					span
 						background-position: 0 -25px
-		ul.stats
-			position: relative
-			margin-bottom: 10px
-			li
-				padding: 4px 0
-				font-size: 11px
-				border-bottom: 1px solid #ddd
-				&:last-child
-					border: none
-				.amount
-					font-weight: 700
-				.dollar
-					padding: 0 6px 0 5px
-			.impact .amount
-				background: transparent url(../images/icons/impactTiny.png) no-repeat 0 0
-				padding-left: 20px
-				margin-right: 3px
 		
-		#cashout
+		#special-links
+			position: absolute
+			top: 0
+			right: 10px
+			width: 150px
+		
+		#editorialize
+			@include orangebutton
 			display: block
-			font-size: 11px
+			margin-top: 10px
 			text-align: center
+			text-transform: uppercase
+			font-weight: 700
+			height: 12px
+			line-height: 12px
+			padding: 6px 0
 				
 		.occupation, .tagline, .location, .tags
 			h3
@@ -153,10 +184,8 @@ impact ul.avatars
 			margin-bottom: 13px
 	
 	.the-rest
-		margin-left: 208px
-		min-height: 100%
-		min-width: 840px
 		position: relative
+		padding: 20px
 		.horizontal-tabs
 			border-bottom: 1px solid #ccc
 			ul
@@ -164,8 +193,6 @@ impact ul.avatars
 				a
 					border: 1px solid #ccc
 					border-bottom: none
-		.tabbed
-			padding: 20px
 	
 	
 	.guides
@@ -262,33 +289,19 @@ impact ul.avatars
 	.have-not.shared .box-button .inner
 		background: transparent url(../images/icons/momeantAddStoryGrey.png) no-repeat 5px 2px
 	
-	/* Activity */
-	.tabbed.activity
+	#new-user-no-activity
+		padding-top: 20px
 		h1
 			font-weight: 700
 			text-transform: uppercase
-		ul#activity-nav
-			display: none
-			height: 20px
-			margin: 0 0 15px
-			padding-left: 10px
-			li
-				float: left
-				margin-right: 80px
-				text-transform: uppercase
-				a.active
-					font-weight: 700
-	
-	#new-user-no-activity
-		padding-top: 20px
-		h1 .coin
-			display: inline-block
-			width: 20px
-			height: 25px
-			margin: -5px -3px 0
-			position: relative
-			top: 8px
-			background: transparent url(../images/icons/coinStarBlackMedium.png) no-repeat 0 0
+			.coin
+				display: inline-block
+				width: 20px
+				height: 25px
+				margin: -5px -3px 0
+				position: relative
+				top: 8px
+				background: transparent url(../images/icons/coinStarBlackMedium.png) no-repeat 0 0
 		p
 			margin: 5px 0
 			font-size: 13px

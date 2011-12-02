@@ -1,36 +1,50 @@
-function handle_nav_button_clicks() {
-	var height = $('#landing #insides').height();
-	var $letter = $('#letter');
-	var $next = $('#landing a.next');
-	var $previous = $('#landing a.previous');
+$(function() {
+  
+  var half_page_width = $('body').width() / 2;
+  $('#faces').css('left', half_page_width + 'px')
+	
+	$('#faces .face a.avatar').click(function() {
+    var $new_face = $(this).parent().parent();
+    if ($new_face.hasClass('selected')) { return true; }
 
-	$next.click(function() {
-		if ($next.hasClass('disabled'))
-			return;
-			
-		$next.addClass('disabled');
-		$letter.animate({top: '-=' + height}, 300, function() {
-			$next.removeClass('disabled');
-			$previous.show();
-			log($letter.css('top'));
-			if ($letter.css('top') == '-900px')
-				$next.hide();
-		});
-	});
-	$previous.click(function() {
-		if ($previous.hasClass('disabled'))
-			return;
-			
-		$previous.addClass('disabled');
-		$letter.animate({top: '+=' + height }, 300, function() {
-			$previous.removeClass('disabled');
-			$next.show();
-			if ($letter.css('top') == '0px')
-				$previous.hide();
-		});
-	});
-}
+	  var $current_face = $('#faces .selected');
+	  var new_index = $('#faces').children().index($new_face);
+	  
+    $current_face.find('.full').fadeOut(200);
+    $current_face.find('.preview').fadeIn(200);
+    $current_face.removeClass('selected');
 
-$(document).ready(function() {
-	handle_nav_button_clicks();
+    $new_face.find('.preview').fadeOut(200);
+    $new_face.find('.full').fadeIn(200);
+	  $new_face.addClass('selected');
+    
+    var existing_left = $('#faces').position().left;
+    var new_left = half_page_width + (new_index * -105);
+    $('#faces').animate({left: new_left + 'px'}, 200);
+	  
+	  return false;
+	});
+	
+	$('#slogan-more-link').click(function() {
+	  var $link = $(this);
+	  
+	  var height_change = 155;
+
+    if ($link.hasClass('open')) {
+      $('#slogan-more').fadeOut(200, function() {
+        $('#slogan').animate({height: '-=' + height_change + 'px'}, 200);
+        $('#faces').animate({top:'-=' + height_change + 'px'}, 200);
+      });
+    } else {
+      $('#slogan').animate({height: '+=' + height_change + 'px'}, 200, function() {
+        $('#slogan-more').fadeIn(200);
+      });
+      $('#faces').animate({top:'+=' + height_change + 'px'}, 200);
+    }
+	  
+	  $link.toggleClass('open');
+	  
+	  return false;
+	});
+	
 });

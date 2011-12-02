@@ -100,10 +100,11 @@ Repo::Application.routes.draw do
   match '/share/twitter',         :to => "sharing#twitter",             :as => :share_twitter
   match '/share/facebook',        :to => "sharing#facebook",            :as => :share_facebook
   
-  match '/community',             :to => "community#index"
-  match '/community/content',     :to => "community#content",           :as => :community
+  match '/activity',              :to => "community#index",             :as => :community
+  match '/activity/reload',       :to => "community#activity"
+  match "/community" => redirect("/everyone")
+  match '/community/content',     :to => "community#content",           :as => :community_content
   match '/community/people',      :to => "community#people",            :as => :community_people
-  match '/community/rewards',     :to => "community#rewards",           :as => :community_rewards
   match '/community/newest_content', :to => "community#newest_content", :as => :community_newest_content
   
   namespace :admin do
@@ -117,6 +118,7 @@ Repo::Application.routes.draw do
     resources :adverts do
       post :toggle_enabled, :on => :member
     end
+    resources :editorials
   end
   
   match '/auth/:provider/configure' => 'authentications#configure'

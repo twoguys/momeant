@@ -63,7 +63,9 @@ class User < ActiveRecord::Base
       :secret_access_key   => ENV['S3_SECRET']
     },
     :bucket        => ENV['S3_BUCKET']
-         
+  
+  scope :most_rewarded, order("lifetime_rewards DESC")
+  
   # STATE MACHINE FOR PAID SUBSCRIPTIONS
   
   aasm_column :paid_state
@@ -168,7 +170,6 @@ class User < ActiveRecord::Base
     story.user.increment!(:lifetime_rewards, amount)
     
     # create the reward activity record
-    Rails.logger.info "ASDFASDFSADFASDFASDF #{reward.id}"
     Activity.create(:actor_id => self.id, :recipient_id => story.user_id, :action_type => "Reward", :action_id => reward.id)
 
     # if the user's badge level changed, record a badge activity record

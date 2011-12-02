@@ -1,12 +1,40 @@
 .profile-info
-  .avatar-badge-name
-    - if @user.avatar.url.include?("missing")
-      = link_to(image_tag(@user.avatar.url(:large)), edit_user_path(@user), :class => "avatar")
-    - else
-      = link_to(image_tag(@user.avatar.url(:large)), user_path(@user), :class => "avatar")
-    = image_tag("badges/#{@user.badge_level}.png", :class => "badge")
-    .name= @user.name
+  .metadata
+    .avatar-badge
+      - if @user.avatar.url.include?("missing")
+        = link_to(image_tag(@user.avatar.url(:large)), edit_user_path(@user), :class => "avatar")
+      - else
+        = link_to(image_tag(@user.avatar.url(:large)), user_path(@user), :class => "avatar")
+      = image_tag("badges/#{@user.badge_level}.png", :class => "badge")
   
+    .name= @user.name
+    
+    %ul.about
+      %li
+        %span.weak Location:
+        %span= @user.location
+      %li
+        %span.weak Occupation:
+        %span= @user.occupation
+      %li
+        %span.weak About:
+        %span= truncate @user.tagline, :length => 200
+  
+    %ul.stats    
+      %li.impact
+        %span.amount= @user.impact
+        %span impact
+      %li.all-time-money
+        %span.dollar $
+        %span.amount= number_to_currency(@user.rewards.sum(:amount) * Reward.dollar_exchange)[1..-1]
+        %span all time earnings
+      %li.current-money
+        %span.dollar $
+        %span.amount= number_to_currency(@user.rewards.not_cashed_out.sum(:amount) * Reward.dollar_exchange)[1..-1]
+        %span not cashed out
+      - if me?(@user)
+        %li= link_to "Cash Out", user_cashouts_path(@user), :id => "cashout", :class => "button"
+
   %ul.nav
     %li= link_to_active "<span>Activity</span>".html_safe, user_path(@user), :class => "activity"
     %li= link_to_active "<span>Content</span>".html_safe, creations_user_path(@user), :class => "content"
@@ -16,19 +44,7 @@
       %li= link_to_active message_text.html_safe, user_messages_path(@user), :class => "message"
     - else
       %li= link_to "<span>Message #{@user.first_name}</span>".html_safe, user_messages_path(@user), :class => "message"
-  
-  %ul.stats    
-    %li.impact
-      %span.amount= @user.impact
-      %span impact
-    %li.all-time-money
-      %span.dollar $
-      %span.amount= number_to_currency(@user.rewards.sum(:amount) * Reward.dollar_exchange)[1..-1]
-      %span all time earnings
-    %li.current-money
-      %span.dollar $
-      %span.amount= number_to_currency(@user.rewards.not_cashed_out.sum(:amount) * Reward.dollar_exchange)[1..-1]
-      %span not cashed out
-
-  - if me?(@user)
-    = link_to "Cash Out", user_cashouts_path(@user), :id => "cashout", :class => "button"
+      
+  #special-links
+    - if current_user && current_user.is_admin?
+      = link_to "Editorialize", new_admin_editorial_path(:user => @user.id), :id => "editorialize"

@@ -1,134 +1,186 @@
-#landing
-	width: 100%
-	height: 100%
-	font-family: $numerals
-	font-weight: 200
-	
-	#background
-		background: #d1cecb url(https://momeant-production.s3.amazonaws.com/assets/barn-door-optimal.jpg) no-repeat 50% 50% fixed
-		@include bgcover
-		position: fixed
-		top: 0
-		bottom: 0
-		left: 0
-		right: 0
-		z-index: 1
-	
-	#insides
-		background: $blue
-		width: 790px
-		height: 450px
-		position: absolute
-		top: 50%
-		left: 0
-		margin-top: -225px
-		color: #fff
-		font-size: 38px
-		line-height: 41px
-		z-index: 2
-		overflow: hidden
-	
-		ul#letter
-			height: 100%
+#home.index
+	#container
+		background: #fd7c05 url(https://momeant.s3.amazonaws.com/landing_backgrounds/orange.jpg) no-repeat 50% 50%
+
+	#main
+		height: 100%
+
+	#landing
+		position: relative
+		padding-top: 30px
+
+		#slogan, #faces, #info
+			position: relative
+			z-index: 2
+
+		#slogan
+			background: #000
+			background: rgba(0,0,0,0.8)
+			color: #fff
+			padding: 10px 0
+			position: relative
+			height: 35px
+			margin-bottom: 40px
+			h1
+				text-align: center
+				font-size: 26px
+				letter-spacing: -0.02em
+				margin: 0
+				text-shadow: 0 2px 2px #000
+			#slogan-more
+				width: 650px
+				margin: 10px auto 0
+				font-size: 13px
+				display: none
+			#slogan-more-link
+				position: absolute
+				bottom: -25px
+				left: 50%
+				margin-left: -17.5px
+				display: block
+				width: 35px
+				height: 25px
+				background: #000 url(../images/landingPlusMinus.png) no-repeat 3px -5px
+				background: rgba(0,0,0,0.8) url(../images/landingPlusMinus.png) no-repeat 3px -5px
+				color: #fff
+				font-size: 30px
+				font-weight: 700
+				text-indent: -9999px
+				-webkit-border-bottom-right-radius: 5px
+				-webkit-border-bottom-left-radius: 5px
+				-moz-border-radius-bottomright: 5px
+				-moz-border-radius-bottomleft: 5px
+				border-bottom-right-radius: 5px
+				border-bottom-left-radius: 5px
+			#slogan-more-link.open
+				background-position: 3px -35px
+
+		#faces-header
+			text-align: center
+			margin-bottom: 20px
+			text-transform: uppercase
+			text-shadow: 0 1px 0 rgba(255,255,255,0.2)
+			
+		#faces
 			position: absolute
-			top: 0
-			li.page
-				height: 100%
-				div.inner
-					strong
-						font-weight: 200
-						color: #000
-						display: inline
-					.padded
-						padding: 60px 40px
-					span
+			top: 160px
+			left: 50%
+			margin-left: -160px
+
+			.face
+				position: relative
+				float: left
+				margin-right: 25px
+				width: 80px
+				min-height: 80px
+				
+				&.selected
+					width: 320px
+					.full
 						display: block
-						margin-bottom: 1em
-				#internet
-					.large
-						font-size: 120px
-						line-height: 95px
-						letter-spacing: -10px
-						text-transform: uppercase
-						text-shadow: 1px 1px 1px #00AEEF
-					.spaced
-						margin-bottom: 40px
-					.padded
-						padding: 55px 40px
-					span
-						margin-bottom: 0
-				#solution
-					a
-						padding: 10px 30px
+					.preview
+						display: none
+
+				.preview, .full
+					position: absolute
+					top: 0
+					left: 0
+
+				.preview
+					opacity: 0.7
+					width: 80px
+					height: 80px
+					@include boxshadow(2px,1.0,0,0)
+					@include rounded
+					a.avatar
+						display: block
+						width: 80px
+						height: 80px
+						img
+							width: 80px
+							height: 80px
+							@include rounded
+					
+				.full
+					display: none
+					background: #fff
+					@include rounded
+					opacity: 1
+					width: 320px
+					height: auto
+					@include boxshadow(4px,0.7,0,0)
+					a.avatar
+						float: left
+					a.avatar, a.avatar img
+						width: 160px
+						height: 160px
+						-webkit-border-top-left-radius: 5px
+						-moz-border-radius-topleft: 5px
+						border-top-left-radius: 5px
+
+					.stats
+						float: left
+						width: 160px
+						height: 160px
 						background: #000
 						color: #fff
-						@include rounded(5px)
-						font-size: 14px
-						font-family: $block
-						font-weight: 700
-						text-transform: uppercase
-						position: relative
-						top: -7px
-						margin-right: 3px
-				#rewarded
-					background: none
-					ul.rewards
-						padding-top: 0
-						li.reward
-							float: left
-							font-size: 12px
-							font-family: $block
-							text-transform: none
-							margin-right: 10px
-							span
-								display: inline
-								margin: 0
-							span.reward
-								margin-right: 5px
-						li.reward:last-child
-							margin: 0
-					.join
+						-webkit-border-top-roght-radius: 5px
+						-moz-border-radius-topright: 5px
+						border-top-right-radius: 5px
+						.stat
+							position: relative
+							padding: 30px 10px 0
+							.amount
+								font-size: 26px
+								line-height: 20px
+								padding-left: 19px
+								font-weight: 700
+								background: transparent url(../images/icons/starWhiteSmall.png) no-repeat 0 4px
+							.text	
+								display: block
+								font-size: 11px
+								text-indent: 20px
+						.earned
+							.amount
+								background: none
+							.dollar
+								position: absolute
+								top: 25px
+								left: 14px
+								font-size: 16px
+								font-weight: 500
+
+					.info
 						clear: both
-						padding-top: 1em
+						padding: 20px
+
+						h2
+							padding: 0
+							background: none
+							color: #aaa
+							margin-bottom: 10px
+							span.name
+								color: #000
 						
-		a.next, a.previous
-			position: absolute
-			bottom: 15px
-			left: 50%
-			width: 34px
-			height: 31px
-			margin-left: -17px
-			background: transparent url(../images/landingArrows.png) no-repeat 0 0
-			cursor: pointer
-			z-index: 3
-		a.previous
-			bottom: auto
-			top: 15px
-			background-position: 0 -31px
-			display: none
-		
-	#guide
-		display: none
-		margin-top: 40px
-		height: 115px
-		padding-bottom: 30px
-		a
-			color: $text_color
-			border-bottom: 1px solid #bbb
-			display: block
-			float: left
-			width: 300px
-			padding: 20px
-			background-color: #ebe7e4
-			@include rounded(3px)
-			h3
-				display: inline-block
-				padding-right: 25px
-				background: transparent url(../images/whiteArrowRight.png) no-repeat 100% 1px
-			p
-				margin: 10px 0 0
-				text-shadow: 0 1px 0 #fff
-		a:first-child
-			margin-right: 30px
-		a:hover
-			background: #fff
+						.location
+							font-size: 11px
+							padding: 1px 0 0 12px
+							margin-bottom: 10px
+							background: transparent url(../images/icons/location.png) no-repeat -4px 0
+						
+						p.quote
+							margin-top: 0
+
+						a.content-link
+							background: #bcbcbc
+							@include gradient(#c6c6c6,#b2b2b2)
+							@include rounded(3px)
+							color: #fff
+							font-size: 16px
+							font-weight: 700
+							text-transform: uppercase
+							display: block
+							padding: 10px 0
+							text-align: center
+							text-shadow: 0 -1px 0 rgba(0,0,0,0.2)
+							border: 1px solid #a9a9a9

@@ -5,10 +5,10 @@ class UsersController < ApplicationController
   
   def show
     @activity = Activity.involving(@user).page(params[:page])
+    @top_supporters = @user.rewards.group_by(&:user).to_a.map {|x| [x.first,x.second.inject(0){|sum,r| sum+r.amount}]}.sort_by(&:second).reverse[0..5]
+    @favorite_creators = @user.given_rewards.group_by(&:recipient).to_a.map {|x| [x.first,x.second.inject(0){|sum,r| sum+r.amount}]}.sort_by(&:second).reverse[0..5]
     
-    @users = @user.rewarded_creators
-    @rewards = @user.given_rewards.for_content
-    flash[:track_user_view] = true
+    @nav = "me" if @user == current_user
   end
   
   def creations
@@ -25,7 +25,7 @@ class UsersController < ApplicationController
     when "all"
       activity = Activity.involving(@user)
     when "impact"
-      activity = Activity.on_impact.involving(@user)
+      activity = Activity.on_impact.where(:recipient_id => @user.id)
     when "rewards-given"
       activity = Activity.on_rewards.where(:actor_id => @user.id)
     when "rewards-received"

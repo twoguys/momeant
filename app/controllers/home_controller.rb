@@ -1,11 +1,10 @@
 class HomeController < ApplicationController
   
   def index
-    redirect_to user_path(current_user) and return if current_user
-
+    @editorials = Editorial.all
+    #@background_url = "https://momeant-production.s3.amazonaws.com/assets/MomeantWallpaper0#{rand(6) + 1}.jpg"
+    @hide_search = true if current_user.nil?
     @nav = "home"
-    @background_url = "https://momeant-production.s3.amazonaws.com/assets/MomeantWallpaper0#{rand(6) + 1}.jpg"
-    @hide_search = true
     render "landing"
   end
   

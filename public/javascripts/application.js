@@ -118,6 +118,12 @@ function setup_oauth_process() {
 	});
 }
 
+function handle_activity_height() {
+  var page_height = $('body').height();
+  $('#activity-body').css('min-height', page_height - 135 + 'px');
+  $('#activity-sidebar').css('min-height', page_height - 155 + 'px');
+}
+
 function setup_reward_visualizing() {
 	$('li.reward .visualize a').fancybox();
 }
@@ -132,6 +138,7 @@ $(document).ready(function() {
 	handle_feedback_form();
 	setup_reward_visualizing();
 	setup_oauth_process();
+	handle_activity_height();
 	
 	$("a.disabled").click(function() {return false;})
 	

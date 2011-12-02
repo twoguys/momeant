@@ -1,44 +1,50 @@
 - content_for :head do
   = javascript_include_tag "landing"
-  :css
-    #landing #background {
-      background-image: url(#{@background_url})
-    }
 
 #landing
-  #background
-  
-  #insides
-    %a.previous
-    %ul#letter
-      %li.page
-        #internet.inner
-          .padded
-            %span.large Dear
-            %span.large.spaced Internet,
-            %span You've given us so much free content over the years, and we love you for it, but...
-      %li.page
-        #problem.inner
-          .padded
-            %span
-              We also believe that the folks who create the really good stuff deserve to be
-              %strong rewarded
-              in return.
-            %span
-              That’s why we’ve created momeant, a place to
-              %strong reward and be rewarded.
-      %li.page
-        #solution.inner
-          .padded
-            %span
-              By
-              %strong rewarding
-              each other, we recognize the value of our online creations, and show real support for the people who make them.
-            %span
-              So, #{link_to("Join momeant", "#join-modal")}, share your content, discover other great content,
-              %strong reward and be rewarded.
-    %a.next
 
+  #slogan
+    %h1 Reward the people behind great content on the web.
+    %p#slogan-more
+      We all face a basic economic problem on the Web. We're given more and more content for free, and that's great.
+      However, the people that create the content we enjoy and find useful should still get paid. Thus, we'd like to
+      introduce you to the reward, a voluntary act you can take if you've enjoyed someone's content. By rewarding
+      each other, we recognize the value of our online creations and show real support for the people who make them.
+      Your rewards also build powerful social data that make you a valuable promoter and connector of others.
+    = link_to "+", "#", :id => "slogan-more-link"
+  
+  #faces-header Featured Creators
+  #faces
+    - first = true
+    - @editorials.each do |editorial|
+      .face{:class => first ? "selected" : "", :editorial => editorial.id}
+        .preview
+          = link_to image_tag(editorial.user.avatar.url(:large)), user_path(editorial.user), :info_id => editorial.id, :class => "avatar"
+        .full
+          = link_to image_tag(editorial.user.avatar.url(:large)), user_path(editorial.user), :info_id => editorial.id, :class => "avatar"
+      
+          .stats
+            - if editorial.show_as == "creator"
+              .rewards.stat
+                %span.amount= editorial.user.rewards.sum(:amount)
+                %span.text rewards received
+              .earned.stat
+                %span.dollar $
+                %span.amount= number_to_currency(editorial.user.rewards.sum(:amount) * Reward.dollar_exchange)[1..-1]
+                %span.text money earned
+              
+          .info
+            %h2
+              %span.name= editorial.user.name
+              %span= editorial.occupation
+              
+            .location= editorial.user.location
+
+            %p.quote= editorial.quote
+          
+            = link_to "view #{editorial.user.first_name}'s content", creations_user_path(editorial.user), :class => "content-link"            
+      
+      - first = false
 
 :javascript
   mpq.track('Viewed Landing Page', {anonymous_id: '#{session[:analytics_anonymous_id]}'})

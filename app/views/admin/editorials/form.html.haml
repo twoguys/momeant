@@ -1,0 +1,27 @@
+.admin.editorials
+  = render "admin/tabs"
+  
+  - url = @editorial.new_record? ? admin_editorials_path : admin_editorial_path(@editorial)
+  = form_for @editorial, :url => url, :html => {:multipart => true} do |form|
+    = form.hidden_field :user_id
+
+    %fieldset
+      %ul
+        %li
+          = label_tag :user_name, "User"
+          = text_field :user, :name, :value => @editorial.user.name, :disabled => true
+  
+        %li
+          = form.label :quote
+          = form.text_area :quote
+        
+        %li
+          = form.label :occupation
+          = form.text_field :occupation
+          
+        %li
+          = form.label :show_as
+          = form.select :show_as, Editorial::SHOW_AS_OPTIONS
+
+        %li  
+          = form.submit "Put 'em on the homepage!"
