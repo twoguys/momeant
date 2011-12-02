@@ -1,32 +1,68 @@
 #home.index
+	#container
+		background: #fd7c05 url(https://momeant.s3.amazonaws.com/landing_backgrounds/orange.jpg) no-repeat 50% 50%
+
 	#main
 		height: 100%
 
 	#landing
 		position: relative
-		height: 100%
-		background: #fd7c05 url(https://momeant.s3.amazonaws.com/landing_backgrounds/orange.jpg) no-repeat 50% 50%
+		padding-top: 30px
 
 		#slogan, #faces, #info
 			position: relative
 			z-index: 2
 
 		#slogan
-			padding-top: 40px
+			background: #000
+			background: rgba(0,0,0,0.8)
+			color: #fff
+			padding: 10px 0
+			position: relative
+			height: 35px
+			margin-bottom: 40px
 			h1
-				padding: 10px 0
 				text-align: center
-				background: #000
-				background: rgba(0,0,0,0.8)
-				color: #fff
 				font-size: 26px
 				letter-spacing: -0.02em
 				margin: 0
-				text-shadow: 0 2px 0 #000
+				text-shadow: 0 2px 2px #000
+			#slogan-more
+				width: 650px
+				margin: 10px auto 0
+				display: none
+			#slogan-more-link
+				position: absolute
+				bottom: -25px
+				left: 50%
+				margin-left: -17.5px
+				display: block
+				width: 35px
+				height: 25px
+				background: #000 url(../images/landingPlusMinus.png) no-repeat 3px -5px
+				background: rgba(0,0,0,0.8) url(../images/landingPlusMinus.png) no-repeat 3px -5px
+				color: #fff
+				font-size: 30px
+				font-weight: 700
+				text-indent: -9999px
+				-webkit-border-bottom-right-radius: 5px
+				-webkit-border-bottom-left-radius: 5px
+				-moz-border-radius-bottomright: 5px
+				-moz-border-radius-bottomleft: 5px
+				border-bottom-right-radius: 5px
+				border-bottom-left-radius: 5px
+			#slogan-more-link.open
+				background-position: 3px -35px
 
+		#faces-header
+			text-align: center
+			margin-bottom: 20px
+			text-transform: uppercase
+			text-shadow: 0 1px 0 rgba(255,255,255,0.2)
+			
 		#faces
 			position: absolute
-			top: 140px
+			top: 160px
 			left: 50%
 			margin-left: -160px
 

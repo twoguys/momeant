@@ -1,6 +1,8 @@
 class Editorial < ActiveRecord::Base
   belongs_to :user
   
+  default_scope order("created_at DESC")
+  
   has_attached_file :background,
     :path          => "editorial_backgrounds/:id/:style.:extension",
     :storage        => :s3,

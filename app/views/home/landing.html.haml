@@ -5,7 +5,15 @@
 
   #slogan
     %h1 Reward the people behind great content on the web.
+    %p#slogan-more
+      We all face a basic economic problem on the Web. We're given more and more content for free, and that's great.
+      However, the people that create the content we enjoy and find useful should still get paid. Thus, we'd like to
+      introduce you to the reward, a voluntary act you can take if you've enjoyed someone's content. By rewarding
+      each other, we recognize the value of our online creations and show real support for the people who make them.
+      Your rewards also build powerful social data that make you a valuable promoter and connector of others.
+    = link_to "+", "#", :id => "slogan-more-link"
   
+  #faces-header Featured Creators
   #faces
     - first = true
     - @editorials.each do |editorial|
