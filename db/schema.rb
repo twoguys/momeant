@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111201150902) do
+ActiveRecord::Schema.define(:version => 20111202160540) do
 
   create_table "activities", :force => true do |t|
     t.integer  "actor_id"
@@ -92,6 +92,7 @@ ActiveRecord::Schema.define(:version => 20111201150902) do
     t.string   "background_content_type"
     t.integer  "background_file_size"
     t.datetime "background_updated_at"
+    t.string   "occupation"
   end
 
   create_table "galleries", :force => true do |t|
