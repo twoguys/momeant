@@ -120,8 +120,10 @@ function setup_oauth_process() {
 
 function handle_activity_height() {
   var page_height = $('body').height();
-  $('#activity-body').css('min-height', page_height - 135 + 'px');
-  $('#activity-sidebar').css('min-height', page_height - 155 + 'px');
+  $('#community #activity-body').css('min-height', page_height - 135 + 'px');
+  $('#community #activity-sidebar').css('min-height', page_height - 155 + 'px');
+  $('#users #activity-body').css('min-height', page_height - 355 + 'px');
+  $('#users #activity-sidebar').css('min-height', page_height - 375 + 'px');
 }
 
 function setup_reward_visualizing() {
