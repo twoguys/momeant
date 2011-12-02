@@ -27,17 +27,19 @@ $(function() {
 	
 	$('#slogan-more-link').click(function() {
 	  var $link = $(this);
+	  
+	  var height_change = 155;
 
     if ($link.hasClass('open')) {
       $('#slogan-more').fadeOut(200, function() {
-        $('#slogan').animate({height: '-=150px'}, 200);
-        $('#faces').animate({top:'-=150px'}, 200);
+        $('#slogan').animate({height: '-=' + height_change + 'px'}, 200);
+        $('#faces').animate({top:'-=' + height_change + 'px'}, 200);
       });
     } else {
-      $('#slogan').animate({height: '+=150px'}, 200, function() {
+      $('#slogan').animate({height: '+=' + height_change + 'px'}, 200, function() {
         $('#slogan-more').fadeIn(200);
       });
-      $('#faces').animate({top:'+=150px'}, 200);
+      $('#faces').animate({top:'+=' + height_change + 'px'}, 200);
     }
 	  
 	  $link.toggleClass('open');
