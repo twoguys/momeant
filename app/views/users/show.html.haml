@@ -3,12 +3,12 @@
   
   .the-rest
     
-    #activity-surround
+    #activity-surround{:class => @activity.empty? && me?(@user) ? "new-user-no-activity" : ""}
 
       #activity
     
         #activity-head
-          = render "users/activity_filter" unless @activity.empty?
+          = render "users/activity_filter"
       
         #activity-body  
           #activity-loading Just a momeant...
