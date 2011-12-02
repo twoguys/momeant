@@ -21,11 +21,6 @@ $(function() {
     var existing_left = $('#faces').position().left;
     var new_left = half_page_width + (new_index * -105);
     $('#faces').animate({left: new_left + 'px'}, 200);
-    
-    var current_editorial_id = $current_face.attr('editorial');
-    var new_editorial_id = $new_face.attr('editorial');
-    $('#background_' + current_editorial_id).css('z-index',1);
-    $('#background_' + new_editorial_id).css('z-index',2);
 	  
 	  return false;
 	});

@@ -3,12 +3,6 @@
 
 #landing
 
-  - first = true
-  - @editorials.each do |editorial|
-    - z_index = first ? "z-index:2" : "z-index: 1"
-    .background{:id => "background_#{editorial.id}", :style => "background: #fff url(#{editorial.background.url}) repeat 0 0; #{z_index}"}
-    - first = false
-
   #slogan
     %h1 Reward the people behind great content on the web.
   
@@ -35,6 +29,10 @@
             %h2
               %span.name= editorial.user.name
               %span creator
+              
+            .occupation-location
+              %span= editorial.user.occupation
+              %span= editorial.user.location
 
             %p.quote= editorial.quote
           
