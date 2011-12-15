@@ -1,5 +1,3 @@
-#its-you-arrow
-
 #reward-modal
 
   %a#reward-modal-tab
@@ -10,15 +8,14 @@
         %span= @story.user.name
       .rewards= @story.rewards.sum(:amount)
 
-  .modal-inner
-    
+  #modal-inner
+    #modal-header
+      = link_to "Momeant", root_path
+      .slogan Make money on the web. Get access to awesome content for free. If you like it, then reward it.
+      
     #your-reward
       .inner
         = render "rewards/modal/form"
-            
-      #toggle-reward-stream
-      
-    = render "rewards/modal/list"
 
 - if session[:open_reward_modal].present?
   :javascript

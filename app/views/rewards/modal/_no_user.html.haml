@@ -1,26 +1,20 @@
-#not-logged-in
-  .creator
-    = link_to(image_tag(@story.user.avatar.url(:large)), creations_user_path(@story.user), :class => "avatar")
-    %span Reward
-    %span #{@story.user.first_name}!
-  .explanation
-    .inner
-      .what-is-momeant
-        %p #{@story.user.first_name} is a creator on momeant, a community that believes in rewarding good content creators on the Web.
-        %p 
-          %span Sign up to join the community.
-          %strong Reward
-          %span the people behind good content, and
-          %strong Share
-          %span your content to get rewarded.
+#not-logged-in.right-side
+  %h1
+    Do you like #{@story.user.first_name}'s content?
+    %br
+    Show them your support!
+    
+  %p
+    Momeant is all about getting you access to awesome content for free, that you can reward if you enjoy.
+    This helps content creators make money so they can continue to create!
+  
   .buttons
-    .inner
-      = link_to("Join <span>momeant</span>".html_safe, "#join-modal", :class => "join")
-      %span.or - OR -
-      = link_to("Login", "#login-modal", :class => "login")
+    = link_to("Join momeant", "#join-modal", :class => "join")
+    %span.or or
+    = link_to("Login", "#login-modal", :class => "login")
+  
   .links
-    = link_to("About", about_path, :class => "about tooltipped-n", :title => "About Momeant")
-    = link_to("Activity", community_path, :class => "activity tooltipped-n", :title => "Activity")
+    Not sure? #{link_to "Read more about momeant.", about_path, :target => :new}
 
 :javascript
   var forms_updated = false;

@@ -1,6 +1,8 @@
-#creator-info
-  = link_to(image_tag(@reward.recipient.avatar.url(:large)), creations_user_path(@reward.recipient), :class => "avatar")
-  %h1 Thanks!
+#creator-info.left-side
+  = link_to(image_tag(@story.user.avatar.url(:large)), creations_user_path(@story.user), :class => "avatar")
+  .byline
+    content by
+    = link_to @story.user.name, creations_user_path(@story.user)
   .message
     - if @story.thankyou.present?
       = truncate(@story.thankyou, :length => 260)
@@ -9,15 +11,19 @@
     - else
       Thank you so much for your support!
 
-#reward-box-outer
+#reward-box.right-side
   #share.section
     .info
       %h3.impact
-        %span Increase your
-        %span.icon Momeant Impact
+        %span Promote #{@story.user.first_name} and make an
+        %span.icon Impact
       = link_to "what is Momeant Impact?", "#what-is-impact-modal", :id => "what-is-impact"
       .hidden
         #what-is-impact-modal
+
+    #copy-paste
+      %form= text_field_tag :url_to_share, story_url(@story, :impacted_by => @reward.id), :readonly => true
+      .weak Copy this URL to share #{@story.user.first_name}'s content with others.
 
     #twitter-sharing
       - if @twitter_configured
