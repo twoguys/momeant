@@ -168,20 +168,14 @@ var story_page_editor = function() {
 	};
 	
 	var setup_sharing_toggles = function() {
-		$('.toggle').click(function() {
-			var $toggle = $(this);
-			var $handle = $toggle.find('.handle');
-			var $hidden_field = $($toggle.attr('update'));
-
-			if ($toggle.hasClass('off')) {
-				$handle.animate({left: '0'}, 200);
-				$toggle.removeClass('off');
-				$hidden_field.val('yes')
-			} else {
-				$handle.animate({left: '40px'}, 200);
-				$toggle.addClass('off');
-				$hidden_field.val('')
-			}
+		$('#share.step input').live('click', function() {
+		  var $checkbox = $(this);
+		  var service = $checkbox.attr('name');
+		  if ($checkbox.is(':checked')) {
+		    $('#share_' + service).val('yes');
+		  } else {
+		    $('#share_' + service).val('');
+		  }
 		});
 	};
 	
