@@ -1,46 +1,59 @@
+#creator-info.left-side
+  = link_to(image_tag(@story.user.avatar.url(:large)), creations_user_path(@story.user), :class => "avatar")
+  .byline
+    content by
+    = link_to @story.user.name, creations_user_path(@story.user)
+  .location
+    %span.title Location:
+    %span= @story.user.location
+  .occupation
+    %span.title Occupation:
+    %span= @story.user.occupation
+  .tagline= truncate(@story.user.tagline, :length => 260)
+
 - if current_user.nil?
   = render "rewards/modal/no_user"
+
 - else
-  #creator-info
-    = link_to(image_tag(@story.user.avatar.url(:large)), creations_user_path(@story.user), :class => "avatar")
-    %h1 Reward #{link_to(@story.user.name, creations_user_path(@story.user))}
-    .tagline
-      %span= truncate(@story.user.tagline, :length => 260)
-  #reward-box-outer
-    - if current_user.coins == 0
-      .explanation.out-of-coins
+  #reward-box.right-side.reward-step
+    - if current_user == @story.user
+      %h3 You can't reward yourself, but we'll put some stats here about your content soon.
+    - elsif current_user.coins == 0
+      .out-of-coins
         %h3 Oops! You're out of reward coins.
-        %p If you want to reward this content, please #{link_to("purchase more reward coins",coins_path)}.
+        %p If you want to reward this content, please #{link_to "purchase more reward coins", coins_path}.
     - else
-      #reward-box
-        - if current_user == @story.user
-          .yourself
-            %h2
-              Sorry, you can't reward yourself ;).
-        - else
-          - if @not_enough
-            .alert Oops, you tried to reward more coins than you have.
-          .inner
-            = form_for :reward, :url => user_rewards_path(@story.user), :html => {:id => "reward-form"} do |form|
-              = form.hidden_field :story_id, :value => @story.id
-              - if @impacted_by
-                = form.hidden_field :impacted_by, :value => @impacted_by
-        
-              #amount.section
-                %h3 How much would you like to reward #{@story.user.first_name}?
-                %ul#stars
-                  %li= link_to "1", "#", :id => "one-star", :amount => 1
-                  %li= link_to "3", "#", :id => "three-star", :amount => 3
-                  %li= link_to "5", "#", :id => "five-star", :amount => 5
-                  %li.custom
-                    = text_field_tag :custom_amount, "", :placeholder => "10"
-                    %span or any of your
-                    %strong= current_user.coins
-                    %span reward coins
-              
-                = form.hidden_field :amount, :value => 1
-        
-              #comment.section
-                %h3 Tell #{@story.user.first_name} why you rewarded him/her.
-                = form.text_area :comment, :placeholder => "Enter a great comment..."
-                = form.submit "Give Reward"
+      - if @not_enough
+        .alert Oops, you tried to reward more coins than you have.
+      .inner
+        = form_for :reward, :url => user_rewards_path(@story.user), :html => {:id => "reward-form"} do |form|
+          = form.hidden_field :story_id, :value => @story.id
+          - if @impacted_by
+            = form.hidden_field :impacted_by, :value => @impacted_by
+
+          #amount.section
+            %h3 How much would you like to reward #{@story.user.first_name}?
+            %ul#stars
+              %li= link_to "1", "#", :id => "one-star", :amount => 1
+              %li= link_to "3", "#", :id => "three-star", :amount => 3
+              %li= link_to "5", "#", :id => "five-star", :amount => 5
+              %li.custom
+                = text_field_tag :custom_amount, "", :placeholder => "10"
+                %span or any of your
+                %strong= current_user.coins
+                %span reward coins
+      
+            = form.hidden_field :amount, :value => 1
+          
+          - if @story.user.below_cashout_threshold? || current_user.badge_level >= 2
+            #amount-hints.section
+              .weak Not sure how much to reward?
+              - if @story.user.below_cashout_threshold?
+                .hint #{@story.user.first_name} needs #{@story.user.needed_to_cashout} rewards to meet the $10 cash out threshold.
+              - if current_user.badge_level >= 2
+                .hint You need to give #{current_user.rewards_until_next_badge} more rewards to earn the "#{current_user.next_badge_level_name}" badge.
+
+          #comment.section
+            %h3 Tell #{@story.user.first_name} why you rewarded him/her.
+            = form.text_area :comment, :placeholder => "Enter a great comment..."
+            = form.submit "Give Reward"

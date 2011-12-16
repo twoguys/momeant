@@ -218,8 +218,9 @@ $(function() {
 		  var $comment = $('#comment');
 			if (!$comment.is(':visible')) {
 			  window.setTimeout(function() {
-			    $('#reward-box').animate({'padding-top':'45px'}, 300, function() {
-  			    $comment.fadeIn('fast');
+			    $('#amount-hints').fadeOut(200);
+			    $('#reward-box').animate({'padding-top':'65px'}, 300, function() {
+  			    $comment.fadeIn(200);
   			  });
 			  }, 300);
 			}
@@ -240,7 +241,7 @@ $(function() {
 			var impacted_by = $form.find("#reward_impacted_by").val();
 			var url = $form.attr('action');
 
-			$('#your-reward .inner').addClass('loading');
+			$('#reward-box').addClass('loading');
 			$('#reward-form').remove();
 			$.post(url,
 				{
@@ -250,20 +251,18 @@ $(function() {
 					"reward[impacted_by]":impacted_by
 				},
 				function(data) {
-					$("#your-reward .inner").html(data).removeClass('loading');
-					var $new_reward = $('#new-reward');
-					$new_reward.find('.amount').text(amount);
-					$new_reward.find('.comment .text').text(comment);
-					$new_reward.slideDown();
-					$('#its-you-arrow').show();
-					$('#share').show();
+					$("#your-reward .inner").html(data);
 					$('#mini-nav').animate({top:'0'}, 500);
 					$('#what-is-impact').fancybox();
+					$('#url_to_share').click(function() { $(this).select(); });
 				}
 			);
 		},
 		
 		monitor_sharing: function(reward_id) {
+		  $('#share-with-twitter').fancybox({padding:0,width:400,height:130});
+		  $('#share-with-facebook').fancybox({padding:0,width:400,height:200});
+		  
 			// Twitter configuration
 			var $configure_twitter = $('#configure-twitter');
 			if ($configure_twitter.length > 0) {

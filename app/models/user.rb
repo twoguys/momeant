@@ -253,6 +253,10 @@ class User < ActiveRecord::Base
     self.rewards.not_cashed_out.sum(:amount) < Reward.cashout_threshold
   end
   
+  def needed_to_cashout
+    Reward.cashout_threshold - self.rewards.not_cashed_out.sum(:amount)
+  end
+  
   def dollars
     self.rewards.not_cashed_out.sum(:amount) * Reward.dollar_exchange
   end
@@ -280,6 +284,46 @@ class User < ActiveRecord::Base
     return 9
   end
   
+  def badge_name(level = nil)
+    level = badge_level if level.nil?
+    
+    case level
+    when 1
+      "Dilettante"
+    when 2
+      "Enthusiast"
+    when 3
+      "Afficionado"
+    when 4
+      "Buff"
+    when 5
+      "Big Buff"
+    when 6
+      "Petit Pundit"
+    when 7
+      "Artistic Epicure"
+    when 8
+      "Informal Angel"
+    when 9
+      "Cultural Connoisseur"
+    end
+  end
+  
+  def next_badge_level_name
+    badge_name(badge_level + 1)
+  end
+  
+  def rewards_until_next_badge
+    return if badge_level < 2
+    
+    return 20 - impact if badge_level == 2
+    return 100 - impact if badge_level == 3
+    return 400 - impact if badge_level == 4
+    return 1600 - impact if badge_level == 5
+    return 3200 - impact if badge_level == 6
+    return 6400 - impact if badge_level == 7
+    return 12800 - impact if badge_level == 8
+  end
   
   # Sharing content with external services
   
