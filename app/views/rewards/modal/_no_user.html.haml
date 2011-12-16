@@ -1,21 +1,24 @@
 #not-logged-in.right-side
   %h1
-    Do you like #{@story.user.first_name}'s content?
-    %br
-    Show them your support!
+    Like #{@story.user.first_name}'s content? Show your support!
     
   %p
-    Momeant is all about getting you access to awesome content for free.
-    BUT if you like that content you should support the person behind it!
-    This helps content creators make money so they can continue to create.
+    Most of the content created online is given away for free so anyone can experience it.
+    That's great, but when we find content valuable or enjoyable, the people who created it deserve to be rewarded.
+    
+  %p.strong
+    Rewarding helps creators like #{@story.user.first_name} make a decent living so they can keep creating the content you love.
+  
+  %p
+    By rewarding and sharing, you also help others find your content, allow Momeant to recommend content
+    and people you might like, and build social influence that makes you a powerful promoter of others.
   
   .buttons
-    = link_to("Join momeant", "#join-modal", :class => "join")
-    %span.or or
-    = link_to("Login", "#login-modal", :class => "login")
+    = link_to("Join to get 5 free reward coins", "#join-modal", :class => "join")
   
-  .links
-    Not sure? #{link_to "Read more about momeant.", about_path, :target => :new}
+  .links  
+    .login Already have an account? #{link_to "Login", "#login-modal", :class => "login"}
+    Not sure? #{link_to "Learn more about momeant", about_path, :target => :new}
 
 :javascript
   var forms_updated = false;
