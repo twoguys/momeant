@@ -5,7 +5,7 @@
   %h3
     #{link_to(@reward.user.name, user_url(@reward.user), :style => "color:#00aeff")}
     just rewarded #{link_to(@reward.story.title, story_url(@reward.story), :style => "color:#00aeff")}
-    for #{content_tag "span", @reward.amount, :style => "padding-right: 17px; background: transparent url(http://momeant.com/images/icons/starBlackSmall.png) no-repeat 100% 4px;"}
+    for #{@reward.amount} #{image_tag "http://momeant.com/images/icons/starBlackSmall.png"}
     - if @reward.comment.present?
       and said:
 
