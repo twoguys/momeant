@@ -260,6 +260,9 @@ $(function() {
 		},
 		
 		monitor_sharing: function(reward_id) {
+		  $('#share-with-twitter').fancybox({padding:0,width:400,height:130});
+		  $('#share-with-facebook').fancybox({padding:0,width:400,height:200});
+		  
 			// Twitter configuration
 			var $configure_twitter = $('#configure-twitter');
 			if ($configure_twitter.length > 0) {

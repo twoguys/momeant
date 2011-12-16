@@ -25,22 +25,27 @@
       %form= text_field_tag :url_to_share, story_url(@story, :impacted_by => @reward.id), :readonly => true
       .weak Copy this URL to share #{@story.user.first_name}'s content with others.
 
-    #twitter-sharing
-      - if @twitter_configured
-        = render "rewards/modal/twitter_sharing"
-      - else  
-        .padded
-        .not-configured
-          %span Want to share this with your Twitter followers?
-          = link_to("Launch Twitter Configuration", "#{root_url}auth/twitter", :id => "configure-twitter")
+    #sharing-icons
+      = link_to "Twitter", "#twitter-sharing", :id => "share-with-twitter", :title => "Twitter"
+      = link_to "Facebook", "#facebook-sharing", :id => "share-with-facebook", :title => "Facebook"
+      .weak We'll help you share #{@story.user.first_name}'s content with your networks.
+      
+    .hidden
+      #twitter-sharing
+        - if @twitter_configured
+          = render "rewards/modal/twitter_sharing"
+        - else
+          .not-configured
+            %span Want to share this with your Twitter followers?
+            = link_to("Launch Twitter Configuration", "#{root_url}auth/twitter", :id => "configure-twitter")
 
-    #facebook-sharing
-      - if @facebook_configured
-        = render "rewards/modal/facebook_sharing"
-      - else
-        .not-configured
-          %span Want to share this with your Facebook friends?
-          = link_to("Launch Facebook Configuration", "#{root_url}auth/facebook", :id => "configure-facebook")
+      #facebook-sharing
+        - if @facebook_configured
+          = render "rewards/modal/facebook_sharing"
+        - else
+          .not-configured
+            %span Want to share this with your Facebook friends?
+            = link_to("Launch Facebook Configuration", "#{root_url}auth/facebook", :id => "configure-facebook")
 
 :javascript
   mpq.track('Rewarded Content', {story_id: '#{@story.id}', mp_note: '#{@reward.amount} reward coins'});

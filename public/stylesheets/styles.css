@@ -3390,97 +3390,19 @@ form.new_story, form.edit_story, .story-form {
       margin-bottom: 30px; }
       #presenter #reward-modal #your-reward #share #copy-paste input {
         width: 349px; }
-    #presenter #reward-modal #your-reward #share #twitter-sharing {
-      margin-bottom: 30px;
-      position: relative; }
-      #presenter #reward-modal #your-reward #share #twitter-sharing .configured {
-        height: 100px; }
-      #presenter #reward-modal #your-reward #share #twitter-sharing #what-we-add {
-        position: absolute;
-        top: 35px;
-        right: 11px;
-        color: #777777;
-        font-size: 11px; }
-      #presenter #reward-modal #your-reward #share #twitter-sharing #characters-left {
-        float: left;
-        color: #999999;
-        font-style: italic;
-        padding-left: 5px; }
-        #presenter #reward-modal #your-reward #share #twitter-sharing #characters-left .count {
-          font-weight: 700;
-          font-style: normal; }
-      #presenter #reward-modal #your-reward #share #twitter-sharing textarea {
-        height: 40px; }
-      #presenter #reward-modal #your-reward #share #twitter-sharing input[type="submit"] {
-        background-image: -moz-linear-gradient(center top, #66dfff 4%, #4ccaff 52%);
-        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #66dfff), color-stop(0.52, #4ccaff));
-        color: #0b2d39;
-        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5); }
-    #presenter #reward-modal #your-reward #share #facebook-sharing {
-      position: relative; }
-      #presenter #reward-modal #your-reward #share #facebook-sharing textarea {
-        height: 160px; }
-      #presenter #reward-modal #your-reward #share #facebook-sharing #facebook-preview {
-        position: absolute;
-        top: 60px;
-        left: 3px;
-        width: 259px;
-        border-top: 1px dashed #cccccc;
-        padding: 10px 10px 10px 115px;
-        font-size: 11px; }
-        #presenter #reward-modal #your-reward #share #facebook-sharing #facebook-preview .thumbnail {
-          position: absolute;
-          top: 10px;
-          left: 10px;
-          width: 95px;
-          height: 60px; }
-        #presenter #reward-modal #your-reward #share #facebook-sharing #facebook-preview h3 {
-          font-size: 13px;
-          text-align: left;
-          margin-bottom: 5px;
-          width: 260px;
-          height: 16px;
-          overflow: hidden; }
-        #presenter #reward-modal #your-reward #share #facebook-sharing #facebook-preview .link {
-          color: #999999; }
-        #presenter #reward-modal #your-reward #share #facebook-sharing #facebook-preview p {
-          margin: 5px 0 0;
-          line-height: 13px; }
-      #presenter #reward-modal #your-reward #share #facebook-sharing input[type="submit"] {
-        background-image: -moz-linear-gradient(center top, #6481bd 4%, #455d99 52%);
-        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #6481bd), color-stop(0.52, #455d99)); }
-    #presenter #reward-modal #your-reward #share #twitter-sharing.loading, #presenter #reward-modal #your-reward #share #facebook-sharing.loading {
-      background: transparent url(../images/spinner.gif) no-repeat 50% 50%;
-      height: 100px; }
-      #presenter #reward-modal #your-reward #share #twitter-sharing.loading *, #presenter #reward-modal #your-reward #share #facebook-sharing.loading * {
-        display: none; }
-    #presenter #reward-modal #your-reward #share #twitter-sharing .padded, #presenter #reward-modal #your-reward #share #facebook-sharing .padded {
-      height: 50px; }
-    #presenter #reward-modal #your-reward #share #twitter-sharing .not-configured, #presenter #reward-modal #your-reward #share #facebook-sharing .not-configured {
-      padding-left: 40px;
-      background: transparent url(../images/icons/twitterSmall.png) no-repeat 0 50%;
-      margin-top: 30px; }
-      #presenter #reward-modal #your-reward #share #twitter-sharing .not-configured span, #presenter #reward-modal #your-reward #share #facebook-sharing .not-configured span {
-        display: block;
-        margin-bottom: 5px; }
-      #presenter #reward-modal #your-reward #share #twitter-sharing .not-configured a, #presenter #reward-modal #your-reward #share #facebook-sharing .not-configured a {
-        background: #66dfff;
-        padding: 3px 6px;
-        color: #0b2d39;
-        -webkit-border-radius: 3px;
-        -moz-border-radius: 3px;
-        border-radius: 3px;
-        text-transform: uppercase; }
-    #presenter #reward-modal #your-reward #share #twitter-sharing .after, #presenter #reward-modal #your-reward #share #facebook-sharing .after {
-      font-size: 11px; }
-      #presenter #reward-modal #your-reward #share #twitter-sharing .after p, #presenter #reward-modal #your-reward #share #facebook-sharing .after p {
-        margin: 10px 0; }
-    #presenter #reward-modal #your-reward #share #facebook-sharing .not-configured {
-      background-image: url(../images/icons/facebookSmall.png);
-      margin-top: 0; }
-      #presenter #reward-modal #your-reward #share #facebook-sharing .not-configured a {
-        background: #6481bd;
-        color: white; }
+    #presenter #reward-modal #your-reward #share #sharing-icons a {
+      display: block;
+      float: left;
+      width: 30px;
+      height: 30px;
+      margin-right: 10px;
+      text-indent: -9999px;
+      background: transparent url(../images/icons/twitterSmall.png); }
+    #presenter #reward-modal #your-reward #share #sharing-icons #share-with-facebook {
+      background-image: url(../images/icons/facebookSmall.png); }
+    #presenter #reward-modal #your-reward #share #sharing-icons .weak {
+      clear: both;
+      padding-top: 5px; }
     #presenter #reward-modal #your-reward #not-logged-in .buttons {
       padding-top: 20px; }
       #presenter #reward-modal #your-reward #not-logged-in .buttons span, #presenter #reward-modal #your-reward #not-logged-in .buttons a {
@@ -3915,6 +3837,117 @@ form.new_story, form.edit_story, .story-form {
   width: 831px;
   height: 258px;
   background: transparent url(../images/whatIsImpactModal.png) no-repeat 0 0; }
+
+#twitter-sharing, #facebook-sharing {
+  width: 367px;
+  padding: 20px;
+  background: #f5f2eb; }
+  #twitter-sharing textarea, #facebook-sharing textarea {
+    display: block;
+    width: 347px;
+    margin: 0 auto 10px; }
+  #twitter-sharing input[type="submit"], #facebook-sharing input[type="submit"] {
+    float: right; }
+  #twitter-sharing input[type="text"], #twitter-sharing textarea, #facebook-sharing input[type="text"], #facebook-sharing textarea {
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2) inset, 0 1px 0 white; }
+  #twitter-sharing.loading, #facebook-sharing.loading {
+    background: transparent url(../images/spinner.gif) no-repeat 50% 50%;
+    height: 100px; }
+    #twitter-sharing.loading *, #facebook-sharing.loading * {
+      display: none; }
+  #twitter-sharing .padded, #facebook-sharing .padded {
+    height: 50px; }
+  #twitter-sharing .not-configured, #facebook-sharing .not-configured {
+    margin-top: 30px;
+    padding-left: 40px;
+    background: transparent url(../images/icons/twitterSmall.png) no-repeat 0 50%; }
+    #twitter-sharing .not-configured span, #facebook-sharing .not-configured span {
+      display: block;
+      margin-bottom: 5px; }
+    #twitter-sharing .not-configured a, #facebook-sharing .not-configured a {
+      background: #66dfff;
+      padding: 3px 6px;
+      color: #0b2d39;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      border-radius: 3px;
+      text-transform: uppercase; }
+  #twitter-sharing .after, #facebook-sharing .after {
+    font-size: 11px; }
+    #twitter-sharing .after p, #facebook-sharing .after p {
+      margin: 10px 0; }
+
+#twitter-sharing {
+  height: 98px;
+  position: relative; }
+  #twitter-sharing .configured {
+    height: 100px; }
+  #twitter-sharing #what-we-add {
+    position: absolute;
+    top: 55px;
+    right: 31px;
+    color: #777777;
+    font-size: 11px; }
+  #twitter-sharing #characters-left {
+    float: left;
+    color: #999999;
+    font-style: italic;
+    padding-left: 5px; }
+    #twitter-sharing #characters-left .count {
+      font-weight: 700;
+      font-style: normal; }
+  #twitter-sharing textarea {
+    height: 40px; }
+  #twitter-sharing input[type="submit"] {
+    background-image: -moz-linear-gradient(center top, #66dfff 4%, #4ccaff 52%);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #66dfff), color-stop(0.52, #4ccaff));
+    color: #0b2d39;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5); }
+
+#facebook-sharing {
+  height: 217px;
+  position: relative; }
+  #facebook-sharing textarea {
+    height: 160px; }
+  #facebook-sharing #facebook-preview {
+    position: absolute;
+    top: 80px;
+    left: 23px;
+    width: 236px;
+    border-top: 1px dashed #cccccc;
+    padding: 10px 10px 10px 115px;
+    font-size: 11px; }
+    #facebook-sharing #facebook-preview .thumbnail {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      width: 95px;
+      height: 60px; }
+    #facebook-sharing #facebook-preview h3 {
+      font-size: 13px;
+      text-align: left;
+      margin-bottom: 5px;
+      width: 260px;
+      height: 16px;
+      overflow: hidden; }
+    #facebook-sharing #facebook-preview .link {
+      color: #999999; }
+    #facebook-sharing #facebook-preview p {
+      margin: 5px 0 0;
+      line-height: 13px; }
+  #facebook-sharing input[type="submit"] {
+    background-image: -moz-linear-gradient(center top, #6481bd 4%, #455d99 52%);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #6481bd), color-stop(0.52, #455d99)); }
+
+#facebook-sharing .not-configured {
+  background-image: url(../images/icons/facebookSmall.png);
+  margin-top: 80px; }
+  #facebook-sharing .not-configured a {
+    background: #6481bd;
+    color: white; }
 
 .thumbnail.title {
   width: 288px;

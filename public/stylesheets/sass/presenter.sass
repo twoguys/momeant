@@ -335,96 +335,20 @@
 					input
 						width: 349px
 				
-				#twitter-sharing
-					margin-bottom: 30px
-					position: relative
-					.configured
-						height: 100px
-					#what-we-add
-						position: absolute
-						top: 35px
-						right: 11px
-						color: #777
-						font-size: 11px
-					#characters-left
-						float: left
-						color: #999
-						font-style: italic
-						padding-left: 5px
-						.count
-							font-weight: 700
-							font-style: normal
-					textarea
-						height: 40px
-					input[type="submit"]
-						@include gradient(#66dfff,#4ccaff)
-						color: #0b2d39
-						text-shadow: 0 1px 0 rgba(255,255,255,0.5)
-				
-				#facebook-sharing
-					position: relative
-					textarea
-						height: 160px
-					#facebook-preview
-						position: absolute
-						top: 60px
-						left: 3px
-						width: 259px
-						border-top: 1px dashed #ccc
-						padding: 10px 10px 10px 115px
-						font-size: 11px
-						.thumbnail
-							position: absolute
-							top: 10px
-							left: 10px
-							width: 95px
-							height: 60px
-						h3
-							font-size: 13px
-							text-align: left
-							margin-bottom: 5px
-							width: 260px
-							height: 16px
-							overflow: hidden
-						.link
-							color: #999
-						p
-							margin: 5px 0 0
-							line-height: 13px
-					input[type="submit"]
-						@include gradient(#6481bd,#455d99)
-				
-				#twitter-sharing, #facebook-sharing
-					&.loading
-						background: transparent url(../images/spinner.gif) no-repeat 50% 50%
-						height: 100px
-						*
-							display: none
-					.padded
-						height: 50px
-					.not-configured
-						padding-left: 40px
-						background: transparent url(../images/icons/twitterSmall.png) no-repeat 0 50%
-						margin-top: 30px
-						span
-							display: block
-							margin-bottom: 5px
-						a
-							background: #66dfff
-							padding: 3px 6px
-							color: #0b2d39
-							@include rounded(3px)
-							text-transform: uppercase
-					.after
-						font-size: 11px
-						p
-							margin: 10px 0
-				#facebook-sharing .not-configured
-					background-image: url(../images/icons/facebookSmall.png)
-					margin-top: 0
+				#sharing-icons
 					a
-						background: #6481bd
-						color: #fff
+						display: block
+						float: left
+						width: 30px
+						height: 30px
+						margin-right: 10px
+						text-indent: -9999px
+						background: transparent url(../images/icons/twitterSmall.png)
+					#share-with-facebook
+						background-image: url(../images/icons/facebookSmall.png)
+					.weak
+						clear: both
+						padding-top: 5px
 			
 			#not-logged-in
 				.buttons
@@ -632,3 +556,111 @@
 	width: 831px
 	height: 258px
 	background: transparent url(../images/whatIsImpactModal.png) no-repeat 0 0
+
+
+#twitter-sharing, #facebook-sharing
+	width: 367px
+	padding: 20px
+	background: #f5f2eb
+	
+	textarea
+		display: block
+		width: 347px
+		margin: 0 auto 10px
+	input[type="submit"]
+		float: right
+	input[type="text"], textarea
+		@include rounded(3px)
+		box-shadow: 0 1px 2px rgba(0,0,0,0.2) inset, 0 1px 0 #fff
+
+	&.loading
+		background: #f5f2eb url(../images/spinner.gif) no-repeat 50% 50%
+		height: 100px
+		*
+			display: none
+	.padded
+		height: 50px
+	.not-configured
+		margin-top: 30px
+		padding-left: 40px
+		background: transparent url(../images/icons/twitterSmall.png) no-repeat 0 50%
+		span
+			display: block
+			margin-bottom: 5px
+		a
+			background: #66dfff
+			padding: 3px 6px
+			color: #0b2d39
+			@include rounded(3px)
+			text-transform: uppercase
+	.after
+		font-size: 11px
+		p
+			margin: 10px 0
+				
+#twitter-sharing
+	height: 98px
+	position: relative
+	.configured
+		height: 100px
+	#what-we-add
+		position: absolute
+		top: 55px
+		right: 31px
+		color: #777
+		font-size: 11px
+	#characters-left
+		float: left
+		color: #999
+		font-style: italic
+		padding-left: 5px
+		.count
+			font-weight: 700
+			font-style: normal
+	textarea
+		height: 40px
+	input[type="submit"]
+		@include gradient(#66dfff,#4ccaff)
+		color: #0b2d39
+		text-shadow: 0 1px 0 rgba(255,255,255,0.5)
+
+#facebook-sharing
+	height: 217px
+	position: relative
+	textarea
+		height: 160px
+	#facebook-preview
+		position: absolute
+		top: 80px
+		left: 23px
+		width: 236px
+		border-top: 1px dashed #ccc
+		padding: 10px 10px 10px 115px
+		font-size: 11px
+		.thumbnail
+			position: absolute
+			top: 10px
+			left: 10px
+			width: 95px
+			height: 60px
+		h3
+			font-size: 13px
+			text-align: left
+			margin-bottom: 5px
+			width: 260px
+			height: 16px
+			overflow: hidden
+		.link
+			color: #999
+		p
+			margin: 5px 0 0
+			line-height: 13px
+	input[type="submit"]
+		@include gradient(#6481bd,#455d99)
+
+#facebook-sharing .not-configured
+	background-image: url(../images/icons/facebookSmall.png)
+	margin-top: 80px
+	a
+		background: #6481bd
+		color: #fff
