@@ -25,19 +25,28 @@
     - if reward.comment.present?
       .comment= reward.comment
 
+    - ancestors = reward.ancestors_except(reward.user)
+    - unless ancestors.empty?
+      .impacters
+        .description Discovered because of rewards from:
+        - ancestors.each do |user|
+          = link_to image_tag(user.avatar.url(:thumbnail)), user_path(user), :title => user.name, :class => "avatar"      
+        = link_to "View reward tree", visualize_reward_path(reward.root), :class => "visualize"
+        :javascript
+          $('a.visualize').fancybox();
+
+    - descendants = reward.descendants_except(reward.user)
+    - unless descendants.empty?
+      .descendants
+        .description This led to rewards from:
+        - descendants.each do |user|
+          = link_to image_tag(user.avatar.url(:thumbnail)), user_path(user), :title => user.name, :class => "avatar"      
+      
+  .right-side
+    .when #{time_ago_in_words reward.created_at} ago
     - if reward.shared_to_twitter?
       %span.twitter.tooltipped{:title => "Shared to Twitter"}
     - if reward.shared_to_facebook?
       %span.facebook.tooltipped{:title => "Shared to Facebook"}
-    - if reward.impact > reward.amount
-      .led-to
-        %a.visualize{:href => visualize_reward_path(reward)}
-          Led to
-          %span.count= reward.impact - reward.amount
-      :javascript
-        $('a.visualize').fancybox();
-      
-  .right-side
-    %span.when #{time_ago_in_words reward.created_at} ago
     
   .clear

@@ -10,6 +10,7 @@ class Activity < ActiveRecord::Base
   scope :on_content, where(:action_type => "Story")
   scope :on_purchases, where(:action_type => "AmazonPayment")
   scope :on_badges, where(:action_type => "Badge")
+  scope :except, lambda { |action_type| where("action_type != ?", action_type) }
   
   paginates_per 10
   

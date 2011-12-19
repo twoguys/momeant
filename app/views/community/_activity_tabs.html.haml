@@ -1,0 +1,4 @@
+%ul#activity-tabs
+  %li.selected= link_to "All activity (#{Activity.count})", "#", :update => "all"
+  %li= link_to "Rewards given (#{Activity.on_rewards.count})", "#", :update => "rewards"
+  %li= link_to "Content shared (#{Activity.on_content.count})", "#", :update => "content"
