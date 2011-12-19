@@ -3214,7 +3214,8 @@ form.new_story, form.edit_story, .story-form {
       #presenter #reward-modal #modal-inner #modal-header {
         height: 47px;
         padding: 15px 30px;
-        border-bottom: 1px solid #dedcd5; }
+        border-bottom: 1px solid #dedcd5;
+        position: relative; }
         #presenter #reward-modal #modal-inner #modal-header a {
           display: block;
           width: 150px;
@@ -3224,6 +3225,20 @@ form.new_story, form.edit_story, .story-form {
         #presenter #reward-modal #modal-inner #modal-header .slogan {
           font-size: 12px;
           color: #4c4b47; }
+        #presenter #reward-modal #modal-inner #modal-header #modal-steps {
+          position: absolute;
+          top: 31px;
+          right: 30px; }
+          #presenter #reward-modal #modal-inner #modal-header #modal-steps li {
+            float: left;
+            margin-right: 10px; }
+            #presenter #reward-modal #modal-inner #modal-header #modal-steps li.selected .title {
+              font-weight: 700; }
+            #presenter #reward-modal #modal-inner #modal-header #modal-steps li .title {
+              text-transform: uppercase;
+              cursor: help; }
+            #presenter #reward-modal #modal-inner #modal-header #modal-steps li .arrow {
+              padding-left: 5px; }
     #presenter #reward-modal #your-reward .inner {
       height: 471px; }
     #presenter #reward-modal #your-reward .left-side, #presenter #reward-modal #your-reward .right-side {
@@ -3299,9 +3314,7 @@ form.new_story, form.edit_story, .story-form {
       #presenter #reward-modal #your-reward .section input[type="submit"] {
         float: right; }
     #presenter #reward-modal #your-reward #reward-box {
-      height: 330px; }
-      #presenter #reward-modal #your-reward #reward-box.reward-step {
-        padding-top: 110px; }
+      position: relative; }
       #presenter #reward-modal #your-reward #reward-box.loading {
         background: transparent url(../images/spinner.gif) no-repeat 50% 220px; }
         #presenter #reward-modal #your-reward #reward-box.loading * {
@@ -3319,7 +3332,8 @@ form.new_story, form.edit_story, .story-form {
         #presenter #reward-modal #your-reward #reward-box .inner form#reward-form #amount {
           width: 425px;
           margin-left: -29px;
-          margin-bottom: 30px; }
+          margin-bottom: 30px;
+          margin-top: 110px; }
         #presenter #reward-modal #your-reward #reward-box .inner form#reward-form #stars {
           width: 425px;
           height: 100px; }
@@ -3387,7 +3401,7 @@ form.new_story, form.edit_story, .story-form {
       font-size: 11px;
       padding-top: 3px; }
     #presenter #reward-modal #your-reward #share #copy-paste {
-      margin-bottom: 30px; }
+      margin: 30px 0 40px; }
       #presenter #reward-modal #your-reward #share #copy-paste input {
         width: 349px; }
     #presenter #reward-modal #your-reward #share #sharing-icons a {
@@ -3403,6 +3417,77 @@ form.new_story, form.edit_story, .story-form {
     #presenter #reward-modal #your-reward #share #sharing-icons .weak {
       clear: both;
       padding-top: 5px; }
+    #presenter #reward-modal #your-reward .bottom-right-button, #presenter #reward-modal #your-reward .bottom-left-button {
+      position: absolute;
+      bottom: 30px;
+      padding: 6px 8px;
+      background: #252525;
+      color: white;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      border-radius: 3px; }
+    #presenter #reward-modal #your-reward .bottom-right-button {
+      right: 40px; }
+    #presenter #reward-modal #your-reward .bottom-left-button {
+      left: 50px; }
+    #presenter #reward-modal #your-reward #your-status {
+      display: none;
+      padding: 40px 50px; }
+      #presenter #reward-modal #your-reward #your-status .user-info {
+        height: 145px;
+        padding-left: 170px;
+        position: relative;
+        margin-bottom: 20px; }
+        #presenter #reward-modal #your-reward #your-status .user-info .avatar {
+          position: absolute;
+          top: 0;
+          left: 0;
+          display: block;
+          width: 140px;
+          height: 140px;
+          padding: 3px;
+          background: white;
+          -webkit-box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+          -moz-box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 0 2px rgba(0, 0, 0, 0.3); }
+          #presenter #reward-modal #your-reward #your-status .user-info .avatar img {
+            width: 140px;
+            height: 140px; }
+        #presenter #reward-modal #your-reward #your-status .user-info .badge {
+          position: absolute;
+          top: -20px;
+          left: -20px; }
+        #presenter #reward-modal #your-reward #your-status .user-info h1 {
+          font-size: 30px;
+          padding-top: 30px; }
+        #presenter #reward-modal #your-reward #your-status .user-info .impact {
+          font-size: 20px;
+          padding: 4px 0 5px 40px;
+          background: transparent url(../images/icons/impact.png) no-repeat 0 0; }
+      #presenter #reward-modal #your-reward #your-status .list {
+        float: left;
+        width: 300px; }
+        #presenter #reward-modal #your-reward #your-status .list h3 {
+          font-size: 16px;
+          padding-bottom: 5px;
+          border-bottom: 1px solid #dedcd5;
+          margin-bottom: 5px; }
+      #presenter #reward-modal #your-reward #your-status .topics {
+        margin-right: 60px; }
+      #presenter #reward-modal #your-reward #your-status .faces {
+        float: right;
+        height: 80px;
+        margin-bottom: 20px; }
+        #presenter #reward-modal #your-reward #your-status .faces li {
+          float: left;
+          margin: 0 15px 15px 0; }
+          #presenter #reward-modal #your-reward #your-status .faces li:last-child {
+            margin-right: 0; }
+          #presenter #reward-modal #your-reward #your-status .faces li a {
+            display: block; }
+          #presenter #reward-modal #your-reward #your-status .faces li a, #presenter #reward-modal #your-reward #your-status .faces li img {
+            width: 40px;
+            height: 40px; }
     #presenter #reward-modal #your-reward #not-logged-in h1 {
       font-size: 16px; }
     #presenter #reward-modal #your-reward #not-logged-in h3 {

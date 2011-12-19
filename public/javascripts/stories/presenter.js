@@ -145,7 +145,6 @@ $(function() {
 		
 		events: {
 			'click #reward-modal-tab':        'toggle_modal',
-			'click #toggle-reward-stream':    'toggle_reward_list',
 			'click #stars a': 								'choose_reward_amount',
 			'focus #custom_amount': 					'choose_custom_amount',
 			'submit #reward-form':            'submit_reward'
@@ -180,8 +179,8 @@ $(function() {
 			return false;
 		},
 		
-		toggle_reward_list: function() {
-			$('#reward-list, #your-reward').toggleClass('closed');
+		advance_to_step: function(step) {
+		  $('#modal-steps li[step=' + step + ']').addClass('selected').siblings().removeClass('selected');
 		},
 		
 		turn_off_stars: function() {
@@ -219,11 +218,26 @@ $(function() {
 			if (!$comment.is(':visible')) {
 			  window.setTimeout(function() {
 			    $('#amount-hints').fadeOut(200);
-			    $('#reward-box').animate({'padding-top':'65px'}, 300, function() {
+			    $('#amount').animate({'margin-top':'45px'}, 300, function() {
   			    $comment.fadeIn(200);
+      			RewardModal.advance_to_step(2);
   			  });
 			  }, 300);
 			}
+		},
+		
+		advance_to_user_status: function() {
+		  $('#creator-info, #reward-box').hide();
+		  $('#your-status').show();
+		  
+			RewardModal.advance_to_step(4);
+		},
+		
+		back_to_sharing: function() {
+		  $('#your-status').hide();
+		  $('#creator-info, #reward-box').show();
+		  
+			RewardModal.advance_to_step(3);
 		},
 
 		submit_reward: function(e) {
@@ -255,6 +269,10 @@ $(function() {
 					$('#mini-nav').animate({top:'0'}, 500);
 					$('#what-is-impact').fancybox();
 					$('#url_to_share').click(function() { $(this).select(); });
+					$('#momeant-status-link').click(RewardModal.advance_to_user_status);
+					$('#back-to-share-link').click(RewardModal.back_to_sharing);
+					
+    			RewardModal.advance_to_step(3);
 				}
 			);
 		},
@@ -379,6 +397,8 @@ $(function() {
 				}
 			});
 		},
+		
+		
 
 		setup_key_bindings: function() {
 			var modal = this;

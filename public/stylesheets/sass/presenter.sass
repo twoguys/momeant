@@ -144,6 +144,7 @@
 				height: 47px
 				padding: 15px 30px
 				border-bottom: 1px solid #dedcd5
+				position: relative
 				a
 					display: block
 					width: 150px
@@ -153,6 +154,23 @@
 				.slogan
 					font-size: 12px
 					color: #4c4b47
+				
+				#modal-steps
+					position: absolute
+					top: 31px
+					right: 30px
+					li
+						float: left
+						margin-right: 10px
+						
+						&.selected .title
+							font-weight: 700
+						
+						.title
+							text-transform: uppercase
+							cursor: help
+						.arrow
+							padding-left: 5px
 
 		#your-reward
 			.inner
@@ -231,10 +249,8 @@
 			
 				
 			#reward-box
-				height: 330px
+				position: relative
 				
-				&.reward-step
-					padding-top: 110px
 				&.loading
 					background: transparent url(../images/spinner.gif) no-repeat 50% 220px
 					*
@@ -256,6 +272,7 @@
 							width: 425px
 							margin-left: -29px
 							margin-bottom: 30px
+							margin-top: 110px
 						#stars
 							width: 425px
 							height: 100px
@@ -331,7 +348,7 @@
 					padding-top: 3px
 						
 				#copy-paste
-					margin-bottom: 30px
+					margin: 30px 0 40px
 					input
 						width: 349px
 				
@@ -349,6 +366,80 @@
 					.weak
 						clear: both
 						padding-top: 5px
+			
+			.bottom-right-button, .bottom-left-button
+				position: absolute
+				bottom: 30px
+				padding: 6px 8px
+				background: $text_color
+				color: #fff
+				@include rounded(3px)
+			.bottom-right-button
+				right: 40px
+			.bottom-left-button
+				left: 50px
+				
+			
+			#your-status
+				display: none
+				padding: 40px 50px
+				
+				.user-info
+					height: 145px
+					padding-left: 170px
+					position: relative
+					margin-bottom: 20px
+					.avatar
+						position: absolute
+						top: 0
+						left: 0
+						display: block
+						width: 140px
+						height: 140px
+						padding: 3px
+						background: #fff
+						@include boxshadow(2px,0.3,0,0)
+						img
+							width: 140px
+							height: 140px
+					.badge
+						position: absolute
+						top: -20px
+						left: -20px
+					h1
+						font-size: 30px
+						padding-top: 30px
+					.impact
+						font-size: 20px
+						padding: 4px 0 5px 40px
+						background: transparent url(../images/icons/impact.png) no-repeat 0 0
+				
+				.list
+					float: left
+					width: 300px
+					h3
+						font-size: 16px
+						padding-bottom: 5px
+						border-bottom: 1px solid #dedcd5
+						margin-bottom: 5px
+				
+				.topics
+					margin-right: 60px
+				
+				.faces
+					float: right
+					height: 80px
+					margin-bottom: 20px
+					li
+						float: left
+						margin: 0 15px 15px 0
+						&:last-child
+							margin-right: 0
+						a
+							display: block
+						a, img
+							width: 40px
+							height: 40px
 			
 			#not-logged-in
 				h1

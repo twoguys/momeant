@@ -226,6 +226,12 @@ class User < ActiveRecord::Base
     Reward.where(:user_id => self.id, :recipient_id => user.id).map {|reward| reward.impact}.inject(:+) || 0
   end
   
+  def influenced
+    my_reward_ids = self.given_rewards.map(&:id)
+    return [] if my_reward_ids.empty?
+    Reward.where("parent_id IN (#{my_reward_ids.join(',')})").map(&:user).uniq
+  end
+  
   # def impact
   #   self.given_rewards.map {|reward| reward.impact}.inject(:+) || 0
   # end
