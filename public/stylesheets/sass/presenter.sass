@@ -76,7 +76,7 @@
 		top: -550px
 		left: 50%
 		margin-left: -400px
-		background-color: #f5f2eb
+		background-color: #ededed
 		z-index: 3
 		@include boxshadow(2px,0.3,0,1px)
 		#reward-modal-tab
@@ -100,7 +100,7 @@
 				width: auto
 				position: relative
 				height: 29px
-				background: #f5f2eb
+				background: #ededed
 				font-weight: 700
 				color: #000
 				line-height: 13px
@@ -137,23 +137,19 @@
 				background: transparent url(../images/icons/starBlue.png) no-repeat 90% 50%
 				
 		#modal-inner
-			border: 1px solid #aaa
-			border-top: none
 			
 			#modal-header
 				height: 47px
 				padding: 15px 30px
-				border-bottom: 1px solid #dedcd5
+				background: #000
+				color: #fff
 				position: relative
 				a
 					display: block
 					width: 150px
 					height: 31px
-					background: transparent url(../images/logoDark.png) no-repeat 0 0
+					background: transparent url(../images/logoWhiteSmall.png) no-repeat -9px -5px
 					text-indent: -9999px
-				.slogan
-					font-size: 12px
-					color: #4c4b47
 				
 				#modal-steps
 					position: absolute
@@ -173,64 +169,97 @@
 							padding-left: 5px
 
 		#your-reward
+			border: 1px solid #aaa
+			border-top: none
 			.inner
-				height: 471px
+				height: 472px
 
 			.left-side, .right-side
-				padding: 30px 40px
-				height: 411px
+				padding: 30px
+				height: 412px
 			.left-side
-				width: 270px
+				width: 170px
 				float: left
+				background: #dcdcdc
+				@include boxshadow(2px,0.3,2px,0)
 			.right-side
 				float: right
-				width: 367px
+				width: 507px				
+				h2, h1
+					text-align: center
+				h2
+					font-size: 18px
+					font-weight: 700
+					text-transform: uppercase
+					padding: 0
+					background: none
+					margin-bottom: 0
+				h1
+					font-size: 36px
+					font-family: $numerals
+					font-weight: 300
+					text-transform: uppercase
+					line-height: 36px
+					color: $blue
+					margin-bottom: 0
+				.step-icon
+					width: 15px
+					height: 15px
+					margin: 0 auto 20px
+					background: transparent url(../images/icons/thumbsUpBlack.png) no-repeat 0 0
+					&.reward
+						background-image: url(../images/icons/starBlackSmallish.png)
+					&.comment
+						background-image: url(../images/icons/penBlackSmall.png)
+					&.promote
+						background-image: url(../images/icons/impactBlackTiny.png)
 
 			#creator-info
-				padding: 30px 40px
-				border-right: 1px solid #dedcd5
+				border-right: 1px solid #dedede
 				.avatar
 					display: block
-					width: 190px
-					height: 190px
+					width: 164px
+					height: 164px
 					padding: 3px
-					background: #fff
-					@include boxshadow(2px,0.3,0,0)
-					margin-bottom: 10px
+					background: #000
+					color: #fff
 					img
-						width: 190px
-						height: 190px
+						width: 164px
+						height: 164px
 				.byline
 					margin-bottom: 15px
+					background: #000
+					color: #fff
+					padding: 0 5px 1px
+					font-size: 11px
 					a
-						font-size: 22px
-						color: $text_color
 						display: block
+						font-size: 16px
+						text-transform: uppercase
+						font-weight: 700
+						color: #fff
 				.location, .occupation
 					font-size: 11px
-					padding-bottom: 15px
+					margin-bottom: 15px
 					.title
-						color: #a19f9b
+						color: #a1a1a1
 						text-transform: uppercase
 						display: block
-				.location
-					float: left
-				.occupation
-					float: right
+						padding-bottom: 1px
+						border-bottom: 1px solid #ccc
+						margin-bottom: 3px
 				.tagline
-					clear: both
-					padding-top: 16px
-					border-top: 1px solid #dedcd5
+					padding-top: 5px
 					font-size: 11px
 					height: 88px
 					overflow: hidden
 				.message
 					background: transparent url(../images/rewardModalThanksBG.png) no-repeat 0 0
 					padding: 23px 15px
-					height: 98px
+					height: 137px
 			
 			.section
-				width: 367px
+				width: 467px
 				margin: 0 auto 20px
 				h3
 					font-size: 15px
@@ -242,7 +271,7 @@
 					box-shadow: 0 1px 2px rgba(0,0,0,0.2) inset, 0 1px 0 #fff
 				textarea
 					display: block
-					width: 347px
+					width: 447px
 					margin: 0 auto 10px
 				input[type="submit"]
 					float: right
@@ -269,41 +298,54 @@
 
 					form#reward-form
 						#amount
-							width: 425px
-							margin-left: -29px
-							margin-bottom: 30px
-							margin-top: 110px
+							margin-bottom: 0
 						#stars
-							width: 425px
 							height: 100px
+							padding-left: 30px
+							margin-top: 20px
 							li
 								width: 90px
 								float: left
 								clear: none
+								a, input
+									box-shadow: 0 1px 0 #aaa
 								a
 									display: block
-									width: 70px
-									height: 70px
-									background: transparent url(../images/rewardFormStars.png) no-repeat 0 0
-									text-indent: -9999px
-								a#one-star.selected
-									background-position: 0 -100px
-								a#three-star
-									background-position: -100px 0
-								a#three-star.selected
-									background-position: -100px -100px
-								a#five-star
-									background-position: -200px 0
-								a#five-star.selected
-									background-position: -200px -100px
+									width: 60px
+									height: 40px
+									text-align: center
+									font-size: 38px
+									font-family: $numerals
+									font-weight: 300
+									color: #000
+									background: #fff
+									padding: 6px 0 14px
+									border: 5px solid #cbcbcb
+									@include rounded
+									
+									&.selected
+										background: $blue
+										color: #fff
+										border-color: #9ad5ec
+										box-shadow: 0 1px 0 #fff
 							
 								input[type="text"]
 									float: left
 									font-size: 36px
-									padding: 15px
+									padding: 10px
 									margin-right: 10px
-									width: 50px
+									width: 40px
+									height: 40px
+									font-family: $numerals
+									font-weight: 300
+									border: 5px solid #cbcbcb
 									text-align: center
+									
+									&:focus, &.selected
+										background: $blue
+										color: #fff
+										border-color: #9ad5ec
+										box-shadow: 0 1px 0 #fff
 								span, strong
 									font-size: 10px
 									text-transform: uppercase
@@ -316,7 +358,7 @@
 								width: 150px
 						
 						#amount-hints
-							font-size: 11px
+							text-align: center
 							.weak
 								margin-bottom: 10px
 						
@@ -328,7 +370,6 @@
 
 			#share
 				.info
-					height: 60px
 					h3.impact
 						font-size: 15px
 						margin: 0
@@ -338,31 +379,37 @@
 							padding-left: 42px
 							background: transparent url(../images/icons/impact.png) no-repeat 5px 0
 					a#what-is-impact
-						float: right
-						margin: 7px 20px 0 0
+						margin: 7px auto 0
 						font-size: 11px
+						display: block
+						text-align: center
 				
 				.weak
 					font-style: italic
 					font-size: 11px
 					padding-top: 3px
+					text-align: center
 						
 				#copy-paste
-					margin: 30px 0 40px
+					margin: 30px auto 40px
+					width: 367px
 					input
 						width: 349px
 				
 				#sharing-icons
+					text-align: center
 					a
-						display: block
-						float: left
-						width: 30px
-						height: 30px
+						display: inline-block
+						padding: 8px 12px
+						color: #fff
+						font-weight: 700
+						text-transform: uppercase
+						background: $blue
 						margin-right: 10px
-						text-indent: -9999px
-						background: transparent url(../images/icons/twitterSmall.png)
+						@include rounded(3px)
 					#share-with-facebook
-						background-image: url(../images/icons/facebookSmall.png)
+						background: #3a569b
+						margin-right: 0
 					.weak
 						clear: both
 						padding-top: 5px
@@ -370,14 +417,15 @@
 			.bottom-right-button, .bottom-left-button
 				position: absolute
 				bottom: 30px
-				padding: 6px 8px
-				background: $text_color
-				color: #fff
-				@include rounded(3px)
+				color: $text_color
 			.bottom-right-button
 				right: 40px
+				padding-right: 20px
+				background: transparent url(../images/icons/arrowRightBlackSmall.png) no-repeat 100% 0
 			.bottom-left-button
 				left: 50px
+				padding-left: 20px
+				background: transparent url(../images/icons/arrowLeftBlackSmall.png) no-repeat 0 0
 				
 			
 			#your-status
@@ -442,19 +490,16 @@
 							height: 40px
 			
 			#not-logged-in
-				h1
-					font-size: 16px
-				h3
-					font-size: 13px
 				p
 					margin: 10px 0
 				p.strong
 					font-weight: 700
 				.buttons
-					padding-top: 10px
+					margin: 10px 0 20px
 					a.join
 						display: block
-						float: left
+						width: 240px
+						margin: 0 auto
 						background: $text_color
 						color: #fff
 						@include rounded(3px)
@@ -464,99 +509,7 @@
 						font-size: 13px
 						font-weight: 700
 				.links
-					clear: both
-					padding-top: 20px
-		
-		#reward-thank-you
-			.thank-you
-				background: #e3e3e3
-				padding: 30px
-				height: 150px
-				.header
-					height: 40px
-					margin-bottom: 20px
-					text-transform: uppercase
-					h1
-						font-size: 40px
-						font-family: $numerals
-						float: left
-						margin: -8px 10px 0 0
-					.who
-						font-size: 17px
-						font-weight: 700
-						line-height: 17px
-						float: left
-						span
-							display: block
-				.message
-					clear: both
-					.creator
-						border: 3px solid $blue
-						margin-right: 10px
-						float: left
-						.avatar
-							display: block
-							width: 70px
-							height: 70px
-							img
-								width: 70px
-								height: 70px
-						.rewards
-							background: $blue
-							color: #fff
-							text-align: center
-							padding: 5px 0 0
-							span
-								background: transparent url(../images/icons/starWhiteSmall.png) no-repeat 100% 0
-								padding-right: 20px
-								font-weight: 700
-					.text
-						background: transparent url(../images/rewardModalThankYouMessageBG.png) no-repeat 0 0
-						width: 345px
-						padding: 15px 15px 15px 25px
-						float: left
-						font-size: 11px
-						max-height: 60px
-						overflow: hidden
-			.explanation
-				height: 240px
-				background: $blue
-				padding: 25px 0 25px 30px
-				.text
-					width: 140px
-					float: left
-					color: #fff
-					margin-right: 20px
-					h2
-						font-size: 18px
-						font-weight: 700
-						color: #000
-						text-transform: uppercase
-						background: none
-						line-height: 30px
-						padding: 0
-						margin-bottom: 10px
-						span
-							letter-spacing: -0.03em
-						strong
-							font-size: 40px
-							font-family: $numerals
-							color: #fff
-					p
-						font-size: 11px
-						margin: 0
-				.diagram
-					float: left
-					width: 319px
-					height: 220px
-					background: transparent url(../images/rewardModalImpactDiagram.png) no-repeat 0 0
-					position: relative
-					.avatar
-						position: absolute
-						top: 21px
-						left: 141px
-						width: 33px
-						height: 33px
+					text-align: center
 	
 	.content
 		z-index: 1
@@ -650,7 +603,7 @@
 #twitter-sharing, #facebook-sharing
 	width: 367px
 	padding: 20px
-	background: #f5f2eb
+	background: #ededed
 	
 	textarea
 		display: block

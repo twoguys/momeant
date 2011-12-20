@@ -185,6 +185,7 @@ $(function() {
 		
 		turn_off_stars: function() {
 			$('#stars a').removeClass('selected');
+			$('#custom_amount').removeClass('selected');
 		},
 		
 		choose_reward_amount: function(event) {
@@ -207,6 +208,9 @@ $(function() {
 		
 		setup_custom_reward_amount_monitoring: function() {
 			var $amount = $('#custom_amount');
+			$amount.click(function() {
+				$amount.addClass('selected');
+			});
 			$amount.change(function() {
 				$('#reward_amount').val($(this).val());
 			});
@@ -217,11 +221,10 @@ $(function() {
 		  var $comment = $('#comment');
 			if (!$comment.is(':visible')) {
 			  window.setTimeout(function() {
-			    $('#amount-hints').fadeOut(200);
-			    $('#amount').animate({'margin-top':'45px'}, 300, function() {
-  			    $comment.fadeIn(200);
-      			RewardModal.advance_to_step(2);
-  			  });
+			    $('#amount-hints').fadeOut(200, function() {
+			      $comment.fadeIn(200);
+        		RewardModal.advance_to_step(2);
+			    });
 			  }, 300);
 			}
 		},
