@@ -111,6 +111,7 @@ class StoriesController < ApplicationController
   end
   
   def destroy
+    Activity.where(:action_id => @story.id, :action_type => "Story").destroy_all
     @story.destroy
     redirect_to creations_user_path(current_user), :notice => "Your content was deleted."
   end
