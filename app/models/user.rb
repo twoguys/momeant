@@ -109,7 +109,7 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :remember_me, :tos_accepted,
     :avatar, :credits, :stored_in_braintree, :invitation_code, :tagline, :occupation, :paypal_email, :interest_list,
-    :location, :thankyou
+    :location, :thankyou, :twitter_friends, :facebook_friends, :friends_last_cached_at
   
   def extra_validations
     safe = true
@@ -369,6 +369,50 @@ class User < ActiveRecord::Base
     Twitter.update(message, :wrap_links => true)
     
     object.update_attribute(:shared_to_twitter, true) if object.is_a?(Reward)
+  end
+  
+  def cache_facebook_friends
+    return if facebook_id.blank?
+    
+    access_token = self.authentications.find_by_provider("facebook").token
+    data = RestClient.get "https://graph.facebook.com/me/friends?fields=id&access_token=#{access_token}"
+    users = ActiveSupport::JSON.decode data
+
+    facebook_ids = users["data"].map{ |friend| "'#{friend["id"]}'" }.join(",")
+    return if facebook_ids.empty?
+    momeant_ids = User.where("facebook_id IN (#{facebook_ids})").map(&:id).join(",")
+
+    self.update_attributes(:facebook_friends => momeant_ids)
+  end
+  
+  def cache_twitter_friends
+    return if twitter_id.blank?
+    
+    data = RestClient.get "http://api.twitter.com/1/friends/ids.json?user_id=#{self.twitter_id}&cursor=-1"
+    users = ActiveSupport::JSON.decode data
+    
+    twitter_ids = users["ids"].map{ |id| "'#{id}'" }.join(",")
+    return if twitter_ids.empty?
+    momeant_ids = User.where("twitter_id IN (#{twitter_ids})").map(&:id).join(",")
+    
+    self.update_attributes(:twitter_friends => momeant_ids)
+  end
+  
+  def activity_from_twitter_and_facebook_friends
+    # update friends list unless it was cached within the last day
+    if friends_last_cached_at.nil? || friends_last_cached_at < 1.day.ago
+      cache_facebook_friends
+      cache_twitter_friends
+      self.update_attribute :friends_last_cached_at, Time.now
+    end
+    
+    friend_ids = []
+    friend_ids += twitter_friends.split(',') unless twitter_friends.blank?
+    friend_ids += facebook_friends.split(',') unless facebook_friends.blank?
+    friend_ids.uniq!
+    
+    return [] if friend_ids.empty?
+    Activity.where("actor_id IN (#{friend_ids.join(',')})")
   end
   
   
