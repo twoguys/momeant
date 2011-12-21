@@ -80,6 +80,7 @@ Repo::Application.routes.draw do
       post :update_in_place
       post :update_avatar
       get :activity #ajax
+      get :activity_from_friends #ajax
     end
     
     # Homepage tab

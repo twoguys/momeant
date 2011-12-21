@@ -19,6 +19,7 @@
     #activity-sidebar
     
       #curated-data
+        .info Activity by people you know
   
       #leaderboards
   
@@ -40,4 +41,7 @@
 
 :javascript
   var activity_url = '/activity/reload';
+- if current_user
+  :javascript
+    var friends_activity_url = '#{activity_from_friends_user_path(current_user)}';
 = javascript_include_tag "users/activity"

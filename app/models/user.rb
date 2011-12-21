@@ -412,7 +412,10 @@ class User < ActiveRecord::Base
     friend_ids.uniq!
     
     return [] if friend_ids.empty?
-    Activity.where("actor_id IN (#{friend_ids.join(',')})")
+    Activity.
+      where("actor_id IN (#{friend_ids.join(',')})").
+      where("action_type = 'Reward' OR action_type = 'Story'").
+      limit(5)
   end
   
   

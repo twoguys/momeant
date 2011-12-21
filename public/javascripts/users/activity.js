@@ -79,5 +79,15 @@ $(function() {
 	});
 	
 	window.Activity = new ActivityView;
+	
+	// load the sidebar curated data if a user is logged in
+	if (friends_activity_url) {
+	  $.get(friends_activity_url, function(data) {
+	    var html = $.trim(data);
+	    if (html != "") {
+	      $('#curated-data').append(data).show();
+	    }
+	  });
+	}
 
 });
