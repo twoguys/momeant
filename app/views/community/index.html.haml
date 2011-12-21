@@ -28,7 +28,7 @@
           %ul
             - @top_patrons.each do |patron|
               %li
-                = link_to truncate(patron.name, :length => 20), user_path(patron)
+                = link_to truncate(patron.name, :length => 30), user_path(patron)
                 %span.impact= patron.impact
               
         #top-creators.list
@@ -36,7 +36,7 @@
           %ul
             - @top_creators.each do |creator|
               %li
-                = link_to truncate(creator.name, :length => 20), user_path(creator)
+                = link_to truncate(creator.name, :length => 30), user_path(creator)
                 %span.rewards= creator.lifetime_rewards
 
 :javascript

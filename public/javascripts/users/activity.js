@@ -85,7 +85,7 @@ $(function() {
 	  $.get(friends_activity_url, function(data) {
 	    var html = $.trim(data);
 	    if (html != "") {
-	      $('#curated-data').append(data).show();
+	      $('#curated-data').append(data).slideDown();
 	    }
 	  });
 	}
