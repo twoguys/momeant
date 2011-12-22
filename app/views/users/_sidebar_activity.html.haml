@@ -1,0 +1,12 @@
+- @activity.each do |activity|
+  .activity
+    - action = activity.action
+    - if action.is_a?(Reward)
+      = link_to image_tag(activity.actor.avatar.url(:thumbnail)), user_path(activity.actor), :class => "avatar"
+      %strong= activity.actor.name
+      %span recently rewarded #{link_to action.story.title, story_path(action.story, :impacted_by => action.id)}
+  
+    - elsif action.is_a?(Story)
+      = link_to image_tag(activity.actor.avatar.url(:thumbnail)), user_path(activity.actor), :class => "avatar"
+      %strong= activity.actor.name
+      %span recently shared #{link_to action.title, story_path(action)}

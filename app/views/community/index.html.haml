@@ -6,6 +6,7 @@
   
       #activity-head
         = render "community/activity_filter"
+        = #render "community/activity_tabs"
     
       #activity-body
 
@@ -16,6 +17,9 @@
         = link_to "Load more...", "#", :id => "load-more-activity"
 
     #activity-sidebar
+    
+      #curated-data
+        .info Activity by people you know
   
       #leaderboards
   
@@ -24,7 +28,7 @@
           %ul
             - @top_patrons.each do |patron|
               %li
-                = link_to truncate(patron.name, :length => 20), user_path(patron)
+                = link_to truncate(patron.name, :length => 30), user_path(patron)
                 %span.impact= patron.impact
               
         #top-creators.list
@@ -32,9 +36,12 @@
           %ul
             - @top_creators.each do |creator|
               %li
-                = link_to truncate(creator.name, :length => 20), user_path(creator)
+                = link_to truncate(creator.name, :length => 30), user_path(creator)
                 %span.rewards= creator.lifetime_rewards
 
 :javascript
   var activity_url = '/activity/reload';
+- if current_user
+  :javascript
+    var friends_activity_url = '#{activity_from_friends_user_path(current_user)}';
 = javascript_include_tag "users/activity"

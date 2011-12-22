@@ -2,7 +2,7 @@ class CommunityController < ApplicationController
   before_filter :set_nav
   
   def index
-    @activity = Activity.page params[:page]
+    @activity = Activity.except("Impact").page params[:page]
     @top_patrons = User.where("impact > 0").order("impact DESC").limit(5)
     @top_creators = User.most_rewarded.limit(5)
   end
@@ -11,7 +11,7 @@ class CommunityController < ApplicationController
     activity = []
     case params[:filter]
     when "all"
-      activity = Activity.order("created_at DESC")
+      activity = Activity.except("Impact")
     when "impact"
       activity = Activity.on_impact
     when "rewards"
@@ -27,7 +27,6 @@ class CommunityController < ApplicationController
       render :text => ""
     else
       activity = activity.page params[:page]
-      Rails.logger.info "ASDFASDFSADFASDFSDAF #{activity.length}"
       render activity
     end
   end

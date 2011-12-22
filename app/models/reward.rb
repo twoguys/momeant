@@ -45,4 +45,12 @@ class Reward < Curation
     
     tree
   end
+  
+  def ancestors_except(user)
+    self.ancestors.map(&:user).uniq.reject {|u| u == user}
+  end
+  
+  def descendants_except(user)
+    self.descendants.map(&:user).uniq.reject {|u| u == user}
+  end
 end

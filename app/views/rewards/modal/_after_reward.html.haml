@@ -12,11 +12,12 @@
       Thank you so much for your support!
 
 #reward-box.right-side
+  .step-icon.promote
+  
   #share.section
     .info
-      %h3.impact
-        %span Promote #{@story.user.first_name} and make an
-        %span.icon Impact
+      %h2 Promote #{@story.user.first_name} and have a
+      %h1 Greater Impact
       = link_to "what is Momeant Impact?", "#what-is-impact-modal", :id => "what-is-impact"
       .hidden
         #what-is-impact-modal
@@ -26,8 +27,8 @@
       .weak Copy this URL to share #{@story.user.first_name}'s content with others.
 
     #sharing-icons
-      = link_to "Twitter", "#twitter-sharing", :id => "share-with-twitter", :title => "Twitter"
-      = link_to "Facebook", "#facebook-sharing", :id => "share-with-facebook", :title => "Facebook"
+      = link_to "Share on Twitter", "#twitter-sharing", :id => "share-with-twitter"
+      = link_to "Share on Facebook", "#facebook-sharing", :id => "share-with-facebook"
       .weak We'll help you share #{@story.user.first_name}'s content with your networks.
       
     .hidden
@@ -46,6 +47,35 @@
           .not-configured
             %span Want to share this with your Facebook friends?
             = link_to("Launch Facebook Configuration", "#{root_url}auth/facebook", :id => "configure-facebook")
+    
+    = #link_to "View your Momeant Status", "#", :class => "bottom-right-button", :id => "momeant-status-link"
+
+#your-status
+  .user-info
+    = link_to image_tag(current_user.avatar.url(:large)), user_path(current_user), :class => "avatar"
+    = image_tag("badges/#{current_user.badge_level}.png", :class => "badge")
+    %h1= current_user.name
+    .impact #{current_user.impact} impact
+  
+  .list
+    %h3 Topics you support the most
+    %ul.topics
+      - current_user.tags[0..4].each do |tag|
+        %li= tag.name
+
+  .list.faces
+    %h3 People you've supported
+    %ul.supported
+      - current_user.rewarded_creators[0..5].each do |creator|
+        %li= link_to image_tag(creator.avatar.url(:thumbnail), :title => creator.name), user_path(creator)
+    
+  .list.faces
+    %h3 Others you've influenced
+    %ul.influenced
+      - current_user.influenced[0..5].each do |user|
+        %li= link_to image_tag(user.avatar.url(:thumbnail), :title => user.name), user_path(user)
+  
+  = link_to "Back to sharing", "#", :class => "bottom-left-button", :id => "back-to-share-link"
 
 :javascript
   mpq.track('Rewarded Content', {story_id: '#{@story.id}', mp_note: '#{@reward.amount} reward coins'});

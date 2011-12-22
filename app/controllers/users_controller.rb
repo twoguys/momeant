@@ -83,6 +83,11 @@ class UsersController < ApplicationController
     end
   end
   
+  def activity_from_friends
+    @activity = @user.activity_from_twitter_and_facebook_friends
+    render :partial => "sidebar_activity"
+  end
+  
   def bookmarks
     @sidenav = "bookmarks"
   end

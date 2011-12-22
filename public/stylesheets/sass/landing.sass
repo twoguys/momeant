@@ -1,186 +1,131 @@
 #home.index
 	#container
-		background: #fd7c05 url(https://momeant.s3.amazonaws.com/landing_backgrounds/orange.jpg) no-repeat 50% 50%
+		background: #eaeaea url(../images/lightNoise.png) repeat 0 0
+		
+	#slogan, #messaging, #steps ul, #join-call-to-action, #creator
+		width: 600px
+		margin-left: auto
+		margin-right: auto
+		margin-bottom: 50px
+		
+	#slogan
+		font-size: 54px
+		font-family: atrament-web-1, atrament-web-2, sans-serif
+		text-transform: uppercase
+		letter-spacing: 0.04em
+		padding-bottom: 10px
+		border-bottom: 1px solid #fff
+		margin-top: 50px
+	
+	#messaging
+		font-size: 13px
+		margin-bottom: 60px
+		
+	#steps
+		background: #262626 url(../images/darkNoise.png) repeat 0 0
+		padding: 40px
+		color: #fff
+		margin-bottom: 50px
 
-	#main
-		height: 100%
-
-	#landing
-		position: relative
-		padding-top: 30px
-
-		#slogan, #faces, #info
-			position: relative
-			z-index: 2
-
-		#slogan
-			background: #000
-			background: rgba(0,0,0,0.8)
-			color: #fff
-			padding: 10px 0
-			position: relative
-			height: 35px
-			margin-bottom: 40px
-			h1
-				text-align: center
-				font-size: 26px
-				letter-spacing: -0.02em
-				margin: 0
-				text-shadow: 0 2px 2px #000
-			#slogan-more
-				width: 650px
-				margin: 10px auto 0
-				font-size: 13px
-				display: none
-			#slogan-more-link
-				position: absolute
-				bottom: -25px
-				left: 50%
-				margin-left: -17.5px
-				display: block
-				width: 35px
-				height: 25px
-				background: #000 url(../images/landingPlusMinus.png) no-repeat 3px -5px
-				background: rgba(0,0,0,0.8) url(../images/landingPlusMinus.png) no-repeat 3px -5px
-				color: #fff
-				font-size: 30px
-				font-weight: 700
-				text-indent: -9999px
-				-webkit-border-bottom-right-radius: 5px
-				-webkit-border-bottom-left-radius: 5px
-				-moz-border-radius-bottomright: 5px
-				-moz-border-radius-bottomleft: 5px
-				border-bottom-right-radius: 5px
-				border-bottom-left-radius: 5px
-			#slogan-more-link.open
-				background-position: 3px -35px
-
-		#faces-header
-			text-align: center
-			margin-bottom: 20px
-			text-transform: uppercase
-			text-shadow: 0 1px 0 rgba(255,255,255,0.2)
+		ul
+			height: 180px
+			margin-bottom: 0
+			li
+				float: left
+				width: 175px
+				margin-right: 35px
+				&:last-child
+					margin-right: 0
+				.number
+					background: #fff
+					@include rounded(30px)
+					padding: 8px 0 7px
+					text-align: center
+					color: #262626
+					font-size: 20px
+					font-weight: 700
+					width: 44px
+					float: left
+				.title
+					float: left
+					font-size: 20px
+					font-weight: 700
+					text-transform: uppercase
+					padding: 10px 0 0 10px
+				p
+					clear: both
+					padding-top: 20px
+				
+	#join-call-to-action
+		display: block
+		padding: 10px 0 8px
+		font-size: 20px
+		font-weight: 700
+		text-align: center
+		text-transform: uppercase
+		color: #fff
+		background: $blue
+		border: 5px solid #74cbf4
+		@include rounded(10px)
 			
+	#creator
+		h2
+			padding: 0
+			background: none
+			text-align: center
+			font-size: 18px
+			text-transform: none
+			margin-bottom: 30px
+		
 		#faces
-			position: absolute
-			top: 160px
-			left: 50%
-			margin-left: -160px
 
 			.face
-				position: relative
 				float: left
-				margin-right: 25px
-				width: 80px
-				min-height: 80px
+				width: 165px
+				padding: 6px
+				background: #fff
+				@include rounded
+				@include boxshadow(5px, 0.2)
+				margin-right: 34px
+				&:last-child
+					margin-right: 0
 				
-				&.selected
-					width: 320px
-					.full
-						display: block
-					.preview
-						display: none
-
-				.preview, .full
-					position: absolute
-					top: 0
-					left: 0
-
-				.preview
-					opacity: 0.7
-					width: 80px
-					height: 80px
-					@include boxshadow(2px,1.0,0,0)
+				a.avatar
+					display: block
+					width: 165px
+					height: 165px
+					margin-bottom: 6px
+					img
+						width: 165px
+						height: 165px
+				
+				.info
+					background: #000
+					color: #fff
+					padding: 10px
 					@include rounded
-					a.avatar
-						display: block
-						width: 80px
-						height: 80px
-						img
-							width: 80px
-							height: 80px
-							@include rounded
-					
-				.full
-					display: none
-					background: #fff
-					@include rounded
-					opacity: 1
-					width: 320px
-					height: auto
-					@include boxshadow(4px,0.7,0,0)
-					a.avatar
-						float: left
-					a.avatar, a.avatar img
-						width: 160px
-						height: 160px
-						-webkit-border-top-left-radius: 5px
-						-moz-border-radius-topleft: 5px
-						border-top-left-radius: 5px
-
-					.stats
-						float: left
-						width: 160px
-						height: 160px
-						background: #000
-						color: #fff
-						-webkit-border-top-roght-radius: 5px
-						-moz-border-radius-topright: 5px
-						border-top-right-radius: 5px
-						.stat
-							position: relative
-							padding: 30px 10px 0
-							.amount
-								font-size: 26px
-								line-height: 20px
-								padding-left: 19px
-								font-weight: 700
-								background: transparent url(../images/icons/starWhiteSmall.png) no-repeat 0 4px
-							.text	
-								display: block
-								font-size: 11px
-								text-indent: 20px
-						.earned
-							.amount
-								background: none
-							.dollar
-								position: absolute
-								top: 25px
-								left: 14px
-								font-size: 16px
-								font-weight: 500
-
-					.info
-						clear: both
-						padding: 20px
-
-						h2
-							padding: 0
-							background: none
-							color: #aaa
-							margin-bottom: 10px
-							span.name
-								color: #000
-						
-						.location
-							font-size: 11px
-							padding: 1px 0 0 12px
-							margin-bottom: 10px
-							background: transparent url(../images/icons/location.png) no-repeat -4px 0
-						
-						p.quote
-							margin-top: 0
-
-						a.content-link
-							background: #bcbcbc
-							@include gradient(#c6c6c6,#b2b2b2)
-							@include rounded(3px)
-							color: #fff
-							font-size: 16px
-							font-weight: 700
-							text-transform: uppercase
+					h2.name
+						font-size: 15px
+						text-transform: uppercase
+						text-align: left
+						margin-bottom: 10px
+					.earned
+						padding-bottom: 5px
+						border-bottom: 1px solid #fff
+						margin-bottom: 10px
+						.amount
+							font-family: $numerals
+							font-size: 40px
+							font-weight: 300
+							line-height: 40px
 							display: block
-							padding: 10px 0
-							text-align: center
-							text-shadow: 0 -1px 0 rgba(0,0,0,0.2)
-							border: 1px solid #a9a9a9
+						.text
+							font-size: 11px
+							text-transform: uppercase
+					.occupation, .location, .quote
+						font-size: 11px
+						color: #ffa801
+						display: block
+					.quote
+						line-height: 1.2em
+						overflow: hidden

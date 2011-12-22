@@ -1,50 +1,54 @@
-- content_for :head do
-  = javascript_include_tag "landing"
-
 #landing
 
-  #slogan
-    %h1 Reward the people behind great content on the web.
-    %p#slogan-more
-      We all face a basic economic problem on the Web. We're given more and more content for free, and that's great.
-      However, the people that create the content we enjoy and find useful should still get paid. Thus, we'd like to
-      introduce you to the reward, a voluntary act you can take if you've enjoyed someone's content. By rewarding
-      each other, we recognize the value of our online creations and show real support for the people who make them.
-      Your rewards also build powerful social data that make you a valuable promoter and connector of others.
-    = link_to "+", "#", :id => "slogan-more-link"
+  %h1#slogan Help build a new digital economy.
   
-  #faces-header Featured Creators
-  #faces
-    - first = true
-    - @editorials.each do |editorial|
-      .face{:class => first ? "selected" : "", :editorial => editorial.id}
-        .preview
-          = link_to image_tag(editorial.user.avatar.url(:large)), user_path(editorial.user), :info_id => editorial.id, :class => "avatar"
-        .full
-          = link_to image_tag(editorial.user.avatar.url(:large)), user_path(editorial.user), :info_id => editorial.id, :class => "avatar"
-      
-          .stats
-            - if editorial.show_as == "creator"
-              .rewards.stat
-                %span.amount= editorial.user.rewards.sum(:amount)
-                %span.text rewards received
-              .earned.stat
-                %span.dollar $
-                %span.amount= number_to_currency(editorial.user.rewards.sum(:amount) * Reward.dollar_exchange)[1..-1]
-                %span.text money earned
-              
-          .info
-            %h2
-              %span.name= editorial.user.name
-              %span= editorial.occupation
-              
-            .location= editorial.user.location
+  #messaging
+    %p
+      %strong The economy is broken.
+      %span Wealth disparities are huge, jobs are disappearing, and yet we haven’t become less productive, we just spend much of our time and energy producing content, information, and software that we mostly give away for free.
+    %p
+      %strong We strongly believe that information needs to be free,
+      %span but at the same time, we need to build a new digital economy that allows us to make a living from what we spend our time producing and consuming.
+    %p
+      %strong Thus, Momeant is introducing the Reward,
+      %span a voluntary payment made after having consumed content for free. By voluntarily investing in each other, we demonstrate what we find valuable, and create the jobs we need in a 21st century economy.
+  
+  #steps
+    %ul
+      %li
+        .number 1
+        .title Link
+        %p Link to your existing Web content or put our reward app on your website or blog. We work hard to make it easy on you.
+      %li
+        .number 2
+        .title Reward
+        %p Reward to support creators whose content you enjoy, promote yourself, and become a powerful social influencer.
+      %li
+        .number 3
+        .title Discover
+        %p Find out what’s being rewarded, see the impact your rewards and promotion have, and find new content.
+  
+  = link_to "Join Us. Reward and Be Rewarded.", "#join-modal", :id => "join-call-to-action" unless current_user
+  
+  #creator
+    %h2 Here are some of the creators already being supported.
+    %ul#faces
+      - @editorials.each do |editorial|
+        %li.face{:editorial => editorial.id}
+          = link_to image_tag(editorial.user.avatar.url(:large)), creations_user_path(editorial.user), :info_id => editorial.id, :class => "avatar"
 
+          .info
+            %h2.name= editorial.user.name
+            
+            - if editorial.show_as == "creator"
+              .earned
+                %span.amount= number_to_currency(editorial.user.rewards.sum(:amount) * Reward.dollar_exchange)
+                %span.text money earned
+            
+            %span.occupation= editorial.occupation
+            %span.location= editorial.user.location
             %p.quote= editorial.quote
-          
-            = link_to "view #{editorial.user.first_name}'s content", creations_user_path(editorial.user), :class => "content-link"            
-      
-      - first = false
+    .clear
 
 :javascript
-  mpq.track('Viewed Landing Page', {anonymous_id: '#{session[:analytics_anonymous_id]}'})
+  mpq.track('Viewed Landing Page');

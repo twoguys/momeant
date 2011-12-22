@@ -28,6 +28,13 @@ namespace :momeant do
       Topic.create(:name => "Travel")
     end
     
+    desc "Copy twitter and facebook ids from the authentications table and cache it on the user"
+    task :cache_auth_ids_on_user => :environment do
+      Authentication.all.each do |auth|
+        auth.user.update_attribute("#{auth.provider}_id", auth.uid)
+      end
+    end
+    
   end
   
   namespace :activity do
