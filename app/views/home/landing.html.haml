@@ -35,7 +35,7 @@
     %ul#faces
       - @editorials.each do |editorial|
         %li.face{:editorial => editorial.id}
-          = link_to image_tag(editorial.user.avatar.url(:large)), user_path(editorial.user), :info_id => editorial.id, :class => "avatar"
+          = link_to image_tag(editorial.user.avatar.url(:large)), creations_user_path(editorial.user), :info_id => editorial.id, :class => "avatar"
 
           .info
             %h2.name= editorial.user.name
