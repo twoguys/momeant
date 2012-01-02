@@ -24,13 +24,14 @@
           %p.info
             %em Show something you've created elsewhere on the web.
             = link_to "Uncertain about your rights over your content?", "#content-rights", :id => "content-rights-link"
-      .or OR
       .choice#creator{:class => @story.is_external? ? "" : "selected"}
         .choice-inner
-          .description Create something new
-          = link_to("Launch fullscreen editor", "#", :id => "open-page-editor-button", :class => @story.is_external? || @story.pages.empty? ? "launch" : "")
+          .description
+            OR create something new by
+            = link_to("launching our fullscreen editor", "#", :id => "open-page-editor-button", :class => @story.is_external? || @story.pages.empty? ? "launch" : "")
+            %em (currently in beta)
           %p.info
-            %em Share images &amp; text with many layout &amp; formatting options.
+            %em (Share images &amp; text with many layout &amp; formatting options.)
       .clear
 
     %section.step#share
