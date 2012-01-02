@@ -51,7 +51,7 @@ class Story < ActiveRecord::Base
   validates :synopsis, :length => (0..1024), :unless => :autosaving
   validates_attachment_presence :thumbnail, :unless => :autosaving, :message => "must be chosen"
   
-  validate  :at_least_one_page, :unless => :autosaving
+  validate  :at_least_one_page, :no_empty_pages, :unless => :autosaving
   
   scope :published, where(:published => true)
   scope :newest_first, order("created_at DESC")
@@ -74,9 +74,20 @@ class Story < ActiveRecord::Base
   
   def at_least_one_page
     if self.pages.count == 0
-      self.errors.add(:base, "Your story must have at least one page")
+      self.errors.add(:base, "Your content must have at least one page")
       return false
     end
+    return true
+  end
+  
+  def no_empty_pages
+    self.pages.each do |page|
+      if page.empty?
+        self.errors.add(:base, "Slide #{page.number} cannot be empty. Please fix this by using the fullscreen editor.")
+        return false
+      end
+    end
+    return true
   end
   
   def free?

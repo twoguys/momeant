@@ -19,4 +19,9 @@ class FullImagePage < Page
   def css_class
     "full_image"
   end
+  
+  def empty?
+    return true if self.image_media.image.url.include?("missing")
+    return false
+  end
 end
