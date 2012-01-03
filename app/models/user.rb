@@ -103,7 +103,6 @@ class User < ActiveRecord::Base
   validates :tos_accepted, :presence => true, :inclusion => {:in => [true]} # :acceptance => true won't work...
   
   validate  :extra_validations
-  after_validation :geocode_if_location_provided
   
   RECOMMENDATIONS_LIMIT = 10
   
@@ -131,11 +130,6 @@ class User < ActiveRecord::Base
     return safe
   end
   
-  def geocode_if_location_provided
-    return if self.location.blank?
-    geocode
-  end
-  
   def to_param
     "#{self.id}-#{self.name.gsub(/[^a-zA-Z]/,"-")}"
   end
@@ -152,6 +146,15 @@ class User < ActiveRecord::Base
   
   def can_view_stories?
     self.trial? || self.active_subscription?
+  end
+  
+  def geocode_if_location_provided
+    return if self.location.blank?
+    geocode and save
+  end
+  
+  def geolocated?
+    latitude.present? && longitude.present?
   end
   
   def has_rewarded?(story)

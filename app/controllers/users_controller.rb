@@ -65,6 +65,7 @@ class UsersController < ApplicationController
   def update_in_place
     @user = current_user
     if @user.update_attribute(params[:attribute], params[:update_value])
+      @user.geocode_if_location_provided if params[:attribute] == "location"
       render :text => params[:update_value]
     else
       render :text => params[:original_value]
