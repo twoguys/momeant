@@ -15,6 +15,8 @@ class User < ActiveRecord::Base
   end
   
   acts_as_taggable_on :interests
+  
+  geocoded_by :location
        
   # ASSOCIATIONS
   
@@ -101,6 +103,7 @@ class User < ActiveRecord::Base
   validates :tos_accepted, :presence => true, :inclusion => {:in => [true]} # :acceptance => true won't work...
   
   validate  :extra_validations
+  after_validation :geocode_if_location_provided
   
   RECOMMENDATIONS_LIMIT = 10
   
@@ -109,7 +112,7 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :remember_me, :tos_accepted,
     :avatar, :credits, :stored_in_braintree, :invitation_code, :tagline, :occupation, :paypal_email, :interest_list,
-    :location, :thankyou, :twitter_friends, :facebook_friends, :friends_last_cached_at
+    :location, :thankyou, :twitter_friends, :facebook_friends, :friends_last_cached_at, :latitude, :longitude
   
   def extra_validations
     safe = true
@@ -126,6 +129,11 @@ class User < ActiveRecord::Base
       end
     end
     return safe
+  end
+  
+  def geocode_if_location_provided
+    return if self.location.blank?
+    geocode
   end
   
   def to_param

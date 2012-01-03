@@ -235,9 +235,11 @@ ul#activity-list
 		border-bottom: 1px solid #ddd
 		margin-bottom: 6px
 	
+	.list
+		margin-bottom: 20px
+		
 	#curated-data
 		display: none
-		margin-bottom: 20px
 		.activity
 			padding: 5px 0 5px 40px
 			position: relative
@@ -254,25 +256,47 @@ ul#activity-list
 					height: 30px
 		a:hover
 			color: $blue
+	
+	#nearby-content
+		display: none
+		.content
+			padding: 5px 0
+			.title
+				padding-bottom: 3px
+				a
+					color: $text_color
+					font-weight: 700
+					&:hover
+						color: $blue
+			.the-rest
+				position: relative
+				padding: 3px 0 3px 105px
+				height: 62px
+				a.thumbnail
+					display: block
+					width: 95px
+					height: 60px
+					position: absolute
+					top: 0
+					left: 0
+					border: 1px solid #ddd
+				a.title
+					font-weight: 700
 
 	#leaderboards
-		padding: 0 6px
 
 		li
 			margin-bottom: 3px
 			
-		.list
-			margin-bottom: 20px
-
-			.impact
-				float: right
-				padding-right: 19px
-				background: transparent url(../images/icons/impactTiny.png) no-repeat 100% 0
-				
-			.rewards
-				float: right
-				padding-right: 16px
-				background: transparent url(../images/icons/starBlackTiny.png) no-repeat 100% 2px
+		.impact
+			float: right
+			padding-right: 19px
+			background: transparent url(../images/icons/impactTiny.png) no-repeat 100% 0
+			
+		.rewards
+			float: right
+			padding-right: 16px
+			background: transparent url(../images/icons/starBlackTiny.png) no-repeat 100% 2px
 
 a#load-more-activity
 	display: block

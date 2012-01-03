@@ -18,8 +18,14 @@
 
     #activity-sidebar
     
-      #curated-data
-        .info Activity by people you know
+      - if current_user
+
+        #curated-data.list
+          .info Activity by people you know
+      
+        - unless current_user.location.blank?
+          #nearby-content.list
+            .info Content from folks near #{current_user.location}
   
       #leaderboards
   
@@ -44,4 +50,7 @@
 - if current_user
   :javascript
     var friends_activity_url = '#{activity_from_friends_user_path(current_user)}';
+- if current_user && current_user.location.present?
+  :javascript
+    var nearby_content_url = '#{content_from_nearbys_user_path(current_user)}';
 = javascript_include_tag "users/activity"

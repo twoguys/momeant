@@ -88,6 +88,17 @@ class UsersController < ApplicationController
     render :partial => "sidebar_activity"
   end
   
+  def content_from_nearbys
+    @content = []
+
+    user_ids = @user.nearbys(30).map(&:id).join(",")
+    unless user_ids.blank?
+      @content = Story.published.newest_first.where("user_id IN (#{user_ids})").limit(3)
+    end
+    
+    render :partial => "sidebar_nearby_content"
+  end
+  
   def bookmarks
     @sidenav = "bookmarks"
   end

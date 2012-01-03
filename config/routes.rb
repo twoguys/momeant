@@ -81,6 +81,7 @@ Repo::Application.routes.draw do
       post :update_avatar
       get :activity #ajax
       get :activity_from_friends #ajax
+      get :content_from_nearbys #ajax
     end
     
     # Homepage tab

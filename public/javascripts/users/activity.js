@@ -81,13 +81,24 @@ $(function() {
 	window.Activity = new ActivityView;
 	
 	// load the sidebar curated data if a user is logged in
-	if (friends_activity_url) {
-	  $.get(friends_activity_url, function(data) {
-	    var html = $.trim(data);
-	    if (html != "") {
-	      $('#curated-data').append(data).slideDown();
-	    }
-	  });
-	}
+	try {
+	  if (friends_activity_url) {
+  	  $.get(friends_activity_url, function(data) {
+  	    var html = $.trim(data);
+  	    if (html != "") {
+  	      $('#curated-data').append(data).slideDown();
+  	    }
+  	  });
+  	}
+
+  	if (nearby_content_url) {
+  	  $.get(nearby_content_url, function(data) {
+  	    var html = $.trim(data);
+  	    if (html != "") {
+  	      $('#nearby-content').append(data).slideDown();
+  	    }
+  	  });
+  	}
+	} catch(e) { /* do nothing, user is not logged in */ }
 
 });
