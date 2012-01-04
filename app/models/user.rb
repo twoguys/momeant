@@ -526,6 +526,19 @@ class User < ActiveRecord::Base
     Message.where(:recipient_id => self.id).where("read_at IS NULL").count
   end
   
+  # Recommendations
+  
+  def stories_tagged_similarly_to_what_ive_rewarded
+    return [] if tags.empty? # my tags are based on the stories I've rewarded
+    given_rewards_story_ids = given_rewards.map(&:story_id).join(",")
+    stories = Story.
+      where("stories.user_id != #{id}").
+      where("stories.id NOT IN (#{given_rewards_story_ids})").
+      tagged_with(tags.map(&:name), :any => true).
+      joins(:curations).
+      where("curations.user_id != #{id}").
+      uniq
+  end
   
   def rewarded_stories_from_people_i_subscribe_to
     stories = Story.where(:id => Reward.where(:user_id => self.subscribed_to).map{ |r| r.story_id })

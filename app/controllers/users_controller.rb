@@ -100,6 +100,11 @@ class UsersController < ApplicationController
     render :partial => "sidebar_nearby_content"
   end
   
+  def similar_to_what_ive_rewarded
+    @content = @user.stories_tagged_similarly_to_what_ive_rewarded[0..2]
+    render :partial => "sidebar_similar_to_what_ive_rewarded"
+  end
+  
   def bookmarks
     @sidenav = "bookmarks"
   end

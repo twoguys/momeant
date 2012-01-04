@@ -238,51 +238,52 @@ ul#activity-list
 	.list
 		margin-bottom: 20px
 		
-	#curated-data
-		display: none
-		.activity
-			padding: 5px 0 5px 40px
+	.content
+		padding: 5px 0
+		.title
+			padding-bottom: 3px
+			a
+				color: $text_color
+				font-weight: 700
+				&:hover
+					color: $blue
+		.the-rest
 			position: relative
-			min-height: 30px
-			a.avatar
+			padding: 3px 0 3px 105px
+			height: 62px
+			a.thumbnail
 				display: block
+				width: 95px
+				height: 60px
+				position: absolute
+				top: 0
+				left: 0
+				border: 1px solid #ddd
+			a.title
+				font-weight: 700
+		
+	.activity
+		padding: 5px 0 5px 40px
+		position: relative
+		min-height: 30px
+		a.avatar
+			display: block
+			width: 30px
+			height: 30px
+			position: absolute
+			top: 5px
+			left: 0
+			img
 				width: 30px
 				height: 30px
-				position: absolute
-				top: 5px
-				left: 0
-				img
-					width: 30px
-					height: 30px
+				
+	#curated-data, #similarly-to-what-ive-rewarded, #nearby-content
+		display: none
+
+	#curated-data
 		a:hover
 			color: $blue
 	
-	#nearby-content
-		display: none
-		.content
-			padding: 5px 0
-			.title
-				padding-bottom: 3px
-				a
-					color: $text_color
-					font-weight: 700
-					&:hover
-						color: $blue
-			.the-rest
-				position: relative
-				padding: 3px 0 3px 105px
-				height: 62px
-				a.thumbnail
-					display: block
-					width: 95px
-					height: 60px
-					position: absolute
-					top: 0
-					left: 0
-					border: 1px solid #ddd
-				a.title
-					font-weight: 700
-
 	#leaderboards
 
 		li

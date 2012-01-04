@@ -82,6 +82,7 @@ Repo::Application.routes.draw do
       get :activity #ajax
       get :activity_from_friends #ajax
       get :content_from_nearbys #ajax
+      get :similar_to_what_ive_rewarded #ajax
     end
     
     # Homepage tab

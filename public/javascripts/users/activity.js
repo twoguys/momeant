@@ -81,24 +81,31 @@ $(function() {
 	window.Activity = new ActivityView;
 	
 	// load the sidebar curated data if a user is logged in
-	try {
-	  if (friends_activity_url) {
-  	  $.get(friends_activity_url, function(data) {
-  	    var html = $.trim(data);
-  	    if (html != "") {
-  	      $('#curated-data').append(data).slideDown();
-  	    }
-  	  });
-  	}
+  if (typeof friends_activity_url != "undefined") {
+	  $.get(friends_activity_url, function(data) {
+	    var html = $.trim(data);
+	    if (html != "") {
+	      $('#curated-data').append(data).slideDown();
+	    }
+	  });
+  }
 
-  	if (nearby_content_url) {
-  	  $.get(nearby_content_url, function(data) {
-  	    var html = $.trim(data);
-  	    if (html != "") {
-  	      $('#nearby-content').append(data).slideDown();
-  	    }
-  	  });
-  	}
-	} catch(e) { /* do nothing, user is not logged in */ }
+	if (typeof nearby_content_url != "undefined") {
+	  $.get(nearby_content_url, function(data) {
+	    var html = $.trim(data);
+	    if (html != "") {
+	      $('#nearby-content').append(data).slideDown();
+	    }
+	  });
+	}
+	
+	if (typeof similar_to_what_ive_rewarded_url != "undefined") {
+	  $.get(similar_to_what_ive_rewarded_url, function(data) {
+	    var html = $.trim(data);
+	    if (html != "") {
+	      $('#similarly-to-what-ive-rewarded').append(data).slideDown();
+	    }
+	  });
+	}
 
 });

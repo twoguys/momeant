@@ -70,7 +70,7 @@ class ApplicationController < ActionController::Base
   private
   
   def after_sign_in_path_for(resource)
-    if session[:return_to] == new_session_url(:user) || session[:return_to] == root_path
+    if session[:return_to] == new_session_url(:user) || session[:return_to] == root_url
       community_path
     else
       session[:return_to] || community_path
