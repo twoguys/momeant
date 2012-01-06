@@ -96,6 +96,10 @@ class UsersController < ApplicationController
     unless user_ids.blank?
       @content = Story.published.newest_first.where("user_id IN (#{user_ids})").limit(3)
     end
+    story_ids = @user.given_rewards.map(&:story_id)
+    unless story_ids.blank?
+      @content.reject!{|s| story_ids.include? s.id}
+    end
     
     render :partial => "sidebar_nearby_content"
   end
