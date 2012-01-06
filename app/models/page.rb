@@ -65,7 +65,7 @@ class Page < ActiveRecord::Base
       return false
     end
     
-    if page.blank? && story.page_at(options[:number])
+    if page.nil? && story.page_at(options[:number])
       # the user has chosen to override this page with another
       Rails.logger.info "[Momeant] Overriding page #{options[:number]}"
       story.page_at(options[:number]).destroy
@@ -144,7 +144,7 @@ class Page < ActiveRecord::Base
         page.background_color = options[:background_color] if options[:background_color]
         page.text_color = options[:text_color] if options[:text_color]
       else
-        page = SplitPage.new(:number => options[:number], :background_color => options[:background_color], :text_color => options[:text_color])
+        page = SplitPage.new(:number => options[:number], :layout => "image-text",:background_color => options[:background_color], :text_color => options[:text_color])
       end
       
       # split pages will have 2 unused PageMedias in the DB, but it's a lot easier than conditionally

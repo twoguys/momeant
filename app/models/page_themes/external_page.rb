@@ -15,4 +15,8 @@ class ExternalPage < Page
     query_params = CGI.parse(URI.parse(url).query)
     query_params["v"].present? ? query_params["v"] : ""
   end
+  
+  def empty?
+    false
+  end
 end

@@ -65,6 +65,7 @@ class UsersController < ApplicationController
   def update_in_place
     @user = current_user
     if @user.update_attribute(params[:attribute], params[:update_value])
+      @user.geocode_if_location_provided if params[:attribute] == "location"
       render :text => params[:update_value]
     else
       render :text => params[:original_value]
@@ -86,6 +87,26 @@ class UsersController < ApplicationController
   def activity_from_friends
     @activity = @user.activity_from_twitter_and_facebook_friends
     render :partial => "sidebar_activity"
+  end
+  
+  def content_from_nearbys
+    @content = []
+
+    user_ids = @user.nearbys(30).map(&:id).join(",")
+    unless user_ids.blank?
+      @content = Story.published.newest_first.where("user_id IN (#{user_ids})").limit(3)
+    end
+    story_ids = @user.given_rewards.map(&:story_id)
+    unless story_ids.blank?
+      @content.reject!{|s| story_ids.include? s.id}
+    end
+    
+    render :partial => "sidebar_nearby_content"
+  end
+  
+  def similar_to_what_ive_rewarded
+    @content = @user.stories_tagged_similarly_to_what_ive_rewarded[0..2]
+    render :partial => "sidebar_similar_to_what_ive_rewarded"
   end
   
   def bookmarks

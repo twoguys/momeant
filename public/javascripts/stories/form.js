@@ -184,7 +184,11 @@ var story_page_editor = function() {
 	this.open = function() {
 		$('body').addClass('fullscreen');
 		$('#page-editor').removeClass('hidden').siblings().hide();
-		$.scrollTo(43);
+		
+		if (!$.browser.webkit && !$.browser.mozilla) {
+		  alert('The Momeant fullscreen editor uses new web standards and may not behave properly in your browser. We recommend using a new version of Firefox, Chrome, or Safari.');
+		}
+		
 		return false;
 	};
 	

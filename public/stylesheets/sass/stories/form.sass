@@ -116,54 +116,41 @@ form.new_story, form.edit_story, .story-form
 		max-width: 920px
 	.step#editor
 		.choice
-			width: 45%
-			float: left
 			cursor: pointer
 			.choice-inner
-				padding: 15px
-				background: #ddd
-				@include rounded(3px)
 				input
 					width: 94%
 			.description
 				padding: 0 0 10px 22px
 				height: 20px
-				font-size: 13px
 				background: transparent url(../images/fakeCheckbox.png) no-repeat 0 -1px
-				font-weight: 700
-				text-transform: uppercase
 			.info
 				margin: 5px 0 0
-				em
-					display: block
-		.choice.selected .choice-inner
-			background: #444
-			.description
+		.choice.selected .choice-inner .description
+			background-position: 0 -33px
+		.choice#external
+			margin-bottom: 20px
+			.choice-inner
+				padding: 15px
+				background: #444
+				@include rounded(3px)
+			.description	
+				font-size: 13px
 				color: #fff
-				background-position: 0 -33px
+				font-weight: 700
+				text-transform: uppercase
 			.info
 				color: #aaa
-		.or
-			width: 10%
-			float: left
-			height: 110px
-			font-size: 18px
-			font-weight: 700
-			text-transform: uppercase
-			text-align: center
-			line-height: 110px
 		.choice#creator
-			a
-				display: block
-				padding: 5px
-				text-align: center
-				background: $blue
-				color: #fff
-				text-transform: uppercase
-				font-weight: 700
-				font-size: 12px
-				border: 3px solid #009fdb
-				@include rounded(3px)
+			float: right
+			.description
+				float: left
+				margin-right: 20px
+				padding-bottom: 0
+				em
+					color: #999
+			.info
+				display: none
 	.step#describe
 		padding-left: 350px
 		h2

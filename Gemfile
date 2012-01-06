@@ -32,6 +32,7 @@ gem 'omniauth'
 gem 'twitter'
 gem 'opengraph'
 gem 'airbrake'
+gem 'geocoder'
 
 group :test do
   gem 'shoulda'

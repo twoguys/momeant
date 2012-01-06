@@ -54,7 +54,7 @@ class StoriesController < ApplicationController
   
   def publish
     if !@story.valid?
-      redirect_to edit_story_path(@story), :alert => "Please fix the errors below." and return
+      redirect_to edit_story_path(@story) and return
     end
       
     unless @story.published?

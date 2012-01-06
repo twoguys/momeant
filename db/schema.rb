@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111221143031) do
+ActiveRecord::Schema.define(:version => 20120103135115) do
 
   create_table "activities", :force => true do |t|
     t.integer  "actor_id"
@@ -298,6 +298,8 @@ ActiveRecord::Schema.define(:version => 20111221143031) do
     t.text     "twitter_friends"
     t.text     "facebook_friends"
     t.datetime "friends_last_cached_at"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

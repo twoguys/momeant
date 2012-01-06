@@ -15,6 +15,8 @@ class User < ActiveRecord::Base
   end
   
   acts_as_taggable_on :interests
+  
+  geocoded_by :location
        
   # ASSOCIATIONS
   
@@ -109,7 +111,7 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :remember_me, :tos_accepted,
     :avatar, :credits, :stored_in_braintree, :invitation_code, :tagline, :occupation, :paypal_email, :interest_list,
-    :location, :thankyou, :twitter_friends, :facebook_friends, :friends_last_cached_at
+    :location, :thankyou, :twitter_friends, :facebook_friends, :friends_last_cached_at, :latitude, :longitude
   
   def extra_validations
     safe = true
@@ -144,6 +146,15 @@ class User < ActiveRecord::Base
   
   def can_view_stories?
     self.trial? || self.active_subscription?
+  end
+  
+  def geocode_if_location_provided
+    return if self.location.blank?
+    geocode and save
+  end
+  
+  def geolocated?
+    latitude.present? && longitude.present?
   end
   
   def has_rewarded?(story)
@@ -515,6 +526,19 @@ class User < ActiveRecord::Base
     Message.where(:recipient_id => self.id).where("read_at IS NULL").count
   end
   
+  # Recommendations
+  
+  def stories_tagged_similarly_to_what_ive_rewarded
+    return [] if tags.empty? # my tags are based on the stories I've rewarded
+    given_rewards_story_ids = given_rewards.map(&:story_id).join(",")
+    stories = Story.
+      where("stories.user_id != #{id}").
+      where("stories.id NOT IN (#{given_rewards_story_ids})").
+      tagged_with(tags.map(&:name), :any => true).
+      joins(:curations).
+      where("curations.user_id != #{id}").
+      uniq
+  end
   
   def rewarded_stories_from_people_i_subscribe_to
     stories = Story.where(:id => Reward.where(:user_id => self.subscribed_to).map{ |r| r.story_id })

@@ -35,6 +35,14 @@ namespace :momeant do
       end
     end
     
+    desc "Geocode users with existing locations"
+    task :geocode_users => :environment do
+      User.where("location IS NOT NULL").each do |user|
+        user.geocode
+        user.save
+      end
+    end
+    
   end
   
   namespace :activity do
