@@ -7,4 +7,8 @@ class GridPage < Page
   def css_class
     "grid"
   end
+  
+  def empty?
+    false
+  end
 end

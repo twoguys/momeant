@@ -1,5 +1,6 @@
 class NotificationsMailer < ActionMailer::Base
   default :from => "Momeant <team@momeant.com>"
+  layout "email"
   
   def reward_notice(reward)
     @reward = reward
