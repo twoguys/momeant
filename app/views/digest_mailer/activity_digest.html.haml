@@ -33,11 +33,14 @@
         %a{:href => story_url(story), :style => "display:block;width:193px;height:116px;padding:10px;background:transparent url(http://momeant.com/images/emails/image-corners.png) no-repeat 0 0;"}
           = image_tag story.thumbnail.url(:medium), :style => "width:193px;height:116px;"
         %div{:style => "font-size:11px;color:#888;padding:5px 0 0 20px;"}
-          %div by #{story.user.name}
-          %div{:style => "padding:3px 0 0 15px;background:transparent url(http://momeant.com/images/emails/tag.png) no-repeat 0 3px;"}
+          %div{:style => "padding-bottom:2px;"}
+            by #{story.user.name}
+          %div
+            = image_tag "http://momeant.com/images/emails/tag.png", :style => "padding: 3px 2px 0 0;"
             = truncate story.tag_list.join(", "), :length => 30
           - if story.user.location.present?
-            %div{:style => "padding:3px 0 0 15px;background:transparent url(http://momeant.com/images/emails/pin.png) no-repeat 0 3px;"}
+            %div
+              = image_tag "http://momeant.com/images/emails/pin.png", :style => "padding: 3px 1px 0 0;"
               = story.user.location
       %div{:style => "float:left;width:357px;padding-top:15px;"}
         %a{:href => story_url(story), :style => "font-size:16px;font-weight:bold;color:#00aeff;"}
