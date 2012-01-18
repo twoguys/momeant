@@ -9,7 +9,7 @@ namespace :momeant do
     third_monday = Chronic.parse("third monday in #{current_month}").yday
     today = Time.now.yday
     
-    if today == first_monday || today == third_monday
+    if true #today == first_monday || today == third_monday
       puts "Ok, it's a first or third Monday, sending..."
       User.send_activity_digests
       puts "done."
