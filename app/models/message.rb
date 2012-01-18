@@ -11,6 +11,7 @@ class Message < ActiveRecord::Base
     
   scope :already_read, where("read_at IS NOT NULL")  
   scope :unread, where("read_at IS NULL")
+  scope :in_the_past_two_weeks, where("created_at > '#{14.days.ago}'")
   
   def read!
     self.update_attribute(:read_at, Time.now)

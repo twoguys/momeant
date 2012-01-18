@@ -57,6 +57,7 @@ class Story < ActiveRecord::Base
   scope :newest_first, order("created_at DESC")
   scope :most_rewarded, order("reward_count DESC")
   scope :no_gallery, where(:gallery_id => nil)
+  scope :in_the_past_two_weeks, where("created_at > '#{14.days.ago}'")
   
   paginates_per 12
   

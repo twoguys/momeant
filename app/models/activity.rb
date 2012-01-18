@@ -11,6 +11,7 @@ class Activity < ActiveRecord::Base
   scope :on_purchases, where(:action_type => "AmazonPayment")
   scope :on_badges, where(:action_type => "Badge")
   scope :except, lambda { |action_type| where("action_type != ?", action_type) }
+  scope :in_the_past_two_weeks, where("created_at > '#{14.days.ago}'")
   
   paginates_per 10
   

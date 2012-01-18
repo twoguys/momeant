@@ -1,0 +1,32 @@
+%h3 Activity around you on Momeant in the past two weeks:
+
+- unless @reward_count == 0
+  %div{:style => "margin-bottom:20px;font-size:24px"}
+    %span{:style => "font-size:48px;font-weight:bold"}= @reward_count
+    %span new rewards received -
+    = link_to "view your rewards", user_url(@user)
+  
+- unless @impact_count == 0
+  %div{:style => "margin-bottom:20px;font-size:24px"}
+    %span{:style => "font-size:48px;font-weight:bold"}= @impact_count
+    %span new impact made -
+    = link_to "view your impact", user_url(@user)
+
+- unless @message_count == 0
+  %div{:style => "margin-bottom:20px;font-size:24px"}
+    %span{:style => "font-size:48px;font-weight:bold"}= @message_count
+    %span new messages received -
+    = link_to "view your messages", user_messages_url(@user)
+    
+- unless @content_count == 0
+  %div{:style => "margin-bottom:20px;font-size:24px"}
+    %span{:style => "font-size:48px;font-weight:bold"}= @content_count
+    %span new content created -
+    = link_to "view your content", creations_user_url(@user)
+
+- unless @recommendations.empty?
+  %p Here is some content we think you might like, based on what you've rewarded in the past.
+  - @recommendations.each do |story|
+    %div{:style => "float:left;width:213px;margin:0 13px;"}
+      %a{:href => story_url(story), :style => "display:block;width:201px;height:125px;padding:6px;background:transparent url(http://momeant.com/images/email/image-corners.png) no-repeat 0 0;"}
+        = image_tag story.thumbnail.url(:medium), :style => "width:200px;height:125px;"

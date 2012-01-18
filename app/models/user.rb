@@ -513,7 +513,8 @@ class User < ActiveRecord::Base
     self.subscribed_to.include?(user)
   end
   
-  # Private Messages
+  # Private Messages ---------------------------------------------------------------------------
+  
   def messages
     Message.where("sender_id = ? or recipient_id = ?", self.id, self.id).where("parent_id IS NULL").order("created_at DESC")
   end
@@ -526,7 +527,7 @@ class User < ActiveRecord::Base
     Message.where(:recipient_id => self.id).where("read_at IS NULL").count
   end
   
-  # Recommendations
+  # Recommendations ---------------------------------------------------------------------------
   
   def stories_tagged_similarly_to_what_ive_rewarded
     return [] if tags.empty? # my tags are based on the stories I've rewarded
@@ -580,5 +581,13 @@ class User < ActiveRecord::Base
     io = open(URI.parse(self.avatar.url))
     self.avatar = io
     self.save
+  end
+  
+  # Emails ---------------------------------------------------------------------------
+  
+  def self.send_activity_digests
+    User.all.each do |user|
+      DigestMailer.activity_digest(user).try(:deliver) if user.is_a?(Creator)
+    end
   end
 end
