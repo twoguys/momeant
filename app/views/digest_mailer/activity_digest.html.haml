@@ -1,25 +1,25 @@
 %h3{:style => "text-align:center;"} Activity around you on Momeant in the past two weeks:
 
 - unless @reward_count == 0
-  %div{:style => "margin-bottom:30px;font-size:24px"}
+  %div{:style => "margin-bottom:30px;font-size:24px;text-align:center;"}
     %span{:style => "font-size:48px;font-weight:bold"}= @reward_count
     %span new rewards received -
     = link_to "view your rewards", user_url(@user)
   
 - unless @impact_count == 0
-  %div{:style => "margin-bottom:30px;font-size:24px"}
+  %div{:style => "margin-bottom:30px;font-size:24px;text-align:center;"}
     %span{:style => "font-size:48px;font-weight:bold"}= @impact_count
     %span new impact made -
     = link_to "view your impact", user_url(@user)
 
 - unless @message_count == 0
-  %div{:style => "margin-bottom:30px;font-size:24px"}
+  %div{:style => "margin-bottom:30px;font-size:24px;text-align:center;"}
     %span{:style => "font-size:48px;font-weight:bold"}= @message_count
     %span new messages received -
     = link_to "view your messages", user_messages_url(@user)
     
 - unless @content_count == 0
-  %div{:style => "margin-bottom:30px;font-size:24px"}
+  %div{:style => "margin-bottom:30px;font-size:24px;text-align:center;"}
     %span{:style => "font-size:48px;font-weight:bold"}= @content_count
     %span new content created -
     = link_to "view your content", creations_user_url(@user)
