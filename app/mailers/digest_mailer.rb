@@ -1,5 +1,4 @@
 class DigestMailer < ActionMailer::Base
-  default :from => "Momeant <team@momeant.com>"
   layout "email"
   
   def activity_digest(user)
