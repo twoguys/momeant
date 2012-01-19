@@ -1,4 +1,4 @@
-%h3 Activity around you on Momeant in the past two weeks:
+%h3{:style => "text-align:center;"} Activity around you on Momeant in the past two weeks:
 
 - unless @reward_count == 0
   %div{:style => "margin-bottom:30px;font-size:24px"}
@@ -30,22 +30,23 @@
   - @recommendations.each do |story|
     %div{:style => "clear:both;padding-top:20px"}
       %div{:style => "float:left;width:213px;margin-right:10px;"}
-        %a{:href => story_url(story), :style => "display:block;width:193px;height:116px;padding:10px;background:transparent url(http://momeant.com/images/emails/image-corners.png) no-repeat 0 0;"}
-          = image_tag story.thumbnail.url(:medium), :style => "width:193px;height:116px;"
+        %a{:href => story_url(story), :style => "display:block;width:193px;height:116px;padding:10px;position:relative;"}
+          = image_tag "emails/image-corners.png", :style => "position:absolute;top:0;left:0;z-index:1;"
+          = image_tag story.thumbnail.url(:medium), :style => "width:193px;height:116px;position:relative;z-index:2;"
         %div{:style => "font-size:11px;color:#888;padding:5px 0 0 20px;"}
           %div{:style => "padding-bottom:2px;"}
             by #{story.user.name}
           %div
-            = image_tag "http://momeant.com/images/emails/tag.png", :style => "padding: 3px 2px 0 0;"
+            = image_tag "emails/tag.png", :style => "padding: 3px 2px 0 0;"
             = truncate story.tag_list.join(", "), :length => 30
           - if story.user.location.present?
             %div
-              = image_tag "http://momeant.com/images/emails/pin.png", :style => "padding: 3px 1px 0 0;"
+              = image_tag "emails/pin.png", :style => "padding: 3px 1px 0 0;"
               = story.user.location
       %div{:style => "float:left;width:357px;padding-top:15px;"}
         %a{:href => story_url(story), :style => "font-size:16px;font-weight:bold;color:#00aeff;"}
           = truncate story.title, :length => 40
         %p{:style => "font-size:12px;"}
-          = truncate story.synopsis, :length => 500
+          = truncate story.synopsis, :length => 300
   
   %div{:style => "clear:both;"}
