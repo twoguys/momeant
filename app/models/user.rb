@@ -111,7 +111,8 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :remember_me, :tos_accepted,
     :avatar, :credits, :stored_in_braintree, :invitation_code, :tagline, :occupation, :paypal_email, :interest_list,
-    :location, :thankyou, :twitter_friends, :facebook_friends, :friends_last_cached_at, :latitude, :longitude
+    :location, :thankyou, :twitter_friends, :facebook_friends, :friends_last_cached_at, :latitude, :longitude,
+    :send_reward_notification_emails, :send_digest_emails
   
   def extra_validations
     safe = true
@@ -586,7 +587,7 @@ class User < ActiveRecord::Base
   # Emails ---------------------------------------------------------------------------
   
   def self.send_activity_digests
-    Creator.all.each do |user|
+    Creator.where(:send_digest_emails => true).each do |user|
       reward_count = user.rewards.in_the_past_two_weeks.sum(:amount)
       impact_count = Activity.on_impact.involving(user).in_the_past_two_weeks.map(&:action).map(&:amount).inject(:+) || 0
       message_count = Message.where(:recipient_id => user.id).in_the_past_two_weeks.count

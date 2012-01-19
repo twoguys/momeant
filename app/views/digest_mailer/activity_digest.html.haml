@@ -48,5 +48,6 @@
         %p{:style => "font-size:12px;"}
           = truncate story.synopsis, :length => 300
   
-  %div{:style => "clear:both;font-size:11px;color:#888;text-align:center;padding:50px 0 0;"}
-    p.s. Thanks for being such an awesome user!
+  
+%div{:style => "clear:both;font-size:11px;color:#888;text-align:center;padding:50px 0 0;"}
+  %div p.s. Thanks for being such an awesome user! #{link_to "Edit your email preferences", settings_user_url(@user)}

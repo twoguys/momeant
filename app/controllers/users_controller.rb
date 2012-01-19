@@ -63,6 +63,9 @@ class UsersController < ApplicationController
   end
   
   def update_in_place
+    return if params[:update_value].blank?
+    return unless ["occupation", "location", "first_name", "last_name", "email", "amazon_email", "tagline"].include?(params[:attribute])
+    
     @user = current_user
     if @user.update_attribute(params[:attribute], params[:update_value])
       @user.geocode_if_location_provided if params[:attribute] == "location"
@@ -81,6 +84,22 @@ class UsersController < ApplicationController
       render :json => {:result => "success", :url => @user.avatar.url(:large)} and return
     else
       render :json => {:result => "failure", :message => "Unable to save image"} and return
+    end
+  end
+  
+  def settings
+    redirect_to settings_user_path(current_user) and return if current_user != @user
+  end
+  
+  def update_email_setting
+    return unless ["send_reward_notification_emails", "send_digest_emails"].include?(params[:attribute])
+    
+    @user = current_user
+    current_value = @user.send params[:attribute]
+    if @user.update_attribute(params[:attribute], !current_value)
+      render :text => !current_value ? "Send" : "Don't send"
+    else
+      render :text => !current_value ? "Don't send" : "Send"
     end
   end
   

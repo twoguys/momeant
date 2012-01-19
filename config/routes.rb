@@ -77,8 +77,10 @@ Repo::Application.routes.draw do
       get :following
       get :supporters
       get :info
+      get :settings
       post :update_in_place
       post :update_avatar
+      post :update_email_setting
       get :activity #ajax
       get :activity_from_friends #ajax
       get :content_from_nearbys #ajax

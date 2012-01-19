@@ -12,3 +12,6 @@
 %p Want to thank #{@reward.user.first_name} or send them a private message? You can #{link_to("do that here", @messaging_url)}.
 
 %p As of now, you've earned #{number_to_currency(@reward.recipient.rewards.sum(:amount) * Reward.dollar_exchange)} on Momeant!
+
+%div{:style => "clear:both;font-size:11px;color:#888;text-align:center;padding:50px 0 0;"}
+  %div p.s. Thanks for being such an awesome user! #{link_to "Edit your email preferences", settings_user_url(@reward.recipient)}
