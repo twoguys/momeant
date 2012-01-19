@@ -11,6 +11,6 @@ class DigestMailer < ActionMailer::Base
     @recommendations = @user.stories_tagged_similarly_to_what_ive_rewarded[0..2]
     
     return if @reward_count == 0 && @impact_count == 0 && @message_count == 0 && @content_count == 0
-    mail :to => @user.email, :subject => "Activity around you on Momeant"
+    mail :to => @user.email, :subject => "Activity around you on Momeant", :from => "Momeant <team@momeant.com>"
   end
 end
