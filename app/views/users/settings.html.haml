@@ -16,6 +16,11 @@
         %span.text
           %span.update= current_user.send_digest_emails? ? "Send" : "Don't send"
           %span me an email every two weeks about activity around me
+      %li
+        = check_box_tag "send_message_notification_emails", 1, current_user.send_message_notification_emails?
+        %span.text
+          %span.update= current_user.send_message_notification_emails? ? "Send" : "Don't send"
+          %span me an email when someone messages me
 
 :javascript
   $(function() {
