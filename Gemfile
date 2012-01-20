@@ -33,6 +33,7 @@ gem 'twitter'
 gem 'opengraph'
 gem 'airbrake'
 gem 'geocoder'
+gem 'chronic'
 
 group :test do
   gem 'shoulda'

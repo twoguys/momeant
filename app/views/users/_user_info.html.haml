@@ -42,6 +42,7 @@
     - if me?(@user)
       - message_text = @user.unread_message_count > 0 ? "<span>Messages (#{@user.unread_message_count})</span>" : "<span>Messages</span>"
       %li= link_to_active message_text.html_safe, user_messages_path(@user), :class => "message"
+      %li= link_to_active "<span>Settings</span>".html_safe, settings_user_path(@user), :class => "settings"
     - else
       %li= link_to "<span>Message #{@user.first_name}</span>".html_safe, user_messages_path(@user), :class => "message"
       

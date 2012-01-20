@@ -1,0 +1,53 @@
+%h3{:style => "text-align:center;"} Activity around you on Momeant in the past two weeks:
+
+- unless @reward_count == 0
+  %div{:style => "margin-bottom:30px;font-size:24px;text-align:center;"}
+    %span{:style => "font-size:48px;font-weight:bold"}= @reward_count
+    %span new rewards received -
+    = link_to "view your rewards", user_url(@user)
+  
+- unless @impact_count == 0
+  %div{:style => "margin-bottom:30px;font-size:24px;text-align:center;"}
+    %span{:style => "font-size:48px;font-weight:bold"}= @impact_count
+    %span new impact made -
+    = link_to "view your impact", user_url(@user)
+
+- unless @message_count == 0
+  %div{:style => "margin-bottom:30px;font-size:24px;text-align:center;"}
+    %span{:style => "font-size:48px;font-weight:bold"}= @message_count
+    %span new messages received -
+    = link_to "view your messages", user_messages_url(@user)
+    
+- unless @content_count == 0
+  %div{:style => "margin-bottom:30px;font-size:24px;text-align:center;"}
+    %span{:style => "font-size:48px;font-weight:bold"}= @content_count
+    %span new content created -
+    = link_to "view your content", creations_user_url(@user)
+
+- unless @recommendations.empty?
+  %p{:style => "margin:60px 0 0;"}
+    Here is some content we think you might like, based on what you've rewarded in the past.
+  - @recommendations.each do |story|
+    %div{:style => "clear:both;padding-top:20px"}
+      %div{:style => "float:left;width:213px;margin-right:10px;"}
+        %a{:href => story_url(story), :style => "display:block;width:193px;height:116px;padding:10px;"}
+          = image_tag story.thumbnail.url(:medium), :style => "width:193px;height:116px;"
+        %div{:style => "font-size:11px;color:#888;padding:5px 0 0 20px;"}
+          %div{:style => "padding-bottom:2px;"}
+            by #{story.user.name}
+          %div
+            = image_tag "http://momeant.com/images/emails/tag.png", :style => "padding: 3px 2px 0 0;"
+            = truncate story.tag_list.join(", "), :length => 30
+          - if story.user.location.present?
+            %div
+              = image_tag "http://momeant.com/images/emails/pin.png", :style => "padding: 3px 1px 0 0;"
+              = story.user.location
+      %div{:style => "float:left;width:357px;padding-top:15px;"}
+        %a{:href => story_url(story), :style => "font-size:16px;font-weight:bold;color:#00aeff;"}
+          = truncate story.title, :length => 40
+        %p{:style => "font-size:12px;"}
+          = truncate story.synopsis, :length => 300
+  
+  
+%div{:style => "clear:both;font-size:11px;color:#888;text-align:center;padding:50px 0 0;"}
+  %div p.s. Thanks for being such an awesome user! #{link_to "Edit your email preferences", settings_user_url(@user)}

@@ -1,16 +1,17 @@
-#notice{:style => "font-family: 'Helvetica Neue',Arial,Helvetica,sans-serif;height:100%;width:600px;margin:0 auto;padding:20px;"}
-
-  #logo{:style => "padding:3px 5px 8px;margin-bottom:20px;background:#000"}= image_tag("http://momeant.com/images/logoWhiteSmall.png")
-
-  %h3
-    #{link_to(@reward.user.name, user_url(@reward.user), :style => "color:#00aeff")}
-    just rewarded #{link_to(@reward.story.title, story_url(@reward.story), :style => "color:#00aeff")}
-    for #{@reward.amount} #{image_tag "http://momeant.com/images/icons/starBlackSmall.png"}
-    - if @reward.comment.present?
-      and said:
-
+%h3
+  #{link_to(@reward.user.name, user_url(@reward.user), :style => "color:#00aeff")}
+  just rewarded your content #{link_to(@reward.story.title, story_url(@reward.story), :style => "color:#00aeff")}
+  for #{@reward.amount} #{image_tag "http://momeant.com/images/icons/starBlackSmall.png"}
   - if @reward.comment.present?
-    %p{:style => "font-style:italic;color:#777"}
-      "#{@reward.comment}"
-  
-  %p Want to thank #{@reward.user.first_name} or send them a private message? You can #{link_to("do that here", @messaging_url)}.
+    and said:
+
+- if @reward.comment.present?
+  %p{:style => "font-style:italic;color:#777"}
+    "#{@reward.comment}"
+
+%p Want to thank #{@reward.user.first_name} or send them a private message? You can #{link_to("do that here", @messaging_url)}.
+
+%p As of now, you've earned #{number_to_currency(@reward.recipient.rewards.sum(:amount) * Reward.dollar_exchange)} on Momeant!
+
+%div{:style => "clear:both;font-size:11px;color:#888;text-align:center;padding:50px 0 0;"}
+  %div p.s. Thanks for being such an awesome user! #{link_to "Edit your email preferences", settings_user_url(@reward.recipient)}

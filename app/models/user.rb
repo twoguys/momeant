@@ -111,7 +111,8 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :remember_me, :tos_accepted,
     :avatar, :credits, :stored_in_braintree, :invitation_code, :tagline, :occupation, :paypal_email, :interest_list,
-    :location, :thankyou, :twitter_friends, :facebook_friends, :friends_last_cached_at, :latitude, :longitude
+    :location, :thankyou, :twitter_friends, :facebook_friends, :friends_last_cached_at, :latitude, :longitude,
+    :send_reward_notification_emails, :send_digest_emails, :send_message_notification_emails
   
   def extra_validations
     safe = true
@@ -513,7 +514,8 @@ class User < ActiveRecord::Base
     self.subscribed_to.include?(user)
   end
   
-  # Private Messages
+  # Private Messages ---------------------------------------------------------------------------
+  
   def messages
     Message.where("sender_id = ? or recipient_id = ?", self.id, self.id).where("parent_id IS NULL").order("created_at DESC")
   end
@@ -526,7 +528,7 @@ class User < ActiveRecord::Base
     Message.where(:recipient_id => self.id).where("read_at IS NULL").count
   end
   
-  # Recommendations
+  # Recommendations ---------------------------------------------------------------------------
   
   def stories_tagged_similarly_to_what_ive_rewarded
     return [] if tags.empty? # my tags are based on the stories I've rewarded
@@ -580,5 +582,21 @@ class User < ActiveRecord::Base
     io = open(URI.parse(self.avatar.url))
     self.avatar = io
     self.save
+  end
+  
+  # Emails ---------------------------------------------------------------------------
+  
+  def self.send_activity_digests
+    Creator.where(:send_digest_emails => true).each do |user|
+      reward_count = user.rewards.in_the_past_two_weeks.sum(:amount)
+      impact_count = Activity.on_impact.involving(user).in_the_past_two_weeks.map(&:action).map(&:amount).inject(:+) || 0
+      message_count = Message.where(:recipient_id => user.id).in_the_past_two_weeks.count
+      content_count = user.created_stories.in_the_past_two_weeks.count
+      recommendations = user.stories_tagged_similarly_to_what_ive_rewarded[0..2]
+
+      if reward_count != 0 || impact_count != 0 || message_count != 0 || content_count != 0
+        DigestMailer.activity_digest(user, reward_count, impact_count, message_count, content_count, recommendations).deliver
+      end
+    end
   end
 end

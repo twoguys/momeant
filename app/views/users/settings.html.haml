@@ -1,0 +1,41 @@
+.user-profile
+  = render "users/user_info"
+  
+  .the-rest.user-settings
+    
+    %h2 Email preferences
+
+    %ul#settings-list
+      %li
+        = check_box_tag "send_reward_notification_emails", 1, current_user.send_reward_notification_emails?
+        %span.text
+          %span.update= current_user.send_reward_notification_emails? ? "Send" : "Don't send"
+          %span me an email when someone rewards me.
+      %li
+        = check_box_tag "send_digest_emails", 1, current_user.send_digest_emails?
+        %span.text
+          %span.update= current_user.send_digest_emails? ? "Send" : "Don't send"
+          %span me an email every two weeks about activity around me
+      %li
+        = check_box_tag "send_message_notification_emails", 1, current_user.send_message_notification_emails?
+        %span.text
+          %span.update= current_user.send_message_notification_emails? ? "Send" : "Don't send"
+          %span me an email when someone messages me
+
+:javascript
+  $(function() {
+    $('#settings-list .text').click(function() {
+      $(this).siblings('input').click();
+    });
+    
+    $('#settings-list input').click(function() {
+      var checkbox = $(this);
+      var setting = checkbox.attr('id');
+      var text = checkbox.siblings('.text');
+      text.addClass('loading');
+      $.post('#{update_email_setting_user_path(current_user)}', {attribute: setting}, function(data) {
+        text.find('.update').html(data);
+        text.removeClass('loading');
+      });
+    });
+  });

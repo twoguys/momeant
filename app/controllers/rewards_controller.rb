@@ -20,23 +20,15 @@ class RewardsController < ApplicationController
       render :partial => "modal/form" and return
     end
         
-    NotificationsMailer.reward_notice(@reward).deliver
+    NotificationsMailer.reward_notice(@reward).deliver if @user.send_reward_notification_emails?
     
-    check_sharing_configured
+    @twitter_configured = current_user.authentications.find_by_provider("twitter")
+    @facebook_configured = current_user.authentications.find_by_provider("facebook")
     render :partial => "rewards/modal/after_reward"
   end
   
   def visualize
     @reward = Reward.find_by_id(params[:id])
     render :partial => "rewards/visualize", :layout => false
-  end
-  
-  private
-  
-  def check_sharing_configured
-    if current_user
-      @twitter_configured = current_user.authentications.find_by_provider("twitter")
-      @facebook_configured = current_user.authentications.find_by_provider("facebook")
-    end
   end
 end
