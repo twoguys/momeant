@@ -514,6 +514,22 @@ class User < ActiveRecord::Base
     self.subscribed_to.include?(user)
   end
   
+  def nearby_content
+    content = []
+
+    user_ids = self.nearbys(30).map(&:id).join(",")
+    unless user_ids.blank?
+      content = Story.published.newest_first.where("user_id IN (#{user_ids})").limit(3)
+    end
+    
+    story_ids = self.given_rewards.map(&:story_id)
+    unless story_ids.blank?
+      content.reject!{|s| story_ids.include? s.id}
+    end
+    
+    content
+  end
+  
   # Private Messages ---------------------------------------------------------------------------
   
   def messages
