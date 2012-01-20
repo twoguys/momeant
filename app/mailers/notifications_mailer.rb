@@ -8,4 +8,11 @@ class NotificationsMailer < ActionMailer::Base
     
     mail :to => @reward.recipient.email, :subject => "You were just rewarded on Momeant!"
   end
+  
+  def message_notice(message)
+    @message = message
+    @messaging_url = user_messages_url(message.recipient)
+    
+    mail :to => @message.recipient.email, :subject => "#{message.sender.name} just messaged you on Momeant!"
+  end
 end

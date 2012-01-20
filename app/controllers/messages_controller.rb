@@ -16,6 +16,7 @@ class MessagesController < ApplicationController
     options.merge!({:recipient_id => @user.id}) unless options[:recipient_id].present?
     @message = Message.new(options)
     if @message.save
+      NotificationsMailer.message_notice(@message).deliver
       render :json => {:success => true, :avatar => current_user.avatar.url(:thumbnail)}
     else
       render :json => {:success => true, :message => @message.errors.full_messages}
