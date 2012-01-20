@@ -1,80 +1,9 @@
 #discovery
-  
-  - if current_user
-    %section
-      %h3 Based on your rewards, you might like
-      %ul
-        - @content_based_on_rewards.each do |story|
-          %li
-            = link_to image_tag(story.thumbnail.url(:petite)), story_path(story), :class => "thumbnail"
-            = link_to truncate(story.title, :length => 40), story_path(story), :class => "title"
-            .synopsis= truncate story.synopsis, :length => 120
-  
-  %section
-    %h3 Notable creators
-    %ul
-      - @notable.each do |editorial|
-        %li
-          = link_to image_tag(editorial.user.avatar.url(:large)), creations_user_path(editorial.user), :info_id => editorial.id, :class => "avatar"
-          .name= editorial.user.name
-  
-  - if current_user
-    %section
-      %h3 Activity by people you know
-      %ul
-        - @activity_from_friends.each do |activity|
-          %li
-            - action = activity.action
-            - if action.is_a?(Reward)
-              = link_to image_tag(activity.actor.avatar.url(:thumbnail)), user_path(activity.actor), :class => "avatar"
-              %strong= activity.actor.name
-              %span recently rewarded #{link_to action.story.title, story_path(action.story, :impacted_by => action.id)}
-
-            - elsif action.is_a?(Story)
-              = link_to image_tag(activity.actor.avatar.url(:thumbnail)), user_path(activity.actor), :class => "avatar"
-              %strong= activity.actor.name
-              %span recently shared #{link_to action.title, story_path(action)}
-  
-  
-  %section
-    %h3 Recent activity
-    %ul
-      = render @activity
-  
-  %section
-    %h3 Highly rewarded content
-    %ul
-      - @popular.each do |story_and_rewards|
-        %li
-          = link_to story_and_rewards[0].title, story_url(story_and_rewards[0])
-          .count #{story_and_rewards[1].size} rewards in the past week
-  
-  - if current_user
-    %section
-      %h3 From folks nearby
-      %ul
-        - @content_nearby.each do |story|
-          %li
-            .title
-              = link_to story.user.name, creations_user_path(story.user)
-              %span (#{story.user.location}) recently shared:
-
-            .the-rest
-              = link_to image_tag(story.thumbnail.url(:petite)), story_path(story), :class => "thumbnail"
-              = link_to truncate(story.title, :length => 40), story_path(story), :class => "title"
-              .synopsis= truncate story.synopsis, :length => 120
-
-  %section
-    %h3 Top rewarders
-    %ul
-      %li
-        - @top_patrons.each do |patron|
-          = link_to truncate(patron.name, :length => 30), user_path(patron)
-          %span.impact= patron.impact
-  
-  %section
-    %h3 Top content creators
-    %ul
-      - @top_creators.each do |creator|
-        = link_to truncate(creator.name, :length => 30), user_path(creator)
-        %span.rewards= creator.lifetime_rewards
+  = render "home/discovery/based_on_your_rewards" if current_user
+  = render "home/discovery/notable_creators"
+  = render "home/discovery/activity_by_people_you_know" if current_user
+  = render "home/discovery/global_activity"  
+  = render "home/discovery/popular_content"
+  = render "home/discovery/nearby_content" if current_user
+  = render "home/discovery/top_patrons"
+  = render "home/discovery/top_creators"

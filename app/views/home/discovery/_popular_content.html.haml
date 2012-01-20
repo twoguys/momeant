@@ -1,0 +1,7 @@
+%section
+  %h3 Highly rewarded content
+  %ul
+    - @popular.each do |story_and_rewards|
+      %li
+        = link_to story_and_rewards[0].title, story_url(story_and_rewards[0])
+        .count #{story_and_rewards[1].size} rewards in the past week

@@ -1,0 +1,6 @@
+%section
+  %h3 Top content creators
+  %ul
+    - @top_creators.each do |creator|
+      = link_to truncate(creator.name, :length => 30), user_path(creator)
+      %span.rewards= creator.lifetime_rewards

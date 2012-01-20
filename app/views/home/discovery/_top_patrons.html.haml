@@ -1,0 +1,7 @@
+%section
+  %h3 Top rewarders
+  %ul
+    %li
+      - @top_patrons.each do |patron|
+        = link_to truncate(patron.name, :length => 30), user_path(patron)
+        %span.impact= patron.impact

@@ -1,0 +1,7 @@
+%section
+  %h3 Notable creators
+  %ul
+    - @notable.each do |editorial|
+      %li
+        = link_to image_tag(editorial.user.avatar.url(:large)), creations_user_path(editorial.user), :info_id => editorial.id, :class => "avatar"
+        .name= editorial.user.name
