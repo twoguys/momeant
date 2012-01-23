@@ -2,63 +2,144 @@
 	padding: 30px
 	
 	section
-		margin-bottom: 30px
-		h3
+		margin-bottom: 50px
+		h2
 			font-family: atrament-web-1, atrament-web-2, sans-serif
 			text-transform: uppercase
-			font-size: 24px
+			font-size: 28px
 			font-weight: 500
 			letter-spacing: 0.04em
-			padding-bottom: 5px
+			padding: 0 0 10px
 			border-bottom: 1px solid #ccc
-			margin-bottom: 10px
-		ul.section-list
-			@include clearfix
-			width: 100%
+			margin-bottom: 15px
+			background: none
 
-.content-thumbnail-list li
+.content-thumbnail-list > li
+	clear: both
+	height: 108px
+	margin-bottom: 20px
 	.content-info
 		position: relative
-		padding: 2px 0 2px 105px
-		height: 62px
-		width: 45%
+		padding: 2px 0 2px 170px
+		height: 102px
+		width: 250px
 		float: left
 		margin-right: 30px
 		a.thumbnail
 			display: block
-			width: 95px
-			height: 60px
+			width: 150px
+			height: 100px
+			background: #fff
+			padding: 3px
 			position: absolute
 			top: 0
 			left: 0
 			border: 1px solid #ddd
 		a.title
+			font-size: 15px
 			font-weight: 700
-			padding-bottom: 3px
-			a
-				color: $text_color
-				font-weight: 700
-				&:hover
-					color: $blue
+			padding: 7px 0 5px
+			display: block
+			color: $text_color
+			&:hover
+				color: $blue
+		.synopsis
+			font-size: 11px
 	.user-rewards-with-comments
 		float: left
-		width: 40%
+		width: 510px
 
-.user-rewards-with-comments li
-	margin-right: 30px
+.person-focused-list > li
 	position: relative
-	padding-left: 40px
-	font-size: 11px
+	height: 100px
+	padding-left: 110px
+	margin-bottom: 20px
+	clear: both
+	.info
+		float: left
+		width: 200px
+		margin-right: 10px
+	.quote
+		float: left
+		width: 650px
 	.avatar
 		display: block
-		width: 30px
-		height: 30px
+		width: 90px
+		height: 90px
+		padding: 3px
+		background: #fff
+		border: 1px solid #ddd
 		position: absolute
 		top: 0
 		left: 0
 		img
+			width: 90px
+			height: 90px
+	.name
+		font-size: 18px
+		font-weight: 700
+		line-height: 20px
+		text-transform: uppercase
+		padding-top: 5px
+		margin-bottom: 10px
+		display: block
+		color: $text_color
+		&:hover
+			color: $blue
+		span
+			display: block
+	.occupation, .location
+		font-size: 11px
+		padding-left: 16px
+		background: transparent url(../images/icons/briefcase.png) no-repeat 0 50%
+	.location
+		background-image: url(../images/icons/location.png)
+
+.user-rewards-with-comments
+	.title
+		font-size: 11px
+		text-transform: uppercase
+		color: #777
+		padding: 10px 0
+	li
+		margin: 0 30px 0 0
+		position: relative
+		padding-left: 40px
+		font-size: 11px
+		width: 200px
+		height: 62px
+		overflow: hidden
+		float: left
+		&:last-child
+			margin: 0
+		.avatar
+			display: block
 			width: 30px
 			height: 30px
-	.comment
-		color: #777
-		margin: 0
+			position: absolute
+			top: 0
+			left: 0
+			img
+				width: 30px
+				height: 30px
+		.comment
+			margin: 0
+			line-height: 1.5em
+
+#discovery .activity-list
+	width: 960px
+	li
+		padding: 20px 0
+		&:last-child
+			border: none
+		.left-side, .right-side
+			top: 20px
+
+.top-list >li
+	.count
+		padding-top: 20px
+		.number
+			font-family: $numerals
+			font-size: 36px
+			font-weight: 300
+			padding-right: 5px

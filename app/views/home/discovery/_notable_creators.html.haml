@@ -1,7 +1,15 @@
 %section
-  %h3 Notable creators
-  %ul
+  %h2 Notable creators
+  %ul.person-focused-list
     - @notable.each do |editorial|
       %li
         = link_to image_tag(editorial.user.avatar.url(:large)), creations_user_path(editorial.user), :info_id => editorial.id, :class => "avatar"
-        .name= editorial.user.name
+        .info
+          %a.name{:href => creations_user_path(editorial.user)}
+            %span= editorial.user.first_name
+            %span= editorial.user.last_name
+          .occupation= editorial.user.occupation
+          .location= editorial.user.location
+        .quote
+          = editorial.quote
+          = link_to "View #{editorial.user.first_name}'s content", creations_user_path(editorial.user)

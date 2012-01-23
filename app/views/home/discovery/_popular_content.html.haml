@@ -1,7 +1,19 @@
 %section
-  %h3 Highly rewarded content
-  %ul
+  %h2 Highly rewarded content
+  %ul.content-thumbnail-list
     - @popular.each do |story_and_rewards|
       %li
-        = link_to story_and_rewards[0].title, story_url(story_and_rewards[0])
-        .count #{story_and_rewards[1].size} rewards in the past week
+        .content-info
+          = link_to image_tag(story_and_rewards[0].thumbnail.url(:small)), story_path(story_and_rewards[0]), :class => "thumbnail"
+          = link_to truncate(story_and_rewards[0].title, :length => 40), story_path(story_and_rewards[0]), :class => "title"
+          .synopsis= truncate story_and_rewards[0].synopsis, :length => 160
+
+
+        .user-rewards-with-comments
+          .title #{pluralize story_and_rewards[1].size, "reward"} in the past week:
+          %ul
+            - story_and_rewards[0].rewards.in_the_past_two_weeks.limit(2).each do |reward|
+              %li
+                = link_to image_tag(reward.user.avatar.url(:thumbnail)), user_path(reward.user), :class => "avatar"
+                = link_to reward.user.name, user_path(reward.user), :class => "name"
+                %p.comment= truncate reward.comment, :length => 100
