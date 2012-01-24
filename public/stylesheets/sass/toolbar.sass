@@ -27,49 +27,75 @@
 			li
 				float: left
 				height: 60px
-			li.active
-				background: transparent url(../images/navActive.png) no-repeat 50% -7px
 		#feedback, #join, #signin, #signout
 			height: 42px
-		#logo, #home, #my-stream, #community, #faq, #admin, #create, #blog
-			width: 46px
-			a
-				width: 46px
-				height: 42px
-				display: block
-				margin: 0 auto
-				text-indent: -9999px
-				background-color: transparent
-				background-repeat: no-repeat
-				background-position: 50% 6px
 		#logo
 			width: 164px
 			padding-left: 6px
 			a
+				display: block
 				width: 165px
-				margin: 0
+				height: 42px
+				text-indent: -9999px
 				background: transparent url(../images/logoWhiteSmall.png) no-repeat -9px 1px
+		
+		.topnav
+			font-size: 13px
+			text-transform: uppercase
+			letter-spacing: 0.03em
+			position: relative
+			
+			.top-link
+				display: block
+				height: 18px
+				padding: 12px 15px
+				color: #fff
+				font-weight: 700
+				z-index: 2
+				&:hover
+					background: #333
+				&:active
+					background: $blue
+			
+			.subnav
+				display: none
+				background: #000
+				position: absolute
+				top: 42px
+				left: 0
+				box-shadow: 0 1px 2px rgba(0,0,0,0.2)
+				z-index: 1
+				li
+					float: none
+					height: 35px
+					a
+						display: block
+						font-size: 11px
+						height: 15px
+						padding: 10px 15px
+						color: #fff
+						&:hover
+							background: #333
+			
+			&:hover .subnav
+				display: block
+			&.active .top-link
+				background: $blue
+		
+		#people .subnav
+			width: 120px
+		
 		#my-stream
 			a
+				display: block
+				width: 30px
+				height: 42px
 				text-indent: 0
 			img
 				width: 30px
 				height: 30px
 				padding: 6px 0 0 8px
-		#home a
-			background-image: url(../images/icons/momeantHomeWhite.png)
-		#community a
-			background-image: url(../images/icons/activityNav.png)
-			background-position: 50% 7px
-		#faq a
-			background-image: url(../images/icons/faqWhite.png)
-		#blog a
-			background-image: url(../images/icons/blog.png)
-		#create a
-			background-image: url(../images/icons/momeantAddStoryWhite.png)
-			background-position: 50% 7px
-		#admin a
-			background-image: url(../images/icons/lock.png)
+				
 		#coins
 			margin-left: 20px
 			a

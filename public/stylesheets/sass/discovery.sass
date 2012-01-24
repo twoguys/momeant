@@ -1,4 +1,4 @@
-#discovery
+#discovery-page
 	padding: 30px
 	
 	section
@@ -13,6 +13,10 @@
 			border-bottom: 1px solid #ccc
 			margin-bottom: 15px
 			background: none
+			.weak
+				font-size: 12px
+				font-weight: 300
+				padding-left: 5px
 
 .content-thumbnail-list > li
 	clear: both
@@ -35,14 +39,14 @@
 			top: 0
 			left: 0
 			border: 1px solid #ddd
+			img
+				width: 150px
+				height: 100px
 		a.title
 			font-size: 15px
 			font-weight: 700
 			padding: 7px 0 5px
 			display: block
-			color: $text_color
-			&:hover
-				color: $blue
 		.synopsis
 			font-size: 11px
 	.user-rewards-with-comments
@@ -126,7 +130,7 @@
 			margin: 0
 			line-height: 1.5em
 
-#discovery .activity-list
+#discovery-page .activity-list
 	width: 960px
 	li
 		padding: 20px 0
@@ -143,3 +147,50 @@
 			font-size: 36px
 			font-weight: 300
 			padding-right: 5px
+
+
+#discovery-page.compact
+	h2
+		font-family: $block
+		font-size: 13px
+		font-weight: 700
+		letter-spacing: 0
+		padding-bottom: 5px
+		margin-bottom: 10px
+	
+	.content-thumbnail-list > li
+		height: 68px
+		.content-info
+			padding: 1px 0 1px 110px
+			height: 62px
+			width: 250px
+			float: left
+			margin-right: 30px
+			a.thumbnail
+				display: block
+				width: 95px
+				height: 60px
+				background: #fff
+				padding: 3px
+				position: absolute
+				top: 0
+				left: 0
+				border: 1px solid #ddd
+				img
+					width: 95px
+					height: 60px
+			a.title
+				font-size: 12px
+				font-weight: 700
+				padding: 1px 0 3px
+			.synopsis
+				font-size: 11px
+	
+	.user-rewards-with-comments
+		padding-top: 10px
+		.title
+			display: none
+		.comment
+			padding: 2px 5px
+			background: #ececec
+			@include rounded(3px)
