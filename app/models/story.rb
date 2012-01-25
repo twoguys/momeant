@@ -232,8 +232,8 @@ class Story < ActiveRecord::Base
     !crop_x.blank? && !crop_y.blank? && !crop_width.blank? && !crop_height.blank? 
   end
   
-  def self.most_rewarded_in_the_past_week
-    Reward.this_week.group_by(&:story).to_a.sort {|x,y| y[1].size <=> x[1].size }.map{|s| s[0]}
+  def self.most_rewarded_recently
+    Reward.in_the_past_two_weeks.group_by(&:story).to_a.sort {|x,y| y[1].size <=> x[1].size }.map{|s| s[0]}
   end
   
   private

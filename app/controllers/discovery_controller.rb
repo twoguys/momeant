@@ -2,7 +2,7 @@ class DiscoveryController < ApplicationController
   
   def content
     range = 0..7
-    @popular_content = Story.most_rewarded_in_the_past_week[range]
+    @popular_content = Story.most_most_rewarded_recently[range]
     @newest_content = Story.published.newest_first[range]
     
     @recommended_content = []
@@ -19,7 +19,7 @@ class DiscoveryController < ApplicationController
   end
   
   def popular_content
-    @popular_content = Story.most_rewarded_in_the_past_week[0..19]
+    @popular_content = Story.most_rewarded_recently[0..19]
     @nav = "content"
   end
   
