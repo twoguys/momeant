@@ -38,7 +38,7 @@ class Story < ActiveRecord::Base
   has_many :users_who_bookmarked, :through => :bookmarks, :source => :user
 
   has_many :rewards
-  has_many :users_who_rewarded, :through => :rewards, :source => :user
+  has_many :users_who_rewarded, :through => :rewards, :source => :user, :uniq => true
 
   has_many :views, :dependent => :destroy
   has_many :users_who_viewed, :through => :views, :source => :user
@@ -233,7 +233,7 @@ class Story < ActiveRecord::Base
   end
   
   def self.most_rewarded_in_the_past_week
-    Reward.this_week.group_by(&:story).to_a.sort {|x,y| y[1].size <=> x[1].size }
+    Reward.this_week.group_by(&:story).to_a.sort {|x,y| y[1].size <=> x[1].size }.map{|s| s[0]}
   end
   
   private

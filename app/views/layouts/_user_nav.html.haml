@@ -9,6 +9,7 @@
         %li= link_to "Summary", content_path
         %li= link_to "Recommended", recommended_content_path
         %li= link_to "Popular", popular_content_path
+        %li= link_to "Nearby", nearby_content_path
         %li= link_to "Newest", newest_content_path
     %li#people.topnav{:class => @nav == "people" ? "active" : ""}
       = link_to "People", people_path, :class => "top-link"
@@ -17,15 +18,20 @@
         %li= link_to "Notable", notable_people_path
         %li= link_to "Top Creators", creators_people_path
         %li= link_to "Top Patrons", patrons_people_path
-    %li#activity-nav.topnav{:class => @nav == "activity" ? "active" : ""}
-      = link_to "Activity", community_path, :class => "top-link"
 
     - if user_signed_in?
-      - if current_user.is_admin?
-        %li#admin.topnav{:class => @nav == "admin" ? "active" : ""}
-          = link_to "Admin", admin_dashboard_path, :class => "top-link"
-      %li#my-stream
-        = link_to image_tag(current_user.avatar.url(:thumbnail)), user_path(current_user), :class => "tooltipped", :title => "You"
+      %li#my-stream.topnav{:class => @nav == "me" ? "active" : ""}
+        %a.top-link{:href => user_path(current_user)}
+          = image_tag current_user.avatar.url(:thumbnail)
+          %span You
+        %ul.subnav
+          %li= link_to "Your Content", creations_user_path(current_user)
+          %li= link_to "Your Info", info_user_path(current_user)
+          %li= link_to "Messages (#{current_user.unread_message_count})", user_path(current_user)
+          %li= link_to "Settings", settings_user_path(current_user)
+          - if current_user.is_admin?
+            %li= link_to "Admin", admin_dashboard_path
+          %li= link_to "Logout", destroy_user_session_path
       %li#coins{:class => @nav == "coins" ? "active" : ""}
         %a{:href => coins_path}
           .text
@@ -33,7 +39,6 @@
             %span available
           .amount= current_user.coins
       %li#feedback= link_to("Feedback", "#feedback-modal")
-      %li#signout= link_to("Logout", destroy_user_session_path)
       
     - else
       %li#join= link_to("Join", "#join-modal")

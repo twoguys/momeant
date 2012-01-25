@@ -1,19 +1,35 @@
 class DiscoveryController < ApplicationController
   
   def content
-    @popular = Story.most_rewarded_in_the_past_week[0..2]
+    range = 0..7
+    @popular_content = Story.most_rewarded_in_the_past_week[range]
+    @newest_content = Story.published.newest_first[range]
     
-    if current_user
-      @content_based_on_rewards = current_user.stories_tagged_similarly_to_what_ive_rewarded[0..2]
-      @content_nearby = current_user.nearby_content[0..2]
-    end
+    @recommended_content = []
+    @nearby_content = []
+    @recommended_content = current_user.stories_tagged_similarly_to_what_ive_rewarded[range] if current_user
+    @nearby_content = current_user.nearby_content[range] if current_user
     
     @nav = "content"
   end
   
+  def recommended_content
+    @recommended_content = []
+    @recommended_content = current_user.stories_tagged_similarly_to_what_ive_rewarded if current_user
+  end
+  
   def popular_content
-    @popular = Story.most_rewarded_in_the_past_week
+    @popular_content = Story.most_rewarded_in_the_past_week[0..19]
     @nav = "content"
+  end
+  
+  def nearby_content
+    @nearby_content = []
+    @nearby_content = current_user.nearby_content if current_user
+  end
+  
+  def newest_content
+    @newest_content = Story.published.newest_first.limit(20)
   end
   
   def people

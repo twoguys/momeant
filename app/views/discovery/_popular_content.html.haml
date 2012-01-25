@@ -1,0 +1,8 @@
+%section
+  %h2
+    = link_to "Popular", popular_content_path
+    %span.weak Highly rewarded
+    = link_to "View more", popular_content_path, :class => "more"
+  %ul.content-thumbnail-list.discovery-list
+    - @popular_content.each do |story|
+      = render "discovery/story", :story => story

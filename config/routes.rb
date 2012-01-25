@@ -108,6 +108,7 @@ Repo::Application.routes.draw do
   match '/content',               :to => "discovery#content",              :as => :content
   match '/content/recommended',   :to => "discovery#recommended_content",  :as => :recommended_content
   match '/content/popular',       :to => "discovery#popular_content",      :as => :popular_content
+  match '/content/nearby',        :to => "discovery#nearby_content",       :as => :nearby_content
   match '/content/newest',        :to => "discovery#newest_content",       :as => :newest_content
   match '/people',                :to => "discovery#people",               :as => :people
   match '/people/notable',        :to => "discovery#notable_people",       :as => :notable_people

@@ -3,6 +3,7 @@ class HomeController < ApplicationController
   def index
     @editorials = Editorial.limit(3)
     @hide_search = true if current_user.nil?
+    @hide_banner = true
     @nav = "home"
     render "landing"
   end

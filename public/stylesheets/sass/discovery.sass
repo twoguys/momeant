@@ -2,56 +2,92 @@
 	padding: 30px
 	
 	section
+		@include clearfix
+		width: 100%
 		margin-bottom: 50px
 		h2
-			font-family: atrament-web-1, atrament-web-2, sans-serif
-			text-transform: uppercase
-			font-size: 28px
-			font-weight: 500
-			letter-spacing: 0.04em
-			padding: 0 0 10px
-			border-bottom: 1px solid #ccc
-			margin-bottom: 15px
+			font-size: 15px
+			font-weight: 700
+			letter-spacing: 0
+			padding: 0 0 5px
+			margin-bottom: 0
+			border-bottom: 1px solid #ddd
 			background: none
+			a
+				color: $text_color
 			.weak
 				font-size: 12px
 				font-weight: 300
 				padding-left: 5px
+			.more
+				color: $blue
+				float: right
+				font-size: 12px
 
+.content-thumbnail-list
+	border-top: 1px solid #fff
+	padding-top: 20px
 .content-thumbnail-list > li
-	clear: both
-	height: 108px
-	margin-bottom: 20px
+	width: 229px
+	display: inline-block
+	vertical-align: top
+	margin: 0 20px 20px 0
+	position: relative
+	&:last-child
+		margin-right: 0
 	.content-info
-		position: relative
-		padding: 2px 0 2px 170px
-		height: 102px
-		width: 250px
-		float: left
-		margin-right: 30px
+		&:hover .synopsis
+			display: block
 		a.thumbnail
 			display: block
-			width: 150px
-			height: 100px
+			width: 220px
+			height: 137.5px
 			background: #fff
 			padding: 3px
-			position: absolute
-			top: 0
-			left: 0
 			border: 1px solid #ddd
+			margin-bottom: 5px
 			img
-				width: 150px
-				height: 100px
+				width: 220px
+				height: 137.5px
 		a.title
-			font-size: 15px
+			font-size: 13px
 			font-weight: 700
-			padding: 7px 0 5px
+			padding: 2px 0 5px
 			display: block
 		.synopsis
 			font-size: 11px
-	.user-rewards-with-comments
-		float: left
-		width: 510px
+			display: none
+			position: absolute
+			top: 4px
+			left: 4px
+			width: 210px
+			height: 127.5px
+			padding: 5px
+			background: #fff
+			color: $text_color
+			.text
+				margin-bottom: 10px
+			.tags
+				color: #777
+				padding-left: 15px
+				background: transparent url(../images/icons/tag.png) no-repeat 0 2px
+	.byline
+		height: 30px
+		a.avatar
+			display: block
+			width: 30px
+			height: 30px
+			float: left
+			margin-right: 5px
+			img
+				width: 30px
+				height: 30px
+		a.name
+			display: block
+			color: $text_color
+			padding: 8px 0 0 3px
+			font-size: 11px
+			color: #777
 
 .person-focused-list > li
 	position: relative
@@ -100,35 +136,26 @@
 		background-image: url(../images/icons/location.png)
 
 .user-rewards-with-comments
+	border-top: 1px dashed #ddd
 	.title
 		font-size: 11px
 		text-transform: uppercase
 		color: #777
-		padding: 10px 0
+		padding: 5px 0
 	li
-		margin: 0 30px 0 0
-		position: relative
-		padding-left: 40px
-		font-size: 11px
-		width: 200px
-		height: 62px
-		overflow: hidden
+		width: 30px
+		height: 30px
 		float: left
+		margin-right: 5px
 		&:last-child
 			margin: 0
 		.avatar
 			display: block
 			width: 30px
 			height: 30px
-			position: absolute
-			top: 0
-			left: 0
 			img
 				width: 30px
 				height: 30px
-		.comment
-			margin: 0
-			line-height: 1.5em
 
 #discovery-page .activity-list
 	width: 960px
@@ -147,50 +174,3 @@
 			font-size: 36px
 			font-weight: 300
 			padding-right: 5px
-
-
-#discovery-page.compact
-	h2
-		font-family: $block
-		font-size: 13px
-		font-weight: 700
-		letter-spacing: 0
-		padding-bottom: 5px
-		margin-bottom: 10px
-	
-	.content-thumbnail-list > li
-		height: 68px
-		.content-info
-			padding: 1px 0 1px 110px
-			height: 62px
-			width: 250px
-			float: left
-			margin-right: 30px
-			a.thumbnail
-				display: block
-				width: 95px
-				height: 60px
-				background: #fff
-				padding: 3px
-				position: absolute
-				top: 0
-				left: 0
-				border: 1px solid #ddd
-				img
-					width: 95px
-					height: 60px
-			a.title
-				font-size: 12px
-				font-weight: 700
-				padding: 1px 0 3px
-			.synopsis
-				font-size: 11px
-	
-	.user-rewards-with-comments
-		padding-top: 10px
-		.title
-			display: none
-		.comment
-			padding: 2px 5px
-			background: #ececec
-			@include rounded(3px)

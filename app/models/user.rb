@@ -519,15 +519,16 @@ class User < ActiveRecord::Base
 
     user_ids = self.nearbys(30).map(&:id).join(",")
     unless user_ids.blank?
-      activity = Activity.on_content.where("actor_id IN (#{user_ids})").limit(3)
+      content = Story.published.where("user_id IN (#{user_ids})").newest_first
     end
     
+    # remove the ones I've already rewarded
     story_ids = self.given_rewards.map(&:story_id)
     unless story_ids.blank?
-      activity.reject!{|a| story_ids.include? a.action_id}
+      content.reject!{|c| story_ids.include? c.id}
     end
     
-    activity
+    content
   end
   
   # Private Messages ---------------------------------------------------------------------------

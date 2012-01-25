@@ -31,7 +31,7 @@
 			height: 42px
 		#logo
 			width: 164px
-			padding-left: 6px
+			padding-left: 3px
 			a
 				display: block
 				width: 165px
@@ -48,7 +48,7 @@
 			.top-link
 				display: block
 				height: 18px
-				padding: 12px 15px
+				padding: 13px 15px 11px
 				color: #fff
 				font-weight: 700
 				z-index: 2
@@ -63,7 +63,7 @@
 				position: absolute
 				top: 42px
 				left: 0
-				box-shadow: 0 1px 2px rgba(0,0,0,0.2)
+				box-shadow: 0 1px 2px rgba(0,0,0,0.4)
 				z-index: 1
 				li
 					float: none
@@ -86,15 +86,22 @@
 			width: 120px
 		
 		#my-stream
-			a
-				display: block
-				width: 30px
-				height: 42px
-				text-indent: 0
-			img
-				width: 30px
+			width: 95px
+			.top-link
+				width: 63px
 				height: 30px
-				padding: 6px 0 0 8px
+				padding: 6px 15px 6px 10px
+				position: relative
+				img
+					width: 30px
+					height: 30px
+					padding-right: 5px
+				span
+					position: absolute
+					top: 13px
+					left: 49px
+			.subnav
+				width: 120px
 				
 		#coins
 			margin-left: 20px
@@ -195,7 +202,7 @@
 			a
 				@include gradient($greygradient1, $greygradient2)
 		#feedback
-			right: 285px
+			right: 204px
 			a
 				@include gradient($bluegradient1,$bluegradient2)
 	#user-nav ul.search-hidden

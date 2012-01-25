@@ -133,7 +133,7 @@ html, body {
       height: 42px; }
     #header #user-nav #logo {
       width: 164px;
-      padding-left: 6px; }
+      padding-left: 3px; }
       #header #user-nav #logo a {
         display: block;
         width: 165px;
@@ -148,7 +148,7 @@ html, body {
       #header #user-nav .topnav .top-link {
         display: block;
         height: 18px;
-        padding: 12px 15px;
+        padding: 13px 15px 11px;
         color: white;
         font-weight: 700;
         z-index: 2; }
@@ -162,7 +162,7 @@ html, body {
         position: absolute;
         top: 42px;
         left: 0;
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
         z-index: 1; }
         #header #user-nav .topnav .subnav li {
           float: none;
@@ -181,15 +181,23 @@ html, body {
         background: #00aeef; }
     #header #user-nav #people .subnav {
       width: 120px; }
-    #header #user-nav #my-stream a {
-      display: block;
-      width: 30px;
-      height: 42px;
-      text-indent: 0; }
-    #header #user-nav #my-stream img {
-      width: 30px;
-      height: 30px;
-      padding: 6px 0 0 8px; }
+    #header #user-nav #my-stream {
+      width: 95px; }
+      #header #user-nav #my-stream .top-link {
+        width: 63px;
+        height: 30px;
+        padding: 6px 15px 6px 10px;
+        position: relative; }
+        #header #user-nav #my-stream .top-link img {
+          width: 30px;
+          height: 30px;
+          padding-right: 5px; }
+        #header #user-nav #my-stream .top-link span {
+          position: absolute;
+          top: 13px;
+          left: 49px; }
+      #header #user-nav #my-stream .subnav {
+        width: 120px; }
     #header #user-nav #coins {
       margin-left: 20px; }
       #header #user-nav #coins a {
@@ -304,7 +312,7 @@ html, body {
         background-image: -moz-linear-gradient(center top, #d0d0d0 4%, #888888 52%);
         background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #d0d0d0), color-stop(0.52, #888888)); }
     #header #user-nav #feedback {
-      right: 285px; }
+      right: 204px; }
       #header #user-nav #feedback a {
         background-image: -moz-linear-gradient(center top, #43baf0 4%, #3a94e6 52%);
         background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #43baf0), color-stop(0.52, #3a94e6)); }
@@ -421,6 +429,16 @@ header.hide-nav {
   #flash .alert {
     background-color: #f7d3db;
     color: #f42652; }
+
+#banner {
+  height: 160px;
+  background: #333333;
+  color: white;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  margin: 30px 30px 0;
+  padding: 20px; }
 
 /* Errors */
 #error-explanation, #error_explanation {
@@ -4674,8 +4692,7 @@ impact ul.avatars li {
   /* Supporters Tab */
   /* Edit Profile */ }
   .user-profile .profile-info {
-    position: relative;
-    background: white; }
+    position: relative; }
     .user-profile .profile-info .metadata {
       padding: 28px 40px 0 210px;
       height: 140px; }
@@ -7827,56 +7844,98 @@ a#load-more-activity {
 #discovery-page {
   padding: 30px; }
   #discovery-page section {
+    display: inline-block;
+    width: 100%;
     margin-bottom: 50px; }
+    #discovery-page section:after {
+      content: ".";
+      display: block;
+      height: 0;
+      clear: both;
+      visibility: hidden; }
     #discovery-page section h2 {
-      font-family: atrament-web-1, atrament-web-2, sans-serif;
-      text-transform: uppercase;
-      font-size: 28px;
-      font-weight: 500;
-      letter-spacing: 0.04em;
-      padding: 0 0 10px;
-      border-bottom: 1px solid #cccccc;
-      margin-bottom: 15px;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0;
+      padding: 0 0 5px;
+      margin-bottom: 0;
+      border-bottom: 1px solid #dddddd;
       background: none; }
+      #discovery-page section h2 a {
+        color: #252525; }
       #discovery-page section h2 .weak {
         font-size: 12px;
         font-weight: 300;
         padding-left: 5px; }
+      #discovery-page section h2 .more {
+        color: #00aeef;
+        float: right;
+        font-size: 12px; }
+
+.content-thumbnail-list {
+  border-top: 1px solid white;
+  padding-top: 20px; }
 
 .content-thumbnail-list > li {
-  clear: both;
-  height: 108px;
-  margin-bottom: 20px; }
-  .content-thumbnail-list > li .content-info {
-    position: relative;
-    padding: 2px 0 2px 170px;
-    height: 102px;
-    width: 250px;
-    float: left;
-    margin-right: 30px; }
-    .content-thumbnail-list > li .content-info a.thumbnail {
+  width: 229px;
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 20px 20px 0;
+  position: relative; }
+  .content-thumbnail-list > li:last-child {
+    margin-right: 0; }
+  .content-thumbnail-list > li .content-info:hover .synopsis {
+    display: block; }
+  .content-thumbnail-list > li .content-info a.thumbnail {
+    display: block;
+    width: 220px;
+    height: 137.5px;
+    background: white;
+    padding: 3px;
+    border: 1px solid #dddddd;
+    margin-bottom: 5px; }
+    .content-thumbnail-list > li .content-info a.thumbnail img {
+      width: 220px;
+      height: 137.5px; }
+  .content-thumbnail-list > li .content-info a.title {
+    font-size: 13px;
+    font-weight: 700;
+    padding: 2px 0 5px;
+    display: block; }
+  .content-thumbnail-list > li .content-info .synopsis {
+    font-size: 11px;
+    display: none;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 210px;
+    height: 127.5px;
+    padding: 5px;
+    background: white;
+    color: #252525; }
+    .content-thumbnail-list > li .content-info .synopsis .text {
+      margin-bottom: 10px; }
+    .content-thumbnail-list > li .content-info .synopsis .tags {
+      color: #777777;
+      padding-left: 15px;
+      background: transparent url(../images/icons/tag.png) no-repeat 0 2px; }
+  .content-thumbnail-list > li .byline {
+    height: 30px; }
+    .content-thumbnail-list > li .byline a.avatar {
       display: block;
-      width: 150px;
-      height: 100px;
-      background: white;
-      padding: 3px;
-      position: absolute;
-      top: 0;
-      left: 0;
-      border: 1px solid #dddddd; }
-      .content-thumbnail-list > li .content-info a.thumbnail img {
-        width: 150px;
-        height: 100px; }
-    .content-thumbnail-list > li .content-info a.title {
-      font-size: 15px;
-      font-weight: 700;
-      padding: 7px 0 5px;
-      display: block; }
-    .content-thumbnail-list > li .content-info .synopsis {
-      font-size: 11px; }
-  .content-thumbnail-list > li .user-rewards-with-comments {
-    float: left;
-    width: 510px; }
+      width: 30px;
+      height: 30px;
+      float: left;
+      margin-right: 5px; }
+      .content-thumbnail-list > li .byline a.avatar img {
+        width: 30px;
+        height: 30px; }
+    .content-thumbnail-list > li .byline a.name {
+      display: block;
+      color: #252525;
+      padding: 8px 0 0 3px;
+      font-size: 11px;
+      color: #777777; }
 
 .person-focused-list > li {
   position: relative;
@@ -7924,35 +7983,27 @@ a#load-more-activity {
   .person-focused-list > li .location {
     background-image: url(../images/icons/location.png); }
 
-.user-rewards-with-comments .title {
-  font-size: 11px;
-  text-transform: uppercase;
-  color: #777777;
-  padding: 10px 0; }
-.user-rewards-with-comments li {
-  margin: 0 30px 0 0;
-  position: relative;
-  padding-left: 40px;
-  font-size: 11px;
-  width: 200px;
-  height: 62px;
-  overflow: hidden;
-  float: left; }
-  .user-rewards-with-comments li:last-child {
-    margin: 0; }
-  .user-rewards-with-comments li .avatar {
-    display: block;
+.user-rewards-with-comments {
+  border-top: 1px dashed #dddddd; }
+  .user-rewards-with-comments .title {
+    font-size: 11px;
+    text-transform: uppercase;
+    color: #777777;
+    padding: 5px 0; }
+  .user-rewards-with-comments li {
     width: 30px;
     height: 30px;
-    position: absolute;
-    top: 0;
-    left: 0; }
-    .user-rewards-with-comments li .avatar img {
+    float: left;
+    margin-right: 5px; }
+    .user-rewards-with-comments li:last-child {
+      margin: 0; }
+    .user-rewards-with-comments li .avatar {
+      display: block;
       width: 30px;
       height: 30px; }
-  .user-rewards-with-comments li .comment {
-    margin: 0;
-    line-height: 1.5em; }
+      .user-rewards-with-comments li .avatar img {
+        width: 30px;
+        height: 30px; }
 
 #discovery-page .activity-list {
   width: 960px; }
@@ -7970,51 +8021,6 @@ a#load-more-activity {
     font-size: 36px;
     font-weight: 300;
     padding-right: 5px; }
-
-#discovery-page.compact h2 {
-  font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0;
-  padding-bottom: 5px;
-  margin-bottom: 10px; }
-#discovery-page.compact .content-thumbnail-list > li {
-  height: 68px; }
-  #discovery-page.compact .content-thumbnail-list > li .content-info {
-    padding: 1px 0 1px 110px;
-    height: 62px;
-    width: 250px;
-    float: left;
-    margin-right: 30px; }
-    #discovery-page.compact .content-thumbnail-list > li .content-info a.thumbnail {
-      display: block;
-      width: 95px;
-      height: 60px;
-      background: white;
-      padding: 3px;
-      position: absolute;
-      top: 0;
-      left: 0;
-      border: 1px solid #dddddd; }
-      #discovery-page.compact .content-thumbnail-list > li .content-info a.thumbnail img {
-        width: 95px;
-        height: 60px; }
-    #discovery-page.compact .content-thumbnail-list > li .content-info a.title {
-      font-size: 12px;
-      font-weight: 700;
-      padding: 1px 0 3px; }
-    #discovery-page.compact .content-thumbnail-list > li .content-info .synopsis {
-      font-size: 11px; }
-#discovery-page.compact .user-rewards-with-comments {
-  padding-top: 10px; }
-  #discovery-page.compact .user-rewards-with-comments .title {
-    display: none; }
-  #discovery-page.compact .user-rewards-with-comments .comment {
-    padding: 2px 5px;
-    background: #ececec;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px; }
 
 .info-bar {
   background-color: #00aeef;
