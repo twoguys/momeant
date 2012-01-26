@@ -2,7 +2,7 @@
   %h2
     = link_to "Popular", popular_content_path
     %span.weak among recent rewards
-    = link_to "View more", popular_content_path, :class => "more"
+    = link_to "View more", popular_content_path, :class => "more" if @show_more_links && @popular_content.size == 8
   %ul.content-thumbnail-list.discovery-list
     - @popular_content.each do |story|
       = render "discovery/story", :story => story

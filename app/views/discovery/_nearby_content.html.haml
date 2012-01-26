@@ -5,7 +5,7 @@
       %span.weak= current_user.location
     - else
       %span.weak Nowhere
-    = link_to "View more", nearby_content_path, :class => "more"
+    = link_to "View more", nearby_content_path, :class => "more" if @show_more_links && @nearby_content.size == 8
   %ul.content-thumbnail-list.discovery-list
     - @nearby_content.each do |story|
       = render "discovery/story", :story => story

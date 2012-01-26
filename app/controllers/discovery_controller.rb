@@ -11,6 +11,7 @@ class DiscoveryController < ApplicationController
     @nearby_content = current_user.nearby_content[range] if current_user
     
     @nav = "content"
+    @show_more_links = true
   end
   
   def recommended_content
