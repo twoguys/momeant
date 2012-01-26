@@ -1,8 +1,5 @@
 %section
-  %h2
-    = link_to "Recommended", recommended_content_path
-    %span.weak based on your rewards
-    = link_to "View more", recommended_content_path, :class => "more" if @show_more_links && @recommended_content.size == 8
+  .description based on your rewards
   %ul.content-thumbnail-list.discovery-list
     - @recommended_content.each do |story|
       = render "discovery/story", :story => story

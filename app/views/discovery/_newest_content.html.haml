@@ -1,8 +1,5 @@
 %section
-  %h2
-    = link_to "Newest", newest_content_path
-    %span.weak shared content
-    = link_to "View more", newest_content_path, :class => "more" if @show_more_links && @newest_content.size == 8
+  .description shared content
   %ul.content-thumbnail-list.discovery-list
     - @newest_content.each do |story|
       = render "discovery/story", :story => story

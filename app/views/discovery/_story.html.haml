@@ -7,7 +7,7 @@
         .text= truncate story.synopsis, :length => 120
       .tags= truncate story.tag_list.join(", "), :length => 100
 
-  .user-rewards-with-comments
+  .user-rewards-list
     .title
       %span.reward-count= story.reward_count
       - extra_text = story.users_who_rewarded.count > 6 ? " and #{story.users_who_rewarded.count - 6} more" : ""
