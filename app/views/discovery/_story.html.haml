@@ -8,7 +8,10 @@
       .tags= truncate story.tag_list.join(", "), :length => 100
 
   .user-rewards-with-comments
-    .title Recent rewarders
+    .title
+      %span.reward-count= story.reward_count
+      - extra_text = story.users_who_rewarded.count > 6 ? " and #{story.users_who_rewarded.count - 6} more" : ""
+      %span from these folks#{extra_text}:
     %ul
       - story.users_who_rewarded.limit(6).each do |user|
         %li
