@@ -41,4 +41,19 @@ class DiscoveryController < ApplicationController
     @top_patrons = User.order("impact DESC").limit(3)
     @nav = "people"
   end
+  
+  def notable_people
+    @notable_people = Editorial.all
+    @nav = "people"
+  end
+  
+  def creators_people
+    @top_creators = Creator.order("lifetime_rewards DESC")
+    @nav = "people"
+  end
+  
+  def patrons_people
+    @top_patrons = User.order("impact DESC")
+    @nav = "people"
+  end
 end
