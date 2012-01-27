@@ -1,5 +1,3 @@
-%section
-  .description among recent rewards
-  %ul.content-thumbnail-list.discovery-list
-    - @popular_content.each do |story|
-      = render "discovery/story", :story => story
+%ul.content-thumbnail-list.discovery-list
+  - @popular_content.each do |story|
+    = render "discovery/story", :story => story

@@ -1,3 +1,15 @@
 #discovery-page
   = render "discovery/nav"
-  = render "discovery/nearby_content"
+  
+  %section
+    .top-description
+      %h3
+        Nearby
+        - if current_user && current_user.location.present?
+          = current_user.location
+        - else
+          Content
+      %p.description
+        %span Content from creators near your location.
+
+    = render "discovery/nearby_content"

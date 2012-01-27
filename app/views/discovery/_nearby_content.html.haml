@@ -1,13 +1,5 @@
-%section
-  .description
-    - if current_user && current_user.location.present?
-      = current_user.location
-    - else
-      Nowhere
-  %ul.content-thumbnail-list.discovery-list
-    - @nearby_content.each do |story|
-      = render "discovery/story", :story => story
-    - if current_user.nil?
-      Sign up to see content from creators near you.
-    - elsif @nearby_content.empty?
-      #{link_to "Enter your location", info_user_path(current_user)} to see content from creators near you.
+%ul.content-thumbnail-list.discovery-list
+  - @nearby_content.each do |story|
+    = render "discovery/story", :story => story
+  - if current_user.nil?
+    Signup to see content near you.

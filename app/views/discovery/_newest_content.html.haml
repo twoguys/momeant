@@ -1,5 +1,3 @@
-%section
-  .description shared content
-  %ul.content-thumbnail-list.discovery-list
-    - @newest_content.each do |story|
-      = render "discovery/story", :story => story
+%ul.content-thumbnail-list.discovery-list
+  - @newest_content.each do |story|
+    = render "discovery/story", :story => story

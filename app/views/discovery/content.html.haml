@@ -1,5 +1,39 @@
 #discovery-page
-  = render "discovery/recommended_content"
-  = render "discovery/popular_content"
-  = render "discovery/nearby_content"
-  = render "discovery/newest_content"
+  = render "discovery/content_nav"
+  %section
+    .side-description
+      %h3= link_to "Recommended Content", recommended_content_path
+      %p.description Content tagged similarly to what you've rewarded.
+      - if current_user
+        .tags
+          - current_user.tags[0..9].each do |tag|
+            = link_to tag.name, "#", :class => "tag"
+    = render "discovery/recommended_content"
+
+  %section
+    .side-description
+      %h3= link_to "Popular Content", popular_content_path
+      %p.description The most rewarded content in the past two weeks.
+      .info
+        %span.reward-count= Reward.in_the_past_two_weeks.sum(:amount)
+        %span given in the past two weeks
+    = render "discovery/popular_content"
+    
+  %section
+    .side-description
+      %h3= link_to "Nearby Content", nearby_content_path
+      %p.description Content from creators near your location.
+      .info
+        - if current_user && current_user.location.present?
+          = current_user.location
+        - elsif current_user
+          = link_to "Edit your location", info_user_path(current_user)
+    = render "discovery/nearby_content"
+
+  %section
+    .side-description
+      %h3= link_to "Newest Content", nearby_content_path
+      %p.description The most recently shared content.
+      .info
+        #{pluralize Story.published.count, "piece"} of content have been shared on Momeant.
+    = render "discovery/newest_content"

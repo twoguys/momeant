@@ -1,3 +1,13 @@
 #discovery-page
   = render "discovery/nav"
-  = render "discovery/recommended_content"
+  
+  %section
+    .top-description
+      %h3 Recommended Content
+      %p.description Content tagged similarly to what you've rewarded.
+      - if current_user
+        .tags
+          - current_user.tags[0..8].each do |tag|
+            = link_to tag.name, "#", :class => "tag"
+
+    = render "discovery/recommended_content"

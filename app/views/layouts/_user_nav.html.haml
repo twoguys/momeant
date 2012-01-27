@@ -4,8 +4,9 @@
 
     %li#logo= link_to("Momeant", root_path)
     %li#content.topnav{:class => @nav == "content" ? "active" : ""}
-      = link_to "Content", recommended_content_path, :class => "top-link"
+      = link_to "Content", content_path, :class => "top-link"
       %ul.subnav
+        %li= link_to "Summary", content_path
         %li= link_to "Recommended", recommended_content_path
         %li= link_to "Popular", popular_content_path
         %li= link_to "Nearby", nearby_content_path
