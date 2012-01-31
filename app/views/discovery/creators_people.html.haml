@@ -1,25 +1,36 @@
 #discovery-page
   
-  %section
-    .top-description
-      %h3
-        Top creators
-      %p.description
-        %span The people who have RECEIVED the most rewards.
+  .top
+    = link_to "< Back to Discover", discovery_path, :class => "back-link"
+    %h1 Top Creators
+    %p The most rewarded people
     
-    %ul.person-focused-list.top-list
+  %table.users
+    %tbody
+      - rank = 1
       - @top_creators.each do |creator|
-        %li
-          .info
-            = link_to image_tag(creator.avatar.url(:thumbnail)), user_path(creator), :class => "avatar"
-            %a.name{:href => creations_user_path(creator)}
-              %span= creator.first_name
-              %span= creator.last_name
-            .occupation= creator.occupation
-            .location= creator.location
-          .count
-            %span.number= creator.lifetime_rewards
-            %span rewards received
-          .count
-            %span.number= number_to_currency(creator.rewards.sum(:amount) * Reward.dollar_exchange)
-            %span money earned
+        %tr
+          %td.rank
+            %span= rank
+          %td
+            .user-info
+              = link_to(image_tag(creator.avatar.url(:large)), user_path(creator), :class => "avatar")
+              = link_to creator.name, user_path(creator), :class => "name"
+              - if creator.occupation
+                .occupation= creator.occupation
+              - if creator.location
+                .location= creator.location
+              
+          %td.large-stat
+            %span.reward-count.count= creator.lifetime_rewards
+            %span rewards
+            
+        - rank += 1
+      - if @top_creators.size < 10
+        - (@top_creators.size + 1).upto(10) do
+          %tr
+            %td.rank
+              %span= rank
+            %td
+            %td
+          - rank += 1

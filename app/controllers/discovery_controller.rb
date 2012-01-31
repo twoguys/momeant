@@ -13,8 +13,8 @@ class DiscoveryController < ApplicationController
     @friends_activity = []
     @notable_people = Editorial.limit(3)
     @friends_activity = current_user.activity_from_twitter_and_facebook_friends if current_user
-    @top_creators = Creator.order("lifetime_rewards DESC").limit(3)
-    @top_patrons = User.order("impact DESC").limit(3)
+    @top_creators = Creator.order("lifetime_rewards DESC").where("lifetime_rewards > 0").limit(3)
+    @top_patrons = User.order("impact DESC").where("impact > 0").limit(3)
 
     @nav = "discover"
   end
@@ -72,12 +72,12 @@ class DiscoveryController < ApplicationController
   end
   
   def creators_people
-    @top_creators = Creator.order("lifetime_rewards DESC")
+    @top_creators = Creator.order("lifetime_rewards DESC").where("lifetime_rewards > 0").limit(10)
     @nav = "people"
   end
   
   def patrons_people
-    @top_patrons = User.order("impact DESC")
+    @top_patrons = User.order("impact DESC").where("impact > 0").limit(10)
     @nav = "people"
   end
 end

@@ -60,7 +60,7 @@
       %ul.mini-people
         - @notable_people.each do |editorial|
           %li
-            = link_to image_tag(editorial.user.avatar.url(:small)), user_path(editorial.user), :class => "avatar"
+            = link_to image_tag(editorial.user.avatar.url(:thumbnail)), user_path(editorial.user), :class => "avatar"
             = link_to editorial.user.name, user_path(editorial.user), :class => "title"
             %p.quote= truncate editorial.quote, :length => 140
         
@@ -95,7 +95,7 @@
       %ul.mini-people
         - @top_patrons.each do |patron|
           %li
-            = link_to image_tag(patron.avatar.url(:small)), user_path(patron), :class => "avatar"
+            = link_to image_tag(patron.avatar.url(:thumbnail)), user_path(patron), :class => "avatar"
             = link_to patron.name, user_path(patron), :class => "title"
             .stat
               %span.impact-count.count= patron.impact
@@ -113,7 +113,7 @@
       %ul.mini-people
         - @top_creators.each do |creator|
           %li
-            = link_to image_tag(creator.avatar.url(:small)), user_path(creator), :class => "avatar"
+            = link_to image_tag(creator.avatar.url(:thumbnail)), user_path(creator), :class => "avatar"
             = link_to creator.name, user_path(creator), :class => "title"
             .stat
               %span.reward-count.count= creator.lifetime_rewards

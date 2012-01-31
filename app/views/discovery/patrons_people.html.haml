@@ -5,16 +5,32 @@
     %h1 Top Patrons
     %p The best rewarders
     
-  %ul.person-focused-list.top-list
-    - @top_patrons.each do |patron|
-      %li
-        .info
-          = link_to image_tag(patron.avatar.url(:thumbnail)), user_path(patron), :class => "avatar"
-          %a.name{:href => user_path(patron)}
-            %span= patron.first_name
-            %span= patron.last_name
-          .occupation= patron.occupation
-          .location= patron.location
-        .count
-          %span.number= patron.impact
-          %span impact made
+  %table.users
+    %tbody
+      - rank = 1
+      - @top_patrons.each do |patron|
+        %tr
+          %td.rank
+            %span= rank
+          %td
+            .user-info
+              = link_to(image_tag(patron.avatar.url(:large)), user_path(patron), :class => "avatar")
+              = link_to patron.name, user_path(patron), :class => "name"
+              - if patron.occupation
+                .occupation= patron.occupation
+              - if patron.location
+                .location= patron.location
+              
+          %td.large-stat
+            %span.impact-count.count= patron.impact
+            %span impact
+            
+        - rank += 1
+      - if @top_patrons.size < 10
+        - (@top_patrons.size + 1).upto(10) do
+          %tr
+            %td.rank
+              %span= rank
+            %td
+            %td
+          - rank += 1
