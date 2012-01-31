@@ -20,10 +20,11 @@
 			background-image: linear-gradient(top, #191919 0%,#191919 50%,#000 51%,#000000 98%) /* W3C */
 			box-shadow: 0 1px 2px rgba(0,0,0,0.2)
 		ul.links
+			width: 937px
 			position: relative
 			z-index: 2
 			margin: 0 auto
-			padding: 0 15px
+			padding: 0 20px 0 0
 			li
 				float: left
 				height: 42px
@@ -57,6 +58,27 @@
 				&:active
 					background: $blue
 			
+			.double-wide
+				display: none
+				position: absolute
+				top: 42px
+				left: 0
+				width: 220px
+				box-shadow: 0 1px 2px rgba(0,0,0,0.4)
+				z-index: 1
+				.header
+					height: 15px
+					margin: 0 15px 5px
+					padding-bottom: 5px
+					font-weight: 700
+					color: #fff
+					border-bottom: 2px solid #555
+					font-size: 11px
+				.subnav
+					display: block
+					top: 0
+					width: 120px
+			
 			.subnav
 				display: none
 				background: #000
@@ -65,19 +87,24 @@
 				left: 0
 				box-shadow: 0 1px 2px rgba(0,0,0,0.4)
 				z-index: 1
+				padding: 5px 5px 15px
 				li
 					float: none
-					height: 35px
+					height: 15px
+					margin: 0 15px
+					padding: 10px 0 9px
+					border-bottom: 1px dotted #333
 					a
 						display: block
 						font-size: 11px
 						height: 15px
-						padding: 10px 15px
-						color: #fff
 						&:hover
-							background: #333
+							color: #fff
+
+			.subnav.aside:last-child
+				left: 120px
 			
-			&:hover .subnav
+			&:hover .subnav, &:hover .double-wide
 				display: block
 			&.active .top-link
 				background: $blue
@@ -101,7 +128,7 @@
 					top: 13px
 					left: 49px
 			.subnav
-				width: 120px
+				width: 127px
 				
 		#coins
 			margin-left: 20px

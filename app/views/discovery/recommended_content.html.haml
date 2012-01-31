@@ -10,4 +10,10 @@
           - current_user.tags[0..8].each do |tag|
             = link_to tag.name, "#", :class => "tag"
 
-    = render "discovery/recommended_content"
+    %ul.content-thumbnail-list.discovery-list
+      - @recommended_content.each do |story|
+        = render "discovery/story", :story => story
+    - if current_user.nil?
+      #{link_to "Signup", "#join-modal"} to start rewarding, and we'll recommend content to you here.
+    - elsif @recommended_content.empty?
+      Once you start rewarding, we'll recommend similar content here.

@@ -3,64 +3,130 @@
 	@include bgcover
 
 #discovery-page
-	padding: 30px
-	width: 1007px
-	margin: 30px auto
+	padding: 40px
+	width: 880px
+	margin: 40px auto
 	background: #fff
-	box-shadow: 0 0 2px rgba(0,0,0,0.8)
+	box-shadow: 0 0 4px rgba(0,0,0,0.8)
 	
-	section
+	section.app
 		@include clearfix
 		width: 100%
-		border-top: 1px solid #ccc
-		padding-top: 20px
-		h3
-			font-size: 16px
-			text-transform: uppercase
-			margin-bottom: 10px
-			a
-				color: $text_color
-		p.description
-			margin: 0 0 15px
-			line-height: 1.3em
-			color: #777
-		.side-description
-			float: left
-			width: 245px
-			margin-right: 20px
-			overflow: hidden
-		.top-description
-			margin-bottom: 20px
-				
-
-#discovery-nav
-	ul
-		height: 22px
-		padding-bottom: 20px
-		margin-bottom: 0
-		li
-			float: left
-			margin-right: 30px
-			a
-				color: $text_color
-				font-size: 13px
-				font-weight: 700
-				color: #888
+		height: 262px
+		margin-bottom: 50px
+		header
+			position: relative
+			padding-bottom: 6px
+			border-bottom: 1px solid #ccc
+			margin-bottom: 15px
+			h3
+				font-size: 15px
 				text-transform: uppercase
-				@include rounded(20px)
-				padding: 5px 12px 3px
-			a:hover
-				color: #555
-				background: #f5f5f5
-			a.active
-				color: #000
-				background: #e5e5e5
-				box-shadow: 0 0 3px rgba(0,0,0,0.2) inset
-	hr
-		border: 0
-		height: 1px
-		background: #fff
-		margin: 0 0 20px
+				margin-bottom: 0
+				a
+					color: $text_color
+					@include transition
+				a:hover
+					color: $blue
+			p.description
+				margin: 0
+				line-height: 1.5em
+				color: #999
+				font-size: 11px
+				&.service-links
+					a, span
+						font-size: 11px
+						background: #eee url(../images/icons/checkGreyTiny.png) no-repeat 3px 0
+						@include rounded(15px)
+						padding: 1px 7px 1px 20px
+						margin-right: 3px
+					a
+						background: $blue url(../images/icons/plusWhiteTiny.png) no-repeat 3px 0
+						color: #fff
+			a.more
+				background: $blue
+				color: #fff
+				@include rounded(15px)
+				padding: 2px 8px
+				font-size: 11px
+				position: absolute
+				bottom: 5px
+				right: 0
+				@include transition
+				&:hover
+					background: #008ccd
+
+#content-column, #people-column
+	width: 405px
+	float: left
+#content-column
+	margin-right: 70px
+
+.mini-content > li
+	position: relative
+	padding-left: 107px
+	height: 62px
+	margin-bottom: 10px
+	a.thumbnail
+		display: block
+		width: 95px
+		height: 60px
+		border: 1px solid #ccc
+		position: absolute
+		top: 0
+		left: 0
+	a.title
+		font-weight: 700
+	p.synopsis
+		font-size: 11px
+		line-height: 1.3em
+		margin: 0
+
+.mini-people > li
+	padding: 5px 0 5px 70px
+	position: relative
+	height: 62px
+	a.avatar
+		display: block
+		width: 60px
+		height: 60px
+		position: absolute
+		top: 5px
+		left: 0
+		border: 1px solid #ccc
+		img
+			width: 60px
+			height: 60px
+	a.title
+		font-weight: 700
+	.stat
+		position: absolute
+		top: 0
+		right: 0
+		.count
+			font-family: $numerals
+			font-size: 24px
+			font-weight: 300
+	p.quote
+		font-size: 11px
+		line-height: 1.3em
+		margin: 0
+
+.mini-activity > li
+	padding: 5px 0 5px 40px
+	position: relative
+	height: 30px
+	font-size: 11px
+	a.avatar
+		display: block
+		width: 30px
+		height: 30px
+		position: absolute
+		top: 5px
+		left: 0
+		img
+			width: 30px
+			height: 30px
 
 .content-thumbnail-list > li
 	width: 229px

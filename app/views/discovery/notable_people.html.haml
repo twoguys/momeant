@@ -8,4 +8,14 @@
       %p.description
         %span A few creators we think you'll love.
     
-    = render "discovery/notable_creators"
+    %ul.person-focused-list
+      - @notable_people.each do |editorial|
+        %li
+          = link_to image_tag(editorial.user.avatar.url(:large)), creations_user_path(editorial.user), :info_id => editorial.id, :class => "avatar"
+          .info
+            %a.name{:href => creations_user_path(editorial.user)}
+              %span= editorial.user.first_name
+              %span= editorial.user.last_name
+            .occupation= editorial.user.occupation
+            .location= editorial.user.location
+          .quote= editorial.quote

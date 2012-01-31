@@ -8,4 +8,6 @@
       %p.description
         %span The most rewarded content in the past two weeks.
     
-    = render "discovery/popular_content"
+    %ul.content-thumbnail-list.discovery-list
+      - @popular_content.each do |story|
+        = render "discovery/story", :story => story

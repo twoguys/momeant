@@ -122,10 +122,11 @@ html, body {
       background-image: linear-gradient(top, #191919 0%, #191919 50%, black 51%, black 98%);
       box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); }
     #header #user-nav ul.links {
+      width: 937px;
       position: relative;
       z-index: 2;
       margin: 0 auto;
-      padding: 0 15px; }
+      padding: 0 20px 0 0; }
       #header #user-nav ul.links li {
         float: left;
         height: 42px; }
@@ -156,6 +157,26 @@ html, body {
           background: #333333; }
         #header #user-nav .topnav .top-link:active {
           background: #00aeef; }
+      #header #user-nav .topnav .double-wide {
+        display: none;
+        position: absolute;
+        top: 42px;
+        left: 0;
+        width: 220px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+        z-index: 1; }
+        #header #user-nav .topnav .double-wide .header {
+          height: 15px;
+          margin: 0 15px 5px;
+          padding-bottom: 5px;
+          font-weight: 700;
+          color: white;
+          border-bottom: 2px solid #555555;
+          font-size: 11px; }
+        #header #user-nav .topnav .double-wide .subnav {
+          display: block;
+          top: 0;
+          width: 120px; }
       #header #user-nav .topnav .subnav {
         display: none;
         background: black;
@@ -163,19 +184,23 @@ html, body {
         top: 42px;
         left: 0;
         box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
-        z-index: 1; }
+        z-index: 1;
+        padding: 5px 5px 15px; }
         #header #user-nav .topnav .subnav li {
           float: none;
-          height: 35px; }
+          height: 15px;
+          margin: 0 15px;
+          padding: 10px 0 9px;
+          border-bottom: 1px dotted #333333; }
           #header #user-nav .topnav .subnav li a {
             display: block;
             font-size: 11px;
-            height: 15px;
-            padding: 10px 15px;
-            color: white; }
+            height: 15px; }
             #header #user-nav .topnav .subnav li a:hover {
-              background: #333333; }
-      #header #user-nav .topnav:hover .subnav {
+              color: white; }
+      #header #user-nav .topnav .subnav.aside:last-child {
+        left: 120px; }
+      #header #user-nav .topnav:hover .subnav, #header #user-nav .topnav:hover .double-wide {
         display: block; }
       #header #user-nav .topnav.active .top-link {
         background: #00aeef; }
@@ -197,7 +222,7 @@ html, body {
           top: 13px;
           left: 49px; }
       #header #user-nav #my-stream .subnav {
-        width: 120px; }
+        width: 127px; }
     #header #user-nav #coins {
       margin-left: 20px; }
       #header #user-nav #coins a {
@@ -7849,69 +7874,146 @@ a#load-more-activity {
   background-size: cover; }
 
 #discovery-page {
-  padding: 30px;
-  width: 1007px;
-  margin: 30px auto;
+  padding: 40px;
+  width: 880px;
+  margin: 40px auto;
   background: white;
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.8); }
-  #discovery-page section {
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.8); }
+  #discovery-page section.app {
     display: inline-block;
     width: 100%;
-    border-top: 1px solid #cccccc;
-    padding-top: 20px; }
-    #discovery-page section:after {
+    height: 262px;
+    margin-bottom: 50px; }
+    #discovery-page section.app:after {
       content: ".";
       display: block;
       height: 0;
       clear: both;
       visibility: hidden; }
-    #discovery-page section h3 {
-      font-size: 16px;
-      text-transform: uppercase;
-      margin-bottom: 10px; }
-      #discovery-page section h3 a {
-        color: #252525; }
-    #discovery-page section p.description {
-      margin: 0 0 15px;
-      line-height: 1.3em;
-      color: #777777; }
-    #discovery-page section .side-description {
-      float: left;
-      width: 245px;
-      margin-right: 20px;
-      overflow: hidden; }
-    #discovery-page section .top-description {
-      margin-bottom: 20px; }
+    #discovery-page section.app header {
+      position: relative;
+      padding-bottom: 6px;
+      border-bottom: 1px solid #cccccc;
+      margin-bottom: 15px; }
+      #discovery-page section.app header h3 {
+        font-size: 15px;
+        text-transform: uppercase;
+        margin-bottom: 0; }
+        #discovery-page section.app header h3 a {
+          color: #252525;
+          -webkit-transition: all 0.2s linear;
+          -moz-transition: all 0.2s linear;
+          -ms-transition: all 0.2s linear;
+          -o-transition: all 0.2s linear;
+          transition: all 0.2s linear; }
+        #discovery-page section.app header h3 a:hover {
+          color: #00aeef; }
+      #discovery-page section.app header p.description {
+        margin: 0;
+        line-height: 1.5em;
+        color: #999999;
+        font-size: 11px; }
+        #discovery-page section.app header p.description.service-links a, #discovery-page section.app header p.description.service-links span {
+          font-size: 11px;
+          background: #eeeeee url(../images/icons/checkGreyTiny.png) no-repeat 3px 0;
+          -webkit-border-radius: 15px;
+          -moz-border-radius: 15px;
+          border-radius: 15px;
+          padding: 1px 7px 1px 20px;
+          margin-right: 3px; }
+        #discovery-page section.app header p.description.service-links a {
+          background: #00aeef url(../images/icons/plusWhiteTiny.png) no-repeat 3px 0;
+          color: white; }
+      #discovery-page section.app header a.more {
+        background: #00aeef;
+        color: white;
+        -webkit-border-radius: 15px;
+        -moz-border-radius: 15px;
+        border-radius: 15px;
+        padding: 2px 8px;
+        font-size: 11px;
+        position: absolute;
+        bottom: 5px;
+        right: 0;
+        -webkit-transition: all 0.2s linear;
+        -moz-transition: all 0.2s linear;
+        -ms-transition: all 0.2s linear;
+        -o-transition: all 0.2s linear;
+        transition: all 0.2s linear; }
+        #discovery-page section.app header a.more:hover {
+          background: #008ccd; }
 
-#discovery-nav ul {
-  height: 22px;
-  padding-bottom: 20px;
-  margin-bottom: 0; }
-  #discovery-nav ul li {
-    float: left;
-    margin-right: 30px; }
-    #discovery-nav ul li a {
-      color: #252525;
-      font-size: 13px;
-      font-weight: 700;
-      color: #888888;
-      text-transform: uppercase;
-      -webkit-border-radius: 20px;
-      -moz-border-radius: 20px;
-      border-radius: 20px;
-      padding: 5px 12px 3px; }
-    #discovery-nav ul li a:hover {
-      color: #555555;
-      background: #f5f5f5; }
-    #discovery-nav ul li a.active {
-      color: black;
-      background: #e5e5e5;
-      box-shadow: 0 0 3px rgba(0, 0, 0, 0.2) inset; }
-#discovery-nav hr {
-  border: 0;
-  height: 1px;
-  background: white;
-  margin: 0 0 20px; }
+#content-column, #people-column {
+  width: 405px;
+  float: left; }
+
+#content-column {
+  margin-right: 70px; }
+
+.mini-content > li {
+  position: relative;
+  padding-left: 107px;
+  height: 62px;
+  margin-bottom: 10px; }
+  .mini-content > li a.thumbnail {
+    display: block;
+    width: 95px;
+    height: 60px;
+    border: 1px solid #cccccc;
+    position: absolute;
+    top: 0;
+    left: 0; }
+  .mini-content > li a.title {
+    font-weight: 700; }
+  .mini-content > li p.synopsis {
+    font-size: 11px;
+    line-height: 1.3em;
+    margin: 0; }
+
+.mini-people > li {
+  padding: 5px 0 5px 70px;
+  position: relative;
+  height: 62px; }
+  .mini-people > li a.avatar {
+    display: block;
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    top: 5px;
+    left: 0;
+    border: 1px solid #cccccc; }
+    .mini-people > li a.avatar img {
+      width: 60px;
+      height: 60px; }
+  .mini-people > li a.title {
+    font-weight: 700; }
+  .mini-people > li .stat {
+    position: absolute;
+    top: 0;
+    right: 0; }
+    .mini-people > li .stat .count {
+      font-family: "ff-dagny-web-pro-1", "ff-dagny-web-pro-2", sans-serif;
+      font-size: 24px; }
+  .mini-people > li p.quote {
+    font-size: 11px;
+    line-height: 1.3em;
+    margin: 0; }
+
+.mini-activity > li {
+  padding: 5px 0 5px 40px;
+  position: relative;
+  height: 30px;
+  font-size: 11px; }
+  .mini-activity > li a.avatar {
+    display: block;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 5px;
+    left: 0; }
+    .mini-activity > li a.avatar img {
+      width: 30px;
+      height: 30px; }
 
 .content-thumbnail-list > li {
   width: 229px;
@@ -8103,3 +8205,7 @@ a#load-more-activity {
 .reward-count {
   padding-right: 12px;
   background: transparent url(../images/icons/starBlackTiny.png) no-repeat 100% 2px; }
+
+.impact-count {
+  padding-right: 15px;
+  background: transparent url(../images/icons/impactTiny.png) no-repeat 100% 0; }

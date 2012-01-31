@@ -1,0 +1,4 @@
+%li
+  = link_to image_tag(content.thumbnail.url(:petite)), story_path(content), :class => "thumbnail"
+  = link_to truncate(content.title, :length => 40), story_path(content), :class => "title"
+  %p.synopsis= truncate content.synopsis, :length => 140

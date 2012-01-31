@@ -1,0 +1,125 @@
+#discovery-page
+
+  #content-column
+
+    %section.app
+      %header
+        %h3= link_to "Popular Content", popular_content_path
+        %p.description Rewarded the most in the past two weeks
+        = link_to "view more", popular_content_path, :class => "more"
+      %ul.mini-content
+        - @popular_content.each do |content|
+          = render "discovery/mini_content", :content => content
+        
+    %section.app
+      %header
+        %h3= link_to "Recommended Content", recommended_content_path
+        %p.description As you reward, we'll recommend similar content
+        = link_to "view more", recommended_content_path, :class => "more"
+      - if current_user
+        %ul.mini-content
+          - @recommended_content.each do |content|
+            = render "discovery/mini_content", :content => content
+      - else
+        #{link_to "Sign up", "#join-modal"} to start rewarding so we can recommend some awesome content!
+      
+    %section.app
+      %header
+        %h3= link_to "Nearby Content", nearby_content_path
+        %p.description
+          - if current_user && current_user.location.present?
+            = current_user.location
+          - elsif current_user
+            Nowhere #{link_to "Edit", info_user_path(current_user)}
+          - else
+            Nowhere
+        = link_to "view more", nearby_content_path, :class => "more"
+      - if current_user
+        %ul.mini-content
+          - @nearby_content.each do |content|
+            = render "discovery/mini_content", :content => content
+      - else
+        #{link_to "Signup", "#join-modal"} to see content around you
+
+    %section.app
+      %header
+        %h3= link_to "Newest Content", newest_content_path
+        %p.description The freshest content from awesome creators
+        = link_to "view more", newest_content_path, :class => "more"
+      %ul.mini-content
+        - @newest_content.each do |content|
+          = render "discovery/mini_content", :content => content
+  
+  #people-column
+    
+    %section.app
+      %header
+        %h3= link_to "Notable People", notable_people_path
+        %p.description Some of our favorites here at Momeant
+        = link_to "view more", notable_people_path, :class => "more"
+      %ul.mini-people
+        - @notable_people.each do |editorial|
+          %li
+            = link_to image_tag(editorial.user.avatar.url(:small)), user_path(editorial.user), :class => "avatar"
+            = link_to editorial.user.name, user_path(editorial.user), :class => "title"
+            %p.quote= truncate editorial.quote, :length => 140
+        
+    %section.app
+      %header
+        %h3= link_to "People You Know", friends_people_path
+        %p.description.service-links
+          - if current_user
+            - if current_user.authentications.find_by_provider("twitter")
+              %span Twitter linked
+            - else
+              = link_to "link Twitter", "#", :class => "link"
+            - if current_user.authentications.find_by_provider("facebook")
+              %span Facebook linked
+            - else
+              = link_to "link Facebook", "#", :class => "link"
+          - else
+            No services linked
+      - if current_user && current_user.authentications.find_by_provider("twitter").nil? && current_user.authentications.find_by_provider("facebook").nil?
+        Use the buttons above to link your networks so you can see what your friends are doing here at Momeant!
+      - else  
+        %ul.mini-activity
+          - @friends_activity.each do |activity|
+            = render "discovery/mini_activity", :activity => activity
+    
+    %section.app
+      %header
+        %h3= link_to "Top Patrons", patrons_people_path
+        %p.description the best rewarders
+        = link_to "view more", patrons_people_path, :class => "more"
+      %ul.mini-people
+        - @top_patrons.each do |patron|
+          %li
+            = link_to image_tag(patron.avatar.url(:small)), user_path(patron), :class => "avatar"
+            = link_to patron.name, user_path(patron), :class => "title"
+            .stat
+              %span.impact-count.count= patron.impact
+              %span impact
+            - if patron.occupation
+              %p.quote= patron.occupation
+            - if patron.location
+              %p.quote= patron.location
+    
+    %section.app
+      %header
+        %h3= link_to "Top Creators", creators_people_path
+        %p.description the most rewarded people
+        = link_to "view more", creators_people_path, :class => "more"
+      %ul.mini-people
+        - @top_creators.each do |creator|
+          %li
+            = link_to image_tag(creator.avatar.url(:small)), user_path(creator), :class => "avatar"
+            = link_to creator.name, user_path(creator), :class => "title"
+            .stat
+              %span.reward-count.count= creator.lifetime_rewards
+              %span rewards
+            - if creator.occupation
+              %p.quote= creator.occupation
+            - if creator.location
+              %p.quote= creator.location
+        
+  .clear
