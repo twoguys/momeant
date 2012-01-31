@@ -1,23 +1,20 @@
 #discovery-page
-  = render "discovery/people_nav"
   
-  %section
-    .top-description
-      %h3
-        Top patrons
-      %p.description
-        %span The people who have GIVEN the most rewards.
+  .top
+    = link_to "< Back to Discover", discovery_path, :class => "back-link"
+    %h1 Top Patrons
+    %p The best rewarders
     
-    %ul.person-focused-list.top-list
-      - @top_patrons.each do |patron|
-        %li
-          .info
-            = link_to image_tag(patron.avatar.url(:thumbnail)), user_path(patron), :class => "avatar"
-            %a.name{:href => user_path(patron)}
-              %span= patron.first_name
-              %span= patron.last_name
-            .occupation= patron.occupation
-            .location= patron.location
-          .count
-            %span.number= patron.impact
-            %span impact made
+  %ul.person-focused-list.top-list
+    - @top_patrons.each do |patron|
+      %li
+        .info
+          = link_to image_tag(patron.avatar.url(:thumbnail)), user_path(patron), :class => "avatar"
+          %a.name{:href => user_path(patron)}
+            %span= patron.first_name
+            %span= patron.last_name
+          .occupation= patron.occupation
+          .location= patron.location
+        .count
+          %span.number= patron.impact
+          %span impact made

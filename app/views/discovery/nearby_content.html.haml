@@ -1,19 +1,18 @@
 #discovery-page
-  = render "discovery/content_nav"
   
-  %section
-    .top-description
-      %h3
-        Nearby
-        - if current_user && current_user.location.present?
-          = current_user.location
-        - else
-          Content
-      %p.description
-        %span Content from creators near your location.
-
-    %ul.content-thumbnail-list.discovery-list
-      - @nearby_content.each do |story|
-        = render "discovery/story", :story => story
-      - if current_user.nil?
-        Signup to see content near you.
+  .top
+    = link_to "< Back to Discover", discovery_path, :class => "back-link"
+    %h1 Nearby Content
+    %p
+      - if current_user && current_user.location.present?
+        = current_user.location
+      - elsif current_user
+        Nowhere #{link_to "Edit", info_user_path(current_user)}
+      - else
+        Nowhere
+    
+  %ul.content-thumbnail-list.discovery-list
+    - @nearby_content.each do |story|
+      = render "discovery/story", :story => story
+    - if current_user.nil?
+      Signup to see content near you.

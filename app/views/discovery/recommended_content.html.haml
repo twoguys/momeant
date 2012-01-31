@@ -1,19 +1,17 @@
 #discovery-page
-  = render "discovery/content_nav"
-  
-  %section
-    .top-description
-      %h3 Recommended Content
-      %p.description Content tagged similarly to what you've rewarded.
-      - if current_user
-        .tags
-          - current_user.tags[0..8].each do |tag|
-            = link_to tag.name, "#", :class => "tag"
+  .top
+    = link_to "< Back to Discover", discovery_path, :class => "back-link"
+    %h1 Recommended Content
+    %p The most rewarded content in the past two weeks.
+    - if current_user
+      .tags
+        - current_user.tags[0..8].each do |tag|
+          = link_to tag.name, "#", :class => "tag"
 
-    %ul.content-thumbnail-list.discovery-list
-      - @recommended_content.each do |story|
-        = render "discovery/story", :story => story
-    - if current_user.nil?
-      #{link_to "Signup", "#join-modal"} to start rewarding, and we'll recommend content to you here.
-    - elsif @recommended_content.empty?
-      Once you start rewarding, we'll recommend similar content here.
+  %ul.content-thumbnail-list.discovery-list
+    - @recommended_content.each do |story|
+      = render "discovery/story", :story => story
+  - if current_user.nil?
+    #{link_to "Signup", "#join-modal"} to start rewarding, and we'll recommend content to you here.
+  - elsif @recommended_content.empty?
+    Once you start rewarding, we'll recommend similar content here.

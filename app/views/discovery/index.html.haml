@@ -78,10 +78,11 @@
             - else
               = link_to "link Facebook", "#", :class => "link"
           - else
-            No services linked
+            #{link_to "Sign up", "#join-modal"} to link your networks
+        = link_to "view more", friends_people_path, :class => "more"
       - if current_user && current_user.authentications.find_by_provider("twitter").nil? && current_user.authentications.find_by_provider("facebook").nil?
         Use the buttons above to link your networks so you can see what your friends are doing here at Momeant!
-      - else  
+      - else
         %ul.mini-activity
           - @friends_activity.each do |activity|
             = render "discovery/mini_activity", :activity => activity
@@ -89,7 +90,7 @@
     %section.app
       %header
         %h3= link_to "Top Patrons", patrons_people_path
-        %p.description the best rewarders
+        %p.description The best rewarders
         = link_to "view more", patrons_people_path, :class => "more"
       %ul.mini-people
         - @top_patrons.each do |patron|
@@ -107,7 +108,7 @@
     %section.app
       %header
         %h3= link_to "Top Creators", creators_people_path
-        %p.description the most rewarded people
+        %p.description The most rewarded people
         = link_to "view more", creators_people_path, :class => "more"
       %ul.mini-people
         - @top_creators.each do |creator|

@@ -1,13 +1,10 @@
 #discovery-page
-  = render "discovery/content_nav"
-
-  %section
-    .top-description
-      %h3
-        Newest Content
-      %p.description
-        %span The most recently shared content.
-
-    %ul.content-thumbnail-list.discovery-list
-      - @newest_content.each do |story|
-        = render "discovery/story", :story => story
+  
+  .top
+    = link_to "< Back to Discover", discovery_path, :class => "back-link"
+    %h1 Newest Content
+    %p The freshest content from awesome creators
+  
+  %ul.content-thumbnail-list.discovery-list
+    - @newest_content.each do |story|
+      = render "discovery/story", :story => story

@@ -66,6 +66,11 @@ class DiscoveryController < ApplicationController
     @nav = "people"
   end
   
+  def friends_people
+    @friends_activity = []
+    @friends_activity = current_user.activity_from_twitter_and_facebook_friends if current_user
+  end
+  
   def creators_people
     @top_creators = Creator.order("lifetime_rewards DESC")
     @nav = "people"

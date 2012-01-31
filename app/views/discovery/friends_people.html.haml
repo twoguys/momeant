@@ -1,0 +1,25 @@
+#discovery-page
+  
+  .top
+    = link_to "< Back to Discover", discovery_path, :class => "back-link"
+    %h1 People You Know
+    %p.description.service-links
+      - if current_user
+        - if current_user.authentications.find_by_provider("twitter")
+          %span Twitter linked
+        - else
+          = link_to "link Twitter", "#", :class => "link"
+        - if current_user.authentications.find_by_provider("facebook")
+          %span Facebook linked
+        - else
+          = link_to "link Facebook", "#", :class => "link"
+      - else
+        #{link_to "Sign up", "#join-modal"} to link your networks
+    
+  - if current_user && current_user.authentications.find_by_provider("twitter").nil? && current_user.authentications.find_by_provider("facebook").nil?
+    Use the buttons above to link your networks so you can see what your friends are doing here at Momeant!
+  - else
+    #activity
+      #activity-body
+        %ul#activity-list
+          = render @friends_activity
