@@ -71,9 +71,9 @@ class ApplicationController < ActionController::Base
   
   def after_sign_in_path_for(resource)
     if session[:return_to] == new_session_url(:user) || session[:return_to] == root_url
-      community_path
+      discovery_path
     else
-      session[:return_to] || community_path
+      session[:return_to] || discovery_path
     end
   end
 end

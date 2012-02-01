@@ -61,10 +61,14 @@
 	.top
 		margin-bottom: 20px
 		a.back-link
-			background: $blue
-			color: #fff
+			background: $lightblue
+			color: $blue
 			padding: 2px 8px
 			@include rounded(15px)
+			@include transition
+			&:hover
+				background: $blue
+				color: #fff
 		h1
 			padding-top: 20px
 			margin-bottom: 0
@@ -163,9 +167,9 @@
 	position: relative
 	&:last-child
 		margin-right: 0
+	&:hover .content-info .synopsis
+		display: block
 	.content-info
-		&:hover .synopsis
-			display: block
 		a.thumbnail
 			display: block
 			width: 220px
@@ -183,8 +187,7 @@
 			font-weight: 700
 			padding: 2px 0 5px
 			display: block
-		.synopsis
-			font-size: 11px
+		a.synopsis
 			display: none
 			position: absolute
 			top: 4px
@@ -192,31 +195,29 @@
 			width: 210px
 			height: 127.5px
 			padding: 5px
+			color: #555
+			font-size: 11px
 			background: #fff
-			color: $text_color
-			.text
-				margin-bottom: 10px
-			.tags
-				color: #777
-				padding-left: 15px
-				background: transparent url(../images/icons/tag.png) no-repeat 0 2px
-	.byline
-		height: 30px
-		a.avatar
-			display: block
-			width: 30px
-			height: 30px
-			float: left
-			margin-right: 5px
-			img
-				width: 30px
-				height: 30px
-		a.name
-			display: block
-			color: $text_color
-			padding: 8px 0 0 3px
+			background: rgba(255,255,255,0.9)
+		.byline, .tags
 			font-size: 11px
 			color: #777
+			margin-bottom: 10px
+			a
+				color: #777
+				&:hover
+					color: $blue
+		.byline
+			font-style: italic
+		.tags	
+			border-top: 1px dashed #ddd
+			padding: 3px 0
+			border-bottom: 1px dashed #ddd
+			padding-left: 15px
+			background: transparent url(../images/icons/tag.png) no-repeat 0 5px
+			height: 15px
+			line-height: 1.4em
+			overflow: hidden
 
 .person-focused-list > li
 	width: 229px
@@ -262,7 +263,6 @@
 		background-image: url(../images/icons/location.png)
 
 .user-rewards-list
-	border-top: 1px dashed #ddd
 	.title
 		font-size: 11px
 		text-transform: uppercase

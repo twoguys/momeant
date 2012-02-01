@@ -2,10 +2,9 @@
   .content-info
     = link_to image_tag(story.thumbnail.url(:medium)), story_path(story), :class => "thumbnail"
     = link_to truncate(story.title, :length => 40), story_path(story), :class => "title"
-    %a.synopsis{:href => story_path(story)}
-      - unless story.synopsis.blank?
-        .text= truncate story.synopsis, :length => 120
-      .tags= truncate story.tag_list.join(", "), :length => 100
+    .byline by #{link_to story.user.name, user_path(story.user)}
+    = link_to truncate(story.synopsis, :length => 280), story_path(story), :class => "synopsis"
+    .tags= truncate story.tag_list.join(", ").downcase, :length => 40
 
   .user-rewards-list
     .title
