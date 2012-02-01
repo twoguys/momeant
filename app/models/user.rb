@@ -413,8 +413,16 @@ class User < ActiveRecord::Base
   def activity_from_twitter_and_facebook_friends
     # update friends list unless it was cached within the last day
     if friends_last_cached_at.nil? || friends_last_cached_at < 1.day.ago
-      cache_facebook_friends
-      cache_twitter_friends
+      begin
+        cache_facebook_friends
+      rescue Exception
+        Rails.logger.error "#{self.name} had an issue updating Facebook friends"
+      end
+      begin
+        cache_twitter_friends
+      rescue Exception
+        Rails.logger.error "#{self.name} had an issue updating Twitter friends"
+      end
       self.update_attribute :friends_last_cached_at, Time.now
     end
     
