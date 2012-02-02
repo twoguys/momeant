@@ -1,54 +1,47 @@
 #landing
 
-  %h1#slogan Help build a new digital economy.
+  #showcase
+    #content
+      %h1
+        %span Real people create the content that we enjoy on the Web.
+        %span They deserve to be rewarded.
+      = link_to "Sign Up Now", "#join-modal", :id => "main-signup-button"
+    #creator
+      %p#creator-text
+        = link_to @story.title, story_path(@story)
+        %span by #{@story.user.name}
+        %span.occupation= @story.user.occupation
+        %span.location= @story.user.location
+      = link_to image_tag(@story.user.avatar.url(:thumbnail)), creations_user_path(@story.user), :class => "avatar"
   
-  #messaging
-    %p
-      %strong The economy is broken.
-      %span Wealth disparities are huge, jobs are disappearing, and yet we haven’t become less productive, we just spend much of our time and energy producing content, information, and software that we mostly give away for free.
-    %p
-      %strong We strongly believe that information needs to be free,
-      %span but at the same time, we need to build a new digital economy that allows us to make a living from what we spend our time producing and consuming.
-    %p
-      %strong Thus, Momeant is introducing the Reward,
-      %span a voluntary payment made after having consumed content for free. By voluntarily investing in each other, we demonstrate what we find valuable, and create the jobs we need in a 21st century economy.
-  
-  #steps
+  #description
     %ul
       %li
-        .number 1
-        .title Link
-        %p Link to your existing Web content or put our reward app on your website or blog. We work hard to make it easy on you.
+        %h2 What is Momeant?
+        %p Momeant is a community trying to build a new digital economy. How? By rewarding the people who make the free content, information, and software we find valuable.
       %li
-        .number 2
-        .title Reward
-        %p Reward to support creators whose content you enjoy, promote yourself, and become a powerful social influencer.
+        %h2 How do I get started?
+        %p Getting started is easy. #{link_to "Join", "#join-modal"} and try it out in less than a minute. There’s no commitment, all content is free and rewards are voluntary. We’ll give you 10 free rewards to get started.
       %li
-        .number 3
-        .title Discover
-        %p Find out what’s being rewarded, see the impact your rewards and promotion have, and find new content.
+        %h2 Why does Momeant matter?
+        %p Because information should be free and shared widely, but the people who create the content we appreciate deserve the opportunity to be rewarded for their work.
+  
+  #editorials
+    %h1 Here are some of the folks already being rewarded.
+    %ul#people
+      - @editorials.each do |editorial|
+        %li
+          = link_to image_tag(editorial.user.avatar.url(:editorial)), creations_user_path(editorial.user), :class => "avatar"
+          = link_to editorial.user.name, creations_user_path(editorial.user), :class => "name"
+          .earned
+            %span.amount= number_to_currency(editorial.user.rewards.sum(:amount) * Reward.dollar_exchange)
+            %span.text money earned
+
+          %span.occupation= editorial.occupation
+          %span.location= editorial.user.location
+          %p.quote= editorial.quote
   
   = link_to "Join Us. Reward and Be Rewarded.", "#join-modal", :id => "join-call-to-action" unless current_user
   
-  #creator
-    %h2 Here are some of the creators already being supported.
-    %ul#faces
-      - @editorials.each do |editorial|
-        %li.face{:editorial => editorial.id}
-          = link_to image_tag(editorial.user.avatar.url(:large)), creations_user_path(editorial.user), :info_id => editorial.id, :class => "avatar"
-
-          .info
-            %h2.name= editorial.user.name
-            
-            - if editorial.show_as == "creator"
-              .earned
-                %span.amount= number_to_currency(editorial.user.rewards.sum(:amount) * Reward.dollar_exchange)
-                %span.text money earned
-            
-            %span.occupation= editorial.occupation
-            %span.location= editorial.user.location
-            %p.quote= editorial.quote
-    .clear
-
 :javascript
   mpq.track('Viewed Landing Page');

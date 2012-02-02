@@ -57,7 +57,7 @@ class User < ActiveRecord::Base
     :conditions => ["recipient_deleted = ?", false]
   
   has_attached_file :avatar,
-    :styles => { :thumbnail => "60x60#", :large => "200x200#" },
+    :styles => { :thumbnail => "60x60#", :large => "200x200#", :editorial => "320x320#" },
     :path          => "avatars/:id/:style.:extension",
     :storage        => :s3,
     :s3_credentials => {
@@ -604,9 +604,12 @@ class User < ActiveRecord::Base
   
   def reload_avatar
     return false if self.avatar.url.include?("missing")
-    io = open(URI.parse(self.avatar.url))
-    self.avatar = io
-    self.save
+    begin
+      io = open(URI.parse(self.avatar.url))
+      self.avatar = io
+      self.save
+    rescue Exception
+    end
   end
   
   # Emails ---------------------------------------------------------------------------

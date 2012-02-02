@@ -2,6 +2,8 @@ class HomeController < ApplicationController
   
   def index
     @editorials = Editorial.limit(3)
+    @story = Story.where(:id => 197).first
+    @story = Story.published.first if @story.nil?
     @hide_search = true if current_user.nil?
     @hide_banner = true
     @nav = "home"
