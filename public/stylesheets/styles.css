@@ -8080,11 +8080,11 @@ a#load-more-activity {
   float: left; }
 
 #content-column {
-  margin-right: 70px;
+  margin-right: 60px;
   width: 533px; }
 
 #people-column {
-  width: 317px; }
+  width: 327px; }
 
 .mini-content > li {
   position: relative;
@@ -8139,22 +8139,29 @@ a#load-more-activity {
     .mini-people > li p.quote.short {
       width: 130px; }
 
-.mini-activity > li {
+.mini-activity.loading {
+  background: transparent url(../images/spinner.gif) no-repeat 50% 30px;
+  height: 50px; }
+  .mini-activity.loading * {
+    display: none; }
+.mini-activity li {
   padding-left: 40px;
   position: relative;
   height: 30px;
   font-size: 11px;
   margin-bottom: 10px; }
-  .mini-activity > li a.avatar {
+  .mini-activity li a.avatar {
     display: block;
     width: 30px;
     height: 30px;
     position: absolute;
     top: 0;
     left: 0; }
-    .mini-activity > li a.avatar img {
+    .mini-activity li a.avatar img {
       width: 30px;
       height: 30px; }
+.mini-activity li.text-only {
+  padding-left: 0; }
 
 .content-thumbnail-list > li {
   width: 229px;

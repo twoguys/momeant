@@ -71,6 +71,12 @@ class DiscoveryController < ApplicationController
     @friends_activity = current_user.activity_from_twitter_and_facebook_friends if current_user
   end
   
+  def reload_friends_people
+    @friends_activity = []
+    @friends_activity = current_user.activity_from_twitter_and_facebook_friends if current_user
+    render :partial => "friends_people"
+  end
+  
   def creators_people
     @top_creators = Creator.order("lifetime_rewards DESC").where("lifetime_rewards > 0").limit(10)
     @nav = "people"

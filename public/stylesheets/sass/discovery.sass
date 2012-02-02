@@ -88,10 +88,10 @@
 #content-column, #people-column
 	float: left
 #content-column
-	margin-right: 70px
+	margin-right: 60px
 	width: 533px
 #people-column
-	width: 317px
+	width: 327px
 
 .mini-content > li
 	position: relative
@@ -146,22 +146,30 @@
 		&.short
 			width: 130px
 
-.mini-activity > li
-	padding-left: 40px
-	position: relative
-	height: 30px
-	font-size: 11px
-	margin-bottom: 10px
-	a.avatar
-		display: block
-		width: 30px
+.mini-activity 
+	&.loading
+		background: transparent url(../images/spinner.gif) no-repeat 50% 30px
+		height: 50px
+		*
+			display: none
+	li
+		padding-left: 40px
+		position: relative
 		height: 30px
-		position: absolute
-		top: 0
-		left: 0
-		img
+		font-size: 11px
+		margin-bottom: 10px
+		a.avatar
+			display: block
 			width: 30px
 			height: 30px
+			position: absolute
+			top: 0
+			left: 0
+			img
+				width: 30px
+				height: 30px
+	li.text-only
+		padding-left: 0
 
 .content-thumbnail-list > li
 	width: 229px

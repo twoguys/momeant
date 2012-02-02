@@ -1,3 +1,6 @@
+- content_for :head do
+  = javascript_include_tag "discovery"
+
 #discovery-page
 
   #content-column
@@ -64,7 +67,7 @@
             = link_to editorial.user.name, user_path(editorial.user), :class => "title"
             %p.quote= truncate editorial.quote, :length => 120
         
-    %section.app
+    %section#friends-you-know.app
       %header
         %h3= link_to "People You Know", friends_people_path
         %p.description.service-links
@@ -72,20 +75,19 @@
             - if current_user.authentications.find_by_provider("twitter")
               %span Twitter linked
             - else
-              = link_to "link Twitter", "#", :class => "link"
+              = link_to "link Twitter", "#{root_url}auth/twitter", :class => "link", :id => "link-twitter"
             - if current_user.authentications.find_by_provider("facebook")
               %span Facebook linked
             - else
-              = link_to "link Facebook", "#", :class => "link"
+              = link_to "link Facebook", "#{root_url}auth/facebook", :class => "link", :id => "link-facebook"
           - else
             #{link_to "Sign up", "#join-modal"} to link your networks
         = link_to "view more >", friends_people_path, :class => "more"
-      - if current_user && current_user.authentications.find_by_provider("twitter").nil? && current_user.authentications.find_by_provider("facebook").nil?
-        Use the buttons above to link your networks so you can see what your friends are doing here at Momeant!
-      - else
-        %ul.mini-activity
-          - @friends_activity.each do |activity|
-            = render "discovery/mini_activity", :activity => activity
+      %ul.mini-activity
+        - if current_user && current_user.authentications.find_by_provider("twitter").nil? && current_user.authentications.find_by_provider("facebook").nil?
+          %li.text-only Use the buttons above to link your networks so you can see what your friends are doing here at Momeant!
+        - else
+          = render "friends_people"
     
     %section.app
       %header
