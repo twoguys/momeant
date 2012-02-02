@@ -6,7 +6,7 @@
       %header
         %h3= link_to "Popular Content", popular_content_path
         %p.description Rewarded the most in the past two weeks
-        = link_to "view more", popular_content_path, :class => "more"
+        = link_to "view more >", popular_content_path, :class => "more"
       %ul.mini-content
         - @popular_content.each do |content|
           = render "discovery/mini_content", :content => content
@@ -15,7 +15,7 @@
       %header
         %h3= link_to "Recommended Content", recommended_content_path
         %p.description As you reward, we'll recommend similar content
-        = link_to "view more", recommended_content_path, :class => "more"
+        = link_to "view more >", recommended_content_path, :class => "more"
       - if current_user
         %ul.mini-content
           - @recommended_content.each do |content|
@@ -33,7 +33,7 @@
             Nowhere #{link_to "Edit", info_user_path(current_user)}
           - else
             Nowhere
-        = link_to "view more", nearby_content_path, :class => "more"
+        = link_to "view more >", nearby_content_path, :class => "more"
       - if current_user
         %ul.mini-content
           - @nearby_content.each do |content|
@@ -45,7 +45,7 @@
       %header
         %h3= link_to "Newest Content", newest_content_path
         %p.description The freshest content from awesome creators
-        = link_to "view more", newest_content_path, :class => "more"
+        = link_to "view more >", newest_content_path, :class => "more"
       %ul.mini-content
         - @newest_content.each do |content|
           = render "discovery/mini_content", :content => content
@@ -56,7 +56,7 @@
       %header
         %h3= link_to "Notable People", notable_people_path
         %p.description Some of our favorites here at Momeant
-        = link_to "view more", notable_people_path, :class => "more"
+        = link_to "view more >", notable_people_path, :class => "more"
       %ul.mini-people
         - @notable_people.each do |editorial|
           %li
@@ -79,7 +79,7 @@
               = link_to "link Facebook", "#", :class => "link"
           - else
             #{link_to "Sign up", "#join-modal"} to link your networks
-        = link_to "view more", friends_people_path, :class => "more"
+        = link_to "view more >", friends_people_path, :class => "more"
       - if current_user && current_user.authentications.find_by_provider("twitter").nil? && current_user.authentications.find_by_provider("facebook").nil?
         Use the buttons above to link your networks so you can see what your friends are doing here at Momeant!
       - else
@@ -91,7 +91,7 @@
       %header
         %h3= link_to "Top Patrons", patrons_people_path
         %p.description The best rewarders
-        = link_to "view more", patrons_people_path, :class => "more"
+        = link_to "view more >", patrons_people_path, :class => "more"
       %ul.mini-people
         - @top_patrons.each do |patron|
           %li
@@ -109,7 +109,7 @@
       %header
         %h3= link_to "Top Creators", creators_people_path
         %p.description The most rewarded people
-        = link_to "view more", creators_people_path, :class => "more"
+        = link_to "view more >", creators_people_path, :class => "more"
       %ul.mini-people
         - @top_creators.each do |creator|
           %li
