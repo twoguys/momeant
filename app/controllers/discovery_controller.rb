@@ -12,7 +12,7 @@ class DiscoveryController < ApplicationController
     
     @friends_activity = []
     @notable_people = Editorial.limit(3)
-    @friends_activity = current_user.activity_from_twitter_and_facebook_friends if current_user
+    @friends_activity = current_user.activity_from_twitter_and_facebook_friends[0..4] if current_user
     @top_creators = Creator.order("lifetime_rewards DESC").where("lifetime_rewards > 0").limit(3)
     @top_patrons = User.order("impact DESC").where("impact > 0").limit(3)
 
@@ -73,8 +73,14 @@ class DiscoveryController < ApplicationController
   
   def reload_friends_people
     @friends_activity = []
-    @friends_activity = current_user.activity_from_twitter_and_facebook_friends if current_user
+    @friends_activity = current_user.activity_from_twitter_and_facebook_friends[0..4] if current_user
     render :partial => "friends_people"
+  end
+  
+  def reload_friends_activity
+    @friends_activity = []
+    @friends_activity = current_user.activity_from_twitter_and_facebook_friends if current_user
+    render @friends_activity
   end
   
   def creators_people

@@ -113,6 +113,7 @@ Repo::Application.routes.draw do
   match '/people/notable',        :to => "discovery#notable_people",       :as => :notable_people
   match '/people/friends',        :to => "discovery#friends_people",       :as => :friends_people
   match '/people/friends/reload', :to => "discovery#reload_friends_people",:as => :reload_friends_people
+  match '/people/friends/reload_full', :to => "discovery#reload_friends_activity",:as => :reload_friends_activity
   match '/people/creators',       :to => "discovery#creators_people",      :as => :creators_people
   match '/people/patrons',        :to => "discovery#patrons_people",       :as => :patrons_people
   

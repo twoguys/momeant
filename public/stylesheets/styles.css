@@ -8288,13 +8288,18 @@ a#load-more-activity {
       width: 30px;
       height: 30px; }
 
-#discovery-page .activity-list {
+#discovery-page #activity-list {
   width: 960px; }
-  #discovery-page .activity-list li {
+  #discovery-page #activity-list.loading {
+    background: transparent url(../images/spinner.gif) no-repeat 50% 30px;
+    height: 50px; }
+    #discovery-page #activity-list.loading * {
+      display: none; }
+  #discovery-page #activity-list li {
     padding: 20px 0; }
-    #discovery-page .activity-list li:last-child {
+    #discovery-page #activity-list li:last-child {
       border: none; }
-    #discovery-page .activity-list li .left-side, #discovery-page .activity-list li .right-side {
+    #discovery-page #activity-list li .left-side, #discovery-page #activity-list li .right-side {
       top: 20px; }
 
 .top-list > li .count .number {
