@@ -43,6 +43,11 @@ namespace :momeant do
       end
     end
     
+    desc "Update user avatars"
+    task :update_user_avatars => :environment do
+      User.all.each {|u| u.reload_avatar }
+    end
+    
   end
   
   namespace :activity do
