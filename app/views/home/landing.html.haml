@@ -53,10 +53,10 @@
           = link_to editorial.user.name, creations_user_path(editorial.user), :class => "name"
           .earned
             %span.amount= number_to_currency(editorial.user.rewards.sum(:amount) * Reward.dollar_exchange)
-            %span.text money earned from folks like:
-          .from
-            - Reward.select("DISTINCT ON (user_id) *").where(:recipient_id => editorial.user.id).limit(3).each do |reward|
-              = link_to image_tag(reward.user.avatar.url(:thumbnail)), user_path(reward.user), :class => "tooltipped", :title => reward.user.name
+            %span.text money rewarded from folks like:
+            .from
+              - Reward.select("DISTINCT ON (user_id) *").where(:recipient_id => editorial.user.id).limit(3).each do |reward|
+                = link_to image_tag(reward.user.avatar.url(:thumbnail)), user_path(reward.user), :class => "tooltipped", :title => reward.user.name
 
           %span.occupation= editorial.occupation
           %span.location= editorial.user.location
