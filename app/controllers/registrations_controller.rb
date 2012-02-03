@@ -9,6 +9,8 @@ class RegistrationsController < Devise::RegistrationsController
       # track signup analytics across the redirect
       flash[:track_signup] = true
       
+      NotificationsMailer.welcome_to_momeant(resource).deliver
+      
       sign_in_and_redirect(resource_name, resource)
     else
       @user = resource
