@@ -34,7 +34,7 @@ class StoriesController < ApplicationController
     end
     url = URI.parse(@exit_presenter_url) unless @exit_presenter_url.nil?
     if @exit_presenter_url.nil? || !["momeant.dev","localhost","momeant.heroku.com","momeant.com"].include?(url.host) || @exit_presenter_url == story_url(@story)
-       @exit_presenter_url = community_path
+       @exit_presenter_url = discovery_path
     end
     
     render "presenter"
