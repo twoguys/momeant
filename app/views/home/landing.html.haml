@@ -55,7 +55,7 @@
             %span.amount= number_to_currency(editorial.user.rewards.sum(:amount) * Reward.dollar_exchange)
             %span.text money rewarded from folks like:
             .from
-              - Reward.select("DISTINCT ON (user_id) *").where(:recipient_id => editorial.user.id).limit(3).each do |reward|
+              - Reward.select("DISTINCT ON (user_id) *").where(:recipient_id => editorial.user.id).limit(5).each do |reward|
                 = link_to image_tag(reward.user.avatar.url(:thumbnail)), user_path(reward.user), :class => "tooltipped", :title => reward.user.name
 
           %span.occupation= editorial.occupation
