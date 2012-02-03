@@ -27,7 +27,7 @@
           = image_tag current_user.avatar.url(:thumbnail)
           %span You
         %ul.subnav
-          %li= link_to "Share Content", creations_user_path(current_user)
+          %li= link_to "Your Content", creations_user_path(current_user)
           %li= link_to "Your Info", info_user_path(current_user)
           %li= link_to "Messages (#{current_user.unread_message_count})", user_path(current_user)
           %li= link_to "Settings", settings_user_path(current_user)
