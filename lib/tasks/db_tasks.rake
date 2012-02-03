@@ -89,4 +89,11 @@ namespace :momeant do
       end
     end
   end
+  
+  namespace :emails do
+    desc "Send site update email"
+    task :send_site_update => :environment do
+      User.all.each {|u| NotificationsMailer.site_updated(u).deliver }
+    end
+  end
 end

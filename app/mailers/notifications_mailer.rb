@@ -19,4 +19,8 @@ class NotificationsMailer < ActionMailer::Base
     
     mail :to => @message.recipient.email, :subject => "#{message.sender.name} just messaged you on Momeant!"
   end
+  
+  def site_updated(user)
+    mail :to => user.email, :subject => "Momeant has a new face!"
+  end
 end
