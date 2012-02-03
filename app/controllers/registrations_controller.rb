@@ -6,14 +6,6 @@ class RegistrationsController < Devise::RegistrationsController
     resource.subscription_last_updated_at = Time.now
     
     if resource.save
-      if private_beta?
-        invitation = Invitation.find_by_token(resource.invitation_code)
-        invitation.update_attribute(:invitee_id, resource.id)
-      end
-      
-      invitation.update_attribute(:accepted, true) if invitation
-      session[:accepting_invitation_id] = nil
-      
       # track signup analytics across the redirect
       flash[:track_signup] = true
       
@@ -21,7 +13,9 @@ class RegistrationsController < Devise::RegistrationsController
     else
       @user = resource
       clean_up_passwords(resource)
-      redirect_to root_path, :alert => @user.errors.full_messages
+      flash[:alert] = @user.errors.full_messages
+      setup_landing
+      render "home/landing"
     end
   end
   

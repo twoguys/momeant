@@ -4,33 +4,18 @@ class ApplicationController < ActionController::Base
   include SslRequirement
   protect_from_forgery
   
-  before_filter :check_for_trial_expiration, :push_to_sender, :create_anonymous_tracker, :open_reward_modal?
+  before_filter :push_to_sender, :create_anonymous_tracker, :open_reward_modal?
   
   @nav = "home"
   @sidenav = ""
   
-  def private_beta?
-    ENV["CURRENT_RELEASE"] == "private-beta"
-  end
-  
-  def check_for_trial_expiration
-    unless private_beta?
-      if current_user && current_user.trial? && current_user.created_at < 300.days.ago
-        current_user.expire_trial!
-      end
-    end
-  end
-  
-  def get_adverts
-    @adverts = Advert.enabled.random
-    if current_user
-      # TODO remove ads for non-logged in users
-      @adverts = @adverts.where("path != 'invite'") if current_user.is_a?(Creator)
-      @adverts = @adverts.where("path != 'subscribe'") if current_user.active_subscription?
-    else
-      @adverts = @adverts.where("path != 'subscribe'").where("path != 'invite'")
-    end
-    @adverts = @adverts.limit(2)
+  def setup_landing
+    @editorials = Editorial.limit(3)
+    @story = Story.where(:id => 197).first
+    @story = Story.published.first if @story.nil?
+    @hide_search = true if current_user.nil?
+    @hide_banner = true
+    @nav = "home"
   end
   
   def push_to_sender

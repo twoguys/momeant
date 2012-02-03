@@ -1,4 +1,4 @@
-#home.index
+#home.index, #registrations.create
 	#container
 		background: #fff
 	#main
@@ -18,7 +18,7 @@
 				margin-bottom: 30px
 				span
 					display: block
-			a
+			a#main-signup-button
 				font-size: 22px
 				font-weight: 900
 				text-transform: uppercase
@@ -27,8 +27,66 @@
 				padding: 13px 20px
 				@include rounded(3px)
 				@include transition
-				&:hover
-					background: #000
+				@include gradient($bluegradient1,$bluegradient2)
+				border: 1px solid $bluegradient2 - #111
+				text-shadow: 0 -1px 0 rgba(0,0,0,0.3)
+			form
+				li
+					position: relative
+					width: 220px
+					height: 31px
+					margin-bottom: 8px
+					&.checkbox
+						height: 26px
+						label
+							padding-top: 1px
+							a
+								text-shadow: none
+								color: $blue - #222
+						label.error
+							position: absolute
+							bottom: -13px
+							padding-left: 23px
+					label.placeholder
+						color: #999
+						font-style: italic
+						font-family: Georgia, serif
+						position: absolute
+						height: 31px
+						line-height: 31px
+						text-transform: none
+						font-weight: 100
+						margin: 0
+						padding: 0 0 0 10px
+					label.error
+						font-size: 11px
+						font-weight: 100
+						color: #000
+						margin: 0 0 5px 0
+					span
+						width: 102px
+						float: left
+						margin-right: 5px
+						position: relative
+						input[type="text"]
+							width: 87px
+					span.last
+						margin-right: 0
+					input[type="text"], input[type="email"], input[type="password"]
+						border: 1px solid #aaa
+						width: 195px
+						box-shadow: 0 2px 3px rgba(0,0,0,0.15) inset
+					input[type="submit"]
+						width: 200px
+					input[type="submit"]:disabled
+						background-color: #dfdfdf
+						color: #787878
+						cursor: default
+					input[type="submit"]:disabled:active
+						top: 0
+				li.filled
+					label
+						display: none
 		#creator
 			padding: 10px
 			float: right
@@ -65,6 +123,7 @@
 				border-top: 1px solid #ddd
 				border-bottom: 1px solid #ddd
 				padding: 20px 0
+				height: 188px
 				&:last-child
 					margin-right: 0
 				h2

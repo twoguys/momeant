@@ -20,6 +20,8 @@
           %li= link_to "Top Patrons", patrons_people_path
 
     - if user_signed_in?
+      %li#share.topnav{:class => @nav == "sharing" ? "active" : ""}
+        = link_to "Share", new_story_path, :class => "top-link"
       %li#my-stream.topnav{:class => @nav == "me" ? "active" : ""}
         %a.top-link{:href => user_path(current_user)}
           = image_tag current_user.avatar.url(:thumbnail)
