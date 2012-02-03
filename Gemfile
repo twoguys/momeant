@@ -34,6 +34,7 @@ gem 'opengraph'
 gem 'airbrake'
 gem 'geocoder'
 gem 'chronic'
+gem 'airbrake'
 
 group :test do
   gem 'shoulda'

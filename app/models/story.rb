@@ -38,7 +38,7 @@ class Story < ActiveRecord::Base
   has_many :users_who_bookmarked, :through => :bookmarks, :source => :user
 
   has_many :rewards
-  has_many :users_who_rewarded, :through => :rewards, :source => :user
+  has_many :users_who_rewarded, :through => :rewards, :source => :user, :uniq => true
 
   has_many :views, :dependent => :destroy
   has_many :users_who_viewed, :through => :views, :source => :user
@@ -58,6 +58,7 @@ class Story < ActiveRecord::Base
   scope :most_rewarded, order("reward_count DESC")
   scope :no_gallery, where(:gallery_id => nil)
   scope :in_the_past_two_weeks, where("created_at > '#{14.days.ago}'")
+  scope :from_today, where("created_at > '#{1.day.ago}'")
   
   paginates_per 12
   
@@ -230,6 +231,10 @@ class Story < ActiveRecord::Base
   
   def cropping?
     !crop_x.blank? && !crop_y.blank? && !crop_width.blank? && !crop_height.blank? 
+  end
+  
+  def self.most_rewarded_recently
+    Reward.in_the_past_two_weeks.group_by(&:story).to_a.sort {|x,y| y[1].size <=> x[1].size }.map{|s| s[0]}
   end
   
   private

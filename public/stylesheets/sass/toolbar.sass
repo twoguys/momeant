@@ -20,56 +20,118 @@
 			background-image: linear-gradient(top, #191919 0%,#191919 50%,#000 51%,#000000 98%) /* W3C */
 			box-shadow: 0 1px 2px rgba(0,0,0,0.2)
 		ul.links
+			width: 937px
 			position: relative
 			z-index: 2
 			margin: 0 auto
-			padding: 0 15px
+			padding: 0 20px 0 0
 			li
 				float: left
-				height: 60px
-			li.active
-				background: transparent url(../images/navActive.png) no-repeat 50% -7px
+				height: 42px
 		#feedback, #join, #signin, #signout
 			height: 42px
-		#logo, #home, #my-stream, #community, #faq, #admin, #create, #blog
-			width: 46px
-			a
-				width: 46px
-				height: 42px
-				display: block
-				margin: 0 auto
-				text-indent: -9999px
-				background-color: transparent
-				background-repeat: no-repeat
-				background-position: 50% 6px
 		#logo
 			width: 164px
-			padding-left: 6px
+			padding-left: 3px
 			a
+				display: block
 				width: 165px
-				margin: 0
+				height: 42px
+				text-indent: -9999px
 				background: transparent url(../images/logoWhiteSmall.png) no-repeat -9px 1px
+		#logo, #discover, #share
+			border-right: 1px solid #333
+		
+		.topnav
+			font-size: 13px
+			text-transform: uppercase
+			letter-spacing: 0.03em
+			position: relative
+			
+			.top-link
+				display: block
+				height: 18px
+				padding: 13px 15px 11px
+				color: #fff
+				font-weight: 700
+				z-index: 2
+				&:hover
+					background: #333
+				&:active
+					background: $blue
+			
+			.double-wide
+				display: none
+				position: absolute
+				top: 42px
+				left: 0
+				width: 220px
+				box-shadow: 0 1px 2px rgba(0,0,0,0.4)
+				z-index: 1
+				.header
+					height: 15px
+					margin: 0 15px 5px
+					padding-bottom: 5px
+					font-weight: 700
+					color: #fff
+					border-bottom: 2px solid #555
+					font-size: 11px
+				.subnav
+					display: block
+					top: 0
+					width: 120px
+			
+			.subnav
+				display: none
+				background: #000
+				position: absolute
+				top: 42px
+				left: 0
+				box-shadow: 0 1px 2px rgba(0,0,0,0.4)
+				z-index: 1
+				padding: 5px 5px 15px
+				li
+					float: none
+					height: 15px
+					margin: 0 15px
+					padding: 10px 0 9px
+					border-bottom: 1px dotted #333
+					a
+						display: block
+						font-size: 11px
+						height: 15px
+						&:hover
+							color: #fff
+
+			.subnav.aside:last-child
+				left: 120px
+			
+			&:hover .subnav, &:hover .double-wide
+				display: block
+			&.active .top-link
+				background: $blue
+		
+		#people .subnav
+			width: 120px
+		
 		#my-stream
-			a
-				text-indent: 0
-			img
-				width: 30px
+			width: 95px
+			.top-link
+				width: 63px
 				height: 30px
-				padding: 6px 0 0 8px
-		#home a
-			background-image: url(../images/icons/momeantHomeWhite.png)
-		#community a
-			background-image: url(../images/icons/activityNav.png)
-			background-position: 50% 7px
-		#faq a
-			background-image: url(../images/icons/faqWhite.png)
-		#blog a
-			background-image: url(../images/icons/blog.png)
-		#create a
-			background-image: url(../images/icons/momeantAddStoryWhite.png)
-			background-position: 50% 7px
-		#admin a
-			background-image: url(../images/icons/lock.png)
+				padding: 6px 15px 6px 10px
+				position: relative
+				img
+					width: 30px
+					height: 30px
+					padding-right: 5px
+				span
+					position: absolute
+					top: 13px
+					left: 49px
+			.subnav
+				width: 127px
+				
 		#coins
 			margin-left: 20px
 			a
@@ -169,7 +231,7 @@
 			a
 				@include gradient($greygradient1, $greygradient2)
 		#feedback
-			right: 285px
+			right: 204px
 			a
 				@include gradient($bluegradient1,$bluegradient2)
 	#user-nav ul.search-hidden

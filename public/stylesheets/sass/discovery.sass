@@ -1,0 +1,321 @@
+#discovery #container
+	background: #222 url(../images/wood.jpg) repeat 50% 0
+	@include bgcover
+
+#discovery-page
+	padding: 40px
+	width: 920px
+	margin: 40px auto
+	background: #fff
+	box-shadow: 0 0 4px rgba(0,0,0,0.8)
+	
+	section.app
+		@include clearfix
+		width: 100%
+		height: 262px
+		margin-bottom: 50px
+		header
+			position: relative
+			padding-bottom: 6px
+			border-bottom: 1px solid #ccc
+			margin-bottom: 15px
+			h3
+				font-size: 15px
+				text-transform: uppercase
+				margin-bottom: 0
+				a
+					color: $text_color
+					@include transition
+				a:hover
+					color: $blue
+			p.description
+				margin: 0
+				line-height: 1.5em
+				color: #999
+				font-size: 11px
+			a.more
+				background: $lightblue
+				color: $blue
+				@include rounded(15px)
+				padding: 2px 8px
+				font-size: 11px
+				position: absolute
+				top: 10px
+				right: 0
+				@include transition
+				&:hover
+					background: $blue
+					color: #fff
+
+	.service-links
+		a, span
+			font-size: 11px
+			background: #eee url(../images/icons/checkGreyTiny.png) no-repeat 3px 0
+			@include rounded(15px)
+			padding: 1px 7px 1px 20px
+			margin-right: 3px
+		a
+			background: $blue url(../images/icons/plusWhiteTiny.png) no-repeat 3px 0
+			color: #fff
+
+	.top
+		margin-bottom: 20px
+		a.back-link
+			background: $lightblue
+			color: $blue
+			padding: 2px 8px
+			@include rounded(15px)
+			@include transition
+			&:hover
+				background: $blue
+				color: #fff
+		h1
+			padding-top: 20px
+			margin-bottom: 0
+			font-weight: 700
+			text-transform: uppercase
+		p
+			margin: 0
+			color: #777
+	
+	#activity
+		@include rounded(0)
+		@include boxshadow(0,0)
+		margin: 0
+		#activity-body
+			border: none
+
+#content-column, #people-column
+	float: left
+#content-column
+	margin-right: 60px
+	width: 533px
+#people-column
+	width: 327px
+
+.mini-content > li
+	position: relative
+	padding-left: 107px
+	height: 62px
+	margin-bottom: 10px
+	a.thumbnail
+		display: block
+		width: 95px
+		height: 60px
+		border: 1px solid #ccc
+		position: absolute
+		top: 0
+		left: 0
+	a.title
+		font-weight: 700
+	p.synopsis
+		font-size: 11px
+		line-height: 1.3em
+		margin: 0
+
+.mini-people > li
+	padding-left: 70px
+	position: relative
+	height: 62px
+	margin-bottom: 10px
+	a.avatar
+		display: block
+		width: 60px
+		height: 60px
+		position: absolute
+		top: 0
+		left: 0
+		border: 1px solid #ccc
+		img
+			width: 60px
+			height: 60px
+	a.title
+		font-weight: 700
+	.stat
+		position: absolute
+		top: 0
+		right: 0
+		.count
+			font-family: $numerals
+			font-size: 24px
+			font-weight: 300
+	p.quote
+		font-size: 11px
+		line-height: 1.3em
+		margin: 0
+		&.short
+			width: 130px
+
+.mini-activity 
+	&.loading
+		background: transparent url(../images/spinner.gif) no-repeat 50% 30px
+		height: 50px
+		*
+			display: none
+	li
+		padding-left: 40px
+		position: relative
+		height: 30px
+		font-size: 11px
+		margin-bottom: 10px
+		a.avatar
+			display: block
+			width: 30px
+			height: 30px
+			position: absolute
+			top: 0
+			left: 0
+			img
+				width: 30px
+				height: 30px
+	li.text-only
+		padding-left: 0
+
+.content-thumbnail-list > li
+	width: 229px
+	display: inline-block
+	vertical-align: top
+	margin: 0 20px 40px 0
+	position: relative
+	&:last-child
+		margin-right: 0
+	&:hover .content-info .synopsis
+		display: block
+	.content-info
+		a.thumbnail
+			display: block
+			width: 220px
+			height: 137.5px
+			background: #fff
+			padding: 3px
+			border: 1px solid #ccc
+			margin-bottom: 5px
+			box-shadow: 0 0 2px rgba(0,0,0,0.2)
+			img
+				width: 220px
+				height: 137.5px
+		a.title
+			font-size: 13px
+			font-weight: 700
+			padding: 2px 0 5px
+			display: block
+		a.synopsis
+			display: none
+			position: absolute
+			top: 4px
+			left: 4px
+			width: 210px
+			height: 127.5px
+			padding: 5px
+			color: #555
+			font-size: 11px
+			background: #fff
+			background: rgba(255,255,255,0.9)
+		.byline, .tags
+			font-size: 11px
+			color: #777
+			margin-bottom: 10px
+			a
+				color: #777
+				&:hover
+					color: $blue
+		.byline
+			font-style: italic
+		.tags	
+			border-top: 1px dashed #ddd
+			padding: 3px 0
+			border-bottom: 1px dashed #ddd
+			padding-left: 15px
+			background: transparent url(../images/icons/tag.png) no-repeat 0 5px
+			height: 15px
+			line-height: 1.4em
+			overflow: hidden
+
+.person-focused-list > li
+	width: 229px
+	display: inline-block
+	vertical-align: top
+	margin: 0 20px 40px 0
+	position: relative
+	&:last-child
+		margin-right: 0
+	.info
+		margin-left: 110px
+		height: 110px
+	.avatar
+		display: block
+		width: 90px
+		height: 90px
+		padding: 3px
+		background: #fff
+		border: 1px solid #ddd
+		position: absolute
+		top: 0
+		left: 0
+		img
+			width: 90px
+			height: 90px
+	.name
+		font-size: 18px
+		font-weight: 700
+		line-height: 20px
+		text-transform: uppercase
+		padding-top: 5px
+		margin-bottom: 10px
+		display: block
+		span
+			display: block
+	.quote
+		font-size: 11px
+	.occupation, .location
+		font-size: 11px
+		padding-left: 16px
+		background: transparent url(../images/icons/briefcase.png) no-repeat 0 -1px
+	.location
+		background-image: url(../images/icons/location.png)
+
+.user-rewards-list
+	.title
+		font-size: 11px
+		text-transform: uppercase
+		color: #777
+		padding: 5px 0
+		span.reward-count
+			padding-right: 12px
+			background: transparent url(../images/icons/starGreyTiny.png) no-repeat 100% 2px
+	li
+		width: 30px
+		height: 30px
+		float: left
+		margin-right: 5px
+		&:last-child
+			margin: 0
+		.avatar
+			display: block
+			width: 30px
+			height: 30px
+			img
+				width: 30px
+				height: 30px
+
+#discovery-page #activity-list
+	width: 920px
+	&.loading
+		background: transparent url(../images/spinner.gif) no-repeat 50% 30px
+		height: 50px
+		*
+			display: none
+	li
+		padding: 20px 0
+		&:last-child
+			border: none
+		.left-side, .right-side
+			top: 20px
+
+.top-list > li
+	.count
+		.number
+			font-family: $numerals
+			font-size: 26px
+			font-weight: 300
+			padding-right: 3px

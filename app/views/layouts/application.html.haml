@@ -42,8 +42,7 @@
     #container{:class => @nosidebar ? "no-sidebar" : ""}
       #main
         = render "layouts/flash", :flash => flash
-        #call-to-action
-          = yield :call_to_action
+        = #render "shared/banner" unless @hide_banner
         = yield
 
     #footer

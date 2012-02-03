@@ -1,12 +1,12 @@
 .recommendations
   %h1 Your Recommended Stories
-  
+
   - if current_user.recommendation_limit_reached?
     %p.info
       You've reached your limit of #{@limit} recommendations.
       We want to make sure you're recommending only the best
       so in order to recommend another story you'll have to
       remove a previous recommendation.
-  
+
   %ul.stories
     = render @stories

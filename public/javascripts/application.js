@@ -64,6 +64,7 @@ function handle_signup_login_form_validation() {
 			'user[first_name]':'Required',
 			'user[last_name]':'Required',
 			'user[email]':{required:'Required'},
+			'user[password]':{required:'Required'},
 			'user[tos_accepted]': {required:'Must be accepted'}
 		}
 	});

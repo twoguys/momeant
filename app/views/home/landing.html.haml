@@ -1,54 +1,68 @@
 #landing
 
-  %h1#slogan Help build a new digital economy.
+  #showcase
+    #content
+      %h1
+        %span Real people create the content that we enjoy on the Web.
+        %span They deserve to be rewarded.
+      = #link_to "Sign Up Now", "#join-modal", :id => "main-signup-button"
+      - unless current_user
+        = form_for(@user, :as => :user, :url => registration_path(:user), :html => {:id => "join-form"}) do |f|
+          %fieldset
+            %ul
+              %li
+                %span
+                  = f.text_field :first_name, :placeholder => "first name", :autocorrect => "off"
+                %span.last
+                  = f.text_field :last_name, :placeholder => "last name", :autocorrect => "off"
+              %li
+                = f.email_field :email, :placeholder => "email address", :autocorrect => "off", :autocapitalize => "off"
+              %li
+                = f.password_field :password, :placeholder => "password (6+ characters)"
+              %li.checkbox
+                = f.check_box :tos_accepted
+                %label{:for => "user_tos_accepted"} I agree to the #{link_to("Terms of Service", tos_path, :target => "new")}
+              %li.submit
+                = f.submit "sign up for free"
+    #creator
+      %p#creator-text
+        = link_to @story.title, story_path(@story)
+        %span by #{@story.user.name}
+        %span.occupation= @story.user.occupation
+        %span.location= @story.user.location
+      = link_to image_tag(@story.user.avatar.url(:thumbnail)), creations_user_path(@story.user), :class => "avatar"
   
-  #messaging
-    %p
-      %strong The economy is broken.
-      %span Wealth disparities are huge, jobs are disappearing, and yet we haven’t become less productive, we just spend much of our time and energy producing content, information, and software that we mostly give away for free.
-    %p
-      %strong We strongly believe that information needs to be free,
-      %span but at the same time, we need to build a new digital economy that allows us to make a living from what we spend our time producing and consuming.
-    %p
-      %strong Thus, Momeant is introducing the Reward,
-      %span a voluntary payment made after having consumed content for free. By voluntarily investing in each other, we demonstrate what we find valuable, and create the jobs we need in a 21st century economy.
-  
-  #steps
+  #description
     %ul
       %li
-        .number 1
-        .title Link
-        %p Link to your existing Web content or put our reward app on your website or blog. We work hard to make it easy on you.
+        %h2 What is Momeant?
+        %p There is a problem with the Web: very few of us who contribute content make money for our work. With your help, Momeant aims to change that. We'll keep content and information free, while you reward the content and creators you know and like.
       %li
-        .number 2
-        .title Reward
-        %p Reward to support creators whose content you enjoy, promote yourself, and become a powerful social influencer.
+        %h2 How does it work?
+        %p We’d like you to meet The Reward, a voluntary payment you can make directly to a creator, after you’ve seen their content. Why would you voluntarily reward someone? To show some love, appreciation, support, to get your own content rewarded, and to play your part in creating a new digital economy.
       %li
-        .number 3
-        .title Discover
-        %p Find out what’s being rewarded, see the impact your rewards and promotion have, and find new content.
+        %h2 Why does Momeant matter?
+        %p In order to build a sustainable digital economy, we have to start rewarding the things we recognize as being valuable.
+  
+  #editorials
+    %h1 Here are some of the folks already being rewarded.
+    %ul#people
+      - @editorials.each do |editorial|
+        %li
+          = link_to image_tag(editorial.user.avatar.url(:editorial)), creations_user_path(editorial.user), :class => "avatar"
+          = link_to editorial.user.name, creations_user_path(editorial.user), :class => "name"
+          .earned
+            %span.amount= number_to_currency(editorial.user.rewards.sum(:amount) * Reward.dollar_exchange)
+            %span.text money rewarded from folks like:
+            .from
+              - Reward.select("DISTINCT ON (user_id) *").where(:recipient_id => editorial.user.id).limit(5).each do |reward|
+                = link_to image_tag(reward.user.avatar.url(:thumbnail)), user_path(reward.user), :class => "tooltipped", :title => reward.user.name
+
+          %span.occupation= editorial.occupation
+          %span.location= editorial.user.location
+          %p.quote= editorial.quote
   
   = link_to "Join Us. Reward and Be Rewarded.", "#join-modal", :id => "join-call-to-action" unless current_user
   
-  #creator
-    %h2 Here are some of the creators already being supported.
-    %ul#faces
-      - @editorials.each do |editorial|
-        %li.face{:editorial => editorial.id}
-          = link_to image_tag(editorial.user.avatar.url(:large)), creations_user_path(editorial.user), :info_id => editorial.id, :class => "avatar"
-
-          .info
-            %h2.name= editorial.user.name
-            
-            - if editorial.show_as == "creator"
-              .earned
-                %span.amount= number_to_currency(editorial.user.rewards.sum(:amount) * Reward.dollar_exchange)
-                %span.text money earned
-            
-            %span.occupation= editorial.occupation
-            %span.location= editorial.user.location
-            %p.quote= editorial.quote
-    .clear
-
 :javascript
   mpq.track('Viewed Landing Page');

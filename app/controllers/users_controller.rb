@@ -47,7 +47,7 @@ class UsersController < ApplicationController
   
   def edit
     redirect_to edit_user_path(current_user) and return if current_user != @user
-    @nav = "home"
+    @nav = "me"
     @sidenav = "profile"
   end
   
@@ -56,7 +56,7 @@ class UsersController < ApplicationController
     if @user.update_attributes(params[:user])
       redirect_to user_path(@user), :notice => "Info updated!"
     else
-      @nav = "home"
+      @nav = "me"
       @sidenav = "profile"
       render 'edit'
     end
@@ -160,7 +160,7 @@ class UsersController < ApplicationController
     @user = current_user
     @patrons = @user.rewards.group_by {|r| r.user_id}
     @sidenav = "analytics"
-    @nav = "home"
+    @nav = "me"
   end
   
   def feedback
@@ -185,7 +185,7 @@ class UsersController < ApplicationController
     def find_user
       @user = User.find(params[:id])
       @page_title = @user.name if @user
-      @nav = "home" if current_user == @user
+      @nav = "me" if current_user == @user
       @sidenav = "profile" if current_user.present? && @user == current_user
     end
 end

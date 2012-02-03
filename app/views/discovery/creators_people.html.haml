@@ -1,0 +1,36 @@
+#discovery-page
+  
+  .top
+    = link_to "< Back to Discover", discovery_path, :class => "back-link"
+    %h1 Top Creators
+    %p The most rewarded people
+    
+  %table.users
+    %tbody
+      - rank = 1
+      - @top_creators.each do |creator|
+        %tr
+          %td.rank
+            %span= rank
+          %td
+            .user-info
+              = link_to(image_tag(creator.avatar.url(:large)), user_path(creator), :class => "avatar")
+              = link_to creator.name, user_path(creator), :class => "name"
+              - if creator.occupation
+                .occupation= creator.occupation
+              - if creator.location
+                .location= creator.location
+              
+          %td.large-stat
+            %span.reward-count.count= creator.lifetime_rewards
+            %span rewards
+            
+        - rank += 1
+      - if @top_creators.size < 10
+        - (@top_creators.size + 1).upto(10) do
+          %tr
+            %td.rank
+              %span= rank
+            %td
+            %td
+          - rank += 1

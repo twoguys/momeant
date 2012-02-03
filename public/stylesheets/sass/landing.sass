@@ -1,63 +1,193 @@
-#home.index
+#home.index, #registrations.create
 	#container
-		background: #eaeaea url(../images/lightNoise.png) repeat 0 0
+		background: #fff
+	#main
+		width: 1000px
+		margin: 0 auto
 		
-	#slogan, #messaging, #steps ul, #join-call-to-action, #creator
-		width: 600px
-		margin-left: auto
-		margin-right: auto
-		margin-bottom: 50px
+	#showcase
+		padding-top: 30px
+		#content
+			background: transparent url(../images/landing/content.jpg) no-repeat 0 0
+			height: 330px
+			padding: 20px 30px
+			h1
+				font-size: 30px
+				font-weight: 900
+				text-shadow: 0 1px 0 #fff
+				margin-bottom: 30px
+				span
+					display: block
+			a#main-signup-button
+				font-size: 22px
+				font-weight: 900
+				text-transform: uppercase
+				background: $blue
+				color: #fff
+				padding: 13px 20px
+				@include rounded(3px)
+				@include transition
+				@include gradient($bluegradient1,$bluegradient2)
+				border: 1px solid $bluegradient2 - #111
+				text-shadow: 0 -1px 0 rgba(0,0,0,0.3)
+			form
+				li
+					position: relative
+					width: 220px
+					height: 31px
+					margin-bottom: 8px
+					&.checkbox
+						height: 26px
+						label
+							padding-top: 1px
+							a
+								text-shadow: none
+								color: $blue - #222
+						label.error
+							position: absolute
+							bottom: -13px
+							padding-left: 23px
+					label.placeholder
+						color: #999
+						font-style: italic
+						font-family: Georgia, serif
+						position: absolute
+						height: 31px
+						line-height: 31px
+						text-transform: none
+						font-weight: 100
+						margin: 0
+						padding: 0 0 0 10px
+					label.error
+						font-size: 11px
+						font-weight: 100
+						color: #000
+						margin: 0 0 5px 0
+					span
+						width: 102px
+						float: left
+						margin-right: 5px
+						position: relative
+						input[type="text"]
+							width: 87px
+					span.last
+						margin-right: 0
+					input[type="text"], input[type="email"], input[type="password"]
+						border: 1px solid #aaa
+						width: 195px
+						box-shadow: 0 2px 3px rgba(0,0,0,0.15) inset
+					input[type="submit"]
+						width: 200px
+					input[type="submit"]:disabled
+						background-color: #dfdfdf
+						color: #787878
+						cursor: default
+					input[type="submit"]:disabled:active
+						top: 0
+				li.filled
+					label
+						display: none
+		#creator
+			padding: 10px
+			float: right
+			p, a
+				float: left
+			p
+				margin: 0 10px 0 0
+				padding-top: 5px
+				font-size: 11px
+				text-align: right
+				line-height: 1.3em
+				a
+					margin-right: 3px
+				.occupation, .location
+					color: #999
+					display: block
+			a.avatar
+				display: block
+				width: 50px
+				height: 50px
+				border: 1px solid #ccc
+				img
+					width: 50px
+					height: 50px
 		
-	#slogan
-		font-size: 54px
-		font-family: atrament-web-1, atrament-web-2, sans-serif
-		text-transform: uppercase
-		letter-spacing: 0.04em
-		padding-bottom: 10px
-		border-bottom: 1px solid #fff
-		margin-top: 50px
-	
-	#messaging
-		font-size: 13px
-		margin-bottom: 60px
-		
-	#steps
-		background: #262626 url(../images/darkNoise.png) repeat 0 0
-		padding: 40px
-		color: #fff
-		margin-bottom: 50px
-
+	#description
+		margin-bottom: 100px
 		ul
-			height: 180px
-			margin-bottom: 0
+			@include clearfix
 			li
 				float: left
-				width: 175px
-				margin-right: 35px
+				width: 320px
+				margin-right: 20px
+				border-top: 1px solid #ddd
+				border-bottom: 1px solid #ddd
+				padding: 20px 0
+				height: 188px
 				&:last-child
 					margin-right: 0
-				.number
-					background: #fff
-					@include rounded(30px)
-					padding: 8px 0 7px
-					text-align: center
-					color: #262626
-					font-size: 20px
-					font-weight: 700
-					width: 44px
-					float: left
-				.title
-					float: left
-					font-size: 20px
-					font-weight: 700
-					text-transform: uppercase
-					padding: 10px 0 0 10px
+				h2
+					background: none
+					color: #000
+					padding: 0
+					font-size: 21px
+					font-weight: 900
+					text-transform: none
+					margin-bottom: 15px
 				p
-					clear: both
-					padding-top: 20px
+					font-size: 13.5px
+					line-height: 1.5em
+					margin: 0
+	
+	#editorials
+		margin-bottom: 50px
+		h1
+			font-size: 28px
+			font-weight: 900
+			text-align: center
+			margin-bottom: 50px
+		ul#people
+			@include clearfix
+			li
+				width: 320px
+				float: left
+				margin-right: 20px
+				&:last-child
+					margin-right: 0
+				a.avatar
+					display: block
+					width: 320px
+					height: 320px
+					margin-bottom: 20px
+					img
+						width: 320px
+						height: 320px
+				.name
+					display: block
+					font-size: 28px
+					font-weight: 900
+					margin-bottom: 15px
+				.earned
+					padding-bottom: 5px
+					border-bottom: 1px solid #fff
+					margin-bottom: 20px
+					.amount
+						font-family: $numerals
+						font-size: 40px
+						font-weight: 300
+						line-height: 40px
+					.text	
+						display: block
+						font-size: 11px
+						text-transform: uppercase
+						margin-bottom: 5px 
+				.occupation, .location
+					display: block
+					text-transform: uppercase
 				
 	#join-call-to-action
 		display: block
+		width: 600px
 		padding: 10px 0 8px
 		font-size: 20px
 		font-weight: 700
@@ -67,65 +197,4 @@
 		background: $blue
 		border: 5px solid #74cbf4
 		@include rounded(10px)
-			
-	#creator
-		h2
-			padding: 0
-			background: none
-			text-align: center
-			font-size: 18px
-			text-transform: none
-			margin-bottom: 30px
-		
-		#faces
-
-			.face
-				float: left
-				width: 165px
-				padding: 6px
-				background: #fff
-				@include rounded
-				@include boxshadow(5px, 0.2)
-				margin-right: 34px
-				&:last-child
-					margin-right: 0
-				
-				a.avatar
-					display: block
-					width: 165px
-					height: 165px
-					margin-bottom: 6px
-					img
-						width: 165px
-						height: 165px
-				
-				.info
-					background: #000
-					color: #fff
-					padding: 10px
-					@include rounded
-					h2.name
-						font-size: 15px
-						text-transform: uppercase
-						text-align: left
-						margin-bottom: 10px
-					.earned
-						padding-bottom: 5px
-						border-bottom: 1px solid #fff
-						margin-bottom: 10px
-						.amount
-							font-family: $numerals
-							font-size: 40px
-							font-weight: 300
-							line-height: 40px
-							display: block
-						.text
-							font-size: 11px
-							text-transform: uppercase
-					.occupation, .location, .quote
-						font-size: 11px
-						color: #ffa801
-						display: block
-					.quote
-						line-height: 1.2em
-						overflow: hidden
+		margin: 0 auto 50px

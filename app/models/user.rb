@@ -57,7 +57,7 @@ class User < ActiveRecord::Base
     :conditions => ["recipient_deleted = ?", false]
   
   has_attached_file :avatar,
-    :styles => { :thumbnail => "60x60#", :large => "200x200#" },
+    :styles => { :thumbnail => "60x60#", :large => "200x200#", :editorial => "320x320#" },
     :path          => "avatars/:id/:style.:extension",
     :storage        => :s3,
     :s3_credentials => {
@@ -413,8 +413,16 @@ class User < ActiveRecord::Base
   def activity_from_twitter_and_facebook_friends
     # update friends list unless it was cached within the last day
     if friends_last_cached_at.nil? || friends_last_cached_at < 1.day.ago
-      cache_facebook_friends
-      cache_twitter_friends
+      begin
+        cache_facebook_friends
+      rescue Exception
+        Rails.logger.error "#{self.name} had an issue updating Facebook friends"
+      end
+      begin
+        cache_twitter_friends
+      rescue Exception
+        Rails.logger.error "#{self.name} had an issue updating Twitter friends"
+      end
       self.update_attribute :friends_last_cached_at, Time.now
     end
     
@@ -426,8 +434,7 @@ class User < ActiveRecord::Base
     return [] if friend_ids.empty?
     Activity.
       where("actor_id IN (#{friend_ids.join(',')})").
-      where("action_type = 'Reward' OR action_type = 'Story'").
-      limit(5)
+      where("action_type = 'Reward' OR action_type = 'Story'")
   end
   
   
@@ -514,6 +521,23 @@ class User < ActiveRecord::Base
     self.subscribed_to.include?(user)
   end
   
+  def nearby_content
+    content = []
+
+    user_ids = self.nearbys(30).map(&:id).join(",")
+    unless user_ids.blank?
+      content = Story.published.where("user_id IN (#{user_ids})").newest_first
+    end
+    
+    # remove the ones I've already rewarded
+    story_ids = self.given_rewards.map(&:story_id)
+    unless story_ids.blank?
+      content.reject!{|c| story_ids.include? c.id}
+    end
+    
+    content
+  end
+  
   # Private Messages ---------------------------------------------------------------------------
   
   def messages
@@ -579,9 +603,12 @@ class User < ActiveRecord::Base
   
   def reload_avatar
     return false if self.avatar.url.include?("missing")
-    io = open(URI.parse(self.avatar.url))
-    self.avatar = io
-    self.save
+    begin
+      io = open(URI.parse(self.avatar.url))
+      self.avatar = io
+      self.save
+    rescue Exception
+    end
   end
   
   # Emails ---------------------------------------------------------------------------
