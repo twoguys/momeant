@@ -14,35 +14,36 @@
       %ul.mini-content
         - @popular_content.each do |content|
           %li
-            = link_to image_tag(content[0].thumbnail.url(:small)), story_path(content[0]), :class => "thumbnail"
+            = link_to image_tag(content[0].thumbnail.url(:medium)), story_path(content[0]), :class => "thumbnail"
             .stat.popular= content[1].map(&:amount).inject(:+)
             .more
-              = link_to image_tag(content[0].thumbnail.url(:small)), story_path(content[0]), :class => "thumbnail"
+              = link_to image_tag(content[0].thumbnail.url(:medium)), story_path(content[0]), :class => "thumbnail"
               .stat.popular= content[1].map(&:amount).inject(:+)
               = link_to truncate(content[0].title, :length => 40), story_path(content[0]), :class => "title"
               .byline by #{link_to content[0].user.name, user_path(content[0].user)}
               %p.synopsis= truncate content[0].synopsis, :length => 210
               = link_to "Launch Viewer", story_path(content[0]), :class => "launch"
         
-    %section.app.two
-      %header
-        %h3= link_to "Recommended", recommended_content_path
-        = link_to "view more", recommended_content_path, :class => "more"
-      - if current_user
-        %ul.mini-content
-          - @recommended_content.each do |content|
-            %li
-              = link_to image_tag(content.thumbnail.url(:small)), story_path(content), :class => "thumbnail"
-              .stat.recommended= truncate (content.tags & current_user.tags).join(", "), :length => 18
-              .more
-                = link_to image_tag(content.thumbnail.url(:small)), story_path(content), :class => "thumbnail"
+    - if current_user
+      %section.app.two
+        %header
+          %h3= link_to "Recommended", recommended_content_path
+          = link_to "view more", recommended_content_path, :class => "more"
+        - if current_user
+          %ul.mini-content
+            - @recommended_content.each do |content|
+              %li
+                = link_to image_tag(content.thumbnail.url(:medium)), story_path(content), :class => "thumbnail"
                 .stat.recommended= truncate (content.tags & current_user.tags).join(", "), :length => 18
-                = link_to truncate(content.title, :length => 40), story_path(content), :class => "title"
-                .byline by #{link_to content.user.name, user_path(content.user)}
-                %p.synopsis= truncate content.synopsis, :length => 210
-                = link_to "Launch Viewer", story_path(content), :class => "launch"
-      - else
-        #{link_to "Sign up", "#join-modal"} to start rewarding so we can recommend some awesome content!
+                .more
+                  = link_to image_tag(content.thumbnail.url(:medium)), story_path(content), :class => "thumbnail"
+                  .stat.recommended= truncate (content.tags & current_user.tags).join(", "), :length => 18
+                  = link_to truncate(content.title, :length => 40), story_path(content), :class => "title"
+                  .byline by #{link_to content.user.name, user_path(content.user)}
+                  %p.synopsis= truncate content.synopsis, :length => 210
+                  = link_to "Launch Viewer", story_path(content), :class => "launch"
+        - else
+          #{link_to "Sign up", "#join-modal"} to start rewarding so we can recommend some awesome content!
 
     %section.app.three
       %header
@@ -51,35 +52,40 @@
       %ul.mini-content
         - @newest_content.each do |content|
           %li
-            = link_to image_tag(content.thumbnail.url(:small)), story_path(content), :class => "thumbnail"
+            = link_to image_tag(content.thumbnail.url(:medium)), story_path(content), :class => "thumbnail"
             .stat.newest #{time_ago_in_words(content.created_at)} ago
             .more
-              = link_to image_tag(content.thumbnail.url(:small)), story_path(content), :class => "thumbnail"
+              = link_to image_tag(content.thumbnail.url(:medium)), story_path(content), :class => "thumbnail"
               .stat.newest #{time_ago_in_words(content.created_at)} ago
               = link_to truncate(content.title, :length => 40), story_path(content), :class => "title"
               .byline by #{link_to content.user.name, user_path(content.user)}
               %p.synopsis= truncate content.synopsis, :length => 210
               = link_to "Launch Viewer", story_path(content), :class => "launch"
-          
-    %section.app.four
-      %header
-        %h3= link_to "Nearby", nearby_content_path
-        = link_to "view more", nearby_content_path, :class => "more"
-      - if current_user
-        %ul.mini-content
-          - @nearby_content.each do |content|
-            %li
-              = link_to image_tag(content.thumbnail.url(:small)), story_path(content), :class => "thumbnail"
-              .stat.nearby= content.user.location
-              .more
-                = link_to image_tag(content.thumbnail.url(:small)), story_path(content), :class => "thumbnail"
+    
+    - if current_user
+      %section.app.four
+        %header
+          %h3= link_to "Nearby", nearby_content_path
+          = link_to "view more", nearby_content_path, :class => "more"
+        - if current_user
+          %ul.mini-content
+            - @nearby_content.each do |content|
+              %li
+                = link_to image_tag(content.thumbnail.url(:medium)), story_path(content), :class => "thumbnail"
                 .stat.nearby= content.user.location
-                = link_to truncate(content.title, :length => 40), story_path(content), :class => "title"
-                .byline by #{link_to content.user.name, user_path(content.user)}
-                %p.synopsis= truncate content.synopsis, :length => 210
-                = link_to "Launch Viewer", story_path(content), :class => "launch"
-      - else
-        #{link_to "Signup", "#join-modal"} to see content around you
+                .more
+                  = link_to image_tag(content.thumbnail.url(:medium)), story_path(content), :class => "thumbnail"
+                  .stat.nearby= content.user.location
+                  = link_to truncate(content.title, :length => 40), story_path(content), :class => "title"
+                  .byline by #{link_to content.user.name, user_path(content.user)}
+                  %p.synopsis= truncate content.synopsis, :length => 210
+                  = link_to "Launch Viewer", story_path(content), :class => "launch"
+        - else
+          #{link_to "Signup", "#join-modal"} to see content around you
+    
+    - if current_user.nil?
+      #banner
+        Signup conversion banner will go here
   
   #people-column
     
@@ -98,6 +104,17 @@
 
     %section.app
       %header
+        %h3= link_to "Handpicked Creators", notable_people_path
+      %ul.mini-people.side-by-side
+        - @notable_people.each do |editorial|
+          %li
+            = link_to image_tag(editorial.user.avatar.url(:thumbnail)), user_path(editorial.user), :class => "avatar"
+            %a.title{:href => user_path(editorial.user)}
+              %span= editorial.user.first_name
+              %span= editorial.user.last_name
+        
+    %section.app
+      %header
         %h3= link_to "Fast Risers", creators_people_path
       %ul.mini-people
         - @top_creators.each do |creator|
@@ -108,16 +125,4 @@
               %span.reward-count.count= creator.lifetime_rewards
             - if creator.occupation
               %p.quote.short= creator.occupation
-
-    %section.app
-      %header
-        %h3= link_to "Handpicked Creators", notable_people_path
-      %ul.mini-people
-        - @notable_people.each do |editorial|
-          %li
-            = link_to image_tag(editorial.user.avatar.url(:thumbnail)), user_path(editorial.user), :class => "avatar"
-            = link_to editorial.user.name, user_path(editorial.user), :class => "title"
-            - if editorial.user.occupation
-              %p.location= editorial.user.occupation
-        
   .clear

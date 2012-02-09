@@ -8128,7 +8128,7 @@ a#load-more-activity {
 #content-column {
   float: left;
   margin-right: 60px;
-  width: 550px; }
+  width: 600px; }
   #content-column h1 {
     font-size: 15px;
     font-weight: 700;
@@ -8141,13 +8141,16 @@ a#load-more-activity {
 
 #people-column {
   float: right;
-  width: 280px;
+  width: 260px;
   margin-top: 42px; }
   #people-column section.app {
     margin-bottom: 10px; }
+    #people-column section.app header {
+      padding-bottom: 5px;
+      border-bottom: 1px solid #cccccc; }
 
 .mini-content {
-  margin-left: -10px; }
+  margin-left: -14px; }
 
 .mini-content > li {
   position: relative;
@@ -8159,12 +8162,15 @@ a#load-more-activity {
     padding-right: 0; }
   .mini-content > li a.thumbnail {
     display: block;
-    width: 150px;
-    height: 100px;
+    width: 170px;
+    height: 113px;
     background: white;
     padding: 3px;
     border: 1px solid #cccccc;
     margin-bottom: 10px; }
+    .mini-content > li a.thumbnail img {
+      width: 170px;
+      height: 113px; }
   .mini-content > li .stat {
     font-weight: 700;
     padding-left: 15px; }
@@ -8178,7 +8184,7 @@ a#load-more-activity {
       background: transparent url(../images/icons/pin.png) no-repeat 0 0; }
   .mini-content > li .more {
     display: none;
-    width: 158px;
+    width: 178px;
     position: absolute;
     top: 1px;
     left: 4px;
@@ -8196,13 +8202,12 @@ a#load-more-activity {
     transition: opacity 0.2s linear;
     z-index: 2;
     overflow: hidden; }
-    .mini-content > li .more .stat {
-      margin-bottom: 5px; }
+    .mini-content > li .more .stat, .mini-content > li .more .title {
+      margin-bottom: 8px; }
     .mini-content > li .more .title {
       font-weight: 700;
       font-size: 13px;
-      display: block;
-      margin-bottom: 5px; }
+      display: block; }
     .mini-content > li .more .byline {
       font-size: 11px;
       color: #777777;
@@ -8270,6 +8275,27 @@ a#load-more-activity {
     margin: 0; }
   .mini-people > li p.short {
     width: 130px; }
+
+.mini-people.side-by-side > li {
+  float: left;
+  width: 30%;
+  margin-right: 5%;
+  padding: 0;
+  height: auto; }
+  .mini-people.side-by-side > li a.avatar {
+    position: relative;
+    margin-bottom: 5px;
+    width: 60px;
+    height: 60px; }
+    .mini-people.side-by-side > li a.avatar img {
+      width: 60px;
+      height: 60px; }
+  .mini-people.side-by-side > li a.title span {
+    display: block; }
+  .mini-people.side-by-side > li p {
+    display: none; }
+  .mini-people.side-by-side > li:last-child {
+    margin-right: 0; }
 
 .mini-activity.loading {
   background: transparent url(../images/spinner.gif) no-repeat 50% 30px;
