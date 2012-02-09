@@ -91,10 +91,6 @@
           %li
             = link_to image_tag(patron.avatar.url(:thumbnail)), user_path(patron), :class => "avatar"
             = link_to patron.name, user_path(patron), :class => "title"
-            - if patron.occupation
-              %p.quote.short= patron.occupation
-            - if patron.location
-              %p.quote.short= patron.location
             %p.impact.short
               %span.impact-count.count= patron.impact
               %span impact
@@ -110,11 +106,8 @@
             = link_to creator.name, user_path(creator), :class => "title"
             .stat
               %span.reward-count.count= creator.lifetime_rewards
-              %span rewards
             - if creator.occupation
               %p.quote.short= creator.occupation
-            - if creator.location
-              %p.quote.short= creator.location
 
     %section.app
       %header
@@ -124,6 +117,7 @@
           %li
             = link_to image_tag(editorial.user.avatar.url(:thumbnail)), user_path(editorial.user), :class => "avatar"
             = link_to editorial.user.name, user_path(editorial.user), :class => "title"
-            %p.quote= truncate editorial.quote, :length => 120
+            - if editorial.user.occupation
+              %p.location= editorial.user.occupation
         
   .clear
