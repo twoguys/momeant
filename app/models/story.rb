@@ -234,7 +234,7 @@ class Story < ActiveRecord::Base
   end
   
   def self.most_rewarded_recently
-    Reward.in_the_past_two_weeks.group_by(&:story).to_a.sort {|x,y| y[1].size <=> x[1].size }.map{|s| s[0]}
+    Reward.in_the_past_two_weeks.group_by(&:story).to_a.sort {|x,y| y[1].size <=> x[1].size }
   end
   
   private

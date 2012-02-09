@@ -12,17 +12,15 @@
 	section.app
 		@include clearfix
 		width: 100%
-		height: 262px
-		margin-bottom: 50px
+		position: relative
 		header
 			position: relative
-			padding-bottom: 6px
-			border-bottom: 1px solid #ccc
-			margin-bottom: 15px
+			height: 15px
+			margin-bottom: 10px
 			h3
-				font-size: 15px
-				text-transform: uppercase
 				margin-bottom: 0
+				font-weight: 500
+				float: left
 				a
 					color: $text_color
 					@include transition
@@ -34,18 +32,16 @@
 				color: #999
 				font-size: 11px
 			a.more
-				background: $lightblue
-				color: $blue
-				@include rounded(15px)
-				padding: 2px 8px
-				font-size: 11px
-				position: absolute
-				top: 10px
-				right: 0
-				@include transition
-				&:hover
-					background: $blue
-					color: #fff
+				float: right
+		
+		&.one
+			z-index: 4
+		&.two
+			z-index: 3
+		&.three
+			z-index: 2
+		&.four
+			z-index: 1
 
 	.service-links
 		a, span
@@ -89,29 +85,89 @@
 	float: left
 #content-column
 	margin-right: 60px
-	width: 533px
+	width: 535px
+	h1
+		font-size: 15px
+		font-weight: 700
+		text-transform: uppercase
+		padding-bottom: 6px
+		border-bottom: 1px solid #ccc
+		margin-bottom: 15px
 #people-column
-	width: 327px
+	width: 325px
 
+.mini-content
+	margin-left: -10px
 .mini-content > li
 	position: relative
-	padding-left: 107px
-	height: 62px
-	margin-bottom: 10px
+	float: left
+	padding: 10px
+	position: relative
+	z-index: 1
+	&:last-child
+		margin-right: 0
 	a.thumbnail
 		display: block
-		width: 95px
-		height: 60px
+		width: 150px
+		height: 100px
+		background: #fff
+		padding: 3px
 		border: 1px solid #ccc
+		margin-bottom: 10px
+	.stat
+		font-weight: 700
+		padding-left: 15px
+		&.popular
+			background: transparent url(../images/icons/starGreyTiny.png) no-repeat 2px 2px
+		&.recommended
+			background: transparent url(../images/icons/tag.png) no-repeat 0 2px
+		&.newest
+			background: transparent url(../images/icons/clock.png) no-repeat 0 1px
+		&.nearby
+			background: transparent url(../images/icons/pin.png) no-repeat 0 0
+	.more
+		display: none
 		position: absolute
 		top: 0
 		left: 0
-	a.title
-		font-weight: 700
-	p.synopsis
-		font-size: 11px
-		line-height: 1.3em
-		margin: 0
+		padding: 9px
+		background: #fff
+		border: 1px solid #ccc
+		box-shadow: 0 0 3px rgba(0,0,0,0.2)
+		@include rounded(3px)
+		z-index: 2
+		.stat
+			margin-bottom: 5px
+		.title
+			font-weight: 700
+			font-size: 13px
+			display: block
+			margin-bottom: 5px
+		.byline
+			font-size: 11px
+			color: #777
+			margin-bottom: 5px
+			a
+				color: #777
+			a:hover
+				color: $blue
+		.synopsis
+			margin: 0 0 10px
+			line-height: 1.3em
+			font-size: 11px
+		a.launch
+			display: block
+			background: $blue
+			color: #fff
+			padding: 5px 0
+			text-align: center
+			@include rounded(3px)
+			border: 1px solid #008ed0
+			box-shadow: 0 1px 0 rgba(0,0,0,0.3), 0 1px 0 rgba(255,255,255,0.3) inset
+			text-shadow: 0 1px 0 rgba(0,0,0,0.3)
+	
+	&:hover .more
+		display: block
 
 .mini-people > li
 	padding-left: 70px
