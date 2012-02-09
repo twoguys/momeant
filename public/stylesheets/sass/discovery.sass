@@ -143,6 +143,7 @@
 		@include rounded(3px)
 		@include transition(opacity)
 		z-index: 2
+		overflow: hidden
 		.stat
 			margin-bottom: 5px
 		.title
@@ -172,6 +173,9 @@
 			border: 1px solid #008ed0
 			box-shadow: 0 1px 0 rgba(0,0,0,0.3), 0 1px 0 rgba(255,255,255,0.3) inset
 			text-shadow: 0 1px 0 rgba(0,0,0,0.3)
+			&:active
+				box-shadow: 0 1px 0 rgba(0,0,0,0.3) inset
+			
 	
 	&:hover .more
 		display: block
