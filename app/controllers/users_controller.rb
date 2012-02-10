@@ -6,6 +6,8 @@ class UsersController < ApplicationController
   def show
     @recent_content = @user.created_stories.published.newest_first.limit(3)
     @rewarded_content = @user.rewarded_stories.uniq[0..2]
+    @top_supporters = @user.rewards.group_by(&:user).to_a.map {|x| [x.first,x.second.inject(0){|sum,r| sum+r.amount}]}.sort_by(&:second).reverse[0..2]
+    @favorite_creators = @user.given_rewards.group_by(&:recipient).to_a.map {|x| [x.first,x.second.inject(0){|sum,r| sum+r.amount}]}.sort_by(&:second).reverse[0..2]
     @nav = "me" if @user == current_user
   end
   

@@ -41,7 +41,29 @@
                 = link_to "Launch Viewer", story_path(content), :class => "launch"
     
     #people-column
-      
+      %section.app
+        %header
+          %h3 Top Supporters
+        %ul.mini-people
+          - @top_supporters.each do |patron|
+            %li
+              = link_to image_tag(patron[0].avatar.url(:thumbnail)), user_path(patron[0]), :class => "avatar"
+              = link_to patron[0].name, user_path(patron[0]), :class => "title"
+              %p
+                %span #{patron[0].first_name} has rewarded #{you_or_first_name(@user)}
+                %span.reward-count= patron[1]
+
+      %section.app
+        %header
+          %h3 Favorite Creators
+        %ul.mini-people
+          - @favorite_creators.each do |creator|
+            %li
+              = link_to image_tag(creator[0].avatar.url(:thumbnail)), user_path(creator[0]), :class => "avatar"
+              = link_to creator[0].name, user_path(creator[0]), :class => "title"
+              %p
+                %span #{you_or_first_name(@user)} has rewarded #{creator[0].first_name}
+                %span.reward-count= creator[1]
   
 - if me?(@user)
   :javascript
