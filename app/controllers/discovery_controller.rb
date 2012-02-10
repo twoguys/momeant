@@ -4,7 +4,7 @@ class DiscoveryController < ApplicationController
     range = 0..2
 
     @popular_content = Story.most_rewarded_recently[range]
-    @newest_content = Story.published.newest_first[range]    
+    @newest_content = Story.published.newest_first[range]
     @recommended_content = []
     @nearby_content = []
     @recommended_content = current_user.stories_tagged_similarly_to_what_ive_rewarded[range] if current_user

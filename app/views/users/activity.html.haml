@@ -1,0 +1,49 @@
+#user-profile
+  = render "users/user_info"
+  
+  .the-rest
+
+    .top
+      = link_to "< Back to Summary", user_path(@user), :class => "back-link"
+      %h1 #{me?(@user) ? "Your" : "#{@user.first_name}'s"} Activity
+      
+    #activity-surround{:class => @activity.empty? && me?(@user) ? "new-user-no-activity" : ""}
+
+      #activity
+      
+        #activity-body  
+          #activity-loading Just a momeant...
+
+          - if @activity.empty? && me?(@user)
+            #new-user-no-activity
+              %h1
+                %span Yay! We’ve given you 10 reward coins (
+                %span.coin
+                %span ) for free!
+              %p
+                %span Use these coins to reward others for their great content.
+              %p
+                %span As you start rewarding, and
+                = link_to "creating your own content", creations_user_path(current_user)
+                %span , you will see a list of that activity and its impact show up here.
+          
+              #activity-example
+                Example activity:
+          - else
+            %ul#activity-list
+              = render @activity
+              - if @activity.empty?
+                %li.none No activity.
+            = link_to "Load more...", "#", :id => "load-more-activity" unless @activity.empty?
+
+
+:javascript
+  var activity_url = '/users/' + #{@user.id} + '/activity';
+= javascript_include_tag "users/activity"
+  
+- if me?(@user)
+  :javascript
+    mpq.track('Viewed My Activity');
+- else
+  :javascript
+    mpq.track('Viewed Activity', {mp_note: '#{@user.name}'});

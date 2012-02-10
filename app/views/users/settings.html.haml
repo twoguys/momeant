@@ -1,4 +1,4 @@
-.user-profile
+#user-profile
   = render "users/user_info"
   
   .the-rest.user-settings
@@ -22,6 +22,45 @@
           %span.update= current_user.send_message_notification_emails? ? "Send" : "Don't send"
           %span me an email when someone messages me
 
+    %h2 Profile Information
+
+    %section.profile-picture
+      %h3 Upload a profile picture
+      .file-uploader
+        %form
+          = token_tag
+          .file-input
+            %input{:type => "file", :name => "user[avatar]", :id => "user_avatar"}
+            .loader
+          .example For best results, upload a JPG or PNG at least 200px by 200px.
+
+    %section.first_name
+      %h3
+        %span First Name
+        %span.info (double-click to edit)
+      .text{:update => "first_name"}= @user.first_name
+
+    %section.last_name
+      %h3
+        %span Last Name
+        %span.info (double-click to edit)
+      .text{:update => "last_name"}= @user.last_name
+
+    %section.email
+      %h3
+        %span Email Address
+        %span.info (double-click to edit)
+      .text{:update => "email"}= @user.email
+
+    %section.amazon_email
+      %h3
+        %span Amazon Email
+        %span.info (double-click to edit)
+        %span.freak-out PLEASE DOUBLE CHECK THIS as we will send your cashouts to this account.
+      .text{:update => "amazon_email"}= @user.amazon_email
+      %form
+        .example Not in the United States? Please #{mail_to "support@momeant.com", "contact us"} for a custom pay out method.
+
 :javascript
   $(function() {
     $('#settings-list .text').click(function() {
@@ -39,3 +78,6 @@
       });
     });
   });
+  var user_id = #{current_user.id};
+= javascript_include_tag "jquery.editinplace"
+= javascript_include_tag "users/edit"

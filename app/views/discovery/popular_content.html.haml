@@ -7,8 +7,7 @@
   
   %ul.content-thumbnail-list.discovery-list
     - @popular_content.each do |story|
-      = render "discovery/story", :story => story
-      
+      = render "discovery/story", :story => story[0]
       
 :javascript
   mpq.track('Viewed Popular Content');
