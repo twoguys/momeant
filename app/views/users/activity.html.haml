@@ -2,7 +2,11 @@
   = render "users/user_info"
   
   .the-rest
-    
+
+    .top
+      = link_to "< Back to Summary", user_path(@user), :class => "back-link"
+      %h1 #{me?(@user) ? "Your" : "#{@user.first_name}'s"} Activity
+      
     #activity-surround{:class => @activity.empty? && me?(@user) ? "new-user-no-activity" : ""}
 
       #activity

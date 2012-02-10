@@ -42,6 +42,8 @@ body#users, body#messages
 	#container
 		background: #f0e3d2 url(../images/new-york.jpg) repeat 50% 0
 		@include bgcover
+		#main
+			padding-bottom: 50px
 
 #user-profile
 	padding: 40px
@@ -212,7 +214,22 @@ body#users, body#messages
 				a
 					border: 1px solid #ccc
 					border-bottom: none
-	
+		.top
+			margin-bottom: 20px
+			a.back-link
+				background: $lightblue
+				color: $blue
+				padding: 2px 8px
+				@include rounded(15px)
+				@include transition
+				&:hover
+					background: $blue
+					color: #fff
+			h1
+				padding-top: 20px
+				margin-bottom: 0
+				font-weight: 700
+				text-transform: uppercase
 	
 	.guides
 		padding: 25px
