@@ -4,114 +4,120 @@
 #discovery-page
 
   #content-column
+  
+    %h1 Content You'll Love
 
-    %section.app
+    %section.app.one
       %header
-        %h3= link_to "Popular Content", popular_content_path
-        %p.description Rewarded the most in the past two weeks
-        = link_to "view more >", popular_content_path, :class => "more"
+        %h3= link_to "Popular", popular_content_path
+        = link_to "view more", popular_content_path, :class => "more"
       %ul.mini-content
         - @popular_content.each do |content|
-          = render "discovery/mini_content", :content => content
+          %li
+            = link_to image_tag(content[0].thumbnail.url(:medium)), story_path(content[0]), :class => "thumbnail"
+            .stat.popular= content[1].map(&:amount).inject(:+)
+            .more
+              = link_to image_tag(content[0].thumbnail.url(:medium)), story_path(content[0]), :class => "thumbnail"
+              .stat.popular= content[1].map(&:amount).inject(:+)
+              = link_to truncate(content[0].title, :length => 40), story_path(content[0]), :class => "title"
+              .byline by #{link_to content[0].user.name, user_path(content[0].user)}
+              %p.synopsis= truncate content[0].synopsis, :length => 210
+              = link_to "View Content", story_path(content[0]), :class => "launch"
         
-    %section.app
-      %header
-        %h3= link_to "Recommended Content", recommended_content_path
-        %p.description As you reward, we'll recommend similar content
-        = link_to "view more >", recommended_content_path, :class => "more"
-      - if current_user
-        %ul.mini-content
-          - @recommended_content.each do |content|
-            = render "discovery/mini_content", :content => content
-      - else
-        #{link_to "Sign up", "#join-modal"} to start rewarding so we can recommend some awesome content!
-      
-    %section.app
-      %header
-        %h3= link_to "Nearby Content", nearby_content_path
-        %p.description
-          - if current_user && current_user.location.present?
-            = current_user.location
-          - elsif current_user
-            Nowhere #{link_to "Edit", info_user_path(current_user)}
-          - else
-            Nowhere
-        = link_to "view more >", nearby_content_path, :class => "more"
-      - if current_user
-        %ul.mini-content
-          - @nearby_content.each do |content|
-            = render "discovery/mini_content", :content => content
-      - else
-        #{link_to "Signup", "#join-modal"} to see content around you
+    - if current_user
+      %section.app.two
+        %header
+          %h3= link_to "Recommended", recommended_content_path
+          = link_to "view more", recommended_content_path, :class => "more"
+        - if current_user
+          %ul.mini-content
+            - @recommended_content.each do |content|
+              %li
+                = link_to image_tag(content.thumbnail.url(:medium)), story_path(content), :class => "thumbnail"
+                .stat.recommended= truncate (content.tags & current_user.tags).join(", "), :length => 18
+                .more
+                  = link_to image_tag(content.thumbnail.url(:medium)), story_path(content), :class => "thumbnail"
+                  .stat.recommended= truncate (content.tags & current_user.tags).join(", "), :length => 18
+                  = link_to truncate(content.title, :length => 40), story_path(content), :class => "title"
+                  .byline by #{link_to content.user.name, user_path(content.user)}
+                  %p.synopsis= truncate content.synopsis, :length => 210
+                  = link_to "View Content", story_path(content), :class => "launch"
+        - else
+          #{link_to "Sign up", "#join-modal"} to start rewarding so we can recommend some awesome content!
 
-    %section.app
+    %section.app.three
       %header
-        %h3= link_to "Newest Content", newest_content_path
-        %p.description The freshest content from awesome creators
-        = link_to "view more >", newest_content_path, :class => "more"
+        %h3= link_to "Newest", newest_content_path
+        = link_to "view more", newest_content_path, :class => "more"
       %ul.mini-content
         - @newest_content.each do |content|
-          = render "discovery/mini_content", :content => content
+          %li
+            = link_to image_tag(content.thumbnail.url(:medium)), story_path(content), :class => "thumbnail"
+            .stat.newest #{time_ago_in_words(content.created_at)} ago
+            .more
+              = link_to image_tag(content.thumbnail.url(:medium)), story_path(content), :class => "thumbnail"
+              .stat.newest #{time_ago_in_words(content.created_at)} ago
+              = link_to truncate(content.title, :length => 40), story_path(content), :class => "title"
+              .byline by #{link_to content.user.name, user_path(content.user)}
+              %p.synopsis= truncate content.synopsis, :length => 210
+              = link_to "View Content", story_path(content), :class => "launch"
+    
+    - if current_user
+      %section.app.four
+        %header
+          %h3= link_to "Nearby", nearby_content_path
+          = link_to "view more", nearby_content_path, :class => "more"
+        - if current_user
+          %ul.mini-content
+            - @nearby_content.each do |content|
+              %li
+                = link_to image_tag(content.thumbnail.url(:medium)), story_path(content), :class => "thumbnail"
+                .stat.nearby= content.user.location
+                .more
+                  = link_to image_tag(content.thumbnail.url(:medium)), story_path(content), :class => "thumbnail"
+                  .stat.nearby= content.user.location
+                  = link_to truncate(content.title, :length => 40), story_path(content), :class => "title"
+                  .byline by #{link_to content.user.name, user_path(content.user)}
+                  %p.synopsis= truncate content.synopsis, :length => 210
+                  = link_to "View Content", story_path(content), :class => "launch"
+        - else
+          #{link_to "Signup", "#join-modal"} to see content around you
+    
+    - if current_user.nil?
+      #banner
+        %h2 Sign up to see more
+        %p We'd love to recommend some great content, show you what's being made nearby, and more. Come join our awesome community!
+        = link_to "Sign Up", "#join-modal", :class => "button"
   
   #people-column
     
     %section.app
       %header
-        %h3= link_to "Notable People", notable_people_path
-        %p.description Some of our favorites here at Momeant
-        = link_to "view more >", notable_people_path, :class => "more"
-      %ul.mini-people
-        - @notable_people.each do |editorial|
-          %li
-            = link_to image_tag(editorial.user.avatar.url(:thumbnail)), user_path(editorial.user), :class => "avatar"
-            = link_to editorial.user.name, user_path(editorial.user), :class => "title"
-            %p.quote= truncate editorial.quote, :length => 120
-        
-    %section#friends-you-know.app
-      %header
-        %h3= link_to "People You Know", friends_people_path
-        %p.description.service-links
-          - if current_user
-            - if current_user.authentications.find_by_provider("twitter")
-              %span Twitter linked
-            - else
-              = link_to "link Twitter", "#{root_url}auth/twitter", :class => "link", :id => "link-twitter"
-            - if current_user.authentications.find_by_provider("facebook")
-              %span Facebook linked
-            - else
-              = link_to "link Facebook", "#{root_url}auth/facebook", :class => "link", :id => "link-facebook"
-          - else
-            #{link_to "Sign up", "#join-modal"} to link your networks
-        = link_to "view more >", friends_people_path, :class => "more"
-      %ul.mini-activity
-        - if current_user && current_user.authentications.find_by_provider("twitter").nil? && current_user.authentications.find_by_provider("facebook").nil?
-          %li.text-only Use the buttons above to link your networks so you can see what your friends are doing here at Momeant!
-        - else
-          = render "friends_people"
-    
-    %section.app
-      %header
-        %h3= link_to "Top Patrons", patrons_people_path
-        %p.description The best rewarders
-        = link_to "view more >", patrons_people_path, :class => "more"
+        %h3= link_to "Top Rewarders", patrons_people_path
       %ul.mini-people
         - @top_patrons.each do |patron|
           %li
             = link_to image_tag(patron.avatar.url(:thumbnail)), user_path(patron), :class => "avatar"
             = link_to patron.name, user_path(patron), :class => "title"
-            .stat
+            %p.impact.short
               %span.impact-count.count= patron.impact
               %span impact
-            - if patron.occupation
-              %p.quote.short= patron.occupation
-            - if patron.location
-              %p.quote.short= patron.location
-    
+            .badge= image_tag "badges/#{patron.badge_level}.png"
+
     %section.app
       %header
-        %h3= link_to "Top Creators", creators_people_path
-        %p.description The most rewarded people
-        = link_to "view more >", creators_people_path, :class => "more"
+        %h3= link_to "Handpicked Creators", notable_people_path
+      %ul.mini-people.side-by-side
+        - @notable_people.each do |editorial|
+          %li
+            = link_to image_tag(editorial.user.avatar.url(:thumbnail)), user_path(editorial.user), :class => "avatar"
+            %a.title{:href => user_path(editorial.user)}
+              %span= editorial.user.first_name
+              %span= editorial.user.last_name
+        
+    %section.app
+      %header
+        %h3= link_to "Fast Risers", creators_people_path
       %ul.mini-people
         - @top_creators.each do |creator|
           %li
@@ -119,14 +125,9 @@
             = link_to creator.name, user_path(creator), :class => "title"
             .stat
               %span.reward-count.count= creator.lifetime_rewards
-              %span rewards
             - if creator.occupation
               %p.quote.short= creator.occupation
-            - if creator.location
-              %p.quote.short= creator.location
-        
   .clear
-
 
 :javascript
   mpq.track('Viewed Discovery');

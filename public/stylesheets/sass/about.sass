@@ -1,57 +1,43 @@
-#about
-	background: #ececec url(../images/)
-	#about-inner
-		width: 784px
-		margin: 0 auto
-		padding: 40px 0
-		font-family: $numerals
-		font-weight: 200
+body#home.about, body#home.tos
+	background: #f0e3d2 url(../images/new-york.jpg) repeat 50% 0
+	@include bgcover
 	
-		#header-image
-			background: transparent url(../images/aboutPageHeader.png) no-repeat 50% 0
-			height: 183px
-			margin-bottom: 40px
+	#inner
+		padding: 40px
+		width: 920px
+		margin: 40px auto
+		background: #fff
+		box-shadow: 0 0 6px rgba(0,0,0,0.5)
 	
-		#explanation
-			width: 670px
-			font-size: 22px
-			padding: 20px 0
-			border-bottom: 1px solid #fff
-			margin: 0 auto 50px
-			h2
-				font-family: $numerals
-				color: $blue
-				text-transform: none
-				background: none
-				padding: 0
-				text-align: center
-				line-height: 1.1em
-				width: 450px
-				margin: 0 auto
-			h2, strong	
-				font-weight: 400
-			p
-				text-align: justify
-				line-height: 1.4em
-	
-		#illustration
-			height: 553px
-			background: transparent url(../images/aboutDiagram.png) no-repeat 0 0
+	#header-image
+		background: transparent url(../images/aboutPageHeader.png) no-repeat 50% 0
+		height: 183px
+		margin-bottom: 40px
 		
-		#faq
-			width: 670px
-			margin: 50px auto 0
-			border-top: 1px solid #fff
-			padding-top: 50px
-			font-size: 1.5em
-			h2
-				padding: 0
-				background: none
-				margin-bottom: 1em
-			h3
-				margin-top: 2em
-				font-weight: 400
-				font-size: 1.1em
-			p
-				margin: 0.4em 0
-				line-height: 1.4em
+	h1
+		text-transform: uppercase
+		font-family: "atrament-web-1", "atrament-web-2", sans-serif
+		letter-spacing: 0.02em
+		font-size: 36px
+		border-bottom: 1px solid #ccc
+		margin-bottom: 5px
+		padding-bottom: 5px
+	p.subheading
+		margin: 0 0 20px
+	
+	h3
+		font-size: 16px
+	
+	ol
+		margin-left: 3em
+		margin-bottom: 20px
+		li
+			list-style-type: lower-alpha
+
+body#home.tos
+	h1
+		border: none
+	h3
+		font-size: 13px
+	ol li
+		list-style-type: lower-roman

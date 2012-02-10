@@ -7,7 +7,7 @@
         = link_to(image_tag(@user.avatar.url(:large)), user_path(@user), :class => "avatar")
       = image_tag("badges/#{@user.badge_level}.png", :class => "badge")
   
-    .name= @user.name
+    .name= link_to @user.name, user_path(@user)
     
     %ul.about
       %li
@@ -35,17 +35,10 @@
       - if me?(@user)
         %li= link_to "Cash Out", user_cashouts_path(@user), :id => "cashout", :class => "button"
 
-  %ul.nav
-    %li= link_to_active "<span>Activity</span>".html_safe, user_path(@user), :class => "activity"
-    %li= link_to_active "<span>Content</span>".html_safe, creations_user_path(@user), :class => "content"
-    %li= link_to_active "<span>Info</span>".html_safe, info_user_path(@user), :class => "info"
-    - if me?(@user)
-      - message_text = @user.unread_message_count > 0 ? "<span>Messages (#{@user.unread_message_count})</span>" : "<span>Messages</span>"
-      %li= link_to_active message_text.html_safe, user_messages_path(@user), :class => "message"
-      %li= link_to_active "<span>Settings</span>".html_safe, settings_user_path(@user), :class => "settings"
-    - else
-      %li= link_to "<span>Message #{@user.first_name}</span>".html_safe, user_messages_path(@user), :class => "message"
-      
-  #special-links
-    - if current_user && current_user.is_admin?
-      = link_to "Editorialize", new_admin_editorial_path(:user => @user.id), :id => "editorialize"
+    - unless me?(@user)
+      #user-actions
+        = link_to "Message #{@user.first_name}", user_messages_path(@user), :class => "button"
+        - if current_user && current_user.is_admin?
+          = link_to "Editorialize #{@user.first_name}", new_admin_editorial_path(:user => @user.id), :id => "editorialize"
+
+    .clear

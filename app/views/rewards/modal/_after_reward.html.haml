@@ -1,8 +1,8 @@
 #creator-info.left-side
-  = link_to(image_tag(@story.user.avatar.url(:large)), creations_user_path(@story.user), :class => "avatar")
+  = link_to(image_tag(@story.user.avatar.url(:large)), user_path(@story.user), :class => "avatar")
   .byline
     content by
-    = link_to @story.user.name, creations_user_path(@story.user)
+    = link_to @story.user.name, user_path(@story.user)
   .message
     - if @story.thankyou.present?
       = truncate(@story.thankyou, :length => 260)

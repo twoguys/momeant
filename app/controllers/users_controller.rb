@@ -4,10 +4,10 @@ class UsersController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => [:billing_updates, :update_avatar]
   
   def show
-    @activity = Activity.involving(@user).page(params[:page])
-    @top_supporters = @user.rewards.group_by(&:user).to_a.map {|x| [x.first,x.second.inject(0){|sum,r| sum+r.amount}]}.sort_by(&:second).reverse[0..5]
-    @favorite_creators = @user.given_rewards.group_by(&:recipient).to_a.map {|x| [x.first,x.second.inject(0){|sum,r| sum+r.amount}]}.sort_by(&:second).reverse[0..5]
-    
+    @recent_content = @user.created_stories.published.newest_first.limit(3)
+    @rewarded_content = @user.rewarded_stories.uniq[0..2]
+    @top_supporters = @user.rewards.group_by(&:user).to_a.map {|x| [x.first,x.second.inject(0){|sum,r| sum+r.amount}]}.sort_by(&:second).reverse[0..2]
+    @favorite_creators = @user.given_rewards.group_by(&:recipient).to_a.map {|x| [x.first,x.second.inject(0){|sum,r| sum+r.amount}]}.sort_by(&:second).reverse[0..2]
     @nav = "me" if @user == current_user
   end
   
@@ -20,6 +20,10 @@ class UsersController < ApplicationController
   end
   
   def activity
+    @activity = Activity.involving(@user).page(params[:page])
+  end
+  
+  def more_activity
     activity = []
     case params[:filter]
     when "all"

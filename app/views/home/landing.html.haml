@@ -23,14 +23,14 @@
                 = f.check_box :tos_accepted
                 %label{:for => "user_tos_accepted"} I agree to the #{link_to("Terms of Service", tos_path, :target => "new")}
               %li.submit
-                = f.submit "sign up for free"
+                = f.submit "Join Momeant"
     #creator
       %p#creator-text
         = link_to @story.title, story_path(@story)
         %span by #{@story.user.name}
         %span.occupation= @story.user.occupation
         %span.location= @story.user.location
-      = link_to image_tag(@story.user.avatar.url(:thumbnail)), creations_user_path(@story.user), :class => "avatar"
+      = link_to image_tag(@story.user.avatar.url(:thumbnail)), user_path(@story.user), :class => "avatar"
   
   #description
     %ul
@@ -49,8 +49,8 @@
     %ul#people
       - @editorials.each do |editorial|
         %li
-          = link_to image_tag(editorial.user.avatar.url(:editorial)), creations_user_path(editorial.user), :class => "avatar"
-          = link_to editorial.user.name, creations_user_path(editorial.user), :class => "name"
+          = link_to image_tag(editorial.user.avatar.url(:editorial)), user_path(editorial.user), :class => "avatar"
+          = link_to editorial.user.name, user_path(editorial.user), :class => "name"
           .earned
             %span.amount= number_to_currency(editorial.user.rewards.sum(:amount) * Reward.dollar_exchange)
             %span.text money rewarded from folks like:

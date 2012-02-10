@@ -1,44 +1,58 @@
 #about
 
-  #about-inner
+  #inner
 
     #header-image
 
-    #explanation
-      %h2 Our goal is to get people paid for the content they share on the Web.
-      %p
-        %span To do this, we're introducing
-        %strong The Reward,
-        %span a voluntary contribution you choose to make if you've enjoyed a piece of content.
-      %p
-        %span If you read an article you like, see a great blog post, or watch a cool video and see the momeant
-        %strong Reward
-        %span button, show your support by rewarding that creator. By rewarding, you support and connect with the people behind great content and generate valuable impact data that momeant tracks and redirects to you.
-  
-    #illustration
-    
-    #faq
-      %h2 Frequently Asked Questions
-      
-      %h3 How do I start representing myself and my content?
-      - if current_user.nil?
-        %p First, you need to #{link_to "Join", "#join-modal"} or #{link_to "Login", "#login-modal"}.
-      %p Go to your creations page (the + button in the top navigation bar).
-      %p Once there, you'll get some instructions and see a big box to "add content".
-      %p Use this to link to your content, create content from scratch, and organize it for others to see.
-      
-      %h3
-        What are Reward Coins?
-      %p Reward coins are the currency of Momeant's community. Give reward coins to show appreciation and support.
-      %p As you reward, you build status in the Momeant community so your own content can be found.
-      - if current_user.nil?
-        %p First, you need to #{link_to "Join", "#join-modal"} or #{link_to "Login", "#login-modal"}.
-        %p Then you can #{link_to("purchase reward coins", coins_path)} to start rewarding.
-      - else
-        %p You can #{link_to("purchase reward coins", coins_path)} to start rewarding.
-      
-      %h3
-        Is there a free trial?
-      %p Yes! Once you sign up, which is free, you receive 5 reward coins to give out.
-      %p While they are a free trial, those are real rewards that we will pay out to the creators you choose.
-      %p So enjoy, and make sure to #{link_to "purchase more rewards", coins_path} when you run out.
+    %h1 The answers to all of your questions
+    %p.subheading (That we could think of that is. If we’ve missed something, and of course we did, PLEASE don’t be shy, #{link_to "let us know", "#feedback-modal"})
+
+    %h3 1. Who are you guys?
+    %p We’re momeant (that’s pronounced just like ‘moment’ by the way), three guys with a dream: to help all of you who create and share your content, information, and software online, get paid for your hard work. The way we’re doing that, is by building a community in which we voluntarily reward one another when we like each other’s content. Then we use your reward behavior to help you find exactly the content and people that you’ll like or find useful.
+
+    %h3 2. What are you trying to do again? What problem are you solving?
+    %p Ultimately, we hope to create a sustainable digital economy, which there currently isn’t. It might seem like it (b/c of confirmation bias for you Kahneman fans), but very few of us who create content, information, or software on the Web get paid for doing so.
+    %p Today more and more of us are hardworking creators who share our work online, whether you’re a talented hobby photographer, passionate writer, professional movie maker, musician, BMX biker with an amazing reel, we all create work that can be shared online, and that’s here to stay.
+    %p Since we’re already losing so many jobs to automation and digitization, we feel strongly that it’s time to recognize the value in the creations of others and build a model of exchange that supports the creative process and builds a sustainable digital economy.
+
+    %h3 3. And how exactly does momeant solve this problem?
+    %p By introducing a “reward” button, that allows people who view and like your content to voluntarily reward you. The reward button opens up to reveal information about the author of that content, telling you about the real live human behind this digital product.
+
+    %h3 4. So, you want me to voluntarily reward content I get for free?
+    %p Sounds crazy, but that’s right! In return, we’ll build you an entire experience built off of that reward action, complete with content recommendations (based on your rewards), people you might like (based on your rewards), badges and achievements you can earn (based on your rewards – you get the idea, its all based on your rewards).
+    %p If it still sounds strange for the Web, think of it this way, have you ever dropped a quarter into a street musician’s guitar case or hat? Its simple, easy, and voluntary, but sometimes when we enjoy something we feel like doing just that, and know we’re doing good when we do.
+
+    %h3 5. You mean its all voluntary and free?!?
+    %p Yes. Momeant is totally free to use. You can see as much content as you’d like, you can post as much content as you’d like, and you can choose who you’d like to reward, when, in whatever amount you’d like. Its all in your hands, so try it out already!
+
+    %h3 6. What is a ‘reward’ anyway?
+    %p Each reward ‘coin’ is worth 10 cents. For now, you can purchase coin packages here. Remember: all content is free, the creators of content want to get exposure and have people enjoy content for free. We just want to give you a good reason to reward them when you like what they’ve done.
+
+    %h3 7. Am I legally allowed to get paid for content I create, even if its owned by my employer, organization X? Won’t I get fired / thrown in jail?
+    %p Don’t be silly! We’ve taken real precautions just to avoid any incarcerations ( but just remember, you are ultimately responsible for deciding what content you have the right to post). Here’s the deal:
+    %ol
+      %li When you link content through momeant, we frame the original URL so that the original content is unadulterated. So if you wrote a NYTimes article, your readers are still going to the NYTimes website, we’re just adding a button that informs them that you wrote the article and a little about you. We’ve talked to some magazines and publications, they’re cool with it.
+      %li Rewards are for people, not content. You don’t get paid for content, you give it away for free. Since rewards are voluntary, you get rewarded for being you, and doing what you do to create great content online.
+      %li You do have to be the rightful author or creator of content to get rewarded, though you may not own the content yourself, if you work for a publication or organization.
+    %p Ultimately, its up to you and the terms of your contract with your employer whether you can link to it on Momeant, but hopefully this information helps. If you’re still unsure, contact us, we’re happy to help you figure it out.
+
+    %h3 8. Ok, I’m a content creator, and I want to link my blog/website, do I have to do any hard work?
+    %p Certainly not. We wouldn’t do that to you, our job is to make it as easy as possible, and not mess up your content or experience in any way. You already make content, you know how you want it to be experienced. We simply provide a way to share a link to your content, which puts our reward button on it. We’re also working on an app that lets you put the button on your own website or blog, permanently. Let us know if you’d like to see it soon!
+
+    %h3 9. This sounds like a big problem, can you really solve it this way?
+    %p With your help, as a community, absolutely we can. And its so easy to give it a shot, all it takes is linking your content, and an occasional 10 cent reward. Plus, we have some big ideas for increasing the cash to everyone in the near term, but we need help establishing the norms of this community, so help us out and reward someone you like!
+
+    %h3 10. I don’t want to reward, screw you guys.
+    %p That’s not a question, but hey, please enjoy content for free! Its really not that big of a deal, so take it easy tough guy!
+
+    %h3 11. Can I really make a difference with a 10 cent reward?
+    %p Yes you can, especially if you share that reward. When you share a reward on twitter or Facebook, it will show up just like any other tweet or fb post that you make when you share a video, photos, or an article or blog. But any rewards resulting from that tweet or post will be credited to you as your ‘Impact’. You helped get those rewards, so great job. We display the people with the most impact to give you your due.
+
+    %h3 12. How much money can I really make here?
+    %p Like with any service, its definitely going to depend on the person, the content, the timing, and some luck. But put it this way, we may not be able to guarantee you’ll make your rent, but what if we can help you buy that new SLR lens you’ve had your eye on? Or how about your subscription to ‘Flea and Collar’ magazine for the whole year? The point is, we hope to help generate sustainable income for some, and extra cash for everyone else, all while creating exposure and getting you a really supportive fan base.
+
+    %h3 13. Do you guys make money?
+    %p Yes. We think its important to remain sustainable, and to keep providing better and more innovative ways to get content creators paid. We can only do that if we also make some money. Also, its REALLY important to us not to drop advertising on you, not to sell your content, data, or behavior to advertisers and credit card companies, and not to trick you in any other way in order to make money off of you. We want to be clear and transparent. Right now, we make money in two ways, we take a little from each coin purchase to cover credit card fees, and we take a little during pay outs to cover our own costs. We’re currently working on simplifying that even further. So, we’ll do our best to build, support, and innovate this community for you, and you can help us stay sustainable. Sound fair?
+
+    %h3 14. So, how do I get paid, son?
+    %p Of course the first step is to share your content, promote it to your fans and supporters and get rewarded. We pay out monthly once you’ve received $10 in rewards. Currently we pay through Amazon#{current_user.present? ? link_to(" (make sure you give us your Amazon account info link)", settings_user_path(current_user)) : ""}, but are working to add additional solutions. If you live outside the US or need another solution, get in touch and we’ll work something else out.
