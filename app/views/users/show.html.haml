@@ -19,7 +19,7 @@
                 = link_to truncate(content.title, :length => 40), story_path(content), :class => "title"
                 .byline by #{link_to @user.name, user_path(@user)}
                 %p.synopsis= truncate content.synopsis, :length => 210
-                = link_to "Launch Viewer", story_path(content), :class => "launch"
+                = link_to "View Content", story_path(content), :class => "launch"
     
       %section.two
         %header
@@ -36,7 +36,7 @@
                 = link_to truncate(content.title, :length => 40), story_path(content), :class => "title"
                 .byline by #{link_to @user.name, user_path(@user)}
                 %p.synopsis= truncate content.synopsis, :length => 210
-                = link_to "Launch Viewer", story_path(content), :class => "launch"
+                = link_to "View Content", story_path(content), :class => "launch"
     
     #people-column
       %section.app
