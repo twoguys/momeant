@@ -7,7 +7,7 @@
       - if current_user && current_user.location.present?
         = current_user.location
       - elsif current_user
-        Nowhere #{link_to "Edit", info_user_path(current_user)}
+        Nowhere #{link_to "Edit", settings_user_path(current_user)}
       - else
         Nowhere
     

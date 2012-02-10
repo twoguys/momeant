@@ -587,7 +587,8 @@ input[type="submit"], a.button {
   font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif; }
 
 input[type="submit"]:active, a.button:active {
-  top: 1px; }
+  top: 1px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2) inset; }
 
 label[for="user_remember_me"] {
   display: inline-block;
@@ -4806,9 +4807,20 @@ impact ul.avatars li {
   .user-stats li.rewards .icon {
     background-image: url(../images/icons/starGreySmall.png); }
 
-.user-profile {
+body#users #container, body#messages #container {
+  background: #f0e3d2 url(../images/new-york.jpg) repeat 50% 0;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover; }
+
+#user-profile {
+  padding: 40px;
+  width: 920px;
+  margin: 40px auto;
+  background: white;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
   /* First-time Users */
-  /* Info */
   /* Patronage Tab */
   /* Stats Bar */
   /* Creations Tab */
@@ -4817,111 +4829,114 @@ impact ul.avatars li {
   /* Followers, Following Tabs */
   /* Supporters Tab */
   /* Edit Profile */ }
-  .user-profile .profile-info {
-    position: relative; }
-    .user-profile .profile-info .metadata {
-      padding: 28px 40px 0 210px;
-      height: 140px; }
-      .user-profile .profile-info .metadata .avatar-badge {
+  #user-profile .profile-info {
+    position: relative;
+    margin-bottom: 10px; }
+    #user-profile .profile-info .metadata {
+      padding: 12px 0 20px 195px; }
+      #user-profile .profile-info .metadata .avatar-badge {
         position: absolute;
-        top: 20px;
-        left: 40px; }
-        .user-profile .profile-info .metadata .avatar-badge .avatar {
+        top: 6px;
+        left: 28px; }
+        #user-profile .profile-info .metadata .avatar-badge .avatar {
           position: absolute;
           top: 10px;
           left: 5px;
           z-index: 1; }
-          .user-profile .profile-info .metadata .avatar-badge .avatar img {
+          #user-profile .profile-info .metadata .avatar-badge .avatar img {
             width: 130px;
             height: 130px;
             border: 3px solid black; }
-        .user-profile .profile-info .metadata .avatar-badge .badge {
+        #user-profile .profile-info .metadata .avatar-badge .badge {
           position: absolute;
           top: -5px;
           left: -27px;
           z-index: 3; }
-      .user-profile .profile-info .metadata .name {
+      #user-profile .profile-info .metadata .name {
         font-size: 24px;
         font-weight: 700;
         text-transform: uppercase; }
-      .user-profile .profile-info .metadata ul.about, .user-profile .profile-info .metadata ul.stats {
+      #user-profile .profile-info .metadata ul.about, #user-profile .profile-info .metadata ul.stats {
         float: left; }
-      .user-profile .profile-info .metadata ul.about {
+      #user-profile .profile-info .metadata ul.about {
         width: 350px;
         font-size: 11px;
         margin: 10px 50px 0 0; }
-        .user-profile .profile-info .metadata ul.about li {
+        #user-profile .profile-info .metadata ul.about li {
           margin-bottom: 3px; }
-        .user-profile .profile-info .metadata ul.about .weak {
+        #user-profile .profile-info .metadata ul.about .weak {
           color: #999999;
           text-transform: uppercase; }
-      .user-profile .profile-info .metadata ul.stats {
+      #user-profile .profile-info .metadata ul.stats {
         position: relative;
         margin-top: 5px;
         width: 200px; }
-        .user-profile .profile-info .metadata ul.stats li {
+        #user-profile .profile-info .metadata ul.stats li {
           padding: 4px 0;
           font-size: 11px;
           border-bottom: 1px solid #dddddd; }
-          .user-profile .profile-info .metadata ul.stats li .amount {
+          #user-profile .profile-info .metadata ul.stats li .amount {
             font-weight: 700; }
-          .user-profile .profile-info .metadata ul.stats li .dollar {
+          #user-profile .profile-info .metadata ul.stats li .dollar {
             padding: 0 6px 0 5px; }
-          .user-profile .profile-info .metadata ul.stats li #cashout {
+          #user-profile .profile-info .metadata ul.stats li #cashout {
             display: block;
             font-size: 11px;
             text-align: center; }
-        .user-profile .profile-info .metadata ul.stats .current-money {
+        #user-profile .profile-info .metadata ul.stats .current-money {
           border: none; }
-        .user-profile .profile-info .metadata ul.stats .impact .amount {
+        #user-profile .profile-info .metadata ul.stats .impact .amount {
           background: transparent url(../images/icons/impactTiny.png) no-repeat 0 0;
           padding-left: 20px;
           margin-right: 3px; }
-        .user-profile .profile-info .metadata ul.stats li:last-child {
+        #user-profile .profile-info .metadata ul.stats li:last-child {
           border: none; }
-    .user-profile .profile-info ul.nav {
+    #user-profile .profile-info ul.nav {
       margin-top: 20px;
       padding: 0 20px;
       height: 28px;
       border-bottom: 1px solid #dddddd; }
-      .user-profile .profile-info ul.nav li {
+      #user-profile .profile-info ul.nav li {
         float: left;
         margin-right: 40px; }
-        .user-profile .profile-info ul.nav li a {
+        #user-profile .profile-info ul.nav li a {
           display: block;
           height: 16px;
           padding: 6px 14px 6px 8px;
           text-transform: uppercase;
           font-size: 11px; }
-          .user-profile .profile-info ul.nav li a span {
+          #user-profile .profile-info ul.nav li a span {
             padding-left: 22px;
             background: transparent url(../images/icons/activity.png) no-repeat 0 -2px; }
-        .user-profile .profile-info ul.nav li a:hover {
+        #user-profile .profile-info ul.nav li a:hover {
           color: #008ccd; }
-        .user-profile .profile-info ul.nav li a.info span {
+        #user-profile .profile-info ul.nav li a.info span {
           background-image: url(../images/icons/user.png); }
-        .user-profile .profile-info ul.nav li a.content span {
+        #user-profile .profile-info ul.nav li a.content span {
           background-image: url(../images/icons/content.png); }
-        .user-profile .profile-info ul.nav li a.message span {
+        #user-profile .profile-info ul.nav li a.message span {
           background-image: url(../images/icons/message.png); }
-        .user-profile .profile-info ul.nav li a.edit span {
+        #user-profile .profile-info ul.nav li a.edit span {
           background-image: url(../images/icons/pencil.png); }
-        .user-profile .profile-info ul.nav li a.settings span {
+        #user-profile .profile-info ul.nav li a.settings span {
           background-image: url(../images/icons/gear.png); }
-        .user-profile .profile-info ul.nav li a.active {
-          background: #f4f4f4;
+        #user-profile .profile-info ul.nav li a.active {
+          background: white;
           color: black;
           position: relative;
           border: 1px solid #dddddd;
           border-bottom: none; }
-          .user-profile .profile-info ul.nav li a.active span {
+          #user-profile .profile-info ul.nav li a.active span {
             background-position: 0 -25px; }
-    .user-profile .profile-info #special-links {
+    #user-profile .profile-info #special-links {
       position: absolute;
       top: 0;
       right: 10px;
       width: 150px; }
-    .user-profile .profile-info #editorialize {
+    #user-profile .profile-info #user-actions {
+      clear: both;
+      padding-top: 15px; }
+    #user-profile .profile-info #editorialize {
       height: 28px;
       line-height: 30px;
       padding: 0 20px;
@@ -4945,48 +4960,47 @@ impact ul.avatars li {
       font-weight: 500;
       font-size: 12px;
       text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
-      display: block;
       margin-top: 10px;
       text-align: center;
       text-transform: uppercase;
       font-weight: 700;
       height: 12px;
       line-height: 12px;
-      padding: 6px 0; }
-      .user-profile .profile-info #editorialize:hover {
+      padding: 6px 12px; }
+      #user-profile .profile-info #editorialize:hover {
         background-image: -moz-linear-gradient(center top, #ffbb01 4%, #f18c00 52%);
         background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #ffbb01), color-stop(0.52, #f18c00)); }
-    .user-profile .profile-info .occupation h3, .user-profile .profile-info .tagline h3, .user-profile .profile-info .location h3, .user-profile .profile-info .tags h3 {
+    #user-profile .profile-info .occupation h3, #user-profile .profile-info .tagline h3, #user-profile .profile-info .location h3, #user-profile .profile-info .tags h3 {
       font-size: 10px;
       text-transform: uppercase;
       color: #aaaaaa;
       border-bottom: 1px solid #e0e0e0;
       margin-bottom: 2px; }
-    .user-profile .profile-info .occupation {
+    #user-profile .profile-info .occupation {
       margin-bottom: 10px; }
-    .user-profile .profile-info .tagline {
+    #user-profile .profile-info .tagline {
       clear: both;
       padding-top: 4px;
       margin-bottom: 12px; }
-    .user-profile .profile-info .location {
+    #user-profile .profile-info .location {
       margin-bottom: 13px; }
-    .user-profile .profile-info .tags {
+    #user-profile .profile-info .tags {
       margin-bottom: 13px; }
-      .user-profile .profile-info .tags h3 {
+      #user-profile .profile-info .tags h3 {
         margin-bottom: 5px; }
-  .user-profile .the-rest {
+  #user-profile .the-rest {
     position: relative;
     padding: 20px; }
-    .user-profile .the-rest .horizontal-tabs {
+    #user-profile .the-rest .horizontal-tabs {
       border-bottom: 1px solid #cccccc; }
-      .user-profile .the-rest .horizontal-tabs ul {
+      #user-profile .the-rest .horizontal-tabs ul {
         padding-top: 20px; }
-        .user-profile .the-rest .horizontal-tabs ul a {
+        #user-profile .the-rest .horizontal-tabs ul a {
           border: 1px solid #cccccc;
           border-bottom: none; }
-  .user-profile .guides {
+  #user-profile .guides {
     padding: 25px; }
-    .user-profile .guides a {
+    #user-profile .guides a {
       height: 28px;
       line-height: 30px;
       padding: 0 20px;
@@ -5019,10 +5033,10 @@ impact ul.avatars li {
       float: left;
       margin-right: 2%;
       box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); }
-      .user-profile .guides a:hover {
+      #user-profile .guides a:hover {
         background-image: -moz-linear-gradient(center top, #ffbb01 4%, #f18c00 52%);
         background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #ffbb01), color-stop(0.52, #f18c00)); }
-      .user-profile .guides a span.text {
+      #user-profile .guides a span.text {
         display: block;
         width: 175px;
         position: absolute;
@@ -5031,48 +5045,48 @@ impact ul.avatars li {
         padding-left: 33px;
         background: transparent url(../images/icons/communitySmall.png) no-repeat 0 3px;
         line-height: 13px; }
-      .user-profile .guides a span.arrow {
+      #user-profile .guides a span.arrow {
         position: absolute;
         top: 16px;
         right: 15px;
         width: 11px;
         height: 16px;
         background: transparent url(../images/arrowThinRightWhite.png) no-repeat 0 0; }
-    .user-profile .guides a.create span.text {
+    #user-profile .guides a.create span.text {
       background-image: url(../images/icons/momeantAddStorySmallWhite.png);
       background-position: 4px 5px; }
-    .user-profile .guides a.profile span.text {
+    #user-profile .guides a.profile span.text {
       background-image: url(../images/icons/profileWhite.png); }
-    .user-profile .guides a:last-child {
+    #user-profile .guides a:last-child {
       margin-right: 0; }
-  .user-profile .horizontal-tabs {
+  #user-profile .horizontal-tabs {
     clear: both; }
-    .user-profile .horizontal-tabs li a {
+    #user-profile .horizontal-tabs li a {
       padding-left: 32px;
       background-position: 10px 9px;
       background-repeat: no-repeat; }
-    .user-profile .horizontal-tabs li.rewards a {
+    #user-profile .horizontal-tabs li.rewards a {
       background-image: url(../images/icons/starBlackSmall.png); }
-    .user-profile .horizontal-tabs li.rewards a.active {
+    #user-profile .horizontal-tabs li.rewards a.active {
       background-position: 10px 10px; }
-    .user-profile .horizontal-tabs li.creations a {
+    #user-profile .horizontal-tabs li.creations a {
       background-image: url(../images/icons/momeantAddStorySmall.png); }
-    .user-profile .horizontal-tabs li.creations a.active {
+    #user-profile .horizontal-tabs li.creations a.active {
       background-position: 10px 9px; }
-    .user-profile .horizontal-tabs li.messages a {
+    #user-profile .horizontal-tabs li.messages a {
       background-image: url(../images/icons/commentBlackSmall.png); }
-  .user-profile .have-not {
+  #user-profile .have-not {
     width: 300px;
     float: left;
     margin-right: 20px;
     padding: 10px 0 0 10px; }
-    .user-profile .have-not h3 {
+    #user-profile .have-not h3 {
       text-transform: uppercase;
       margin-bottom: 10px; }
-      .user-profile .have-not h3 em {
+      #user-profile .have-not h3 em {
         font-style: normal;
         color: #00aeef; }
-    .user-profile .have-not .box-button {
+    #user-profile .have-not .box-button {
       display: block;
       width: 260px;
       height: 35px;
@@ -5082,29 +5096,87 @@ impact ul.avatars li {
       background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #fdfdfd), color-stop(0.52, #f0f0f0));
       border: 1px solid #d9d9d9;
       padding: 30px 20px; }
-      .user-profile .have-not .box-button .inner {
+      #user-profile .have-not .box-button .inner {
         padding-left: 50px;
         height: 35px; }
-        .user-profile .have-not .box-button .inner span.text {
+        #user-profile .have-not .box-button .inner span.text {
           display: block;
           float: left;
           width: 180px; }
-        .user-profile .have-not .box-button .inner span.arrow {
+        #user-profile .have-not .box-button .inner span.arrow {
           display: block;
           float: right;
           width: 13px;
           height: 30px;
           background: transparent url(../images/icons/lineArrow.png) no-repeat 0 5px; }
-  .user-profile .have-not.rewarded .box-button .inner {
+  #user-profile .have-not.rewarded .box-button .inner {
     background: transparent url(../images/icons/communityDark.png) no-repeat 0 2px; }
-  .user-profile .have-not.shared .box-button .inner {
+  #user-profile .have-not.shared .box-button .inner {
     background: transparent url(../images/icons/momeantAddStoryGrey.png) no-repeat 5px 2px; }
-  .user-profile #new-user-no-activity {
+  #user-profile #summary {
+    display: inline-block;
+    width: 100%;
+    padding: 20px 0; }
+    #user-profile #summary:after {
+      content: ".";
+      display: block;
+      height: 0;
+      clear: both;
+      visibility: hidden; }
+    #user-profile #summary section {
+      display: inline-block;
+      width: 100%;
+      height: 200px;
+      position: relative; }
+      #user-profile #summary section:after {
+        content: ".";
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden; }
+      #user-profile #summary section header {
+        position: relative;
+        height: 15px;
+        margin-bottom: 10px; }
+        #user-profile #summary section header h1 {
+          font-size: 15px;
+          font-weight: 700;
+          text-transform: uppercase;
+          margin-bottom: 15px; }
+        #user-profile #summary section header a.more {
+          font-size: 12px;
+          font-weight: 500;
+          text-transform: none;
+          margin-left: 10px; }
+  #user-profile #activity {
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    -webkit-box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    -moz-box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    margin: 0; }
+    #user-profile #activity #activity-body {
+      border: none; }
+    #user-profile #activity #activity-list {
+      width: 920px; }
+      #user-profile #activity #activity-list.loading {
+        background: transparent url(../images/spinner.gif) no-repeat 50% 30px;
+        height: 50px; }
+        #user-profile #activity #activity-list.loading * {
+          display: none; }
+      #user-profile #activity #activity-list li {
+        padding: 20px 0; }
+        #user-profile #activity #activity-list li:last-child {
+          border: none; }
+        #user-profile #activity #activity-list li .left-side, #user-profile #activity #activity-list li .right-side {
+          top: 20px; }
+  #user-profile #new-user-no-activity {
     padding: 20px; }
-    .user-profile #new-user-no-activity h1 {
+    #user-profile #new-user-no-activity h1 {
       font-weight: 700;
       text-transform: uppercase; }
-      .user-profile #new-user-no-activity h1 .coin {
+      #user-profile #new-user-no-activity h1 .coin {
         display: inline-block;
         width: 20px;
         height: 25px;
@@ -5112,13 +5184,13 @@ impact ul.avatars li {
         position: relative;
         top: 8px;
         background: transparent url(../images/icons/coinStarBlackMedium.png) no-repeat 0 0; }
-    .user-profile #new-user-no-activity p {
+    #user-profile #new-user-no-activity p {
       margin: 5px 0;
       font-size: 13px; }
-      .user-profile #new-user-no-activity p a.community {
+      #user-profile #new-user-no-activity p a.community {
         padding: 3px 0 0 30px;
         background: transparent url(../images/icons/communityBlue.png) no-repeat 0 0; }
-    .user-profile #new-user-no-activity #activity-example {
+    #user-profile #new-user-no-activity #activity-example {
       margin: 40px -20px 0;
       width: 100%;
       padding-right: 40px;
@@ -5126,74 +5198,49 @@ impact ul.avatars li {
       height: 220px;
       background: transparent url(../images/activityStreamExample.png) no-repeat 0 20px;
       opacity: 0.6; }
-  .user-profile .tabbed.info section {
-    margin-bottom: 20px; }
-  .user-profile .tabbed.info h3 {
-    text-transform: uppercase;
-    font-size: 1.1em;
-    margin-bottom: 5px; }
-  .user-profile .tabbed.info input[type="text"] {
-    width: 400px; }
-  .user-profile .tabbed.info .only-me {
-    border-top: 1px solid #cccccc;
-    padding-top: 10px; }
-    .user-profile .tabbed.info .only-me .info {
-      color: #777777;
-      font-size: 11px;
-      margin-bottom: 20px; }
-    .user-profile .tabbed.info .only-me form .example {
-      border: none;
-      padding-bottom: 0; }
-    .user-profile .tabbed.info .only-me .file-uploader .file-input {
-      height: 25px; }
-    .user-profile .tabbed.info .only-me .file-uploader .loader {
-      width: 220px;
-      height: 19px;
-      background: transparent url(../images/loading.gif) no-repeat 0 0;
-      display: none; }
-  .user-profile section.patronage h3 {
+  #user-profile section.patronage h3 {
     text-transform: uppercase;
     font-size: 15px;
     border-bottom: 1px solid #dddddd;
     margin-bottom: 10px; }
-    .user-profile section.patronage h3 em {
+    #user-profile section.patronage h3 em {
       font-size: 11px;
       color: #777777;
       text-transform: none;
       font-weight: 300; }
-  .user-profile .rewarded-creators .avatar-wall {
+  #user-profile .rewarded-creators .avatar-wall {
     height: 600px;
     margin-bottom: 30px;
     background: transparent url(../images/mosaicBG.png) repeat 0 0; }
-    .user-profile .rewarded-creators .avatar-wall .wall a {
+    #user-profile .rewarded-creators .avatar-wall .wall a {
       display: block; }
-      .user-profile .rewarded-creators .avatar-wall .wall a img {
+      #user-profile .rewarded-creators .avatar-wall .wall a img {
         padding: 3px; }
-      .user-profile .rewarded-creators .avatar-wall .wall a .border {
+      #user-profile .rewarded-creators .avatar-wall .wall a .border {
         border: 3px solid white;
         position: absolute;
         top: 0;
         left: 0; }
-  .user-profile ul.rewards {
+  #user-profile ul.rewards {
     padding: 0;
     display: inline-block; }
-    .user-profile ul.rewards:after {
+    #user-profile ul.rewards:after {
       content: ".";
       display: block;
       height: 0;
       clear: both;
       visibility: hidden; }
-    .user-profile ul.rewards li {
+    #user-profile ul.rewards li {
       background: white; }
-  .user-profile ul.stats-bar {
+  #user-profile ul.stats-bar {
     height: 50px;
     margin: 0 0 20px;
     height: 80px; }
-    .user-profile ul.stats-bar li {
+    #user-profile ul.stats-bar li {
       float: left;
       font-size: 11px;
       position: relative; }
-      .user-profile ul.stats-bar li .value {
+      #user-profile ul.stats-bar li .value {
         font-family: "ff-dagny-web-pro-1", "ff-dagny-web-pro-2", sans-serif;
         font-size: 50px;
         line-height: 1em;
@@ -5202,64 +5249,64 @@ impact ul.avatars li {
         text-align: right;
         padding-right: 20px;
         background: transparent url(../images/icons/starBlackSmall.png) no-repeat 100% 3px; }
-        .user-profile ul.stats-bar li .value span {
+        #user-profile ul.stats-bar li .value span {
           line-height: 1em; }
-        .user-profile ul.stats-bar li .value .dollar-sign {
+        #user-profile ul.stats-bar li .value .dollar-sign {
           font-size: 20px;
           position: relative;
           top: -19px;
           margin-right: -10px; }
-      .user-profile ul.stats-bar li .text {
+      #user-profile ul.stats-bar li .text {
         clear: both; }
-    .user-profile ul.stats-bar li.rewards, .user-profile ul.stats-bar li.patrons, .user-profile ul.stats-bar li.cash {
+    #user-profile ul.stats-bar li.rewards, #user-profile ul.stats-bar li.patrons, #user-profile ul.stats-bar li.cash {
       padding-right: 30px; }
-    .user-profile ul.stats-bar li.patrons, .user-profile ul.stats-bar li.cash, .user-profile ul.stats-bar li.impact {
+    #user-profile ul.stats-bar li.patrons, #user-profile ul.stats-bar li.cash, #user-profile ul.stats-bar li.impact {
       border-left: 1px solid #dddddd;
       padding-left: 30px; }
-    .user-profile ul.stats-bar li.patrons .value {
+    #user-profile ul.stats-bar li.patrons .value {
       background: transparent url(../images/icons/person.png) no-repeat 100% 3px; }
-    .user-profile ul.stats-bar li.impact .value {
+    #user-profile ul.stats-bar li.impact .value {
       padding-right: 27px;
       background: transparent url(../images/icons/impact.png) no-repeat 100% -2px; }
-    .user-profile ul.stats-bar li.cash .value {
+    #user-profile ul.stats-bar li.cash .value {
       background: none; }
-    .user-profile ul.stats-bar li.cash.last {
+    #user-profile ul.stats-bar li.cash.last {
       padding-right: 75px; }
-    .user-profile ul.stats-bar li.impact .notification {
+    #user-profile ul.stats-bar li.impact .notification {
       position: absolute;
       top: 13px;
       right: -306px;
       width: 306px;
       height: 37px;
       background: transparent url(../images/profileImpactGrowNotification.png) no-repeat 0 0; }
-  .user-profile ul.stats-bar li.cash {
+  #user-profile ul.stats-bar li.cash {
     position: relative; }
-    .user-profile ul.stats-bar li.cash a#cashout {
+    #user-profile ul.stats-bar li.cash a#cashout {
       position: absolute;
       top: 6px;
       right: 0;
       padding: 8px 15px 7px; }
-      .user-profile ul.stats-bar li.cash a#cashout.disabled {
+      #user-profile ul.stats-bar li.cash a#cashout.disabled {
         background-color: #d0d0d0;
         background-image: -moz-linear-gradient(center top, #d0d0d0 4%, #888888 52%);
         background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #d0d0d0), color-stop(0.52, #888888));
         cursor: help; }
-  .user-profile ul.galleries li.separator {
+  #user-profile ul.galleries li.separator {
     clear: both;
     border-top: 1px solid #e0e0e0;
     border-bottom: 1px solid white; }
-  .user-profile ul.galleries li.gallery, .user-profile ul.galleries li.no-gallery {
+  #user-profile ul.galleries li.gallery, #user-profile ul.galleries li.no-gallery {
     width: 100%; }
-    .user-profile ul.galleries li.gallery ul.stories, .user-profile ul.galleries li.no-gallery ul.stories {
+    #user-profile ul.galleries li.gallery ul.stories, #user-profile ul.galleries li.no-gallery ul.stories {
       display: inline-block;
       padding: 20px 0; }
-      .user-profile ul.galleries li.gallery ul.stories:after, .user-profile ul.galleries li.no-gallery ul.stories:after {
+      #user-profile ul.galleries li.gallery ul.stories:after, #user-profile ul.galleries li.no-gallery ul.stories:after {
         content: ".";
         display: block;
         height: 0;
         clear: both;
         visibility: hidden; }
-      .user-profile ul.galleries li.gallery ul.stories li.about, .user-profile ul.galleries li.no-gallery ul.stories li.about {
+      #user-profile ul.galleries li.gallery ul.stories li.about, #user-profile ul.galleries li.no-gallery ul.stories li.about {
         background: none;
         padding: 0;
         width: 230px;
@@ -5267,27 +5314,27 @@ impact ul.avatars li {
         -moz-box-shadow: 0 0 0px rgba(0, 0, 0, 0);
         box-shadow: 0 0 0px rgba(0, 0, 0, 0);
         border: none; }
-        .user-profile ul.galleries li.gallery ul.stories li.about .name, .user-profile ul.galleries li.no-gallery ul.stories li.about .name {
+        #user-profile ul.galleries li.gallery ul.stories li.about .name, #user-profile ul.galleries li.no-gallery ul.stories li.about .name {
           font-size: 16px;
           margin-bottom: 5px;
           text-transform: uppercase;
           font-weight: 700;
           text-shadow: 0 1px 0 white; }
-          .user-profile ul.galleries li.gallery ul.stories li.about .name a.move-up, .user-profile ul.galleries li.gallery ul.stories li.about .name a.move-down, .user-profile ul.galleries li.no-gallery ul.stories li.about .name a.move-up, .user-profile ul.galleries li.no-gallery ul.stories li.about .name a.move-down {
+          #user-profile ul.galleries li.gallery ul.stories li.about .name a.move-up, #user-profile ul.galleries li.gallery ul.stories li.about .name a.move-down, #user-profile ul.galleries li.no-gallery ul.stories li.about .name a.move-up, #user-profile ul.galleries li.no-gallery ul.stories li.about .name a.move-down {
             text-indent: -9999px;
             display: inline-block;
             width: 16px;
             height: 16px;
             background: transparent url(../images/icons/moveUp.png) no-repeat 0 0; }
-          .user-profile ul.galleries li.gallery ul.stories li.about .name a.move-down, .user-profile ul.galleries li.no-gallery ul.stories li.about .name a.move-down {
+          #user-profile ul.galleries li.gallery ul.stories li.about .name a.move-down, #user-profile ul.galleries li.no-gallery ul.stories li.about .name a.move-down {
             background-image: url(../images/icons/moveDown.png); }
-        .user-profile ul.galleries li.gallery ul.stories li.about .description, .user-profile ul.galleries li.no-gallery ul.stories li.about .description {
+        #user-profile ul.galleries li.gallery ul.stories li.about .description, #user-profile ul.galleries li.no-gallery ul.stories li.about .description {
           font-size: 11px;
           text-shadow: 0 1px 0 white; }
-      .user-profile ul.galleries li.gallery ul.stories li.add, .user-profile ul.galleries li.gallery ul.stories li.add-description, .user-profile ul.galleries li.no-gallery ul.stories li.add, .user-profile ul.galleries li.no-gallery ul.stories li.add-description {
+      #user-profile ul.galleries li.gallery ul.stories li.add, #user-profile ul.galleries li.gallery ul.stories li.add-description, #user-profile ul.galleries li.no-gallery ul.stories li.add, #user-profile ul.galleries li.no-gallery ul.stories li.add-description {
         float: left;
         margin: 0 20px 20px 0; }
-      .user-profile ul.galleries li.gallery ul.stories li.add a, .user-profile ul.galleries li.no-gallery ul.stories li.add a {
+      #user-profile ul.galleries li.gallery ul.stories li.add a, #user-profile ul.galleries li.no-gallery ul.stories li.add a {
         display: block;
         width: 236px;
         height: 205px;
@@ -5295,42 +5342,69 @@ impact ul.avatars li {
         color: #aaaaaa;
         background: white url(../images/addMomeantBg.png) no-repeat 50% 50%;
         text-indent: -9999px; }
-      .user-profile ul.galleries li.gallery ul.stories li.add-description, .user-profile ul.galleries li.no-gallery ul.stories li.add-description {
+      #user-profile ul.galleries li.gallery ul.stories li.add-description, #user-profile ul.galleries li.no-gallery ul.stories li.add-description {
         width: 460px;
         color: #999999;
         line-height: 2em; }
-  .user-profile ul.galleries li.no-gallery {
+  #user-profile ul.galleries li.no-gallery {
     border-bottom: 1px solid #dddddd; }
-  .user-profile ul.galleries li.gallery {
+  #user-profile ul.galleries li.gallery {
     border-top: 1px solid white;
     border-bottom: 1px solid #dddddd; }
-  .user-profile ul.galleries li.gallery:last-child {
+  #user-profile ul.galleries li.gallery:last-child {
     border-bottom: none; }
-  .user-profile ul.galleries li.gallery:first-child ul.stories, .user-profile ul.galleries li.no-gallery:first-child ul.stories {
+  #user-profile ul.galleries li.gallery:first-child ul.stories, #user-profile ul.galleries li.no-gallery:first-child ul.stories {
     padding-top: 0; }
-  .user-profile .user-settings li {
+  #user-profile .user-settings #settings-list {
+    margin-bottom: 30px; }
+  #user-profile .user-settings li {
     margin-bottom: 10px; }
-    .user-profile .user-settings li .text.loading {
+    #user-profile .user-settings li .text.loading {
       display: inline-block;
       width: 30px;
       height: 10px;
       background: transparent url(../images/horizontal-spinner.gif) no-repeat 0 50%; }
-      .user-profile .user-settings li .text.loading * {
+      #user-profile .user-settings li .text.loading * {
         display: none; }
-  .user-profile #cashouts table {
+  #user-profile .user-settings section {
+    margin-bottom: 20px; }
+  #user-profile .user-settings h3 {
+    text-transform: uppercase;
+    font-size: 1.1em;
+    margin-bottom: 5px; }
+    #user-profile .user-settings h3 .info {
+      font-weight: 500;
+      text-transform: none; }
+  #user-profile .user-settings input[type="text"] {
+    width: 400px; }
+  #user-profile .user-settings .info {
+    color: #777777;
+    font-size: 11px;
+    margin-bottom: 20px; }
+  #user-profile .user-settings .example {
+    border: none;
+    padding-bottom: 0; }
+  #user-profile .user-settings .file-uploader .file-input {
+    height: 25px; }
+  #user-profile .user-settings .file-uploader .loader {
+    width: 220px;
+    height: 19px;
+    background: transparent url(../images/loading.gif) no-repeat 0 0;
+    display: none; }
+  #user-profile #cashouts table {
     margin-top: 1em; }
-  .user-profile .followingers {
+  #user-profile .followingers {
     padding: 20px; }
-    .user-profile .followingers table {
+    #user-profile .followingers table {
       width: 100%; }
-      .user-profile .followingers table a.avatar, .user-profile .followingers table a.name {
+      #user-profile .followingers table a.avatar, #user-profile .followingers table a.name {
         display: block;
         float: left; }
-      .user-profile .followingers table a.avatar img {
+      #user-profile .followingers table a.avatar img {
         width: 45px;
         height: 45px;
         border: 2px solid black; }
-      .user-profile .followingers table a.name {
+      #user-profile .followingers table a.name {
         margin-left: 8px;
         font-weight: 700;
         font-size: 18px;
@@ -5338,27 +5412,27 @@ impact ul.avatars li {
         line-height: 18px;
         padding-top: 6px;
         color: #252525; }
-        .user-profile .followingers table a.name span {
+        #user-profile .followingers table a.name span {
           display: block; }
-  .user-profile .supporters {
+  #user-profile .supporters {
     padding: 20px; }
-    .user-profile .supporters table.users {
+    #user-profile .supporters table.users {
       width: 100%; }
-      .user-profile .supporters table.users td {
+      #user-profile .supporters table.users td {
         height: 70px; }
-        .user-profile .supporters table.users td .user-info {
+        #user-profile .supporters table.users td .user-info {
           position: relative; }
-          .user-profile .supporters table.users td .user-info .avatar {
+          #user-profile .supporters table.users td .user-info .avatar {
             display: block;
             float: left;
             margin-right: 10px;
             width: 40px;
             height: 40px;
             border: 1px solid #cccccc; }
-            .user-profile .supporters table.users td .user-info .avatar img {
+            #user-profile .supporters table.users td .user-info .avatar img {
               width: 40px;
               height: 40px; }
-          .user-profile .supporters table.users td .user-info .rank {
+          #user-profile .supporters table.users td .user-info .rank {
             position: absolute;
             top: -7px;
             left: -7px;
@@ -5375,77 +5449,77 @@ impact ul.avatars li {
             -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
             -moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
             box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4); }
-          .user-profile .supporters table.users td .user-info .name {
+          #user-profile .supporters table.users td .user-info .name {
             font-size: 18px;
             font-weight: 700;
             text-transform: uppercase;
             margin-top: 3px;
             color: #252525; }
-            .user-profile .supporters table.users td .user-info .name span {
+            #user-profile .supporters table.users td .user-info .name span {
               display: block; }
-          .user-profile .supporters table.users td .user-info .occupation {
+          #user-profile .supporters table.users td .user-info .occupation {
             font-style: italic;
             font-size: 11px; }
-  .user-profile .user-edit {
+  #user-profile .user-edit {
     padding: 20px; }
-  .user-profile .bio .incomplete-profile {
+  #user-profile .bio .incomplete-profile {
     background: transparent url(../images/tabNotification.png) no-repeat 0 0;
     padding: 4px 0 4px 25px;
     font-weight: 700;
     color: #f42652;
     margin-bottom: 10px;
     text-transform: uppercase; }
-    .user-profile .bio .incomplete-profile a {
+    #user-profile .bio .incomplete-profile a {
       text-decoration: underline; }
-  .user-profile .bio .edit-link {
+  #user-profile .bio .edit-link {
     text-transform: uppercase;
     font-weight: 700;
     display: block;
     margin-bottom: 10px;
     padding-left: 15px;
     background: transparent url(../images/icons/pencilBlue.png) no-repeat 0 1px; }
-  .user-profile .bio .tagline, .user-profile .bio .interests {
+  #user-profile .bio .tagline, #user-profile .bio .interests {
     margin-bottom: 10px; }
-  .user-profile #user_tagline {
+  #user-profile #user_tagline {
     height: 50px; }
-  .user-profile .subscribing-to {
+  #user-profile .subscribing-to {
     clear: both;
     margin-bottom: 20px; }
-    .user-profile .subscribing-to h1 {
+    #user-profile .subscribing-to h1 {
       background-color: black;
       color: white;
       font-weight: 700;
       font-size: 28px;
       text-transform: uppercase;
       padding: 2px 10px; }
-    .user-profile .subscribing-to ul {
+    #user-profile .subscribing-to ul {
       height: 50px; }
-      .user-profile .subscribing-to ul li {
+      #user-profile .subscribing-to ul li {
         float: left;
         clear: none;
         margin-right: 3px; }
-        .user-profile .subscribing-to ul li a {
+        #user-profile .subscribing-to ul li a {
           display: block;
           width: 50px;
           height: 50px; }
-          .user-profile .subscribing-to ul li a img {
+          #user-profile .subscribing-to ul li a img {
             width: 50px;
             height: 50px; }
-  .user-profile .comments {
+  #user-profile .comments {
     width: 629px;
     float: left;
     display: none; }
-  .user-profile .personal-library {
+  #user-profile .personal-library {
     clear: both;
     height: 365px;
     padding-top: 20px; }
-  .user-profile .admin {
+  #user-profile .admin {
     clear: both;
     padding-top: 30px; }
-    .user-profile .admin h1 {
+    #user-profile .admin h1 {
       font-weight: 900;
       text-transform: uppercase; }
-  .user-profile .info-bar {
+  #user-profile .info-bar {
     background: none;
     color: #777777;
     font-style: italic;
@@ -8012,7 +8086,7 @@ a#load-more-activity {
 .dk_options a {
   color: #555555; }
 
-#discovery #container {
+body#discovery #container {
   background: #f0e3d2 url(../images/new-york.jpg) repeat 50% 0;
   -webkit-background-size: cover;
   -moz-background-size: cover;
