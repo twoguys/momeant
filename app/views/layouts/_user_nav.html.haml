@@ -2,7 +2,11 @@
   .bg
   %ul.links{:class => @hide_search ? "search-hidden" : ""}
 
-    %li#logo= link_to("Momeant", root_path)
+    %li#logo.topnav
+      = link_to "Momeant", root_path, :class => "top-link"
+      %ul.subnav
+        %li= link_to "About", about_path
+        %li= link_to "Terms of Service", tos_path
     %li#discover.topnav{:class => @nav == "discover" ? "active" : ""}
       = link_to "Discover", discovery_path, :class => "top-link"
       .double-wide
