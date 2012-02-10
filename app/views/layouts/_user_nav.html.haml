@@ -14,10 +14,10 @@
           %li= link_to "Newest", newest_content_path
         %ul.subnav.aside
           %li.header People
+          %li= link_to "Top Rewarders", patrons_people_path
+          %li= link_to "Handpicked Creators", notable_people_path
+          %li= link_to "Fast Risers", creators_people_path
           %li= link_to "You Know", friends_people_path
-          %li= link_to "Notable", notable_people_path
-          %li= link_to "Top Creators", creators_people_path
-          %li= link_to "Top Patrons", patrons_people_path
 
     - if user_signed_in?
       %li#share.topnav{:class => @nav == "sharing" ? "active" : ""}
