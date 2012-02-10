@@ -52,10 +52,10 @@ body#users, body#messages
 	
 	.profile-info
 		position: relative
-		margin-bottom: 10px
+		margin-bottom: 20px
 
 		.metadata
-			padding: 12px 0 20px 195px
+			padding: 12px 0 20px 190px
 	
 			.avatar-badge
 				position: absolute
@@ -65,7 +65,7 @@ body#users, body#messages
 				.avatar
 					position: absolute
 					top: 10px
-					left: 5px
+					left: 0
 					z-index: 1
 					img
 						width: 130px
@@ -74,13 +74,17 @@ body#users, body#messages
 				.badge
 					position: absolute
 					top: -5px
-					right: -36px
+					right: -30px
 					z-index: 3
 
 			.name
 				font-size: 24px
 				font-weight: 700
 				text-transform: uppercase
+				a
+					color: $text_color
+				a:hover
+					color: $blue
 
 			ul.about, ul.stats
 				float: left
@@ -201,7 +205,6 @@ body#users, body#messages
 	
 	.the-rest
 		position: relative
-		padding: 20px
 		.horizontal-tabs
 			border-bottom: 1px solid #ccc
 			ul
@@ -323,11 +326,18 @@ body#users, body#messages
 					font-weight: 700
 					text-transform: uppercase
 					margin-bottom: 15px
-				a.more
-					font-size: 12px
+					border: none
+				h3
 					font-weight: 500
-					text-transform: none
-					margin-left: 10px
+				a.more
+					position: absolute
+					top: 0
+					right: 0
+
+			&.one
+				z-index: 4
+			&.two
+				z-index: 3
 	
 	#activity
 		@include rounded(0)

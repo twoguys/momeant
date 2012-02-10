@@ -4831,9 +4831,9 @@ body#users #container, body#messages #container {
   /* Edit Profile */ }
   #user-profile .profile-info {
     position: relative;
-    margin-bottom: 10px; }
+    margin-bottom: 20px; }
     #user-profile .profile-info .metadata {
-      padding: 12px 0 20px 195px; }
+      padding: 12px 0 20px 190px; }
       #user-profile .profile-info .metadata .avatar-badge {
         position: absolute;
         top: 6px;
@@ -4842,7 +4842,7 @@ body#users #container, body#messages #container {
         #user-profile .profile-info .metadata .avatar-badge .avatar {
           position: absolute;
           top: 10px;
-          left: 5px;
+          left: 0;
           z-index: 1; }
           #user-profile .profile-info .metadata .avatar-badge .avatar img {
             width: 130px;
@@ -4851,12 +4851,16 @@ body#users #container, body#messages #container {
         #user-profile .profile-info .metadata .avatar-badge .badge {
           position: absolute;
           top: -5px;
-          right: -36px;
+          right: -30px;
           z-index: 3; }
       #user-profile .profile-info .metadata .name {
         font-size: 24px;
         font-weight: 700;
         text-transform: uppercase; }
+        #user-profile .profile-info .metadata .name a {
+          color: #252525; }
+        #user-profile .profile-info .metadata .name a:hover {
+          color: #00aeef; }
       #user-profile .profile-info .metadata ul.about, #user-profile .profile-info .metadata ul.stats {
         float: left; }
       #user-profile .profile-info .metadata ul.about {
@@ -4990,8 +4994,7 @@ body#users #container, body#messages #container {
       #user-profile .profile-info .tags h3 {
         margin-bottom: 5px; }
   #user-profile .the-rest {
-    position: relative;
-    padding: 20px; }
+    position: relative; }
     #user-profile .the-rest .horizontal-tabs {
       border-bottom: 1px solid #cccccc; }
       #user-profile .the-rest .horizontal-tabs ul {
@@ -5143,12 +5146,18 @@ body#users #container, body#messages #container {
           font-size: 15px;
           font-weight: 700;
           text-transform: uppercase;
-          margin-bottom: 15px; }
+          margin-bottom: 15px;
+          border: none; }
+        #user-profile #summary section header h3 {
+          font-weight: 500; }
         #user-profile #summary section header a.more {
-          font-size: 12px;
-          font-weight: 500;
-          text-transform: none;
-          margin-left: 10px; }
+          position: absolute;
+          top: 0;
+          right: 0; }
+      #user-profile #summary section.one {
+        z-index: 4; }
+      #user-profile #summary section.two {
+        z-index: 3; }
   #user-profile #activity {
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
@@ -8093,6 +8102,8 @@ body#discovery #container {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover; }
+  body#discovery #container #main {
+    padding-bottom: 50px; }
 
 #discovery-page {
   padding: 40px;

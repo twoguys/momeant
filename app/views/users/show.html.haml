@@ -4,11 +4,10 @@
   #summary.the-rest
   
     #content-column
-      %section
+      %section.one
         %header
-          %h1
-            %span #{me?(@user) ? "Your" : "#{@user.first_name}'s"} Recent Content
-            = link_to "view all content", creations_user_path(@user), :class => "more"
+          %h1 #{me?(@user) ? "Your" : "#{@user.first_name}'s"} Recent Content
+          = link_to "view all content", creations_user_path(@user), :class => "more"
         %ul.mini-content
           - @recent_content.each do |content|
             %li
@@ -22,11 +21,10 @@
                 %p.synopsis= truncate content.synopsis, :length => 210
                 = link_to "Launch Viewer", story_path(content), :class => "launch"
     
-      %section
+      %section.two
         %header
-          %h1
-            %span Content #{you_or_first_name(@user)} Rewarded
-            = link_to "view all activity", activity_user_path(@user), :class => "more"
+          %h1 Content #{you_or_first_name(@user)} Rewarded
+          = link_to "view all activity", activity_user_path(@user), :class => "more"
         %ul.mini-content
           - @rewarded_content.each do |content|
             %li
@@ -62,7 +60,7 @@
               = link_to image_tag(creator[0].avatar.url(:thumbnail)), user_path(creator[0]), :class => "avatar"
               = link_to creator[0].name, user_path(creator[0]), :class => "title"
               %p
-                %span #{you_or_first_name(@user)} has rewarded #{creator[0].first_name}
+                %span #{me?(@user) ? "You have" : "#{@user.first_name} has"} rewarded #{creator[0].first_name}
                 %span.reward-count= creator[1]
   
 - if me?(@user)

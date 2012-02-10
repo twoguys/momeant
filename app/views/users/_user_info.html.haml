@@ -7,7 +7,7 @@
         = link_to(image_tag(@user.avatar.url(:large)), user_path(@user), :class => "avatar")
       = image_tag("badges/#{@user.badge_level}.png", :class => "badge")
   
-    .name= @user.name
+    .name= link_to @user.name, user_path(@user)
     
     %ul.about
       %li
