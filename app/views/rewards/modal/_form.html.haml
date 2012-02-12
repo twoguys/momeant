@@ -49,8 +49,8 @@
       
             = form.hidden_field :amount, :value => 1
           
-          - if @story.user.below_cashout_threshold? || current_user.badge_level >= 2
-            #amount-hints.section
+          #amount-hints.section
+            - if @story.user.below_cashout_threshold? || current_user.badge_level >= 2
               .weak Not sure how much to reward?
               - if @story.user.below_cashout_threshold?
                 .hint
