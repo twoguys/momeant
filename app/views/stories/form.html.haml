@@ -87,19 +87,23 @@
           = text_field_tag :story_title, @story.title, :class => "monitor-story-typing", :update => "title"
       
         %li.synopsis
-          = label_tag :story_synopsis, "Describe it in more detail with a synopsis:"
+          %label{:for => "story_synopsis"}
+            %span Give a brief synopsis
+            %em (optional):
           = text_area_tag :story_synopsis, @story.synopsis, :class => "monitor-story-typing", :update => "synopsis"
       
         %li.tags
           %label{:for => "story_tags"}
             %span Tag your content
-            %em (so we can show it to folks who like similarly-tagged things):
+            %em (optional):
           = text_field_tag :story_tag_list, @story.tag_list, :class => "monitor-story-typing", :update => "tag_list"
           .info
             %em Separate tags with commas. Example: art, oil painting, fresco
         
         %li.gallery
-          = label_tag :story_gallery, "Add this content to a Gallery?"
+          %label{:for => "story_gallery"}
+            %span Add this to a Gallery
+            %em (optional)
           = select(:story, :gallery_id, galleries_list(current_user), {:include_blank => true})
           .info
             %em You can organize your content into "galleries" of similar work.
@@ -107,7 +111,7 @@
             = render "gallery_creator"
     
     %section.step#thankyou
-      %h2 4. Write a thank you note to all of folks that reward this content.
+      %h2 4. Write a thank you note to all of the folks that reward this content.
       .info This note will be shown to a person after they reward you. It's a chance to express your appreciation.
       = text_area_tag :story_thankyou, @story.thankyou, :class => "monitor-story-typing", :update => "thankyou"
   
