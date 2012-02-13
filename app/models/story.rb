@@ -47,6 +47,7 @@ class Story < ActiveRecord::Base
   
   has_many :pages, :order => "number ASC", :dependent => :destroy
     
+  validates :media_type, :presence => true
   validates :title, :presence => true, :length => (2..256), :unless => :autosaving
   validates :synopsis, :length => (0..1024), :unless => :autosaving
   validates_attachment_presence :thumbnail, :unless => :autosaving, :message => "must be chosen"

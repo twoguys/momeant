@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120120135305) do
+ActiveRecord::Schema.define(:version => 20120213150623) do
 
   create_table "activities", :force => true do |t|
     t.integer  "actor_id"
@@ -197,6 +197,7 @@ ActiveRecord::Schema.define(:version => 20120120135305) do
     t.integer  "gallery_id"
     t.boolean  "is_external",          :default => false
     t.boolean  "i_own_this",           :default => true
+    t.string   "media_type"
   end
 
   create_table "stories_topics", :id => false, :force => true do |t|

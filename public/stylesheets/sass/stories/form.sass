@@ -44,14 +44,22 @@ form.new_story, form.edit_story, .story-form
 	fieldset
 		padding-top: 20px
 	#story-spinner
-		display: none
-		width: 32px
-		height: 32px
-		background: transparent url(../images/spinnerLarge.gif) no-repeat 0 0
-		position: absolute
-		top: 400px
-		left: 130px
-		text-indent: -9999px
+		background: #000 url(../images/spinner-white.gif) no-repeat 17px 12px
+		color: #fff
+		position: fixed
+		top: 0
+		left: 50%
+		padding: 10px 20px 10px 45px
+		margin-left: -75px
+		font-size: 16px
+		text-transform: uppercase
+		-webkit-border-bottom-right-radius: 3px
+		-webkit-border-bottom-left-radius: 3px
+		-moz-border-radius-bottomright: 3px
+		-moz-border-radius-bottomleft: 3px
+		border-bottom-right-radius: 3px
+		border-bottom-left-radius: 3px
+		z-index: 99
 	#story-saved
 		height: 16px
 		font-family: $typewriter
@@ -151,6 +159,36 @@ form.new_story, form.edit_story, .story-form
 					color: #999
 			.info
 				display: none
+	.step#type
+		ul
+			height: 150px
+			li
+				float: left
+				clear: none
+				width: 25%
+				a
+					display: block
+					width: 150px
+					height: 40px
+					padding-top: 110px
+					@include rounded(3px)
+					background: transparent url(../images/creator/media-types/photos.png) no-repeat 50% 30px
+					text-align: center
+					text-transform: uppercase
+					color: #000
+					font-weight: 700
+				a:hover
+					background-color: #cacaca
+				a.selected
+					background-color: $blue
+				a#video-type
+					background-image: url(../images/creator/media-types/video.png)
+				a#writing-type
+					background-image: url(../images/creator/media-types/writing.png)
+				a#music-type
+					background-image: url(../images/creator/media-types/music.png)
+	.step#share
+		display: none
 	.step#describe
 		padding-left: 350px
 		h2
