@@ -18,6 +18,8 @@
       %span.reward-count= story.reward_count
       %span from
       %span.people= story.users_who_rewarded.count
+  - if editable && !story.published?
+    .unpublished unpublished
   - unless editable
     - unless story.tags.empty?
       .tags

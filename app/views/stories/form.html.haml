@@ -14,9 +14,11 @@
   = hidden_field_tag :story_id, @story.id
   
   .fullscreen-hidden
-  
+    #story-spinner
+      Saving...
+
     %section.step#editor
-      %h2 1. Choose what you would like to share.
+      %h2 1. What would you like to share?
       .choice#external{:class => @story.is_external? ? "selected" : ""}
         .choice-inner
           .description Show your existing web content
@@ -33,6 +35,15 @@
           %p.info
             %em (Share images &amp; text with many layout &amp; formatting options.)
       .clear
+
+    %section.step#type
+      %h2 2. What type of content is it?
+      %ul
+        %li= link_to "photos", "#", :id => "photo-type", :class => @story.media_type == "photos" ? "selected" : ""
+        %li= link_to "video", "#", :id => "video-type", :class => @story.media_type == "video" ? "selected" : ""
+        %li= link_to "writing", "#", :id => "writing-type", :class => @story.media_type == "writing" ? "selected" : ""
+        %li= link_to "music", "#", :id => "music-type", :class => @story.media_type == "music" ? "selected" : ""
+      = hidden_field_tag :story_media_type, :value => @story.media_type
 
     %section.step#share
       %h2 2. Tell your networks so you can get rewarded.
@@ -57,9 +68,6 @@
         .note{:class => @story.thumbnail.url.include?("missing") ? "hidden" : ""}
           Unhappy with the default crop?
           = link_to "Re-crop it", cropper_story_path(@story), :id => "cropper-link"
-      
-      #story-spinner
-        Saving...
     
       %ul.fields
     
@@ -79,19 +87,23 @@
           = text_field_tag :story_title, @story.title, :class => "monitor-story-typing", :update => "title"
       
         %li.synopsis
-          = label_tag :story_synopsis, "Describe it in more detail with a synopsis:"
+          %label{:for => "story_synopsis"}
+            %span Give a brief synopsis
+            %em (optional):
           = text_area_tag :story_synopsis, @story.synopsis, :class => "monitor-story-typing", :update => "synopsis"
       
         %li.tags
           %label{:for => "story_tags"}
             %span Tag your content
-            %em (so we can show it to folks who like similarly-tagged things):
+            %em (optional):
           = text_field_tag :story_tag_list, @story.tag_list, :class => "monitor-story-typing", :update => "tag_list"
           .info
             %em Separate tags with commas. Example: art, oil painting, fresco
         
         %li.gallery
-          = label_tag :story_gallery, "Add this content to a Gallery?"
+          %label{:for => "story_gallery"}
+            %span Add this to a Gallery
+            %em (optional)
           = select(:story, :gallery_id, galleries_list(current_user), {:include_blank => true})
           .info
             %em You can organize your content into "galleries" of similar work.
@@ -99,7 +111,7 @@
             = render "gallery_creator"
     
     %section.step#thankyou
-      %h2 4. Write a thank you note to all of folks that reward this content.
+      %h2 4. Write a thank you note to all of the folks that reward this content.
       .info This note will be shown to a person after they reward you. It's a chance to express your appreciation.
       = text_area_tag :story_thankyou, @story.thankyou, :class => "monitor-story-typing", :update => "thankyou"
   
@@ -111,7 +123,7 @@
         = form_tag publish_story_path(@story) do
           = hidden_field_tag :share_twitter, "", :name => "share[twitter]"
           = hidden_field_tag :share_facebook, "", :name => "share[facebook]"
-          = submit_tag "Share"
+          = submit_tag @story.published? ? "Update" : "Publish"
         = link_to("Preview", story_path(@story, :return_to => edit_story_url(@story)), :class => "preview")
   
   %fieldset
