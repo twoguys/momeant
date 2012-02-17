@@ -90,43 +90,38 @@
         = link_to "Sign Up", "#join-modal", :class => "button"
   
   #people-column
-    
-    %section.app
-      %header
-        %h3= link_to "Top Rewarders", patrons_people_path
-      %ul.mini-people
-        - @top_patrons.each do |patron|
-          %li
-            = link_to image_tag(patron.avatar.url(:thumbnail)), user_path(patron), :class => "avatar"
-            = link_to patron.name, user_path(patron), :class => "title"
-            %p.impact.short
-              %span.impact-count.count= patron.impact
-              %span impact
-            .badge= image_tag "badges/#{patron.badge_level}.png"
 
     %section.app
       %header
         %h3= link_to "Handpicked Creators", notable_people_path
-      %ul.mini-people.side-by-side
+      %ul.mini-people
         - @notable_people.each do |editorial|
           %li
             = link_to image_tag(editorial.user.avatar.url(:thumbnail)), user_path(editorial.user), :class => "avatar"
-            %a.title{:href => user_path(editorial.user)}
-              %span= editorial.user.first_name
-              %span= editorial.user.last_name
-        
-    %section.app
+            = link_to editorial.user.name, user_path(editorial.user), :class => "title"
+            %p.quote= truncate editorial.quote, :length => 100
+            
+    %section#friends-you-know.app
       %header
-        %h3= link_to "Fast Risers", creators_people_path
-      %ul.mini-people
-        - @top_creators.each do |creator|
-          %li
-            = link_to image_tag(creator.avatar.url(:thumbnail)), user_path(creator), :class => "avatar"
-            = link_to creator.name, user_path(creator), :class => "title"
-            .stat
-              %span.reward-count.count= creator.lifetime_rewards
-            - if creator.occupation
-              %p.quote.short= creator.occupation
+        %h3= link_to "People You Know", friends_people_path
+        %p.service-links
+          - if current_user
+            - if current_user.authentications.find_by_provider("twitter")
+              %span Twitter linked
+            - else
+              = link_to "link Twitter", "#{root_url}auth/twitter", :class => "link", :id => "link-twitter"
+            - if current_user.authentications.find_by_provider("facebook")
+              %span Facebook linked
+            - else
+              = link_to "link Facebook", "#{root_url}auth/facebook", :class => "link", :id => "link-facebook"
+          - else
+            #{link_to "Sign up", "#join-modal"} to link your networks
+      %ul.mini-activity
+        - if current_user && current_user.authentications.find_by_provider("twitter").nil? && current_user.authentications.find_by_provider("facebook").nil?
+          %li.text-only Use the buttons above to link your networks so you can see what your friends are doing here at Momeant!
+        - else
+          = render "friends_people"
+          
   .clear
 
 :javascript
