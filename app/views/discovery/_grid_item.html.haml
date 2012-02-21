@@ -13,7 +13,7 @@
       .link view #{content.media_type}
       .rewarders
         %span Recent rewarders
-        - content.users_who_rewarded.each do |rewarder|
+        - content.users_who_rewarded.limit(3).each do |rewarder|
           = image_tag rewarder.avatar.url(:thumbnail)
 
   = link_to truncate(content.title, :length => 28), story_path(content), :class => "title"
