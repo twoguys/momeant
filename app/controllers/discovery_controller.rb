@@ -1,21 +1,7 @@
 class DiscoveryController < ApplicationController
 
   def index
-    range = 0..2
-
-    @popular_content = Story.most_rewarded_recently[range]
-    @newest_content = Story.published.newest_first[range]
-    @recommended_content = []
-    @nearby_content = []
-    @recommended_content = current_user.stories_tagged_similarly_to_what_ive_rewarded[range] if current_user
-    @nearby_content = current_user.nearby_content[range] if current_user
-    
-    @friends_activity = []
-    @notable_people = Editorial.limit(3)
-    @friends_activity = current_user.activity_from_twitter_and_facebook_friends[0..4] if current_user
-    @top_creators = Creator.order("lifetime_rewards DESC").where("lifetime_rewards > 0").limit(3)
-    @top_patrons = User.order("impact DESC").where("impact > 0").limit(3)
-
+    @content = Story.most_rewarded.page(params[:page]).per(8)
     @nav = "discover"
   end
   

@@ -4,6 +4,135 @@ body#discovery #container
 	#main
 		padding-bottom: 50px
 
+
+#discovery-banner
+	text-align: center
+	margin: 30px 0
+	font-size: 25px
+	font-weight: 700
+	text-shadow: 0 1px 0 rgba(255,255,255,0.5)
+
+#discovery-summary
+	width: 860px
+	margin: 0 auto	
+	
+	#discovery-grid
+		li
+			float: left
+			width: 377px
+			height: 302px
+			margin: 0 50px 50px 0
+			background: #f8f7f5 url(../images/content/thumbnail-background.png) repeat
+			padding: 13px
+			box-shadow: 0 1px 0 rgba(255,255,255,1) inset, 0 1px 3px rgba(0,0,0,0.5)
+			&:nth-child(even)
+				margin-right: 0
+			a.thumbnail
+				display: block
+				position: relative
+				width: 375px
+				height: 250px
+				margin-bottom: 10px
+				border: 1px solid #E5E5E5
+				img.preview
+					position: relative
+					width: 375px
+					height: 250px
+					z-index: 1
+				.media-type
+					position: absolute
+					top: 1px
+					left: 1px
+					width: 375px
+					height: 250px
+					z-index: 2
+					background: transparent url(../images/content/media-types/photos.png) no-repeat 50% 50%
+					&.video
+						background-image: url(../images/content/media-types/video.png)
+					&.writing
+						background-image: url(../images/content/media-types/writing.png)
+					&.music
+						background-image: url(../images/content/media-types/music.png)
+				.hover
+					display: none
+			.title
+				display: block
+				float: left
+				padding-top: 6px
+				width: 265px
+				overflow: hidden
+				font-size: 19px
+				color: $text_color
+				font-family: $handwritten
+			.rewards
+				float: right
+				text-align: right
+				.amount
+					font-size: 24px
+					margin-bottom: -5px
+					.dollar
+						font-size: 16px
+						position: relative
+						top: -5px
+						margin-right: -6px
+				.text
+					font-size: 11px
+					color: #999
+		
+			&:hover a.thumbnail .hover
+				display: block
+			.hover
+				position: absolute
+				top: 0
+				left: 0
+				z-index: 3
+				background: #000
+				background: rgba(0,0,0,0.85)
+				color: #c7c7c7
+				padding: 10px
+				width: 355px
+				height: 230px
+				.creator-info
+					position: relative
+					padding-left: 90px
+					font-size: 14px
+					img
+						position: absolute
+						top: 0
+						left: 0
+						width: 75px
+						height: 75px
+					.name
+						font-size: 22px
+						font-weight: 700
+						margin: 10px 0 3px
+						line-height: 22px
+						color: #fff
+					.info
+						font-size: 12px
+				.rewarders
+					position: absolute
+					bottom: 10px
+					left: 10px
+					font-size: 11px
+					span
+						display: block
+						margin-bottom: 3px
+					img
+						width: 45px
+						height: 45px
+						margin-right: 2px
+				.link
+					position: absolute
+					bottom: 10px
+					right: 10px
+					font-size: 19px
+					color: #fff
+					padding-right: 17px
+					background: transparent url(../images/arrowThinRightWhite.png) no-repeat 100% 50%
+
+
+
 #discovery-page
 	padding: 40px
 	width: 920px
