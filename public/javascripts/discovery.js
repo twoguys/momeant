@@ -1,29 +1,4 @@
-$(function() {
-  $('#link-twitter').click(function() {
-    var url = $(this).attr('href');
-    var full = $(this).hasClass('full');
-    window.oauth_twitter_window = window.open(url,'Twitter Configuration','height=500,width=900');
-		window.oauth_twitter_interval = window.setInterval(function() {
-			if (window.oauth_twitter_window.closed) {
-				window.clearInterval(window.oauth_twitter_interval);
-				discovery_configuration_complete('twitter', full);
-			}
-		}, 1000);
-		return false;
-  });
-  $('#link-facebook').click(function() {
-    var url = $(this).attr('href');
-    var full = $(this).hasClass('full');
-    window.oauth_facebook_window = window.open(url,'Facebook Configuration','height=500,width=900');
-		window.oauth_facebook_interval = window.setInterval(function() {
-			if (window.oauth_facebook_window.closed) {
-				window.clearInterval(window.oauth_facebook_interval);
-				discovery_configuration_complete('facebook', full);
-			}
-		}, 1000);
-		return false;
-  });
-});
+// Twitter/Facebook linking
 
 function discovery_configuration_complete(service, full) {
   if (full) {
@@ -50,3 +25,54 @@ function discovery_configuration_complete(service, full) {
   	});
   }
 }
+$('#link-twitter').click(function() {
+  var url = $(this).attr('href');
+  var full = $(this).hasClass('full');
+  window.oauth_twitter_window = window.open(url,'Twitter Configuration','height=500,width=900');
+	window.oauth_twitter_interval = window.setInterval(function() {
+		if (window.oauth_twitter_window.closed) {
+			window.clearInterval(window.oauth_twitter_interval);
+			discovery_configuration_complete('twitter', full);
+		}
+	}, 1000);
+	return false;
+});
+$('#link-facebook').click(function() {
+  var url = $(this).attr('href');
+  var full = $(this).hasClass('full');
+  window.oauth_facebook_window = window.open(url,'Facebook Configuration','height=500,width=900');
+	window.oauth_facebook_interval = window.setInterval(function() {
+		if (window.oauth_facebook_window.closed) {
+			window.clearInterval(window.oauth_facebook_interval);
+			discovery_configuration_complete('facebook', full);
+		}
+	}, 1000);
+	return false;
+});
+  
+
+// Infinite scrolling
+
+var total_height, current_scroll, visible_height, buffer, current_page;
+total_height = $('#main').height();
+visible_height = document.documentElement.clientHeight;
+buffer = -120;
+current_page = 1;
+function monitor_scrolling() {
+  current_scroll = $('#container').scrollTop();
+  if (total_height <= current_scroll + visible_height + buffer) {
+    current_page += 1;
+    $.get('/discover', {page: current_page, remote: true}, function(result) {
+      $('#discovery-grid').append(result);
+      total_height = $('#main').height();
+      
+      if ($.trim(result) == '') {
+        $('#discovery-loading').addClass('done').html('No more content');
+      }
+    });
+  }
+}  
+$('#container').scroll(monitor_scrolling);
+$(window).resize(function() {
+  visible_height = document.documentElement.clientHeight;
+});

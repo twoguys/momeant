@@ -1,8 +1,12 @@
 class DiscoveryController < ApplicationController
 
   def index
-    @content = Story.most_rewarded.page(params[:page]).per(8)
+    @content = Story.published.most_rewarded.page(params[:page]).per(8)
     @nav = "discover"
+    if params[:remote]
+      render :partial => "discovery/grid_item", :collection => @content, :as => :content
+      return
+    end
   end
   
   def content

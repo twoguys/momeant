@@ -6,33 +6,10 @@
   #discovery-filters
 
   %ul#discovery-grid
-    - @content.each do |content|
-      %li
-      
-        %a.thumbnail{:href => story_path(content)}
-          = image_tag content.thumbnail.url(:large), :class => "preview"
-          .media-type{:class => content.media_type}
-          .hover
-            .creator-info
-              = image_tag content.user.avatar.url(:large), :class => "avatar"
-              .type #{content.media_type} by
-              .name= content.user.name
-              .info
-                %span= content.user.occupation if content.user.occupation.present?
-                %span= "from #{content.user.location}" if content.user.location.present?
-            .link view #{content.media_type}
-            .rewarders
-              %span Recent rewarders
-              - content.users_who_rewarded.each do |rewarder|
-                = image_tag rewarder.avatar.url(:thumbnail)
-      
-        = link_to truncate(content.title, :length => 30), story_path(content), :class => "title"
-        .rewards
-          .amount
-            %span.dollar $
-            %span= number_with_precision content.reward_count.to_f * Reward.dollar_exchange, :precision => 2
-          .text rewards earned
-
+    = render :partial => "discovery/grid_item", :collection => @content, :as => :content
+  
+  #discovery-loading Loading more...
 
 :javascript
   mpq.track('Viewed Discovery');
+= javascript_include_tag "discovery"
