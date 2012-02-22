@@ -65,7 +65,7 @@ $('#link-facebook').click(function() {
 // Infinite scrolling
 
 var total_height, current_scroll, visible_height, buffer, current_page, stop_scrolling;
-total_height = $('#main').height();
+total_height = document.body.offsetHeight;
 visible_height = document.documentElement.clientHeight;
 buffer = -120;
 current_page = 1;
@@ -73,12 +73,14 @@ stop_scrolling = false;
 function monitor_scrolling() {
   if (stop_scrolling) { return; }
 
-  current_scroll = $('#container').scrollTop();
-  if (total_height <= current_scroll + visible_height + buffer) {
+  if (document.documentElement.scrollTop) { current_scroll = document.documentElement.scrollTop; }
+  else { current_scroll = document.body.scrollTop; }
+  
+  if (total_height <= current_scroll + visible_height) {
     current_page += 1;
     $.get('/discover', {page: current_page, remote: true}, function(result) {
       $('#discovery-grid').append(result);
-      total_height = $('#main').height();
+      total_height = document.body.offsetHeight;
       
       if ($.trim(result) == '') {
         $('#discovery-loading').addClass('done').html('No more content');
@@ -87,8 +89,7 @@ function monitor_scrolling() {
     });
   }
 }  
-$('#container').scroll(monitor_scrolling);
+$(document).scroll(monitor_scrolling);
 $(window).resize(function() {
   visible_height = document.documentElement.clientHeight;
 });
-$('#container').scrollTo(0);

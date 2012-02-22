@@ -1,5 +1,9 @@
 /* Story creation */
 
+body#stories.edit
+	#container
+		position: relative
+
 .new-story-copy
 	font-family: $typewriter
 	font-size: 14px
@@ -9,9 +13,6 @@
 .fullscreen .story-form
 	padding-top: 0
 form.new_story, form.edit_story, .story-form
-	position: absolute
-	top: 0
-	bottom: 0
 	width: 100%
 	.finished-links
 		position: absolute
@@ -116,10 +117,6 @@ form.new_story, form.edit_story, .story-form
 		#twitter
 			background-image: url(../images/icons/twitterSmall.png)
 			margin-right: 0
-	#done
-		max-width: 960px
-		margin-left: auto
-		margin-right: auto
 	.banner
 		max-width: 920px
 	.step#editor
@@ -239,9 +236,9 @@ form.new_story, form.edit_story, .story-form
 				font-weight: 500
 			li.tags .info, li.gallery .info
 				margin-top: 3px
-	#done
-		height: 80px
-		margin-top: -10px
+	#thankyou
+		textarea
+			margin-bottom: 20px
 		.owner
 			float: right
 			span
@@ -250,6 +247,7 @@ form.new_story, form.edit_story, .story-form
 		.rest
 			clear: both
 			padding-top: 10px
+			height: 45px
 		input[type="submit"], a
 			float: right
 			display: block

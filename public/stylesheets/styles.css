@@ -42,21 +42,26 @@ h2 {
   color: #9c9c9c; }
 
 /* Layout */
-html, body {
-  height: 100%; }
+#new-york {
+  position: fixed;
+  top: 42px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #f0e3d2 url(../images/new-york.jpg) no-repeat 50% 0 fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover; }
 
 #container {
-  position: absolute;
-  top: 42px;
-  bottom: 0;
-  overflow-y: auto;
-  width: 100%; }
+  padding-top: 42px; }
 
 .fullscreen .fullscreen-hidden, .fullscreen #header, .fullscreen #right-sidebar {
   display: none; }
 .fullscreen #container {
   margin: 0;
-  top: 0; }
+  padding: 0; }
   .fullscreen #container #main {
     padding: 0;
     top: 0;
@@ -101,7 +106,9 @@ html, body {
         background-color: #c0eeff; }
 
 #header {
-  position: relative; }
+  position: fixed;
+  top: 0;
+  width: 100%; }
   #header #user-nav {
     position: relative;
     z-index: 100;
@@ -741,222 +748,227 @@ table {
       font-size: 30px;
       font-weight: 300; }
 
-#home.index #container, #registrations.create #container {
+#home.index, #registrations.create {
   background: white; }
-#home.index #main, #registrations.create #main {
-  width: 1000px;
-  margin: 0 auto; }
-#home.index #showcase, #registrations.create #showcase {
-  padding-top: 30px; }
-  #home.index #showcase #content, #registrations.create #showcase #content {
-    background: transparent url(../images/landing/content.jpg) no-repeat 0 0;
-    height: 330px;
-    padding: 20px 30px; }
-    #home.index #showcase #content h1, #registrations.create #showcase #content h1 {
-      font-size: 30px;
-      font-weight: 900;
-      text-shadow: 0 1px 0 white;
-      margin-bottom: 30px; }
-      #home.index #showcase #content h1 span, #registrations.create #showcase #content h1 span {
-        display: block; }
-    #home.index #showcase #content a#main-signup-button, #registrations.create #showcase #content a#main-signup-button {
-      font-size: 22px;
-      font-weight: 900;
-      text-transform: uppercase;
-      background: #00aeef;
-      color: white;
-      padding: 13px 20px;
-      -webkit-border-radius: 3px;
-      -moz-border-radius: 3px;
-      border-radius: 3px;
-      -webkit-transition: all 0.2s linear;
-      -moz-transition: all 0.2s linear;
-      -ms-transition: all 0.2s linear;
-      -o-transition: all 0.2s linear;
-      transition: all 0.2s linear;
-      background-image: -moz-linear-gradient(center top, #43baf0 4%, #3a94e6 52%);
-      background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #43baf0), color-stop(0.52, #3a94e6));
-      border: 1px solid #2983d5;
-      text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3); }
-    #home.index #showcase #content form li, #registrations.create #showcase #content form li {
-      position: relative;
-      width: 220px;
-      height: 31px;
-      margin-bottom: 8px; }
-      #home.index #showcase #content form li.checkbox, #registrations.create #showcase #content form li.checkbox {
-        height: 26px; }
-        #home.index #showcase #content form li.checkbox label, #registrations.create #showcase #content form li.checkbox label {
-          padding-top: 1px; }
-          #home.index #showcase #content form li.checkbox label a, #registrations.create #showcase #content form li.checkbox label a {
-            text-shadow: none;
-            color: #008ccd; }
-        #home.index #showcase #content form li.checkbox label.error, #registrations.create #showcase #content form li.checkbox label.error {
-          position: absolute;
-          bottom: -13px;
-          padding-left: 23px; }
-      #home.index #showcase #content form li label.placeholder, #registrations.create #showcase #content form li label.placeholder {
-        color: #999999;
-        font-style: italic;
-        font-family: Georgia, serif;
-        position: absolute;
+  #home.index #new-york, #registrations.create #new-york {
+    display: none; }
+  #home.index #main, #registrations.create #main {
+    width: 1000px;
+    margin: 0 auto; }
+  #home.index #showcase, #registrations.create #showcase {
+    padding-top: 30px; }
+    #home.index #showcase #content, #registrations.create #showcase #content {
+      background: transparent url(../images/landing/content.jpg) no-repeat 0 0;
+      height: 330px;
+      padding: 20px 30px; }
+      #home.index #showcase #content h1, #registrations.create #showcase #content h1 {
+        font-size: 30px;
+        font-weight: 900;
+        text-shadow: 0 1px 0 white;
+        margin-bottom: 30px; }
+        #home.index #showcase #content h1 span, #registrations.create #showcase #content h1 span {
+          display: block; }
+      #home.index #showcase #content a#main-signup-button, #registrations.create #showcase #content a#main-signup-button {
+        font-size: 22px;
+        font-weight: 900;
+        text-transform: uppercase;
+        background: #00aeef;
+        color: white;
+        padding: 13px 20px;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        -webkit-transition: all 0.2s linear;
+        -moz-transition: all 0.2s linear;
+        -ms-transition: all 0.2s linear;
+        -o-transition: all 0.2s linear;
+        transition: all 0.2s linear;
+        background-image: -moz-linear-gradient(center top, #43baf0 4%, #3a94e6 52%);
+        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #43baf0), color-stop(0.52, #3a94e6));
+        border: 1px solid #2983d5;
+        text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3); }
+      #home.index #showcase #content form li, #registrations.create #showcase #content form li {
+        position: relative;
+        width: 220px;
         height: 31px;
-        line-height: 31px;
-        text-transform: none;
-        font-weight: 100;
-        margin: 0;
-        padding: 0 0 0 10px; }
-      #home.index #showcase #content form li label.error, #registrations.create #showcase #content form li label.error {
-        font-size: 11px;
-        font-weight: 100;
-        color: black;
-        margin: 0 0 5px 0; }
-      #home.index #showcase #content form li span, #registrations.create #showcase #content form li span {
-        width: 102px;
-        float: left;
-        margin-right: 5px;
-        position: relative; }
-        #home.index #showcase #content form li span input[type="text"], #registrations.create #showcase #content form li span input[type="text"] {
-          width: 87px; }
-      #home.index #showcase #content form li span.last, #registrations.create #showcase #content form li span.last {
-        margin-right: 0; }
-      #home.index #showcase #content form li input[type="text"], #home.index #showcase #content form li input[type="email"], #home.index #showcase #content form li input[type="password"], #registrations.create #showcase #content form li input[type="text"], #registrations.create #showcase #content form li input[type="email"], #registrations.create #showcase #content form li input[type="password"] {
-        border: 1px solid #aaaaaa;
-        width: 195px;
-        box-shadow: 0 2px 3px rgba(0, 0, 0, 0.15) inset; }
-      #home.index #showcase #content form li input[type="submit"], #registrations.create #showcase #content form li input[type="submit"] {
-        width: 200px; }
-      #home.index #showcase #content form li input[type="submit"]:disabled, #registrations.create #showcase #content form li input[type="submit"]:disabled {
-        background-color: #dfdfdf;
-        color: #787878;
-        cursor: default; }
-      #home.index #showcase #content form li input[type="submit"]:disabled:active, #registrations.create #showcase #content form li input[type="submit"]:disabled:active {
-        top: 0; }
-    #home.index #showcase #content form li.filled label, #registrations.create #showcase #content form li.filled label {
-      display: none; }
-  #home.index #showcase #creator, #registrations.create #showcase #creator {
-    padding: 10px;
-    float: right; }
-    #home.index #showcase #creator p, #home.index #showcase #creator a, #registrations.create #showcase #creator p, #registrations.create #showcase #creator a {
-      float: left; }
-    #home.index #showcase #creator p, #registrations.create #showcase #creator p {
-      margin: 0 10px 0 0;
-      padding-top: 5px;
-      font-size: 11px;
-      text-align: right;
-      line-height: 1.3em; }
-      #home.index #showcase #creator p a, #registrations.create #showcase #creator p a {
-        margin-right: 3px; }
-      #home.index #showcase #creator p .occupation, #home.index #showcase #creator p .location, #registrations.create #showcase #creator p .occupation, #registrations.create #showcase #creator p .location {
-        color: #999999;
-        display: block; }
-    #home.index #showcase #creator a.avatar, #registrations.create #showcase #creator a.avatar {
-      display: block;
-      width: 50px;
-      height: 50px;
-      border: 1px solid #cccccc; }
-      #home.index #showcase #creator a.avatar img, #registrations.create #showcase #creator a.avatar img {
-        width: 50px;
-        height: 50px; }
-#home.index #description, #registrations.create #description {
-  margin-bottom: 100px; }
-  #home.index #description ul, #registrations.create #description ul {
-    display: inline-block; }
-    #home.index #description ul:after, #registrations.create #description ul:after {
-      content: ".";
-      display: block;
-      height: 0;
-      clear: both;
-      visibility: hidden; }
-    #home.index #description ul li, #registrations.create #description ul li {
-      float: left;
-      width: 320px;
-      margin-right: 20px;
-      border-top: 1px solid #dddddd;
-      border-bottom: 1px solid #dddddd;
-      padding: 20px 0;
-      height: 188px; }
-      #home.index #description ul li:last-child, #registrations.create #description ul li:last-child {
-        margin-right: 0; }
-      #home.index #description ul li h2, #registrations.create #description ul li h2 {
-        background: none;
-        color: black;
-        padding: 0;
-        font-size: 21px;
-        font-weight: 900;
-        text-transform: none;
-        margin-bottom: 15px; }
-      #home.index #description ul li p, #registrations.create #description ul li p {
-        font-size: 13.5px;
-        line-height: 1.5em;
-        margin: 0; }
-#home.index #editorials, #registrations.create #editorials {
-  margin-bottom: 50px; }
-  #home.index #editorials h1, #registrations.create #editorials h1 {
-    font-size: 28px;
-    font-weight: 900;
-    text-align: center;
-    margin-bottom: 50px; }
-  #home.index #editorials ul#people, #registrations.create #editorials ul#people {
-    display: inline-block; }
-    #home.index #editorials ul#people:after, #registrations.create #editorials ul#people:after {
-      content: ".";
-      display: block;
-      height: 0;
-      clear: both;
-      visibility: hidden; }
-    #home.index #editorials ul#people li, #registrations.create #editorials ul#people li {
-      width: 320px;
-      float: left;
-      margin-right: 20px; }
-      #home.index #editorials ul#people li:last-child, #registrations.create #editorials ul#people li:last-child {
-        margin-right: 0; }
-      #home.index #editorials ul#people li a.avatar, #registrations.create #editorials ul#people li a.avatar {
-        display: block;
-        width: 320px;
-        height: 320px;
-        margin-bottom: 20px; }
-        #home.index #editorials ul#people li a.avatar img, #registrations.create #editorials ul#people li a.avatar img {
-          width: 320px;
-          height: 320px; }
-      #home.index #editorials ul#people li .name, #registrations.create #editorials ul#people li .name {
-        display: block;
-        font-size: 28px;
-        font-weight: 900;
-        margin-bottom: 15px; }
-      #home.index #editorials ul#people li .earned, #registrations.create #editorials ul#people li .earned {
-        padding-bottom: 5px;
-        border-bottom: 1px solid white;
-        margin-bottom: 20px; }
-        #home.index #editorials ul#people li .earned .amount, #registrations.create #editorials ul#people li .earned .amount {
-          font-family: "ff-dagny-web-pro-1", "ff-dagny-web-pro-2", sans-serif;
-          font-size: 40px;
-          font-weight: 300;
-          line-height: 40px; }
-        #home.index #editorials ul#people li .earned .text, #registrations.create #editorials ul#people li .earned .text {
-          display: block;
+        margin-bottom: 8px; }
+        #home.index #showcase #content form li.checkbox, #registrations.create #showcase #content form li.checkbox {
+          height: 26px; }
+          #home.index #showcase #content form li.checkbox label, #registrations.create #showcase #content form li.checkbox label {
+            padding-top: 1px; }
+            #home.index #showcase #content form li.checkbox label a, #registrations.create #showcase #content form li.checkbox label a {
+              text-shadow: none;
+              color: #008ccd; }
+          #home.index #showcase #content form li.checkbox label.error, #registrations.create #showcase #content form li.checkbox label.error {
+            position: absolute;
+            bottom: -13px;
+            padding-left: 23px; }
+        #home.index #showcase #content form li label.placeholder, #registrations.create #showcase #content form li label.placeholder {
+          color: #999999;
+          font-style: italic;
+          font-family: Georgia, serif;
+          position: absolute;
+          height: 31px;
+          line-height: 31px;
+          text-transform: none;
+          font-weight: 100;
+          margin: 0;
+          padding: 0 0 0 10px; }
+        #home.index #showcase #content form li label.error, #registrations.create #showcase #content form li label.error {
           font-size: 11px;
-          text-transform: uppercase;
-          margin-bottom: 5px; }
-      #home.index #editorials ul#people li .occupation, #home.index #editorials ul#people li .location, #registrations.create #editorials ul#people li .occupation, #registrations.create #editorials ul#people li .location {
+          font-weight: 100;
+          color: black;
+          margin: 0 0 5px 0; }
+        #home.index #showcase #content form li span, #registrations.create #showcase #content form li span {
+          width: 102px;
+          float: left;
+          margin-right: 5px;
+          position: relative; }
+          #home.index #showcase #content form li span input[type="text"], #registrations.create #showcase #content form li span input[type="text"] {
+            width: 87px; }
+        #home.index #showcase #content form li span.last, #registrations.create #showcase #content form li span.last {
+          margin-right: 0; }
+        #home.index #showcase #content form li input[type="text"], #home.index #showcase #content form li input[type="email"], #home.index #showcase #content form li input[type="password"], #registrations.create #showcase #content form li input[type="text"], #registrations.create #showcase #content form li input[type="email"], #registrations.create #showcase #content form li input[type="password"] {
+          border: 1px solid #aaaaaa;
+          width: 195px;
+          box-shadow: 0 2px 3px rgba(0, 0, 0, 0.15) inset; }
+        #home.index #showcase #content form li input[type="submit"], #registrations.create #showcase #content form li input[type="submit"] {
+          width: 200px; }
+        #home.index #showcase #content form li input[type="submit"]:disabled, #registrations.create #showcase #content form li input[type="submit"]:disabled {
+          background-color: #dfdfdf;
+          color: #787878;
+          cursor: default; }
+        #home.index #showcase #content form li input[type="submit"]:disabled:active, #registrations.create #showcase #content form li input[type="submit"]:disabled:active {
+          top: 0; }
+      #home.index #showcase #content form li.filled label, #registrations.create #showcase #content form li.filled label {
+        display: none; }
+    #home.index #showcase #creator, #registrations.create #showcase #creator {
+      padding: 10px;
+      float: right; }
+      #home.index #showcase #creator p, #home.index #showcase #creator a, #registrations.create #showcase #creator p, #registrations.create #showcase #creator a {
+        float: left; }
+      #home.index #showcase #creator p, #registrations.create #showcase #creator p {
+        margin: 0 10px 0 0;
+        padding-top: 5px;
+        font-size: 11px;
+        text-align: right;
+        line-height: 1.3em; }
+        #home.index #showcase #creator p a, #registrations.create #showcase #creator p a {
+          margin-right: 3px; }
+        #home.index #showcase #creator p .occupation, #home.index #showcase #creator p .location, #registrations.create #showcase #creator p .occupation, #registrations.create #showcase #creator p .location {
+          color: #999999;
+          display: block; }
+      #home.index #showcase #creator a.avatar, #registrations.create #showcase #creator a.avatar {
         display: block;
-        text-transform: uppercase; }
-#home.index #join-call-to-action, #registrations.create #join-call-to-action {
-  display: block;
-  width: 600px;
-  padding: 10px 0 8px;
-  font-size: 20px;
-  font-weight: 700;
-  text-align: center;
-  text-transform: uppercase;
-  color: white;
-  background: #00aeef;
-  border: 5px solid #74cbf4;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  border-radius: 10px;
-  margin: 0 auto 50px; }
+        width: 50px;
+        height: 50px;
+        border: 1px solid #cccccc; }
+        #home.index #showcase #creator a.avatar img, #registrations.create #showcase #creator a.avatar img {
+          width: 50px;
+          height: 50px; }
+  #home.index #description, #registrations.create #description {
+    margin-bottom: 100px; }
+    #home.index #description ul, #registrations.create #description ul {
+      display: inline-block; }
+      #home.index #description ul:after, #registrations.create #description ul:after {
+        content: ".";
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden; }
+      #home.index #description ul li, #registrations.create #description ul li {
+        float: left;
+        width: 320px;
+        margin-right: 20px;
+        border-top: 1px solid #dddddd;
+        border-bottom: 1px solid #dddddd;
+        padding: 20px 0;
+        height: 188px; }
+        #home.index #description ul li:last-child, #registrations.create #description ul li:last-child {
+          margin-right: 0; }
+        #home.index #description ul li h2, #registrations.create #description ul li h2 {
+          background: none;
+          color: black;
+          padding: 0;
+          font-size: 21px;
+          font-weight: 900;
+          text-transform: none;
+          margin-bottom: 15px; }
+        #home.index #description ul li p, #registrations.create #description ul li p {
+          font-size: 13.5px;
+          line-height: 1.5em;
+          margin: 0; }
+  #home.index #editorials, #registrations.create #editorials {
+    margin-bottom: 50px; }
+    #home.index #editorials h1, #registrations.create #editorials h1 {
+      font-size: 28px;
+      font-weight: 900;
+      text-align: center;
+      margin-bottom: 50px; }
+    #home.index #editorials ul#people, #registrations.create #editorials ul#people {
+      display: inline-block; }
+      #home.index #editorials ul#people:after, #registrations.create #editorials ul#people:after {
+        content: ".";
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden; }
+      #home.index #editorials ul#people li, #registrations.create #editorials ul#people li {
+        width: 320px;
+        float: left;
+        margin-right: 20px; }
+        #home.index #editorials ul#people li:last-child, #registrations.create #editorials ul#people li:last-child {
+          margin-right: 0; }
+        #home.index #editorials ul#people li a.avatar, #registrations.create #editorials ul#people li a.avatar {
+          display: block;
+          width: 320px;
+          height: 320px;
+          margin-bottom: 20px; }
+          #home.index #editorials ul#people li a.avatar img, #registrations.create #editorials ul#people li a.avatar img {
+            width: 320px;
+            height: 320px; }
+        #home.index #editorials ul#people li .name, #registrations.create #editorials ul#people li .name {
+          display: block;
+          font-size: 28px;
+          font-weight: 900;
+          margin-bottom: 15px; }
+        #home.index #editorials ul#people li .earned, #registrations.create #editorials ul#people li .earned {
+          padding-bottom: 5px;
+          border-bottom: 1px solid white;
+          margin-bottom: 20px; }
+          #home.index #editorials ul#people li .earned .amount, #registrations.create #editorials ul#people li .earned .amount {
+            font-family: "ff-dagny-web-pro-1", "ff-dagny-web-pro-2", sans-serif;
+            font-size: 40px;
+            font-weight: 300;
+            line-height: 40px; }
+          #home.index #editorials ul#people li .earned .text, #registrations.create #editorials ul#people li .earned .text {
+            display: block;
+            font-size: 11px;
+            text-transform: uppercase;
+            margin-bottom: 5px; }
+        #home.index #editorials ul#people li .occupation, #home.index #editorials ul#people li .location, #registrations.create #editorials ul#people li .occupation, #registrations.create #editorials ul#people li .location {
+          display: block;
+          text-transform: uppercase; }
+  #home.index #join-call-to-action, #registrations.create #join-call-to-action {
+    display: block;
+    width: 600px;
+    padding: 10px 0 8px;
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+    color: white;
+    background: #00aeef;
+    border: 5px solid #74cbf4;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    margin: 0 auto 50px; }
 
 /* Story creation */
+body#stories.edit #container {
+  position: relative; }
+
 .new-story-copy {
   font-family: "museo-slab-1", "museo-slab-2", serif;
   font-size: 14px;
@@ -968,9 +980,6 @@ table {
   padding-top: 0; }
 
 form.new_story, form.edit_story, .story-form {
-  position: absolute;
-  top: 0;
-  bottom: 0;
   width: 100%; }
   form.new_story .finished-links, form.edit_story .finished-links, .story-form .finished-links {
     position: absolute;
@@ -1089,10 +1098,6 @@ form.new_story, form.edit_story, .story-form {
   form.new_story #share #twitter, form.edit_story #share #twitter, .story-form #share #twitter {
     background-image: url(../images/icons/twitterSmall.png);
     margin-right: 0; }
-  form.new_story #done, form.edit_story #done, .story-form #done {
-    max-width: 960px;
-    margin-left: auto;
-    margin-right: auto; }
   form.new_story .banner, form.edit_story .banner, .story-form .banner {
     max-width: 920px; }
   form.new_story .step#editor .choice, form.edit_story .step#editor .choice, .story-form .step#editor .choice {
@@ -1216,35 +1221,35 @@ form.new_story, form.edit_story, .story-form {
       font-weight: 500; }
     form.new_story .step#describe ul.fields li.tags .info, form.new_story .step#describe ul.fields li.gallery .info, form.edit_story .step#describe ul.fields li.tags .info, form.edit_story .step#describe ul.fields li.gallery .info, .story-form .step#describe ul.fields li.tags .info, .story-form .step#describe ul.fields li.gallery .info {
       margin-top: 3px; }
-  form.new_story #done, form.edit_story #done, .story-form #done {
-    height: 80px;
-    margin-top: -10px; }
-    form.new_story #done .owner, form.edit_story #done .owner, .story-form #done .owner {
-      float: right; }
-      form.new_story #done .owner span, form.edit_story #done .owner span, .story-form #done .owner span {
-        font-size: 13px;
-        font-weight: 700; }
-    form.new_story #done .rest, form.edit_story #done .rest, .story-form #done .rest {
-      clear: both;
-      padding-top: 10px; }
-    form.new_story #done input[type="submit"], form.new_story #done a, form.edit_story #done input[type="submit"], form.edit_story #done a, .story-form #done input[type="submit"], .story-form #done a {
-      float: right;
-      display: block;
-      width: 100px;
-      padding: 10px 0;
-      font-size: 16px;
-      color: white;
-      font-weight: 700;
-      text-transform: uppercase;
-      background-color: #34b44c;
-      text-align: center;
-      -webkit-border-radius: 3px;
-      -moz-border-radius: 3px;
-      border-radius: 3px; }
-    form.new_story #done a.preview, form.edit_story #done a.preview, .story-form #done a.preview {
-      background-color: #777777;
-      margin-right: 20px;
-      height: 24px; }
+  form.new_story #thankyou textarea, form.edit_story #thankyou textarea, .story-form #thankyou textarea {
+    margin-bottom: 20px; }
+  form.new_story #thankyou .owner, form.edit_story #thankyou .owner, .story-form #thankyou .owner {
+    float: right; }
+    form.new_story #thankyou .owner span, form.edit_story #thankyou .owner span, .story-form #thankyou .owner span {
+      font-size: 13px;
+      font-weight: 700; }
+  form.new_story #thankyou .rest, form.edit_story #thankyou .rest, .story-form #thankyou .rest {
+    clear: both;
+    padding-top: 10px;
+    height: 45px; }
+  form.new_story #thankyou input[type="submit"], form.new_story #thankyou a, form.edit_story #thankyou input[type="submit"], form.edit_story #thankyou a, .story-form #thankyou input[type="submit"], .story-form #thankyou a {
+    float: right;
+    display: block;
+    width: 100px;
+    padding: 10px 0;
+    font-size: 16px;
+    color: white;
+    font-weight: 700;
+    text-transform: uppercase;
+    background-color: #34b44c;
+    text-align: center;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px; }
+  form.new_story #thankyou a.preview, form.edit_story #thankyou a.preview, .story-form #thankyou a.preview {
+    background-color: #777777;
+    margin-right: 20px;
+    height: 24px; }
   form.new_story #thumbnail .thumbnail-container, form.edit_story #thumbnail .thumbnail-container, .story-form #thumbnail .thumbnail-container {
     padding-top: 5px;
     height: 80px;
@@ -4859,16 +4864,11 @@ impact ul.avatars li {
   .user-stats li.rewards .icon {
     background-image: url(../images/icons/starGreySmall.png); }
 
-body#users #container, body#messages #container {
-  background: #f0e3d2 url(../images/new-york.jpg) repeat 50% 0;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover; }
-  body#users #container #main, body#messages #container #main {
-    padding-bottom: 50px; }
+body#users #main, body#messages #main {
+  padding-bottom: 50px; }
 
 #user-profile {
+  position: relative;
   padding: 40px;
   width: 920px;
   margin: 40px auto;
@@ -8159,16 +8159,11 @@ a#load-more-activity {
 .dk_options a {
   color: #555555; }
 
-body#discovery #container {
-  background: #f0e3d2 url(../images/new-york.jpg) repeat 50% 0;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover; }
-  body#discovery #container #main {
-    padding-bottom: 50px; }
+body#discovery #main {
+  padding-bottom: 50px; }
 
 #discovery-banner {
+  position: relative;
   text-align: center;
   font-size: 25px;
   font-weight: 700;
@@ -8183,6 +8178,7 @@ body#discovery #container {
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05) inset, 0 1px 0 rgba(255, 255, 255, 0.2); }
 
 #discovery-summary {
+  position: relative;
   width: 860px;
   margin: 0 auto; }
   #discovery-summary #discovery-grid li {
@@ -8530,7 +8526,7 @@ body#discovery #container {
 .mini-people > li {
   padding-left: 50px;
   position: relative;
-  height: 65px;
+  height: 42px;
   margin-bottom: 10px; }
   .mini-people > li a.avatar {
     display: block;
