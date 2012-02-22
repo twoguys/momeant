@@ -7,10 +7,15 @@ body#discovery #container
 
 #discovery-banner
 	text-align: center
-	margin: 30px 0
 	font-size: 25px
 	font-weight: 700
 	text-shadow: 0 1px 0 rgba(255,255,255,0.5)
+	background: rgba(0,0,0,0.1)
+	width: 860px
+	margin: 25px auto
+	padding: 11px 0 10px
+	@include rounded
+	box-shadow: 0 1px 0 rgba(0,0,0,0.05) inset, 0 1px 0 rgba(255,255,255,0.2)
 
 #discovery-summary
 	width: 860px
@@ -19,6 +24,7 @@ body#discovery #container
 	#discovery-grid
 		li
 			float: left
+			position: relative
 			width: 377px
 			height: 302px
 			margin: 0 50px 50px 0
@@ -53,8 +59,6 @@ body#discovery #container
 						background-image: url(../images/content/media-types/writing.png)
 					&.music
 						background-image: url(../images/content/media-types/music.png)
-				.hover
-					display: none
 			.title
 				display: block
 				float: left
@@ -80,57 +84,56 @@ body#discovery #container
 					font-size: 11px
 					color: #999
 		
-			&:hover a.thumbnail .hover
-				display: block
-			.hover
-				position: absolute
-				top: 0
-				left: 0
-				z-index: 3
-				background: #000
-				background: rgba(0,0,0,0.85)
-				color: #c7c7c7
-				padding: 10px
-				width: 355px
-				height: 230px
-				.creator-info
-					position: relative
-					padding-left: 90px
-					font-size: 14px
-					img
-						position: absolute
-						top: 0
-						left: 0
-						width: 75px
-						height: 75px
-					.name
-						font-size: 22px
-						font-weight: 700
-						margin: 10px 0 3px
-						line-height: 22px
-						color: #fff
-					.info
-						font-size: 12px
-				.rewarders
+		.hover
+			display: none
+			width: 377px
+			height: 239px
+			padding: 13px
+			position: absolute
+			top: 0
+			left: 0
+			z-index: 3
+			background: #000
+			background: rgba(0,0,0,0.85)
+			color: #c7c7c7
+			.creator-info
+				position: relative
+				padding-left: 90px
+				font-size: 14px
+				img
 					position: absolute
-					bottom: 10px
-					left: 10px
-					font-size: 11px
-					span
-						display: block
-						margin-bottom: 3px
-					img
-						width: 45px
-						height: 45px
-						margin-right: 2px
-				.link
-					position: absolute
-					bottom: 10px
-					right: 10px
-					font-size: 19px
+					top: 0
+					left: 0
+					width: 75px
+					height: 75px
+				.name
+					font-size: 22px
+					font-weight: 700
+					margin: 10px 0 3px
+					line-height: 22px
 					color: #fff
-					padding-right: 17px
-					background: transparent url(../images/arrowThinRightWhite.png) no-repeat 100% 50%
+				.info
+					font-size: 12px
+			.rewarders
+				position: absolute
+				bottom: 13px
+				left: 13px
+				font-size: 11px
+				span
+					display: block
+					margin-bottom: 3px
+				img
+					width: 45px
+					height: 45px
+					margin-right: 2px
+			.link
+				position: absolute
+				bottom: 13px
+				right: 13px
+				font-size: 19px
+				color: #fff
+				padding-right: 17px
+				background: transparent url(../images/arrowThinRightWhite.png) no-repeat 100% 50%
 
 	#discovery-loading
 		clear: both

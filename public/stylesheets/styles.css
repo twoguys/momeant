@@ -8170,16 +8170,24 @@ body#discovery #container {
 
 #discovery-banner {
   text-align: center;
-  margin: 30px 0;
   font-size: 25px;
   font-weight: 700;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5); }
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  background: rgba(0, 0, 0, 0.1);
+  width: 860px;
+  margin: 25px auto;
+  padding: 11px 0 10px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05) inset, 0 1px 0 rgba(255, 255, 255, 0.2); }
 
 #discovery-summary {
   width: 860px;
   margin: 0 auto; }
   #discovery-summary #discovery-grid li {
     float: left;
+    position: relative;
     width: 377px;
     height: 302px;
     margin: 0 50px 50px 0;
@@ -8214,8 +8222,6 @@ body#discovery #container {
           background-image: url(../images/content/media-types/writing.png); }
         #discovery-summary #discovery-grid li a.thumbnail .media-type.music {
           background-image: url(../images/content/media-types/music.png); }
-      #discovery-summary #discovery-grid li a.thumbnail .hover {
-        display: none; }
     #discovery-summary #discovery-grid li .title {
       display: block;
       float: left;
@@ -8240,57 +8246,56 @@ body#discovery #container {
       #discovery-summary #discovery-grid li .rewards .text {
         font-size: 11px;
         color: #999999; }
-    #discovery-summary #discovery-grid li:hover a.thumbnail .hover {
-      display: block; }
-    #discovery-summary #discovery-grid li .hover {
+  #discovery-summary #discovery-grid .hover {
+    display: none;
+    width: 377px;
+    height: 239px;
+    padding: 13px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    background: black;
+    background: rgba(0, 0, 0, 0.85);
+    color: #c7c7c7; }
+    #discovery-summary #discovery-grid .hover .creator-info {
+      position: relative;
+      padding-left: 90px;
+      font-size: 14px; }
+      #discovery-summary #discovery-grid .hover .creator-info img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 75px;
+        height: 75px; }
+      #discovery-summary #discovery-grid .hover .creator-info .name {
+        font-size: 22px;
+        font-weight: 700;
+        margin: 10px 0 3px;
+        line-height: 22px;
+        color: white; }
+      #discovery-summary #discovery-grid .hover .creator-info .info {
+        font-size: 12px; }
+    #discovery-summary #discovery-grid .hover .rewarders {
       position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 3;
-      background: black;
-      background: rgba(0, 0, 0, 0.85);
-      color: #c7c7c7;
-      padding: 10px;
-      width: 355px;
-      height: 230px; }
-      #discovery-summary #discovery-grid li .hover .creator-info {
-        position: relative;
-        padding-left: 90px;
-        font-size: 14px; }
-        #discovery-summary #discovery-grid li .hover .creator-info img {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 75px;
-          height: 75px; }
-        #discovery-summary #discovery-grid li .hover .creator-info .name {
-          font-size: 22px;
-          font-weight: 700;
-          margin: 10px 0 3px;
-          line-height: 22px;
-          color: white; }
-        #discovery-summary #discovery-grid li .hover .creator-info .info {
-          font-size: 12px; }
-      #discovery-summary #discovery-grid li .hover .rewarders {
-        position: absolute;
-        bottom: 10px;
-        left: 10px;
-        font-size: 11px; }
-        #discovery-summary #discovery-grid li .hover .rewarders span {
-          display: block;
-          margin-bottom: 3px; }
-        #discovery-summary #discovery-grid li .hover .rewarders img {
-          width: 45px;
-          height: 45px;
-          margin-right: 2px; }
-      #discovery-summary #discovery-grid li .hover .link {
-        position: absolute;
-        bottom: 10px;
-        right: 10px;
-        font-size: 19px;
-        color: white;
-        padding-right: 17px;
-        background: transparent url(../images/arrowThinRightWhite.png) no-repeat 100% 50%; }
+      bottom: 13px;
+      left: 13px;
+      font-size: 11px; }
+      #discovery-summary #discovery-grid .hover .rewarders span {
+        display: block;
+        margin-bottom: 3px; }
+      #discovery-summary #discovery-grid .hover .rewarders img {
+        width: 45px;
+        height: 45px;
+        margin-right: 2px; }
+    #discovery-summary #discovery-grid .hover .link {
+      position: absolute;
+      bottom: 13px;
+      right: 13px;
+      font-size: 19px;
+      color: white;
+      padding-right: 17px;
+      background: transparent url(../images/arrowThinRightWhite.png) no-repeat 100% 50%; }
   #discovery-summary #discovery-loading {
     clear: both;
     padding-top: 50px;

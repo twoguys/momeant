@@ -1,3 +1,14 @@
+// Grid thumbnail interactions
+
+function setup_thumbnail_hovers() {
+  $('#discovery-grid li:not(.handled)').hoverIntent(function() {
+    $(this).find('.hover').stop(true,true).fadeIn(200);
+  }, function() {
+    $(this).find('.hover').stop(true,true).fadeOut(200);
+  });
+}
+setup_thumbnail_hovers();
+
 // Twitter/Facebook linking
 
 function discovery_configuration_complete(service, full) {
