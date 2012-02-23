@@ -63,7 +63,7 @@
       #thumbnail-preview
         .box
           .title= @story && @story.title.present? ? @story.title : "TITLE"
-          .author by #{current_user.name}
+          .author by #{@story.user.name}
           .thumbnail{:style => @story && @story.thumbnail.present? ? "background: url(#{@story.thumbnail.url(:medium)})" : ""}
         .note{:class => @story.thumbnail.url.include?("missing") ? "hidden" : ""}
           Unhappy with the default crop?

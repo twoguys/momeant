@@ -7,4 +7,9 @@ class TitlePage < Page
   def css_class
     "title"
   end
+  
+  def empty?
+    return true if self.text_media.text.blank?
+    return false
+  end
 end

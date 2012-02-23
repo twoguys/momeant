@@ -17,6 +17,8 @@
         = image_tag rewarder.avatar.url(:thumbnail)
 
   = link_to truncate(content.title, :length => 28), story_path(content), :class => "title"
+  = link_to truncate("#{content.user.name}'s", :length => 30), user_path(content.user), :class => "author"
+  %span.type= content.media_type
   .rewards
     .amount
       %span.dollar $
