@@ -18,13 +18,11 @@
 - if current_user.nil?
   = render "rewards/modal/no_user"
 
-- else
+- elsif current_user != @story.user
   #reward-box.reward-step
     .step-icon.reward
     
-    - if current_user == @story.user
-      %h3 You can't reward yourself, but we'll put some stats here about your content soon.
-    - elsif current_user.coins == 0
+    - if current_user.coins == 0
       .out-of-coins
         %h3 Oops! You're out of reward coins.
         %p If you want to reward this content, please #{link_to "purchase more reward coins", coins_path}.
