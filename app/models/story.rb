@@ -239,6 +239,21 @@ class Story < ActiveRecord::Base
     Reward.in_the_past_two_weeks.group_by(&:story).to_a.sort {|x,y| y[1].size <=> x[1].size }
   end
   
+  def this_media
+    case media_type
+    when "photos"
+      "these photos"
+    when "video"
+      "this video"
+    when "writing"
+      "this article"
+    when "music"
+      "this music"
+    else
+      "this content"
+    end
+  end
+  
   private
   
   def reprocess_thumbnail

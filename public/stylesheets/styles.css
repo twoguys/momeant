@@ -57,7 +57,7 @@ h2 {
 #container {
   padding-top: 42px; }
 
-.fullscreen .fullscreen-hidden, .fullscreen #header, .fullscreen #right-sidebar {
+.fullscreen .fullscreen-hidden, .fullscreen #header, .fullscreen #right-sidebar, .fullscreen #new-york {
   display: none; }
 .fullscreen #container {
   margin: 0;
@@ -3213,6 +3213,12 @@ form.new_story, form.edit_story, .story-form {
       display: none; }
 
 /* Story viewing */
+body#stories.fullscreen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; }
+
 #presenter {
   width: 100%;
   height: 100%;
@@ -3281,10 +3287,10 @@ form.new_story, form.edit_story, .story-form {
     background: transparent url(../images/lookItsYou.png) no-repeat 0 0;
     z-index: 3; }
   #presenter #reward-modal {
-    height: 550px;
+    height: 100%;
     width: 800px;
     position: absolute;
-    top: -550px;
+    top: -100%;
     left: 50%;
     margin-left: -400px;
     background-color: #ededed;
@@ -3350,39 +3356,43 @@ form.new_story, form.edit_story, .story-form {
         height: 20px;
         text-indent: -9999px;
         background: transparent url(../images/icons/starBlue.png) no-repeat 90% 50%; }
-    #presenter #reward-modal #modal-inner #modal-header {
-      height: 47px;
-      padding: 15px 30px;
-      background: black;
-      color: white;
-      position: relative; }
-      #presenter #reward-modal #modal-inner #modal-header a {
-        display: block;
-        width: 150px;
-        height: 31px;
-        background: transparent url(../images/logoWhiteSmall.png) no-repeat -9px -5px;
-        text-indent: -9999px; }
-      #presenter #reward-modal #modal-inner #modal-header #modal-steps {
-        position: absolute;
-        top: 31px;
-        right: 30px; }
-        #presenter #reward-modal #modal-inner #modal-header #modal-steps li {
-          float: left;
-          margin-right: 10px;
-          color: #777777; }
-          #presenter #reward-modal #modal-inner #modal-header #modal-steps li.selected .title {
-            font-weight: 700;
-            color: white; }
-          #presenter #reward-modal #modal-inner #modal-header #modal-steps li .title {
-            text-transform: uppercase;
-            cursor: help; }
-          #presenter #reward-modal #modal-inner #modal-header #modal-steps li .arrow {
-            padding-left: 5px; }
+    #presenter #reward-modal #modal-inner {
+      height: 100%;
+      border-left: 1px solid #aaaaaa;
+      border-right: 1px solid #aaaaaa;
+      overflow-y: auto; }
+      #presenter #reward-modal #modal-inner #modal-header {
+        height: 47px;
+        padding: 15px 30px;
+        background: black;
+        color: white;
+        position: relative; }
+        #presenter #reward-modal #modal-inner #modal-header a {
+          display: block;
+          width: 150px;
+          height: 31px;
+          background: transparent url(../images/logoWhiteSmall.png) no-repeat -9px -5px;
+          text-indent: -9999px; }
+        #presenter #reward-modal #modal-inner #modal-header #modal-steps {
+          display: none;
+          position: absolute;
+          top: 31px;
+          right: 30px; }
+          #presenter #reward-modal #modal-inner #modal-header #modal-steps li {
+            float: left;
+            margin-right: 10px;
+            color: #777777; }
+            #presenter #reward-modal #modal-inner #modal-header #modal-steps li.selected .title {
+              font-weight: 700;
+              color: white; }
+            #presenter #reward-modal #modal-inner #modal-header #modal-steps li .title {
+              text-transform: uppercase;
+              cursor: help; }
+            #presenter #reward-modal #modal-inner #modal-header #modal-steps li .arrow {
+              padding-left: 5px; }
     #presenter #reward-modal #your-reward {
-      border: 1px solid #aaaaaa;
-      border-top: none; }
-      #presenter #reward-modal #your-reward .inner {
-        height: 472px; }
+      border-top: none;
+      position: relative; }
       #presenter #reward-modal #your-reward .left-side, #presenter #reward-modal #your-reward .right-side {
         padding: 30px;
         height: 412px; }
@@ -3425,51 +3435,55 @@ form.new_story, form.edit_story, .story-form {
           #presenter #reward-modal #your-reward .right-side .step-icon.promote {
             background-image: url(../images/icons/impactBlackTiny.png); }
       #presenter #reward-modal #your-reward #creator-info {
-        border-right: 1px solid #dedede; }
+        position: relative;
+        padding: 20px 20px 20px 125px;
+        width: 480px;
+        min-height: 82px;
+        border-bottom: 1px solid #d8d8d8; }
         #presenter #reward-modal #your-reward #creator-info .avatar {
           display: block;
-          width: 164px;
-          height: 164px;
-          padding: 3px;
-          background: black;
-          color: white; }
+          width: 82px;
+          height: 82px; }
           #presenter #reward-modal #your-reward #creator-info .avatar img {
-            width: 164px;
-            height: 164px; }
+            width: 82px;
+            height: 82px; }
+        #presenter #reward-modal #your-reward #creator-info #avatar-cover {
+          width: 82px;
+          height: 82px;
+          background: transparent url(../images/reward-modal/round-avatar-cover.png) no-repeat 0 0; }
+        #presenter #reward-modal #your-reward #creator-info .avatar, #presenter #reward-modal #your-reward #creator-info #avatar-cover {
+          position: absolute;
+          top: 20px;
+          left: 20px; }
         #presenter #reward-modal #your-reward #creator-info .byline {
-          margin-bottom: 15px;
-          background: black;
-          color: white;
-          padding: 0 5px 1px;
-          font-size: 11px; }
-          #presenter #reward-modal #your-reward #creator-info .byline a {
-            display: block;
-            font-size: 16px;
-            text-transform: uppercase;
-            font-weight: 700;
-            color: white; }
-        #presenter #reward-modal #your-reward #creator-info .location, #presenter #reward-modal #your-reward #creator-info .occupation {
-          font-size: 11px;
-          margin-bottom: 15px; }
-          #presenter #reward-modal #your-reward #creator-info .location .title, #presenter #reward-modal #your-reward #creator-info .occupation .title {
-            color: #a1a1a1;
-            text-transform: uppercase;
-            display: block;
-            padding-bottom: 1px;
-            border-bottom: 1px solid #cccccc;
-            margin-bottom: 3px; }
+          margin: 5px 0;
+          font-size: 20px;
+          font-weight: 700; }
+        #presenter #reward-modal #your-reward #creator-info .occupation-location {
+          font-size: 14px; }
+        #presenter #reward-modal #your-reward #creator-info .occupation-location, #presenter #reward-modal #your-reward #creator-info .tagline {
+          color: #636363; }
         #presenter #reward-modal #your-reward #creator-info .tagline {
           padding-top: 5px;
           font-size: 11px;
-          height: 88px;
           overflow: hidden; }
         #presenter #reward-modal #your-reward #creator-info .message {
           background: transparent url(../images/rewardModalThanksBG.png) no-repeat 0 0;
           padding: 23px 15px;
           height: 137px; }
+      #presenter #reward-modal #your-reward #content-thumbnail {
+        position: absolute;
+        top: 20px;
+        right: 20px; }
+        #presenter #reward-modal #your-reward #content-thumbnail img {
+          width: 123px;
+          height: 82px; }
       #presenter #reward-modal #your-reward .section {
         width: 467px;
         margin: 0 auto 20px; }
+        #presenter #reward-modal #your-reward .section h1 {
+          text-align: center;
+          font-weight: 700; }
         #presenter #reward-modal #your-reward .section h3 {
           font-size: 15px;
           text-align: center;
@@ -3487,9 +3501,13 @@ form.new_story, form.edit_story, .story-form {
         #presenter #reward-modal #your-reward .section input[type="submit"] {
           float: right; }
       #presenter #reward-modal #your-reward #reward-box {
-        position: relative; }
+        position: relative;
+        border-top: 1px solid white;
+        border-bottom: 1px solid #d8d8d8;
+        padding: 70px 0; }
         #presenter #reward-modal #your-reward #reward-box.loading {
-          background: transparent url(../images/spinner.gif) no-repeat 50% 220px; }
+          height: 277px;
+          background: transparent url(../images/spinner.gif) no-repeat 50% 200px; }
           #presenter #reward-modal #your-reward #reward-box.loading * {
             display: none; }
         #presenter #reward-modal #your-reward #reward-box .alert {
@@ -3500,8 +3518,7 @@ form.new_story, form.edit_story, .story-form {
           text-transform: uppercase;
           margin-bottom: 20px; }
         #presenter #reward-modal #your-reward #reward-box .inner {
-          position: relative;
-          height: 300px; }
+          position: relative; }
           #presenter #reward-modal #your-reward #reward-box .inner form#reward-form #amount {
             margin-bottom: 0; }
           #presenter #reward-modal #your-reward #reward-box .inner form#reward-form #stars {
@@ -3568,6 +3585,65 @@ form.new_story, form.edit_story, .story-form {
             clear: both; }
             #presenter #reward-modal #your-reward #reward-box .inner form#reward-form #comment textarea {
               height: 50px; }
+      #presenter #reward-modal #your-reward #more {
+        border-top: 1px solid white;
+        padding-top: 30px; }
+        #presenter #reward-modal #your-reward #more #rewarders, #presenter #reward-modal #your-reward #more #other-content {
+          width: 330px;
+          padding: 0 30px;
+          float: left; }
+          #presenter #reward-modal #your-reward #more #rewarders h3, #presenter #reward-modal #your-reward #more #other-content h3 {
+            font-weight: 500;
+            color: #777777;
+            margin-bottom: 10px; }
+        #presenter #reward-modal #your-reward #more #rewarders h3 {
+          margin-bottom: 0; }
+        #presenter #reward-modal #your-reward #more #rewarders #new-reward {
+          display: none; }
+        #presenter #reward-modal #your-reward #more #rewarders li {
+          position: relative;
+          padding-left: 50px;
+          min-height: 40px;
+          clear: both;
+          padding-top: 10px; }
+          #presenter #reward-modal #your-reward #more #rewarders li .avatar {
+            display: block;
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            left: 0;
+            top: 10px; }
+            #presenter #reward-modal #your-reward #more #rewarders li .avatar img {
+              width: 40px;
+              height: 40px; }
+          #presenter #reward-modal #your-reward #more #rewarders li .text {
+            float: left;
+            width: 220px; }
+            #presenter #reward-modal #your-reward #more #rewarders li .text p {
+              font-size: 11px;
+              margin: 0;
+              line-height: 1.4em; }
+          #presenter #reward-modal #your-reward #more #rewarders li .amount {
+            float: right;
+            font-size: 16px;
+            width: 55px;
+            text-align: right; }
+            #presenter #reward-modal #your-reward #more #rewarders li .amount .dollar {
+              font-size: 11px;
+              position: relative;
+              top: -5px;
+              margin-right: -3px; }
+        #presenter #reward-modal #your-reward #more #other-content li {
+          float: left;
+          margin-right: 10px; }
+          #presenter #reward-modal #your-reward #more #other-content li a.thumbnail {
+            display: block;
+            width: 95px;
+            height: 60px;
+            margin-bottom: 5px; }
+          #presenter #reward-modal #your-reward #more #other-content li a.title {
+            font-size: 11px;
+            color: #333333; }
       #presenter #reward-modal #your-reward #share .info h3.impact {
         font-size: 15px;
         margin: 0; }
@@ -3680,30 +3756,35 @@ form.new_story, form.edit_story, .story-form {
             #presenter #reward-modal #your-reward #your-status .faces li a, #presenter #reward-modal #your-reward #your-status .faces li img {
               width: 40px;
               height: 40px; }
-      #presenter #reward-modal #your-reward #not-logged-in h1 {
-        margin-bottom: 20px; }
-      #presenter #reward-modal #your-reward #not-logged-in p {
-        margin: 10px 0; }
-      #presenter #reward-modal #your-reward #not-logged-in p.strong {
-        font-weight: 700; }
-      #presenter #reward-modal #your-reward #not-logged-in .buttons {
-        margin: 20px 0; }
-        #presenter #reward-modal #your-reward #not-logged-in .buttons a.join {
-          display: block;
-          width: 240px;
-          margin: 0 auto;
-          background: #252525;
-          color: white;
-          -webkit-border-radius: 3px;
-          -moz-border-radius: 3px;
-          border-radius: 3px;
-          padding: 12px 24px;
-          text-align: center;
-          text-transform: uppercase;
-          font-size: 13px;
+      #presenter #reward-modal #your-reward #not-logged-in {
+        width: 507px;
+        margin: 0 auto;
+        border-bottom: 1px solid #d8d8d8;
+        float: none; }
+        #presenter #reward-modal #your-reward #not-logged-in h1 {
+          margin-bottom: 20px; }
+        #presenter #reward-modal #your-reward #not-logged-in p {
+          margin: 10px 0; }
+        #presenter #reward-modal #your-reward #not-logged-in p.strong {
           font-weight: 700; }
-      #presenter #reward-modal #your-reward #not-logged-in .links {
-        text-align: center; }
+        #presenter #reward-modal #your-reward #not-logged-in .buttons {
+          margin: 20px 0; }
+          #presenter #reward-modal #your-reward #not-logged-in .buttons a.join {
+            display: block;
+            width: 240px;
+            margin: 0 auto;
+            background: #252525;
+            color: white;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+            padding: 12px 24px;
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 13px;
+            font-weight: 700; }
+        #presenter #reward-modal #your-reward #not-logged-in .links {
+          text-align: center; }
   #presenter .content {
     z-index: 1; }
   #presenter #metadata {

@@ -1,22 +1,25 @@
-#creator-info.left-side
+#creator-info
   = link_to(image_tag(@story.user.avatar.url(:large)), user_path(@story.user), :class => "avatar")
-  .byline
-    content by
-    = link_to @story.user.name, user_path(@story.user)
-  .occupation
-    %span.title Occupation
-    %span= @story.user.occupation
-  .location
-    %span.title Location
-    %span= @story.user.location
+  #avatar-cover
+  .byline Reward #{@story.user.name} for #{@story.this_media}
+  - if @story.user.occupation || @story.user.location
+    .occupation-location
+      - if @story.user.occupation.present?
+        %strong= @story.user.occupation
+      - if @story.user.location
+        %span from
+        %strong= @story.user.location
   - unless @story.user.tagline.blank?
-    .tagline= truncate(@story.user.tagline, :length => 260)
+    .tagline= truncate(@story.user.tagline, :length => 80)
+
+#content-thumbnail
+  = image_tag @story.thumbnail.url(:small)
 
 - if current_user.nil?
   = render "rewards/modal/no_user"
 
 - else
-  #reward-box.right-side.reward-step
+  #reward-box.reward-step
     .step-icon.reward
     
     - if current_user == @story.user
@@ -35,8 +38,7 @@
             = form.hidden_field :impacted_by, :value => @impacted_by
 
           #amount.section
-            %h2 How much would you like to
-            %h1 Reward #{@story.user.first_name}?
+            %h1 Select your reward amount:
             %ul#stars
               %li= link_to "1", "#", :id => "one-star", :amount => 1
               %li= link_to "5", "#", :id => "five-star", :amount => 5
@@ -65,6 +67,38 @@
 
           #comment.section
             .step-icon.comment
-            %h3 Tell #{@story.user.first_name} why you rewarded him/her.
+            %h1 Tell #{@story.user.first_name} why you're rewarding this:
             = form.text_area :comment, :placeholder => "Enter a great comment..."
             = form.submit "Give Reward"
+
+
+#more
+  #rewarders
+    %h3 Recent rewarders of #{@story.this_media}:
+    %ul
+      - if current_user
+        %li#new-reward
+          = link_to image_tag(current_user.avatar.url(:thumbnail)), user_path(current_user), :class => "avatar"
+          .text
+            = link_to current_user.name, user_path(current_user), :class => "name"
+            %p.comment
+          .amount
+            %span.dollar $
+            %span.value
+      - @story.rewards.each do |reward|
+        %li
+          = link_to image_tag(reward.user.avatar.url(:thumbnail)), user_path(reward.user), :class => "avatar"
+          .text
+            = link_to reward.user.name, user_path(reward.user), :class => "name"
+            %p= reward.comment
+          .amount
+            %span.dollar $
+            %span= (reward.amount * Reward.dollar_exchange).to_s.ljust(4,"0")
+  
+  #other-content
+    %h3 More content from #{@story.user.first_name}:
+    %ul
+      - @story.user.created_stories.published.where("id != #{@story.id}").each do |content|
+        %li
+          = link_to image_tag(content.thumbnail.url(:petite)), story_path(content), :class => "thumbnail"
+          = link_to content.title, story_path(content), :class => "title"
