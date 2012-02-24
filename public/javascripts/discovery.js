@@ -1,11 +1,12 @@
 // Grid thumbnail interactions
 
 function setup_thumbnail_hovers() {
-  $('#discovery-grid li:not(.handled)').hoverIntent(function() {
+  $('#discovery-grid li:not(.hover-handled)').hoverIntent(function() {
     $(this).find('.hover').stop(true,true).fadeIn(200);
   }, function() {
     $(this).find('.hover').stop(true,true).fadeOut(200);
   });
+  $('#discovery-grid li:not(.hover-handled)').addClass('hover-handled');
 }
 setup_thumbnail_hovers();
 
@@ -80,6 +81,7 @@ function monitor_scrolling() {
     current_page += 1;
     $.get('/discover', {page: current_page, remote: true}, function(result) {
       $('#discovery-grid').append(result);
+      setup_thumbnail_hovers();
       total_height = document.body.offsetHeight;
       
       if ($.trim(result) == '') {
