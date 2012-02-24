@@ -254,6 +254,21 @@ class Story < ActiveRecord::Base
     end
   end
   
+  def article_string
+    case media_type
+    when "photos"
+      "photos"
+    when "video"
+      "a video"
+    when "writing"
+      "an article"
+    when "music"
+      "some music"
+    else
+      "some content"
+    end
+  end
+  
   private
   
   def reprocess_thumbnail

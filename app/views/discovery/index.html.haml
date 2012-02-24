@@ -13,6 +13,19 @@
   
   #discovery-loading Loading more...
 
+  %ul#discovery-activity
+    - @activity.each do |activity|
+      %li
+        = link_to image_tag(activity.actor.avatar.url(:thumbnail)), user_path(activity.actor), :class => "avatar"
+        = link_to activity.actor.name, user_path(activity.actor)
+        - if activity.action_type == "Reward"
+          %strong rewarded #{number_to_currency activity.action.amount * Reward.dollar_exchange}
+          %span to
+          = link_to activity.action.story.title, story_path(activity.action.story, :impacted_by => activity.action.id)
+        - else
+          %strong shared #{activity.action.article_string}
+          = link_to activity.action.title, story_path(activity.action)
+
 :javascript
   mpq.track('Viewed Discovery');
 = javascript_include_tag "jquery.hover-intent"

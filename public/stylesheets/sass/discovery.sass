@@ -7,7 +7,7 @@ body#discovery
 	font-size: 25px
 	font-weight: 700
 	text-shadow: 0 1px 0 rgba(255,255,255,0.5)
-	width: 860px
+	width: 1000px
 	margin: 25px auto
 	padding: 11px 0 10px
 	@include rounded
@@ -16,20 +16,50 @@ body#discovery
 		font-weight: 700
 		display: block
 
+#discovery-activity
+	position: absolute
+	top: 0
+	right: 0
+	background: #fff
+	width: 170px
+	padding: 10px
+	@include rounded
+	@include boxshadow(5px,0.5)
+	li
+		margin-bottom: 15px
+		position: relative
+		padding-left: 52px
+		&:last-child
+			margin-bottom: 0
+		a.avatar
+			display: block
+			position: absolute
+			top: 0
+			left: 0
+			width: 45px
+			height: 45px
+			img
+				width: 45px
+				height: 45px
+		a
+			color: #777
+		a:hover
+			color: $blue
+
 #discovery-summary
 	position: relative
-	width: 860px
+	width: 1000px
 	margin: 0 auto	
 	
 	#discovery-grid
+		width: 780px
 		li
 			float: left
 			position: relative
-			width: 377px
+			width: 375px
 			height: 302px
-			margin: 0 50px 50px 0
+			margin: 0 30px 30px 0
 			background: #f8f7f5 url(../images/content/thumbnail-background.png) repeat
-			padding: 13px
 			box-shadow: 0 1px 0 rgba(255,255,255,1) inset, 0 1px 3px rgba(0,0,0,0.5)
 			&:nth-child(even)
 				margin-right: 0
@@ -38,8 +68,7 @@ body#discovery
 				position: relative
 				width: 375px
 				height: 250px
-				margin-bottom: 10px
-				border: 1px solid #E5E5E5
+				margin-bottom: 5px
 				img.preview
 					position: relative
 					width: 375px
@@ -62,11 +91,12 @@ body#discovery
 			.title
 				display: block
 				float: left
-				padding-top: 6px
+				padding-top: 10px
+				margin-left: 10px
 				width: 265px
 				height: 33px
 				overflow: hidden
-				font-size: 19px
+				font-size: 16px
 				color: $text_color
 				font-family: $handwritten
 			.author, .type
@@ -74,6 +104,7 @@ body#discovery
 			.rewards
 				float: right
 				text-align: right
+				margin-right: 10px
 				.amount
 					font-size: 24px
 					margin-bottom: -5px
@@ -88,8 +119,8 @@ body#discovery
 		
 		.hover
 			display: none
-			width: 377px
-			height: 239px
+			width: 350px
+			height: 224px
 			padding: 13px
 			position: absolute
 			top: 0

@@ -129,7 +129,7 @@ h2 {
       background-image: linear-gradient(top, #191919 0%, #191919 50%, black 51%, black 98%);
       box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); }
     #header #user-nav ul.links {
-      width: 937px;
+      width: 987px;
       position: relative;
       z-index: 2;
       margin: 0 auto;
@@ -3377,7 +3377,7 @@ body#stories.fullscreen {
           position: absolute;
           top: 15px;
           right: 20px;
-          width: 300px;
+          width: 320px;
           text-align: right;
           font-size: 11px;
           color: #cccccc;
@@ -3466,12 +3466,11 @@ body#stories.fullscreen {
           left: 20px; }
         #presenter #reward-modal #your-reward #creator-info .byline {
           margin: 5px 0;
-          font-size: 20px;
-          font-weight: 700; }
-        #presenter #reward-modal #your-reward #creator-info .occupation-location {
-          font-size: 14px; }
+          font-size: 18px;
+          font-weight: 700;
+          text-transform: uppercase; }
         #presenter #reward-modal #your-reward #creator-info .occupation-location, #presenter #reward-modal #your-reward #creator-info .tagline {
-          color: #636363; }
+          color: #888888; }
         #presenter #reward-modal #your-reward #creator-info .tagline {
           padding-top: 5px;
           font-size: 11px;
@@ -8257,7 +8256,7 @@ body#discovery #main {
   font-size: 25px;
   font-weight: 700;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
-  width: 860px;
+  width: 1000px;
   margin: 25px auto;
   padding: 11px 0 10px;
   -webkit-border-radius: 5px;
@@ -8268,123 +8267,159 @@ body#discovery #main {
     font-weight: 700;
     display: block; }
 
+#discovery-activity {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: white;
+  width: 170px;
+  padding: 10px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); }
+  #discovery-activity li {
+    margin-bottom: 15px;
+    position: relative;
+    padding-left: 52px; }
+    #discovery-activity li:last-child {
+      margin-bottom: 0; }
+    #discovery-activity li a.avatar {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 45px;
+      height: 45px; }
+      #discovery-activity li a.avatar img {
+        width: 45px;
+        height: 45px; }
+    #discovery-activity li a {
+      color: #777777; }
+    #discovery-activity li a:hover {
+      color: #00aeef; }
+
 #discovery-summary {
   position: relative;
-  width: 860px;
+  width: 1000px;
   margin: 0 auto; }
-  #discovery-summary #discovery-grid li {
-    float: left;
-    position: relative;
-    width: 377px;
-    height: 302px;
-    margin: 0 50px 50px 0;
-    background: #f8f7f5 url(../images/content/thumbnail-background.png) repeat;
-    padding: 13px;
-    box-shadow: 0 1px 0 white inset, 0 1px 3px rgba(0, 0, 0, 0.5); }
-    #discovery-summary #discovery-grid li:nth-child(even) {
-      margin-right: 0; }
-    #discovery-summary #discovery-grid li a.thumbnail {
-      display: block;
+  #discovery-summary #discovery-grid {
+    width: 780px; }
+    #discovery-summary #discovery-grid li {
+      float: left;
       position: relative;
       width: 375px;
-      height: 250px;
-      margin-bottom: 10px;
-      border: 1px solid #e5e5e5; }
-      #discovery-summary #discovery-grid li a.thumbnail img.preview {
+      height: 302px;
+      margin: 0 30px 30px 0;
+      background: #f8f7f5 url(../images/content/thumbnail-background.png) repeat;
+      box-shadow: 0 1px 0 white inset, 0 1px 3px rgba(0, 0, 0, 0.5); }
+      #discovery-summary #discovery-grid li:nth-child(even) {
+        margin-right: 0; }
+      #discovery-summary #discovery-grid li a.thumbnail {
+        display: block;
         position: relative;
         width: 375px;
         height: 250px;
-        z-index: 1; }
-      #discovery-summary #discovery-grid li a.thumbnail .media-type {
-        position: absolute;
-        top: 1px;
-        left: 1px;
-        width: 375px;
-        height: 250px;
-        z-index: 2;
-        background: transparent url(../images/content/media-types/photos.png) no-repeat 50% 50%; }
-        #discovery-summary #discovery-grid li a.thumbnail .media-type.video {
-          background-image: url(../images/content/media-types/video.png); }
-        #discovery-summary #discovery-grid li a.thumbnail .media-type.writing {
-          background-image: url(../images/content/media-types/writing.png); }
-        #discovery-summary #discovery-grid li a.thumbnail .media-type.music {
-          background-image: url(../images/content/media-types/music.png); }
-    #discovery-summary #discovery-grid li .title {
-      display: block;
-      float: left;
-      padding-top: 6px;
-      width: 265px;
-      height: 33px;
-      overflow: hidden;
-      font-size: 19px;
-      color: #252525;
-      font-family: "handwritten", cursive; }
-    #discovery-summary #discovery-grid li .author, #discovery-summary #discovery-grid li .type {
-      display: none; }
-    #discovery-summary #discovery-grid li .rewards {
-      float: right;
-      text-align: right; }
-      #discovery-summary #discovery-grid li .rewards .amount {
-        font-size: 24px;
-        margin-bottom: -5px; }
-        #discovery-summary #discovery-grid li .rewards .amount .dollar {
-          font-size: 16px;
+        margin-bottom: 5px; }
+        #discovery-summary #discovery-grid li a.thumbnail img.preview {
           position: relative;
-          top: -5px;
-          margin-right: -6px; }
-      #discovery-summary #discovery-grid li .rewards .text {
-        font-size: 11px;
-        color: #999999; }
-  #discovery-summary #discovery-grid .hover {
-    display: none;
-    width: 377px;
-    height: 239px;
-    padding: 13px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 3;
-    background: black;
-    background: rgba(0, 0, 0, 0.92);
-    color: #c7c7c7; }
-    #discovery-summary #discovery-grid .hover .creator-info {
-      position: relative;
-      padding-left: 90px;
-      font-size: 14px; }
-      #discovery-summary #discovery-grid .hover .creator-info img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 75px;
-        height: 75px; }
-      #discovery-summary #discovery-grid .hover .creator-info .name {
-        font-size: 22px;
-        font-weight: 700;
-        margin: 10px 0 3px;
-        line-height: 22px;
-        color: white; }
-      #discovery-summary #discovery-grid .hover .creator-info .info {
-        font-size: 12px; }
-    #discovery-summary #discovery-grid .hover .rewarders {
-      position: absolute;
-      bottom: 13px;
-      left: 13px;
-      font-size: 11px; }
-      #discovery-summary #discovery-grid .hover .rewarders span {
+          width: 375px;
+          height: 250px;
+          z-index: 1; }
+        #discovery-summary #discovery-grid li a.thumbnail .media-type {
+          position: absolute;
+          top: 1px;
+          left: 1px;
+          width: 375px;
+          height: 250px;
+          z-index: 2;
+          background: transparent url(../images/content/media-types/photos.png) no-repeat 50% 50%; }
+          #discovery-summary #discovery-grid li a.thumbnail .media-type.video {
+            background-image: url(../images/content/media-types/video.png); }
+          #discovery-summary #discovery-grid li a.thumbnail .media-type.writing {
+            background-image: url(../images/content/media-types/writing.png); }
+          #discovery-summary #discovery-grid li a.thumbnail .media-type.music {
+            background-image: url(../images/content/media-types/music.png); }
+      #discovery-summary #discovery-grid li .title {
         display: block;
-        margin-bottom: 3px; }
-      #discovery-summary #discovery-grid .hover .rewarders img {
-        width: 45px;
-        height: 45px;
-        margin-right: 2px; }
-    #discovery-summary #discovery-grid .hover .link {
+        float: left;
+        padding-top: 10px;
+        margin-left: 10px;
+        width: 265px;
+        height: 33px;
+        overflow: hidden;
+        font-size: 16px;
+        color: #252525;
+        font-family: "handwritten", cursive; }
+      #discovery-summary #discovery-grid li .author, #discovery-summary #discovery-grid li .type {
+        display: none; }
+      #discovery-summary #discovery-grid li .rewards {
+        float: right;
+        text-align: right;
+        margin-right: 10px; }
+        #discovery-summary #discovery-grid li .rewards .amount {
+          font-size: 24px;
+          margin-bottom: -5px; }
+          #discovery-summary #discovery-grid li .rewards .amount .dollar {
+            font-size: 16px;
+            position: relative;
+            top: -5px;
+            margin-right: -6px; }
+        #discovery-summary #discovery-grid li .rewards .text {
+          font-size: 11px;
+          color: #999999; }
+    #discovery-summary #discovery-grid .hover {
+      display: none;
+      width: 350px;
+      height: 224px;
+      padding: 13px;
       position: absolute;
-      bottom: 13px;
-      right: 13px;
-      font-size: 19px;
-      color: white;
-      padding-right: 17px;
-      background: transparent url(../images/arrowThinRightWhite.png) no-repeat 100% 50%; }
+      top: 0;
+      left: 0;
+      z-index: 3;
+      background: black;
+      background: rgba(0, 0, 0, 0.92);
+      color: #c7c7c7; }
+      #discovery-summary #discovery-grid .hover .creator-info {
+        position: relative;
+        padding-left: 90px;
+        font-size: 14px; }
+        #discovery-summary #discovery-grid .hover .creator-info img {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 75px;
+          height: 75px; }
+        #discovery-summary #discovery-grid .hover .creator-info .name {
+          font-size: 22px;
+          font-weight: 700;
+          margin: 10px 0 3px;
+          line-height: 22px;
+          color: white; }
+        #discovery-summary #discovery-grid .hover .creator-info .info {
+          font-size: 12px; }
+      #discovery-summary #discovery-grid .hover .rewarders {
+        position: absolute;
+        bottom: 13px;
+        left: 13px;
+        font-size: 11px; }
+        #discovery-summary #discovery-grid .hover .rewarders span {
+          display: block;
+          margin-bottom: 3px; }
+        #discovery-summary #discovery-grid .hover .rewarders img {
+          width: 45px;
+          height: 45px;
+          margin-right: 2px; }
+      #discovery-summary #discovery-grid .hover .link {
+        position: absolute;
+        bottom: 13px;
+        right: 13px;
+        font-size: 19px;
+        color: white;
+        padding-right: 17px;
+        background: transparent url(../images/arrowThinRightWhite.png) no-repeat 100% 50%; }
   #discovery-summary #discovery-loading {
     clear: both;
     padding-top: 50px;

@@ -6,6 +6,8 @@ class DiscoveryController < ApplicationController
     if params[:remote]
       render :partial => "discovery/grid_item", :collection => @content, :as => :content
       return
+    else
+      @activity = Activity.where("action_type = 'Reward' OR action_type = 'Story'").limit(8)
     end
   end
   
