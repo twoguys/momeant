@@ -34,7 +34,7 @@
                 = link_to image_tag(content.thumbnail.url(:medium)), story_path(content), :class => "thumbnail"
                 .stat.popular= content.reward_count
                 = link_to truncate(content.title, :length => 40), story_path(content), :class => "title"
-                .byline by #{link_to @user.name, user_path(@user)}
+                .byline by #{link_to content.user.name, user_path(content.user)}
                 %p.synopsis= truncate content.synopsis, :length => 210
                 = link_to "View Content", story_path(content), :class => "launch"
     
