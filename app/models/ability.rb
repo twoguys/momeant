@@ -11,9 +11,7 @@ class Ability
         story.published?
       end
       
-      if user.is_a?(Creator)
-        can :manage, Story, :user_id => user.id
-      end
+      can :manage, Story, :user_id => user.id
       
       if user.is_admin?  
         can :manage, :all

@@ -158,13 +158,16 @@ $(function() {
 		
 		show_modal: function() {
 			$(this.el).animate({top: 0}, 300);
+			$('#reward-modal-tab').hide().css('bottom',0);
 			$('#content-cover').show();
 			this.modal_open = true;
 			mpq.track('Opened Reward Modal', {anonymous_id: '#{session[:analytics_anonymous_id]}'});
 		},
 		
 		hide_modal: function() {
-			$(this.el).animate({top: '-550px'}, 300);
+			$(this.el).animate({top: '-100%'}, 300, function() {
+  			$('#reward-modal-tab').show().animate({bottom:'-39px'}, 300);
+			});
 			$('#content-cover').hide();
 			this.modal_open = false;
 			$('#its-you-arrow').hide();
@@ -268,14 +271,13 @@ $(function() {
 					"reward[impacted_by]":impacted_by
 				},
 				function(data) {
-					$("#your-reward .inner").html(data);
-					$('#mini-nav').animate({top:'0'}, 500);
+					$("#reward-box").html(data).removeClass('loading');
 					$('#what-is-impact').fancybox();
 					$('#url_to_share').click(function() { $(this).select(); });
-					$('#momeant-status-link').click(RewardModal.advance_to_user_status);
-					$('#back-to-share-link').click(RewardModal.back_to_sharing);
 					
-    			RewardModal.advance_to_step(3);
+					$('#new-reward .comment').text(comment);
+					$('#new-reward .amount .value').text((parseInt(amount) * 0.10).toFixed(2));
+					$('#new-reward').slideDown();
 				}
 			);
 		},

@@ -1,128 +1,32 @@
-- content_for :head do
-  = javascript_include_tag "discovery"
+#new-york
 
-#discovery-page
+#discovery-banner
+  %span Real people create the content that we enjoy on the Web.
+  %strong They deserve to be rewarded.
 
-  #content-column
+#discovery-summary
+
+  #discovery-filters
+
+  %ul#discovery-grid
+    = render :partial => "discovery/grid_item", :collection => @content, :as => :content
   
-    %h1 Content You'll Love
+  #discovery-loading Loading more...
 
-    %section.app.one
-      %header
-        %h3= link_to "Popular", popular_content_path
-        = link_to "view more", popular_content_path, :class => "more"
-      %ul.mini-content
-        - @popular_content.each do |content|
-          %li
-            = link_to image_tag(content[0].thumbnail.url(:medium)), story_path(content[0]), :class => "thumbnail"
-            .stat.popular= content[1].map(&:amount).inject(:+)
-            .more
-              = link_to image_tag(content[0].thumbnail.url(:medium)), story_path(content[0]), :class => "thumbnail"
-              .stat.popular= content[1].map(&:amount).inject(:+)
-              = link_to truncate(content[0].title, :length => 40), story_path(content[0]), :class => "title"
-              .byline by #{link_to content[0].user.name, user_path(content[0].user)}
-              %p.synopsis= truncate content[0].synopsis, :length => 210
-              = link_to "View Content", story_path(content[0]), :class => "launch"
-        
-    - if current_user
-      %section.app.two
-        %header
-          %h3= link_to "Recommended", recommended_content_path
-          = link_to "view more", recommended_content_path, :class => "more"
-        - if current_user
-          %ul.mini-content
-            - @recommended_content.each do |content|
-              %li
-                = link_to image_tag(content.thumbnail.url(:medium)), story_path(content), :class => "thumbnail"
-                .stat.recommended= truncate (content.tags & current_user.tags).join(", "), :length => 18
-                .more
-                  = link_to image_tag(content.thumbnail.url(:medium)), story_path(content), :class => "thumbnail"
-                  .stat.recommended= truncate (content.tags & current_user.tags).join(", "), :length => 18
-                  = link_to truncate(content.title, :length => 40), story_path(content), :class => "title"
-                  .byline by #{link_to content.user.name, user_path(content.user)}
-                  %p.synopsis= truncate content.synopsis, :length => 210
-                  = link_to "View Content", story_path(content), :class => "launch"
+  %ul#discovery-activity
+    - @activity.each do |activity|
+      %li
+        = link_to image_tag(activity.actor.avatar.url(:thumbnail)), user_path(activity.actor), :class => "avatar"
+        = link_to activity.actor.name, user_path(activity.actor)
+        - if activity.action_type == "Reward"
+          %strong rewarded #{number_to_currency activity.action.amount * Reward.dollar_exchange}
+          %span to
+          = link_to activity.action.story.title, story_path(activity.action.story, :impacted_by => activity.action.id)
         - else
-          #{link_to "Sign up", "#join-modal"} to start rewarding so we can recommend some awesome content!
-
-    %section.app.three
-      %header
-        %h3= link_to "Newest", newest_content_path
-        = link_to "view more", newest_content_path, :class => "more"
-      %ul.mini-content
-        - @newest_content.each do |content|
-          %li
-            = link_to image_tag(content.thumbnail.url(:medium)), story_path(content), :class => "thumbnail"
-            .stat.newest #{time_ago_in_words(content.created_at)} ago
-            .more
-              = link_to image_tag(content.thumbnail.url(:medium)), story_path(content), :class => "thumbnail"
-              .stat.newest #{time_ago_in_words(content.created_at)} ago
-              = link_to truncate(content.title, :length => 40), story_path(content), :class => "title"
-              .byline by #{link_to content.user.name, user_path(content.user)}
-              %p.synopsis= truncate content.synopsis, :length => 210
-              = link_to "View Content", story_path(content), :class => "launch"
-    
-    - if current_user
-      %section.app.four
-        %header
-          %h3= link_to "Nearby", nearby_content_path
-          = link_to "view more", nearby_content_path, :class => "more"
-        - if current_user
-          %ul.mini-content
-            - @nearby_content.each do |content|
-              %li
-                = link_to image_tag(content.thumbnail.url(:medium)), story_path(content), :class => "thumbnail"
-                .stat.nearby= content.user.location
-                .more
-                  = link_to image_tag(content.thumbnail.url(:medium)), story_path(content), :class => "thumbnail"
-                  .stat.nearby= content.user.location
-                  = link_to truncate(content.title, :length => 40), story_path(content), :class => "title"
-                  .byline by #{link_to content.user.name, user_path(content.user)}
-                  %p.synopsis= truncate content.synopsis, :length => 210
-                  = link_to "View Content", story_path(content), :class => "launch"
-        - else
-          #{link_to "Signup", "#join-modal"} to see content around you
-    
-    - if current_user.nil?
-      #banner
-        %h2 Sign up to see more
-        %p We'd love to recommend some great content, show you what's being made nearby, and more. Come join our awesome community!
-        = link_to "Sign Up", "#join-modal", :class => "button"
-  
-  #people-column
-
-    %section.app
-      %header
-        %h3= link_to "Handpicked Creators", notable_people_path
-      %ul.mini-people
-        - @notable_people.each do |editorial|
-          %li
-            = link_to image_tag(editorial.user.avatar.url(:thumbnail)), user_path(editorial.user), :class => "avatar"
-            = link_to editorial.user.name, user_path(editorial.user), :class => "title"
-            %p.quote= truncate editorial.quote, :length => 100
-            
-    %section#friends-you-know.app
-      %header
-        %h3= link_to "People You Know", friends_people_path
-        %p.service-links
-          - if current_user
-            - if current_user.authentications.find_by_provider("twitter")
-              %span Twitter linked
-            - else
-              = link_to "link Twitter", "#{root_url}auth/twitter", :class => "link", :id => "link-twitter"
-            - if current_user.authentications.find_by_provider("facebook")
-              %span Facebook linked
-            - else
-              = link_to "link Facebook", "#{root_url}auth/facebook", :class => "link", :id => "link-facebook"
-          - else
-            #{link_to "Sign up", "#join-modal"} to link your networks
-      %ul.mini-activity
-        - if current_user && current_user.authentications.find_by_provider("twitter").nil? && current_user.authentications.find_by_provider("facebook").nil?
-          %li.text-only Use the buttons above to link your networks so you can see what your friends are doing here at Momeant!
-        - else
-          = render "friends_people"
-          
-  .clear
+          %strong shared #{activity.action.article_string}
+          = link_to activity.action.title, story_path(activity.action)
 
 :javascript
   mpq.track('Viewed Discovery');
+= javascript_include_tag "jquery.hover-intent"
+= javascript_include_tag "discovery"

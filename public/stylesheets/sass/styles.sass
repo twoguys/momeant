@@ -2,22 +2,23 @@
 
 /* Layout */
 
-html, body
-	height: 100%
-
-#container
-	position: absolute
+#new-york
+	position: fixed
 	top: 42px
-	bottom: 0
-	overflow-y: auto
+	left: 0
 	width: 100%
+	height: 100%
+	background: #f0e3d2 url(../images/new-york.jpg) no-repeat 50% 0 fixed
+	@include bgcover
+#container
+	padding-top: 42px
 
 .fullscreen
-	.fullscreen-hidden, #header, #right-sidebar
+	.fullscreen-hidden, #header, #right-sidebar, #new-york
 		display: none
 	#container
 		margin: 0
-		top: 0
+		padding: 0
 		#main
 			padding: 0
 			top: 0
@@ -93,6 +94,7 @@ html, body
 @import "activity"
 //@import "alternates"
 @import "discovery"
+//@import "discovery2"
 
 
 .info-bar

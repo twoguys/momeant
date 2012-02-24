@@ -1,0 +1,26 @@
+%li
+  %a.thumbnail{:href => story_path(content)}
+    = image_tag content.thumbnail.url(:large), :class => "preview"
+    .media-type{:class => content.media_type}
+  %a.hover{:href => story_path(content)}
+    .creator-info
+      = image_tag content.user.avatar.url(:large), :class => "avatar"
+      .type #{content.media_type} by
+      .name= content.user.name
+      .info
+        %span= content.user.occupation if content.user.occupation.present?
+        %span= "from #{content.user.location}" if content.user.location.present?
+    .link view #{content.media_type}
+    .rewarders
+      %span Recent rewarders
+      - content.users_who_rewarded.limit(3).each do |rewarder|
+        = image_tag rewarder.avatar.url(:thumbnail)
+
+  = link_to truncate(content.title, :length => 28), story_path(content), :class => "title"
+  = link_to truncate("#{content.user.name}'s", :length => 30), user_path(content.user), :class => "author"
+  %span.type= content.media_type
+  .rewards
+    .amount
+      %span.dollar $
+      %span= number_with_precision content.reward_count.to_f * Reward.dollar_exchange, :precision => 2
+    .text rewards earned

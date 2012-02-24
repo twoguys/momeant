@@ -63,7 +63,7 @@
       #thumbnail-preview
         .box
           .title= @story && @story.title.present? ? @story.title : "TITLE"
-          .author by #{current_user.name}
+          .author by #{@story.user.name}
           .thumbnail{:style => @story && @story.thumbnail.present? ? "background: url(#{@story.thumbnail.url(:medium)})" : ""}
         .note{:class => @story.thumbnail.url.include?("missing") ? "hidden" : ""}
           Unhappy with the default crop?
@@ -115,7 +115,6 @@
       .info This note will be shown to a person after they reward you. It's a chance to express your appreciation.
       = text_area_tag :story_thankyou, @story.thankyou, :class => "monitor-story-typing", :update => "thankyou"
   
-    %section#done
       .owner
         = check_box_tag :i_own_this, '1', @story.i_own_this
         %span I promise I am the author or creator of this content.
