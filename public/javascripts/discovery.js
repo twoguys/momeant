@@ -83,6 +83,7 @@ function monitor_scrolling() {
       $('#discovery-grid').append(result);
       setup_thumbnail_hovers();
       total_height = document.body.offsetHeight;
+      mpq.track('Scrolled Discovery Page', {page: current_page});
       
       if ($.trim(result) == '') {
         $('#discovery-loading').addClass('done').html('No more content');
