@@ -1,22 +1,12 @@
 %li
-  = link_to image_tag(person.avatar.url(:large)), user_path(person), :class => "avatar"
-  
-  = link_to person.name, user_path(person), :class => "name"
-
-  - if person.occupation || person.location
-    .occupation-location
-      - if person.occupation
-        %span= person.occupation
-      - if person.location
-        %span from #{person.location}
-  
-  .stats
-    .supporters
-      %span.amount= person.patrons.count
-      %span.label supporters
-    .rewarded
-      %span.dollar $
-      %span.amount= number_with_precision person.lifetime_rewards * Reward.dollar_exchange, :precision => 2
-      %span.label rewarded
+  %a.surround{:href => user_path(person)}
     
-  %p= truncate person.tagline, :length => 90
+    = image_tag person.avatar.url(:large), :class => "avatar"
+    
+    .description
+      .name= person.name
+      %p= truncate person.tagline, :length => 100
+    
+    .label
+      .category= person.category
+      .rewards #{number_to_currency person.lifetime_rewards * Reward.dollar_exchange} rewarded

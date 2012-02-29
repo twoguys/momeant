@@ -56,60 +56,77 @@
 		ul
 			@include clearfix
 			li
-				width: 287px
-				height: 150px
-				padding: 10px 10px 10px 185px
+				width: 150px
+				height: 200px
 				float: left
-				margin: 0 35px 35px 0
+				margin: 0 20px 20px 0
 				background: #fff
 				@include rounded
 				@include boxshadow(5px, 0.5)
 				position: relative
-				&:nth-child(even)
+				&:last-child
 					margin-right: 0
 				
-				.avatar, .avatar img		
-					width: 170px
-					height: 170px
-					-webkit-border-top-left-radius: 5px
-					-webkit-border-bottom-left-radius: 5px
-					-moz-border-radius-topleft: 5px
-					-moz-border-radius-bottomleft: 5px
-					border-top-left-radius: 5px
-					border-bottom-left-radius: 5px
-				.avatar
+				a.surround
 					display: block
-					position: absolute
-					top: 0
-					left: 0
-
-				.category
-					top: 175px
-					text-align: center
-					text-transform: uppercase
+					width: 150px
+					height: 200px
+					color: $text_color
 				
-				.name
+				.avatar, .avatar img
 					display: block
-					font-size: 24px
-					font-weight: 700
-					margin-bottom: 4px
-					color: #000
-					&:hover
-						color: $blue
-
-				.occupation-location
-					font-family: $serif
-					font-style: italic
-					color: #999
-					margin-bottom: 10px
-					height: 17px
+					width: 150px
+					height: 150px
+					-webkit-border-top-left-radius: 5px
+					-webkit-border-top-right-radius: 5px
+					-moz-border-radius-topleft: 5px
+					-moz-border-radius-topright: 5px
+					border-top-left-radius: 5px
+					border-top-right-radius: 5px
+				
+				.description
+					position: absolute
+					top: 150px
+					left: 0
+					width: 134px
+					height: 32px
+					padding: 4px 8px
+					background: #000
+					background: rgba(0,0,0,0.85)
+					color: #fff
+					z-index: 1
+					@include transition
 					overflow: hidden
+					.name
+						font-weight: 700
+						margin-bottom: 3px
+					p
+						font-size: 12px
+						line-height: 1.3em
+						margin: 0
+						color: #aaa
 					
-				p	
-					height: 37px
-					font-size: 13px
-					line-height: 1.3em
-					margin: 0
+				.label
+					height: 34px
+					padding: 8px
+					background: #fff
+					position: relative
+					z-index: 2
+					-webkit-border-bottom-right-radius: 5px
+					-webkit-border-bottom-left-radius: 5px
+					-moz-border-radius-bottomright: 5px
+					-moz-border-radius-bottomleft: 5px
+					border-bottom-right-radius: 5px
+					border-bottom-left-radius: 5px
+					.category
+						color: #000
+						font-weight: 700
+					.rewards
+						color: #777
+
+			li:hover .description
+				top: 40px
+				height: 110px
 
 	#projects
 		h3

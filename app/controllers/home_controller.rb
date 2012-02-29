@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
   
   def index
-    @people = User.most_rewarded.limit(4)
+    @people = User.most_rewarded.limit(6)
     @projects = Story.most_rewarded.limit(6)
   end
   
