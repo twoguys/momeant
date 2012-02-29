@@ -4,9 +4,10 @@
     = image_tag person.avatar.url(:large), :class => "avatar"
     
     .description
-      .name= person.name
-      %p= truncate person.tagline, :length => 100
+      .content= pluralize person.created_stories.published.count, "project"
+      .rewarded #{number_to_currency person.lifetime_rewards * Reward.dollar_exchange} rewards
     
     .label
+      .name= person.name
       .category= person.category
-      .rewards #{number_to_currency person.lifetime_rewards * Reward.dollar_exchange} rewarded
+      %p &ldquo;#{truncate person.tagline, :length => 100}&rdquo;
