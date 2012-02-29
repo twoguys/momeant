@@ -1,9 +1,8 @@
 class HomeController < ApplicationController
   
   def index
-    @user = User.new if current_user.nil?
-    setup_landing
-    render "landing"
+    @people = User.most_rewarded.limit(4)
+    @projects = Story.most_rewarded.limit(6)
   end
   
   def discover

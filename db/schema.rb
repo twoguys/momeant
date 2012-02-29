@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120213150623) do
+ActiveRecord::Schema.define(:version => 20120229140209) do
 
   create_table "activities", :force => true do |t|
     t.integer  "actor_id"
@@ -304,6 +304,7 @@ ActiveRecord::Schema.define(:version => 20120213150623) do
     t.boolean  "send_reward_notification_emails",                 :default => true
     t.boolean  "send_digest_emails",                              :default => true
     t.boolean  "send_message_notification_emails",                :default => true
+    t.string   "category"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

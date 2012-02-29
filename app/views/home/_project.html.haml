@@ -1,0 +1,18 @@
+%li
+  %a.thumbnail{:href => story_path(project)}
+    = image_tag project.thumbnail.url(:large), :class => "preview"
+    .media-type{:class => project.media_type}
+  
+  = link_to truncate(project.title, :length => 40), story_path(project), :class => "title"
+  = link_to project.user.name, user_path(project.user), :class => "author"
+  
+  .stats
+    .supporters
+      %span.amount= project.users_who_rewarded.count
+      %span.label supporters
+    .rewarded
+      %span.dollar $
+      %span.amount= number_with_precision project.reward_count * Reward.dollar_exchange, :precision => 2
+      %span.label rewarded
+      
+  %p= truncate project.synopsis, :length => 200

@@ -1,206 +1,183 @@
 #home.index, #registrations.create
-	background: #fff
-	#new-york
-		display: none
-	#main
-		width: 1000px
-		margin: 0 auto
-		
-	#showcase
-		padding-top: 30px
-		#content
-			background: transparent url(../images/landing/content.jpg) no-repeat 0 0
-			height: 330px
-			padding: 20px 30px
-			h1
-				font-size: 30px
-				font-weight: 700
-				text-shadow: 0 1px 0 #fff
-				margin-bottom: 30px
-				line-height: 1.1em
-				span
-					display: block
-			a#main-signup-button
-				font-size: 22px
-				font-weight: 700
-				text-transform: uppercase
-				background: $blue
-				color: #fff
-				padding: 13px 20px
-				@include rounded(3px)
-				@include transition
-				@include gradient($bluegradient1,$bluegradient2)
-				border: 1px solid $bluegradient2 - #111
-				text-shadow: 0 -1px 0 rgba(0,0,0,0.3)
-			form
-				li
-					position: relative
-					width: 220px
-					height: 31px
-					margin-bottom: 8px
-					&.checkbox
-						height: 26px
-						label
-							padding-top: 1px
-							a
-								text-shadow: none
-								color: $blue - #222
-						label.error
-							position: absolute
-							bottom: -13px
-							padding-left: 23px
-					label.placeholder
-						color: #999
-						font-style: italic
-						font-family: Georgia, serif
-						position: absolute
-						height: 31px
-						line-height: 31px
-						text-transform: none
-						font-weight: 100
-						margin: 0
-						padding: 0 0 0 10px
-					label.error
-						font-size: 11px
-						font-weight: 100
-						color: #000
-						margin: 0 0 5px 0
-					span
-						width: 102px
-						float: left
-						margin-right: 5px
-						position: relative
-						input[type="text"]
-							width: 87px
-					span.last
-						margin-right: 0
-					input[type="text"], input[type="email"], input[type="password"]
-						border: 1px solid #aaa
-						width: 195px
-						box-shadow: 0 2px 3px rgba(0,0,0,0.15) inset
-					input[type="submit"]
-						width: 210px
-						font-size: 13px
-					input[type="submit"]:disabled
-						background-color: #dfdfdf
-						color: #787878
-						cursor: default
-					input[type="submit"]:disabled:active
-						top: 0
-				li.filled
-					label
-						display: none
-		#creator
-			padding: 10px
-			float: right
-			p, a
+	
+	#slogan
+		font-size: 32px
+		text-shadow: 0 1px 0 rgba(255,255,255,0.5)
+		margin: 30px 0
+	
+	hr
+		height: 0
+		border: none
+		border-top: 1px solid rgba(0,0,0,0.15)
+		border-bottom: 1px solid rgba(255,255,255,0.15)
+		margin-bottom: 20px
+	
+	#people, #projects
+		h3
+			font-size: 24px
+			margin-bottom: 20px
+			font-weight: 500
+			
+		.stats
+			height: 40px
+			margin-bottom: 10px
+			.supporters, .rewarded
 				float: left
-			p
-				margin: 0 10px 0 0
-				padding-top: 12px
-				font-size: 11px
-				text-align: right
-				line-height: 1.3em
-				a
-					margin-right: 3px
-				.occupation, .location
-					color: #999
+				width: 100px
+				position: relative
+				.dollar
+					position: absolute
+					top: 0
+					left: -10px
+					font-size: 13px
+				.amount
+					font-size: 24px
+					line-height: 20px
 					display: block
-			a.avatar
-				display: block
-				width: 50px
-				height: 50px
-				border: 1px solid #ccc
-				img
-					width: 50px
-					height: 50px
-		
-	#description
-		margin-bottom: 100px
+				.label
+					font-size: 13px
+					color: #999
+							
+		.arrow
+			display: block
+			width: 43px
+			height: 31px
+			position: absolute
+			top: 70px
+			right: 20px
+			background: transparent url(../images/home/arrow.png) no-repeat 0 0
+			text-indent: -9999px
+			opacity: 0.2
+			@include transition(opacity)
+			&:hover
+				opacity: 0.75
+	
+	#people
 		ul
 			@include clearfix
 			li
+				width: 297px
+				height: 150px
+				padding: 10px 10px 10px 175px
 				float: left
-				width: 320px
-				margin-right: 20px
-				border-top: 1px solid #ddd
-				border-bottom: 1px solid #ddd
-				padding: 20px 0 25px
-				height: 160px
-				&:last-child
+				margin: 0 35px 35px 0
+				background: #fff
+				@include rounded
+				@include boxshadow(5px, 0.5)
+				position: relative
+				&:nth-child(even)
 					margin-right: 0
-				h2
-					background: none
-					color: #000
-					padding: 0
-					font-size: 21px
-					font-weight: 700
-					text-transform: none
-					margin-bottom: 15px
-				p
-					font-size: 13.5px
-					line-height: 1.5em
-					margin: 0
-	
-	#editorials
-		margin-bottom: 50px
-		h1
-			font-size: 28px
-			font-weight: 700
-			text-align: center
-			margin-bottom: 50px
-		ul#people
-			@include clearfix
-			li
-				width: 320px
-				float: left
-				margin-right: 20px
-				&:last-child
-					margin-right: 0
-				a.avatar
+				
+				.avatar, .category
+					position: absolute
+					left: 10px
 					display: block
-					width: 320px
-					height: 320px
-					margin-bottom: 20px
+					width: 150px
+				.avatar
+					top: 10px
+					-webkit-border-top-left-radius: 5px
+					-moz-border-radius-topleft: 5px
+					border-top-left-radius: 5px
 					img
-						width: 320px
-						height: 320px
+						width: 150px
+						height: 150px
+
+				.category
+					top: 175px
+					text-align: center
+					text-transform: uppercase
+				
 				.name
 					display: block
-					font-size: 28px
-					font-weight: 900
-					margin-bottom: 15px
-				.earned
-					padding-bottom: 5px
-					border-bottom: 1px solid #fff
-					margin-bottom: 20px
-					.amount
-						font-family: $numerals
-						font-size: 40px
-						font-weight: 300
-						line-height: 40px
-					.text	
-						display: block
-						font-size: 11px
-						text-transform: uppercase
-						margin-bottom: 5px
-						color: #999
-				.occupation, .location
-					display: block
-					text-transform: uppercase
-					font-size: 15px
+					font-size: 24px
+					font-weight: 700
+					margin-bottom: 4px
+					color: #000
+					&:hover
+						color: $blue
+
+				.occupation-location
+					font-family: $serif
+					font-style: italic
+					color: #999
+					margin-bottom: 10px
+					height: 17px
+					overflow: hidden
+					
+				p	
+					height: 37px
+					font-size: 13px
 					line-height: 1.3em
+					margin: 0
+
+	#projects
+		h3
+			color: #fff
+			text-shadow: 0 1px 0 #000
+			font-weight: 300
+		
+		ul
+			@include clearfix
+			li
+				width: 310px
+				height: 400px
+				float: left
+				margin: 0 35px 35px 0
+				background: #fff
+				@include rounded
+				@include boxshadow(5px, 0.5)
+				position: relative
+				&:nth-child(3n)
+					margin-right: 0
 				
-	#join-call-to-action
-		display: block
-		width: 600px
-		padding: 10px 0 8px
-		font-size: 20px
-		font-weight: 700
-		text-align: center
-		text-transform: uppercase
-		color: #fff
-		background: $blue
-		border: 5px solid #74cbf4
-		@include rounded(10px)
-		margin: 0 auto 50px
+				a.thumbnail, a.thumbnail img
+					width: 310px
+					height: 206.6px
+					-webkit-border-top-left-radius: 5px
+					-webkit-border-top-right-radius: 5px
+					-moz-border-radius-topleft: 5px
+					-moz-border-radius-topright: 5px
+					border-top-left-radius: 5px
+					border-top-right-radius: 5px
+				a.thumbnail
+					display: block
+					margin-bottom: 10px
+					position: relative
+					.media-type
+						position: absolute
+						top: 0
+						left: 0
+						width: 310px
+						height: 206px
+						z-index: 2
+						background: transparent url(../images/content/media-types/photos.png) no-repeat 50% 50%
+						&.video
+							background-image: url(../images/content/media-types/video.png)
+						&.writing
+							background-image: url(../images/content/media-types/writing.png)
+						&.music
+							background-image: url(../images/content/media-types/music.png)
+				
+				.title, .author, .stats, p
+					margin: 0 10px
+				
+				.title, .author	
+					display: block
+					font-size: 15px
+					&:hover
+						color: $blue
+				
+				.title
+					color: #000
+					font-weight: 700
+				
+				.author
+					color: #999
+					margin-bottom: 15px
+				
+				.stats
+					margin-bottom: 15px
+				
+				p
+					font-size: 12px
+					line-height: 1.3em

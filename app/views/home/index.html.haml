@@ -1,2 +1,17 @@
-.homepage
-  = render "users/user_info"
+%h1#slogan People, projects, and creativity worth rewarding.
+
+%hr
+
+#people
+  %h3 People
+  %ul= render :partial => "home/person", :collection => @people, :as => :person
+
+%hr
+
+#projects
+  %h3 Projects
+  %ul= render :partial => "home/project", :collection => @projects, :as => :project
+
+
+:javascript
+  mpq.track('Viewed Homepage');
