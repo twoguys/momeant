@@ -153,7 +153,7 @@ Repo::Application.routes.draw do
   match '/privacy',             :to => 'home#privacy',              :as => :privacy
 
   match '/',                    :to => 'home#index',                :as => :home
-  match '/discover',            :to => 'home#discover',             :as => :discovery
+  match '/projects',            :to => 'home#projects',             :as => :more_projects
   root :to => "home#index"
   
 end

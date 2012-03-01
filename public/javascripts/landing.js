@@ -1,50 +1,31 @@
-$(function() {
+// Infinite scrolling
+
+var total_height, current_scroll, visible_height, current_page, stop_scrolling;
+total_height = document.body.offsetHeight;
+visible_height = document.documentElement.clientHeight;
+current_page = 1;
+stop_scrolling = false;
+function monitor_scrolling() {
+  if (stop_scrolling) { return; }
+
+  if (document.documentElement.scrollTop) { current_scroll = document.documentElement.scrollTop; }
+  else { current_scroll = document.body.scrollTop; }
   
-  var half_page_width = $('body').width() / 2;
-  $('#faces').css('left', half_page_width + 'px')
-	
-	$('#faces .face a.avatar').click(function() {
-    var $new_face = $(this).parent().parent();
-    if ($new_face.hasClass('selected')) { return true; }
-
-	  var $current_face = $('#faces .selected');
-	  var new_index = $('#faces').children().index($new_face);
-	  
-    $current_face.find('.full').fadeOut(200);
-    $current_face.find('.preview').fadeIn(200);
-    $current_face.removeClass('selected');
-
-    $new_face.find('.preview').fadeOut(200);
-    $new_face.find('.full').fadeIn(200);
-	  $new_face.addClass('selected');
-    
-    var existing_left = $('#faces').position().left;
-    var new_left = half_page_width + (new_index * -105);
-    $('#faces').animate({left: new_left + 'px'}, 200);
-	  
-	  return false;
-	});
-	
-	$('#slogan-more-link').click(function() {
-	  var $link = $(this);
-	  
-	  var height_change = 155;
-
-    if ($link.hasClass('open')) {
-      $('#slogan-more').fadeOut(200, function() {
-        $('#slogan').animate({height: '-=' + height_change + 'px'}, 200);
-        $('#faces').animate({top:'-=' + height_change + 'px'}, 200);
-      });
-    } else {
-      $('#slogan').animate({height: '+=' + height_change + 'px'}, 200, function() {
-        $('#slogan-more').fadeIn(200);
-      });
-      $('#faces').animate({top:'+=' + height_change + 'px'}, 200);
-    }
-	  
-	  $link.toggleClass('open');
-	  
-	  return false;
-	});
-	
+  if (total_height <= current_scroll + visible_height) {
+    current_page += 1;
+    $.get('/projects', {page: current_page}, function(result) {
+      $('#projects ul').append(result);
+      total_height = document.body.offsetHeight;
+      mpq.track('Scrolled Home Page Projects', {page: current_page});
+      
+      if ($.trim(result) == '') {
+        $('#projects-loading').addClass('done').html('No more content');
+        stop_scrolling = true;
+      }
+    });
+  }
+}  
+$(document).scroll(monitor_scrolling);
+$(window).resize(function() {
+  visible_height = document.documentElement.clientHeight;
 });

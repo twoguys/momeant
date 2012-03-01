@@ -6,6 +6,10 @@ class Creator < User
   
   has_many :cashouts, :foreign_key => :user_id
   
+  def media_count(type)
+    self.created_stories.published.where(:media_type => type).count
+  end
+  
   # attr_accessor :rewards_given
   #
   # def patrons

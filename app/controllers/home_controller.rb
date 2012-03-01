@@ -1,8 +1,13 @@
 class HomeController < ApplicationController
   
   def index
-    @people = User.most_rewarded.limit(6)
-    @projects = Story.most_rewarded.limit(6)
+    @people = User.most_rewarded.limit(5)
+    @projects = Story.most_rewarded.published.limit(6)
+  end
+  
+  def projects
+    @projects = Story.most_rewarded.published.limit(6).page params[:page]
+    render :partial => "home/project", :collection => @projects, :as => :project
   end
   
   def discover

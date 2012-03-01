@@ -3,15 +3,18 @@
 %hr
 
 #people
-  %h3 People
+  %h3 Top People
   %ul= render :partial => "home/person", :collection => @people, :as => :person
 
 %hr
 
 #projects
-  %h3 Projects
+  %h3 Top Projects
   %ul= render :partial => "home/project", :collection => @projects, :as => :project
 
+#projects-loading Loading more...
 
 :javascript
   mpq.track('Viewed Homepage');
+
+= javascript_include_tag "landing"

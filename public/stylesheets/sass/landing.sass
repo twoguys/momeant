@@ -54,29 +54,30 @@
 	
 	#people
 		ul
-			@include clearfix
+			height: 315px
+			margin-bottom: 30px
 			li
-				width: 150px
-				height: 282px
+				width: 176px
+				height: 315px
 				float: left
-				margin: 0 20px 20px 0
-				background: #fff
-				@include rounded
-				@include boxshadow(5px, 0.5)
+				margin-right: 30px
 				position: relative
 				&:last-child
 					margin-right: 0
 				
 				a.surround
 					display: block
-					width: 150px
-					height: 200px
+					width: 176px
+					height: 315px
+					background: #fff
+					@include rounded
+					@include boxshadow(5px, 0.5)
 					color: $text_color
 				
 				.avatar, .avatar img
 					display: block
-					width: 150px
-					height: 150px
+					width: 176px
+					height: 176px
 					-webkit-border-top-left-radius: 5px
 					-webkit-border-top-right-radius: 5px
 					-moz-border-radius-topleft: 5px
@@ -86,14 +87,15 @@
 				
 				.description
 					position: absolute
-					top: 150px
+					top: 176px
 					left: 0
-					width: 134px
+					width: 160px
 					height: 50px
-					padding: 4px 8px
+					padding: 6px 8px
 					background: #000
 					background: rgba(0,0,0,0.85)
 					color: #fff
+					font-size: 13px
 					z-index: 1
 					@include transition
 					overflow: hidden
@@ -101,7 +103,8 @@
 						margin-bottom: 3px
 					
 				.label
-					height: 116px
+					width: 160px
+					height: 123px
 					padding: 8px
 					background: #fff
 					position: relative
@@ -113,21 +116,34 @@
 					border-bottom-right-radius: 5px
 					border-bottom-left-radius: 5px
 					.name
-						color: #777
-						margin-bottom: 3px
-						font-size: 13px
-					.category
-						color: #000
 						font-weight: 700
-						margin-bottom: 3px
+						margin-bottom: 4px
+						font-size: 13px
 					p
 						font-size: 12px
 						line-height: 1.3em
-						margin: 0
+						margin: 0 0 4px
 						color: #777
+					.media-types
+						position: absolute
+						height: 20px
+						bottom: 5px
+						left: 8px
+						.icon
+							width: 25px
+							height: 20px
+							float: left
+							margin-right: 7px
+							background: transparent url(../images/content/media-types/photos-small-gray.png) no-repeat 0 0
+							&.video
+								background-image: url(../images/content/media-types/video-small-gray.png)
+							&.writing
+								background-image: url(../images/content/media-types/writing-small-gray.png)
+							&.music
+								background-image: url(../images/content/media-types/music-small-gray.png)
 
 			li:hover .description
-				top: 100px
+				top: 130px
 
 	#projects
 		h3
@@ -200,3 +216,20 @@
 				p
 					font-size: 12px
 					line-height: 1.3em
+
+	#projects-loading
+		clear: both
+		padding-top: 50px
+		background: #fff url(../images/spinner.gif) no-repeat 15px 10px
+		color: #000
+		font-size: 20px
+		font-weight: 700
+		margin: 0 auto 50px
+		padding: 5px 10px 5px 40px
+		width: 170px
+		@include rounded(20px)
+		&.done
+			background: #fff
+			padding-left: 10px
+			width: 190px
+			text-align: center
