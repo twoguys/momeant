@@ -85,13 +85,13 @@
 					border-top-left-radius: 5px
 					border-top-right-radius: 5px
 				
-				.description
+				.stats
 					position: absolute
 					top: 176px
 					left: 0
 					width: 160px
-					height: 50px
-					padding: 6px 8px
+					height: 16px
+					padding: 8px
 					background: #000
 					background: rgba(0,0,0,0.85)
 					color: #fff
@@ -100,7 +100,12 @@
 					@include transition
 					overflow: hidden
 					.content
-						margin-bottom: 3px
+						float: left
+						width: 60px
+					.rewarders
+						float: right
+						width: 100px
+						text-align: right
 					
 				.label
 					width: 160px
@@ -142,8 +147,8 @@
 							&.music
 								background-image: url(../images/content/media-types/music-small-gray.png)
 
-			li:hover .description
-				top: 130px
+			li:hover .stats
+				top: 144px
 
 	#projects
 		h3
@@ -155,17 +160,23 @@
 			@include clearfix
 			li
 				width: 310px
-				height: 400px
+				height: 359px
 				float: left
 				margin: 0 35px 35px 0
-				background: #fff
-				@include rounded
-				@include boxshadow(5px, 0.5)
-				position: relative
 				&:nth-child(3n)
 					margin-right: 0
 				
-				a.thumbnail, a.thumbnail img
+				a.surround
+					display: block
+					width: 310px
+					height: 359px
+					background: #fff
+					@include rounded
+					@include boxshadow(5px, 0.5)
+					color: $text_color
+					position: relative
+				
+				.thumbnail, .thumbnail img
 					width: 310px
 					height: 206.6px
 					-webkit-border-top-left-radius: 5px
@@ -174,9 +185,7 @@
 					-moz-border-radius-topright: 5px
 					border-top-left-radius: 5px
 					border-top-right-radius: 5px
-				a.thumbnail
-					display: block
-					margin-bottom: 10px
+				.thumbnail
 					position: relative
 					.media-type
 						position: absolute
@@ -193,29 +202,56 @@
 						&.music
 							background-image: url(../images/content/media-types/music.png)
 				
-				.title, .author, .stats, p
-					margin: 0 10px
-				
-				.title, .author	
-					display: block
-					font-size: 15px
-					&:hover
-						color: $blue
-				
-				.title
-					color: #000
-					font-weight: 700
-				
-				.author
-					color: #999
-					margin-bottom: 15px
-				
 				.stats
-					margin-bottom: 15px
+					position: absolute
+					top: 207px
+					left: 0
+					width: 286px
+					height: 18px
+					padding: 12px
+					background: #000
+					background: rgba(0,0,0,0.85)
+					color: #fff
+					font-size: 15px
+					z-index: 1
+					@include transition
+					overflow: hidden
+					.supporters
+						float: left
+						width: 156px
+					.rewarded
+						width: 130px
+						float: right
+						text-align: right
 				
-				p
-					font-size: 12px
-					line-height: 1.3em
+				
+				.label
+					width: 286px
+					height: 128px
+					padding: 12px
+					background: #fff
+					position: relative
+					z-index: 2
+					-webkit-border-bottom-right-radius: 5px
+					-webkit-border-bottom-left-radius: 5px
+					-moz-border-radius-bottomright: 5px
+					-moz-border-radius-bottomleft: 5px
+					border-bottom-right-radius: 5px
+					border-bottom-left-radius: 5px
+					.title, .author
+						font-size: 15px
+					.title
+						font-weight: 700
+					.author
+						color: #999
+						margin-bottom: 10px
+					p
+						margin: 0
+						font-size: 12px
+						line-height: 1.3em
+			
+			li:hover .stats
+				top: 164px
 
 	#projects-loading
 		clear: both
