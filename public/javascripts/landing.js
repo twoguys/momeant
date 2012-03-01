@@ -29,3 +29,27 @@ $(document).scroll(monitor_scrolling);
 $(window).resize(function() {
   visible_height = document.documentElement.clientHeight;
 });
+
+
+// Filtering
+
+$('#filter a').click(function() {
+  var $link = $(this);
+  $link.addClass('selected').siblings().removeClass('selected');
+
+  $('#people').addClass('loading');
+  $.get('/people?q=' + $link.text(), function(result) {
+    $('#people ul').html(result);
+    $('#people').removeClass('loading');
+  });
+
+  $('#projects').addClass('loading');
+  $('#projects-loading').hide();
+  $.get('/projects?q=' + $link.text(), function(result) {
+    $('#projects ul').html(result);
+    $('#projects').removeClass('loading');
+    $('#projects-loading').show();
+  });
+
+  return false;
+});

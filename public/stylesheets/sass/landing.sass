@@ -4,6 +4,30 @@
 		font-size: 32px
 		text-shadow: 0 1px 0 rgba(255,255,255,0.5)
 		margin: 30px 0
+		
+	#filter
+		height: 32px
+		margin-bottom: 20px
+		a
+			padding: 5px 10px
+			font-size: 15px
+			font-weight: 700
+			color: #555
+			background: #e9e9e9
+			@include gradient(#eee,#e2e2e2)
+			border-bottom: 1px solid rgba(0,0,0,0.3)
+			box-shadow: 0 0 1px #fff inset, 0 2px 0 #b2b1b1, 0 3px rgba(0,0,0,0.3)
+			text-shadow: 0 1px 0 #fff
+			@include rounded(3px)
+			margin-right: 5px
+			&:hover
+				background: #f0f0f0
+				color: #000
+			&:active, &.selected
+				box-shadow: 0 -1px 1px rgba(255,255,255,0.8) inset, 0 0 2px rgba(0,0,0,0.4) inset, 0 1px 0 rgba(0,0,0,0.3) inset, 0 -1px 0 rgba(0,0,0,0.4) inset
+				border: none
+				position: relative
+				top: 2px
 	
 	hr
 		height: 0
@@ -13,44 +37,33 @@
 		margin-bottom: 20px
 	
 	#people, #projects
+		position: relative
+		
+		&.loading
+			height: 385px
+			h3, ul
+				display: none
+			.loader
+				display: block
+			
 		h3
 			font-size: 24px
 			margin-bottom: 20px
 			font-weight: 500
-			
-		.stats
-			height: 40px
-			margin-bottom: 10px
-			.supporters, .rewarded
-				float: left
-				width: 100px
-				position: relative
-				.dollar
-					position: absolute
-					top: 0
-					left: -10px
-					font-size: 13px
-				.amount
-					font-size: 24px
-					line-height: 20px
-					display: block
-				.label
-					font-size: 13px
-					color: #999
-							
-		.arrow
-			display: block
-			width: 43px
-			height: 31px
+		
+		.loader
+			display: none
 			position: absolute
-			top: 70px
-			right: 20px
-			background: transparent url(../images/home/arrow.png) no-repeat 0 0
-			text-indent: -9999px
-			opacity: 0.2
-			@include transition(opacity)
-			&:hover
-				opacity: 0.75
+			top: 185px
+			left: 485px
+			background: #fff url(../images/spinner.gif) no-repeat 15px 10px
+			color: #000
+			font-size: 20px
+			font-weight: 700
+			margin: 0 auto 50px
+			padding: 5px 10px 6px 40px
+			width: 105px
+			@include rounded(20px)
 	
 	#people
 		ul

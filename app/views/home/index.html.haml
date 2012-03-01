@@ -1,16 +1,23 @@
 %h1#slogan People, projects, and creativity worth rewarding.
 
+#filter
+  = link_to "All", "#", :class => "selected"
+  - Story::CATEGORIES.each do |category|
+    = link_to category, "#"
+
 %hr
 
 #people
   %h3 Top People
   %ul= render :partial => "home/person", :collection => @people, :as => :person
+  .loader Loading...
 
 %hr
 
 #projects
   %h3 Top Projects
   %ul= render :partial => "home/project", :collection => @projects, :as => :project
+  .loader Loading...
 
 #projects-loading Loading more...
 

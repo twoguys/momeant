@@ -5,6 +5,11 @@ class HomeController < ApplicationController
     @projects = Story.most_rewarded.published.limit(6)
   end
   
+  def people
+    @people = User.most_rewarded.limit(5)
+    render :partial => "home/person", :collection => @people, :as => :person
+  end
+  
   def projects
     @projects = Story.most_rewarded.published.limit(6).page params[:page]
     render :partial => "home/project", :collection => @projects, :as => :project

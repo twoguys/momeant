@@ -67,6 +67,19 @@ class Story < ActiveRecord::Base
   attr_accessor :autosaving, :crop_x, :crop_y, :crop_width, :crop_height
   
   after_update :reprocess_thumbnail, :if => :cropping?
+  
+  CATEGORIES = [
+    "Art",
+    "Comics",
+    "Design",
+    "Education",
+    "Film",
+    "Food",
+    "Music",
+    "Photography",
+    "Technology",
+    "Travel"
+  ].freeze
     
   def to_param
     if title.blank?
