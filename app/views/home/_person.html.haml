@@ -3,19 +3,13 @@
     
     = image_tag person.avatar.url(:large), :class => "avatar"
     
-    .stats
-      .content= pluralize person.created_stories.published.count, "work"
-      .rewarders= pluralize person.patrons.count, "rewarder"
+    .hover
+      %span View works and rewarders
+      %span.arrow &rarr;
     
     .label
       .name= person.name
       %p &ldquo;#{truncate person.tagline, :length => 100}&rdquo;
-      .media-types
-        - if person.media_count("photos") > 0
-          .photos.icon.tooltipped{:title => pluralize(person.media_count("photos"), "photo work")}
-        - if person.media_count("video") > 0
-          .video.icon.tooltipped{:title => pluralize(person.media_count("video"), "video work")}
-        - if person.media_count("writing") > 0
-          .writing.icon.tooltipped{:title => pluralize(person.media_count("writing"), "writing work")}
-        - if person.media_count("music") > 0
-          .music.icon.tooltipped{:title => pluralize(person.media_count("music"), "music work")}
+      .stats
+        .content= pluralize person.created_stories.published.count, "work"
+        .rewarders= pluralize person.patrons.count, "rewarder"

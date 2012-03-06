@@ -791,13 +791,12 @@ table {
   border-bottom: 1px solid rgba(255, 255, 255, 0.15);
   margin-bottom: 20px; }
 #home.index #people, #home.index #projects, #registrations.create #people, #registrations.create #projects {
-  position: relative; }
-  #home.index #people.loading, #home.index #projects.loading, #registrations.create #people.loading, #registrations.create #projects.loading {
-    height: 385px; }
-    #home.index #people.loading h3, #home.index #people.loading ul, #home.index #projects.loading h3, #home.index #projects.loading ul, #registrations.create #people.loading h3, #registrations.create #people.loading ul, #registrations.create #projects.loading h3, #registrations.create #projects.loading ul {
-      display: none; }
-    #home.index #people.loading .loader, #home.index #projects.loading .loader, #registrations.create #people.loading .loader, #registrations.create #projects.loading .loader {
-      display: block; }
+  position: relative;
+  min-height: 385px; }
+  #home.index #people.loading h3, #home.index #people.loading ul, #home.index #projects.loading h3, #home.index #projects.loading ul, #registrations.create #people.loading h3, #registrations.create #people.loading ul, #registrations.create #projects.loading h3, #registrations.create #projects.loading ul {
+    display: none; }
+  #home.index #people.loading .loader, #home.index #projects.loading .loader, #registrations.create #people.loading .loader, #registrations.create #projects.loading .loader {
+    display: block; }
   #home.index #people h3, #home.index #projects h3, #registrations.create #people h3, #registrations.create #projects h3 {
     font-size: 24px;
     margin-bottom: 20px;
@@ -806,23 +805,15 @@ table {
     display: none;
     position: absolute;
     top: 185px;
-    left: 485px;
-    background: white url(../images/spinner.gif) no-repeat 15px 10px;
-    color: black;
-    font-size: 20px;
-    font-weight: 700;
-    margin: 0 auto 50px;
-    padding: 5px 10px 6px 40px;
-    width: 105px;
-    -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
-    border-radius: 20px; }
+    left: 425px;
+    color: white;
+    font-size: 20px; }
 #home.index #people ul, #registrations.create #people ul {
   height: 315px;
   margin-bottom: 30px; }
   #home.index #people ul li, #registrations.create #people ul li {
     width: 176px;
-    height: 315px;
+    height: 325px;
     float: left;
     margin-right: 30px;
     position: relative; }
@@ -831,7 +822,7 @@ table {
     #home.index #people ul li a.surround, #registrations.create #people ul li a.surround {
       display: block;
       width: 176px;
-      height: 315px;
+      height: 325px;
       background: white;
       -webkit-border-radius: 5px;
       -moz-border-radius: 5px;
@@ -850,7 +841,7 @@ table {
       -moz-border-radius-topright: 5px;
       border-top-left-radius: 5px;
       border-top-right-radius: 5px; }
-    #home.index #people ul li .stats, #registrations.create #people ul li .stats {
+    #home.index #people ul li .hover, #registrations.create #people ul li .hover {
       position: absolute;
       top: 176px;
       left: 0;
@@ -860,24 +851,19 @@ table {
       background: black;
       background: rgba(0, 0, 0, 0.85);
       color: white;
-      font-size: 13px;
+      font-size: 12px;
       z-index: 1;
       -webkit-transition: all 0.2s linear;
       -moz-transition: all 0.2s linear;
       -ms-transition: all 0.2s linear;
       -o-transition: all 0.2s linear;
-      transition: all 0.2s linear;
-      overflow: hidden; }
-      #home.index #people ul li .stats .content, #registrations.create #people ul li .stats .content {
-        float: left;
-        width: 60px; }
-      #home.index #people ul li .stats .rewarders, #registrations.create #people ul li .stats .rewarders {
-        float: right;
-        width: 100px;
-        text-align: right; }
+      transition: all 0.2s linear; }
+      #home.index #people ul li .hover .arrow, #registrations.create #people ul li .hover .arrow {
+        position: relative;
+        top: 2px; }
     #home.index #people ul li .label, #registrations.create #people ul li .label {
       width: 160px;
-      height: 123px;
+      height: 133px;
       padding: 8px;
       background: white;
       position: relative;
@@ -889,32 +875,27 @@ table {
       border-bottom-right-radius: 5px;
       border-bottom-left-radius: 5px; }
       #home.index #people ul li .label .name, #registrations.create #people ul li .label .name {
-        font-weight: 700;
         margin-bottom: 4px;
-        font-size: 13px; }
+        font-size: 13px;
+        font-weight: 700; }
       #home.index #people ul li .label p, #registrations.create #people ul li .label p {
-        font-size: 12px;
         line-height: 1.3em;
         margin: 0 0 4px;
-        color: #777777; }
-      #home.index #people ul li .label .media-types, #registrations.create #people ul li .label .media-types {
+        font-size: 12px; }
+      #home.index #people ul li .label .stats, #registrations.create #people ul li .label .stats {
+        font-size: 12px;
         position: absolute;
         height: 20px;
         bottom: 5px;
         left: 8px; }
-        #home.index #people ul li .label .media-types .icon, #registrations.create #people ul li .label .media-types .icon {
-          width: 25px;
-          height: 20px;
+        #home.index #people ul li .label .stats .content, #registrations.create #people ul li .label .stats .content {
           float: left;
-          margin-right: 7px;
-          background: transparent url(../images/content/media-types/photos-small-gray.png) no-repeat 0 0; }
-          #home.index #people ul li .label .media-types .icon.video, #registrations.create #people ul li .label .media-types .icon.video {
-            background-image: url(../images/content/media-types/video-small-gray.png); }
-          #home.index #people ul li .label .media-types .icon.writing, #registrations.create #people ul li .label .media-types .icon.writing {
-            background-image: url(../images/content/media-types/writing-small-gray.png); }
-          #home.index #people ul li .label .media-types .icon.music, #registrations.create #people ul li .label .media-types .icon.music {
-            background-image: url(../images/content/media-types/music-small-gray.png); }
-  #home.index #people ul li:hover .stats, #registrations.create #people ul li:hover .stats {
+          width: 60px; }
+        #home.index #people ul li .label .stats .rewarders, #registrations.create #people ul li .label .stats .rewarders {
+          float: right;
+          width: 100px;
+          text-align: right; }
+  #home.index #people ul li:hover .hover, #registrations.create #people ul li:hover .hover {
     top: 144px; }
 #home.index #projects h3, #registrations.create #projects h3 {
   color: white;

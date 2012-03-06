@@ -38,9 +38,9 @@
 	
 	#people, #projects
 		position: relative
+		min-height: 385px
 		
 		&.loading
-			height: 385px
 			h3, ul
 				display: none
 			.loader
@@ -55,15 +55,9 @@
 			display: none
 			position: absolute
 			top: 185px
-			left: 485px
-			background: #fff url(../images/spinner.gif) no-repeat 15px 10px
-			color: #000
+			left: 425px
+			color: #fff
 			font-size: 20px
-			font-weight: 700
-			margin: 0 auto 50px
-			padding: 5px 10px 6px 40px
-			width: 105px
-			@include rounded(20px)
 	
 	#people
 		ul
@@ -71,7 +65,7 @@
 			margin-bottom: 30px
 			li
 				width: 176px
-				height: 315px
+				height: 325px
 				float: left
 				margin-right: 30px
 				position: relative
@@ -81,7 +75,7 @@
 				a.surround
 					display: block
 					width: 176px
-					height: 315px
+					height: 325px
 					background: #fff
 					@include rounded
 					@include boxshadow(5px, 0.5)
@@ -98,7 +92,7 @@
 					border-top-left-radius: 5px
 					border-top-right-radius: 5px
 				
-				.stats
+				.hover
 					position: absolute
 					top: 176px
 					left: 0
@@ -108,21 +102,16 @@
 					background: #000
 					background: rgba(0,0,0,0.85)
 					color: #fff
-					font-size: 13px
+					font-size: 12px
 					z-index: 1
 					@include transition
-					overflow: hidden
-					.content
-						float: left
-						width: 60px
-					.rewarders
-						float: right
-						width: 100px
-						text-align: right
+					.arrow
+						position: relative
+						top: 2px
 					
 				.label
 					width: 160px
-					height: 123px
+					height: 133px
 					padding: 8px
 					background: #fff
 					position: relative
@@ -134,33 +123,28 @@
 					border-bottom-right-radius: 5px
 					border-bottom-left-radius: 5px
 					.name
-						font-weight: 700
 						margin-bottom: 4px
 						font-size: 13px
+						font-weight: 700
 					p
-						font-size: 12px
 						line-height: 1.3em
 						margin: 0 0 4px
-						color: #777
-					.media-types
+						font-size: 12px
+					.stats
+						font-size: 12px
 						position: absolute
 						height: 20px
 						bottom: 5px
 						left: 8px
-						.icon
-							width: 25px
-							height: 20px
+						.content
 							float: left
-							margin-right: 7px
-							background: transparent url(../images/content/media-types/photos-small-gray.png) no-repeat 0 0
-							&.video
-								background-image: url(../images/content/media-types/video-small-gray.png)
-							&.writing
-								background-image: url(../images/content/media-types/writing-small-gray.png)
-							&.music
-								background-image: url(../images/content/media-types/music-small-gray.png)
+							width: 60px
+						.rewarders
+							float: right
+							width: 100px
+							text-align: right
 
-			li:hover .stats
+			li:hover .hover
 				top: 144px
 
 	#projects

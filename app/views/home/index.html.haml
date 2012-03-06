@@ -12,15 +12,6 @@
   %ul= render :partial => "home/person", :collection => @people, :as => :person
   .loader Loading...
 
-%hr
-
-#projects
-  %h3 Top Projects
-  %ul= render :partial => "home/project", :collection => @projects, :as => :project
-  .loader Loading...
-
-#projects-loading Loading more...
-
 :javascript
   mpq.track('Viewed Homepage');
 
