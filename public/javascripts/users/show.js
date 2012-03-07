@@ -25,13 +25,14 @@ $(function() {
 		  //$('body').css({height: body_height});
 		  
 		  _.bindAll(this, 'on_keypress');
-		  $(document).bind('keypress', this.on_keypress);
+		  $(document).bind('keydown', this.on_keypress);
 		  
 		  $.scrollTo(0);
 		},
 		
 		on_keypress: function(event) {
 		  var key = event.charCode ? event.charCode : event.keyCode ? event.keyCode : 0;
+		  console.log(key);
 		  switch (key) {
 		    case 38: // up arrow
 		      Scroll.to_prev();
