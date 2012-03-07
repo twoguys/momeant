@@ -1,18 +1,32 @@
-%h1#slogan People, projects, and creativity worth rewarding.
+#book
+  .b-load
+    #page1.page
+      .insides
+        = image_tag "discovery/logo-large.png"
+        %p
+          %strong Discover people
+          %span doing great things online.
+        %p
+          %strong Reward the people and causes
+          %span you believe are worth supporting.
 
-#filter
-  = link_to "All", "#", :class => "selected"
-  - Story::CATEGORIES.each do |category|
-    = link_to category, "#"
+    #page2.page
+      = link_to "View creators and their work", "#"
 
-%hr
+    #page3.page
+      .insides
+        #choose-a-category
+        %ul#filter
+          - Story::CATEGORIES.each do |category|
+            %li= link_to category, "#"
 
-#people
-  %h3 Top People
-  %ul= render :partial => "home/person", :collection => @people, :as => :person
-  .loader Loading...
+    #page4.page
+      #people
+        %ul
+        .loader Loading...
 
 :javascript
   mpq.track('Viewed Homepage');
 
+= javascript_include_tag "jquery.booklet.1.2.0.min"
 = javascript_include_tag "landing"

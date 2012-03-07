@@ -1,268 +1,183 @@
 #home.index, #registrations.create
+	height: 100%
+
+	#new-york
+		top: 0
+		background-image: url(../images/discovery/book.jpg)
 	
-	#slogan
-		font-size: 32px
-		text-shadow: 0 1px 0 rgba(255,255,255,0.5)
-		margin: 30px 0
-		
-	#filter
-		height: 32px
-		margin-bottom: 20px
-		a
-			padding: 5px 10px
-			font-size: 15px
-			font-weight: 700
-			color: #555
-			background: #e9e9e9
-			@include gradient(#eee,#e2e2e2)
-			border-bottom: 1px solid rgba(0,0,0,0.3)
-			box-shadow: 0 0 1px #fff inset, 0 2px 0 #b2b1b1, 0 3px rgba(0,0,0,0.3)
-			text-shadow: 0 1px 0 #fff
-			@include rounded(3px)
-			margin-right: 5px
-			&:hover
-				background: #f0f0f0
-				color: #000
-			&:active, &.selected
-				box-shadow: 0 -1px 1px rgba(255,255,255,0.8) inset, 0 0 2px rgba(0,0,0,0.4) inset, 0 1px 0 rgba(0,0,0,0.3) inset, 0 -1px 0 rgba(0,0,0,0.4) inset
-				border: none
-				position: relative
-				top: 2px
+	#header
+		display: none
 	
-	hr
-		height: 0
-		border: none
-		border-top: 1px solid rgba(0,0,0,0.15)
-		border-bottom: 1px solid rgba(255,255,255,0.15)
-		margin-bottom: 20px
+	#container
+		position: fixed
+		top: 0
+		bottom: 0
+		left: 0
+		right: 0
+		padding: 0
+		#main
+			width: 100%
+			height: 100%
+			margin: 0
 	
-	#people, #projects
+	#book
+		.b-wrap
+			position: absolute
+			top: 0
+		.b-wrap-left
+			background: transparent url(../images/discovery/page-left.png) repeat-y 100% 50%
+		.b-wrap-right
+			background: transparent url(../images/discovery/page-right.png) repeat-y 0 50%
+		.b-page
+			position: absolute
+			left: 0
+			top: 0
+			overflow: hidden
+			padding: 0
+			display: none
+		.b-shadow-f, .b-shadow-b
+			position:absolute
+			right: 0
+			top: 0
+			opacity: 0
+			background: transparent url(../images/discovery/shadow-top-forward.png) repeat-y 100% 0
+		.b-shadow-b
+			background-image: url(../images/discovery/shadow-top-back.png)
+			background-position: 0 0
+		.b-page-1
+			z-index: 2
+		.b-page-3
+			z-index: 1
+		.b-counter
+			display: none
+	
+	.page
 		position: relative
-		min-height: 385px
+		height: 100%
+	
+	#page1
+		.insides
+			position: absolute
+			top: 50%
+			left: 50%
+			margin: -100px 0 0 -137px
+			font-size: 18px
+			width: 275px
+			img
+				margin-bottom: 1em
+			p
+				line-height: 1.3em
+				color: #666
+				strong
+					color: #000
+					display: block
+	
+	#page2
+		a
+			display: block
+			width: 100%
+			height: 100%
+			background: transparent url(../images/discovery/view-creators-button.png) no-repeat 50% 50%
+			@include notext
+			opacity: 0.2
+			@include transition(opacity)
+			&:hover
+				opacity: 1.0
 		
-		&.loading
-			h3, ul
+	#page3
+		.insides
+			width: 306px
+			height: 450px
+			position: absolute
+			top: 50%
+			left: 50%
+			margin: -225px 0 0 -200px
+		#choose-a-category
+			width: 306px
+			height: 86px
+			background: transparent url(../images/discovery/choose-category.png) no-repeat 0 0
+		#filter
+			width: 150px
+			margin-left: 120px
+			li
+				height: 35px
+				margin-bottom: 5px
+				text-align: right
+			a
+				padding: 3px 10px
+				font-size: 15px
+				font-weight: 700
+				color: #555
+				background: #e9e9e9
+				@include gradient(#eee,#e2e2e2)
+				border: 1px solid #d0d0d0
+				box-shadow: 0 0 1px #fff inset, 0 2px 0 #b2b1b1, 0 3px rgba(0,0,0,0.3)
+				text-shadow: 0 1px 0 #fff
+				@include rounded(3px)
+				margin-right: 5px
+				&:hover
+					background: #f0f0f0
+					color: #000
+				&:active, &.selected
+					box-shadow: 0 -1px 1px rgba(255,255,255,0.8) inset, 0 0 2px rgba(0,0,0,0.4) inset, 0 1px 0 rgba(0,0,0,0.3) inset, 0 -1px 0 rgba(0,0,0,0.4) inset
+					border: none
+					position: relative
+					top: 2px
+	
+	#page4
+		position: relative
+		#people
+			height: 100%
+			ul
+				height: 100%
+			li
+				height: 20%
+				padding: 2.5%
+				margin-left: 3px
+				border-bottom: 1px solid #dbdbdb
+			a.surround
+				display: block
+				height: 100%
+				position: relative
+				padding: 0 100px 0 120px
+				margin-right: 20px
+				color: $text_color
+				background: transparent url(../images/discovery/arrow.png) no-repeat 100% 50%
+				img.avatar
+					width: 100px
+					height: 100px
+					position: absolute
+					top: 0
+					left: 0
+				.name span
+					color: #777
+				p
+					line-height: 1.3em
+					max-width: 320px
+					padding: 0 30px
+					position: relative
+					.lquote, .rquote
+						font-size: 60px
+						color: #ccc
+						position: absolute
+						height: 25px
+						line-height: 1em
+					.lquote
+						top: -10px
+						left: 0
+					.rquote
+						bottom: 0
+						right: 0
+				.stats
+					display: none			
+			.loader
 				display: none
+				width: 100%
+				position: absolute
+				top: 50%
+				text-align: center
+		#people.loading
 			.loader
 				display: block
-			
-		h3
-			font-size: 24px
-			margin-bottom: 20px
-			font-weight: 500
-		
-		.loader
-			display: none
-			position: absolute
-			top: 185px
-			left: 425px
-			color: #fff
-			font-size: 20px
-	
-	#people
-		ul
-			height: 315px
-			margin-bottom: 30px
-			li
-				width: 176px
-				height: 325px
-				float: left
-				margin-right: 30px
-				position: relative
-				&:last-child
-					margin-right: 0
-				
-				a.surround
-					display: block
-					width: 176px
-					height: 325px
-					background: #fff
-					@include rounded
-					@include boxshadow(5px, 0.5)
-					color: $text_color
-				
-				.avatar, .avatar img
-					display: block
-					width: 176px
-					height: 176px
-					-webkit-border-top-left-radius: 5px
-					-webkit-border-top-right-radius: 5px
-					-moz-border-radius-topleft: 5px
-					-moz-border-radius-topright: 5px
-					border-top-left-radius: 5px
-					border-top-right-radius: 5px
-				
-				.hover
-					position: absolute
-					top: 176px
-					left: 0
-					width: 160px
-					height: 16px
-					padding: 8px
-					background: #000
-					background: rgba(0,0,0,0.85)
-					color: #fff
-					font-size: 12px
-					z-index: 1
-					@include transition
-					.arrow
-						position: relative
-						top: 2px
-					
-				.label
-					width: 160px
-					height: 133px
-					padding: 8px
-					background: #fff
-					position: relative
-					z-index: 2
-					-webkit-border-bottom-right-radius: 5px
-					-webkit-border-bottom-left-radius: 5px
-					-moz-border-radius-bottomright: 5px
-					-moz-border-radius-bottomleft: 5px
-					border-bottom-right-radius: 5px
-					border-bottom-left-radius: 5px
-					.name
-						margin-bottom: 4px
-						font-size: 13px
-						font-weight: 700
-					p
-						line-height: 1.3em
-						margin: 0 0 4px
-						font-size: 12px
-					.stats
-						font-size: 12px
-						position: absolute
-						height: 20px
-						bottom: 5px
-						left: 8px
-						.content
-							float: left
-							width: 60px
-						.rewarders
-							float: right
-							width: 100px
-							text-align: right
-
-			li:hover .hover
-				top: 144px
-
-	#projects
-		h3
-			color: #fff
-			text-shadow: 0 1px 0 #000
-			font-weight: 300
-		
-		ul
-			@include clearfix
-			li
-				width: 310px
-				height: 359px
-				float: left
-				margin: 0 35px 35px 0
-				&:nth-child(3n)
-					margin-right: 0
-				
-				a.surround
-					display: block
-					width: 310px
-					height: 359px
-					background: #fff
-					@include rounded
-					@include boxshadow(5px, 0.5)
-					color: $text_color
-					position: relative
-				
-				.thumbnail, .thumbnail img
-					width: 310px
-					height: 206.6px
-					-webkit-border-top-left-radius: 5px
-					-webkit-border-top-right-radius: 5px
-					-moz-border-radius-topleft: 5px
-					-moz-border-radius-topright: 5px
-					border-top-left-radius: 5px
-					border-top-right-radius: 5px
-				.thumbnail
-					position: relative
-					.media-type
-						position: absolute
-						top: 0
-						left: 0
-						width: 310px
-						height: 206px
-						z-index: 2
-						background: transparent url(../images/content/media-types/photos.png) no-repeat 50% 50%
-						&.video
-							background-image: url(../images/content/media-types/video.png)
-						&.writing
-							background-image: url(../images/content/media-types/writing.png)
-						&.music
-							background-image: url(../images/content/media-types/music.png)
-				
-				.stats
-					position: absolute
-					top: 207px
-					left: 0
-					width: 286px
-					height: 18px
-					padding: 12px
-					background: #000
-					background: rgba(0,0,0,0.85)
-					color: #fff
-					font-size: 15px
-					z-index: 1
-					@include transition
-					overflow: hidden
-					.supporters
-						float: left
-						width: 156px
-					.rewarded
-						width: 130px
-						float: right
-						text-align: right
-				
-				
-				.label
-					width: 286px
-					height: 128px
-					padding: 12px
-					background: #fff
-					position: relative
-					z-index: 2
-					-webkit-border-bottom-right-radius: 5px
-					-webkit-border-bottom-left-radius: 5px
-					-moz-border-radius-bottomright: 5px
-					-moz-border-radius-bottomleft: 5px
-					border-bottom-right-radius: 5px
-					border-bottom-left-radius: 5px
-					.title, .author
-						font-size: 15px
-					.title
-						font-weight: 700
-					.author
-						color: #999
-						margin-bottom: 10px
-					p
-						margin: 0
-						font-size: 12px
-						line-height: 1.3em
-			
-			li:hover .stats
-				top: 164px
-
-	#projects-loading
-		clear: both
-		padding-top: 50px
-		background: #fff url(../images/spinner.gif) no-repeat 15px 10px
-		color: #000
-		font-size: 20px
-		font-weight: 700
-		margin: 0 auto 50px
-		padding: 5px 10px 5px 40px
-		width: 170px
-		@include rounded(20px)
-		&.done
-			background: #fff
-			padding-left: 10px
-			width: 190px
-			text-align: center
+			ul
+				display: none

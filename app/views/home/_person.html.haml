@@ -3,13 +3,16 @@
     
     = image_tag person.avatar.url(:large), :class => "avatar"
     
-    .hover
-      %span View works and rewarders
-      %span.arrow &rarr;
-    
     .label
-      .name= person.name
-      %p &ldquo;#{truncate person.tagline, :length => 100}&rdquo;
+      .name
+        %strong= person.name
+        %span= person.occupation
+        - if person.location?
+          %span from #{person.location}
+      %p
+        %span.lquote &ldquo;
+        %span= truncate person.tagline, :length => 100
+        %span.rquote &rdquo;
       .stats
         .content= pluralize person.created_stories.published.count, "work"
         .rewarders= pluralize person.patrons.count, "rewarder"
