@@ -1,9 +1,5 @@
 #home.index, #registrations.create
 	height: 100%
-
-	#new-york
-		top: 0
-		background-image: url(../images/discovery/book.jpg)
 	
 	#header
 		display: none
@@ -15,12 +11,71 @@
 		left: 0
 		right: 0
 		padding: 0
+		background: #985140 url(../images/discovery/leather.jpg) repeat 0 0
 		#main
-			width: 100%
-			height: 100%
+			width: auto
+			position: fixed
+			top: 10px
+			bottom: 10px
+			left: 20px
+			right: 20px
 			margin: 0
 	
+	#book-wrapper
+		z-index: 1
+		position: fixed
+		#left-pages, #right-pages
+			width: 12px
+			position: fixed
+			top: 10px
+			bottom: 10px
+			.corner
+				width: 12px
+				height: 8px
+				background: transparent url(../images/discovery/top-left-corner.png) no-repeat 0 0
+				position: absolute
+				z-index: 2
+			.corner.top
+				top: 0
+			.corner.bottom
+				bottom: 0
+			.vertical
+				width: 12px
+				background: transparent url(../images/discovery/left-vertical.png) repeat-y 0 0
+				position: absolute
+				top: 8px
+				bottom: 8px
+		#left-pages
+			left: 8px
+			.bottom
+				background-image: url(../images/discovery/bottom-left-corner.png)
+		#right-pages
+			right: 8px
+			.vertical
+				background-image: url(../images/discovery/right-vertical.png)
+			.top
+				background-image: url(../images/discovery/top-right-corner.png)
+			.bottom
+				background-image: url(../images/discovery/bottom-right-corner.png)
+		#bottom-shadow
+			z-index: 1
+			position: fixed
+			left: 8px
+			right: 8px
+			bottom: 0
+			height: 18px
+			background: -moz-linear-gradient(top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 100%)
+			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0.5)), color-stop(100%,rgba(0,0,0,0)))
+			background: -webkit-linear-gradient(top, rgba(0,0,0,0.5) 0%,rgba(0,0,0,0) 100%)
+			background: -o-linear-gradient(top, rgba(0,0,0,0.5) 0%,rgba(0,0,0,0) 100%)
+			background: -ms-linear-gradient(top, rgba(0,0,0,0.5) 0%,rgba(0,0,0,0) 100%)
+			background: linear-gradient(top, rgba(0,0,0,0.5) 0%,rgba(0,0,0,0) 100%)
+	
 	#book
+		z-index: 2
+		position: absolute
+		background: transparent url(../images/discovery/book.png) no-repeat 50% 50%
+		@include bgcover
 		.b-wrap
 			position: absolute
 			top: 0

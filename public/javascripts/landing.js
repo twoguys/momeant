@@ -14,8 +14,7 @@ $(function() {
 			this.book.booklet({
 			  manual: false,
 			  width: '100%',
-			  height: '100%',
-			  pagePadding: 0
+			  height: '100%'
 			});
 			
 			this.current_category = undefined;

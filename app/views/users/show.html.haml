@@ -1,67 +1,34 @@
 #user-profile
   = render "users/user_info"
   
-  #summary.the-rest
-  
-    #content-column
-      %section.one
-        %header
-          %h1 #{me?(@user) ? "Your" : "#{@user.first_name}'s"} Recent Content
-          = link_to "view all content", creations_user_path(@user), :class => "more"
-        %ul.mini-content
-          - @recent_content.each do |content|
-            %li
-              = link_to image_tag(content.thumbnail.url(:medium)), story_path(content), :class => "thumbnail"
-              .stat.popular= content.reward_count
-              .more
-                = link_to image_tag(content.thumbnail.url(:medium)), story_path(content), :class => "thumbnail"
-                .stat.popular= content.reward_count
-                = link_to truncate(content.title, :length => 40), story_path(content), :class => "title"
-                .byline by #{link_to @user.name, user_path(@user)}
-                %p.synopsis= truncate content.synopsis, :length => 210
-                = link_to "View Content", story_path(content), :class => "launch"
-    
-      %section.two
-        %header
-          %h1 Content #{you_or_first_name(@user)} Rewarded
-          = link_to "view all activity", activity_user_path(@user), :class => "more"
-        %ul.mini-content
-          - @rewarded_content.each do |content|
-            %li
-              = link_to image_tag(content.thumbnail.url(:medium)), story_path(content), :class => "thumbnail"
-              .stat.popular= content.reward_count
-              .more
-                = link_to image_tag(content.thumbnail.url(:medium)), story_path(content), :class => "thumbnail"
-                .stat.popular= content.reward_count
-                = link_to truncate(content.title, :length => 40), story_path(content), :class => "title"
-                .byline by #{link_to content.user.name, user_path(content.user)}
-                %p.synopsis= truncate content.synopsis, :length => 210
-                = link_to "View Content", story_path(content), :class => "launch"
-    
-    #people-column
-      %section.app
-        %header
-          %h3 Top Supporters
-        %ul.mini-people
-          - @top_supporters.each do |patron|
-            %li
-              = link_to image_tag(patron[0].avatar.url(:thumbnail)), user_path(patron[0]), :class => "avatar"
-              = link_to patron[0].name, user_path(patron[0]), :class => "title"
-              %p
-                %span #{patron[0].first_name} has rewarded #{you_or_first_name(@user)}
-                %span.reward-count= patron[1]
+  #content
+    %h1= pluralize @user.created_stories.published.count, "work"
+    .helper use keyboard
 
-      %section.app
-        %header
-          %h3 Favorite Creators
-        %ul.mini-people
-          - @favorite_creators.each do |creator|
-            %li
-              = link_to image_tag(creator[0].avatar.url(:thumbnail)), user_path(creator[0]), :class => "avatar"
-              = link_to creator[0].name, user_path(creator[0]), :class => "title"
-              %p
-                %span #{me?(@user) ? "You have" : "#{@user.first_name} has"} rewarded #{creator[0].first_name}
-                %span.reward-count= creator[1]
+    %ul#content-list
+      - index = 0
+      - @content.each do |content|
+        %li
+          %a.content-preview{:id => "content-#{index}", :href => story_path(content)}
+            = image_tag content.thumbnail.url(:large), :class => "thumbnail"
+            .media-type{:class => content.media_type}
+            = image_tag @user.avatar.url(:thumbnail), :class => "avatar"
+      
+          .info
+            = link_to content.title, story_path(content), :class => "title"
+            .byline= @user.name
+            %p= content.synopsis
+            = #link_to "View #{content.this_media}", story_path(content), :class => "view-button"
+            
+        - index += 1
+  
+  #people-list
+    %h1= pluralize @supporters.length, "rewarder"
+    %ul
+      - @supporters.each do |person|
+        %li
+          = image_tag person[0].avatar.url(:thumbnail)
+          = link_to person[0].name, user_path(person[0]), :class => "cover tooltipped", :title => person[0].name
   
 - if me?(@user)
   :javascript
@@ -69,3 +36,7 @@
 - else
   :javascript
     mpq.track('Viewed A Profile', {mp_note: '#{@user.name}'});
+
+:javascript
+  var scrollables_selector = '#content-list';
+= javascript_include_tag "users/show"
