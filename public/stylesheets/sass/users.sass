@@ -154,6 +154,7 @@ body#users, body#messages
 	#content
 		padding-left: 80px
 		position: relative
+		margin-right: 250px
 		.helper
 			position: fixed
 			top: 124px
@@ -169,10 +170,10 @@ body#users, body#messages
 		#content-list
 			@include transition(margin, 0.3s, ease-out)
 			li
-				width: 600px
 				min-height: 200px
 				padding-bottom: 90px
 				clear: both
+				@include transition(opacity)
 				.content-preview
 					display: block
 					width: 300px
@@ -183,8 +184,7 @@ body#users, body#messages
 					img.thumbnail
 						width: 300px
 						height: 200px
-						padding-bottom: 15px
-						background: transparent url(../images/profile/content-shadow.png) no-repeat 50% 200px
+						@include boxshadow(3px, 0.3, 1px, 1px)
 					.media-type
 						position: absolute
 						top: 1px
@@ -209,14 +209,16 @@ body#users, body#messages
 				a.title
 					color: #000
 					font-weight: 700
+					font-size: 15px
 					&:hover
 						color: $blue
 				.byline
 					color: #999
-					margin-bottom: 20px
+				.edit a
+					margin-right: 10px
 				p
 					line-height: 1.4em
-					margin: 0
+					margin: 20px 0 0
 	
 	#people-list
 		position: fixed
@@ -244,7 +246,6 @@ body#users, body#messages
 		#activity-body
 			border: none
 		#activity-list
-			width: 920px
 			&.loading
 				background: transparent url(../images/spinner.gif) no-repeat 50% 30px
 				height: 50px
@@ -769,3 +770,45 @@ table.users
 			.occupation
 				font-style: italic
 				font-size: 11px
+
+// Going bigger
+@media all and (min-width: 1500px)
+	#user-profile #content #content-list li
+		max-width: 850px
+		min-height: 266px
+		.content-preview
+			width: 400px
+			height: 266px
+			img.thumbnail, .media-type
+				width: 400px
+				height: 266px
+		.info .title
+			font-size: 17px
+@media all and (min-width: 1600px)
+	#user-profile #content #content-list li
+		max-width: 950px
+		min-height: 333px
+		.content-preview
+			width: 500px
+			height: 333px
+			img.thumbnail, .media-type
+				width: 500px
+				height: 333px
+@media all and (min-width: 1700px)
+	#user-profile #people-list
+		width: 260px
+@media all and (min-width: 1800px)
+	#user-profile #people-list
+		width: auto
+		right: none
+		left: 1400px
+	
+// Going smaller
+@media all and (max-width: 1149px)
+	#user-profile #content
+		width: 450px
+	#user-profile #content #content-list li .content-preview
+		float: none
+@media all and (max-width: 1049px)
+	#user-profile #people-list
+		display: none

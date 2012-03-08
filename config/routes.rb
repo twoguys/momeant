@@ -81,7 +81,8 @@ Repo::Application.routes.draw do
       post :update_in_place
       post :update_avatar
       post :update_email_setting
-      get :activity #ajax
+      get :activity
+      get :more_activity #ajax
       get :activity_from_friends #ajax
       get :content_from_nearbys #ajax
       get :similar_to_what_ive_rewarded #ajax

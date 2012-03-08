@@ -8,30 +8,15 @@
         %li= link_to "About", about_path
         %li= link_to "Terms of Service", tos_path
     %li#curation.topnav{:class => @nav == "support" ? "active" : ""}
-      = link_to "Discover", discovery_path, :class => "top-link"
-      .double-wide
-        %ul.subnav.aside
-          %li.header Content
-          %li= link_to "Recommended", recommended_content_path
-          %li= link_to "Popular", popular_content_path
-          %li= link_to "Nearby", nearby_content_path
-          %li= link_to "Newest", newest_content_path
-        %ul.subnav.aside
-          %li.header People
-          %li= link_to "Top Rewarders", patrons_people_path
-          %li= link_to "Handpicked Creators", notable_people_path
-          %li= link_to "Fast Risers", creators_people_path
-          %li= link_to "You Know", friends_people_path
+      = link_to "People You Support", discovery_path, :class => "top-link"
 
     - if user_signed_in?
-      %li#share.topnav{:class => @nav == "sharing" ? "active" : ""}
-        = link_to "Share", new_story_path, :class => "top-link"
-      %li#my-stream.topnav{:class => @nav == "me" ? "active" : ""}
+      %li#my-links.topnav{:class => @nav == "me" ? "active" : ""}
         %a.top-link{:href => user_path(current_user)}
           = image_tag current_user.avatar.url(:thumbnail)
           %span You
         %ul.subnav
-          %li= link_to "Your Content", creations_user_path(current_user)
+          %li= link_to "Share", new_story_path
           %li= link_to "Your Activity", activity_user_path(current_user)
           %li= link_to "Messages (#{current_user.unread_message_count})", user_messages_path(current_user)
           %li= link_to "Settings", settings_user_path(current_user)

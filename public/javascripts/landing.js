@@ -28,6 +28,8 @@ $(function() {
 		load_people: function(event) {
 		  var $link = $(event.currentTarget);
       $link.addClass('selected').parent().siblings().find('a').removeClass('selected');
+      
+      $('#choose-a-category:visible').fadeOut(200);
 
       Book.current_category = $link.text();
       if (Book.current_category == 'All') { Book.current_category = ''; }

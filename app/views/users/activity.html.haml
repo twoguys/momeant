@@ -3,9 +3,7 @@
   
   .the-rest
 
-    .top
-      = link_to "< Back to Summary", user_path(@user), :class => "back-link"
-      %h1 #{me?(@user) ? "Your" : "#{@user.first_name}'s"} Activity
+    %h1 Activity
       
     #activity-surround{:class => @activity.empty? && me?(@user) ? "new-user-no-activity" : ""}
 
@@ -38,7 +36,7 @@
 
 
 :javascript
-  var activity_url = '/users/' + #{@user.id} + '/activity';
+  var activity_url = '/users/' + #{@user.id} + '/more_activity';
 = javascript_include_tag "users/activity"
   
 - if me?(@user)

@@ -139,7 +139,7 @@ h2 {
         background: transparent url(../images/logoWhiteSmall.png) no-repeat -9px 1px; }
       #header #user-nav #logo .subnav {
         width: 158px; }
-    #header #user-nav #logo, #header #user-nav #discover, #header #user-nav #share {
+    #header #user-nav #logo, #header #user-nav #curation, #header #user-nav #my-links {
       border-right: 1px solid #333333; }
     #header #user-nav .topnav {
       font-size: 13px;
@@ -206,22 +206,22 @@ h2 {
         background: #00aeef; }
     #header #user-nav #people .subnav {
       width: 120px; }
-    #header #user-nav #my-stream {
+    #header #user-nav #my-links {
       width: 95px; }
-      #header #user-nav #my-stream .top-link {
+      #header #user-nav #my-links .top-link {
         width: 63px;
         height: 30px;
         padding: 6px 15px 6px 10px;
         position: relative; }
-        #header #user-nav #my-stream .top-link img {
+        #header #user-nav #my-links .top-link img {
           width: 30px;
           height: 30px;
           padding-right: 5px; }
-        #header #user-nav #my-stream .top-link span {
+        #header #user-nav #my-links .top-link span {
           position: absolute;
           top: 13px;
           left: 49px; }
-      #header #user-nav #my-stream .subnav {
+      #header #user-nav #my-links .subnav {
         width: 127px; }
     #header #user-nav #coins {
       margin-left: 20px; }
@@ -877,10 +877,14 @@ table {
     position: absolute;
     top: 50%;
     left: 50%;
-    margin: -225px 0 0 -200px; }
+    margin: -265px 0 0 -200px;
+    padding-top: 86px; }
   #home.index #page3 #choose-a-category, #registrations.create #page3 #choose-a-category {
     width: 306px;
     height: 86px;
+    position: absolute;
+    top: 0;
+    left: 0;
     background: transparent url(../images/discovery/choose-category.png) no-repeat 0 0; }
   #home.index #page3 #filter, #registrations.create #page3 #filter {
     width: 150px;
@@ -5087,7 +5091,8 @@ body#users #main, body#messages #main {
         text-transform: uppercase; }
   #user-profile #content {
     padding-left: 80px;
-    position: relative; }
+    position: relative;
+    margin-right: 250px; }
     #user-profile #content .helper {
       position: fixed;
       top: 124px;
@@ -5106,10 +5111,14 @@ body#users #main, body#messages #main {
       -o-transition: margin 0.3s ease-out;
       transition: margin 0.3s ease-out; }
       #user-profile #content #content-list li {
-        width: 600px;
         min-height: 200px;
         padding-bottom: 90px;
-        clear: both; }
+        clear: both;
+        -webkit-transition: opacity 0.2s linear;
+        -moz-transition: opacity 0.2s linear;
+        -ms-transition: opacity 0.2s linear;
+        -o-transition: opacity 0.2s linear;
+        transition: opacity 0.2s linear; }
         #user-profile #content #content-list li .content-preview {
           display: block;
           width: 300px;
@@ -5120,8 +5129,9 @@ body#users #main, body#messages #main {
           #user-profile #content #content-list li .content-preview img.thumbnail {
             width: 300px;
             height: 200px;
-            padding-bottom: 15px;
-            background: transparent url(../images/profile/content-shadow.png) no-repeat 50% 200px; }
+            -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+            -moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3); }
           #user-profile #content #content-list li .content-preview .media-type {
             position: absolute;
             top: 1px;
@@ -5144,15 +5154,17 @@ body#users #main, body#messages #main {
             height: 40px; }
       #user-profile #content #content-list .info a.title {
         color: black;
-        font-weight: 700; }
+        font-weight: 700;
+        font-size: 15px; }
         #user-profile #content #content-list .info a.title:hover {
           color: #00aeef; }
       #user-profile #content #content-list .info .byline {
-        color: #999999;
-        margin-bottom: 20px; }
+        color: #999999; }
+      #user-profile #content #content-list .info .edit a {
+        margin-right: 10px; }
       #user-profile #content #content-list .info p {
         line-height: 1.4em;
-        margin: 0; }
+        margin: 20px 0 0; }
   #user-profile #people-list {
     position: fixed;
     top: 82px;
@@ -5183,19 +5195,17 @@ body#users #main, body#messages #main {
     margin: 0; }
     #user-profile #activity #activity-body {
       border: none; }
-    #user-profile #activity #activity-list {
-      width: 920px; }
-      #user-profile #activity #activity-list.loading {
-        background: transparent url(../images/spinner.gif) no-repeat 50% 30px;
-        height: 50px; }
-        #user-profile #activity #activity-list.loading * {
-          display: none; }
-      #user-profile #activity #activity-list li {
-        padding: 20px 0; }
-        #user-profile #activity #activity-list li:last-child {
-          border: none; }
-        #user-profile #activity #activity-list li .left-side, #user-profile #activity #activity-list li .right-side {
-          top: 20px; }
+    #user-profile #activity #activity-list.loading {
+      background: transparent url(../images/spinner.gif) no-repeat 50% 30px;
+      height: 50px; }
+      #user-profile #activity #activity-list.loading * {
+        display: none; }
+    #user-profile #activity #activity-list li {
+      padding: 20px 0; }
+      #user-profile #activity #activity-list li:last-child {
+        border: none; }
+      #user-profile #activity #activity-list li .left-side, #user-profile #activity #activity-list li .right-side {
+        top: 20px; }
   #user-profile #new-user-no-activity {
     padding: 20px; }
     #user-profile #new-user-no-activity h1 {
@@ -5686,6 +5696,45 @@ table.users {
         font-style: italic;
         font-size: 11px; }
 
+@media all and (min-width: 1500px) {
+  #user-profile #content #content-list li {
+    max-width: 850px;
+    min-height: 266px; }
+    #user-profile #content #content-list li .content-preview {
+      width: 400px;
+      height: 266px; }
+      #user-profile #content #content-list li .content-preview img.thumbnail, #user-profile #content #content-list li .content-preview .media-type {
+        width: 400px;
+        height: 266px; }
+    #user-profile #content #content-list li .info .title {
+      font-size: 17px; } }
+@media all and (min-width: 1600px) {
+  #user-profile #content #content-list li {
+    max-width: 950px;
+    min-height: 333px; }
+    #user-profile #content #content-list li .content-preview {
+      width: 500px;
+      height: 333px; }
+      #user-profile #content #content-list li .content-preview img.thumbnail, #user-profile #content #content-list li .content-preview .media-type {
+        width: 500px;
+        height: 333px; } }
+@media all and (min-width: 1700px) {
+  #user-profile #people-list {
+    width: 260px; } }
+@media all and (min-width: 1800px) {
+  #user-profile #people-list {
+    width: auto;
+    right: none;
+    left: 1400px; } }
+@media all and (max-width: 1149px) {
+  #user-profile #content {
+    width: 450px; }
+
+  #user-profile #content #content-list li .content-preview {
+    float: none; } }
+@media all and (max-width: 1049px) {
+  #user-profile #people-list {
+    display: none; } }
 .community {
   padding: 20px; }
   .community ul.nav {
@@ -7794,8 +7843,6 @@ a.tag:hover {
             margin: 0; }
 
 #activity-surround {
-  max-width: 1200px;
-  margin: 0 auto;
   position: relative; }
 
 #activity {

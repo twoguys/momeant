@@ -7,7 +7,7 @@
         = link_to(image_tag(@user.avatar.url(:large)), edit_user_path(@user), :class => "avatar")
       - else
         = link_to(image_tag(@user.avatar.url(:large)), user_path(@user), :class => "avatar")
-      = image_tag "badges/#{@user.badge_level}.png", :class => "badge tooltipped", :title => "Level #{@user.badge_level} Patron"
+      = image_tag "badges/#{@user.badge_level}.png", :class => "badge tooltipped-e", :title => "Level #{@user.badge_level} Patron"
     
     .about
       %p
@@ -15,7 +15,7 @@
         - if @user.location
           %span from #{@user.location}
       
-      %p= @user.tagline
+      %p= truncate @user.tagline, :length => 300
   
     %ul.stats
       %li #{number_to_currency(@user.rewards.sum(:amount) * Reward.dollar_exchange)} earned
