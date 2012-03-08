@@ -120,10 +120,11 @@ Repo::Application.routes.draw do
   
   match '/activity',              :to => "community#index",             :as => :community
   match '/activity/reload',       :to => "community#activity"
-  match "/community" => redirect("/everyone")
   match '/community/content',     :to => "community#content",           :as => :community_content
   match '/community/people',      :to => "community#people",            :as => :community_people
   match '/community/newest_content', :to => "community#newest_content", :as => :community_newest_content
+  
+  match '/support',               :to => "users#support",                :as => :support
   
   namespace :admin do
     match '/', :to =>"dashboard#index", :as => :dashboard

@@ -1,0 +1,33 @@
+#support
+  
+  #vertical-people
+    .info click to filter
+    %ul
+      - @creators.each do |person|
+        %li
+          = image_tag person.avatar.url(:thumbnail)
+          = link_to person.name, user_path(person), :class => "cover tooltipped-e", :title => person.name
+          
+  #vertical-content
+    .helper use keyboard
+
+    %ul#content-list
+      - index = 0
+      - @content.each do |content|
+        %li
+          %a.content-preview{:id => "content-#{index}", :href => story_path(content)}
+            = image_tag content.thumbnail.url(:large), :class => "thumbnail"
+            .media-type{:class => content.media_type}
+            = image_tag content.user.avatar.url(:thumbnail), :class => "avatar"
+      
+          .info
+            = link_to content.title, story_path(content), :class => "title"
+            .byline= link_to content.user.name, user_path(content.user)
+            %p= content.synopsis
+            = #link_to "View #{content.this_media}", story_path(content), :class => "view-button"
+            
+        - index += 1
+
+:javascript
+  var scrollables_selector = '#content-list';
+= javascript_include_tag "content_scroller"

@@ -1,0 +1,33 @@
+#vertical-people
+	position: fixed
+	top: 82px
+	right: 40px
+	width: 160px
+	li
+		float: left
+		position: relative
+		margin: 0 5px 5px 0
+		.cover
+			display: block
+			width: 60px
+			height: 60px
+			position: absolute
+			top: 0
+			left: 0
+			background: transparent url(../images/profile/avatar-cover-60-dark.png) no-repeat 0 0
+			@include notext
+
+// Going bigger			
+@media all and (min-width: 1700px)
+	#user-profile #vertical-people
+		width: 260px
+@media all and (min-width: 1800px)
+	#user-profile #vertical-people
+		width: auto
+		right: none
+		left: 1400px
+
+// Going smaller
+@media all and (max-width: 1049px)
+	#user-profile #vertical-people
+		display: none

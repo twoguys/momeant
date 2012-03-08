@@ -1,7 +1,7 @@
 #user-profile
   = render "users/user_info"
   
-  #content
+  #vertical-content
     %h1= pluralize @user.created_stories.published.count, "work"
     .helper use keyboard
 
@@ -27,7 +27,7 @@
             
         - index += 1
   
-  #people-list
+  #vertical-people
     %h1= pluralize @supporters.length, "rewarder"
     %ul
       - @supporters.each do |person|
@@ -44,4 +44,4 @@
 
 :javascript
   var scrollables_selector = '#content-list';
-= javascript_include_tag "users/show"
+= javascript_include_tag "content_scroller"

@@ -1,0 +1,104 @@
+#vertical-content
+	padding-left: 80px
+	position: relative
+	margin-right: 250px
+	.helper
+		position: fixed
+		top: 124px
+		left: 280px
+		width: 57px
+		text-align: right
+		padding-right: 18px
+		background: transparent url(../images/profile/keyboard-icon-light.png) no-repeat 100% 3px
+		font-size: 12px
+		color: #777
+		line-height: 14px
+	
+	#content-list
+		@include transition(margin, 0.3s, ease-out)
+		li
+			min-height: 200px
+			padding-bottom: 90px
+			clear: both
+			&:hover
+				.info a.title
+					color: $blue
+				.info p
+					color: $text_color
+			.content-preview
+				display: block
+				width: 300px
+				height: 200px
+				float: left
+				margin: 0 20px 10px 0
+				position: relative
+				img.thumbnail
+					width: 300px
+					height: 200px
+					@include boxshadow(3px, 0.3, 1px, 1px)
+				.media-type
+					position: absolute
+					top: 1px
+					left: 1px
+					width: 300px
+					height: 200px
+					z-index: 2
+					background: transparent url(../images/content/media-types/photos.png) no-repeat 50% 50%
+					&.video
+						background-image: url(../images/content/media-types/video.png)
+					&.writing
+						background-image: url(../images/content/media-types/writing.png)
+					&.music
+						background-image: url(../images/content/media-types/music.png)
+				img.avatar
+					position: absolute
+					top: 0
+					left: 0
+					width: 40px
+					height: 40px
+		.info
+			a.title
+				color: $text_color
+				font-weight: 700
+				font-size: 15px
+				@include transition(color)
+			.byline
+				color: #555
+			.edit a
+				margin-right: 10px
+			p
+				line-height: 1.4em
+				margin: 20px 0 0
+				color: #555
+				@include transition(color)
+				
+// Going bigger
+@media all and (min-width: 1500px)
+	#vertical-content #content-list li
+		max-width: 850px
+		min-height: 266px
+		.content-preview
+			width: 400px
+			height: 266px
+			img.thumbnail, .media-type
+				width: 400px
+				height: 266px
+		.info .title
+			font-size: 17px
+@media all and (min-width: 1600px)
+	#vertical-content #content-list li
+		max-width: 950px
+		min-height: 333px
+		.content-preview
+			width: 500px
+			height: 333px
+			img.thumbnail, .media-type
+				width: 500px
+				height: 333px
+				
+// Going smaller
+@media all and (max-width: 1149px)
+	#vertical-content
+		width: 450px
+		#content-list li .content-preview
+			float: none

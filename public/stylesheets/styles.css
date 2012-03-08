@@ -2,8 +2,8 @@
 html, body {
   font-family: "proxima-nova-1", "proxima-nova-2", helvetica, sans-serif;
   font-size: 14px;
-  color: #252525;
-  background: white;
+  color: #aaaaaa;
+  background: #222222;
   min-height: 100%;
   overflow-x: hidden;
   text-rendering: optimizelegibility;
@@ -39,7 +39,7 @@ h2 {
   display: none; }
 
 .weak {
-  color: #9c9c9c; }
+  color: white; }
 
 /* Layout */
 #container {
@@ -207,7 +207,7 @@ h2 {
     #header #user-nav #people .subnav {
       width: 120px; }
     #header #user-nav #my-links {
-      width: 95px; }
+      width: 88px; }
       #header #user-nav #my-links .top-link {
         width: 63px;
         height: 30px;
@@ -364,7 +364,7 @@ header.hide-nav {
       font-weight: 700;
       font-size: 13px;
       padding: 8px 0 7px;
-      border-bottom: 1px solid white; }
+      border-bottom: 1px solid #222222; }
       #call-to-action .insides .message a {
         -webkit-border-radius: 3px;
         -moz-border-radius: 3px;
@@ -518,7 +518,7 @@ form li.checkbox label, .form li.checkbox label {
   float: left;
   width: auto;
   margin: 0;
-  color: #252525; }
+  color: #aaaaaa; }
 form input[type="text"], form input[type="email"], form input[type="password"], form textarea, .form input[type="text"], .form input[type="email"], .form input[type="password"], .form textarea {
   padding: 7px;
   font-size: 12px;
@@ -621,8 +621,8 @@ a.button.green {
     text-align: center; }
   .horizontal-tabs li a {
     display: block;
-    color: #252525;
-    background: white;
+    color: #aaaaaa;
+    background: #222222;
     height: 25px;
     padding: 4px 18px 4px;
     position: relative;
@@ -732,6 +732,150 @@ table {
       font-size: 30px;
       font-weight: 300; }
 
+#vertical-content {
+  padding-left: 80px;
+  position: relative;
+  margin-right: 250px; }
+  #vertical-content .helper {
+    position: fixed;
+    top: 124px;
+    left: 280px;
+    width: 57px;
+    text-align: right;
+    padding-right: 18px;
+    background: transparent url(../images/profile/keyboard-icon-light.png) no-repeat 100% 3px;
+    font-size: 12px;
+    color: #777777;
+    line-height: 14px; }
+  #vertical-content #content-list {
+    -webkit-transition: margin 0.3s ease-out;
+    -moz-transition: margin 0.3s ease-out;
+    -ms-transition: margin 0.3s ease-out;
+    -o-transition: margin 0.3s ease-out;
+    transition: margin 0.3s ease-out; }
+    #vertical-content #content-list li {
+      min-height: 200px;
+      padding-bottom: 90px;
+      clear: both; }
+      #vertical-content #content-list li:hover .info a.title {
+        color: #00aeef; }
+      #vertical-content #content-list li:hover .info p {
+        color: #aaaaaa; }
+      #vertical-content #content-list li .content-preview {
+        display: block;
+        width: 300px;
+        height: 200px;
+        float: left;
+        margin: 0 20px 10px 0;
+        position: relative; }
+        #vertical-content #content-list li .content-preview img.thumbnail {
+          width: 300px;
+          height: 200px;
+          -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+          -moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+          box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3); }
+        #vertical-content #content-list li .content-preview .media-type {
+          position: absolute;
+          top: 1px;
+          left: 1px;
+          width: 300px;
+          height: 200px;
+          z-index: 2;
+          background: transparent url(../images/content/media-types/photos.png) no-repeat 50% 50%; }
+          #vertical-content #content-list li .content-preview .media-type.video {
+            background-image: url(../images/content/media-types/video.png); }
+          #vertical-content #content-list li .content-preview .media-type.writing {
+            background-image: url(../images/content/media-types/writing.png); }
+          #vertical-content #content-list li .content-preview .media-type.music {
+            background-image: url(../images/content/media-types/music.png); }
+        #vertical-content #content-list li .content-preview img.avatar {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 40px;
+          height: 40px; }
+    #vertical-content #content-list .info a.title {
+      color: #aaaaaa;
+      font-weight: 700;
+      font-size: 15px;
+      -webkit-transition: color 0.2s linear;
+      -moz-transition: color 0.2s linear;
+      -ms-transition: color 0.2s linear;
+      -o-transition: color 0.2s linear;
+      transition: color 0.2s linear; }
+    #vertical-content #content-list .info .byline {
+      color: #555555; }
+    #vertical-content #content-list .info .edit a {
+      margin-right: 10px; }
+    #vertical-content #content-list .info p {
+      line-height: 1.4em;
+      margin: 20px 0 0;
+      color: #555555;
+      -webkit-transition: color 0.2s linear;
+      -moz-transition: color 0.2s linear;
+      -ms-transition: color 0.2s linear;
+      -o-transition: color 0.2s linear;
+      transition: color 0.2s linear; }
+
+@media all and (min-width: 1500px) {
+  #vertical-content #content-list li {
+    max-width: 850px;
+    min-height: 266px; }
+    #vertical-content #content-list li .content-preview {
+      width: 400px;
+      height: 266px; }
+      #vertical-content #content-list li .content-preview img.thumbnail, #vertical-content #content-list li .content-preview .media-type {
+        width: 400px;
+        height: 266px; }
+    #vertical-content #content-list li .info .title {
+      font-size: 17px; } }
+@media all and (min-width: 1600px) {
+  #vertical-content #content-list li {
+    max-width: 950px;
+    min-height: 333px; }
+    #vertical-content #content-list li .content-preview {
+      width: 500px;
+      height: 333px; }
+      #vertical-content #content-list li .content-preview img.thumbnail, #vertical-content #content-list li .content-preview .media-type {
+        width: 500px;
+        height: 333px; } }
+@media all and (max-width: 1149px) {
+  #vertical-content {
+    width: 450px; }
+    #vertical-content #content-list li .content-preview {
+      float: none; } }
+#vertical-people {
+  position: fixed;
+  top: 82px;
+  right: 40px;
+  width: 160px; }
+  #vertical-people li {
+    float: left;
+    position: relative;
+    margin: 0 5px 5px 0; }
+    #vertical-people li .cover {
+      display: block;
+      width: 60px;
+      height: 60px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: transparent url(../images/profile/avatar-cover-60-dark.png) no-repeat 0 0;
+      text-indent: 100%;
+      white-space: nowrap;
+      overflow: hidden; }
+
+@media all and (min-width: 1700px) {
+  #user-profile #vertical-people {
+    width: 260px; } }
+@media all and (min-width: 1800px) {
+  #user-profile #vertical-people {
+    width: auto;
+    right: none;
+    left: 1400px; } }
+@media all and (max-width: 1049px) {
+  #user-profile #vertical-people {
+    display: none; } }
 #home.index, #registrations.create {
   height: 100%; }
   #home.index #header, #registrations.create #header {
@@ -933,7 +1077,7 @@ table {
         position: relative;
         padding: 0 100px 0 120px;
         margin-right: 20px;
-        color: #252525;
+        color: #aaaaaa;
         background: transparent url(../images/discovery/arrow.png) no-repeat 100% 50%; }
         #home.index #page4 #people a.surround img.avatar, #registrations.create #page4 #people a.surround img.avatar {
           width: 100px;
@@ -972,6 +1116,698 @@ table {
       display: block; }
     #home.index #page4 #people.loading ul, #registrations.create #page4 #people.loading ul {
       display: none; }
+
+impact ul.avatars li {
+  float: left;
+  margin: 0 10px 10px 0; }
+  impact ul.avatars li a img {
+    width: 60px;
+    height: 60px; }
+
+.user-stats {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background: #f7f7f7; }
+  .user-stats li {
+    border-bottom: 1px solid #e0e0e0;
+    height: 27px; }
+    .user-stats li .icon, .user-stats li .text {
+      display: block;
+      float: left;
+      height: 27px; }
+    .user-stats li .icon {
+      border-right: 1px solid #e0e0e0;
+      width: 27px;
+      background-repeat: no-repeat;
+      background-position: 50% 50%; }
+    .user-stats li .text {
+      width: 100px;
+      padding-right: 9px;
+      font-size: 10px;
+      text-align: right;
+      color: #666666;
+      line-height: 27px; }
+    .user-stats li .sidebar.text {
+      display: none; }
+  .user-stats li.patron .icon {
+    background-image: url(../images/icons/patronBadgeSmall.png); }
+  .user-stats li.followers .icon {
+    background-image: url(../images/icons/personSmall.png); }
+  .user-stats li.rewards .icon {
+    background-image: url(../images/icons/starGreySmall.png); }
+
+body#users #main, body#messages #main {
+  padding-bottom: 50px; }
+
+#user-profile {
+  padding: 40px 40px 40px 290px;
+  /* Patronage Tab */
+  /* Stats Bar */
+  /* Creations Tab */
+  /* Settings Tab */
+  /* Cashouts */
+  /* Followers, Following Tabs */
+  /* Supporters Tab */
+  /* Edit Profile */ }
+  #user-profile h1 {
+    font-size: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: white;
+    margin-bottom: 20px; }
+  #user-profile .profile-info {
+    position: fixed;
+    top: 82px;
+    left: 40px;
+    width: 210px; }
+    #user-profile .profile-info .metadata {
+      color: #555555;
+      -webkit-transition: color 0.2s linear;
+      -moz-transition: color 0.2s linear;
+      -ms-transition: color 0.2s linear;
+      -o-transition: color 0.2s linear;
+      transition: color 0.2s linear; }
+      #user-profile .profile-info .metadata:hover {
+        color: #aaaaaa; }
+      #user-profile .profile-info .metadata .avatar-badge {
+        width: 130px;
+        margin-bottom: 20px;
+        position: relative; }
+        #user-profile .profile-info .metadata .avatar-badge .avatar {
+          display: block;
+          width: 130px;
+          height: 130px;
+          z-index: 1; }
+          #user-profile .profile-info .metadata .avatar-badge .avatar img {
+            width: 130px;
+            height: 130px; }
+        #user-profile .profile-info .metadata .avatar-badge .badge {
+          position: absolute;
+          bottom: -5px;
+          right: -30px;
+          z-index: 2; }
+      #user-profile .profile-info .metadata .about p {
+        line-height: 1.4em; }
+        #user-profile .profile-info .metadata .about p span {
+          display: block; }
+      #user-profile .profile-info .metadata ul.stats {
+        position: relative;
+        margin-top: 5px;
+        width: 200px; }
+        #user-profile .profile-info .metadata ul.stats li {
+          padding: 4px 0;
+          font-size: 16px;
+          font-weight: 700; }
+          #user-profile .profile-info .metadata ul.stats li #cashout {
+            display: block;
+            font-size: 11px;
+            text-align: center; }
+    #user-profile .profile-info #special-links {
+      position: absolute;
+      top: 0;
+      right: 10px;
+      width: 150px; }
+    #user-profile .profile-info #user-actions {
+      clear: both;
+      padding-top: 15px; }
+      #user-profile .profile-info #user-actions a {
+        display: inline-block;
+        height: 17px;
+        margin-bottom: 10px;
+        background: #333333;
+        text-shadow: none;
+        line-height: 18px;
+        color: #666666;
+        -webkit-transition: background 0.2s linear;
+        -moz-transition: background 0.2s linear;
+        -ms-transition: background 0.2s linear;
+        -o-transition: background 0.2s linear;
+        transition: background 0.2s linear; }
+        #user-profile .profile-info #user-actions a:hover {
+          background: #aaaaaa; }
+    #user-profile .profile-info #editorialize {
+      background-image: -moz-linear-gradient(center top, #ffbb01 4%, #ff9501 52%);
+      background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #ffbb01), color-stop(0.52, #ff9501)); }
+  #user-profile .the-rest {
+    position: relative; }
+    #user-profile .the-rest .horizontal-tabs {
+      border-bottom: 1px solid #cccccc; }
+      #user-profile .the-rest .horizontal-tabs ul {
+        padding-top: 20px; }
+        #user-profile .the-rest .horizontal-tabs ul a {
+          border: 1px solid #cccccc;
+          border-bottom: none; }
+    #user-profile .the-rest .top {
+      margin-bottom: 20px; }
+      #user-profile .the-rest .top a.back-link {
+        background: #c0eeff;
+        color: #00aeef;
+        padding: 2px 8px;
+        -webkit-border-radius: 15px;
+        -moz-border-radius: 15px;
+        border-radius: 15px;
+        -webkit-transition: all 0.2s linear;
+        -moz-transition: all 0.2s linear;
+        -ms-transition: all 0.2s linear;
+        -o-transition: all 0.2s linear;
+        transition: all 0.2s linear; }
+        #user-profile .the-rest .top a.back-link:hover {
+          background: #00aeef;
+          color: white; }
+      #user-profile .the-rest .top h1 {
+        padding-top: 20px;
+        margin-bottom: 0;
+        font-weight: 700;
+        text-transform: uppercase; }
+  #user-profile #activity {
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    -webkit-box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    -moz-box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    margin: 0; }
+    #user-profile #activity #activity-body {
+      border: none; }
+    #user-profile #activity #activity-list.loading {
+      background: transparent url(../images/spinner.gif) no-repeat 50% 30px;
+      height: 50px; }
+      #user-profile #activity #activity-list.loading * {
+        display: none; }
+    #user-profile #activity #activity-list li {
+      padding: 20px 0; }
+      #user-profile #activity #activity-list li:last-child {
+        border: none; }
+      #user-profile #activity #activity-list li .left-side, #user-profile #activity #activity-list li .right-side {
+        top: 20px; }
+  #user-profile #new-user-no-activity {
+    padding: 20px; }
+    #user-profile #new-user-no-activity h1 {
+      font-weight: 700;
+      text-transform: uppercase; }
+      #user-profile #new-user-no-activity h1 .coin {
+        display: inline-block;
+        width: 20px;
+        height: 25px;
+        margin: -5px -3px 0;
+        position: relative;
+        top: 8px;
+        background: transparent url(../images/icons/coinStarBlackMedium.png) no-repeat 0 0; }
+    #user-profile #new-user-no-activity p {
+      margin: 5px 0;
+      font-size: 13px; }
+      #user-profile #new-user-no-activity p a.community {
+        padding: 3px 0 0 30px;
+        background: transparent url(../images/icons/communityBlue.png) no-repeat 0 0; }
+    #user-profile #new-user-no-activity #activity-example {
+      margin: 40px -20px 0;
+      width: 100%;
+      padding-right: 40px;
+      text-indent: 20px;
+      height: 220px;
+      background: transparent url(../images/activityStreamExample.png) no-repeat 0 20px;
+      opacity: 0.6; }
+  #user-profile section.patronage h3 {
+    text-transform: uppercase;
+    font-size: 15px;
+    border-bottom: 1px solid #dddddd;
+    margin-bottom: 10px; }
+    #user-profile section.patronage h3 em {
+      font-size: 11px;
+      color: #777777;
+      text-transform: none;
+      font-weight: 300; }
+  #user-profile .rewarded-creators .avatar-wall {
+    height: 600px;
+    margin-bottom: 30px;
+    background: transparent url(../images/mosaicBG.png) repeat 0 0; }
+    #user-profile .rewarded-creators .avatar-wall .wall a {
+      display: block; }
+      #user-profile .rewarded-creators .avatar-wall .wall a img {
+        padding: 3px; }
+      #user-profile .rewarded-creators .avatar-wall .wall a .border {
+        border: 3px solid white;
+        position: absolute;
+        top: 0;
+        left: 0; }
+  #user-profile ul.rewards {
+    padding: 0;
+    display: inline-block; }
+    #user-profile ul.rewards:after {
+      content: ".";
+      display: block;
+      height: 0;
+      clear: both;
+      visibility: hidden; }
+    #user-profile ul.rewards li {
+      background: white; }
+  #user-profile ul.stats-bar {
+    height: 50px;
+    margin: 0 0 20px;
+    height: 80px; }
+    #user-profile ul.stats-bar li {
+      float: left;
+      font-size: 11px;
+      position: relative; }
+      #user-profile ul.stats-bar li .value {
+        font-family: "ff-dagny-web-pro-1", "ff-dagny-web-pro-2", sans-serif;
+        font-size: 50px;
+        line-height: 1em;
+        font-weight: 200;
+        float: left;
+        text-align: right;
+        padding-right: 20px;
+        background: transparent url(../images/icons/starBlackSmall.png) no-repeat 100% 3px; }
+        #user-profile ul.stats-bar li .value span {
+          line-height: 1em; }
+        #user-profile ul.stats-bar li .value .dollar-sign {
+          font-size: 20px;
+          position: relative;
+          top: -19px;
+          margin-right: -10px; }
+      #user-profile ul.stats-bar li .text {
+        clear: both; }
+    #user-profile ul.stats-bar li.rewards, #user-profile ul.stats-bar li.patrons, #user-profile ul.stats-bar li.cash {
+      padding-right: 30px; }
+    #user-profile ul.stats-bar li.patrons, #user-profile ul.stats-bar li.cash, #user-profile ul.stats-bar li.impact {
+      border-left: 1px solid #dddddd;
+      padding-left: 30px; }
+    #user-profile ul.stats-bar li.patrons .value {
+      background: transparent url(../images/icons/person.png) no-repeat 100% 3px; }
+    #user-profile ul.stats-bar li.impact .value {
+      padding-right: 27px;
+      background: transparent url(../images/icons/impact.png) no-repeat 100% -2px; }
+    #user-profile ul.stats-bar li.cash .value {
+      background: none; }
+    #user-profile ul.stats-bar li.cash.last {
+      padding-right: 75px; }
+    #user-profile ul.stats-bar li.impact .notification {
+      position: absolute;
+      top: 13px;
+      right: -306px;
+      width: 306px;
+      height: 37px;
+      background: transparent url(../images/profileImpactGrowNotification.png) no-repeat 0 0; }
+  #user-profile ul.stats-bar li.cash {
+    position: relative; }
+    #user-profile ul.stats-bar li.cash a#cashout {
+      position: absolute;
+      top: 6px;
+      right: 0;
+      padding: 8px 15px 7px; }
+      #user-profile ul.stats-bar li.cash a#cashout.disabled {
+        background-color: #d0d0d0;
+        background-image: -moz-linear-gradient(center top, #d0d0d0 4%, #888888 52%);
+        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #d0d0d0), color-stop(0.52, #888888));
+        cursor: help; }
+  #user-profile ul.galleries li.separator {
+    clear: both;
+    border-top: 1px solid #e0e0e0;
+    border-bottom: 1px solid white; }
+  #user-profile ul.galleries li.gallery, #user-profile ul.galleries li.no-gallery {
+    width: 100%; }
+    #user-profile ul.galleries li.gallery ul.stories, #user-profile ul.galleries li.no-gallery ul.stories {
+      display: inline-block;
+      padding: 20px 0; }
+      #user-profile ul.galleries li.gallery ul.stories:after, #user-profile ul.galleries li.no-gallery ul.stories:after {
+        content: ".";
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden; }
+      #user-profile ul.galleries li.gallery ul.stories li.about, #user-profile ul.galleries li.no-gallery ul.stories li.about {
+        background: none;
+        padding: 0;
+        width: 230px;
+        -webkit-box-shadow: 0 0 0px rgba(0, 0, 0, 0);
+        -moz-box-shadow: 0 0 0px rgba(0, 0, 0, 0);
+        box-shadow: 0 0 0px rgba(0, 0, 0, 0);
+        border: none; }
+        #user-profile ul.galleries li.gallery ul.stories li.about .name, #user-profile ul.galleries li.no-gallery ul.stories li.about .name {
+          font-size: 16px;
+          margin-bottom: 5px;
+          text-transform: uppercase;
+          font-weight: 700;
+          text-shadow: 0 1px 0 white; }
+          #user-profile ul.galleries li.gallery ul.stories li.about .name a.move-up, #user-profile ul.galleries li.gallery ul.stories li.about .name a.move-down, #user-profile ul.galleries li.no-gallery ul.stories li.about .name a.move-up, #user-profile ul.galleries li.no-gallery ul.stories li.about .name a.move-down {
+            text-indent: -9999px;
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            background: transparent url(../images/icons/moveUp.png) no-repeat 0 0; }
+          #user-profile ul.galleries li.gallery ul.stories li.about .name a.move-down, #user-profile ul.galleries li.no-gallery ul.stories li.about .name a.move-down {
+            background-image: url(../images/icons/moveDown.png); }
+        #user-profile ul.galleries li.gallery ul.stories li.about .description, #user-profile ul.galleries li.no-gallery ul.stories li.about .description {
+          font-size: 11px;
+          text-shadow: 0 1px 0 white; }
+      #user-profile ul.galleries li.gallery ul.stories li.add, #user-profile ul.galleries li.gallery ul.stories li.add-description, #user-profile ul.galleries li.no-gallery ul.stories li.add, #user-profile ul.galleries li.no-gallery ul.stories li.add-description {
+        float: left;
+        margin: 0 20px 20px 0; }
+      #user-profile ul.galleries li.gallery ul.stories li.add a, #user-profile ul.galleries li.no-gallery ul.stories li.add a {
+        display: block;
+        width: 236px;
+        height: 205px;
+        border: 1px dashed #cccccc;
+        color: #aaaaaa;
+        background: white url(../images/addMomeantBg.png) no-repeat 50% 50%;
+        text-indent: -9999px; }
+      #user-profile ul.galleries li.gallery ul.stories li.add-description, #user-profile ul.galleries li.no-gallery ul.stories li.add-description {
+        width: 460px;
+        color: #999999;
+        line-height: 2em; }
+  #user-profile ul.galleries li.no-gallery {
+    border-bottom: 1px solid #dddddd; }
+  #user-profile ul.galleries li.gallery {
+    border-top: 1px solid white;
+    border-bottom: 1px solid #dddddd; }
+  #user-profile ul.galleries li.gallery:last-child {
+    border-bottom: none; }
+  #user-profile ul.galleries li.gallery:first-child ul.stories, #user-profile ul.galleries li.no-gallery:first-child ul.stories {
+    padding-top: 0; }
+  #user-profile .user-settings #settings-list {
+    margin-bottom: 30px; }
+  #user-profile .user-settings li {
+    margin-bottom: 10px; }
+    #user-profile .user-settings li .text.loading {
+      display: inline-block;
+      width: 30px;
+      height: 10px;
+      background: transparent url(../images/horizontal-spinner.gif) no-repeat 0 50%; }
+      #user-profile .user-settings li .text.loading * {
+        display: none; }
+  #user-profile .user-settings section {
+    margin-bottom: 20px; }
+  #user-profile .user-settings h3 {
+    text-transform: uppercase;
+    font-size: 1.1em;
+    margin-bottom: 5px; }
+    #user-profile .user-settings h3 .info {
+      font-weight: 500;
+      text-transform: none; }
+  #user-profile .user-settings input[type="text"] {
+    width: 400px; }
+  #user-profile .user-settings .info {
+    color: #777777;
+    font-size: 11px;
+    margin-bottom: 20px; }
+  #user-profile .user-settings .example {
+    border: none;
+    padding-bottom: 0; }
+  #user-profile .user-settings .file-uploader .file-input {
+    height: 25px; }
+  #user-profile .user-settings .file-uploader .loader {
+    width: 220px;
+    height: 19px;
+    background: transparent url(../images/loading.gif) no-repeat 0 0;
+    display: none; }
+  #user-profile #cashouts table {
+    margin-top: 1em; }
+  #user-profile .followingers {
+    padding: 20px; }
+    #user-profile .followingers table {
+      width: 100%; }
+      #user-profile .followingers table a.avatar, #user-profile .followingers table a.name {
+        display: block;
+        float: left; }
+      #user-profile .followingers table a.avatar img {
+        width: 45px;
+        height: 45px;
+        border: 2px solid black; }
+      #user-profile .followingers table a.name {
+        margin-left: 8px;
+        font-weight: 700;
+        font-size: 18px;
+        text-transform: uppercase;
+        line-height: 18px;
+        padding-top: 6px;
+        color: #aaaaaa; }
+        #user-profile .followingers table a.name span {
+          display: block; }
+  #user-profile .supporters {
+    padding: 20px; }
+    #user-profile .supporters table.users {
+      width: 100%; }
+      #user-profile .supporters table.users td {
+        height: 70px; }
+        #user-profile .supporters table.users td .user-info {
+          position: relative; }
+          #user-profile .supporters table.users td .user-info .avatar {
+            display: block;
+            float: left;
+            margin-right: 10px;
+            width: 40px;
+            height: 40px;
+            border: 1px solid #cccccc; }
+            #user-profile .supporters table.users td .user-info .avatar img {
+              width: 40px;
+              height: 40px; }
+          #user-profile .supporters table.users td .user-info .rank {
+            position: absolute;
+            top: -7px;
+            left: -7px;
+            display: block;
+            height: 15px;
+            width: 15px;
+            font-weight: 700;
+            text-align: center;
+            line-height: 15px;
+            background: #f4f4f4;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            border-radius: 10px;
+            -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+            -moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4); }
+          #user-profile .supporters table.users td .user-info .name {
+            font-size: 18px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-top: 3px;
+            color: #aaaaaa; }
+            #user-profile .supporters table.users td .user-info .name span {
+              display: block; }
+          #user-profile .supporters table.users td .user-info .occupation {
+            font-style: italic;
+            font-size: 11px; }
+  #user-profile .user-edit {
+    padding: 20px; }
+  #user-profile .bio .incomplete-profile {
+    background: transparent url(../images/tabNotification.png) no-repeat 0 0;
+    padding: 4px 0 4px 25px;
+    font-weight: 700;
+    color: #f42652;
+    margin-bottom: 10px;
+    text-transform: uppercase; }
+    #user-profile .bio .incomplete-profile a {
+      text-decoration: underline; }
+  #user-profile .bio .edit-link {
+    text-transform: uppercase;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 10px;
+    padding-left: 15px;
+    background: transparent url(../images/icons/pencilBlue.png) no-repeat 0 1px; }
+  #user-profile .bio .tagline, #user-profile .bio .interests {
+    margin-bottom: 10px; }
+  #user-profile #user_tagline {
+    height: 50px; }
+  #user-profile .subscribing-to {
+    clear: both;
+    margin-bottom: 20px; }
+    #user-profile .subscribing-to h1 {
+      background-color: black;
+      color: white;
+      font-weight: 700;
+      font-size: 28px;
+      text-transform: uppercase;
+      padding: 2px 10px; }
+    #user-profile .subscribing-to ul {
+      height: 50px; }
+      #user-profile .subscribing-to ul li {
+        float: left;
+        clear: none;
+        margin-right: 3px; }
+        #user-profile .subscribing-to ul li a {
+          display: block;
+          width: 50px;
+          height: 50px; }
+          #user-profile .subscribing-to ul li a img {
+            width: 50px;
+            height: 50px; }
+  #user-profile .comments {
+    width: 629px;
+    float: left;
+    display: none; }
+  #user-profile .personal-library {
+    clear: both;
+    height: 365px;
+    padding-top: 20px; }
+  #user-profile .admin {
+    clear: both;
+    padding-top: 30px; }
+    #user-profile .admin h1 {
+      font-weight: 900;
+      text-transform: uppercase; }
+  #user-profile .info-bar {
+    background: none;
+    color: #777777;
+    font-style: italic;
+    text-align: center;
+    margin-top: -15px; }
+
+.creator .recommendation-stream {
+  height: 540px; }
+.creator .curatorial-stream {
+  width: 629px;
+  height: 380px;
+  float: left;
+  overflow: hidden; }
+  .creator .curatorial-stream h3 {
+    font-size: 50px;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #dddddd;
+    text-shadow: 1px 1px 1px #fafafa;
+    letter-spacing: -0.5px;
+    text-align: center; }
+
+form.user_edit {
+  margin-left: 200px; }
+  form.user_edit .example {
+    border: none; }
+  form.user_edit textarea {
+    height: 150px;
+    width: 95%;
+    line-height: 24px;
+    font-family: "proxima-nova-1", "proxima-nova-2", helvetica, sans-serif;
+    font-weight: 100; }
+  form.user_edit #user_interest_list {
+    width: 98%; }
+
+#reward-viz-example {
+  width: 607px;
+  height: 499px;
+  background: transparent url(../images/rewardVizExplanation.png) no-repeat 0 0;
+  position: relative; }
+  #reward-viz-example .tip {
+    position: absolute; }
+    #reward-viz-example .tip .hover {
+      width: 35px;
+      height: 35px;
+      cursor: help; }
+    #reward-viz-example .tip .tipsy {
+      display: none;
+      position: absolute;
+      width: 125px; }
+      #reward-viz-example .tip .tipsy .tipsy-inner {
+        background: white;
+        color: black;
+        font-family: "handwritten", cursive;
+        font-size: 14px;
+        line-height: 1em;
+        letter-spacing: 0.04em; }
+    #reward-viz-example .tip .twitter, #reward-viz-example .tip .facebook {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      background: transparent url(../images/icons/twitterTiny.png) no-repeat;
+      position: relative;
+      top: 2px; }
+    #reward-viz-example .tip .facebook {
+      background-image: url(../images/icons/facebookTiny.png); }
+  #reward-viz-example .tip:hover .tipsy {
+    display: block; }
+  #reward-viz-example #avatar-tooltip {
+    top: 110px;
+    left: 131px; }
+    #reward-viz-example #avatar-tooltip .tipsy {
+      left: -127px;
+      top: -13px; }
+  #reward-viz-example #rewards-tooltip {
+    top: 79px;
+    left: 407px; }
+    #reward-viz-example #rewards-tooltip .tipsy {
+      width: 150px;
+      right: -153px;
+      top: -13px; }
+  #reward-viz-example #impact-tooltip {
+    top: 210px;
+    left: 396px; }
+    #reward-viz-example #impact-tooltip .tipsy {
+      width: 170px;
+      right: -174px;
+      top: -27px; }
+  #reward-viz-example #sharing-tooltip {
+    top: 363px;
+    left: 247px; }
+    #reward-viz-example #sharing-tooltip .tipsy {
+      width: 185px;
+      left: -79px;
+      bottom: -55px; }
+
+table.users {
+  width: 100%; }
+  table.users td {
+    height: 70px; }
+    table.users td .user-info {
+      position: relative; }
+      table.users td .user-info .avatar {
+        display: block;
+        float: left;
+        margin-right: 10px;
+        width: 50px;
+        height: 50px;
+        border: 1px solid #cccccc; }
+        table.users td .user-info .avatar img {
+          width: 50px;
+          height: 50px; }
+      table.users td .user-info .rank {
+        position: absolute;
+        top: -7px;
+        left: -7px;
+        display: block;
+        height: 15px;
+        width: 15px;
+        font-weight: 700;
+        text-align: center;
+        line-height: 15px;
+        background: #f4f4f4;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        border-radius: 10px;
+        -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+        -moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+        box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4); }
+      table.users td .user-info .name {
+        font-size: 18px;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin-top: 3px;
+        color: #aaaaaa; }
+        table.users td .user-info .name span {
+          display: block; }
+      table.users td .user-info .occupation {
+        font-style: italic;
+        font-size: 11px; }
+
+#support #vertical-people {
+  z-index: 2;
+  right: none;
+  left: 40px;
+  width: 75px; }
+  #support #vertical-people .info {
+    font-size: 12px;
+    color: #777777;
+    margin-bottom: 10px;
+    letter-spacing: 0.05em; }
+#support #vertical-content {
+  z-index: 1;
+  margin-top: 40px;
+  padding-left: 340px; }
+  #support #vertical-content .helper {
+    top: 82px;
+    left: 250px; }
 
 /* Story creation */
 body#stories.edit #container {
@@ -1068,7 +1904,7 @@ form.new_story, form.edit_story, .story-form {
     form.new_story section.step h2, form.edit_story section.step h2, .story-form section.step h2 {
       background: none;
       text-transform: none;
-      color: #252525;
+      color: #aaaaaa;
       padding: 0 0 5px;
       border-bottom: 1px solid #cccccc; }
     form.new_story section.step .info, form.edit_story section.step .info, .story-form section.step .info {
@@ -1079,12 +1915,12 @@ form.new_story, form.edit_story, .story-form {
         color: black; }
       form.new_story section.step .info strong, form.edit_story section.step .info strong, .story-form section.step .info strong {
         font-weight: 500;
-        color: #252525; }
+        color: #aaaaaa; }
     form.new_story section.step input[type="text"], form.new_story section.step textarea, form.edit_story section.step input[type="text"], form.edit_story section.step textarea, .story-form section.step input[type="text"], .story-form section.step textarea {
       width: 98%; }
     form.new_story section.step label, form.edit_story section.step label, .story-form section.step label {
       font-size: 13px;
-      color: #252525;
+      color: #aaaaaa;
       text-transform: none;
       font-weight: 700; }
   form.new_story .step, form.new_story .banner, form.edit_story .step, form.edit_story .banner, .story-form .step, .story-form .banner {
@@ -3710,7 +4546,7 @@ body#stories.fullscreen {
       #presenter #reward-modal #your-reward .bottom-right-button, #presenter #reward-modal #your-reward .bottom-left-button {
         position: absolute;
         bottom: 30px;
-        color: #252525; }
+        color: #aaaaaa; }
       #presenter #reward-modal #your-reward .bottom-right-button {
         right: 40px;
         padding-right: 20px;
@@ -3794,7 +4630,7 @@ body#stories.fullscreen {
             display: block;
             width: 240px;
             margin: 0 auto;
-            background: #252525;
+            background: #aaaaaa;
             color: white;
             -webkit-border-radius: 3px;
             -moz-border-radius: 3px;
@@ -4590,7 +5426,7 @@ ul.stories li.story {
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); }
   ul.stories li.story a.title-link {
     text-transform: uppercase;
-    color: #252525;
+    color: #aaaaaa;
     font-weight: 700;
     margin: 8px 5px 9px;
     display: block;
@@ -4608,7 +5444,7 @@ ul.stories li.story {
     text-transform: uppercase;
     font-size: 13px;
     background: rgba(255, 255, 255, 0.95);
-    color: #252525;
+    color: #aaaaaa;
     z-index: 2;
     font-weight: 500; }
     ul.stories li.story .title span {
@@ -4752,7 +5588,7 @@ ul.stories li.medium.story {
         padding-top: 10px; }
       ul.stories li.medium.story .back .author-info .name, ul.stories li.medium.story .back .author-info .occupation {
         margin-left: 70px;
-        color: #252525; }
+        color: #aaaaaa; }
 ul.stories .title a {
   color: black;
   font-family: "proxima-nova-1", "proxima-nova-2", helvetica, sans-serif;
@@ -4836,9 +5672,9 @@ ul.stories .excerpt {
     .recommendation-stream .tabs a:first-child {
       border: none; }
     .recommendation-stream .tabs a.subscribed-to-recommendations {
-      border-right: 1px solid white; }
+      border-right: 1px solid #222222; }
     .recommendation-stream .tabs a.momeant-recommendations {
-      border-left: 1px solid white; }
+      border-left: 1px solid #222222; }
   .recommendation-stream ul {
     padding: 10px 10px 0 10px; }
     .recommendation-stream ul li {
@@ -4926,1173 +5762,6 @@ ul.stories .excerpt {
       color: white !important;
       text-shadow: none; }
 
-impact ul.avatars li {
-  float: left;
-  margin: 0 10px 10px 0; }
-  impact ul.avatars li a img {
-    width: 60px;
-    height: 60px; }
-
-.user-stats {
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-  background: #f7f7f7; }
-  .user-stats li {
-    border-bottom: 1px solid #e0e0e0;
-    height: 27px; }
-    .user-stats li .icon, .user-stats li .text {
-      display: block;
-      float: left;
-      height: 27px; }
-    .user-stats li .icon {
-      border-right: 1px solid #e0e0e0;
-      width: 27px;
-      background-repeat: no-repeat;
-      background-position: 50% 50%; }
-    .user-stats li .text {
-      width: 100px;
-      padding-right: 9px;
-      font-size: 10px;
-      text-align: right;
-      color: #666666;
-      line-height: 27px; }
-    .user-stats li .sidebar.text {
-      display: none; }
-  .user-stats li.patron .icon {
-    background-image: url(../images/icons/patronBadgeSmall.png); }
-  .user-stats li.followers .icon {
-    background-image: url(../images/icons/personSmall.png); }
-  .user-stats li.rewards .icon {
-    background-image: url(../images/icons/starGreySmall.png); }
-
-body#users #main, body#messages #main {
-  padding-bottom: 50px; }
-
-#user-profile {
-  padding: 40px 40px 40px 290px;
-  /* Patronage Tab */
-  /* Stats Bar */
-  /* Creations Tab */
-  /* Settings Tab */
-  /* Cashouts */
-  /* Followers, Following Tabs */
-  /* Supporters Tab */
-  /* Edit Profile */ }
-  #user-profile h1 {
-    font-size: 20px;
-    font-weight: 700;
-    text-transform: uppercase;
-    margin-bottom: 20px; }
-  #user-profile .profile-info {
-    position: fixed;
-    top: 82px;
-    left: 40px;
-    width: 210px; }
-    #user-profile .profile-info .metadata {
-      color: #999999;
-      -webkit-transition: color 0.2s linear;
-      -moz-transition: color 0.2s linear;
-      -ms-transition: color 0.2s linear;
-      -o-transition: color 0.2s linear;
-      transition: color 0.2s linear; }
-      #user-profile .profile-info .metadata:hover {
-        color: #252525; }
-      #user-profile .profile-info .metadata h1 {
-        color: #252525; }
-      #user-profile .profile-info .metadata .avatar-badge {
-        width: 130px;
-        margin-bottom: 20px;
-        position: relative; }
-        #user-profile .profile-info .metadata .avatar-badge .avatar {
-          display: block;
-          width: 130px;
-          height: 130px;
-          z-index: 1; }
-          #user-profile .profile-info .metadata .avatar-badge .avatar img {
-            width: 130px;
-            height: 130px; }
-        #user-profile .profile-info .metadata .avatar-badge .badge {
-          position: absolute;
-          bottom: -5px;
-          right: -30px;
-          z-index: 2; }
-      #user-profile .profile-info .metadata .about p {
-        line-height: 1.4em; }
-        #user-profile .profile-info .metadata .about p span {
-          display: block; }
-      #user-profile .profile-info .metadata ul.stats {
-        position: relative;
-        margin-top: 5px;
-        width: 200px; }
-        #user-profile .profile-info .metadata ul.stats li {
-          padding: 4px 0;
-          font-size: 16px;
-          font-weight: 700; }
-          #user-profile .profile-info .metadata ul.stats li #cashout {
-            display: block;
-            font-size: 11px;
-            text-align: center; }
-    #user-profile .profile-info #special-links {
-      position: absolute;
-      top: 0;
-      right: 10px;
-      width: 150px; }
-    #user-profile .profile-info #user-actions {
-      clear: both;
-      padding-top: 15px; }
-      #user-profile .profile-info #user-actions a {
-        display: inline-block;
-        height: 17px;
-        margin-bottom: 10px;
-        background: #dddddd;
-        text-shadow: none;
-        line-height: 18px;
-        -webkit-transition: background 0.2s linear;
-        -moz-transition: background 0.2s linear;
-        -ms-transition: background 0.2s linear;
-        -o-transition: background 0.2s linear;
-        transition: background 0.2s linear; }
-        #user-profile .profile-info #user-actions a:hover {
-          background: #777777; }
-    #user-profile .profile-info #editorialize {
-      background-image: -moz-linear-gradient(center top, #ffbb01 4%, #ff9501 52%);
-      background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #ffbb01), color-stop(0.52, #ff9501)); }
-  #user-profile .the-rest {
-    position: relative; }
-    #user-profile .the-rest .horizontal-tabs {
-      border-bottom: 1px solid #cccccc; }
-      #user-profile .the-rest .horizontal-tabs ul {
-        padding-top: 20px; }
-        #user-profile .the-rest .horizontal-tabs ul a {
-          border: 1px solid #cccccc;
-          border-bottom: none; }
-    #user-profile .the-rest .top {
-      margin-bottom: 20px; }
-      #user-profile .the-rest .top a.back-link {
-        background: #c0eeff;
-        color: #00aeef;
-        padding: 2px 8px;
-        -webkit-border-radius: 15px;
-        -moz-border-radius: 15px;
-        border-radius: 15px;
-        -webkit-transition: all 0.2s linear;
-        -moz-transition: all 0.2s linear;
-        -ms-transition: all 0.2s linear;
-        -o-transition: all 0.2s linear;
-        transition: all 0.2s linear; }
-        #user-profile .the-rest .top a.back-link:hover {
-          background: #00aeef;
-          color: white; }
-      #user-profile .the-rest .top h1 {
-        padding-top: 20px;
-        margin-bottom: 0;
-        font-weight: 700;
-        text-transform: uppercase; }
-  #user-profile #content {
-    padding-left: 80px;
-    position: relative;
-    margin-right: 250px; }
-    #user-profile #content .helper {
-      position: fixed;
-      top: 124px;
-      left: 280px;
-      width: 57px;
-      text-align: right;
-      padding-right: 18px;
-      background: transparent url(../images/profile/keyboard-icon.png) no-repeat 100% 3px;
-      font-size: 12px;
-      color: #777777;
-      line-height: 14px; }
-    #user-profile #content #content-list {
-      -webkit-transition: margin 0.3s ease-out;
-      -moz-transition: margin 0.3s ease-out;
-      -ms-transition: margin 0.3s ease-out;
-      -o-transition: margin 0.3s ease-out;
-      transition: margin 0.3s ease-out; }
-      #user-profile #content #content-list li {
-        min-height: 200px;
-        padding-bottom: 90px;
-        clear: both;
-        -webkit-transition: opacity 0.2s linear;
-        -moz-transition: opacity 0.2s linear;
-        -ms-transition: opacity 0.2s linear;
-        -o-transition: opacity 0.2s linear;
-        transition: opacity 0.2s linear; }
-        #user-profile #content #content-list li .content-preview {
-          display: block;
-          width: 300px;
-          height: 200px;
-          float: left;
-          margin-right: 20px;
-          position: relative; }
-          #user-profile #content #content-list li .content-preview img.thumbnail {
-            width: 300px;
-            height: 200px;
-            -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-            -moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3); }
-          #user-profile #content #content-list li .content-preview .media-type {
-            position: absolute;
-            top: 1px;
-            left: 1px;
-            width: 300px;
-            height: 200px;
-            z-index: 2;
-            background: transparent url(../images/content/media-types/photos.png) no-repeat 50% 50%; }
-            #user-profile #content #content-list li .content-preview .media-type.video {
-              background-image: url(../images/content/media-types/video.png); }
-            #user-profile #content #content-list li .content-preview .media-type.writing {
-              background-image: url(../images/content/media-types/writing.png); }
-            #user-profile #content #content-list li .content-preview .media-type.music {
-              background-image: url(../images/content/media-types/music.png); }
-          #user-profile #content #content-list li .content-preview img.avatar {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 40px;
-            height: 40px; }
-      #user-profile #content #content-list .info a.title {
-        color: black;
-        font-weight: 700;
-        font-size: 15px; }
-        #user-profile #content #content-list .info a.title:hover {
-          color: #00aeef; }
-      #user-profile #content #content-list .info .byline {
-        color: #999999; }
-      #user-profile #content #content-list .info .edit a {
-        margin-right: 10px; }
-      #user-profile #content #content-list .info p {
-        line-height: 1.4em;
-        margin: 20px 0 0; }
-  #user-profile #people-list {
-    position: fixed;
-    top: 82px;
-    right: 40px;
-    background: white;
-    width: 160px; }
-    #user-profile #people-list li {
-      float: left;
-      position: relative; }
-      #user-profile #people-list li .cover {
-        display: block;
-        width: 60px;
-        height: 60px;
-        position: absolute;
-        top: 0;
-        left: 0;
-        background: transparent url(../images/profile/avatar-cover-60.png) no-repeat 0 0;
-        text-indent: 100%;
-        white-space: nowrap;
-        overflow: hidden; }
-  #user-profile #activity {
-    -webkit-border-radius: 0;
-    -moz-border-radius: 0;
-    border-radius: 0;
-    -webkit-box-shadow: 0 0 0 rgba(0, 0, 0, 0);
-    -moz-box-shadow: 0 0 0 rgba(0, 0, 0, 0);
-    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
-    margin: 0; }
-    #user-profile #activity #activity-body {
-      border: none; }
-    #user-profile #activity #activity-list.loading {
-      background: transparent url(../images/spinner.gif) no-repeat 50% 30px;
-      height: 50px; }
-      #user-profile #activity #activity-list.loading * {
-        display: none; }
-    #user-profile #activity #activity-list li {
-      padding: 20px 0; }
-      #user-profile #activity #activity-list li:last-child {
-        border: none; }
-      #user-profile #activity #activity-list li .left-side, #user-profile #activity #activity-list li .right-side {
-        top: 20px; }
-  #user-profile #new-user-no-activity {
-    padding: 20px; }
-    #user-profile #new-user-no-activity h1 {
-      font-weight: 700;
-      text-transform: uppercase; }
-      #user-profile #new-user-no-activity h1 .coin {
-        display: inline-block;
-        width: 20px;
-        height: 25px;
-        margin: -5px -3px 0;
-        position: relative;
-        top: 8px;
-        background: transparent url(../images/icons/coinStarBlackMedium.png) no-repeat 0 0; }
-    #user-profile #new-user-no-activity p {
-      margin: 5px 0;
-      font-size: 13px; }
-      #user-profile #new-user-no-activity p a.community {
-        padding: 3px 0 0 30px;
-        background: transparent url(../images/icons/communityBlue.png) no-repeat 0 0; }
-    #user-profile #new-user-no-activity #activity-example {
-      margin: 40px -20px 0;
-      width: 100%;
-      padding-right: 40px;
-      text-indent: 20px;
-      height: 220px;
-      background: transparent url(../images/activityStreamExample.png) no-repeat 0 20px;
-      opacity: 0.6; }
-  #user-profile section.patronage h3 {
-    text-transform: uppercase;
-    font-size: 15px;
-    border-bottom: 1px solid #dddddd;
-    margin-bottom: 10px; }
-    #user-profile section.patronage h3 em {
-      font-size: 11px;
-      color: #777777;
-      text-transform: none;
-      font-weight: 300; }
-  #user-profile .rewarded-creators .avatar-wall {
-    height: 600px;
-    margin-bottom: 30px;
-    background: transparent url(../images/mosaicBG.png) repeat 0 0; }
-    #user-profile .rewarded-creators .avatar-wall .wall a {
-      display: block; }
-      #user-profile .rewarded-creators .avatar-wall .wall a img {
-        padding: 3px; }
-      #user-profile .rewarded-creators .avatar-wall .wall a .border {
-        border: 3px solid white;
-        position: absolute;
-        top: 0;
-        left: 0; }
-  #user-profile ul.rewards {
-    padding: 0;
-    display: inline-block; }
-    #user-profile ul.rewards:after {
-      content: ".";
-      display: block;
-      height: 0;
-      clear: both;
-      visibility: hidden; }
-    #user-profile ul.rewards li {
-      background: white; }
-  #user-profile ul.stats-bar {
-    height: 50px;
-    margin: 0 0 20px;
-    height: 80px; }
-    #user-profile ul.stats-bar li {
-      float: left;
-      font-size: 11px;
-      position: relative; }
-      #user-profile ul.stats-bar li .value {
-        font-family: "ff-dagny-web-pro-1", "ff-dagny-web-pro-2", sans-serif;
-        font-size: 50px;
-        line-height: 1em;
-        font-weight: 200;
-        float: left;
-        text-align: right;
-        padding-right: 20px;
-        background: transparent url(../images/icons/starBlackSmall.png) no-repeat 100% 3px; }
-        #user-profile ul.stats-bar li .value span {
-          line-height: 1em; }
-        #user-profile ul.stats-bar li .value .dollar-sign {
-          font-size: 20px;
-          position: relative;
-          top: -19px;
-          margin-right: -10px; }
-      #user-profile ul.stats-bar li .text {
-        clear: both; }
-    #user-profile ul.stats-bar li.rewards, #user-profile ul.stats-bar li.patrons, #user-profile ul.stats-bar li.cash {
-      padding-right: 30px; }
-    #user-profile ul.stats-bar li.patrons, #user-profile ul.stats-bar li.cash, #user-profile ul.stats-bar li.impact {
-      border-left: 1px solid #dddddd;
-      padding-left: 30px; }
-    #user-profile ul.stats-bar li.patrons .value {
-      background: transparent url(../images/icons/person.png) no-repeat 100% 3px; }
-    #user-profile ul.stats-bar li.impact .value {
-      padding-right: 27px;
-      background: transparent url(../images/icons/impact.png) no-repeat 100% -2px; }
-    #user-profile ul.stats-bar li.cash .value {
-      background: none; }
-    #user-profile ul.stats-bar li.cash.last {
-      padding-right: 75px; }
-    #user-profile ul.stats-bar li.impact .notification {
-      position: absolute;
-      top: 13px;
-      right: -306px;
-      width: 306px;
-      height: 37px;
-      background: transparent url(../images/profileImpactGrowNotification.png) no-repeat 0 0; }
-  #user-profile ul.stats-bar li.cash {
-    position: relative; }
-    #user-profile ul.stats-bar li.cash a#cashout {
-      position: absolute;
-      top: 6px;
-      right: 0;
-      padding: 8px 15px 7px; }
-      #user-profile ul.stats-bar li.cash a#cashout.disabled {
-        background-color: #d0d0d0;
-        background-image: -moz-linear-gradient(center top, #d0d0d0 4%, #888888 52%);
-        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #d0d0d0), color-stop(0.52, #888888));
-        cursor: help; }
-  #user-profile ul.galleries li.separator {
-    clear: both;
-    border-top: 1px solid #e0e0e0;
-    border-bottom: 1px solid white; }
-  #user-profile ul.galleries li.gallery, #user-profile ul.galleries li.no-gallery {
-    width: 100%; }
-    #user-profile ul.galleries li.gallery ul.stories, #user-profile ul.galleries li.no-gallery ul.stories {
-      display: inline-block;
-      padding: 20px 0; }
-      #user-profile ul.galleries li.gallery ul.stories:after, #user-profile ul.galleries li.no-gallery ul.stories:after {
-        content: ".";
-        display: block;
-        height: 0;
-        clear: both;
-        visibility: hidden; }
-      #user-profile ul.galleries li.gallery ul.stories li.about, #user-profile ul.galleries li.no-gallery ul.stories li.about {
-        background: none;
-        padding: 0;
-        width: 230px;
-        -webkit-box-shadow: 0 0 0px rgba(0, 0, 0, 0);
-        -moz-box-shadow: 0 0 0px rgba(0, 0, 0, 0);
-        box-shadow: 0 0 0px rgba(0, 0, 0, 0);
-        border: none; }
-        #user-profile ul.galleries li.gallery ul.stories li.about .name, #user-profile ul.galleries li.no-gallery ul.stories li.about .name {
-          font-size: 16px;
-          margin-bottom: 5px;
-          text-transform: uppercase;
-          font-weight: 700;
-          text-shadow: 0 1px 0 white; }
-          #user-profile ul.galleries li.gallery ul.stories li.about .name a.move-up, #user-profile ul.galleries li.gallery ul.stories li.about .name a.move-down, #user-profile ul.galleries li.no-gallery ul.stories li.about .name a.move-up, #user-profile ul.galleries li.no-gallery ul.stories li.about .name a.move-down {
-            text-indent: -9999px;
-            display: inline-block;
-            width: 16px;
-            height: 16px;
-            background: transparent url(../images/icons/moveUp.png) no-repeat 0 0; }
-          #user-profile ul.galleries li.gallery ul.stories li.about .name a.move-down, #user-profile ul.galleries li.no-gallery ul.stories li.about .name a.move-down {
-            background-image: url(../images/icons/moveDown.png); }
-        #user-profile ul.galleries li.gallery ul.stories li.about .description, #user-profile ul.galleries li.no-gallery ul.stories li.about .description {
-          font-size: 11px;
-          text-shadow: 0 1px 0 white; }
-      #user-profile ul.galleries li.gallery ul.stories li.add, #user-profile ul.galleries li.gallery ul.stories li.add-description, #user-profile ul.galleries li.no-gallery ul.stories li.add, #user-profile ul.galleries li.no-gallery ul.stories li.add-description {
-        float: left;
-        margin: 0 20px 20px 0; }
-      #user-profile ul.galleries li.gallery ul.stories li.add a, #user-profile ul.galleries li.no-gallery ul.stories li.add a {
-        display: block;
-        width: 236px;
-        height: 205px;
-        border: 1px dashed #cccccc;
-        color: #aaaaaa;
-        background: white url(../images/addMomeantBg.png) no-repeat 50% 50%;
-        text-indent: -9999px; }
-      #user-profile ul.galleries li.gallery ul.stories li.add-description, #user-profile ul.galleries li.no-gallery ul.stories li.add-description {
-        width: 460px;
-        color: #999999;
-        line-height: 2em; }
-  #user-profile ul.galleries li.no-gallery {
-    border-bottom: 1px solid #dddddd; }
-  #user-profile ul.galleries li.gallery {
-    border-top: 1px solid white;
-    border-bottom: 1px solid #dddddd; }
-  #user-profile ul.galleries li.gallery:last-child {
-    border-bottom: none; }
-  #user-profile ul.galleries li.gallery:first-child ul.stories, #user-profile ul.galleries li.no-gallery:first-child ul.stories {
-    padding-top: 0; }
-  #user-profile .user-settings #settings-list {
-    margin-bottom: 30px; }
-  #user-profile .user-settings li {
-    margin-bottom: 10px; }
-    #user-profile .user-settings li .text.loading {
-      display: inline-block;
-      width: 30px;
-      height: 10px;
-      background: transparent url(../images/horizontal-spinner.gif) no-repeat 0 50%; }
-      #user-profile .user-settings li .text.loading * {
-        display: none; }
-  #user-profile .user-settings section {
-    margin-bottom: 20px; }
-  #user-profile .user-settings h3 {
-    text-transform: uppercase;
-    font-size: 1.1em;
-    margin-bottom: 5px; }
-    #user-profile .user-settings h3 .info {
-      font-weight: 500;
-      text-transform: none; }
-  #user-profile .user-settings input[type="text"] {
-    width: 400px; }
-  #user-profile .user-settings .info {
-    color: #777777;
-    font-size: 11px;
-    margin-bottom: 20px; }
-  #user-profile .user-settings .example {
-    border: none;
-    padding-bottom: 0; }
-  #user-profile .user-settings .file-uploader .file-input {
-    height: 25px; }
-  #user-profile .user-settings .file-uploader .loader {
-    width: 220px;
-    height: 19px;
-    background: transparent url(../images/loading.gif) no-repeat 0 0;
-    display: none; }
-  #user-profile #cashouts table {
-    margin-top: 1em; }
-  #user-profile .followingers {
-    padding: 20px; }
-    #user-profile .followingers table {
-      width: 100%; }
-      #user-profile .followingers table a.avatar, #user-profile .followingers table a.name {
-        display: block;
-        float: left; }
-      #user-profile .followingers table a.avatar img {
-        width: 45px;
-        height: 45px;
-        border: 2px solid black; }
-      #user-profile .followingers table a.name {
-        margin-left: 8px;
-        font-weight: 700;
-        font-size: 18px;
-        text-transform: uppercase;
-        line-height: 18px;
-        padding-top: 6px;
-        color: #252525; }
-        #user-profile .followingers table a.name span {
-          display: block; }
-  #user-profile .supporters {
-    padding: 20px; }
-    #user-profile .supporters table.users {
-      width: 100%; }
-      #user-profile .supporters table.users td {
-        height: 70px; }
-        #user-profile .supporters table.users td .user-info {
-          position: relative; }
-          #user-profile .supporters table.users td .user-info .avatar {
-            display: block;
-            float: left;
-            margin-right: 10px;
-            width: 40px;
-            height: 40px;
-            border: 1px solid #cccccc; }
-            #user-profile .supporters table.users td .user-info .avatar img {
-              width: 40px;
-              height: 40px; }
-          #user-profile .supporters table.users td .user-info .rank {
-            position: absolute;
-            top: -7px;
-            left: -7px;
-            display: block;
-            height: 15px;
-            width: 15px;
-            font-weight: 700;
-            text-align: center;
-            line-height: 15px;
-            background: #f4f4f4;
-            -webkit-border-radius: 10px;
-            -moz-border-radius: 10px;
-            border-radius: 10px;
-            -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
-            -moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
-            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4); }
-          #user-profile .supporters table.users td .user-info .name {
-            font-size: 18px;
-            font-weight: 700;
-            text-transform: uppercase;
-            margin-top: 3px;
-            color: #252525; }
-            #user-profile .supporters table.users td .user-info .name span {
-              display: block; }
-          #user-profile .supporters table.users td .user-info .occupation {
-            font-style: italic;
-            font-size: 11px; }
-  #user-profile .user-edit {
-    padding: 20px; }
-  #user-profile .bio .incomplete-profile {
-    background: transparent url(../images/tabNotification.png) no-repeat 0 0;
-    padding: 4px 0 4px 25px;
-    font-weight: 700;
-    color: #f42652;
-    margin-bottom: 10px;
-    text-transform: uppercase; }
-    #user-profile .bio .incomplete-profile a {
-      text-decoration: underline; }
-  #user-profile .bio .edit-link {
-    text-transform: uppercase;
-    font-weight: 700;
-    display: block;
-    margin-bottom: 10px;
-    padding-left: 15px;
-    background: transparent url(../images/icons/pencilBlue.png) no-repeat 0 1px; }
-  #user-profile .bio .tagline, #user-profile .bio .interests {
-    margin-bottom: 10px; }
-  #user-profile #user_tagline {
-    height: 50px; }
-  #user-profile .subscribing-to {
-    clear: both;
-    margin-bottom: 20px; }
-    #user-profile .subscribing-to h1 {
-      background-color: black;
-      color: white;
-      font-weight: 700;
-      font-size: 28px;
-      text-transform: uppercase;
-      padding: 2px 10px; }
-    #user-profile .subscribing-to ul {
-      height: 50px; }
-      #user-profile .subscribing-to ul li {
-        float: left;
-        clear: none;
-        margin-right: 3px; }
-        #user-profile .subscribing-to ul li a {
-          display: block;
-          width: 50px;
-          height: 50px; }
-          #user-profile .subscribing-to ul li a img {
-            width: 50px;
-            height: 50px; }
-  #user-profile .comments {
-    width: 629px;
-    float: left;
-    display: none; }
-  #user-profile .personal-library {
-    clear: both;
-    height: 365px;
-    padding-top: 20px; }
-  #user-profile .admin {
-    clear: both;
-    padding-top: 30px; }
-    #user-profile .admin h1 {
-      font-weight: 900;
-      text-transform: uppercase; }
-  #user-profile .info-bar {
-    background: none;
-    color: #777777;
-    font-style: italic;
-    text-align: center;
-    margin-top: -15px; }
-
-.creator .recommendation-stream {
-  height: 540px; }
-.creator .curatorial-stream {
-  width: 629px;
-  height: 380px;
-  float: left;
-  overflow: hidden; }
-  .creator .curatorial-stream h3 {
-    font-size: 50px;
-    font-weight: 900;
-    text-transform: uppercase;
-    color: #dddddd;
-    text-shadow: 1px 1px 1px #fafafa;
-    letter-spacing: -0.5px;
-    text-align: center; }
-
-form.user_edit {
-  margin-left: 200px; }
-  form.user_edit .example {
-    border: none; }
-  form.user_edit textarea {
-    height: 150px;
-    width: 95%;
-    line-height: 24px;
-    font-family: "proxima-nova-1", "proxima-nova-2", helvetica, sans-serif;
-    font-weight: 100; }
-  form.user_edit #user_interest_list {
-    width: 98%; }
-
-#reward-viz-example {
-  width: 607px;
-  height: 499px;
-  background: transparent url(../images/rewardVizExplanation.png) no-repeat 0 0;
-  position: relative; }
-  #reward-viz-example .tip {
-    position: absolute; }
-    #reward-viz-example .tip .hover {
-      width: 35px;
-      height: 35px;
-      cursor: help; }
-    #reward-viz-example .tip .tipsy {
-      display: none;
-      position: absolute;
-      width: 125px; }
-      #reward-viz-example .tip .tipsy .tipsy-inner {
-        background: white;
-        color: black;
-        font-family: "handwritten", cursive;
-        font-size: 14px;
-        line-height: 1em;
-        letter-spacing: 0.04em; }
-    #reward-viz-example .tip .twitter, #reward-viz-example .tip .facebook {
-      display: inline-block;
-      width: 12px;
-      height: 12px;
-      background: transparent url(../images/icons/twitterTiny.png) no-repeat;
-      position: relative;
-      top: 2px; }
-    #reward-viz-example .tip .facebook {
-      background-image: url(../images/icons/facebookTiny.png); }
-  #reward-viz-example .tip:hover .tipsy {
-    display: block; }
-  #reward-viz-example #avatar-tooltip {
-    top: 110px;
-    left: 131px; }
-    #reward-viz-example #avatar-tooltip .tipsy {
-      left: -127px;
-      top: -13px; }
-  #reward-viz-example #rewards-tooltip {
-    top: 79px;
-    left: 407px; }
-    #reward-viz-example #rewards-tooltip .tipsy {
-      width: 150px;
-      right: -153px;
-      top: -13px; }
-  #reward-viz-example #impact-tooltip {
-    top: 210px;
-    left: 396px; }
-    #reward-viz-example #impact-tooltip .tipsy {
-      width: 170px;
-      right: -174px;
-      top: -27px; }
-  #reward-viz-example #sharing-tooltip {
-    top: 363px;
-    left: 247px; }
-    #reward-viz-example #sharing-tooltip .tipsy {
-      width: 185px;
-      left: -79px;
-      bottom: -55px; }
-
-table.users {
-  width: 100%; }
-  table.users td {
-    height: 70px; }
-    table.users td .user-info {
-      position: relative; }
-      table.users td .user-info .avatar {
-        display: block;
-        float: left;
-        margin-right: 10px;
-        width: 50px;
-        height: 50px;
-        border: 1px solid #cccccc; }
-        table.users td .user-info .avatar img {
-          width: 50px;
-          height: 50px; }
-      table.users td .user-info .rank {
-        position: absolute;
-        top: -7px;
-        left: -7px;
-        display: block;
-        height: 15px;
-        width: 15px;
-        font-weight: 700;
-        text-align: center;
-        line-height: 15px;
-        background: #f4f4f4;
-        -webkit-border-radius: 10px;
-        -moz-border-radius: 10px;
-        border-radius: 10px;
-        -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
-        -moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
-        box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4); }
-      table.users td .user-info .name {
-        font-size: 18px;
-        font-weight: 700;
-        text-transform: uppercase;
-        margin-top: 3px;
-        color: #252525; }
-        table.users td .user-info .name span {
-          display: block; }
-      table.users td .user-info .occupation {
-        font-style: italic;
-        font-size: 11px; }
-
-@media all and (min-width: 1500px) {
-  #user-profile #content #content-list li {
-    max-width: 850px;
-    min-height: 266px; }
-    #user-profile #content #content-list li .content-preview {
-      width: 400px;
-      height: 266px; }
-      #user-profile #content #content-list li .content-preview img.thumbnail, #user-profile #content #content-list li .content-preview .media-type {
-        width: 400px;
-        height: 266px; }
-    #user-profile #content #content-list li .info .title {
-      font-size: 17px; } }
-@media all and (min-width: 1600px) {
-  #user-profile #content #content-list li {
-    max-width: 950px;
-    min-height: 333px; }
-    #user-profile #content #content-list li .content-preview {
-      width: 500px;
-      height: 333px; }
-      #user-profile #content #content-list li .content-preview img.thumbnail, #user-profile #content #content-list li .content-preview .media-type {
-        width: 500px;
-        height: 333px; } }
-@media all and (min-width: 1700px) {
-  #user-profile #people-list {
-    width: 260px; } }
-@media all and (min-width: 1800px) {
-  #user-profile #people-list {
-    width: auto;
-    right: none;
-    left: 1400px; } }
-@media all and (max-width: 1149px) {
-  #user-profile #content {
-    width: 450px; }
-
-  #user-profile #content #content-list li .content-preview {
-    float: none; } }
-@media all and (max-width: 1049px) {
-  #user-profile #people-list {
-    display: none; } }
-.community {
-  padding: 20px; }
-  .community ul.nav {
-    padding: 30px 20px 10px;
-    height: 20px; }
-    .community ul.nav li {
-      float: left;
-      margin-right: 20px; }
-      .community ul.nav li a {
-        font-size: 13px;
-        font-weight: 700;
-        text-transform: uppercase;
-        padding: 5px 10px 15px; }
-      .community ul.nav li a:hover {
-        text-decoration: underline; }
-      .community ul.nav li a.active {
-        background: transparent url(../images/blueLinkPointer.png) no-repeat 50% 100%;
-        color: white; }
-      .community ul.nav li a.active:hover {
-        text-decoration: none; }
-  .community .tabbed {
-    padding: 20px 220px 20px 20px;
-    position: relative; }
-    .community .tabbed .header {
-      margin-bottom: 20px; }
-      .community .tabbed .header h3 {
-        text-transform: uppercase;
-        font-size: 13px;
-        margin-bottom: 5px; }
-    .community .tabbed .search {
-      margin-bottom: 20px; }
-      .community .tabbed .search input[type="text"] {
-        height: 15px;
-        padding: 5px 13px;
-        -webkit-border-radius: 20px;
-        -moz-border-radius: 20px;
-        border-radius: 20px;
-        width: 200px;
-        background: white url(../images/icons/search.png) 98% 50% no-repeat; }
-  .community ul.stories, .community ul.users {
-    display: inline-block; }
-    .community ul.stories:after, .community ul.users:after {
-      content: ".";
-      display: block;
-      height: 0;
-      clear: both;
-      visibility: hidden; }
-  .community ul.users {
-    padding-bottom: 40px; }
-    .community ul.users li.user {
-      width: 230px;
-      height: 100px;
-      float: left;
-      margin-right: 30px;
-      margin-bottom: 30px;
-      position: relative;
-      padding-left: 110px;
-      padding-right: 10px;
-      background: white;
-      border: 3px solid white;
-      -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-      -moz-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); }
-      .community ul.users li.user .avatar {
-        position: absolute;
-        top: 0;
-        left: 0; }
-        .community ul.users li.user .avatar img {
-          width: 100px;
-          height: 100px; }
-      .community ul.users li.user .name {
-        display: block;
-        color: black;
-        font-size: 15px;
-        font-weight: 700;
-        text-transform: uppercase;
-        padding-top: 5px;
-        margin-bottom: 5px; }
-      .community ul.users li.user .badge {
-        height: 60px;
-        float: left;
-        margin-right: 10px; }
-      .community ul.users li.user .tags {
-        float: left;
-        width: 130px;
-        height: 60px;
-        overflow: hidden; }
-      .community ul.users li.user .impact {
-        margin-bottom: 4px; }
-        .community ul.users li.user .impact .amount {
-          font-family: "ff-dagny-web-pro-1", "ff-dagny-web-pro-2", sans-serif;
-          font-size: 40px;
-          padding-right: 16px;
-          background: transparent url(../images/icons/starBlackSmall.png) no-repeat 100% 10px;
-          margin-right: -17px; }
-        .community ul.users li.user .impact .text {
-          font-size: 11px; }
-  .community .tag-cloud {
-    width: 200px;
-    position: absolute;
-    top: 0;
-    right: 20px;
-    overflow: hidden; }
-    .community .tag-cloud h3 {
-      font-size: 13px;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-      padding-bottom: 5px;
-      border-bottom: 1px solid #dddddd; }
-    .community .tag-cloud a.tag {
-      font-size: 14px; }
-    .community .tag-cloud li.current span {
-      background: #333333;
-      color: white;
-      -webkit-border-radius: 3px;
-      -moz-border-radius: 3px;
-      border-radius: 3px;
-      padding: 1px 4px;
-      font-size: 14px;
-      text-shadow: 0 -1px 0 black; }
-  .community nav.pagination {
-    clear: both;
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 11px; }
-    .community nav.pagination .first, .community nav.pagination .last, .community nav.pagination .gap {
-      display: none; }
-    .community nav.pagination .page, .community nav.pagination .next, .community nav.pagination .prev {
-      margin-right: 4px; }
-      .community nav.pagination .page a, .community nav.pagination .next a, .community nav.pagination .prev a {
-        display: inline-block;
-        background: white;
-        background-image: -moz-linear-gradient(center top, white 4%, #fafafa 52%);
-        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, white), color-stop(0.52, #fafafa));
-        border: 1px solid #dddddd;
-        -webkit-border-radius: 3px;
-        -moz-border-radius: 3px;
-        border-radius: 3px;
-        padding: 5px 8px;
-        color: #717171;
-        font-weight: 700;
-        box-shadow: 0 0 1px rgba(0, 0, 0, 0.075);
-        text-shadow: 0 1px 0 white; }
-    .community nav.pagination .page:hover a, .community nav.pagination .next:hover a, .community nav.pagination .prev:hover a {
-      color: #00aeef; }
-    .community nav.pagination .page:active a, .community nav.pagination .next:active a, .community nav.pagination .prev:active a {
-      box-shadow: 0 0 3px rgba(0, 0, 0, 0.3) inset;
-      border: 1px solid white; }
-    .community nav.pagination .page.current {
-      padding: 5px 6px 5px 8px;
-      background: #606060;
-      background-image: none;
-      -webkit-border-radius: 3px;
-      -moz-border-radius: 3px;
-      border-radius: 3px;
-      box-shadow: 0 0 3px black inset;
-      border: none;
-      color: #f2f2f2;
-      font-weight: 700;
-      text-shadow: 0 1px 0 rgba(0, 0, 0, 0.13);
-      margin-right: 6px; }
-    .community nav.pagination .next a, .community nav.pagination .prev a {
-      text-transform: uppercase;
-      font-weight: 700; }
-
-.deposits form {
-  margin-top: 1em;
-  padding: 1em;
-  background-color: #efefef; }
-  .deposits form h3 {
-    border-bottom: 1px dotted #aaaaaa;
-    padding-bottom: 0.5em;
-    margin-bottom: 0.5em;
-    font-size: 1.2em; }
-
-.homepage .tagline {
-  margin: 5px 0 20px;
-  height: 45px; }
-  .homepage .tagline h1 {
-    font-family: "proxima-nova-1", "proxima-nova-2", helvetica, sans-serif;
-    font-size: 25px;
-    font-weight: 900;
-    text-transform: uppercase;
-    margin: 0;
-    line-height: 1em;
-    float: left; }
-  .homepage .tagline h3 {
-    font-size: 12px;
-    font-weight: 100;
-    float: right;
-    width: 500px; }
-  .homepage .tagline a {
-    font-weight: 700; }
-.homepage section {
-  clear: both; }
-.homepage .lists ul.stories, .homepage .lists ul.users {
-  min-height: 300px; }
-.homepage .home-tabs {
-  height: 40px;
-  background: #eaeaea;
-  margin-bottom: 20px;
-  clear: both; }
-  .homepage .home-tabs a {
-    display: block;
-    float: left;
-    height: 40px;
-    line-height: 41px;
-    vertical-align: middle;
-    padding: 0 15px;
-    font-family: "proxima-nova-1", "proxima-nova-2", helvetica, sans-serif;
-    font-weight: 700;
-    font-size: 1.1em;
-    text-transform: uppercase;
-    color: #555555;
-    border-right: 1px solid #cccccc; }
-  .homepage .home-tabs a.active {
-    background: white;
-    color: #989898;
-    box-shadow: inset 0 1px 6px #bbbbbb;
-    -moz-box-shadow: inset 0 1px 6px #bbbbbb;
-    -webkit-box-shadow: inset 0 1px 6px #bbbbbb; }
-  .homepage .home-tabs div.pagination {
-    float: right;
-    margin-right: 10px; }
-    .homepage .home-tabs div.pagination nav .page, .homepage .home-tabs div.pagination nav .first, .homepage .home-tabs div.pagination nav .last {
-      display: none; }
-    .homepage .home-tabs div.pagination nav .next a, .homepage .home-tabs div.pagination nav .prev a {
-      display: block;
-      width: 17px;
-      height: 17px;
-      margin: 11px 5px;
-      padding: 0;
-      background: transparent url(../images/paginationLeft.png) no-repeat;
-      text-indent: -9999px;
-      border: none; }
-    .homepage .home-tabs div.pagination nav .next a {
-      background: transparent url(../images/paginationRight.png) no-repeat; }
-
-.how-to-follow h1 {
-  text-align: center;
-  font-weight: 700;
-  font-size: 18px;
-  margin: 40px 0;
-  letter-spacing: -0.03em; }
-.how-to-follow ul {
-  max-width: 900px;
-  margin: 0 auto; }
-  .how-to-follow ul li {
-    width: 33%;
-    float: left;
-    padding-top: 85px;
-    background-position: 50% 0;
-    background-repeat: no-repeat; }
-    .how-to-follow ul li a {
-      padding: 10px;
-      background: black;
-      color: white;
-      font-size: 12px;
-      font-weight: 700;
-      text-align: center;
-      -webkit-border-radius: 3px;
-      -moz-border-radius: 3px;
-      border-radius: 3px;
-      display: block;
-      width: 160px;
-      margin: 0 auto; }
-    .how-to-follow ul li p {
-      color: #7e7e7e;
-      font-style: italic;
-      width: 175px;
-      margin: 10px auto 0;
-      font-size: 11px;
-      text-align: center; }
-  .how-to-follow ul li.global {
-    background-image: url(../images/globeLarge.png); }
-  .how-to-follow ul li.search {
-    background-image: url(../images/searchLarge.png); }
-  .how-to-follow ul li.recommended {
-    background-image: url(../images/thumbsUpLarge.png); }
-
-.adverts {
-  margin-bottom: 20px;
-  padding-top: 30px; }
-  .adverts div.advert {
-    float: left;
-    height: 165px; }
-    .adverts div.advert img.medium {
-      width: 465px;
-      height: 165px; }
-  .adverts div:first-child {
-    margin-right: 20px; }
-
-.beta {
-  padding-bottom: 30px; }
-  .beta .characters {
-    width: 1008px;
-    height: 290px;
-    margin: 20px 0 50px -58px;
-    background: transparent url(../images/splashCharacters.png) no-repeat 0 0; }
-  .beta h1 {
-    text-transform: uppercase;
-    font-size: 32px;
-    font-weight: 900;
-    letter-spacing: -0.02em;
-    margin-bottom: 4px;
-    text-align: center; }
-  .beta p.explanation {
-    font-family: "museo-slab-1", "museo-slab-2", serif;
-    font-size: 18px;
-    font-weight: 100;
-    line-height: 1.5em;
-    color: #00aeef;
-    margin: 0;
-    text-align: justify; }
-  .beta .email-list {
-    margin: 50px auto 0;
-    width: 400px; }
-    .beta .email-list p {
-      font-family: "museo-slab-1", "museo-slab-2", serif;
-      font-style: italic;
-      font-size: 12px;
-      font-weight: 100;
-      color: #999999;
-      text-align: center;
-      line-height: 1.5em; }
-    .beta .email-list form {
-      width: 325px;
-      margin: 0 auto;
-      text-align: center; }
-      .beta .email-list form input[type="text"] {
-        width: 300px;
-        height: 36px;
-        padding: 0 10px; }
-      .beta .email-list form input[type="submit"] {
-        width: 100px;
-        height: 38px;
-        position: relative;
-        display: block;
-        float: right;
-        border: 1px solid #88dffe;
-        top: -38px;
-        right: 0;
-        background-color: #c0eeff;
-        -webkit-border-radius: 4px;
-        -moz-border-radius: 4px;
-        border-radius: 4px;
-        color: #00aeef;
-        font-weight: 900;
-        text-transform: uppercase;
-        font-family: "proxima-nova-1", "proxima-nova-2", helvetica, sans-serif;
-        font-size: 14px;
-        -webkit-border-top-left-radius: 0;
-        -webkit-border-bottom-left-radius: 0;
-        -moz-border-radius-topleft: 0;
-        -moz-border-radius-bottomleft: 0;
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0; }
-
 #join-modal, #login-modal, #feedback-modal, #about-diagram-modal {
   display: none;
   position: fixed;
@@ -6114,7 +5783,7 @@ table.users {
   #join-modal .padder, #login-modal .padder, #feedback-modal .padder, #about-diagram-modal .padder {
     width: 480px;
     margin: 0 auto;
-    background-color: white;
+    background-color: #222222;
     padding: 15px 20px 10px;
     position: relative;
     top: 170px;
@@ -6161,7 +5830,7 @@ table.users {
     margin-top: -5px;
     margin-bottom: 0px; }
     #join-modal li.remember-me label, #login-modal li.remember-me label, #feedback-modal li.remember-me label, #about-diagram-modal li.remember-me label {
-      color: #252525; }
+      color: #aaaaaa; }
   #join-modal .spaced-a-bit, #login-modal .spaced-a-bit, #feedback-modal .spaced-a-bit, #about-diagram-modal .spaced-a-bit {
     margin-bottom: 5px; }
   #join-modal li.copy, #login-modal li.copy, #feedback-modal li.copy, #about-diagram-modal li.copy {
@@ -6241,7 +5910,7 @@ table.users {
   width: 200px;
   float: right;
   padding-left: 25px;
-  color: #252525; }
+  color: #aaaaaa; }
 
 #login-modal .padder {
   width: 210px; }
@@ -6292,159 +5961,6 @@ table.users {
     width: 130px;
     font-size: 11px;
     text-align: right; }
-
-#subscribe-pitch .byline {
-  width: 550px;
-  margin: 30px auto 0;
-  text-align: center; }
-  #subscribe-pitch .byline h1 {
-    font-family: "proxima-nova-1", "proxima-nova-2", helvetica, sans-serif;
-    font-size: 33px;
-    font-weight: 700;
-    text-transform: uppercase;
-    text-shadow: white -1px 1px 0, #00aeef -2px 2px 0;
-    margin-bottom: 5px; }
-  #subscribe-pitch .byline h3 {
-    font-family: "museo-slab-1", "museo-slab-2", serif;
-    color: #00aeef;
-    font-size: 18px;
-    font-weight: 100;
-    width: 450px;
-    margin: 0 auto; }
-#subscribe-pitch a.button {
-  width: 402px;
-  text-align: center;
-  font-size: 19px;
-  display: block;
-  margin: 20px auto 50px;
-  font-weight: 900;
-  padding: 3px; }
-  #subscribe-pitch a.button span {
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
-    padding: 12px 0 10px;
-    display: block;
-    border: 1px solid white;
-    width: 400px; }
-#subscribe-pitch ul.thirds {
-  height: 440px;
-  margin: 10px 0 40px; }
-  #subscribe-pitch ul.thirds li {
-    float: left;
-    width: 316px;
-    border-right: 1px dotted #cccccc; }
-    #subscribe-pitch ul.thirds li img {
-      display: block;
-      margin: 0 auto;
-      width: 220px;
-      height: 200px; }
-    #subscribe-pitch ul.thirds li h3 {
-      font-size: 18px;
-      text-transform: uppercase;
-      color: #7f7f7f;
-      vertical-align: middle;
-      margin: 30px auto;
-      width: 220px;
-      height: 60px;
-      text-align: center;
-      padding-bottom: 9px;
-      background: transparent url(../images/subscribeCurlShadow.png) no-repeat 50% 100%; }
-      #subscribe-pitch ul.thirds li h3 span {
-        display: block;
-        background-color: white;
-        height: 60px;
-        line-height: 60px; }
-    #subscribe-pitch ul.thirds li p {
-      width: 220px;
-      margin: 0 auto;
-      text-align: center;
-      font-family: "museo-slab-1", "museo-slab-2", serif;
-      font-size: 1.2em;
-      line-height: 18px;
-      font-weight: 100; }
-  #subscribe-pitch ul.thirds li.make {
-    border: none; }
-#subscribe-pitch .nitty-gritty {
-  padding-top: 140px;
-  background: transparent url(../images/nittyGritty.jpg) no-repeat 50% 0; }
-  #subscribe-pitch .nitty-gritty .question {
-    margin-top: 20px;
-    height: 200px;
-    position: relative; }
-    #subscribe-pitch .nitty-gritty .question h2, #subscribe-pitch .nitty-gritty .question p {
-      width: 650px; }
-    #subscribe-pitch .nitty-gritty .question h2 {
-      font-family: "museo-slab-1", "museo-slab-2", serif;
-      color: #00aeef;
-      font-size: 29px;
-      background-color: transparent;
-      text-transform: none;
-      margin: 0;
-      padding: 0;
-      font-weight: 100; }
-    #subscribe-pitch .nitty-gritty .question p {
-      font-size: 1.3em;
-      line-height: 1.4em;
-      font-weight: 100;
-      font-family: "museo-slab-1", "museo-slab-2", serif;
-      margin: 7px 0; }
-    #subscribe-pitch .nitty-gritty .question img {
-      position: absolute;
-      top: -20px;
-      right: 0;
-      width: 240px;
-      height: 200px; }
-
-header .topic-name {
-  height: 100px;
-  width: 803px;
-  float: left;
-  background: transparent url(../images/logoSm.png) no-repeat 0 0; }
-header .topic-name.art {
-  background-position: 0 -100px; }
-header .topic-name.business {
-  background-position: 0 -200px; }
-header .topic-name.design {
-  background-position: 0 -300px; }
-header .topic-name.education {
-  background-position: 0 -400px; }
-header .topic-name.environment {
-  background-position: 0 -500px; }
-header .topic-name.gastronomy {
-  background-position: 0 -600px; }
-header .topic-name.health {
-  background-position: 0 -700px; }
-header .topic-name.history {
-  background-position: 0 -800px; }
-header .topic-name.journalism {
-  background-position: 0 -900px; }
-header .topic-name.literature {
-  background-position: 0 -1000px; }
-header .topic-name.music {
-  background-position: 0 -1100px; }
-header .topic-name.science {
-  background-position: 0 -1200px; }
-header .topic-name.sports {
-  background-position: 0 -1300px; }
-header .topic-name.technology {
-  background-position: 0 -1400px; }
-header .topic-name.travel {
-  background-position: 0 -1500px; }
-header .topic-name.culture {
-  background-position: 0 -1600px; }
-header .topic-name.diy {
-  background-position: 0 -1700px; }
-header .topic-icon {
-  width: 135px;
-  height: 86px;
-  background: transparent url(../images/topic-icon-bg.png) no-repeat 0 0;
-  float: right;
-  margin-top: 12px; }
-  header .topic-icon .topic {
-    width: 50px;
-    height: 50px;
-    margin: 18px auto; }
 
 .admin {
   padding: 0 20px; }
@@ -6573,179 +6089,6 @@ header .topic-icon {
     font-size: 11px;
     color: #777777; }
 
-.flipbook {
-  width: 950px;
-  height: 400px;
-  -webkit-box-shadow: 3px 3px 5px #bbbbbb;
-  -moz-box-shadow: 3px 3px 5px #bbbbbb;
-  box-shadow: 3px 3px 5px #bbbbbb;
-  margin-bottom: 20px;
-  position: relative; }
-  .flipbook .controls {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%; }
-    .flipbook .controls .left, .flipbook .controls .right {
-      position: absolute;
-      top: 180px;
-      width: 26px;
-      height: 47px;
-      background: transparent url(../images/flipbook-arrows.png) no-repeat 0 0;
-      cursor: pointer;
-      -webkit-transition: all 0.2s linear;
-      -moz-transition: all 0.2s linear; }
-    .flipbook .controls .left {
-      left: -20px;
-      display: none; }
-    .flipbook .controls .right {
-      background-position: -30px 0;
-      right: -20px; }
-    .flipbook .controls .left:hover {
-      left: -23px; }
-    .flipbook .controls .right:hover {
-      right: -23px; }
-  .flipbook .flipstrip {
-    overflow: hidden;
-    position: relative;
-    height: 100%; }
-    .flipbook .flipstrip .slides {
-      width: 500%;
-      position: absolute;
-      left: 0; }
-    .flipbook .flipstrip .slide {
-      height: 400px;
-      float: left;
-      cursor: pointer; }
-      .flipbook .flipstrip .slide .flipleft {
-        float: left;
-        width: 270px;
-        height: 370px;
-        text-align: right;
-        padding: 15px; }
-        .flipbook .flipstrip .slide .flipleft h1 {
-          font-family: "proxima-nova-1", "proxima-nova-2", helvetica, sans-serif;
-          font-size: 30px;
-          font-weight: 900;
-          text-transform: uppercase;
-          margin-bottom: 0;
-          letter-spacing: 0.5px; }
-        .flipbook .flipstrip .slide .flipleft .solo {
-          font-size: 25px;
-          line-height: 23px;
-          text-align: left;
-          font-weight: 700; }
-        .flipbook .flipstrip .slide .flipleft h2 {
-          font-family: Georgia, serif;
-          font-style: italic;
-          text-transform: none;
-          background-color: transparent;
-          color: white;
-          font-size: 12px;
-          padding: 0px;
-          padding: 0 0 20px 60px;
-          letter-spacing: 0.3px;
-          font-weight: 100;
-          background: url("../images/simpleDotBGWhite.png") repeat-x scroll 50% 100% transparent; }
-        .flipbook .flipstrip .slide .flipleft p {
-          font-family: "proxima-nova-1", "proxima-nova-2", helvetica, sans-serif;
-          font-size: 11px;
-          font-weight: 100;
-          line-height: 18px; }
-        .flipbook .flipstrip .slide .flipleft hr {
-          width: 60px;
-          height: 2px;
-          background-color: white; }
-        .flipbook .flipstrip .slide .flipleft .dotted {
-          border: none;
-          border-bottom: 1px dotted white;
-          width: 100%;
-          height: 1px;
-          background-color: transparent;
-          margin: 20px 0 25px; }
-      .flipbook .flipstrip .slide .black {
-        background-color: black;
-        color: white; }
-      .flipbook .flipstrip .slide .blue {
-        background-color: #00aeef;
-        color: white; }
-      .flipbook .flipstrip .slide .purple {
-        background-color: #985faf;
-        color: white; }
-      .flipbook .flipstrip .slide .red {
-        background-color: #f42652;
-        color: white; }
-      .flipbook .flipstrip .slide .green {
-        background-color: #34b44c;
-        color: white; }
-      .flipbook .flipstrip .slide .flipright {
-        float: right;
-        width: 650px;
-        background-color: white;
-        height: 400px; }
-        .flipbook .flipstrip .slide .flipright img {
-          width: 650px;
-          height: 400px; }
-
-.opening-up {
-  padding-top: 20px; }
-  .opening-up .text {
-    float: left;
-    width: 745px; }
-    .opening-up .text h1 {
-      font-family: "proxima-nova-1", "proxima-nova-2", helvetica, sans-serif;
-      font-size: 34px;
-      font-weight: 900;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-      margin-top: 30px;
-      line-height: 32px; }
-      .opening-up .text h1 a {
-        position: relative;
-        top: -6px;
-        margin-left: 15px;
-        font-size: 17px;
-        padding: 8px 14px 6px; }
-    .opening-up .text p {
-      font-family: "museo-slab-1", "museo-slab-2", serif;
-      font-size: 18px;
-      font-weight: 300;
-      margin-top: 5px;
-      line-height: 26px;
-      margin-bottom: 45px;
-      color: black; }
-      .opening-up .text p a {
-        display: inline-block;
-        height: 28px;
-        line-height: 30px;
-        padding: 0 20px;
-        vertical-align: middle;
-        text-transform: uppercase;
-        color: white;
-        font-weight: 700;
-        -webkit-border-radius: 3px;
-        -moz-border-radius: 3px;
-        border-radius: 3px;
-        font-size: 12px;
-        letter-spacing: 0.5px;
-        font-family: "proxima-nova-1", "proxima-nova-2", helvetica, sans-serif;
-        background-image: -moz-linear-gradient(center top, #fdfdfd 4%, #f0f0f0 52%);
-        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #fdfdfd), color-stop(0.52, #f0f0f0));
-        height: 22px;
-        line-height: 24px;
-        padding: 0 15px;
-        font-size: 10px;
-        margin-top: -7px; }
-  .opening-up .character {
-    float: right;
-    width: 200px;
-    height: 250px;
-    background: transparent url(../images/homeAboutCharacter.png) no-repeat 50% -3px; }
-
-#flipbook {
-  display: none; }
-
 #search-results {
   padding: 20px; }
   #search-results section h3 {
@@ -6766,170 +6109,6 @@ header .topic-icon {
       float: left; }
       #search-results section .data ul.users li img {
         border: 3px solid black; }
-
-#invite-pitch .byline {
-  width: 550px;
-  margin: 30px auto 0;
-  text-align: center; }
-  #invite-pitch .byline h1 {
-    font-family: "proxima-nova-1", "proxima-nova-2", helvetica, sans-serif;
-    font-size: 33px;
-    font-weight: 700;
-    text-transform: uppercase;
-    text-shadow: white -1px 1px 0, #34b44c -2px 2px 0;
-    margin-bottom: 5px; }
-  #invite-pitch .byline h3 {
-    font-family: "museo-slab-1", "museo-slab-2", serif;
-    color: #34b44c;
-    font-size: 18px;
-    font-weight: 100;
-    width: 450px;
-    margin: 0 auto; }
-#invite-pitch a.button {
-  width: 402px;
-  text-align: center;
-  font-size: 19px;
-  display: block;
-  margin: 20px auto 50px;
-  font-weight: 900;
-  padding: 3px;
-  background-color: #c8f2d0;
-  color: #34b44c; }
-  #invite-pitch a.button span {
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
-    padding: 12px 0 10px;
-    display: block;
-    border: 1px solid white;
-    width: 400px; }
-#invite-pitch ul.thirds {
-  height: 440px;
-  margin: 10px 0 40px; }
-  #invite-pitch ul.thirds li {
-    float: left;
-    width: 316px;
-    border-right: 1px dotted #cccccc; }
-    #invite-pitch ul.thirds li img {
-      display: block;
-      margin: 0 auto;
-      width: 220px;
-      height: 200px; }
-    #invite-pitch ul.thirds li h3 {
-      font-size: 18px;
-      text-transform: uppercase;
-      color: #7f7f7f;
-      vertical-align: middle;
-      margin: 30px auto;
-      width: 220px;
-      height: 60px;
-      text-align: center;
-      padding-bottom: 9px;
-      background: transparent url(../images/subscribeCurlShadow.png) no-repeat 50% 100%; }
-      #invite-pitch ul.thirds li h3 span {
-        display: block;
-        background-color: white;
-        height: 60px;
-        line-height: 60px; }
-    #invite-pitch ul.thirds li p {
-      width: 220px;
-      margin: 0 auto;
-      text-align: center;
-      font-family: "museo-slab-1", "museo-slab-2", serif;
-      font-size: 1.2em;
-      line-height: 18px;
-      font-weight: 100; }
-  #invite-pitch ul.thirds li.make {
-    border: none; }
-#invite-pitch .fine-print {
-  padding-top: 140px;
-  background: transparent url(../images/finePrint.png) no-repeat 50% 0; }
-  #invite-pitch .fine-print .question {
-    margin-top: 20px;
-    height: 200px;
-    position: relative; }
-    #invite-pitch .fine-print .question h2, #invite-pitch .fine-print .question p {
-      width: 650px; }
-    #invite-pitch .fine-print .question h2 {
-      font-family: "museo-slab-1", "museo-slab-2", serif;
-      color: #34b44c;
-      font-size: 29px;
-      background-color: transparent;
-      text-transform: none;
-      margin: 0;
-      padding: 0;
-      font-weight: 100; }
-    #invite-pitch .fine-print .question p {
-      font-size: 1.3em;
-      line-height: 1.4em;
-      font-weight: 100;
-      font-family: "museo-slab-1", "museo-slab-2", serif;
-      margin: 7px 0; }
-    #invite-pitch .fine-print .question img {
-      position: absolute;
-      top: -20px;
-      right: 0;
-      width: 240px;
-      height: 200px; }
-
-#invitation-instructions {
-  width: 420px;
-  background: #393939;
-  padding-bottom: 1px; }
-  #invitation-instructions .ticket {
-    width: 100%;
-    height: 130px;
-    background: transparent url(../images/admitOneGreen.png) no-repeat 50% 20px; }
-  #invitation-instructions p {
-    font-family: "museo-slab-1", "museo-slab-2", serif;
-    font-weight: 100;
-    color: #b7b7b7;
-    text-align: center;
-    margin-bottom: 10px;
-    font-size: 1.2em; }
-  #invitation-instructions form {
-    width: 280px;
-    margin: 0 auto 10px; }
-    #invitation-instructions form input, #invitation-instructions form textarea {
-      clear: both;
-      width: 263px;
-      margin-top: 10px; }
-    #invitation-instructions form textarea {
-      height: 150px; }
-    #invitation-instructions form input[type="submit"] {
-      background: #c8f2d0;
-      color: #34b44c;
-      width: 280px;
-      font-size: 1.3em;
-      padding: 10px 0; }
-    #invitation-instructions form label.error {
-      font-family: Georgia, serif;
-      font-size: 12px;
-      font-weight: 100;
-      color: #c8f2d0;
-      margin: 0 0 5px 0;
-      text-shadow: none; }
-  #invitation-instructions .thank-you {
-    display: none;
-    text-align: center;
-    padding: 40px 0;
-    height: 100px; }
-    #invitation-instructions .thank-you h1 {
-      color: white;
-      text-transform: uppercase;
-      font-size: 2.3em;
-      font-weight: 900; }
-
-#invitation-instructions.loading form {
-  background: transparent url(../images/spinnerDarkGrey.gif) no-repeat 50% 50%;
-  height: 180px; }
-  #invitation-instructions.loading form * {
-    display: none; }
-
-#invitation-instructions.complete form {
-  display: none; }
-#invitation-instructions.complete .thank-you {
-  display: block; }
 
 body#home.about, body#home.tos {
   background: #f0e3d2 url(../images/new-york.jpg) repeat 50% 0;
@@ -6988,7 +6167,7 @@ body#home.tos ol li {
     font-size: 33px;
     font-weight: 700;
     text-transform: uppercase;
-    text-shadow: white -1px 1px 0, #985faf -2px 2px 0;
+    text-shadow: #222222 -1px 1px 0, #985faf -2px 2px 0;
     margin-bottom: 5px; }
 #faq-pitch ul.questions {
   height: 440px;
@@ -7027,272 +6206,6 @@ body#home.tos ol li {
       text-align: left; }
     #faq-pitch ul.questions li p {
       text-align: left; }
-
-.money {
-  display: none !important; }
-
-#creator-analytics .help {
-  font-size: 10px;
-  background-color: #cccccc;
-  width: 15px;
-  height: 15px;
-  line-height: 17px;
-  vertical-align: middle;
-  -webkit-border-radius: 15px;
-  -moz-border-radius: 15px;
-  border-radius: 15px;
-  display: inline-block;
-  text-align: center;
-  position: relative;
-  top: -3px;
-  cursor: help; }
-#creator-analytics .data {
-  width: 100%;
-  float: left; }
-  #creator-analytics .data header {
-    border-bottom: 1px dashed #999999;
-    height: 30px;
-    margin-bottom: 10px; }
-    #creator-analytics .data header h1 {
-      float: left;
-      font-size: 18px;
-      text-transform: uppercase;
-      font-weight: 900;
-      margin: 0; }
-    #creator-analytics .data header .subtext {
-      float: right;
-      padding-top: 7px;
-      font-family: "museo-slab-1", "museo-slab-2", serif;
-      font-weight: 100; }
-  #creator-analytics .data #stats {
-    height: 65px; }
-    #creator-analytics .data #stats .views, #creator-analytics .data #stats .rewards, #creator-analytics .data #stats .conversion, #creator-analytics .data #stats .money {
-      float: left;
-      width: 20%;
-      font-size: 15px;
-      margin-top: 5px; }
-    #creator-analytics .data #stats .views, #creator-analytics .data #stats .rewards {
-      padding-left: 20px; }
-    #creator-analytics .data #stats .views {
-      color: #00aeef;
-      background: transparent url(../images/icons/viewsBlue.png) no-repeat 0 50%; }
-    #creator-analytics .data #stats .rewards {
-      width: 35%;
-      color: #f42652;
-      background: transparent url(../images/icons/rewardRed.png) no-repeat 0 50%; }
-    #creator-analytics .data #stats .conversion {
-      width: 81px; }
-    #creator-analytics .data #stats .money {
-      text-align: right;
-      float: right;
-      color: #34b44c; }
-  #creator-analytics .data #line-chart-wrapper {
-    padding: 10px;
-    background-color: white;
-    border: 1px solid #cccccc;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
-    margin: 20px 0; }
-  #creator-analytics .data #line-chart {
-    width: 100%;
-    height: 200px; }
-  #creator-analytics .data #story-list, #creator-analytics .data #patron-list {
-    margin-bottom: 60px; }
-    #creator-analytics .data #story-list ul li .rewards, #creator-analytics .data #story-list ul li .views, #creator-analytics .data #story-list ul li .money, #creator-analytics .data #patron-list ul li .rewards, #creator-analytics .data #patron-list ul li .views, #creator-analytics .data #patron-list ul li .money {
-      line-height: 69px;
-      vertical-align: middle;
-      font-size: 13px;
-      font-weight: 700;
-      width: 17%;
-      padding-left: 20px; }
-    #creator-analytics .data #story-list ul li .rewards, #creator-analytics .data #patron-list ul li .rewards {
-      color: #f42652;
-      background: transparent url(../images/icons/rewardRed.png) no-repeat 0 50%; }
-    #creator-analytics .data #story-list ul li .views, #creator-analytics .data #patron-list ul li .views {
-      margin-left: 4px;
-      color: #00aeef;
-      background: transparent url(../images/icons/viewsBlue.png) no-repeat 0 50%; }
-    #creator-analytics .data #story-list ul li .money, #creator-analytics .data #patron-list ul li .money {
-      margin: 0;
-      padding-left: 5px;
-      color: #34b44c; }
-  #creator-analytics .data #story-list header {
-    height: 15px;
-    border: none; }
-    #creator-analytics .data #story-list header a {
-      display: block;
-      float: left;
-      text-transform: uppercase;
-      color: #aaaaaa;
-      width: 20%; }
-    #creator-analytics .data #story-list header .date {
-      width: 35%;
-      margin-left: 110px; }
-  #creator-analytics .data #story-list ul#stories li {
-    width: 100%;
-    height: 70px;
-    border-bottom: 1px solid #cccccc;
-    border-top: 1px solid white;
-    cursor: pointer; }
-    #creator-analytics .data #story-list ul#stories li .thumbnail, #creator-analytics .data #story-list ul#stories li .title-and-date, #creator-analytics .data #story-list ul#stories li .rewards, #creator-analytics .data #story-list ul#stories li .views, #creator-analytics .data #story-list ul#stories li .money {
-      float: left; }
-    #creator-analytics .data #story-list ul#stories li .thumbnail {
-      width: 95px;
-      margin: 5px 0 0;
-      padding: 0; }
-    #creator-analytics .data #story-list ul#stories li .title-and-date {
-      padding: 5px;
-      width: 37%; }
-      #creator-analytics .data #story-list ul#stories li .title-and-date h2 {
-        color: #252525;
-        background: none;
-        font-size: 16px;
-        text-transform: none;
-        margin: 0;
-        padding: 10px 10px 5px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap; }
-      #creator-analytics .data #story-list ul#stories li .title-and-date .date {
-        padding-left: 10px; }
-  #creator-analytics .data #story-list ul#stories li#all .thumbnail {
-    position: relative; }
-    #creator-analytics .data #story-list ul#stories li#all .thumbnail .note {
-      position: absolute;
-      font-family: "museo-slab-1", "museo-slab-2", serif;
-      font-weight: 100;
-      text-align: center;
-      color: #777777;
-      padding-top: 10px;
-      padding-bottom: 15px; }
-  #creator-analytics .data #story-list ul#stories li#all .title-and-date h2 {
-    padding-top: 20px; }
-  #creator-analytics .data #story-list ul#stories li#all .not-selected {
-    display: block; }
-  #creator-analytics .data #story-list ul#stories li#all .is-selected {
-    display: none; }
-  #creator-analytics .data #story-list ul#stories li#all.selected .note {
-    background: transparent url(../images/downTriangle.png) no-repeat 50% 100%; }
-  #creator-analytics .data #story-list ul#stories li#all.selected .not-selected {
-    display: none; }
-  #creator-analytics .data #story-list ul#stories li#all.selected .is-selected {
-    display: block; }
-  #creator-analytics .data #story-list ul#stories li.selected {
-    background-color: white; }
-  #creator-analytics .data #patron-list header a {
-    display: block;
-    float: left;
-    text-transform: uppercase;
-    color: #aaaaaa;
-    padding-top: 5px; }
-  #creator-analytics .data #patron-list header a.name {
-    margin-left: 30px;
-    width: 195px; }
-  #creator-analytics .data #patron-list header a.rewards {
-    width: 140px; }
-  #creator-analytics .data #patron-list header a.views {
-    width: 135px; }
-  #creator-analytics .data #patron-list header a.money {
-    width: 75px; }
-  #creator-analytics .data #patron-list ul#patrons {
-    min-height: 60px; }
-    #creator-analytics .data #patron-list ul#patrons li {
-      height: 60px;
-      padding: 5px 0;
-      border-bottom: 1px solid #cccccc; }
-      #creator-analytics .data #patron-list ul#patrons li .number, #creator-analytics .data #patron-list ul#patrons li .avatar, #creator-analytics .data #patron-list ul#patrons li .info {
-        float: left;
-        margin-right: 20px; }
-      #creator-analytics .data #patron-list ul#patrons li .number {
-        background-color: black;
-        color: white;
-        -webkit-border-radius: 40px;
-        -moz-border-radius: 40px;
-        border-radius: 40px;
-        width: 40px;
-        height: 40px;
-        text-align: center;
-        line-height: 40px;
-        vertical-align: middle;
-        font-family: "museo-slab-1", "museo-slab-2", serif;
-        font-size: 24px;
-        margin: 5px 20px; }
-      #creator-analytics .data #patron-list ul#patrons li .avatar {
-        width: 60px;
-        height: 60px;
-        margin: 0 20px 0 10px; }
-      #creator-analytics .data #patron-list ul#patrons li .info {
-        width: 190px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap; }
-        #creator-analytics .data #patron-list ul#patrons li .info .name {
-          font-weight: 700;
-          font-size: 22px; }
-        #creator-analytics .data #patron-list ul#patrons li .info .occupation {
-          font-style: italic; }
-      #creator-analytics .data #patron-list ul#patrons li .rewards, #creator-analytics .data #patron-list ul#patrons li .views, #creator-analytics .data #patron-list ul#patrons li .money {
-        float: left;
-        line-height: 50px; }
-  #creator-analytics .data #follower-list {
-    padding-bottom: 60px; }
-    #creator-analytics .data #follower-list ul {
-      height: 60px; }
-      #creator-analytics .data #follower-list ul li {
-        float: left;
-        margin-right: 5px; }
-        #creator-analytics .data #follower-list ul li a {
-          position: relative; }
-
-#analytics-sidebar {
-  width: 165px;
-  float: right; }
-  #analytics-sidebar .box {
-    padding: 10px;
-    background-color: #2a2a2a;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
-    margin-bottom: 20px;
-    color: white; }
-    #analytics-sidebar .box h3 {
-      font-size: 13px;
-      font-weight: 900;
-      text-transform: uppercase;
-      text-align: center;
-      border-bottom: 1px dashed #555555;
-      padding-bottom: 5px;
-      margin-bottom: 5px; }
-    #analytics-sidebar .box h4 {
-      text-transform: uppercase;
-      text-align: center;
-      font-weight: 500;
-      font-size: 11px; }
-    #analytics-sidebar .box .sparkline {
-      margin-bottom: 10px; }
-  #analytics-sidebar .current-balance .amount {
-    font-family: "museo-slab-1", "museo-slab-2", serif;
-    font-size: 24px;
-    font-weight: 100;
-    padding: 20px 0;
-    text-align: center; }
-  #analytics-sidebar .current-balance a {
-    display: block;
-    width: 125px;
-    font-size: 13px;
-    text-align: center;
-    margin-top: 10px; }
-
-.jqplot-highlighter-tooltip {
-  background: rgba(0, 0, 0, 0.9) !important;
-  color: #f4f4f4 !important;
-  border: none !important;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-  padding: 4px 6px !important;
-  font-size: 12px !important; }
 
 ul.rewards {
   clear: both;
@@ -7349,7 +6262,7 @@ ul.rewards {
         left: 20px;
         z-index: 3; }
     ul.rewards li .who {
-      background: white;
+      background: #222222;
       padding: 8px;
       width: 214px;
       min-height: 40px; }
@@ -7568,7 +6481,7 @@ a.tag:hover {
 #visualization {
   width: 780px;
   height: 600px;
-  background: white;
+  background: #222222;
   position: relative; }
   #visualization #context {
     padding: 10px;
@@ -7615,7 +6528,7 @@ a.tag:hover {
         color: white; }
       #visualization #content-rewarded-by ul.carousel li.item a.visualize:hover {
         background-color: #dddddd;
-        color: #252525; }
+        color: #aaaaaa; }
     #visualization #content-rewarded-by ul.carousel li.item.selected {
       background: transparent url(../images/darkGrayTopPointer.png) no-repeat 50% 100%; }
       #visualization #content-rewarded-by ul.carousel li.item.selected a.visualize {
@@ -7925,7 +6838,7 @@ ul#activity-list li, ul.activity-list li {
       ul#activity-list li .middle .content a.title, ul.activity-list li .middle .content a.title {
         font-size: 1.2em;
         font-weight: 700;
-        color: #252525; }
+        color: #aaaaaa; }
       ul#activity-list li .middle .content .byline, ul.activity-list li .middle .content .byline {
         display: block;
         font-size: 11px;
@@ -8070,7 +6983,7 @@ ul#activity-list li.none, ul.activity-list li.none {
     #activity-sidebar .content .title {
       padding-bottom: 3px; }
       #activity-sidebar .content .title a {
-        color: #252525;
+        color: #aaaaaa;
         font-weight: 700; }
         #activity-sidebar .content .title a:hover {
           color: #00aeef; }
@@ -8250,7 +7163,7 @@ body#discovery #main {
         height: 33px;
         overflow: hidden;
         font-size: 16px;
-        color: #252525;
+        color: #aaaaaa;
         font-family: "handwritten", cursive; }
       #discovery-summary #discovery-grid li .author, #discovery-summary #discovery-grid li .type {
         display: none; }
@@ -8362,7 +7275,7 @@ body#discovery #main {
         margin-bottom: 0;
         font-weight: 500; }
         #discovery-page section.app header h3 a {
-          color: #252525;
+          color: #aaaaaa;
           -webkit-transition: all 0.2s linear;
           -moz-transition: all 0.2s linear;
           -ms-transition: all 0.2s linear;
@@ -8827,7 +7740,7 @@ body#discovery #main {
     color: white; }
   .tabs a.active {
     background: transparent url(../images/tab213x29White.png) no-repeat 0 0;
-    color: #252525; }
+    color: #aaaaaa; }
   .tabs a.right-side {
     float: right; }
   .tabs a.bordered-left {
