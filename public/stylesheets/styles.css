@@ -757,9 +757,11 @@ table {
       min-height: 200px;
       padding-bottom: 90px;
       clear: both; }
-      #vertical-content #content-list li:hover .info a.title {
+      #vertical-content #content-list li:hover .content-preview, #vertical-content #content-list li.current .content-preview {
+        opacity: 1; }
+      #vertical-content #content-list li:hover .info a.title, #vertical-content #content-list li.current .info a.title {
         color: #00aeef; }
-      #vertical-content #content-list li:hover .info p {
+      #vertical-content #content-list li:hover .info p, #vertical-content #content-list li.current .info p {
         color: #aaaaaa; }
       #vertical-content #content-list li .content-preview {
         display: block;
@@ -767,7 +769,13 @@ table {
         height: 200px;
         float: left;
         margin: 0 20px 10px 0;
-        position: relative; }
+        position: relative;
+        opacity: 0.2;
+        -webkit-transition: opacity 0.2s linear;
+        -moz-transition: opacity 0.2s linear;
+        -ms-transition: opacity 0.2s linear;
+        -o-transition: opacity 0.2s linear;
+        transition: opacity 0.2s linear; }
         #vertical-content #content-list li .content-preview img.thumbnail {
           width: 300px;
           height: 200px;
@@ -1172,7 +1180,7 @@ body#users #main, body#messages #main {
   /* Edit Profile */ }
   #user-profile h1 {
     font-size: 20px;
-    font-weight: 700;
+    font-weight: 500;
     text-transform: uppercase;
     color: white;
     margin-bottom: 20px; }
@@ -1280,6 +1288,8 @@ body#users #main, body#messages #main {
         margin-bottom: 0;
         font-weight: 700;
         text-transform: uppercase; }
+  #user-profile #vertical-content #content-list li .content-preview img.avatar {
+    display: none; }
   #user-profile #activity {
     -webkit-border-radius: 0;
     -moz-border-radius: 0;

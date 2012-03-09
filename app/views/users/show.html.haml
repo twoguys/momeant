@@ -15,7 +15,7 @@
             = image_tag @user.avatar.url(:thumbnail), :class => "avatar"
       
           .info
-            = link_to content.title, story_path(content), :class => "title"
+            = link_to content.title, story_url(content), :class => "title"
             - if me?(@user)
               .edit
                 = link_to "Edit", edit_story_path(content) if me?(@user)
@@ -28,12 +28,12 @@
         - index += 1
   
   #vertical-people
-    %h1= pluralize @supporters.length, "rewarder"
+    %h1= pluralize @supporters.length, "supporter"
     %ul
       - @supporters.each do |person|
         %li
           = image_tag person[0].avatar.url(:thumbnail)
-          = link_to person[0].name, user_path(person[0]), :class => "cover tooltipped", :title => "#{person[0].name} (#{number_to_currency(person[1] * Reward.dollar_exchange)})"
+          = link_to person[0].name, user_path(person[0]), :class => "cover tooltipped", :title => "#{person[0].name} has rewarded #{@user.first_name} #{number_to_currency(person[1] * Reward.dollar_exchange)}"
   
 - if me?(@user)
   :javascript

@@ -35,7 +35,13 @@ $(function() {
 		calculate_list_heights: function() {
 		  var scrollables = [];
 		  $.each($(scrollables_selector + ' li'), function(index, value) {
-		    scrollables.push({height: $(value).height() + 90}); // bottom padding
+		    var $content = $(value);
+		    var content_info = {
+		      height: $content.height() + 90, // add bottom padding
+		      top: $content.offset().top - 120, // subtract space between top of browser and where content starts
+		      bottom: $content.offset().top - 120 + $content.height() + 90
+		    };
+		    scrollables.push(content_info);
 		  });
 		  this.scrollables = scrollables;
 		},
@@ -64,37 +70,46 @@ $(function() {
 		      this.to_next();
 		      event.preventDefault();
 		      break;
+		    case 39: // right arrow
+		      this.to_content();
+		      event.preventDefault();
+		      break;
 		  }
 		},
 		
 		on_scroll: function() {
-		  //console.log($(document).scrollTop());
+		  var distance_from_top = $(document).scrollTop() + 140; // buffer it by 180
+      var index = 0;
+		  while (index < Scroll.scrollables.length) {
+		    if (distance_from_top > Scroll.scrollables[index].top && distance_from_top < Scroll.scrollables[index].bottom) {
+		      $('#content-list li:nth-child(' + (index + 1) + ')').addClass('current').siblings().removeClass('current');
+		      Scroll.index = index;
+		      //Scroll.current_position = Scroll.scrollables[index].top;
+		      break;
+		    }
+		    index++;
+		  }
 		},
 		
 		to_next: function() {
 		  if (Scroll.index == Scroll.scrollables.length - 1) { return; }
 		  
-		  var next_height = Scroll.scrollables[Scroll.index].height;
 		  Scroll.index += 1;
-		  Scroll.current_position += next_height;
+		  Scroll.current_position = Scroll.scrollables[Scroll.index].top;
 		  $.scrollTo(Scroll.current_position, Scroll.duration, Scroll.settings);
-		  
-		  Scroll.handle_fade();
 		},
 		
 		to_prev: function() {
 		  if (Scroll.index == 0) { return; }
 		  
 		  Scroll.index -= 1;
-		  var prev_height = Scroll.scrollables[Scroll.index].height;
-		  Scroll.current_position -= prev_height;
+		  Scroll.current_position = Scroll.scrollables[Scroll.index].top;
 		  $.scrollTo(Scroll.current_position, Scroll.duration, Scroll.settings);
-		  
-		  Scroll.handle_fade();
 		},
 		
-		handle_fade: function() {
-		  $('#content-list li:nth-child(' + (Scroll.index + 1) + ')').addClass('current').siblings().removeClass('current');
+		to_content: function() {
+		  var url = $('#content-list li:nth-child(' + (Scroll.index + 1) + ') a.title').attr('href');
+		  window.location.href = url;
 		}
 		
 	});

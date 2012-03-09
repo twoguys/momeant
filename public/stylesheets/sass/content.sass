@@ -20,7 +20,9 @@
 			min-height: 200px
 			padding-bottom: 90px
 			clear: both
-			&:hover
+			&:hover, &.current
+				.content-preview
+					opacity: 1.0
 				.info a.title
 					color: $blue
 				.info p
@@ -32,6 +34,8 @@
 				float: left
 				margin: 0 20px 10px 0
 				position: relative
+				opacity: 0.2
+				@include transition(opacity)
 				img.thumbnail
 					width: 300px
 					height: 200px

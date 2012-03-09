@@ -31,6 +31,8 @@
     /[if lt IE 7]
       = stylesheet_link_tag "ie"
     
+    = stylesheet_link_tag "light" if params[:theme] == "light"
+    
     = render "shared/typekit"
     = render "shared/mixpanel"
     = yield :head
