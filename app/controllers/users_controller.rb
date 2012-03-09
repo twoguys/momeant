@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     @creators = current_user.rewarded_creators
     @content = []
     return if @creators.empty?
-    @content = Story.published.where("user_id IN (#{@creators.map(&:id).join(",")})")
+    @content = Story.published.newest_first.where("user_id IN (#{@creators.map(&:id).join(",")})")
   end
   
   def creations

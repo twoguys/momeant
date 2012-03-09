@@ -49,6 +49,7 @@ h2 {
 .fullscreen .fullscreen-hidden, .fullscreen #header, .fullscreen #right-sidebar, .fullscreen #new-york {
   display: none; }
 .fullscreen #container {
+  position: static;
   margin: 0;
   padding: 0; }
   .fullscreen #container #main {
@@ -222,7 +223,7 @@ h2 {
           top: 13px;
           left: 49px; }
       #header #user-nav #my-links .subnav {
-        width: 127px; }
+        width: 140px; }
     #header #user-nav #coins {
       margin-left: 20px; }
       #header #user-nav #coins a {
@@ -1801,6 +1802,12 @@ table.users {
         font-style: italic;
         font-size: 11px; }
 
+#support h1 {
+  font-size: 20px;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: white;
+  margin-bottom: 20px; }
 #support #vertical-people {
   z-index: 2;
   right: none;
@@ -1816,8 +1823,16 @@ table.users {
   margin-top: 40px;
   padding-left: 340px; }
   #support #vertical-content .helper {
-    top: 82px;
+    top: 122px;
     left: 250px; }
+  #support #vertical-content li {
+    position: relative; }
+    #support #vertical-content li .when {
+      position: absolute;
+      top: 0;
+      right: -150px;
+      color: #555555;
+      font-size: 12px; }
 
 /* Story creation */
 body#stories.edit #container {
@@ -4071,7 +4086,8 @@ body#stories.fullscreen {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%; }
+  width: 100%;
+  background: white; }
 
 #presenter {
   width: 100%;

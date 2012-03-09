@@ -1,7 +1,7 @@
 #support
   
   #vertical-people
-    .info click to filter
+    %h1 People
     %ul
       - @creators.each do |person|
         %li
@@ -9,6 +9,7 @@
           = link_to person.name, user_path(person), :class => "cover tooltipped-e", :title => person.name
           
   #vertical-content
+    %h1 Their updates
     .helper use keyboard
 
     %ul#content-list
@@ -25,6 +26,8 @@
             .byline= link_to content.user.name, user_path(content.user)
             %p= content.synopsis
             = #link_to "View #{content.this_media}", story_path(content), :class => "view-button"
+          
+          .when #{time_ago_in_words(content.created_at)} ago
             
         - index += 1
 
