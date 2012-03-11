@@ -2,8 +2,8 @@
 html, body {
   font-family: "proxima-nova-1", "proxima-nova-2", helvetica, sans-serif;
   font-size: 14px;
-  color: #aaaaaa;
-  background: #222222;
+  color: #252525;
+  background: white;
   min-height: 100%;
   overflow-x: hidden;
   text-rendering: optimizelegibility;
@@ -39,7 +39,7 @@ h2 {
   display: none; }
 
 .weak {
-  color: white; }
+  color: #9c9c9c; }
 
 /* Layout */
 #container {
@@ -365,7 +365,7 @@ header.hide-nav {
       font-weight: 700;
       font-size: 13px;
       padding: 8px 0 7px;
-      border-bottom: 1px solid #222222; }
+      border-bottom: 1px solid white; }
       #call-to-action .insides .message a {
         -webkit-border-radius: 3px;
         -moz-border-radius: 3px;
@@ -519,7 +519,7 @@ form li.checkbox label, .form li.checkbox label {
   float: left;
   width: auto;
   margin: 0;
-  color: #aaaaaa; }
+  color: #252525; }
 form input[type="text"], form input[type="email"], form input[type="password"], form textarea, .form input[type="text"], .form input[type="email"], .form input[type="password"], .form textarea {
   padding: 7px;
   font-size: 12px;
@@ -622,8 +622,8 @@ a.button.green {
     text-align: center; }
   .horizontal-tabs li a {
     display: block;
-    color: #aaaaaa;
-    background: #222222;
+    color: #252525;
+    background: white;
     height: 25px;
     padding: 4px 18px 4px;
     position: relative;
@@ -744,7 +744,7 @@ table {
     width: 57px;
     text-align: right;
     padding-right: 18px;
-    background: transparent url(../images/profile/keyboard-icon-light.png) no-repeat 100% 3px;
+    background: transparent url(../images/profile/keyboard-icon.png) no-repeat 100% 3px;
     font-size: 12px;
     color: #777777;
     line-height: 14px; }
@@ -757,26 +757,24 @@ table {
     #vertical-content #content-list li {
       min-height: 200px;
       padding-bottom: 90px;
-      clear: both; }
-      #vertical-content #content-list li:hover .content-preview, #vertical-content #content-list li.current .content-preview {
+      clear: both;
+      opacity: 0.5;
+      -webkit-transition: opacity 0.2s linear;
+      -moz-transition: opacity 0.2s linear;
+      -ms-transition: opacity 0.2s linear;
+      -o-transition: opacity 0.2s linear;
+      transition: opacity 0.2s linear; }
+      #vertical-content #content-list li:hover, #vertical-content #content-list li.current {
         opacity: 1; }
-      #vertical-content #content-list li:hover .info a.title, #vertical-content #content-list li.current .info a.title {
-        color: #00aeef; }
-      #vertical-content #content-list li:hover .info p, #vertical-content #content-list li.current .info p {
-        color: #aaaaaa; }
+        #vertical-content #content-list li:hover .info p, #vertical-content #content-list li.current .info p {
+          color: #252525; }
       #vertical-content #content-list li .content-preview {
         display: block;
         width: 300px;
         height: 200px;
         float: left;
         margin: 0 20px 10px 0;
-        position: relative;
-        opacity: 0.2;
-        -webkit-transition: opacity 0.2s linear;
-        -moz-transition: opacity 0.2s linear;
-        -ms-transition: opacity 0.2s linear;
-        -o-transition: opacity 0.2s linear;
-        transition: opacity 0.2s linear; }
+        position: relative; }
         #vertical-content #content-list li .content-preview img.thumbnail {
           width: 300px;
           height: 200px;
@@ -804,14 +802,8 @@ table {
           width: 40px;
           height: 40px; }
     #vertical-content #content-list .info a.title {
-      color: #aaaaaa;
       font-weight: 700;
-      font-size: 15px;
-      -webkit-transition: color 0.2s linear;
-      -moz-transition: color 0.2s linear;
-      -ms-transition: color 0.2s linear;
-      -o-transition: color 0.2s linear;
-      transition: color 0.2s linear; }
+      font-size: 15px; }
     #vertical-content #content-list .info .byline {
       color: #555555; }
     #vertical-content #content-list .info .edit a {
@@ -869,7 +861,7 @@ table {
       position: absolute;
       top: 0;
       left: 0;
-      background: transparent url(../images/profile/avatar-cover-60-dark.png) no-repeat 0 0;
+      background: transparent url(../images/profile/avatar-cover-60.png) no-repeat 0 0;
       text-indent: 100%;
       white-space: nowrap;
       overflow: hidden; }
@@ -1086,7 +1078,7 @@ table {
         position: relative;
         padding: 0 100px 0 120px;
         margin-right: 20px;
-        color: #aaaaaa;
+        color: #252525;
         background: transparent url(../images/discovery/arrow.png) no-repeat 100% 50%; }
         #home.index #page4 #people a.surround img.avatar, #registrations.create #page4 #people a.surround img.avatar {
           width: 100px;
@@ -1183,7 +1175,7 @@ body#users #main, body#messages #main {
     font-size: 20px;
     font-weight: 500;
     text-transform: uppercase;
-    color: white;
+    color: black;
     margin-bottom: 20px; }
   #user-profile .profile-info {
     position: fixed;
@@ -1191,14 +1183,14 @@ body#users #main, body#messages #main {
     left: 40px;
     width: 210px; }
     #user-profile .profile-info .metadata {
-      color: #555555;
+      color: #aaaaaa;
       -webkit-transition: color 0.2s linear;
       -moz-transition: color 0.2s linear;
       -ms-transition: color 0.2s linear;
       -o-transition: color 0.2s linear;
       transition: color 0.2s linear; }
       #user-profile .profile-info .metadata:hover {
-        color: #aaaaaa; }
+        color: #252525; }
       #user-profile .profile-info .metadata .avatar-badge {
         width: 130px;
         margin-bottom: 20px;
@@ -1244,17 +1236,17 @@ body#users #main, body#messages #main {
         display: inline-block;
         height: 17px;
         margin-bottom: 10px;
-        background: #333333;
+        background: #dddddd;
         text-shadow: none;
         line-height: 18px;
-        color: #666666;
+        color: #aaaaaa;
         -webkit-transition: background 0.2s linear;
         -moz-transition: background 0.2s linear;
         -ms-transition: background 0.2s linear;
         -o-transition: background 0.2s linear;
         transition: background 0.2s linear; }
         #user-profile .profile-info #user-actions a:hover {
-          background: #aaaaaa; }
+          background: #333333; }
     #user-profile .profile-info #editorialize {
       background-image: -moz-linear-gradient(center top, #ffbb01 4%, #ff9501 52%);
       background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #ffbb01), color-stop(0.52, #ff9501)); }
@@ -1552,7 +1544,7 @@ body#users #main, body#messages #main {
         text-transform: uppercase;
         line-height: 18px;
         padding-top: 6px;
-        color: #aaaaaa; }
+        color: #252525; }
         #user-profile .followingers table a.name span {
           display: block; }
   #user-profile .supporters {
@@ -1595,7 +1587,7 @@ body#users #main, body#messages #main {
             font-weight: 700;
             text-transform: uppercase;
             margin-top: 3px;
-            color: #aaaaaa; }
+            color: #252525; }
             #user-profile .supporters table.users td .user-info .name span {
               display: block; }
           #user-profile .supporters table.users td .user-info .occupation {
@@ -1795,7 +1787,7 @@ table.users {
         font-weight: 700;
         text-transform: uppercase;
         margin-top: 3px;
-        color: #aaaaaa; }
+        color: #252525; }
         table.users td .user-info .name span {
           display: block; }
       table.users td .user-info .occupation {
@@ -1929,7 +1921,7 @@ form.new_story, form.edit_story, .story-form {
     form.new_story section.step h2, form.edit_story section.step h2, .story-form section.step h2 {
       background: none;
       text-transform: none;
-      color: #aaaaaa;
+      color: #252525;
       padding: 0 0 5px;
       border-bottom: 1px solid #cccccc; }
     form.new_story section.step .info, form.edit_story section.step .info, .story-form section.step .info {
@@ -1940,12 +1932,12 @@ form.new_story, form.edit_story, .story-form {
         color: black; }
       form.new_story section.step .info strong, form.edit_story section.step .info strong, .story-form section.step .info strong {
         font-weight: 500;
-        color: #aaaaaa; }
+        color: #252525; }
     form.new_story section.step input[type="text"], form.new_story section.step textarea, form.edit_story section.step input[type="text"], form.edit_story section.step textarea, .story-form section.step input[type="text"], .story-form section.step textarea {
       width: 98%; }
     form.new_story section.step label, form.edit_story section.step label, .story-form section.step label {
       font-size: 13px;
-      color: #aaaaaa;
+      color: #252525;
       text-transform: none;
       font-weight: 700; }
   form.new_story .step, form.new_story .banner, form.edit_story .step, form.edit_story .banner, .story-form .step, .story-form .banner {
@@ -4572,7 +4564,7 @@ body#stories.fullscreen {
       #presenter #reward-modal #your-reward .bottom-right-button, #presenter #reward-modal #your-reward .bottom-left-button {
         position: absolute;
         bottom: 30px;
-        color: #aaaaaa; }
+        color: #252525; }
       #presenter #reward-modal #your-reward .bottom-right-button {
         right: 40px;
         padding-right: 20px;
@@ -4656,7 +4648,7 @@ body#stories.fullscreen {
             display: block;
             width: 240px;
             margin: 0 auto;
-            background: #aaaaaa;
+            background: #252525;
             color: white;
             -webkit-border-radius: 3px;
             -moz-border-radius: 3px;
@@ -5452,7 +5444,7 @@ ul.stories li.story {
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); }
   ul.stories li.story a.title-link {
     text-transform: uppercase;
-    color: #aaaaaa;
+    color: #252525;
     font-weight: 700;
     margin: 8px 5px 9px;
     display: block;
@@ -5470,7 +5462,7 @@ ul.stories li.story {
     text-transform: uppercase;
     font-size: 13px;
     background: rgba(255, 255, 255, 0.95);
-    color: #aaaaaa;
+    color: #252525;
     z-index: 2;
     font-weight: 500; }
     ul.stories li.story .title span {
@@ -5614,7 +5606,7 @@ ul.stories li.medium.story {
         padding-top: 10px; }
       ul.stories li.medium.story .back .author-info .name, ul.stories li.medium.story .back .author-info .occupation {
         margin-left: 70px;
-        color: #aaaaaa; }
+        color: #252525; }
 ul.stories .title a {
   color: black;
   font-family: "proxima-nova-1", "proxima-nova-2", helvetica, sans-serif;
@@ -5698,9 +5690,9 @@ ul.stories .excerpt {
     .recommendation-stream .tabs a:first-child {
       border: none; }
     .recommendation-stream .tabs a.subscribed-to-recommendations {
-      border-right: 1px solid #222222; }
+      border-right: 1px solid white; }
     .recommendation-stream .tabs a.momeant-recommendations {
-      border-left: 1px solid #222222; }
+      border-left: 1px solid white; }
   .recommendation-stream ul {
     padding: 10px 10px 0 10px; }
     .recommendation-stream ul li {
@@ -5809,7 +5801,7 @@ ul.stories .excerpt {
   #join-modal .padder, #login-modal .padder, #feedback-modal .padder, #about-diagram-modal .padder {
     width: 480px;
     margin: 0 auto;
-    background-color: #222222;
+    background-color: white;
     padding: 15px 20px 10px;
     position: relative;
     top: 170px;
@@ -5856,7 +5848,7 @@ ul.stories .excerpt {
     margin-top: -5px;
     margin-bottom: 0px; }
     #join-modal li.remember-me label, #login-modal li.remember-me label, #feedback-modal li.remember-me label, #about-diagram-modal li.remember-me label {
-      color: #aaaaaa; }
+      color: #252525; }
   #join-modal .spaced-a-bit, #login-modal .spaced-a-bit, #feedback-modal .spaced-a-bit, #about-diagram-modal .spaced-a-bit {
     margin-bottom: 5px; }
   #join-modal li.copy, #login-modal li.copy, #feedback-modal li.copy, #about-diagram-modal li.copy {
@@ -5936,7 +5928,7 @@ ul.stories .excerpt {
   width: 200px;
   float: right;
   padding-left: 25px;
-  color: #aaaaaa; }
+  color: #252525; }
 
 #login-modal .padder {
   width: 210px; }
@@ -6193,7 +6185,7 @@ body#home.tos ol li {
     font-size: 33px;
     font-weight: 700;
     text-transform: uppercase;
-    text-shadow: #222222 -1px 1px 0, #985faf -2px 2px 0;
+    text-shadow: white -1px 1px 0, #985faf -2px 2px 0;
     margin-bottom: 5px; }
 #faq-pitch ul.questions {
   height: 440px;
@@ -6288,7 +6280,7 @@ ul.rewards {
         left: 20px;
         z-index: 3; }
     ul.rewards li .who {
-      background: #222222;
+      background: white;
       padding: 8px;
       width: 214px;
       min-height: 40px; }
@@ -6507,7 +6499,7 @@ a.tag:hover {
 #visualization {
   width: 780px;
   height: 600px;
-  background: #222222;
+  background: white;
   position: relative; }
   #visualization #context {
     padding: 10px;
@@ -6554,7 +6546,7 @@ a.tag:hover {
         color: white; }
       #visualization #content-rewarded-by ul.carousel li.item a.visualize:hover {
         background-color: #dddddd;
-        color: #aaaaaa; }
+        color: #252525; }
     #visualization #content-rewarded-by ul.carousel li.item.selected {
       background: transparent url(../images/darkGrayTopPointer.png) no-repeat 50% 100%; }
       #visualization #content-rewarded-by ul.carousel li.item.selected a.visualize {
@@ -6864,7 +6856,7 @@ ul#activity-list li, ul.activity-list li {
       ul#activity-list li .middle .content a.title, ul.activity-list li .middle .content a.title {
         font-size: 1.2em;
         font-weight: 700;
-        color: #aaaaaa; }
+        color: #252525; }
       ul#activity-list li .middle .content .byline, ul.activity-list li .middle .content .byline {
         display: block;
         font-size: 11px;
@@ -7009,7 +7001,7 @@ ul#activity-list li.none, ul.activity-list li.none {
     #activity-sidebar .content .title {
       padding-bottom: 3px; }
       #activity-sidebar .content .title a {
-        color: #aaaaaa;
+        color: #252525;
         font-weight: 700; }
         #activity-sidebar .content .title a:hover {
           color: #00aeef; }
@@ -7189,7 +7181,7 @@ body#discovery #main {
         height: 33px;
         overflow: hidden;
         font-size: 16px;
-        color: #aaaaaa;
+        color: #252525;
         font-family: "handwritten", cursive; }
       #discovery-summary #discovery-grid li .author, #discovery-summary #discovery-grid li .type {
         display: none; }
@@ -7301,7 +7293,7 @@ body#discovery #main {
         margin-bottom: 0;
         font-weight: 500; }
         #discovery-page section.app header h3 a {
-          color: #aaaaaa;
+          color: #252525;
           -webkit-transition: all 0.2s linear;
           -moz-transition: all 0.2s linear;
           -ms-transition: all 0.2s linear;
@@ -7766,7 +7758,7 @@ body#discovery #main {
     color: white; }
   .tabs a.active {
     background: transparent url(../images/tab213x29White.png) no-repeat 0 0;
-    color: #aaaaaa; }
+    color: #252525; }
   .tabs a.right-side {
     float: right; }
   .tabs a.bordered-left {

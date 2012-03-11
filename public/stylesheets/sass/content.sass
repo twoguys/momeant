@@ -9,7 +9,7 @@
 		width: 57px
 		text-align: right
 		padding-right: 18px
-		background: transparent url(../images/profile/keyboard-icon-light.png) no-repeat 100% 3px
+		background: transparent url(../images/profile/keyboard-icon.png) no-repeat 100% 3px
 		font-size: 12px
 		color: #777
 		line-height: 14px
@@ -20,11 +20,10 @@
 			min-height: 200px
 			padding-bottom: 90px
 			clear: both
+			opacity: 0.5
+			@include transition(opacity)
 			&:hover, &.current
-				.content-preview
-					opacity: 1.0
-				.info a.title
-					color: $blue
+				opacity: 1.0
 				.info p
 					color: $text_color
 			.content-preview
@@ -34,8 +33,6 @@
 				float: left
 				margin: 0 20px 10px 0
 				position: relative
-				opacity: 0.2
-				@include transition(opacity)
 				img.thumbnail
 					width: 300px
 					height: 200px
@@ -62,10 +59,8 @@
 					height: 40px
 		.info
 			a.title
-				color: $text_color
 				font-weight: 700
 				font-size: 15px
-				@include transition(color)
 			.byline
 				color: #555
 			.edit a
