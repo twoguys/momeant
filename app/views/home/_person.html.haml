@@ -10,9 +10,20 @@
         - if person.location?
           %span from #{person.location}
       %p
-        %span.lquote &ldquo;
-        %span= truncate person.tagline, :length => 100
-        %span.rquote &rdquo;
-      .stats
-        .content= pluralize person.created_stories.published.count, "work"
-        .rewarders= pluralize person.patrons.count, "rewarder"
+        %span.lquote
+        %span= person.tagline
+        %span.rquote
+      .content
+        %strong= pluralize person.created_stories.published.count, "work"
+        %ul
+          - person.created_stories.published.newest_first.limit(10).each do |content|
+            %li= content.title
+      .rewarders
+        %strong= pluralize person.patrons.count, "supporter"
+        %ul
+          - person.patrons.limit(6).each do |supporter|
+            %li
+              = image_tag supporter.avatar.url(:thumbnail)
+              .cover
+
+    .clear

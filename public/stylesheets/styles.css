@@ -877,168 +877,34 @@ table {
 @media all and (max-width: 1049px) {
   #user-profile #vertical-people {
     display: none; } }
-#home.index, #registrations.create {
-  height: 100%; }
-  #home.index #header, #registrations.create #header {
-    display: none; }
-  #home.index #container, #registrations.create #container {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 0;
-    background: #985140 url(../images/discovery/leather.jpg) repeat 0 0; }
-    #home.index #container #main, #registrations.create #container #main {
-      width: auto;
-      position: fixed;
-      top: 10px;
-      bottom: 10px;
-      left: 20px;
-      right: 20px;
-      margin: 0; }
-  #home.index #book-wrapper, #registrations.create #book-wrapper {
-    z-index: 1;
-    position: fixed; }
-    #home.index #book-wrapper #left-pages, #home.index #book-wrapper #right-pages, #registrations.create #book-wrapper #left-pages, #registrations.create #book-wrapper #right-pages {
-      width: 12px;
-      position: fixed;
-      top: 10px;
-      bottom: 10px; }
-      #home.index #book-wrapper #left-pages .corner, #home.index #book-wrapper #right-pages .corner, #registrations.create #book-wrapper #left-pages .corner, #registrations.create #book-wrapper #right-pages .corner {
-        width: 12px;
-        height: 8px;
-        background: transparent url(../images/discovery/top-left-corner.png) no-repeat 0 0;
-        position: absolute;
-        z-index: 2; }
-      #home.index #book-wrapper #left-pages .corner.top, #home.index #book-wrapper #right-pages .corner.top, #registrations.create #book-wrapper #left-pages .corner.top, #registrations.create #book-wrapper #right-pages .corner.top {
-        top: 0; }
-      #home.index #book-wrapper #left-pages .corner.bottom, #home.index #book-wrapper #right-pages .corner.bottom, #registrations.create #book-wrapper #left-pages .corner.bottom, #registrations.create #book-wrapper #right-pages .corner.bottom {
-        bottom: 0; }
-      #home.index #book-wrapper #left-pages .vertical, #home.index #book-wrapper #right-pages .vertical, #registrations.create #book-wrapper #left-pages .vertical, #registrations.create #book-wrapper #right-pages .vertical {
-        width: 12px;
-        background: transparent url(../images/discovery/left-vertical.png) repeat-y 0 0;
-        position: absolute;
-        top: 8px;
-        bottom: 8px; }
-    #home.index #book-wrapper #left-pages, #registrations.create #book-wrapper #left-pages {
-      left: 8px; }
-      #home.index #book-wrapper #left-pages .bottom, #registrations.create #book-wrapper #left-pages .bottom {
-        background-image: url(../images/discovery/bottom-left-corner.png); }
-    #home.index #book-wrapper #right-pages, #registrations.create #book-wrapper #right-pages {
-      right: 8px; }
-      #home.index #book-wrapper #right-pages .vertical, #registrations.create #book-wrapper #right-pages .vertical {
-        background-image: url(../images/discovery/right-vertical.png); }
-      #home.index #book-wrapper #right-pages .top, #registrations.create #book-wrapper #right-pages .top {
-        background-image: url(../images/discovery/top-right-corner.png); }
-      #home.index #book-wrapper #right-pages .bottom, #registrations.create #book-wrapper #right-pages .bottom {
-        background-image: url(../images/discovery/bottom-right-corner.png); }
-    #home.index #book-wrapper #bottom-shadow, #registrations.create #book-wrapper #bottom-shadow {
-      z-index: 1;
-      position: fixed;
-      left: 8px;
-      right: 8px;
-      bottom: 0;
-      height: 18px;
-      background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%);
-      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0.5)), color-stop(100%, rgba(0, 0, 0, 0)));
-      background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%);
-      background: -o-linear-gradient(top, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%);
-      background: -ms-linear-gradient(top, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%);
-      background: linear-gradient(top, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%); }
-  #home.index #book, #registrations.create #book {
-    z-index: 2;
-    position: absolute;
-    background: transparent url(../images/discovery/book.png) no-repeat 50% 50%;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover; }
-    #home.index #book .b-wrap, #registrations.create #book .b-wrap {
-      position: absolute;
-      top: 0; }
-    #home.index #book .b-wrap-left, #registrations.create #book .b-wrap-left {
-      background: transparent url(../images/discovery/page-left.png) repeat-y 100% 50%; }
-    #home.index #book .b-wrap-right, #registrations.create #book .b-wrap-right {
-      background: transparent url(../images/discovery/page-right.png) repeat-y 0 50%; }
-    #home.index #book .b-page, #registrations.create #book .b-page {
-      position: absolute;
-      left: 0;
-      top: 0;
-      overflow: hidden;
-      padding: 0;
-      display: none; }
-    #home.index #book .b-shadow-f, #home.index #book .b-shadow-b, #registrations.create #book .b-shadow-f, #registrations.create #book .b-shadow-b {
-      right: 0;
-      top: 0;
-      opacity: 0;
-      background: transparent url(../images/discovery/shadow-top-forward.png) repeat-y 100% 0; }
-    #home.index #book .b-shadow-b, #registrations.create #book .b-shadow-b {
-      background-image: url(../images/discovery/shadow-top-back.png);
-      background-position: 0 0; }
-    #home.index #book .b-page-1, #registrations.create #book .b-page-1 {
-      z-index: 2; }
-    #home.index #book .b-page-3, #registrations.create #book .b-page-3 {
-      z-index: 1; }
-    #home.index #book .b-counter, #registrations.create #book .b-counter {
-      display: none; }
-  #home.index .page, #registrations.create .page {
-    position: relative;
-    height: 100%; }
-  #home.index #page1 .insides, #registrations.create #page1 .insides {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin: -100px 0 0 -137px;
-    font-size: 18px;
-    width: 275px; }
-    #home.index #page1 .insides img, #registrations.create #page1 .insides img {
-      margin-bottom: 1em; }
-    #home.index #page1 .insides p, #registrations.create #page1 .insides p {
-      line-height: 1.3em;
-      color: #666666; }
-      #home.index #page1 .insides p strong, #registrations.create #page1 .insides p strong {
-        color: black;
-        display: block; }
-  #home.index #page2 a, #registrations.create #page2 a {
-    display: block;
-    width: 100%;
-    height: 100%;
-    background: transparent url(../images/discovery/view-creators-button.png) no-repeat 50% 50%;
-    text-indent: 100%;
-    white-space: nowrap;
-    overflow: hidden;
-    opacity: 0.2;
-    -webkit-transition: opacity 0.2s linear;
-    -moz-transition: opacity 0.2s linear;
-    -ms-transition: opacity 0.2s linear;
-    -o-transition: opacity 0.2s linear;
-    transition: opacity 0.2s linear; }
-    #home.index #page2 a:hover, #registrations.create #page2 a:hover {
-      opacity: 1; }
-  #home.index #page3 .insides, #registrations.create #page3 .insides {
-    width: 306px;
-    height: 450px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin: -265px 0 0 -200px;
-    padding-top: 86px; }
-  #home.index #page3 #choose-a-category, #registrations.create #page3 #choose-a-category {
-    width: 306px;
+#home.index #main, #registrations.create #main {
+  max-width: 1200px;
+  margin: 0 auto; }
+#home.index #slogan, #registrations.create #slogan {
+  font-size: 40px;
+  font-weight: 600;
+  margin: 40px 0 60px 200px; }
+#home.index #creator-discovery, #registrations.create #creator-discovery {
+  position: relative;
+  padding-left: 200px;
+  min-height: 400px; }
+  #home.index #creator-discovery #choose-a-category, #registrations.create #creator-discovery #choose-a-category {
+    width: 386px;
     height: 86px;
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 128px;
+    left: 170px;
     background: transparent url(../images/discovery/choose-category.png) no-repeat 0 0; }
-  #home.index #page3 #filter, #registrations.create #page3 #filter {
+  #home.index #creator-discovery #filter, #registrations.create #creator-discovery #filter {
     width: 150px;
-    margin-left: 120px; }
-    #home.index #page3 #filter li, #registrations.create #page3 #filter li {
+    position: absolute;
+    top: 0;
+    left: 0; }
+    #home.index #creator-discovery #filter li, #registrations.create #creator-discovery #filter li {
       height: 35px;
       margin-bottom: 5px;
       text-align: right; }
-    #home.index #page3 #filter a, #registrations.create #page3 #filter a {
+    #home.index #creator-discovery #filter a, #registrations.create #creator-discovery #filter a {
       padding: 3px 10px;
       font-size: 15px;
       font-weight: 700;
@@ -1053,70 +919,94 @@ table {
       -moz-border-radius: 3px;
       border-radius: 3px;
       margin-right: 5px; }
-      #home.index #page3 #filter a:hover, #registrations.create #page3 #filter a:hover {
+      #home.index #creator-discovery #filter a:hover, #registrations.create #creator-discovery #filter a:hover {
         background: #f0f0f0;
         color: black; }
-      #home.index #page3 #filter a:active, #home.index #page3 #filter a.selected, #registrations.create #page3 #filter a:active, #registrations.create #page3 #filter a.selected {
+      #home.index #creator-discovery #filter a:active, #home.index #creator-discovery #filter a.selected, #registrations.create #creator-discovery #filter a:active, #registrations.create #creator-discovery #filter a.selected {
         box-shadow: 0 -1px 1px rgba(255, 255, 255, 0.8) inset, 0 0 2px rgba(0, 0, 0, 0.4) inset, 0 1px 0 rgba(0, 0, 0, 0.3) inset, 0 -1px 0 rgba(0, 0, 0, 0.4) inset;
         border: none;
         position: relative;
         top: 2px; }
-  #home.index #page4, #registrations.create #page4 {
-    position: relative; }
-    #home.index #page4 #people, #registrations.create #page4 #people {
-      height: 100%; }
-      #home.index #page4 #people ul, #registrations.create #page4 #people ul {
-        height: 100%; }
-      #home.index #page4 #people li, #registrations.create #page4 #people li {
-        height: 20%;
-        padding: 2.5%;
-        margin-left: 3px;
-        border-bottom: 1px solid #dbdbdb; }
-      #home.index #page4 #people a.surround, #registrations.create #page4 #people a.surround {
-        display: block;
-        height: 100%;
-        position: relative;
-        padding: 0 100px 0 120px;
-        margin-right: 20px;
-        color: #252525;
-        background: transparent url(../images/discovery/arrow.png) no-repeat 100% 50%; }
-        #home.index #page4 #people a.surround img.avatar, #registrations.create #page4 #people a.surround img.avatar {
-          width: 100px;
-          height: 100px;
-          position: absolute;
-          top: 0;
-          left: 0; }
-        #home.index #page4 #people a.surround .name span, #registrations.create #page4 #people a.surround .name span {
-          color: #777777; }
-        #home.index #page4 #people a.surround p, #registrations.create #page4 #people a.surround p {
-          line-height: 1.3em;
-          max-width: 320px;
-          padding: 0 30px;
-          position: relative; }
-          #home.index #page4 #people a.surround p .lquote, #home.index #page4 #people a.surround p .rquote, #registrations.create #page4 #people a.surround p .lquote, #registrations.create #page4 #people a.surround p .rquote {
-            font-size: 60px;
-            color: #cccccc;
-            position: absolute;
-            height: 25px;
-            line-height: 1em; }
-          #home.index #page4 #people a.surround p .lquote, #registrations.create #page4 #people a.surround p .lquote {
-            top: -10px;
-            left: 0; }
-          #home.index #page4 #people a.surround p .rquote, #registrations.create #page4 #people a.surround p .rquote {
-            bottom: 0;
-            right: 0; }
-        #home.index #page4 #people a.surround .stats, #registrations.create #page4 #people a.surround .stats {
-          display: none; }
-      #home.index #page4 #people .loader, #registrations.create #page4 #people .loader {
-        display: none;
-        width: 100%;
-        position: absolute;
-        top: 50%;
-        text-align: center; }
-    #home.index #page4 #people.loading .loader, #registrations.create #page4 #people.loading .loader {
-      display: block; }
-    #home.index #page4 #people.loading ul, #registrations.create #page4 #people.loading ul {
-      display: none; }
+  #home.index #creator-discovery #people ul#list > li, #registrations.create #creator-discovery #people ul#list > li {
+    padding: 40px 0;
+    border-top: 1px solid #eeeeee; }
+    #home.index #creator-discovery #people ul#list > li:first-child, #registrations.create #creator-discovery #people ul#list > li:first-child {
+      padding-top: 0;
+      border: none; }
+  #home.index #creator-discovery #people a.surround, #registrations.create #creator-discovery #people a.surround {
+    display: block;
+    height: 100%;
+    position: relative;
+    padding: 0 100px 0 170px;
+    margin-right: 20px;
+    color: #252525;
+    background: transparent url(../images/discovery/arrow.png) no-repeat 100% 50%;
+    min-height: 150px; }
+    #home.index #creator-discovery #people a.surround img.avatar, #registrations.create #creator-discovery #people a.surround img.avatar {
+      width: 150px;
+      height: 150px;
+      position: absolute;
+      top: 0;
+      left: 0; }
+    #home.index #creator-discovery #people a.surround .name, #registrations.create #creator-discovery #people a.surround .name {
+      font-size: 20px;
+      font-weight: 300;
+      text-transform: uppercase;
+      margin-bottom: 20px; }
+    #home.index #creator-discovery #people a.surround .name span, #registrations.create #creator-discovery #people a.surround .name span {
+      color: #777777; }
+    #home.index #creator-discovery #people a.surround p, #home.index #creator-discovery #people a.surround .content, #home.index #creator-discovery #people a.surround .rewarders, #registrations.create #creator-discovery #people a.surround p, #registrations.create #creator-discovery #people a.surround .content, #registrations.create #creator-discovery #people a.surround .rewarders {
+      float: left; }
+    #home.index #creator-discovery #people a.surround p, #home.index #creator-discovery #people a.surround .content, #registrations.create #creator-discovery #people a.surround p, #registrations.create #creator-discovery #people a.surround .content {
+      margin-right: 5%; }
+    #home.index #creator-discovery #people a.surround p, #registrations.create #creator-discovery #people a.surround p {
+      width: 50%;
+      line-height: 1.5em;
+      float: left;
+      margin-top: 0;
+      margin-bottom: 0;
+      position: relative; }
+      #home.index #creator-discovery #people a.surround p .lquote, #home.index #creator-discovery #people a.surround p .rquote, #registrations.create #creator-discovery #people a.surround p .lquote, #registrations.create #creator-discovery #people a.surround p .rquote {
+        display: inline-block;
+        width: 25px;
+        height: 20px;
+        background: transparent url(../images/discovery/quotes.png) no-repeat 0 0; }
+      #home.index #creator-discovery #people a.surround p .lquote, #registrations.create #creator-discovery #people a.surround p .lquote {
+        margin-right: 3px; }
+      #home.index #creator-discovery #people a.surround p .rquote, #registrations.create #creator-discovery #people a.surround p .rquote {
+        background-position: -28px 0;
+        margin-top: -5px; }
+  #home.index #creator-discovery #people .content, #home.index #creator-discovery #people .rewarders, #registrations.create #creator-discovery #people .content, #registrations.create #creator-discovery #people .rewarders {
+    width: 20%; }
+  #home.index #creator-discovery #people .content li, #registrations.create #creator-discovery #people .content li {
+    font-size: 12px;
+    margin-top: 8px;
+    color: #777777; }
+  #home.index #creator-discovery #people .rewarders li, #registrations.create #creator-discovery #people .rewarders li {
+    float: left;
+    position: relative;
+    width: 40px;
+    height: 40px;
+    margin: 3px 3px 0 0; }
+    #home.index #creator-discovery #people .rewarders li img, #registrations.create #creator-discovery #people .rewarders li img {
+      width: 40px;
+      height: 40px; }
+    #home.index #creator-discovery #people .rewarders li .cover, #registrations.create #creator-discovery #people .rewarders li .cover {
+      display: block;
+      width: 40px;
+      height: 40px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: transparent url(../images/discovery/avatar-cover-40.png) no-repeat 0 0; }
+  #home.index #creator-discovery #people .loader, #registrations.create #creator-discovery #people .loader {
+    display: none;
+    text-align: center;
+    padding-top: 100px; }
+  #home.index #creator-discovery #people.loading .loader, #registrations.create #creator-discovery #people.loading .loader {
+    display: block; }
+  #home.index #creator-discovery #people.loading ul, #registrations.create #creator-discovery #people.loading ul {
+    display: none; }
 
 impact ul.avatars li {
   float: left;

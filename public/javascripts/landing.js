@@ -1,28 +1,15 @@
 $(function() {
   
-  window.BookView = Backbone.View.extend({
+  window.DiscoveryView = Backbone.View.extend({
 		
 		el: $('#main'),
 		
 		events: {
-			'click #page2 a': 'view_creators',
 			'click #filter a': 'load_people'
 		},
 		
 		initialize: function() {
-		  this.book = $('#book');
-			this.book.booklet({
-			  manual: false,
-			  width: '100%',
-			  height: '100%'
-			});
-			
 			this.current_category = undefined;
-		},
-		
-		view_creators: function() {
-		  Book.book.booklet('next');
-		  return false;
 		},
 		
 		load_people: function(event) {
@@ -31,13 +18,13 @@ $(function() {
       
       $('#choose-a-category:visible').fadeOut(200);
 
-      Book.current_category = $link.text();
-      if (Book.current_category == 'All') { Book.current_category = ''; }
+      Discovery.current_category = $link.text();
+      if (Discovery.current_category == 'All') { Discovery.current_category = ''; }
 
       var $people = $('#people');
       if (!$people.is(':visible')) { $people.show(); }
       $people.addClass('loading');
-      $.get('/people?category=' + Book.current_category, function(result) {
+      $.get('/people?category=' + Discovery.current_category, function(result) {
         $('#people ul').html(result);
         $people.removeClass('loading');
       });
@@ -47,6 +34,6 @@ $(function() {
 		
 	});
 	
-	window.Book = new BookView;
+	window.Discovery = new DiscoveryView;
 	
 });

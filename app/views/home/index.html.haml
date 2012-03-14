@@ -1,43 +1,17 @@
-#book-wrapper
-  #left-pages
-    .top.corner
-    .vertical
-    .bottom.corner
-  #right-pages
-    .top.corner
-    .vertical
-    .bottom.corner
-  #bottom-shadow
+%h1#slogan Discover people and causes worth rewarding.
+  
+#creator-discovery
+  %ul#filter
+    - Story::CATEGORIES.each do |category|
+      %li= link_to category, "#"
 
-#book
-  .b-load
-    #page1.page
-      .insides
-        = image_tag "discovery/logo-large.png"
-        %p
-          %strong Discover people
-          %span doing great things online.
-        %p
-          %strong Reward the people and causes
-          %span you believe are worth supporting.
-
-    #page2.page
-      = link_to "View creators and their work", "#"
-
-    #page3.page
-      .insides
-        #choose-a-category
-        %ul#filter
-          - Story::CATEGORIES.each do |category|
-            %li= link_to category, "#"
-
-    #page4.page
-      #people
-        %ul
-        .loader Loading...
+  #people
+    %ul#list
+      = render :partial => "home/person", :collection => @people, :as => :person
+    
+    .loader Loading...
 
 :javascript
   mpq.track('Viewed Homepage');
 
-= javascript_include_tag "jquery.booklet.1.2.0.min"
 = javascript_include_tag "landing"

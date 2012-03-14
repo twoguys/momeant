@@ -1,163 +1,31 @@
 #home.index, #registrations.create
-	height: 100%
-	
-	#header
-		display: none
-	
-	#container
-		position: fixed
-		top: 0
-		bottom: 0
-		left: 0
-		right: 0
-		padding: 0
-		background: #985140 url(../images/discovery/leather.jpg) repeat 0 0
-		#main
-			width: auto
-			position: fixed
-			top: 10px
-			bottom: 10px
-			left: 20px
-			right: 20px
-			margin: 0
-	
-	#book-wrapper
-		z-index: 1
-		position: fixed
-		#left-pages, #right-pages
-			width: 12px
-			position: fixed
-			top: 10px
-			bottom: 10px
-			.corner
-				width: 12px
-				height: 8px
-				background: transparent url(../images/discovery/top-left-corner.png) no-repeat 0 0
-				position: absolute
-				z-index: 2
-			.corner.top
-				top: 0
-			.corner.bottom
-				bottom: 0
-			.vertical
-				width: 12px
-				background: transparent url(../images/discovery/left-vertical.png) repeat-y 0 0
-				position: absolute
-				top: 8px
-				bottom: 8px
-		#left-pages
-			left: 8px
-			.bottom
-				background-image: url(../images/discovery/bottom-left-corner.png)
-		#right-pages
-			right: 8px
-			.vertical
-				background-image: url(../images/discovery/right-vertical.png)
-			.top
-				background-image: url(../images/discovery/top-right-corner.png)
-			.bottom
-				background-image: url(../images/discovery/bottom-right-corner.png)
-		#bottom-shadow
-			z-index: 1
-			position: fixed
-			left: 8px
-			right: 8px
-			bottom: 0
-			height: 18px
-			background: -moz-linear-gradient(top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 100%)
-			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0.5)), color-stop(100%,rgba(0,0,0,0)))
-			background: -webkit-linear-gradient(top, rgba(0,0,0,0.5) 0%,rgba(0,0,0,0) 100%)
-			background: -o-linear-gradient(top, rgba(0,0,0,0.5) 0%,rgba(0,0,0,0) 100%)
-			background: -ms-linear-gradient(top, rgba(0,0,0,0.5) 0%,rgba(0,0,0,0) 100%)
-			background: linear-gradient(top, rgba(0,0,0,0.5) 0%,rgba(0,0,0,0) 100%)
-	
-	#book
-		z-index: 2
-		position: absolute
-		background: transparent url(../images/discovery/book.png) no-repeat 50% 50%
-		@include bgcover
-		.b-wrap
-			position: absolute
-			top: 0
-		.b-wrap-left
-			background: transparent url(../images/discovery/page-left.png) repeat-y 100% 50%
-		.b-wrap-right
-			background: transparent url(../images/discovery/page-right.png) repeat-y 0 50%
-		.b-page
-			position: absolute
-			left: 0
-			top: 0
-			overflow: hidden
-			padding: 0
-			display: none
-		.b-shadow-f, .b-shadow-b
-			position:absolute
-			right: 0
-			top: 0
-			opacity: 0
-			background: transparent url(../images/discovery/shadow-top-forward.png) repeat-y 100% 0
-		.b-shadow-b
-			background-image: url(../images/discovery/shadow-top-back.png)
-			background-position: 0 0
-		.b-page-1
-			z-index: 2
-		.b-page-3
-			z-index: 1
-		.b-counter
-			display: none
-	
-	.page
-		position: relative
-		height: 100%
-	
-	#page1
-		.insides
-			position: absolute
-			top: 50%
-			left: 50%
-			margin: -100px 0 0 -137px
-			font-size: 18px
-			width: 275px
-			img
-				margin-bottom: 1em
-			p
-				line-height: 1.3em
-				color: #666
-				strong
-					color: #000
-					display: block
-	
-	#page2
-		a
-			display: block
-			width: 100%
-			height: 100%
-			background: transparent url(../images/discovery/view-creators-button.png) no-repeat 50% 50%
-			@include notext
-			opacity: 0.2
-			@include transition(opacity)
-			&:hover
-				opacity: 1.0
+
+	#main
+		max-width: 1200px
+		margin: 0 auto
 		
-	#page3
-		.insides
-			width: 306px
-			height: 450px
-			position: absolute
-			top: 50%
-			left: 50%
-			margin: -265px 0 0 -200px
-			padding-top: 86px
+	#slogan
+		font-size: 40px
+		font-weight: 600
+		margin: 40px 0 60px 200px
+	
+	#creator-discovery
+		position: relative
+		padding-left: 200px
+		min-height: 400px
+		
 		#choose-a-category
-			width: 306px
+			width: 386px
 			height: 86px
 			position: absolute
-			top: 0
-			left: 0
+			top: 128px
+			left: 170px
 			background: transparent url(../images/discovery/choose-category.png) no-repeat 0 0
 		#filter
 			width: 150px
-			margin-left: 120px
+			position: absolute
+			top: 0
+			left: 0
 			li
 				height: 35px
 				margin-bottom: 5px
@@ -183,58 +51,83 @@
 					position: relative
 					top: 2px
 	
-	#page4
-		position: relative
 		#people
-			height: 100%
-			ul
-				height: 100%
-			li
-				height: 20%
-				padding: 2.5%
-				margin-left: 3px
-				border-bottom: 1px solid #dbdbdb
+			ul#list > li
+				padding: 40px 0
+				border-top: 1px solid #eee
+				&:first-child
+					padding-top: 0
+					border: none
 			a.surround
 				display: block
 				height: 100%
 				position: relative
-				padding: 0 100px 0 120px
+				padding: 0 100px 0 170px
 				margin-right: 20px
 				color: $text_color
 				background: transparent url(../images/discovery/arrow.png) no-repeat 100% 50%
+				min-height: 150px
 				img.avatar
-					width: 100px
-					height: 100px
+					width: 150px
+					height: 150px
 					position: absolute
 					top: 0
 					left: 0
+				.name
+					font-size: 20px
+					font-weight: 300
+					text-transform: uppercase
+					margin-bottom: 20px
 				.name span
 					color: #777
+				p, .content, .rewarders
+					float: left
+				p, .content
+					margin-right: 5%
 				p
-					line-height: 1.3em
-					max-width: 320px
-					padding: 0 30px
+					width: 50%
+					line-height: 1.5em
+					float: left
+					margin-top: 0
+					margin-bottom: 0
 					position: relative
 					.lquote, .rquote
-						font-size: 60px
-						color: #ccc
-						position: absolute
-						height: 25px
-						line-height: 1em
+						display: inline-block
+						width: 25px
+						height: 20px
+						background: transparent url(../images/discovery/quotes.png) no-repeat 0 0
 					.lquote
-						top: -10px
-						left: 0
+						margin-right: 3px
 					.rquote
-						bottom: 0
-						right: 0
-				.stats
-					display: none			
+						background-position: -28px 0
+						margin-top: -5px
+			.content, .rewarders
+				width: 20%
+			.content li
+				font-size: 12px
+				margin-top: 8px
+				color: #777
+			.rewarders li
+				float: left
+				position: relative
+				width: 40px
+				height: 40px
+				margin: 3px 3px 0 0
+				img
+					width: 40px
+					height: 40px
+				.cover
+					display: block
+					width: 40px
+					height: 40px
+					position: absolute
+					top: 0
+					left: 0
+					background: transparent url(../images/discovery/avatar-cover-40.png) no-repeat 0 0
 			.loader
 				display: none
-				width: 100%
-				position: absolute
-				top: 50%
 				text-align: center
+				padding-top: 100px
 		#people.loading
 			.loader
 				display: block
