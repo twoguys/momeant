@@ -14,13 +14,15 @@ $(function() {
 		
 		load_people: function(event) {
 		  var $link = $(event.currentTarget);
-      $link.addClass('selected').parent().siblings().find('a').removeClass('selected');
+		  if ($link.hasClass('selected')) {
+		    Discovery.current_category = '';
+		    $link.removeClass('selected');
+		  } else {
+		    $link.addClass('selected').parent().siblings().find('a').removeClass('selected');
+        Discovery.current_category = $link.text();
+		  }
       
       $('#choose-a-category:visible').fadeOut(200);
-
-      Discovery.current_category = $link.text();
-      if (Discovery.current_category == 'All') { Discovery.current_category = ''; }
-
       var $people = $('#people');
       if (!$people.is(':visible')) { $people.show(); }
       $people.addClass('loading');

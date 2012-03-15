@@ -40,6 +40,8 @@ impact ul.avatars
 
 body#users, body#messages
 	#main
+		max-width: 100%
+		margin: 0
 		padding-bottom: 50px
 
 #user-profile
@@ -59,11 +61,6 @@ body#users, body#messages
 		width: 210px
 
 		.metadata
-			color: #aaa
-			@include transition(color)
-			&:hover
-				color: $text_color
-				
 			.avatar-badge
 				width: 130px
 				margin-bottom: 20px
@@ -86,6 +83,22 @@ body#users, body#messages
 				line-height: 1.4em
 				span
 					display: block
+			
+			#tabs
+				margin-bottom: 20px
+				#links
+					padding-bottom: 3px
+					border-bottom: 1px solid #ddd
+					margin-bottom: 5px
+					a
+						margin-right: 3px
+					a.selected
+						font-weight: 700
+						color: $text_color
+						cursor: default
+				#text .hidden
+					display: none
+			
 
 			ul.stats
 				position: relative

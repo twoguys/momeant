@@ -23,17 +23,36 @@
             - else
               .byline= @user.name
             %p= content.synopsis
-            = #link_to "View #{content.this_media}", story_path(content), :class => "view-button"
+          
+          .rewards
+            - if content.users_who_rewarded.empty?
+              = link_to "Become the first supporter &rarr;".html_safe, story_path(content), :class => "be-next"
+            - else
+              %h3 Recent supporters
+              - size = content.users_who_rewarded.size - 1
+              - size = size > 9 ? 9 : size
+              - content.users_who_rewarded[0..size].each do |user|
+                .reward
+                  = image_tag user.avatar.url(:thumbnail)
+                  = link_to "", user_path(user), :class => "cover tooltipped", :title => user.name
+              = link_to "Become a supporter &rarr;".html_safe, story_path(content), :class => "be-next"
             
         - index += 1
   
   #vertical-people
     %h1= pluralize @supporters.length, "supporter"
     %ul
+      - first = true
       - @supporters.each do |person|
-        %li
+        %li{:class => first ? "first" : ""}
           = image_tag person[0].avatar.url(:thumbnail)
           = link_to person[0].name, user_path(person[0]), :class => "cover tooltipped", :title => "#{person[0].name} has rewarded #{@user.first_name} #{number_to_currency(person[1] * Reward.dollar_exchange)}"
+          - if first
+            .text Top Supporter
+            %h3
+              %span= person[0].first_name
+              %span= person[0].last_name
+        - first = false
   
 - if me?(@user)
   :javascript
@@ -45,3 +64,4 @@
 :javascript
   var scrollables_selector = '#content-list';
 = javascript_include_tag "content_scroller"
+= javascript_include_tag "users/show"

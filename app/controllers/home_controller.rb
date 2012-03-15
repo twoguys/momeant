@@ -5,7 +5,7 @@ class HomeController < ApplicationController
   end
   
   def people # ajax
-    @people = User.most_rewarded.limit(4)
+    @people = User.most_rewarded.limit(5)
     render :partial => "home/person", :collection => @people, :as => :person
   end
   

@@ -1,15 +1,29 @@
-%h1#slogan Discover people and causes worth rewarding.
-  
-#creator-discovery
-  %ul#filter
-    - Story::CATEGORIES.each do |category|
-      %li= link_to category, "#"
+#discover
 
-  #people
-    %ul#list
-      = render :partial => "home/person", :collection => @people, :as => :person
+  %h1#slogan Discover people and causes worth rewarding.
+  
+  #description
+    %ul
+      %li
+        %h2 What is Momeant?
+        %p There is a problem with the Web: very few of us who contribute content make money for our work. With your help, Momeant aims to change that. Content and information will remain free, while you reward the content and creators you know and like. If you're a creator, sign up to start getting rewarded.
+      %li
+        %h2 How does it work?
+        %p We’d like you to meet The Reward, a voluntary payment you can make directly to a creator, after you’ve seen their content. Why would you voluntarily reward someone? To show some love, appreciation, support, to get your own content rewarded, and to play your part in creating a new digital economy.
+      %li
+        %h2 Why does Momeant matter?
+        %p Because we're entering a new creative economy, where we spend more of our time and hard work creating content for the Web, and sharing it for free. But in order to make this new economy sustainable, we have to start rewarding what we recognize as being valuable.
+  
+  #creator-discovery
+    %ul#filter
+      - Story::CATEGORIES.each do |category|
+        %li= link_to category, "#"
+
+    #people
+      %ul#list
+        = render :partial => "home/person", :collection => @people, :as => :person
     
-    .loader Loading...
+      .loader Loading...
 
 :javascript
   mpq.track('Viewed Homepage');

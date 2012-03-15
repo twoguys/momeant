@@ -17,7 +17,7 @@
         %strong= pluralize person.created_stories.published.count, "work"
         %ul
           - person.created_stories.published.newest_first.limit(5).each do |content|
-            %li= content.title
+            %li{:class => content.media_type}= content.title
       .rewarders
         %strong= pluralize person.patrons.count, "supporter"
         %ul
@@ -25,5 +25,7 @@
             %li
               = image_tag supporter.avatar.url(:thumbnail)
               .cover
+      
+      .arrow
 
     .clear

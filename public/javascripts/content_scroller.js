@@ -37,9 +37,9 @@ $(function() {
 		  $.each($(scrollables_selector + ' li'), function(index, value) {
 		    var $content = $(value);
 		    var content_info = {
-		      height: $content.height() + 90, // add bottom padding
+		      height: $content.height(),
 		      top: $content.offset().top - 120, // subtract space between top of browser and where content starts
-		      bottom: $content.offset().top - 120 + $content.height() + 90
+		      bottom: $content.offset().top - 120 + $content.height()
 		    };
 		    scrollables.push(content_info);
 		  });

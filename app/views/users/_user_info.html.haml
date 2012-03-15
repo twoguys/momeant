@@ -15,7 +15,13 @@
         - if @user.location
           %span from #{@user.location}
       
-      %p= truncate @user.tagline, :length => 300
+      #tabs
+        #links
+          = link_to "Updates", "#", :class => "selected"
+          = link_to "Info", "#"
+        #text
+          .updates As #{@user.first_name} posts updates, they will show up here.
+          .info.hidden= @user.tagline
   
     %ul.stats
       %li #{number_to_currency(@user.rewards.sum(:amount) * Reward.dollar_exchange)} earned

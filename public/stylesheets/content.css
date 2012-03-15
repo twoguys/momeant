@@ -9,11 +9,11 @@ Syntax error: Undefined mixin 'transition'.
 16: 	
 17: 	#content-list
 18: 		@include transition(margin, 0.3s, ease-out)
-19: 		li
-20: 			min-height: 200px
-21: 			padding-bottom: 90px
-22: 			clear: both
-23: 			opacity: 0.5
+19: 	#content-list > li
+20: 		min-height: 200px
+21: 		clear: both
+22: 		opacity: 0.3
+23: 		@include transition(opacity)
 
 Backtrace:
 /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/content.sass:18:in `transition'
@@ -115,4 +115,4 @@ Backtrace:
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Syntax error: Undefined mixin 'transition'.\A         on line 18 of /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/content.sass, in `transition'\A         from line 18 of /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/content.sass\A \A 13: 		font-size: 12px\A 14: 		color: #777\A 15: 		line-height: 14px\A 16: 	\A 17: 	#content-list\A 18: 		@include transition(margin, 0.3s, ease-out)\A 19: 		li\A 20: 			min-height: 200px\A 21: 			padding-bottom: 90px\A 22: 			clear: both\A 23: 			opacity: 0.5"; }
+  content: "Syntax error: Undefined mixin 'transition'.\A         on line 18 of /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/content.sass, in `transition'\A         from line 18 of /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/content.sass\A \A 13: 		font-size: 12px\A 14: 		color: #777\A 15: 		line-height: 14px\A 16: 	\A 17: 	#content-list\A 18: 		@include transition(margin, 0.3s, ease-out)\A 19: 	#content-list > li\A 20: 		min-height: 200px\A 21: 		clear: both\A 22: 		opacity: 0.3\A 23: 		@include transition(opacity)"; }

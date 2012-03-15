@@ -54,4 +54,8 @@ class Reward < Curation
   def descendants_except(user)
     self.descendants.map(&:user).uniq.reject {|u| u == user}
   end
+  
+  def dollar_amount
+    self.amount * Reward.dollar_exchange
+  end
 end

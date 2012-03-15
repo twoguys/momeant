@@ -1,13 +1,36 @@
 #home.index, #registrations.create
 
-	#main
-		max-width: 1200px
-		margin: 0 auto
-		
+	#discover
+		position: relative
+
 	#slogan
 		font-size: 40px
 		font-weight: 600
-		margin: 40px 0 60px 200px
+		margin: 40px 0
+	
+	#description
+		margin-bottom: 40px
+		ul
+			@include clearfix
+			li
+				float: left
+				width: 353px
+				margin-right: 50px
+				height: 160px
+				&:last-child
+					margin-right: 0
+				h2
+					background: none
+					color: #000
+					padding: 0
+					font-size: 21px
+					font-weight: 700
+					text-transform: none
+					margin-bottom: 15px
+				p
+					font-size: 13.5px
+					line-height: 1.5em
+					margin: 0
 	
 	#creator-discovery
 		position: relative
@@ -53,26 +76,29 @@
 	
 		#people
 			ul#list > li
-				padding: 40px 0
-				border-top: 1px solid #eee
-				&:first-child
-					padding-top: 0
-					border: none
+				margin-bottom: 40px
 			a.surround
 				display: block
 				height: 100%
 				position: relative
-				padding: 0 100px 0 170px
-				margin-right: 20px
-				color: $text_color
-				background: transparent url(../images/discovery/arrow.png) no-repeat 100% 50%
+				padding: 20px 80px 20px 190px
 				min-height: 150px
+				background: #fff
+				color: $text_color
+				@include rounded
+				@include boxshadow(5px, 0.3)
+				border: 1px solid #ccc
+				@include transition(border-color)
+				&:hover
+					border-color: #00aeff
+					.arrow
+						opacity: 1
 				img.avatar
 					width: 150px
 					height: 150px
 					position: absolute
-					top: 0
-					left: 0
+					top: 20px
+					left: 20px
 				.name
 					font-size: 20px
 					font-weight: 300
@@ -85,7 +111,7 @@
 				p, .content
 					margin-right: 5%
 				p
-					width: 50%
+					width: 40%
 					line-height: 1.5em
 					float: left
 					margin-top: 0
@@ -101,12 +127,22 @@
 					.rquote
 						background-position: -28px 0
 						margin-top: -5px
-			.content, .rewarders
+			.content
+				width: 30%
+			.rewarders
 				width: 20%
 			.content li
 				font-size: 12px
 				margin-top: 8px
 				color: #777
+				padding-left: 18px
+				background: transparent url(../images/discovery/photos-tiny.png) no-repeat 0 2px
+				&.video
+					background-image: url(../images/discovery/video-tiny.png)
+				&.writing
+					background-image: url(../images/discovery/writing-tiny.png)
+				&.music
+					background-image: url(../images/discovery/music-tiny.png)
 			.rewarders li
 				float: left
 				position: relative
@@ -124,6 +160,16 @@
 					top: 0
 					left: 0
 					background: transparent url(../images/discovery/avatar-cover-40.png) no-repeat 0 0
+			.arrow
+				position: absolute
+				top: 50%
+				right: 30px
+				width: 25px
+				height: 28px
+				margin-top: -14px
+				background: transparent url(../images/discovery/blue-arrow.png) no-repeat 100% 50%
+				opacity: 0
+				@include transition(opacity)
 			.loader
 				display: none
 				text-align: center
