@@ -2,7 +2,7 @@
 	position: fixed
 	top: 82px
 	right: 40px
-	width: 160px
+	width: 260px
 	li
 		float: left
 		position: relative
@@ -12,11 +12,9 @@
 			float: none
 			img
 				float: left
-				margin-right: 5px
+				margin-right: 8px
 			.text
-				padding-top: 3px
-			h3 span
-				display: block
+				padding-top: 12px
 		.cover
 			display: block
 			width: 60px
@@ -27,17 +25,14 @@
 			background: transparent url(../images/profile/avatar-cover-60.png) no-repeat 0 0
 			@include notext
 
-// Going bigger			
-@media all and (min-width: 1700px)
-	#user-profile #vertical-people
-		width: 260px
-@media all and (min-width: 1800px)
+// Going bigger
+@media all and (min-width: 1720px)
 	#user-profile #vertical-people
 		width: auto
 		right: none
 		left: 1400px
 
 // Going smaller
-@media all and (max-width: 1049px)
-	#user-profile #vertical-people
-		display: none
+@media all and (max-width: 1000px)
+	#vertical-people
+		width: 220px

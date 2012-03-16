@@ -753,11 +753,11 @@ table {
 #vertical-content {
   padding-left: 80px;
   position: relative;
-  margin-right: 250px; }
+  margin-right: 350px; }
   #vertical-content .helper {
     position: fixed;
     top: 124px;
-    left: 280px;
+    left: 230px;
     width: 57px;
     text-align: right;
     padding-right: 18px;
@@ -840,7 +840,8 @@ table {
     #vertical-content #content-list > li .rewards {
       height: 150px;
       padding: 20px 20px 0;
-      opacity: 0; }
+      opacity: 0;
+      clear: both; }
       #vertical-content #content-list > li .rewards h3 {
         margin-bottom: 5px;
         font-size: 12px;
@@ -853,7 +854,6 @@ table {
         -moz-border-radius: 3px;
         border-radius: 3px;
         padding: 10px 15px;
-        margin-left: 5px;
         height: 18px;
         display: inline-block;
         -webkit-transition: background 0.2s linear;
@@ -868,7 +868,9 @@ table {
         width: 40px;
         height: 40px;
         float: left;
-        margin-right: 3px; }
+        margin: 0 3px 6px 0; }
+        #vertical-content #content-list > li .rewards .reward:last-child {
+          margin-right: 8px; }
         #vertical-content #content-list > li .rewards .reward a, #vertical-content #content-list > li .rewards .reward img, #vertical-content #content-list > li .rewards .reward .cover {
           display: block;
           width: 40px;
@@ -896,24 +898,19 @@ table {
       font-size: 17px; } }
 @media all and (min-width: 1600px) {
   #vertical-content #content-list li {
-    max-width: 950px;
-    min-height: 333px; }
-    #vertical-content #content-list li .content-preview {
-      width: 500px;
-      height: 333px; }
-      #vertical-content #content-list li .content-preview img.thumbnail, #vertical-content #content-list li .content-preview .media-type {
-        width: 500px;
-        height: 333px; } }
+    max-width: 950px; } }
 @media all and (max-width: 1149px) {
+  #vertical-content #content-list li .content-preview {
+    float: none; } }
+@media all and (max-width: 1025px) {
   #vertical-content {
-    width: 450px; }
-    #vertical-content #content-list li .content-preview {
-      float: none; } }
+    margin-right: 0;
+    width: 300px; } }
 #vertical-people {
   position: fixed;
   top: 82px;
   right: 40px;
-  width: 160px; }
+  width: 260px; }
   #vertical-people li {
     float: left;
     position: relative;
@@ -923,11 +920,9 @@ table {
       float: none; }
       #vertical-people li.first img {
         float: left;
-        margin-right: 5px; }
+        margin-right: 8px; }
       #vertical-people li.first .text {
-        padding-top: 3px; }
-      #vertical-people li.first h3 span {
-        display: block; }
+        padding-top: 12px; }
     #vertical-people li .cover {
       display: block;
       width: 60px;
@@ -940,17 +935,14 @@ table {
       white-space: nowrap;
       overflow: hidden; }
 
-@media all and (min-width: 1700px) {
-  #user-profile #vertical-people {
-    width: 260px; } }
-@media all and (min-width: 1800px) {
+@media all and (min-width: 1720px) {
   #user-profile #vertical-people {
     width: auto;
     right: none;
     left: 1400px; } }
-@media all and (max-width: 1049px) {
-  #user-profile #vertical-people {
-    display: none; } }
+@media all and (max-width: 1000px) {
+  #vertical-people {
+    width: 220px; } }
 #home.index #discover, #registrations.create #discover {
   position: relative; }
 #home.index #slogan, #registrations.create #slogan {
@@ -1191,7 +1183,7 @@ body#users #main, body#messages #main {
   padding-bottom: 50px; }
 
 #user-profile {
-  padding: 40px 40px 40px 290px;
+  padding: 40px 40px 40px 250px;
   /* Patronage Tab */
   /* Stats Bar */
   /* Creations Tab */
@@ -1206,6 +1198,9 @@ body#users #main, body#messages #main {
     text-transform: uppercase;
     color: black;
     margin-bottom: 20px; }
+    #user-profile h1 a.selected {
+      color: black;
+      cursor: default; }
   #user-profile .profile-info {
     position: fixed;
     top: 82px;

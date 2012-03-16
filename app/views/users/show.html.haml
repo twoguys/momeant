@@ -2,7 +2,7 @@
   = render "users/user_info"
   
   #vertical-content
-    %h1= pluralize @user.created_stories.published.count, "work"
+    %h1 Works
     .helper use keyboard
 
     %ul#content-list
@@ -40,19 +40,25 @@
         - index += 1
   
   #vertical-people
-    %h1= pluralize @supporters.length, "supporter"
-    %ul
-      - first = true
-      - @supporters.each do |person|
-        %li{:class => first ? "first" : ""}
-          = image_tag person[0].avatar.url(:thumbnail)
-          = link_to person[0].name, user_path(person[0]), :class => "cover tooltipped", :title => "#{person[0].name} has rewarded #{@user.first_name} #{number_to_currency(person[1] * Reward.dollar_exchange)}"
-          - if first
-            .text Top Supporter
-            %h3
-              %span= person[0].first_name
-              %span= person[0].last_name
-        - first = false
+    %h1
+      = link_to "Supporters", "#", :class => "selected", :data => "supporters"
+      %span /
+      = link_to "Chat", "#", :data => "chat"
+    .sections
+      %ul#supporters
+        - first = true
+        - @supporters.each do |person|
+          %li{:class => first ? "first" : ""}
+            = image_tag person[0].avatar.url(:thumbnail)
+            = link_to person[0].name, user_path(person[0]), :class => "cover tooltipped", :title => "#{person[0].name} has rewarded #{@user.first_name} #{number_to_currency(person[1] * Reward.dollar_exchange)}"
+            - if first
+              .text Top Supporter
+              %h3
+                %span= person[0].first_name
+                %span= person[0].last_name
+          - first = false
+      #chat.hidden
+        Anyone who has rewarded #{@user.first_name} can participate in his community chat.
   
 - if me?(@user)
   :javascript
