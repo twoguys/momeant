@@ -47,7 +47,7 @@ h2 {
   padding-top: 42px; }
 
 #main {
-  max-width: 1200px;
+  max-width: 1367px;
   margin: 0 auto; }
 
 #new-york {
@@ -140,7 +140,8 @@ h2 {
       position: relative;
       z-index: 2;
       margin: 0 auto;
-      max-width: 1200px; }
+      max-width: 1367px;
+      padding: 0 10px; }
       #header #user-nav ul.links li {
         float: left;
         height: 42px; }
@@ -306,7 +307,7 @@ h2 {
     #header #user-nav #search {
       position: absolute;
       top: 10px;
-      right: 0;
+      right: 10px;
       width: 176px; }
       #header #user-nav #search input[type="text"] {
         height: 14px;
@@ -350,7 +351,7 @@ h2 {
         border-top-right-radius: 3px;
         border-bottom-right-radius: 3px; }
     #header #user-nav #feedback {
-      right: 184px; }
+      right: 194px; }
       #header #user-nav #feedback a {
         background-image: -moz-linear-gradient(center top, #43baf0 4%, #3a94e6 52%);
         background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #43baf0), color-stop(0.52, #3a94e6)); }
@@ -757,7 +758,7 @@ table {
   #vertical-content .helper {
     position: fixed;
     top: 124px;
-    left: 230px;
+    left: 245px;
     width: 57px;
     text-align: right;
     padding-right: 18px;
@@ -796,9 +797,9 @@ table {
       #vertical-content #content-list > li .content-preview img.thumbnail {
         width: 300px;
         height: 200px;
-        -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-        -moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-        box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3); }
+        -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+        -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5); }
       #vertical-content #content-list > li .content-preview .media-type {
         position: absolute;
         top: 1px;
@@ -884,21 +885,9 @@ table {
           z-index: 2;
           background: transparent url(../images/discovery/avatar-cover-40.png) no-repeat 0 0; }
 
-@media all and (min-width: 1500px) {
+@media all and (min-width: 1400px) {
   #vertical-content #content-list li {
-    max-width: 850px;
-    min-height: 266px; }
-    #vertical-content #content-list li .content-preview {
-      width: 400px;
-      height: 266px; }
-      #vertical-content #content-list li .content-preview img.thumbnail, #vertical-content #content-list li .content-preview .media-type {
-        width: 400px;
-        height: 266px; }
-    #vertical-content #content-list li .info .title {
-      font-size: 17px; } }
-@media all and (min-width: 1600px) {
-  #vertical-content #content-list li {
-    max-width: 950px; } }
+    max-width: 680px; } }
 @media all and (max-width: 1149px) {
   #vertical-content #content-list li .content-preview {
     float: none; } }
@@ -935,11 +924,11 @@ table {
       white-space: nowrap;
       overflow: hidden; }
 
-@media all and (min-width: 1720px) {
+@media all and (min-width: 1400px) {
   #user-profile #vertical-people {
     width: auto;
     right: none;
-    left: 1400px; } }
+    left: 1100px; } }
 @media all and (max-width: 1000px) {
   #vertical-people {
     width: 220px; } }
@@ -948,11 +937,12 @@ table {
 #home.index #slogan, #registrations.create #slogan {
   font-size: 40px;
   font-weight: 600;
-  margin: 40px 0; }
+  margin: 40px; }
 #home.index #description, #registrations.create #description {
-  margin-bottom: 40px; }
+  margin: 0 40px 40px; }
   #home.index #description ul, #registrations.create #description ul {
-    display: inline-block; }
+    display: inline-block;
+    width: 100%; }
     #home.index #description ul:after, #registrations.create #description ul:after {
       content: ".";
       display: block;
@@ -961,9 +951,8 @@ table {
       visibility: hidden; }
     #home.index #description ul li, #registrations.create #description ul li {
       float: left;
-      width: 353px;
-      margin-right: 50px;
-      height: 160px; }
+      width: 30%;
+      margin-right: 5%; }
       #home.index #description ul li:last-child, #registrations.create #description ul li:last-child {
         margin-right: 0; }
       #home.index #description ul li h2, #registrations.create #description ul li h2 {
@@ -980,7 +969,7 @@ table {
         margin: 0; }
 #home.index #creator-discovery, #registrations.create #creator-discovery {
   position: relative;
-  padding-left: 200px;
+  padding: 0 40px 0 200px;
   min-height: 400px; }
   #home.index #creator-discovery #choose-a-category, #registrations.create #creator-discovery #choose-a-category {
     width: 386px;
@@ -1823,6 +1812,18 @@ table.users {
         font-style: italic;
         font-size: 11px; }
 
+@media all and (min-width: 1480px) {
+  #user-profile {
+    width: 1150px;
+    margin: 0 auto;
+    position: relative; }
+    #user-profile .profile-info, #user-profile #vertical-people, #user-profile #vertical-content .helper {
+      position: absolute; }
+    #user-profile .profile-info, #user-profile #vertical-people {
+      top: 42px; }
+    #user-profile .helper {
+      left: 0;
+      top: 42px; } }
 #support h1 {
   font-size: 20px;
   font-weight: 500;
