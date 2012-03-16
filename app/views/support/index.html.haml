@@ -6,7 +6,7 @@
       - @creators.each do |person|
         %li
           = image_tag person.avatar.url(:thumbnail)
-          = link_to person.name, user_path(person), :class => "cover tooltipped-e", :title => person.name, :data => person.id
+          = link_to person.name, user_path(person), :class => "cover tooltipped-e", :title => "Show #{person.first_name}'s updates", :data => person.id
           
   #vertical-content
     %h1 Their updates
