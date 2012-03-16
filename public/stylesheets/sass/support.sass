@@ -1,13 +1,13 @@
-#support
+#support-inner
 	max-width: 1367px
 	margin: 0 auto
 	position: relative
+	padding-top: 40px
 	
 	h1
 		font-size: 20px
 		font-weight: 500
 		text-transform: uppercase
-		color: #fff
 		margin-bottom: 20px
 		
 	#vertical-people
@@ -15,6 +15,7 @@
 		right: auto
 		left: 40px
 		width: 75px
+		top: 82px
 		.info
 			font-size: 12px
 			color: #777
@@ -23,27 +24,23 @@
 	
 	#vertical-content
 		z-index: 1
-		margin-top: 40px
 		padding-left: 340px
 		.helper
-			top: 122px
 			left: 250px
 		li
 			position: relative
 			.when
 				position: absolute
 				top: 0
-				right: -150px
+				right: -300px
 				color: #555
 				font-size: 12px
 				
 // Going bigger
 @media all and (min-width: 1367px)
 	#support
-		#vertical-people, #vertical-content .helper
-			position: absolute
 		#vertical-people
-			top: 0
-		.helper
-			left: 0
-			top: 0
+			left: auto
+		#vertical-content .helper
+			left: auto
+			margin-left: -90px

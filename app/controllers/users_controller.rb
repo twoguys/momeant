@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_filter :authenticate_user!, :only => [:edit, :update, :update_in_place, :udpate_avatar, :analytics, :feedback, :support]
-  before_filter :find_user, :except => [:community, :community_creators, :analytics, :billing_updates, :feedback, :support]
+  before_filter :authenticate_user!, :only => [:edit, :update, :update_in_place, :udpate_avatar, :analytics, :feedback]
+  before_filter :find_user, :except => [:community, :community_creators, :analytics, :billing_updates, :feedback]
   skip_before_filter :verify_authenticity_token, :only => [:billing_updates, :update_avatar]
   
   def show
@@ -8,14 +8,6 @@ class UsersController < ApplicationController
     @supporters = @user.rewards.group_by(&:user).to_a.map {|x| [x.first,x.second.inject(0){|sum,r| sum+r.amount}]}.sort_by(&:second).reverse
     #@favorite_creators = @user.given_rewards.group_by(&:recipient).to_a.map {|x| [x.first,x.second.inject(0){|sum,r| sum+r.amount}]}.sort_by(&:second).reverse[0..2]
     @nav = "me" if @user == current_user
-  end
-  
-  def support
-    @nav = "support"
-    @creators = current_user.rewarded_creators
-    @content = []
-    return if @creators.empty?
-    @content = Story.published.newest_first.where("user_id IN (#{@creators.map(&:id).join(",")})")
   end
   
   def creations

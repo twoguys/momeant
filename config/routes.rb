@@ -124,7 +124,8 @@ Repo::Application.routes.draw do
   match '/community/people',      :to => "community#people",            :as => :community_people
   match '/community/newest_content', :to => "community#newest_content", :as => :community_newest_content
   
-  match '/support',               :to => "users#support",                :as => :support
+  match '/support',               :to => "support#index",                :as => :support
+  match '/support/:id',           :to => "support#filter"
   
   namespace :admin do
     match '/', :to =>"dashboard#index", :as => :dashboard

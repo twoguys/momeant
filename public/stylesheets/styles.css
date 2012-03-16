@@ -756,9 +756,9 @@ table {
   position: relative;
   margin-right: 350px; }
   #vertical-content .helper {
-    position: fixed;
-    top: 124px;
-    left: 245px;
+    position: absolute;
+    top: 42px;
+    left: 0;
     width: 57px;
     text-align: right;
     padding-right: 18px;
@@ -772,6 +772,11 @@ table {
     -ms-transition: margin 0.3s ease-out;
     -o-transition: margin 0.3s ease-out;
     transition: margin 0.3s ease-out; }
+    #vertical-content #content-list.loading {
+      height: 200px;
+      background: transparent url(../images/spinner.gif) no-repeat 50% 100px; }
+      #vertical-content #content-list.loading * {
+        display: none; }
   #vertical-content #content-list > li {
     min-height: 200px;
     clear: both;
@@ -892,7 +897,7 @@ table {
           z-index: 2;
           background: transparent url(../images/discovery/avatar-cover-40.png) no-repeat 0 0; }
 
-@media all and (min-width: 1400px) {
+@media all and (min-width: 1367px) {
   #vertical-content #content-list li {
     max-width: 680px; } }
 @media all and (max-width: 1149px) {
@@ -911,7 +916,12 @@ table {
     float: left;
     position: relative;
     margin: 0 5px 5px 0;
-    height: 60px; }
+    height: 60px;
+    -webkit-transition: opacity 0.2s linear;
+    -moz-transition: opacity 0.2s linear;
+    -ms-transition: opacity 0.2s linear;
+    -o-transition: opacity 0.2s linear;
+    transition: opacity 0.2s linear; }
     #vertical-people li.first {
       float: none; }
       #vertical-people li.first img {
@@ -919,6 +929,8 @@ table {
         margin-right: 8px; }
       #vertical-people li.first .text {
         padding-top: 12px; }
+    #vertical-people li.dimmed {
+      opacity: 0.3; }
     #vertical-people li .cover {
       display: block;
       width: 60px;
@@ -931,11 +943,9 @@ table {
       white-space: nowrap;
       overflow: hidden; }
 
-@media all and (min-width: 1400px) {
+@media all and (min-width: 1367px) {
   #user-profile #vertical-people {
-    width: auto;
-    right: none;
-    left: 1100px; } }
+    width: 320px; } }
 @media all and (max-width: 1000px) {
   #vertical-people {
     width: 220px; } }
@@ -1179,7 +1189,9 @@ body#users #main, body#messages #main {
   padding-bottom: 50px; }
 
 #user-profile {
-  padding: 40px 40px 40px 250px;
+  padding: 40px;
+  max-width: 1367px;
+  margin: 0 auto;
   /* Patronage Tab */
   /* Stats Bar */
   /* Creations Tab */
@@ -1199,8 +1211,6 @@ body#users #main, body#messages #main {
       cursor: default; }
   #user-profile .profile-info {
     position: fixed;
-    top: 82px;
-    left: 40px;
     width: 210px; }
     #user-profile .profile-info .metadata .avatar-badge {
       width: 130px;
@@ -1275,39 +1285,10 @@ body#users #main, body#messages #main {
     #user-profile .profile-info #editorialize {
       background-image: -moz-linear-gradient(center top, #ffbb01 4%, #ff9501 52%);
       background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #ffbb01), color-stop(0.52, #ff9501)); }
-  #user-profile .the-rest {
-    position: relative; }
-    #user-profile .the-rest .horizontal-tabs {
-      border-bottom: 1px solid #cccccc; }
-      #user-profile .the-rest .horizontal-tabs ul {
-        padding-top: 20px; }
-        #user-profile .the-rest .horizontal-tabs ul a {
-          border: 1px solid #cccccc;
-          border-bottom: none; }
-    #user-profile .the-rest .top {
-      margin-bottom: 20px; }
-      #user-profile .the-rest .top a.back-link {
-        background: #c0eeff;
-        color: #00aeef;
-        padding: 2px 8px;
-        -webkit-border-radius: 15px;
-        -moz-border-radius: 15px;
-        border-radius: 15px;
-        -webkit-transition: all 0.2s linear;
-        -moz-transition: all 0.2s linear;
-        -ms-transition: all 0.2s linear;
-        -o-transition: all 0.2s linear;
-        transition: all 0.2s linear; }
-        #user-profile .the-rest .top a.back-link:hover {
-          background: #00aeef;
-          color: white; }
-      #user-profile .the-rest .top h1 {
-        padding-top: 20px;
-        margin-bottom: 0;
-        font-weight: 700;
-        text-transform: uppercase; }
-  #user-profile #vertical-content #content-list li .content-preview img.avatar {
-    display: none; }
+  #user-profile #vertical-content {
+    margin-left: 210px; }
+    #user-profile #vertical-content #content-list li .content-preview img.avatar {
+      display: none; }
   #user-profile #activity {
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
@@ -1819,62 +1800,47 @@ table.users {
         font-style: italic;
         font-size: 11px; }
 
-@media all and (min-width: 1480px) {
-  #user-profile {
-    width: 1150px;
-    margin: 0 auto;
-    position: relative; }
-    #user-profile .profile-info, #user-profile #vertical-people, #user-profile #vertical-content .helper {
-      position: absolute; }
-    #user-profile .profile-info, #user-profile #vertical-people {
-      top: 42px; }
-    #user-profile .helper {
-      left: 0;
-      top: 42px; } }
-#support {
+#support-inner {
   max-width: 1367px;
   margin: 0 auto;
-  position: relative; }
-  #support h1 {
+  position: relative;
+  padding-top: 40px; }
+  #support-inner h1 {
     font-size: 20px;
     font-weight: 500;
     text-transform: uppercase;
-    color: white;
     margin-bottom: 20px; }
-  #support #vertical-people {
+  #support-inner #vertical-people {
     z-index: 2;
     right: auto;
     left: 40px;
-    width: 75px; }
-    #support #vertical-people .info {
+    width: 75px;
+    top: 82px; }
+    #support-inner #vertical-people .info {
       font-size: 12px;
       color: #777777;
       margin-bottom: 10px;
       letter-spacing: 0.05em; }
-  #support #vertical-content {
+  #support-inner #vertical-content {
     z-index: 1;
-    margin-top: 40px;
     padding-left: 340px; }
-    #support #vertical-content .helper {
-      top: 122px;
+    #support-inner #vertical-content .helper {
       left: 250px; }
-    #support #vertical-content li {
+    #support-inner #vertical-content li {
       position: relative; }
-      #support #vertical-content li .when {
+      #support-inner #vertical-content li .when {
         position: absolute;
         top: 0;
-        right: -150px;
+        right: -300px;
         color: #555555;
         font-size: 12px; }
 
 @media all and (min-width: 1367px) {
-  #support #vertical-people, #support #vertical-content .helper {
-    position: absolute; }
   #support #vertical-people {
-    top: 0; }
-  #support .helper {
-    left: 0;
-    top: 0; } }
+    left: auto; }
+  #support #vertical-content .helper {
+    left: auto;
+    margin-left: -90px; } }
 /* Story creation */
 body#stories.edit #container {
   position: relative; }

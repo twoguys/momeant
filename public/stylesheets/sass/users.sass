@@ -45,7 +45,9 @@ body#users, body#messages
 		padding-bottom: 50px
 
 #user-profile
-	padding: 40px 40px 40px 250px
+	padding: 40px
+	max-width: 1367px
+	margin: 0 auto
 	
 	h1
 		font-size: 20px
@@ -59,8 +61,6 @@ body#users, body#messages
 	
 	.profile-info
 		position: fixed
-		top: 82px
-		left: 40px
 		width: 210px
 
 		.metadata
@@ -140,34 +140,10 @@ body#users, body#messages
 		#editorialize
 			@include gradient(#ffbb01, #ff9501)
 	
-	.the-rest
-		position: relative
-		.horizontal-tabs
-			border-bottom: 1px solid #ccc
-			ul
-				padding-top: 20px
-				a
-					border: 1px solid #ccc
-					border-bottom: none
-		.top
-			margin-bottom: 20px
-			a.back-link
-				background: $lightblue
-				color: $blue
-				padding: 2px 8px
-				@include rounded(15px)
-				@include transition
-				&:hover
-					background: $blue
-					color: #fff
-			h1
-				padding-top: 20px
-				margin-bottom: 0
-				font-weight: 700
-				text-transform: uppercase
-	
-	#vertical-content #content-list li .content-preview img.avatar
-		display: none
+	#vertical-content
+		margin-left: 210px
+		#content-list li .content-preview img.avatar
+			display: none
 	
 	#activity
 		@include rounded(0)
@@ -700,17 +676,3 @@ table.users
 			.occupation
 				font-style: italic
 				font-size: 11px
-				
-// Going bigger
-@media all and (min-width: 1480px)
-	#user-profile
-		width: 1150px
-		margin: 0 auto
-		position: relative
-		.profile-info, #vertical-people, #vertical-content .helper
-			position: absolute
-		.profile-info, #vertical-people
-			top: 42px
-		.helper
-			left: 0
-			top: 42px

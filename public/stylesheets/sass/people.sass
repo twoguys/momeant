@@ -8,6 +8,7 @@
 		position: relative
 		margin: 0 5px 5px 0
 		height: 60px
+		@include transition(opacity)
 		&.first
 			float: none
 			img
@@ -15,6 +16,8 @@
 				margin-right: 8px
 			.text
 				padding-top: 12px
+		&.dimmed
+			opacity: 0.3
 		.cover
 			display: block
 			width: 60px
@@ -26,11 +29,9 @@
 			@include notext
 
 // Going bigger
-@media all and (min-width: 1400px)
+@media all and (min-width: 1367px)
 	#user-profile #vertical-people
-		width: auto
-		right: none
-		left: 1100px
+		width: 320px
 
 // Going smaller
 @media all and (max-width: 1000px)

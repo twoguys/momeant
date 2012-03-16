@@ -3,9 +3,9 @@
 	position: relative
 	margin-right: 350px
 	.helper
-		position: fixed
-		top: 124px
-		left: 245px
+		position: absolute
+		top: 42px
+		left: 0
 		width: 57px
 		text-align: right
 		padding-right: 18px
@@ -16,6 +16,11 @@
 	
 	#content-list
 		@include transition(margin, 0.3s, ease-out)
+		&.loading
+			height: 200px
+			background: transparent url(../images/spinner.gif) no-repeat 50% 100px
+			*
+				display: none
 	#content-list > li
 		min-height: 200px
 		clear: both
@@ -118,7 +123,7 @@
 							
 				
 // Going bigger
-@media all and (min-width: 1400px)
+@media all and (min-width: 1367px)
 	#vertical-content #content-list li
 		max-width: 680px
 				
