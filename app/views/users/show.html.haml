@@ -35,7 +35,7 @@
                 .reward
                   = image_tag user.avatar.url(:thumbnail)
                   = link_to "", user_path(user), :class => "cover tooltipped", :title => user.name
-              = link_to "Become a supporter &rarr;".html_safe, story_path(content), :class => "be-next"
+              = link_to "View &amp; Support &rarr;".html_safe, story_path(content), :class => "be-next" unless content.users_who_rewarded.include?(current_user)
             
         - index += 1
   

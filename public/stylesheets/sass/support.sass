@@ -1,4 +1,8 @@
 #support
+	max-width: 1367px
+	margin: 0 auto
+	position: relative
+	
 	h1
 		font-size: 20px
 		font-weight: 500
@@ -8,7 +12,7 @@
 		
 	#vertical-people
 		z-index: 2
-		right: none
+		right: auto
 		left: 40px
 		width: 75px
 		.info
@@ -32,3 +36,14 @@
 				right: -150px
 				color: #555
 				font-size: 12px
+				
+// Going bigger
+@media all and (min-width: 1367px)
+	#support
+		#vertical-people, #vertical-content .helper
+			position: absolute
+		#vertical-people
+			top: 0
+		.helper
+			left: 0
+			top: 0

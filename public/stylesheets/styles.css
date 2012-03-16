@@ -825,8 +825,16 @@ table {
       #vertical-content #content-list > li .info a.title {
         font-weight: 700;
         font-size: 15px; }
-      #vertical-content #content-list > li .info .byline {
+      #vertical-content #content-list > li .info .byline, #vertical-content #content-list > li .info .byline a {
         color: #555555; }
+      #vertical-content #content-list > li .info .byline a {
+        -webkit-transition: color 0.2s linear;
+        -moz-transition: color 0.2s linear;
+        -ms-transition: color 0.2s linear;
+        -o-transition: color 0.2s linear;
+        transition: color 0.2s linear; }
+        #vertical-content #content-list > li .info .byline a:hover {
+          color: #00aeef; }
       #vertical-content #content-list > li .info .edit a {
         margin-right: 10px; }
       #vertical-content #content-list > li .info p {
@@ -839,7 +847,7 @@ table {
         -o-transition: color 0.2s linear;
         transition: color 0.2s linear; }
     #vertical-content #content-list > li .rewards {
-      height: 150px;
+      height: 200px;
       padding: 20px 20px 0;
       opacity: 0;
       clear: both; }
@@ -855,6 +863,7 @@ table {
         -moz-border-radius: 3px;
         border-radius: 3px;
         padding: 10px 15px;
+        margin-left: 5px;
         height: 18px;
         display: inline-block;
         -webkit-transition: background 0.2s linear;
@@ -870,8 +879,6 @@ table {
         height: 40px;
         float: left;
         margin: 0 3px 6px 0; }
-        #vertical-content #content-list > li .rewards .reward:last-child {
-          margin-right: 8px; }
         #vertical-content #content-list > li .rewards .reward a, #vertical-content #content-list > li .rewards .reward img, #vertical-content #content-list > li .rewards .reward .cover {
           display: block;
           width: 40px;
@@ -1824,38 +1831,50 @@ table.users {
     #user-profile .helper {
       left: 0;
       top: 42px; } }
-#support h1 {
-  font-size: 20px;
-  font-weight: 500;
-  text-transform: uppercase;
-  color: white;
-  margin-bottom: 20px; }
-#support #vertical-people {
-  z-index: 2;
-  right: none;
-  left: 40px;
-  width: 75px; }
-  #support #vertical-people .info {
-    font-size: 12px;
-    color: #777777;
-    margin-bottom: 10px;
-    letter-spacing: 0.05em; }
-#support #vertical-content {
-  z-index: 1;
-  margin-top: 40px;
-  padding-left: 340px; }
-  #support #vertical-content .helper {
-    top: 122px;
-    left: 250px; }
-  #support #vertical-content li {
-    position: relative; }
-    #support #vertical-content li .when {
-      position: absolute;
-      top: 0;
-      right: -150px;
-      color: #555555;
-      font-size: 12px; }
+#support {
+  max-width: 1367px;
+  margin: 0 auto;
+  position: relative; }
+  #support h1 {
+    font-size: 20px;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: white;
+    margin-bottom: 20px; }
+  #support #vertical-people {
+    z-index: 2;
+    right: auto;
+    left: 40px;
+    width: 75px; }
+    #support #vertical-people .info {
+      font-size: 12px;
+      color: #777777;
+      margin-bottom: 10px;
+      letter-spacing: 0.05em; }
+  #support #vertical-content {
+    z-index: 1;
+    margin-top: 40px;
+    padding-left: 340px; }
+    #support #vertical-content .helper {
+      top: 122px;
+      left: 250px; }
+    #support #vertical-content li {
+      position: relative; }
+      #support #vertical-content li .when {
+        position: absolute;
+        top: 0;
+        right: -150px;
+        color: #555555;
+        font-size: 12px; }
 
+@media all and (min-width: 1367px) {
+  #support #vertical-people, #support #vertical-content .helper {
+    position: absolute; }
+  #support #vertical-people {
+    top: 0; }
+  #support .helper {
+    left: 0;
+    top: 0; } }
 /* Story creation */
 body#stories.edit #container {
   position: relative; }

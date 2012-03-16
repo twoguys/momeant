@@ -27,6 +27,19 @@
             %p= content.synopsis
             = #link_to "View #{content.this_media}", story_path(content), :class => "view-button"
           
+          .rewards
+            - if content.users_who_rewarded.empty?
+              = link_to "Become the first supporter &rarr;".html_safe, story_path(content), :class => "be-next"
+            - else
+              %h3 Recent supporters
+              - size = content.users_who_rewarded.size - 1
+              - size = size > 9 ? 9 : size
+              - content.users_who_rewarded[0..size].each do |user|
+                .reward
+                  = image_tag user.avatar.url(:thumbnail)
+                  = link_to "", user_path(user), :class => "cover tooltipped", :title => user.name
+              = link_to "View &amp; Support &rarr;".html_safe, story_path(content), :class => "be-next"
+          
           .when #{time_ago_in_words(content.created_at)} ago
             
         - index += 1
