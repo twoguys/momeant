@@ -1183,7 +1183,7 @@ table {
   top: 82px;
   right: 40px;
   width: 260px; }
-  #vertical-people li {
+  #vertical-people li.person {
     float: left;
     position: relative;
     margin: 0 5px 5px 0;
@@ -1193,16 +1193,16 @@ table {
     -ms-transition: opacity 0.2s linear;
     -o-transition: opacity 0.2s linear;
     transition: opacity 0.2s linear; }
-    #vertical-people li.first {
+    #vertical-people li.person.first {
       float: none; }
-      #vertical-people li.first img {
+      #vertical-people li.person.first img {
         float: left;
         margin-right: 8px; }
-      #vertical-people li.first .text {
+      #vertical-people li.person.first .text {
         padding-top: 12px; }
-    #vertical-people li.dimmed {
+    #vertical-people li.person.dimmed {
       opacity: 0.3; }
-    #vertical-people li .cover {
+    #vertical-people li.person .cover {
       display: block;
       width: 60px;
       height: 60px;
@@ -1376,6 +1376,47 @@ body#users #main, body#messages #main {
     margin-left: 210px; }
     #user-profile #vertical-content #content-list li .content-preview img.avatar {
       display: none; }
+  #user-profile #vertical-people #discussion .hasnt {
+    padding: 5px;
+    background: #eeeeee; }
+  #user-profile #vertical-people #discussion form {
+    height: 105px;
+    margin-bottom: 10px; }
+    #user-profile #vertical-people #discussion form.loading {
+      background: transparent url(../images/spinner.gif) no-repeat 50% 50%; }
+      #user-profile #vertical-people #discussion form.loading * {
+        display: none; }
+  #user-profile #vertical-people #discussion textarea {
+    width: 95%;
+    height: 50px;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1) inset;
+    margin-bottom: 5px; }
+  #user-profile #vertical-people #discussion li {
+    border-top: 1px solid #eeeeee;
+    padding: 10px 0 10px 50px;
+    position: relative;
+    float: none; }
+    #user-profile #vertical-people #discussion li a.avatar, #user-profile #vertical-people #discussion li a.avatar img, #user-profile #vertical-people #discussion li a.avatar .cover {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 40px;
+      height: 40px; }
+    #user-profile #vertical-people #discussion li a.avatar {
+      top: 10px; }
+    #user-profile #vertical-people #discussion li a.avatar img {
+      z-index: 1; }
+    #user-profile #vertical-people #discussion li .cover {
+      z-index: 2;
+      background: transparent url(../images/discovery/avatar-cover-40.png) no-repeat 0 0; }
+    #user-profile #vertical-people #discussion li p {
+      margin: 3px 0;
+      line-height: 1.5em;
+      font-size: 13px; }
+    #user-profile #vertical-people #discussion li .when {
+      font-size: 12px;
+      color: #cccccc; }
   #user-profile #activity {
     -webkit-border-radius: 0;
     -moz-border-radius: 0;

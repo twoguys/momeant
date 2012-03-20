@@ -48,7 +48,7 @@
       %ul#supporters
         - first = true
         - @supporters.each do |person|
-          %li{:class => first ? "first" : ""}
+          %li.person{:class => first ? "first" : ""}
             = image_tag person[0].avatar.url(:thumbnail)
             = link_to person[0].name, user_path(person[0]), :class => "cover tooltipped", :title => "#{person[0].name} has rewarded #{@user.first_name} #{number_to_currency(person[1] * Reward.dollar_exchange)}"
             - if first
@@ -58,7 +58,16 @@
                 %span= person[0].last_name
           - first = false
       #discussion.hidden
-        Anyone who has rewarded #{@user.first_name} can participate in his community chat.  
+        - if current_user && current_user.has_rewarded?(@user)
+          = form_for Message.new, :url => user_messages_path(@user) do |form|
+            = form.text_area :body
+            = form.hidden_field :profile, :value => true
+            = form.submit "Post Public Comment"
+        - else
+          .hasnt Anyone who has rewarded #{@user.first_name} can participate in his community chat.  
+        %ul
+          = render :partial => "users/profile_messages/message", :collection => @messages
+            
 
 - if me?(@user)
   :javascript

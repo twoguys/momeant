@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120302135017) do
+ActiveRecord::Schema.define(:version => 20120320152536) do
 
   create_table "activities", :force => true do |t|
     t.integer  "actor_id"
@@ -125,6 +125,7 @@ ActiveRecord::Schema.define(:version => 20120302135017) do
     t.integer  "parent_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "profile_id"
   end
 
   create_table "page_media", :force => true do |t|

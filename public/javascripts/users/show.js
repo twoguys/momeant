@@ -5,7 +5,8 @@ window.ProfileView = Backbone.View.extend({
 	events: {
 		'click #user-profile #tabs a': 'switch_info_tabs',
 		'click #vertical-people h1 a': 'switch_supporter_tabs',
-		'click #subscribe': 'subscribe'
+		'click #subscribe': 'subscribe',
+		'submit #new_message': 'post_message'
 	},
 	
 	initialize: function() {
@@ -45,6 +46,25 @@ window.ProfileView = Backbone.View.extend({
     }
     
     return false;
+  },
+  
+  post_message: function(event) {
+    var $form = $(event.currentTarget);
+    event.preventDefault();
+    
+    var body = $form.find('#message_body').val();
+    var token = $form.find('input[name="authenticity_token"]').val();
+    $('#message_body').val('');
+    $form.addClass('loading');
+    
+    $.post('/users/' + user_id + '/messages/public', {
+      'message[body]': body,
+      'authenticity_token': token,
+      'public': true
+    }, function(html) {
+      $('#discussion ul').prepend(html);
+      $form.removeClass('loading');
+    });
   }
   
 });

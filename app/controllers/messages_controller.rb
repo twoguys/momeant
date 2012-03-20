@@ -16,11 +16,24 @@ class MessagesController < ApplicationController
     options.merge!({:recipient_id => @user.id}) unless options[:recipient_id].present?
     @message = Message.new(options)
     if @message.save
-      NotificationsMailer.message_notice(@message).deliver if @user.send_message_notification_emails?
+      if @user.send_message_notification_emails? && params[:public].empty?
+        NotificationsMailer.message_notice(@message).deliver
+      end
       render :json => {:success => true, :avatar => current_user.avatar.url(:thumbnail)}
     else
       render :json => {:success => true, :message => @message.errors.full_messages}
     end
+  end
+  
+  def public
+    return if params[:message].nil? || params[:message][:body].blank?
+    @message = Message.create(
+      :body => params[:message][:body],
+      :sender_id => current_user.id,
+      :recipient_id => @user.id,
+      :profile_id => @user.id
+    )
+    render :partial => "users/profile_messages/message", :locals => {:message => @message}
   end
   
   private

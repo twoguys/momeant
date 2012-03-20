@@ -1,0 +1,7 @@
+%li
+  %a.avatar{:href => user_path(message.sender)}
+    = image_tag message.sender.avatar.url(:thumbnail)
+    .cover
+  = link_to message.sender.name, user_path(message.sender), :class => "name"
+  %p= message.body
+  .when #{time_ago_in_words(message.created_at)} ago

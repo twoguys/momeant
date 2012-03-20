@@ -51,6 +51,10 @@ class User < ActiveRecord::Base
     :foreign_key => "recipient_id",
     :order => "created_at DESC",
     :conditions => ["recipient_deleted = ?", false]
+  has_many :profile_messages,
+    :class_name => "Message",
+    :foreign_key => "profile_id",
+    :order => "created_at DESC"
   
   has_attached_file :avatar,
     :styles => { :thumbnail => "60x60#", :large => "200x200#", :editorial => "320x320#" },
@@ -104,8 +108,8 @@ class User < ActiveRecord::Base
     latitude.present? && longitude.present?
   end
   
-  def has_rewarded?(story)
-    Reward.where(:user_id => self.id, :story_id => story.id).present?
+  def has_rewarded?(user)
+    !Reward.where(:recipient_id => self.id, :user_id => user.id).empty?
   end
   
   def reward(story, amount, comment, impacted_by = nil)
