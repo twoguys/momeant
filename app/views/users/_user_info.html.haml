@@ -34,7 +34,8 @@
 
     - unless me?(@user)
       #user-actions
-        = link_to "Message #{@user.first_name}", user_messages_path(@user), :class => "button"
+        = link_to "Subscribe", user_messages_path(@user), :class => "button", :id => "subscribe-to"
+        .info Have #{@user.first_name}'s updates sent to your Subscriptions page
         - if current_user && current_user.is_admin?
           = link_to "Editorialize", new_admin_editorial_path(:user => @user.id), :id => "editorialize", :class => "button"
 

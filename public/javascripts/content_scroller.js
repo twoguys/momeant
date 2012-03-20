@@ -18,8 +18,6 @@ window.Scroller = Backbone.View.extend({
 	  this.pad_bottom();
 	  $('#content-list li:first-child').addClass('current');
 	  
-	  this.hide_expanded_content();
-	  
 	  _.bindAll(this, 'on_keypress');
 	  $(document).bind('keydown', this.on_keypress);
 	  
@@ -115,23 +113,19 @@ window.Scroller = Backbone.View.extend({
 	},
 	
 	expand_content: function(event) {
-	  var $img = $(event.currentTarget).find('img.thumbnail').clone();
-	  $('body').append('<div id="expander"></div>');
-	  var $expander = $('#expander');
-	  $expander.append($img);
-	  $img.css('position','fixed').css('z-index','9000').css('width',0).css('height',0).css('top','50%').css('left','50%');
-	  $img.animate({top:0,left:0,right:0,bottom:0,margin:0,width:'100%',height:'100%'}, 100, function() {
+	  $('#main').css('position','fixed');
+	  $('#vertical-people').css('left','auto');
+	  $('#main, #vertical-people').animate({'right':'100%'}, 500, 'easeOutQuart', function() {
 	    $('#loader').fadeIn(100);
 	  });
-	  window.location.href = $link.attr('href');
-	  return false;
 	},
 	
-	hide_expanded_content: function() {
-	  $('#expander').remove();
+	reset: function() {
 	  $('#loader').hide();
 	}
 	
 });
 
 window.Scroll = new Scroller;
+window.onunload = function(){};
+Scroll.reset();

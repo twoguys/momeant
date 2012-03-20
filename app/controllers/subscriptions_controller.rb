@@ -9,7 +9,6 @@ class SubscriptionsController < ApplicationController
   end
   
   def destroy
-    Rails.logger.info "HIHIHIHIHI"
     Subscription.where(:subscriber_id => current_user.id, :user_id => @user.id).destroy_all
     redirect_to user_path(@user), :notice => "You are no longer following #{@user.name}."
   end

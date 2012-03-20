@@ -43,7 +43,7 @@
     %h1
       = link_to "Supporters", "#", :class => "selected", :data => "supporters"
       %span /
-      = link_to "Chat", "#", :data => "chat"
+      = link_to "Discussion", "#", :data => "discussion"
     .sections
       %ul#supporters
         - first = true
@@ -57,7 +57,7 @@
                 %span= person[0].first_name
                 %span= person[0].last_name
           - first = false
-      #chat.hidden
+      #discussion.hidden
         Anyone who has rewarded #{@user.first_name} can participate in his community chat.  
 
 - if me?(@user)
