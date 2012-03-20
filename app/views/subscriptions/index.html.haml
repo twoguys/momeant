@@ -1,4 +1,4 @@
-#support-inner
+#subscriptions-inner
   
   #vertical-people
     %h1 People
@@ -13,9 +13,10 @@
     .helper use keyboard
 
     %ul#content-list
-      = render :partial => "support/content", :collection => @content, :as => :content
+      = render :partial => "subscriptions/content", :collection => @content, :as => :content
 
 :javascript
   var scrollables_selector = '#content-list';
+  var user_id = '#{current_user.id}';
 = javascript_include_tag "content_scroller"  
-= javascript_include_tag "support"
+= javascript_include_tag "subscriptions"

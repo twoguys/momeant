@@ -1,16 +1,29 @@
 class SubscriptionsController < ApplicationController
   before_filter :authenticate_user!
   load_and_authorize_resource
-  before_filter :find_user
+  before_filter :find_user, :only => [:create, :unsubscribe]
+  
+  def index
+    @nav = "support"
+    @creators = current_user.subscribed_to
+    @content = []
+    return if @creators.empty?
+    @content = Story.published.newest_first.where("user_id IN (#{@creators.map(&:id).join(",")})")
+  end
+
+  def filter #ajax
+    @content = User.find(params[:id]).created_stories.published.newest_first
+    render :partial => "subscriptions/content", :collection => @content, :as => :content
+  end
   
   def create
     Subscription.create(:subscriber_id => current_user.id, :user_id => @user.id)
-    redirect_to user_path(@user), :notice => "You are now following #{@user.name}."
+    render :json => {:success => true}
   end
   
-  def destroy
+  def unsubscribe
     Subscription.where(:subscriber_id => current_user.id, :user_id => @user.id).destroy_all
-    redirect_to user_path(@user), :notice => "You are no longer following #{@user.name}."
+    render :json => {:success => true}
   end
   
   private

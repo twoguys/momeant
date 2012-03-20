@@ -10,7 +10,7 @@
 
     - if user_signed_in?
       %li#curation.topnav{:class => @nav == "support" ? "active" : ""}
-        = link_to "People You Support", support_path, :class => "top-link"
+        = link_to "Subscriptions", subscriptions_path, :class => "top-link"
       %li#my-links.topnav{:class => @nav == "me" ? "active" : ""}
         %a.top-link{:href => user_path(current_user)}
           = image_tag current_user.avatar.url(:thumbnail)

@@ -1,6 +1,6 @@
-window.SupportView = Backbone.View.extend({
+window.SubscriptionsView = Backbone.View.extend({
   
-  el: $('#support'),
+  el: $('body'),
 	
 	events: {
 		'click #vertical-people a': 'filter_person'
@@ -15,7 +15,7 @@ window.SupportView = Backbone.View.extend({
     $link.parent().removeClass('dimmed').siblings().addClass('dimmed');
     $.scrollTo(0);
     $('#content-list').addClass('loading');
-    $.get('/support/' + id, function(html) {
+    $.get('/users/' + user_id + '/subscriptions/filter/' + id, function(html) {
       $('#content-list').html(html).removeClass('loading').find('li:first-child').addClass('current');
       Scroll.on_resize();
     });
@@ -25,4 +25,4 @@ window.SupportView = Backbone.View.extend({
   
 });
 
-window.Support = new SupportView;
+window.Subscriptions = new SubscriptionsView;

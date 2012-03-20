@@ -47,7 +47,10 @@ window.Scroller = Backbone.View.extend({
 	pad_bottom: function() {
 	  var viewport_height = $(window).height();
 	  var content_list = $('#content-list').height();
-	  var last_content_height = this.scrollables[this.scrollables.length - 1].height;
+	  var last_content_height = 0;
+	  if (this.scrollables.length > 0) {
+	    last_content_height = this.scrollables[this.scrollables.length - 1].height;
+    }
 	  var new_body_height = viewport_height + content_list - last_content_height;
 	  $('body').css({height: new_body_height});
 	},
@@ -90,6 +93,7 @@ window.Scroller = Backbone.View.extend({
 	},
 	
 	to_next: function() {
+	  if (Scroll.scrollables.length == 0) { return; }
 	  if (Scroll.index == Scroll.scrollables.length - 1) { return; }
 	  
 	  Scroll.index += 1;

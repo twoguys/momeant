@@ -32,10 +32,12 @@
           %span not cashed out
         %li= link_to "Cash Out", user_cashouts_path(@user), :id => "cashout", :class => "button"
 
-    - unless me?(@user)
+    - if current_user && !me?(@user)
       #user-actions
-        = link_to "Subscribe", user_messages_path(@user), :class => "button", :id => "subscribe-to"
-        .info Have #{@user.first_name}'s updates sent to your Subscriptions page
+        - if current_user.is_subscribed_to?(@user)
+          = link_to "Unsubscribe", "#", :class => "button tooltipped-e", :id => "subscribe", :title => "Remove #{@user.first_name}'s updates from your Subscriptions page"
+        - else
+          = link_to "Subscribe", user_messages_path(@user), :class => "button tooltipped-e", :id => "subscribe", :title => "Have #{@user.first_name}'s updates sent to your Subscriptions page"
         - if current_user && current_user.is_admin?
           = link_to "Editorialize", new_admin_editorial_path(:user => @user.id), :id => "editorialize", :class => "button"
 

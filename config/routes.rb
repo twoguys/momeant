@@ -55,7 +55,12 @@ Repo::Application.routes.draw do
   match '/coins/accept', :to => "amazon_payments#accept", :as => :accept_coins
   
   resources :users do
-    resources :subscriptions
+    resources :subscriptions, :only => [:create] do
+      collection do
+        post :unsubscribe
+      end
+    end
+    match '/subscriptions/filter/:id', :to => "subscriptions#filter"
     resources :rewards
     resources :cashouts do
       put :update_amazon_email, :on => :collection
@@ -124,8 +129,7 @@ Repo::Application.routes.draw do
   match '/community/people',      :to => "community#people",            :as => :community_people
   match '/community/newest_content', :to => "community#newest_content", :as => :community_newest_content
   
-  match '/support',               :to => "support#index",                :as => :support
-  match '/support/:id',           :to => "support#filter"
+  match '/subscriptions',         :to => "subscriptions#index",         :as => :subscriptions
   
   namespace :admin do
     match '/', :to =>"dashboard#index", :as => :dashboard
