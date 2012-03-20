@@ -1,6 +1,6 @@
 #subscriptions-inner
   
-  #vertical-people.empty
+  #vertical-people{:class => @creators.empty? ? "empty" : ""}
     %h1 People
     - if @creators.empty?
       .empty You are currently not subscribed to anyone's updates. #{link_to "Check out some of our awesome creators!", "#{root_path}#browse", :id => "find-creators"}
