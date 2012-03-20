@@ -56,9 +56,9 @@ class ApplicationController < ActionController::Base
   
   def after_sign_in_path_for(resource)
     if session[:return_to] == new_session_url(:user) || session[:return_to] == root_url
-      discovery_path
+      subscriptions_path
     else
-      session[:return_to] || discovery_path
+      session[:return_to] || subscriptions_path
     end
   end
 end

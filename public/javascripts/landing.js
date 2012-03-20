@@ -25,6 +25,14 @@ $(function() {
   	  
   	  _.bindAll(this, 'on_keypress');
   	  $(document).bind('keydown', this.on_keypress);
+  	  
+  	  _.bindAll(this, 'goto_creators');
+  	  _.bindAll(this, 'goto_about');
+  	  _.bindAll(this, 'goto_landing');
+  	  
+  	  if (window.location.href.indexOf('browse') > -1) {
+  	    this.goto_creators();
+  	  }
 		},
 		
 		reset: function() {
@@ -37,7 +45,7 @@ $(function() {
 		goto_about: function() {
 		  var height = $(window).height();
 		  $.scrollTo(height, 500, {easing:'easeOutQuart'});
-		  Discovery.has_gone_down = true;
+		  this.has_gone_down = true;
 		  return false;
 		},
 		
@@ -49,7 +57,7 @@ $(function() {
 		    }});
 		    $('#about').hide();
 		  });
-		  Discovery.has_gone_right = true;
+		  this.has_gone_right = true;
 		  return false;
 		},
 		
@@ -59,8 +67,8 @@ $(function() {
   		  $.scrollTo(0, 500);
         $('#about, #goto-creators-secondary').show();
       });
-      Discovery.has_gone_right = false;
-      Discovery.has_gone_down = false;
+      this.has_gone_right = false;
+      this.has_gone_down = false;
 		},
 		
 		load_people: function(event) {

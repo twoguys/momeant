@@ -11,6 +11,8 @@ window.SubscriptionsView = Backbone.View.extend({
   
   filter_person: function(event) {
     var $link = $(event.currentTarget);
+    if ($link.attr('id') == 'find-creators') { return; }
+    
     var id = $link.attr('data');
     $link.parent().removeClass('dimmed').siblings().addClass('dimmed');
     $.scrollTo(0);

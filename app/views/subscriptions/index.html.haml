@@ -1,19 +1,22 @@
 #subscriptions-inner
   
-  #vertical-people
+  #vertical-people.empty
     %h1 People
+    - if @creators.empty?
+      .empty You are currently not subscribed to anyone's updates. #{link_to "Check out some of our awesome creators!", "#{root_path}#browse", :id => "find-creators"}
     %ul
       - @creators.each do |person|
         %li
           = image_tag person.avatar.url(:thumbnail)
           = link_to person.name, user_path(person), :class => "cover tooltipped-e", :title => "Show #{person.first_name}'s updates", :data => person.id
-          
-  #vertical-content
-    %h1 Their updates
-    .helper use keyboard
+  
+  - unless @creators.empty? 
+    #vertical-content
+      %h1 Their updates
+      .helper use keyboard
 
-    %ul#content-list
-      = render :partial => "subscriptions/content", :collection => @content, :as => :content
+      %ul#content-list
+        = render :partial => "subscriptions/content", :collection => @content, :as => :content
 
 :javascript
   var scrollables_selector = '#content-list';
