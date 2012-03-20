@@ -10,6 +10,11 @@
 		max-width: 200%
 		width: 200%
 		overflow-x: hidden
+		
+	#loader
+		background-color: #fff
+		background-image: url(../images/spinner.gif)
+		top: 42px
 
 	#messaging, #creators
 		position: relative
@@ -144,13 +149,14 @@
 				padding: 20px 80px 20px 190px
 				min-height: 150px
 				background: #fff
+				@include gradient(#fafafa,#f2f2f2)
 				color: $text_color
 				@include rounded
-				@include boxshadow(5px, 0.3)
+				@include boxshadow(3px, 0.3, 0, 2px)
 				border: 1px solid #ccc
 				@include transition(border-color)
 				&:hover
-					border-color: #00aeff
+					border-color: #777
 					.arrow
 						opacity: 1
 				img.avatar
@@ -219,7 +225,7 @@
 					position: absolute
 					top: 0
 					left: 0
-					background: transparent url(../images/discovery/avatar-cover-40.png) no-repeat 0 0
+					background: transparent url(../images/discovery/avatar-cover-40-gray.png) no-repeat 0 0
 			.arrow
 				position: absolute
 				top: 50%
@@ -227,8 +233,8 @@
 				width: 25px
 				height: 28px
 				margin-top: -14px
-				background: transparent url(../images/discovery/blue-arrow.png) no-repeat 100% 50%
-				opacity: 0
+				background: transparent url(../images/discovery/chevron.png) no-repeat 100% 50%
+				opacity: 0.2
 				@include transition(opacity)
 			.loader
 				display: none
@@ -243,3 +249,9 @@
 @media all and (max-height: 700px)
 	#home.index #landing #goto-about
 		bottom: 10px
+@media all and (max-width: 1300px)
+	#home.index #goto-creators-secondary
+		right: 10px
+@media all and (max-width: 1150px)
+	#home.index #goto-creators-secondary
+		display: none

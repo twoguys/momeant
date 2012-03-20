@@ -770,6 +770,10 @@ table {
   max-width: 200%;
   width: 200%;
   overflow-x: hidden; }
+#home.index #loader, #registrations.create #loader {
+  background-color: white;
+  background-image: url(../images/spinner.gif);
+  top: 42px; }
 #home.index #messaging, #home.index #creators, #registrations.create #messaging, #registrations.create #creators {
   position: relative;
   width: 50%;
@@ -902,13 +906,15 @@ table {
     padding: 20px 80px 20px 190px;
     min-height: 150px;
     background: white;
+    background-image: -moz-linear-gradient(center top, #fafafa 4%, #f2f2f2 52%);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #fafafa), color-stop(0.52, #f2f2f2));
     color: #252525;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
-    -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-    -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
     border: 1px solid #cccccc;
     -webkit-transition: border-color 0.2s linear;
     -moz-transition: border-color 0.2s linear;
@@ -916,7 +922,7 @@ table {
     -o-transition: border-color 0.2s linear;
     transition: border-color 0.2s linear; }
     #home.index #creator-discovery #people a.surround:hover, #registrations.create #creator-discovery #people a.surround:hover {
-      border-color: #00aeff; }
+      border-color: #777777; }
       #home.index #creator-discovery #people a.surround:hover .arrow, #registrations.create #creator-discovery #people a.surround:hover .arrow {
         opacity: 1; }
     #home.index #creator-discovery #people a.surround img.avatar, #registrations.create #creator-discovery #people a.surround img.avatar {
@@ -985,7 +991,7 @@ table {
       position: absolute;
       top: 0;
       left: 0;
-      background: transparent url(../images/discovery/avatar-cover-40.png) no-repeat 0 0; }
+      background: transparent url(../images/discovery/avatar-cover-40-gray.png) no-repeat 0 0; }
   #home.index #creator-discovery #people .arrow, #registrations.create #creator-discovery #people .arrow {
     position: absolute;
     top: 50%;
@@ -993,8 +999,8 @@ table {
     width: 25px;
     height: 28px;
     margin-top: -14px;
-    background: transparent url(../images/discovery/blue-arrow.png) no-repeat 100% 50%;
-    opacity: 0;
+    background: transparent url(../images/discovery/chevron.png) no-repeat 100% 50%;
+    opacity: 0.2;
     -webkit-transition: opacity 0.2s linear;
     -moz-transition: opacity 0.2s linear;
     -ms-transition: opacity 0.2s linear;
@@ -1012,6 +1018,12 @@ table {
 @media all and (max-height: 700px) {
   #home.index #landing #goto-about {
     bottom: 10px; } }
+@media all and (max-width: 1300px) {
+  #home.index #goto-creators-secondary {
+    right: 10px; } }
+@media all and (max-width: 1150px) {
+  #home.index #goto-creators-secondary {
+    display: none; } }
 #vertical-content {
   padding-left: 80px;
   position: relative;
