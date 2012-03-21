@@ -1,8 +1,6 @@
 /* Story creation */
 
 body#stories.edit
-	#container
-		position: relative
 
 .new-story-copy
 	font-family: $typewriter
@@ -102,7 +100,7 @@ form.new_story, form.edit_story, .story-form
 		margin-left: auto
 		margin-right: auto
 	#describe
-		max-width: 580px
+		max-width: 530px
 	#share
 		.service
 			padding: 8px 0 8px 34px
@@ -120,6 +118,7 @@ form.new_story, form.edit_story, .story-form
 	.banner
 		max-width: 920px
 	.step#editor
+		margin-top: 30px
 		.choice
 			cursor: pointer
 			.choice-inner
@@ -187,19 +186,32 @@ form.new_story, form.edit_story, .story-form
 	.step#share
 		display: none
 	.step#describe
-		padding-left: 350px
+		padding-left: 400px
 		h2
-			margin-left: -320px
+			margin-left: -370px
 			margin-bottom: 20px
 		#thumbnail-preview
 			position: absolute
-			top: 75px
+			top: 69px
 			left: 30px
+			width: 388px
+			#thumbnail
+				margin-bottom: 10px
+				.file-uploader
+					padding-top: 5px
+					.file-input
+						height: 25px
+					.loader
+						width: 220px
+						height: 19px
+						background: transparent url(../images/loading.gif) no-repeat 0 0
+						display: none
+					.example
+						border: none
 			.box
 				background: #fff
 				border: 1px solid #d7d7d7
 				@include boxshadow(2px,0.1,1px,1px)
-				padding-top: 10px
 				width: 288px
 				.title, .author
 					padding: 0 10px
@@ -209,7 +221,6 @@ form.new_story, form.edit_story, .story-form
 				.author
 					font-size: 11px
 				.thumbnail
-					margin-top: 10px
 					background-color: $lightblue
 					background-image: url(../images/creatorThumbnailDefaultBG.png)
 					background-repeat: no-repeat
@@ -236,9 +247,10 @@ form.new_story, form.edit_story, .story-form
 				font-weight: 500
 			li.tags .info, li.gallery .info
 				margin-top: 3px
-	#thankyou
-		textarea
-			margin-bottom: 20px
+	#last
+		background: none
+		padding: 0
+		max-width: 960px
 		.owner
 			float: right
 			span
@@ -263,32 +275,9 @@ form.new_story, form.edit_story, .story-form
 		a.preview
 			background-color: #777
 			margin-right: 20px
-			height: 24px
+			height: 22px
+			line-height: 23px
 			
-	#thumbnail
-		.thumbnail-container
-			padding-top: 5px
-			height: 80px
-			border-bottom: 1px solid #dedede
-			.preview
-				float: left
-				width: 95px
-				height: 60px
-				background: #fff
-				border: 1px solid #ccc
-				margin-right: 20px
-			.file-uploader
-				padding-top: 5px
-				float: left
-				.file-input
-					height: 25px
-				.loader
-					width: 220px
-					height: 19px
-					background: transparent url(../images/loading.gif) no-repeat 0 0
-					display: none
-				.example
-					border: none
 	.title-input, .excerpt-input
 		height: auto
 		position: relative

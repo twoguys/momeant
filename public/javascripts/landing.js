@@ -44,7 +44,7 @@ $(function() {
 		
 		goto_about: function() {
 		  var height = $(window).height();
-		  $.scrollTo(height, 500, {easing:'easeOutQuart'});
+		  $.scrollTo({top: height, left:0}, 500, {easing:'easeOutQuart'});
 		  this.has_gone_down = true;
 		  return false;
 		},

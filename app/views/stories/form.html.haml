@@ -59,31 +59,28 @@
           = link_to("Setup", "#{root_url}auth/facebook", :class => "configure", :service => "facebook")
 
     %section.step#describe
-      %h2 3. Describe your content so that others can find and reward it!
+      %h2 3. How would you summarize this content?
       #thumbnail-preview
-        .box
-          .title= @story && @story.title.present? ? @story.title : "TITLE"
-          .author by #{@story.user.name}
-          .thumbnail{:style => @story && @story.thumbnail.present? ? "background: url(#{@story.thumbnail.url(:medium)})" : ""}
-        .note{:class => @story.thumbnail.url.include?("missing") ? "hidden" : ""}
-          Unhappy with the default crop?
-          = link_to "Re-crop it", cropper_story_path(@story), :id => "cropper-link"
-    
-      %ul.fields
-    
-        %li.image#thumbnail
-          %label{:for => "story_thumbnail"} Upload an image that best represents what you've created.
-          %p.info
-            %strong Please upload a JPG or PNG.
+        .image#thumbnail
+          %label{:for => "story_thumbnail"}
+            %label{:for => "story_synopsis"}
+              %span Upload a thumbnail preview PNG/JPG:
           .file-uploader
             %form
               %input{:type => "hidden", :value => form_authenticity_token, :name => "authenticity_token"}
               .file-input
                 %input{:type => "file", :name => "story[thumbnail]", :id => "story_thumbnail"}
                 .loader
+        .box
+          .thumbnail{:style => @story && @story.thumbnail.present? ? "background: url(#{@story.thumbnail.url(:medium)})" : ""}
+        .note{:class => @story.thumbnail.url.include?("missing") ? "hidden" : ""}
+          Unhappy with the default crop?
+          = link_to "Re-crop it", cropper_story_path(@story), :id => "cropper-link"
+    
+      %ul.fields
 
         %li.title
-          = label_tag :story_title, "Choose a TITLE for your content:"
+          = label_tag :story_title, "Choose a title:"
           = text_field_tag :story_title, @story.title, :class => "monitor-story-typing", :update => "title"
       
         %li.synopsis
@@ -115,6 +112,7 @@
       .info This note will be shown to a person after they reward you. It's a chance to express your appreciation.
       = text_area_tag :story_thankyou, @story.thankyou, :class => "monitor-story-typing", :update => "thankyou"
   
+    %section.step#last
       .owner
         = check_box_tag :i_own_this, '1', @story.i_own_this
         %span I promise I am the author or creator of this content.

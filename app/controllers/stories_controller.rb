@@ -29,6 +29,7 @@ class StoriesController < ApplicationController
     
     if params[:return_to]
       @exit_presenter_url = params[:return_to]
+      render "presenter" and return
     else
       @exit_presenter_url = request.env["HTTP_REFERER"]
     end
