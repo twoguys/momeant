@@ -36,7 +36,7 @@ $(function() {
 		
 		goto_person: function($person) {
 		  Discovery.current_person = $person;
-		  $person.parent().removeClass('faded').siblings().addClass('faded');
+		  $person.parent().addClass('current').removeClass('faded').siblings().removeClass('current').addClass('faded');
 		  var id = $person.attr('data');
 		  var $person_slide = $('#slides #person-' + id);
 		  $('#slides').scrollTo($person_slide, 500, {easing: 'easeOutQuart'});
@@ -61,12 +61,21 @@ $(function() {
 		    if ($prev.length == 0) { // we're on the first person in the list
   	      Discovery.current_person = undefined;
 		      Discovery.goto_messaging();
-		      $('#people #list li').removeClass('faded');
+		      $('#people #list li').removeClass('faded current');
 		      return false;
 		    }
   		  Discovery.goto_person($prev.find('a'));
 		  }
 		  return false;
+		},
+		
+		goto_profile: function() {
+		  if (Discovery.current_person == undefined) { return false; }
+		  var href = Discovery.current_person.attr('href');
+		  window.location.href = href;
+		  $('#container').animate({'right':'100%'}, 500, 'easeOutQuart', function() {
+		    $('#loader').show();
+		  });
 		},
 		
 		on_resize: function() {
@@ -81,6 +90,9 @@ $(function() {
   	      break;
         case 38: // up arrow
           this.prev_person();
+          break;
+        case 39: // right arrow
+          this.goto_profile();
           break;
   	  }
 		}
