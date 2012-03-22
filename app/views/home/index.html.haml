@@ -1,17 +1,19 @@
 #slides
   #message.slide
-    %h1 Reward what matters to you.
-    %h2 There is a problem with the web:
-    %h3 Very few of us who contribute content make money for our work.
-    %h2 With your help, we aim to fix that:
-    %h3
-      %span Content and information
-      %em will remain free,
-      %span while you voluntarily reward the creators producing content you like.
+    .slide-insides
+      %h1 Reward what matters to you.
+      %h2 There is a problem with the web:
+      %h3 Very few of us who contribute content make money for our work.
+      %h2 With your help, we aim to fix that:
+      %h3
+        %span Content and information
+        %em will remain free,
+        %span while you voluntarily reward the creators producing content you like.
   
   - @people.each do |person|
     .person.slide{:id => "person-#{person.id}"}
-      %h1= person.name
+      .slide-insides
+        %h1= person.name
 
 #creators
 

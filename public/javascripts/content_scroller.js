@@ -3,7 +3,8 @@ window.Scroller = Backbone.View.extend({
 	el: $('body'),
 	
 	events: {
-		'click a.content-preview': 'expand_content'
+		'click #content-list li a.content-preview': 'clicked_content',
+		'click #content-list li a.title': 'clicked_content'
 	},
 	
 	initialize: function() {
@@ -61,6 +62,8 @@ window.Scroller = Backbone.View.extend({
 	},
 	
 	on_keypress: function(event) {
+    if (Profile.editing_text) { return; }
+    
 	  var key = event.charCode ? event.charCode : event.keyCode ? event.keyCode : 0;
 	  switch (key) {
 	    case 38: // up arrow
@@ -71,10 +74,11 @@ window.Scroller = Backbone.View.extend({
 	      this.to_next();
 	      event.preventDefault();
 	      break;
-      // case 39: // right arrow
-      //   this.to_content();
-      //   event.preventDefault();
-      //   break;
+      case 39: // right arrow
+        var url = $('#content-list li:nth-child(' + (Scroll.index + 1) + ') a.title').attr('href');
+        this.to_content(url);
+        event.preventDefault();
+        break;
 	  }
 	},
 	
@@ -111,17 +115,19 @@ window.Scroller = Backbone.View.extend({
 	  $.scrollTo(Scroll.current_position, Scroll.duration, Scroll.settings);
 	},
 	
-	to_content: function() {
-	  var url = $('#content-list li:nth-child(' + (Scroll.index + 1) + ') a.title').attr('href');
+	to_content: function(url) {
 	  window.location.href = url;
-	},
-	
-	expand_content: function(event) {
 	  $('#main').css('position','fixed');
 	  $('#vertical-people').css('left','auto');
 	  $('#main, #vertical-people').animate({'right':'100%'}, 500, 'easeOutQuart', function() {
-	    $('#loader').fadeIn(100);
+	    $('#loader').show();
 	  });
+	},
+	
+	clicked_content: function(event) {
+	  var url = $(event.currentTarget).attr('href');
+	  Scroll.to_content(url);
+	  return false;
 	},
 	
 	reset: function() {

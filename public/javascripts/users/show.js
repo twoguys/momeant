@@ -6,10 +6,16 @@ window.ProfileView = Backbone.View.extend({
 		'click #user-profile #tabs a': 'switch_info_tabs',
 		'click #vertical-people h1 a': 'switch_supporter_tabs',
 		'click #subscribe': 'subscribe',
-		'submit #new_message': 'post_message'
+		'submit #new_message': 'post_message',
+		'focus #message_body': 'start_editing_text',
+		'blur #message_body': 'stop_editing_text'
 	},
 	
 	initialize: function() {
+    this.editing_text = false;
+    
+	  _.bindAll(this, 'on_keypress');
+	  $(document).bind('keydown', this.on_keypress);
   },
   
   switch_info_tabs: function(event) {
@@ -65,6 +71,37 @@ window.ProfileView = Backbone.View.extend({
       $('#discussion ul').prepend(html);
       $form.removeClass('loading');
     });
+  },
+
+	start_editing_text: function() {
+	  Profile.editing_text = true;
+	},
+
+	stop_editing_text: function() {
+	  Profile.editing_text = false;
+	},
+	
+	back: function() {
+	  window.history.back();
+	  $('#main').css('position','fixed');
+	  $('#vertical-people').css('left','auto');
+	  $('#main, #vertical-people').animate({'left':'100%'}, 500, 'easeOutQuart', function() {
+	    $('#loader').show();
+	  });
+	},
+  
+  on_keypress: function(event) {
+    if (Profile.editing_text) { return; }
+    
+    var key = event.charCode ? event.charCode : event.keyCode ? event.keyCode : 0;
+	  switch (key) {
+	    case 37: // left arrow
+	      this.back();
+	      event.preventDefault();
+	      break;
+	    case 68: // letter 'd'
+	      
+    }
   }
   
 });
