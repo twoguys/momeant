@@ -32,6 +32,7 @@ $(function() {
 		person_clicked: function(event) {
 		  var $person = $(event.currentTarget);
 		  Discovery.goto_person($person);
+		  return false;
 		},
 		
 		goto_person: function($person) {
@@ -40,7 +41,6 @@ $(function() {
 		  var id = $person.attr('data');
 		  var $person_slide = $('#slides #person-' + id);
 		  $('#slides').scrollTo($person_slide, 500, {easing: 'easeOutQuart'});
-		  return false;
 		},
 		
 		next_person: function() {
