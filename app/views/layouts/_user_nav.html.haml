@@ -26,9 +26,9 @@
       %li#coins{:class => @nav == "coins" ? "active" : ""}
         %a{:href => coins_path}
           .text
-            %span reward coins
-            %span available
-          .amount= current_user.coins
+            %span reward money
+            %span to give out
+          .amount= number_to_currency(current_user.coins * Reward.dollar_exchange)
       %li#feedback= link_to("Feedback", "#feedback-modal")
       
     - else

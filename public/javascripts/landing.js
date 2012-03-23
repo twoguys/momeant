@@ -34,7 +34,7 @@ window.DiscoveryView = Backbone.View.extend({
 	reset: function() {
 	  var index = $.cookie('discovery_creator_index');
 	  if (index == null) { return; }
-    Discovery.goto_person(index);
+    Discovery.goto_person(parseInt(index));
 	},
 	
 	person_clicked: function(event) {
@@ -54,7 +54,7 @@ window.DiscoveryView = Backbone.View.extend({
     $person.parent().addClass('current').removeClass('faded').siblings().removeClass('current').addClass('faded');
     var scroll_to = Discovery.window_height * (index + 1) * -1;
     $('#slides').css('margin-top', scroll_to);
-    $.cookie('discovery_creator_id', index);
+    $.cookie('discovery_creator_index', index);
 	},
 	
 	next_person: function() {

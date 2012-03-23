@@ -39,6 +39,9 @@ impact ul.avatars
 		background-image: url(../images/icons/starGreySmall.png)
 
 body#users, body#messages
+	#container
+		overflow-x: hidden
+		@include transition(margin)
 	#main
 		max-width: 100%
 		margin: 0
@@ -147,6 +150,7 @@ body#users, body#messages
 			display: none
 	
 	#vertical-people
+		@include transition(right)
 		#discussion
 			.hasnt
 				padding: 5px 10px

@@ -83,11 +83,9 @@ window.ProfileView = Backbone.View.extend({
 	
 	back: function() {
 	  window.history.back();
-	  $('#main').css('position','fixed');
-	  $('#vertical-people').css('left','auto');
-	  $('#main, #vertical-people').animate({'left':'100%'}, 500, 'easeOutQuart', function() {
-	    $('#loader').show();
-	  });
+	  $('#vertical-people').css('right','-100%');
+	  $('#container').css('margin-left','100%');
+	  setTimeout(function() { $('#loader').show(); }, 200);
 	},
   
   on_keypress: function(event) {

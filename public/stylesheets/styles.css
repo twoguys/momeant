@@ -125,7 +125,12 @@ h2 {
 #header {
   position: fixed;
   top: 0;
-  width: 100%; }
+  width: 100%;
+  -webkit-transition: top 0.2s linear;
+  -moz-transition: top 0.2s linear;
+  -ms-transition: top 0.2s linear;
+  -o-transition: top 0.2s linear;
+  transition: top 0.2s linear; }
   #header #user-nav {
     position: relative;
     z-index: 100;
@@ -264,13 +269,11 @@ h2 {
           font-size: 30px;
           font-weight: 100;
           line-height: 30px;
-          color: #00aeef;
-          padding-right: 18px;
-          background: transparent url(../images/icons/coinStarWhite.png) no-repeat 100% 1px; }
+          color: #00aeef; }
         #header #user-nav #coins a .text {
-          font-size: 9px;
+          font-size: 10px;
           line-height: 10px;
-          padding: 6px 6px 0 0;
+          padding: 3px 6px 0 0;
           text-align: right; }
           #header #user-nav #coins a .text span {
             display: block; }
@@ -600,7 +603,7 @@ input[type="submit"], a.button {
   -moz-border-radius: 3px;
   border-radius: 3px;
   color: white;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.8);
   font-weight: 700;
   text-transform: uppercase;
   font-family: "proxima-nova-1", "proxima-nova-2", helvetica, sans-serif; }
@@ -1088,6 +1091,13 @@ impact ul.avatars li {
   .user-stats li.rewards .icon {
     background-image: url(../images/icons/starGreySmall.png); }
 
+body#users #container, body#messages #container {
+  overflow-x: hidden;
+  -webkit-transition: margin 0.2s linear;
+  -moz-transition: margin 0.2s linear;
+  -ms-transition: margin 0.2s linear;
+  -o-transition: margin 0.2s linear;
+  transition: margin 0.2s linear; }
 body#users #main, body#messages #main {
   max-width: 100%;
   margin: 0;
@@ -1195,51 +1205,57 @@ body#users #main, body#messages #main {
     margin-left: 210px; }
     #user-profile #vertical-content #content-list li .content-preview img.avatar {
       display: none; }
-  #user-profile #vertical-people #discussion .hasnt {
-    padding: 5px 10px;
-    background: #eeeeee;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
-    margin-bottom: 10px; }
-  #user-profile #vertical-people #discussion form {
-    height: 105px;
-    margin-bottom: 10px; }
-    #user-profile #vertical-people #discussion form.loading {
-      background: transparent url(../images/spinner.gif) no-repeat 50% 50%; }
-      #user-profile #vertical-people #discussion form.loading * {
-        display: none; }
-  #user-profile #vertical-people #discussion textarea {
-    width: 95%;
-    height: 50px;
-    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1) inset;
-    margin-bottom: 5px; }
-  #user-profile #vertical-people #discussion li {
-    border-top: 1px solid #eeeeee;
-    padding: 10px 0 10px 50px;
-    position: relative;
-    float: none; }
-    #user-profile #vertical-people #discussion li a.avatar, #user-profile #vertical-people #discussion li a.avatar img, #user-profile #vertical-people #discussion li a.avatar .cover {
-      display: block;
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 40px;
-      height: 40px; }
-    #user-profile #vertical-people #discussion li a.avatar {
-      top: 10px; }
-    #user-profile #vertical-people #discussion li a.avatar img {
-      z-index: 1; }
-    #user-profile #vertical-people #discussion li .cover {
-      z-index: 2;
-      background: transparent url(../images/discovery/avatar-cover-40.png) no-repeat 0 0; }
-    #user-profile #vertical-people #discussion li p {
-      margin: 3px 0;
-      line-height: 1.5em;
-      font-size: 13px; }
-    #user-profile #vertical-people #discussion li .when {
-      font-size: 12px;
-      color: #cccccc; }
+  #user-profile #vertical-people {
+    -webkit-transition: right 0.2s linear;
+    -moz-transition: right 0.2s linear;
+    -ms-transition: right 0.2s linear;
+    -o-transition: right 0.2s linear;
+    transition: right 0.2s linear; }
+    #user-profile #vertical-people #discussion .hasnt {
+      padding: 5px 10px;
+      background: #eeeeee;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      border-radius: 3px;
+      margin-bottom: 10px; }
+    #user-profile #vertical-people #discussion form {
+      height: 105px;
+      margin-bottom: 10px; }
+      #user-profile #vertical-people #discussion form.loading {
+        background: transparent url(../images/spinner.gif) no-repeat 50% 50%; }
+        #user-profile #vertical-people #discussion form.loading * {
+          display: none; }
+    #user-profile #vertical-people #discussion textarea {
+      width: 95%;
+      height: 50px;
+      box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1) inset;
+      margin-bottom: 5px; }
+    #user-profile #vertical-people #discussion li {
+      border-top: 1px solid #eeeeee;
+      padding: 10px 0 10px 50px;
+      position: relative;
+      float: none; }
+      #user-profile #vertical-people #discussion li a.avatar, #user-profile #vertical-people #discussion li a.avatar img, #user-profile #vertical-people #discussion li a.avatar .cover {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 40px;
+        height: 40px; }
+      #user-profile #vertical-people #discussion li a.avatar {
+        top: 10px; }
+      #user-profile #vertical-people #discussion li a.avatar img {
+        z-index: 1; }
+      #user-profile #vertical-people #discussion li .cover {
+        z-index: 2;
+        background: transparent url(../images/discovery/avatar-cover-40.png) no-repeat 0 0; }
+      #user-profile #vertical-people #discussion li p {
+        margin: 3px 0;
+        line-height: 1.5em;
+        font-size: 13px; }
+      #user-profile #vertical-people #discussion li .when {
+        font-size: 12px;
+        color: #cccccc; }
   #user-profile #activity {
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
@@ -4199,12 +4215,12 @@ body#stories.fullscreen {
           text-indent: -9999px; }
         #presenter #reward-modal #modal-inner #modal-header .slogan {
           position: absolute;
-          top: 15px;
+          top: 23px;
           right: 20px;
           width: 320px;
           text-align: right;
-          font-size: 12px;
-          color: #cccccc;
+          font-size: 17px;
+          color: white;
           line-height: 15px; }
         #presenter #reward-modal #modal-inner #modal-header #modal-steps {
           display: none;
@@ -4269,8 +4285,8 @@ body#stories.fullscreen {
             background-image: url(../images/icons/impactBlackTiny.png); }
       #presenter #reward-modal #your-reward #creator-info {
         position: relative;
-        padding: 20px 193px 20px 125px;
-        width: 465px;
+        padding: 20px 20px 20px 125px;
+        width: 638px;
         min-height: 82px;
         border-bottom: 1px solid #d8d8d8; }
         #presenter #reward-modal #your-reward #creator-info .avatar {
@@ -4290,20 +4306,24 @@ body#stories.fullscreen {
           left: 20px; }
         #presenter #reward-modal #your-reward #creator-info .byline {
           margin: 5px 0;
-          font-size: 18px;
-          font-weight: 700;
+          font-size: 26px;
+          font-weight: 300;
           text-transform: uppercase; }
-        #presenter #reward-modal #your-reward #creator-info .occupation-location, #presenter #reward-modal #your-reward #creator-info .tagline {
-          color: #888888; }
+          #presenter #reward-modal #your-reward #creator-info .byline .weak {
+            font-size: 17px; }
         #presenter #reward-modal #your-reward #creator-info .tagline {
           padding-top: 5px;
-          font-size: 11px;
-          overflow: hidden; }
+          font-size: 14px; }
+          #presenter #reward-modal #your-reward #creator-info .tagline strong {
+            display: block;
+            font-size: 16px;
+            margin-bottom: 5px; }
         #presenter #reward-modal #your-reward #creator-info .message {
           background: transparent url(../images/rewardModalThanksBG.png) no-repeat 0 0;
           padding: 23px 15px;
           height: 137px; }
       #presenter #reward-modal #your-reward #content-thumbnail {
+        display: none;
         position: absolute;
         top: 20px;
         right: 20px; }
@@ -4311,7 +4331,7 @@ body#stories.fullscreen {
           width: 123px;
           height: 82px; }
       #presenter #reward-modal #your-reward .section {
-        width: 467px;
+        width: 500px;
         margin: 0 auto 20px; }
         #presenter #reward-modal #your-reward .section h1 {
           text-align: center;
@@ -4331,17 +4351,33 @@ body#stories.fullscreen {
           width: 447px;
           margin: 0 auto 10px; }
         #presenter #reward-modal #your-reward .section input[type="submit"] {
-          float: right; }
+          float: right;
+          margin-right: 19px; }
       #presenter #reward-modal #your-reward #reward-box {
         position: relative;
         border-top: 1px solid white;
         border-bottom: 1px solid #d8d8d8;
-        padding: 70px 0; }
+        padding: 50px 0; }
         #presenter #reward-modal #your-reward #reward-box.loading {
           height: 277px;
           background: transparent url(../images/spinner.gif) no-repeat 50% 200px; }
           #presenter #reward-modal #your-reward #reward-box.loading * {
             display: none; }
+        #presenter #reward-modal #your-reward #reward-box.no_user #amounts-cover {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 160px;
+          background: #ededed;
+          opacity: 0.7; }
+        #presenter #reward-modal #your-reward #reward-box.no_user #reward-join-button {
+          display: block;
+          width: 350px;
+          font-size: 18px;
+          text-align: center;
+          padding: 13px 0;
+          margin: 0 auto; }
         #presenter #reward-modal #your-reward #reward-box .alert {
           background-color: #f7d3db;
           color: #f42652;
@@ -4355,50 +4391,55 @@ body#stories.fullscreen {
             margin-bottom: 0; }
           #presenter #reward-modal #your-reward #reward-box .inner form#reward-form #stars {
             height: 100px;
-            padding-left: 30px;
+            padding-left: 20px;
             margin-top: 20px; }
             #presenter #reward-modal #your-reward #reward-box .inner form#reward-form #stars li {
-              width: 90px;
+              width: 100px;
               float: left;
               clear: none; }
               #presenter #reward-modal #your-reward #reward-box .inner form#reward-form #stars li a, #presenter #reward-modal #your-reward #reward-box .inner form#reward-form #stars li input {
-                box-shadow: 0 1px 0 #aaaaaa; }
+                box-shadow: 0 3px 0 #aaaaaa; }
               #presenter #reward-modal #your-reward #reward-box .inner form#reward-form #stars li a {
                 display: block;
-                width: 60px;
+                width: 90px;
                 height: 40px;
+                line-height: 40px;
                 text-align: center;
-                font-size: 38px;
+                font-size: 28px;
                 font-family: "ff-dagny-web-pro-1", "ff-dagny-web-pro-2", sans-serif;
                 font-weight: 300;
                 color: black;
                 background: white;
-                padding: 6px 0 14px;
-                border: 5px solid #cbcbcb;
+                padding: 14px 0;
+                border: 1px solid #cccccc;
                 -webkit-border-radius: 5px;
                 -moz-border-radius: 5px;
                 border-radius: 5px; }
                 #presenter #reward-modal #your-reward #reward-box .inner form#reward-form #stars li a.selected {
-                  background: #00aeef;
+                  background: #333333;
                   color: white;
-                  border-color: #9ad5ec;
-                  box-shadow: 0 1px 0 white; }
+                  box-shadow: 0 2px 0 white, 0 0 3px rgba(0, 0, 0, 0.5) inset;
+                  margin-top: 3px; }
               #presenter #reward-modal #your-reward #reward-box .inner form#reward-form #stars li input[type="text"] {
                 float: left;
-                font-size: 36px;
+                font-size: 28px;
                 padding: 10px;
                 margin-right: 10px;
-                width: 40px;
-                height: 40px;
+                width: 70px;
+                height: 47px;
                 font-family: "ff-dagny-web-pro-1", "ff-dagny-web-pro-2", sans-serif;
                 font-weight: 300;
-                border: 5px solid #cbcbcb;
-                text-align: center; }
+                text-align: center;
+                border: 1px solid #cccccc;
+                color: black;
+                -webkit-border-radius: 5px;
+                -moz-border-radius: 5px;
+                border-radius: 5px; }
                 #presenter #reward-modal #your-reward #reward-box .inner form#reward-form #stars li input[type="text"]:focus, #presenter #reward-modal #your-reward #reward-box .inner form#reward-form #stars li input[type="text"].selected {
-                  background: #00aeef;
+                  background: #333333;
                   color: white;
-                  border-color: #9ad5ec;
-                  box-shadow: 0 1px 0 white; }
+                  box-shadow: 0 2px 0 white, 0 0 3px rgba(0, 0, 0, 0.5) inset;
+                  margin-top: 3px; }
               #presenter #reward-modal #your-reward #reward-box .inner form#reward-form #stars li span, #presenter #reward-modal #your-reward #reward-box .inner form#reward-form #stars li strong {
                 font-size: 10px;
                 text-transform: uppercase;
@@ -4407,7 +4448,7 @@ body#stories.fullscreen {
               #presenter #reward-modal #your-reward #reward-box .inner form#reward-form #stars li span {
                 font-style: italic; }
             #presenter #reward-modal #your-reward #reward-box .inner form#reward-form #stars li.custom {
-              width: 150px; }
+              width: 170px; }
           #presenter #reward-modal #your-reward #reward-box .inner form#reward-form #amount-hints {
             text-align: center; }
             #presenter #reward-modal #your-reward #reward-box .inner form#reward-form #amount-hints .weak {
@@ -4594,10 +4635,13 @@ body#stories.fullscreen {
               width: 40px;
               height: 40px; }
       #presenter #reward-modal #your-reward #not-logged-in {
-        width: 507px;
+        width: 700px;
         margin: 0 auto;
         border-bottom: 1px solid #d8d8d8;
-        float: none; }
+        float: none;
+        height: auto; }
+        #presenter #reward-modal #your-reward #not-logged-in .step-icon {
+          display: none; }
         #presenter #reward-modal #your-reward #not-logged-in h1 {
           margin-bottom: 20px; }
         #presenter #reward-modal #your-reward #not-logged-in p {

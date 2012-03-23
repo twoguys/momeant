@@ -117,6 +117,7 @@ window.Scroller = Backbone.View.extend({
 	
 	to_content: function(url) {
 	  window.location.href = url;
+	  $('#header').css('top','-60px');
 	  $('#main').css('position','fixed');
 	  $('#vertical-people').css('left','auto');
 	  $('#main, #vertical-people').animate({'right':'100%'}, 500, 'easeOutQuart', function() {
