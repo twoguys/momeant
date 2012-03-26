@@ -78,23 +78,13 @@ Repo::Application.routes.draw do
     get :bookmarks
     
     member do
-      get :stream
-      get :creations
-      get :rewarded
       get :patronage
-      get :followers
-      get :following
-      get :supporters
-      get :info
       get :settings
       post :update_in_place
       post :update_avatar
       post :update_email_setting
       get :activity
       get :more_activity #ajax
-      get :activity_from_friends #ajax
-      get :content_from_nearbys #ajax
-      get :similar_to_what_ive_rewarded #ajax
     end
     
     # Homepage tab
