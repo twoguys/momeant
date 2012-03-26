@@ -20,7 +20,25 @@
           = link_to "Updates", "#", :class => "selected"
           = link_to "Info", "#"
         #text
-          .updates As #{@user.first_name} posts updates, they will show up here.
+          #broadcaster.updates
+            - if me?(@user)
+              #updates-list
+                #latest-update
+                  - if @user.broadcasts.empty?
+                  You can use this area to provide updates to your subscribers.
+                  - else
+                    = @user.broadcasts.first.message
+                = link_to "+ Post a new Update", "#", :id => "post-update"
+              = form_for Broadcast.new, :url => user_broadcasts_path(@user) do |form|
+                %p Send a message to your subscribers:
+                = form.text_area :message
+                = form.submit "Post"
+                = link_to "Cancel", "#", :id => "cancel-update"
+            - elsif @user.broadcasts.empty?
+              As #{@user.first_name} posts updates, they will show up here.
+            - else
+              = @user.broadcasts.first.message
+              
           .info.hidden= @user.tagline
   
     %ul.stats

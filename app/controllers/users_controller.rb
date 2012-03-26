@@ -174,12 +174,6 @@ class UsersController < ApplicationController
   end
   
   def billing_updates
-    subscriber_ids = params[:subscriber_ids].split(",")
-    subscriber_ids.each do |subscriber_id|
-      user = User.find_by_id(subscriber_id)
-      user.refresh_from_spreedly if user
-    end
-
     head :ok
   end
   

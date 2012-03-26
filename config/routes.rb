@@ -75,6 +75,7 @@ Repo::Application.routes.draw do
         post :public
       end
     end
+    resources :broadcasts, :only => [:create]
     get :bookmarks
     
     member do

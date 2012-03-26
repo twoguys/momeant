@@ -5,6 +5,7 @@ class Activity < ActiveRecord::Base
   default_scope order("created_at DESC")
   
   scope :involving, lambda { |user| where("actor_id = ? OR recipient_id = ?", user.id, user.id) }
+  scope :by, lambda { |user| where(:actor_id => user.id) }
   scope :on_impact, where(:action_type => "Impact")
   scope :on_rewards, where(:action_type => "Reward")
   scope :on_content, where(:action_type => "Story")
@@ -27,6 +28,8 @@ class Activity < ActiveRecord::Base
       Story.find(self.action_id)
     when "AmazonPayment"
       AmazonPayment.find(self.action_id)
+    when "Broadcast"
+      Broadcast.find(self.action_id)
     end
   end
 end

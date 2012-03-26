@@ -7,8 +7,8 @@ window.ProfileView = Backbone.View.extend({
 		'click #vertical-people h1 a': 'switch_supporter_tabs',
 		'click #subscribe': 'subscribe',
 		'submit #new_message': 'post_message',
-		'focus #message_body': 'start_editing_text',
-		'blur #message_body': 'stop_editing_text'
+		'focus textarea': 'start_editing_text',
+		'blur textarea': 'stop_editing_text'
 	},
 	
 	initialize: function() {
@@ -104,4 +104,49 @@ window.ProfileView = Backbone.View.extend({
   
 });
 
+window.BroadcasterView = Backbone.View.extend({
+	
+	el: $('#broadcaster'),
+	
+	events: {
+		'click #post-update': 'show_update_form',
+		'click #cancel-update': 'hide_update_form',
+		'submit #new_broadcast': 'submit_broadcast'
+	},
+	
+	initialize: function() {
+  },
+  
+  show_update_form: function() {
+    $('#new_broadcast').show();
+    $('#updates-list').hide();
+  },
+  
+  hide_update_form: function() {
+    $('#new_broadcast').hide();
+    $('#updates-list').show();
+  },
+  
+  submit_broadcast: function(event) {
+    var $form = $(event.currentTarget);
+    event.preventDefault();
+    
+    var message = $form.find('#broadcast_message').val();
+    var token = $form.find('input[name="authenticity_token"]').val();
+    if (message == '') { return; }
+    
+    $form.addClass('loading');
+    $.post('/users/' + user_id + '/broadcasts', {
+      'broadcast[message]': message,
+      authenticity_token: token
+    }, function() {
+      $form.removeClass('loading');
+      $('#latest-update').text(message);
+      Broadcaster.hide_update_form();
+    });
+  }
+  
+});
+
 window.Profile = new ProfileView;
+window.Broadcaster = new BroadcasterView;
