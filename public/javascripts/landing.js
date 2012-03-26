@@ -48,6 +48,7 @@ window.DiscoveryView = Backbone.View.extend({
     Discovery.current_person = index;
     if (Discovery.current_person == -1) { // go to messaging slide
       $('#slides').css('margin-top',0);
+      $('#people li').removeClass('current faded');
       return;
     }
     var $person = Discovery.people[index];
