@@ -19,7 +19,7 @@ class UsersController < ApplicationController
   end
   
   def activity
-    @activity = Activity.involving(@user).page(params[:page])
+    @activity = Activity.by_users([@user]).only_types("'Reward','Impact'").page(params[:page])
   end
   
   def more_activity

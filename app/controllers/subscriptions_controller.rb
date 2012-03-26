@@ -5,9 +5,8 @@ class SubscriptionsController < ApplicationController
   def index
     @nav = "support"
     @creators = current_user.subscribed_to
-    @content = []
     return if @creators.empty?
-    @content = Story.published.newest_first.where("user_id IN (#{@creators.map(&:id).join(",")})")
+    @activity = Activity.by_users(@creators).only_types("'Story','Broadcast'").order("created_at DESC")
   end
 
   def filter #ajax

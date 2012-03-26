@@ -2,7 +2,7 @@ class CommunityController < ApplicationController
   before_filter :set_nav
   
   def index
-    @activity = Activity.except("Impact").page params[:page]
+    @activity = Activity.except_type("Impact").page params[:page]
     @top_patrons = User.where("impact > 0").order("impact DESC").limit(5)
     @top_creators = User.most_rewarded.limit(5)
   end
@@ -11,7 +11,7 @@ class CommunityController < ApplicationController
     activity = []
     case params[:filter]
     when "all"
-      activity = Activity.except("Impact")
+      activity = Activity.except_type("Impact")
     when "impact"
       activity = Activity.on_impact
     when "rewards"

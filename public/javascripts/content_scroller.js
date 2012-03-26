@@ -3,8 +3,8 @@ window.Scroller = Backbone.View.extend({
 	el: $('body'),
 	
 	events: {
-		'click #content-list li a.content-preview': 'clicked_content',
-		'click #content-list li a.title': 'clicked_content'
+		'click #activity-list li a.content-preview': 'clicked_content',
+		'click #activity-list li a.title': 'clicked_content'
 	},
 	
 	initialize: function() {
@@ -17,7 +17,7 @@ window.Scroller = Backbone.View.extend({
 	  
 	  this.calculate_list_heights();
 	  this.pad_bottom();
-	  $('#content-list li:first-child').addClass('current');
+	  $('#activity-list li:first-child').addClass('current');
 	  
 	  _.bindAll(this, 'on_keypress');
 	  $(document).bind('keydown', this.on_keypress);
@@ -47,7 +47,7 @@ window.Scroller = Backbone.View.extend({
 	
 	pad_bottom: function() {
 	  var viewport_height = $(window).height();
-	  var content_list = $('#content-list').height();
+	  var content_list = $('#activity-list').height();
 	  var last_content_height = 0;
 	  if (this.scrollables.length > 0) {
 	    last_content_height = this.scrollables[this.scrollables.length - 1].height;
@@ -62,7 +62,7 @@ window.Scroller = Backbone.View.extend({
 	},
 	
 	on_keypress: function(event) {
-    if (Profile.editing_text) { return; }
+    if (typeof(Profile) != 'undefined' && Profile.editing_text) { return; }
     
 	  var key = event.charCode ? event.charCode : event.keyCode ? event.keyCode : 0;
 	  switch (key) {
@@ -75,7 +75,7 @@ window.Scroller = Backbone.View.extend({
 	      event.preventDefault();
 	      break;
       case 39: // right arrow
-        var url = $('#content-list li:nth-child(' + (Scroll.index + 1) + ') a.title').attr('href');
+        var url = $('#activity-list li:nth-child(' + (Scroll.index + 1) + ') a.title').attr('href');
         this.to_content(url);
         event.preventDefault();
         break;
@@ -87,9 +87,8 @@ window.Scroller = Backbone.View.extend({
     var index = 0;
 	  while (index < Scroll.scrollables.length) {
 	    if (distance_from_top > Scroll.scrollables[index].top && distance_from_top < Scroll.scrollables[index].bottom) {
-	      $('#content-list li:nth-child(' + (index + 1) + ')').addClass('current').siblings().removeClass('current');
+	      $('#activity-list li:nth-child(' + (index + 1) + ')').addClass('current').siblings().removeClass('current');
 	      Scroll.index = index;
-	      //Scroll.current_position = Scroll.scrollables[index].top;
 	      break;
 	    }
 	    index++;
@@ -102,7 +101,7 @@ window.Scroller = Backbone.View.extend({
 	  
 	  Scroll.index += 1;
 	  Scroll.current_position = Scroll.scrollables[Scroll.index].top;
-	  //$('#vertical-content').css('margin-top',-Scroll.current_position);
+	  //$('#vertical-list').css('margin-top',-Scroll.current_position);
 	  $.scrollTo(Scroll.current_position, Scroll.duration, Scroll.settings);
 	},
 	
@@ -111,7 +110,7 @@ window.Scroller = Backbone.View.extend({
 	  
 	  Scroll.index -= 1;
 	  Scroll.current_position = Scroll.scrollables[Scroll.index].top;
-	  //$('#vertical-content').css('margin-top',-Scroll.current_position);
+	  //$('#vertical-list').css('margin-top',-Scroll.current_position);
 	  $.scrollTo(Scroll.current_position, Scroll.duration, Scroll.settings);
 	},
 	

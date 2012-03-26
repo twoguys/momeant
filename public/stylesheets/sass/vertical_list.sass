@@ -1,4 +1,4 @@
-#vertical-content
+#vertical-list
 	padding-left: 80px
 	position: relative
 	margin-right: 350px
@@ -14,20 +14,25 @@
 		color: #777
 		line-height: 14px
 	
-	#content-list
+	#activity-list
 		@include transition(margin, 0.3s, ease-out)
 		&.loading
 			height: 200px
 			background: transparent url(../images/spinner.gif) no-repeat 50% 100px
 			*
 				display: none
-	#content-list > li
-		min-height: 200px
+	#activity-list > li
 		clear: both
 		opacity: 0.3
+		min-height: 200px
 		@include transition(opacity)
+		padding: 0
+		border: none
 		&:hover, &.current
 			opacity: 1.0
+
+	#activity-list > li.content
+		&:hover, &.current
 			.info p
 				color: $text_color
 			.rewards
@@ -120,18 +125,36 @@
 				.cover
 					z-index: 2
 					background: transparent url(../images/discovery/avatar-cover-40.png) no-repeat 0 0
-							
+
+	#activity-list > li.broadcast
+		position: relative
+		padding-left: 60px
+		.avatar
+			position: absolute
+			top: 0
+			left: 0
+		.avatar, .avatar img
+			display: block
+			width: 50px
+			height: 50px
+		.title
+			margin-bottom: 5px
+		p
+			margin: 0
+			line-height: 1.3em
+			background: transparent url(../images/curation/comment-box.png) no-repeat 0 0
+			padding: 20px 12px 10px
 				
 // Going bigger
 @media all and (min-width: 1367px)
-	#vertical-content #content-list li
+	#vertical-list #activity-list li
 		max-width: 680px
 				
 // Going smaller
 @media all and (max-width: 1149px)
-	#vertical-content #content-list li .content-preview
+	#vertical-list #activity-list li .content-preview
 		float: none
 @media all and (max-width: 1025px)
-	#vertical-content
+	#vertical-list
 		margin-right: 0
 		width: 300px
