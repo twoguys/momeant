@@ -20,8 +20,6 @@
               .edit
                 = link_to "Edit", edit_story_path(content) if me?(@user)
                 = link_to "Delete", story_path(content), :method => :delete, :confirm => "WHOA WAIT UP! If you delete this you will lose ALL REWARDS on this content. Are you SURE you want to delete it?"
-            - else
-              .byline= @user.name
             %p= content.synopsis
           
           .rewards

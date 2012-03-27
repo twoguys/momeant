@@ -7,7 +7,7 @@
     %ul
       - @creators.each do |person|
         %li.person
-          = link_to image_tag(person.avatar.url(:thumbnail)), user_path(person), :class => "tooltipped-e", :title => "Show #{person.first_name}'s updates", :data => person.id
+          = link_to image_tag(person.avatar.url(:thumbnail), :alt => ""), user_path(person), :class => "tooltipped-e", :title => "Show #{person.first_name}'s updates", :data => person.id
   
   - unless @creators.empty? 
     #vertical-list

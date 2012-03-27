@@ -6,14 +6,10 @@ window.ProfileView = Backbone.View.extend({
 		'click #user-profile #tabs a': 'switch_info_tabs',
 		'click #vertical-people h1 a': 'switch_supporter_tabs',
 		'click #subscribe': 'subscribe',
-		'submit #new_message': 'post_message',
-		'focus textarea': 'start_editing_text',
-		'blur textarea': 'stop_editing_text'
+		'submit #new_message': 'post_message'
 	},
 	
 	initialize: function() {
-    this.editing_text = false;
-    
 	  _.bindAll(this, 'on_keypress');
 	  $(document).bind('keydown', this.on_keypress);
   },
@@ -72,14 +68,6 @@ window.ProfileView = Backbone.View.extend({
       $form.removeClass('loading');
     });
   },
-
-	start_editing_text: function() {
-	  Profile.editing_text = true;
-	},
-
-	stop_editing_text: function() {
-	  Profile.editing_text = false;
-	},
 	
 	back: function() {
 	  window.history.back();

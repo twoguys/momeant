@@ -76,7 +76,7 @@ Repo::Application.routes.draw do
       end
     end
     resources :broadcasts, :only => [:create]
-    get :bookmarks
+    resources :comments, :only => [:create]
     
     member do
       get :patronage

@@ -872,21 +872,25 @@ table {
         display: none; }
   #vertical-list #activity-list > li {
     clear: both;
-    opacity: 0.3;
     min-height: 200px;
-    -webkit-transition: opacity 0.2s linear;
-    -moz-transition: opacity 0.2s linear;
-    -ms-transition: opacity 0.2s linear;
-    -o-transition: opacity 0.2s linear;
-    transition: opacity 0.2s linear;
-    padding: 0;
+    padding: 0 0 0 60px;
     border: none; }
-    #vertical-list #activity-list > li:hover, #vertical-list #activity-list > li.current {
-      opacity: 1; }
+    #vertical-list #activity-list > li .avatar {
+      position: absolute;
+      top: 0;
+      left: 0; }
+    #vertical-list #activity-list > li .avatar, #vertical-list #activity-list > li .avatar img {
+      display: block;
+      width: 50px;
+      height: 50px; }
+    #vertical-list #activity-list > li .title {
+      margin-bottom: 5px; }
   #vertical-list #activity-list > li.content:hover .info p, #vertical-list #activity-list > li.content.current .info p {
     color: #252525; }
   #vertical-list #activity-list > li.content:hover .rewards, #vertical-list #activity-list > li.content.current .rewards {
     opacity: 1; }
+  #vertical-list #activity-list > li.content .title {
+    margin-bottom: 10px; }
   #vertical-list #activity-list > li.content .content-preview {
     display: block;
     width: 300px;
@@ -914,12 +918,6 @@ table {
         background-image: url(../images/content/media-types/writing.png); }
       #vertical-list #activity-list > li.content .content-preview .media-type.music {
         background-image: url(../images/content/media-types/music.png); }
-    #vertical-list #activity-list > li.content .content-preview img.avatar {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 40px;
-      height: 40px; }
   #vertical-list #activity-list > li.content .info {
     min-height: 200px; }
     #vertical-list #activity-list > li.content .info a.title {
@@ -992,23 +990,12 @@ table {
         z-index: 2;
         background: transparent url(../images/discovery/avatar-cover-40.png) no-repeat 0 0; }
   #vertical-list #activity-list > li.broadcast {
-    position: relative;
-    padding-left: 60px; }
-    #vertical-list #activity-list > li.broadcast .avatar {
-      position: absolute;
-      top: 0;
-      left: 0; }
-    #vertical-list #activity-list > li.broadcast .avatar, #vertical-list #activity-list > li.broadcast .avatar img {
-      display: block;
-      width: 50px;
-      height: 50px; }
-    #vertical-list #activity-list > li.broadcast .title {
-      margin-bottom: 5px; }
+    position: relative; }
     #vertical-list #activity-list > li.broadcast p {
       margin: 0;
       line-height: 1.3em;
       background: transparent url(../images/curation/comment-box.png) no-repeat 0 0;
-      padding: 20px 8px 8px; }
+      padding: 20px 12px 10px; }
 
 @media all and (min-width: 1367px) {
   #vertical-list #activity-list li {
@@ -1044,17 +1031,10 @@ table {
         padding-top: 12px; }
     #vertical-people li.person.dimmed {
       opacity: 0.3; }
-    #vertical-people li.person .cover {
+    #vertical-people li.person a {
       display: block;
       width: 60px;
-      height: 60px;
-      position: absolute;
-      top: 0;
-      left: 0;
-      background: transparent url(../images/profile/avatar-cover-60.png) no-repeat 0 0;
-      text-indent: 100%;
-      white-space: nowrap;
-      overflow: hidden; }
+      height: 60px; }
 
 @media all and (min-width: 1367px) {
   #vertical-people {
@@ -1246,6 +1226,8 @@ body#users #main, body#messages #main {
     margin-left: 250px; }
   #user-profile #vertical-list {
     margin-left: 210px; }
+    #user-profile #vertical-list #activity-list > li {
+      padding: 0; }
     #user-profile #vertical-list #activity-list li .content-preview img.avatar {
       display: none; }
   #user-profile #vertical-people {
@@ -1856,6 +1838,50 @@ table.users {
   #subscriptions-inner #vertical-list .helper {
     left: auto;
     margin-left: -90px; } }
+#comments {
+  margin-top: 10px;
+  padding-bottom: 100px;
+  font-size: 13px; }
+  #comments h3 {
+    font-weight: 500;
+    color: #999999;
+    margin-bottom: 5px; }
+  #comments ul.comment-list > li, #comments form {
+    position: relative;
+    padding-left: 35px; }
+    #comments ul.comment-list > li img.commenter-avatar, #comments form img.commenter-avatar {
+      width: 30px;
+      height: 30px;
+      position: absolute;
+      top: 0;
+      left: 0; }
+  #comments ul.comment-list > li {
+    margin-bottom: 5px; }
+    #comments ul.comment-list > li .time {
+      font-size: 12px;
+      color: #999999;
+      margin-top: 1px; }
+  #comments .disabled {
+    background: #f7f7f7;
+    color: #777777;
+    padding: 3px 6px; }
+  #comments form {
+    background: #f7f7f7;
+    padding: 3px 6px 3px 38px;
+    min-height: 30px; }
+    #comments form img.commenter-avatar {
+      top: 3px;
+      left: 3px; }
+    #comments form textarea {
+      width: 98%;
+      height: 15px;
+      padding: 4px;
+      -webkit-border-radius: 0;
+      -moz-border-radius: 0;
+      border-radius: 0;
+      font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+      font-size: 11px; }
+
 /* Story creation */
 .new-story-copy {
   font-family: "museo-slab-1", "museo-slab-2", serif;
@@ -6859,31 +6885,31 @@ a.tag:hover {
     font-weight: 700;
     display: none; }
 
-ul#activity-list li, ul.activity-list li {
+ul#activity-list > li, ul.activity-list > li {
   position: relative;
   border-bottom: 1px solid #eeeeee;
   padding: 30px 0; }
-  ul#activity-list li .left-side, ul.activity-list li .left-side {
+  ul#activity-list > li .left-side, ul.activity-list > li .left-side {
     width: 60px;
     position: absolute;
     top: 30px;
     left: 20px; }
-  ul#activity-list li .middle, ul.activity-list li .middle {
+  ul#activity-list > li .middle, ul.activity-list > li .middle {
     margin: 0 130px 0 100px;
     float: left; }
-    ul#activity-list li .middle .title, ul.activity-list li .middle .title {
+    ul#activity-list > li .middle .title, ul.activity-list > li .middle .title {
       margin-bottom: 10px;
       color: #707070; }
-      ul#activity-list li .middle .title a, ul.activity-list li .middle .title a {
+      ul#activity-list > li .middle .title a, ul.activity-list > li .middle .title a {
         font-size: 13px;
         font-weight: 700;
         text-transform: uppercase; }
-    ul#activity-list li .middle .content, ul.activity-list li .middle .content {
+    ul#activity-list > li .middle .content, ul.activity-list > li .middle .content {
       position: relative;
       min-height: 61px;
       padding-left: 115px;
       padding-top: 5px; }
-      ul#activity-list li .middle .content .content-thumbnail, ul.activity-list li .middle .content .content-thumbnail {
+      ul#activity-list > li .middle .content .content-thumbnail, ul.activity-list > li .middle .content .content-thumbnail {
         position: absolute;
         top: 0;
         left: 0;
@@ -6893,44 +6919,44 @@ ul#activity-list li, ul.activity-list li {
         display: block;
         width: 95px;
         height: 60px; }
-      ul#activity-list li .middle .content a.title, ul.activity-list li .middle .content a.title {
+      ul#activity-list > li .middle .content a.title, ul.activity-list > li .middle .content a.title {
         font-size: 1.2em;
         font-weight: 700;
         color: #252525; }
-      ul#activity-list li .middle .content .byline, ul.activity-list li .middle .content .byline {
+      ul#activity-list > li .middle .content .byline, ul.activity-list > li .middle .content .byline {
         display: block;
         font-size: 11px;
         padding-top: 2px; }
-      ul#activity-list li .middle .content .tags, ul.activity-list li .middle .content .tags {
+      ul#activity-list > li .middle .content .tags, ul.activity-list > li .middle .content .tags {
         padding-top: 2px; }
-        ul#activity-list li .middle .content .tags a, ul#activity-list li .middle .content .tags span, ul.activity-list li .middle .content .tags a, ul.activity-list li .middle .content .tags span {
+        ul#activity-list > li .middle .content .tags a, ul#activity-list > li .middle .content .tags span, ul.activity-list > li .middle .content .tags a, ul.activity-list > li .middle .content .tags span {
           color: #b1b1b1;
           font-size: 11px;
           font-style: italic; }
-        ul#activity-list li .middle .content .tags a:hover, ul.activity-list li .middle .content .tags a:hover {
+        ul#activity-list > li .middle .content .tags a:hover, ul.activity-list > li .middle .content .tags a:hover {
           text-decoration: underline; }
-        ul#activity-list li .middle .content .tags span, ul.activity-list li .middle .content .tags span {
+        ul#activity-list > li .middle .content .tags span, ul.activity-list > li .middle .content .tags span {
           margin-left: -3px;
           margin-right: 1px; }
-        ul#activity-list li .middle .content .tags span:last-child, ul.activity-list li .middle .content .tags span:last-child {
+        ul#activity-list > li .middle .content .tags span:last-child, ul.activity-list > li .middle .content .tags span:last-child {
           display: none; }
-    ul#activity-list li .middle .comment, ul.activity-list li .middle .comment {
+    ul#activity-list > li .middle .comment, ul.activity-list > li .middle .comment {
       margin-top: 10px; }
-    ul#activity-list li .middle .impacters, ul#activity-list li .middle .descendants, ul.activity-list li .middle .impacters, ul.activity-list li .middle .descendants {
+    ul#activity-list > li .middle .impacters, ul#activity-list > li .middle .descendants, ul.activity-list > li .middle .impacters, ul.activity-list > li .middle .descendants {
       clear: both;
       padding-top: 15px; }
-      ul#activity-list li .middle .impacters .description, ul#activity-list li .middle .descendants .description, ul.activity-list li .middle .impacters .description, ul.activity-list li .middle .descendants .description {
+      ul#activity-list > li .middle .impacters .description, ul#activity-list > li .middle .descendants .description, ul.activity-list > li .middle .impacters .description, ul.activity-list > li .middle .descendants .description {
         font-size: 11px;
         color: #777777;
         margin-bottom: 5px; }
-      ul#activity-list li .middle .impacters a.avatar, ul#activity-list li .middle .descendants a.avatar, ul.activity-list li .middle .impacters a.avatar, ul.activity-list li .middle .descendants a.avatar {
+      ul#activity-list > li .middle .impacters a.avatar, ul#activity-list > li .middle .descendants a.avatar, ul.activity-list > li .middle .impacters a.avatar, ul.activity-list > li .middle .descendants a.avatar {
         display: block;
         float: left;
         margin-right: 5px; }
-      ul#activity-list li .middle .impacters a.avatar, ul#activity-list li .middle .impacters a.avatar img, ul#activity-list li .middle .descendants a.avatar, ul#activity-list li .middle .descendants a.avatar img, ul.activity-list li .middle .impacters a.avatar, ul.activity-list li .middle .impacters a.avatar img, ul.activity-list li .middle .descendants a.avatar, ul.activity-list li .middle .descendants a.avatar img {
+      ul#activity-list > li .middle .impacters a.avatar, ul#activity-list > li .middle .impacters a.avatar img, ul#activity-list > li .middle .descendants a.avatar, ul#activity-list > li .middle .descendants a.avatar img, ul.activity-list > li .middle .impacters a.avatar, ul.activity-list > li .middle .impacters a.avatar img, ul.activity-list > li .middle .descendants a.avatar, ul.activity-list > li .middle .descendants a.avatar img {
         width: 30px;
         height: 30px; }
-      ul#activity-list li .middle .impacters a.visualize, ul#activity-list li .middle .descendants a.visualize, ul.activity-list li .middle .impacters a.visualize, ul.activity-list li .middle .descendants a.visualize {
+      ul#activity-list > li .middle .impacters a.visualize, ul#activity-list > li .middle .descendants a.visualize, ul.activity-list > li .middle .impacters a.visualize, ul.activity-list > li .middle .descendants a.visualize {
         float: left;
         background: #e0e0e0;
         color: #7b7b7b;
@@ -6941,7 +6967,7 @@ ul#activity-list li, ul.activity-list li {
         border-radius: 3px;
         font-size: 10px;
         margin: 5px 0 0 5px; }
-  ul#activity-list li .right-side, ul.activity-list li .right-side {
+  ul#activity-list > li .right-side, ul.activity-list > li .right-side {
     width: 110px;
     position: absolute;
     right: 20px;
@@ -6950,10 +6976,11 @@ ul#activity-list li, ul.activity-list li {
     font-style: italic;
     font-size: 11px;
     text-align: right; }
-ul#activity-list li.reward .left-side .faces, ul.activity-list li.reward .left-side .faces {
+
+ul#activity-list > li.reward .left-side .faces {
   position: relative;
   height: 65px; }
-  ul#activity-list li.reward .left-side .faces a.face, ul.activity-list li.reward .left-side .faces a.face {
+  ul#activity-list > li.reward .left-side .faces a.face {
     position: absolute;
     top: 0;
     left: 0;
@@ -6961,7 +6988,7 @@ ul#activity-list li.reward .left-side .faces, ul.activity-list li.reward .left-s
     display: block;
     width: 38px;
     height: 38px; }
-    ul#activity-list li.reward .left-side .faces a.face img, ul.activity-list li.reward .left-side .faces a.face img {
+    ul#activity-list > li.reward .left-side .faces a.face img {
       background: white;
       width: 32px;
       height: 32px;
@@ -6970,11 +6997,11 @@ ul#activity-list li.reward .left-side .faces, ul.activity-list li.reward .left-s
       -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
       -moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
       box-shadow: 0 0 1px rgba(0, 0, 0, 0.2); }
-  ul#activity-list li.reward .left-side .faces a.to, ul.activity-list li.reward .left-side .faces a.to {
+  ul#activity-list > li.reward .left-side .faces a.to {
     top: 20px;
     left: 20px;
     z-index: 2; }
-ul#activity-list li.reward .left-side .amount, ul.activity-list li.reward .left-side .amount {
+ul#activity-list > li.reward .left-side .amount {
   background: #00aeef;
   color: white;
   padding: 3px 0;
@@ -6982,33 +7009,39 @@ ul#activity-list li.reward .left-side .amount, ul.activity-list li.reward .left-
   -moz-border-radius: 3px;
   border-radius: 3px;
   text-align: center; }
-  ul#activity-list li.reward .left-side .amount .count, ul.activity-list li.reward .left-side .amount .count {
+  ul#activity-list > li.reward .left-side .amount .count {
     padding-right: 18px;
     font-weight: 700;
     background: transparent url(../images/icons/starWhiteSmall.png) no-repeat 100% 0; }
-ul#activity-list li.reward a.thumbnail img, ul#activity-list li.content a.thumbnail img, ul.activity-list li.reward a.thumbnail img, ul.activity-list li.content a.thumbnail img {
+
+ul#activity-list > li.reward a.thumbnail img, ul#activity-list > li.content a.thumbnail img {
   border: 1px solid #cccccc; }
-ul#activity-list li.impact .left-side, ul.activity-list li.impact .left-side {
+
+ul#activity-list > li.impact .left-side {
   height: 60px;
   background: transparent url(../images/impactStarburst.png) no-repeat 50% 0; }
-ul#activity-list li.purchase .header, ul.activity-list li.purchase .header {
+
+ul#activity-list > li.purchase .header {
   -webkit-border-bottom-left-radius: 3px;
   -webkit-border-bottom-right-radius: 3px;
   -moz-border-radius-bottomleft: 3px;
   -moz-border-radius-bottomright: 3px;
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px; }
-ul#activity-list li.badge .left-side, ul#activity-list li.purchase .left-side, ul.activity-list li.badge .left-side, ul.activity-list li.purchase .left-side {
+
+ul#activity-list > li.badge .left-side, li.purchase .left-side {
   text-align: center; }
-  ul#activity-list li.badge .left-side img, ul#activity-list li.purchase .left-side img, ul.activity-list li.badge .left-side img, ul.activity-list li.purchase .left-side img {
+  ul#activity-list > li.badge .left-side img, li.purchase .left-side img {
     height: 52px; }
-ul#activity-list li.badge .middle, ul#activity-list li.badge .right-side, ul#activity-list li.purchase .middle, ul#activity-list li.purchase .right-side, ul.activity-list li.badge .middle, ul.activity-list li.badge .right-side, ul.activity-list li.purchase .middle, ul.activity-list li.purchase .right-side {
+ul#activity-list > li.badge .middle, ul#activity-list > li.badge .right-side, li.purchase .middle, li.purchase .right-side {
   padding-top: 15px; }
-ul#activity-list li.purchase .header .when, ul#activity-list li.badge .header .when, ul.activity-list li.purchase .header .when, ul.activity-list li.badge .header .when {
+
+ul#activity-list > li.purchase .header .when, ul#activity-list > li.badge .header .when {
   color: #aaaaaa;
   font-size: 11px;
   float: right; }
-ul#activity-list li.none, ul.activity-list li.none {
+
+ul#activity-list > li.none {
   text-indent: 10px; }
 
 #activity-sidebar {

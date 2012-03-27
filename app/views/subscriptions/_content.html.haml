@@ -1,26 +1,19 @@
 %li.content
+  = link_to image_tag(content.user.avatar.url(:thumbnail)), user_path(content.user), :class => "avatar"
+  .title #{link_to content.user.name, user_path(content.user)} posted #{content.article_string}:
   %a.content-preview{:href => story_path(content)}
     = image_tag content.thumbnail.url(:large), :class => "thumbnail"
     .media-type{:class => content.media_type}
-    = image_tag content.user.avatar.url(:thumbnail), :class => "avatar"
 
   .info
     = link_to content.title, story_url(content), :class => "title"
-    .byline= link_to content.user.name, user_path(content.user)
     %p= content.synopsis
     = #link_to "View #{content.this_media}", story_path(content), :class => "view-button"
   
-  .rewards
-    - if content.users_who_rewarded.empty?
-      = link_to "Become the first supporter &rarr;".html_safe, story_path(content), :class => "be-next"
-    - else
-      %h3 Recent supporters
-      - size = content.users_who_rewarded.size - 1
-      - size = size > 9 ? 9 : size
-      - content.users_who_rewarded[0..size].each do |user|
-        .reward
-          = image_tag user.avatar.url(:thumbnail)
-          = link_to "", user_path(user), :class => "cover tooltipped", :title => user.name
-      = link_to "View &amp; Support &rarr;".html_safe, story_path(content), :class => "be-next"
-  
   .when #{time_ago_in_words(content.created_at)} ago
+  
+  #comments
+    %h3 Supporter Comments
+    %ul.comment-list
+      = render :partial => "comments/comment", :collection => content.comments, :as => :comment
+    = render "comments/form", :commentable => content

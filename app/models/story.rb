@@ -2,6 +2,7 @@ require "open-uri"
 
 class Story < ActiveRecord::Base
   acts_as_taggable
+  acts_as_commentable
   
   searchable do
     text :title, :boost => 2.0
@@ -42,8 +43,6 @@ class Story < ActiveRecord::Base
 
   has_many :views, :dependent => :destroy
   has_many :users_who_viewed, :through => :views, :source => :user
-
-  has_many :comments, :dependent => :destroy
   
   has_many :pages, :order => "number ASC", :dependent => :destroy
     

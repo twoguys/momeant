@@ -1,0 +1,8 @@
+- if current_user && current_user.has_rewarded?(commentable.user)
+  = form_for Comment.new, :url => user_comments_path(current_user) do |form|
+    = image_tag current_user.avatar.url(:thumbnail), :class => "commenter-avatar"
+    = form.hidden_field :commentable_type, :value => commentable.class
+    = form.hidden_field :commentable_id, :value => commentable.id
+    = form.text_area :comment, :class => "comment-box"
+- else
+  .disabled Anyone who has rewarded #{commentable.user.first_name} can participate in this discussion.

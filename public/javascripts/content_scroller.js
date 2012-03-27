@@ -4,7 +4,9 @@ window.Scroller = Backbone.View.extend({
 	
 	events: {
 		'click #activity-list li a.content-preview': 'clicked_content',
-		'click #activity-list li a.title': 'clicked_content'
+		'click #activity-list li a.title': 'clicked_content',
+		'focus textarea': 'start_editing_text',
+		'blur textarea': 'stop_editing_text'
 	},
 	
 	initialize: function() {
@@ -14,10 +16,11 @@ window.Scroller = Backbone.View.extend({
 	  this.scrollables = [];
 	  this.duration = 600;
 	  this.settings = {easing: 'easeOutQuart'};
+	  this.editing_text = false;
 	  
 	  this.calculate_list_heights();
 	  this.pad_bottom();
-	  $('#activity-list li:first-child').addClass('current');
+	  $('#activity-list > li:first-child').addClass('current');
 	  
 	  _.bindAll(this, 'on_keypress');
 	  $(document).bind('keydown', this.on_keypress);
@@ -33,7 +36,7 @@ window.Scroller = Backbone.View.extend({
 	
 	calculate_list_heights: function() {
 	  var scrollables = [];
-	  $.each($(scrollables_selector + ' li'), function(index, value) {
+	  $.each($(scrollables_selector + ' > li'), function(index, value) {
 	    var $content = $(value);
 	    var content_info = {
 	      height: $content.height(),
@@ -62,7 +65,7 @@ window.Scroller = Backbone.View.extend({
 	},
 	
 	on_keypress: function(event) {
-    if (typeof(Profile) != 'undefined' && Profile.editing_text) { return; }
+    if (this.editing_text) { return; }
     
 	  var key = event.charCode ? event.charCode : event.keyCode ? event.keyCode : 0;
 	  switch (key) {
@@ -128,6 +131,14 @@ window.Scroller = Backbone.View.extend({
 	  var url = $(event.currentTarget).attr('href');
 	  Scroll.to_content(url);
 	  return false;
+	},
+	
+	start_editing_text: function() {
+	  Scroll.editing_text = true;
+	},
+
+	stop_editing_text: function() {
+	  Scroll.editing_text = false;
 	},
 	
 	reset: function() {
