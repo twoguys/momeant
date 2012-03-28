@@ -5,7 +5,7 @@
   .when #{time_ago_in_words(broadcast.created_at)} ago
   
   .comments
-    %h3 Supporter Comments
+    %h3= pluralize broadcast.comments.size, "Supporter Comment"
     %ul.comment-list
       = render :partial => "comments/comment", :collection => broadcast.comments, :as => :comment
     = render "comments/form", :commentable => broadcast

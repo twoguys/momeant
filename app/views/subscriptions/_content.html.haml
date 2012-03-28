@@ -13,7 +13,7 @@
   .when #{time_ago_in_words(content.created_at)} ago
   
   .comments
-    %h3 Supporter Comments
+    %h3= pluralize content.comments.size, "Supporter Comment"
     %ul.comment-list
       = render :partial => "comments/comment", :collection => content.comments, :as => :comment
     = render "comments/form", :commentable => content
