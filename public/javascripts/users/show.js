@@ -6,7 +6,9 @@ window.ProfileView = Backbone.View.extend({
 		'click #user-profile #tabs a': 'switch_info_tabs',
 		'click #vertical-people h1 a': 'switch_supporter_tabs',
 		'click #subscribe': 'subscribe',
-		'submit #new_message': 'post_message'
+		'submit #new_message': 'post_message',
+		'click a.open-comments': 'show_comments',
+		'click a.close-comments': 'hide_comments'
 	},
 	
 	initialize: function() {
@@ -67,6 +69,22 @@ window.ProfileView = Backbone.View.extend({
       $('#discussion ul').prepend(html);
       $form.removeClass('loading');
     });
+  },
+  
+  show_comments: function(event) {
+    var $link = $(event.currentTarget);
+    var $comments = $link.siblings('.insides');
+    $link.hide();
+    $comments.show();
+    return false;
+  },
+  
+  hide_comments: function(event) {
+    var $comments = $(event.currentTarget).parent().parent();
+    var $link = $comments.siblings('a.open-comments');
+    $comments.hide();
+    $link.show();
+    return false;
   },
 	
 	back: function() {

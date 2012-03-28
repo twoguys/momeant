@@ -12,7 +12,7 @@
   
   .when #{time_ago_in_words(content.created_at)} ago
   
-  #comments
+  .comments
     %h3 Supporter Comments
     %ul.comment-list
       = render :partial => "comments/comment", :collection => content.comments, :as => :comment

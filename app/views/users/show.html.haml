@@ -22,18 +22,27 @@
                 = link_to "Delete", story_path(content), :method => :delete, :confirm => "WHOA WAIT UP! If you delete this you will lose ALL REWARDS on this content. Are you SURE you want to delete it?"
             %p= content.synopsis
           
-          .rewards
-            - if content.users_who_rewarded.empty?
-              = link_to "Become the first supporter &rarr;".html_safe, story_path(content), :class => "be-next"
-            - else
-              %h3 Recent supporters
-              - size = content.users_who_rewarded.size - 1
-              - size = size > 9 ? 9 : size
-              - content.users_who_rewarded[0..size].each do |user|
-                .reward
-                  = image_tag user.avatar.url(:thumbnail)
-                  = link_to "", user_path(user), :class => "cover tooltipped", :title => user.name
-              = link_to "View &amp; Support &rarr;".html_safe, story_path(content), :class => "be-next" unless content.users_who_rewarded.include?(current_user)
+          - if me?(@user)
+            .comments
+              = link_to pluralize(content.comments.size, "Supporter Comment"), "#", :class => "open-comments"
+              .insides
+                %h3 Supporter Comments (#{link_to "Hide", "#", :class => "close-comments"})
+                %ul.comment-list
+                  = render :partial => "comments/comment", :collection => content.comments, :as => :comment
+                = render "comments/form", :commentable => content
+          - else
+            .rewards
+              - if content.users_who_rewarded.empty?
+                = link_to "Become the first supporter &rarr;".html_safe, story_path(content), :class => "be-next"
+              - else
+                %h3 Recent supporters
+                - size = content.users_who_rewarded.size - 1
+                - size = size > 9 ? 9 : size
+                - content.users_who_rewarded[0..size].each do |user|
+                  .reward
+                    = image_tag user.avatar.url(:thumbnail)
+                    = link_to "", user_path(user), :class => "cover tooltipped", :title => user.name
+                = #link_to "View &amp; Support &rarr;".html_safe, story_path(content), :class => "be-next" unless content.users_who_rewarded.include?(current_user)
             
         - index += 1
   
@@ -81,3 +90,4 @@
   var user_id = '#{@user.id}';
 = javascript_include_tag "content_scroller"
 = javascript_include_tag "users/show"
+= javascript_include_tag "comments"

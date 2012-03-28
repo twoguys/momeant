@@ -4,7 +4,7 @@
   %p= broadcast.message
   .when #{time_ago_in_words(broadcast.created_at)} ago
   
-  #comments
+  .comments
     %h3 Supporter Comments
     %ul.comment-list
       = render :partial => "comments/comment", :collection => broadcast.comments, :as => :comment

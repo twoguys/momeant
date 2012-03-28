@@ -815,7 +815,20 @@ table {
       color: #dddddd; }
     #home.index #slides .slide, #registrations.create #slides .slide {
       width: 100%;
-      height: 100%; }
+      height: 100%;
+      position: relative; }
+      #home.index #slides .slide .background, #registrations.create #slides .slide .background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background-repeat: no-repeat;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        display: none; }
       #home.index #slides .slide .slide-insides, #registrations.create #slides .slide .slide-insides {
         padding: 10%; }
   #home.index #creators, #registrations.create #creators {
@@ -1031,10 +1044,18 @@ table {
         padding-top: 12px; }
     #vertical-people li.person.dimmed {
       opacity: 0.3; }
-    #vertical-people li.person a {
+    #vertical-people li.person a, #vertical-people li.person .cover {
       display: block;
       width: 60px;
       height: 60px; }
+    #vertical-people li.person .cover {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: transparent url(../images/profile/avatar-cover-60.png) no-repeat 0 0;
+      text-indent: 100%;
+      white-space: nowrap;
+      overflow: hidden; }
 
 @media all and (min-width: 1367px) {
   #vertical-people {
@@ -1228,6 +1249,8 @@ body#users #main, body#messages #main {
     margin-left: 210px; }
     #user-profile #vertical-list #activity-list > li {
       padding: 0; }
+      #user-profile #vertical-list #activity-list > li .comments .insides {
+        display: none; }
     #user-profile #vertical-list #activity-list li .content-preview img.avatar {
       display: none; }
   #user-profile #vertical-people {
@@ -1636,42 +1659,6 @@ body#users #main, body#messages #main {
           #user-profile .subscribing-to ul li a img {
             width: 50px;
             height: 50px; }
-  #user-profile .comments {
-    width: 629px;
-    float: left;
-    display: none; }
-  #user-profile .personal-library {
-    clear: both;
-    height: 365px;
-    padding-top: 20px; }
-  #user-profile .admin {
-    clear: both;
-    padding-top: 30px; }
-    #user-profile .admin h1 {
-      font-weight: 900;
-      text-transform: uppercase; }
-  #user-profile .info-bar {
-    background: none;
-    color: #777777;
-    font-style: italic;
-    text-align: center;
-    margin-top: -15px; }
-
-.creator .recommendation-stream {
-  height: 540px; }
-.creator .curatorial-stream {
-  width: 629px;
-  height: 380px;
-  float: left;
-  overflow: hidden; }
-  .creator .curatorial-stream h3 {
-    font-size: 50px;
-    font-weight: 900;
-    text-transform: uppercase;
-    color: #dddddd;
-    text-shadow: 1px 1px 1px #fafafa;
-    letter-spacing: -0.5px;
-    text-align: center; }
 
 form.user_edit {
   margin-left: 200px; }
@@ -1838,41 +1825,41 @@ table.users {
   #subscriptions-inner #vertical-list .helper {
     left: auto;
     margin-left: -90px; } }
-#comments {
+.comments {
   margin-top: 10px;
   padding-bottom: 100px;
   font-size: 13px; }
-  #comments h3 {
+  .comments h3 {
     font-weight: 500;
     color: #999999;
     margin-bottom: 5px; }
-  #comments ul.comment-list > li, #comments form {
+  .comments ul.comment-list > li, .comments form {
     position: relative;
     padding-left: 35px; }
-    #comments ul.comment-list > li img.commenter-avatar, #comments form img.commenter-avatar {
+    .comments ul.comment-list > li img.commenter-avatar, .comments form img.commenter-avatar {
       width: 30px;
       height: 30px;
       position: absolute;
       top: 0;
       left: 0; }
-  #comments ul.comment-list > li {
-    margin-bottom: 5px; }
-    #comments ul.comment-list > li .time {
+  .comments ul.comment-list > li {
+    margin: 0 0 5px 3px; }
+    .comments ul.comment-list > li .time {
       font-size: 12px;
       color: #999999;
       margin-top: 1px; }
-  #comments .disabled {
-    background: #f7f7f7;
+  .comments .disabled {
+    background: #f4f4f4;
     color: #777777;
     padding: 3px 6px; }
-  #comments form {
-    background: #f7f7f7;
+  .comments form {
+    background: #f4f4f4;
     padding: 3px 6px 3px 38px;
     min-height: 30px; }
-    #comments form img.commenter-avatar {
+    .comments form img.commenter-avatar {
       top: 3px;
       left: 3px; }
-    #comments form textarea {
+    .comments form textarea {
       width: 98%;
       height: 15px;
       padding: 4px;
