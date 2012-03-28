@@ -28,9 +28,6 @@ window.Scroller = Backbone.View.extend({
 	  _.bindAll(this, 'on_resize');
 	  $(window).resize(this.on_resize);
 	  
-	  //_.bindAll(this, 'on_scroll');
-	  //$(document).scroll(this.on_scroll);
-	  
 	  $.scrollTo(0);
 	},
 	
@@ -82,19 +79,6 @@ window.Scroller = Backbone.View.extend({
         this.to_content(url);
         event.preventDefault();
         break;
-	  }
-	},
-	
-	on_scroll: function() {
-	  var distance_from_top = $(document).scrollTop() + 140; // buffer it by 180
-    var index = 0;
-	  while (index < Scroll.scrollables.length) {
-	    if (distance_from_top > Scroll.scrollables[index].top && distance_from_top < Scroll.scrollables[index].bottom) {
-	      $('#activity-list li:nth-child(' + (index + 1) + ')').addClass('current').siblings().removeClass('current');
-	      Scroll.index = index;
-	      break;
-	    }
-	    index++;
 	  }
 	},
 	
