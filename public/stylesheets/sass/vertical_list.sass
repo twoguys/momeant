@@ -1,7 +1,7 @@
 #vertical-list
 	padding-left: 80px
 	position: relative
-	margin-right: 350px
+	@include transition(margin, 0.3s, ease-out)
 	.helper
 		position: absolute
 		top: 42px
@@ -136,16 +136,7 @@
 			background: transparent url(../images/curation/comment-box.png) no-repeat 0 0
 			padding: 20px 12px 10px
 				
-// Going bigger
-@media all and (min-width: 1367px)
-	#vertical-list #activity-list li
-		max-width: 680px
-				
 // Going smaller
-@media all and (max-width: 1149px)
-	#vertical-list #activity-list li .content-preview
+@media all and (max-width: 1100px)
+	#vertical-list #activity-list > li.content .content-preview
 		float: none
-@media all and (max-width: 1025px)
-	#vertical-list
-		margin-right: 0
-		width: 300px

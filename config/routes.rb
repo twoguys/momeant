@@ -60,7 +60,7 @@ Repo::Application.routes.draw do
         post :unsubscribe
       end
     end
-    match '/subscriptions/filter/:id', :to => "subscriptions#filter"
+    match '/subscriptions/filter', :to => "subscriptions#filter"
     resources :rewards
     resources :cashouts do
       put :update_amazon_email, :on => :collection

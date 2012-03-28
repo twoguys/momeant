@@ -865,7 +865,11 @@ table {
 #vertical-list {
   padding-left: 80px;
   position: relative;
-  margin-right: 350px; }
+  -webkit-transition: margin 0.3s ease-out;
+  -moz-transition: margin 0.3s ease-out;
+  -ms-transition: margin 0.3s ease-out;
+  -o-transition: margin 0.3s ease-out;
+  transition: margin 0.3s ease-out; }
   #vertical-list .helper {
     position: absolute;
     top: 42px;
@@ -1015,20 +1019,10 @@ table {
       background: transparent url(../images/curation/comment-box.png) no-repeat 0 0;
       padding: 20px 12px 10px; }
 
-@media all and (min-width: 1367px) {
-  #vertical-list #activity-list li {
-    max-width: 680px; } }
-@media all and (max-width: 1149px) {
-  #vertical-list #activity-list li .content-preview {
+@media all and (max-width: 1100px) {
+  #vertical-list #activity-list > li.content .content-preview {
     float: none; } }
-@media all and (max-width: 1025px) {
-  #vertical-list {
-    margin-right: 0;
-    width: 300px; } }
 #vertical-people {
-  position: fixed;
-  top: 82px;
-  right: 40px;
   width: 260px; }
   #vertical-people li.person {
     float: left;
@@ -1151,8 +1145,8 @@ body#users #main, body#messages #main {
       color: black;
       cursor: default; }
   #user-profile .profile-info {
-    position: fixed;
-    width: 210px; }
+    width: 210px;
+    float: left; }
     #user-profile .profile-info .metadata .avatar-badge {
       width: 130px;
       margin-bottom: 20px;
@@ -1251,7 +1245,8 @@ body#users #main, body#messages #main {
   #user-profile .the-rest {
     margin-left: 250px; }
   #user-profile #vertical-list {
-    margin-left: 210px; }
+    width: 550px;
+    float: left; }
     #user-profile #vertical-list #activity-list > li {
       padding: 0; }
       #user-profile #vertical-list #activity-list > li .comments .insides {
@@ -1263,7 +1258,8 @@ body#users #main, body#messages #main {
     -moz-transition: right 0.2s linear;
     -ms-transition: right 0.2s linear;
     -o-transition: right 0.2s linear;
-    transition: right 0.2s linear; }
+    transition: right 0.2s linear;
+    float: right; }
     #user-profile #vertical-people #discussion .hasnt {
       padding: 5px 10px;
       background: #eeeeee;
@@ -1272,7 +1268,6 @@ body#users #main, body#messages #main {
       border-radius: 3px;
       margin-bottom: 10px; }
     #user-profile #vertical-people #discussion form {
-      height: 105px;
       margin-bottom: 10px; }
       #user-profile #vertical-people #discussion form.loading {
         background: transparent url(../images/spinner.gif) no-repeat 50% 50%; }
@@ -1280,7 +1275,7 @@ body#users #main, body#messages #main {
           display: none; }
     #user-profile #vertical-people #discussion textarea {
       width: 95%;
-      height: 50px;
+      height: 25px;
       box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1) inset;
       margin-bottom: 5px; }
     #user-profile #vertical-people #discussion li {
@@ -1784,22 +1779,24 @@ table.users {
         font-style: italic;
         font-size: 11px; }
 
-#subscriptions-inner {
+body#subscriptions.index #header #user-nav ul.links {
   max-width: 1367px;
+  margin: 0 auto; }
+
+#subscriptions-inner {
+  max-width: 1327px;
   margin: 0 auto;
   position: relative;
-  padding-top: 40px; }
+  padding: 40px; }
   #subscriptions-inner h1 {
     font-size: 20px;
     font-weight: 500;
     text-transform: uppercase;
     margin-bottom: 20px; }
   #subscriptions-inner #vertical-people {
-    z-index: 2;
-    right: auto;
-    left: 40px;
     width: 130px;
-    top: 82px; }
+    float: left;
+    margin-right: 50px; }
     #subscriptions-inner #vertical-people.empty {
       width: 200px; }
       #subscriptions-inner #vertical-people.empty a {
@@ -1811,25 +1808,17 @@ table.users {
       margin-bottom: 10px;
       letter-spacing: 0.05em; }
   #subscriptions-inner #vertical-list {
-    z-index: 1;
-    padding-left: 340px; }
-    #subscriptions-inner #vertical-list .helper {
-      left: 250px; }
+    float: left;
+    width: 50%; }
     #subscriptions-inner #vertical-list li {
       position: relative; }
       #subscriptions-inner #vertical-list li .when {
         position: absolute;
         top: 0;
-        right: -300px;
+        right: -200px;
         color: #555555;
         font-size: 12px; }
 
-@media all and (min-width: 1367px) {
-  #subscriptions-inner #vertical-people {
-    left: auto; }
-  #subscriptions-inner #vertical-list .helper {
-    left: auto;
-    margin-left: -90px; } }
 .comments {
   margin-top: 10px;
   padding-bottom: 100px;

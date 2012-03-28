@@ -1,8 +1,13 @@
+body#subscriptions.index
+	#header #user-nav ul.links
+		max-width: 1367px
+		margin: 0 auto
+
 #subscriptions-inner
-	max-width: 1367px
+	max-width: 1327px
 	margin: 0 auto
 	position: relative
-	padding-top: 40px
+	padding: 40px
 	
 	h1
 		font-size: 20px
@@ -11,11 +16,9 @@
 		margin-bottom: 20px
 		
 	#vertical-people
-		z-index: 2
-		right: auto
-		left: 40px
 		width: 130px
-		top: 82px
+		float: left
+		margin-right: 50px
 		&.empty
 			width: 200px
 			a
@@ -28,24 +31,14 @@
 			letter-spacing: 0.05em
 	
 	#vertical-list
-		z-index: 1
-		padding-left: 340px
-		.helper
-			left: 250px
+		float: left
+		width: 50%
+		
 		li
 			position: relative
 			.when
 				position: absolute
 				top: 0
-				right: -300px
+				right: -200px
 				color: #555
 				font-size: 12px
-				
-// Going bigger
-@media all and (min-width: 1367px)
-	#subscriptions-inner
-		#vertical-people
-			left: auto
-		#vertical-list .helper
-			left: auto
-			margin-left: -90px

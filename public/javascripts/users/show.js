@@ -14,6 +14,11 @@ window.ProfileView = Backbone.View.extend({
 	initialize: function() {
 	  _.bindAll(this, 'on_keypress');
 	  $(document).bind('keydown', this.on_keypress);
+	  this.auto_resize_discussion_box();
+  },
+
+  auto_resize_discussion_box: function() {
+    $('#message_body').autoResize({minHeight:15, extraSpace:5});
   },
   
   switch_info_tabs: function(event) {

@@ -28,8 +28,8 @@ window.Scroller = Backbone.View.extend({
 	  _.bindAll(this, 'on_resize');
 	  $(window).resize(this.on_resize);
 	  
-	  _.bindAll(this, 'on_scroll');
-	  $(document).scroll(this.on_scroll);
+	  //_.bindAll(this, 'on_scroll');
+	  //$(document).scroll(this.on_scroll);
 	  
 	  $.scrollTo(0);
 	},
@@ -101,20 +101,22 @@ window.Scroller = Backbone.View.extend({
 	to_next: function() {
 	  if (Scroll.scrollables.length == 0) { return; }
 	  if (Scroll.index == Scroll.scrollables.length - 1) { return; }
+	  $.scrollTo(0);
 	  
 	  Scroll.index += 1;
 	  Scroll.current_position = Scroll.scrollables[Scroll.index].top;
-	  //$('#vertical-list').css('margin-top',-Scroll.current_position);
-	  $.scrollTo(Scroll.current_position, Scroll.duration, Scroll.settings);
+	  $('#vertical-list').css('margin-top',-Scroll.current_position);
+	  //$.scrollTo(Scroll.current_position, Scroll.duration, Scroll.settings);
 	},
 	
 	to_prev: function() {
 	  if (Scroll.index == 0) { return; }
+	  $.scrollTo(0);
 	  
 	  Scroll.index -= 1;
 	  Scroll.current_position = Scroll.scrollables[Scroll.index].top;
-	  //$('#vertical-list').css('margin-top',-Scroll.current_position);
-	  $.scrollTo(Scroll.current_position, Scroll.duration, Scroll.settings);
+	  $('#vertical-list').css('margin-top',-Scroll.current_position);
+	  //$.scrollTo(Scroll.current_position, Scroll.duration, Scroll.settings);
 	},
 	
 	to_content: function(url) {

@@ -15,9 +15,9 @@
       .helper use keyboard
 
       %ul#activity-list
-        - @activity.each do |activity|
-          = render :partial => "subscriptions/content", :locals => { :content => activity.action } if activity.action_type == "Story"
-          = render :partial => "subscriptions/broadcast", :locals => { :broadcast => activity.action } if activity.action_type == "Broadcast"
+        = render "subscriptions/list"
+
+  .clear
 
 :javascript
   var scrollables_selector = '#activity-list';
