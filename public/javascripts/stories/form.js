@@ -27,7 +27,6 @@ var story_page_editor = function() {
 
 		setup_page_type_chooser();
 		setup_creation_or_external_choosing();
-		setup_media_type_selection();
 		setup_title_mirroring();
 		setup_gallery_creation();
 		this.setup_preview_thumbnail_switching($('#page-previews li.page a.choose-thumbnail'));
@@ -83,15 +82,6 @@ var story_page_editor = function() {
 		}
 		$('#creator').click(change_to_creator);
 		$('#open-page-editor-button').click(change_to_creator);
-	};
-	
-	var setup_media_type_selection = function() {
-	  $('#type li a').click(function() {
-	    var $link = $(this);
-	    $link.addClass('selected').parent().siblings().find('a').removeClass('selected');
-	    $('#story_media_type').val($link.text()).trigger('change');
-	    return false;
-	  });
 	};
 	
 	var setup_gallery_creation = function() {

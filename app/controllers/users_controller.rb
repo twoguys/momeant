@@ -4,7 +4,8 @@ class UsersController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => [:billing_updates, :update_avatar]
   
   def show
-    @content = @user.created_stories.published.newest_first
+    @content = @user.created_stories.newest_first
+    @content.published unless @user == current_user
     @supporters = @user.rewards.group_by(&:user).to_a.map {|x| [x.first,x.second.inject(0){|sum,r| sum+r.amount}]}.sort_by(&:second).reverse
     @messages = @user.profile_messages
     @nav = "me" if @user == current_user

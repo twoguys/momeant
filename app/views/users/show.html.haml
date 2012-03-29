@@ -15,7 +15,7 @@
             = image_tag @user.avatar.url(:thumbnail), :class => "avatar"
       
           .info
-            = link_to content.title, story_url(content), :class => "title"
+            = link_to(content.title.blank? ? "Untitled" : content.title, story_url(content), :class => "title")
             - if me?(@user)
               .edit
                 = link_to "Edit", edit_story_path(content) if me?(@user)

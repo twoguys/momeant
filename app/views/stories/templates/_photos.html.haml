@@ -1,0 +1,12 @@
+.inner
+  = render "stories/templates/header"
+
+  = label_tag "Upload a photo that best represents this photo set:"
+  .file-uploader
+    %form
+      %input{:type => "hidden", :value => form_authenticity_token, :name => "authenticity_token"}
+      .file-input
+        %input{:type => "file", :name => "story[thumbnail]", :id => "story_thumbnail"}
+        .loader
+  %div Preview of current photo:
+  .thumbnail{:style => @story && @story.thumbnail.present? ? "background: url(#{@story.thumbnail.url(:medium)})" : ""}

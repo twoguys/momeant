@@ -59,6 +59,11 @@ class StoriesController < ApplicationController
     render "form"
   end
   
+  def template # ajax
+    @story = Story.find(params[:id])
+    render :partial => "stories/templates/#{params[:media_type]}"
+  end
+  
   def publish
     if !@story.valid?
       redirect_to edit_story_path(@story) and return
@@ -120,7 +125,7 @@ class StoriesController < ApplicationController
   def destroy
     Activity.where(:action_id => @story.id, :action_type => "Story").destroy_all
     @story.destroy
-    redirect_to creations_user_path(current_user), :notice => "Your content was deleted."
+    redirect_to user_path(current_user)
   end
   
   def autosave

@@ -39,78 +39,18 @@
     %section.step#type
       %h2 2. What type of content is it?
       %ul
-        %li= link_to "photos", "#", :id => "photo-type", :class => @story.media_type == "photos" ? "selected" : ""
-        %li= link_to "video", "#", :id => "video-type", :class => @story.media_type == "video" ? "selected" : ""
-        %li= link_to "writing", "#", :id => "writing-type", :class => @story.media_type == "writing" ? "selected" : ""
-        %li= link_to "music", "#", :id => "music-type", :class => @story.media_type == "music" ? "selected" : ""
+        %li{:class => @story.media_type == "photos" ? "selected" : ""}
+          = link_to "photos", "#", :id => "photo-type"
+        %li{:class => @story.media_type == "video" ? "selected" : ""}
+          = link_to "video", "#", :id => "video-type"
+        %li{:class => @story.media_type == "writing" ? "selected" : ""}
+          = link_to "writing", "#", :id => "writing-type"
+        %li{:class => @story.media_type == "music" ? "selected" : ""}
+          = link_to "music", "#", :id => "music-type"
       = hidden_field_tag :story_media_type, :value => @story.media_type
-
-    %section.step#share
-      %h2 2. Tell your networks so you can get rewarded.
-      .service#twitter
-        - if @twitter_auth
-          = check_box_tag :twitter
-        - else
-          = link_to("Setup", "#{root_url}auth/twitter", :class => "configure", :service => "twitter")
-      .service#facebook
-        - if @facebook_auth
-          = check_box_tag :facebook
-        - else
-          = link_to("Setup", "#{root_url}auth/facebook", :class => "configure", :service => "facebook")
-
-    %section.step#describe
-      %h2 3. How would you summarize this content?
-      #thumbnail-preview
-        .image#thumbnail
-          %label{:for => "story_thumbnail"}
-            %label{:for => "story_synopsis"}
-              %span Upload a thumbnail preview PNG/JPG:
-          .file-uploader
-            %form
-              %input{:type => "hidden", :value => form_authenticity_token, :name => "authenticity_token"}
-              .file-input
-                %input{:type => "file", :name => "story[thumbnail]", :id => "story_thumbnail"}
-                .loader
-        .box
-          .thumbnail{:style => @story && @story.thumbnail.present? ? "background: url(#{@story.thumbnail.url(:medium)})" : ""}
-        .note{:class => @story.thumbnail.url.include?("missing") ? "hidden" : ""}
-          Unhappy with the default crop?
-          = link_to "Re-crop it", cropper_story_path(@story), :id => "cropper-link"
-    
-      %ul.fields
-
-        %li.title
-          = label_tag :story_title, "Choose a title:"
-          = text_field_tag :story_title, @story.title, :class => "monitor-story-typing", :update => "title"
       
-        %li.synopsis
-          %label{:for => "story_synopsis"}
-            %span Give a brief synopsis
-            %em (optional):
-          = text_area_tag :story_synopsis, @story.synopsis, :class => "monitor-story-typing", :update => "synopsis"
-      
-        %li.tags
-          %label{:for => "story_tags"}
-            %span Tag your content
-            %em (optional):
-          = text_field_tag :story_tag_list, @story.tag_list, :class => "monitor-story-typing", :update => "tag_list"
-          .info
-            %em Separate tags with commas. Example: art, oil painting, fresco
-        
-        %li.gallery
-          %label{:for => "story_gallery"}
-            %span Add this to a Gallery
-            %em (optional)
-          = select(:story, :gallery_id, galleries_list(current_user), {:include_blank => true})
-          .info
-            %em You can organize your content into "galleries" of similar work.
-          - content_for :modals do
-            = render "gallery_creator"
-    
-    %section.step#thankyou
-      %h2 4. Write a thank you note to all of the folks that reward this content.
-      .info This note will be shown to a person after they reward you. It's a chance to express your appreciation.
-      = text_area_tag :story_thankyou, @story.thankyou, :class => "monitor-story-typing", :update => "thankyou"
+      #template
+        = render "stories/templates/#{@story.media_type}" if @story.media_type.present?
   
     %section.step#last
       .owner
@@ -191,3 +131,5 @@
 
 :javascript
   mpq.track('Editing Content', {anonymous_id: '#{session[:analytics_anonymous_id]}', story_id: '#{@story.id}'});
+  var story_id = #{@story.id};
+= javascript_include_tag "meta_creator"

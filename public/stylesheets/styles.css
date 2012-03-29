@@ -2013,17 +2013,14 @@ form.new_story, form.edit_story, .story-form {
       margin-bottom: 20px; }
       form.new_story .step#editor .choice#external .choice-inner, form.edit_story .step#editor .choice#external .choice-inner, .story-form .step#editor .choice#external .choice-inner {
         padding: 15px;
-        background: #444444;
+        background: #cccccc;
         -webkit-border-radius: 3px;
         -moz-border-radius: 3px;
         border-radius: 3px; }
       form.new_story .step#editor .choice#external .description, form.edit_story .step#editor .choice#external .description, .story-form .step#editor .choice#external .description {
         font-size: 13px;
-        color: white;
         font-weight: 700;
         text-transform: uppercase; }
-      form.new_story .step#editor .choice#external .info, form.edit_story .step#editor .choice#external .info, .story-form .step#editor .choice#external .info {
-        color: #aaaaaa; }
     form.new_story .step#editor .choice#creator, form.edit_story .step#editor .choice#creator, .story-form .step#editor .choice#creator {
       float: right; }
       form.new_story .step#editor .choice#creator .description, form.edit_story .step#editor .choice#creator .description, .story-form .step#editor .choice#creator .description {
@@ -2035,35 +2032,66 @@ form.new_story, form.edit_story, .story-form {
       form.new_story .step#editor .choice#creator .info, form.edit_story .step#editor .choice#creator .info, .story-form .step#editor .choice#creator .info {
         display: none; }
   form.new_story .step#type ul, form.edit_story .step#type ul, .story-form .step#type ul {
-    height: 150px; }
+    display: inline-block;
+    width: 100%; }
+    form.new_story .step#type ul:after, form.edit_story .step#type ul:after, .story-form .step#type ul:after {
+      content: ".";
+      display: block;
+      height: 0;
+      clear: both;
+      visibility: hidden; }
     form.new_story .step#type ul li, form.edit_story .step#type ul li, .story-form .step#type ul li {
       float: left;
       clear: none;
-      width: 25%; }
+      width: 25%;
+      height: 179px;
+      text-align: center;
+      margin: 0;
+      background: transparent url(../images/creator/selected-media-type-bg.png) no-repeat 50% -500px; }
+      form.new_story .step#type ul li:hover, form.edit_story .step#type ul li:hover, .story-form .step#type ul li:hover {
+        background-position: 50% 0; }
+      form.new_story .step#type ul li.selected, form.edit_story .step#type ul li.selected, .story-form .step#type ul li.selected {
+        background-position: 50% -179px; }
       form.new_story .step#type ul li a, form.edit_story .step#type ul li a, .story-form .step#type ul li a {
         display: block;
-        width: 150px;
         height: 40px;
         padding-top: 110px;
-        -webkit-border-radius: 3px;
-        -moz-border-radius: 3px;
-        border-radius: 3px;
         background: transparent url(../images/creator/media-types/photos.png) no-repeat 50% 30px;
         text-align: center;
         text-transform: uppercase;
         color: black;
         font-weight: 700; }
-      form.new_story .step#type ul li a:hover, form.edit_story .step#type ul li a:hover, .story-form .step#type ul li a:hover {
-        background-color: #cacaca; }
-      form.new_story .step#type ul li a.selected, form.edit_story .step#type ul li a.selected, .story-form .step#type ul li a.selected {
-        background-color: #00aeef; }
       form.new_story .step#type ul li a#video-type, form.edit_story .step#type ul li a#video-type, .story-form .step#type ul li a#video-type {
         background-image: url(../images/creator/media-types/video.png); }
       form.new_story .step#type ul li a#writing-type, form.edit_story .step#type ul li a#writing-type, .story-form .step#type ul li a#writing-type {
         background-image: url(../images/creator/media-types/writing.png); }
       form.new_story .step#type ul li a#music-type, form.edit_story .step#type ul li a#music-type, .story-form .step#type ul li a#music-type {
         background-image: url(../images/creator/media-types/music.png); }
-  form.new_story .step#share, form.edit_story .step#share, .story-form .step#share {
+  form.new_story .step#type #template, form.edit_story .step#type #template, .story-form .step#type #template {
+    background: #cccccc; }
+    form.new_story .step#type #template.loading, form.edit_story .step#type #template.loading, .story-form .step#type #template.loading {
+      background: #cccccc url(../images/spinnerLightGreyBg.gif) no-repeat 50% 50%;
+      height: 100px; }
+      form.new_story .step#type #template.loading *, form.edit_story .step#type #template.loading *, .story-form .step#type #template.loading * {
+        visibility: hidden; }
+    form.new_story .step#type #template .inner, form.edit_story .step#type #template .inner, .story-form .step#type #template .inner {
+      padding: 20px; }
+    form.new_story .step#type #template label, form.edit_story .step#type #template label, .story-form .step#type #template label {
+      text-shadow: none;
+      font-size: 15px;
+      font-weight: 500; }
+    form.new_story .step#type #template .file-uploader, form.edit_story .step#type #template .file-uploader, .story-form .step#type #template .file-uploader {
+      margin-bottom: 20px; }
+      form.new_story .step#type #template .file-uploader .loader, form.edit_story .step#type #template .file-uploader .loader, .story-form .step#type #template .file-uploader .loader {
+        width: 220px;
+        height: 19px;
+        background: transparent url(../images/loading.gif) no-repeat 0 0;
+        display: none; }
+    form.new_story .step#type #template .thumbnail, form.edit_story .step#type #template .thumbnail, .story-form .step#type #template .thumbnail {
+      width: 288px;
+      height: 180px;
+      background: white; }
+  form.new_story .step#share, form.new_story .step#describe, form.new_story .step#thankyou, form.edit_story .step#share, form.edit_story .step#describe, form.edit_story .step#thankyou, .story-form .step#share, .story-form .step#describe, .story-form .step#thankyou {
     display: none; }
   form.new_story .step#describe, form.edit_story .step#describe, .story-form .step#describe {
     padding-left: 400px; }

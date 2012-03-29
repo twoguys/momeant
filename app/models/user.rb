@@ -95,12 +95,6 @@ class User < ActiveRecord::Base
     "#{self.first_name} #{self.last_name}"
   end
   
-  def profile_complete?
-    !self.avatar.url.include?("missing") &&
-    self.occupation.present? &&
-    self.tagline.present?
-  end
-  
   def geocode_if_location_provided
     return if self.location.blank?
     geocode and save
