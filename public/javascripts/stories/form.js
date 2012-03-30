@@ -451,7 +451,6 @@ var story_auto_saver = function() {
 	this.initialize = function() {
 		this.monitor_thumbnail_choosing();
 		this.monitor_details_typing();
-		this.monitor_media_type_selection();
 		this.monitor_topic_clicking();
 		this.monitor_existing_pages();
 		this.monitor_gallery_choosing();
@@ -518,23 +517,7 @@ var story_auto_saver = function() {
 			});
 		});
 	};
-	
-	this.monitor_media_type_selection = function() {
-	  $('#story_media_type').change(function() {
-	    auto_saver.show_metadata_spinner();
-			$.ajax({
-				type: 'PUT',
-				url: '/stories/' + pages_editor.story_id + '/autosave',
-				data: {
-					'story[media_type]': $(this).val()
-				},
-				success: function(data) {
-					auto_saver.hide_metadata_spinner();
-				}
-			});
-	  });
-	};
-	
+		
 	this.monitor_gallery_choosing = function() {
 		$('#story_gallery_id').change(function() {
 			var gallery_id = parseInt($(this).val());

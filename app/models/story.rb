@@ -281,6 +281,16 @@ class Story < ActiveRecord::Base
     end
   end
   
+  def reload_thumbnail
+    return false if self.thumbnail.url.include?("missing")
+    begin
+      io = open(URI.parse(self.thumbnail.url))
+      self.thumbnail = io
+      self.save
+    rescue Exception
+    end
+  end
+  
   private
   
   def reprocess_thumbnail

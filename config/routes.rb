@@ -26,7 +26,7 @@ Repo::Application.routes.draw do
       post :update_thumbnail
       post :change_to_external
       post :change_to_creator
-      get :template
+      put :choose_media_type
       get :cropper
       post :crop
     end

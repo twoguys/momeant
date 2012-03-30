@@ -59,8 +59,9 @@ class StoriesController < ApplicationController
     render "form"
   end
   
-  def template # ajax
+  def choose_media_type # ajax
     @story = Story.find(params[:id])
+    @story.update_attribute(:media_type, params[:media_type])
     render :partial => "stories/templates/#{params[:media_type]}"
   end
   

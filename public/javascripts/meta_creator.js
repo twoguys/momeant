@@ -13,6 +13,7 @@ window.MetaCreatorView = Backbone.View.extend({
 	  
 	  this.monitor_uploading($('#template .file-uploader'));
 	  this.monitor_typing($('#template .monitor'));
+	  this.monitor_select($('#story_category'));
   },
   
   choose_media_type: function(event) {
@@ -23,10 +24,17 @@ window.MetaCreatorView = Backbone.View.extend({
     var $template = $('#type #template');
     $template.addClass('loading');
     
-    $.get('/stories/' + story_id + '/template?media_type=' + $link.text(), function(html) {
-      $template.html(html).removeClass('loading');
-      MetaCreator.monitor_uploading($template.find('.file-uploader'));
-      MetaCreator.monitor_typing($template.find('.monitor'));
+		auto_saver.show_metadata_spinner();
+    $.ajax({
+      url: '/stories/' + story_id + '/choose_media_type',
+      type: 'PUT',
+      data: { media_type: $link.text() },
+      success: function(html) {
+    		auto_saver.hide_metadata_spinner();
+        $template.html(html).removeClass('loading');
+        MetaCreator.monitor_uploading($template.find('.file-uploader'));
+        MetaCreator.monitor_typing($template.find('.monitor'));
+      }
     });
     return false;
   },
@@ -60,15 +68,29 @@ window.MetaCreatorView = Backbone.View.extend({
 	  if ($input.length == 0) { return; }
 	  
 	  $input.observe_field(this.observe_delay, function(value, object) {
-			auto_saver.show_metadata_spinner();
-			$.ajax({
-				type: 'PUT',
-				url: '/stories/' + story_id + '/autosave',
-				data: {'story[synopsis]': $input.val()},
-				success: function() {
-				  auto_saver.hide_metadata_spinner();
-				}
-			});
+			MetaCreator.autosave($input.attr('update'), $input.val());
+		});
+	},
+	
+	monitor_select: function($input) {
+	  if ($input.length == 0) { return; }
+	  
+	  $input.change(function() {
+	    MetaCreator.autosave($input.attr('update'), $input.val());
+	  });
+	},
+	
+	autosave: function(attribute, value) {
+	  var data = {};
+	  data['story[' + attribute + ']'] = value;
+	  auto_saver.show_metadata_spinner();
+		$.ajax({
+			type: 'PUT',
+			url: '/stories/' + story_id + '/autosave',
+			data: data,
+			success: function() {
+			  auto_saver.hide_metadata_spinner();
+			}
 		});
 	}
   

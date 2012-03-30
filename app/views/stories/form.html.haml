@@ -51,6 +51,10 @@
       
       #template
         = render "stories/templates/#{@story.media_type}" if @story.media_type.present?
+    
+    %section.step#categorize
+      %h2 3. How would you categorize this content?
+      = select_tag :story_category, options_for_select(Story::CATEGORIES, @story.category), :update => "category"
   
     %section.step#last
       .owner

@@ -2,11 +2,12 @@
   = render "stories/templates/header"
 
   = label_tag "Upload a photo that best represents this video:"
+  .info NOTE: we will be showing this fullscreen in some places, so we recommend using a larger image.
   .file-uploader
     %form
       %input{:type => "hidden", :value => form_authenticity_token, :name => "authenticity_token"}
       .file-input
         %input{:type => "file", :name => "story[thumbnail]", :id => "story_thumbnail"}
         .loader
-  %div Preview of current photo:
+  %div Small preview of current photo:
   .thumbnail{:style => @story && @story.thumbnail.present? ? "background: url(#{@story.thumbnail.url(:medium)})" : ""}
