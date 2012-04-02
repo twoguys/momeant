@@ -106,7 +106,7 @@ class User < ActiveRecord::Base
   
   def discovery_content
     # TODO allow a creator to choose which piece of content (for now just pick newest)
-    self.created_stories.newest_first.first
+    self.created_stories.published.newest_first.first
   end
   
   def has_rewarded?(user)
