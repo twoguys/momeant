@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   
   def show
     @content = @user.created_stories.newest_first
-    @content.published unless @user == current_user
+    @content = @content.published unless @user == current_user
     @supporters = @user.rewards.group_by(&:user).to_a.map {|x| [x.first,x.second.inject(0){|sum,r| sum+r.amount}]}.sort_by(&:second).reverse
     @messages = @user.profile_messages
     @nav = "me" if @user == current_user
