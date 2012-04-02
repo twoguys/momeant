@@ -99,6 +99,12 @@ $border_solid: 1px solid #DEDEDE
 	-ms-transition: $property $time $timing
 	-o-transition: $property $time $timing
 	transition: $property $time $timing
+@mixin rotation($angle: 0deg)
+	-webkit-transform: rotate($angle)
+	-moz-transform: rotate($angle)
+	-o-transform: rotate($angle)
+	-ms-transform: rotate($angle)
+	rotation: $angle
 @mixin clearfix
 	display: inline-block
 	&:after

@@ -70,6 +70,23 @@ window.MetaCreatorView = Backbone.View.extend({
 	  $input.observe_field(this.observe_delay, function(value, object) {
 			MetaCreator.autosave($input.attr('update'), $input.val());
 		});
+		
+		var max = $input.attr('max');
+		if (max == undefined) { return; }
+		max = parseInt(max);
+		var current_characters = $input.val().length;
+		var $characters_left = $('#characters-left .amount');
+		$characters_left.text(max - current_characters);
+		
+		$input.keypress(function(event) {
+      var current_characters = $input.val().length;
+      if (current_characters == max) {
+        event.preventDefault();
+        $characters_left.text(0);
+        return false;
+      }
+      $characters_left.text(max - current_characters);
+		});
 	},
 	
 	monitor_select: function($input) {

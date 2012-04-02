@@ -104,6 +104,11 @@ class User < ActiveRecord::Base
     latitude.present? && longitude.present?
   end
   
+  def discovery_content
+    # TODO allow a creator to choose which piece of content (for now just pick newest)
+    self.created_stories.newest_first.first
+  end
+  
   def has_rewarded?(user)
     !Reward.where(:recipient_id => self.id, :user_id => user.id).empty?
   end

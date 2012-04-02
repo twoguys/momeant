@@ -12,6 +12,7 @@ window.DiscoveryView = Backbone.View.extend({
 		this.current_person = -1;
 		this.people = [];
 		this.$slides = $('.slide');
+    this.remove_people_outside_viewport();
     this.store_people();
 		
 		_.bindAll(this, 'on_resize');
@@ -31,6 +32,12 @@ window.DiscoveryView = Backbone.View.extend({
 		this.people = people;
 	},
 	
+	remove_people_outside_viewport: function() {
+	  $('#people #list li').each(function (index, element) {
+	    if (!withinViewport(element, {bottom: 62})) { $(element).remove(); }
+	  });
+	},
+	
 	reset: function() {
 	  var index = $.cookie('discovery_creator_index');
 	  if (index == null) { return; }
@@ -39,8 +46,7 @@ window.DiscoveryView = Backbone.View.extend({
 	
 	person_clicked: function(event) {
     var index = $(event.currentTarget).parent().index();
-    console.log(index);
-    Discovery.goto_person($person);
+    Discovery.goto_person(index);
 	  return false;
 	},
 	
@@ -49,6 +55,7 @@ window.DiscoveryView = Backbone.View.extend({
     if (Discovery.current_person == -1) { // go to messaging slide
       $('#slides').css('margin-top',0);
       $('#people li').removeClass('current faded');
+      $.cookie('discovery_creator_index', null);
       return;
     }
     var $person = Discovery.people[index];
@@ -59,7 +66,7 @@ window.DiscoveryView = Backbone.View.extend({
 	},
 	
 	next_person: function() {
-	  if (Discovery.current_person == Discovery.people.length) { return; }
+	  if (Discovery.current_person == Discovery.people.length - 1) { return; }
 	  Discovery.goto_person(Discovery.current_person + 1);
 	},
 	

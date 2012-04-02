@@ -6,3 +6,4 @@ namespace :momeant do
       story.reload_thumbnail!
     end
   end
+end

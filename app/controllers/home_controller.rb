@@ -1,11 +1,11 @@
 class HomeController < ApplicationController
   
   def index
-    @people = Creator.most_rewarded.limit(10)
+    @people = Creator.most_rewarded.limit(50)
   end
   
   def people # ajax
-    @people = Creator.most_rewarded.limit(10)
+    @people = Creator.most_rewarded.limit(50)
     render :partial => "home/person", :collection => @people, :as => :person
   end
   

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120327150343) do
+ActiveRecord::Schema.define(:version => 20120402133106) do
 
   create_table "activities", :force => true do |t|
     t.integer  "actor_id"
@@ -221,6 +221,7 @@ ActiveRecord::Schema.define(:version => 20120327150343) do
     t.boolean  "i_own_this",           :default => true
     t.string   "media_type"
     t.string   "category"
+    t.text     "template"
   end
 
   create_table "stories_topics", :id => false, :force => true do |t|

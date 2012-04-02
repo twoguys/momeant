@@ -50,7 +50,7 @@
       = hidden_field_tag :story_media_type, :value => @story.media_type
       
       #template
-        = render "stories/templates/#{@story.media_type}" if @story.media_type.present?
+        = render "stories/template_forms/#{@story.media_type}" if @story.media_type.present?
     
     %section.step#categorize
       %h2 3. How would you categorize this content?

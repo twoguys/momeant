@@ -817,20 +817,71 @@ table {
       width: 100%;
       height: 100%;
       position: relative; }
-      #home.index #slides .slide .background, #registrations.create #slides .slide .background {
-        position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        background-repeat: no-repeat;
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        -o-background-size: cover;
-        background-size: cover;
-        display: none; }
       #home.index #slides .slide .slide-insides, #registrations.create #slides .slide .slide-insides {
         padding: 10%; }
+    #home.index #slides .preview, #registrations.create #slides .preview {
+      height: 100%;
+      position: relative; }
+    #home.index #slides .preview.photos .inner, #home.index #slides .preview.video .inner, #registrations.create #slides .preview.photos .inner, #registrations.create #slides .preview.video .inner {
+      height: 100%;
+      background-repeat: no-repeat;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover; }
+    #home.index #slides .preview.watchmen, #registrations.create #slides .preview.watchmen {
+      background: #ffe344;
+      color: black; }
+      #home.index #slides .preview.watchmen .inner, #registrations.create #slides .preview.watchmen .inner {
+        width: 740px;
+        height: 350px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin: -195px 0 0 -370px;
+        font-size: 34px;
+        -webkit-transform: rotate(-2deg);
+        -moz-transform: rotate(-2deg);
+        -o-transform: rotate(-2deg);
+        -ms-transform: rotate(-2deg);
+        rotation: -2deg; }
+        #home.index #slides .preview.watchmen .inner .image, #registrations.create #slides .preview.watchmen .inner .image {
+          width: 141px;
+          height: 140px;
+          background: transparent url(../images/content/templates/quote.png) no-repeat 0 0; }
+        #home.index #slides .preview.watchmen .inner .quote, #registrations.create #slides .preview.watchmen .inner .quote {
+          margin: 10px 0 0 10px; }
+    #home.index #slides .preview.blob, #registrations.create #slides .preview.blob {
+      background: #ff6600 url(../images/content/templates/blob.png) no-repeat 50% 50%;
+      color: black; }
+      #home.index #slides .preview.blob .inner, #registrations.create #slides .preview.blob .inner {
+        width: 630px;
+        height: 230px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin: -115px 0 0 -315px;
+        -webkit-transform: rotate(-3deg);
+        -moz-transform: rotate(-3deg);
+        -o-transform: rotate(-3deg);
+        -ms-transform: rotate(-3deg);
+        rotation: -3deg;
+        font-size: 1.3em;
+        font-weight: 700; }
+    #home.index #slides .preview.bowling, #registrations.create #slides .preview.bowling {
+      background: #99daa4 url(../images/content/templates/bowling.png) no-repeat 50% 50%;
+      color: white; }
+      #home.index #slides .preview.bowling .inner, #registrations.create #slides .preview.bowling .inner {
+        width: 520px;
+        height: 300px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin: -140px 0 0 -260px;
+        font-size: 1.5em;
+        font-weight: 700;
+        text-transform: uppercase;
+        text-align: center; }
   #home.index #creators, #registrations.create #creators {
     right: 0;
     left: 80%;
@@ -844,7 +895,7 @@ table {
         font-weight: 300;
         text-transform: uppercase;
         margin-bottom: 0.5em;
-        background: transparent url(../images/discovery/keyboard-icon.png) no-repeat 110% 50%; }
+        background: transparent url(../images/discovery/keyboard-icon.png) no-repeat 100% 50%; }
       #home.index #creators #people li, #registrations.create #creators #people li {
         margin-bottom: 5px; }
         #home.index #creators #people li.current a, #registrations.create #creators #people li.current a {
@@ -922,10 +973,7 @@ table {
     position: relative; }
     #vertical-list #activity-list > li.content .content-preview img.thumbnail {
       width: 300px;
-      height: 200px;
-      -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
-      -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
-      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5); }
+      height: 200px; }
     #vertical-list #activity-list > li.content .content-preview .media-type {
       position: absolute;
       top: 1px;

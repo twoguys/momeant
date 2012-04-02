@@ -281,7 +281,11 @@ class Story < ActiveRecord::Base
     end
   end
   
-  def reload_thumbnail
+  def text_media_type?
+    self.media_type == "writing" || self.media_type == "music"
+  end
+  
+  def reload_thumbnail!
     return false if self.thumbnail.url.include?("missing")
     begin
       io = open(URI.parse(self.thumbnail.url))

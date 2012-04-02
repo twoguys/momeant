@@ -61,8 +61,15 @@ class StoriesController < ApplicationController
   
   def choose_media_type # ajax
     @story = Story.find(params[:id])
-    @story.update_attribute(:media_type, params[:media_type])
-    render :partial => "stories/templates/#{params[:media_type]}"
+    @story.media_type = params[:media_type]
+    if @story.text_media_type? # if a text media type, choose a random template for now
+      text_templates = ["watchmen","blob","bowling"]
+      @story.template = text_templates[rand(text_templates.length)]
+    else
+      @story.template = "photo"
+    end
+    @story.save
+    render :partial => "stories/template_forms/#{params[:media_type]}"
   end
   
   def publish

@@ -12,10 +12,15 @@
   
   - @people.each do |person|
     .person.slide{:id => "person-#{person.id}"}
-      - content = person.created_stories.newest_first.first
-      .background{:style => content.present? ? "background-image: url(#{content.thumbnail.url(:large)})" : ""}
-      .slide-insides
-        %h1= person.name
+      - content = person.discovery_content
+      - unless content.nil?
+        .preview{:class => "#{content.media_type} #{content.template}"}
+          - if content.text_media_type?
+            .inner
+              .image
+              .quote= truncate(content.synopsis, :length => 140)
+          - else
+            .inner{:style => "background-image: url(#{content.thumbnail.url(:huge)})"}
 
 #creators
 
@@ -27,5 +32,5 @@
 
 :javascript
   mpq.track('Viewed Homepage');
-
+= javascript_include_tag "withinViewport"
 = javascript_include_tag "landing"
