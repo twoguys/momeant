@@ -3,7 +3,8 @@ window.DiscoveryView = Backbone.View.extend({
 	el: $('body'),
 	
 	events: {
-		'click #people a': 'person_clicked'
+		'click #people a.name': 'person_clicked',
+		'click #people a.profile': 'goto_profile'
 	},
 	
 	initialize: function() {
@@ -12,7 +13,7 @@ window.DiscoveryView = Backbone.View.extend({
 		this.current_person = -1;
 		this.people = [];
 		this.$slides = $('.slide');
-    this.remove_people_outside_viewport();
+    //this.remove_people_outside_viewport();
     this.store_people();
 		
 		_.bindAll(this, 'on_resize');
@@ -25,7 +26,7 @@ window.DiscoveryView = Backbone.View.extend({
 	
 	store_people: function() {
 		var people = [];
-		$.each($('#people #list a'), function(index, person) {
+		$.each($('#people #list a.name'), function(index, person) {
 		  var $person = $(person);
 		  people.push($person);
 		});
@@ -84,7 +85,7 @@ window.DiscoveryView = Backbone.View.extend({
 	},
 	
 	on_resize: function() {
-	  this.window_height = this.$window.height();
+	  this.window_height = this.$window.height() - 42;
 	  this.$slides.css('height',this.window_height);
 	},
 	

@@ -1,31 +1,24 @@
 #home.index, #registrations.create
-	position: absolute
-	top: 0
-	left: 0
-	width: 100%
 
-	#container, #main
-		position: fixed
-		top: 0
-		bottom: 0
-		width: 100%
-		max-width: 100%
-		
 	#main
-		@include transition
-		right: 0
+		max-width: 100%
 	
-	#slides, #creators
-		position: absolute
+	#slides-wrapper
+		position: fixed
 		top: 42px
 		bottom: 0
-	
-	#slides
 		left: 0
 		right: 20%
+		overflow: hidden
+		
+	#creators
+		width: 20%
+		position: relative
+		left: 80%
+	
+	#slides
 		background: #000
 		color: #fff
-		width: 80%
 		font-size: 24px
 		overflow: hidden
 		@include transition(margin, 0.3s, ease-out)
@@ -106,33 +99,126 @@
 				font-weight: 700
 				text-transform: uppercase
 				text-align: center
-			
+		
+		.metadata
+			position: absolute
+			bottom: 0
+			width: 100%
+			height: 20px
+			padding: 15px 0
+			background: #f7f7f7
+			background: rgba(255,255,255,0.9)
+			color: #000
+			.media-type, .title
+				float: left
+			.media-type
+				margin: 0 15px
+				width: 30px
+				height: 20px
+				background: transparent url(../images/content/media-types/photos-small-black.png) no-repeat 0 0
+				&.video
+					background-image: url(../images/content/media-types/video-small-black.png)
+				&.writing
+					background-image: url(../images/content/media-types/writing-small-black.png)
+				&.music
+					background-image: url(../images/content/media-types/music-small-black.png)
+			.title
+				text-transform: uppercase
+				font-size: 0.75em
+			.example
+				float: right
+				margin-right: 15px
+				color: #999
+				font-size: 0.6em
+				font-style: italic
+				padding-top: 2px
 			
 		
 	#creators
-		right: 0
-		left: 80%
-		width: 20%
-		
 		#people
-			padding: 5%
 			font-size: 1.3em
-			h3
+			h3.title
 				color: #999
-				font-size: 1.2em
+				font-size: 1em
 				font-weight: 300
 				text-transform: uppercase
-				margin-bottom: 0.5em
+				margin-right: 15px
 				background: transparent url(../images/discovery/keyboard-icon.png) no-repeat 100% 50%
+			h3.title, li .details
+				padding: 15px
 			li
 				margin-bottom: 5px
-				&.current a
-					background: transparent url(../images/discovery/keyboard-right.png) no-repeat 100% 50%
-				&.faded a
-					color: #ccc
-				a
+				a.name
 					display: block
 					color: #555
-					@include transition(color)
+					padding: 3px 15px
 					&:hover
 						color: $blue
+				a.name, .details h3
+					font-size: 1.2em
+					font-family: $typewriter
+					font-weight: 100
+					font-style: italic
+				.details	
+					display: none
+					background: #000
+					color: #fff
+					position: relative
+					img.avatar
+						position: absolute
+						top: 0
+						left: -60px
+					h3
+						padding-bottom: 3px
+						border-bottom: 2px solid #fff
+						margin-bottom: 8px
+						font-weight: 500
+					h4
+						color: $red
+						font-family: $typewriter
+						font-size: 0.9em
+						font-weight: 100
+						font-style: italic
+					p
+						font-size: 0.8em
+						font-weight: 100
+						line-height: 1.3em
+						margin: 10px 0
+					.supporters
+						font-weight: 300
+						font-size: 2.5em
+						.amount
+							padding-right: 24px
+							background: transparent url(../images/discovery/supporters.png) 100% 10px no-repeat
+					a.profile
+						display: block
+						background: $red
+						color: #fff
+						margin: 15px -15px -15px
+						padding: 10px
+						text-align: right
+						text-transform: uppercase
+				.details.watchmen
+					h4
+						color: #ffe344
+					a.profile
+						background-color: #ffe344
+						color: #000
+				.details.blob
+					h4
+						color: #ff6600
+					a.profile
+						background-color: #ff6600
+						color: #000
+				.details.bowling
+					h4
+						color: #99daa4
+					a.profile
+						background-color: #99daa4
+						color: #000
+					
+			li.current
+				a.name
+					display: none
+				.details
+					display: block
