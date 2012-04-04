@@ -1,11 +1,12 @@
 class HomeController < ApplicationController
   
   def index
-    @people = Creator.most_rewarded.limit(50)
+    people_ids = Editorial.all.map(&:user_id).join(",")
+    @people = User.where("id IN (#{people_ids})")
   end
   
   def people # ajax
-    @people = Creator.most_rewarded.limit(50)
+    @people = User.most_rewarded.limit(50)
     render :partial => "home/person", :collection => @people, :as => :person
   end
   

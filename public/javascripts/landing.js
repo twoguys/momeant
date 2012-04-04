@@ -42,7 +42,9 @@ window.DiscoveryView = Backbone.View.extend({
 	reset: function() {
 	  var index = $.cookie('discovery_creator_index');
 	  if (index == null) { return; }
-    Discovery.goto_person(parseInt(index));
+	  var index = parseInt(index);
+	  if (index > Discovery.people.length - 1) { return; }
+    Discovery.goto_person();
 	},
 	
 	person_clicked: function(event) {
