@@ -23,7 +23,7 @@ $(function() {
 	
 	
 	var $uploader = $('.file-uploader');
-	var $preview = $('.avatar-badge-name .avatar')
+	var $preview = $('.avatar-badge .avatar')
 	var $loader = $uploader.find('.loader');
 	var $file_input = $uploader.find('input[type="file"]');
 	var url = '/users/' + user_id + '/update_avatar';

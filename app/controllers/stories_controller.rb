@@ -232,12 +232,6 @@ class StoriesController < ApplicationController
     end
   end
   
-  def random
-    stories = Story.published
-    story = stories[rand(stories.size)]
-    redirect_to preview_story_path(story)
-  end
-  
   private
     
   def get_topics

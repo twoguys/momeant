@@ -4,7 +4,7 @@
 
     .avatar-badge
       - if @user.avatar.url.include?("missing")
-        = link_to(image_tag(@user.avatar.url(:large)), edit_user_path(@user), :class => "avatar")
+        = link_to(image_tag(@user.avatar.url(:large)), settings_user_path(@user), :class => "avatar")
       - else
         = link_to(image_tag(@user.avatar.url(:large)), user_path(@user), :class => "avatar")
       = image_tag "badges/#{@user.badge_level}.png", :class => "badge tooltipped-e", :title => "Level #{@user.badge_level} Patron"

@@ -15,14 +15,12 @@
           - if @activity.empty? && me?(@user)
             #new-user-no-activity
               %h1
-                %span Yay! We’ve given you 10 reward coins (
-                %span.coin
-                %span ) for free!
+                %span Yay! We’ve given you 10 reward coins for free!
               %p
                 %span Use these coins to reward others for their great content.
               %p
                 %span As you start rewarding, and
-                = link_to "creating your own content", creations_user_path(current_user)
+                = link_to "creating your own content", user_path(current_user)
                 %span , you will see a list of that activity and its impact show up here.
           
               #activity-example

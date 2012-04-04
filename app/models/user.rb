@@ -1,11 +1,10 @@
 require "open-uri"
 
 class User < ActiveRecord::Base
-  include AASM
   
   # Authentication configuration
   devise :database_authenticatable, :registerable, #:confirmable,
-       :recoverable, :rememberable, :trackable, :validatable
+    :recoverable, :rememberable, :trackable, :validatable
        
   searchable do
     text :name, :boost => 2.0
@@ -20,9 +19,13 @@ class User < ActiveRecord::Base
        
   # ASSOCIATIONS
   
+  has_many :created_stories, :foreign_key => :user_id, :class_name => "Story", :order => "created_at DESC"
+  
   has_many :bookmarks, :dependent => :destroy
   has_many :bookmarked_stories, :through => :bookmarks, :source => :story
   
+  has_many :rewards, :foreign_key => :recipient_id, :order => "amount DESC"
+  has_many :patrons, :through => :rewards, :source => :user, :uniq => true
   has_many :given_rewards, :class_name => "Reward", :dependent => :destroy
   has_many :rewarded_creators, :through => :given_rewards, :source => :recipient, :uniq => true
   has_many :rewarded_stories, :through => :given_rewards, :source => :story
@@ -40,6 +43,8 @@ class User < ActiveRecord::Base
   has_many :amazon_payments, :foreign_key => :payer_id, :order => "created_at DESC"
   
   has_many :authentications
+  
+  has_many :cashouts, :foreign_key => :user_id
   
   has_many :sent_messages,
     :class_name => "Message",
@@ -107,6 +112,10 @@ class User < ActiveRecord::Base
   def discovery_content
     # TODO allow a creator to choose which piece of content (for now just pick newest)
     self.created_stories.published.newest_first.first
+  end
+  
+  def media_count(type)
+    self.created_stories.published.where(:media_type => type).count
   end
   
   def has_rewarded?(user)

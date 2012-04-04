@@ -7,30 +7,6 @@ class CommunityController < ApplicationController
     @top_creators = User.most_rewarded.limit(5)
   end
   
-  def activity
-    activity = []
-    case params[:filter]
-    when "all"
-      activity = Activity.except_type("Impact")
-    when "impact"
-      activity = Activity.on_impact
-    when "rewards"
-      activity = Activity.on_rewards
-    when "content"
-      activity = Activity.on_content
-    when "badges"
-      activity = Activity.on_badges
-    when "coins"
-      activity = Activity.on_purchases
-    end
-    if activity.empty?
-      render :text => ""
-    else
-      activity = activity.page params[:page]
-      render activity
-    end
-  end
-  
   def content
     @stories = Story.published.most_rewarded.limit(12)
 

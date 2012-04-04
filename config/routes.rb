@@ -6,23 +6,11 @@ Repo::Application.routes.draw do
     :passwords => "passwords"
   }
   
-  # resources :invitations do
-  #   collection do
-  #     get :invite_creator
-  #   end
-  # end
-  # match 'invites/:token',       :to => 'invitations#accept',        :as => :accept_invitation
-  
   resources :stories do
     member do
-      get :preview
-      post :bookmark
-      delete :unbookmark
       delete :remove_tag_from
       post :publish
       put :autosave
-      post :add_topic_to
-      post :remove_topic_from
       post :update_thumbnail
       post :change_to_external
       post :change_to_creator
@@ -31,25 +19,16 @@ Repo::Application.routes.draw do
       post :crop
     end
     collection do
-      get :bookmarked
-      get :recommended
       get :render_page_form
       get :render_page_theme
       get :tagged_with
       get :search
-      get :random
-      get :most_rewarded
     end
     
     resources :pages, :only => [:create, :update, :destroy] do
       post :add_or_update_image, :on => :member
     end
-    
-    resources :curations
   end
-  match "/stories/tagged_with/:tag",    :to => "stories#tagged_with",  :as => :stories_tagged_with
-  
-  match "/topics/:name", :to => "topics#show", :as => :topic
   
   match '/coins', :to => "amazon_payments#index", :as => :coins
   match '/coins/buy', :to => "amazon_payments#create", :as => :buy_coins
@@ -80,7 +59,6 @@ Repo::Application.routes.draw do
     resources :comments, :only => [:create]
     
     member do
-      get :patronage
       get :settings
       post :update_in_place
       post :update_avatar
@@ -89,18 +67,11 @@ Repo::Application.routes.draw do
       get :more_activity #ajax
     end
     
-    # Homepage tab
-    get :top_curators, :on => :collection
-
-    # Spreedly updates come here
-    post :billing_updates, :on => :collection
-    
     # Feedback
     post :feedback, :on => :collection
   end
   match '/users/:id/content_rewarded_by/:rewarder_id', :to => "users#content_rewarded_by", :as => :user_content_rewarded_by
   match '/rewards/:id/visualize', :to => "rewards#visualize",           :as => :visualize_reward
-  match '/analytics',             :to => "users#analytics",             :as => :analytics
   
   match '/share/twitter_form',    :to => "sharing#twitter_form"
   match '/share/facebook_form',   :to => "sharing#facebook_form"
@@ -118,12 +89,6 @@ Repo::Application.routes.draw do
   match '/people/friends/reload_full', :to => "discovery#reload_friends_activity",:as => :reload_friends_activity
   match '/people/creators',       :to => "discovery#creators_people",      :as => :creators_people
   match '/people/patrons',        :to => "discovery#patrons_people",       :as => :patrons_people
-  
-  match '/activity',              :to => "community#index",             :as => :community
-  match '/activity/reload',       :to => "community#activity"
-  match '/community/content',     :to => "community#content",           :as => :community_content
-  match '/community/people',      :to => "community#people",            :as => :community_people
-  match '/community/newest_content', :to => "community#newest_content", :as => :community_newest_content
   
   match '/subscriptions',         :to => "subscriptions#index",         :as => :subscriptions
   

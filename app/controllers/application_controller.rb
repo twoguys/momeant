@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   include SslRequirement
   protect_from_forgery
   
-  before_filter :push_to_sender, :create_anonymous_tracker, :open_reward_modal?
+  before_filter :push_to_sender, :open_reward_modal?
   
   @nav = "home"
   @sidenav = ""
@@ -23,13 +23,6 @@ class ApplicationController < ActionController::Base
     Pusher['admin'].trigger('request', {:url => request.path, :user => user}) if ENV["SEND_ADMIN_LIVE_UPDATES"] == "yes"
   end
   
-  def create_anonymous_tracker
-    # if the user isn't logged in, set a unique cookie to track them
-    if session[:analytics_anonymous_id].nil?
-      session[:analytics_anonymous_id] = ActiveSupport::SecureRandom.hex(24)
-    end
-  end
-  
   def open_reward_modal?
     if params[:open_reward_modal].present?
       session[:open_reward_modal] = true
@@ -37,19 +30,7 @@ class ApplicationController < ActionController::Base
   end
   
   rescue_from CanCan::AccessDenied do |exception|
-    if exception.subject.is_a?(Story) && exception.action == :show
-      if !current_user
-        redirect_to preview_story_path(exception.subject), :alert => "Please login to view stories."
-      elsif current_user.trial_expired?
-        redirect_to preview_story_path(exception.subject), :alert => "Your trial has expired. Please subscribe to view stories."
-      elsif current_user.disabled_subscription?
-        redirect_to preview_story_path(exception.subject), :alert => "Your subscription is not active. Please check your settings."
-      else
-        redirect_to preview_story_path(exception.subject), :alert => "Sorry, that story is not published yet."
-      end
-    else
-      redirect_to root_url, :alert => exception.message
-    end
+    redirect_to root_url, :alert => exception.message
   end
   
   private

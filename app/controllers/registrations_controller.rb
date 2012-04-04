@@ -1,7 +1,7 @@
 class RegistrationsController < Devise::RegistrationsController
   
   def create
-    resource = Creator.new(params[:user])
+    resource = User.new(params[:user])
     resource.coins = 10
     resource.subscription_last_updated_at = Time.now
     
