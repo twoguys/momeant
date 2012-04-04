@@ -12,6 +12,8 @@ class Reward < Curation
   scope :cashed_out, where("cashout_id IS NOT NULL")
   scope :not_cashed_out, where("cashout_id IS NULL")
   
+  before_destroy :destroy_activities
+  
   acts_as_nested_set
   
   searchable do
@@ -38,7 +40,6 @@ class Reward < Curation
     comment = "#{comment[0..120]}..." if comment.length > 120
     tree = {:id => self.id, :data => {:first_name => self.user.first_name, :last_name => self.user.last_name, :avatar => self.user.avatar.url(:large), :comment => comment, :amount => self.amount}}
 
-    Rails.logger.info "I AM REWARD #{self.id}, adding children:"
     tree[:children] = []
     self.children.each do |reward|
       tree[:children].push reward.descendants_tree
@@ -57,5 +58,15 @@ class Reward < Curation
   
   def dollar_amount
     self.amount * Reward.dollar_exchange
+  end
+  
+  def activities
+    Activity.where(:action_id => self.id).where("action_type = 'Reward' OR action_type = 'Impact'")
+  end
+  
+  private
+  
+  def destroy_activities
+    self.activities.destroy_all
   end
 end
