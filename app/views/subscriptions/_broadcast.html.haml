@@ -5,7 +5,9 @@
   .when #{time_ago_in_words(broadcast.created_at)} ago
   
   .comments
-    %h3= pluralize broadcast.comments.size, "Supporter Comment"
-    %ul.comment-list
-      = render :partial => "comments/comment", :collection => broadcast.comments, :as => :comment
-    = render "comments/form", :commentable => broadcast
+    = link_to pluralize(broadcast.comments.size, "Supporter Comment"), "#", :class => "open-comments"
+    .insides
+      = link_to "#{pluralize(broadcast.comments.size, "Supporter Comment")} (Hide)", "#", :class => "close-comments"
+      %ul.comment-list
+        = render :partial => "comments/comment", :collection => broadcast.comments, :as => :comment
+      = render "comments/form", :commentable => broadcast

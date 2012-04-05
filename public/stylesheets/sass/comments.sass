@@ -1,12 +1,24 @@
 .comments
-	margin-top: 10px
-	padding-bottom: 100px
-	font-size: 13px
+
+	a.open-comments, .insides
+		background: #303030
+		color: #777
+		padding: 13px 20px
+
+	a.open-comments, a.close-comments
+		display: block
+		font-size: 13px
+		color: #777
+		@include transition(color)
+		&:hover
+			color: #fff
 	
-	h3
-		font-weight: 500
-		color: #999
-		margin-bottom: 5px
+	a.close-comments
+		display: block
+		margin-bottom: 15px
+	
+	.insides
+		display: none
 	
 	ul.comment-list > li, form
 		position: relative
@@ -20,18 +32,24 @@
 	
 	ul.comment-list > li
 		margin: 0 0 5px 3px
+		.commenter-name
+			color: #ddd
+			@include transition(color)
+			&:hover
+				color: $blue
+		.text
+			color: #aaa
 		.time
 			font-size: 12px
-			color: #999
+			color: #666
 			margin-top: 1px
 	
 	.disabled
-		background: #f4f4f4
+		background: #444
 		color: #777
 		padding: 3px 6px
 	
 	form
-		background: #f4f4f4
 		padding: 3px 6px 3px 38px
 		min-height: 30px
 		img.commenter-avatar

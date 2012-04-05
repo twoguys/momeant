@@ -1,19 +1,25 @@
 %li.content
   = link_to image_tag(content.user.avatar.url(:thumbnail)), user_path(content.user), :class => "avatar"
   .title #{link_to content.user.name, user_path(content.user)} posted #{content.article_string}:
-  %a.content-preview{:href => story_path(content)}
-    = image_tag content.thumbnail.url(:large), :class => "thumbnail"
-    .media-type{:class => content.media_type}
+  %a.content-preview{:href => story_path(content), :class => "#{content.media_type} #{content.template}"}
+    - if content.text_media_type?
+      .inner
+        .image
+        .quote= truncate(content.synopsis, :length => 140)
+    - else
+      .inner{:style => "background-image: url(#{content.thumbnail.url(:large)})"}
 
-  .info
+  .info    
+    .media-type{:class => content.media_type}
     = link_to content.title, story_url(content), :class => "title"
-    %p= content.synopsis
-    = #link_to "View #{content.this_media}", story_path(content), :class => "view-button"
+    %span.category= content.category
   
   .when #{time_ago_in_words(content.created_at)} ago
   
   .comments
-    %h3= pluralize content.comments.size, "Supporter Comment"
-    %ul.comment-list
-      = render :partial => "comments/comment", :collection => content.comments, :as => :comment
-    = render "comments/form", :commentable => content
+    = link_to pluralize(content.comments.size, "Supporter Comment"), "#", :class => "open-comments"
+    .insides
+      = link_to "#{pluralize(content.comments.size, "Supporter Comment")} (Hide)", "#", :class => "close-comments"
+      %ul.comment-list
+        = render :partial => "comments/comment", :collection => content.comments, :as => :comment
+      = render "comments/form", :commentable => content

@@ -9,28 +9,31 @@
       - index = 0
       - @content.each do |content|
         %li.content
-          %a.content-preview{:id => "content-#{index}", :href => story_path(content)}
-            = image_tag content.thumbnail.url(:large), :class => "thumbnail"
-            .media-type{:class => content.media_type}
-            = image_tag @user.avatar.url(:thumbnail), :class => "avatar"
+          %a.content-preview{:href => story_path(content), :class => "#{content.media_type} #{content.template}"}
+            - if content.text_media_type?
+              .inner
+                .image
+                .quote= truncate(content.synopsis, :length => 140)
+            - else
+              .inner{:style => "background-image: url(#{content.thumbnail.url(:large)})"}
       
           .info
-            = link_to(content.title.blank? ? "Untitled" : content.title, story_url(content), :class => "title")
-            - if me?(@user)
-              .edit
-                = link_to "Edit", edit_story_path(content) if me?(@user)
+            .media-type{:class => content.media_type}
+            .links
+              = link_to(content.title.blank? ? "Untitled" : content.title, story_url(content), :class => "title")
+              %span.category= content.category
+              - if me?(@user)
+                = link_to "Edit", edit_story_path(content), :class => "edit" if me?(@user)
                 = link_to "Delete", story_path(content), :method => :delete, :confirm => "WHOA WAIT UP! If you delete this you will lose ALL REWARDS on this content. Are you SURE you want to delete it?"
-            %p= content.synopsis
           
-          - if me?(@user)
-            .comments
-              = link_to pluralize(content.comments.size, "Supporter Comment"), "#", :class => "open-comments"
-              .insides
-                %h3 Supporter Comments (#{link_to "Hide", "#", :class => "close-comments"})
-                %ul.comment-list
-                  = render :partial => "comments/comment", :collection => content.comments, :as => :comment
-                = render "comments/form", :commentable => content
-          - else
+          .comments
+            = link_to pluralize(content.comments.size, "Supporter Comment"), "#", :class => "open-comments"
+            .insides
+              = link_to "#{pluralize(content.comments.size, "Supporter Comment")} (Hide)", "#", :class => "close-comments"
+              %ul.comment-list
+                = render :partial => "comments/comment", :collection => content.comments, :as => :comment
+              = render "comments/form", :commentable => content
+          - if false
             .rewards
               - if content.users_who_rewarded.empty?
                 = link_to "Become the first supporter &rarr;".html_safe, story_path(content), :class => "be-next"

@@ -6,7 +6,10 @@ window.Scroller = Backbone.View.extend({
 		'click #activity-list li a.content-preview': 'clicked_content',
 		'click #activity-list li a.title': 'clicked_content',
 		'focus textarea': 'start_editing_text',
-		'blur textarea': 'stop_editing_text'
+		'blur textarea': 'stop_editing_text',
+		'submit #new_message': 'post_message',
+		'click a.open-comments': 'show_comments',
+		'click a.close-comments': 'hide_comments'
 	},
 	
 	initialize: function() {
@@ -126,7 +129,42 @@ window.Scroller = Backbone.View.extend({
 	stop_editing_text: function() {
 	  Scroll.editing_text = false;
 	},
-	
+  
+  post_message: function(event) {
+    var $form = $(event.currentTarget);
+    event.preventDefault();
+    
+    var body = $form.find('#message_body').val();
+    var token = $form.find('input[name="authenticity_token"]').val();
+    $('#message_body').val('');
+    $form.addClass('loading');
+    
+    $.post('/users/' + user_id + '/messages/public', {
+      'message[body]': body,
+      'authenticity_token': token,
+      'public': true
+    }, function(html) {
+      $('#discussion ul').prepend(html);
+      $form.removeClass('loading');
+    });
+  },
+  
+  show_comments: function(event) {
+    var $link = $(event.currentTarget);
+    var $comments = $link.siblings('.insides');
+    $link.hide();
+    $comments.show();
+    return false;
+  },
+  
+  hide_comments: function(event) {
+    var $comments = $(event.currentTarget).parent();
+    var $link = $comments.siblings('a.open-comments');
+    $comments.hide();
+    $link.show();
+    return false;
+  },
+  
 	reset: function() {
 	  $('#loader').hide();
 	}

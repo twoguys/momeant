@@ -1,4 +1,5 @@
 #vertical-list
+	width: 630px
 	padding-left: 80px
 	position: relative
 	@include transition(margin, 0.3s, ease-out)
@@ -26,6 +27,7 @@
 		min-height: 200px
 		padding: 0 0 0 60px
 		border: none
+		margin-bottom: 50px
 		.avatar
 			position: absolute
 			top: 0
@@ -34,54 +36,68 @@
 			display: block
 			width: 50px
 			height: 50px
-		.title
-			margin-bottom: 5px
 
 	#activity-list > li.content
-		&:hover, &.current
-			.info p
-				color: $text_color
-			.rewards
-				opacity: 1
-		.title
-			margin-bottom: 10px
 		.content-preview
 			display: block
-			width: 300px
-			height: 200px
-			float: left
-			margin: 0 20px 10px 0
-			position: relative
-			img.thumbnail
-				width: 300px
-				height: 200px
-			.media-type
-				position: absolute
-				top: 1px
-				left: 1px
-				width: 300px
-				height: 200px
-				z-index: 2
-				background: transparent url(../images/content/media-types/photos.png) no-repeat 50% 50%
-				&.video
-					background-image: url(../images/content/media-types/video.png)
-				&.writing
-					background-image: url(../images/content/media-types/writing.png)
-				&.music
-					background-image: url(../images/content/media-types/music.png)
+			width: 630px
+			height: 420px
+			&.bowling
+				background-image: url(../images/content/templates/bowling-small.png)
+				.inner
+					width: 260px
+					height: 170px
+					margin: -85px 0 0 -130px
+			&.watchmen
+				.image
+					width: 70px
+					height: 70px
+					background-image: url(../images/content/templates/watchmen-small.png)
+				.inner
+					font-size: 1.5em
+					width: 500px
+					height: 200px
+					margin: -100px 0 0 -250px
+			&.blob
+				background-image: url(../images/content/templates/blob-small.png)
+				.inner
+					width: 260px
+					height: 170px
+					margin: -85px 0 0 -130px
 		.info
-			min-height: 200px
+			height: 35px
+			padding: 20px
+			background: #000
+			color: #fff
+			.media-type, .links
+				float: left
+			.media-type
+				width: 50px
+				height: 50px
+				background: transparent url(../images/content/media-types/photos-small.png) no-repeat 0 0
+				margin-right: 20px
+				&.video
+					background-image: url(../images/content/media-types/video-small.png)
+				&.writing
+					background-image: url(../images/content/media-types/writing-small.png)
+				&.music
+					background-image: url(../images/content/media-types/music-small.png)
 			a.title
-				font-weight: 700
+				display: block
 				font-size: 15px
+				color: #fff
+				text-transform: uppercase
+			.category
+				color: #999
+				margin-right: 10px
 			.byline, .byline a
 				color: #555
 			.byline a
 				@include transition(color)
 				&:hover
 					color: $blue
-			.edit a
-				margin-right: 10px
+			.edit
+				margin-right: 5px
 			p
 				line-height: 1.4em
 				margin: 20px 0 0

@@ -44,7 +44,7 @@ window.DiscoveryView = Backbone.View.extend({
 	  if (index == null) { return; }
 	  var index = parseInt(index);
 	  if (index > Discovery.people.length - 1) { return; }
-    Discovery.goto_person();
+    Discovery.goto_person(index);
 	},
 	
 	person_clicked: function(event) {

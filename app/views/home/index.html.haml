@@ -12,10 +12,10 @@
           %span while you voluntarily reward the creators producing content you like.
   
     - @people.each do |person|
+      - content = person.discovery_content
       .person.slide{:id => "person-#{person.id}"}
-        - content = person.discovery_content
         - unless content.nil?
-          .preview{:class => "#{content.media_type} #{content.template}"}
+          .content-preview{:class => "#{content.media_type} #{content.template}"}
             - if content.text_media_type?
               .inner
                 .image
