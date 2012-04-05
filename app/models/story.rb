@@ -49,8 +49,8 @@ class Story < ActiveRecord::Base
     
   validates :media_type, :presence => true, :unless => :autosaving
   validates :title, :presence => true, :length => (2..256), :unless => :autosaving
-  validates :synopsis, :length => (0..1024), :unless => :autosaving
-  validates_attachment_presence :thumbnail, :unless => :autosaving, :message => "must be chosen"
+  #validates :synopsis, :length => (0..1024), :unless => :autosaving
+  #validates_attachment_presence :thumbnail, :unless => :autosaving, :message => "must be chosen"
   validates :i_own_this, :inclusion => {:in => [true], :message => "must be checked"}, :unless => :autosaving
   
   validate  :at_least_one_page, :no_empty_pages, :unless => :autosaving

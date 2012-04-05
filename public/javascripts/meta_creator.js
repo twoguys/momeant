@@ -13,6 +13,7 @@ window.MetaCreatorView = Backbone.View.extend({
 	  
 	  this.monitor_uploading($('#template .file-uploader'));
 	  this.monitor_typing($('#template .monitor'));
+	  //this.monitor_typing($('#story_synopsis'));
 	  this.monitor_select($('#story_category'));
   },
   

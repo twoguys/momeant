@@ -59,6 +59,9 @@
           = label_tag :story_title, "Give it a title:"
           = text_field_tag :story_title, @story.title, :class => "monitor-story-typing", :update => "title"
         %li
+          = label_tag :story_synopsis, "Quickly summarize it (optional, 140 characters):"
+          = text_field_tag :story_synopsis, @story.synopsis, :class => "monitor-story-typing", :update => "synopsis"
+        %li
           = label_tag :story_category, "Choose a category:"
           = select_tag :story_category, options_for_select(Story::CATEGORIES, @story.category), :update => "category"
   

@@ -52,7 +52,7 @@ window.ProfileView = Backbone.View.extend({
     }
     
     return false;
-  }
+  },
 	
 	back: function() {
 	  window.history.back();

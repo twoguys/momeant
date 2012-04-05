@@ -5,14 +5,16 @@
     - if content.text_media_type?
       .inner
         .image
-        .quote= truncate(content.synopsis, :length => 140)
+        .quote= truncate(content.template_text, :length => 140)
     - else
       .inner{:style => "background-image: url(#{content.thumbnail.url(:large)})"}
 
   .info    
     .media-type{:class => content.media_type}
     = link_to content.title, story_url(content), :class => "title"
-    %span.category= content.category
+    .synopsis= truncate(content.synopsis, :length => 140)
+    - if content.category
+      %span.category= content.category
   
   .when #{time_ago_in_words(content.created_at)} ago
   

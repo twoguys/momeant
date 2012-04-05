@@ -19,7 +19,7 @@
             - if content.text_media_type?
               .inner
                 .image
-                .quote= truncate(content.synopsis, :length => 140)
+                .quote= truncate(content.template_text, :length => 140)
             - else
               .inner{:style => "background-image: url(#{content.thumbnail.url(:huge)})"}
           .metadata

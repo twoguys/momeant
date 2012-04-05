@@ -885,7 +885,6 @@ table {
         font-style: italic; }
       #home.index #creators #people li .details p, #registrations.create #creators #people li .details p {
         font-size: 0.8em;
-        font-weight: 100;
         line-height: 1.3em;
         margin: 10px 0; }
       #home.index #creators #people li .details .supporters, #registrations.create #creators #people li .details .supporters {
@@ -993,17 +992,18 @@ table {
         height: 170px;
         margin: -85px 0 0 -130px; }
   #vertical-list #activity-list > li.content .info {
-    height: 35px;
-    padding: 20px;
+    min-height: 35px;
+    padding: 20px 20px 20px 90px;
     background: black;
-    color: white; }
-    #vertical-list #activity-list > li.content .info .media-type, #vertical-list #activity-list > li.content .info .links {
-      float: left; }
+    color: white;
+    position: relative; }
     #vertical-list #activity-list > li.content .info .media-type {
+      position: absolute;
+      top: 20px;
+      left: 20px;
       width: 50px;
       height: 50px;
-      background: transparent url(../images/content/media-types/photos-small.png) no-repeat 0 0;
-      margin-right: 20px; }
+      background: transparent url(../images/content/media-types/photos-small.png) no-repeat 0 0; }
       #vertical-list #activity-list > li.content .info .media-type.video {
         background-image: url(../images/content/media-types/video-small.png); }
       #vertical-list #activity-list > li.content .info .media-type.writing {
@@ -1015,7 +1015,7 @@ table {
       font-size: 15px;
       color: white;
       text-transform: uppercase; }
-    #vertical-list #activity-list > li.content .info .category {
+    #vertical-list #activity-list > li.content .info .synopsis, #vertical-list #activity-list > li.content .info .category {
       color: #999999;
       margin-right: 10px; }
     #vertical-list #activity-list > li.content .info .byline, #vertical-list #activity-list > li.content .info .byline a {
@@ -1151,12 +1151,7 @@ table {
 .comments a.open-comments, .comments a.close-comments {
   display: block;
   font-size: 13px;
-  color: #777777;
-  -webkit-transition: color 0.2s linear;
-  -moz-transition: color 0.2s linear;
-  -ms-transition: color 0.2s linear;
-  -o-transition: color 0.2s linear;
-  transition: color 0.2s linear; }
+  color: #777777; }
   .comments a.open-comments:hover, .comments a.close-comments:hover {
     color: white; }
 .comments a.close-comments {
@@ -1962,6 +1957,7 @@ body#subscriptions.index #header #user-nav ul.links {
 .content-preview.photos .inner, .content-preview.video .inner {
   height: 100%;
   background-repeat: no-repeat;
+  background-position: 50% 50%;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -2256,6 +2252,8 @@ form.new_story, form.edit_story, .story-form {
       width: 288px;
       height: 180px;
       background: white; }
+  form.new_story .step#categorize #story_title, form.edit_story .step#categorize #story_title, .story-form .step#categorize #story_title {
+    width: 50%; }
   form.new_story .step#share, form.new_story .step#describe, form.new_story .step#thankyou, form.edit_story .step#share, form.edit_story .step#describe, form.edit_story .step#thankyou, .story-form .step#share, .story-form .step#describe, .story-form .step#thankyou {
     display: none; }
   form.new_story .step#describe, form.edit_story .step#describe, .story-form .step#describe {

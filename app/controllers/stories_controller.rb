@@ -68,6 +68,7 @@ class StoriesController < ApplicationController
     else
       @story.template = "photo"
     end
+    @story.autosaving = true
     @story.save
     render :partial => "stories/template_forms/#{params[:media_type]}"
   end

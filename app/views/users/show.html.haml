@@ -13,15 +13,19 @@
             - if content.text_media_type?
               .inner
                 .image
-                .quote= truncate(content.synopsis, :length => 140)
+                .quote= truncate(content.template_text, :length => 140)
             - else
               .inner{:style => "background-image: url(#{content.thumbnail.url(:large)})"}
       
           .info
             .media-type{:class => content.media_type}
-            .links
-              = link_to(content.title.blank? ? "Untitled" : content.title, story_url(content), :class => "title")
-              %span.category= content.category
+            .text
+              - title = content.title.blank? ? "Untitled" : content.title
+              - title += " (unpublished)" if !content.published?
+              = link_to(title, story_url(content), :class => "title")
+              .synopsis= truncate(content.synopsis, :length => 140)
+              - if content.category
+                %span.category= content.category
               - if me?(@user)
                 = link_to "Edit", edit_story_path(content), :class => "edit" if me?(@user)
                 = link_to "Delete", story_path(content), :method => :delete, :confirm => "WHOA WAIT UP! If you delete this you will lose ALL REWARDS on this content. Are you SURE you want to delete it?"

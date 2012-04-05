@@ -65,17 +65,18 @@
 					height: 170px
 					margin: -85px 0 0 -130px
 		.info
-			height: 35px
-			padding: 20px
+			min-height: 35px
+			padding: 20px 20px 20px 90px
 			background: #000
 			color: #fff
-			.media-type, .links
-				float: left
+			position: relative
 			.media-type
+				position: absolute
+				top: 20px
+				left: 20px
 				width: 50px
 				height: 50px
 				background: transparent url(../images/content/media-types/photos-small.png) no-repeat 0 0
-				margin-right: 20px
 				&.video
 					background-image: url(../images/content/media-types/video-small.png)
 				&.writing
@@ -87,7 +88,7 @@
 				font-size: 15px
 				color: #fff
 				text-transform: uppercase
-			.category
+			.synopsis, .category
 				color: #999
 				margin-right: 10px
 			.byline, .byline a
