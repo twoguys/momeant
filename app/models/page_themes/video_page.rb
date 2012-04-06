@@ -7,4 +7,8 @@ class VideoPage < Page
   def css_class
     "video"
   end
+  
+  def empty?
+    false
+  end
 end
