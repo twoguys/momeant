@@ -1,44 +1,62 @@
 .profile-info
   .metadata
+    %h1= @user.name
+
     .avatar-badge
       - if @user.avatar.url.include?("missing")
-        = link_to(image_tag(@user.avatar.url(:large)), edit_user_path(@user), :class => "avatar")
+        = link_to(image_tag(@user.avatar.url(:large)), settings_user_path(@user), :class => "avatar")
       - else
         = link_to(image_tag(@user.avatar.url(:large)), user_path(@user), :class => "avatar")
-      = image_tag("badges/#{@user.badge_level}.png", :class => "badge")
-  
-    .name= link_to @user.name, user_path(@user)
+      = image_tag "badges/#{@user.badge_level}.png", :class => "badge tooltipped-e", :title => "Level #{@user.badge_level} Patron"
     
-    %ul.about
-      %li
-        %span.weak Location:
-        %span= @user.location
-      %li
-        %span.weak Occupation:
+    .about
+      %p
         %span= @user.occupation
-      %li
-        %span.weak About:
-        %span= truncate @user.tagline, :length => 200
+        - if @user.location
+          %span from #{@user.location}
+      
+      #tabs
+        #links
+          = link_to "Updates", "#", :class => "selected"
+          = link_to "Info", "#"
+        #text
+          #broadcaster.updates
+            - if me?(@user)
+              #updates-list
+                #latest-update
+                  - if @user.broadcasts.empty?
+                  You can use this area to provide updates to your subscribers.
+                  - else
+                    = @user.broadcasts.first.message
+                = link_to "+ Post a new Update", "#", :id => "post-update"
+              = form_for Broadcast.new, :url => user_broadcasts_path(@user) do |form|
+                %p Send a message to your subscribers:
+                = form.text_area :message
+                = form.submit "Post"
+                = link_to "Cancel", "#", :id => "cancel-update"
+            - elsif @user.broadcasts.empty?
+              As #{@user.first_name} posts updates, they will show up here.
+            - else
+              = @user.broadcasts.first.message
+              
+          .info.hidden= @user.tagline
   
-    %ul.stats    
-      %li.impact
-        %span.amount= @user.impact
-        %span impact
-      %li.all-time-money
-        %span.dollar $
-        %span.amount= number_to_currency(@user.rewards.sum(:amount) * Reward.dollar_exchange)[1..-1]
-        %span all time earnings
-      %li.current-money
-        %span.dollar $
-        %span.amount= number_to_currency(@user.rewards.not_cashed_out.sum(:amount) * Reward.dollar_exchange)[1..-1]
-        %span not cashed out
+    %ul.stats
+      %li #{number_to_currency(@user.rewards.sum(:amount) * Reward.dollar_exchange)} earned
       - if me?(@user)
+        %li.current-money
+          %span.dollar $
+          %span.amount= number_to_currency(@user.rewards.not_cashed_out.sum(:amount) * Reward.dollar_exchange)[1..-1]
+          %span not cashed out
         %li= link_to "Cash Out", user_cashouts_path(@user), :id => "cashout", :class => "button"
 
-    - unless me?(@user)
+    - if current_user && !me?(@user)
       #user-actions
-        = link_to "Message #{@user.first_name}", user_messages_path(@user), :class => "button"
+        - if current_user.is_subscribed_to?(@user)
+          = link_to "Unsubscribe", "#", :class => "button tooltipped-e", :id => "subscribe", :title => "Remove #{@user.first_name}'s updates from your Subscriptions page"
+        - else
+          = link_to "Subscribe", user_messages_path(@user), :class => "button tooltipped-e", :id => "subscribe", :title => "Have #{@user.first_name}'s updates sent to your Subscriptions page"
         - if current_user && current_user.is_admin?
-          = link_to "Editorialize #{@user.first_name}", new_admin_editorial_path(:user => @user.id), :id => "editorialize"
+          = link_to "Editorialize", new_admin_editorial_path(:user => @user.id), :id => "editorialize", :class => "button"
 
     .clear

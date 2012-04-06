@@ -1,0 +1,13 @@
+%li.broadcast
+  = link_to image_tag(broadcast.user.avatar.url(:thumbnail)), user_path(broadcast.user), :class => "avatar"
+  .title #{link_to broadcast.user.name, user_path(broadcast.user)} posted a message:
+  %p= broadcast.message
+  .when #{time_ago_in_words(broadcast.created_at)} ago
+  
+  .comments
+    = link_to pluralize(broadcast.comments.size, "Supporter Comment"), "#", :class => "open-comments"
+    .insides
+      = link_to "#{pluralize(broadcast.comments.size, "Supporter Comment")} (Hide)", "#", :class => "close-comments"
+      %ul.comment-list
+        = render :partial => "comments/comment", :collection => broadcast.comments, :as => :comment
+      = render "comments/form", :commentable => broadcast

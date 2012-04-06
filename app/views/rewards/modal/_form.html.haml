@@ -1,28 +1,25 @@
 #creator-info
   = link_to image_tag(@story.user.avatar.url(:large)), user_path(@story.user), :class => "avatar"
-  = link_to "", user_path(@story.user), :id => "avatar-cover"
-  .byline Reward #{@story.user.name} for #{@story.this_media}
-  - if @story.user.occupation || @story.user.location
-    .occupation-location
-      - if @story.user.occupation.present?
-        %strong= @story.user.occupation
-      - if @story.user.location
-        %span from
-        %strong= @story.user.location
+  .byline
+    = link_to @story.user.name, user_path(@story.user)
+    - if @story.user.occupation || @story.user.location
+      %span.weak
+        #{@story.user.occupation}
+        - if @story.user.location
+          from #{@story.user.location}
   - unless @story.user.tagline.blank?
-    .tagline= truncate(@story.user.tagline, :length => 80)
+    .tagline
+      %strong About #{@story.this_media}:
+      %span= @story.synopsis
 
 #content-thumbnail
   = image_tag @story.thumbnail.url(:small)
 
-- if current_user.nil?
-  = render "rewards/modal/no_user"
-
-- elsif current_user != @story.user
-  #reward-box.reward-step
+- if current_user != @story.user
+  #reward-box.reward-step{:class => current_user.nil? ? "no_user" : ""}
     .step-icon.reward
     
-    - if current_user.coins == 0
+    - if current_user && current_user.coins == 0
       .out-of-coins
         %h3 Oops! You're out of reward coins.
         %p If you want to reward this content, please #{link_to "purchase more reward coins", coins_path}.
@@ -36,32 +33,37 @@
             = form.hidden_field :impacted_by, :value => @impacted_by
 
           #amount.section
-            %h1 Select your reward amount:
+            %h1 Reward #{@story.user.first_name} for #{@story.this_media}:
             %ul#stars
-              %li= link_to "1", "#", :id => "one-star", :amount => 1
-              %li= link_to "5", "#", :id => "five-star", :amount => 5
-              %li= link_to "10", "#", :id => "ten-star", :amount => 10
+              %li= link_to "10&cent;".html_safe, "#", :id => "one-star", :amount => 1
+              %li= link_to "50&cent;".html_safe, "#", :id => "five-star", :amount => 5
+              %li= link_to "$1.00", "#", :id => "ten-star", :amount => 10
               %li.custom
-                = text_field_tag :custom_amount
+                = text_field_tag :custom_amount, "?"
                 %span or any of your
-                %strong= current_user.coins
+                %strong= current_user.nil? ? "$0.00" : number_to_currency(current_user.coins * Reward.dollar_exchange)
                 %span reward coins
       
             = form.hidden_field :amount, :value => 1
           
-          #amount-hints.section
-            - if @story.user.below_cashout_threshold? || current_user.badge_level >= 2
-              .weak Not sure how much to reward?
-              - if @story.user.below_cashout_threshold?
-                .hint
-                  %span #{@story.user.first_name} needs
-                  %strong= pluralize @story.user.needed_to_cashout, "more reward"
-                  %span to meet the $10 cash out threshold.
-              - if current_user.badge_level >= 2
-                .hint
-                  %span You need to give
-                  %strong= pluralize current_user.rewards_until_next_badge, "more reward"
-                  %span to earn the "#{current_user.next_badge_level_name}" badge.
+          - if current_user
+            #amount-hints.section
+              - if @story.user.below_cashout_threshold? || current_user.badge_level >= 2
+                .weak Not sure how much to reward?
+                - if @story.user.below_cashout_threshold?
+                  .hint
+                    %span #{@story.user.first_name} needs
+                    %strong= pluralize @story.user.needed_to_cashout, "more reward"
+                    %span to meet the $10 cash out threshold.
+                - if current_user.badge_level >= 2
+                  .hint
+                    %span You need to give
+                    %strong= pluralize current_user.rewards_until_next_badge, "more reward"
+                    %span to earn the "#{current_user.next_badge_level_name}" badge.
+          - else
+            #amounts-cover
+            = link_to "Join the Momeant community!", "#join-modal", :id => "reward-join-button", :class => "button"
+            #reward-login-link= link_to "Already have an account? Log in.", "#login-modal"
 
           #comment.section
             .step-icon.comment

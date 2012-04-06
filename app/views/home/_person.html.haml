@@ -1,0 +1,31 @@
+%li
+  %a.surround{:href => user_path(person)}
+    
+    = image_tag person.avatar.url(:large), :class => "avatar"
+    
+    .label
+      .name
+        %strong= person.name
+        %span= person.occupation
+        - if person.location?
+          %span from #{person.location}
+      %p
+        %span.lquote
+        %span= person.tagline
+        %span.rquote
+      .content
+        %strong= pluralize person.created_stories.published.count, "work"
+        %ul
+          - person.created_stories.published.newest_first.limit(4).each do |content|
+            %li{:class => content.media_type}= content.title
+      .rewarders
+        %strong= pluralize person.patrons.count, "supporter"
+        %ul
+          - person.patrons.limit(6).each do |supporter|
+            %li
+              = image_tag supporter.avatar.url(:thumbnail)
+              .cover
+      
+      .arrow
+
+    .clear

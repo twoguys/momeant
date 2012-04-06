@@ -1,2 +1,51 @@
-.homepage
-  = render "users/user_info"
+#slides-wrapper
+  #slides
+    #message.slide
+      .slide-insides
+        %h1 Reward what matters to you.
+        %h2 There is a problem with the web:
+        %h3 Very few of us who contribute content make money for our work.
+        %h2 With your help, we aim to fix that:
+        %h3
+          %span Content and information
+          %em will remain free,
+          %span while you voluntarily reward the creators producing content you like.
+  
+    - @people.each do |person|
+      - content = person.discovery_content
+      .person.slide{:id => "person-#{person.id}"}
+        - unless content.nil?
+          .content-preview{:class => "#{content.media_type} #{content.template}"}
+            - if content.text_media_type?
+              .inner
+                .image
+                .quote= truncate(content.template_text, :length => 140)
+            - else
+              .inner{:style => "background-image: url(#{content.thumbnail.url(:huge)})"}
+          .metadata
+            .media-type{:class => content.media_type}
+            .title= content.title
+            .example An excerpt from #{content.user.first_name}'s work
+
+#creators
+
+  #people
+    %h3.title Featured Creators
+    %ul#list
+      - @people.each do |person|
+        %li
+          = link_to person.name, user_path(person), :data => person.id, :class => "name"
+          .details{:class => person.discovery_content.present? ? person.discovery_content.template : ""}
+            = image_tag(person.avatar.url(:thumbnail), :class => "avatar" )
+            %h3= person.name
+            %h4= person.occupation
+            %p= truncate(person.tagline, :length => 140)
+            .supporters
+              %span.amount= person.patrons.count
+            = link_to "View Profile &rarr;".html_safe, user_path(person), :class => "profile"
+          
+
+:javascript
+  mpq.track('Viewed Homepage');
+= javascript_include_tag "withinViewport"
+= javascript_include_tag "landing"

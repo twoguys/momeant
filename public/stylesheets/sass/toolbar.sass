@@ -2,31 +2,23 @@
 	position: fixed
 	top: 0
 	width: 100%
+	@include transition(top)
 	#user-nav
 		position: relative
 		z-index: 100
 		height: 42px
 		.bg
-			background-color: $black
+			background: $black
 			height: 42px
 			width: 100%
 			position: absolute
 			top: 0
 			z-index: 1
-			background: #2b2b2b /* Old browsers */
-			background-image: -moz-linear-gradient(top, #191919 0%, #191919 50%, #000 51%, #000000 98%) /* FF3.6+ */
-			background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#191919), color-stop(50%,#191919), color-stop(51%,#000), color-stop(98%,#000000)) /* Chrome,Safari4+ */
-			background-image: -webkit-linear-gradient(top, #191919 0%,#191919 50%,#000 51%,#000000 98%) /* Chrome10+,Safari5.1+ */
-			background-image: -o-linear-gradient(top, #191919 0%,#191919 50%,#000 51%,#000000 98%) /* Opera11.10+ */
-			background-image: -ms-linear-gradient(top, #191919 0%,#191919 50%,#000 51%,#000000 98%) /* IE10+ */
-			background-image: linear-gradient(top, #191919 0%,#191919 50%,#000 51%,#000000 98%) /* W3C */
 			box-shadow: 0 1px 2px rgba(0,0,0,0.2)
 		ul.links
-			width: 987px
 			position: relative
 			z-index: 2
-			margin: 0 auto
-			padding: 0 20px 0 0
+			padding: 0 10px
 			li
 				float: left
 				height: 42px
@@ -43,8 +35,6 @@
 				background: transparent url(../images/logoWhiteSmall.png) no-repeat -9px 1px
 			.subnav
 				width: 158px
-		#logo, #discover, #share
-			border-right: 1px solid #333
 		
 		.topnav
 			font-size: 13px
@@ -114,30 +104,23 @@
 				display: block
 			&.active .top-link
 				background: $blue
-		
-		#people .subnav
-			width: 120px
-		
-		#my-stream
-			width: 95px
+
+		#curation .top-link, #my-links .top-link
+			width: 35px
+			height: 42px
+			padding: 0
+			background: transparent url(../images/navigation/following.png) no-repeat 50% 8px
+			@include notext
+
+		#my-links
+			margin-right: 10px
 			.top-link
-				width: 63px
-				height: 30px
-				padding: 6px 15px 6px 10px
 				position: relative
-				img
-					width: 30px
-					height: 30px
-					padding-right: 5px
-				span
-					position: absolute
-					top: 13px
-					left: 49px
+				background-image: url(../images/navigation/profile.png)
 			.subnav
-				width: 127px
+				width: 140px
 				
 		#coins
-			margin-left: 20px
 			a
 				display: block
 				height: 36px
@@ -152,12 +135,11 @@
 					font-weight: 100
 					line-height: 30px
 					color: $blue
-					padding-right: 18px
-					background: transparent url(../images/icons/coinStarWhite.png) no-repeat 100% 1px
 				.text
-					font-size: 9px
+					display: none
+					font-size: 10px
 					line-height: 10px
-					padding: 6px 6px 0 0
+					padding: 3px 6px 0 0
 					text-align: right
 					span
 						display: block
@@ -187,7 +169,7 @@
 		#search
 			position: absolute
 			top: 10px
-			right: 20px
+			right: 10px
 			width: 176px
 			input[type="text"]
 				height: 14px
@@ -230,19 +212,15 @@
 				-moz-border-radius-bottomright: 3px
 				border-top-right-radius: 3px
 				border-bottom-right-radius: 3px
-		#signout
-			right: 204px
-			a
-				@include gradient($greygradient1, $greygradient2)
 		#feedback
-			right: 204px
+			right: 194px
 			a
 				@include gradient($bluegradient1,$bluegradient2)
 	#user-nav ul.search-hidden
 		#signin
-			right: 20px
+			right: 0
 		#join
-			right: 90px
+			right: 70px
 			
 
 #header.hide-nav

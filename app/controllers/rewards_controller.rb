@@ -5,10 +5,11 @@ class RewardsController < ApplicationController
     @user = User.find_by_id(params[:user_id])
     return if @user.nil?
     @story = Story.find_by_id(params[:reward][:story_id])
+    amount = params[:reward][:amount].gsub('$','').to_f
     
     @reward = current_user.reward(
       @story,
-      params[:reward][:amount],
+      amount,
       params[:reward][:comment],
       params[:reward][:impacted_by]
     )

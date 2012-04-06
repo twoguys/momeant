@@ -1,0 +1,27 @@
+#subscriptions-inner
+  
+  #vertical-people{:class => @creators.empty? ? "empty" : ""}
+    %h1 People
+    - if @creators.empty?
+      .empty You are currently not subscribed to anyone's updates. #{link_to "Check out some of our awesome creators!", root_path, :id => "find-creators"}
+    %ul
+      - @creators.each do |person|
+        %li.person
+          = link_to image_tag(person.avatar.url(:thumbnail), :alt => ""), user_path(person), :class => "tooltipped-e", :title => "Show #{person.first_name}'s updates", :data => person.id
+  
+  - unless @creators.empty? 
+    #vertical-list
+      %h1 Their updates
+      .helper use keyboard
+
+      %ul#activity-list
+        = render "subscriptions/list"
+
+  .clear
+
+:javascript
+  var scrollables_selector = '#activity-list';
+  var user_id = '#{current_user.id}';
+= javascript_include_tag "content_scroller"
+= javascript_include_tag "subscriptions" unless @creators.empty?
+= javascript_include_tag "comments"

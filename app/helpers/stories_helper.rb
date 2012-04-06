@@ -11,36 +11,6 @@ module StoriesHelper
     end
   end
   
-  def views_link(story)
-    content_tag("span", :class => "views") { pluralize(story.view_count, "view") }
-  end
-  
-  def rewards_link(story, not_clickable = false)
-    text = pluralize(story.reward_count, "reward coin")
-    if story.owner?(current_user)
-      content_tag("span", :class => "reward") { text }
-    elsif current_user
-      disabled = not_clickable ? "disabled" : ""
-      if current_user.has_rewarded?(story) 
-        link_to(text, "#reward-box", :class => "rewarded tooltipped #{disabled}", :title => "You rewarded this story.")
-      else
-        link_to(text, "#reward-box", :class => "reward tooltipped #{disabled}", :title => "Reward this story?")
-      end
-    else
-      content_tag("span", :class => "reward tooltipped", :title => "Signup to reward!") { text }
-    end
-  end
-  
-  def story_view_link(story)
-    if current_user && current_user.can_view_stories?
-      link_to("view", story, :class => "view")
-    elsif current_user
-      link_to("subscribe to view", subscribe_path, :class => "view")
-    else
-      link_to("join/login to view", "#join-modal", :class => "view")
-    end
-  end
-  
   def topic_checkbox(topic, story, all_topics)
     content_tag(:li, :class => "topic") do
       html = check_box_tag "topics[#{topic.id}]", 1, story.topics.include?(topic), "topic-id" => topic.id

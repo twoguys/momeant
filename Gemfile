@@ -35,6 +35,7 @@ gem 'airbrake'
 gem 'geocoder'
 gem 'chronic'
 gem 'airbrake'
+gem 'acts_as_commentable'
 
 group :test do
   gem 'shoulda'

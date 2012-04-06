@@ -1,8 +1,6 @@
 /* Story creation */
 
 body#stories.edit
-	#container
-		position: relative
 
 .new-story-copy
 	font-family: $typewriter
@@ -102,7 +100,7 @@ form.new_story, form.edit_story, .story-form
 		margin-left: auto
 		margin-right: auto
 	#describe
-		max-width: 580px
+		max-width: 530px
 	#share
 		.service
 			padding: 8px 0 8px 34px
@@ -120,6 +118,7 @@ form.new_story, form.edit_story, .story-form
 	.banner
 		max-width: 920px
 	.step#editor
+		margin-top: 30px
 		.choice
 			cursor: pointer
 			.choice-inner
@@ -137,15 +136,12 @@ form.new_story, form.edit_story, .story-form
 			margin-bottom: 20px
 			.choice-inner
 				padding: 15px
-				background: #444
+				background: #ccc
 				@include rounded(3px)
 			.description	
 				font-size: 13px
-				color: #fff
 				font-weight: 700
 				text-transform: uppercase
-			.info
-				color: #aaa
 		.choice#creator
 			float: right
 			.description
@@ -156,50 +152,101 @@ form.new_story, form.edit_story, .story-form
 					color: #999
 			.info
 				display: none
+
 	.step#type
 		ul
-			height: 150px
+			@include clearfix
+			width: 100%
 			li
 				float: left
 				clear: none
 				width: 25%
+				height: 179px
+				text-align: center
+				margin: 0
+				background: transparent url(../images/creator/selected-media-type-bg.png) no-repeat 50% -500px
+				&:hover
+					background-position: 50% 0
+				&.selected
+					background-position: 50% -179px
 				a
 					display: block
-					width: 150px
 					height: 40px
 					padding-top: 110px
-					@include rounded(3px)
 					background: transparent url(../images/creator/media-types/photos.png) no-repeat 50% 30px
 					text-align: center
 					text-transform: uppercase
 					color: #000
 					font-weight: 700
-				a:hover
-					background-color: #cacaca
-				a.selected
-					background-color: $blue
 				a#video-type
 					background-image: url(../images/creator/media-types/video.png)
 				a#writing-type
 					background-image: url(../images/creator/media-types/writing.png)
 				a#music-type
 					background-image: url(../images/creator/media-types/music.png)
-	.step#share
+		#template
+			background: #ccc
+			&.loading
+				background: #ccc url(../images/spinnerLightGreyBg.gif) no-repeat 50% 50%
+				height: 100px
+				*
+					visibility: hidden
+			.inner
+				padding: 20px
+			label
+				text-shadow: none
+				font-size: 15px
+				font-weight: 500
+			.info
+				font-size: 13px
+				color: $text_color
+				font-style: italic
+				margin: 10px 0
+			.file-uploader
+				margin-bottom: 20px
+				.loader
+					width: 220px
+					height: 19px
+					background: transparent url(../images/loading.gif) no-repeat 0 0
+					display: none
+			.thumbnail
+				width: 288px
+				height: 180px
+				background: #fff
+	
+	.step#categorize
+		#story_title
+			width: 50%
+	
+	.step#share, .step#describe, .step#thankyou
 		display: none
 	.step#describe
-		padding-left: 350px
+		padding-left: 400px
 		h2
-			margin-left: -320px
+			margin-left: -370px
 			margin-bottom: 20px
 		#thumbnail-preview
 			position: absolute
-			top: 75px
+			top: 69px
 			left: 30px
+			width: 388px
+			#thumbnail
+				margin-bottom: 10px
+				.file-uploader
+					padding-top: 5px
+					.file-input
+						height: 25px
+					.loader
+						width: 220px
+						height: 19px
+						background: transparent url(../images/loading.gif) no-repeat 0 0
+						display: none
+					.example
+						border: none
 			.box
 				background: #fff
 				border: 1px solid #d7d7d7
 				@include boxshadow(2px,0.1,1px,1px)
-				padding-top: 10px
 				width: 288px
 				.title, .author
 					padding: 0 10px
@@ -209,7 +256,6 @@ form.new_story, form.edit_story, .story-form
 				.author
 					font-size: 11px
 				.thumbnail
-					margin-top: 10px
 					background-color: $lightblue
 					background-image: url(../images/creatorThumbnailDefaultBG.png)
 					background-repeat: no-repeat
@@ -236,9 +282,10 @@ form.new_story, form.edit_story, .story-form
 				font-weight: 500
 			li.tags .info, li.gallery .info
 				margin-top: 3px
-	#thankyou
-		textarea
-			margin-bottom: 20px
+	#last
+		background: none
+		padding: 0
+		max-width: 960px
 		.owner
 			float: right
 			span
@@ -263,32 +310,9 @@ form.new_story, form.edit_story, .story-form
 		a.preview
 			background-color: #777
 			margin-right: 20px
-			height: 24px
+			height: 22px
+			line-height: 23px
 			
-	#thumbnail
-		.thumbnail-container
-			padding-top: 5px
-			height: 80px
-			border-bottom: 1px solid #dedede
-			.preview
-				float: left
-				width: 95px
-				height: 60px
-				background: #fff
-				border: 1px solid #ccc
-				margin-right: 20px
-			.file-uploader
-				padding-top: 5px
-				float: left
-				.file-input
-					height: 25px
-				.loader
-					width: 220px
-					height: 19px
-					background: transparent url(../images/loading.gif) no-repeat 0 0
-					display: none
-				.example
-					border: none
 	.title-input, .excerpt-input
 		height: auto
 		position: relative

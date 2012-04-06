@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120213150623) do
+ActiveRecord::Schema.define(:version => 20120405160109) do
 
   create_table "activities", :force => true do |t|
     t.integer  "actor_id"
@@ -43,6 +43,13 @@ ActiveRecord::Schema.define(:version => 20120213150623) do
     t.string   "secret"
   end
 
+  create_table "broadcasts", :force => true do |t|
+    t.integer  "user_id"
+    t.text     "message"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "cashouts", :force => true do |t|
     t.integer  "user_id"
     t.integer  "pay_period_id"
@@ -51,6 +58,20 @@ ActiveRecord::Schema.define(:version => 20120213150623) do
     t.datetime "updated_at"
     t.integer  "amount"
   end
+
+  create_table "comments", :force => true do |t|
+    t.string   "title",            :limit => 50, :default => ""
+    t.text     "comment"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comments", ["commentable_id"], :name => "index_comments_on_commentable_id"
+  add_index "comments", ["commentable_type"], :name => "index_comments_on_commentable_type"
+  add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
   create_table "credit_cards", :force => true do |t|
     t.string   "last_four_digits"
@@ -125,6 +146,7 @@ ActiveRecord::Schema.define(:version => 20120213150623) do
     t.integer  "parent_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "profile_id"
   end
 
   create_table "page_media", :force => true do |t|
@@ -198,6 +220,9 @@ ActiveRecord::Schema.define(:version => 20120213150623) do
     t.boolean  "is_external",          :default => false
     t.boolean  "i_own_this",           :default => true
     t.string   "media_type"
+    t.string   "category"
+    t.text     "template"
+    t.string   "template_text"
   end
 
   create_table "stories_topics", :id => false, :force => true do |t|

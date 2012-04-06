@@ -39,65 +39,95 @@ impact ul.avatars
 		background-image: url(../images/icons/starGreySmall.png)
 
 body#users, body#messages
+	#container
+		overflow-x: hidden
+		@include transition(margin)
 	#main
+		max-width: 100%
+		margin: 0
 		padding-bottom: 50px
 
 #user-profile
-	position: relative
 	padding: 40px
-	width: 920px
-	margin: 40px auto
-	background: #fff
-	box-shadow: 0 0 6px rgba(0,0,0,0.5)
+	max-width: 1367px
+	margin: 0 auto
+	
+	h1
+		font-size: 20px
+		font-weight: 500
+		text-transform: uppercase
+		color: #000
+		margin-bottom: 20px
+		a.selected
+			color: #000
+			cursor: default
 	
 	.profile-info
-		position: relative
-		margin-bottom: 20px
+		width: 210px
+		float: left
 
 		.metadata
-			padding: 12px 0 20px 190px
-	
 			.avatar-badge
-				position: absolute
-				top: 6px
-				left: 0
-				width: 136px
+				width: 130px
+				margin-bottom: 20px
+				position: relative
 				.avatar
-					position: absolute
-					top: 10px
-					left: 0
+					display: block
+					width: 130px
+					height: 130px
 					z-index: 1
 					img
 						width: 130px
 						height: 130px
-						border: 3px solid #000
 				.badge
 					position: absolute
-					top: -5px
+					bottom: -5px
 					right: -30px
-					z-index: 3
+					z-index: 2
 
-			.name
-				font-size: 24px
-				font-weight: 700
-				text-transform: uppercase
-				a
-					color: $text_color
-				a:hover
-					color: $blue
-
-			ul.about, ul.stats
-				float: left
-
-			ul.about
-				width: 350px
-				font-size: 12px
-				margin: 10px 50px 0 0
-				li
-					margin-bottom: 3px
-				.weak
-					color: #999
-					text-transform: uppercase
+			.about p
+				line-height: 1.4em
+				span
+					display: block
+			
+			#tabs
+				margin-bottom: 20px
+				#links
+					padding-bottom: 3px
+					border-bottom: 1px solid #ddd
+					margin-bottom: 5px
+					a
+						margin-right: 3px
+					a.selected
+						font-weight: 700
+						color: $text_color
+						cursor: default
+				#text .hidden
+					display: none
+				
+				#updates-list
+					#latest-update
+						margin-bottom: 5px
+					a#post-update
+						display: block
+				#new_broadcast
+					display: none
+					&.loading
+						height: 150px
+						background: transparent url(../images/spinner.gif) no-repeat 50% 50%
+						*
+							display: none
+					p
+						margin: 3px 0
+						font-size: 13px
+						font-style: italic
+						color: #999
+						line-height: 1.2em
+					textarea
+						width: 96%
+						height: 70px
+						margin-bottom: 5px
+			
 
 			ul.stats
 				position: relative
@@ -105,63 +135,12 @@ body#users, body#messages
 				width: 200px
 				li
 					padding: 4px 0
-					font-size: 13px
-					border-bottom: 1px solid #ddd
-					.amount
-						font-weight: 700
-					.dollar
-						padding: 0 6px 0 5px
-				
+					font-size: 16px
+					font-weight: 700
 					#cashout
 						display: block
 						font-size: 11px
 						text-align: center
-				.current-money
-					border: none
-				.impact .amount
-					background: transparent url(../images/icons/impactTiny.png) no-repeat 0 0
-					padding-left: 20px
-					margin-right: 3px
-				li:last-child
-					border: none
-				
-		ul.nav
-			margin-top: 20px
-			padding: 0 20px
-			height: 28px
-			border-bottom: 1px solid #ddd
-			li
-				float: left
-				margin-right: 40px
-				a
-					display: block
-					height: 16px
-					padding: 6px 14px 6px 8px
-					text-transform: uppercase
-					font-size: 11px
-					span
-						padding-left: 22px
-						background: transparent url(../images/icons/activity.png) no-repeat 0 -2px
-				a:hover
-					color: $blue - #222
-				a.info span
-					background-image: url(../images/icons/user.png)
-				a.content span
-					background-image: url(../images/icons/content.png)
-				a.message span
-					background-image: url(../images/icons/message.png)
-				a.edit span
-					background-image: url(../images/icons/pencil.png)
-				a.settings span
-					background-image: url(../images/icons/gear.png)
-				a.active
-					background: #fff
-					color: #000
-					position: relative
-					border: 1px solid #ddd
-					border-bottom: none
-					span
-						background-position: 0 -25px
 		
 		#special-links
 			position: absolute
@@ -172,187 +151,82 @@ body#users, body#messages
 		#user-actions
 			clear: both
 			padding-top: 15px
+			a
+				display: inline-block
+				height: 17px
+				margin-bottom: 10px
+				background: #ddd
+				text-shadow: none
+				line-height: 18px
+				color: #aaa
+				@include transition(background)
+				&:hover
+					background: #333
+					color: #fff
 		
 		#editorialize
-			@include orangebutton
-			margin-top: 10px
-			text-align: center
-			text-transform: uppercase
-			font-weight: 700
-			height: 12px
-			line-height: 12px
-			padding: 6px 12px
-				
-		.occupation, .tagline, .location, .tags
-			h3
-				font-size: 10px
-				text-transform: uppercase
-				color: #aaa
-				border-bottom: 1px solid #e0e0e0
-				margin-bottom: 2px
-		.occupation
-			margin-bottom: 10px
-		.tagline
-			clear: both
-			padding-top: 4px
-			margin-bottom: 12px
-		.location
-			margin-bottom: 13px
-		.tags
-			h3
-				margin-bottom: 5px
-			margin-bottom: 13px
+			@include gradient(#ffbb01, #ff9501)
 	
 	.the-rest
-		position: relative
-		.horizontal-tabs
-			border-bottom: 1px solid #ccc
-			ul
-				padding-top: 20px
-				a
-					border: 1px solid #ccc
-					border-bottom: none
-		.top
-			margin-bottom: 20px
-			a.back-link
-				background: $lightblue
-				color: $blue
-				padding: 2px 8px
-				@include rounded(15px)
-				@include transition
-				&:hover
-					background: $blue
-					color: #fff
-			h1
-				padding-top: 20px
-				margin-bottom: 0
-				font-weight: 700
-				text-transform: uppercase
-	
-	.guides
-		padding: 25px
-		a
-			@include orangebutton
-			padding: 0
-			position: relative
-			display: block
-			width: 31%
-			height: 48px
-			min-width: 250px
-			float: left
-			margin-right: 2%
-			box-shadow: 0 1px 2px rgba(0,0,0,0.2)
-			span.text
-				display: block
-				width: 175px
-				position: absolute
-				top: 10px
-				left: 10px
-				padding-left: 33px
-				background: transparent url(../images/icons/communitySmall.png) no-repeat 0 3px
-				line-height: 13px
-			span.arrow
-				position: absolute
-				top: 16px
-				right: 15px
-				width: 11px
-				height: 16px
-				background: transparent url(../images/arrowThinRightWhite.png) no-repeat 0 0
-		a.create span.text
-			background-image: url(../images/icons/momeantAddStorySmallWhite.png)
-			background-position: 4px 5px
-		a.profile span.text
-			background-image: url(../images/icons/profileWhite.png)
-		a:last-child
-			margin-right: 0
-			
-	.horizontal-tabs
-		clear: both
-		li a
-			padding-left: 32px
-			background-position: 10px 9px
-			background-repeat: no-repeat
-		li.rewards a
-			background-image: url(../images/icons/starBlackSmall.png)
-		li.rewards a.active
-			background-position: 10px 10px
-		li.creations a
-			background-image: url(../images/icons/momeantAddStorySmall.png)
-		li.creations a.active
-			background-position: 10px 9px
-		li.messages a
-			background-image: url(../images/icons/commentBlackSmall.png)
-	
-	/* First-time Users */
-	
-	.have-not
-		width: 300px
 		float: left
-		margin-right: 20px
-		padding: 10px 0 0 10px
-		h3
-			text-transform: uppercase
-			margin-bottom: 10px
-			em
-				font-style: normal
-				color: $blue
-		.box-button
-			display: block
-			width: 260px
-			height: 35px
-			background: #fff
-			color: $text_color
-			@include gradient
-			border: 1px solid #d9d9d9
-			padding: 30px 20px
-			.inner
-				padding-left: 50px
-				height: 35px
-				span.text
-					display: block
-					float: left
-					width: 180px
-				span.arrow
-					display: block
-					float: right
-					width: 13px
-					height: 30px
-					background: transparent url(../images/icons/lineArrow.png) no-repeat 0 5px
-	.have-not.rewarded .box-button .inner
-		background: transparent url(../images/icons/communityDark.png) no-repeat 0 2px
-	.have-not.shared .box-button .inner
-		background: transparent url(../images/icons/momeantAddStoryGrey.png) no-repeat 5px 2px
+		width: 70%
+		margin-left: 50px
 	
-	#summary
-		@include clearfix
-		width: 100%
-		padding: 20px 0
-		section
-			@include clearfix
-			width: 100%
-			height: 200px
-			position: relative
-			header
-				position: relative
-				height: 15px
+	#vertical-list
+		float: left
+		#activity-list > li
+			padding: 0
+		#activity-list li .content-preview img.avatar
+			display: none
+	
+	#vertical-people
+		@include transition(right)
+		float: right
+		#discussion
+			.hasnt
+				padding: 5px 10px
+				background: #eee
+				@include rounded(3px)
 				margin-bottom: 10px
-				h1
-					font-size: 15px
-					font-weight: 700
-					text-transform: uppercase
-					margin-bottom: 15px
-					border: none
-				h3
-					font-weight: 500
-				a.more
+		
+			form
+				margin-bottom: 10px
+				&.loading
+					background: transparent url(../images/spinner.gif) no-repeat 50% 50%
+					*
+						display: none
+			textarea
+				width: 95%
+				height: 25px
+				box-shadow: 1px 1px 2px rgba(0,0,0,0.1) inset
+				margin-bottom: 5px
+			
+			li
+				border-top: 1px solid #eee
+				padding: 10px 0 10px 50px
+				position: relative
+				float: none
+				a.avatar, a.avatar img, a.avatar .cover
+					display: block
 					position: absolute
 					top: 0
-					right: 0
-
-			&.one
-				z-index: 4
-			&.two
-				z-index: 3
+					left: 0
+					width: 40px
+					height: 40px
+				a.avatar
+					top: 10px
+				a.avatar img
+					z-index: 1
+				.cover
+					z-index: 2
+					background: transparent url(../images/discovery/avatar-cover-40.png) no-repeat 0 0
+				p
+					margin: 3px 0
+					line-height: 1.5em
+					font-size: 13px
+				.when
+					font-size: 12px
+					color: #ccc
 	
 	#activity
 		@include rounded(0)
@@ -361,7 +235,6 @@ body#users, body#messages
 		#activity-body
 			border: none
 		#activity-list
-			width: 920px
 			&.loading
 				background: transparent url(../images/spinner.gif) no-repeat 50% 30px
 				height: 50px
@@ -729,47 +602,6 @@ body#users, body#messages
 					img
 						width: 50px
 						height: 50px
-	
-	.comments
-		width: 629px
-		float: left
-		display: none
-	
-	.personal-library
-		clear: both
-		height: 365px
-		padding-top: 20px
-		
-	.admin
-		clear: both
-		padding-top: 30px
-		h1
-			font-weight: 900
-			text-transform: uppercase
-	
-	.info-bar
-		background: none
-		color: #777
-		font-style: italic
-		text-align: center
-		margin-top: -15px
-
-.creator
-	.recommendation-stream
-		height: 540px
-	.curatorial-stream
-		width: 629px
-		height: 380px
-		float: left
-		overflow: hidden
-		h3
-			font-size: 50px
-			font-weight: 900
-			text-transform: uppercase
-			color: #ddd
-			text-shadow: 1px 1px 1px #fafafa
-			letter-spacing: -.5px
-			text-align: center
 
 form.user_edit
 	margin-left: 200px

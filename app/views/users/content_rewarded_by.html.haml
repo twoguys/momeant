@@ -2,7 +2,7 @@
   #context
     - if @rewarder
       .info
-        .name #{@rewarder.first_name}'s rewards of #{link_to(@user.name, creations_user_path(@user))}
+        .name #{@rewarder.first_name}'s rewards of #{link_to(@user.name, user_path(@user))}
       .stats
         .rewards
           %span.amount= @rewards.sum(:amount)

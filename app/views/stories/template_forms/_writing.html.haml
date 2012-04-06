@@ -1,0 +1,8 @@
+.inner
+  = render "stories/template_forms/header"
+
+  = label_tag "Choose a snippet of text that best summarizes this article (140 characters or less):"
+  = text_area_tag :story_template_text, @story.template_text, :class => "monitor", :update => "template_text", :max => 140
+  #characters-left
+    %span.amount 140
+    %span characters left
