@@ -12,9 +12,7 @@
       %li#curation.topnav{:class => @nav == "support" ? "active" : ""}
         = link_to "Subscriptions", subscriptions_path, :class => "top-link"
       %li#my-links.topnav{:class => @nav == "me" ? "active" : ""}
-        %a.top-link{:href => user_path(current_user)}
-          = image_tag current_user.avatar.url(:thumbnail)
-          %span You
+        = link_to "Profile", user_path(current_user), :class => "top-link"
         %ul.subnav
           %li= link_to "Share Your Work", new_story_path
           %li= link_to "Your Activity", activity_user_path(current_user)
