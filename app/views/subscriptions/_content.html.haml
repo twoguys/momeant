@@ -11,14 +11,17 @@
 
   .info    
     .media-type{:class => content.media_type}
-    = link_to content.title, story_url(content), :class => "title"
-    .synopsis= truncate(content.synopsis, :length => 140)
-    - if content.category
-      %span.category= content.category
+    .text
+      = link_to content.title, story_url(content), :class => "title"
+      .synopsis= truncate(content.synopsis, :length => 140)
+      - if content.category
+        %span.category= content.category
+    .support= content.users_who_rewarded.count
   
   .when #{time_ago_in_words(content.created_at)} ago
   
   .comments
+    .money #{number_to_currency(content.reward_dollars)} earned
     = link_to pluralize(content.comments.size, "Supporter Comment"), "#", :class => "open-comments"
     .insides
       = link_to "#{pluralize(content.comments.size, "Supporter Comment")} (Hide)", "#", :class => "close-comments"
