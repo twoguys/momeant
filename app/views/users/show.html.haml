@@ -29,8 +29,10 @@
               - if me?(@user)
                 = link_to "Edit", edit_story_path(content), :class => "edit" if me?(@user)
                 = link_to "Delete", story_path(content), :method => :delete, :confirm => "WHOA WAIT UP! If you delete this you will lose ALL REWARDS on this content. Are you SURE you want to delete it?"
+            .support= content.users_who_rewarded.count
           
           .comments
+            .money #{number_to_currency(content.reward_dollars)} earned
             = link_to pluralize(content.comments.size, "comment"), "#", :class => "open-comments"
             .insides
               = link_to "#{pluralize(content.comments.size, "comment")} (Hide)", "#", :class => "close-comments"
