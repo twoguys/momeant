@@ -1,26 +1,24 @@
 /*
-Syntax error: Undefined variable: "$typewriter".
-        on line 8 of /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/stories/form.sass
-        from line 336 of /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/stories.sass
+Syntax error: Undefined mixin 'bgcover'.
+        on line 8 of /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/stories.sass, in `bgcover'
+        from line 8 of /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/stories.sass
 
-3: 	height: $height
-4: 	overflow: hidden
-5: 	.inner
-6: 		background-color: #000
-7: 		color: #fff
-8: 		text-shadow: none
-9: 		text-align: center
-10: 		padding: 0px
-11: 		height: 100%
-12: 		width: 100%
-13: 		font-weight: bold
+3: .content-preview.photos, .content-preview.video
+4: 	.inner
+5: 		height: 100%
+6: 		background-repeat: no-repeat
+7: 		background-position: 50% 50%
+8: 		@include bgcover
+9: .content-preview.watchmen
+10: 	background: #ffe344
+11: 	color: #000
+12: 	.inner
+13: 		width: 740px
 
 Backtrace:
-/Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/stories/form.sass:8
-/Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/stories.sass:336
-/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/script/variable.rb:45:in `_perform'
-/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/script/node.rb:40:in `perform'
-/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:215:in `visit_prop'
+/Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/stories.sass:8:in `bgcover'
+/Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/stories.sass:8
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:169:in `visit_mixin'
 /Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:37:in `send'
 /Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
 /Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:18:in `visit'
@@ -35,9 +33,14 @@ Backtrace:
 /Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:37:in `send'
 /Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
 /Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:18:in `visit'
-/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:145:in `visit_import'
-/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:145:in `map'
-/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:145:in `visit_import'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:53:in `visit_children'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:53:in `map'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:53:in `visit_children'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:27:in `visit_children'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:39:in `with_environment'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:26:in `visit_children'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:230:in `visit_rule'
 /Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:37:in `send'
 /Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
 /Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:18:in `visit'
@@ -112,4 +115,4 @@ Backtrace:
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Syntax error: Undefined variable: \"$typewriter\".\A         on line 8 of /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/stories/form.sass\A         from line 336 of /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/stories.sass\A \A 3: 	height: $height\A 4: 	overflow: hidden\A 5: 	.inner\A 6: 		background-color: #000\A 7: 		color: #fff\A 8: 		text-shadow: none\A 9: 		text-align: center\A 10: 		padding: 0px\A 11: 		height: 100%\A 12: 		width: 100%\A 13: 		font-weight: bold"; }
+  content: "Syntax error: Undefined mixin 'bgcover'.\A         on line 8 of /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/stories.sass, in `bgcover'\A         from line 8 of /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/stories.sass\A \A 3: .content-preview.photos, .content-preview.video\A 4: 	.inner\A 5: 		height: 100%\A 6: 		background-repeat: no-repeat\A 7: 		background-position: 50% 50%\A 8: 		@include bgcover\A 9: .content-preview.watchmen\A 10: 	background: #ffe344\A 11: 	color: #000\A 12: 	.inner\A 13: 		width: 740px"; }

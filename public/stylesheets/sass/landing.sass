@@ -1,206 +1,172 @@
 #home.index, #registrations.create
-	background: #fff
-	#new-york
-		display: none
+
 	#main
-		width: 1000px
-		margin: 0 auto
-		
-	#showcase
-		padding-top: 30px
-		#content
-			background: transparent url(../images/landing/content.jpg) no-repeat 0 0
-			height: 330px
-			padding: 20px 30px
-			h1
-				font-size: 30px
-				font-weight: 700
-				text-shadow: 0 1px 0 #fff
-				margin-bottom: 30px
-				line-height: 1.1em
-				span
-					display: block
-			a#main-signup-button
-				font-size: 22px
-				font-weight: 700
-				text-transform: uppercase
-				background: $blue
-				color: #fff
-				padding: 13px 20px
-				@include rounded(3px)
-				@include transition
-				@include gradient($bluegradient1,$bluegradient2)
-				border: 1px solid $bluegradient2 - #111
-				text-shadow: 0 -1px 0 rgba(0,0,0,0.3)
-			form
-				li
-					position: relative
-					width: 220px
-					height: 31px
-					margin-bottom: 8px
-					&.checkbox
-						height: 26px
-						label
-							padding-top: 1px
-							a
-								text-shadow: none
-								color: $blue - #222
-						label.error
-							position: absolute
-							bottom: -13px
-							padding-left: 23px
-					label.placeholder
-						color: #999
-						font-style: italic
-						font-family: Georgia, serif
-						position: absolute
-						height: 31px
-						line-height: 31px
-						text-transform: none
-						font-weight: 100
-						margin: 0
-						padding: 0 0 0 10px
-					label.error
-						font-size: 11px
-						font-weight: 100
-						color: #000
-						margin: 0 0 5px 0
-					span
-						width: 102px
-						float: left
-						margin-right: 5px
-						position: relative
-						input[type="text"]
-							width: 87px
-					span.last
-						margin-right: 0
-					input[type="text"], input[type="email"], input[type="password"]
-						border: 1px solid #aaa
-						width: 195px
-						box-shadow: 0 2px 3px rgba(0,0,0,0.15) inset
-					input[type="submit"]
-						width: 210px
-						font-size: 13px
-					input[type="submit"]:disabled
-						background-color: #dfdfdf
-						color: #787878
-						cursor: default
-					input[type="submit"]:disabled:active
-						top: 0
-				li.filled
-					label
-						display: none
-		#creator
-			padding: 10px
-			float: right
-			p, a
-				float: left
-			p
-				margin: 0 10px 0 0
-				padding-top: 12px
-				font-size: 11px
-				text-align: right
-				line-height: 1.3em
-				a
-					margin-right: 3px
-				.occupation, .location
-					color: #999
-					display: block
-			a.avatar
-				display: block
-				width: 50px
-				height: 50px
-				border: 1px solid #ccc
-				img
-					width: 50px
-					height: 50px
-		
-	#description
-		margin-bottom: 100px
-		ul
-			@include clearfix
-			li
-				float: left
-				width: 320px
-				margin-right: 20px
-				border-top: 1px solid #ddd
-				border-bottom: 1px solid #ddd
-				padding: 20px 0 25px
-				height: 160px
-				&:last-child
-					margin-right: 0
-				h2
-					background: none
-					color: #000
-					padding: 0
-					font-size: 21px
-					font-weight: 700
-					text-transform: none
-					margin-bottom: 15px
-				p
-					font-size: 13.5px
-					line-height: 1.5em
-					margin: 0
+		max-width: 100%
 	
-	#editorials
-		margin-bottom: 50px
-		h1
-			font-size: 28px
-			font-weight: 700
-			text-align: center
-			margin-bottom: 50px
-		ul#people
-			@include clearfix
-			li
-				width: 320px
-				float: left
-				margin-right: 20px
-				&:last-child
-					margin-right: 0
-				a.avatar
-					display: block
-					width: 320px
-					height: 320px
-					margin-bottom: 20px
-					img
-						width: 320px
-						height: 320px
-				.name
-					display: block
-					font-size: 28px
-					font-weight: 900
-					margin-bottom: 15px
-				.earned
-					padding-bottom: 5px
-					border-bottom: 1px solid #fff
-					margin-bottom: 20px
-					.amount
-						font-family: $numerals
-						font-size: 40px
-						font-weight: 300
-						line-height: 40px
-					.text	
-						display: block
-						font-size: 11px
-						text-transform: uppercase
-						margin-bottom: 5px
-						color: #999
-				.occupation, .location
-					display: block
-					text-transform: uppercase
-					font-size: 15px
-					line-height: 1.3em
-				
-	#join-call-to-action
-		display: block
-		width: 600px
-		padding: 10px 0 8px
-		font-size: 20px
-		font-weight: 700
-		text-align: center
-		text-transform: uppercase
+	#slides-wrapper
+		position: fixed
+		top: 42px
+		bottom: 0
+		left: 0
+		right: 20%
+		overflow: hidden
+		
+	#creators
+		width: 20%
+		position: relative
+		left: 80%
+	
+	#slides
+		background: #000
 		color: #fff
-		background: $blue
-		border: 5px solid #74cbf4
-		@include rounded(10px)
-		margin: 0 auto 50px
+		font-size: 24px
+		overflow: hidden
+		@include transition(margin, 0.3s, ease-out)
+		h1
+			text-transform: uppercase
+			font-size: 3em
+			font-weight: 300
+			color: $red
+		h2
+			background: none
+			padding: 0
+			text-transform: none
+			color: #666
+			font-weight: 300
+			text-transform: uppercase
+			font-size: 1.7em
+		h3
+			margin-bottom: 1em
+			font-weight: 500
+			color: #ddd
+		.slide
+			width: 100%
+			height: 100%
+			position: relative
+			.slide-insides
+				padding: 10%
+		
+		.content-preview
+			height: 100%
+		
+		.metadata
+			position: absolute
+			bottom: 0
+			width: 100%
+			height: 20px
+			padding: 15px 0
+			background: #f7f7f7
+			background: rgba(255,255,255,0.9)
+			color: #000
+			.media-type, .title
+				float: left
+			.media-type
+				margin: 0 15px
+				width: 30px
+				height: 20px
+				background: transparent url(../images/content/media-types/photos-small-black.png) no-repeat 0 0
+				&.video
+					background-image: url(../images/content/media-types/video-small-black.png)
+				&.writing
+					background-image: url(../images/content/media-types/writing-small-black.png)
+				&.music
+					background-image: url(../images/content/media-types/music-small-black.png)
+			.title
+				text-transform: uppercase
+				font-size: 0.75em
+			.example
+				float: right
+				margin-right: 15px
+				color: #999
+				font-size: 0.6em
+				font-style: italic
+				padding-top: 2px
+			
+		
+	#creators
+		#people
+			font-size: 1.3em
+			h3.title
+				color: #999
+				font-size: 1em
+				font-weight: 300
+				text-transform: uppercase
+				margin-right: 15px
+				background: transparent url(../images/discovery/keyboard-icon.png) no-repeat 100% 50%
+			h3.title, li .details
+				padding: 15px
+			li
+				margin-bottom: 5px
+				a.name
+					display: block
+					color: #555
+					padding: 3px 15px
+					&:hover
+						color: $blue
+				a.name, .details h3
+					font-size: 1.2em
+					font-family: $typewriter
+					font-weight: 100
+					font-style: italic
+				.details	
+					display: none
+					background: #000
+					color: #fff
+					position: relative
+					img.avatar
+						position: absolute
+						top: 0
+						left: -60px
+					h3
+						padding-bottom: 3px
+						border-bottom: 2px solid #fff
+						margin-bottom: 8px
+						font-weight: 500
+					h4
+						color: $red
+						font-family: $typewriter
+						font-size: 0.9em
+						font-weight: 100
+						font-style: italic
+					p
+						font-size: 0.8em
+						line-height: 1.3em
+						margin: 10px 0
+					.supporters
+						font-weight: 300
+						font-size: 2.5em
+						.amount
+							padding-right: 24px
+							background: transparent url(../images/discovery/supporters.png) 100% 10px no-repeat
+					a.profile
+						display: block
+						background: $red
+						color: #fff
+						margin: 15px -15px -15px
+						padding: 10px
+						text-align: right
+						text-transform: uppercase
+				.details.watchmen
+					h4
+						color: #ffe344
+					a.profile
+						background-color: #ffe344
+						color: #000
+				.details.blob
+					h4
+						color: #ff6600
+					a.profile
+						background-color: #ff6600
+						color: #000
+				.details.bowling
+					h4
+						color: #99daa4
+					a.profile
+						background-color: #99daa4
+						color: #000
+					
+			li.current
+				a.name
+					display: none
+				.details
+					display: block

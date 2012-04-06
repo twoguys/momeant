@@ -1,50 +1,113 @@
-$(function() {
-  
-  var half_page_width = $('body').width() / 2;
-  $('#faces').css('left', half_page_width + 'px')
+window.DiscoveryView = Backbone.View.extend({
 	
-	$('#faces .face a.avatar').click(function() {
-    var $new_face = $(this).parent().parent();
-    if ($new_face.hasClass('selected')) { return true; }
-
-	  var $current_face = $('#faces .selected');
-	  var new_index = $('#faces').children().index($new_face);
+	el: $('body'),
+	
+	events: {
+		'click #people a.name': 'person_clicked',
+		'click #people a.profile': 'goto_profile'
+	},
+	
+	initialize: function() {
+		this.current_category = undefined;
+		this.$window = $(window);
+		this.current_person = -1;
+		this.people = [];
+		this.$slides = $('.slide');
+    //this.remove_people_outside_viewport();
+    this.store_people();
+		
+		_.bindAll(this, 'on_resize');
+	  $(window).resize(this.on_resize);
+	  this.on_resize();
 	  
-    $current_face.find('.full').fadeOut(200);
-    $current_face.find('.preview').fadeIn(200);
-    $current_face.removeClass('selected');
-
-    $new_face.find('.preview').fadeOut(200);
-    $new_face.find('.full').fadeIn(200);
-	  $new_face.addClass('selected');
-    
-    var existing_left = $('#faces').position().left;
-    var new_left = half_page_width + (new_index * -105);
-    $('#faces').animate({left: new_left + 'px'}, 200);
-	  
+	  _.bindAll(this, 'on_keypress');
+	  $(document).bind('keydown', this.on_keypress);
+	},
+	
+	store_people: function() {
+		var people = [];
+		$.each($('#people #list a.name'), function(index, person) {
+		  var $person = $(person);
+		  people.push($person);
+		});
+		this.people = people;
+	},
+	
+	remove_people_outside_viewport: function() {
+	  $('#people #list li').each(function (index, element) {
+	    if (!withinViewport(element, {bottom: 62})) { $(element).remove(); }
+	  });
+	},
+	
+	reset: function() {
+	  var index = $.cookie('discovery_creator_index');
+	  if (index == null) { return; }
+	  var index = parseInt(index);
+	  if (index > Discovery.people.length - 1) { return; }
+    Discovery.goto_person(index);
+	},
+	
+	person_clicked: function(event) {
+    var index = $(event.currentTarget).parent().index();
+    Discovery.goto_person(index);
 	  return false;
-	});
+	},
 	
-	$('#slogan-more-link').click(function() {
-	  var $link = $(this);
-	  
-	  var height_change = 155;
-
-    if ($link.hasClass('open')) {
-      $('#slogan-more').fadeOut(200, function() {
-        $('#slogan').animate({height: '-=' + height_change + 'px'}, 200);
-        $('#faces').animate({top:'-=' + height_change + 'px'}, 200);
-      });
-    } else {
-      $('#slogan').animate({height: '+=' + height_change + 'px'}, 200, function() {
-        $('#slogan-more').fadeIn(200);
-      });
-      $('#faces').animate({top:'+=' + height_change + 'px'}, 200);
+	goto_person: function(index) {
+    Discovery.current_person = index;
+    if (Discovery.current_person == -1) { // go to messaging slide
+      $('#slides').css('margin-top',0);
+      $('#people li').removeClass('current faded');
+      $.cookie('discovery_creator_index', null);
+      return;
     }
-	  
-	  $link.toggleClass('open');
-	  
-	  return false;
-	});
+    var $person = Discovery.people[index];
+    $person.parent().addClass('current').removeClass('faded').siblings().removeClass('current').addClass('faded');
+    var scroll_to = Discovery.window_height * (index + 1) * -1;
+    $('#slides').css('margin-top', scroll_to);
+    $.cookie('discovery_creator_index', index);
+	},
+	
+	next_person: function() {
+	  if (Discovery.current_person == Discovery.people.length - 1) { return; }
+	  Discovery.goto_person(Discovery.current_person + 1);
+	},
+	
+	prev_person: function() {
+	  if (Discovery.current_person < 0) { return; }
+    Discovery.goto_person(Discovery.current_person - 1);
+	},
+	
+	goto_profile: function() {
+	  if (Discovery.current_person < 0) { return false; }
+	  var href = Discovery.people[Discovery.current_person].attr('href');
+    $('#main').css('right','100%');
+    setTimeout(function() {$('#loader').show();}, 200);
+	  window.location.href = href;
+	},
+	
+	on_resize: function() {
+	  this.window_height = this.$window.height() - 42;
+	  this.$slides.css('height',this.window_height);
+	},
+	
+	on_keypress: function(event) {
+	  var key = event.charCode ? event.charCode : event.keyCode ? event.keyCode : 0;
+	  switch (key) {
+	    case 40: // down arrow
+	      this.next_person();
+	      break;
+      case 38: // up arrow
+        this.prev_person();
+        break;
+      case 39: // right arrow
+        this.goto_profile();
+        break;
+	  }
+	}
 	
 });
+
+window.Discovery = new DiscoveryView;
+window.onunload = function(){};
+Discovery.reset();

@@ -6,56 +6,41 @@ Repo::Application.routes.draw do
     :passwords => "passwords"
   }
   
-  # resources :invitations do
-  #   collection do
-  #     get :invite_creator
-  #   end
-  # end
-  # match 'invites/:token',       :to => 'invitations#accept',        :as => :accept_invitation
-  
   resources :stories do
     member do
-      get :preview
-      post :bookmark
-      delete :unbookmark
       delete :remove_tag_from
       post :publish
       put :autosave
-      post :add_topic_to
-      post :remove_topic_from
       post :update_thumbnail
       post :change_to_external
       post :change_to_creator
+      put :choose_media_type
       get :cropper
       post :crop
     end
     collection do
-      get :bookmarked
-      get :recommended
       get :render_page_form
       get :render_page_theme
       get :tagged_with
       get :search
-      get :random
-      get :most_rewarded
     end
     
     resources :pages, :only => [:create, :update, :destroy] do
       post :add_or_update_image, :on => :member
     end
-    
-    resources :curations
   end
-  match "/stories/tagged_with/:tag",    :to => "stories#tagged_with",  :as => :stories_tagged_with
-  
-  match "/topics/:name", :to => "topics#show", :as => :topic
   
   match '/coins', :to => "amazon_payments#index", :as => :coins
   match '/coins/buy', :to => "amazon_payments#create", :as => :buy_coins
   match '/coins/accept', :to => "amazon_payments#accept", :as => :accept_coins
   
   resources :users do
-    resources :subscriptions
+    resources :subscriptions, :only => [:create] do
+      collection do
+        post :unsubscribe
+      end
+    end
+    match '/subscriptions/filter', :to => "subscriptions#filter"
     resources :rewards
     resources :cashouts do
       put :update_amazon_email, :on => :collection
@@ -65,40 +50,28 @@ Repo::Application.routes.draw do
       get :move_down, :on => :member
       post :update_description, :on => :collection
     end
-    resources :messages
-    get :bookmarks
+    resources :messages do
+      collection do
+        post :public
+      end
+    end
+    resources :broadcasts, :only => [:create]
+    resources :comments, :only => [:create]
     
     member do
-      get :stream
-      get :creations
-      get :rewarded
-      get :patronage
-      get :followers
-      get :following
-      get :supporters
-      get :info
       get :settings
       post :update_in_place
       post :update_avatar
       post :update_email_setting
-      get :activity #ajax
-      get :activity_from_friends #ajax
-      get :content_from_nearbys #ajax
-      get :similar_to_what_ive_rewarded #ajax
+      get :activity
+      get :more_activity #ajax
     end
-    
-    # Homepage tab
-    get :top_curators, :on => :collection
-
-    # Spreedly updates come here
-    post :billing_updates, :on => :collection
     
     # Feedback
     post :feedback, :on => :collection
   end
   match '/users/:id/content_rewarded_by/:rewarder_id', :to => "users#content_rewarded_by", :as => :user_content_rewarded_by
   match '/rewards/:id/visualize', :to => "rewards#visualize",           :as => :visualize_reward
-  match '/analytics',             :to => "users#analytics",             :as => :analytics
   
   match '/share/twitter_form',    :to => "sharing#twitter_form"
   match '/share/facebook_form',   :to => "sharing#facebook_form"
@@ -117,12 +90,7 @@ Repo::Application.routes.draw do
   match '/people/creators',       :to => "discovery#creators_people",      :as => :creators_people
   match '/people/patrons',        :to => "discovery#patrons_people",       :as => :patrons_people
   
-  match '/activity',              :to => "community#index",             :as => :community
-  match '/activity/reload',       :to => "community#activity"
-  match "/community" => redirect("/everyone")
-  match '/community/content',     :to => "community#content",           :as => :community_content
-  match '/community/people',      :to => "community#people",            :as => :community_people
-  match '/community/newest_content', :to => "community#newest_content", :as => :community_newest_content
+  match '/subscriptions',         :to => "subscriptions#index",         :as => :subscriptions
   
   namespace :admin do
     match '/', :to =>"dashboard#index", :as => :dashboard
@@ -153,7 +121,8 @@ Repo::Application.routes.draw do
   match '/privacy',             :to => 'home#privacy',              :as => :privacy
 
   match '/',                    :to => 'home#index',                :as => :home
-  match '/discover',            :to => 'home#discover',             :as => :discovery
+  match '/people',              :to => 'home#people',               :as => :more_people
+  match '/projects',            :to => 'home#projects',             :as => :more_projects
   root :to => "home#index"
   
 end

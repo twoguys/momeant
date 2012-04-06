@@ -2,6 +2,7 @@ require "open-uri"
 
 class Story < ActiveRecord::Base
   acts_as_taggable
+  acts_as_commentable
   
   searchable do
     text :title, :boost => 2.0
@@ -18,7 +19,8 @@ class Story < ActiveRecord::Base
   end
   
   has_attached_file :thumbnail,
-    :styles => { :large => "630x420#", :medium => "288x180#", :small => "150x100#", :petite => "95x60#" },
+    :styles => { :huge => "1440x1200#", :large => "630x420#", :medium => "288x180#", :small => "150x100#", :petite => "95x60#" },
+    :convert_options => { :huge => '-quality 50' },
     :path          => "story_thumbnails/:id/:style.:extension",
     :storage        => :s3,
     :s3_credentials => {
@@ -42,15 +44,13 @@ class Story < ActiveRecord::Base
 
   has_many :views, :dependent => :destroy
   has_many :users_who_viewed, :through => :views, :source => :user
-
-  has_many :comments, :dependent => :destroy
   
   has_many :pages, :order => "number ASC", :dependent => :destroy
     
   validates :media_type, :presence => true, :unless => :autosaving
   validates :title, :presence => true, :length => (2..256), :unless => :autosaving
-  validates :synopsis, :length => (0..1024), :unless => :autosaving
-  validates_attachment_presence :thumbnail, :unless => :autosaving, :message => "must be chosen"
+  #validates :synopsis, :length => (0..1024), :unless => :autosaving
+  #validates_attachment_presence :thumbnail, :unless => :autosaving, :message => "must be chosen"
   validates :i_own_this, :inclusion => {:in => [true], :message => "must be checked"}, :unless => :autosaving
   
   validate  :at_least_one_page, :no_empty_pages, :unless => :autosaving
@@ -67,6 +67,19 @@ class Story < ActiveRecord::Base
   attr_accessor :autosaving, :crop_x, :crop_y, :crop_width, :crop_height
   
   after_update :reprocess_thumbnail, :if => :cropping?
+  
+  CATEGORIES = [
+    "Art",
+    "Comics",
+    "Design",
+    "Education",
+    "Film",
+    "Food",
+    "Music",
+    "Photography",
+    "Technology",
+    "Travel"
+  ].freeze
     
   def to_param
     if title.blank?
@@ -266,6 +279,20 @@ class Story < ActiveRecord::Base
       "some music"
     else
       "some content"
+    end
+  end
+  
+  def text_media_type?
+    self.media_type == "writing" || self.media_type == "music"
+  end
+  
+  def reload_thumbnail!
+    return false if self.thumbnail.url.include?("missing")
+    begin
+      io = open(URI.parse(self.thumbnail.url))
+      self.thumbnail = io
+      self.save
+    rescue Exception
     end
   end
   

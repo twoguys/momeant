@@ -1,0 +1,14 @@
+%li
+  %a.surround{:href => story_path(project)}
+    .thumbnail
+      = image_tag project.thumbnail.url(:large), :class => "preview"
+      .media-type{:class => project.media_type}
+    
+    .stats
+      .supporters= pluralize project.users_who_rewarded.count, "rewarders"
+      .rewarded #{number_to_currency project.reward_count * Reward.dollar_exchange} rewards
+      
+    .label
+      .title= truncate project.title, :length => 40
+      .author= project.user.name
+      %p= truncate project.synopsis, :length => 200

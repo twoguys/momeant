@@ -61,6 +61,12 @@
       %form
         .example Not in the United States? Please #{mail_to "support@momeant.com", "contact us"} for a custom pay out method.
 
+    %section.tagline
+      %h3
+        %span What kind of work will you be sharing at Momeant?
+        %span.info (double-click to edit)
+      .text{:update => "tagline"}= @user.tagline
+
 :javascript
   $(function() {
     $('#settings-list .text').click(function() {

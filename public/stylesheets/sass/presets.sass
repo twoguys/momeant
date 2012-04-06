@@ -1,6 +1,6 @@
 // Basic colors for site
 
-$background_color: #f4f4f4
+$background_color: #fff
 $text_color: #252525
 $black: #000
 $blue: #00aeef
@@ -99,6 +99,12 @@ $border_solid: 1px solid #DEDEDE
 	-ms-transition: $property $time $timing
 	-o-transition: $property $time $timing
 	transition: $property $time $timing
+@mixin rotation($angle: 0deg)
+	-webkit-transform: rotate($angle)
+	-moz-transform: rotate($angle)
+	-o-transform: rotate($angle)
+	-ms-transform: rotate($angle)
+	rotation: $angle
 @mixin clearfix
 	display: inline-block
 	&:after
@@ -107,44 +113,7 @@ $border_solid: 1px solid #DEDEDE
 		height: 0
 		clear: both
 		visibility: hidden
-
-/* Element styles */
-
-html, body
-	font-family: $block
-	font-size: 14px
-	color: $text_color
-	background: $background_color
-	min-height: 100%
-	overflow-x: hidden
-	text-rendering: optimizelegibility
-	position: relative
-
-h1, h2
-	font-weight: normal
-h2
-	background: none repeat scroll 0 0 #EAEAEA
-	font-family: $block
-	font-size: 13px
-	font-weight: 700
-	padding: 11px 13px 9px
-	text-transform: uppercase
-	clear: both
-
-p
-	line-height: 1.8em
-	margin: 20px 0
-
-a, a:visited
-	color: $link_color
-	outline: none
-
-h1
-	font-size: 1.7em
-h2
-	font-size: 1.3em
-
-.hidden
-	display: none
-.weak
-	color: $text_color + #777
+@mixin notext
+	text-indent: 100%
+	white-space: nowrap
+	overflow: hidden

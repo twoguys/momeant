@@ -4,10 +4,10 @@ class UsersController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => [:billing_updates, :update_avatar]
   
   def show
-    @recent_content = @user.created_stories.published.newest_first.limit(3)
-    @rewarded_content = @user.rewarded_stories.uniq[0..2]
-    @top_supporters = @user.rewards.group_by(&:user).to_a.map {|x| [x.first,x.second.inject(0){|sum,r| sum+r.amount}]}.sort_by(&:second).reverse[0..2]
-    @favorite_creators = @user.given_rewards.group_by(&:recipient).to_a.map {|x| [x.first,x.second.inject(0){|sum,r| sum+r.amount}]}.sort_by(&:second).reverse[0..2]
+    @content = @user.created_stories.newest_first
+    @content = @content.published unless @user == current_user
+    @supporters = @user.rewards.group_by(&:user).to_a.map {|x| [x.first,x.second.inject(0){|sum,r| sum+r.amount}]}.sort_by(&:second).reverse
+    @messages = @user.profile_messages
     @nav = "me" if @user == current_user
   end
   
@@ -20,7 +20,7 @@ class UsersController < ApplicationController
   end
   
   def activity
-    @activity = Activity.involving(@user).page(params[:page])
+    @activity = Activity.by_users([@user]).only_types("'Reward','Impact'").page(params[:page])
   end
   
   def more_activity
@@ -175,12 +175,6 @@ class UsersController < ApplicationController
   end
   
   def billing_updates
-    subscriber_ids = params[:subscriber_ids].split(",")
-    subscriber_ids.each do |subscriber_id|
-      user = User.find_by_id(subscriber_id)
-      user.refresh_from_spreedly if user
-    end
-
     head :ok
   end
   

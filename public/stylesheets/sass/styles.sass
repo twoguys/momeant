@@ -1,6 +1,54 @@
 @import "presets"
 
+/* Element styles */
+
+html, body
+	font-family: $block
+	font-size: 14px
+	color: $text_color
+	background: $background_color
+	min-height: 100%
+	text-rendering: optimizelegibility
+	position: relative
+
+h1, h2
+	font-weight: normal
+h2
+	background: none repeat scroll 0 0 #EAEAEA
+	font-family: $block
+	font-size: 13px
+	font-weight: 700
+	padding: 11px 13px 9px
+	text-transform: uppercase
+	clear: both
+
+p
+	line-height: 1.8em
+	margin: 20px 0
+
+a, a:visited
+	color: $link_color
+	outline: none
+
+h1
+	font-size: 1.7em
+h2
+	font-size: 1.3em
+
+.hidden
+	display: none
+.weak
+	color: $text_color + #777
+
 /* Layout */
+
+#container
+	position: relative
+	padding-top: 42px
+
+#main
+	max-width: 1367px
+	margin: 0 auto
 
 #new-york
 	position: fixed
@@ -10,16 +58,18 @@
 	height: 100%
 	background: #f0e3d2 url(../images/new-york.jpg) no-repeat 50% 0 fixed
 	@include bgcover
-#container
-	padding-top: 42px
+	
 
 .fullscreen
 	.fullscreen-hidden, #header, #right-sidebar, #new-york
 		display: none
 	#container
+		position: static
 		margin: 0
 		padding: 0
 		#main
+			width: 100%
+			margin: 0
 			padding: 0
 			top: 0
 			right: 0
@@ -62,6 +112,16 @@
 				color: $blue
 				background-color: $lightblue
 
+#loader
+	background: #fff url(../images/spinner.gif) no-repeat 50% 50%
+	display: none
+	position: fixed
+	top: 42px
+	left: 0
+	bottom: 0
+	right: 0
+	z-index: 9999
+
 @import "toolbar"
 @import "sidenavs"
 @import "flash"
@@ -70,31 +130,25 @@
 @import "tabs"
 @import "tables"
 @import "landing"
-@import "stories"
+@import "vertical_list"
+@import "people"
+@import "comments"
 @import "users"
-@import "community"
-@import "deposits"
-@import "homepage"
+@import "subscriptions"
+@import "stories"
 @import "modals"
-@import "subscribe"
-@import "topics"
 @import "fancybox"
 @import "admin"
-@import "flipbook"
 @import "search"
-@import "invite"
 @import "about"
 @import "faq"
-@import "analytics"
 @import "rewards"
 @import "transactions"
 @import "tags"
 @import "visualization"
 @import "messages"
 @import "activity"
-//@import "alternates"
 @import "discovery"
-//@import "discovery2"
 
 
 .info-bar

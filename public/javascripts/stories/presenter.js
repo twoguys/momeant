@@ -16,6 +16,8 @@ $(function() {
 			
 			_.bindAll(this, 'update_visibility');
 			this.model.bind('change:visible', this.update_visibility);
+			
+			
 		},
 		
 		update_visibility: function() {
@@ -133,6 +135,7 @@ $(function() {
 			var presenter = this;
 			$(document).keyup(function(e) {
 				if (!RewardModal.modal_open) {
+				  console.log('here');
 				  if (e.keyCode == 39) { presenter.goto_next_page(); } 					// right arrow
 					if (e.keyCode == 37) { presenter.goto_previous_page(); }			// left arrow
 				}
@@ -147,6 +150,7 @@ $(function() {
 			'click #reward-modal-tab':        'toggle_modal',
 			'click #stars a': 								'choose_reward_amount',
 			'focus #custom_amount': 					'choose_custom_amount',
+  		'blur #custom_amount':            'stop_choosing_custom',
 			'submit #reward-form':            'submit_reward'
 		},
 		
@@ -154,6 +158,7 @@ $(function() {
 			this.modal_open = false;
 			this.setup_key_bindings();
 			this.setup_custom_reward_amount_monitoring();
+			this.editing_text = false;
 		},
 		
 		show_modal: function() {
@@ -207,7 +212,12 @@ $(function() {
 		choose_custom_amount: function() {
 			RewardModal.turn_off_stars();
 			$('#reward_amount').val('');
+  	  RewardModal.editing_text = true;
 		},
+
+  	stop_choosing_custom: function() {
+  	  RewardModal.editing_text = false;
+  	},
 		
 		setup_custom_reward_amount_monitoring: function() {
 			var $amount = $('#custom_amount');

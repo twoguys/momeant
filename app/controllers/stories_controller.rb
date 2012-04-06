@@ -29,12 +29,13 @@ class StoriesController < ApplicationController
     
     if params[:return_to]
       @exit_presenter_url = params[:return_to]
+      render "presenter" and return
     else
       @exit_presenter_url = request.env["HTTP_REFERER"]
     end
     url = URI.parse(@exit_presenter_url) unless @exit_presenter_url.nil?
     if @exit_presenter_url.nil? || !["momeant.dev","localhost","momeant.heroku.com","momeant.com"].include?(url.host) || @exit_presenter_url.include?(stories_url)
-       @exit_presenter_url = discovery_path
+       @exit_presenter_url = root_path
     end
     
     render "presenter"
@@ -58,6 +59,20 @@ class StoriesController < ApplicationController
     render "form"
   end
   
+  def choose_media_type # ajax
+    @story = Story.find(params[:id])
+    @story.media_type = params[:media_type]
+    if @story.text_media_type? # if a text media type, choose a random template for now
+      text_templates = ["watchmen","blob","bowling"]
+      @story.template = text_templates[rand(text_templates.length)]
+    else
+      @story.template = "photo"
+    end
+    @story.autosaving = true
+    @story.save
+    render :partial => "stories/template_forms/#{params[:media_type]}"
+  end
+  
   def publish
     if !@story.valid?
       redirect_to edit_story_path(@story) and return
@@ -77,7 +92,7 @@ class StoriesController < ApplicationController
     # track analytics across redirect
     flash[:track_story_publish] = @story.id
     
-    redirect_to creations_user_path(@story.user), :notice => "Your content has been shared!"
+    redirect_to user_path(@story.user)#, :notice => "Your content has been shared!"
   end
   
   def update_thumbnail
@@ -119,7 +134,7 @@ class StoriesController < ApplicationController
   def destroy
     Activity.where(:action_id => @story.id, :action_type => "Story").destroy_all
     @story.destroy
-    redirect_to creations_user_path(current_user), :notice => "Your content was deleted."
+    redirect_to user_path(current_user)
   end
   
   def autosave
@@ -216,12 +231,6 @@ class StoriesController < ApplicationController
       end
       @stories = @search.results
     end
-  end
-  
-  def random
-    stories = Story.published
-    story = stories[rand(stories.size)]
-    redirect_to preview_story_path(story)
   end
   
   private
