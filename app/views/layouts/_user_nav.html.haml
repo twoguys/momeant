@@ -35,5 +35,5 @@
     - unless @hide_search
       %li#search
         = form_tag search_path, :method => :get do
-          = text_field_tag :query, params[:query], :placeholder => "search users and content"
+          = text_field_tag :query, params[:query]
           = submit_tag "Search", :id => "search-submit", :name => ""
