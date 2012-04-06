@@ -11,14 +11,13 @@ window.SubscriptionsView = Backbone.View.extend({
   
   filter_person: function(event) {
     var $link = $(event.currentTarget);
-    console.log($link.parent());
     if ($link.parent().hasClass('current')) {
       Subscriptions.show_all_people($link);
       return false;
     }
     
     var id = $link.attr('data');
-    $link.parent().addClass('current').removeClass('dimmed').siblings().addClass('dimmed');
+    $link.parent().addClass('current').removeClass('dimmed').siblings().addClass('dimmed').removeClass('current');
     $.scrollTo(0);
     $('#activity-list').addClass('loading');
     $.get('/users/' + user_id + '/subscriptions/filter?id=' + id, function(html) {
@@ -30,6 +29,7 @@ window.SubscriptionsView = Backbone.View.extend({
   },
   
   show_all_people: function($link) {
+    $link.parent().removeClass('current');
     $link.parent().parent().find('li').removeClass('dimmed');
     $.scrollTo(0);
     $('#activity-list').addClass('loading');

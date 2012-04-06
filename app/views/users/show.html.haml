@@ -31,9 +31,9 @@
                 = link_to "Delete", story_path(content), :method => :delete, :confirm => "WHOA WAIT UP! If you delete this you will lose ALL REWARDS on this content. Are you SURE you want to delete it?"
           
           .comments
-            = link_to pluralize(content.comments.size, "Supporter Comment"), "#", :class => "open-comments"
+            = link_to pluralize(content.comments.size, "comment"), "#", :class => "open-comments"
             .insides
-              = link_to "#{pluralize(content.comments.size, "Supporter Comment")} (Hide)", "#", :class => "close-comments"
+              = link_to "#{pluralize(content.comments.size, "comment")} (Hide)", "#", :class => "close-comments"
               %ul.comment-list
                 = render :partial => "comments/comment", :collection => content.comments, :as => :comment
               = render "comments/form", :commentable => content
@@ -56,34 +56,20 @@
   #vertical-people
     %h1
       = link_to "Supporters", "#", :class => "selected", :data => "supporters"
-      %span /
-      = link_to "Discussion", "#", :data => "discussion"
     .sections
       %ul#supporters
         - first = true
         - @supporters.each do |person|
           %li.person{:class => first ? "first" : ""}
-            = image_tag person[0].avatar.url(:thumbnail)
             - if first
-              = link_to person[0].name, user_path(person[0]), :class => "cover"
+              = link_to image_tag(person[0].avatar.url(:thumbnail)), user_path(person[0])
               .text Top Supporter
               %h3
                 %span= person[0].first_name
                 %span= person[0].last_name
             - else
-              = link_to person[0].name, user_path(person[0]), :class => "cover tooltipped", :title => person[0].name
-          - first = false
-      #discussion.hidden
-        - if current_user && current_user.has_rewarded?(@user)
-          = form_for Message.new, :url => user_messages_path(@user) do |form|
-            = form.text_area :body
-            = form.hidden_field :profile, :value => true
-            = form.submit "Post Public Comment"
-        - else
-          .hasnt Anyone who has rewarded #{@user.first_name} can participate in his public discussion.  
-        %ul
-          = render :partial => "users/profile_messages/message", :collection => @messages
-            
+              = link_to image_tag(person[0].avatar.url(:thumbnail)), user_path(person[0]), :class => "tooltipped", :title => person[0].name
+          - first = false            
   .clear
 
 - if me?(@user)

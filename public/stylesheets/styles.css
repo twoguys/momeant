@@ -993,17 +993,17 @@ table {
         margin: -85px 0 0 -130px; }
   #vertical-list #activity-list > li.content .info {
     min-height: 35px;
-    padding: 20px 20px 20px 90px;
+    padding: 20px 20px 20px 60px;
     background: black;
     color: white;
     position: relative; }
     #vertical-list #activity-list > li.content .info .media-type {
       position: absolute;
       top: 20px;
-      left: 20px;
-      width: 50px;
-      height: 50px;
-      background: transparent url(../images/content/media-types/photos-small.png) no-repeat 0 0; }
+      left: 17px;
+      width: 30px;
+      height: 30px;
+      background: transparent url(../images/content/media-types/photos-small.png) no-repeat 0 8px; }
       #vertical-list #activity-list > li.content .info .media-type.video {
         background-image: url(../images/content/media-types/video-small.png); }
       #vertical-list #activity-list > li.content .info .media-type.writing {
@@ -1109,25 +1109,17 @@ table {
     transition: opacity 0.2s linear; }
     #vertical-people li.person.first {
       float: none; }
-      #vertical-people li.person.first img {
+      #vertical-people li.person.first a {
         float: left;
         margin-right: 8px; }
       #vertical-people li.person.first .text {
         padding-top: 12px; }
     #vertical-people li.person.dimmed {
       opacity: 0.3; }
-    #vertical-people li.person a, #vertical-people li.person .cover {
+    #vertical-people li.person a {
       display: block;
       width: 60px;
       height: 60px; }
-    #vertical-people li.person .cover {
-      position: absolute;
-      top: 0;
-      left: 0;
-      background: transparent url(../images/profile/avatar-cover-60.png) no-repeat 0 0;
-      text-indent: 100%;
-      white-space: nowrap;
-      overflow: hidden; }
 
 @media all and (min-width: 1367px) {
   #vertical-people {
@@ -1147,21 +1139,25 @@ table {
 .comments a.open-comments, .comments .insides {
   background: #303030;
   color: #777777;
-  padding: 13px 20px; }
+  padding: 13px 15px; }
 .comments a.open-comments, .comments a.close-comments {
   display: block;
   font-size: 13px;
-  color: #777777; }
+  color: #777777;
+  padding-left: 60px;
+  background: #303030 url(../images/content/comments.png) no-repeat 23px 50%; }
   .comments a.open-comments:hover, .comments a.close-comments:hover {
-    color: white; }
+    color: #aaaaaa; }
 .comments a.close-comments {
   display: block;
-  margin-bottom: 15px; }
+  margin-bottom: 15px;
+  padding-left: 45px;
+  background-position: 8px 50%; }
 .comments .insides {
   display: none; }
 .comments ul.comment-list > li, .comments form {
   position: relative;
-  padding-left: 35px; }
+  padding-left: 42px; }
   .comments ul.comment-list > li img.commenter-avatar, .comments form img.commenter-avatar {
     width: 30px;
     height: 30px;
@@ -1180,7 +1176,7 @@ table {
     .comments ul.comment-list > li .commenter-name:hover {
       color: #00aeef; }
   .comments ul.comment-list > li .text {
-    color: #aaaaaa; }
+    color: #999999; }
   .comments ul.comment-list > li .time {
     font-size: 12px;
     color: #666666;
@@ -1190,7 +1186,7 @@ table {
   color: #777777;
   padding: 3px 6px; }
 .comments form {
-  padding: 3px 6px 3px 38px;
+  padding: 3px 6px 3px 46px;
   min-height: 30px; }
   .comments form img.commenter-avatar {
     top: 3px;
