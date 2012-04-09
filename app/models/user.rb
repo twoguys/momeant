@@ -118,6 +118,14 @@ class User < ActiveRecord::Base
     self.created_stories.published.where(:media_type => type).count
   end
   
+  def is_new?
+    self.created_at > 2.weeks.ago
+  end
+  
+  def is_featured?
+    Editorial.all.map(&:user_id).include?(self.id)
+  end
+  
   def has_rewarded?(user)
     !Reward.where(:recipient_id => self.id, :user_id => user.id).empty?
   end

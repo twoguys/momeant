@@ -1,24 +1,35 @@
 /*
-Syntax error: Undefined mixin 'rounded'.
-        on line 11 of /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/users.sass, in `rounded'
-        from line 11 of /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/users.sass
+Syntax error: Undefined variable: "$blue".
+        on line 30 of /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/users.sass
 
-6: 			img
-7: 				width: 60px
-8: 				height: 60px
-9: 
-10: .user-stats
-11: 	@include rounded(3px)
-12: 	background: #f7f7f7
-13: 	li
-14: 		border-bottom: 1px solid #e0e0e0
-15: 		height: 27px
-16: 		.icon, .text
+25: 		width: 260px
+26: 		padding-top: 20px
+27: 		padding-left: 20px
+28: 		padding-right: 20px
+29: 		margin-right: -300px
+30: 		background: $blue
+31: 		color: #fff
+32: 
+33: #user-profile
+34: 	.profile-info
+35: 		.avatar-badge
 
 Backtrace:
-/Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/users.sass:11:in `rounded'
-/Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/users.sass:11
-/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:169:in `visit_mixin'
+/Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/users.sass:30
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/script/variable.rb:45:in `_perform'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/script/node.rb:40:in `perform'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:215:in `visit_prop'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:37:in `send'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:18:in `visit'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:53:in `visit_children'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:53:in `map'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:53:in `visit_children'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:27:in `visit_children'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:39:in `with_environment'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:26:in `visit_children'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:230:in `visit_rule'
 /Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:37:in `send'
 /Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
 /Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:18:in `visit'
@@ -92,16 +103,29 @@ Backtrace:
 /Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/railties-3.0.9/lib/rails/application.rb:168:in `call'
 /Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/railties-3.0.9/lib/rails/application.rb:77:in `send'
 /Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/railties-3.0.9/lib/rails/application.rb:77:in `method_missing'
-/Users/djbrowning/Library/Application Support/Pow/Versions/0.3.2/node_modules/nack/lib/nack/server.rb:146:in `handle'
-/Users/djbrowning/Library/Application Support/Pow/Versions/0.3.2/node_modules/nack/lib/nack/server.rb:99:in `start'
-/Users/djbrowning/Library/Application Support/Pow/Versions/0.3.2/node_modules/nack/lib/nack/server.rb:86:in `each'
-/Users/djbrowning/Library/Application Support/Pow/Versions/0.3.2/node_modules/nack/lib/nack/server.rb:86:in `start'
-/Users/djbrowning/Library/Application Support/Pow/Versions/0.3.2/node_modules/nack/lib/nack/server.rb:66:in `loop'
-/Users/djbrowning/Library/Application Support/Pow/Versions/0.3.2/node_modules/nack/lib/nack/server.rb:66:in `start'
-/Users/djbrowning/Library/Application Support/Pow/Versions/0.3.2/node_modules/nack/lib/nack/server.rb:13:in `run'
-/Users/djbrowning/Library/Application Support/Pow/Versions/0.3.2/node_modules/nack/bin/nack_worker:4
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/railties-3.0.9/lib/rails/rack/log_tailer.rb:14:in `call'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/rack-1.2.4/lib/rack/content_length.rb:13:in `call'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/rack-1.2.4/lib/rack/handler/webrick.rb:52:in `service'
+/Users/djbrowning/.rbenv/versions/1.8.7-p352/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+/Users/djbrowning/.rbenv/versions/1.8.7-p352/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+/Users/djbrowning/.rbenv/versions/1.8.7-p352/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+/Users/djbrowning/.rbenv/versions/1.8.7-p352/lib/ruby/1.8/webrick/server.rb:162:in `start'
+/Users/djbrowning/.rbenv/versions/1.8.7-p352/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+/Users/djbrowning/.rbenv/versions/1.8.7-p352/lib/ruby/1.8/webrick/server.rb:95:in `start'
+/Users/djbrowning/.rbenv/versions/1.8.7-p352/lib/ruby/1.8/webrick/server.rb:92:in `each'
+/Users/djbrowning/.rbenv/versions/1.8.7-p352/lib/ruby/1.8/webrick/server.rb:92:in `start'
+/Users/djbrowning/.rbenv/versions/1.8.7-p352/lib/ruby/1.8/webrick/server.rb:23:in `start'
+/Users/djbrowning/.rbenv/versions/1.8.7-p352/lib/ruby/1.8/webrick/server.rb:82:in `start'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/rack-1.2.4/lib/rack/handler/webrick.rb:13:in `run'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/rack-1.2.4/lib/rack/server.rb:217:in `start'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/railties-3.0.9/lib/rails/commands/server.rb:65:in `start'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/railties-3.0.9/lib/rails/commands.rb:30
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/railties-3.0.9/lib/rails/commands.rb:27:in `tap'
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/railties-3.0.9/lib/rails/commands.rb:27
+script/rails:6:in `require'
+script/rails:6
 */
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Syntax error: Undefined mixin 'rounded'.\A         on line 11 of /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/users.sass, in `rounded'\A         from line 11 of /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/users.sass\A \A 6: 			img\A 7: 				width: 60px\A 8: 				height: 60px\A 9: \A 10: .user-stats\A 11: 	@include rounded(3px)\A 12: 	background: #f7f7f7\A 13: 	li\A 14: 		border-bottom: 1px solid #e0e0e0\A 15: 		height: 27px\A 16: 		.icon, .text"; }
+  content: "Syntax error: Undefined variable: \"$blue\".\A         on line 30 of /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/users.sass\A \A 25: 		width: 260px\A 26: 		padding-top: 20px\A 27: 		padding-left: 20px\A 28: 		padding-right: 20px\A 29: 		margin-right: -300px\A 30: 		background: $blue\A 31: 		color: #fff\A 32: \A 33: #user-profile\A 34: 	.profile-info\A 35: 		.avatar-badge"; }

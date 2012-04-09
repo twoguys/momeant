@@ -93,11 +93,13 @@ window.BroadcasterView = Backbone.View.extend({
   show_update_form: function() {
     $('#new_broadcast').show();
     $('#updates-list').hide();
+    return false;
   },
   
   hide_update_form: function() {
     $('#new_broadcast').hide();
     $('#updates-list').show();
+    return false;
   },
   
   submit_broadcast: function(event) {
@@ -108,13 +110,14 @@ window.BroadcasterView = Backbone.View.extend({
     var token = $form.find('input[name="authenticity_token"]').val();
     if (message == '') { return; }
     
+    $form.find('#broadcast_message').val('');
     $form.addClass('loading');
     $.post('/users/' + user_id + '/broadcasts', {
       'broadcast[message]': message,
       authenticity_token: token
     }, function() {
       $form.removeClass('loading');
-      $('#latest-update').text(message);
+      $('#updates-list').text(message);
       Broadcaster.hide_update_form();
     });
   }

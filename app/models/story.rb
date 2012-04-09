@@ -19,7 +19,7 @@ class Story < ActiveRecord::Base
   end
   
   has_attached_file :thumbnail,
-    :styles => { :huge => "1440x1200#", :large => "630x420#", :medium => "288x180#", :small => "150x100#", :petite => "95x60#" },
+    :styles => { :huge => "1440x1200", :large => "630x420#", :medium => "288x180#", :small => "150x100#", :petite => "95x60#" },
     :convert_options => { :huge => '-quality 50' },
     :path          => "story_thumbnails/:id/:style.:extension",
     :storage        => :s3,
