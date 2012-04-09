@@ -22,7 +22,6 @@ window.Scroller = Backbone.View.extend({
 	  this.editing_text = false;
 	  
 	  this.calculate_list_heights();
-	  this.pad_bottom();
 	  $('#activity-list > li:first-child').addClass('current');
 	  
 	  _.bindAll(this, 'on_keypress');
@@ -61,7 +60,6 @@ window.Scroller = Backbone.View.extend({
 	
 	on_resize: function() {
 	  this.calculate_list_heights();
-	  this.pad_bottom();
 	},
 	
 	on_keypress: function(event) {
