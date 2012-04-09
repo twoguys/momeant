@@ -35,6 +35,8 @@
       #updates-list
         - if me?(@user) && @user.broadcasts.empty?
           You can use this area to provide updates to your followers.
+        - elsif @user.broadcasts.empty?
+          #{@user.first_name}'s updates will show up here.
         - else
           = @user.broadcasts.first.message
       = link_to "Post a new Update", "#", :id => "post-update", :class => "tooltipped-e", :title => "Post a new Update"
