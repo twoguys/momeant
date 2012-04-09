@@ -65,24 +65,24 @@ window.Scroller = Backbone.View.extend({
 	},
 	
 	on_keypress: function(event) {
-    if (this.editing_text) { return; }
-    
-	  var key = event.charCode ? event.charCode : event.keyCode ? event.keyCode : 0;
-	  switch (key) {
-	    case 38: // up arrow
-	      this.to_prev();
-	      event.preventDefault();
-	      break;
-	    case 40: // down arrow
-	      this.to_next();
-	      event.preventDefault();
-	      break;
-      case 39: // right arrow
-        var url = $('#activity-list li:nth-child(' + (Scroll.index + 1) + ') a.title').attr('href');
-        this.to_content(url);
-        event.preventDefault();
-        break;
-	  }
+    //     if (this.editing_text) { return; }
+    //     
+    // var key = event.charCode ? event.charCode : event.keyCode ? event.keyCode : 0;
+    // switch (key) {
+    //   case 38: // up arrow
+    //     this.to_prev();
+    //     event.preventDefault();
+    //     break;
+    //   case 40: // down arrow
+    //     this.to_next();
+    //     event.preventDefault();
+    //     break;
+    //       case 39: // right arrow
+    //         var url = $('#activity-list li:nth-child(' + (Scroll.index + 1) + ') a.title').attr('href');
+    //         this.to_content(url);
+    //         event.preventDefault();
+    //         break;
+    // }
 	},
 	
 	to_next: function() {
