@@ -4,7 +4,7 @@ class SubscriptionsController < ApplicationController
   
   def index
     @nav = "following"
-    @creators = [current_user] + current_user.subscribed_to
+    @creators = current_user.subscribed_to
     @activity = Activity.by_users(@creators).only_types("'Story','Broadcast'").order("created_at DESC")
   end
 
