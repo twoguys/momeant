@@ -5,7 +5,7 @@
       %ul#activity-list
         - index = 0
         - @content.each do |content|
-          %li.content
+          %li.content{:id => "content-#{content.id}"}
             %a.content-preview{:href => story_path(content), :class => "#{content.media_type} #{content.template}"}
               - if content.text_media_type?
                 .inner

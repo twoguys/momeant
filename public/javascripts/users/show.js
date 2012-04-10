@@ -9,13 +9,21 @@ window.ProfileView = Backbone.View.extend({
 	},
 	
 	initialize: function() {
+	  this.scroll_to_content();
+	  
 	  _.bindAll(this, 'on_keypress');
 	  $(document).bind('keydown', this.on_keypress);
-	  this.auto_resize_discussion_box();
   },
-
-  auto_resize_discussion_box: function() {
-    $('#message_body').autoResize({minHeight:15, extraSpace:5});
+  
+  scroll_to_content: function() {
+    var content_id_index = window.location.href.indexOf('?content=');
+    if (content_id_index < 0) { return; }
+    
+    var content_id = window.location.href.substring(content_id_index + 9, window.location.href.length);
+    var y_position = $('#content-' + content_id).position().top - 42;
+    if (y_position < 0) { return; }
+    console.log(y_position);
+    $.scrollTo(y_position);
   },
   
   switch_info_tabs: function(event) {
@@ -53,26 +61,10 @@ window.ProfileView = Backbone.View.extend({
     
     return false;
   },
-	
-	back: function() {
-	  window.history.back();
-	  $('#vertical-people').css('right','-100%');
-	  $('#container').css('margin-left','100%');
-	  setTimeout(function() { $('#loader').show(); }, 200);
-	},
   
   on_keypress: function(event) {
     if (Profile.editing_text) { return; }
-    
     var key = event.charCode ? event.charCode : event.keyCode ? event.keyCode : 0;
-	  switch (key) {
-	    case 37: // left arrow
-	      this.back();
-	      event.preventDefault();
-	      break;
-	    case 68: // letter 'd'
-	      
-    }
   }
   
 });

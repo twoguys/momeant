@@ -3,8 +3,7 @@ window.DiscoveryView = Backbone.View.extend({
 	el: $('body'),
 	
 	events: {
-		'click #people a.name': 'person_clicked',
-		'click #people a.profile': 'goto_profile'
+		'click #people a.name': 'person_clicked'
 	},
 	
 	initialize: function() {
@@ -78,14 +77,6 @@ window.DiscoveryView = Backbone.View.extend({
     Discovery.goto_person(Discovery.current_person - 1);
 	},
 	
-	goto_profile: function() {
-	  if (Discovery.current_person < 0) { return false; }
-	  var href = Discovery.people[Discovery.current_person].attr('href');
-    $('#main').css('right','100%');
-    setTimeout(function() {$('#loader').show();}, 200);
-	  window.location.href = href;
-	},
-	
 	on_resize: function() {
 	  this.window_height = this.$window.height() - 42;
 	  this.$slides.css('height',this.window_height);
@@ -99,9 +90,6 @@ window.DiscoveryView = Backbone.View.extend({
 	      break;
       case 38: // up arrow
         this.prev_person();
-        break;
-      case 39: // right arrow
-        this.goto_profile();
         break;
 	  }
 	}
