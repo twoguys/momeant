@@ -22,9 +22,8 @@
   
   .comments
     .money #{number_to_currency(content.reward_dollars)} earned
-    = link_to pluralize(content.comments.size, "Supporter Comment"), "#", :class => "open-comments"
+    = link_to pluralize(content.comments.size, "comment"), "#", :class => "toggle-comments"
     .insides
-      = link_to "#{pluralize(content.comments.size, "Supporter Comment")} (Hide)", "#", :class => "close-comments"
       %ul.comment-list
         = render :partial => "comments/comment", :collection => content.comments, :as => :comment
       = render "comments/form", :commentable => content

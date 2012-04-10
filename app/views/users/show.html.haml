@@ -30,9 +30,8 @@
           
             .comments
               .money #{number_to_currency(content.reward_dollars)} earned
-              = link_to pluralize(content.comments.size, "comment"), "#", :class => "open-comments"
+              = link_to pluralize(content.comments.size, "comment"), "#", :class => "toggle-comments"
               .insides
-                = link_to "#{pluralize(content.comments.size, "comment")} (Hide)", "#", :class => "close-comments"
                 %ul.comment-list
                   = render :partial => "comments/comment", :collection => content.comments, :as => :comment
                 = render "comments/form", :commentable => content
@@ -49,13 +48,13 @@
         - @supporters.each do |person|
           %li.person{:class => first ? "first" : ""}
             - if first
-              = link_to image_tag(person[0].avatar.url(:thumbnail)), user_path(person[0])
+              = link_to image_tag(person[0].avatar.url(:large)), user_path(person[0])
               .text Top Supporter
               %h3
                 %span= person[0].first_name
                 %span= person[0].last_name
             - else
-              = link_to image_tag(person[0].avatar.url(:thumbnail)), user_path(person[0]), :class => "tooltipped", :title => person[0].name
+              = link_to image_tag(person[0].avatar.url(:large)), user_path(person[0]), :class => "tooltipped", :title => person[0].name
           - first = false
 
   .clear
@@ -69,6 +68,5 @@
 :javascript
   var scrollables_selector = '#activity-list';
   var user_id = '#{@user.id}';
-= javascript_include_tag "content_scroller"
 = javascript_include_tag "users/show"
 = javascript_include_tag "comments"

@@ -176,9 +176,7 @@ h2 {
         font-weight: 700;
         z-index: 2; }
         #header #user-nav .topnav .top-link:hover {
-          background: #333333; }
-        #header #user-nav .topnav .top-link:active {
-          background: #00aeef; }
+          background-color: #333333; }
       #header #user-nav .topnav .double-wide {
         display: none;
         position: absolute;
@@ -227,10 +225,12 @@ h2 {
       #header #user-nav .topnav.active .top-link {
         background: #00aeef; }
     #header #user-nav #curation .top-link, #header #user-nav #my-links .top-link {
-      width: 35px;
+      width: 42px;
       height: 42px;
       padding: 0;
-      background: transparent url(../images/navigation/following.png) no-repeat 50% 8px;
+      background-image: url(../images/navigation/following.png);
+      background-repeat: no-repeat;
+      background-position: 50% 8px;
       text-indent: 100%;
       white-space: nowrap;
       overflow: hidden; }
@@ -1086,13 +1086,16 @@ table {
     -ms-transition: opacity 0.2s linear;
     -o-transition: opacity 0.2s linear;
     transition: opacity 0.2s linear; }
+    #vertical-people li.person img {
+      width: 60px;
+      height: 60px; }
     #vertical-people li.person.first {
       float: none; }
       #vertical-people li.person.first a {
         float: left;
         margin-right: 8px; }
       #vertical-people li.person.first .text {
-        padding-top: 12px; }
+        padding-top: 22px; }
     #vertical-people li.person.dimmed {
       opacity: 0.3; }
     #vertical-people li.person a {
@@ -1106,24 +1109,19 @@ table {
     position: absolute;
     top: 13px;
     right: 20px; }
-  .comments a.open-comments, .comments .insides {
+  .comments a.toggle-comments, .comments .insides {
     background: #303030;
     color: #777777;
     padding: 13px 15px; }
-  .comments .money, .comments a.open-comments, .comments a.close-comments {
+  .comments .money, .comments a.toggle-comments {
     color: #777777; }
-  .comments a.open-comments, .comments a.close-comments {
+  .comments a.toggle-comments {
     display: block;
     font-size: 13px;
     padding-left: 60px;
     background: #303030 url(../images/content/comments.png) no-repeat 23px 50%; }
-    .comments a.open-comments:hover, .comments a.close-comments:hover {
+    .comments a.toggle-comments:hover {
       color: #aaaaaa; }
-  .comments a.close-comments {
-    display: block;
-    margin-bottom: 15px;
-    padding-left: 45px;
-    background-position: 8px 50%; }
   .comments .insides {
     display: none; }
   .comments ul.comment-list > li, .comments form {
@@ -1304,7 +1302,7 @@ body#users, body#messages {
       #user-profile .profile-info .metadata #broadcaster #new_broadcast {
         display: none; }
         #user-profile .profile-info .metadata #broadcaster #new_broadcast.loading {
-          height: 150px;
+          height: 200px;
           background: transparent url(../images/spinner.gif) no-repeat 50% 50%; }
           #user-profile .profile-info .metadata #broadcaster #new_broadcast.loading * {
             display: none; }
@@ -1374,6 +1372,11 @@ body#users, body#messages {
     -ms-transition: right 0.2s linear;
     -o-transition: right 0.2s linear;
     transition: right 0.2s linear; }
+    #user-profile #vertical-people li, #user-profile #vertical-people a, #user-profile #vertical-people img {
+      width: 80px;
+      height: 80px; }
+    #user-profile #vertical-people li.first {
+      width: auto; }
     #user-profile #vertical-people #discussion .hasnt {
       padding: 5px 10px;
       background: #eeeeee;
@@ -1893,14 +1896,14 @@ table.users {
         font-style: italic;
         font-size: 11px; }
 
-@media all and (max-width: 1289px) {
+@media all and (max-width: 1298px) {
   body#users #user-profile, body#messages #user-profile {
-    padding-right: 200px; }
+    padding-right: 210px; }
   body#users #profile-right, body#messages #profile-right {
-    width: 160px;
-    margin-right: -200px; }
+    width: 170px;
+    margin-right: -210px; }
     body#users #profile-right #vertical-people, body#messages #profile-right #vertical-people {
-      width: 160px; } }
+      width: 170px; } }
 body#subscriptions.index #header #user-nav ul.links {
   max-width: 1367px;
   margin: 0 auto; }

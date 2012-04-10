@@ -131,7 +131,7 @@ body#users, body#messages
 				#new_broadcast
 					display: none
 					&.loading
-						height: 150px
+						height: 200px
 						background: transparent url(../images/spinner.gif) no-repeat 50% 50%
 						*
 							display: none
@@ -199,6 +199,11 @@ body#users, body#messages
 	
 	#vertical-people
 		@include transition(right)
+		li, a, img
+			width: 80px
+			height: 80px
+		li.first
+			width: auto
 		#discussion
 			.hasnt
 				padding: 5px 10px
@@ -737,12 +742,12 @@ table.users
 				font-size: 11px
 
 // Going smaller
-@media all and (max-width: 1289px)
+@media all and (max-width: 1298px)
 	body#users, body#messages
 		#user-profile
-			padding-right: 200px
+			padding-right: 210px
 		#profile-right
-			width: 160px
-			margin-right: -200px
+			width: 170px
+			margin-right: -210px
 			#vertical-people
-				width: 160px
+				width: 170px
