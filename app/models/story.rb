@@ -67,6 +67,7 @@ class Story < ActiveRecord::Base
   attr_accessor :autosaving, :crop_x, :crop_y, :crop_width, :crop_height
   
   after_update :reprocess_thumbnail, :if => :cropping?
+  before_destroy :destroy_activities
   
   CATEGORIES = [
     "Art",
@@ -300,11 +301,19 @@ class Story < ActiveRecord::Base
     end
   end
   
+  def activities
+    Activity.where(:action_id => self.id).where("action_type = 'Story'")
+  end
+  
   private
   
   def reprocess_thumbnail
     thumbnail.reprocess!
     self.crop_x = nil
     save
+  end
+  
+  def destroy_activities
+    self.activities.destroy_all
   end
 end

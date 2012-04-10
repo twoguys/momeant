@@ -9,7 +9,7 @@
         %li= link_to "Terms of Service", tos_path
 
     - if user_signed_in?
-      %li#curation.topnav{:class => @nav == "support" ? "active" : ""}
+      %li#curation.topnav{:class => @nav == "following" ? "active" : ""}
         = link_to "Subscriptions", subscriptions_path, :class => "top-link"
       %li#my-links.topnav{:class => @nav == "me" ? "active" : ""}
         = link_to "Profile", user_path(current_user), :class => "top-link"

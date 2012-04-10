@@ -3,8 +3,8 @@ class SubscriptionsController < ApplicationController
   before_filter :find_user, :only => [:create, :unsubscribe]
   
   def index
-    @nav = "support"
-    @creators = current_user.subscribed_to
+    @nav = "following"
+    @creators = [current_user] + current_user.subscribed_to
     @activity = Activity.by_users(@creators).only_types("'Story','Broadcast'").order("created_at DESC")
   end
 
