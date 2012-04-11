@@ -152,6 +152,10 @@ class User < ActiveRecord::Base
     # create the reward activity record
     Activity.create(:actor_id => self.id, :recipient_id => story.user_id, :action_type => "Reward", :action_id => reward.id)
 
+    unless reward.comment.blank?
+      story.comments << Comment.new(:comment => reward.comment, :user_id => reward.user_id, :reward_id => reward.id)
+    end
+
     # if the user's badge level changed, record a badge activity record
     new_badge_level = self.reload.badge_level
     if new_badge_level != old_badge_level
