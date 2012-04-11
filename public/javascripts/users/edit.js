@@ -1,6 +1,6 @@
 $(function() {
 	
-	$('.occupation, .location, .first_name, .last_name, .email, .amazon_email').each(function() {
+	$('.first_name, .last_name, .email, .amazon_email, .tagline').each(function() {
 	  var $element = $(this).find('.text');
 	  $element.editInPlace({
   		url: '/users/' + user_id + '/update_in_place',
@@ -45,4 +45,18 @@ $(function() {
 		}
 	});
 	
+	$('#settings-list .text').click(function() {
+    $(this).siblings('input').click();
+  });
+  
+  $('#settings-list input').click(function() {
+    var checkbox = $(this);
+    var setting = checkbox.attr('id');
+    var text = checkbox.siblings('.text');
+    text.addClass('loading');
+    $.post('/users/' + user_id + '/update_email_setting', {attribute: setting}, function(data) {
+      text.removeClass('loading');
+    });
+  });
+  
 });

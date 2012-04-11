@@ -1190,6 +1190,8 @@ body#users, body#messages {
     margin-bottom: -20000px; }
   body#users #profile-center, body#messages #profile-center {
     width: 100%; }
+    body#users #profile-center .inner, body#messages #profile-center .inner {
+      padding: 20px; }
   body#users #profile-left, body#messages #profile-left {
     width: 300px;
     right: 300px;
@@ -1204,6 +1206,8 @@ body#users, body#messages {
     margin-right: -300px;
     background: #00aeef;
     color: white; }
+  body#users #user-profile.no-right-column, body#messages #user-profile.no-right-column {
+    padding-right: 0; }
 
 #user-profile {
   /* Patronage Tab */
@@ -1637,10 +1641,9 @@ body#users, body#messages {
     #user-profile .user-settings li .text.loading {
       display: inline-block;
       width: 30px;
-      height: 10px;
-      background: transparent url(../images/horizontal-spinner.gif) no-repeat 0 50%; }
-      #user-profile .user-settings li .text.loading * {
-        display: none; }
+      height: 15px;
+      background: transparent url(../images/horizontal-spinner.gif) no-repeat 0 4px;
+      text-indent: -9999px; }
   #user-profile .user-settings section {
     margin-bottom: 20px; }
   #user-profile .user-settings h3 {
@@ -1952,9 +1955,10 @@ body#subscriptions.index #header #user-nav ul.links {
 
 .content-preview {
   position: relative; }
+  .content-preview .inner {
+    height: 100%; }
 
 .content-preview.photos .inner, .content-preview.video .inner {
-  height: 100%;
   background-repeat: no-repeat;
   background-position: 50% 50%;
   -webkit-background-size: cover;
