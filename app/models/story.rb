@@ -19,7 +19,7 @@ class Story < ActiveRecord::Base
   end
   
   has_attached_file :thumbnail,
-    :styles => { :huge => "1440x1200#", :large => "630x420#", :medium => "288x180#", :small => "150x100#", :petite => "95x60#" },
+    :styles => { :huge => "1440x1200", :large => "630x420#", :medium => "288x180#", :small => "150x100#", :petite => "95x60#" },
     :convert_options => { :huge => '-quality 50' },
     :path          => "story_thumbnails/:id/:style.:extension",
     :storage        => :s3,
@@ -67,6 +67,7 @@ class Story < ActiveRecord::Base
   attr_accessor :autosaving, :crop_x, :crop_y, :crop_width, :crop_height
   
   after_update :reprocess_thumbnail, :if => :cropping?
+  before_destroy :destroy_activities
   
   CATEGORIES = [
     "Art",
@@ -300,11 +301,19 @@ class Story < ActiveRecord::Base
     end
   end
   
+  def activities
+    Activity.where(:action_id => self.id).where("action_type = 'Story'")
+  end
+  
   private
   
   def reprocess_thumbnail
     thumbnail.reprocess!
     self.crop_x = nil
     save
+  end
+  
+  def destroy_activities
+    self.activities.destroy_all
   end
 end

@@ -6,10 +6,7 @@ window.Scroller = Backbone.View.extend({
 		'click #activity-list li a.content-preview': 'clicked_content',
 		'click #activity-list li a.title': 'clicked_content',
 		'focus textarea': 'start_editing_text',
-		'blur textarea': 'stop_editing_text',
-		'submit #new_message': 'post_message',
-		'click a.open-comments': 'show_comments',
-		'click a.close-comments': 'hide_comments'
+		'blur textarea': 'stop_editing_text'
 	},
 	
 	initialize: function() {
@@ -22,7 +19,6 @@ window.Scroller = Backbone.View.extend({
 	  this.editing_text = false;
 	  
 	  this.calculate_list_heights();
-	  this.pad_bottom();
 	  $('#activity-list > li:first-child').addClass('current');
 	  
 	  _.bindAll(this, 'on_keypress');
@@ -61,28 +57,27 @@ window.Scroller = Backbone.View.extend({
 	
 	on_resize: function() {
 	  this.calculate_list_heights();
-	  this.pad_bottom();
 	},
 	
 	on_keypress: function(event) {
-    if (this.editing_text) { return; }
-    
-	  var key = event.charCode ? event.charCode : event.keyCode ? event.keyCode : 0;
-	  switch (key) {
-	    case 38: // up arrow
-	      this.to_prev();
-	      event.preventDefault();
-	      break;
-	    case 40: // down arrow
-	      this.to_next();
-	      event.preventDefault();
-	      break;
-      case 39: // right arrow
-        var url = $('#activity-list li:nth-child(' + (Scroll.index + 1) + ') a.title').attr('href');
-        this.to_content(url);
-        event.preventDefault();
-        break;
-	  }
+    //     if (this.editing_text) { return; }
+    //     
+    // var key = event.charCode ? event.charCode : event.keyCode ? event.keyCode : 0;
+    // switch (key) {
+    //   case 38: // up arrow
+    //     this.to_prev();
+    //     event.preventDefault();
+    //     break;
+    //   case 40: // down arrow
+    //     this.to_next();
+    //     event.preventDefault();
+    //     break;
+    //       case 39: // right arrow
+    //         var url = $('#activity-list li:nth-child(' + (Scroll.index + 1) + ') a.title').attr('href');
+    //         this.to_content(url);
+    //         event.preventDefault();
+    //         break;
+    // }
 	},
 	
 	to_next: function() {
@@ -129,41 +124,6 @@ window.Scroller = Backbone.View.extend({
 	stop_editing_text: function() {
 	  Scroll.editing_text = false;
 	},
-  
-  post_message: function(event) {
-    var $form = $(event.currentTarget);
-    event.preventDefault();
-    
-    var body = $form.find('#message_body').val();
-    var token = $form.find('input[name="authenticity_token"]').val();
-    $('#message_body').val('');
-    $form.addClass('loading');
-    
-    $.post('/users/' + user_id + '/messages/public', {
-      'message[body]': body,
-      'authenticity_token': token,
-      'public': true
-    }, function(html) {
-      $('#discussion ul').prepend(html);
-      $form.removeClass('loading');
-    });
-  },
-  
-  show_comments: function(event) {
-    var $link = $(event.currentTarget);
-    var $comments = $link.siblings('.insides');
-    $link.hide();
-    $comments.show();
-    return false;
-  },
-  
-  hide_comments: function(event) {
-    var $comments = $(event.currentTarget).parent();
-    var $link = $comments.siblings('a.open-comments');
-    $comments.hide();
-    $link.show();
-    return false;
-  },
   
 	reset: function() {
 	  $('#loader').hide();

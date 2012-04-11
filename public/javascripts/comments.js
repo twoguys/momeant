@@ -3,11 +3,25 @@ window.CommentsView = Backbone.View.extend({
   el: $('body'),
 	
 	events: {
+  	'click a.toggle-comments': 'toggle_comments',
 		'keypress .comment-box': 'monitor_comment_keypress'
 	},
 	
 	initialize: function() {
 	  this.auto_resize_comment_boxes();
+  },
+
+  toggle_comments: function(event) {
+    var $link = $(event.currentTarget);
+    var $comments = $link.siblings('.insides');
+    if ($link.hasClass('open')) {
+      $comments.slideUp(100);
+      $link.removeClass('open');
+    } else {
+      $comments.slideDown(100);
+      $link.addClass('open');
+    }
+    return false;
   },
   
   auto_resize_comment_boxes: function() {

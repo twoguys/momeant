@@ -285,9 +285,11 @@ $(function() {
 					$('#what-is-impact').fancybox();
 					$('#url_to_share').click(function() { $(this).select(); });
 					
-					$('#new-reward .comment').text(comment);
-					$('#new-reward .amount .value').text((parseInt(amount) * 0.10).toFixed(2));
-					$('#new-reward').slideDown();
+					if (comment != '') {
+					  $('#new-comment .text').text(comment);
+					  $('#new-comment .reward').text('($' + (parseInt(amount) * 0.10).toFixed(2) + ')');
+					  $('#new-comment').slideDown();
+					}
 				}
 			);
 		},

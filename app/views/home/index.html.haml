@@ -22,7 +22,7 @@
                 .quote= truncate(content.template_text, :length => 140)
             - else
               .inner{:style => "background-image: url(#{content.thumbnail.url(:huge)})"}
-          .metadata
+          %a.metadata{:href => user_path(content.user, :content => content.id)}
             .media-type{:class => content.media_type}
             .title= content.title
             .example An excerpt from #{content.user.first_name}'s work

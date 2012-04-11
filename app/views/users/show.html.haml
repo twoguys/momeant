@@ -1,79 +1,63 @@
 #user-profile
-  = render "users/user_info"
   
-  #vertical-list
-    %h1 Works
-    .helper use keyboard
-
-    %ul#activity-list
-      - index = 0
-      - @content.each do |content|
-        %li.content
-          %a.content-preview{:href => story_path(content), :class => "#{content.media_type} #{content.template}"}
-            - if content.text_media_type?
-              .inner
-                .image
-                .quote= truncate(content.template_text, :length => 140)
-            - else
-              .inner{:style => "background-image: url(#{content.thumbnail.url(:large)})"}
-      
-          .info
-            .media-type{:class => content.media_type}
-            .text
-              - title = content.title.blank? ? "Untitled" : content.title
-              - title += " (unpublished)" if !content.published?
-              = link_to(title, story_url(content), :class => "title")
-              .synopsis= truncate(content.synopsis, :length => 140)
-              - if content.category
-                %span.category= content.category
-              - if me?(@user)
-                = link_to "Edit", edit_story_path(content), :class => "edit" if me?(@user)
-                = link_to "Delete", story_path(content), :method => :delete, :confirm => "WHOA WAIT UP! If you delete this you will lose ALL REWARDS on this content. Are you SURE you want to delete it?"
-            .support= content.users_who_rewarded.count
-          
-          .comments
-            .money #{number_to_currency(content.reward_dollars)} earned
-            = link_to pluralize(content.comments.size, "comment"), "#", :class => "open-comments"
-            .insides
-              = link_to "#{pluralize(content.comments.size, "comment")} (Hide)", "#", :class => "close-comments"
-              %ul.comment-list
-                = render :partial => "comments/comment", :collection => content.comments, :as => :comment
-              = render "comments/form", :commentable => content
-          - if false
-            .rewards
-              - if content.users_who_rewarded.empty?
-                = link_to "Become the first supporter &rarr;".html_safe, story_path(content), :class => "be-next"
+  #profile-center.column
+    #vertical-list
+      %ul#activity-list
+        - index = 0
+        - @content.each do |content|
+          %li.content{:id => "content-#{content.id}"}
+            %a.content-preview{:href => story_path(content), :class => "#{content.media_type} #{content.template}"}
+              - if content.text_media_type?
+                .inner
+                  .image
+                  .quote= truncate(content.template_text, :length => 140)
               - else
-                %h3 Recent supporters
-                - size = content.users_who_rewarded.size - 1
-                - size = size > 9 ? 9 : size
-                - content.users_who_rewarded[0..size].each do |user|
-                  .reward
-                    = image_tag user.avatar.url(:thumbnail)
-                    = link_to "", user_path(user), :class => "cover tooltipped", :title => user.name
-                = #link_to "View &amp; Support &rarr;".html_safe, story_path(content), :class => "be-next" unless content.users_who_rewarded.include?(current_user)
+                .inner{:style => "background-image: url(#{content.thumbnail.url(:large)})"}
+      
+            .info
+              .media-type{:class => content.media_type}
+              .text
+                - title = content.title.blank? ? "Untitled" : content.title
+                - title += " (unpublished)" if !content.published?
+                = link_to(title, story_url(content), :class => "title")
+                .synopsis= truncate(content.synopsis, :length => 140)
+                - if content.category
+                  %span.category= content.category
+                - if me?(@user)
+                  = link_to "Edit", edit_story_path(content), :class => "edit" if me?(@user)
+                  = link_to "Delete", story_path(content), :method => :delete, :confirm => "WHOA WAIT UP! If you delete this you will lose ALL REWARDS on this content. Are you SURE you want to delete it?"
+              .support= content.users_who_rewarded.count
+          
+            .comments
+              .money #{number_to_currency(content.reward_dollars)} earned
+              = link_to pluralize(content.comments.size, "comment"), "#", :class => "toggle-comments"
+              .insides
+                %ul.comment-list
+                  = render :partial => "comments/comment", :collection => content.comments, :as => :comment
+                = render "comments/form", :commentable => content
             
-        - index += 1
+          - index += 1
   
-  #vertical-people
-    %h1
-      = link_to "Supporters", "#", :class => "selected", :data => "supporters"
-    .sections
+  #profile-left.column
+    = render "users/user_info"
+
+  #profile-right.column
+    #vertical-people
       %ul#supporters
         - first = true
         - @supporters.each do |person|
           %li.person{:class => first ? "first" : ""}
             - if first
-              = link_to image_tag(person[0].avatar.url(:thumbnail)), user_path(person[0])
+              = link_to image_tag(person[0].avatar.url(:large)), user_path(person[0])
               .text Top Supporter
               %h3
                 %span= person[0].first_name
                 %span= person[0].last_name
             - else
-              = link_to image_tag(person[0].avatar.url(:thumbnail)), user_path(person[0]), :class => "tooltipped", :title => person[0].name
-          - first = false            
-  .clear
+              = link_to image_tag(person[0].avatar.url(:large)), user_path(person[0]), :class => "tooltipped", :title => person[0].name
+          - first = false
 
+  .clear
 - if me?(@user)
   :javascript
     mpq.track('Viewed My Profile');
@@ -84,6 +68,5 @@
 :javascript
   var scrollables_selector = '#activity-list';
   var user_id = '#{@user.id}';
-= javascript_include_tag "content_scroller"
 = javascript_include_tag "users/show"
 = javascript_include_tag "comments"

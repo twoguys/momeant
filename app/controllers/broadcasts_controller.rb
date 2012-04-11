@@ -1,7 +1,9 @@
 class BroadcastsController < ApplicationController
+  before_filter :authenticate_user!
   before_filter :find_user
   
   def create # ajax
+    return if current_user != @user
     broadcast = Broadcast.new(params[:broadcast].merge(:user_id => @user.id))
     broadcast.save
     broadcast.reload

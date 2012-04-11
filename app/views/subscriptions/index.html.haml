@@ -12,7 +12,6 @@
   - unless @creators.empty? 
     #vertical-list
       %h1 Their updates
-      .helper use keyboard
 
       %ul#activity-list
         = render "subscriptions/list"
@@ -22,6 +21,5 @@
 :javascript
   var scrollables_selector = '#activity-list';
   var user_id = '#{current_user.id}';
-= javascript_include_tag "content_scroller"
 = javascript_include_tag "subscriptions" unless @creators.empty?
 = javascript_include_tag "comments"

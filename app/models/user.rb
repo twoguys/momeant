@@ -118,6 +118,14 @@ class User < ActiveRecord::Base
     self.created_stories.published.where(:media_type => type).count
   end
   
+  def is_new?
+    self.created_at > 2.weeks.ago
+  end
+  
+  def is_featured?
+    Editorial.all.map(&:user_id).include?(self.id)
+  end
+  
   def has_rewarded?(user)
     !Reward.where(:recipient_id => self.id, :user_id => user.id).empty?
   end
@@ -143,6 +151,10 @@ class User < ActiveRecord::Base
     
     # create the reward activity record
     Activity.create(:actor_id => self.id, :recipient_id => story.user_id, :action_type => "Reward", :action_id => reward.id)
+
+    unless reward.comment.blank?
+      story.comments << Comment.new(:comment => reward.comment, :user_id => reward.user_id, :reward_id => reward.id)
+    end
 
     # if the user's badge level changed, record a badge activity record
     new_badge_level = self.reload.badge_level

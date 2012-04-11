@@ -3,6 +3,7 @@ class Reward < Curation
   belongs_to :story
   belongs_to :recipient, :class_name => "User"
   belongs_to :cashout
+  has_one :comment_object, :class_name => "Comment" # I know this is funky, but we already had a column named comment, and I can't lose that data on production
   
   scope :for_content, where("story_id IS NOT NULL")
   scope :for_landing_page, where(:show_on_landing_page => true)

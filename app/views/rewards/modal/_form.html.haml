@@ -73,27 +73,18 @@
 
 
 #more
-  #rewarders
-    %h3 Recent rewarders of #{@story.this_media}:
-    %ul
+  #rewarders.comments
+    %h3 Comments on #{@story.this_media} from #{@story.user.first_name}'s supporters:
+    %ul.comment-list
       - if current_user
-        %li#new-reward
-          = link_to image_tag(current_user.avatar.url(:thumbnail)), user_path(current_user), :class => "avatar"
-          .text
-            = link_to current_user.name, user_path(current_user), :class => "name"
-            %p.comment
-          .amount
-            %span.dollar $
-            %span.value
-      - @story.rewards.each do |reward|
-        %li
-          = link_to image_tag(reward.user.avatar.url(:thumbnail)), user_path(reward.user), :class => "avatar"
-          .text
-            = link_to reward.user.name, user_path(reward.user), :class => "name"
-            %p= reward.comment
-          .amount
-            %span.dollar $
-            %span= (reward.amount * Reward.dollar_exchange).to_s.ljust(4,"0")
+        %li#new-comment
+          = link_to image_tag(current_user.avatar.url(:thumbnail), :class => "commenter-avatar"), user_path(current_user)
+          = link_to current_user.name, user_path(current_user), :class => "commenter-name"
+          %span.text
+          .metadata
+            %span.time just now
+            %span.reward
+      = render :partial => "comments/comment", :collection => @story.comments, :as => :comment
   
   #other-content
     %h3 More content from #{@story.user.first_name}:
