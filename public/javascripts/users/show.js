@@ -51,12 +51,12 @@ window.ProfileView = Backbone.View.extend({
   subscribe: function(event) {
     var $link = $(event.currentTarget);
     
-    if ($link.text() == 'Subscribe') {
+    if ($link.text() == 'Follow') {
       $.post('/users/' + user_id + '/subscriptions');
-      $link.text('Unsubscribe');
+      $link.text('Unfollow');
     } else {
       $.post('/users/' + user_id + '/subscriptions/unsubscribe');
-      $link.text('Subscribe');
+      $link.text('Follow');
     }
     
     return false;

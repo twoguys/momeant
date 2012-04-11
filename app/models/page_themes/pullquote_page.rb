@@ -9,7 +9,7 @@ class PullquotePage < Page
   end
   
   def empty?
-    return true if self.text_media.text.blank?
+    return true if self.text_media.nil? || self.text_media.text.blank?
     return false
   end
 end
