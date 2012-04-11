@@ -15,7 +15,6 @@
         = link_to "Profile", user_path(current_user), :class => "top-link"
         %ul.subnav
           %li= link_to "Share Your Work", new_story_path
-          %li= link_to "Your Activity", activity_user_path(current_user)
           %li= link_to "Settings", settings_user_path(current_user)
           - if current_user.is_admin?
             %li= link_to "Admin", admin_dashboard_path
