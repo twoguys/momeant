@@ -96,4 +96,21 @@ namespace :momeant do
       User.all.each {|u| NotificationsMailer.site_updated(u).deliver }
     end
   end
+  
+  namespace :comments do
+    desc "Copy existing rewards with comments to Comment records"
+    task :copy_from_rewards => :environment do
+      Reward.all.each do |reward|
+        unless reward.comment.blank?
+          Comment.create(
+            :comment => reward.comment,
+            :user_id => reward.user_id,
+            :reward_id => reward.id,
+            :commentable_id => reward.story_id,
+            :commentable_type => "Story"
+          )
+        end
+      end
+    end
+  end
 end
