@@ -30,34 +30,46 @@
       %section.first_name
         %h3
           %span First Name
-          %span.info (double-click to edit)
+          %span.info (click to edit)
         .text{:update => "first_name"}= @user.first_name
 
       %section.last_name
         %h3
           %span Last Name
-          %span.info (double-click to edit)
+          %span.info (click to edit)
         .text{:update => "last_name"}= @user.last_name
 
       %section.email
         %h3
           %span Email Address
-          %span.info (double-click to edit)
+          %span.info (click to edit)
         .text{:update => "email"}= @user.email
 
       %section.amazon_email
         %h3
           %span Amazon Email
-          %span.info (double-click to edit)
+          %span.info (click to edit)
           %span.freak-out PLEASE DOUBLE CHECK THIS as we will send your cashouts to this account.
         .text{:update => "amazon_email"}= @user.amazon_email
         %form
           .example Not in the United States? Please #{mail_to "support@momeant.com", "contact us"} for a custom pay out method.
 
+      %section.occupation
+        %h3
+          %span Occupation
+          %span.info (click to edit)
+        .text{:update => "occupation"}= @user.occupation
+        
+      %section.location
+        %h3
+          %span Location
+          %span.info (click to edit)
+        .text{:update => "location"}= @user.location
+      
       %section.tagline
         %h3
           %span What kind of work will you be sharing at Momeant?
-          %span.info (double-click to edit)
+          %span.info (click to edit)
         .text{:update => "tagline"}= @user.tagline
   
   #profile-left.column

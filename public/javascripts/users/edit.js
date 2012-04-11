@@ -1,7 +1,8 @@
 $(function() {
 	
-	$('.first_name, .last_name, .email, .amazon_email, .tagline').each(function() {
+	$('.first_name, .last_name, .email, .amazon_email, .occupation, .location').each(function() {
 	  var $element = $(this).find('.text');
+	  if ($element.length == 0) { return; }
 	  $element.editInPlace({
   		url: '/users/' + user_id + '/update_in_place',
   		params: "attribute=" + $element.attr('update'),
