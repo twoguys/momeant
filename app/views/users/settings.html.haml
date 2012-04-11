@@ -1,89 +1,70 @@
-#user-profile
-  = render "users/user_info"
+#user-profile.no-right-column
   
-  .the-rest.user-settings
-    
-    %h2 Email preferences
+  #profile-center.column
+    .inner.user-settings
+      %h2 Email preferences
 
-    %ul#settings-list
-      %li
-        = check_box_tag "send_reward_notification_emails", 1, current_user.send_reward_notification_emails?
-        %span.text
-          %span.update= current_user.send_reward_notification_emails? ? "Send" : "Don't send"
-          %span me an email when someone rewards me.
-      %li
-        = check_box_tag "send_digest_emails", 1, current_user.send_digest_emails?
-        %span.text
-          %span.update= current_user.send_digest_emails? ? "Send" : "Don't send"
-          %span me an email every two weeks about activity around me
-      %li
-        = check_box_tag "send_message_notification_emails", 1, current_user.send_message_notification_emails?
-        %span.text
-          %span.update= current_user.send_message_notification_emails? ? "Send" : "Don't send"
-          %span me an email when someone messages me
+      %ul#settings-list
+        %li
+          = check_box_tag "send_reward_notification_emails", 1, current_user.send_reward_notification_emails?
+          %span.text Send me an email when someone rewards me.
+        %li
+          = check_box_tag "send_digest_emails", 1, current_user.send_digest_emails?
+          %span.text Send me an email every two weeks about activity around me
+        %li
+          = check_box_tag "send_message_notification_emails", 1, current_user.send_message_notification_emails?
+          %span.text Send me an email when someone messages me
 
-    %h2 Profile Information
+      %h2 Profile Information
 
-    %section.profile-picture
-      %h3 Upload a profile picture
-      .file-uploader
+      %section.profile-picture
+        %h3 Upload a profile picture
+        .file-uploader
+          %form
+            = token_tag
+            .file-input
+              %input{:type => "file", :name => "user[avatar]", :id => "user_avatar"}
+              .loader
+            .example For best results, upload a JPG or PNG at least 200px by 200px.
+
+      %section.first_name
+        %h3
+          %span First Name
+          %span.info (double-click to edit)
+        .text{:update => "first_name"}= @user.first_name
+
+      %section.last_name
+        %h3
+          %span Last Name
+          %span.info (double-click to edit)
+        .text{:update => "last_name"}= @user.last_name
+
+      %section.email
+        %h3
+          %span Email Address
+          %span.info (double-click to edit)
+        .text{:update => "email"}= @user.email
+
+      %section.amazon_email
+        %h3
+          %span Amazon Email
+          %span.info (double-click to edit)
+          %span.freak-out PLEASE DOUBLE CHECK THIS as we will send your cashouts to this account.
+        .text{:update => "amazon_email"}= @user.amazon_email
         %form
-          = token_tag
-          .file-input
-            %input{:type => "file", :name => "user[avatar]", :id => "user_avatar"}
-            .loader
-          .example For best results, upload a JPG or PNG at least 200px by 200px.
+          .example Not in the United States? Please #{mail_to "support@momeant.com", "contact us"} for a custom pay out method.
 
-    %section.first_name
-      %h3
-        %span First Name
-        %span.info (double-click to edit)
-      .text{:update => "first_name"}= @user.first_name
-
-    %section.last_name
-      %h3
-        %span Last Name
-        %span.info (double-click to edit)
-      .text{:update => "last_name"}= @user.last_name
-
-    %section.email
-      %h3
-        %span Email Address
-        %span.info (double-click to edit)
-      .text{:update => "email"}= @user.email
-
-    %section.amazon_email
-      %h3
-        %span Amazon Email
-        %span.info (double-click to edit)
-        %span.freak-out PLEASE DOUBLE CHECK THIS as we will send your cashouts to this account.
-      .text{:update => "amazon_email"}= @user.amazon_email
-      %form
-        .example Not in the United States? Please #{mail_to "support@momeant.com", "contact us"} for a custom pay out method.
-
-    %section.tagline
-      %h3
-        %span What kind of work will you be sharing at Momeant?
-        %span.info (double-click to edit)
-      .text{:update => "tagline"}= @user.tagline
+      %section.tagline
+        %h3
+          %span What kind of work will you be sharing at Momeant?
+          %span.info (double-click to edit)
+        .text{:update => "tagline"}= @user.tagline
+  
+  #profile-left.column
+    = render "users/user_info"
 
 :javascript
-  $(function() {
-    $('#settings-list .text').click(function() {
-      $(this).siblings('input').click();
-    });
-    
-    $('#settings-list input').click(function() {
-      var checkbox = $(this);
-      var setting = checkbox.attr('id');
-      var text = checkbox.siblings('.text');
-      text.addClass('loading');
-      $.post('#{update_email_setting_user_path(current_user)}', {attribute: setting}, function(data) {
-        text.find('.update').html(data);
-        text.removeClass('loading');
-      });
-    });
-  });
   var user_id = #{current_user.id};
 = javascript_include_tag "jquery.editinplace"
 = javascript_include_tag "users/edit"
+= javascript_include_tag "users/show"

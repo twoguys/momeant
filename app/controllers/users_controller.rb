@@ -85,7 +85,7 @@ class UsersController < ApplicationController
     @user = current_user
     @user.avatar = params[:avatar]
     if @user.save
-      render :json => {:result => "success", :url => @user.avatar.url(:large)} and return
+      render :json => {:result => "success", :url => @user.avatar.url(:editorial)} and return
     else
       render :json => {:result => "failure", :message => "Unable to save image"} and return
     end
@@ -100,11 +100,8 @@ class UsersController < ApplicationController
     
     @user = current_user
     current_value = @user.send params[:attribute]
-    if @user.update_attribute(params[:attribute], !current_value)
-      render :text => !current_value ? "Send" : "Don't send"
-    else
-      render :text => !current_value ? "Don't send" : "Send"
-    end
+    @user.update_attribute(params[:attribute], !current_value)
+    render :text => ""
   end
   
   def activity_from_friends
