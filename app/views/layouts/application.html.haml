@@ -75,6 +75,8 @@
       - session[:show_content] = nil
 
 
+= link_to "Launch about diagram", "#about-diagram-modal", :style => "display:none;"
+= render "shared/about_diagram_modal"
 - if current_user
   :javascript
     mpq.name_tag('#{current_user.name}');
