@@ -12,8 +12,8 @@ window.DiscoveryView = Backbone.View.extend({
 		this.current_person = -1;
 		this.people = [];
 		this.$slides = $('.slide');
-    //this.remove_people_outside_viewport();
     this.store_people();
+    this.typing = false;
 		
 		_.bindAll(this, 'on_resize');
 	  $(window).resize(this.on_resize);
@@ -21,6 +21,8 @@ window.DiscoveryView = Backbone.View.extend({
 	  
 	  _.bindAll(this, 'on_keypress');
 	  $(document).bind('keydown', this.on_keypress);
+	  
+	  $(function() { Discovery.stop_arrow_keys_during_typing(); }); // after page is rendered (to include modal inputs)
 	},
 	
 	store_people: function() {
@@ -32,9 +34,11 @@ window.DiscoveryView = Backbone.View.extend({
 		this.people = people;
 	},
 	
-	remove_people_outside_viewport: function() {
-	  $('#people #list li').each(function (index, element) {
-	    if (!withinViewport(element, {bottom: 62})) { $(element).remove(); }
+	stop_arrow_keys_during_typing: function() {
+	  $('input').each(function(index, input) {
+	    var $input = $(input);
+	    $input.focus(function() { Discovery.typing = true; });
+	    $input.blur(function() { Discovery.typing = false; })
 	  });
 	},
 	
@@ -91,6 +95,7 @@ window.DiscoveryView = Backbone.View.extend({
 	},
 	
 	on_keypress: function(event) {
+	  if (this.typing) { return; }
 	  var key = event.charCode ? event.charCode : event.keyCode ? event.keyCode : 0;
 	  switch (key) {
 	    case 40: // down arrow
