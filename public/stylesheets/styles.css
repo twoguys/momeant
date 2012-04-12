@@ -808,10 +808,12 @@ table {
     #home.index #slides .metadata .media-type, #home.index #slides .metadata .title, #registrations.create #slides .metadata .media-type, #registrations.create #slides .metadata .title {
       float: left; }
     #home.index #slides .metadata .media-type, #registrations.create #slides .metadata .media-type {
-      margin: 0 15px;
       width: 30px;
       height: 20px;
-      background: transparent url(../images/content/media-types/photos-small-black.png) no-repeat 0 0; }
+      background: transparent url(../images/content/media-types/photos-small-black.png) no-repeat 0 50%;
+      position: absolute;
+      top: 15px;
+      left: 15px; }
       #home.index #slides .metadata .media-type.video, #registrations.create #slides .metadata .media-type.video {
         background-image: url(../images/content/media-types/video-small-black.png); }
       #home.index #slides .metadata .media-type.writing, #registrations.create #slides .metadata .media-type.writing {
@@ -819,16 +821,23 @@ table {
       #home.index #slides .metadata .media-type.music, #registrations.create #slides .metadata .media-type.music {
         background-image: url(../images/content/media-types/music-small-black.png); }
     #home.index #slides .metadata .title, #registrations.create #slides .metadata .title {
-      text-transform: uppercase;
-      font-size: 0.75em;
-      color: black; }
+      margin-left: 60px;
+      margin-right: 300px;
+      height: 21px;
+      overflow: hidden;
+      font-size: 0.75em; }
+      #home.index #slides .metadata .title strong, #registrations.create #slides .metadata .title strong {
+        text-transform: uppercase;
+        color: black; }
+      #home.index #slides .metadata .title span, #registrations.create #slides .metadata .title span {
+        color: #aaaaaa; }
     #home.index #slides .metadata .example, #registrations.create #slides .metadata .example {
-      float: right;
-      margin-right: 15px;
+      position: absolute;
+      top: 17px;
+      right: 15px;
       color: #999999;
       font-size: 0.6em;
-      font-style: italic;
-      padding-top: 2px; }
+      font-style: italic; }
 #home.index #creators #people, #registrations.create #creators #people {
   font-size: 1.3em; }
   #home.index #creators #people h3.title, #registrations.create #creators #people h3.title {
