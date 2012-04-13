@@ -3,7 +3,7 @@
   #vertical-people{:class => @creators.empty? ? "empty" : ""}
     %h1 People
     - if @creators.empty?
-      .empty You are currently not subscribed to anyone's updates. #{link_to "Check out some of our awesome creators!", root_path, :id => "find-creators"}
+      .empty You are not currently following anyone. #{link_to "Check out some of our awesome creators!", root_path, :id => "find-creators"}
     %ul
       - @creators.each do |person|
         %li.person

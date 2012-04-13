@@ -55,7 +55,20 @@ window.CommentsView = Backbone.View.extend({
       'authenticity_token': token
     }, function(html) {
       $form.siblings('ul.comment-list').append(html);
+      Comments.increment_comment_count($form.parent().siblings('.toggle-comments'));
     });
+  },
+  
+  increment_comment_count: function($link) {
+    var $amount = $link.find('.amount');
+    var $text = $link.find('.text');
+    var amount = parseInt($amount.text()) + 1;
+    $amount.text(amount);
+    if (amount == 1) {
+      $text.text('comment');
+    } else {
+      $text.text('comments');
+    }
   }
   
 });

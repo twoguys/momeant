@@ -12,8 +12,8 @@ window.DiscoveryView = Backbone.View.extend({
 		this.current_person = -1;
 		this.people = [];
 		this.$slides = $('.slide');
-    //this.remove_people_outside_viewport();
     this.store_people();
+    this.typing = false;
 		
 		_.bindAll(this, 'on_resize');
 	  $(window).resize(this.on_resize);
@@ -21,6 +21,8 @@ window.DiscoveryView = Backbone.View.extend({
 	  
 	  _.bindAll(this, 'on_keypress');
 	  $(document).bind('keydown', this.on_keypress);
+	  
+	  $(function() { Discovery.stop_arrow_keys_during_typing(); }); // after page is rendered (to include modal inputs)
 	},
 	
 	store_people: function() {
@@ -32,9 +34,11 @@ window.DiscoveryView = Backbone.View.extend({
 		this.people = people;
 	},
 	
-	remove_people_outside_viewport: function() {
-	  $('#people #list li').each(function (index, element) {
-	    if (!withinViewport(element, {bottom: 62})) { $(element).remove(); }
+	stop_arrow_keys_during_typing: function() {
+	  $('input').each(function(index, input) {
+	    var $input = $(input);
+	    $input.focus(function() { Discovery.typing = true; });
+	    $input.blur(function() { Discovery.typing = false; })
 	  });
 	},
 	
@@ -77,12 +81,21 @@ window.DiscoveryView = Backbone.View.extend({
     Discovery.goto_person(Discovery.current_person - 1);
 	},
 	
+	goto_profile: function() {
+    if (Discovery.current_person < 0) { return false; }
+    var href = Discovery.people[Discovery.current_person].attr('href');
+    $('#main').css('right','100%');
+    setTimeout(function() {$('#loader').show();}, 200);
+    window.location.href = href;
+  },
+  
 	on_resize: function() {
 	  this.window_height = this.$window.height() - 42;
 	  this.$slides.css('height',this.window_height);
 	},
 	
 	on_keypress: function(event) {
+	  if (this.typing) { return; }
 	  var key = event.charCode ? event.charCode : event.keyCode ? event.keyCode : 0;
 	  switch (key) {
 	    case 40: // down arrow
@@ -90,6 +103,9 @@ window.DiscoveryView = Backbone.View.extend({
 	      break;
       case 38: // up arrow
         this.prev_person();
+        break;
+      case 39: // right arrow
+        this.goto_profile();
         break;
 	  }
 	}

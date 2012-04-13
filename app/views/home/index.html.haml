@@ -24,7 +24,9 @@
               .inner{:style => "background-image: url(#{content.thumbnail.url(:huge)})"}
           %a.metadata{:href => user_path(content.user, :content => content.id)}
             .media-type{:class => content.media_type}
-            .title= content.title
+            .title
+              %strong= content.title
+              %span= content.synopsis
             .example An excerpt from #{content.user.first_name}'s work
 
 #creators

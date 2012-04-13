@@ -22,7 +22,10 @@
   
   .comments
     .money #{number_to_currency(content.reward_dollars)} earned
-    = link_to pluralize(content.comments.size, "comment"), "#", :class => "toggle-comments"
+    - comment_text = pluralize(content.comments.size, "comment").split(" ")
+    %a.toggle-comments{:href => "#"}
+      %span.amount= comment_text[0]
+      %span.text= comment_text[1]
     .insides
       %ul.comment-list
         = render :partial => "comments/comment", :collection => content.comments, :as => :comment
