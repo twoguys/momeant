@@ -21,8 +21,10 @@
         
     - if current_user && current_user.is_subscribed_to?(@user)
       = link_to "Unfollow", "#", :id => "subscribe"
-    - elsif !me?(@user)
+    - elsif current_user && !me?(@user)
       = link_to "Follow", user_messages_path(@user), :id => "subscribe"
+    - elsif current_user.nil?
+      = link_to "Follow", "#join-modal", :id => "subscribe"
     
     .info
       %em What will you be sharing at momeant?
