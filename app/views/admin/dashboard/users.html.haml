@@ -4,7 +4,7 @@
   %table
     %thead
       %tr
-        %th{:colspan => 4} All Users
+        %th{:colspan => 5} All Users
     %tbody
       - User.order("created_at DESC").each do |user|
         %tr
@@ -14,3 +14,4 @@
             - if user.current_sign_in_at.present?
               last signed in #{time_ago_in_words(user.current_sign_in_at)} ago
           %td signed up #{time_ago_in_words(user.created_at)} ago
+          %td= user.type == "Creator" ? "Creator" : "User"
