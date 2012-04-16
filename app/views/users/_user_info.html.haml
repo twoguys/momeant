@@ -10,9 +10,9 @@
     %h1.name
       %span= @user.name
       - if @user.is_new?
-        %span.new.tooltipped{:title => "New User"}
+        %span.new.tooltipped-n{:title => "New User"}
       - if @user.is_featured?
-        %span.featured.tooltipped{:title => "Featured Creator"}
+        %span.featured.tooltipped-n{:title => "Featured Creator"}
   
     .about
       %span.occupation= @user.occupation
@@ -29,6 +29,7 @@
     .info
       %em What will you be sharing at momeant?
       %p= @user.tagline
+      = link_to "Edit", settings_user_path(@user) if me?(@user)
     
     .supporter-count
       %span.tooltipped-e{:title => "Supporters"}= @user.patrons.count

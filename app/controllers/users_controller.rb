@@ -4,19 +4,20 @@ class UsersController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => [:billing_updates, :update_avatar]
   
   def show
-    @content = @user.created_stories.newest_first
-    @content = @content.published unless @user == current_user
-    @supporters = @user.rewards.group_by(&:user).to_a.map {|x| [x.first,x.second.inject(0){|sum,r| sum+r.amount}]}.sort_by(&:second).reverse
-    @messages = @user.profile_messages
     @nav = "me" if @user == current_user
+    
+    if @user.is_a?(Creator)
+      @content = @user.created_stories.newest_first
+      @content = @content.published unless @user == current_user
+      @supporters = @user.rewards.group_by(&:user).to_a.map {|x| [x.first,x.second.inject(0){|sum,r| sum+r.amount}]}.sort_by(&:second).reverse
+    else
+      prepare_patronage_data
+      render "patronage"
+    end
   end
   
-  def creations
-    @nav = "create" if @user == current_user
-  end
-  
-  def stream #ajax requests
-    render @user.following_stream(params[:page])
+  def patronage
+    prepare_patronage_data
   end
   
   def activity
@@ -104,6 +105,11 @@ class UsersController < ApplicationController
     render :text => ""
   end
   
+  def submit_creator_request
+    FeedbackMailer.creator_request(@user, params[:description], params[:examples]).deliver
+    render :text => ""
+  end
+  
   def activity_from_friends
     @activity = @user.activity_from_twitter_and_facebook_friends[0..4]
     render :partial => "sidebar_activity"
@@ -135,10 +141,6 @@ class UsersController < ApplicationController
     
   def rewarded
     @rewards = @user.given_rewards
-  end
-  
-  def patronage
-    @users = @user.rewarded_creators
   end
   
   def followers
@@ -182,5 +184,9 @@ class UsersController < ApplicationController
       @page_title = @user.name if @user
       @nav = "me" if current_user == @user
       @sidenav = "profile" if current_user.present? && @user == current_user
+    end
+    
+    def prepare_patronage_data
+      @users = @user.rewarded_creators
     end
 end

@@ -42,6 +42,8 @@ class StoriesController < ApplicationController
   end
   
   def new
+    redirect_to become_a_creator_user_path(current_user) and return unless current_user.is_a?(Creator)
+
     @story = Story.create!(
       :thumbnail_page => 1,
       :user_id => current_user.id,

@@ -1,13 +1,16 @@
-- content_for :head do
-  = javascript_include_tag "jquery.masonry.min"
+#user-profile
+  
+  #profile-center.column
+    #vertical-list
+      Patronage Page
+  
+  #profile-left.column
+    = render "users/user_info"
 
-.avatar-wall
-  - @users.each do |user|
-    - size = avatar_size_for_impact(@user.impact_on(user))
-    = link_to(image_tag(user.avatar.url(:large), :style => size), user_content_rewarded_by_path(user, @user), :class => "tooltipped", :title => user.name)
+  #profile-right.column
+    #vertical-people
+      - @users.each do |person|
+        %li.person
+          = link_to image_tag(person.avatar.url(:large)), user_path(person), :class => "tooltipped", :title => person.name
 
-:javascript
-  $(document).ready(function() {
-    $('.avatar-wall').masonry({columnWidth:30});
-    $('.avatar-wall a').fancybox();
-  });
+  .clear
