@@ -99,6 +99,7 @@ Repo::Application.routes.draw do
     match '/', :to =>"dashboard#index", :as => :dashboard
     match '/live', :to => "dashboard#live", :as => :live
     match '/users', :to => "dashboard#users", :as => :users
+    match '/users/:id/change_to', :to => "dashboard#change_user_to"
     resources :pay_periods do
       post :mark_paid, :on => :member
     end
