@@ -11,6 +11,7 @@ class UsersController < ApplicationController
       @content = @content.published unless @user == current_user
       @supporters = @user.rewards.group_by(&:user).to_a.map {|x| [x.first,x.second.inject(0){|sum,r| sum+r.amount}]}.sort_by(&:second).reverse
     else
+      @body_class = "patronage"
       prepare_patronage_data
       render "patronage"
     end
@@ -18,6 +19,14 @@ class UsersController < ApplicationController
   
   def patronage
     prepare_patronage_data
+  end
+  
+  def patronage_filter # ajax
+    @rewards = @user.given_rewards.includes(:story)
+    if params[:creator_id].present?
+      @rewards = @rewards.where(:recipient_id => params[:creator_id])
+    end
+    render :partial => "patronage_list"
   end
   
   def activity
@@ -188,5 +197,6 @@ class UsersController < ApplicationController
     
     def prepare_patronage_data
       @users = @user.rewarded_creators
+      @rewards = @user.given_rewards.includes(:story)
     end
 end

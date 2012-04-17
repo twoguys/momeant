@@ -1,26 +1,21 @@
 /*
-Syntax error: Undefined variable: "$blue".
-        on line 32 of /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/users/profile.sass
-        from line 1 of /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/users.sass
+Syntax error: Undefined mixin 'rounded'.
+        on line 3 of /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/users/activity.sass, in `rounded'
+        from line 3 of /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/users/activity.sass
 
-27: 	margin-left: 200px
-28: 	.example
-29: 		border: none
-30: 	textarea
-31: 		height: 150px
-32: 		width: 95%
-33: 		line-height: 24px
-34: 		font-family: $block
-35: 		font-weight: 100
-36: 	#user_interest_list
-37: 		width: 98%
+1: #user-profile
+2: 	#activity
+3: 		@include rounded(0)
+4: 		@include boxshadow(0,0)
+5: 		margin: 0
+6: 		#activity-body
+7: 			border: none
+8: 		#activity-list
 
 Backtrace:
-/Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/users/profile.sass:32
-/Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/users.sass:1
-/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/script/variable.rb:45:in `_perform'
-/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/script/node.rb:40:in `perform'
-/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:215:in `visit_prop'
+/Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/users/activity.sass:3:in `rounded'
+/Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/users/activity.sass:3
+/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:169:in `visit_mixin'
 /Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:37:in `send'
 /Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
 /Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:18:in `visit'
@@ -43,12 +38,6 @@ Backtrace:
 /Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:26:in `visit_children'
 /Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
 /Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:230:in `visit_rule'
-/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:37:in `send'
-/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
-/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:18:in `visit'
-/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:145:in `visit_import'
-/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:145:in `map'
-/Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:145:in `visit_import'
 /Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:37:in `send'
 /Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
 /Users/djbrowning/projects/momeant/repo/vendor/ruby/1.8/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:18:in `visit'
@@ -123,4 +112,4 @@ Backtrace:
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Syntax error: Undefined variable: \"$blue\".\A         on line 32 of /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/users/profile.sass\A         from line 1 of /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/users.sass\A \A 27: 	margin-left: 200px\A 28: 	.example\A 29: 		border: none\A 30: 	textarea\A 31: 		height: 150px\A 32: 		width: 95%\A 33: 		line-height: 24px\A 34: 		font-family: $block\A 35: 		font-weight: 100\A 36: 	#user_interest_list\A 37: 		width: 98%"; }
+  content: "Syntax error: Undefined mixin 'rounded'.\A         on line 3 of /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/users/activity.sass, in `rounded'\A         from line 3 of /Users/djbrowning/projects/momeant/repo/public/stylesheets/sass/users/activity.sass\A \A 1: #user-profile\A 2: 	#activity\A 3: 		@include rounded(0)\A 4: 		@include boxshadow(0,0)\A 5: 		margin: 0\A 6: 		#activity-body\A 7: 			border: none\A 8: 		#activity-list"; }

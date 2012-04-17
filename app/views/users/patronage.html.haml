@@ -1,16 +1,27 @@
-#user-profile
+#user-profile.no-right-column
   
   #profile-center.column
+    #statement
+      %em I reward content
+      %span ...
+    #reward-total
+      .amount= number_to_currency(@user.given_rewards.sum(:amount) * Reward.dollar_exchange)
+      .text cash raised
+    
+    #carousel
+      .title I recently rewarded
+      - @users.each do |user|
+        = link_to image_tag(user.avatar.url(:large)), "#", :class => "tooltipped", :title => user.name, :data => user.id
+    
     #vertical-list
-      Patronage Page
-  
+      %ul#activity-list
+        = render "users/patronage_list"
+              
   #profile-left.column
     = render "users/user_info"
 
-  #profile-right.column
-    #vertical-people
-      - @users.each do |person|
-        %li.person
-          = link_to image_tag(person.avatar.url(:large)), user_path(person), :class => "tooltipped", :title => person.name
-
   .clear
+
+:javascript
+  var user_id = '#{@user.id}';
+= javascript_include_tag "users/patronage"

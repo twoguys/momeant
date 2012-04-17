@@ -21,8 +21,7 @@ window.SubscriptionsView = Backbone.View.extend({
     $.scrollTo(0);
     $('#activity-list').addClass('loading');
     $.get('/users/' + user_id + '/subscriptions/filter?id=' + id, function(html) {
-      $('#activity-list').html(html).removeClass('loading').find('li:first-child').addClass('current');
-      Scroll.on_resize();
+      $('#activity-list').html(html).removeClass('loading');
     });
     
     return false;
@@ -34,8 +33,7 @@ window.SubscriptionsView = Backbone.View.extend({
     $.scrollTo(0);
     $('#activity-list').addClass('loading');
     $.get('/users/' + user_id + '/subscriptions/filter', function(html) {
-      $('#activity-list').html(html).removeClass('loading').find('li:first-child').addClass('current');
-      Scroll.on_resize();
+      $('#activity-list').html(html).removeClass('loading');
     });
   }
   

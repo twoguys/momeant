@@ -60,6 +60,7 @@ Repo::Application.routes.draw do
     
     member do
       get :patronage
+      get :patronage_filter
       get :activity
       get :more_activity #ajax
       get :settings

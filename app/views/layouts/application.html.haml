@@ -36,7 +36,7 @@
     = render "shared/mixpanel"
     = yield :head
     
-  %body{:class => @fullscreen.nil? ? controller.action_name : "#{controller.action_name} fullscreen", :id => controller.controller_name}
+  %body{:class => @fullscreen.nil? ? "#{controller.action_name} #{@body_class}" : "#{controller.action_name} #{@body_class} fullscreen", :id => controller.controller_name}
     %header#header
       = render "layouts/user_nav" unless @hide_nav
     

@@ -1,0 +1,36 @@
+- @rewards.each do |reward|
+  - content = reward.story
+  %li.content{:id => "content-#{content.id}"}
+    .info
+      .media-type{:class => content.media_type}
+      .text
+        = link_to(content.title, story_url(content), :class => "title")
+        .synopsis= truncate(content.synopsis, :length => 140)
+        - if content.category
+          %span.category= content.category
+    %a.content-preview{:href => story_path(content), :class => "#{content.media_type} #{content.template}"}
+      - if content.text_media_type?
+        .inner
+          .image
+          .quote= truncate(content.template_text, :length => 140)
+      - else
+        .inner{:style => "background-image: url(#{content.thumbnail.url(:large)})"}
+      .curvy
+
+    .reward
+      .text
+        = link_to "#{@user.first_name} said:", user_path(@user)
+        %span.comment= reward.comment
+      .amount
+        %strong= number_to_currency(reward.dollar_amount)
+        %span rewarded
+    
+    .creator
+      = link_to image_tag(content.user.avatar.url(:editorial)), user_path(content.user), :class => "avatar"
+      .metadata
+        %h1.name= content.user.name
+        .occupation= content.user.occupation
+        - if content.user.location
+          .location from #{content.user.location}
+      %a.view-profile{:href => user_path(content.user)}
+        %span View Profile

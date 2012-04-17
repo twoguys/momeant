@@ -24,9 +24,9 @@ class User < ActiveRecord::Base
   has_many :bookmarks, :dependent => :destroy
   has_many :bookmarked_stories, :through => :bookmarks, :source => :story
   
-  has_many :rewards, :foreign_key => :recipient_id, :order => "amount DESC"
+  has_many :rewards, :foreign_key => :recipient_id
   has_many :patrons, :through => :rewards, :source => :user, :uniq => true
-  has_many :given_rewards, :class_name => "Reward", :dependent => :destroy
+  has_many :given_rewards, :class_name => "Reward", :dependent => :destroy, :order => "created_at DESC"
   has_many :rewarded_creators, :through => :given_rewards, :source => :recipient, :uniq => true
   has_many :rewarded_stories, :through => :given_rewards, :source => :story
   
