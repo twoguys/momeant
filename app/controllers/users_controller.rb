@@ -25,6 +25,8 @@ class UsersController < ApplicationController
     @rewards = @user.given_rewards.includes(:story)
     if params[:creator_id].present?
       @rewards = @rewards.where(:recipient_id => params[:creator_id])
+    else
+      @rewards = @rewards.limit(1)
     end
     render :partial => "patronage_list"
   end
@@ -197,6 +199,6 @@ class UsersController < ApplicationController
     
     def prepare_patronage_data
       @users = @user.rewarded_creators
-      @rewards = @user.given_rewards.includes(:story)
+      @rewards = @user.given_rewards.includes(:story).limit(1)
     end
 end
