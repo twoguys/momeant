@@ -9,6 +9,10 @@ window.PatronageView = Backbone.View.extend({
 	initialize: function() {
 	  this.ensure_body_is_full_height();
 	  
+	  if (my_page) {
+	    this.make_reward_reason_editable();
+	  }
+	  
 	  _.bindAll(this, 'on_resize');
 	  $(window).resize(this.on_resize);
   },
@@ -21,6 +25,17 @@ window.PatronageView = Backbone.View.extend({
     } else {
       $('body').css('height', 'auto');
     }
+  },
+  
+  make_reward_reason_editable: function() {
+    $('#edit-reward-reason').editInPlace({
+  		url: '/users/' + user_id + '/update_in_place',
+  		params: 'attribute=i_reward_because',
+  		field_type: 'textarea',
+  		textarea_cols: 65,
+  		textarea_rows: 1,
+  		show_buttons: true
+  	});
   },
   
   filter_person: function(event) {

@@ -3,7 +3,11 @@
   #profile-center.column
     #statement
       %em I reward content
-      %span ...
+      - if me?(@user)
+        %span#edit-reward-reason.tooltipped-n{:title => "Tell others why you believe in rewarding (in 140 characters or less)."}
+          = truncate(@user.i_reward_because, :length => 140) || "..."
+      - else
+        %span= truncate(@user.i_reward_because, :length => 140) || "..."
     #reward-total
       .amount= number_to_currency(@user.given_rewards.sum(:amount) * Reward.dollar_exchange)
       .text cash raised
@@ -27,4 +31,5 @@
 :javascript
   var user_id = #{@user.id};
   var my_page = #{me?(@user)};
+= javascript_include_tag "jquery.editinplace"
 = javascript_include_tag "users/patronage"
