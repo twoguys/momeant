@@ -26,7 +26,6 @@ window.PatronageView = Backbone.View.extend({
   filter_person: function(event) {
     var $link = $(event.currentTarget);
     if ($link.hasClass('selected')) {
-      Patronage.show_all_people($link);
       return false;
     }
     
@@ -39,15 +38,6 @@ window.PatronageView = Backbone.View.extend({
     });
     
     return false;
-  },
-  
-  show_all_people: function($link) {
-    $('#vertical-list').removeClass('filtered');
-    $link.removeClass('selected');
-    $('#activity-list').addClass('loading');
-    $.get('/users/' + user_id + '/patronage_filter', function(html) {
-      $('#activity-list').html(html).removeClass('loading');
-    });
   },
   
   on_resize: function() {

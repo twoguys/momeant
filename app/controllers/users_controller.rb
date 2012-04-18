@@ -22,12 +22,7 @@ class UsersController < ApplicationController
   end
   
   def patronage_filter # ajax
-    @rewards = @user.given_rewards.includes(:story)
-    if params[:creator_id].present?
-      @rewards = @rewards.where(:recipient_id => params[:creator_id])
-    else
-      @rewards = @rewards.limit(1)
-    end
+    @rewards = @user.given_rewards.where(:recipient_id => params[:creator_id]).includes(:story)
     render :partial => "patronage_list"
   end
   
@@ -198,7 +193,8 @@ class UsersController < ApplicationController
     end
     
     def prepare_patronage_data
-      @users = @user.rewarded_creators
-      @rewards = @user.given_rewards.includes(:story).limit(1)
+      @users = @user.given_rewards.includes(:recipient).map(&:recipient).uniq
+      @rewards = []
+      @rewards = @user.given_rewards.where(:recipient_id => @users.first.id).includes(:story) if @users.first
     end
 end

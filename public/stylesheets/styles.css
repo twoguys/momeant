@@ -1406,7 +1406,7 @@ body#users, body#messages {
       width: 170px; } }
 body#users.patronage {
   background: #e0e0e0; }
-  body#users.patronage .profile-info .supporter-count, body#users.patronage .profile-info #broadcaster {
+  body#users.patronage .profile-info .supporter-count, body#users.patronage .profile-info .info, body#users.patronage .profile-info #broadcaster {
     display: none; }
   body#users.patronage #statement {
     height: 80px;
@@ -1460,6 +1460,10 @@ body#users.patronage {
       border-bottom: 5px solid #00aeef; }
   body#users.patronage #vertical-list li {
     position: relative; }
+    body#users.patronage #vertical-list li .creator {
+      display: none; }
+    body#users.patronage #vertical-list li:first-child .creator {
+      display: block; }
   body#users.patronage #vertical-list a.content-preview {
     position: relative; }
     body#users.patronage #vertical-list a.content-preview .curvy {
@@ -1533,10 +1537,6 @@ body#users.patronage {
       body#users.patronage #vertical-list .creator a.view-profile span {
         padding-right: 30px;
         background: transparent url(../images/profile/view-profile-arrow.png) no-repeat 100% 50%; }
-  body#users.patronage #vertical-list.filtered li .creator {
-    display: none; }
-  body#users.patronage #vertical-list.filtered li:first-child .creator {
-    display: block; }
 
 #user-profile .user-settings #settings-list {
   margin-bottom: 30px; }
