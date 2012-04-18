@@ -25,5 +25,6 @@
   .clear
 
 :javascript
-  var user_id = '#{@user.id}';
+  var user_id = #{@user.id};
+  var my_page = #{me?(@user)};
 = javascript_include_tag "users/patronage"

@@ -1430,14 +1430,16 @@ body#users.patronage {
       color: #00aeef;
       text-align: right; }
   body#users.patronage #carousel {
-    width: 3000px;
     height: 80px;
-    overflow: hidden; }
+    position: relative;
+    padding-left: 150px; }
     body#users.patronage #carousel .title, body#users.patronage #carousel a {
       border-top: 5px solid #e0e0e0;
       border-bottom: 5px solid #e0e0e0; }
     body#users.patronage #carousel .title {
-      float: left;
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 110px;
       height: 34px;
       padding: 18px 20px;
@@ -1538,6 +1540,9 @@ body#users.patronage {
         padding-right: 30px;
         background: transparent url(../images/profile/view-profile-arrow.png) no-repeat 100% 50%; }
 
+@media all and (max-width: 1285px) {
+  body#users.patronage #vertical-list li:first-child .creator {
+    display: none; } }
 #user-profile .user-settings #settings-list {
   margin-bottom: 30px; }
 #user-profile .user-settings li {
