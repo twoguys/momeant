@@ -69,6 +69,7 @@ Repo::Application.routes.draw do
       post :update_in_place
       post :update_avatar
       post :update_email_setting
+      post :change_password
     end
     
     # Feedback

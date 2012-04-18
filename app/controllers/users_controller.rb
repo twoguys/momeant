@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :authenticate_user!, :only => [:edit, :update, :update_in_place, :udpate_avatar, :analytics, :feedback]
+  before_filter :authenticate_user!, :only => [:edit, :update, :update_in_place, :udpate_avatar, :analytics, :feedback, :settings, :change_password]
   before_filter :find_user, :except => [:community, :community_creators, :analytics, :billing_updates, :feedback]
   skip_before_filter :verify_authenticity_token, :only => [:billing_updates, :update_avatar]
   
@@ -111,65 +111,19 @@ class UsersController < ApplicationController
     render :text => ""
   end
   
+  def change_password
+    if @user.update_with_password(params[:user])
+      sign_in :user, @user, :bypass => true
+      redirect_to settings_user_path(current_user)
+    else
+      flash[:alert] = @user.errors.full_messages
+      render "settings"
+    end
+  end
+  
   def submit_creator_request
     FeedbackMailer.creator_request(@user, params[:description], params[:examples]).deliver
     render :text => ""
-  end
-  
-  def activity_from_friends
-    @activity = @user.activity_from_twitter_and_facebook_friends[0..4]
-    render :partial => "sidebar_activity"
-  end
-  
-  def content_from_nearbys
-    @content = []
-
-    user_ids = @user.nearbys(30).map(&:id).join(",")
-    unless user_ids.blank?
-      @content = Story.published.newest_first.where("user_id IN (#{user_ids})").limit(3)
-    end
-    story_ids = @user.given_rewards.map(&:story_id)
-    unless story_ids.blank?
-      @content.reject!{|s| story_ids.include? s.id}
-    end
-    
-    render :partial => "sidebar_nearby_content"
-  end
-  
-  def similar_to_what_ive_rewarded
-    @content = @user.stories_tagged_similarly_to_what_ive_rewarded[0..2]
-    render :partial => "sidebar_similar_to_what_ive_rewarded"
-  end
-  
-  def bookmarks
-    @sidenav = "bookmarks"
-  end
-    
-  def rewarded
-    @rewards = @user.given_rewards
-  end
-  
-  def followers
-    @users = @user.subscribers
-    @followers = true
-    render "following"
-  end
-  
-  def following
-    @users = @user.subscribed_to
-  end
-  
-  def content_rewarded_by
-    @rewarder = User.find_by_id(params[:rewarder_id])
-    @rewards = @rewarder.given_rewards.where(:recipient_id => @user.id)
-    render :layout => false
-  end
-  
-  def analytics
-    @user = current_user
-    @patrons = @user.rewards.group_by {|r| r.user_id}
-    @sidenav = "analytics"
-    @nav = "me"
   end
   
   def feedback
@@ -177,10 +131,6 @@ class UsersController < ApplicationController
       FeedbackMailer.give_feedback(params[:comment], current_user).deliver
     end
     render :json => {:success => true}
-  end
-  
-  def billing_updates
-    head :ok
   end
   
   private
