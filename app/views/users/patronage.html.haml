@@ -9,9 +9,6 @@
       - else
         %em I reward content
         %span= truncate(@user.i_reward_because, :length => 140) || "..."
-    #reward-total
-      .amount= number_to_currency(@user.given_rewards.sum(:amount) * Reward.dollar_exchange)
-      .text cash raised
     
     #carousel
       .title I recently rewarded

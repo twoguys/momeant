@@ -45,14 +45,15 @@
           %span.info (click to edit)
         .text{:update => "email"}= @user.email
 
-      %section.amazon_email
-        %h3
-          %span Amazon Email
-          %span.info (click to edit)
-          %span.freak-out PLEASE DOUBLE CHECK THIS as we will send your cashouts to this account.
-        .text{:update => "amazon_email"}= @user.amazon_email
-        %form
-          .example Not in the United States? Please #{mail_to "support@momeant.com", "contact us"} for a custom pay out method.
+      - if @user.is_a?(Creator)
+        %section.amazon_email
+          %h3
+            %span Amazon Email
+            %span.info (click to edit)
+            %span.freak-out PLEASE DOUBLE CHECK THIS as we will send your cashouts to this account.
+          .text{:update => "amazon_email"}= @user.amazon_email
+          %form
+            .example Not in the United States? Please #{mail_to "support@momeant.com", "contact us"} for a custom pay out method.
 
       %section.occupation
         %h3

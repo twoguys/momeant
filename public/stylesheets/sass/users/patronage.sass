@@ -2,8 +2,19 @@ body#users.patronage
 	background: #e0e0e0
 	
 	.profile-info
-		.supporter-count, .info, #broadcaster
+		.supporter-count, .follow, .info, #broadcaster
 			display: none
+		#reward-total
+			display: block
+			.amount
+				font-size: 46px
+				font-weight: 200
+				margin-bottom: 5px
+				span
+					border-bottom: 1px solid #333
+			.text
+				font-weight: 600
+				color: #777
 
 	#statement		
 		width: 630px
@@ -15,20 +26,6 @@ body#users.patronage
 			color: $blue
 			font-style: normal
 			cursor: pointer
-	
-	#reward-total
-		position: absolute
-		top: 20px
-		right: 30px
-		.amount
-			font-size: 46px
-			font-weight: 200
-			border-bottom: 1px solid #fff
-			margin-bottom: 5px
-		.text
-			font-weight: 600
-			color: $blue
-			text-align: right
 	
 	#carousel
 		height: 80px
@@ -141,6 +138,7 @@ body#users.patronage
 					font-size: 0.9em
 			a.view-profile
 				display: block
+				height: 22px
 				padding: 10px 20px
 				background: $blue
 				color: #000
@@ -152,4 +150,14 @@ body#users.patronage
 
 @media all and (max-width: 1285px)
 	body#users.patronage #vertical-list li:first-child .creator
-		display: none
+		position: static
+		width: 330px
+		height: 300px
+		padding-left: 300px
+		margin-bottom: 20px
+		a.avatar
+			position: absolute
+			top: 0
+			left: 0
+		.metadata
+			height: 218px

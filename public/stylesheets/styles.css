@@ -1218,13 +1218,36 @@ body#users, body#messages {
         margin-left: 0;
         background-image: url(../images/profile/featured.png); }
     #user-profile .profile-info .metadata .about {
-      margin-bottom: 30px;
+      margin-bottom: 20px;
       font-weight: 100;
       color: #999999; }
       #user-profile .profile-info .metadata .about span {
         display: block; }
       #user-profile .profile-info .metadata .about .occupation {
         font-size: 1.3em; }
+    #user-profile .profile-info .metadata .subnav {
+      margin: 0 -40px 20px -20px; }
+      #user-profile .profile-info .metadata .subnav a span {
+        margin-right: 20px;
+        display: block;
+        padding: 10px 20px;
+        margin-right: 20px;
+        background: #333333;
+        color: #999999;
+        text-transform: uppercase;
+        -webkit-transition: color 0.2s linear;
+        -moz-transition: color 0.2s linear;
+        -ms-transition: color 0.2s linear;
+        -o-transition: color 0.2s linear;
+        transition: color 0.2s linear; }
+        #user-profile .profile-info .metadata .subnav a span:hover {
+          color: white; }
+      #user-profile .profile-info .metadata .subnav a.active {
+        display: block;
+        background: transparent url(../images/profile/subnav-arrow.png) no-repeat 294px -7px; }
+        #user-profile .profile-info .metadata .subnav a.active span {
+          background: #00aeef;
+          color: white; }
     #user-profile .profile-info .metadata #subscribe {
       display: block;
       padding: 10px 20px;
@@ -1250,6 +1273,8 @@ body#users, body#messages {
       font-weight: 200;
       padding-right: 25px;
       background: transparent url(../images/discovery/supporters.png) 100% 12px no-repeat; }
+    #user-profile .profile-info .metadata #reward-total {
+      display: none; }
     #user-profile .profile-info .metadata #broadcaster {
       position: relative;
       height: 245px;
@@ -1406,8 +1431,19 @@ body#users, body#messages {
       width: 170px; } }
 body#users.patronage {
   background: #e0e0e0; }
-  body#users.patronage .profile-info .supporter-count, body#users.patronage .profile-info .info, body#users.patronage .profile-info #broadcaster {
+  body#users.patronage .profile-info .supporter-count, body#users.patronage .profile-info .follow, body#users.patronage .profile-info .info, body#users.patronage .profile-info #broadcaster {
     display: none; }
+  body#users.patronage .profile-info #reward-total {
+    display: block; }
+    body#users.patronage .profile-info #reward-total .amount {
+      font-size: 46px;
+      font-weight: 200;
+      margin-bottom: 5px; }
+      body#users.patronage .profile-info #reward-total .amount span {
+        border-bottom: 1px solid #333333; }
+    body#users.patronage .profile-info #reward-total .text {
+      font-weight: 600;
+      color: #777777; }
   body#users.patronage #statement {
     width: 630px;
     height: 80px;
@@ -1418,19 +1454,6 @@ body#users.patronage {
       color: #00aeef;
       font-style: normal;
       cursor: pointer; }
-  body#users.patronage #reward-total {
-    position: absolute;
-    top: 20px;
-    right: 30px; }
-    body#users.patronage #reward-total .amount {
-      font-size: 46px;
-      font-weight: 200;
-      border-bottom: 1px solid white;
-      margin-bottom: 5px; }
-    body#users.patronage #reward-total .text {
-      font-weight: 600;
-      color: #00aeef;
-      text-align: right; }
   body#users.patronage #carousel {
     height: 80px;
     position: relative;
@@ -1533,6 +1556,7 @@ body#users.patronage {
         font-size: 0.9em; }
     body#users.patronage #vertical-list .creator a.view-profile {
       display: block;
+      height: 22px;
       padding: 10px 20px;
       background: #00aeef;
       color: black;
@@ -1544,7 +1568,17 @@ body#users.patronage {
 
 @media all and (max-width: 1285px) {
   body#users.patronage #vertical-list li:first-child .creator {
-    display: none; } }
+    position: static;
+    width: 330px;
+    height: 300px;
+    padding-left: 300px;
+    margin-bottom: 20px; }
+    body#users.patronage #vertical-list li:first-child .creator a.avatar {
+      position: absolute;
+      top: 0;
+      left: 0; }
+    body#users.patronage #vertical-list li:first-child .creator .metadata {
+      height: 218px; } }
 #user-profile .user-settings #settings-list {
   margin-bottom: 30px; }
 #user-profile .user-settings li {
