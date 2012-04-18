@@ -36,6 +36,9 @@ window.PatronageView = Backbone.View.extend({
   		textarea_rows: 1,
   		show_buttons: true
   	});
+  	$('#statement em').click(function() {
+  	  $('#edit-reward-reason').click();
+  	});
   },
   
   filter_person: function(event) {

@@ -74,7 +74,7 @@ class UsersController < ApplicationController
   end
   
   def update_in_place
-    return if params[:update_value].blank?
+    render :text => params[:original_value] and return if params[:update_value].blank?
     return unless ["occupation", "location", "first_name", "last_name", "email", "amazon_email", "tagline", "i_reward_because"].include?(params[:attribute])
     
     @user = current_user
