@@ -10,8 +10,10 @@
     
     #carousel
       .title I recently rewarded
+      - first = true
       - @users.each do |user|
-        = link_to image_tag(user.avatar.url(:large)), "#", :class => "tooltipped", :title => user.name, :data => user.id
+        = link_to image_tag(user.avatar.url(:large)), "#", :class => "tooltipped #{first ? "selected" : ""}", :title => user.name, :data => user.id
+        - first = false
     
     #vertical-list
       %ul#activity-list
