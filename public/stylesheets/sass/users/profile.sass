@@ -36,6 +36,8 @@ body#users, body#messages
 		padding-right: 0
 
 #user-profile
+	background: #e0e0e0
+	
 	.profile-info
 		.avatar-badge
 			position: relative
@@ -53,6 +55,21 @@ body#users, body#messages
 				bottom: -5px
 				right: -30px
 				z-index: 2
+			.follow
+				#subscribe
+					display: inline-block
+					height: 20px
+					padding: 7px 14px 22px
+					background: transparent url(../images/profile/follow-bg.png) no-repeat 100% 100%
+					color: #004666
+					font-size: 18px
+					text-transform: uppercase
+					position: absolute
+					bottom: -25px
+					right: -12px
+					@include transition(color)
+					&:hover
+						color: #fff
 				
 		.metadata
 			padding: 20px
@@ -86,34 +103,23 @@ body#users, body#messages
 					font-size: 1.3em
 			
 			.subnav
-				margin: 0 -40px 20px -20px
+				margin: 0 -20px 30px
 				a
 					span
-						margin-right: 20px
 						display: block
 						padding: 10px 20px
-						margin-right: 20px
 						background: #333
 						color: #999
 						text-transform: uppercase
-						@include transition(color)
+						@include transition
 						&:hover
+							background: #444
 							color: #fff
 				a.active
 					display: block
-					background: transparent url(../images/profile/subnav-arrow.png) no-repeat 294px -7px
 					span
-						background: $blue
-						color: #fff
-					
-			#subscribe
-				display: block
-				padding: 10px 20px
-				margin: 0 -20px 30px
-				background: $blue
-				color: #000
-				font-size: 20px
-				text-transform: uppercase
+						background: #e0e0e0
+						color: #000
 			
 			.info, .supporter-count
 				margin-bottom: 20px
