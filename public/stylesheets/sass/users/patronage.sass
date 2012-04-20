@@ -1,0 +1,162 @@
+body#users.patronage
+	
+	.profile-info
+		.supporter-count, .follow, .info, #broadcaster
+			display: none
+		#reward-total
+			display: block
+			.amount
+				font-size: 46px
+				font-weight: 200
+				margin-bottom: 5px
+				span
+					border-bottom: 1px solid #333
+			.text
+				font-weight: 600
+				color: #777
+
+	#statement		
+		width: 630px
+		height: 80px
+		padding: 20px 30px
+		font-size: 24px
+		font-weight: 600
+		em
+			color: $blue
+			font-style: normal
+			cursor: pointer
+	
+	#carousel
+		height: 80px
+		position: relative
+		padding-left: 150px
+		
+		.title, a
+			border-top: 5px solid #e0e0e0
+			border-bottom: 5px solid #e0e0e0
+	
+		.title
+			position: absolute
+			top: 0
+			left: 0
+			width: 110px
+			height: 34px
+			padding: 18px 20px
+			background: #000
+			color: #797979
+			font-size: 18px
+			font-weight: 600
+			line-height: 18px
+			text-transform: uppercase
+		
+		a
+			display: block
+			float: left
+			width: 70px
+			height: 70px
+			img
+				width: 70px
+				height: 70px
+		
+		a:hover, a.selected
+			border-top: 5px solid $blue
+			border-bottom: 5px solid $blue
+	
+	#vertical-list
+		li
+			position: relative
+			.creator
+				display: none
+			&:first-child .creator
+				display: block
+				
+		a.content-preview
+			position: relative
+			.curvy
+				width: 47px
+				height: 41px
+				position: absolute
+				bottom: 0
+				left: 40px
+				background: transparent url(../images/profile/reward-comment-curve.png) no-repeat 0 0
+
+		.reward
+			min-height: 60px
+			padding: 30px 40px
+			background: #fff
+			position: relative
+			.text
+				width: 420px
+				a, .comment
+					font-family: $typewriter
+					font-size: 22px
+					font-style: italic
+				.comment
+					font-weight: 100
+			.amount
+				position: absolute
+				top: 20px
+				right: 40px
+				strong
+					display: block
+					font-size: 46px
+					font-weight: 200
+					border-bottom: 1px solid #ddd
+					margin-bottom: 5px
+				span
+					font-weight: 600
+					color: $blue
+					text-align: right
+		
+		.creator
+			width: 300px
+			position: absolute
+			top: 0
+			right: -320px
+			.avatar, .avatar img
+				position: static
+				width: 300px
+				height: 300px
+			.metadata
+				background: #000
+				color: #fff
+				padding: 20px
+				.name, .occupation, .location
+					font-family: $typewriter
+					font-style: italic
+				.name
+					padding-bottom: 8px
+					border-bottom: 3px solid #fff
+					margin-bottom: 10px
+				.occupation, .location
+					font-weight: 100
+					color: #999
+				.occupation
+					font-size: 1.3em
+				.location
+					font-size: 0.9em
+			a.view-profile
+				display: block
+				height: 22px
+				padding: 10px 20px
+				background: $blue
+				color: #000
+				font-size: 18px
+				text-transform: uppercase
+				span
+					padding-right: 30px
+					background: transparent url(../images/profile/view-profile-arrow.png) no-repeat 100% 50%
+
+@media all and (max-width: 1285px)
+	body#users.patronage #vertical-list li:first-child .creator
+		position: static
+		width: 330px
+		height: 300px
+		padding-left: 300px
+		margin-bottom: 20px
+		a.avatar
+			position: absolute
+			top: 0
+			left: 0
+		.metadata
+			height: 218px

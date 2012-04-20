@@ -1,13 +1,33 @@
-- content_for :head do
-  = javascript_include_tag "jquery.masonry.min"
+#user-profile.no-right-column
+  
+  #profile-center.column
+    #statement
+      - if me?(@user)
+        %em.tooltipped-n{:title => "Tell others why you believe in rewarding (in 140 characters or less)."} I reward content
+        %span#edit-reward-reason
+          = truncate(@user.i_reward_because, :length => 140) || "..."
+      - else
+        %em I reward content
+        %span= truncate(@user.i_reward_because, :length => 140) || "..."
+    
+    #carousel
+      .title I recently rewarded
+      - first = true
+      - @users.each do |user|
+        = link_to image_tag(user.avatar.url(:large)), "#", :class => "tooltipped #{first ? "selected" : ""}", :title => user.name, :data => user.id
+        - first = false
+    
+    #vertical-list
+      %ul#activity-list
+        = render "users/patronage_list"
+              
+  #profile-left.column
+    = render "users/user_info"
 
-.avatar-wall
-  - @users.each do |user|
-    - size = avatar_size_for_impact(@user.impact_on(user))
-    = link_to(image_tag(user.avatar.url(:large), :style => size), user_content_rewarded_by_path(user, @user), :class => "tooltipped", :title => user.name)
+  .clear
 
 :javascript
-  $(document).ready(function() {
-    $('.avatar-wall').masonry({columnWidth:30});
-    $('.avatar-wall a').fancybox();
-  });
+  var user_id = #{@user.id};
+  var my_page = #{me?(@user)};
+= javascript_include_tag "jquery.editinplace"
+= javascript_include_tag "users/patronage"

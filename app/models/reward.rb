@@ -12,6 +12,8 @@ class Reward < Curation
   scope :this_month, where("created_at > '#{1.month.ago}'")
   scope :cashed_out, where("cashout_id IS NOT NULL")
   scope :not_cashed_out, where("cashout_id IS NULL")
+  scope :for_user, lambda { |user| where(:recipient_id => user.id) }
+  scope :but_not_for, lambda { |content| where("story_id != ?", content.id) }
   
   before_destroy :destroy_activities
   

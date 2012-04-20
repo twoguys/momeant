@@ -1,10 +1,10 @@
 .admin
   = render "admin/tabs"
 
-  %table
+  %table#user-list
     %thead
       %tr
-        %th{:colspan => 4} All Users
+        %th{:colspan => 5} All Users
     %tbody
       - User.order("created_at DESC").each do |user|
         %tr
@@ -14,3 +14,19 @@
             - if user.current_sign_in_at.present?
               last signed in #{time_ago_in_words(user.current_sign_in_at)} ago
           %td signed up #{time_ago_in_words(user.created_at)} ago
+          - user_type = user.type == "Creator" ? "Creator" : "User"
+          %td
+            = select_tag :user_type, options_for_select(["Creator", "User"], user_type), :data => user.id
+            = image_tag "spinner.gif", :class => "spinner"
+
+:javascript
+  $('#user-list select').change(function(event) {
+    var $select = $(this);
+    var type = $select.val();
+    var user_id = $select.attr('data');
+    
+    $select.siblings('.spinner').css('opacity','1.0');
+    $.post('/admin/users/' + user_id + '/change_to', {type: type}, function() {
+      $select.siblings('.spinner').css('opacity','0');
+    });
+  });

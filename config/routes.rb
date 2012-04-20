@@ -59,12 +59,17 @@ Repo::Application.routes.draw do
     resources :comments, :only => [:create]
     
     member do
+      get :patronage
+      get :patronage_filter
+      get :activity
+      get :more_activity #ajax
       get :settings
+      get 'become-a-creator', :action => :become_a_creator, :as => :become_a_creator
+      post :submit_creator_request
       post :update_in_place
       post :update_avatar
       post :update_email_setting
-      get :activity
-      get :more_activity #ajax
+      post :change_password
     end
     
     # Feedback
@@ -90,12 +95,13 @@ Repo::Application.routes.draw do
   match '/people/creators',       :to => "discovery#creators_people",      :as => :creators_people
   match '/people/patrons',        :to => "discovery#patrons_people",       :as => :patrons_people
   
-  match '/subscriptions',         :to => "subscriptions#index",         :as => :subscriptions
+  match '/feed',                  :to => "subscriptions#index",            :as => :subscriptions
   
   namespace :admin do
     match '/', :to =>"dashboard#index", :as => :dashboard
     match '/live', :to => "dashboard#live", :as => :live
     match '/users', :to => "dashboard#users", :as => :users
+    match '/users/:id/change_to', :to => "dashboard#change_user_to"
     resources :pay_periods do
       post :mark_paid, :on => :member
     end

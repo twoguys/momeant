@@ -22,7 +22,7 @@
   %div{:style => "margin-bottom:30px;font-size:24px;text-align:center;"}
     %span{:style => "font-size:48px;font-weight:bold"}= @content_count
     %span new content created -
-    = link_to "view your content", creations_user_url(@user)
+    = link_to "view your content", user_url(@user)
 
 - unless @recommendations.empty?
   %p{:style => "margin:60px 0 0;"}

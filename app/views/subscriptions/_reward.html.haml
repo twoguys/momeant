@@ -1,0 +1,20 @@
+%li.reward
+
+  .creator
+    .creator-info
+      .card
+        = link_to image_tag(reward.recipient.avatar.url(:thumbnail)), user_path(reward.recipient), :class => "avatar"
+        = link_to image_tag(reward.story.thumbnail.url(:petite)), story_path(reward.story), :class => "content-thumb"
+        %a.content-info{:href => story_path(reward.story)}
+          %span.title= truncate(reward.story.title, :length => 18)
+          %span.media-type{:class => reward.story.media_type}
+          %span.byline by #{reward.recipient.name}
+          
+
+  .comment
+    %p
+      = link_to "You said:", user_path(current_user)
+      %span= reward.comment
+    .rewarded
+      %span.amount= number_to_currency(reward.dollar_amount)
+      %span.text rewarded

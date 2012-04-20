@@ -36,6 +36,7 @@ gem 'geocoder'
 gem 'chronic'
 gem 'airbrake'
 gem 'acts_as_commentable'
+gem 'sanitize'
 
 group :test do
   gem 'shoulda'

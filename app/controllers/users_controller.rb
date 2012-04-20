@@ -1,22 +1,29 @@
 class UsersController < ApplicationController
-  before_filter :authenticate_user!, :only => [:edit, :update, :update_in_place, :udpate_avatar, :analytics, :feedback]
+  before_filter :authenticate_user!, :only => [:edit, :update, :update_in_place, :udpate_avatar, :analytics, :feedback, :settings, :change_password]
   before_filter :find_user, :except => [:community, :community_creators, :analytics, :billing_updates, :feedback]
   skip_before_filter :verify_authenticity_token, :only => [:billing_updates, :update_avatar]
   
   def show
-    @content = @user.created_stories.newest_first
-    @content = @content.published unless @user == current_user
-    @supporters = @user.rewards.group_by(&:user).to_a.map {|x| [x.first,x.second.inject(0){|sum,r| sum+r.amount}]}.sort_by(&:second).reverse
-    @messages = @user.profile_messages
     @nav = "me" if @user == current_user
+    
+    if @user.is_a?(Creator)
+      @content = @user.created_stories.newest_first
+      @content = @content.published unless @user == current_user
+      @supporters = @user.rewards.group_by(&:user).to_a.map {|x| [x.first,x.second.inject(0){|sum,r| sum+r.amount}]}.sort_by(&:second).reverse
+    else
+      @body_class = "patronage"
+      prepare_patronage_data
+      render "patronage"
+    end
   end
   
-  def creations
-    @nav = "create" if @user == current_user
+  def patronage
+    prepare_patronage_data
   end
   
-  def stream #ajax requests
-    render @user.following_stream(params[:page])
+  def patronage_filter # ajax
+    @rewards = @user.given_rewards.where(:recipient_id => params[:creator_id]).includes(:story)
+    render :partial => "patronage_list"
   end
   
   def activity
@@ -67,8 +74,8 @@ class UsersController < ApplicationController
   end
   
   def update_in_place
-    return if params[:update_value].blank?
-    return unless ["occupation", "location", "first_name", "last_name", "email", "amazon_email", "tagline"].include?(params[:attribute])
+    render :text => params[:original_value] and return if params[:update_value].blank?
+    return unless ["occupation", "location", "first_name", "last_name", "email", "amazon_email", "tagline", "i_reward_because"].include?(params[:attribute])
     
     @user = current_user
     if @user.update_attribute(params[:attribute], params[:update_value])
@@ -104,64 +111,19 @@ class UsersController < ApplicationController
     render :text => ""
   end
   
-  def activity_from_friends
-    @activity = @user.activity_from_twitter_and_facebook_friends[0..4]
-    render :partial => "sidebar_activity"
-  end
-  
-  def content_from_nearbys
-    @content = []
-
-    user_ids = @user.nearbys(30).map(&:id).join(",")
-    unless user_ids.blank?
-      @content = Story.published.newest_first.where("user_id IN (#{user_ids})").limit(3)
+  def change_password
+    if @user.update_with_password(params[:user])
+      sign_in :user, @user, :bypass => true
+      redirect_to settings_user_path(current_user)
+    else
+      flash[:alert] = @user.errors.full_messages
+      render "settings"
     end
-    story_ids = @user.given_rewards.map(&:story_id)
-    unless story_ids.blank?
-      @content.reject!{|s| story_ids.include? s.id}
-    end
-    
-    render :partial => "sidebar_nearby_content"
   end
   
-  def similar_to_what_ive_rewarded
-    @content = @user.stories_tagged_similarly_to_what_ive_rewarded[0..2]
-    render :partial => "sidebar_similar_to_what_ive_rewarded"
-  end
-  
-  def bookmarks
-    @sidenav = "bookmarks"
-  end
-    
-  def rewarded
-    @rewards = @user.given_rewards
-  end
-  
-  def patronage
-    @users = @user.rewarded_creators
-  end
-  
-  def followers
-    @users = @user.subscribers
-    @followers = true
-    render "following"
-  end
-  
-  def following
-    @users = @user.subscribed_to
-  end
-  
-  def content_rewarded_by
-    @rewarder = User.find_by_id(params[:rewarder_id])
-    @rewards = @rewarder.given_rewards.where(:recipient_id => @user.id)
-    render :layout => false
-  end
-  
-  def analytics
-    @user = current_user
-    @patrons = @user.rewards.group_by {|r| r.user_id}
-    @sidenav = "analytics"
-    @nav = "me"
+  def submit_creator_request
+    FeedbackMailer.creator_request(@user, params[:description], params[:examples]).deliver
+    render :text => ""
   end
   
   def feedback
@@ -171,10 +133,6 @@ class UsersController < ApplicationController
     render :json => {:success => true}
   end
   
-  def billing_updates
-    head :ok
-  end
-  
   private
     
     def find_user
@@ -182,5 +140,11 @@ class UsersController < ApplicationController
       @page_title = @user.name if @user
       @nav = "me" if current_user == @user
       @sidenav = "profile" if current_user.present? && @user == current_user
+    end
+    
+    def prepare_patronage_data
+      @users = @user.given_rewards.includes(:recipient).map(&:recipient).uniq
+      @rewards = []
+      @rewards = @user.given_rewards.where(:recipient_id => @users.first.id).includes(:story) if @users.first
     end
 end

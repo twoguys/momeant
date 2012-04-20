@@ -1,0 +1,53 @@
+#user-profile.no-right-column
+  
+  #profile-center.column
+    .inner
+      %h1 So you're interested in sharing content on Momeant? Awesome!
+      
+      %p
+        Momeant is a place for digital creators to share their work, with the chance of being rewarded for it.
+        %br
+        Just tell us a few things about yourself to get this process started:
+      
+      = form_tag submit_creator_request_user_path(current_user), :id => "creator-request" do
+        %fieldset
+          %ul
+            %li
+              = label_tag :creator_request_description, "What types of content would you like to share?"
+              = text_area_tag :creator_request_description
+            %li
+              = label_tag :creator_request_examples, "Where can we see some examples of your existing online work."
+              = text_area_tag :creator_request_examples
+            %li.submit
+              = submit_tag "Send Request"
+      
+      #show-after
+        %h3 Thanks! We'll take a look and email you soon.
+    
+  
+  #profile-left.column
+    = render "users/user_info"
+
+  .clear
+
+:javascript
+  $(function() {
+    $('#creator-request').submit(function(event) {
+      var $form = $(this);
+      event.preventDefault();
+
+      var description = $('#creator_request_description').val();
+      var examples = $('#creator_request_examples').val();
+      if (description == '' && examples == '') { return false; }
+      var url = $form.attr('action');
+      var token = $form.find('input[name="authenticity_token"]').val();
+      
+      $form.addClass('loading');
+      $.post(url, {description: description, examples: examples, authenticity_token: token}, function() {
+        $form.hide();
+        $('#show-after').show();
+      });
+    
+      return false;
+    });
+  });

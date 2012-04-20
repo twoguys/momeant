@@ -1,0 +1,47 @@
+#user-profile
+	#activity
+		@include rounded(0)
+		@include boxshadow(0,0)
+		margin: 0
+		#activity-body
+			border: none
+		#activity-list
+			&.loading
+				background: transparent url(../images/spinner.gif) no-repeat 50% 30px
+				height: 50px
+				*
+					display: none
+			li
+				padding: 20px 0
+				&:last-child
+					border: none
+				.left-side, .right-side
+					top: 20px
+
+	#new-user-no-activity
+		padding: 20px
+		h1
+			font-weight: 700
+			text-transform: uppercase
+			.coin
+				display: inline-block
+				width: 20px
+				height: 25px
+				margin: -5px -3px 0
+				position: relative
+				top: 8px
+				background: transparent url(../images/icons/coinStarBlackMedium.png) no-repeat 0 0
+		p
+			margin: 5px 0
+			font-size: 13px
+			a.community
+				padding: 3px 0 0 30px
+				background: transparent url(../images/icons/communityBlue.png) no-repeat 0 0
+		#activity-example
+			margin: 40px -20px 0
+			width: 100%
+			padding-right: 40px
+			text-indent: 20px
+			height: 220px
+			background: transparent url(../images/activityStreamExample.png) no-repeat 0 20px
+			opacity: 0.6

@@ -1,4 +1,5 @@
 .profile-info
+
   .avatar-badge
     - if @user.avatar.url.include?("missing")
       = link_to(image_tag(@user.avatar.url(:editorial)), settings_user_path(@user), :class => "avatar")
@@ -6,30 +7,44 @@
       = link_to(image_tag(@user.avatar.url(:editorial)), user_path(@user), :class => "avatar")
     = image_tag "badges/#{@user.badge_level}.png", :class => "badge tooltipped-e", :title => "Level #{@user.badge_level} Patron"
 
+    .follow
+      - if current_user && current_user.is_subscribed_to?(@user)
+        = link_to "Unfollow", "#", :id => "subscribe"
+      - elsif current_user && !me?(@user)
+        = link_to "Follow", user_messages_path(@user), :id => "subscribe"
+      - elsif current_user.nil?
+        = link_to "Follow", "#join-modal", :id => "subscribe"
+        
   .metadata
     %h1.name
       %span= @user.name
       - if @user.is_new?
-        %span.new.tooltipped{:title => "New User"}
+        %span.new.tooltipped-n{:title => "New User"}
       - if @user.is_featured?
-        %span.featured.tooltipped{:title => "Featured Creator"}
+        %span.featured.tooltipped-n{:title => "Featured Creator"}
   
     .about
       %span.occupation= @user.occupation
       - if @user.location
         %span from #{@user.location}
-        
-    - if current_user && current_user.is_subscribed_to?(@user)
-      = link_to "Unfollow", "#", :id => "subscribe"
-    - elsif !me?(@user)
-      = link_to "Follow", user_messages_path(@user), :id => "subscribe"
+    
+    .subnav
+      - if @user.is_a?(Creator)
+        = link_to_active "<span>Content Created</span>".html_safe, user_path(@user)
+      = link_to_active "<span>Rewards Given</span>".html_safe, patronage_user_path(@user), :class => @user.is_a?(Creator) ? "" : "active"
     
     .info
       %em What will you be sharing at momeant?
       %p= @user.tagline
+      = link_to "Edit", settings_user_path(@user) if me?(@user)
     
     .supporter-count
       %span.tooltipped-e{:title => "Supporters"}= @user.patrons.count
+    
+    #reward-total
+      .amount
+        %span= number_to_currency(@user.impact * Reward.dollar_exchange)
+      .text cash raised
     
     #broadcaster
       #updates-list

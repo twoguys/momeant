@@ -15,4 +15,9 @@ class Admin::DashboardController < Admin::BaseController
       @cashouts_requested = @cashouts_requested.where("created_at < '#{params[:before]}'")
     end
   end
+  
+  def change_user_to
+    User.find(params[:id]).update_attribute(:type, params[:type])
+    render :text => ""
+  end
 end

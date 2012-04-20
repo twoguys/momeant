@@ -1,25 +1,41 @@
-#subscriptions-inner
+#feed.no-right-column
   
-  #vertical-people{:class => @creators.empty? ? "empty" : ""}
-    %h1 People
-    - if @creators.empty?
-      .empty You are not currently following anyone. #{link_to "Check out some of our awesome creators!", root_path, :id => "find-creators"}
+  #feed-center.column
+    .inner
+      - unless @followings.empty? 
+        #vertical-list
+          %ul#activity-list
+            = render "subscriptions/list"
+          
+  #feed-left.column
+  
+    %h2 People You Support
+    - if @rewarded.empty?
+      You have not rewarded anyone, yet.
     %ul
-      - @creators.each do |person|
-        %li.person
-          = link_to image_tag(person.avatar.url(:thumbnail), :alt => ""), user_path(person), :class => "tooltipped-e", :title => "Show #{person.first_name}'s updates", :data => person.id
-  
-  - unless @creators.empty? 
-    #vertical-list
-      %h1 Their updates
-
-      %ul#activity-list
-        = render "subscriptions/list"
+      - @rewarded.each do |creator|
+        %li{:data => creator[0].id}
+          = image_tag creator[0].avatar.url(:large), :class => "avatar", :alt => ""
+          .name
+            %span= creator[0].first_name
+            %span= creator[0].last_name
+          .amount= number_to_currency(creator[1] * Reward.dollar_exchange)
+    
+    %h2 People You Follow
+    - if @followings.empty?
+      .empty You are not currently following anyone. #{link_to "Check out some of our awesome creators!", root_path, :id => "find-creators"}
+    %ul#following
+      - @followings.each do |subscription|
+        %li{:data => subscription.user.id}
+          = image_tag subscription.user.avatar.url(:large), :alt => ""
+          .name
+            %span= subscription.user.name
+            %span.since since #{subscription.since}
 
   .clear
 
 :javascript
   var scrollables_selector = '#activity-list';
   var user_id = '#{current_user.id}';
-= javascript_include_tag "subscriptions" unless @creators.empty?
+= javascript_include_tag "subscriptions" unless @followings.empty?
 = javascript_include_tag "comments"

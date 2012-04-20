@@ -1,0 +1,300 @@
+body#users, body#messages		
+	min-width: 900px
+
+	#main
+		max-width: 100%
+		margin: 0
+	#user-profile
+		padding-left: 300px
+		padding-right: 300px
+		overflow: hidden
+	.column
+		position: relative
+		float: left
+		padding-bottom: 20010px
+		margin-bottom: -20000px
+	#profile-center
+		width: 100%
+		.inner
+			padding: 20px
+	#profile-left
+		width: 300px
+		right: 300px
+		margin-left: -100%
+		background: #000
+		color: #fff
+	#profile-right
+		width: 260px
+		padding-top: 20px
+		padding-left: 20px
+		padding-right: 20px
+		margin-right: -300px
+		background: $blue
+		color: #fff
+	
+	#user-profile.no-right-column
+		padding-right: 0
+
+#user-profile
+	.profile-info
+		.avatar-badge
+			position: relative
+			.avatar
+				display: block
+				width: 300px
+				height: 300px
+				z-index: 1
+				img
+					width: 300px
+					height: 300px
+			.badge
+				display: none
+				position: absolute
+				bottom: -5px
+				right: -30px
+				z-index: 2
+			.follow
+				#subscribe
+					display: inline-block
+					height: 20px
+					padding: 7px 14px 22px
+					background: transparent url(../images/profile/follow-bg.png) no-repeat 100% 100%
+					color: #004666
+					font-size: 18px
+					text-transform: uppercase
+					position: absolute
+					bottom: -25px
+					right: -12px
+					@include transition(color)
+					&:hover
+						color: #fff
+				
+		.metadata
+			padding: 20px
+			
+			.name, .about
+				font-family: $typewriter
+				font-style: italic
+			
+			.name
+				padding-bottom: 8px
+				border-bottom: 3px solid #fff
+				margin-bottom: 10px
+				span.new, span.featured
+					display: inline-block
+					width: 16px
+					height: 18px
+					margin-left: 8px
+					background: transparent url(../images/profile/new.png) no-repeat -1px 0
+					cursor: help
+				span.featured
+					margin-left: 0
+					background-image: url(../images/profile/featured.png)
+
+			.about
+				margin-bottom: 20px
+				font-weight: 100
+				color: #999
+				span
+					display: block
+				.occupation
+					font-size: 1.3em
+			
+			.subnav
+				margin: 0 -20px 30px
+				a
+					span
+						display: block
+						padding: 10px 20px
+						background: #333
+						color: #999
+						text-transform: uppercase
+						@include transition
+						&:hover
+							background: #444
+							color: #fff
+				a.active
+					display: block
+					span
+						background: #e0e0e0
+						color: #000
+			
+			.info, .supporter-count
+				margin-bottom: 20px
+			
+			.info
+				font-size: 15px
+				em
+					display: block
+					margin-bottom: 5px
+				p
+					color: #bbb
+					margin: 0
+					line-height: 1.4em
+					font-weight: 200
+			
+			.supporter-count span
+				font-size: 60px
+				font-weight: 200
+				padding-right: 25px
+				background: transparent url(../images/discovery/supporters.png) 100% 12px no-repeat
+			
+			#reward-total
+				display: none
+			
+			#broadcaster
+				position: relative
+				height: 245px
+				padding: 10px
+				background: transparent url(../images/profile/broadcast.jpg) no-repeat 0 0
+				#updates-list
+					width: 215px
+					height: 215px
+					padding: 5px
+					color: #000
+				#post-update
+					display: block
+					width: 17px
+					height: 17px
+					background: transparent url(../images/profile/new-broadcast.png) no-repeat 0 0
+					position: absolute
+					bottom: 5px
+					right: 10px
+					@include notext
+				#new_broadcast
+					display: none
+					&.loading
+						height: 200px
+						background: transparent url(../images/spinner.gif) no-repeat 50% 50%
+						*
+							display: none
+					p
+						margin: 3px 0
+						font-size: 13px
+						font-style: italic
+						color: #999
+						line-height: 1.2em
+					textarea
+						width: 93%
+						height: 130px
+						margin-bottom: 5px
+
+			ul.stats
+				display: none
+				position: relative
+				margin-top: 5px
+				width: 200px
+				li
+					padding: 4px 0
+					font-size: 16px
+					font-weight: 700
+					#cashout
+						display: block
+						font-size: 11px
+						text-align: center
+		
+		#special-links
+			position: absolute
+			top: 0
+			right: 10px
+			width: 150px
+		
+		#user-actions
+			clear: both
+			padding-top: 15px
+			a
+				display: inline-block
+				height: 17px
+				margin-bottom: 10px
+				background: #333
+				text-shadow: none
+				line-height: 18px
+				color: #fff
+				@include transition(background)
+				&:hover
+					background: $blue
+		
+		#editorialize
+			@include gradient(#ffbb01, #ff9501)
+	
+	.the-rest
+		float: left
+		width: 70%
+		margin-left: 50px
+	
+	#vertical-list
+		padding: 30px
+		#activity-list > li
+			padding: 0
+			margin-bottom: 30px
+		#activity-list li .content-preview img.avatar
+			display: none
+	
+	#vertical-people
+		@include transition(right)
+		li, a, img
+			width: 80px
+			height: 80px
+		li.first
+			width: auto
+		#discussion
+			.hasnt
+				padding: 5px 10px
+				background: #eee
+				@include rounded(3px)
+				margin-bottom: 10px
+		
+			form
+				margin-bottom: 10px
+				&.loading
+					background: transparent url(../images/spinner.gif) no-repeat 50% 50%
+					*
+						display: none
+			textarea
+				width: 95%
+				height: 25px
+				box-shadow: 1px 1px 2px rgba(0,0,0,0.1) inset
+				margin-bottom: 5px
+			
+			li
+				border-top: 1px solid #eee
+				padding: 10px 0 10px 50px
+				position: relative
+				float: none
+				a.avatar, a.avatar img, a.avatar .cover
+					display: block
+					position: absolute
+					top: 0
+					left: 0
+					width: 40px
+					height: 40px
+				a.avatar
+					top: 10px
+				a.avatar img
+					z-index: 1
+				.cover
+					z-index: 2
+					background: transparent url(../images/discovery/avatar-cover-40.png) no-repeat 0 0
+				p
+					margin: 3px 0
+					line-height: 1.5em
+					font-size: 13px
+				.when
+					font-size: 12px
+					color: #ccc
+	
+	/* Cashouts */
+	#cashouts
+		table
+			margin-top: 1em
+						
+// Going smaller
+@media all and (max-width: 1298px)
+	body#users, body#messages
+		#user-profile
+			padding-right: 210px
+		#profile-right
+			width: 170px
+			margin-right: -210px
+			#vertical-people
+				width: 170px

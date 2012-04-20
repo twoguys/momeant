@@ -11,7 +11,7 @@ class Activity < ActiveRecord::Base
   scope :on_content, where(:action_type => "Story")
   scope :on_purchases, where(:action_type => "AmazonPayment")
   scope :on_badges, where(:action_type => "Badge")
-  scope :only_types, lambda { |action_types| where("action_type IN (#{action_types})") }
+  scope :only_types, lambda { |action_types| where("action_type IN (?)", action_types) }
   scope :except_type, lambda { |action_type| where("action_type != ?", action_type) }
   scope :in_the_past_two_weeks, where("created_at > '#{14.days.ago}'")
   
