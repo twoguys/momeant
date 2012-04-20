@@ -1827,13 +1827,24 @@ body#subscriptions.index {
     height: 70px;
     margin-bottom: 5px;
     background: #272727;
-    cursor: pointer; }
+    cursor: pointer;
+    -webkit-transition: background 0.2s linear;
+    -moz-transition: background 0.2s linear;
+    -ms-transition: background 0.2s linear;
+    -o-transition: background 0.2s linear;
+    transition: background 0.2s linear; }
     body#subscriptions.index #feed-left li img, body#subscriptions.index #feed-left li .name {
       float: left; }
     body#subscriptions.index #feed-left li img {
       width: 70px;
       height: 70px;
       margin-right: 20px; }
+    body#subscriptions.index #feed-left li .name, body#subscriptions.index #feed-left li .amount {
+      -webkit-transition: color 0.2s linear;
+      -moz-transition: color 0.2s linear;
+      -ms-transition: color 0.2s linear;
+      -o-transition: color 0.2s linear;
+      transition: color 0.2s linear; }
     body#subscriptions.index #feed-left li .name {
       font-family: "museo-slab-1", "museo-slab-2", serif;
       font-style: italic;
@@ -1856,6 +1867,14 @@ body#subscriptions.index {
     font-size: 12px;
     font-weight: 300;
     color: #777777; }
+  body#subscriptions.index #feed-left #following li:hover .name .since, body#subscriptions.index #feed-left #following li.selected .name .since {
+    color: white; }
+  body#subscriptions.index #feed-left li:hover, body#subscriptions.index #feed-left li.selected {
+    background: #00aeef; }
+    body#subscriptions.index #feed-left li:hover .name, body#subscriptions.index #feed-left li.selected .name {
+      color: #003750; }
+    body#subscriptions.index #feed-left li:hover .amount, body#subscriptions.index #feed-left li.selected .amount {
+      color: white; }
   body#subscriptions.index #feed-center #vertical-list {
     padding: 0; }
     body#subscriptions.index #feed-center #vertical-list #activity-list > li {
@@ -1953,7 +1972,7 @@ body#subscriptions.index {
   body#subscriptions.index #feed-center li.reward .comment {
     background: white;
     padding: 30px;
-    min-height: 40px;
+    min-height: 45px;
     position: relative; }
     body#subscriptions.index #feed-center li.reward .comment p {
       width: 410px;
@@ -1964,7 +1983,7 @@ body#subscriptions.index {
       line-height: 1.3em; }
     body#subscriptions.index #feed-center li.reward .comment .rewarded {
       position: absolute;
-      top: 15px;
+      top: 10px;
       right: 20px; }
       body#subscriptions.index #feed-center li.reward .comment .rewarded .amount {
         display: inline-block;

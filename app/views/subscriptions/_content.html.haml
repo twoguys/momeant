@@ -14,7 +14,9 @@
       .card
         = link_to image_tag(content.user.avatar.url(:thumbnail)), user_path(content.user), :class => "avatar"
         = link_to content.user.name, user_path(content.user), :class => "name"
-        .since following since #{current_user.inverse_subscriptions.where(:user_id => content.user.id).first.since}
+        - subscription = current_user.inverse_subscriptions.where(:user_id => content.user.id).first
+        - if subscription
+          .since following since #{subscription.since}
       
   %a.content-preview{:href => story_path(content), :class => "#{content.media_type} #{content.template}"}
     - if content.text_media_type?

@@ -14,7 +14,7 @@
       You have not rewarded anyone, yet.
     %ul
       - @rewarded.each do |creator|
-        %li{:data => creator.id}
+        %li{:data => creator[0].id}
           = image_tag creator[0].avatar.url(:large), :class => "avatar", :alt => ""
           .name
             %span= creator[0].first_name

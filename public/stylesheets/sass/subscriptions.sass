@@ -41,12 +41,15 @@ body#subscriptions.index
 			margin-bottom: 5px
 			background: #272727
 			cursor: pointer
+			@include transition(background)
 			img, .name
 				float: left
 			img
 				width: 70px
 				height: 70px
 				margin-right: 20px
+			.name, .amount
+				@include transition(color)
 			.name
 				font-family: $typewriter
 				font-style: italic
@@ -72,6 +75,17 @@ body#subscriptions.index
 					font-size: 12px
 					font-weight: 300
 					color: #777
+			&:hover, &.selected
+				.name .since
+					color: #fff
+		
+		li:hover, li.selected
+			background: $blue
+			.name
+				color: #003750
+			.amount
+				color: #fff
+				
 	
 	#feed-center
 		#vertical-list

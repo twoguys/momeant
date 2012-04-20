@@ -9,20 +9,15 @@ class SubscriptionsController < ApplicationController
     @activity = []
     return if @followings.empty?
 
-    #@activity = Activity.by_users().only_types(['Story','Broadcast']).order("created_at DESC")
-    @activity = Activity.where(
-      "(actor_id IN (?) AND action_type IN (?)) OR (actor_id = ? AND action_type = 'Reward')",
-      @followings.map(&:user_id),
-      ['Story','Broadcast'],
-      current_user.id
-    ).order("created_at DESC")
+    get_all_activity
   end
 
   def filter #ajax
     if params[:id].present?
-      @activity = Activity.by_users([User.find(params[:id])]).only_types("'Story','Broadcast'").order("created_at DESC")
+      @activity = Activity.by_users([User.find(params[:id])]).only_types(['Story','Broadcast']).order("created_at DESC")
     else
-      @activity = Activity.by_users(current_user.subscribed_to).only_types("'Story','Broadcast'").order("created_at DESC")
+      @followings = current_user.inverse_subscriptions
+      get_all_activity
     end
     render :partial => "subscriptions/list"
   end
@@ -41,5 +36,14 @@ class SubscriptionsController < ApplicationController
   
     def find_user
       @user = User.find(params[:user_id])
+    end
+    
+    def get_all_activity
+      @activity = Activity.where(
+        "(actor_id IN (?) AND action_type IN (?)) OR (actor_id = ? AND action_type = 'Reward')",
+        @followings.map(&:user_id),
+        ['Story','Broadcast'],
+        current_user.id
+      ).order("created_at DESC")
     end
 end

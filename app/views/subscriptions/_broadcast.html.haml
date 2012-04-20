@@ -9,4 +9,4 @@
 
   .comment
     .comment-inner
-      %p= broadcast.message
+      %p= Sanitize.clean(auto_link(broadcast.message), :elements => ['a']).html_safe
