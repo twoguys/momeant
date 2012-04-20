@@ -7,6 +7,14 @@ window.SubscriptionsView = Backbone.View.extend({
 	},
 	
 	initialize: function() {
+	  this.set_width_for_ios();
+  },
+  
+  set_width_for_ios: function() {
+    var user_agent = navigator.userAgent.toLowerCase();
+    if ((user_agent.indexOf('ipad') > -1) || (user_agent.indexOf('iphone') > -1)) {
+      $('body, #header').css('width', '1300px');
+    }
   },
   
   filter_person: function(event) {

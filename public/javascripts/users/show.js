@@ -10,9 +10,17 @@ window.ProfileView = Backbone.View.extend({
 	
 	initialize: function() {
 	  this.scroll_to_content();
+	  this.set_width_for_ios();
 	  
 	  _.bindAll(this, 'on_keypress');
 	  $(document).bind('keydown', this.on_keypress);
+  },
+  
+  set_width_for_ios: function() {
+    var user_agent = navigator.userAgent.toLowerCase();
+    if ((user_agent.indexOf('ipad') > -1) || (user_agent.indexOf('iphone') > -1)) {
+      $('body, #header').css('width', '1300px');
+    }
   },
   
   scroll_to_content: function() {
