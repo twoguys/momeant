@@ -95,7 +95,7 @@ Repo::Application.routes.draw do
   match '/people/creators',       :to => "discovery#creators_people",      :as => :creators_people
   match '/people/patrons',        :to => "discovery#patrons_people",       :as => :patrons_people
   
-  match '/subscriptions',         :to => "subscriptions#index",         :as => :subscriptions
+  match '/feed',                  :to => "subscriptions#index",            :as => :subscriptions
   
   namespace :admin do
     match '/', :to =>"dashboard#index", :as => :dashboard

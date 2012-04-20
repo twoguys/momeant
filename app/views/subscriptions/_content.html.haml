@@ -1,6 +1,21 @@
 %li.content
-  = link_to image_tag(content.user.avatar.url(:thumbnail)), user_path(content.user), :class => "avatar"
-  .title #{link_to content.user.name, user_path(content.user)} posted #{content.article_string}:
+
+  .creator
+    .rewarded
+      %span.amount= number_to_currency(current_user.rewards_given_to(content.user) * Reward.dollar_exchange)
+      %span.text already rewarded
+    %ul.previously-rewarded
+      - current_user.given_rewards.for_user(content.user).but_not_for(content).limit(8).includes(:story).each do |reward|
+        %li
+          %a{:href => story_url(reward.story)}
+            .title= truncate(reward.story.title, :length => 25)
+            .amount= number_to_currency(reward.dollar_amount)
+    .creator-info
+      .card
+        = link_to image_tag(content.user.avatar.url(:thumbnail)), user_path(content.user), :class => "avatar"
+        = link_to content.user.name, user_path(content.user), :class => "name"
+        .since following since #{current_user.inverse_subscriptions.where(:user_id => content.user.id).first.since}
+      
   %a.content-preview{:href => story_path(content), :class => "#{content.media_type} #{content.template}"}
     - if content.text_media_type?
       .inner
@@ -17,8 +32,6 @@
       - if content.category
         %span.category= content.category
     .support= content.users_who_rewarded.count
-  
-  .when #{time_ago_in_words(content.created_at)} ago
   
   .comments
     .money #{number_to_currency(content.reward_dollars)} earned

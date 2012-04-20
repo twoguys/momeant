@@ -3,7 +3,7 @@ html, body {
   font-family: "proxima-nova-1", "proxima-nova-2", helvetica, sans-serif;
   font-size: 14px;
   color: #252525;
-  background: white;
+  background: #e0e0e0;
   min-height: 100%;
   text-rendering: optimizelegibility;
   position: relative; }
@@ -379,7 +379,7 @@ header.hide-nav {
       font-weight: 700;
       font-size: 13px;
       padding: 8px 0 7px;
-      border-bottom: 1px solid white; }
+      border-bottom: 1px solid #e0e0e0; }
       #call-to-action .insides .message a {
         -webkit-border-radius: 3px;
         -moz-border-radius: 3px;
@@ -593,7 +593,7 @@ a.button.green {
   .horizontal-tabs li a {
     display: block;
     color: #252525;
-    background: white;
+    background: #e0e0e0;
     height: 25px;
     padding: 4px 18px 4px;
     position: relative;
@@ -909,18 +909,8 @@ table {
         display: none; }
   #vertical-list #activity-list > li {
     clear: both;
-    min-height: 200px;
-    padding: 0 0 0 60px;
     border: none;
     margin-bottom: 50px; }
-    #vertical-list #activity-list > li .avatar {
-      position: absolute;
-      top: 0;
-      left: 0; }
-    #vertical-list #activity-list > li .avatar, #vertical-list #activity-list > li .avatar img {
-      display: block;
-      width: 50px;
-      height: 50px; }
   #vertical-list #activity-list > li.content .content-preview {
     display: block;
     width: 630px;
@@ -1030,13 +1020,6 @@ table {
       #vertical-list #activity-list > li.content .rewards .reward .cover {
         z-index: 2;
         background: transparent url(../images/discovery/avatar-cover-40.png) no-repeat 0 0; }
-  #vertical-list #activity-list > li.broadcast {
-    position: relative; }
-    #vertical-list #activity-list > li.broadcast p {
-      margin: 0;
-      line-height: 1.3em;
-      background: transparent url(../images/curation/comment-box.png) no-repeat 0 0;
-      padding: 20px 12px 10px; }
 
 @media all and (max-width: 1100px) {
   #vertical-list #activity-list > li.content .content-preview {
@@ -1181,7 +1164,6 @@ body#users, body#messages {
     padding-right: 0; }
 
 #user-profile {
-  background: #e0e0e0;
   /* Cashouts */ }
   #user-profile .profile-info .avatar-badge {
     position: relative; }
@@ -1438,142 +1420,140 @@ body#users, body#messages {
     margin-right: -210px; }
     body#users #profile-right #vertical-people, body#messages #profile-right #vertical-people {
       width: 170px; } }
-body#users.patronage {
-  background: #e0e0e0; }
-  body#users.patronage .profile-info .supporter-count, body#users.patronage .profile-info .follow, body#users.patronage .profile-info .info, body#users.patronage .profile-info #broadcaster {
-    display: none; }
-  body#users.patronage .profile-info #reward-total {
-    display: block; }
-    body#users.patronage .profile-info #reward-total .amount {
-      font-size: 46px;
-      font-weight: 200;
-      margin-bottom: 5px; }
-      body#users.patronage .profile-info #reward-total .amount span {
-        border-bottom: 1px solid #333333; }
-    body#users.patronage .profile-info #reward-total .text {
-      font-weight: 600;
-      color: #777777; }
-  body#users.patronage #statement {
-    width: 630px;
-    height: 80px;
-    padding: 20px 30px;
-    font-size: 24px;
-    font-weight: 600; }
-    body#users.patronage #statement em {
-      color: #00aeef;
-      font-style: normal;
-      cursor: pointer; }
-  body#users.patronage #carousel {
-    height: 80px;
-    position: relative;
-    padding-left: 150px; }
-    body#users.patronage #carousel .title, body#users.patronage #carousel a {
-      border-top: 5px solid #e0e0e0;
-      border-bottom: 5px solid #e0e0e0; }
-    body#users.patronage #carousel .title {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 110px;
-      height: 34px;
-      padding: 18px 20px;
-      background: black;
-      color: #797979;
-      font-size: 18px;
-      font-weight: 600;
-      line-height: 18px;
-      text-transform: uppercase; }
-    body#users.patronage #carousel a {
-      display: block;
-      float: left;
-      width: 70px;
-      height: 70px; }
-      body#users.patronage #carousel a img {
-        width: 70px;
-        height: 70px; }
-    body#users.patronage #carousel a:hover, body#users.patronage #carousel a.selected {
-      border-top: 5px solid #00aeef;
-      border-bottom: 5px solid #00aeef; }
-  body#users.patronage #vertical-list li {
-    position: relative; }
-    body#users.patronage #vertical-list li .creator {
-      display: none; }
-    body#users.patronage #vertical-list li:first-child .creator {
-      display: block; }
-  body#users.patronage #vertical-list a.content-preview {
-    position: relative; }
-    body#users.patronage #vertical-list a.content-preview .curvy {
-      width: 47px;
-      height: 41px;
-      position: absolute;
-      bottom: 0;
-      left: 40px;
-      background: transparent url(../images/profile/reward-comment-curve.png) no-repeat 0 0; }
-  body#users.patronage #vertical-list .reward {
-    min-height: 60px;
-    padding: 30px 40px;
-    background: white;
-    position: relative; }
-    body#users.patronage #vertical-list .reward .text {
-      width: 420px; }
-      body#users.patronage #vertical-list .reward .text a, body#users.patronage #vertical-list .reward .text .comment {
-        font-family: "museo-slab-1", "museo-slab-2", serif;
-        font-size: 22px;
-        font-style: italic; }
-      body#users.patronage #vertical-list .reward .text .comment {
-        font-weight: 100; }
-    body#users.patronage #vertical-list .reward .amount {
-      position: absolute;
-      top: 20px;
-      right: 40px; }
-      body#users.patronage #vertical-list .reward .amount strong {
-        display: block;
-        font-size: 46px;
-        font-weight: 200;
-        border-bottom: 1px solid #dddddd;
-        margin-bottom: 5px; }
-      body#users.patronage #vertical-list .reward .amount span {
-        font-weight: 600;
-        color: #00aeef;
-        text-align: right; }
-  body#users.patronage #vertical-list .creator {
-    width: 300px;
+body#users.patronage .profile-info .supporter-count, body#users.patronage .profile-info .follow, body#users.patronage .profile-info .info, body#users.patronage .profile-info #broadcaster {
+  display: none; }
+body#users.patronage .profile-info #reward-total {
+  display: block; }
+  body#users.patronage .profile-info #reward-total .amount {
+    font-size: 46px;
+    font-weight: 200;
+    margin-bottom: 5px; }
+    body#users.patronage .profile-info #reward-total .amount span {
+      border-bottom: 1px solid #333333; }
+  body#users.patronage .profile-info #reward-total .text {
+    font-weight: 600;
+    color: #777777; }
+body#users.patronage #statement {
+  width: 630px;
+  height: 80px;
+  padding: 20px 30px;
+  font-size: 24px;
+  font-weight: 600; }
+  body#users.patronage #statement em {
+    color: #00aeef;
+    font-style: normal;
+    cursor: pointer; }
+body#users.patronage #carousel {
+  height: 80px;
+  position: relative;
+  padding-left: 150px; }
+  body#users.patronage #carousel .title, body#users.patronage #carousel a {
+    border-top: 5px solid #e0e0e0;
+    border-bottom: 5px solid #e0e0e0; }
+  body#users.patronage #carousel .title {
     position: absolute;
     top: 0;
-    right: -320px; }
-    body#users.patronage #vertical-list .creator .avatar, body#users.patronage #vertical-list .creator .avatar img {
-      position: static;
-      width: 300px;
-      height: 300px; }
-    body#users.patronage #vertical-list .creator .metadata {
-      background: black;
-      color: white;
-      padding: 20px; }
-      body#users.patronage #vertical-list .creator .metadata .name, body#users.patronage #vertical-list .creator .metadata .occupation, body#users.patronage #vertical-list .creator .metadata .location {
-        font-family: "museo-slab-1", "museo-slab-2", serif;
-        font-style: italic; }
-      body#users.patronage #vertical-list .creator .metadata .name {
-        padding-bottom: 8px;
-        border-bottom: 3px solid white;
-        margin-bottom: 10px; }
-      body#users.patronage #vertical-list .creator .metadata .occupation, body#users.patronage #vertical-list .creator .metadata .location {
-        font-weight: 100;
-        color: #999999; }
-      body#users.patronage #vertical-list .creator .metadata .occupation {
-        font-size: 1.3em; }
-      body#users.patronage #vertical-list .creator .metadata .location {
-        font-size: 0.9em; }
-    body#users.patronage #vertical-list .creator a.view-profile {
+    left: 0;
+    width: 110px;
+    height: 34px;
+    padding: 18px 20px;
+    background: black;
+    color: #797979;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 18px;
+    text-transform: uppercase; }
+  body#users.patronage #carousel a {
+    display: block;
+    float: left;
+    width: 70px;
+    height: 70px; }
+    body#users.patronage #carousel a img {
+      width: 70px;
+      height: 70px; }
+  body#users.patronage #carousel a:hover, body#users.patronage #carousel a.selected {
+    border-top: 5px solid #00aeef;
+    border-bottom: 5px solid #00aeef; }
+body#users.patronage #vertical-list li {
+  position: relative; }
+  body#users.patronage #vertical-list li .creator {
+    display: none; }
+  body#users.patronage #vertical-list li:first-child .creator {
+    display: block; }
+body#users.patronage #vertical-list a.content-preview {
+  position: relative; }
+  body#users.patronage #vertical-list a.content-preview .curvy {
+    width: 47px;
+    height: 41px;
+    position: absolute;
+    bottom: 0;
+    left: 40px;
+    background: transparent url(../images/profile/reward-comment-curve.png) no-repeat 0 0; }
+body#users.patronage #vertical-list .reward {
+  min-height: 60px;
+  padding: 30px 40px;
+  background: white;
+  position: relative; }
+  body#users.patronage #vertical-list .reward .text {
+    width: 420px; }
+    body#users.patronage #vertical-list .reward .text a, body#users.patronage #vertical-list .reward .text .comment {
+      font-family: "museo-slab-1", "museo-slab-2", serif;
+      font-size: 22px;
+      font-style: italic; }
+    body#users.patronage #vertical-list .reward .text .comment {
+      font-weight: 100; }
+  body#users.patronage #vertical-list .reward .amount {
+    position: absolute;
+    top: 20px;
+    right: 40px; }
+    body#users.patronage #vertical-list .reward .amount strong {
       display: block;
-      height: 22px;
-      padding: 10px 20px;
-      background: #00aeef;
-      color: black;
-      font-size: 18px;
-      text-transform: uppercase; }
-      body#users.patronage #vertical-list .creator a.view-profile span {
-        padding-right: 30px;
-        background: transparent url(../images/profile/view-profile-arrow.png) no-repeat 100% 50%; }
+      font-size: 46px;
+      font-weight: 200;
+      border-bottom: 1px solid #dddddd;
+      margin-bottom: 5px; }
+    body#users.patronage #vertical-list .reward .amount span {
+      font-weight: 600;
+      color: #00aeef;
+      text-align: right; }
+body#users.patronage #vertical-list .creator {
+  width: 300px;
+  position: absolute;
+  top: 0;
+  right: -320px; }
+  body#users.patronage #vertical-list .creator .avatar, body#users.patronage #vertical-list .creator .avatar img {
+    position: static;
+    width: 300px;
+    height: 300px; }
+  body#users.patronage #vertical-list .creator .metadata {
+    background: black;
+    color: white;
+    padding: 20px; }
+    body#users.patronage #vertical-list .creator .metadata .name, body#users.patronage #vertical-list .creator .metadata .occupation, body#users.patronage #vertical-list .creator .metadata .location {
+      font-family: "museo-slab-1", "museo-slab-2", serif;
+      font-style: italic; }
+    body#users.patronage #vertical-list .creator .metadata .name {
+      padding-bottom: 8px;
+      border-bottom: 3px solid white;
+      margin-bottom: 10px; }
+    body#users.patronage #vertical-list .creator .metadata .occupation, body#users.patronage #vertical-list .creator .metadata .location {
+      font-weight: 100;
+      color: #999999; }
+    body#users.patronage #vertical-list .creator .metadata .occupation {
+      font-size: 1.3em; }
+    body#users.patronage #vertical-list .creator .metadata .location {
+      font-size: 0.9em; }
+  body#users.patronage #vertical-list .creator a.view-profile {
+    display: block;
+    height: 22px;
+    padding: 10px 20px;
+    background: #00aeef;
+    color: black;
+    font-size: 18px;
+    text-transform: uppercase; }
+    body#users.patronage #vertical-list .creator a.view-profile span {
+      padding-right: 30px;
+      background: transparent url(../images/profile/view-profile-arrow.png) no-repeat 100% 50%; }
 
 @media all and (max-width: 1285px) {
   body#users.patronage #vertical-list li:first-child .creator {
@@ -1810,47 +1790,239 @@ table.users {
         font-style: italic;
         font-size: 11px; }
 
-body#subscriptions.index #header #user-nav ul.links {
-  max-width: 1367px;
-  margin: 0 auto; }
-
-#subscriptions-inner {
-  max-width: 1327px;
-  margin: 0 auto;
-  position: relative;
-  padding: 40px; }
-  #subscriptions-inner h1 {
-    font-size: 20px;
-    font-weight: 500;
-    text-transform: uppercase;
-    margin-bottom: 20px; }
-  #subscriptions-inner #vertical-people {
-    width: 130px;
+body#subscriptions.index {
+  min-width: 900px; }
+  body#subscriptions.index #main {
+    max-width: 100%;
+    margin: 0; }
+  body#subscriptions.index #feed {
+    padding-left: 300px;
+    overflow: hidden; }
+  body#subscriptions.index .column {
+    position: relative;
     float: left;
-    margin-right: 50px; }
-    #subscriptions-inner #vertical-people.empty {
-      width: 200px; }
-      #subscriptions-inner #vertical-people.empty a {
+    padding-bottom: 20010px;
+    margin-bottom: -20000px; }
+  body#subscriptions.index #feed-center {
+    width: 100%; }
+  body#subscriptions.index #feed-center > .inner {
+    padding: 20px; }
+  body#subscriptions.index #feed-left {
+    width: 280px;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    right: 300px;
+    margin-left: -100%;
+    background: black;
+    color: white; }
+  body#subscriptions.index #feed-left h2 {
+    background: #444444;
+    color: black;
+    margin-bottom: 5px;
+    font-size: 14px; }
+  body#subscriptions.index #feed-left ul {
+    margin-bottom: 30px; }
+  body#subscriptions.index #feed-left li {
+    height: 70px;
+    margin-bottom: 5px;
+    background: #272727;
+    cursor: pointer; }
+    body#subscriptions.index #feed-left li img, body#subscriptions.index #feed-left li .name {
+      float: left; }
+    body#subscriptions.index #feed-left li img {
+      width: 70px;
+      height: 70px;
+      margin-right: 20px; }
+    body#subscriptions.index #feed-left li .name {
+      font-family: "museo-slab-1", "museo-slab-2", serif;
+      font-style: italic;
+      font-size: 16px;
+      line-height: 16px;
+      color: #cccccc;
+      padding-top: 17px; }
+      body#subscriptions.index #feed-left li .name span {
+        display: block; }
+    body#subscriptions.index #feed-left li .amount {
+      float: right;
+      font-size: 20px;
+      font-weight: 200;
+      padding-top: 22px;
+      margin-right: 10px;
+      color: #aaaaaa; }
+  body#subscriptions.index #feed-left #following li .name span {
+    margin-bottom: 3px; }
+  body#subscriptions.index #feed-left #following li .name .since {
+    font-size: 12px;
+    font-weight: 300;
+    color: #777777; }
+  body#subscriptions.index #feed-center #vertical-list {
+    padding: 0; }
+    body#subscriptions.index #feed-center #vertical-list #activity-list > li {
+      padding: 0;
+      margin-bottom: 30px; }
+  body#subscriptions.index #feed-center li .creator {
+    width: 320px;
+    position: absolute;
+    right: -320px;
+    top: 0; }
+    body#subscriptions.index #feed-center li .creator .rewarded, body#subscriptions.index #feed-center li .creator .previously-rewarded {
+      margin-left: 30px; }
+    body#subscriptions.index #feed-center li .creator .rewarded {
+      background: white;
+      padding: 150px 0 80px;
+      text-align: center;
+      margin-bottom: 5px; }
+      body#subscriptions.index #feed-center li .creator .rewarded .amount {
+        display: inline-block;
+        font-size: 50px;
+        font-weight: 100;
+        border-bottom: 1px solid #dddddd;
+        margin-bottom: 5px; }
+      body#subscriptions.index #feed-center li .creator .rewarded .text {
+        color: #aaaaaa;
+        display: block; }
+    body#subscriptions.index #feed-center li .creator .creator-info {
+      position: absolute;
+      top: 20px;
+      left: -5px;
+      z-index: 2;
+      padding-left: 25px;
+      background: transparent url(../images/curation/dot-line.png) no-repeat 0 50%; }
+      body#subscriptions.index #feed-center li .creator .creator-info .card {
+        width: 310px;
+        height: 60px;
+        background: black;
+        font-family: "museo-slab-1", "museo-slab-2", serif;
+        font-style: italic; }
+        body#subscriptions.index #feed-center li .creator .creator-info .card img {
+          float: left;
+          width: 60px;
+          height: 60px;
+          margin-right: 20px; }
+        body#subscriptions.index #feed-center li .creator .creator-info .card .name {
+          display: block;
+          color: white;
+          font-size: 20px;
+          padding-top: 10px; }
+        body#subscriptions.index #feed-center li .creator .creator-info .card .since {
+          color: #777777;
+          font-size: 12px;
+          font-weight: 300; }
+    body#subscriptions.index #feed-center li .creator .previously-rewarded li {
+      margin-bottom: 5px; }
+      body#subscriptions.index #feed-center li .creator .previously-rewarded li a {
         display: block;
-        margin-top: 5px; }
-    #subscriptions-inner #vertical-people .info {
-      font-size: 12px;
-      color: #777777;
-      margin-bottom: 10px;
-      letter-spacing: 0.05em; }
-  #subscriptions-inner #vertical-list {
+        height: 17px;
+        padding: 5px 10px 5px 28px;
+        background: #f4f4f4 url(../images/curation/white-dot.png) no-repeat 10px 50%;
+        text-transform: uppercase;
+        color: #777777;
+        -webkit-transition: all 0.2s linear;
+        -moz-transition: all 0.2s linear;
+        -ms-transition: all 0.2s linear;
+        -o-transition: all 0.2s linear;
+        transition: all 0.2s linear; }
+        body#subscriptions.index #feed-center li .creator .previously-rewarded li a .title {
+          float: left; }
+        body#subscriptions.index #feed-center li .creator .previously-rewarded li a .amount {
+          float: right; }
+        body#subscriptions.index #feed-center li .creator .previously-rewarded li a:hover {
+          background-color: #00aeef;
+          background-position: -10px 50%;
+          color: white;
+          padding-left: 10px; }
+  body#subscriptions.index #feed-center li.content {
+    position: relative; }
+    body#subscriptions.index #feed-center li.content .content-preview {
+      z-index: 1; }
+  body#subscriptions.index #feed-center li.broadcast .comment {
+    padding-bottom: 41px;
+    background: transparent url(../images/curation/broadcast-curve.png) no-repeat 550px 100%; }
+    body#subscriptions.index #feed-center li.broadcast .comment .comment-inner {
+      background: #202020;
+      padding: 10px; }
+      body#subscriptions.index #feed-center li.broadcast .comment .comment-inner p {
+        background: white;
+        font-family: "museo-slab-1", "museo-slab-2", serif;
+        font-size: 22px;
+        font-style: italic;
+        margin: 0;
+        padding: 20px;
+        line-height: 1.3em; }
+  body#subscriptions.index #feed-center li.reward .comment {
+    background: white;
+    padding: 30px;
+    min-height: 40px;
+    position: relative; }
+    body#subscriptions.index #feed-center li.reward .comment p {
+      width: 410px;
+      font-family: "museo-slab-1", "museo-slab-2", serif;
+      font-size: 22px;
+      font-style: italic;
+      margin: 0;
+      line-height: 1.3em; }
+    body#subscriptions.index #feed-center li.reward .comment .rewarded {
+      position: absolute;
+      top: 15px;
+      right: 20px; }
+      body#subscriptions.index #feed-center li.reward .comment .rewarded .amount {
+        display: inline-block;
+        font-size: 50px;
+        font-weight: 100;
+        border-bottom: 1px solid #dddddd;
+        margin-bottom: 5px; }
+      body#subscriptions.index #feed-center li.reward .comment .rewarded .text {
+        color: #aaaaaa;
+        display: block;
+        text-align: right; }
+  body#subscriptions.index #feed-center li.reward .card a {
     float: left;
-    width: 690px; }
-    #subscriptions-inner #vertical-list li {
-      position: relative; }
-      #subscriptions-inner #vertical-list li .when {
-        position: absolute;
-        top: 0;
-        right: -200px;
-        color: #555555;
-        font-size: 12px; }
-    #subscriptions-inner #vertical-list li.content > .title {
-      margin-bottom: 10px; }
+    display: block; }
+  body#subscriptions.index #feed-center li.reward .card a.avatar {
+    width: 60px;
+    height: 60px; }
+    body#subscriptions.index #feed-center li.reward .card a.avatar img {
+      margin-right: 0; }
+  body#subscriptions.index #feed-center li.reward .card a.content-thumb {
+    width: 90px;
+    height: 60px;
+    margin-right: 20px;
+    overflow: hidden; }
+    body#subscriptions.index #feed-center li.reward .card a.content-thumb img {
+      width: 95px;
+      height: 60px;
+      margin: 0 0 0 -2.5px; }
+  body#subscriptions.index #feed-center li.reward .card a.content-info {
+    width: 135px;
+    height: 60px; }
+    body#subscriptions.index #feed-center li.reward .card a.content-info .title, body#subscriptions.index #feed-center li.reward .card a.content-info .media-type {
+      float: left; }
+    body#subscriptions.index #feed-center li.reward .card a.content-info .title {
+      font-family: "proxima-nova-1", "proxima-nova-2", helvetica, sans-serif;
+      font-size: 13px;
+      font-style: normal;
+      color: white;
+      text-transform: uppercase;
+      padding-top: 15px;
+      line-height: 15px; }
+    body#subscriptions.index #feed-center li.reward .card a.content-info .media-type {
+      display: none;
+      width: 20px;
+      height: 15px;
+      background: transparent url(../images/content/media-types/photos-small.png) no-repeat 0 0; }
+      body#subscriptions.index #feed-center li.reward .card a.content-info .media-type.video {
+        background-image: url(../images/content/media-types/video-small.png); }
+      body#subscriptions.index #feed-center li.reward .card a.content-info .media-type.writing {
+        background-image: url(../images/content/media-types/writing-small.png); }
+      body#subscriptions.index #feed-center li.reward .card a.content-info .media-type.music {
+        background-image: url(../images/content/media-types/music-small.png); }
+    body#subscriptions.index #feed-center li.reward .card a.content-info .byline {
+      display: block;
+      clear: left;
+      color: #777777;
+      font-size: 12px;
+      font-weight: 300; }
 
 .content-preview {
   position: relative; }
@@ -5813,9 +5985,9 @@ ul.stories .excerpt {
     .recommendation-stream .tabs a:first-child {
       border: none; }
     .recommendation-stream .tabs a.subscribed-to-recommendations {
-      border-right: 1px solid white; }
+      border-right: 1px solid #e0e0e0; }
     .recommendation-stream .tabs a.momeant-recommendations {
-      border-left: 1px solid white; }
+      border-left: 1px solid #e0e0e0; }
   .recommendation-stream ul {
     padding: 10px 10px 0 10px; }
     .recommendation-stream ul li {
@@ -5924,7 +6096,7 @@ ul.stories .excerpt {
   #join-modal .padder, #login-modal .padder, #feedback-modal .padder, #about-diagram-modal .padder {
     width: 480px;
     margin: 0 auto;
-    background-color: white;
+    background-color: #e0e0e0;
     padding: 15px 20px 10px;
     position: relative;
     top: 170px;
@@ -6316,7 +6488,7 @@ body#home.tos ol li {
     font-size: 33px;
     font-weight: 700;
     text-transform: uppercase;
-    text-shadow: white -1px 1px 0, #985faf -2px 2px 0;
+    text-shadow: #e0e0e0 -1px 1px 0, #985faf -2px 2px 0;
     margin-bottom: 5px; }
 #faq-pitch ul.questions {
   height: 440px;
@@ -6411,7 +6583,7 @@ ul.rewards {
         left: 20px;
         z-index: 3; }
     ul.rewards li .who {
-      background: white;
+      background: #e0e0e0;
       padding: 8px;
       width: 214px;
       min-height: 40px; }
@@ -6627,7 +6799,7 @@ a.tag:hover {
 #visualization {
   width: 780px;
   height: 600px;
-  background: white;
+  background: #e0e0e0;
   position: relative; }
   #visualization #context {
     padding: 10px;

@@ -131,6 +131,10 @@ class User < ActiveRecord::Base
     !Reward.where(:recipient_id => self.id, :user_id => user.id).empty?
   end
   
+  def rewarded_creators_with_amounts
+    self.given_rewards.group_by(&:recipient).to_a.map {|x| [x.first,x.second.inject(0){|sum,r| sum+r.amount}]}.sort_by(&:second).reverse
+  end
+  
   def reward(story, amount, comment, impacted_by = nil)
     return if amount.nil?
     amount = amount.to_i
@@ -194,6 +198,12 @@ class User < ActiveRecord::Base
   
   def rewards_given_to(user)
     Reward.where(:user_id => self.id, :recipient_id => user.id).sum(:amount)
+  end
+  
+  def dollars_rewarded_for(content)
+    reward = Reward.where(:user_id => self.id, :story_id => content.id).first
+    return 0 if reward.nil?
+    reward.amount * Reward.dollar_exchange
   end
   
   def impact_on(user)

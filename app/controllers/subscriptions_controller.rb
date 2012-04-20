@@ -4,8 +4,18 @@ class SubscriptionsController < ApplicationController
   
   def index
     @nav = "following"
-    @creators = current_user.subscribed_to
-    @activity = Activity.by_users(@creators).only_types("'Story','Broadcast'").order("created_at DESC")
+    @rewarded = current_user.rewarded_creators_with_amounts
+    @followings = current_user.inverse_subscriptions
+    @activity = []
+    return if @followings.empty?
+
+    #@activity = Activity.by_users().only_types(['Story','Broadcast']).order("created_at DESC")
+    @activity = Activity.where(
+      "(actor_id IN (?) AND action_type IN (?)) OR (actor_id = ? AND action_type = 'Reward')",
+      @followings.map(&:user_id),
+      ['Story','Broadcast'],
+      current_user.id
+    ).order("created_at DESC")
   end
 
   def filter #ajax

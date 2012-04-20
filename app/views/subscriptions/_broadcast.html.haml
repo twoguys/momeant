@@ -1,5 +1,12 @@
 %li.broadcast
-  = link_to image_tag(broadcast.user.avatar.url(:thumbnail)), user_path(broadcast.user), :class => "avatar"
-  .title #{link_to broadcast.user.name, user_path(broadcast.user)} posted a message:
-  %p= auto_link(broadcast.message)
-  .when #{time_ago_in_words(broadcast.created_at)} ago
+
+  .creator
+    .creator-info
+      .card
+        = link_to image_tag(broadcast.user.avatar.url(:thumbnail)), user_path(broadcast.user), :class => "avatar"
+        = link_to broadcast.user.name, user_path(broadcast.user), :class => "name"
+        .since following since #{current_user.inverse_subscriptions.where(:user_id => broadcast.user.id).first.since}
+
+  .comment
+    .comment-inner
+      %p= broadcast.message
