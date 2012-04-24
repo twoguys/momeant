@@ -34,7 +34,7 @@ class Reward < Curation
   paginates_per 9
   
   def self.cashout_threshold
-    100
+    10
   end
   
   def self.dollar_exchange

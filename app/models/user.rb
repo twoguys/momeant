@@ -198,8 +198,12 @@ class User < ActiveRecord::Base
     1.0
   end
   
+  def unfunded_amount
+    self.given_rewards.unfunded.sum(:amount)
+  end
+  
   def is_under_unfunded_threshold?
-    self.given_rewards.unfunded.sum(:amount) < self.unfunded_reward_threshold
+    self.unfunded_amount < self.unfunded_reward_threshold
   end
   
   def pay_for_unfunded_rewards!
@@ -308,13 +312,13 @@ class User < ActiveRecord::Base
   def rewards_until_next_badge
     return if badge_level < 2
     
-    return 20 - impact if badge_level == 2
-    return 100 - impact if badge_level == 3
-    return 400 - impact if badge_level == 4
-    return 1600 - impact if badge_level == 5
-    return 3200 - impact if badge_level == 6
-    return 6400 - impact if badge_level == 7
-    return 12800 - impact if badge_level == 8
+    return 2 - impact if badge_level == 2
+    return 10 - impact if badge_level == 3
+    return 40 - impact if badge_level == 4
+    return 160 - impact if badge_level == 5
+    return 320 - impact if badge_level == 6
+    return 640 - impact if badge_level == 7
+    return 1280 - impact if badge_level == 8
   end
   
   # Sharing content with external services
