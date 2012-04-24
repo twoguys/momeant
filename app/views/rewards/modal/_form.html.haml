@@ -35,14 +35,12 @@
           #amount.section
             %h1 Reward #{@story.user.first_name} for #{@story.this_media}:
             %ul#stars
-              %li= link_to "10&cent;".html_safe, "#", :id => "one-star", :amount => 1
-              %li= link_to "50&cent;".html_safe, "#", :id => "five-star", :amount => 5
-              %li= link_to "$1.00", "#", :id => "ten-star", :amount => 10
+              %li= link_to "10&cent;".html_safe, "#", :id => "one-star", :amount => 0.1
+              %li= link_to "50&cent;".html_safe, "#", :id => "five-star", :amount => 0.5
+              %li= link_to "$1.00", "#", :id => "ten-star", :amount => 1.0
               %li.custom
                 = text_field_tag :custom_amount, "?"
-                %span or any of your
-                %strong= current_user.nil? ? "$0.00" : number_to_currency(current_user.coins * Reward.dollar_exchange)
-                %span reward coins
+                %span or any amount you want
       
             = form.hidden_field :amount, :value => 1
           

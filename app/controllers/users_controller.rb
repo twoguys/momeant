@@ -2,6 +2,10 @@ class UsersController < ApplicationController
   before_filter :authenticate_user!, :only => [:edit, :update, :update_in_place, :udpate_avatar, :analytics, :feedback, :settings, :change_password]
   before_filter :find_user, :except => [:community, :community_creators, :analytics, :billing_updates, :feedback]
   skip_before_filter :verify_authenticity_token, :only => [:billing_updates, :update_avatar]
+
+  def index
+    redirect_to root_path
+  end
   
   def show
     @nav = "me" if @user == current_user

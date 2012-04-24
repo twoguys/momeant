@@ -6,7 +6,7 @@
     
     .stats
       .supporters= pluralize project.users_who_rewarded.count, "rewarders"
-      .rewarded #{number_to_currency project.reward_count * Reward.dollar_exchange} rewards
+      .rewarded #{number_to_currency project.reward_count} rewards
       
     .label
       .title= truncate project.title, :length => 40

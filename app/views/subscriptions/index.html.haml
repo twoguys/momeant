@@ -19,7 +19,7 @@
           .name
             %span= creator[0].first_name
             %span= creator[0].last_name
-          .amount= number_to_currency(creator[1] * Reward.dollar_exchange)
+          .amount= number_to_currency(creator[1])
     
     %h2 People You Follow
     - if @followings.empty?

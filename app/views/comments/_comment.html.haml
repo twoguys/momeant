@@ -5,4 +5,4 @@
   .metadata
     %span.time #{time_ago_in_words(comment.created_at)} ago
     - if comment.reward
-      %span.reward (#{number_to_currency(comment.reward.dollar_amount)})
+      %span.reward (#{number_to_currency(comment.reward.amount)})

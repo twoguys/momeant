@@ -29,7 +29,7 @@
               .support= content.users_who_rewarded.count
           
             .comments
-              .money #{number_to_currency(content.reward_dollars)} earned
+              .money #{number_to_currency(content.reward_count)} earned
               - comment_text = pluralize(content.comments.size, "comment").split(" ")
               %a.toggle-comments{:href => "#"}
                 %span.amount= comment_text[0]

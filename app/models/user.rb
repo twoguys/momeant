@@ -137,10 +137,8 @@ class User < ActiveRecord::Base
   
   def reward(story, amount, comment, impacted_by = nil)
     return if amount.nil?
-    amount = amount.to_i
-    if !can_afford?(amount)
-      return false
-    end
+    amount = amount.to_f
+    return if amount == 0.0
     
     options = {:story_id => story.id, :amount => amount, :user_id => self.id, :recipient_id => story.user_id, :comment => comment, :impact => amount}
     
@@ -150,7 +148,6 @@ class User < ActiveRecord::Base
     # create the reward and increment the necessary cache counters
     reward = Reward.create!(options)
     story.increment!(:reward_count, amount)
-    self.decrement!(:coins, amount)
     self.increment!(:impact, amount)
     story.user.increment!(:lifetime_rewards, amount)
     
@@ -200,10 +197,10 @@ class User < ActiveRecord::Base
     Reward.where(:user_id => self.id, :recipient_id => user.id).sum(:amount)
   end
   
-  def dollars_rewarded_for(content)
+  def amount_rewarded_for(content)
     reward = Reward.where(:user_id => self.id, :story_id => content.id).first
     return 0 if reward.nil?
-    reward.amount * Reward.dollar_exchange
+    reward.amount
   end
   
   def impact_on(user)
@@ -231,10 +228,6 @@ class User < ActiveRecord::Base
     Reward.where(:user_id => self.id, :story_id => story.id).first
   end
   
-  def can_afford?(amount)
-    self.coins >= amount
-  end
-  
   def below_cashout_threshold?
     self.rewards.not_cashed_out.sum(:amount) < Reward.cashout_threshold
   end
@@ -243,8 +236,8 @@ class User < ActiveRecord::Base
     Reward.cashout_threshold - self.rewards.not_cashed_out.sum(:amount)
   end
   
-  def dollars
-    self.rewards.not_cashed_out.sum(:amount) * Reward.dollar_exchange
+  def amount_not_cashed_out
+    self.rewards.not_cashed_out.sum(:amount)
   end
   
   def has_viewed?(story)
@@ -260,13 +253,13 @@ class User < ActiveRecord::Base
   def badge_level
     return 0 if self.given_rewards.count == 0
     return 1 if self.amazon_payments.empty?
-    return 2 if self.impact < 20
-    return 3 if self.impact < 100
-    return 4 if self.impact < 400
-    return 5 if self.impact < 1600
-    return 6 if self.impact < 3200
-    return 7 if self.impact < 6400
-    return 8 if self.impact < 12800
+    return 2 if self.impact < 2
+    return 3 if self.impact < 10
+    return 4 if self.impact < 40
+    return 5 if self.impact < 160
+    return 6 if self.impact < 320
+    return 7 if self.impact < 640
+    return 8 if self.impact < 1280
     return 9
   end
   

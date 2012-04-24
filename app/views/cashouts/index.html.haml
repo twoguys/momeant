@@ -18,7 +18,7 @@
           = form.text_field :amazon_email, :placeholder => "Amazon email address"
           = form.submit "Save Email"
       - elsif current_user.below_cashout_threshold?
-        %h3 You currently have #{number_to_currency(current_user.dollars)} from your rewards. Once you reach $10.00 you will see a REQUEST A CASH OUT button appear here.
+        %h3 You currently have #{number_to_currency(current_user.amount_not_cashed_out)} from your rewards. Once you reach $10.00 you will see a REQUEST A CASH OUT button appear here.
       - else
         = button_to "Request a Cash Out", user_cashouts_path
       
@@ -27,5 +27,5 @@
           %tbody
             - @user.cashouts.each do |cashout|
               %tr
-                %td= number_to_currency(cashout.dollars)
+                %td= number_to_currency(cashout.amount)
                 %td #{cashout.state} #{time_ago_in_words(cashout.updated_at)} ago

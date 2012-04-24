@@ -253,10 +253,6 @@ class Story < ActiveRecord::Base
     Reward.in_the_past_two_weeks.group_by(&:story).to_a.sort {|x,y| y[1].size <=> x[1].size }
   end
   
-  def reward_dollars
-    self.reward_count * Reward.dollar_exchange
-  end
-  
   def this_media
     case media_type
     when "photos"

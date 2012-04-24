@@ -59,10 +59,6 @@ class Reward < Curation
     self.descendants.map(&:user).uniq.reject {|u| u == user}
   end
   
-  def dollar_amount
-    self.amount * Reward.dollar_exchange
-  end
-  
   def activities
     Activity.where(:action_id => self.id).where("action_type = 'Reward' OR action_type = 'Impact'")
   end
