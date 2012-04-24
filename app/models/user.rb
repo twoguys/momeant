@@ -139,6 +139,7 @@ class User < ActiveRecord::Base
     return if amount.nil?
     amount = amount.to_f
     return if amount == 0.0
+    return unless self.is_under_unfunded_threshold?
     
     options = {:story_id => story.id, :amount => amount, :user_id => self.id, :recipient_id => story.user_id, :comment => comment, :impact => amount}
     
@@ -191,6 +192,18 @@ class User < ActiveRecord::Base
     end
     
     return reward
+  end
+  
+  def unfunded_reward_threshold
+    1.0
+  end
+  
+  def is_under_unfunded_threshold?
+    self.given_rewards.unfunded.sum(:amount) < self.unfunded_reward_threshold
+  end
+  
+  def pay_for_unfunded_rewards!
+    self.given_rewards.unfunded.update_all(:paid_for => true)
   end
   
   def rewards_given_to(user)

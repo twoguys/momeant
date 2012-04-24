@@ -15,6 +15,8 @@ class Reward < Curation
   scope :for_user, lambda { |user| where(:recipient_id => user.id) }
   scope :but_not_for, lambda { |content| where("story_id != ?", content.id) }
   
+  scope :unfunded, where(:paid_for => false)
+  
   before_destroy :destroy_activities
   
   acts_as_nested_set
@@ -34,6 +36,7 @@ class Reward < Curation
   def self.cashout_threshold
     100
   end
+  
   def self.dollar_exchange
     0.1
   end

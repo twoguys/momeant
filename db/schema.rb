@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120424141143) do
+ActiveRecord::Schema.define(:version => 20120424153758) do
 
   create_table "activities", :force => true do |t|
     t.integer  "actor_id"
@@ -103,6 +103,7 @@ ActiveRecord::Schema.define(:version => 20120424141143) do
     t.boolean  "shared_to_facebook",                                 :default => false
     t.integer  "impact",                                             :default => 0
     t.decimal  "amount",               :precision => 8, :scale => 2
+    t.boolean  "paid_for",                                           :default => false
   end
 
   create_table "editorials", :force => true do |t|
