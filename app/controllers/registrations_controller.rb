@@ -16,8 +16,9 @@ class RegistrationsController < Devise::RegistrationsController
       @user = resource
       clean_up_passwords(resource)
       flash[:alert] = @user.errors.full_messages
-      setup_landing
-      render "home/landing"
+      people_ids = Editorial.all.map(&:user_id).join(",")
+      @people = User.where("id IN (#{people_ids})")
+      render "home/index"
     end
   end
   
