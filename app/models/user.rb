@@ -152,6 +152,13 @@ class User < ActiveRecord::Base
     self.increment!(:impact, amount)
     story.user.increment!(:lifetime_rewards, amount)
     
+    # handle people who previously purchased coins
+    coin_amount = reward.amount / Reward.dollar_exchange
+    if current_user.coins > coin_amount
+      reward.update_attribute(:paid_for => true)
+      current_user.decrement!(:coins, coin_amount)
+    end
+    
     # create the reward activity record
     Activity.create(:actor_id => self.id, :recipient_id => story.user_id, :action_type => "Reward", :action_id => reward.id)
 
