@@ -30,10 +30,6 @@ Repo::Application.routes.draw do
     end
   end
   
-  match '/coins', :to => "amazon_payments#index", :as => :coins
-  match '/coins/buy', :to => "amazon_payments#create", :as => :buy_coins
-  match '/coins/accept', :to => "amazon_payments#accept", :as => :accept_coins
-  
   resources :users do
     resources :subscriptions, :only => [:create] do
       collection do
