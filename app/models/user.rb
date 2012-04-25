@@ -81,7 +81,6 @@ class User < ActiveRecord::Base
   validates :last_name, :presence => true, :length => (1...128)
   validates :email, :presence => true, :format => /^([^\s]+)((?:[-a-z0-9]\.)[a-z]{2,})$/i
   validates :tos_accepted, :presence => true, :inclusion => {:in => [true]} # :acceptance => true won't work...
-  validates :password, :length => (6...128)
   
   RECOMMENDATIONS_LIMIT = 10
   
