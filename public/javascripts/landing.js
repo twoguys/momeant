@@ -22,7 +22,7 @@ window.DiscoveryView = Backbone.View.extend({
 	  _.bindAll(this, 'on_keypress');
 	  $(document).bind('keydown', this.on_keypress);
 	  
-	  $(function() { Discovery.stop_arrow_keys_during_typing(); }); // after page is rendered (to include modal inputs)
+	  Discovery.stop_arrow_keys_during_typing();
 	},
 	
 	store_people: function() {
@@ -112,6 +112,8 @@ window.DiscoveryView = Backbone.View.extend({
 	
 });
 
-window.Discovery = new DiscoveryView;
-window.onunload = function(){};
-Discovery.reset();
+$(function() {
+  window.Discovery = new DiscoveryView;
+  window.onunload = function(){};
+  Discovery.reset();
+});
