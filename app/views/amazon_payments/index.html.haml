@@ -2,63 +2,17 @@
 
   #explanation
     %p
-      %span Momeant rewards coins are the currency of Momeant. Use them to
-      %em reward creators,
-      %span which promotes their content so others can reward.
-
+      We've moved over to a new, simpler model to make rewarding even easier for you!
     %p
-      %span The more you reward, the more you
-      %em gain status
-      %span in the community.
-    
+      The reward coins you previously purchased are still totally valid, so don't worry.
+      But once they run out, instead of pre-purchasing packages, you can just reward whenever you see fit!
     %p
-      %span Creators
-      %em get paid
-      %span out every time they accumulate 100 coins. So go ahead and purchase reward coins and start rewarding people!
-
-  #purchase
-
-    - form_for @payment, :url => buy_coins_path do |form|
-      = form.hidden_field :amount, :value => 5
-      .package.one 25
-      .text reward coins
-      .bonus
-      .price $5
-      = form.submit "buy thru amazon"
-
-    - form_for @payment, :url => buy_coins_path do |form|
-      = form.hidden_field :amount, :value => 10
-      .package.two 70
-      .text reward coins
-      .bonus 20 extra coins
-      .price $10
-      = form.submit "buy thru amazon"
-
-    - form_for @payment, :url => buy_coins_path do |form|
-      = form.hidden_field :amount, :value => 20
-      .package.three 160
-      .text reward coins
-      .bonus 60 extra coins
-      .price $20
-      = form.submit "buy thru amazon"
-
-    - form_for @payment, :url => buy_coins_path do |form|
-      = form.hidden_field :amount, :value => 100
-      .package.four 900
-      .text reward coins
-      .bonus 400 extra coins
-      .price $100
-      = form.submit "buy thru amazon"
+      Once you've rewarded a certain amount, we'll ask you to go back and "fund" (pay for) those rewards.
+      It's that simple.
+    %p
+      If you have any questions at all, don't hesitate to #{link_to "contact us", "#feedback-modal"}. As always, thanks for your awesome support!
     
-    .amazon-text
-      %p
-        %span * We use
-        %span.amazon
-        %span to accept payments.
-        %span.line If you have an account, this process is a snap.
-        %span.line If you don't have an account, just select
-        %span.line "I am a new customer" after choosing a package above.
   
 :javascript
-  mpq.track('Viewed Coin Page', {anonymous_id: '#{session[:analytics_anonymous_id]}'})
+  mpq.track('Viewed Coin Page');
   

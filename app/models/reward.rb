@@ -15,7 +15,7 @@ class Reward < Curation
   scope :for_user, lambda { |user| where(:recipient_id => user.id) }
   scope :but_not_for, lambda { |content| where("story_id != ?", content.id) }
   
-  scope :unfunded, where(:paid_for => false)
+  scope :pledged, where(:paid_for => false)
   
   before_destroy :destroy_activities
   

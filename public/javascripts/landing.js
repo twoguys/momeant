@@ -17,12 +17,14 @@ window.DiscoveryView = Backbone.View.extend({
 		
 		_.bindAll(this, 'on_resize');
 	  $(window).resize(this.on_resize);
-	  this.on_resize();
 	  
 	  _.bindAll(this, 'on_keypress');
 	  $(document).bind('keydown', this.on_keypress);
 	  
-	  Discovery.stop_arrow_keys_during_typing();
+	  $(function() {
+  	  Discovery.on_resize();
+	    Discovery.stop_arrow_keys_during_typing();
+	  });
 	},
 	
 	store_people: function() {
@@ -112,8 +114,6 @@ window.DiscoveryView = Backbone.View.extend({
 	
 });
 
-$(function() {
-  window.Discovery = new DiscoveryView;
-  window.onunload = function(){};
-  Discovery.reset();
-});
+window.Discovery = new DiscoveryView;
+window.onunload = function(){};
+Discovery.reset();

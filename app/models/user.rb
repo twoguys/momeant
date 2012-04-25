@@ -2,7 +2,6 @@ require "open-uri"
 
 class User < ActiveRecord::Base
   
-  # Authentication configuration
   devise :database_authenticatable, :registerable, #:confirmable,
     :recoverable, :rememberable, :trackable, :validatable
        
@@ -17,8 +16,9 @@ class User < ActiveRecord::Base
   
   geocoded_by :location
        
-  # ASSOCIATIONS
-  
+  PLEDGED_REWARD_REMINDER_THRESHOLD = 1.0
+  PLEDGED_REWARD_STOP_THRESHOLD = 10.0
+
   has_many :created_stories, :foreign_key => :user_id, :class_name => "Story", :order => "created_at DESC"
   
   has_many :bookmarks, :dependent => :destroy
@@ -139,7 +139,7 @@ class User < ActiveRecord::Base
     return if amount.nil?
     amount = amount.to_f
     return if amount == 0.0
-    return unless self.is_under_unfunded_threshold?
+    return unless self.is_under_pledged_rewards_stop_threshold?
     
     options = {:story_id => story.id, :amount => amount, :user_id => self.id, :recipient_id => story.user_id, :comment => comment, :impact => amount}
     
@@ -154,9 +154,9 @@ class User < ActiveRecord::Base
     
     # handle people who previously purchased coins
     coin_amount = reward.amount / Reward.dollar_exchange
-    if current_user.coins > coin_amount
+    if self.coins > coin_amount
       reward.update_attribute(:paid_for => true)
-      current_user.decrement!(:coins, coin_amount)
+      self.decrement!(:coins, coin_amount)
     end
     
     # create the reward activity record
@@ -201,20 +201,20 @@ class User < ActiveRecord::Base
     return reward
   end
   
-  def unfunded_reward_threshold
-    1.0
+  def pledged_amount
+    self.given_rewards.pledged.sum(:amount)
   end
   
-  def unfunded_amount
-    self.given_rewards.unfunded.sum(:amount)
+  def is_under_pledged_rewards_reminder_threshold?
+    self.pledged_amount < User::PLEDGED_REWARD_REMINDER_THRESHOLD
   end
   
-  def is_under_unfunded_threshold?
-    self.unfunded_amount < self.unfunded_reward_threshold
+  def is_under_pledged_rewards_stop_threshold?
+    self.pledged_amount < User::PLEDGED_REWARD_STOP_THRESHOLD
   end
   
-  def pay_for_unfunded_rewards!
-    self.given_rewards.unfunded.update_all(:paid_for => true)
+  def pay_for_pledged_rewards!
+    self.given_rewards.pledged.update_all(:paid_for => true)
   end
   
   def rewards_given_to(user)
@@ -533,13 +533,23 @@ class User < ActiveRecord::Base
   def self.send_activity_digests
     Creator.where(:send_digest_emails => true).each do |user|
       reward_count = user.rewards.in_the_past_two_weeks.sum(:amount)
+      puts user.name if reward_count != 0
       impact_count = Activity.on_impact.involving(user).in_the_past_two_weeks.map(&:action).map(&:amount).inject(:+) || 0
-      message_count = Message.where(:recipient_id => user.id).in_the_past_two_weeks.count
       content_count = user.created_stories.in_the_past_two_weeks.count
       recommendations = user.stories_tagged_similarly_to_what_ive_rewarded[0..2]
 
-      if reward_count != 0 || impact_count != 0 || message_count != 0 || content_count != 0
-        DigestMailer.activity_digest(user, reward_count, impact_count, message_count, content_count, recommendations).deliver
+      if reward_count != 0 || impact_count != 0 || content_count != 0
+        DigestMailer.activity_digest(user, reward_count, impact_count, content_count, recommendations).deliver
+      end
+    end
+  end
+  
+  def self.send_pledge_reminders
+    Reward.pledged.includes(:user).group_by(&:user).each do |user_rewards|
+      user = user_rewards[0]
+      rewards = user_rewards[1]
+      unless user.is_under_pledged_rewards_reminder_threshold?
+        NotificationsMailer.pledged_reminder(user, rewards).deliver
       end
     end
   end

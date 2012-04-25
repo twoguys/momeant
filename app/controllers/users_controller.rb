@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :authenticate_user!, :only => [:edit, :update, :update_in_place, :udpate_avatar, :analytics, :feedback, :settings, :change_password]
+  before_filter :authenticate_user!, :only => [:edit, :update, :update_in_place, :udpate_avatar, :analytics, :feedback, :settings, :change_password, :fund_pledged_rewards]
   before_filter :find_user, :except => [:community, :community_creators, :analytics, :billing_updates, :feedback]
   skip_before_filter :verify_authenticity_token, :only => [:billing_updates, :update_avatar]
 

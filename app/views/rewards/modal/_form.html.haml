@@ -19,10 +19,10 @@
   #reward-box.reward-step{:class => current_user.nil? ? "no_user" : ""}
     .step-icon.reward
     
-    - if current_user && !current_user.is_under_unfunded_threshold?
+    - if current_user && !current_user.is_under_pledged_rewards_stop_threshold?
       .over-threshold
         %h3 We need you to fund your previous rewards before giving out more.
-        %p You have #{number_to_currency(current_user.unfunded_amount)} in rewards that need to be funded, first. You can do that here.
+        %p You have #{number_to_currency(current_user.pledged_amount)} in rewards that need to be funded, first. You can do that here.
         %p Once you've paid for those, you can continue rewarding.
     - else
       .inner
