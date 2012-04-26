@@ -44,14 +44,6 @@ window.DiscoveryView = Backbone.View.extend({
 	  });
 	},
 	
-	reset: function() {
-	  var index = $.cookie('discovery_creator_index');
-	  if (index == null) { return; }
-	  var index = parseInt(index);
-	  if (index > Discovery.people.length - 1) { return; }
-    Discovery.goto_person(index);
-	},
-	
 	person_clicked: function(event) {
     var index = $(event.currentTarget).parent().index();
     Discovery.goto_person(index);
@@ -63,7 +55,6 @@ window.DiscoveryView = Backbone.View.extend({
     if (Discovery.current_person == -1) { // go to messaging slide
       $('#slides').css('margin-top',0);
       $('#people li').removeClass('current faded');
-      $.cookie('discovery_creator_index', null);
       return;
     }
     var $person = Discovery.people[index];
@@ -116,4 +107,3 @@ window.DiscoveryView = Backbone.View.extend({
 
 window.Discovery = new DiscoveryView;
 window.onunload = function(){};
-Discovery.reset();
