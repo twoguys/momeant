@@ -91,7 +91,7 @@ window.DiscoveryView = Backbone.View.extend({
     var $link = $(event.currentTarget);
     $link.parent().addClass('selected').siblings().removeClass('selected');
     
-    Discovery.filter = $link.text().toLowerCase();
+    Discovery.filter = $link.text();
     Discovery.update_people();
     
     return false;
@@ -101,7 +101,7 @@ window.DiscoveryView = Backbone.View.extend({
     var $link = $(event.currentTarget);
     $link.parent().addClass('selected').siblings().removeClass('selected');
     
-    Discovery.category = $link.text().toLowerCase();
+    Discovery.category = $link.text();
     Discovery.update_people();
     
     return false;
@@ -113,6 +113,7 @@ window.DiscoveryView = Backbone.View.extend({
     $.get('/people', {filter: Discovery.filter, category: Discovery.category}, function(result) {
       $('#people #list').html(result.people).removeClass('loading');
       Discovery.store_people();
+  		Discovery.current_person = -1;
       $('#slides .person').remove();
       $('#slides').append(result.works);
       Discovery.$slides = $('#slides .slide');

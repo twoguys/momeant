@@ -6,12 +6,12 @@ class HomeController < ApplicationController
   
   def people # ajax
     content = Story.includes(:user)
-    if params[:filter] == "popular"
+    if params[:filter] == "Popular"
       content = content.published.order("reward_count DESC")
     else
       content = content.published.where("user_id IN (?)", Editorial.all.map(&:user_id))
     end
-    if params[:category].present? && params[:category] != "all"
+    if params[:category].present? && params[:category] != "All"
       content = content.where(:category => params[:category])
     end
     @people = content.map(&:user).uniq.take(10)
