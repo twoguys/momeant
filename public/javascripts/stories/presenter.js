@@ -224,8 +224,8 @@ $(function() {
 			$amount.click(function() {
 				$amount.addClass('selected');
 			});
-			$amount.change(function() {
-				$('#reward_amount').val($(this).val());
+			$amount.keyup(function() {
+				$('#reward_amount').val($amount.val());
 			});
 			$('#custom_amount').observe_field(1, this.show_reward_comment);
 		},
@@ -287,7 +287,7 @@ $(function() {
 					
 					if (comment != '') {
 					  $('#new-comment .text').text(comment);
-					  $('#new-comment .reward').text('($' + (parseInt(amount) * 0.10).toFixed(2) + ')');
+					  $('#new-comment .reward').text('($' + parseInt(amount).toFixed(2) + ')');
 					  $('#new-comment').slideDown();
 					}
 				}

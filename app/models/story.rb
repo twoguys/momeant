@@ -70,16 +70,16 @@ class Story < ActiveRecord::Base
   before_destroy :destroy_activities
   
   CATEGORIES = [
-    "Art",
-    "Comics",
-    "Design",
-    "Education",
-    "Film",
-    "Food",
+    "Arts",
+    "Blogging",
+    "Causes",
+    "Educational",
+    "Entertainment",
+    "Gastronomy",
+    "Humanities",
+    "Journalism",
     "Music",
-    "Photography",
-    "Technology",
-    "Travel"
+    "Publishing"
   ].freeze
     
   def to_param
@@ -251,10 +251,6 @@ class Story < ActiveRecord::Base
   
   def self.most_rewarded_recently
     Reward.in_the_past_two_weeks.group_by(&:story).to_a.sort {|x,y| y[1].size <=> x[1].size }
-  end
-  
-  def reward_dollars
-    self.reward_count * Reward.dollar_exchange
   end
   
   def this_media

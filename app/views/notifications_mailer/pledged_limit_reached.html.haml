@@ -1,0 +1,11 @@
+%h1 Hey there #{@user.first_name}!
+
+%p We see that you have pledged #{number_to_currency(@user.pledged_amount)} to the following creators:
+
+%ul
+  - @rewards.each do |reward|
+    %li= reward.recipient.name
+
+%p In order to continue rewarding, we need you to pay for those pledged rewards. You can do that here: #{link_to @fund_url}.
+
+= render "layouts/email_thanks"

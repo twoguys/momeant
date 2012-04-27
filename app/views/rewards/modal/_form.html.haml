@@ -19,13 +19,12 @@
   #reward-box.reward-step{:class => current_user.nil? ? "no_user" : ""}
     .step-icon.reward
     
-    - if current_user && current_user.coins == 0
-      .out-of-coins
-        %h3 Oops! You're out of reward coins.
-        %p If you want to reward this content, please #{link_to "purchase more reward coins", coins_path}.
+    - if current_user && !current_user.is_under_pledged_rewards_stop_threshold?
+      .over-threshold
+        %h3 We need you to fund your previous rewards before giving out more.
+        %p You have #{number_to_currency(current_user.pledged_amount)} in rewards that need to be funded, first. You can do that here.
+        %p Once you've paid for those, you can continue rewarding.
     - else
-      - if @not_enough
-        .alert Oops, you tried to reward more coins than you have.
       .inner
         = form_for :reward, :url => user_rewards_path(@story.user), :html => {:id => "reward-form"} do |form|
           = form.hidden_field :story_id, :value => @story.id
@@ -35,14 +34,12 @@
           #amount.section
             %h1 Reward #{@story.user.first_name} for #{@story.this_media}:
             %ul#stars
-              %li= link_to "10&cent;".html_safe, "#", :id => "one-star", :amount => 1
-              %li= link_to "50&cent;".html_safe, "#", :id => "five-star", :amount => 5
-              %li= link_to "$1.00", "#", :id => "ten-star", :amount => 10
+              %li= link_to "10&cent;".html_safe, "#", :id => "one-star", :amount => 0.1
+              %li= link_to "50&cent;".html_safe, "#", :id => "five-star", :amount => 0.5
+              %li= link_to "$1.00", "#", :id => "ten-star", :amount => 1.0
               %li.custom
-                = text_field_tag :custom_amount, "?"
-                %span or any of your
-                %strong= current_user.nil? ? "$0.00" : number_to_currency(current_user.coins * Reward.dollar_exchange)
-                %span reward coins
+                = text_field_tag :custom_amount
+                %span or any amount you want
       
             = form.hidden_field :amount, :value => 1
           
@@ -53,13 +50,13 @@
                 - if @story.user.below_cashout_threshold?
                   .hint
                     %span #{@story.user.first_name} needs
-                    %strong= pluralize @story.user.needed_to_cashout, "more reward"
+                    %strong= number_to_currency @story.user.needed_to_cashout
                     %span to meet the $10 cash out threshold.
                 - if current_user.badge_level >= 2
                   .hint
-                    %span You need to give
-                    %strong= pluralize current_user.rewards_until_next_badge, "more reward"
-                    %span to earn the "#{current_user.next_badge_level_name}" badge.
+                    %span You need to reward
+                    %strong= number_to_currency current_user.rewards_until_next_badge
+                    %span more to earn the "#{current_user.next_badge_level_name}" badge.
           - else
             #amounts-cover
             = link_to "Join the Momeant community!", "#join-modal", :id => "reward-join-button", :class => "button"

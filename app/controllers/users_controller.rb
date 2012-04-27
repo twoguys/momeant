@@ -1,7 +1,11 @@
 class UsersController < ApplicationController
-  before_filter :authenticate_user!, :only => [:edit, :update, :update_in_place, :udpate_avatar, :analytics, :feedback, :settings, :change_password]
-  before_filter :find_user, :except => [:community, :community_creators, :analytics, :billing_updates, :feedback]
+  before_filter :authenticate_user!, :only => [:edit, :update, :update_in_place, :udpate_avatar, :analytics, :feedback, :settings, :change_password, :fund_pledged_rewards]
+  before_filter :find_user, :except => [:community, :community_creators, :analytics, :billing_updates, :feedback, :fund_pledged_rewards]
   skip_before_filter :verify_authenticity_token, :only => [:billing_updates, :update_avatar]
+
+  def index
+    redirect_to root_path
+  end
   
   def show
     @nav = "me" if @user == current_user
@@ -119,6 +123,11 @@ class UsersController < ApplicationController
       flash[:alert] = @user.errors.full_messages
       render "settings"
     end
+  end
+  
+  def fund_pledged_rewards
+    @user = current_user
+    @rewards = @user.given_rewards.pledged
   end
   
   def submit_creator_request

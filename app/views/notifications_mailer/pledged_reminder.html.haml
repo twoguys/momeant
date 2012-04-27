@@ -1,0 +1,14 @@
+%h3 Hey there #{@user.first_name}!
+
+%p This is a reminder that you have pledged #{number_to_currency(@user.pledged_amount)} to the following creators:
+
+%div
+  - @rewards.each do |reward|
+    = link_to image_tag(reward.recipient.avatar.url(:thumbnail)), user_url(reward.recipient)
+
+%p You can pay for those pledged rewards here: #{link_to @fund_url, @fund_url}
+
+%p
+  Thanks!
+  %br
+  = "- The Momeant Team"

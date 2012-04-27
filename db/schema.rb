@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120418131849) do
+ActiveRecord::Schema.define(:version => 20120424153758) do
 
   create_table "activities", :force => true do |t|
     t.integer  "actor_id"
@@ -56,7 +56,8 @@ ActiveRecord::Schema.define(:version => 20120418131849) do
     t.string   "state"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "amount"
+    t.integer  "amount_old"
+    t.decimal  "amount",        :precision => 8, :scale => 2
   end
 
   create_table "comments", :force => true do |t|
@@ -89,18 +90,20 @@ ActiveRecord::Schema.define(:version => 20120418131849) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "comment"
-    t.integer  "amount",               :default => 0
+    t.integer  "amount_old",                                         :default => 0
     t.integer  "recipient_id"
-    t.boolean  "given_during_trial",   :default => false
+    t.boolean  "given_during_trial",                                 :default => false
     t.integer  "parent_id"
     t.integer  "lft"
     t.integer  "rgt"
-    t.integer  "depth",                :default => 0
-    t.boolean  "show_on_landing_page", :default => false
+    t.integer  "depth",                                              :default => 0
+    t.boolean  "show_on_landing_page",                               :default => false
     t.integer  "cashout_id"
-    t.boolean  "shared_to_twitter",    :default => false
-    t.boolean  "shared_to_facebook",   :default => false
-    t.integer  "impact",               :default => 0
+    t.boolean  "shared_to_twitter",                                  :default => false
+    t.boolean  "shared_to_facebook",                                 :default => false
+    t.integer  "impact",                                             :default => 0
+    t.decimal  "amount",               :precision => 8, :scale => 2
+    t.boolean  "paid_for",                                           :default => false
   end
 
   create_table "editorials", :force => true do |t|
@@ -202,15 +205,15 @@ ActiveRecord::Schema.define(:version => 20120418131849) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "purchased_count",      :default => 0
-    t.boolean  "published",            :default => false
+    t.integer  "purchased_count",                                    :default => 0
+    t.boolean  "published",                                          :default => false
     t.integer  "thumbnail_page"
     t.integer  "price"
-    t.integer  "likes_count",          :default => 0
+    t.integer  "likes_count",                                        :default => 0
     t.text     "synopsis"
-    t.integer  "reward_count",         :default => 0
-    t.integer  "view_count",           :default => 0
-    t.integer  "comment_count",        :default => 0
+    t.integer  "reward_count_old",                                   :default => 0
+    t.integer  "view_count",                                         :default => 0
+    t.integer  "comment_count",                                      :default => 0
     t.text     "thankyou"
     t.string   "thumbnail_file_name"
     t.string   "thumbnail_file_type"
@@ -218,12 +221,13 @@ ActiveRecord::Schema.define(:version => 20120418131849) do
     t.datetime "thumbnail_updated_at"
     t.string   "thumbnail_hex_color"
     t.integer  "gallery_id"
-    t.boolean  "is_external",          :default => false
-    t.boolean  "i_own_this",           :default => true
+    t.boolean  "is_external",                                        :default => false
+    t.boolean  "i_own_this",                                         :default => true
     t.string   "media_type"
     t.string   "category"
     t.text     "template"
     t.string   "template_text"
+    t.decimal  "reward_count",         :precision => 8, :scale => 2
   end
 
   create_table "stories_topics", :id => false, :force => true do |t|
@@ -280,12 +284,12 @@ ActiveRecord::Schema.define(:version => 20120418131849) do
 
   create_table "users", :force => true do |t|
     t.string   "email"
-    t.string   "encrypted_password",               :limit => 128, :default => "",    :null => false
-    t.string   "password_salt",                                   :default => "",    :null => false
+    t.string   "encrypted_password",               :limit => 128,                               :default => "",    :null => false
+    t.string   "password_salt",                                                                 :default => "",    :null => false
     t.string   "reset_password_token"
     t.string   "remember_token"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                                   :default => 0
+    t.integer  "sign_in_count",                                                                 :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -301,25 +305,25 @@ ActiveRecord::Schema.define(:version => 20120418131849) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_udpated_at"
     t.string   "type"
-    t.boolean  "is_admin",                                        :default => false
-    t.float    "credits",                                         :default => 0.0
+    t.boolean  "is_admin",                                                                      :default => false
+    t.float    "credits",                                                                       :default => 0.0
     t.string   "first_name"
     t.string   "last_name"
-    t.boolean  "stored_in_braintree",                             :default => false
+    t.boolean  "stored_in_braintree",                                                           :default => false
     t.text     "tagline"
     t.string   "occupation"
     t.string   "paid_state"
-    t.integer  "coins",                                           :default => 0
+    t.integer  "coins",                                                                         :default => 0
     t.datetime "subscription_last_updated_at"
     t.string   "spreedly_plan"
     t.string   "spreedly_token"
-    t.integer  "subscriptions_count",                             :default => 0
-    t.boolean  "tos_accepted",                                    :default => false
-    t.integer  "lifetime_rewards",                                :default => 0
+    t.integer  "subscriptions_count",                                                           :default => 0
+    t.boolean  "tos_accepted",                                                                  :default => false
+    t.integer  "lifetime_rewards_old",                                                          :default => 0
     t.text     "thankyou"
     t.string   "location"
     t.string   "amazon_email"
-    t.integer  "impact",                                          :default => 0
+    t.integer  "impact_old",                                                                    :default => 0
     t.string   "twitter_id"
     t.string   "facebook_id"
     t.text     "twitter_friends"
@@ -327,10 +331,12 @@ ActiveRecord::Schema.define(:version => 20120418131849) do
     t.datetime "friends_last_cached_at"
     t.float    "latitude"
     t.float    "longitude"
-    t.boolean  "send_reward_notification_emails",                 :default => true
-    t.boolean  "send_digest_emails",                              :default => true
-    t.boolean  "send_message_notification_emails",                :default => true
+    t.boolean  "send_reward_notification_emails",                                               :default => true
+    t.boolean  "send_digest_emails",                                                            :default => true
+    t.boolean  "send_message_notification_emails",                                              :default => true
     t.string   "i_reward_because"
+    t.decimal  "impact",                                          :precision => 8, :scale => 2
+    t.decimal  "lifetime_rewards",                                :precision => 8, :scale => 2
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

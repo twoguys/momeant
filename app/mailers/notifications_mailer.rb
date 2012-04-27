@@ -23,4 +23,18 @@ class NotificationsMailer < ActionMailer::Base
   def site_updated(user)
     mail :to => user.email, :subject => "Momeant has a new face!"
   end
+  
+  def pledged_reminder(user, rewards)
+    @user = user
+    @rewards = rewards
+    @fund_url = fund_rewards_url
+    mail :to => user.email, :subject => "Here's your chance to pay for your pledged rewards!"
+  end
+  
+  def pledged_limit_reached(user, rewards)
+    @user = user
+    @rewards = rewards
+    @fund_url = fund_rewards_url
+    mail :to => user.email, :subject => "We need you to pay for your pledged rewards!"
+  end
 end

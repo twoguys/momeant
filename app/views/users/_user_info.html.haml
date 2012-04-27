@@ -43,7 +43,7 @@
     
     #reward-total
       .amount
-        %span= number_to_currency(@user.impact * Reward.dollar_exchange)
+        %span= number_to_currency(@user.impact)
       .text cash raised
     
     #broadcaster
@@ -63,11 +63,11 @@
           = link_to "Cancel", "#", :id => "cancel-update"
 
     %ul.stats
-      %li #{number_to_currency(@user.rewards.sum(:amount) * Reward.dollar_exchange)} earned
+      %li #{number_to_currency(@user.rewards.sum(:amount))} earned
       - if me?(@user)
         %li.current-money
           %span.dollar $
-          %span.amount= number_to_currency(@user.rewards.not_cashed_out.sum(:amount) * Reward.dollar_exchange)[1..-1]
+          %span.amount= number_to_currency(@user.rewards.not_cashed_out.sum(:amount))[1..-1]
           %span not cashed out
         %li= link_to "Cash Out", user_cashouts_path(@user), :id => "cashout", :class => "button"
 
