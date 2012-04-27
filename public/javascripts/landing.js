@@ -17,8 +17,8 @@ window.DiscoveryView = Backbone.View.extend({
     this.store_people();
     this.typing = false;
     
-    this.filter = 'featured';
-    this.category = 'all';
+    this.filter = 'Featured';
+    this.category = 'All';
 		
 		_.bindAll(this, 'on_resize');
 	  $(window).resize(this.on_resize);
