@@ -3,7 +3,9 @@ window.DiscoveryView = Backbone.View.extend({
 	el: $('body'),
 	
 	events: {
-		'click #people a.name': 'person_clicked'
+		'click #people a.name': 'person_clicked',
+		'click #featured a': 'featured_filter_clicked',
+		'click #categories a': 'category_filter_clicked'
 	},
 	
 	initialize: function() {
@@ -14,15 +16,20 @@ window.DiscoveryView = Backbone.View.extend({
 		this.$slides = $('.slide');
     this.store_people();
     this.typing = false;
+    
+    this.filter = 'Featured';
+    this.category = 'All';
 		
 		_.bindAll(this, 'on_resize');
 	  $(window).resize(this.on_resize);
-	  this.on_resize();
 	  
 	  _.bindAll(this, 'on_keypress');
 	  $(document).bind('keydown', this.on_keypress);
 	  
-	  $(function() { Discovery.stop_arrow_keys_during_typing(); }); // after page is rendered (to include modal inputs)
+	  $(function() {
+  	  Discovery.on_resize();
+	    Discovery.stop_arrow_keys_during_typing();
+	  });
 	},
 	
 	store_people: function() {
@@ -42,14 +49,6 @@ window.DiscoveryView = Backbone.View.extend({
 	  });
 	},
 	
-	reset: function() {
-	  var index = $.cookie('discovery_creator_index');
-	  if (index == null) { return; }
-	  var index = parseInt(index);
-	  if (index > Discovery.people.length - 1) { return; }
-    Discovery.goto_person(index);
-	},
-	
 	person_clicked: function(event) {
     var index = $(event.currentTarget).parent().index();
     Discovery.goto_person(index);
@@ -61,7 +60,6 @@ window.DiscoveryView = Backbone.View.extend({
     if (Discovery.current_person == -1) { // go to messaging slide
       $('#slides').css('margin-top',0);
       $('#people li').removeClass('current faded');
-      $.cookie('discovery_creator_index', null);
       return;
     }
     var $person = Discovery.people[index];
@@ -89,6 +87,40 @@ window.DiscoveryView = Backbone.View.extend({
     window.location.href = href;
   },
   
+  featured_filter_clicked: function(event) {
+    var $link = $(event.currentTarget);
+    $link.parent().addClass('selected').siblings().removeClass('selected');
+    
+    Discovery.filter = $link.text();
+    Discovery.update_people();
+    
+    return false;
+  },
+  
+  category_filter_clicked: function(event) {
+    var $link = $(event.currentTarget);
+    $link.parent().addClass('selected').siblings().removeClass('selected');
+    
+    Discovery.category = $link.text();
+    Discovery.update_people();
+    
+    return false;
+  },
+  
+  update_people: function() {
+    $('#slides').css('margin-top',0);
+    $('#people #list').addClass('loading');
+    $.get('/people', {filter: Discovery.filter, category: Discovery.category}, function(result) {
+      $('#people #list').html(result.people).removeClass('loading');
+      Discovery.store_people();
+  		Discovery.current_person = -1;
+      $('#slides .person').remove();
+      $('#slides').append(result.works);
+      Discovery.$slides = $('#slides .slide');
+      Discovery.on_resize();
+    });
+  },
+  
 	on_resize: function() {
 	  this.window_height = this.$window.height() - 42;
 	  this.$slides.css('height',this.window_height);
@@ -114,4 +146,3 @@ window.DiscoveryView = Backbone.View.extend({
 
 window.Discovery = new DiscoveryView;
 window.onunload = function(){};
-Discovery.reset();

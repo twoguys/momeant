@@ -15,6 +15,8 @@ class Reward < Curation
   scope :for_user, lambda { |user| where(:recipient_id => user.id) }
   scope :but_not_for, lambda { |content| where("story_id != ?", content.id) }
   
+  scope :pledged, where(:paid_for => false)
+  
   before_destroy :destroy_activities
   
   acts_as_nested_set
@@ -32,8 +34,9 @@ class Reward < Curation
   paginates_per 9
   
   def self.cashout_threshold
-    100
+    10
   end
+  
   def self.dollar_exchange
     0.1
   end
@@ -57,10 +60,6 @@ class Reward < Curation
   
   def descendants_except(user)
     self.descendants.map(&:user).uniq.reject {|u| u == user}
-  end
-  
-  def dollar_amount
-    self.amount * Reward.dollar_exchange
   end
   
   def activities

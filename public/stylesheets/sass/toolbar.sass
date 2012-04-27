@@ -151,76 +151,51 @@
 				color: #000
 		#signin, #signout, #join, #feedback
 			position: absolute
-			right: 204px
-			padding-top: 10px
+			right: 308px
+			padding-top: 6px
 			a
 				@include button
-				height: 22px
-				line-height: 22px
+				height: 26px
+				line-height: 26px
 				padding: 0 15px
-				font-size: 10px
+				font-size: 13px
 				display: block
+				@include rounded(0)
+				background: $blue
 		#signin a
-			@include gradient($greengradient1, $greengradient2)
+			background: $green
 		#join
-			right: 275px
-			a
-				@include gradient($bluegradient1, $bluegradient2)
+			right: 387px
 		#search
 			position: absolute
-			top: 10px
-			right: 10px
-			width: 176px
+			top: 6px
+			right: 6px
+			width: 294px
+			input[type="text"], input[type="submit"]
+				background-color: #5c5c5c
 			input[type="text"]
-				height: 14px
-				width: 141px
+				height: 20px
+				width: 261px
 				padding: 3px 4px
 				font-size: 11px
+				color: #fff
 				position: absolute
 				top: 0
 				left: 0
-				-webkit-border-top-left-radius: 3px
-				-webkit-border-bottom-left-radius: 3px
-				-moz-border-radius-topleft: 3px
-				-moz-border-radius-bottomleft: 3px
-				border-top-left-radius: 3px
-				border-bottom-left-radius: 3px
-				-webkit-border-top-right-radius: 0
-				-webkit-border-bottom-right-radius: 0
-				-moz-border-radius-topright: 0
-				-moz-border-radius-bottomright: 0
-				border-top-right-radius: 0
-				border-bottom-right-radius: 0
+				border: none
+				@include rounded(0)
 			input[type="submit"]
-				height: 22px
+				height: 26px
 				width: 25px
 				position: absolute
 				top: 0
 				right: 0
 				padding: 0
 				text-indent: -9999px
-				background: $blue url(../images/icons/search.png) no-repeat 50% 50%
-				-webkit-border-top-left-radius: 0
-				-webkit-border-bottom-left-radius: 0
-				-moz-border-radius-topleft: 0
-				-moz-border-radius-bottomleft: 0
-				border-top-left-radius: 0
-				border-bottom-left-radius: 0
-				-webkit-border-top-right-radius: 3px
-				-webkit-border-bottom-right-radius: 3px
-				-moz-border-radius-topright: 3px
-				-moz-border-radius-bottomright: 3px
-				border-top-right-radius: 3px
-				border-bottom-right-radius: 3px
-		#feedback
-			right: 194px
-			a
-				@include gradient($bluegradient1,$bluegradient2)
-	#user-nav ul.search-hidden
-		#signin
-			right: 0
-		#join
-			right: 70px
+				background-image: url(../images/icons/search.png)
+				background-repeat: no-repeat
+				background-position: 50% 50%
+				@include rounded(0)
 			
 
 #header.hide-nav

@@ -1,13 +1,24 @@
 class HomeController < ApplicationController
   
   def index
-    people_ids = Editorial.all.map(&:user_id).join(",")
-    @people = User.where("id IN (#{people_ids})")
+    setup_landing
   end
   
   def people # ajax
-    @people = User.most_rewarded.limit(50)
-    render :partial => "home/person", :collection => @people, :as => :person
+    content = Story.includes(:user)
+    if params[:filter] == "Popular"
+      content = content.published.order("reward_count DESC")
+    else
+      content = content.published.where("user_id IN (?)", Editorial.all.map(&:user_id))
+    end
+    if params[:category].present? && params[:category] != "All"
+      content = content.where(:category => params[:category])
+    end
+    @people = content.map(&:user).uniq.take(10)
+    
+    people_html = render_to_string :partial => "home/person", :collection => @people, :as => :person
+    works_html = render_to_string :partial => "home/work", :collection => @people.map(&:discovery_content), :as => :content
+    render :json => { :people => people_html, :works => works_html }
   end
   
   def projects # ajax

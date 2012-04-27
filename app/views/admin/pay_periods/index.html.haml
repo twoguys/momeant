@@ -2,7 +2,7 @@
   = render "admin/tabs"
   
   .current
-    Total requested cashouts: #{number_to_currency(@requested_cashouts.sum(:amount) * Reward.dollar_exchange)}
+    Total requested cashouts: #{number_to_currency(@requested_cashouts.sum(:amount))}
     = link_to "Show/Hide Details", "#", :id => "show-cashouts"
     %table#cashout-list{:style => "display:none"}
       %thead
@@ -16,7 +16,7 @@
           %tr
             %td= link_to(cashout.user.name, user_path(cashout.user))
             %td= cashout.user.amazon_email
-            %td= number_to_currency(cashout.dollars)
+            %td= number_to_currency(cashout.amount)
             %td requested #{time_ago_in_words(cashout.created_at)} ago
     %p= button_to("End Pay Period", admin_pay_periods_path)
 
@@ -33,7 +33,7 @@
       - @pay_periods.each do |pay_period|
         %tr
           %td= pay_period.print_date
-          %td= number_to_currency(pay_period.dollars)
+          %td= number_to_currency(pay_period.cashouts.sum(:amount))
           %td ended by #{pay_period.user.name}
           %td= link_to("Download CSV", admin_pay_period_path(pay_period, :format => :csv))
 

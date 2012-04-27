@@ -21,12 +21,13 @@
           - if current_user.is_admin?
             %li= link_to "Admin", admin_dashboard_path
           %li= link_to "Logout", destroy_user_session_path
-      %li#coins{:class => @nav == "coins" ? "active" : ""}
-        %a{:href => coins_path}
-          .text
-            %span reward money
-            %span to give out
-          .amount= number_to_currency(current_user.coins * Reward.dollar_exchange)
+      - if current_user.coins > 0
+        %li#coins{:class => @nav == "coins" ? "active" : ""}
+          %a{:href => coins_path}
+            .text
+              %span reward money
+              %span to give out
+            .amount= number_to_currency(current_user.coins * Reward.dollar_exchange)
       %li#feedback= link_to("Feedback", "#feedback-modal")
       
     - else

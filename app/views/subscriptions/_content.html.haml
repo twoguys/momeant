@@ -2,14 +2,8 @@
 
   .creator
     .rewarded
-      %span.amount= number_to_currency(current_user.rewards_given_to(content.user) * Reward.dollar_exchange)
-      %span.text already rewarded
-    %ul.previously-rewarded
-      - current_user.given_rewards.for_user(content.user).but_not_for(content).limit(8).includes(:story).each do |reward|
-        %li
-          %a{:href => story_url(reward.story)}
-            .title= truncate(reward.story.title, :length => 25)
-            .amount= number_to_currency(reward.dollar_amount)
+      %span.amount= number_to_currency(current_user.amount_rewarded_for(content))
+      %span.text you've rewarded
     .creator-info
       .card
         = link_to image_tag(content.user.avatar.url(:thumbnail)), user_path(content.user), :class => "avatar"
@@ -36,7 +30,6 @@
     .support= content.users_who_rewarded.count
   
   .comments
-    .money #{number_to_currency(content.reward_dollars)} earned
     - comment_text = pluralize(content.comments.size, "comment").split(" ")
     %a.toggle-comments{:href => "#"}
       %span.amount= comment_text[0]

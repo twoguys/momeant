@@ -2,7 +2,6 @@ require "open-uri"
 
 class User < ActiveRecord::Base
   
-  # Authentication configuration
   devise :database_authenticatable, :registerable, #:confirmable,
     :recoverable, :rememberable, :trackable, :validatable
        
@@ -17,8 +16,9 @@ class User < ActiveRecord::Base
   
   geocoded_by :location
        
-  # ASSOCIATIONS
-  
+  PLEDGED_REWARD_REMINDER_THRESHOLD = 1.0
+  PLEDGED_REWARD_STOP_THRESHOLD = 10.0
+
   has_many :created_stories, :foreign_key => :user_id, :class_name => "Story", :order => "created_at DESC"
   
   has_many :bookmarks, :dependent => :destroy
@@ -81,7 +81,6 @@ class User < ActiveRecord::Base
   validates :last_name, :presence => true, :length => (1...128)
   validates :email, :presence => true, :format => /^([^\s]+)((?:[-a-z0-9]\.)[a-z]{2,})$/i
   validates :tos_accepted, :presence => true, :inclusion => {:in => [true]} # :acceptance => true won't work...
-  validates :password, :length => (6...128)
   
   RECOMMENDATIONS_LIMIT = 10
   
@@ -137,10 +136,9 @@ class User < ActiveRecord::Base
   
   def reward(story, amount, comment, impacted_by = nil)
     return if amount.nil?
-    amount = amount.to_i
-    if !can_afford?(amount)
-      return false
-    end
+    amount = amount.to_f
+    return if amount == 0.0
+    return unless self.is_under_pledged_rewards_stop_threshold?
     
     options = {:story_id => story.id, :amount => amount, :user_id => self.id, :recipient_id => story.user_id, :comment => comment, :impact => amount}
     
@@ -150,9 +148,15 @@ class User < ActiveRecord::Base
     # create the reward and increment the necessary cache counters
     reward = Reward.create!(options)
     story.increment!(:reward_count, amount)
-    self.decrement!(:coins, amount)
     self.increment!(:impact, amount)
     story.user.increment!(:lifetime_rewards, amount)
+    
+    # handle people who previously purchased coins
+    coin_amount = reward.amount / Reward.dollar_exchange
+    if self.coins > coin_amount
+      reward.update_attribute(:paid_for => true)
+      self.decrement!(:coins, coin_amount)
+    end
     
     # create the reward activity record
     Activity.create(:actor_id => self.id, :recipient_id => story.user_id, :action_type => "Reward", :action_id => reward.id)
@@ -196,14 +200,30 @@ class User < ActiveRecord::Base
     return reward
   end
   
+  def pledged_amount
+    self.given_rewards.pledged.sum(:amount)
+  end
+  
+  def is_under_pledged_rewards_reminder_threshold?
+    self.pledged_amount < User::PLEDGED_REWARD_REMINDER_THRESHOLD
+  end
+  
+  def is_under_pledged_rewards_stop_threshold?
+    self.pledged_amount < User::PLEDGED_REWARD_STOP_THRESHOLD
+  end
+  
+  def pay_for_pledged_rewards!
+    self.given_rewards.pledged.update_all(:paid_for => true)
+  end
+  
   def rewards_given_to(user)
     Reward.where(:user_id => self.id, :recipient_id => user.id).sum(:amount)
   end
   
-  def dollars_rewarded_for(content)
+  def amount_rewarded_for(content)
     reward = Reward.where(:user_id => self.id, :story_id => content.id).first
     return 0 if reward.nil?
-    reward.amount * Reward.dollar_exchange
+    reward.amount
   end
   
   def impact_on(user)
@@ -231,10 +251,6 @@ class User < ActiveRecord::Base
     Reward.where(:user_id => self.id, :story_id => story.id).first
   end
   
-  def can_afford?(amount)
-    self.coins >= amount
-  end
-  
   def below_cashout_threshold?
     self.rewards.not_cashed_out.sum(:amount) < Reward.cashout_threshold
   end
@@ -243,8 +259,8 @@ class User < ActiveRecord::Base
     Reward.cashout_threshold - self.rewards.not_cashed_out.sum(:amount)
   end
   
-  def dollars
-    self.rewards.not_cashed_out.sum(:amount) * Reward.dollar_exchange
+  def amount_not_cashed_out
+    self.rewards.not_cashed_out.sum(:amount)
   end
   
   def has_viewed?(story)
@@ -260,13 +276,13 @@ class User < ActiveRecord::Base
   def badge_level
     return 0 if self.given_rewards.count == 0
     return 1 if self.amazon_payments.empty?
-    return 2 if self.impact < 20
-    return 3 if self.impact < 100
-    return 4 if self.impact < 400
-    return 5 if self.impact < 1600
-    return 6 if self.impact < 3200
-    return 7 if self.impact < 6400
-    return 8 if self.impact < 12800
+    return 2 if self.impact < 2
+    return 3 if self.impact < 10
+    return 4 if self.impact < 40
+    return 5 if self.impact < 160
+    return 6 if self.impact < 320
+    return 7 if self.impact < 640
+    return 8 if self.impact < 1280
     return 9
   end
   
@@ -302,13 +318,13 @@ class User < ActiveRecord::Base
   def rewards_until_next_badge
     return if badge_level < 2
     
-    return 20 - impact if badge_level == 2
-    return 100 - impact if badge_level == 3
-    return 400 - impact if badge_level == 4
-    return 1600 - impact if badge_level == 5
-    return 3200 - impact if badge_level == 6
-    return 6400 - impact if badge_level == 7
-    return 12800 - impact if badge_level == 8
+    return 2 - impact if badge_level == 2
+    return 10 - impact if badge_level == 3
+    return 40 - impact if badge_level == 4
+    return 160 - impact if badge_level == 5
+    return 320 - impact if badge_level == 6
+    return 640 - impact if badge_level == 7
+    return 1280 - impact if badge_level == 8
   end
   
   # Sharing content with external services
@@ -516,13 +532,23 @@ class User < ActiveRecord::Base
   def self.send_activity_digests
     Creator.where(:send_digest_emails => true).each do |user|
       reward_count = user.rewards.in_the_past_two_weeks.sum(:amount)
+      puts user.name if reward_count != 0
       impact_count = Activity.on_impact.involving(user).in_the_past_two_weeks.map(&:action).map(&:amount).inject(:+) || 0
-      message_count = Message.where(:recipient_id => user.id).in_the_past_two_weeks.count
       content_count = user.created_stories.in_the_past_two_weeks.count
       recommendations = user.stories_tagged_similarly_to_what_ive_rewarded[0..2]
 
-      if reward_count != 0 || impact_count != 0 || message_count != 0 || content_count != 0
-        DigestMailer.activity_digest(user, reward_count, impact_count, message_count, content_count, recommendations).deliver
+      if reward_count != 0 || impact_count != 0 || content_count != 0
+        DigestMailer.activity_digest(user, reward_count, impact_count, content_count, recommendations).deliver
+      end
+    end
+  end
+  
+  def self.send_pledge_reminders
+    Reward.pledged.includes(:user).group_by(&:user).each do |user_rewards|
+      user = user_rewards[0]
+      rewards = user_rewards[1]
+      unless user.is_under_pledged_rewards_reminder_threshold?
+        NotificationsMailer.pledged_reminder(user, rewards).deliver
       end
     end
   end

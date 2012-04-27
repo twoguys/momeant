@@ -13,8 +13,8 @@ Feature "A user should be able to sign up, sign in and sign out. Signing up imme
       assert find("#signin").visible?
     end 
 
-    When "I click the Join / Login link" do
-      click_link "Join / Login"
+    When "I click the Join link" do
+      click_link "Join"
     end
 
     Then "I should see a signup form" do
@@ -27,8 +27,8 @@ Feature "A user should be able to sign up, sign in and sign out. Signing up imme
     
     when_i_visit_page(:home)
     
-    And "I click the Join / Login link" do
-      click_link "Join / Login"
+    And "I click the Join link" do
+      click_link "Join"
     end
     
     And "I fill out the form fields and submit the form" do

@@ -6,7 +6,7 @@ class StoriesController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => [:update_thumbnail]
   
   def index
-    redirect_to community_path
+    redirect_to root_path
   end
   
   def interesting

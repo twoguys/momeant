@@ -11,8 +11,4 @@ class Cashout < ActiveRecord::Base
   aasm_state :requested
   aasm_state :paid
   
-  def dollars
-    self.amount * Reward.dollar_exchange
-  end
-  
 end

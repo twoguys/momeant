@@ -6,9 +6,6 @@ class SubscriptionsController < ApplicationController
     @nav = "following"
     @rewarded = current_user.rewarded_creators_with_amounts
     @followings = current_user.inverse_subscriptions
-    @activity = []
-    return if @followings.empty?
-
     get_all_activity
   end
 

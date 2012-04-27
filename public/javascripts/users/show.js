@@ -30,7 +30,6 @@ window.ProfileView = Backbone.View.extend({
     var content_id = window.location.href.substring(content_id_index + 9, window.location.href.length);
     var y_position = $('#content-' + content_id).position().top - 42;
     if (y_position < 0) { return; }
-    console.log(y_position);
     $.scrollTo(y_position);
   },
   

@@ -5,5 +5,5 @@
 
   %h1 Pay Period ending #{@pay_period.print_date}
   
-  %h3 Total: #{number_to_currency(@pay_period.cashouts.sum(:amount) * Reward.dollar_exchange)}
+  %h3 Total: #{number_to_currency(@pay_period.cashouts.sum(:amount))}
   = link_to("Download CSV", admin_pay_period_path(@pay_period, :format => :csv))

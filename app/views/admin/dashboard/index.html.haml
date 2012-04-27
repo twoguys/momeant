@@ -20,7 +20,7 @@
   
     %section.minus
       %h3 Money Out
-      %p= number_to_currency(@cashouts_paid.map(&:dollars).inject(:+) || 0)
+      %p= number_to_currency(@cashouts_paid.map(&:amount).inject(:+) || 0)
     
     %section.plus
       %h3 Momeant Revenue
@@ -30,19 +30,15 @@
 
   %section
     %h3 Money remaining
-    %p= number_to_currency(@payments.sum(:amount) - (@cashouts_paid.map(&:dollars).inject(:+) || 0))
+    %p= number_to_currency(@payments.sum(:amount) - (@cashouts_paid.map(&:amount).inject(:+) || 0))
   
   %section
     %h3 Unpaid cashouts
-    %p= number_to_currency(@cashouts_requested.map(&:dollars).inject(:+) || 0)
+    %p= number_to_currency(@cashouts_requested.map(&:amount).inject(:+) || 0)
   
   %section
     %h3 Non-cashed-out rewards
-    %p= number_to_currency(Reward.not_cashed_out.sum(:amount) * Reward.dollar_exchange)
-  
-  %section
-    %h3 Unused reward coins
-    %p= number_to_currency(User.sum(:coins) * Reward.dollar_exchange)
+    %p= number_to_currency(Reward.not_cashed_out.sum(:amount))
 
 
 :javascript

@@ -15,13 +15,19 @@ class RewardsController < ApplicationController
     )
     
     if !@reward
-      @not_enough = true
-      comment = params[:reward] ? params[:reward][:comment] : ""
-      @reward = Reward.new(:comment => comment)
-      render :partial => "modal/form" and return
+      if !current_user.is_under_pledged_rewards_stop_threshold?
+        @error = "Oops! We need you to pay for your past rewards before continuing to reward."
+      else
+        @error = "Sorry! That was an invalid reward amount."
+      end
+      render :text => "<div class=\"alert\">#{@error}</div>" and return
     end
         
     NotificationsMailer.reward_notice(@reward).deliver if @user.send_reward_notification_emails?
+    unless current_user.is_under_pledged_rewards_stop_threshold?
+      previous_rewards = current_user.given_rewards.pledged.includes(:recipient)
+      NotificationsMailer.pledged_limit_reached(current_user, previous_rewards).deliver
+    end
     
     @twitter_configured = current_user.authentications.find_by_provider("twitter")
     @facebook_configured = current_user.authentications.find_by_provider("facebook")
