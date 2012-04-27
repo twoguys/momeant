@@ -70,16 +70,16 @@ class Story < ActiveRecord::Base
   before_destroy :destroy_activities
   
   CATEGORIES = [
-    "Art",
-    "Comics",
-    "Design",
-    "Education",
-    "Film",
-    "Food",
+    "Arts",
+    "Blogging",
+    "Causes",
+    "Educational",
+    "Entertainment",
+    "Gastronomy",
+    "Humanities",
+    "Journalism",
     "Music",
-    "Photography",
-    "Technology",
-    "Travel"
+    "Publishing"
   ].freeze
     
   def to_param

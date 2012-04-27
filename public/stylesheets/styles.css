@@ -271,8 +271,8 @@ h2 {
         color: black; }
     #header #user-nav #signin, #header #user-nav #signout, #header #user-nav #join, #header #user-nav #feedback {
       position: absolute;
-      right: 204px;
-      padding-top: 10px; }
+      right: 194px;
+      padding-top: 6px; }
       #header #user-nav #signin a, #header #user-nav #signout a, #header #user-nav #join a, #header #user-nav #feedback a {
         height: 28px;
         line-height: 30px;
@@ -287,74 +287,53 @@ h2 {
         font-size: 12px;
         letter-spacing: 0.5px;
         font-family: "proxima-nova-1", "proxima-nova-2", helvetica, sans-serif;
-        height: 22px;
-        line-height: 22px;
+        height: 26px;
+        line-height: 26px;
         padding: 0 15px;
-        font-size: 10px;
-        display: block; }
+        font-size: 13px;
+        display: block;
+        -webkit-border-radius: 0;
+        -moz-border-radius: 0;
+        border-radius: 0;
+        background: #00aeef; }
     #header #user-nav #signin a {
-      background-image: -moz-linear-gradient(center top, #62e079 4%, #12b32f 52%);
-      background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #62e079), color-stop(0.52, #12b32f)); }
+      background: #34b44c; }
     #header #user-nav #join {
-      right: 275px; }
-      #header #user-nav #join a {
-        background-image: -moz-linear-gradient(center top, #43baf0 4%, #3a94e6 52%);
-        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #43baf0), color-stop(0.52, #3a94e6)); }
+      right: 273px; }
     #header #user-nav #search {
       position: absolute;
-      top: 10px;
-      right: 10px;
-      width: 176px; }
+      top: 6px;
+      right: 6px;
+      width: 180px; }
+      #header #user-nav #search input[type="text"], #header #user-nav #search input[type="submit"] {
+        background-color: #5c5c5c; }
       #header #user-nav #search input[type="text"] {
-        height: 14px;
-        width: 141px;
+        height: 20px;
+        width: 147px;
         padding: 3px 4px;
         font-size: 11px;
+        color: white;
         position: absolute;
         top: 0;
         left: 0;
-        -webkit-border-top-left-radius: 3px;
-        -webkit-border-bottom-left-radius: 3px;
-        -moz-border-radius-topleft: 3px;
-        -moz-border-radius-bottomleft: 3px;
-        border-top-left-radius: 3px;
-        border-bottom-left-radius: 3px;
-        -webkit-border-top-right-radius: 0;
-        -webkit-border-bottom-right-radius: 0;
-        -moz-border-radius-topright: 0;
-        -moz-border-radius-bottomright: 0;
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0; }
+        border: none;
+        -webkit-border-radius: 0;
+        -moz-border-radius: 0;
+        border-radius: 0; }
       #header #user-nav #search input[type="submit"] {
-        height: 22px;
+        height: 26px;
         width: 25px;
         position: absolute;
         top: 0;
         right: 0;
         padding: 0;
         text-indent: -9999px;
-        background: #00aeef url(../images/icons/search.png) no-repeat 50% 50%;
-        -webkit-border-top-left-radius: 0;
-        -webkit-border-bottom-left-radius: 0;
-        -moz-border-radius-topleft: 0;
-        -moz-border-radius-bottomleft: 0;
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
-        -webkit-border-top-right-radius: 3px;
-        -webkit-border-bottom-right-radius: 3px;
-        -moz-border-radius-topright: 3px;
-        -moz-border-radius-bottomright: 3px;
-        border-top-right-radius: 3px;
-        border-bottom-right-radius: 3px; }
-    #header #user-nav #feedback {
-      right: 194px; }
-      #header #user-nav #feedback a {
-        background-image: -moz-linear-gradient(center top, #43baf0 4%, #3a94e6 52%);
-        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #43baf0), color-stop(0.52, #3a94e6)); }
-  #header #user-nav ul.search-hidden #signin {
-    right: 0; }
-  #header #user-nav ul.search-hidden #join {
-    right: 70px; }
+        background-image: url(../images/icons/search.png);
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        -webkit-border-radius: 0;
+        -moz-border-radius: 0;
+        border-radius: 0; }
 
 #header.hide-nav {
   background: none; }
@@ -712,7 +691,7 @@ table {
   left: 0;
   right: 20%;
   overflow: hidden; }
-#home.index #creators, #registrations.create #creators {
+#home.index #sidebar, #registrations.create #sidebar {
   width: 20%;
   position: relative;
   left: 80%; }
@@ -726,29 +705,35 @@ table {
   -ms-transition: margin 0.3s ease-out;
   -o-transition: margin 0.3s ease-out;
   transition: margin 0.3s ease-out; }
-  #home.index #slides h1, #registrations.create #slides h1 {
-    text-transform: uppercase;
-    font-size: 3em;
-    font-weight: 300;
-    color: #f42652; }
-  #home.index #slides h2, #registrations.create #slides h2 {
-    background: none;
-    padding: 0;
-    text-transform: none;
-    color: #666666;
-    font-weight: 300;
-    text-transform: uppercase;
-    font-size: 1.7em; }
-  #home.index #slides h3, #registrations.create #slides h3 {
-    margin-bottom: 1em;
-    font-weight: 500;
-    color: #dddddd; }
   #home.index #slides .slide, #registrations.create #slides .slide {
     width: 100%;
     height: 100%;
     position: relative; }
     #home.index #slides .slide .slide-insides, #registrations.create #slides .slide .slide-insides {
       padding: 10%; }
+  #home.index #slides #message, #registrations.create #slides #message {
+    position: relative; }
+    #home.index #slides #message .slide-insides, #registrations.create #slides #message .slide-insides {
+      padding: 0;
+      position: absolute;
+      bottom: 10px;
+      left: 20px; }
+    #home.index #slides #message h1, #registrations.create #slides #message h1 {
+      text-transform: uppercase;
+      font-size: 4em;
+      font-weight: 600;
+      color: #00aeef;
+      margin-bottom: -0.18em;
+      line-height: 1em; }
+    #home.index #slides #message h2, #registrations.create #slides #message h2 {
+      background: none;
+      padding: 0;
+      text-transform: none;
+      color: white;
+      font-weight: 700;
+      font-size: 3em;
+      font-style: italic;
+      margin-bottom: 0; }
   #home.index #slides .content-preview, #registrations.create #slides .content-preview {
     height: 100%; }
   #home.index #slides .metadata, #registrations.create #slides .metadata {
@@ -794,87 +779,152 @@ table {
       color: #999999;
       font-size: 0.6em;
       font-style: italic; }
-#home.index #creators #people, #registrations.create #creators #people {
-  font-size: 1.3em; }
-  #home.index #creators #people h3.title, #registrations.create #creators #people h3.title {
-    color: #999999;
-    font-size: 1em;
-    font-weight: 300;
-    text-transform: uppercase;
-    margin-right: 15px;
-    background: transparent url(../images/discovery/keyboard-icon.png) no-repeat 100% 50%; }
-  #home.index #creators #people h3.title, #home.index #creators #people li .details, #registrations.create #creators #people h3.title, #registrations.create #creators #people li .details {
-    padding: 15px; }
-  #home.index #creators #people li, #registrations.create #creators #people li {
-    margin-bottom: 5px; }
-    #home.index #creators #people li a.name, #registrations.create #creators #people li a.name {
-      display: block;
-      color: #555555;
-      padding: 3px 15px; }
-      #home.index #creators #people li a.name:hover, #registrations.create #creators #people li a.name:hover {
-        color: #00aeef; }
-    #home.index #creators #people li a.name, #home.index #creators #people li .details h3, #registrations.create #creators #people li a.name, #registrations.create #creators #people li .details h3 {
-      font-size: 1.2em;
-      font-family: "museo-slab-1", "museo-slab-2", serif;
-      font-weight: 100;
-      font-style: italic; }
-    #home.index #creators #people li .details, #registrations.create #creators #people li .details {
-      display: none;
-      background: black;
-      color: white;
-      position: relative; }
-      #home.index #creators #people li .details img.avatar, #registrations.create #creators #people li .details img.avatar {
-        position: absolute;
-        top: 0;
-        left: -60px; }
-      #home.index #creators #people li .details h3, #registrations.create #creators #people li .details h3 {
-        padding-bottom: 3px;
-        border-bottom: 2px solid white;
-        margin-bottom: 8px;
-        font-weight: 500; }
-      #home.index #creators #people li .details h4, #registrations.create #creators #people li .details h4 {
-        color: #f42652;
+#home.index #sidebar, #registrations.create #sidebar {
+  font-family: "museo-slab-1", "museo-slab-2", serif; }
+  #home.index #sidebar #filter, #registrations.create #sidebar #filter {
+    padding: 20px 15px; }
+    #home.index #sidebar #filter li, #registrations.create #sidebar #filter li {
+      float: left;
+      color: #999999; }
+      #home.index #sidebar #filter li a, #registrations.create #sidebar #filter li a {
+        -webkit-transition: color 0.2s linear;
+        -moz-transition: color 0.2s linear;
+        -ms-transition: color 0.2s linear;
+        -o-transition: color 0.2s linear;
+        transition: color 0.2s linear;
+        color: #999999; }
+    #home.index #sidebar #filter li.selected a, #home.index #sidebar #filter li:hover a, #registrations.create #sidebar #filter li.selected a, #registrations.create #sidebar #filter li:hover a {
+      color: #00aeef; }
+    #home.index #sidebar #filter li:last-child .comma, #registrations.create #sidebar #filter li:last-child .comma {
+      display: none; }
+    #home.index #sidebar #filter .comma, #registrations.create #sidebar #filter .comma {
+      margin-left: -2px; }
+    #home.index #sidebar #filter #featured, #registrations.create #sidebar #filter #featured {
+      display: inline-block;
+      width: 100%;
+      text-transform: uppercase;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #cccccc;
+      margin-bottom: 20px;
+      font-size: 13px; }
+      #home.index #sidebar #filter #featured:after, #registrations.create #sidebar #filter #featured:after {
+        content: ".";
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden; }
+      #home.index #sidebar #filter #featured a, #registrations.create #sidebar #filter #featured a {
+        display: block;
+        float: left;
+        height: 1em;
+        padding-right: 10px;
+        margin-right: 10px;
+        border-right: 1px solid #cccccc; }
+      #home.index #sidebar #filter #featured li:last-child a, #registrations.create #sidebar #filter #featured li:last-child a {
+        border: none; }
+    #home.index #sidebar #filter #categories, #registrations.create #sidebar #filter #categories {
+      display: inline-block;
+      width: 100%;
+      padding-bottom: 20px;
+      border-bottom: 3px solid #00aeef; }
+      #home.index #sidebar #filter #categories:after, #registrations.create #sidebar #filter #categories:after {
+        content: ".";
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden; }
+      #home.index #sidebar #filter #categories li, #registrations.create #sidebar #filter #categories li {
+        float: left;
+        margin: 0 3px 5px 0; }
+  #home.index #sidebar #people, #registrations.create #sidebar #people {
+    font-size: 1.3em; }
+    #home.index #sidebar #people h3.title, #registrations.create #sidebar #people h3.title {
+      color: #999999;
+      font-size: 1em;
+      font-weight: 300;
+      text-transform: uppercase;
+      margin-right: 15px;
+      background: transparent url(../images/discovery/keyboard-icon.png) no-repeat 100% 50%; }
+    #home.index #sidebar #people h3.title, #home.index #sidebar #people li .details, #registrations.create #sidebar #people h3.title, #registrations.create #sidebar #people li .details {
+      padding: 15px; }
+    #home.index #sidebar #people #list.loading, #registrations.create #sidebar #people #list.loading {
+      background: transparent url(../images/spinner.gif) no-repeat 50% 50%;
+      height: 100px; }
+      #home.index #sidebar #people #list.loading *, #registrations.create #sidebar #people #list.loading * {
+        display: none; }
+    #home.index #sidebar #people li, #registrations.create #sidebar #people li {
+      margin-bottom: 5px; }
+      #home.index #sidebar #people li a.name, #registrations.create #sidebar #people li a.name {
+        display: block;
+        color: #555555;
+        padding: 3px 15px; }
+        #home.index #sidebar #people li a.name:hover, #registrations.create #sidebar #people li a.name:hover {
+          color: #00aeef; }
+        #home.index #sidebar #people li a.name span.featured, #registrations.create #sidebar #people li a.name span.featured {
+          padding-right: 26px;
+          background: transparent url(../images/profile/featured.png) no-repeat 97% 50%; }
+      #home.index #sidebar #people li a.name, #home.index #sidebar #people li .details h3, #registrations.create #sidebar #people li a.name, #registrations.create #sidebar #people li .details h3 {
+        font-size: 1.2em;
         font-family: "museo-slab-1", "museo-slab-2", serif;
-        font-size: 0.9em;
         font-weight: 100;
         font-style: italic; }
-      #home.index #creators #people li .details p, #registrations.create #creators #people li .details p {
-        font-size: 0.8em;
-        line-height: 1.3em;
-        margin: 10px 0; }
-      #home.index #creators #people li .details .supporters, #registrations.create #creators #people li .details .supporters {
-        font-weight: 300;
-        font-size: 2.5em; }
-        #home.index #creators #people li .details .supporters .amount, #registrations.create #creators #people li .details .supporters .amount {
-          padding-right: 24px;
-          background: transparent url(../images/discovery/supporters.png) 100% 10px no-repeat; }
-      #home.index #creators #people li .details a.profile, #registrations.create #creators #people li .details a.profile {
-        display: block;
-        background: #f42652;
+      #home.index #sidebar #people li .details, #registrations.create #sidebar #people li .details {
+        display: none;
+        background: black;
         color: white;
-        margin: 15px -15px -15px;
-        padding: 10px;
-        text-align: right;
-        text-transform: uppercase; }
-    #home.index #creators #people li .details.watchmen h4, #registrations.create #creators #people li .details.watchmen h4 {
-      color: #ffe344; }
-    #home.index #creators #people li .details.watchmen a.profile, #registrations.create #creators #people li .details.watchmen a.profile {
-      background-color: #ffe344;
-      color: black; }
-    #home.index #creators #people li .details.blob h4, #registrations.create #creators #people li .details.blob h4 {
-      color: #ff6600; }
-    #home.index #creators #people li .details.blob a.profile, #registrations.create #creators #people li .details.blob a.profile {
-      background-color: #ff6600;
-      color: black; }
-    #home.index #creators #people li .details.bowling h4, #registrations.create #creators #people li .details.bowling h4 {
-      color: #99daa4; }
-    #home.index #creators #people li .details.bowling a.profile, #registrations.create #creators #people li .details.bowling a.profile {
-      background-color: #99daa4;
-      color: black; }
-  #home.index #creators #people li.current a.name, #registrations.create #creators #people li.current a.name {
-    display: none; }
-  #home.index #creators #people li.current .details, #registrations.create #creators #people li.current .details {
-    display: block; }
+        position: relative; }
+        #home.index #sidebar #people li .details img.avatar, #registrations.create #sidebar #people li .details img.avatar {
+          position: absolute;
+          top: 0;
+          left: -60px; }
+        #home.index #sidebar #people li .details h3, #registrations.create #sidebar #people li .details h3 {
+          padding-bottom: 3px;
+          border-bottom: 2px solid white;
+          margin-bottom: 8px;
+          font-weight: 500; }
+        #home.index #sidebar #people li .details h4, #registrations.create #sidebar #people li .details h4 {
+          color: #f42652;
+          font-family: "museo-slab-1", "museo-slab-2", serif;
+          font-size: 0.9em;
+          font-weight: 100;
+          font-style: italic; }
+        #home.index #sidebar #people li .details p, #registrations.create #sidebar #people li .details p {
+          font-size: 0.8em;
+          line-height: 1.3em;
+          margin: 10px 0; }
+        #home.index #sidebar #people li .details .supporters, #registrations.create #sidebar #people li .details .supporters {
+          font-weight: 300;
+          font-size: 2.5em; }
+          #home.index #sidebar #people li .details .supporters .amount, #registrations.create #sidebar #people li .details .supporters .amount {
+            padding-right: 24px;
+            background: transparent url(../images/discovery/supporters.png) 100% 10px no-repeat; }
+        #home.index #sidebar #people li .details a.profile, #registrations.create #sidebar #people li .details a.profile {
+          display: block;
+          background: #f42652;
+          color: white;
+          margin: 15px -15px -15px;
+          padding: 10px;
+          text-align: right;
+          text-transform: uppercase; }
+      #home.index #sidebar #people li .details.watchmen h4, #registrations.create #sidebar #people li .details.watchmen h4 {
+        color: #ffe344; }
+      #home.index #sidebar #people li .details.watchmen a.profile, #registrations.create #sidebar #people li .details.watchmen a.profile {
+        background-color: #ffe344;
+        color: black; }
+      #home.index #sidebar #people li .details.blob h4, #registrations.create #sidebar #people li .details.blob h4 {
+        color: #ff6600; }
+      #home.index #sidebar #people li .details.blob a.profile, #registrations.create #sidebar #people li .details.blob a.profile {
+        background-color: #ff6600;
+        color: black; }
+      #home.index #sidebar #people li .details.bowling h4, #registrations.create #sidebar #people li .details.bowling h4 {
+        color: #99daa4; }
+      #home.index #sidebar #people li .details.bowling a.profile, #registrations.create #sidebar #people li .details.bowling a.profile {
+        background-color: #99daa4;
+        color: black; }
+    #home.index #sidebar #people li.current a.name, #registrations.create #sidebar #people li.current a.name {
+      display: none; }
+    #home.index #sidebar #people li.current .details, #registrations.create #sidebar #people li.current .details {
+      display: block; }
 
 #vertical-list {
   width: 630px;
@@ -6470,7 +6520,7 @@ body.index#search #new-york {
         display: none; }
 
 body#home.about #inner, body#home.tos #inner {
-  padding-top: 50px; }
+  padding: 50px; }
 body#home.about #header-image, body#home.tos #header-image {
   background: transparent url(../images/aboutPageHeader.png) no-repeat 50% 0;
   height: 183px;

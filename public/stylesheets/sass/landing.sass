@@ -11,7 +11,7 @@
 		right: 20%
 		overflow: hidden
 		
-	#creators
+	#sidebar
 		width: 20%
 		position: relative
 		left: 80%
@@ -22,30 +22,36 @@
 		font-size: 24px
 		overflow: hidden
 		@include transition(margin, 0.3s, ease-out)
-		h1
-			text-transform: uppercase
-			font-size: 3em
-			font-weight: 300
-			color: $red
-		h2
-			background: none
-			padding: 0
-			text-transform: none
-			color: #666
-			font-weight: 300
-			text-transform: uppercase
-			font-size: 1.7em
-		h3
-			margin-bottom: 1em
-			font-weight: 500
-			color: #ddd
 		.slide
 			width: 100%
 			height: 100%
 			position: relative
 			.slide-insides
 				padding: 10%
-		
+		#message
+			position: relative
+			.slide-insides
+				padding: 0
+				position: absolute
+				bottom: 10px
+				left: 20px
+			h1
+				text-transform: uppercase
+				font-size: 4em
+				font-weight: 600
+				color: $blue
+				margin-bottom: -0.18em
+				line-height: 1em
+			h2
+				background: none
+				padding: 0
+				text-transform: none
+				color: #fff
+				font-weight: 700
+				font-size: 3em
+				font-style: italic
+				margin-bottom: 0
+						
 		.content-preview
 			height: 100%
 		
@@ -94,7 +100,50 @@
 				font-style: italic
 			
 		
-	#creators
+	#sidebar
+		font-family: $typewriter
+	
+		#filter
+			padding: 20px 15px
+			li
+				float: left
+				color: #999
+				a
+					@include transition(color)
+					color: #999
+			li.selected, li:hover
+				a
+					color: $blue
+			li:last-child .comma
+				display: none
+			.comma
+				margin-left: -2px
+			#featured
+				@include clearfix
+				width: 100%
+				text-transform: uppercase
+				padding-bottom: 20px
+				border-bottom: 1px solid #ccc
+				margin-bottom: 20px
+				font-size: 13px
+				a
+					display: block
+					float: left
+					height: 1em
+					padding-right: 10px
+					margin-right: 10px
+					border-right: 1px solid #ccc
+				li:last-child a
+					border: none
+			#categories
+				@include clearfix
+				width: 100%
+				padding-bottom: 20px
+				border-bottom: 3px solid $blue
+				li
+					float: left
+					margin: 0 3px 5px 0
+	
 		#people
 			font-size: 1.3em
 			h3.title
@@ -106,6 +155,11 @@
 				background: transparent url(../images/discovery/keyboard-icon.png) no-repeat 100% 50%
 			h3.title, li .details
 				padding: 15px
+			#list.loading
+				background: transparent url(../images/spinner.gif) no-repeat 50% 50%
+				height: 100px
+				*
+					display: none
 			li
 				margin-bottom: 5px
 				a.name
@@ -114,6 +168,9 @@
 					padding: 3px 15px
 					&:hover
 						color: $blue
+					span.featured
+						padding-right: 26px
+						background: transparent url(../images/profile/featured.png) no-repeat 97% 50%
 				a.name, .details h3
 					font-size: 1.2em
 					font-family: $typewriter

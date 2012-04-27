@@ -3,7 +3,9 @@ window.DiscoveryView = Backbone.View.extend({
 	el: $('body'),
 	
 	events: {
-		'click #people a.name': 'person_clicked'
+		'click #people a.name': 'person_clicked',
+		'click #featured a': 'featured_filter_clicked',
+		'click #categories a': 'category_filter_clicked'
 	},
 	
 	initialize: function() {
@@ -14,6 +16,9 @@ window.DiscoveryView = Backbone.View.extend({
 		this.$slides = $('.slide');
     this.store_people();
     this.typing = false;
+    
+    this.filter = 'featured';
+    this.category = 'all';
 		
 		_.bindAll(this, 'on_resize');
 	  $(window).resize(this.on_resize);
@@ -80,6 +85,39 @@ window.DiscoveryView = Backbone.View.extend({
     $('#main').css('right','100%');
     setTimeout(function() {$('#loader').show();}, 200);
     window.location.href = href;
+  },
+  
+  featured_filter_clicked: function(event) {
+    var $link = $(event.currentTarget);
+    $link.parent().addClass('selected').siblings().removeClass('selected');
+    
+    Discovery.filter = $link.text().toLowerCase();
+    Discovery.update_people();
+    
+    return false;
+  },
+  
+  category_filter_clicked: function(event) {
+    var $link = $(event.currentTarget);
+    $link.parent().addClass('selected').siblings().removeClass('selected');
+    
+    Discovery.category = $link.text().toLowerCase();
+    Discovery.update_people();
+    
+    return false;
+  },
+  
+  update_people: function() {
+    $('#slides').css('margin-top',0);
+    $('#people #list').addClass('loading');
+    $.get('/people', {filter: Discovery.filter, category: Discovery.category}, function(result) {
+      $('#people #list').html(result.people).removeClass('loading');
+      Discovery.store_people();
+      $('#slides .person').remove();
+      $('#slides').append(result.works);
+      Discovery.$slides = $('#slides .slide');
+      Discovery.on_resize();
+    });
   },
   
 	on_resize: function() {

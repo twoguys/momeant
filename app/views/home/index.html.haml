@@ -2,49 +2,30 @@
   #slides
     #message.slide
       .slide-insides
-        %h1 Reward what matters to you.
-        %h2 There is a problem with the web:
-        %h3 Very few of us who contribute content make money for our work.
-        %h2 With your help, we aim to fix that:
-        %h3
-          %span Content and information
-          %em will remain free,
-          %span while you voluntarily reward the creators producing content you like.
+        %h1= link_to "Reward", about_path, :class => "tooltipped-e", :title => "Tell me more..."
+        %h2  what matters to you.
   
-    - @people.each do |person|
-      - content = person.discovery_content
-      .person.slide{:id => "person-#{person.id}"}
-        - unless content.nil?
-          .content-preview{:class => "#{content.media_type} #{content.template}"}
-            - if content.text_media_type?
-              .inner
-                .image
-                .quote= truncate(content.template_text, :length => 140)
-            - else
-              .inner{:style => "background-image: url(#{content.thumbnail.url(:huge)})"}
-          %a.metadata{:href => user_path(content.user, :content => content.id)}
-            .media-type{:class => content.media_type}
-            .title
-              %strong= content.title
-              %span= content.synopsis
-            .example An excerpt from #{content.user.first_name}'s work
+    = render :partial => "home/work", :collection => @people.map(&:discovery_content), :as => :content
 
-#creators
-
-  #people
-    %h3.title Featured Creators
-    %ul#list
-      - @people.each do |person|
+#sidebar
+  
+  #filter
+    %ul#featured
+      %li.selected= link_to "Featured", "#"
+      %li= link_to "Popular", "#"
+    
+    %ul#categories
+      %li.selected
+        = link_to "All", "#"
+        %span.comma ,
+      - Story::CATEGORIES.each do |category|
         %li
-          = link_to person.name, user_path(person), :data => person.id, :class => "name"
-          .details{:class => person.discovery_content.present? ? person.discovery_content.template : ""}
-            = image_tag(person.avatar.url(:thumbnail), :class => "avatar" )
-            %h3= person.name
-            %h4= person.occupation
-            %p= truncate(person.tagline, :length => 140)
-            .supporters
-              %span.amount= person.patrons.count
-            = link_to "View Profile &rarr;".html_safe, user_path(person), :class => "profile"
+          = link_to category, "#"
+          %span.comma ,
+  
+  #people
+    %ul#list
+      = render :partial => "home/person", :collection => @people, :as => :person
           
 
 :javascript

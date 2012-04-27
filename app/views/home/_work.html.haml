@@ -1,0 +1,15 @@
+.person.slide{:id => "person-#{content.user.id}"}
+  - unless content.nil?
+    .content-preview{:class => "#{content.media_type} #{content.template}"}
+      - if content.text_media_type?
+        .inner
+          .image
+          .quote= truncate(content.template_text, :length => 140)
+      - else
+        .inner{:style => "background-image: url(#{content.thumbnail.url(:huge)})"}
+    %a.metadata{:href => user_path(content.user, :content => content.id)}
+      .media-type{:class => content.media_type}
+      .title
+        %strong= content.title
+        %span= content.synopsis
+      .example An excerpt from #{content.user.first_name}'s work

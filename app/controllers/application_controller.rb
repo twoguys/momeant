@@ -1,26 +1,16 @@
-require 'pusher'
-
 class ApplicationController < ActionController::Base
   include SslRequirement
   protect_from_forgery
   
-  before_filter :push_to_sender, :open_reward_modal?
+  before_filter :open_reward_modal?
   
   @nav = "home"
   @sidenav = ""
   
   def setup_landing
-    @editorials = Editorial.limit(3)
-    @story = Story.where(:id => 197).first
-    @story = Story.published.first if @story.nil?
-    @hide_search = true if current_user.nil?
-    @hide_banner = true
+    content = Story.where("user_id IN (?)", Editorial.all.map(&:user_id))
+    @people = content.map(&:user).uniq.take(10)
     @nav = "home"
-  end
-  
-  def push_to_sender
-    user = current_user ? current_user.name : ""
-    Pusher['admin'].trigger('request', {:url => request.path, :user => user}) if ENV["SEND_ADMIN_LIVE_UPDATES"] == "yes"
   end
   
   def open_reward_modal?
@@ -36,10 +26,7 @@ class ApplicationController < ActionController::Base
   private
   
   def after_sign_in_path_for(resource)
-    if session[:return_to] == new_session_url(:user) || session[:return_to] == root_url
-      subscriptions_path
-    else
-      session[:return_to] || subscriptions_path
-    end
+    return root_path if session[:return_to] == new_session_url(:user)
+    session[:return_to] || root_path
   end
 end
