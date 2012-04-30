@@ -31,6 +31,9 @@ Repo::Application.routes.draw do
   end
   
   match '/coins', :to => "amazon_payments#index", :as => :coins
+  match '/fund', :to => "users#fund_pledged_rewards", :as => :fund_rewards
+  match '/fund/pay', :to => "amazon_payments#create", :as => :pay_for_rewards
+  match '/fund/accept', :to => "amazon_payments#accept", :as => :accept_payment
   
   resources :users do
     resources :subscriptions, :only => [:create] do
@@ -73,7 +76,6 @@ Repo::Application.routes.draw do
     # Feedback
     post :feedback, :on => :collection
   end
-  match '/fund', :to => "users#fund_pledged_rewards", :as => :fund_rewards
   match '/users/:id/content_rewarded_by/:rewarder_id', :to => "users#content_rewarded_by", :as => :user_content_rewarded_by
   match '/rewards/:id/visualize', :to => "rewards#visualize",           :as => :visualize_reward
   

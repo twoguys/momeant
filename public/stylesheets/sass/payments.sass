@@ -1,91 +1,94 @@
-#transactions
-	padding-top: 20px
-	font-family: $numerals
-	font-weight: 100
+#pay-for-rewards
+	padding: 20px
 	
-	#explanation
-		margin-right: 615px
-		max-width: 500px
-		font-size: 24px
-		background: #fff
-		padding: 10px 30px
-		@include boxshadow(3px, 0.3, 2px, 2px)
-		p
-			line-height: 1.4em
-		a
-			text-decoration: underline
-	
-	#purchase
-		position: absolute
-		top: 42px
-		right: 0
-		form
-			width: 125px
-			padding: 20px 0
+	#messaging
+		@include clearfix
+		width: 100%
+		.avatar
+			width: 142px
+			height: 142px
 			float: left
 			margin-right: 20px
-			background: $blue
-			@include boxshadow(3px, 0.3, 2px, 2px)
-			text-align: center
-			color: #fff
-			.package
-				font-size: 24px
-				height: 115px
-				background-position: 50% 0
-				background-repeat: no-repeat
-				text-indent: -9999px
-			.package.one
-				background-image: url(../images/coinPackage1.png)
-			.package.two
-				background-image: url(../images/coinPackage2.png)
-			.package.three
-				background-image: url(../images/coinPackage3.png)
-			.package.four
-				background-image: url(../images/coinPackage4.png)
-			.text, .bonus
-				font-size: 14px
-			.bonus
-				height: 18px
-				color: #000
-			.price
-				font-size: 16px
-				margin: 20px 0 0
-				font-weight: 700
-				font-family: $block
-			input[type="submit"]
-				background: #fff
-				margin-top: 10px
-				padding: 3px
-				text-transform: none
-				font-weight: 700
-				font-size: 11px
-				box-shadow: 0 -2px 2px rgba(0,0,0,0.2) inset
-				color: $blue
-				text-shadow: none
-		form:last-child
-			border: none
-		.amazon-text
-			clear: both
-			padding-right: 20px
-			font-size: 19px
-			color: #777
+		.the-rest
+			float: left
+			h1
+				text-transform: uppercase
+				font-weight: 600
+				margin-bottom: 5px
 			p
-				float: right
-				text-align: right
-				line-height: 1.2em
-				span.line
-					display: block
-				span.amazon
-					display: inline-block
-					width: 67px
-					height: 24px
-					background: transparent url(../images/amazonLogo.png) no-repeat 0 0
-					position: relative
-					top: 10px
+				margin: 0
+				font-size: 1.4em
+				font-weight: 600
+				line-height: 1.3em
 	
-	#past
-		clear: both
-		padding-top: 50px
-		.total td
-			border-top: 1px solid #ccc
+	form
+		margin-top: 10px
+		background: transparent url(../images/payments/cc-icons.png) no-repeat 100% 10px
+		width: 470px
+		input[type="submit"]
+			width: 240px
+			background: #fff url(../images/payments/amazonLogo.png) no-repeat 94% 11px
+			padding: 10px 76px 13px 12px
+			text-transform: none
 			font-weight: 700
+			font-size: 16px
+			box-shadow: 0 -1px 5px rgba(0,0,0,0.2) inset
+			color: #000
+			text-shadow: none
+			border: 1px solid #ccc
+	
+	table#rewards
+		clear: both
+		padding: 30px 0 20px
+		td
+			height: 65px
+			background: none
+			padding: 0 0 20px
+			border: 0
+			.inner
+				width: 100%
+				height: 65px
+				background: #fff
+		td.name .inner
+			width: 145px
+			height: 35px
+			padding: 15px 0 15px 20px
+			background: #fff url(../images/payments/user-dot.png) no-repeat 100% 50%
+			font-family: $typewriter
+			font-size: 16px
+			font-style: italic
+			line-height: 16px
+			span
+				display: block
+		td.avatar
+			a, img
+				display: block
+				width: 65px
+				height: 65px
+		td.content
+			a, img
+				display: block
+				width: 103px
+				height: 65px
+		td.title	.inner
+			width: auto
+			padding: 14px 20px
+			height: 37px
+			overflow: hidden
+			a
+				text-transform: uppercase
+		td.comment
+			width: 60px
+			text-align: center
+			img
+				margin-top: 25px
+				cursor: help
+		td.amount
+			.inner
+				background: #d6d6d6 url(../images/payments/amount-bg.png) no-repeat 0 0
+				width: auto
+				height: 54px
+				padding: 11px 20px 0 50px
+				font-size: 36px
+				font-weight: 200
+				text-align: right

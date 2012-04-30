@@ -10,7 +10,7 @@ class AmazonPaymentsController < ApplicationController
   
   def create
     @payment = current_user.amazon_payments.create(params[:amazon_payment])
-    redirect_to @payment.amazon_cbui_url(accept_coins_url)
+    redirect_to @payment.amazon_cbui_url(accept_payment_url)
   end
   
   def accept
@@ -22,7 +22,7 @@ class AmazonPaymentsController < ApplicationController
     @payment.settle_with_amazon
     @payment.mark_as_paid!
     flash[:track_coin_purchase] = @payment.amount
-    redirect_to root_path, :notice => "THANK YOU! #{@payment.coins} coins were added to your account."
+    redirect_to fund_rewards_path, :notice => "Thank you for supporting creators! You're the best."
   end
   
 end

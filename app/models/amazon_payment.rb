@@ -1,51 +1,22 @@
 require 'amazon/fps/fpspayments'
 
 class AmazonPayment < Transaction
+  include ActionView::Helpers::NumberHelper
+  
   belongs_to :payee, :class_name => "User"
   
   validates :amount, :presence => true
   
-  def coins
-    case self.amount
-    when 5
-      25
-    when 10
-      70
-    when 20
-      160
-    when 100
-      900
-    end
-  end
-  
-  def coin_string
-    "#{self.coins} reward coins"
-  end
-  
   def fees
-    case self.amount
-    when 5
-      0.3
-    when 10
-      0.59
-    when 20
-      0.88
-    when 100
-      3.20
+    if self.amount >= 10
+      self.amount * 0.029 + 0.3
+    else
+      self.amount * 0.05 + 0.05
     end
   end
   
   def momeant_cut
-    case self.amount
-    when 5
-      2.5
-    when 10
-      3
-    when 20
-      4
-    when 100
-      10
-    end
+    self.amount * 0.2
   end
   
   def momeant_revenue
@@ -53,7 +24,7 @@ class AmazonPayment < Transaction
   end
   
   def amazon_cbui_url(return_url)
-    Amazon::FPS::Payments.get_cobranded_url(self.amount, "#{self.coins} reward coins", self.id, return_url)
+    Amazon::FPS::Payments.get_cobranded_url(self.amount, "#{number_to_currency self.amount} in pledged rewards", self.id, return_url)
   end
   
   def settle_with_amazon
@@ -63,7 +34,7 @@ class AmazonPayment < Transaction
     
     transaction_id = doc.search("TransactionId").first.content
     self.update_attribute(:amazon_transaction_id, transaction_id)
-    self.payer.increment!(:coins, self.coins)
+    self.payer.pay_for_pledged_rewards!(self.id)
     
     Activity.create(:actor_id => self.payer_id, :action_type => "AmazonPayment", :action_id => self.id)
     if self.payer.amazon_payments.paid.count == 1

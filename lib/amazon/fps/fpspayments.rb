@@ -37,7 +37,7 @@ class Payments
     parameters["callerReference"] = unique_id
     parameters["paymentReason"] = payment_reason unless payment_reason.nil?
     parameters["cobrandingStyle"] = "logo"
-    parameters["cobrandingUrl"] = "https://momeant-production.s3.amazonaws.com/assets/logo.png"
+    parameters["cobrandingUrl"] = "https://momeant-production.s3.amazonaws.com/assets/logoBlackSmall.png"
     parameters[Amazon::FPS::SignatureUtils::SIGNATURE_VERSION_KEYNAME] = "2"
     parameters[Amazon::FPS::SignatureUtils::SIGNATURE_METHOD_KEYNAME] = Amazon::FPS::SignatureUtils::HMAC_SHA256_ALGORITHM
     signature = Amazon::FPS::SignatureUtils.sign_parameters({:parameters => parameters, 

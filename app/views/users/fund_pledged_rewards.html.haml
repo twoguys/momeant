@@ -1,14 +1,42 @@
-#user-profile.no-right-column
-  
-  #profile-center.column
-    .inner
-      %h2 You have pledged #{number_to_currency(@user.pledged_amount)} to the following creators:
+#pay-for-rewards
 
-      %div
-        - @rewards.each do |reward|
-          = link_to image_tag(reward.recipient.avatar.url(:thumbnail)), user_path(reward.recipient), :class => "tooltipped", :title => reward.recipient.name
+  #messaging
+    = image_tag @user.avatar.url(:large), :class => "avatar"
+    .the-rest
+      %h1= link_to "Hey #{@user.first_name}!", user_path(@user)
+      - if @amount == 0
+        %p You do not currently have any un-paid rewards.
+      - else
+        %p Check out all of the great folks you've supported!
+
+      - if @amount >= 1.0
+        %p It's a breeze to pay for your #{number_to_currency @amount} pledged rewards using Amazon Payments.
+        = form_for @payment, :url => pay_for_rewards_path do |form|
+          = form.hidden_field :amount
+          = form.submit "Pay #{number_to_currency @amount} Now with"
+      - else
+        %p As soon as you have pledged $1.00 or more, we'll help you pay for your rewards.
       
-      %p Paying for pledged rewards is coming very soon!
-  
-  #profile-left.column
-    = render "users/user_info"
+  %table#rewards
+    - @rewards.each do |reward|
+      %tr
+        %td.name
+          .inner
+            %span= reward.recipient.first_name
+            %span= reward.recipient.last_name
+        %td.avatar
+          = link_to image_tag(reward.recipient.avatar.url(:large)), user_path(reward.recipient)
+        %td.content
+          .inner
+            = link_to image_tag(reward.story.thumbnail.url(:small)), story_path(reward.story)
+        %td.title
+          .inner
+            = link_to "#{reward.story.title}:", story_path(reward.story)
+            %span= truncate reward.story.synopsis, :length => 100
+        %td.comment
+          .inner
+            - if reward.comment.present?
+              = image_tag "payments/comment.png", :class => "tooltipped-n", :title => "You said: #{reward.comment}"
+        %td.amount
+          .inner
+            = number_to_currency(reward.amount)

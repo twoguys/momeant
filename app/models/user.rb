@@ -212,8 +212,8 @@ class User < ActiveRecord::Base
     self.pledged_amount < User::PLEDGED_REWARD_STOP_THRESHOLD
   end
   
-  def pay_for_pledged_rewards!
-    self.given_rewards.pledged.update_all(:paid_for => true)
+  def pay_for_pledged_rewards!(amazon_payment_id)
+    self.given_rewards.pledged.update_all(:paid_for => true, :amazon_payment_id => amazon_payment_id)
   end
   
   def rewards_given_to(user)
