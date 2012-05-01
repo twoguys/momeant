@@ -27,6 +27,7 @@ class NotificationsMailer < ActionMailer::Base
   def pledged_reminder(user, rewards)
     @user = user
     @rewards = rewards
+    @amount = @rewards.map(&:amount).inject(:+)
     @fund_url = fund_rewards_url
     mail :to => user.email, :subject => "Here's your chance to pay for your pledged rewards!"
   end
