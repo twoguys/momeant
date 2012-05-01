@@ -28,14 +28,13 @@ class NotificationsMailer < ActionMailer::Base
     @user = user
     @rewards = rewards
     @amount = @rewards.map(&:amount).inject(:+)
-    @fund_url = fund_rewards_url
     mail :to => user.email, :subject => "Here's your chance to pay for your pledged rewards!"
   end
   
   def pledged_limit_reached(user, rewards)
     @user = user
     @rewards = rewards
-    @fund_url = fund_rewards_url
-    mail :to => user.email, :subject => "We need you to pay for your pledged rewards!"
+    @amount = @rewards.map(&:amount).inject(:+)
+    mail :to => user.email, :subject => "You've reached your pledged reward limit."
   end
 end
