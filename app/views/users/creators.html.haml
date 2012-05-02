@@ -1,0 +1,54 @@
+#creator-signup
+
+  #join
+    
+    %h1 Sign up as a Creator
+    
+    = form_for @creator, :url => creator_signup_path do |form|
+    
+      = render "shared/error_messages", :target => @creator
+    
+      %fieldset
+        %ul
+          %li
+            = form.label :invitation_code
+            = form.text_field :invitation_code, :value => @creator.invitation_code || params[:code]
+          %li
+            = form.label :first_name
+            = form.text_field :first_name
+          %li
+            = form.label :last_name
+            = form.text_field :last_name
+          %li
+            = form.label :email, "Email address"
+            = form.email_field :email, :autocapitalize => "off", :autocomplete => "off"
+          %li  
+            = form.label :password, "Password (6+ characters)"
+            = form.password_field :password, :autocomplete => "off"
+          %li.checkbox
+            = form.check_box :tos_accepted
+            = form.label :tos_accepted, "I agree to the #{link_to("Terms of Service", tos_path, :target => "new")}".html_safe
+          %li.submit
+            = form.submit "Sign Up"
+  
+  #login
+  
+    %h1 Already have a Momeant account?
+    
+    = form_for @login_creator, :url => creator_login_path do |form|
+    
+      = render "shared/error_messages", :target => @login_creator
+    
+      %fieldset
+        %ul
+          %li
+            = form.label :invitation_code
+            = form.text_field :invitation_code, :value => @creator.invitation_code || params[:code]
+          %li
+            = form.label :email
+            = form.email_field :email
+          %li
+            = form.label :password
+            = form.password_field :password
+          %li
+            = form.submit "Log In"

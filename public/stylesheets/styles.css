@@ -159,6 +159,7 @@ h2 {
         display: block;
         width: 165px;
         height: 42px;
+        padding: 0;
         text-indent: -9999px;
         background: transparent url(../images/logoWhiteSmall.png) no-repeat -9px 1px; }
       #header #user-nav #logo .subnav {
@@ -272,7 +273,8 @@ h2 {
     #header #user-nav #signin, #header #user-nav #signout, #header #user-nav #join, #header #user-nav #feedback {
       position: absolute;
       right: 308px;
-      padding-top: 6px; }
+      height: 35px;
+      padding-top: 7px; }
       #header #user-nav #signin a, #header #user-nav #signout a, #header #user-nav #join a, #header #user-nav #feedback a {
         height: 28px;
         line-height: 30px;
@@ -302,9 +304,10 @@ h2 {
       right: 387px; }
     #header #user-nav #search {
       position: absolute;
-      top: 6px;
+      top: 7px;
       right: 6px;
-      width: 294px; }
+      width: 294px;
+      height: 35px; }
       #header #user-nav #search input[type="text"], #header #user-nav #search input[type="submit"] {
         background-color: #5c5c5c; }
       #header #user-nav #search input[type="text"] {
@@ -1459,6 +1462,10 @@ body#users, body#messages {
       #user-profile #vertical-people #discussion li .when {
         font-size: 12px;
         color: #cccccc; }
+  #user-profile #empty-creator-content {
+    margin: 0 20px; }
+    #user-profile #empty-creator-content .strong {
+      font-weight: 600; }
   #user-profile #cashouts table {
     margin-top: 1em; }
 
@@ -1702,6 +1709,22 @@ body#users.patronage #vertical-list .creator {
     height: 220px;
     background: transparent url(../images/activityStreamExample.png) no-repeat 0 20px;
     opacity: 0.6; }
+
+#creator-signup {
+  padding: 20px; }
+  #creator-signup #join, #creator-signup #login {
+    width: 400px;
+    float: left; }
+  #creator-signup form li.checkbox {
+    height: 1em; }
+  #creator-signup form #avatar-preview, #creator-signup form #avatar-preview img {
+    width: 300px;
+    height: 300px; }
+  #creator-signup form .file-uploader .loader {
+    width: 220px;
+    height: 19px;
+    background: transparent url(../images/loading.gif) no-repeat 0 0;
+    display: none; }
 
 /* Become a Creator */
 body#users.become_a_creator #profile-center form {

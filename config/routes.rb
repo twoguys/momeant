@@ -4,7 +4,16 @@ Repo::Application.routes.draw do
     :registrations => "registrations",
     :sessions => "sessions",
     :passwords => "passwords"
-  }
+  } do
+    post '/creators/signup' => "registrations#creator", :as => :creator_signup # creator signup 1 submit
+    post '/creators/login'  => "sessions#creator",      :as => :creator_login
+  end
+  # creator signup 1
+  match '/creators', :to => "users#creators"
+  # creator signup 2 and 2 submit
+  match '/users/:id/creator-info', :to => "users#creator_info", :as => :creator_info
+  # creator signup 3 and 3 submit
+  match '/users/:id/creator-payment', :to => "users#creator_payment", :as => :creator_payment
   
   resources :stories do
     member do

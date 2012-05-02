@@ -79,7 +79,7 @@
   :javascript
     mpq.name_tag('#{current_user.name}');
     
-  - if flash[:track_signup].present?
+  - if flash[:track_signup].present? && current_user && !current_user.is_a?(Creator)
     = link_to "Launch about diagram", "#about-diagram-modal", :style => "display:none;"
     = render "shared/about_diagram_modal"
     :javascript

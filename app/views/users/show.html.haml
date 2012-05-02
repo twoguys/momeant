@@ -1,6 +1,11 @@
 #user-profile
   
   #profile-center.column
+    - if me?(@user) && @content.empty?
+      #empty-creator-content
+        %p This is your profile page, where you’ll communicate with your audience, present yourself and your work, and where they’ll be able to follow you.
+        %p.strong Get started by creating or linking a piece of work using the "Share Your Work" link in your profile drop-down navigation above.
+  
     #vertical-list
       %ul#activity-list
         - index = 0

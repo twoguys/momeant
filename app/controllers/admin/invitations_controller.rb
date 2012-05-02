@@ -3,6 +3,7 @@ class Admin::InvitationsController < Admin::BaseController
   load_and_authorize_resource
   
   def index
+    @invitations = @invitations.reverse
   end
   
   def create

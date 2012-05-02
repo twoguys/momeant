@@ -517,8 +517,12 @@ class User < ActiveRecord::Base
     end
   end
   
+  def avatar_missing?
+    self.avatar.url.include?("missing")
+  end
+  
   def reload_avatar
-    return false if self.avatar.url.include?("missing")
+    return false if avatar_missing?
     begin
       io = open(URI.parse(self.avatar.url))
       self.avatar = io

@@ -6,10 +6,6 @@ class Invitation < ActiveRecord::Base
   
   TOKEN_LENGTH = 6
   
-  def for_creator?
-    self.invited_as == "Creator"
-  end
-  
   def used?
     self.invitee_id.present?
   end

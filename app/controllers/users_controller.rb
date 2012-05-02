@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!, :only => [:edit, :update, :update_in_place, :udpate_avatar, :analytics, :feedback, :settings, :change_password, :fund_pledged_rewards]
-  before_filter :find_user, :except => [:community, :community_creators, :analytics, :billing_updates, :feedback, :fund_pledged_rewards]
+  before_filter :find_user, :except => [:community, :community_creators, :analytics, :billing_updates, :feedback, :fund_pledged_rewards, :creators]
   skip_before_filter :verify_authenticity_token, :only => [:billing_updates, :update_avatar]
+  skip_before_filter :creator_finished_signing_up?, :only => [:creator_info, :update_avatar]
 
   def index
     redirect_to root_path
@@ -135,6 +136,32 @@ class UsersController < ApplicationController
   def submit_creator_request
     FeedbackMailer.creator_request(@user, params[:description], params[:examples]).deliver
     render :text => ""
+  end
+  
+  # creator signup step 1 - submits through a devise route
+  def creators
+    @creator = User.new
+    @login_creator = User.new
+  end
+  
+  # creator signup step 2
+  def creator_info
+    if request.post?
+      @user.update_attributes(params[:user])
+      @user.errors.add(:avatar, "is required") if @user.avatar_missing?
+      @user.errors.add(:tagline, "is required") if @user.tagline.blank?
+      redirect_to creator_payment_path(@user) unless @user.avatar_missing? || @user.tagline.blank?
+    end
+    @nav = "signup"
+  end
+  
+  # creator signup step 3
+  def creator_payment
+    if request.post?
+      @user.update_attributes(params[:user])
+      redirect_to user_path(@user)
+    end
+    @nav = "signup"
   end
   
   def feedback
