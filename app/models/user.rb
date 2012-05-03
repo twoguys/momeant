@@ -161,6 +161,7 @@ class User < ActiveRecord::Base
     # create the reward activity record
     Activity.create(:actor_id => self.id, :recipient_id => story.user_id, :action_type => "Reward", :action_id => reward.id)
 
+    # create a comment record if the user commented
     unless reward.comment.blank?
       story.comments << Comment.new(:comment => reward.comment, :user_id => reward.user_id, :reward_id => reward.id)
     end
@@ -171,10 +172,15 @@ class User < ActiveRecord::Base
       Activity.create(:actor_id => self.id, :action_type => "Badge", :action_id => new_badge_level)
     end
     
-    # if this was impacted by another reward
+    # handle impact if necessary
     if impacted_by
       parent_reward = Reward.find_by_id(impacted_by)
       reward.handle_impact!(parent_reward) if parent_reward
+    end
+    
+    # auto-follow this user
+    unless self.is_subscribed_to?(story.user)
+      Subscription.create(:subscriber_id => self.id, :user_id => story.user_id)
     end
     
     return reward
