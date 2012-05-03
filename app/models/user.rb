@@ -154,7 +154,7 @@ class User < ActiveRecord::Base
     # handle people who previously purchased coins
     coin_amount = reward.amount / Reward.dollar_exchange
     if self.coins > coin_amount
-      reward.update_attribute(:paid_for => true)
+      reward.update_attribute(:paid_for, true)
       self.decrement!(:coins, coin_amount)
     end
     
