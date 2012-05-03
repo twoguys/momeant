@@ -1,5 +1,6 @@
 class SessionsController < Devise::SessionsController
   before_filter :store_return_to, :only => :create
+  skip_before_filter :creator_finished_signing_up?, :only => :destroy
   
   def new
     redirect_to session[:return_to] || root_path, :alert => flash.alert || ""

@@ -2,6 +2,8 @@
   = render "admin/tabs"
 
   = button_to "Create new invitation", admin_invitations_path
+  
+  %p In your email to the user, use a link like this to auto-fill the invite code: #{link_to creators_url(:code => "XXXXXX")}
 
   %table
     %thead

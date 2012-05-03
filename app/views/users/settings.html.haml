@@ -64,11 +64,12 @@
           %span.info (click to edit)
         .text{:update => "location"}= @user.location
       
-      %section.tagline
-        %h3
-          %span What will you be sharing at Momeant?
-          %span.info (click to edit)
-        .text{:update => "tagline"}= @user.tagline
+      - if @user.is_a?(Creator)
+        %section.tagline
+          %h3
+            %span What will you be sharing at Momeant?
+            %span.info (click to edit)
+          .text{:update => "tagline"}= @user.tagline
       
       %h2 Change Your Password
       = form_for :user, :url => change_password_user_path(current_user) do |form|

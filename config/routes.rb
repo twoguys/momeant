@@ -9,7 +9,7 @@ Repo::Application.routes.draw do
     post '/creators/login'  => "sessions#creator",      :as => :creator_login
   end
   # creator signup 1
-  match '/creators', :to => "users#creators"
+  match '/creators', :to => "users#creators", :as => :creators
   # creator signup 2 and 2 submit
   match '/users/:id/creator-info', :to => "users#creator_info", :as => :creator_info
   # creator signup 3 and 3 submit
