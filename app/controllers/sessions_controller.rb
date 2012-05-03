@@ -31,6 +31,7 @@ class SessionsController < Devise::SessionsController
     end
     
     sign_in(:user, existing_user)
+    existing_user.update_attribute(:type, "Creator")
     invitation.update_attribute(:invitee_id, existing_user.id)
     redirect_to creator_info_path(existing_user)
   end
