@@ -5,7 +5,7 @@ class SearchController < ApplicationController
     @users = []
     return if params[:query].blank?
     
-    @stories = Sunspot.search(Story) do
+    @content = Sunspot.search(Story) do
       keywords params[:query]
       any_of do
         with :published, true
@@ -13,7 +13,7 @@ class SearchController < ApplicationController
       end
       order_by :reward_count, :desc
     end
-    @stories = @stories.results
+    @content = @content.results
     
     @users = Sunspot.search(User) do
       keywords params[:query]

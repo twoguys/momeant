@@ -224,17 +224,7 @@ class StoriesController < ApplicationController
     #@page = Page.where(:story_id => params[:story_id], :number => params[:number]).first
     render :partial => "stories/page_themes/#{params[:theme]}" if params[:theme]
   end
-  
-  def search
-    if params[:query]
-      @search = Story.search do
-        keywords params[:query]
-        with :published, true
-      end
-      @stories = @search.results
-    end
-  end
-  
+    
   private
     
   def get_topics
