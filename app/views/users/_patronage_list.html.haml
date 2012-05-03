@@ -14,11 +14,11 @@
     .info
       .media-type{:class => content.media_type}
       .text
-        = link_to(content.title, story_url(content), :class => "title")
+        = link_to(content.title, story_url(content, :impacted_by => reward.id), :class => "title")
         .synopsis= truncate(content.synopsis, :length => 140)
         - if content.category
           %span.category= content.category
-    %a.content-preview{:href => story_path(content), :class => "#{content.media_type} #{content.template}"}
+    %a.content-preview{:href => story_path(content, :impacted_by => reward.id), :class => "#{content.media_type} #{content.template}"}
       - if content.text_media_type?
         .inner
           .image

@@ -174,27 +174,7 @@ class User < ActiveRecord::Base
     # if this was impacted by another reward
     if impacted_by
       parent_reward = Reward.find_by_id(impacted_by)
-      if parent_reward
-        # make the new reward a child of the impacter reward
-        reward.move_to_child_of(parent_reward)
-        reward.update_attribute(:depth, reward.ancestors.count)
-
-        # update all ancestor rewards' impact
-        reward.ancestors.update_all("impact = impact + #{reward.amount}")
-        
-        # update all ancestors' user's impact, except for this reward's user (no double points!)
-        ancestor_ids = reward.ancestors.map(&:user_id).uniq.reject{|user_id| user_id == reward.user_id}
-        unless ancestor_ids.empty?
-          User.where("id in (#{ancestor_ids.join(",")})").update_all("impact = impact + #{reward.amount}")
-        end
-        
-        # record an activity for each ancestor getting impact
-        reward.ancestors.map(&:user_id).uniq.each do |user_id|
-          if user_id != reward.user_id
-            Activity.create(:recipient_id => user_id, :action_type => "Impact", :action_id => reward.id)
-          end
-        end
-      end
+      reward.handle_impact!(parent_reward) if parent_reward
     end
     
     return reward
