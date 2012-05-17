@@ -490,11 +490,9 @@ form input[type="file"], .form input[type="file"] {
   -moz-border-radius: 4px;
   -o-border-radius: 4px;
   border-radius: 4px; }
-form input[type="text"]:focus, form input[type="password"]:focus, .form input[type="text"]:focus, .form input[type="password"]:focus {
+form input[type="text"]:focus, form input[type="email"]:focus, form input[type="password"]:focus, .form input[type="text"]:focus, .form input[type="email"]:focus, .form input[type="password"]:focus {
   outline: none;
-  -webkit-box-shadow: 0 0 12px rgba(51, 204, 255, 0.5);
-  -moz-box-shadow: 0 0 12px rgba(51, 204, 255, 0.5);
-  box-shadow: 0 0 12px rgba(51, 204, 255, 0.5); }
+  border: 1px solid #00aeef; }
 form textarea, .form textarea {
   resize: none; }
 form .example, .form .example {
@@ -521,16 +519,14 @@ input[type="submit"], a.button {
   border: none;
   cursor: pointer;
   background: #00aeef;
-  background-image: -moz-linear-gradient(center top, #43baf0 4%, #3a94e6 52%);
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #43baf0), color-stop(0.52, #3a94e6));
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
   color: white;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.8);
   font-weight: 700;
   text-transform: uppercase;
-  font-family: "proxima-nova-1", "proxima-nova-2", helvetica, sans-serif; }
+  font-family: "proxima-nova-1", "proxima-nova-2", helvetica, sans-serif;
+  font-size: 13px; }
 
 input[type="submit"]:active, a.button:active {
   top: 1px;
@@ -542,8 +538,7 @@ label[for="user_remember_me"] {
   width: auto; }
 
 a.button.green {
-  background-image: -moz-linear-gradient(center top, #62e079 4%, #12b32f 52%);
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #62e079), color-stop(0.52, #12b32f)); }
+  background-color: #62e079; }
 
 .freak-out {
   color: red;
@@ -973,7 +968,7 @@ table {
       #vertical-list #activity-list > li.content .content-preview.bowling .inner {
         width: 260px;
         height: 170px;
-        margin: -105px 0 0 -160px; }
+        margin: -105px 0 0 -138px; }
     #vertical-list #activity-list > li.content .content-preview.watchmen .image {
       width: 70px;
       height: 70px;
@@ -1710,21 +1705,117 @@ body#users.patronage #vertical-list .creator {
     background: transparent url(../images/activityStreamExample.png) no-repeat 0 20px;
     opacity: 0.6; }
 
-#creator-signup {
-  padding: 20px; }
-  #creator-signup #join, #creator-signup #login {
-    width: 400px;
-    float: left; }
-  #creator-signup form li.checkbox {
-    height: 1em; }
-  #creator-signup form #avatar-preview, #creator-signup form #avatar-preview img {
-    width: 300px;
-    height: 300px; }
-  #creator-signup form .file-uploader .loader {
-    width: 220px;
-    height: 19px;
-    background: transparent url(../images/loading.gif) no-repeat 0 0;
+#creator-signup #top .inner, #creator-signup #bottom .inner {
+  width: 760px;
+  margin: 0 auto;
+  text-align: center; }
+#creator-signup #top {
+  padding: 100px 0;
+  background: #d8d8d8;
+  border-bottom: 5px solid white;
+  margin-bottom: 100px; }
+  #creator-signup #top h1, #creator-signup #top h2 {
+    text-transform: uppercase; }
+  #creator-signup #top h2 {
+    font-size: 23px;
+    font-weight: 600;
+    color: white;
+    margin: 0;
+    background: none;
+    padding: 0; }
+  #creator-signup #top h1 {
+    font-size: 75px;
+    font-weight: 200;
+    line-height: 55px;
+    color: black;
+    margin-bottom: 30px;
+    letter-spacing: -0.02em; }
+#creator-signup #forms {
+  position: relative;
+  width: 300px;
+  height: 400px;
+  float: left; }
+  #creator-signup #forms form {
+    width: 256px;
+    margin: 0 auto; }
+  #creator-signup #forms li {
+    height: 50px;
+    margin-bottom: 6px; }
+  #creator-signup #forms label {
+    text-align: left;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 400;
+    margin: 0; }
+  #creator-signup #forms input[type="text"], #creator-signup #forms input[type="email"], #creator-signup #forms input[type="password"] {
+    width: 240px; }
+  #creator-signup #forms span.aside {
+    text-align: left; }
+    #creator-signup #forms span.aside input {
+      width: 110px; }
+  #creator-signup #forms input[type="submit"], #creator-signup #forms a {
+    width: 150px;
+    margin: 10px auto 0; }
+  #creator-signup #forms a.button {
+    display: block;
+    background: #ffa801;
+    padding: 9px 0; }
+  #creator-signup #forms #join, #creator-signup #forms #login {
+    position: absolute;
+    top: 0;
+    left: 0; }
+  #creator-signup #forms #join {
     display: none; }
+#creator-signup #what-it-means {
+  width: 300px;
+  float: right; }
+  #creator-signup #what-it-means ul {
+    text-align: left;
+    margin-left: 5px;
+    background: transparent url(../images/signup/creator-icons-blue.png) no-repeat 0 0;
+    text-transform: uppercase;
+    font-size: 12.5px;
+    font-weight: 600; }
+    #creator-signup #what-it-means ul li {
+      padding: 6px 0 23px; }
+      #creator-signup #what-it-means ul li a {
+        padding: 6px 0 6px 50px;
+        color: black;
+        -webkit-transition: color 0.2s linear;
+        -moz-transition: color 0.2s linear;
+        -ms-transition: color 0.2s linear;
+        -o-transition: color 0.2s linear;
+        transition: color 0.2s linear; }
+      #creator-signup #what-it-means ul li a:hover {
+        color: #00aeef; }
+#creator-signup #bottom section {
+  background: transparent url(../images/signup/creator-icons-grey.png) no-repeat 0 0;
+  padding-top: 85px;
+  font-size: 18px;
+  text-align: left;
+  margin-bottom: 55px; }
+  #creator-signup #bottom section span.heading {
+    text-transform: uppercase;
+    color: #00aeef;
+    font-weight: 600; }
+  #creator-signup #bottom section span.text {
+    font-style: italic; }
+#creator-signup #bottom section#deal {
+  background-position: 0 -239px; }
+#creator-signup #bottom section#rewarded {
+  background-position: 0 -477px; }
+#creator-signup #bottom section#share {
+  background-position: 0 -715px; }
+#creator-signup #bottom section#audience {
+  background-position: 0 -953px; }
+#creator-signup #creator-info #avatar-preview, #creator-signup #creator-info #avatar-preview img {
+  width: 300px;
+  height: 300px; }
+#creator-signup #creator-info .file-uploader .loader {
+  width: 220px;
+  height: 19px;
+  background: transparent url(../images/loading.gif) no-repeat 0 0;
+  display: none; }
 
 /* Become a Creator */
 body#users.become_a_creator #profile-center form {

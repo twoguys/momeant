@@ -1,14 +1,116 @@
 #creator-signup
-	padding: 20px
 
-	#join, #login
-		width: 400px
-		float: left
+	#top, #bottom
+		.inner
+			width: 760px
+			margin: 0 auto
+			text-align: center
 	
-	form
-		li.checkbox
-			height: 1em
+	#top
+		padding: 100px 0
+		background: #d8d8d8
+		border-bottom: 5px solid #fff
+		margin-bottom: 100px
+		h1, h2
+			text-transform: uppercase
+		h2
+			font-size: 23px
+			font-weight: 600
+			color: #fff
+			margin: 0
+			background: none
+			padding: 0
+		h1
+			font-size: 75px
+			font-weight: 200
+			line-height: 55px
+			color: #000
+			margin-bottom: 30px
+			letter-spacing: -0.02em
+
+	#forms
+		position: relative
+		width: 300px
+		height: 400px
+		float: left
+		
+		form
+			width: 256px
+			margin: 0 auto
+		li
+			height: 50px
+			margin-bottom: 6px
+		label
+			text-align: left
+			text-transform: uppercase
+			font-size: 12px
+			font-weight: 400
+			margin: 0
+		input[type="text"], input[type="email"], input[type="password"]
+			width: 240px
+		span.aside
+			text-align: left
+			input
+				width: 110px
+		input[type="submit"], a
+			width: 150px
+			margin: 10px auto 0
+		a.button
+			display: block
+			background: #ffa801
+			padding: 9px 0
+		
+		#join, #login
+			position: absolute
+			top: 0
+			left: 0
+		
+		#join
+			display: none
 			
+	#what-it-means
+		width: 300px
+		float: right
+		ul
+			text-align: left
+			margin-left: 5px
+			background: transparent url(../images/signup/creator-icons-blue.png) no-repeat 0 0
+			text-transform: uppercase
+			font-size: 12.5px
+			font-weight: 600
+			li
+				padding: 6px 0 23px
+				a
+					padding: 6px 0 6px 50px
+					color: #000
+					@include transition(color)
+				a:hover
+					color: $blue
+	
+	#bottom
+		section
+			background: transparent url(../images/signup/creator-icons-grey.png) no-repeat 0 0
+			padding-top: 85px
+			font-size: 18px
+			text-align: left
+			margin-bottom: 55px
+			span.heading
+				text-transform: uppercase
+				color: $blue
+				font-weight: 600
+			span.text
+				font-style: italic
+		section#deal
+			background-position: 0 -239px
+		section#rewarded
+			background-position: 0 -477px
+		section#share
+			background-position: 0 -715px
+		section#audience
+			background-position: 0 -953px
+
+	
+	#creator-info
 		#avatar-preview, #avatar-preview img
 			width: 300px
 			height: 300px

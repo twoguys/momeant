@@ -1,54 +1,115 @@
 #creator-signup
 
-  #join
-    
-    %h1 Sign up as a Creator
-    
-    = form_for @creator, :url => creator_signup_path do |form|
-    
-      = render "shared/error_messages", :target => @creator
-    
-      %fieldset
+  #top
+    .inner
+      #forms
+      
+        #join
+
+          %h2 You've been invited!
+          %h1 Sign up
+
+          = form_for @creator, :url => creator_signup_path do |form|
+
+            = render "shared/error_messages", :target => @creator
+
+            %fieldset
+              %ul
+                %li
+                  = form.label :invitation_code
+                  = form.text_field :invitation_code, :value => @creator.invitation_code || params[:code]
+                %li  
+                  = form.label :first_name, "name"
+                  %span.aside
+                    = form.text_field :first_name, :placeholder => "first"
+                  %span.aside
+                    = form.text_field :last_name, :placeholder => "last"
+                %li
+                  = form.label :email, "Email address"
+                  = form.email_field :email, :autocapitalize => "off", :autocomplete => "off"
+                %li  
+                  = form.label :password, "Password"
+                  = form.password_field :password, :autocomplete => "off", :placeholder => "6+ characters"
+                %li.checkbox
+                  = form.check_box :tos_accepted
+                  = form.label :tos_accepted, "I agree to the #{link_to("Terms of Service", tos_path, :target => "new")}".html_safe
+                %li.submit
+                  = form.submit "Sign Up"
+                  = link_to "Have an account?", "#", :id => "show-login", :class => "button"
+
+        #login
+
+          %h2 You've been invited!
+          %h1 Log in
+
+          = form_for @login_creator, :url => creator_login_path do |form|
+
+            = render "shared/error_messages", :target => @login_creator
+
+            %fieldset
+              %ul
+                %li
+                  = form.label :invitation_code
+                  = form.text_field :invitation_code, :value => @creator.invitation_code || params[:code]
+                %li
+                  = form.label :email
+                  = form.email_field :email
+                %li
+                  = form.label :password
+                  = form.password_field :password
+                %li.submit
+                  = form.submit "Log In"
+                  = link_to "Need an account?", "#", :id => "show-join", :class => "button"
+          
+      #what-it-means
+      
+        %h2 What it means to be a
+        %h1 Creator
+      
         %ul
-          %li
-            = form.label :invitation_code
-            = form.text_field :invitation_code, :value => @creator.invitation_code || params[:code]
-          %li
-            = form.label :first_name
-            = form.text_field :first_name
-          %li
-            = form.label :last_name
-            = form.text_field :last_name
-          %li
-            = form.label :email, "Email address"
-            = form.email_field :email, :autocapitalize => "off", :autocomplete => "off"
-          %li  
-            = form.label :password, "Password (6+ characters)"
-            = form.password_field :password, :autocomplete => "off"
-          %li.checkbox
-            = form.check_box :tos_accepted
-            = form.label :tos_accepted, "I agree to the #{link_to("Terms of Service", tos_path, :target => "new")}".html_safe
-          %li.submit
-            = form.submit "Sign Up"
+          %li= link_to "it's free to you", "#money"
+          %li= link_to "the deal = 80/20", "#deal"
+          %li= link_to "be rewarded for your work", "#rewarded"
+          %li= link_to "share your creative content", "#share"
+          %li= link_to "keep your audience invested in you", "#audience"
   
-  #login
+    .clear
   
-    %h1 Already have a Momeant account?
+  #bottom
+    .inner
+  
+      %section#money
+        %span.heading It's free to you
+        %span.text Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
     
-    = form_for @login_creator, :url => creator_login_path do |form|
-    
-      = render "shared/error_messages", :target => @login_creator
-    
-      %fieldset
-        %ul
-          %li
-            = form.label :invitation_code
-            = form.text_field :invitation_code, :value => @creator.invitation_code || params[:code]
-          %li
-            = form.label :email
-            = form.email_field :email
-          %li
-            = form.label :password
-            = form.password_field :password
-          %li
-            = form.submit "Log In"
+      %section#deal
+        %span.heading The deal = 80/20
+        %span.text Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      
+      %section#rewarded
+        %span.heading Be rewarded for your work
+        %span.text Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      
+      %section#share
+        %span.heading Share your creative content
+        %span.text Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      
+      %section#audience
+        %span.heading Keep your audience invested in you
+        %span.text Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+:javascript
+  $(function() {
+    $('#show-join').click(function() {
+      $('#login').fadeOut();
+      $('#join').fadeIn();
+      $('#forms').animate({height:'475px'}, 200);
+      return false;
+    });
+    $('#show-login').click(function() {
+      $('#join').fadeOut();
+      $('#login').fadeIn();
+      $('#forms').animate({height:'400px'}, 200);
+      return false;
+    });
+  });

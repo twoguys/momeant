@@ -64,11 +64,9 @@ form, .form
 		-moz-border-radius: 4px
 		-o-border-radius: 4px
 		border-radius: 4px
-	input[type="text"]:focus, input[type="password"]:focus
+	input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus
 		outline: none
-		-webkit-box-shadow: 0 0 12px rgba(51, 204, 255, 0.5)
-		-moz-box-shadow: 0 0 12px rgba(51, 204, 255, 0.5)
-		box-shadow: 0 0 12px rgba(51, 204, 255, 0.5)
+		border: 1px solid $blue
 	textarea
 		resize: none
 	.example
@@ -95,13 +93,12 @@ input[type="submit"], a.button
 	border: none
 	cursor: pointer
 	background: $blue
-	@include gradient($bluegradient1, $bluegradient2)
 	@include rounded(3px)
 	color: #fff
-	text-shadow: 0 -1px 0 rgba(0,0,0,0.8)
 	font-weight: 700
 	text-transform: uppercase
 	font-family: $block
+	font-size: 13px
 input[type="submit"]:active, a.button:active
 	top: 1px
 	box-shadow: 0 1px 2px rgba(0,0,0,0.2) inset
@@ -110,7 +107,7 @@ label[for="user_remember_me"]
 	line-height: 12px
 	width: auto
 a.button.green
-	@include gradient($greengradient1, $greengradient2)
+	background-color: $greengradient1
 
 .freak-out
 	color: red

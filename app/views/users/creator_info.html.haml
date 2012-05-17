@@ -1,32 +1,33 @@
 #creator-signup
 
-  = form_for :user, @user, :url => creator_info_path(@user) do |form|
+  #creator-info
+    = form_for :user, @user, :url => creator_info_path(@user) do |form|
     
-    = render "shared/error_messages", :target => @user
+      = render "shared/error_messages", :target => @user
     
-    %fieldset
-      %ul
-        %li.avatar
-          #avatar-preview
-            = image_tag @user.avatar.url(:editorial)
-          .file-uploader
-            %form
-              = token_tag
-              .file-input
-                %input{:type => "file", :name => "user[avatar]", :id => "user_avatar"}
-                .loader
-              .example For best results, upload a square JPG or PNG at least 300px by 300px.
-        %li
-          = form.label :tagline, "What kind of work will you be displaying on Momeant?"
-          = form.text_area :tagline
-        %li
-          = form.label :occupation, "Occupation (optional)"
-          = form.text_field :occupation
-        %li
-          = form.label :location, "Location (optional)"
-          = form.text_field :location
-        %li
-          = form.submit "Final Step >"
+      %fieldset
+        %ul
+          %li.avatar
+            #avatar-preview
+              = image_tag @user.avatar.url(:editorial)
+            .file-uploader
+              %form
+                = token_tag
+                .file-input
+                  %input{:type => "file", :name => "user[avatar]", :id => "user_avatar"}
+                  .loader
+                .example For best results, upload a square JPG or PNG at least 300px by 300px.
+          %li
+            = form.label :tagline, "What kind of work will you be displaying on Momeant?"
+            = form.text_area :tagline
+          %li
+            = form.label :occupation, "Occupation (optional)"
+            = form.text_field :occupation
+          %li
+            = form.label :location, "Location (optional)"
+            = form.text_field :location
+          %li
+            = form.submit "Final Step >"
 
 :javascript
   var user_id = #{@user.id};

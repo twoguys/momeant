@@ -158,6 +158,7 @@ class StoriesController < ApplicationController
     end
     
     params[:story][:tag_list].downcase! if params[:story][:tag_list]
+    params[:story][:template_text].slice!(255..10000) if params[:story][:template_text]
 
     @story.autosaving = true
     if @story.update_attributes(params[:story])
