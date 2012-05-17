@@ -1,32 +1,40 @@
 #creator-signup
 
-  #creator-info
+  #creator-info.inner
+    %h1 Tell your future supporters about yourself!
+    
     = form_for :user, @user, :url => creator_info_path(@user) do |form|
     
       = render "shared/error_messages", :target => @user
     
       %fieldset
         %ul
-          %li.avatar
-            #avatar-preview
-              = image_tag @user.avatar.url(:editorial)
-            .file-uploader
-              %form
-                = token_tag
-                .file-input
-                  %input{:type => "file", :name => "user[avatar]", :id => "user_avatar"}
-                  .loader
-                .example For best results, upload a square JPG or PNG at least 300px by 300px.
           %li
-            = form.label :tagline, "What kind of work will you be displaying on Momeant?"
-            = form.text_area :tagline
-          %li
-            = form.label :occupation, "Occupation (optional)"
-            = form.text_field :occupation
-          %li
-            = form.label :location, "Location (optional)"
-            = form.text_field :location
-          %li
+            %section#upload
+              #avatar-file
+                %h2 1. Upload a picture of your pretty face
+                .file-uploader
+                  %form
+                    = token_tag
+                    .file-input
+                      %input{:type => "file", :name => "user[avatar]", :id => "user_avatar"}
+                      .loader
+                    .example For best results, upload a square JPG or PNG, 300x300 or larger.
+              #avatar-preview
+                = image_tag @user.avatar.url(:editorial)
+
+            %section#work
+              %h2 What kind of work will you be displaying on Momeant?
+              = form.text_area :tagline
+
+            %section
+              %h2 What is your Occupation (optional)?
+              = form.text_field :occupation
+            %section
+              %h2 Where are you Located (optional)?
+              = form.text_field :location
+        
+          %li.submit
             = form.submit "Final Step >"
 
 :javascript

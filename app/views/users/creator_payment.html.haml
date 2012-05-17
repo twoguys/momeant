@@ -1,17 +1,23 @@
 #creator-signup
 
-  %h1 In order to send you the money from your rewards, we’ll need some information from you.
-  %p If you are not in the United States or Canada, please send us an email #{mail_to "team@momeant.com", "here"} and we’ll work out an arrangement to make sure you can get paid.
-  %p We currently use Amazon Payments to send money to Creators. All you need is an Amazon account to accept payments from us. Then you can hook up your bank account to your Amazon account to transfer the money out. Please give us the email address you use to sign in with Amazon.
+  #creator-payment.inner
+    %h1 Tell us how we can pay you!
 
-  = form_for :user, @user, :url => creator_payment_path(@user) do |form|
-    
-    = render "shared/error_messages", :target => @user
-    
-    %fieldset
-      %ul
-        %li
-          = form.label :amazon_email, "Your Amazon account email address"
-          = form.text_field :amazon_email
-        %li
-          = form.submit "Finish"
+    = form_for :user, @user, :url => creator_payment_path(@user) do |form|
+      %fieldset
+        %ul
+          %li
+            %section
+              %h2 In order to send you the money from your rewards, we’ll need some information from you.
+              %p If you are not in the United States or Canada, please send us an email #{mail_to "team@momeant.com", "here"} and we’ll work out an arrangement to make sure you can get paid.
+              %p We currently use Amazon Payments to send money to Creators. All you need is an Amazon account to accept payments from us. Then you can hook up your bank account to your Amazon account to transfer the money out. Please give us the email address you use to sign in with Amazon.
+
+          %li
+            %section
+              = render "shared/error_messages", :target => @user
+        
+              %h2 What is your Amazon account email address?
+              = form.text_field :amazon_email
+          
+          %li.submit
+            = form.submit "Finish"

@@ -1705,11 +1705,11 @@ body#users.patronage #vertical-list .creator {
     background: transparent url(../images/activityStreamExample.png) no-repeat 0 20px;
     opacity: 0.6; }
 
-#creator-signup #top .inner, #creator-signup #bottom .inner {
+#creator-signup .inner {
   width: 760px;
-  margin: 0 auto;
-  text-align: center; }
+  margin: 0 auto; }
 #creator-signup #top {
+  text-align: center;
   padding: 100px 0;
   background: #d8d8d8;
   border-bottom: 5px solid white;
@@ -1792,7 +1792,6 @@ body#users.patronage #vertical-list .creator {
   background: transparent url(../images/signup/creator-icons-grey.png) no-repeat 0 0;
   padding-top: 85px;
   font-size: 18px;
-  text-align: left;
   margin-bottom: 55px; }
   #creator-signup #bottom section span.heading {
     text-transform: uppercase;
@@ -1808,14 +1807,41 @@ body#users.patronage #vertical-list .creator {
   background-position: 0 -715px; }
 #creator-signup #bottom section#audience {
   background-position: 0 -953px; }
-#creator-signup #creator-info #avatar-preview, #creator-signup #creator-info #avatar-preview img {
-  width: 300px;
+#creator-signup #creator-info h1, #creator-signup #creator-payment h1 {
+  padding-top: 30px;
+  margin-bottom: 0; }
+#creator-signup #creator-info section, #creator-signup #creator-payment section {
+  background: #e8e8e8;
+  padding: 30px;
+  margin-top: 30px; }
+  #creator-signup #creator-info section h2, #creator-signup #creator-payment section h2 {
+    background: none;
+    padding: 0;
+    text-transform: none; }
+#creator-signup #creator-info li.submit, #creator-signup #creator-payment li.submit {
+  text-align: right; }
+#creator-signup #creator-info #upload, #creator-signup #creator-payment #upload {
   height: 300px; }
-#creator-signup #creator-info .file-uploader .loader {
-  width: 220px;
-  height: 19px;
-  background: transparent url(../images/loading.gif) no-repeat 0 0;
-  display: none; }
+  #creator-signup #creator-info #upload #avatar-file, #creator-signup #creator-payment #upload #avatar-file {
+    float: left;
+    width: 380px; }
+  #creator-signup #creator-info #upload #avatar-preview, #creator-signup #creator-payment #upload #avatar-preview {
+    float: right;
+    width: 300px;
+    background: white; }
+  #creator-signup #creator-info #upload #avatar-preview, #creator-signup #creator-info #upload #avatar-preview img, #creator-signup #creator-payment #upload #avatar-preview, #creator-signup #creator-payment #upload #avatar-preview img {
+    width: 300px;
+    height: 300px; }
+  #creator-signup #creator-info #upload .file-uploader .loader, #creator-signup #creator-payment #upload .file-uploader .loader {
+    width: 220px;
+    height: 19px;
+    background: transparent url(../images/loading.gif) no-repeat 0 0;
+    display: none; }
+  #creator-signup #creator-info #upload .example, #creator-signup #creator-payment #upload .example {
+    border: none; }
+#creator-signup #creator-info #work textarea, #creator-signup #creator-payment #work textarea {
+  width: 97%;
+  height: 50px; }
 
 /* Become a Creator */
 body#users.become_a_creator #profile-center form {
