@@ -30,11 +30,11 @@
     
     .subnav
       - if @user.is_a?(Creator)
-        = link_to_active "<span>Content Created</span>".html_safe, user_path(@user)
-      = link_to_active "<span>Rewards Given</span>".html_safe, patronage_user_path(@user), :class => @user.is_a?(Creator) ? "" : "active"
+        = link_to_active "<span>Content I Created</span>".html_safe, user_path(@user)
+      = link_to_active "<span>Rewards I Received</span>".html_safe, patronage_user_path(@user), :class => @user.is_a?(Creator) ? "" : "active"
     
     .info
-      %em What will you be sharing at momeant?
+      %em What will I be sharing at Momeant?
       %p= @user.tagline
       = link_to "Edit", settings_user_path(@user) if me?(@user)
     
@@ -49,9 +49,10 @@
     #broadcaster
       #updates-list
         - if me?(@user) && @user.broadcasts.empty?
-          You can use this area to provide updates to your followers.
+          You can use this area to broadcast messages to your followers.
         - elsif @user.broadcasts.empty?
-          #{@user.first_name}'s updates will show up here.
+          %p When I broadcast a message it will show up here.
+          %p It will also show up in your feed if you follow me.
         - else
           = @user.broadcasts.first.message
       - if me?(@user)
