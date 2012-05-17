@@ -28,6 +28,6 @@
 
 :javascript
   var user_id = #{@user.id};
-  var my_page = #{me?(@user)};
+  var my_page = #{me?(@user) ? "true" : "false"};
 = javascript_include_tag "jquery.editinplace"
 = javascript_include_tag "users/patronage"
