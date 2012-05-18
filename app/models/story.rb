@@ -92,7 +92,7 @@ class Story < ActiveRecord::Base
   
   def at_least_one_page
     if self.pages.count == 0
-      self.errors.add(:base, "Your content must have at least one page")
+      self.errors.add(:base, "The content you create must have at least one page")
       return false
     end
     return true
@@ -101,7 +101,7 @@ class Story < ActiveRecord::Base
   def no_empty_pages
     self.pages.each do |page|
       if page.empty?
-        self.errors.add(:base, "Slide #{page.number} cannot be empty. Please fix this by using the fullscreen editor.")
+        self.errors.add(:base, "Slide #{page.number} cannot be empty. Please fix this by launching the Content Editor.")
         return false
       end
     end
@@ -283,8 +283,8 @@ class Story < ActiveRecord::Base
     end
   end
   
-  def text_media_type?
-    self.media_type == "writing" || self.media_type == "music"
+  def text_preview?
+    self.preview_type == "text"
   end
   
   def reload_thumbnail!

@@ -18,26 +18,21 @@
       Saving...
 
     %section.step#editor
-      %h2 1. What would you like to share?
-      .choice#external{:class => @story.is_external? ? "selected" : ""}
-        .choice-inner
-          .description Show your existing web content
-          = text_field_tag :story_external_link, @story.external_text_or_http, :class => "monitor-story-typing", :update => "external_link"
-          %p.info
-            %em Show something you've created elsewhere on the web.
-            = link_to "Uncertain about your rights over your content?", "#content-rights", :id => "content-rights-link"
-      .choice#creator{:class => @story.is_external? ? "" : "selected"}
-        .choice-inner
-          .description
-            OR create something new by
-            = link_to("launching our fullscreen editor", "#", :id => "open-page-editor-button", :class => @story.is_external? || @story.pages.empty? ? "launch" : "")
-            %em (currently in beta)
-          %p.info
-            %em (Share images &amp; text with many layout &amp; formatting options.)
+      %h2 1. Which would you like to do?
+      = link_to "Share your existing web content", "#", :id => "share", :class => @story.is_external? ? "choice selected" : "choice"
+      = link_to "Create something new", "#", :id => "create", :class => @story.is_external? ? "choice" : "choice selected"
+      #share-details.details{:class => @story.is_external? ? "selected" : ""}
+        = label_tag :story_external_link, "Enter the URL where your content is located:"
+        = text_field_tag :story_external_link, @story.external_text_or_http, :class => "monitor-story-typing", :update => "external_link", :placeholder => "http://site.com"
+        .info
+          = link_to "Uncertain about your rights over your content?", "#content-rights", :id => "content-rights-link"
+      #create-details.details{:class => @story.is_external? ? "" : "selected"}
+        Use our Content Editor (currently in beta) to share images and text with basic layout and formatting options:
+        = link_to "Launch the Content Editor", "#", :id => "open-page-editor-button", :class => @story.is_external? || @story.pages.empty? ? "launch button" : "button"
       .clear
 
     %section.step#type
-      %h2 2. What type of content is it?
+      %h2 2. What type of content is this?
       %ul
         %li{:class => @story.media_type == "photos" ? "selected" : ""}
           = link_to "photos", "#", :id => "photo-type"
@@ -49,17 +44,40 @@
           = link_to "music", "#", :id => "music-type"
       = hidden_field_tag :story_media_type, :value => @story.media_type
       
-      #template
-        = render "stories/template_forms/#{@story.media_type}" if @story.media_type.present?
+    %section.step#preview
+      %h2 3. What would you like to show as a preview of your content?
+      = link_to "Show an image", "#", :id => "preview-image", :class => @story.preview_type == "image" ? "choice selected" : "choice"
+      = link_to "Show a snippet of text", "#", :id => "preview-text", :class => @story.preview_type == "text" ? "choice selected" : "choice"
+      #preview-image-details.details{:class => @story.preview_type == "image" ? "selected" : ""}
+        .thumbnail{:style => @story && @story.thumbnail.present? ? "background: url(#{@story.thumbnail.url(:medium)})" : ""}
+        .file-uploader
+          %form
+            = label_tag "Upload a photo best representing this content:"
+            %input{:type => "hidden", :value => form_authenticity_token, :name => "authenticity_token"}
+            .file-input
+              %input{:type => "file", :name => "story[thumbnail]", :id => "story_thumbnail"}
+              .loader
+              .info For best results, upload a JPG or PNG, 630x420 or larger.
+      #preview-text-details.details{:class => @story.preview_type == "text" ? "selected" : ""}
+        = label_tag "Type a snippet of text (140 characters or less):"
+        = text_area_tag :story_template_text, @story.template_text, :class => "monitor", :update => "template_text", :max => 140
+        #characters-left
+          %span.amount 140
+          %span characters left
+        #text-template
+          = label_tag "Choose a text template:"
+          = link_to image_tag("creator/watchmen.png"), "#", :data => "watchmen", :class => @story.template == "watchmen" ? "selected" : ""
+          = link_to image_tag("creator/blob.png"), "#", :data => "blob", :class => @story.template == "blob" ? "selected" : ""
+          = link_to image_tag("creator/bowling.png"), "#", :data => "bowling", :class => @story.template == "bowling" ? "selected" : ""
     
     %section.step#categorize
-      %h2 3. How would you describe this content?
+      %h2 4. How would you describe this content?
       %ul
         %li
           = label_tag :story_title, "Give it a title:"
           = text_field_tag :story_title, @story.title, :class => "monitor-story-typing", :update => "title"
         %li
-          = label_tag :story_synopsis, "Quickly summarize it (optional, 140 characters):"
+          = label_tag :story_synopsis, "Quickly summarize it (optional, 140 characters or less):"
           = text_field_tag :story_synopsis, @story.synopsis, :class => "monitor-story-typing", :update => "synopsis"
         %li
           = label_tag :story_category, "Choose a category:"
@@ -80,7 +98,7 @@
     %ul
       %li#page-editor.hidden
         #editor-header
-          .title Mo&#149meant story builder
+          .title Momeant Content Editor
           .slide-nav
             = link_to("prev", "#", :id => "previous-page")
             .current-slide

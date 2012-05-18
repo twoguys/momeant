@@ -4,7 +4,7 @@
     - if me?(@user) && @content.empty?
       #empty-creator-content
         %p This is your profile page, where you’ll communicate with your audience, present yourself and your work, and where they’ll be able to follow you.
-        %p.strong Get started by creating or linking a piece of work using the "Share Your Work" link in your profile drop-down navigation above.
+        %p.strong Get started by clicking the "Share (+)" icon in the navigation bar above.
   
     #vertical-list
       %ul#activity-list
@@ -12,7 +12,7 @@
         - @content.each do |content|
           %li.content{:id => "content-#{content.id}"}
             %a.content-preview{:href => story_path(content), :class => "#{content.media_type} #{content.template}"}
-              - if content.text_media_type?
+              - if content.text_preview?
                 .inner
                   .image
                   .quote= truncate(content.template_text, :length => 140)

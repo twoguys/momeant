@@ -61,20 +61,6 @@ class StoriesController < ApplicationController
     render "form"
   end
   
-  def choose_media_type # ajax
-    @story = Story.find(params[:id])
-    @story.media_type = params[:media_type]
-    if @story.text_media_type? # if a text media type, choose a random template for now
-      text_templates = ["watchmen","blob","bowling"]
-      @story.template = text_templates[rand(text_templates.length)]
-    else
-      @story.template = "photo"
-    end
-    @story.autosaving = true
-    @story.save
-    render :partial => "stories/template_forms/#{params[:media_type]}"
-  end
-  
   def publish
     if !@story.valid?
       redirect_to edit_story_path(@story) and return
@@ -151,9 +137,9 @@ class StoriesController < ApplicationController
         external_page.medias << PageText.new
       end
       link = params[:story][:external_link]
-      metadata = @story.update_via_opengraph(link)
+      #metadata = @story.update_via_opengraph(link)
       external_page.text_media.update_attribute(:text, link)
-      render :json => {:result => "success", :metadata => metadata}
+      render :json => {:result => "success"}
       return
     end
     
