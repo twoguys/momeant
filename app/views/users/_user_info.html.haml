@@ -31,7 +31,7 @@
     .subnav
       - if @user.is_a?(Creator)
         = link_to_active "<span>Content I Created</span>".html_safe, user_path(@user)
-      = link_to_active "<span>Rewards I Received</span>".html_safe, patronage_user_path(@user), :class => @user.is_a?(Creator) ? "" : "active"
+      = link_to_active "<span>Rewards I've Given</span>".html_safe, patronage_user_path(@user), :class => @user.is_a?(Creator) ? "" : "active"
     
     .info
       %em What will I be sharing at Momeant?

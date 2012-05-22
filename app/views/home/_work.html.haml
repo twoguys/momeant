@@ -1,7 +1,7 @@
 .person.slide{:id => "person-#{content.user.id}"}
   - unless content.nil?
     .content-preview{:class => "#{content.media_type} #{content.template}"}
-      - if content.text_media_type?
+      - if content.text_preview?
         .inner
           .image
           .quote= truncate(content.template_text, :length => 140)
