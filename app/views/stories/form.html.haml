@@ -82,6 +82,10 @@
         %li
           = label_tag :story_category, "Choose a category:"
           = select_tag :story_category, options_for_select([""] + Story::CATEGORIES, @story.category), :update => "category"
+        %li
+          = label_tag :story_tags, "Tag your content"
+          = text_field_tag :story_tags, @story.tags.join(', '), :class => "monitor-story-typing", :update => "tag_list"
+          .example Separate tags by commas (e.g. art, oil painting, fresco)
   
     %section.step#last
       .owner
