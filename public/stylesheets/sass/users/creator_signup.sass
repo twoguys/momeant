@@ -37,7 +37,7 @@
 			width: 256px
 			margin: 0 auto
 		li
-			height: 50px
+			min-height: 50px
 			margin-bottom: 6px
 		label
 			text-align: left
@@ -47,6 +47,13 @@
 			margin: 0
 		input[type="text"], input[type="email"], input[type="password"]
 			width: 240px
+		li.checkbox
+			position: relative
+			min-height: 25px
+			label.error
+				position: absolute
+				top: 18px
+				left: 20px
 		span.aside
 			text-align: left
 			input
@@ -58,6 +65,8 @@
 			display: block
 			background: #ffa801
 			padding: 9px 0
+		label.error
+			color: $red
 		
 		#join, #login
 			position: absolute

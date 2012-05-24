@@ -418,6 +418,8 @@ form input[type="text"], form input[type="email"], form input[type="password"], 
   -moz-border-radius: 4px;
   -o-border-radius: 4px;
   border-radius: 4px; }
+  form input[type="text"].error, form input[type="email"].error, form input[type="password"].error, form textarea.error, .form input[type="text"].error, .form input[type="email"].error, .form input[type="password"].error, .form textarea.error {
+    background: #f7d3db; }
 form input[type="file"], .form input[type="file"] {
   padding: 5px;
   font-size: 1.2em;
@@ -430,6 +432,8 @@ form input[type="file"], .form input[type="file"] {
 form input[type="text"]:focus, form input[type="email"]:focus, form input[type="password"]:focus, .form input[type="text"]:focus, .form input[type="email"]:focus, .form input[type="password"]:focus {
   outline: none;
   border: 1px solid #00aeef; }
+  form input[type="text"]:focus.error, form input[type="email"]:focus.error, form input[type="password"]:focus.error, .form input[type="text"]:focus.error, .form input[type="email"]:focus.error, .form input[type="password"]:focus.error {
+    border-color: #f42652; }
 form textarea, .form textarea {
   resize: none; }
 form .example, .form .example {
@@ -1679,7 +1683,7 @@ body#users.patronage #vertical-list .creator {
     width: 256px;
     margin: 0 auto; }
   #creator-signup #forms li {
-    height: 50px;
+    min-height: 50px;
     margin-bottom: 6px; }
   #creator-signup #forms label {
     text-align: left;
@@ -1689,6 +1693,13 @@ body#users.patronage #vertical-list .creator {
     margin: 0; }
   #creator-signup #forms input[type="text"], #creator-signup #forms input[type="email"], #creator-signup #forms input[type="password"] {
     width: 240px; }
+  #creator-signup #forms li.checkbox {
+    position: relative;
+    min-height: 25px; }
+    #creator-signup #forms li.checkbox label.error {
+      position: absolute;
+      top: 18px;
+      left: 20px; }
   #creator-signup #forms span.aside {
     text-align: left; }
     #creator-signup #forms span.aside input {
@@ -1700,6 +1711,8 @@ body#users.patronage #vertical-list .creator {
     display: block;
     background: #ffa801;
     padding: 9px 0; }
+  #creator-signup #forms label.error {
+    color: #f42652; }
   #creator-signup #forms #join, #creator-signup #forms #login {
     position: absolute;
     top: 0;
