@@ -20,12 +20,13 @@
             - index = 0
             - @content.each do |content|
               %li.content{:id => "content-#{content.id}"}
-                %a.content-preview{:href => story_path(content), :class => "#{content.media_type} #{content.template}"}
-                  - if content.text_media_type?
+                - if content.text_preview?
+                  %a.content-preview{:href => story_path(content), :class => "#{content.media_type} #{content.template}"}
                     .inner
                       .image
                       .quote= truncate(content.template_text, :length => 140)
-                  - else
+                - else
+                  %a.content-preview{:href => story_path(content), :class => content.media_type}
                     .inner{:style => "background-image: url(#{content.thumbnail.url(:large)})"}
 
                 .info

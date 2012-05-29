@@ -1,7 +1,7 @@
 %li
-  = link_to image_tag(comment.user.avatar.url(:thumbnail), :class => "commenter-avatar"), user_path(comment.user)
+  = link_to image_tag(comment.user.avatar.url(:thumbnail)), user_path(comment.user), :class => "commenter-avatar"
   = link_to comment.user.name, user_path(comment.user), :class => "commenter-name"
-  %span.text= comment.comment
+  .text= comment.comment
   .metadata
     %span.time #{time_ago_in_words(comment.created_at)} ago
     - if comment.reward

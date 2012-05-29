@@ -1,34 +1,51 @@
 #reward-modal
 
-  %a#reward-modal-tab
-    .inner
-      = image_tag(@story.user.avatar.url(:thumbnail), :class => "avatar")
-      .text
-        %span Reward
-        %span= @story.user.name
-      .rewards= @story.rewards.sum(:amount)
+  #reward-view
+    = link_to image_tag(@story.user.avatar.url(:large)), user_path(@story.user), :id => "avatar"
+    %a#creator-name{:href => user_path(@story.user)}
+      %span= @story.user.first_name
+      %span= @story.user.last_name
 
-  #modal-inner
-    #modal-header
-      = link_to "Momeant", root_path
-      .slogan Reward what matters to you.
-      %ul#modal-steps
-        %li{:step => 1, :class => current_user.present? ? "selected" : ""}
-          %span.title.tooltipped{:title => "Decide how much to reward #{@story.user.first_name}"} Reward
-          %span.arrow >
-        %li{:step => 2}
-          %span.title.tooltipped{:title => "Tell everyone why you rewarded #{@story.user.first_name}"} Comment
-          %span.arrow >
-        %li{:step => 3}
-          %span.title.tooltipped{:title => "Share #{@story.user.first_name}'s content with people you know to make an extra impact"} Promote
-          %span.arrow >
-        %li{:step => 4}
-          %span.title.tooltipped{:title => "See how rewarding builds up your status within the community"} Your Status
-        
-      
-    #your-reward
-      .inner
-        = render "rewards/modal/form"
+    #closed-reward-stats.reward-stats
+      %strong= number_to_currency(@story.reward_count)
+      %span from
+      %strong.people= @story.users_who_rewarded.count
+
+    #title= @story.title
+    #synopsis
+      - if @story.synopsis.length > 110
+        %span.less= truncate(@story.synopsis, :length => 110)
+        %span.more= @story.synopsis
+        = link_to "more", "#", :id => "toggle-synopsis"
+      - else
+        = @story.synopsis
+    #tags
+      - @story.tags.each do |tag|
+        = link_to tag.name, search_path(:query => tag.name)
+        %span ,
+  
+    #reward-actions
+      = render "rewards/modal/form"
+
+    %a#open-close{:href => "#"}
+      %span
+  
+  #comments-view
+    %a#open-comments-tab.tooltipped-e{:title => "Toggle comments"}
+      %span= @story.comment_count
+    
+    #comments-list
+      %h3 Comments from #{@story.user.first_name}'s supporters:
+      %ul
+        - if current_user
+          %li#new-comment
+            = link_to image_tag(current_user.avatar.url(:thumbnail)), user_path(current_user), :class => "commenter-avatar"
+            = link_to current_user.name, user_path(current_user), :class => "commenter-name"
+            .text
+            .metadata
+              %span.time just now
+              %span.reward
+        = render :partial => "comments/comment", :collection => @story.comments.reverse, :as => :comment
 
 - if session[:open_reward_modal].present?
   :javascript

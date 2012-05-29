@@ -1,20 +1,18 @@
-.step-icon.promote
-
-#share.section
-  .info
-    %h1 Promote #{@story.user.first_name} and have a Greater Impact
-    = link_to "what is Momeant Impact?", "#what-is-impact-modal", :id => "what-is-impact"
+#promote
+  %header
+    %h1 Promote
+    %span &amp; have a greater
+    %abbr#what-is-impact impact!
     .hidden
       #what-is-impact-modal
 
   #copy-paste
-    %form= text_field_tag :url_to_share, story_url(@story, :impacted_by => @reward.id), :readonly => true
-    .weak Copy this URL to share #{@story.user.first_name}'s content with others.
+    Share #{@story.user.first_name}'s content with others:
+    %form= text_area_tag :url_to_share, story_url(@story, :impacted_by => @reward.id), :readonly => true
 
-  #sharing-icons
+  #sharing-buttons
     = link_to "Share on Twitter", "#twitter-sharing", :id => "share-with-twitter"
     = link_to "Share on Facebook", "#facebook-sharing", :id => "share-with-facebook"
-    .weak We'll help you share #{@story.user.first_name}'s content with your networks.
     
   .hidden
     #twitter-sharing
