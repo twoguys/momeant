@@ -150,6 +150,7 @@ $(function() {
 			'click #content-cover':           'toggle_modal',
 			'click #toggle-synopsis':         'toggle_full_synopsis',
 			'click #steps li.reward':         'goto_reward',
+			'click #steps li.comment':        'goto_comment',
 			'click #amounts a': 							'choose_reward_amount',
 			'focus #custom_amount': 					'choose_custom_amount',
   		'blur #custom_amount':            'stop_choosing_custom',
@@ -220,7 +221,7 @@ $(function() {
 			$('#reward_amount').val($button.attr('amount'));
 			$('#custom_amount').val('');
 			
-			this.goto_comment();
+			window.setTimeout(RewardModal.goto_comment, 600);
 			return false;
 		},
 		
@@ -257,18 +258,20 @@ $(function() {
 		},
 		
 		goto_comment: function() {
+		  var $comment_step_button = $('#steps li.comment');
+		  if ($comment_step_button.hasClass('active')) { return false; }
+		  if (RewardModal.reward_submitted) { return false; }
+		  
 		  var $reward = $('#amounts');
 		  var $comment = $('#comment');
-		  window.setTimeout(function() {
-	      $reward.fadeOut(200, function() {
-	        $comment.fadeIn(200);
-	      });
-	      $('#steps li.comment').addClass('active').siblings().removeClass('active');
-		  }, 600);
+	    $reward.fadeOut(200, function() {
+        $comment.fadeIn(200);
+      });
+      $('#steps li.comment').addClass('active').siblings().removeClass('active');
 		},
 		
 		goto_promote: function() {
-		  $('#steps li.reward').css('cursor','default'); // can't go back to reward anymore
+		  $('#steps li.reward, #steps li.comment').css('cursor','default'); // can't go back anymore
 		  $('#steps li.promote').addClass('active').siblings().removeClass('active');
 		},
 
@@ -278,6 +281,7 @@ $(function() {
 
 			if ($('#reward_amount').val() == '') {
 				alert('Please choose how much to reward.');
+				RewardModal.goto_reward();
 				return false;
 			}
 
@@ -288,15 +292,17 @@ $(function() {
 			var url = $form.attr('action');
 
 			$('#current-step').addClass('loading');
-			$('#reward-form').remove();
-			$.post(url,
-				{
+			$.ajax({
+			  url: url,
+			  type: 'POST',
+				data: {
 					"reward[amount]":amount,
 					"reward[comment]":comment,
 					"reward[story_id]":story_id,
 					"reward[impacted_by]":impacted_by
 				},
-				function(data) {
+				success: function(data) {
+    			$('#reward-form').remove();
 				  RewardModal.reward_submitted = true;
 				  RewardModal.goto_promote();
 					$("#current-step").html(data).removeClass('loading');
@@ -308,8 +314,14 @@ $(function() {
 					  $('#new-comment .reward').text('($' + parseInt(amount).toFixed(2) + ')');
 					  $('#new-comment').slideDown();
 					}
+				},
+				error: function(data) {
+				  $('#current-step').removeClass('loading');
+				  $('#invalid-reward-amount').show();
+				  RewardModal.goto_reward();
+				  $('#custom_amount').focus();
 				}
-			);
+			});
 		},
 		
 		monitor_sharing: function(reward_id) {

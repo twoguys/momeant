@@ -242,7 +242,7 @@ body#stories.show
 					margin-right: 0
 				&.active
 					background-position: 0 0
-				&.reward
+				&.reward, &.comment
 					cursor: pointer
 				&.comment
 					background-position: -31px -30px
@@ -273,11 +273,20 @@ body#stories.show
 				margin: 0
 		
 		#amounts
+			position: relative
 			text-align: center
 			#reward-join-button
 				display: block
 				margin-bottom: 5px
 				padding: 10px 12px
+			#invalid-reward-amount
+				width: 71px
+				height: 56px
+				background: transparent url(../images/reward-modal/invalid-reward-amount.png) no-repeat 0 0
+				position: absolute
+				top: 142px
+				right: -28px
+				display: none
 			ul
 				width: 122px
 				height: 122px
@@ -321,7 +330,7 @@ body#stories.show
 				margin-bottom: 20px
 			input[type="submit"]
 				display: block
-				margin: 0 auto
+				margin-left: 48px
 		
 		#promote
 			#copy-paste

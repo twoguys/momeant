@@ -31,7 +31,9 @@
               %li= link_to "50&cent;".html_safe, "#", :amount => 0.5
               %li= link_to "$1", "#", :amount => 1.0
               %li.custom= text_field_tag :custom_amount, "$"
-            = form.hidden_field :amount, :value => 0.1
+            = form.hidden_field :amount
+            
+            #invalid-reward-amount
             
           - else
             = link_to "Join our community!", "#join-modal", :id => "reward-join-button", :class => "button"

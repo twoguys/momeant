@@ -20,7 +20,7 @@ class RewardsController < ApplicationController
       else
         @error = "Sorry! That was an invalid reward amount."
       end
-      render :text => "<div class=\"alert\">#{@error}</div>" and return
+      render :bad_request and return
     end
         
     NotificationsMailer.reward_notice(@reward).deliver if @user.send_reward_notification_emails?

@@ -4769,7 +4769,7 @@ body#stories.show {
           margin-right: 0; }
         #presenter #reward-modal #steps li.active {
           background-position: 0 0; }
-        #presenter #reward-modal #steps li.reward {
+        #presenter #reward-modal #steps li.reward, #presenter #reward-modal #steps li.comment {
           cursor: pointer; }
         #presenter #reward-modal #steps li.comment {
           background-position: -31px -30px; }
@@ -4798,11 +4798,20 @@ body#stories.show {
         text-transform: uppercase;
         margin: 0; }
     #presenter #reward-modal #amounts {
+      position: relative;
       text-align: center; }
       #presenter #reward-modal #amounts #reward-join-button {
         display: block;
         margin-bottom: 5px;
         padding: 10px 12px; }
+      #presenter #reward-modal #amounts #invalid-reward-amount {
+        width: 71px;
+        height: 56px;
+        background: transparent url(../images/reward-modal/invalid-reward-amount.png) no-repeat 0 0;
+        position: absolute;
+        top: 142px;
+        right: -28px;
+        display: none; }
       #presenter #reward-modal #amounts ul {
         width: 122px;
         height: 122px;
@@ -4853,7 +4862,7 @@ body#stories.show {
         margin-bottom: 20px; }
       #presenter #reward-modal #comment input[type="submit"] {
         display: block;
-        margin: 0 auto; }
+        margin-left: 48px; }
     #presenter #reward-modal #promote #copy-paste {
       font-size: 13px;
       color: #aaaaaa; }
