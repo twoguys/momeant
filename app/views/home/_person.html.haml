@@ -1,11 +1,33 @@
-%li
+%li.person
   %a.name{:href => user_path(person), :data => person.id}
-    %span{:class => person.is_featured? ? "featured" : ""}= person.name
-  .details{:class => person.discovery_content.present? ? person.discovery_content.template : ""}
-    = image_tag(person.avatar.url(:thumbnail), :class => "avatar" )
-    %h3= person.name
-    %h4= person.occupation
-    %p= truncate(person.tagline, :length => 140)
+    %span= person.first_name
+    %span= person.last_name
+  = link_to image_tag(person.avatar.url(:editorial)), user_path(person), :class => "avatar"
+  .actions
+    = link_to "Follow", "#", :class => "follow"
+    = link_to "View Work", user_path(person), :class => "profile"
+  .tagline= truncate person.tagline, :length => 140
+  .supporters-and-content
     .supporters
-      %span.amount= person.patrons.count
-    = link_to "View Profile &rarr;".html_safe, user_path(person), :class => "profile"
+      %strong #{person.first_name}'s Top Supporters
+      %ul.patrons
+        - person.top_supporters[0..11].each do |patron|
+          %li= link_to image_tag(patron[0].avatar.url(:thumbnail)), user_path(patron[0])
+    .content
+      %strong #{person.first_name}'s Work (1 of #{person.created_stories.published.count})
+      - content = person.discovery_content
+      .preview
+        - if content.text_preview?
+          %a.content-preview.small{:href => story_path(content), :class => "#{content.media_type} #{content.template}"}
+            .inner
+              .image
+              .quote= truncate(content.template_text, :length => 140)
+        - else
+          %a.content-preview{:href => story_path(content), :class => content.media_type}
+            .inner{:style => "background-image: url(#{content.thumbnail.url(:large)})"}
+        = link_to truncate(content.title, :length => 32), story_path(content), :class => "title"
+      .reward-stats
+        %em this content has been rewarded
+        %strong= number_to_currency(content.reward_count)
+        %span from
+        %strong.people= content.users_who_rewarded.count

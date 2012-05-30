@@ -1,34 +1,30 @@
-#slides-wrapper
-  #slides
-    #message.slide
-      .slide-insides
-        %h1= link_to "Reward", about_path, :class => "tooltipped-e", :title => "Tell me more..."
-        %h2  what matters to you.
+#landing-page
   
-    = render :partial => "home/work", :collection => @people.map(&:discovery_content), :as => :content
+  #slogan
+    %h1 Reward what matters to you
+    %h3 Momeant is a community for connecting with and supporting people doing great work online
+    = link_to "Learn more", "#about-modal", :class => "button"
 
-#sidebar
-  
-  #filter
-    %ul#featured
-      %li.selected= link_to "Featured", "#"
-      %li= link_to "Popular", "#"
-    
-    %ul#categories
-      %li.selected
-        = link_to "All", "#"
-        %span.comma ,
-      - Story::CATEGORIES.each do |category|
-        %li
-          = link_to category, "#"
-          %span.comma ,
-  
-  #people
+  #faces
+    %h3 Discover and follow creators by category:
     %ul#list
-      = render :partial => "home/person", :collection => @people, :as => :person
+      = render "home/faces"
+    
+  #categories-people
+
+    %ul#categories
+      %li.selected= link_to "Featured", "#"
+      - Story::CATEGORIES.each do |category|
+        %li= link_to category, "#"
+       
+    #people
+      %ul
+        = render :partial => "home/person", :collection => @people, :as => :person
+  
+  
           
 
 :javascript
   mpq.track('Viewed Homepage');
-= javascript_include_tag "withinViewport"
+  var user_id = #{current_user ? current_user.id : 'undefined'};
 = javascript_include_tag "landing"

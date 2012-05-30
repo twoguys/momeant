@@ -32,7 +32,7 @@
   
   #comments-view
     %a#open-comments-tab.tooltipped-e{:title => "Toggle comments"}
-      %span= @story.comment_count
+      %span= @story.comments.size
     
     #comments-list
       %h3 Comments from #{@story.user.first_name}'s supporters:

@@ -6,19 +6,16 @@ class HomeController < ApplicationController
   
   def people # ajax
     content = Story.includes(:user)
-    if params[:filter] == "Popular"
-      content = content.published.order("reward_count DESC")
+    if params[:category] == "Featured"
+      content = content.published.where("user_id IN (?)", Editorial.all.map(&:user_id)).order("reward_count DESC")
     else
-      content = content.published.where("user_id IN (?)", Editorial.all.map(&:user_id))
-    end
-    if params[:category].present? && params[:category] != "All"
-      content = content.where(:category => params[:category])
+      content = content.published.where(:category => params[:category]).order("reward_count DESC")
     end
     @people = content.map(&:user).uniq.take(10)
     
     people_html = render_to_string :partial => "home/person", :collection => @people, :as => :person
-    works_html = render_to_string :partial => "home/work", :collection => @people.map(&:discovery_content), :as => :content
-    render :json => { :people => people_html, :works => works_html }
+    faces_html = render_to_string :partial => "home/faces"
+    render :json => { :faces => faces_html, :people => people_html }
   end
   
   def projects # ajax

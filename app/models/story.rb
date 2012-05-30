@@ -73,13 +73,18 @@ class Story < ActiveRecord::Base
     "Arts",
     "Blogging",
     "Causes",
-    "Educational",
+    "Culture",
+    "Design",
+    "Education",
     "Entertainment",
+    "Fashion",
+    "Film & Video",
     "Gastronomy",
     "Humanities",
     "Journalism",
     "Music",
-    "Publishing"
+    "Photography",
+    "Writing"
   ].freeze
     
   def to_param

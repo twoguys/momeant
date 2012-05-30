@@ -609,249 +609,207 @@ table {
       font-size: 30px;
       font-weight: 300; }
 
-#home.index #main, #registrations.create #main {
-  max-width: 100%; }
-#home.index #slides-wrapper, #registrations.create #slides-wrapper {
-  position: fixed;
-  top: 42px;
-  bottom: 0;
-  left: 0;
-  right: 300px;
-  overflow: hidden; }
-#home.index #sidebar, #registrations.create #sidebar {
-  width: 300px;
-  position: relative;
-  float: right; }
-#home.index #slides, #registrations.create #slides {
+#landing-page {
   background: black;
-  color: white;
-  font-size: 24px;
-  overflow: hidden;
-  -webkit-transition: margin 0.3s ease-out;
-  -moz-transition: margin 0.3s ease-out;
-  -ms-transition: margin 0.3s ease-out;
-  -o-transition: margin 0.3s ease-out;
-  transition: margin 0.3s ease-out; }
-  #home.index #slides .slide, #registrations.create #slides .slide {
-    width: 100%;
-    height: 100%;
-    position: relative; }
-    #home.index #slides .slide .slide-insides, #registrations.create #slides .slide .slide-insides {
-      padding: 10%; }
-  #home.index #slides #message, #registrations.create #slides #message {
-    position: relative; }
-    #home.index #slides #message .slide-insides, #registrations.create #slides #message .slide-insides {
-      padding: 0;
-      position: absolute;
-      bottom: 10px;
-      left: 20px; }
-    #home.index #slides #message h1, #registrations.create #slides #message h1 {
-      text-transform: uppercase;
-      font-size: 4em;
+  color: white; }
+  #landing-page #slogan, #landing-page #categories-people {
+    width: 800px;
+    margin: 0 auto; }
+  #landing-page #slogan {
+    padding: 180px 0;
+    text-align: center; }
+    #landing-page #slogan h1 {
+      font-size: 40px;
       font-weight: 600;
-      color: #00aeef;
-      margin-bottom: -0.18em;
-      line-height: 1em; }
-    #home.index #slides #message h2, #registrations.create #slides #message h2 {
-      background: none;
-      padding: 0;
-      text-transform: none;
-      color: white;
-      font-weight: 700;
-      font-size: 3em;
-      font-style: italic;
-      margin-bottom: 0; }
-  #home.index #slides .content-preview, #registrations.create #slides .content-preview {
-    height: 100%; }
-  #home.index #slides .metadata, #registrations.create #slides .metadata {
-    position: absolute;
-    bottom: 0;
-    display: block;
-    width: 100%;
-    height: 20px;
-    padding: 15px 0;
-    background: #f7f7f7;
-    background: rgba(255, 255, 255, 0.9);
-    color: black; }
-    #home.index #slides .metadata .media-type, #home.index #slides .metadata .title, #registrations.create #slides .metadata .media-type, #registrations.create #slides .metadata .title {
+      text-transform: uppercase;
+      line-height: 40px;
+      margin-bottom: 10px; }
+    #landing-page #slogan h3 {
+      font-size: 15.7px;
+      font-weight: 400;
+      margin-bottom: 15px; }
+    #landing-page #slogan a {
+      display: inline-block; }
+  #landing-page #faces {
+    margin-bottom: 50px; }
+    #landing-page #faces h3 {
+      text-align: center;
+      font-size: 1.5em;
+      font-weight: 400;
+      margin-bottom: 10px; }
+    #landing-page #faces ul {
+      height: 70px;
+      background: #333333;
+      overflow: hidden; }
+    #landing-page #faces li {
+      width: 70px;
+      height: 70px;
       float: left; }
-    #home.index #slides .metadata .media-type, #registrations.create #slides .metadata .media-type {
-      width: 30px;
-      height: 20px;
-      background: transparent url(../images/content/media-types/photos-small-black.png) no-repeat 0 50%;
-      position: absolute;
-      top: 15px;
-      left: 15px; }
-      #home.index #slides .metadata .media-type.video, #registrations.create #slides .metadata .media-type.video {
-        background-image: url(../images/content/media-types/video-small-black.png); }
-      #home.index #slides .metadata .media-type.writing, #registrations.create #slides .metadata .media-type.writing {
-        background-image: url(../images/content/media-types/writing-small-black.png); }
-      #home.index #slides .metadata .media-type.music, #registrations.create #slides .metadata .media-type.music {
-        background-image: url(../images/content/media-types/music-small-black.png); }
-    #home.index #slides .metadata .title, #registrations.create #slides .metadata .title {
-      margin-left: 60px;
-      margin-right: 300px;
-      height: 21px;
-      overflow: hidden;
-      font-size: 0.75em; }
-      #home.index #slides .metadata .title strong, #registrations.create #slides .metadata .title strong {
-        text-transform: uppercase;
-        color: black; }
-      #home.index #slides .metadata .title span, #registrations.create #slides .metadata .title span {
-        color: #aaaaaa; }
-    #home.index #slides .metadata .example, #registrations.create #slides .metadata .example {
-      position: absolute;
-      top: 17px;
-      right: 15px;
-      color: #999999;
-      font-size: 0.6em;
-      font-style: italic; }
-#home.index #sidebar, #registrations.create #sidebar {
-  font-family: "museo-slab-1", "museo-slab-2", serif; }
-  #home.index #sidebar #filter, #registrations.create #sidebar #filter {
-    padding: 20px 15px; }
-    #home.index #sidebar #filter li, #registrations.create #sidebar #filter li {
-      float: left;
-      color: #999999; }
-      #home.index #sidebar #filter li a, #registrations.create #sidebar #filter li a {
-        -webkit-transition: color 0.2s linear;
-        -moz-transition: color 0.2s linear;
-        -ms-transition: color 0.2s linear;
-        -o-transition: color 0.2s linear;
-        transition: color 0.2s linear;
-        color: #999999; }
-    #home.index #sidebar #filter li.selected a, #home.index #sidebar #filter li:hover a, #registrations.create #sidebar #filter li.selected a, #registrations.create #sidebar #filter li:hover a {
-      color: #00aeef; }
-    #home.index #sidebar #filter li:last-child .comma, #registrations.create #sidebar #filter li:last-child .comma {
-      display: none; }
-    #home.index #sidebar #filter .comma, #registrations.create #sidebar #filter .comma {
-      margin-left: -2px; }
-    #home.index #sidebar #filter #featured, #registrations.create #sidebar #filter #featured {
-      display: inline-block;
-      width: 100%;
-      text-transform: uppercase;
-      padding-bottom: 20px;
-      border-bottom: 1px solid #cccccc;
-      margin-bottom: 20px;
-      font-size: 13px; }
-      #home.index #sidebar #filter #featured:after, #registrations.create #sidebar #filter #featured:after {
-        content: ".";
-        display: block;
-        height: 0;
-        clear: both;
-        visibility: hidden; }
-      #home.index #sidebar #filter #featured a, #registrations.create #sidebar #filter #featured a {
-        display: block;
-        float: left;
-        height: 1em;
-        padding-right: 10px;
-        margin-right: 10px;
-        border-right: 1px solid #cccccc; }
-      #home.index #sidebar #filter #featured li:last-child a, #registrations.create #sidebar #filter #featured li:last-child a {
-        border: none; }
-    #home.index #sidebar #filter #categories, #registrations.create #sidebar #filter #categories {
-      display: inline-block;
-      width: 100%;
-      padding-bottom: 20px;
+    #landing-page #faces li.selected {
       border-bottom: 3px solid #00aeef; }
-      #home.index #sidebar #filter #categories:after, #registrations.create #sidebar #filter #categories:after {
-        content: ".";
-        display: block;
-        height: 0;
-        clear: both;
-        visibility: hidden; }
-      #home.index #sidebar #filter #categories li, #registrations.create #sidebar #filter #categories li {
-        float: left;
-        margin: 0 3px 5px 0; }
-  #home.index #sidebar #people, #registrations.create #sidebar #people {
-    font-size: 1.3em; }
-    #home.index #sidebar #people h3.title, #registrations.create #sidebar #people h3.title {
-      color: #999999;
-      font-size: 1em;
-      font-weight: 300;
-      text-transform: uppercase;
-      margin-right: 15px;
-      background: transparent url(../images/discovery/keyboard-icon.png) no-repeat 100% 50%; }
-    #home.index #sidebar #people h3.title, #home.index #sidebar #people li .details, #registrations.create #sidebar #people h3.title, #registrations.create #sidebar #people li .details {
-      padding: 15px; }
-    #home.index #sidebar #people #list.loading, #registrations.create #sidebar #people #list.loading {
-      background: transparent url(../images/spinner.gif) no-repeat 50% 50%;
-      height: 100px; }
-      #home.index #sidebar #people #list.loading *, #registrations.create #sidebar #people #list.loading * {
+    #landing-page #faces a {
+      display: block;
+      margin: 0; }
+    #landing-page #faces a, #landing-page #faces img {
+      width: 70px;
+      height: 70px; }
+  #landing-page #categories-people {
+    height: 550px;
+    padding-bottom: 20px; }
+  #landing-page #categories {
+    float: left;
+    width: 150px;
+    text-align: right;
+    font-family: "museo-slab-1", "museo-slab-2", serif;
+    font-size: 17px;
+    font-style: italic;
+    font-weight: 300;
+    border-right: 1px solid #333333; }
+    #landing-page #categories li {
+      padding-right: 30px;
+      margin-bottom: 10px;
+      border-right: 4px solid black;
+      -webkit-transition: border-color 0.2s linear;
+      -moz-transition: border-color 0.2s linear;
+      -ms-transition: border-color 0.2s linear;
+      -o-transition: border-color 0.2s linear;
+      transition: border-color 0.2s linear; }
+      #landing-page #categories li.selected {
+        border-color: #333333; }
+        #landing-page #categories li.selected a {
+          color: white; }
+      #landing-page #categories li:last-child {
+        margin-bottom: 0; }
+  #landing-page #people {
+    width: 615px;
+    height: 550px;
+    float: right;
+    overflow: hidden; }
+  #landing-page #people > ul {
+    width: 10000px;
+    height: 100%;
+    -webkit-transition: margin 0.2s ease-in-out;
+    -moz-transition: margin 0.2s ease-in-out;
+    -ms-transition: margin 0.2s ease-in-out;
+    -o-transition: margin 0.2s ease-in-out;
+    transition: margin 0.2s ease-in-out; }
+    #landing-page #people > ul.loading {
+      background: transparent url(../images/spinner-white.gif) no-repeat 300px 240px; }
+      #landing-page #people > ul.loading li {
         display: none; }
-    #home.index #sidebar #people li, #registrations.create #sidebar #people li {
-      margin-bottom: 5px; }
-      #home.index #sidebar #people li a.name, #registrations.create #sidebar #people li a.name {
+    #landing-page #people > ul li.person {
+      width: 616px;
+      float: left;
+      position: relative; }
+    #landing-page #people > ul .name {
+      display: block;
+      font-size: 36px;
+      font-weight: 600;
+      line-height: 32px;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      color: white; }
+      #landing-page #people > ul .name span {
+        display: block; }
+    #landing-page #people > ul .avatar {
+      display: block;
+      margin-bottom: 15px; }
+    #landing-page #people > ul .avatar, #landing-page #people > ul .avatar img {
+      width: 260px;
+      height: 260px; }
+    #landing-page #people > ul .actions {
+      height: 40px;
+      margin-bottom: 13px; }
+    #landing-page #people > ul .actions a {
+      display: block;
+      float: left;
+      width: 115px;
+      height: 40px;
+      padding: 0 0 0 10px;
+      background: transparent url(../images/discovery/flags.png) no-repeat;
+      color: black;
+      font-size: 15px;
+      text-transform: uppercase;
+      text-align: center;
+      margin-right: 10px;
+      line-height: 40px; }
+      #landing-page #people > ul .actions a:hover {
+        color: white; }
+    #landing-page #people > ul .actions .profile {
+      background-position: -130px 0;
+      margin: 0;
+      padding: 0 10px 0 0; }
+    #landing-page #people > ul .tagline {
+      width: 260px;
+      font-family: "museo-slab-1", "museo-slab-2", serif;
+      font-size: 1.1em;
+      font-style: italic;
+      font-weight: 300;
+      line-height: 1.4em; }
+    #landing-page #people > ul .supporters-and-content {
+      position: absolute;
+      top: 47px;
+      left: 290px;
+      width: 300px; }
+      #landing-page #people > ul .supporters-and-content strong {
         display: block;
-        color: #555555;
-        padding: 3px 15px; }
-        #home.index #sidebar #people li a.name:hover, #registrations.create #sidebar #people li a.name:hover {
-          color: #00aeef; }
-        #home.index #sidebar #people li a.name span.featured, #registrations.create #sidebar #people li a.name span.featured {
-          padding-right: 26px;
-          background: transparent url(../images/profile/featured.png) no-repeat 97% 50%; }
-      #home.index #sidebar #people li a.name, #home.index #sidebar #people li .details h3, #registrations.create #sidebar #people li a.name, #registrations.create #sidebar #people li .details h3 {
-        font-size: 1.2em;
-        font-family: "museo-slab-1", "museo-slab-2", serif;
-        font-weight: 100;
-        font-style: italic; }
-      #home.index #sidebar #people li .details, #registrations.create #sidebar #people li .details {
-        display: none;
-        background: black;
-        color: white;
-        position: relative; }
-        #home.index #sidebar #people li .details img.avatar, #registrations.create #sidebar #people li .details img.avatar {
-          position: absolute;
-          top: 0;
-          left: -60px; }
-        #home.index #sidebar #people li .details h3, #registrations.create #sidebar #people li .details h3 {
-          padding-bottom: 3px;
-          border-bottom: 2px solid white;
-          margin-bottom: 8px;
-          font-weight: 500; }
-        #home.index #sidebar #people li .details h4, #registrations.create #sidebar #people li .details h4 {
-          color: #f42652;
-          font-family: "museo-slab-1", "museo-slab-2", serif;
-          font-size: 0.9em;
-          font-weight: 100;
-          font-style: italic; }
-        #home.index #sidebar #people li .details p, #registrations.create #sidebar #people li .details p {
-          font-size: 0.8em;
-          line-height: 1.3em;
-          margin: 10px 0; }
-        #home.index #sidebar #people li .details .supporters, #registrations.create #sidebar #people li .details .supporters {
-          font-weight: 300;
-          font-size: 2.5em; }
-          #home.index #sidebar #people li .details .supporters .amount, #registrations.create #sidebar #people li .details .supporters .amount {
-            padding-right: 24px;
-            background: transparent url(../images/discovery/supporters.png) 100% 10px no-repeat; }
-        #home.index #sidebar #people li .details a.profile, #registrations.create #sidebar #people li .details a.profile {
+        text-transform: uppercase;
+        font-size: 1.1em;
+        letter-spacing: 0.02em;
+        margin-bottom: 10px; }
+    #landing-page #people > ul .supporters {
+      margin-bottom: 5px; }
+      #landing-page #people > ul .supporters ul {
+        display: inline-block;
+        width: 100%; }
+        #landing-page #people > ul .supporters ul:after {
+          content: ".";
           display: block;
-          background: #f42652;
-          color: white;
-          margin: 15px -15px -15px;
-          padding: 10px;
-          text-align: right;
-          text-transform: uppercase; }
-      #home.index #sidebar #people li .details.watchmen h4, #registrations.create #sidebar #people li .details.watchmen h4 {
-        color: #ffe344; }
-      #home.index #sidebar #people li .details.watchmen a.profile, #registrations.create #sidebar #people li .details.watchmen a.profile {
-        background-color: #ffe344;
-        color: black; }
-      #home.index #sidebar #people li .details.blob h4, #registrations.create #sidebar #people li .details.blob h4 {
-        color: #ff6600; }
-      #home.index #sidebar #people li .details.blob a.profile, #registrations.create #sidebar #people li .details.blob a.profile {
-        background-color: #ff6600;
-        color: black; }
-      #home.index #sidebar #people li .details.bowling h4, #registrations.create #sidebar #people li .details.bowling h4 {
-        color: #99daa4; }
-      #home.index #sidebar #people li .details.bowling a.profile, #registrations.create #sidebar #people li .details.bowling a.profile {
-        background-color: #99daa4;
-        color: black; }
-    #home.index #sidebar #people li.current a.name, #registrations.create #sidebar #people li.current a.name {
-      display: none; }
-    #home.index #sidebar #people li.current .details, #registrations.create #sidebar #people li.current .details {
-      display: block; }
+          height: 0;
+          clear: both;
+          visibility: hidden; }
+      #landing-page #people > ul .supporters li {
+        float: left;
+        margin: 0 10px 10px 0; }
+        #landing-page #people > ul .supporters li a, #landing-page #people > ul .supporters li img {
+          display: block;
+          width: 40px;
+          height: 40px; }
+    #landing-page #people > ul .content .reward-stats {
+      text-align: center; }
+      #landing-page #people > ul .content .reward-stats em {
+        font-family: "museo-slab-1", "museo-slab-2", serif;
+        font-size: 13px;
+        font-weight: 300;
+        display: block; }
+      #landing-page #people > ul .content .reward-stats strong {
+        font-family: "ff-dagny-web-pro-1", "ff-dagny-web-pro-2", sans-serif;
+        font-size: 32px;
+        font-weight: 200;
+        line-height: 34px;
+        display: inline; }
+      #landing-page #people > ul .content .reward-stats span {
+        font-size: 16px;
+        font-weight: 600;
+        text-transform: uppercase;
+        padding: 0 6px;
+        position: relative;
+        top: -4px; }
+      #landing-page #people > ul .content .reward-stats .people {
+        padding-right: 20px;
+        background: transparent url(../images/reward-modal/people.png) no-repeat 100% 13px; }
+    #landing-page #people > ul .content .preview {
+      background: #222222;
+      margin-bottom: 15px; }
+    #landing-page #people > ul .content .content-preview {
+      display: block;
+      width: 300px;
+      height: 203px; }
+    #landing-page #people > ul .content .title {
+      display: block;
+      color: white;
+      text-transform: uppercase;
+      padding: 10px; }
 
 #vertical-list {
   width: 630px;
@@ -893,7 +851,7 @@ table {
     width: 630px;
     height: 420px; }
     #vertical-list #activity-list > li.content .content-preview.bowling {
-      background-image: url(../images/content/templates/bowling-small.png); }
+      background-image: url(../images/content/templates/bowling.png); }
       #vertical-list #activity-list > li.content .content-preview.bowling .inner {
         width: 260px;
         height: 170px;
@@ -901,14 +859,14 @@ table {
     #vertical-list #activity-list > li.content .content-preview.watchmen .image {
       width: 70px;
       height: 70px;
-      background-image: url(../images/content/templates/watchmen-small.png); }
+      background-image: url(../images/content/templates/watchmen.png); }
     #vertical-list #activity-list > li.content .content-preview.watchmen .inner {
       font-size: 1.5em;
       width: 500px;
       height: 200px;
       margin: -100px 0 0 -250px; }
     #vertical-list #activity-list > li.content .content-preview.blob {
-      background-image: url(../images/content/templates/blob-small.png); }
+      background-image: url(../images/content/templates/blob.png); }
       #vertical-list #activity-list > li.content .content-preview.blob .inner {
         width: 260px;
         height: 170px;
@@ -2247,6 +2205,32 @@ body#subscriptions.index {
     font-weight: 700;
     text-transform: uppercase;
     text-align: center; }
+
+.content-preview.watchmen.small .inner {
+  width: 200px;
+  height: 100px;
+  margin: -60px 0 0 -100px;
+  font-size: 13px; }
+  .content-preview.watchmen.small .inner .image {
+    width: 30px;
+    height: 30px;
+    background-image: url(../images/content/templates/watchmen-small.png); }
+
+.content-preview.blob.small {
+  background-image: url(../images/content/templates/blob-small.png); }
+  .content-preview.blob.small .inner {
+    width: 125px;
+    height: 80px;
+    margin: -50px 0 0 -64px;
+    font-size: 11px; }
+
+.content-preview.bowling.small {
+  background-image: url(../images/content/templates/bowling-small.png); }
+  .content-preview.bowling.small .inner {
+    width: 125px;
+    height: 118px;
+    margin: -55px 0 0 -64px;
+    font-size: 11px; }
 
 /* Story creation */
 .new-story-copy {
@@ -5201,9 +5185,7 @@ body#stories.show {
   #presenter #previous-page:hover, #presenter #next-page:hover {
     opacity: 1; }
   #presenter #previous-page {
-    left: 70px; }
-    #presenter #previous-page .button {
-      left: 0; }
+    left: 0; }
   #presenter #next-page {
     right: 0; }
     #presenter #next-page .button {
@@ -6016,7 +5998,7 @@ ul.stories .excerpt {
       color: white !important;
       text-shadow: none; }
 
-#join-modal, #login-modal, #feedback-modal, #about-diagram-modal {
+#join-modal, #login-modal, #feedback-modal, #about-diagram-modal, #about-modal {
   display: none;
   position: fixed;
   top: 0;
@@ -6027,14 +6009,14 @@ ul.stories .excerpt {
   color: white;
   width: 100%;
   height: 100%; }
-  #join-modal .cover, #login-modal .cover, #feedback-modal .cover, #about-diagram-modal .cover {
+  #join-modal .cover, #login-modal .cover, #feedback-modal .cover, #about-diagram-modal .cover, #about-modal .cover {
     width: 100%;
     height: 100%;
     background: transparent url(../images/modalCover.png) repeat;
     background: rgba(0, 0, 0, 0.7);
     position: absolute;
     z-index: 1; }
-  #join-modal .padder, #login-modal .padder, #feedback-modal .padder, #about-diagram-modal .padder {
+  #join-modal .padder, #login-modal .padder, #feedback-modal .padder, #about-diagram-modal .padder, #about-modal .padder {
     width: 480px;
     margin: 0 auto;
     background-color: #e0e0e0;
@@ -6048,7 +6030,7 @@ ul.stories .excerpt {
     -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
     -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.7); }
-    #join-modal .padder a.close, #login-modal .padder a.close, #feedback-modal .padder a.close, #about-diagram-modal .padder a.close {
+    #join-modal .padder a.close, #login-modal .padder a.close, #feedback-modal .padder a.close, #about-diagram-modal .padder a.close, #about-modal .padder a.close {
       position: absolute;
       top: -15px;
       right: -15px;
@@ -6056,12 +6038,12 @@ ul.stories .excerpt {
       height: 30px;
       display: block;
       background: transparent url(../images/modalClose.png) no-repeat 0 0; }
-  #join-modal .placeholder, #login-modal .placeholder, #feedback-modal .placeholder, #about-diagram-modal .placeholder {
+  #join-modal .placeholder, #login-modal .placeholder, #feedback-modal .placeholder, #about-diagram-modal .placeholder, #about-modal .placeholder {
     color: #aaaaaa;
     font-style: italic;
     font-family: Georgia, serif;
     font-size: 12px; }
-  #join-modal h2, #login-modal h2, #feedback-modal h2, #about-diagram-modal h2 {
+  #join-modal h2, #login-modal h2, #feedback-modal h2, #about-diagram-modal h2, #about-modal h2 {
     font-family: "museo-slab-1", "museo-slab-2", serif;
     font-size: 30px;
     color: black;
@@ -6072,22 +6054,22 @@ ul.stories .excerpt {
     background-color: transparent;
     font-weight: 100;
     padding-top: 0px; }
-  #join-modal input[type="text"], #join-modal input[type="email"], #join-modal input[type="password"], #login-modal input[type="text"], #login-modal input[type="email"], #login-modal input[type="password"], #feedback-modal input[type="text"], #feedback-modal input[type="email"], #feedback-modal input[type="password"], #about-diagram-modal input[type="text"], #about-diagram-modal input[type="email"], #about-diagram-modal input[type="password"] {
+  #join-modal input[type="text"], #join-modal input[type="email"], #join-modal input[type="password"], #login-modal input[type="text"], #login-modal input[type="email"], #login-modal input[type="password"], #feedback-modal input[type="text"], #feedback-modal input[type="email"], #feedback-modal input[type="password"], #about-diagram-modal input[type="text"], #about-diagram-modal input[type="email"], #about-diagram-modal input[type="password"], #about-modal input[type="text"], #about-modal input[type="email"], #about-modal input[type="password"] {
     width: 194px; }
-  #join-modal input[type="submit"], #login-modal input[type="submit"], #feedback-modal input[type="submit"], #about-diagram-modal input[type="submit"] {
+  #join-modal input[type="submit"], #login-modal input[type="submit"], #feedback-modal input[type="submit"], #about-diagram-modal input[type="submit"], #about-modal input[type="submit"] {
     width: 100%;
     font-size: 14px; }
-  #join-modal li, #login-modal li, #feedback-modal li, #about-diagram-modal li {
+  #join-modal li, #login-modal li, #feedback-modal li, #about-diagram-modal li, #about-modal li {
     margin-bottom: 10px;
     height: 31px; }
-  #join-modal li.remember-me, #login-modal li.remember-me, #feedback-modal li.remember-me, #about-diagram-modal li.remember-me {
+  #join-modal li.remember-me, #login-modal li.remember-me, #feedback-modal li.remember-me, #about-diagram-modal li.remember-me, #about-modal li.remember-me {
     margin-top: -5px;
     margin-bottom: 0px; }
-    #join-modal li.remember-me label, #login-modal li.remember-me label, #feedback-modal li.remember-me label, #about-diagram-modal li.remember-me label {
+    #join-modal li.remember-me label, #login-modal li.remember-me label, #feedback-modal li.remember-me label, #about-diagram-modal li.remember-me label, #about-modal li.remember-me label {
       color: #252525; }
-  #join-modal .spaced-a-bit, #login-modal .spaced-a-bit, #feedback-modal .spaced-a-bit, #about-diagram-modal .spaced-a-bit {
+  #join-modal .spaced-a-bit, #login-modal .spaced-a-bit, #feedback-modal .spaced-a-bit, #about-diagram-modal .spaced-a-bit, #about-modal .spaced-a-bit {
     margin-bottom: 5px; }
-  #join-modal li.copy, #login-modal li.copy, #feedback-modal li.copy, #about-diagram-modal li.copy {
+  #join-modal li.copy, #login-modal li.copy, #feedback-modal li.copy, #about-diagram-modal li.copy, #about-modal li.copy {
     color: #999999;
     font-size: 13px;
     font-family: "museo-slab-1", "museo-slab-2", serif;
@@ -6095,9 +6077,9 @@ ul.stories .excerpt {
     margin-bottom: 0;
     font-weight: 100;
     text-align: center; }
-  #join-modal form li, #login-modal form li, #feedback-modal form li, #about-diagram-modal form li {
+  #join-modal form li, #login-modal form li, #feedback-modal form li, #about-diagram-modal form li, #about-modal form li {
     position: relative; }
-    #join-modal form li label.placeholder, #login-modal form li label.placeholder, #feedback-modal form li label.placeholder, #about-diagram-modal form li label.placeholder {
+    #join-modal form li label.placeholder, #login-modal form li label.placeholder, #feedback-modal form li label.placeholder, #about-diagram-modal form li label.placeholder, #about-modal form li label.placeholder {
       color: #999999;
       font-style: italic;
       font-family: Georgia, serif;
@@ -6108,51 +6090,51 @@ ul.stories .excerpt {
       font-weight: 100;
       margin: 0;
       padding: 0 0 0 10px; }
-    #join-modal form li label.error, #login-modal form li label.error, #feedback-modal form li label.error, #about-diagram-modal form li label.error {
+    #join-modal form li label.error, #login-modal form li label.error, #feedback-modal form li label.error, #about-diagram-modal form li label.error, #about-modal form li label.error {
       font-family: Georgia, serif;
       font-size: 11px;
       font-weight: 100;
       color: #00aeef;
       text-transform: none;
       margin: 0 0 5px 0; }
-    #join-modal form li span, #login-modal form li span, #feedback-modal form li span, #about-diagram-modal form li span {
+    #join-modal form li span, #login-modal form li span, #feedback-modal form li span, #about-diagram-modal form li span, #about-modal form li span {
       width: 102px;
       float: left;
       margin-right: 5px;
       position: relative; }
-      #join-modal form li span input[type="text"], #login-modal form li span input[type="text"], #feedback-modal form li span input[type="text"], #about-diagram-modal form li span input[type="text"] {
+      #join-modal form li span input[type="text"], #login-modal form li span input[type="text"], #feedback-modal form li span input[type="text"], #about-diagram-modal form li span input[type="text"], #about-modal form li span input[type="text"] {
         width: 87px; }
-    #join-modal form li span.last, #login-modal form li span.last, #feedback-modal form li span.last, #about-diagram-modal form li span.last {
+    #join-modal form li span.last, #login-modal form li span.last, #feedback-modal form li span.last, #about-diagram-modal form li span.last, #about-modal form li span.last {
       margin-right: 0; }
-    #join-modal form li input[type="submit"]:disabled, #login-modal form li input[type="submit"]:disabled, #feedback-modal form li input[type="submit"]:disabled, #about-diagram-modal form li input[type="submit"]:disabled {
+    #join-modal form li input[type="submit"]:disabled, #login-modal form li input[type="submit"]:disabled, #feedback-modal form li input[type="submit"]:disabled, #about-diagram-modal form li input[type="submit"]:disabled, #about-modal form li input[type="submit"]:disabled {
       background-color: #dfdfdf;
       color: #787878;
       cursor: default; }
-    #join-modal form li input[type="submit"]:disabled:active, #login-modal form li input[type="submit"]:disabled:active, #feedback-modal form li input[type="submit"]:disabled:active, #about-diagram-modal form li input[type="submit"]:disabled:active {
+    #join-modal form li input[type="submit"]:disabled:active, #login-modal form li input[type="submit"]:disabled:active, #feedback-modal form li input[type="submit"]:disabled:active, #about-diagram-modal form li input[type="submit"]:disabled:active, #about-modal form li input[type="submit"]:disabled:active {
       top: 0; }
-  #join-modal form li.filled label, #login-modal form li.filled label, #feedback-modal form li.filled label, #about-diagram-modal form li.filled label {
+  #join-modal form li.filled label, #login-modal form li.filled label, #feedback-modal form li.filled label, #about-diagram-modal form li.filled label, #about-modal form li.filled label {
     display: none; }
-  #join-modal form li.checkbox label.error, #login-modal form li.checkbox label.error, #feedback-modal form li.checkbox label.error, #about-diagram-modal form li.checkbox label.error {
+  #join-modal form li.checkbox label.error, #login-modal form li.checkbox label.error, #feedback-modal form li.checkbox label.error, #about-diagram-modal form li.checkbox label.error, #about-modal form li.checkbox label.error {
     position: absolute;
     bottom: -10px;
     padding-left: 23px; }
-  #join-modal .join, #join-modal .login, #login-modal .join, #login-modal .login, #feedback-modal .join, #feedback-modal .login, #about-diagram-modal .join, #about-diagram-modal .login {
+  #join-modal .join, #join-modal .login, #login-modal .join, #login-modal .login, #feedback-modal .join, #feedback-modal .login, #about-diagram-modal .join, #about-diagram-modal .login, #about-modal .join, #about-modal .login {
     float: left;
     width: 210px;
     position: relative; }
-    #join-modal .join img, #join-modal .login img, #login-modal .join img, #login-modal .login img, #feedback-modal .join img, #feedback-modal .login img, #about-diagram-modal .join img, #about-diagram-modal .login img {
+    #join-modal .join img, #join-modal .login img, #login-modal .join img, #login-modal .login img, #feedback-modal .join img, #feedback-modal .login img, #about-diagram-modal .join img, #about-diagram-modal .login img, #about-modal .join img, #about-modal .login img {
       margin: 15px 37%; }
-  #join-modal .join, #login-modal .join, #feedback-modal .join, #about-diagram-modal .join {
+  #join-modal .join, #login-modal .join, #feedback-modal .join, #about-diagram-modal .join, #about-modal .join {
     padding-right: 25px;
     border-right: 1px solid #cccccc;
     padding-left: 5px; }
-  #join-modal .login, #login-modal .login, #feedback-modal .login, #about-diagram-modal .login {
+  #join-modal .login, #login-modal .login, #feedback-modal .login, #about-diagram-modal .login, #about-modal .login {
     float: right;
     padding-left: 25px; }
-    #join-modal .login input[type="checkbox"], #login-modal .login input[type="checkbox"], #feedback-modal .login input[type="checkbox"], #about-diagram-modal .login input[type="checkbox"] {
+    #join-modal .login input[type="checkbox"], #login-modal .login input[type="checkbox"], #feedback-modal .login input[type="checkbox"], #about-diagram-modal .login input[type="checkbox"], #about-modal .login input[type="checkbox"] {
       float: left;
       height: 25px; }
-    #join-modal .login label, #login-modal .login label, #feedback-modal .login label, #about-diagram-modal .login label {
+    #join-modal .login label, #login-modal .login label, #feedback-modal .login label, #about-diagram-modal .login label, #about-modal .login label {
       font-weight: 600;
       color: #999999;
       text-transform: uppercase;

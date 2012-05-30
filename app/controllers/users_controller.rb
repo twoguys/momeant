@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     if @user.is_a?(Creator)
       @content = @user.created_stories.newest_first
       @content = @content.published unless @user == current_user
-      @supporters = @user.rewards.group_by(&:user).to_a.map {|x| [x.first,x.second.inject(0){|sum,r| sum+r.amount}]}.sort_by(&:second).reverse
+      @supporters = @user.top_supporters
     else
       @body_class = "patronage"
       prepare_patronage_data

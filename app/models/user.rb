@@ -118,6 +118,10 @@ class User < ActiveRecord::Base
     self.created_stories.published.where(:media_type => type).count
   end
   
+  def top_supporters
+    self.rewards.group_by(&:user).to_a.map {|x| [x.first,x.second.inject(0){|sum,r| sum+r.amount}]}.sort_by(&:second).reverse
+  end
+  
   def is_new?
     self.created_at > 2.weeks.ago
   end

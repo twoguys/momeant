@@ -1,0 +1,5 @@
+- first = true
+- @people.each_with_index do |person, index|
+  %li{:class => first ? "selected" : "", :data => index}
+    = link_to image_tag(person.avatar.url(:large)), "#", :class => "tooltipped", :title => person.name
+  - first = false

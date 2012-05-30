@@ -45,9 +45,9 @@
       = link_to "Your Profile", "#join-modal", :class => "tooltipped", :title => "Your Profile"
   
   %li#info
-    = link_to "About Momeant", about_path
+    = link_to "About Momeant", "#about-modal"
     %ul.subnav
-      %li= link_to "About Momeant", about_path
+      %li= link_to "About Momeant", "#about-modal"
       - if user_signed_in?
         %li= link_to "Give Feedback", "#feedback-modal"
       %li= link_to "Terms of Service", tos_path

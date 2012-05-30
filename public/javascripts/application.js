@@ -30,7 +30,7 @@ function tag_deletions() {
 }
 
 function setup_modals() {
-	_.each(['#join', '#login', '#feedback', '#about-diagram'], function(id) {
+	_.each(['#join', '#login', '#feedback', '#about-diagram', '#about'], function(id) {
 		$('a[href="' + id + '-modal"]').click(function() {
 			$(id + '-modal').fadeIn('fast');
 			return false;
