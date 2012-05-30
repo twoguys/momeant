@@ -153,7 +153,10 @@ $(function() {
 			'click #steps li.comment':        'goto_comment',
 			'click #amounts a': 							'choose_reward_amount',
 			'focus #custom_amount': 					'choose_custom_amount',
+			'keydown #custom_amount':         'cleanse_reward_amount',
+			'keyup #custom_amount':           'cleanse_reward_amount',
   		'blur #custom_amount':            'stop_choosing_custom',
+  		'click #goto-comment':            'goto_comment',
 			'submit #reward-form':            'submit_reward',
 			'click #open-comments-tab':       'toggle_comments'
 		},
@@ -221,8 +224,17 @@ $(function() {
 			$('#reward_amount').val($button.attr('amount'));
 			$('#custom_amount').val('');
 			
-			window.setTimeout(RewardModal.goto_comment, 600);
+			window.setTimeout(RewardModal.finished_reward_amount, 200);
 			return false;
+		},
+		
+		cleanse_reward_amount: function(event) {
+		  var $input = $('#custom_amount');
+		  var value = $input.val()
+		  var bad_values = !(/^[0-9\$\.]*$/i).test(value);
+		  if (bad_values) {
+		    $input.val(value.replace(/[^0-9\$\.]/ig, ''));
+		  }
 		},
 		
 		choose_custom_amount: function() {
@@ -243,7 +255,7 @@ $(function() {
 			$amount.keyup(function() {
 				$('#reward_amount').val($amount.val());
 			});
-			$('#custom_amount').observe_field(1, this.goto_comment);
+			$('#custom_amount').observe_field(1, this.finished_reward_amount);
 		},
 		
 		goto_reward: function() {
@@ -255,6 +267,10 @@ $(function() {
 		  $('#comment').fadeOut(200, function() {
 		    $('#amounts').fadeIn(200);
 		  });
+		},
+		
+		finished_reward_amount: function() {
+		  $('#goto-comment').css('opacity',1);
 		},
 		
 		goto_comment: function() {

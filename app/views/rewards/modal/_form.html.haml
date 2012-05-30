@@ -32,6 +32,7 @@
               %li= link_to "$1", "#", :amount => 1.0
               %li.custom= text_field_tag :custom_amount, "$"
             = form.hidden_field :amount
+            = link_to "Next &rarr;".html_safe, "#", :id => "goto-comment", :class => "button"
             
             #invalid-reward-amount
             
