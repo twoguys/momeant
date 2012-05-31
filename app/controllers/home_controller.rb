@@ -2,7 +2,7 @@ class HomeController < ApplicationController
   
   def index
     @content = ActiveSupport::OrderedHash.new
-    @content["Featured"] = Story.includes(:user).published.where("id IN (?)", Editorial.all.map(&:story_id))
+    @content["Featured"] = Story.includes(:user).published.where("id IN (?)", Editorial.all.map(&:story_id)).order("created_at DESC")
     Story::CATEGORIES.each do |category|
       @content[category] = Story.includes(:user).published.where(:category => category).order("reward_count DESC").limit(3)
     end

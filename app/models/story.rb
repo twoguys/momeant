@@ -46,6 +46,8 @@ class Story < ActiveRecord::Base
   has_many :users_who_viewed, :through => :views, :source => :user
   
   has_many :pages, :order => "number ASC", :dependent => :destroy
+  
+  has_one :editorial
     
   validates :media_type, :presence => true, :unless => :autosaving
   validates :title, :presence => true, :length => (2..256), :unless => :autosaving
