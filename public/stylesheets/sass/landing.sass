@@ -1,3 +1,6 @@
+body#home.index #main
+	max-width: 100%
+
 #landing-page
 	background: #000
 	color: #fff
@@ -22,38 +25,15 @@
 		a
 			display: inline-block
 	
-	#faces
-		margin-bottom: 50px
-		h3
-			text-align: center
-			font-size: 1.5em
-			font-weight: 400
-			margin-bottom: 10px
-		ul
-			height: 70px
-			background: #333
-			overflow: hidden
-		li
-			width: 70px
-			height: 70px
-			float: left
-		li.selected
-			border-bottom: 3px solid $blue
-		a
-			display: block
-			margin: 0
-		a, img	
-			width: 70px
-			height: 70px
-	
 	#categories-people
-		height: 550px
 		padding-bottom: 20px
+	#categories-people > .inner
+		@include clearfix
+		width: 100%
 	
 	#categories
 		float: left
 		width: 150px
-		text-align: right
 		font-family: $typewriter
 		font-size: 17px
 		font-style: italic
@@ -64,10 +44,21 @@
 			margin-bottom: 10px
 			border-right: 4px solid #000
 			@include transition(border-color)
-			&.selected
-				border-color: #333
+			.people
+				display: none
+				font-size: 14px
+				margin-left: 8px
+				font-family: $block
+				font-style: normal
 				a
+					display: block
+				a.selected
 					color: #fff
+			&.selected
+				a.top
+					color: #fff
+				.people
+					display: block
 			&:last-child
 				margin-bottom: 0
 	

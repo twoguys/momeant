@@ -7,12 +7,6 @@ class ApplicationController < ActionController::Base
   @nav = "home"
   @sidenav = ""
   
-  def setup_landing
-    content = Story.where("user_id IN (?)", Editorial.all.map(&:user_id))
-    @people = content.map(&:user).uniq.take(10)
-    @nav = "home"
-  end
-  
   def open_reward_modal?
     if params[:open_reward_modal].present?
       session[:open_reward_modal] = true

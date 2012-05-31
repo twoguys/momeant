@@ -1,7 +1,11 @@
 class HomeController < ApplicationController
   
   def index
-    setup_landing
+    @content = ActiveSupport::OrderedHash.new
+    @content["Featured"] = Story.includes(:user).published.where("id IN (?)", Editorial.all.map(&:story_id))
+    Story::CATEGORIES.each do |category|
+      @content[category] = Story.includes(:user).published.where(:category => category).order("reward_count DESC").limit(3)
+    end
   end
   
   def people # ajax
@@ -13,9 +17,7 @@ class HomeController < ApplicationController
     end
     @people = content.map(&:user).uniq.take(10)
     
-    people_html = render_to_string :partial => "home/person", :collection => @people, :as => :person
-    faces_html = render_to_string :partial => "home/faces"
-    render :json => { :faces => faces_html, :people => people_html }
+    render :partial => "home/person", :collection => @people, :as => :person
   end
   
   def projects # ajax

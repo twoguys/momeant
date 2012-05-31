@@ -609,6 +609,9 @@ table {
       font-size: 30px;
       font-weight: 300; }
 
+body#home.index #main {
+  max-width: 100%; }
+
 #landing-page {
   background: black;
   color: white; }
@@ -630,36 +633,20 @@ table {
       margin-bottom: 15px; }
     #landing-page #slogan a {
       display: inline-block; }
-  #landing-page #faces {
-    margin-bottom: 50px; }
-    #landing-page #faces h3 {
-      text-align: center;
-      font-size: 1.5em;
-      font-weight: 400;
-      margin-bottom: 10px; }
-    #landing-page #faces ul {
-      height: 70px;
-      background: #333333;
-      overflow: hidden; }
-    #landing-page #faces li {
-      width: 70px;
-      height: 70px;
-      float: left; }
-    #landing-page #faces li.selected {
-      border-bottom: 3px solid #00aeef; }
-    #landing-page #faces a {
-      display: block;
-      margin: 0; }
-    #landing-page #faces a, #landing-page #faces img {
-      width: 70px;
-      height: 70px; }
   #landing-page #categories-people {
-    height: 550px;
     padding-bottom: 20px; }
+  #landing-page #categories-people > .inner {
+    display: inline-block;
+    width: 100%; }
+    #landing-page #categories-people > .inner:after {
+      content: ".";
+      display: block;
+      height: 0;
+      clear: both;
+      visibility: hidden; }
   #landing-page #categories {
     float: left;
     width: 150px;
-    text-align: right;
     font-family: "museo-slab-1", "museo-slab-2", serif;
     font-size: 17px;
     font-style: italic;
@@ -674,10 +661,20 @@ table {
       -ms-transition: border-color 0.2s linear;
       -o-transition: border-color 0.2s linear;
       transition: border-color 0.2s linear; }
-      #landing-page #categories li.selected {
-        border-color: #333333; }
-        #landing-page #categories li.selected a {
+      #landing-page #categories li .people {
+        display: none;
+        font-size: 14px;
+        margin-left: 8px;
+        font-family: "proxima-nova-1", "proxima-nova-2", helvetica, sans-serif;
+        font-style: normal; }
+        #landing-page #categories li .people a {
+          display: block; }
+        #landing-page #categories li .people a.selected {
           color: white; }
+      #landing-page #categories li.selected a.top {
+        color: white; }
+      #landing-page #categories li.selected .people {
+        display: block; }
       #landing-page #categories li:last-child {
         margin-bottom: 0; }
   #landing-page #people {

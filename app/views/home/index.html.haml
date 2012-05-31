@@ -4,25 +4,24 @@
     %h1 Reward what matters to you
     %h3 Momeant is a community for connecting with and supporting people doing great work online
     = link_to "Learn more", "#about-modal", :class => "button"
-
-  #faces
-    %h3 Discover and follow creators by category:
-    %ul#list
-      = render "home/faces"
     
   #categories-people
+    .inner
 
-    %ul#categories
-      %li.selected= link_to "Featured", "#"
-      - Story::CATEGORIES.each do |category|
-        %li= link_to category, "#"
+      %ul#categories
+        - index = 0
+        - @content.each_pair do |category, content|
+          %li{:class => index == 0 ? "selected" : ""}
+            = link_to category, "#", :class => "top"
+            .people
+              - content.each do |story|
+                = link_to story.user.name, "#", :data => index, :class => index == 0 ? "selected" : ""
+                - index += 1
        
-    #people
-      %ul
-        = render :partial => "home/person", :collection => @people, :as => :person
-  
-  
-          
+      #people
+        %ul
+          - @content.each_pair do |category, content|
+            = render :partial => "home/person", :collection => content.map(&:user), :as => :person
 
 :javascript
   mpq.track('Viewed Homepage');
