@@ -151,7 +151,7 @@ $(function() {
 			'click #toggle-synopsis':         'toggle_full_synopsis',
 			'click #steps li.reward':         'goto_reward',
 			'click #steps li.comment':        'goto_comment',
-			'click #amounts a': 							'choose_reward_amount',
+			'click #amounts li a': 						'choose_reward_amount',
 			'focus #custom_amount': 					'choose_custom_amount',
 			'keydown #custom_amount':         'cleanse_reward_amount',
 			'keyup #custom_amount':           'cleanse_reward_amount',
