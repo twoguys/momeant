@@ -21,7 +21,7 @@
       #people
         %ul
           - @content.each_pair do |category, content|
-            = render :partial => "home/person", :collection => content.map(&:user), :as => :person
+            = render :partial => "home/person", :collection => content, :as => :content
 
 :javascript
   mpq.track('Viewed Homepage');

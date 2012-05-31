@@ -9,7 +9,7 @@ window.DiscoveryView = Backbone.View.extend({
 	
 	initialize: function() {
 		this.current_category = 'Featured';
-		this.person_width = $('#people li.person:first-child').width();
+		this.person_height = $('#people li.person:first-child').height();
 		this.people_slider = $('#people > ul');
 		this.people = $('#categories .people a');
 		
@@ -39,8 +39,8 @@ window.DiscoveryView = Backbone.View.extend({
     Discovery.people.removeClass('selected');
     $person.addClass('selected');
     var index = parseInt($person.attr('data'));
-	  var position = index * Discovery.person_width * -1;
-	  Discovery.people_slider.css('margin-left', position);
+	  var position = index * Discovery.person_height * -1;
+	  Discovery.people_slider.css('margin-top', position);
 	},
 	
 	setup_following_buttons: function() {

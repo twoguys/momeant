@@ -1,3 +1,4 @@
+- person = content.user
 %li.person
   %a.name{:href => user_path(person), :data => person.id}
     %span= person.first_name
@@ -15,7 +16,6 @@
           %li= link_to image_tag(patron[0].avatar.url(:thumbnail)), user_path(patron[0])
     .content
       %strong #{person.first_name}'s Work (1 of #{person.created_stories.published.count})
-      - content = person.discovery_content
       .preview
         - if content.text_preview?
           %a.content-preview.small{:href => story_path(content), :class => "#{content.media_type} #{content.template}"}
