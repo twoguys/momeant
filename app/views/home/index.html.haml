@@ -1,9 +1,17 @@
 #landing-page
   
   #slogan
-    %h1 Reward what matters to you
-    %h3 Momeant is a community for connecting with and supporting people doing great work online
-    = link_to "Learn more", "#about-modal", :class => "button"
+    .line
+    %h1
+      %strong Reward
+      %em what matters to you.
+    %h3
+      %a{:href => "#about-modal"}
+        Momeant is a community for connecting with
+        %br
+        and supporting people doing great work online
+    #learn-more
+      = link_to "Learn more", "#about-modal", :class => "button"
     
   #categories-people
     .inner

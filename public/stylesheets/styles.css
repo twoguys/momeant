@@ -616,25 +616,58 @@ body#home.index #main {
   background: black;
   color: white; }
   #landing-page #slogan, #landing-page #categories-people {
-    width: 800px;
+    width: 830px;
     margin: 0 auto; }
   #landing-page #slogan {
-    padding: 180px 0;
+    padding: 140px 0 200px;
     text-align: center; }
+    #landing-page #slogan .line {
+      width: 80px;
+      height: 1px;
+      background: white;
+      margin: 0 auto 40px; }
     #landing-page #slogan h1 {
-      font-size: 40px;
       font-weight: 600;
-      text-transform: uppercase;
-      line-height: 40px;
-      margin-bottom: 10px; }
+      margin-bottom: 40px; }
+      #landing-page #slogan h1 strong {
+        font-size: 75px;
+        text-transform: uppercase;
+        line-height: 60px;
+        display: block;
+        color: #00aeef; }
+      #landing-page #slogan h1 em {
+        font-size: 60px;
+        line-height: 50px; }
     #landing-page #slogan h3 {
-      font-size: 15.7px;
-      font-weight: 400;
-      margin-bottom: 15px; }
-    #landing-page #slogan a {
-      display: inline-block; }
+      font-size: 20px;
+      font-weight: 200;
+      line-height: 22px;
+      color: #00aeef;
+      margin-bottom: 66px; }
+    #landing-page #slogan #learn-more {
+      width: 280px;
+      margin: 0 auto;
+      border-top: 2px dashed white; }
+      #landing-page #slogan #learn-more a {
+        display: inline-block;
+        font-size: 16px;
+        -webkit-border-radius: 2px;
+        -moz-border-radius: 2px;
+        border-radius: 2px;
+        background: black;
+        padding: 12px 20px;
+        border: 2px solid #00aeef;
+        position: relative;
+        top: -22px;
+        -webkit-transition: background 0.1s linear;
+        -moz-transition: background 0.1s linear;
+        -ms-transition: background 0.1s linear;
+        -o-transition: background 0.1s linear;
+        transition: background 0.1s linear; }
+      #landing-page #slogan #learn-more a:hover {
+        background: #00aeef; }
   #landing-page #categories-people {
-    padding-bottom: 20px; }
+    padding-bottom: 50px; }
   #landing-page #categories-people > .inner {
     display: inline-block;
     width: 100%; }
@@ -678,7 +711,7 @@ body#home.index #main {
       #landing-page #categories li:last-child {
         margin-bottom: 0; }
   #landing-page #people {
-    width: 615px;
+    width: 645px;
     height: 550px;
     float: right;
     overflow: hidden; }
@@ -699,9 +732,9 @@ body#home.index #main {
       position: relative; }
     #landing-page #people > ul .name {
       display: block;
-      font-size: 36px;
+      font-size: 50px;
       font-weight: 600;
-      line-height: 32px;
+      line-height: 42px;
       margin-bottom: 10px;
       text-transform: uppercase;
       color: white; }
@@ -709,22 +742,24 @@ body#home.index #main {
         display: block; }
     #landing-page #people > ul .avatar {
       display: block;
-      margin-bottom: 15px; }
+      margin-bottom: 15px;
+      border: 2px solid white; }
     #landing-page #people > ul .avatar, #landing-page #people > ul .avatar img {
-      width: 260px;
-      height: 260px; }
+      width: 276px;
+      height: 276px; }
     #landing-page #people > ul .actions {
       height: 40px;
       margin-bottom: 13px; }
     #landing-page #people > ul .actions a {
       display: block;
       float: left;
-      width: 115px;
+      width: 126px;
       height: 40px;
-      padding: 0 0 0 10px;
+      padding: 0 0 0 11px;
       background: transparent url(../images/discovery/flags.png) no-repeat;
       color: black;
       font-size: 15px;
+      font-weight: 600;
       text-transform: uppercase;
       text-align: center;
       margin-right: 10px;
@@ -732,9 +767,9 @@ body#home.index #main {
       #landing-page #people > ul .actions a:hover {
         color: white; }
     #landing-page #people > ul .actions .profile {
-      background-position: -130px 0;
+      background-position: -142px 0;
       margin: 0;
-      padding: 0 10px 0 0; }
+      padding: 0 13px 0 0; }
     #landing-page #people > ul .tagline {
       width: 260px;
       font-family: "museo-slab-1", "museo-slab-2", serif;
@@ -744,9 +779,9 @@ body#home.index #main {
       line-height: 1.4em; }
     #landing-page #people > ul .supporters-and-content {
       position: absolute;
-      top: 47px;
-      left: 290px;
-      width: 300px; }
+      top: 65px;
+      left: 305px;
+      width: 304px; }
       #landing-page #people > ul .supporters-and-content strong {
         display: block;
         text-transform: uppercase;
@@ -767,12 +802,17 @@ body#home.index #main {
       #landing-page #people > ul .supporters li {
         float: left;
         margin: 0 10px 10px 0; }
+        #landing-page #people > ul .supporters li:nth-child(6n) {
+          margin-right: 0; }
         #landing-page #people > ul .supporters li a, #landing-page #people > ul .supporters li img {
           display: block;
           width: 40px;
           height: 40px; }
     #landing-page #people > ul .content .reward-stats {
-      text-align: center; }
+      text-align: center;
+      padding-bottom: 12px;
+      background: transparent url(../images/discovery/small-arrow-down.png) no-repeat 50% 100%;
+      margin-bottom: 20px; }
       #landing-page #people > ul .content .reward-stats em {
         font-family: "museo-slab-1", "museo-slab-2", serif;
         font-size: 13px;
@@ -780,12 +820,13 @@ body#home.index #main {
         display: block; }
       #landing-page #people > ul .content .reward-stats strong {
         font-family: "ff-dagny-web-pro-1", "ff-dagny-web-pro-2", sans-serif;
-        font-size: 32px;
+        font-size: 40px;
         font-weight: 200;
-        line-height: 34px;
+        line-height: 48px;
+        letter-spacing: -0.02em;
         display: inline; }
       #landing-page #people > ul .content .reward-stats span {
-        font-size: 16px;
+        font-size: 24px;
         font-weight: 600;
         text-transform: uppercase;
         padding: 0 6px;
@@ -793,19 +834,25 @@ body#home.index #main {
         top: -4px; }
       #landing-page #people > ul .content .reward-stats .people {
         padding-right: 20px;
-        background: transparent url(../images/reward-modal/people.png) no-repeat 100% 13px; }
+        background: transparent url(../images/reward-modal/people.png) no-repeat 100% 16px; }
     #landing-page #people > ul .content .preview {
-      background: #222222;
-      margin-bottom: 15px; }
+      background: white;
+      padding: 2px;
+      margin-bottom: 10px; }
     #landing-page #people > ul .content .content-preview {
       display: block;
       width: 300px;
       height: 203px; }
     #landing-page #people > ul .content .title {
       display: block;
-      color: white;
+      color: black;
       text-transform: uppercase;
       padding: 10px; }
+    #landing-page #people > ul .content .list {
+      font-size: 12px;
+      text-transform: uppercase; }
+      #landing-page #people > ul .content .list a {
+        float: right; }
 
 #vertical-list {
   width: 630px;

@@ -1,21 +1,30 @@
 - person = content.user
 %li.person
+
   %a.name{:href => user_path(person), :data => person.id}
     %span= person.first_name
     %span= person.last_name
+
   = link_to image_tag(person.avatar.url(:editorial)), user_path(person), :class => "avatar"
   .actions
     = link_to "Follow", "#", :class => "follow"
     = link_to "View Work", user_path(person), :class => "profile"
   .tagline= truncate person.tagline, :length => 140
+
   .supporters-and-content
     .supporters
       %strong #{person.first_name}'s Top Supporters
       %ul.patrons
         - person.top_supporters[0..11].each do |patron|
           %li= link_to image_tag(patron[0].avatar.url(:thumbnail)), user_path(patron[0])
+
     .content
-      %strong #{person.first_name}'s Work (1 of #{person.created_stories.published.count})
+      .reward-stats
+        %em this content has been rewarded
+        %strong= number_to_currency(content.reward_count)
+        %span from
+        %strong.people= content.users_who_rewarded.count
+
       .preview
         - if content.text_preview?
           %a.content-preview.small{:href => story_path(content), :class => "#{content.media_type} #{content.template}"}
@@ -26,8 +35,7 @@
           %a.content-preview{:href => story_path(content), :class => content.media_type}
             .inner{:style => "background-image: url(#{content.thumbnail.url(:large)})"}
         = link_to truncate(content.title, :length => 32), story_path(content), :class => "title"
-      .reward-stats
-        %em this content has been rewarded
-        %strong= number_to_currency(content.reward_count)
-        %span from
-        %strong.people= content.users_who_rewarded.count
+
+      .list  
+        = link_to "See All", user_path(person)
+        %span 1 of #{pluralize person.created_stories.published.count, "work"} by #{person.first_name}
