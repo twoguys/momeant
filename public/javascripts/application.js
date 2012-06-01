@@ -46,6 +46,20 @@ function setup_modals() {
 			$('#join-modal, #login-modal, #feedback-modal, #about-diagram-modal').stop().fadeOut('fast');
 		}
 	});
+	
+	$('.modal .steps .buttons a').click(function() {
+	  var $link = $(this);
+	  var width = $link.parent().width();
+	  var $steps = $link.parents('.steps');
+	  var current_margin = parseInt($steps.css('margin-left').replace('px',''));
+	  if ($link.hasClass('next-step')) {
+	    $steps.css('margin-left', current_margin - width);
+	  } else {
+	    $steps.css('margin-left', current_margin + width);
+	  }
+	  return false;
+	});
+	
 }
 
 function handle_signup_login_form_validation() {

@@ -1,6 +1,19 @@
-#about-modal
+#about-modal.modal
   .cover
   .padder
     %a.close{:href => "#"}
     .insides.clearfix
-      About
+      .steps
+        .step
+          %h1 The header text will go here
+          %p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.
+        
+          .buttons
+            = link_to "Next &rarr;".html_safe, "#", :class => "next-step"
+        .step
+          %h1 The header text will go here
+          %p Labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          %p Adipisicing elit, sed do eiusmod tempor incididunt ut labore.
+        
+          .buttons
+            = link_to "&larr; Prev".html_safe, "#", :class => "prev-step button"

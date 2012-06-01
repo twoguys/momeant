@@ -141,6 +141,39 @@
 			font-size: 12px
 			font-family:  $block
 			text-shadow:  none
+	
+#about-modal
+	.insides
+		width: 480px
+		overflow: hidden
+	.steps
+		color: #000
+		width: 8000px
+		height: 250px
+		@include transition(margin)
+		.step
+			width: 480px
+			height: 215px
+			padding-bottom: 35px
+			float: left
+			position: relative
+			h1
+				padding: 5px 0 15px
+				border-bottom: 1px solid #aaa
+			p
+				margin: 10px 0
+			.buttons
+				position: absolute
+				bottom: 5px
+				left: 0
+				width: 100%
+				a
+					@include button
+					background: $blue
+			a.prev-step
+				float: left
+			a.next-step
+				float: right
 
 #join-modal
 	.copy
