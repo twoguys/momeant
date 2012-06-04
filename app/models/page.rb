@@ -89,7 +89,7 @@ class Page < ActiveRecord::Base
         end
       end
     when "full_image"
-      if page.blank?
+      if page.nil?
         page = FullImagePage.new(:number => options[:number])
       end
       page.background_color = options[:background_color] if options[:background_color]
@@ -115,7 +115,7 @@ class Page < ActiveRecord::Base
       text_media.placement = options[:placement] if options[:placement]
       text_media.save unless page.new_record?
     when "pullquote"
-      if page.blank?
+      if page.nil?
         page = PullquotePage.new(:number => options[:number])
       end
       page.background_color = options[:background_color] if options[:background_color]
@@ -218,7 +218,7 @@ class Page < ActiveRecord::Base
         text2.save
       end
     when "grid"
-      if page.blank?
+      if page.nil?
         page = GridPage.new(:number => options[:number], :background_color => options[:background_color], :text_color => options[:text_color])
       end
       
@@ -247,7 +247,7 @@ class Page < ActiveRecord::Base
         media.update_attribute(:placement, options[:image_placement]) if media
       end
     when "external"
-      if page.blank?
+      if page.nil?
         page = ExternalPage.new(:number => options[:number])
       end
       

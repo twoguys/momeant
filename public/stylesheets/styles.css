@@ -49,18 +49,23 @@ h2 {
   max-width: 1367px;
   margin: 0 auto; }
 
-.fullscreen .fullscreen-hidden {
-  display: none; }
-.fullscreen #container {
-  position: static;
-  margin: 0;
-  padding: 0; }
-  .fullscreen #container #main {
-    width: 100%;
+.fullscreen {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%; }
+  .fullscreen .fullscreen-hidden {
+    display: none; }
+  .fullscreen #container {
+    position: static;
     margin: 0;
-    padding: 0;
-    top: 0;
-    right: 0; }
+    padding: 0; }
+    .fullscreen #container #main {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      top: 0;
+      right: 0; }
 
 #footer {
   display: none;
@@ -2276,6 +2281,9 @@ body#subscriptions.index {
     font-size: 11px; }
 
 /* Story creation */
+body#stories.edit.fullscreen #header {
+  display: none; }
+
 .new-story-copy {
   font-family: "museo-slab-1", "museo-slab-2", serif;
   font-size: 14px;
@@ -3024,7 +3032,8 @@ form.new_story, form.edit_story, .story-form {
   #page-previews li.pullquote .pullquote-inner {
     display: table;
     height: 100%;
-    width: 100%; }
+    width: 700px;
+    margin: 0 auto; }
     #page-previews li.pullquote .pullquote-inner div.quote {
       display: table-cell;
       vertical-align: middle;
@@ -3831,7 +3840,8 @@ form.new_story, form.edit_story, .story-form {
       #page-editor ul#pages .pullquote .pullquote-inner {
         display: table;
         height: 100%;
-        width: 100%; }
+        width: 700px;
+        margin: 0 auto; }
         #page-editor ul#pages .pullquote .pullquote-inner div.quote {
           display: table-cell;
           vertical-align: middle;
@@ -4136,7 +4146,8 @@ form.new_story, form.edit_story, .story-form {
         .story-gallery .large-preview .pages a.pullquote .pullquote-inner {
           display: table;
           height: 100%;
-          width: 100%; }
+          width: 700px;
+          margin: 0 auto; }
           .story-gallery .large-preview .pages a.pullquote .pullquote-inner div.quote {
             display: table-cell;
             vertical-align: middle;
@@ -4385,7 +4396,8 @@ form.new_story, form.edit_story, .story-form {
         .story-gallery .slider .viewport .preview.pullquote .pullquote-inner {
           display: table;
           height: 100%;
-          width: 100%; }
+          width: 700px;
+          margin: 0 auto; }
           .story-gallery .slider .viewport .preview.pullquote .pullquote-inner div.quote {
             display: table-cell;
             vertical-align: middle;
@@ -5066,7 +5078,8 @@ body#stories.show {
       #presenter ul#pages li.pullquote .pullquote-inner {
         display: table;
         height: 100%;
-        width: 100%; }
+        width: 700px;
+        margin: 0 auto; }
         #presenter ul#pages li.pullquote .pullquote-inner div.quote {
           display: table-cell;
           vertical-align: middle;
@@ -5452,7 +5465,8 @@ body#stories.show {
   .thumbnail.pullquote .pullquote-inner {
     display: table;
     height: 100%;
-    width: 100%; }
+    width: 700px;
+    margin: 0 auto; }
     .thumbnail.pullquote .pullquote-inner div.quote {
       display: table-cell;
       vertical-align: middle;
@@ -5549,7 +5563,8 @@ body#stories.show {
   .thumbnail.pullquote.medium .pullquote-inner {
     display: table;
     height: 100%;
-    width: 100%; }
+    width: 700px;
+    margin: 0 auto; }
     .thumbnail.pullquote.medium .pullquote-inner div.quote {
       display: table-cell;
       vertical-align: middle;
@@ -5691,7 +5706,8 @@ body#stories.show {
   .thumbnail.pullquote.petite .pullquote-inner {
     display: table;
     height: 100%;
-    width: 100%; }
+    width: 700px;
+    margin: 0 auto; }
     .thumbnail.pullquote.petite .pullquote-inner div.quote {
       display: table-cell;
       vertical-align: middle;
