@@ -7,7 +7,11 @@
 
   = link_to image_tag(person.avatar.url(:editorial)), user_path(person), :class => "avatar"
   .actions
-    = link_to "Follow", "#", :class => "follow"
+    - if user_signed_in?
+      - follow_text = current_user.is_subscribed_to?(person) ? "Unfollow" : "Follow"
+      = link_to follow_text, "#", :class => "follow", :data => person.id
+    - else
+      = link_to "Follow", "#join-modal", :class => "follow"
     = link_to "View Work", user_path(person), :class => "profile"
   .tagline= truncate person.tagline, :length => 140
 

@@ -4,7 +4,8 @@ window.DiscoveryView = Backbone.View.extend({
 	
 	events: {
 		'click #categories a.top':      'category_clicked',
-		'click #categories .people a':  'person_clicked'
+		'click #categories .people a':  'person_clicked',
+		'click .actions a.follow':      'subscribe'
 	},
 	
 	initialize: function() {
@@ -43,9 +44,21 @@ window.DiscoveryView = Backbone.View.extend({
 	  Discovery.people_slider.css('margin-top', position);
 	},
 	
-	setup_following_buttons: function() {
-	  
-	},
+	subscribe: function(event) {
+    var $link = $(event.currentTarget);
+    var user_id = $link.attr('data');
+    
+    if ($link.text() == 'Follow') {
+      $.post('/users/' + user_id + '/subscriptions');
+      $link.text('Unfollow');
+      show_feed_plus_one();
+    } else {
+      $.post('/users/' + user_id + '/subscriptions/unsubscribe');
+      $link.text('Follow');
+    }
+    
+    return false;
+  },
 	
 	on_resize: function() {
 	  var landing_height = this.landing.height();

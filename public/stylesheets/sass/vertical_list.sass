@@ -32,6 +32,7 @@
 			display: block
 			width: 630px
 			height: 420px
+			position: relative
 			&.bowling
 				background-image: url(../images/content/templates/bowling.png)
 				.inner
@@ -54,6 +55,21 @@
 					width: 260px
 					height: 170px
 					margin: -85px 0 0 -130px
+			.tip
+				position: absolute
+				top: 200px
+				left: 250px
+				background: #333
+				background: rgba(0,0,0,0.85)
+				color: #fff
+				font-size: 1.2em
+				text-transform: uppercase
+				padding: 8px 12px
+				@include rounded(3px)
+				opacity: 0
+				@include transition(opacity)
+			&:hover .tip
+				opacity: 1
 		.info
 			min-height: 35px
 			padding: 20px 20px 20px 60px

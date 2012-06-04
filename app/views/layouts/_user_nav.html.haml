@@ -8,6 +8,7 @@
   - if user_signed_in?
     %li#feed
       = link_to "Feed", subscriptions_path, :class => "tooltipped", :title => "Following Feed"
+      #feed-plus-one
   - else
     %li#feed.disabled
       = link_to "Feed", "#join-modal", :class => "tooltipped", :title => "Following Feed"

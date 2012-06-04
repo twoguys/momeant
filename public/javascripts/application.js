@@ -173,6 +173,13 @@ function log(message) {
 	}
 }
 
+function show_feed_plus_one() {
+  $('#feed-plus-one').show();
+  setTimeout(function() {
+    $('#feed-plus-one').fadeOut(500);
+  }, 3000);
+}
+
 // http://github.com/splendeo/jquery.observe_field
 jQuery.fn.observe_field = function(frequency, callback) {
 

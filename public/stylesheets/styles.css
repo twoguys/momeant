@@ -204,6 +204,15 @@ h2 {
       font-weight: 600;
       text-transform: uppercase;
       padding-top: 12px; }
+    #header #user-nav #feed-plus-one {
+      position: absolute;
+      top: 35px;
+      left: 3px;
+      z-index: 999;
+      width: 27px;
+      height: 23px;
+      background: transparent url(../images/navigation/feed-plus-one.png) no-repeat;
+      display: none; }
     #header #user-nav #coins a {
       display: block;
       height: 36px;
@@ -897,7 +906,8 @@ body#home.index #main {
   #vertical-list #activity-list > li.content .content-preview {
     display: block;
     width: 630px;
-    height: 420px; }
+    height: 420px;
+    position: relative; }
     #vertical-list #activity-list > li.content .content-preview.bowling {
       background-image: url(../images/content/templates/bowling.png); }
       #vertical-list #activity-list > li.content .content-preview.bowling .inner {
@@ -919,6 +929,27 @@ body#home.index #main {
         width: 260px;
         height: 170px;
         margin: -85px 0 0 -130px; }
+    #vertical-list #activity-list > li.content .content-preview .tip {
+      position: absolute;
+      top: 200px;
+      left: 250px;
+      background: #333333;
+      background: rgba(0, 0, 0, 0.85);
+      color: white;
+      font-size: 1.2em;
+      text-transform: uppercase;
+      padding: 8px 12px;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      border-radius: 3px;
+      opacity: 0;
+      -webkit-transition: opacity 0.2s ease-in-out;
+      -moz-transition: opacity 0.2s ease-in-out;
+      -ms-transition: opacity 0.2s ease-in-out;
+      -o-transition: opacity 0.2s ease-in-out;
+      transition: opacity 0.2s ease-in-out; }
+    #vertical-list #activity-list > li.content .content-preview:hover .tip {
+      opacity: 1; }
   #vertical-list #activity-list > li.content .info {
     min-height: 35px;
     padding: 20px 20px 20px 60px;
