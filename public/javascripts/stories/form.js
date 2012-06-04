@@ -1041,8 +1041,7 @@ var story_auto_saver = function() {
 	
 	this.handle_text_style_chooser = function($page, page_id, type, number) {
 		var all_text_styles = 'blocky-title blocky-chunk blocky-paragraph deco-title deco-chunk deco-paragraph ' +
-			'typewriter-title typewriter-chunk typewriter-paragraph cursive-title cursive-chunk cursive-paragraph ' +
-			'big-word-sans-serif big-word-cursive';
+			'typewriter-title typewriter-chunk typewriter-paragraph cursive-title cursive-chunk cursive-paragraph';
 		$page.find('.styles-wrapper .styles li').click(function() {
 			var $style = $(this);
 			$style.addClass('selected').siblings().removeClass('selected');
