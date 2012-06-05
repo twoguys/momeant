@@ -4,6 +4,8 @@ class Invitation < ActiveRecord::Base
   
   before_create :set_token
   
+  default_scope order("created_at DESC")
+  
   TOKEN_LENGTH = 6
   
   def used?
