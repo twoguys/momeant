@@ -71,10 +71,5 @@
           %span.amount= number_to_currency(@user.rewards.not_cashed_out.sum(:amount))[1..-1]
           %span not cashed out
         %li= link_to "Cash Out", user_cashouts_path(@user), :id => "cashout", :class => "button"
-
-    - if current_user && !me?(@user)
-      #user-actions
-        - if current_user && current_user.is_admin?
-          = link_to "Editorialize", new_admin_editorial_path(:user => @user.id), :id => "editorialize", :class => "button"
-
+        
   .clear

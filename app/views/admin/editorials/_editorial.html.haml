@@ -1,5 +1,4 @@
-%li
-  %span= editorial.user.name
-  = link_to "edit", edit_admin_editorial_path(editorial)
-  = link_to "delete", admin_editorial_path(editorial), :method => :delete, :confirm => "Are you sure?"
-  .quote= editorial.quote
+%tr
+  %td= link_to editorial.story.title, story_path(editorial.story)
+  %td= link_to editorial.user.name, user_path(editorial.user)
+  %td= link_to "delete", admin_editorial_path(editorial), :method => :delete, :confirm => "Are you sure?"
