@@ -16,10 +16,15 @@ window.DiscoveryView = Backbone.View.extend({
 		this.people_slider = $('#people > ul');
 		this.people = $('#categories .people a');
 		
-		this.landing = $('#landing-page');
-		this.on_resize();
-		_.bindAll(this, 'on_resize');
-    $(window).resize(this.on_resize);
+		this.set_creator_content_list_lengths();
+	},
+	
+	set_creator_content_list_lengths: function() {
+	  $('#people .person .list').each(function() {
+	    var $list = $(this);
+	    var content_count = parseInt($list.attr('total'));
+	    $list.css('width', content_count * 304);
+	  });
 	},
 	
 	category_clicked: function(event) {
@@ -85,15 +90,7 @@ window.DiscoveryView = Backbone.View.extend({
     $link.siblings('.next').removeClass('off');
     if (current == 0) { $link.addClass('off'); }
     return false;
-  },
-	
-	on_resize: function() {
-	  var landing_height = this.landing.height();
-	  var window_height = $(window).height() - 42;
-	  if (landing_height < window_height) {
-	    this.landing.css('height',window_height + 'px');
-	  }
-	}
+  }
 	
 });
 
