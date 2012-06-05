@@ -5,7 +5,9 @@ window.DiscoveryView = Backbone.View.extend({
 	events: {
 		'click #categories a.top':      'category_clicked',
 		'click #categories .people a':  'person_clicked',
-		'click .actions a.follow':      'subscribe'
+		'click .actions a.follow':      'subscribe',
+		'click .person .more .next':    'next_person_content',
+		'click .person .more .prev':    'prev_person_content'
 	},
 	
 	initialize: function() {
@@ -57,6 +59,31 @@ window.DiscoveryView = Backbone.View.extend({
       $link.text('Follow');
     }
     
+    return false;
+  },
+  
+  next_person_content: function(event) {
+    var $link = $(event.currentTarget);
+    var $list = $link.parent().siblings('.list');
+    var current = parseInt($list.attr('current')) + 1;
+    var total = parseInt($list.attr('total'));
+    if (current == total) { return false; }
+    $list.css('margin-left', -1 * current * 304);
+    $list.attr('current', current);
+    $link.siblings('.prev').removeClass('off');
+    if (current + 1 == total) { $link.addClass('off'); }
+    return false;
+  },
+  
+  prev_person_content: function(event) {
+    var $link = $(event.currentTarget);
+    var $list = $link.parent().siblings('.list');
+    var current = parseInt($list.attr('current')) - 1;
+    if (current == -1) { return false; }
+    $list.css('margin-left', -1 * current * 304);
+    $list.attr('current', current);
+    $link.siblings('.next').removeClass('off');
+    if (current == 0) { $link.addClass('off'); }
     return false;
   },
 	

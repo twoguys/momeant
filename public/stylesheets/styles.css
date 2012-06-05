@@ -795,7 +795,9 @@ body#home.index #main {
       position: absolute;
       top: 65px;
       left: 305px;
-      width: 304px; }
+      width: 304px;
+      height: 465px;
+      overflow: hidden; }
       #landing-page #people > ul .supporters-and-content strong {
         display: block;
         text-transform: uppercase;
@@ -822,51 +824,81 @@ body#home.index #main {
           display: block;
           width: 42px;
           height: 42px; }
-    #landing-page #people > ul .content .reward-stats {
-      text-align: center;
-      padding-bottom: 12px;
-      background: transparent url(../images/discovery/small-arrow-down.png) no-repeat 50% 100%;
-      margin-bottom: 20px; }
-      #landing-page #people > ul .content .reward-stats em {
-        font-family: "museo-slab-1", "museo-slab-2", serif;
-        font-size: 13px;
-        font-weight: 300;
-        display: block; }
-      #landing-page #people > ul .content .reward-stats strong {
-        font-family: "ff-dagny-web-pro-1", "ff-dagny-web-pro-2", sans-serif;
-        font-size: 40px;
-        font-weight: 200;
-        line-height: 48px;
-        letter-spacing: -0.02em;
-        display: inline; }
-      #landing-page #people > ul .content .reward-stats span {
-        font-size: 24px;
-        font-weight: 600;
+    #landing-page #people > ul .list {
+      width: 2000px;
+      height: 341px;
+      -webkit-transition: margin 0.2s ease-in-out;
+      -moz-transition: margin 0.2s ease-in-out;
+      -ms-transition: margin 0.2s ease-in-out;
+      -o-transition: margin 0.2s ease-in-out;
+      transition: margin 0.2s ease-in-out; }
+      #landing-page #people > ul .list .content {
+        float: left;
+        width: 304px; }
+      #landing-page #people > ul .list .reward-stats {
+        text-align: center;
+        padding-bottom: 12px;
+        background: transparent url(../images/discovery/small-arrow-down.png) no-repeat 50% 100%;
+        margin-bottom: 20px; }
+        #landing-page #people > ul .list .reward-stats em {
+          font-family: "museo-slab-1", "museo-slab-2", serif;
+          font-size: 13px;
+          font-weight: 300;
+          display: block; }
+        #landing-page #people > ul .list .reward-stats strong {
+          font-family: "ff-dagny-web-pro-1", "ff-dagny-web-pro-2", sans-serif;
+          font-size: 40px;
+          font-weight: 200;
+          line-height: 48px;
+          letter-spacing: -0.02em;
+          display: inline; }
+        #landing-page #people > ul .list .reward-stats span {
+          font-size: 24px;
+          font-weight: 600;
+          text-transform: uppercase;
+          padding: 0 6px;
+          position: relative;
+          top: -4px; }
+        #landing-page #people > ul .list .reward-stats .people {
+          padding-right: 20px;
+          background: transparent url(../images/reward-modal/people.png) no-repeat 100% 16px; }
+      #landing-page #people > ul .list .preview {
+        background: white;
+        padding: 2px;
+        margin-bottom: 10px; }
+      #landing-page #people > ul .list .content-preview {
+        display: block;
+        width: 300px;
+        height: 203px; }
+      #landing-page #people > ul .list .title {
+        display: block;
+        color: black;
         text-transform: uppercase;
-        padding: 0 6px;
-        position: relative;
-        top: -4px; }
-      #landing-page #people > ul .content .reward-stats .people {
-        padding-right: 20px;
-        background: transparent url(../images/reward-modal/people.png) no-repeat 100% 16px; }
-    #landing-page #people > ul .content .preview {
-      background: white;
-      padding: 2px;
-      margin-bottom: 10px; }
-    #landing-page #people > ul .content .content-preview {
-      display: block;
-      width: 300px;
-      height: 203px; }
-    #landing-page #people > ul .content .title {
-      display: block;
-      color: black;
-      text-transform: uppercase;
-      padding: 10px; }
-    #landing-page #people > ul .content .list {
+        padding: 10px; }
+    #landing-page #people > ul .more {
       font-size: 12px;
-      text-transform: uppercase; }
-      #landing-page #people > ul .content .list a {
+      text-transform: uppercase;
+      clear: both;
+      width: 300px;
+      position: absolute;
+      bottom: 0;
+      left: 0; }
+      #landing-page #people > ul .more a.all {
         float: right; }
+      #landing-page #people > ul .more a.next, #landing-page #people > ul .more a.prev, #landing-page #people > ul .more span {
+        display: block;
+        float: left;
+        margin-right: 4px; }
+      #landing-page #people > ul .more a.next, #landing-page #people > ul .more a.prev {
+        width: 12px;
+        height: 13px;
+        background: transparent url(../images/discovery/content-browsing-arrows.png) no-repeat 0 1px;
+        overflow: hidden;
+        text-indent: 12px; }
+        #landing-page #people > ul .more a.next.off, #landing-page #people > ul .more a.prev.off {
+          opacity: 0.3; }
+      #landing-page #people > ul .more a.next {
+        background-position: -12px 1px; }
 
 #vertical-list {
   width: 630px;

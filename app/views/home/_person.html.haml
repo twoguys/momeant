@@ -22,24 +22,29 @@
         - person.top_supporters[0..11].each do |patron|
           %li= link_to image_tag(patron[0].avatar.url(:thumbnail)), user_path(patron[0])
 
-    .content
-      .reward-stats
-        %em this content has been rewarded
-        %strong= number_to_currency(content.reward_count)
-        %span from
-        %strong.people= content.users_who_rewarded.count
+    - all_content = [content] + person.created_stories.published.but_not(content.id).order("reward_count DESC")
+    .list{:current => 0, :total => all_content.size}
+      - all_content.each do |content|
+        .content
+          .reward-stats
+            %em this content has been rewarded
+            %strong= number_to_currency(content.reward_count)
+            %span from
+            %strong.people= content.users_who_rewarded.count
+          .preview
+            - if content.text_preview?
+              %a.content-preview.small{:href => story_path(content), :class => "#{content.media_type} #{content.template}"}
+                .inner
+                  .image
+                  .quote= truncate(content.template_text, :length => 140)
+            - else
+              %a.content-preview{:href => story_path(content), :class => content.media_type}
+                .inner{:style => "background-image: url(#{content.thumbnail.url(:large)})"}
+            = link_to truncate(content.title, :length => 32), story_path(content), :class => "title"
 
-      .preview
-        - if content.text_preview?
-          %a.content-preview.small{:href => story_path(content), :class => "#{content.media_type} #{content.template}"}
-            .inner
-              .image
-              .quote= truncate(content.template_text, :length => 140)
-        - else
-          %a.content-preview{:href => story_path(content), :class => content.media_type}
-            .inner{:style => "background-image: url(#{content.thumbnail.url(:large)})"}
-        = link_to truncate(content.title, :length => 32), story_path(content), :class => "title"
-
-      .list  
-        = link_to "See All", user_path(person)
-        %span 1 of #{pluralize person.created_stories.published.count, "work"} by #{person.first_name}
+    .more
+      = link_to "Previous", "#", :class => "prev off"
+      %span 1 of #{pluralize person.created_stories.published.count, "work"} by #{person.first_name}
+      = link_to "Next", "#", :class => "next #{all_content.size == 1 ? "off" : ""}"
+        
+      = link_to "See All", user_path(person), :class => "all"

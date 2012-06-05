@@ -164,6 +164,8 @@ body#home.index #main
 			top: 65px
 			left: 305px
 			width: 304px
+			height: 465px
+			overflow: hidden
 			strong
 				display: block
 				text-transform: uppercase
@@ -185,7 +187,14 @@ body#home.index #main
 					display: block
 					width: 42px
 					height: 42px
-		.content
+					
+		.list
+			width: 2000px
+			height: 341px
+			@include transition(margin)
+			.content
+				float: left
+				width: 304px
 			.reward-stats
 				text-align: center
 				padding-bottom: 12px
@@ -226,8 +235,28 @@ body#home.index #main
 				color: #000
 				text-transform: uppercase
 				padding: 10px
-			.list
-				font-size: 12px
-				text-transform: uppercase
-				a
-					float: right
+
+		.more
+			font-size: 12px
+			text-transform: uppercase
+			clear: both
+			width: 300px
+			position: absolute
+			bottom: 0
+			left: 0
+			a.all
+				float: right
+			a.next, a.prev, span
+				display: block
+				float: left
+				margin-right: 4px
+			a.next, a.prev
+				width: 12px
+				height: 13px
+				background: transparent url(../images/discovery/content-browsing-arrows.png) no-repeat 0 1px
+				overflow: hidden
+				text-indent: 12px
+				&.off
+					opacity: 0.3
+			a.next
+				background-position: -12px 1px

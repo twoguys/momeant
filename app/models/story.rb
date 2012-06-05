@@ -63,6 +63,7 @@ class Story < ActiveRecord::Base
   scope :no_gallery, where(:gallery_id => nil)
   scope :in_the_past_two_weeks, where("created_at > '#{14.days.ago}'")
   scope :from_today, where("created_at > '#{1.day.ago}'")
+  scope :but_not, lambda { |id| where("id != ?", id) }
   
   paginates_per 12
   
