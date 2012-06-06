@@ -309,6 +309,16 @@ class Story < ActiveRecord::Base
     Activity.where(:action_id => self.id).where("action_type = 'Story'")
   end
   
+  def self.featured_on_landing
+    content_hash = ActiveSupport::OrderedHash.new
+    content_hash[:photo] = [Story.published[0]] * 5
+    content_hash[:art] = [Story.published[1]] * 5
+    content_hash[:video] = [Story.published[2]] * 5
+    content_hash[:sound] = [Story.published[3]] * 5
+    content_hash[:writing] = [Story.published[4]] * 5
+    content_hash
+  end
+  
   private
   
   def reprocess_thumbnail

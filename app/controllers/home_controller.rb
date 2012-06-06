@@ -8,6 +8,8 @@ class HomeController < ApplicationController
         published.where(:category => category).order("reward_count DESC").limit(3).
         uniq_by {|content| content.user_id}
     end
+    
+    @featured_content = Story.featured_on_landing unless Rails.env.production?
   end
   
   def people # ajax

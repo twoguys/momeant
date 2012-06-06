@@ -13,6 +13,17 @@
     #learn-more
       = link_to "Learn more", "#about-modal", :class => "button"
     
+  - if @featured_content
+    #featured-content
+      - first = true
+      - @featured_content.each do |type, contents|
+        .media-type{:id => "#{type}-type", :class => first ? "open" : "closed"}
+          .toggler
+          - contents.each do |content|
+            %a{:href => story_path(content)}
+              = image_tag content.thumbnail.url
+    
+    
   #categories-people
     .inner
 
