@@ -49,11 +49,15 @@ function setup_modals() {
 	
 	$('.modal .steps .buttons a').click(function() {
 	  var $link = $(this);
-	  var width = $link.parent().width();
+	  var width = $link.parent().parent().width();
 	  var $steps = $link.parents('.steps');
 	  var current_margin = parseInt($steps.css('margin-left').replace('px',''));
 	  if ($link.hasClass('next-step')) {
-	    $steps.css('margin-left', current_margin - width);
+	    if ($link.attr('href') == '#join-modal') {
+	      $('#about-modal').hide();
+	    } else {
+	      $steps.css('margin-left', current_margin - width);
+	    }
 	  } else {
 	    $steps.css('margin-left', current_margin + width);
 	  }

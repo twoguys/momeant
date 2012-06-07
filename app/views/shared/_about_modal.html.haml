@@ -2,36 +2,51 @@
   .cover
   .padder
     %a.close{:href => "#"}
-    .insides.clearfix
+    .insides
       .steps
         .step
-          %h1 Momeant is a community for connecting with and supporting people doing great work online
-          %p Everyday, we enjoy great content made by real people all over the world. They're posting their work, telling interesting stories, and sharing their valuable knowledge with us on the Web.
-          %p So what's the problem? They need our support. 
-          %p Momeant is a great way to connect with these creators and support their valuable work.
+          %h1 Creators need our support
+          %section
+            %h3 Every day, we enjoy great content made by real people all over the world.
+            %p They're posting work, telling interesting stories, and sharing valuable knowledge with us on the Web.
+          %section
+            %h3 So what's the problem? Creators need our support.
+            %p Imagine a Web where content creators have the chance to get paid for their work, and creativity and knowledge equal real value. Momeant is a community for connecting with and supporting people doing great work online.
         
           .buttons
-            = link_to "Next &rarr;".html_safe, "#", :class => "next-step"
-        .step
-          %h1 People, not projects
-          %p Our focus is on solving a problem for content creators on the Web: getting support. As opposed to funding prospective projects and products, we aim to create an environment of support for people already doing and sharing great work, while bringing their audiences closer to the people behind the content.
-          %p Adipisicing elit, sed do eiusmod tempor incididunt ut labore.
-        
-          .buttons
-            = link_to "&larr; Prev".html_safe, "#", :class => "prev-step button"
-            = link_to "Next &rarr;".html_safe, "#", :class => "next-step"
-        
-        .step
-          %h1 Free for all
-          %p All creators on Momeant share their work for free. You discover and follow creators that interest you, and get updates from them, their work, and their audience.
-        
-          .buttons
-            = link_to "&larr; Prev".html_safe, "#", :class => "prev-step button"
-            = link_to "Next &rarr;".html_safe, "#", :class => "next-step"
-            
-        .step
-          %h1 Reward what matters to you
-          %p See something you like? Show your support with a reward. Rewards build connections between audience and creator, create social influence, and tell others in the community what you value, helping them discover new creators.
+            %span I totally agree, tell me more.
+            = link_to "Do it! &rarr;".html_safe, "#", :class => "next-step"
 
+        .step
+          %h1 The Momeant Principles
+          %section.bulleted.people
+            %h3 People, not projects.
+            %p For people already doing and sharing great work on the Web, who want to form lasting relationships with their audiences, Momeant is creating a close knit community of support.
+          %section.bulleted.flag
+            %h3 Free for all.
+            %p All creators on Momeant share their work for free. We strongly believe that information can't be kept locked up, but that creators who make the work we enjoy and value should have the opportunity to get support.
+          %section.bulleted.star
+            %h3 Reward what matters to you.
+            %p See something you like? Show support with a reward. Rewards build ongoing connections between creators and supporters, and show the community what you value, helping them discover new creators.
+        
           .buttons
-            = link_to "&larr; Prev".html_safe, "#", :class => "prev-step button"
+            = link_to "&larr; Back".html_safe, "#", :class => "prev-step button"
+            %span But how does it work?
+            = link_to "Tell me! &rarr;".html_safe, "#", :class => "next-step"
+        
+        .step
+          %h1 How it works
+          %section
+            %h3 Start by finding some interesting creators to follow.
+            %p Don't see someone you like, or are you a creator yourself? #{mail_to "team@momeant.com", "Email and tell us."}
+          %section
+            %h3 See some great work? Reward the creator.
+            %p You become a supporter of creators you care about, receive updates from them, follow their work, and connect with them directly.  
+          %section
+            %h3 Here’s the bottom line
+            %p We want to imagine a Web community where anyone sharing creativity and knowledge can exchange it for real value. Take the first step and join us.
+          
+          .buttons
+            = link_to "&larr; Back".html_safe, "#", :class => "prev-step button"
+            %span I'm convinced.
+            = link_to "Sign Up &rarr;".html_safe, "#join-modal", :class => "next-step"

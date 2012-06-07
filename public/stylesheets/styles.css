@@ -1885,67 +1885,6 @@ form.user_edit {
   form.user_edit #user_interest_list {
     width: 98%; }
 
-#reward-viz-example {
-  width: 607px;
-  height: 499px;
-  background: transparent url(../images/rewardVizExplanation.png) no-repeat 0 0;
-  position: relative; }
-  #reward-viz-example .tip {
-    position: absolute; }
-    #reward-viz-example .tip .hover {
-      width: 35px;
-      height: 35px;
-      cursor: help; }
-    #reward-viz-example .tip .tipsy {
-      display: none;
-      position: absolute;
-      width: 125px; }
-      #reward-viz-example .tip .tipsy .tipsy-inner {
-        background: white;
-        color: black;
-        font-family: "handwritten", cursive;
-        font-size: 14px;
-        line-height: 1em;
-        letter-spacing: 0.04em; }
-    #reward-viz-example .tip .twitter, #reward-viz-example .tip .facebook {
-      display: inline-block;
-      width: 12px;
-      height: 12px;
-      background: transparent url(../images/icons/twitterTiny.png) no-repeat;
-      position: relative;
-      top: 2px; }
-    #reward-viz-example .tip .facebook {
-      background-image: url(../images/icons/facebookTiny.png); }
-  #reward-viz-example .tip:hover .tipsy {
-    display: block; }
-  #reward-viz-example #avatar-tooltip {
-    top: 110px;
-    left: 131px; }
-    #reward-viz-example #avatar-tooltip .tipsy {
-      left: -127px;
-      top: -13px; }
-  #reward-viz-example #rewards-tooltip {
-    top: 79px;
-    left: 407px; }
-    #reward-viz-example #rewards-tooltip .tipsy {
-      width: 150px;
-      right: -153px;
-      top: -13px; }
-  #reward-viz-example #impact-tooltip {
-    top: 210px;
-    left: 396px; }
-    #reward-viz-example #impact-tooltip .tipsy {
-      width: 170px;
-      right: -174px;
-      top: -27px; }
-  #reward-viz-example #sharing-tooltip {
-    top: 363px;
-    left: 247px; }
-    #reward-viz-example #sharing-tooltip .tipsy {
-      width: 185px;
-      left: -79px;
-      bottom: -55px; }
-
 table.users {
   width: 100%; }
   table.users td {
@@ -6137,10 +6076,11 @@ ul.stories .excerpt {
     position: absolute;
     z-index: 1; }
   #join-modal .padder, #login-modal .padder, #feedback-modal .padder, #about-diagram-modal .padder, #about-modal .padder {
-    width: 480px;
+    width: 510px;
     margin: 0 auto;
-    background-color: #e0e0e0;
-    padding: 15px 20px 10px;
+    background: #333333;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 10px;
     position: relative;
     top: 170px;
     z-index: 2;
@@ -6158,6 +6098,8 @@ ul.stories .excerpt {
       height: 30px;
       display: block;
       background: transparent url(../images/modalClose.png) no-repeat 0 0; }
+  #join-modal .insides, #login-modal .insides, #feedback-modal .insides, #about-diagram-modal .insides, #about-modal .insides {
+    background: #f4f4f4; }
   #join-modal .placeholder, #login-modal .placeholder, #feedback-modal .placeholder, #about-diagram-modal .placeholder, #about-modal .placeholder {
     color: #aaaaaa;
     font-style: italic;
@@ -6262,34 +6204,61 @@ ul.stories .excerpt {
       font-family: "proxima-nova-1", "proxima-nova-2", helvetica, sans-serif;
       text-shadow: none; }
 
+#about-modal .padder {
+  top: 50%;
+  margin-top: -300px; }
+#about-modal .padder, #about-modal .insides {
+  width: 800px; }
 #about-modal .insides {
-  width: 480px;
-  overflow: hidden; }
+  overflow: hidden;
+  position: relative; }
 #about-modal .steps {
   color: black;
   width: 8000px;
-  height: 250px;
+  height: 600px;
   -webkit-transition: margin 0.2s ease-in-out;
   -moz-transition: margin 0.2s ease-in-out;
   -ms-transition: margin 0.2s ease-in-out;
   -o-transition: margin 0.2s ease-in-out;
   transition: margin 0.2s ease-in-out; }
   #about-modal .steps .step {
-    width: 480px;
-    height: 215px;
-    padding-bottom: 35px;
+    width: 800px;
+    height: 600px;
     float: left;
     position: relative; }
     #about-modal .steps .step h1 {
-      padding: 5px 0 15px;
-      border-bottom: 1px solid #aaaaaa; }
+      text-align: center;
+      height: 130px;
+      line-height: 130px;
+      font-family: "jeanne-moderno-ultra-1", "jeanne-moderno-ultra-2", serif;
+      font-size: 32px;
+      font-style: italic;
+      background: #00aeef;
+      color: white; }
+    #about-modal .steps .step h1 {
+      margin-bottom: 40px; }
+    #about-modal .steps .step section {
+      padding: 0 80px;
+      margin-bottom: 30px; }
+      #about-modal .steps .step section.bulleted {
+        background: transparent url(../images/modals/people.png) no-repeat 38px 0; }
+      #about-modal .steps .step section.flag {
+        background-image: url(../images/modals/flag.png); }
+      #about-modal .steps .step section.star {
+        background-image: url(../images/modals/star.png); }
+    #about-modal .steps .step h3 {
+      font-size: 17px;
+      margin-bottom: 5px; }
     #about-modal .steps .step p {
-      margin: 10px 0; }
+      margin: 0;
+      line-height: 1.7em;
+      font-size: 15px; }
     #about-modal .steps .step .buttons {
       position: absolute;
-      bottom: 5px;
-      left: 0;
-      width: 100%; }
+      bottom: 30px;
+      left: 80px;
+      right: 80px;
+      text-align: right; }
       #about-modal .steps .step .buttons a {
         height: 28px;
         line-height: 30px;
@@ -6304,11 +6273,20 @@ ul.stories .excerpt {
         font-size: 12px;
         letter-spacing: 0.5px;
         font-family: "proxima-nova-1", "proxima-nova-2", helvetica, sans-serif;
-        background: #00aeef; }
+        background: #00aeef;
+        padding: 3px 20px; }
+      #about-modal .steps .step .buttons span {
+        position: relative;
+        top: 9px;
+        padding-right: 10px; }
     #about-modal .steps .step a.prev-step {
       float: left; }
     #about-modal .steps .step a.next-step {
       float: right; }
+
+#join-modal .insides, #login-modal .insides {
+  height: 280px;
+  padding: 20px; }
 
 #join-modal .copy {
   width: 200px;
@@ -6317,7 +6295,9 @@ ul.stories .excerpt {
   color: #252525; }
 
 #login-modal .padder {
-  width: 210px; }
+  width: 250px; }
+#login-modal .insides {
+  height: 250px; }
 #login-modal .login {
   padding: 0;
   margin-bottom: 15px; }
