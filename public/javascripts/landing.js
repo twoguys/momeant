@@ -3,11 +3,12 @@ window.DiscoveryView = Backbone.View.extend({
 	el: $('body'),
 	
 	events: {
-		'click #categories a.top':      'category_clicked',
-		'click #categories .people a':  'person_clicked',
-		'click .actions a.follow':      'subscribe',
-		'click .person .more .next':    'next_person_content',
-		'click .person .more .prev':    'prev_person_content'
+		'click #categories a.top':          'category_clicked',
+		'click #categories .people a':      'person_clicked',
+		'click .actions a.follow':          'subscribe',
+		'click .person .more .next':        'next_person_content',
+		'click .person .more .prev':        'prev_person_content',
+		'click #featured-content .toggler': 'toggle_featured_content'
 	},
 	
 	initialize: function() {
@@ -90,6 +91,13 @@ window.DiscoveryView = Backbone.View.extend({
     $link.siblings('.next').removeClass('off');
     if (current == 0) { $link.addClass('off'); }
     return false;
+  },
+  
+  toggle_featured_content: function(event) {
+    var $media_type = $(event.currentTarget).parent();
+    if ($media_type.hasClass('open')) { return false; }
+    
+    $media_type.addClass('open').siblings().removeClass('open');
   }
 	
 });

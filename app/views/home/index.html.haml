@@ -20,8 +20,15 @@
         .media-type{:id => "#{type}-type", :class => first ? "open" : "closed"}
           .toggler
           - contents.each do |content|
-            %a{:href => story_path(content)}
-              = image_tag content.thumbnail.url
+            - if content.text_preview?
+              %a.content-preview.smaller{:href => story_path(content), :class => "#{content.media_type} #{content.template}"}
+                .inner
+                  .image
+                  .quote= truncate(content.template_text, :length => 140)
+            - else
+              %a.content-preview.smaller{:href => story_path(content), :class => content.media_type}
+                .inner{:style => "background-image: url(#{content.thumbnail.url(:large)})"}
+        - first = false
     
     
   #categories-people

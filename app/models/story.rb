@@ -311,11 +311,12 @@ class Story < ActiveRecord::Base
   
   def self.featured_on_landing
     content_hash = ActiveSupport::OrderedHash.new
-    content_hash[:photo] = [Story.published[0]] * 5
-    content_hash[:art] = [Story.published[1]] * 5
-    content_hash[:video] = [Story.published[2]] * 5
-    content_hash[:sound] = [Story.published[3]] * 5
-    content_hash[:writing] = [Story.published[4]] * 5
+    stories = Story.published.newest_first
+    content_hash[:photo] = [stories[0]] * 4
+    content_hash[:art] = [stories[1]] * 4
+    content_hash[:video] = [stories[2]] * 4
+    content_hash[:sound] = [stories[3]] * 4
+    content_hash[:writing] = [stories[4]] * 4
     content_hash
   end
   

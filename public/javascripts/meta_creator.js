@@ -135,7 +135,7 @@ window.MetaCreatorView = Backbone.View.extend({
 		
 		$input.keypress(function(event) {
       var current_characters = $input.val().length;
-      if (current_characters == max) {
+      if (event.keyCode != 8 && current_characters == max) { // 8 = backspace
         event.preventDefault();
         $characters_left.text(0);
         return false;

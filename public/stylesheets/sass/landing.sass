@@ -10,7 +10,7 @@ body#home.index #main
 		margin: 0 auto
 	
 	#slogan
-		padding: 140px 0 200px
+		padding: 140px 0 100px
 		text-align: center
 		.line
 			width: 80px
@@ -52,8 +52,58 @@ body#home.index #main
 			a:hover
 				background: $blue
 	
+	#featured-content
+		height: 132px
+		width: 1050px
+		margin: 0 auto 100px
+		padding-top: 120px
+		background: transparent url(../images/landing/content-note.png) no-repeat 98% 0
+		.media-type
+			height: 100%
+			float: left
+			margin-right: 10px
+			width: 41px
+			overflow: hidden
+			@include transition(width)
+			&:last-child
+				margin-right: 0
+			.toggler
+				width: 41px
+				height: 100%
+				float: left
+				background: #333 url(../images/landing/media-types/photo.png) no-repeat 50% 50%
+				@include rounded(3px)
+				cursor: pointer
+				&:hover
+					background-color: #444
+			a
+				width: 200px
+				height: 100%
+				float: left
+		.media-type.open
+			width: 841px
+			.toggler
+				background-color: $blue
+				-webkit-border-top-right-radius: 0
+				-webkit-border-bottom-right-radius: 0
+				-moz-border-radius-topright: 0
+				-moz-border-radius-bottomright: 0
+				border-top-right-radius: 0
+				border-bottom-right-radius: 0
+			a
+				display: block
+		#art-type .toggler
+			background-image: url(../images/landing/media-types/art.png)
+		#video-type .toggler
+			background-image: url(../images/landing/media-types/video.png)
+		#sound-type .toggler
+			background-image: url(../images/landing/media-types/sound.png)
+		#writing-type .toggler
+			background-image: url(../images/landing/media-types/writing.png)
+	
 	#categories-people
-		padding-bottom: 50px
+		padding: 150px 110px 100px
+		background: transparent url(../images/landing/creators-note.png) no-repeat 0 0
 	#categories-people > .inner
 		@include clearfix
 		width: 100%

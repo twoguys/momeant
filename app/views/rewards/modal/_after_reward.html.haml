@@ -32,5 +32,5 @@
           = link_to("Launch Facebook Configuration", "#{root_url}auth/facebook", :id => "configure-facebook")
 
 :javascript
-  mpq.track('Rewarded Content', {story_id: '#{@story.id}', mp_note: '#{@reward.amount} reward coins'});
+  mpq.track('Rewarded Content', {story_id: '#{@story.id}', mp_note: '#{@reward.amount}', amount: #{@reward.amount}});
   RewardModal.monitor_sharing(#{@reward.id});

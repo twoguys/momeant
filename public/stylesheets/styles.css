@@ -634,7 +634,7 @@ body#home.index #main {
     width: 830px;
     margin: 0 auto; }
   #landing-page #slogan {
-    padding: 140px 0 200px;
+    padding: 140px 0 100px;
     text-align: center; }
     #landing-page #slogan .line {
       width: 80px;
@@ -681,8 +681,63 @@ body#home.index #main {
         transition: background 0.1s ease-in-out; }
       #landing-page #slogan #learn-more a:hover {
         background: #00aeef; }
+  #landing-page #featured-content {
+    height: 132px;
+    width: 1050px;
+    margin: 0 auto 100px;
+    padding-top: 120px;
+    background: transparent url(../images/landing/content-note.png) no-repeat 98% 0; }
+    #landing-page #featured-content .media-type {
+      height: 100%;
+      float: left;
+      margin-right: 10px;
+      width: 41px;
+      overflow: hidden;
+      -webkit-transition: width 0.2s ease-in-out;
+      -moz-transition: width 0.2s ease-in-out;
+      -ms-transition: width 0.2s ease-in-out;
+      -o-transition: width 0.2s ease-in-out;
+      transition: width 0.2s ease-in-out; }
+      #landing-page #featured-content .media-type:last-child {
+        margin-right: 0; }
+      #landing-page #featured-content .media-type .toggler {
+        width: 41px;
+        height: 100%;
+        float: left;
+        background: #333333 url(../images/landing/media-types/photo.png) no-repeat 50% 50%;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        cursor: pointer; }
+        #landing-page #featured-content .media-type .toggler:hover {
+          background-color: #444444; }
+      #landing-page #featured-content .media-type a {
+        width: 200px;
+        height: 100%;
+        float: left; }
+    #landing-page #featured-content .media-type.open {
+      width: 841px; }
+      #landing-page #featured-content .media-type.open .toggler {
+        background-color: #00aeef;
+        -webkit-border-top-right-radius: 0;
+        -webkit-border-bottom-right-radius: 0;
+        -moz-border-radius-topright: 0;
+        -moz-border-radius-bottomright: 0;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0; }
+      #landing-page #featured-content .media-type.open a {
+        display: block; }
+    #landing-page #featured-content #art-type .toggler {
+      background-image: url(../images/landing/media-types/art.png); }
+    #landing-page #featured-content #video-type .toggler {
+      background-image: url(../images/landing/media-types/video.png); }
+    #landing-page #featured-content #sound-type .toggler {
+      background-image: url(../images/landing/media-types/sound.png); }
+    #landing-page #featured-content #writing-type .toggler {
+      background-image: url(../images/landing/media-types/writing.png); }
   #landing-page #categories-people {
-    padding-bottom: 50px; }
+    padding: 150px 110px 100px;
+    background: transparent url(../images/landing/creators-note.png) no-repeat 0 0; }
   #landing-page #categories-people > .inner {
     display: inline-block;
     width: 100%; }
@@ -2209,6 +2264,8 @@ body#subscriptions.index {
     top: 50%;
     left: 50%;
     margin: -195px 0 0 -370px;
+    font-family: "jeanne-moderno-ultra-1", "jeanne-moderno-ultra-2", serif;
+    font-style: italic;
     font-size: 34px;
     -webkit-transform: rotate(-2deg);
     -moz-transform: rotate(-2deg);
@@ -2237,6 +2294,7 @@ body#subscriptions.index {
     -o-transform: rotate(-3deg);
     -ms-transform: rotate(-3deg);
     rotation: -3deg;
+    font-family: "jeanne-moderno-ultra-1", "jeanne-moderno-ultra-2", serif;
     font-size: 1.3em;
     font-weight: 700; }
 
@@ -2261,9 +2319,9 @@ body#subscriptions.index {
   margin: -60px 0 0 -100px;
   font-size: 13px; }
   .content-preview.watchmen.small .inner .image {
-    width: 30px;
-    height: 30px;
-    background-image: url(../images/content/templates/watchmen-small.png); }
+    width: 24px;
+    height: 24px;
+    background-image: url(../images/content/templates/watchmen-smaller.png); }
 
 .content-preview.blob.small {
   background-image: url(../images/content/templates/blob-small.png); }
@@ -2280,6 +2338,32 @@ body#subscriptions.index {
     height: 118px;
     margin: -55px 0 0 -64px;
     font-size: 11px; }
+
+.content-preview.watchmen.smaller .inner {
+  width: 170px;
+  height: 80px;
+  margin: -54px 0 0 -87px;
+  font-size: 10px; }
+  .content-preview.watchmen.smaller .inner .image {
+    width: 30px;
+    height: 30px;
+    background-image: url(../images/content/templates/watchmen-small.png); }
+
+.content-preview.blob.smaller {
+  background-image: url(../images/content/templates/blob-smaller.png); }
+  .content-preview.blob.smaller .inner {
+    width: 97px;
+    height: 80px;
+    margin: -34px 0 0 -43px;
+    font-size: 7px; }
+
+.content-preview.bowling.smaller {
+  background-image: url(../images/content/templates/bowling-smaller.png); }
+  .content-preview.bowling.smaller .inner {
+    width: 90px;
+    height: 103px;
+    margin: -36px 0 0 -47px;
+    font-size: 7px; }
 
 /* Story creation */
 body#stories.edit.fullscreen #header {
