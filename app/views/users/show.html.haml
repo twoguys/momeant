@@ -35,7 +35,7 @@
                   = link_to "Edit", edit_story_path(content), :class => "edit" if me?(@user)
                   = link_to "Delete", story_path(content), :method => :delete, :confirm => "WHOA WAIT UP! If you delete this you will lose ALL REWARDS on this content. Are you SURE you want to delete it?"
                 - if current_user && current_user.is_admin? && content.editorial.nil?
-                  = link_to "Editorialize", admin_editorials_path(:id => content.id), :method => :post
+                  = link_to "Feature", admin_editorials_path(:id => content.id), :method => :post
               .support= content.users_who_rewarded.count
           
             .comments
