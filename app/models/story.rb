@@ -291,8 +291,27 @@ class Story < ActiveRecord::Base
     end
   end
   
+  def new_article_string
+    case media_type
+    when "photos"
+      "some new photos"
+    when "video"
+      "a new video"
+    when "writing"
+      "a new article"
+    when "music"
+      "some new music"
+    else
+      "some new content"
+    end
+  end
+  
   def text_preview?
     self.preview_type == "text"
+  end
+  
+  def text_template_image
+    "content/templates/#{self.template}"
   end
   
   def reload_thumbnail!

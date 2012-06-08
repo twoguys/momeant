@@ -108,7 +108,11 @@ class UsersController < ApplicationController
   end
   
   def update_email_setting
-    return unless ["send_reward_notification_emails", "send_digest_emails", "send_message_notification_emails"].include?(params[:attribute])
+    return unless ["send_reward_notification_emails",
+      "send_digest_emails",
+      "send_new_follower_emails",
+      "send_following_updates",
+      "send_message_notification_emails"].include?(params[:attribute])
     
     @user = current_user
     current_value = @user.send params[:attribute]

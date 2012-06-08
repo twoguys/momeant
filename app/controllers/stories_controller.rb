@@ -77,6 +77,11 @@ class StoriesController < ApplicationController
       current_user.post_to_facebook(@story, story_url(@story)) unless sharing[:facebook].blank?
     end
     
+    # tell their followers (TODO: Background this later)
+    @story.user.subscribers.each do |user|
+      NotificationsMailer.content_from_following(user, @story.user, @story) if user.send_following_updates?
+    end
+    
     # track analytics across redirect
     flash[:track_story_publish] = @story.id
     

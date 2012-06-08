@@ -2,11 +2,17 @@
 %html{html_attrs('en')}
   %head
     = yield :head
-  %body
-    #outer{:style => "font-family: 'Lucida Console',Arial,Helvetica,sans-serif;width:100%;background:#f1f1f1;color:#000;padding:20px 0;"}
-      #inner{:style => "width:720px;margin:0 auto;"}
-        %a{:href => "http://momeant.com", :style => "display:block;width:720px;height:140px;"}
-          = image_tag "http://momeant.com/images/emails/header.png", :alt => "Momeant"
-        #content{:style => "background:#fff;padding:50px 70px;-webkit-border-bottom-right-radius: 10px;-webkit-border-bottom-left-radius: 10px;-moz-border-radius-bottomright: 10px;-moz-border-radius-bottomleft: 10px;border-bottom-right-radius: 10px;border-bottom-left-radius: 10px;"}
-
+  %body{:style => "margin:0;padding:0;"}
+    #outer{:style => "font-family: 'Helvetica Neue',Arial,Helvetica,sans-serif;width:100%;background:#f1f1f1;color:#000;padding:20px 0;"}
+      #inner{:style => "width:630px;padding-top:40px;margin:0 auto;background:#fff;border:1px solid #ddd;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;"}
+        %a{:href => "http://momeant.com", :style => "display:block;width:243px;height:76px;margin:0 auto 40px;"}
+          = image_tag "https://momeant-production.s3.amazonaws.com/emails/dark-on-white-header.png", :alt => "Momeant"
+        #content{:style => "padding:50px;border-top:1px solid #eee;position:relative;"}
+          = image_tag("https://momeant-production.s3.amazonaws.com/emails/star.png", :style => "width:12px;height:12px;position:absolute;top:-7px;left:50%;margin-left:-6px;")
           = yield
+        
+      - if @user_for_email_settings
+        %div{:style => "font-size:11px;color:#888;text-align:center;padding:20px 0 0;"}
+          %div p.s. Thanks for being such an awesome user! #{link_to "Edit your email preferences", settings_user_url(@user_for_email_settings)}
+      %div{:style => "font-size:11px;color:#888;text-align:center;padding:20px 0 0;"}
+        #{link_to "Follow us on Twitter @momeant", "http://twitter.com/momeant"} to keep up to date on all things Momeant.

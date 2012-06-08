@@ -20,7 +20,9 @@ class SubscriptionsController < ApplicationController
   end
   
   def create
-    Subscription.create(:subscriber_id => current_user.id, :user_id => @user.id)
+    existing_subscription = Subscription.where(:subscriber_id => current_user.id, :user_id => @user.id).first
+    Subscription.create(:subscriber_id => current_user.id, :user_id => @user.id) unless existing_subscription
+    NotificationsMailer.new_follower(@user, current_user).deliver if @user.send_new_follower_emails?
     render :json => {:success => true}
   end
   
