@@ -11,7 +11,7 @@ class BroadcastsController < ApplicationController
     
     # tell their followers (TODO: Background this later)
     current_user.subscribers.each do |user|
-      NotificationsMailer.broadcast_from_following(user, current_user, broadcast) if user.send_following_update_emails?
+      NotificationsMailer.broadcast_from_following(user, current_user, broadcast).deliver if user.send_following_update_emails?
     end
     
     render :json => { :success => true }

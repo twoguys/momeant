@@ -79,7 +79,7 @@ class StoriesController < ApplicationController
     
     # tell their followers (TODO: Background this later)
     @story.user.subscribers.each do |user|
-      NotificationsMailer.content_from_following(user, @story.user, @story) if user.send_following_update_emails?
+      NotificationsMailer.content_from_following(user, @story.user, @story).deliver if user.send_following_update_emails?
     end
     
     # track analytics across redirect
