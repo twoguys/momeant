@@ -55,6 +55,7 @@ class NotificationsMailer < ActionMailer::Base
     @following = following
     @content = content
     @user_for_email_settings = @user
+    @dont_pad_email = true
     
     mail :to => user.email, :subject => "#{following.name} just shared #{@content.new_article_string}."
   end
@@ -64,6 +65,7 @@ class NotificationsMailer < ActionMailer::Base
     @following = following
     @broadcast = broadcast
     @user_for_email_settings = @user
+    @dont_pad_email = true
     
     mail :to => user.email, :subject => "#{following.name} just posted a new broadcast message."
   end
