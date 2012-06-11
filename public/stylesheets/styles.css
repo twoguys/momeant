@@ -214,34 +214,30 @@ h2 {
       height: 23px;
       background: transparent url(../images/navigation/feed-plus-one.png) no-repeat;
       display: none; }
-    #header #user-nav #coins a {
-      display: block;
-      height: 36px;
-      padding: 6px 10px 0;
-      color: white; }
-      #header #user-nav #coins a .amount, #header #user-nav #coins a .text {
+    #header #user-nav #coins {
+      position: absolute;
+      top: 0;
+      right: 380px;
+      padding-top: 6px;
+      height: 36px; }
+      #header #user-nav #coins .text, #header #user-nav #coins .amount {
         float: left; }
-      #header #user-nav #coins a .amount {
-        font-family: "ff-dagny-web-pro-1", "ff-dagny-web-pro-2", sans-serif;
-        margin-right: 5px;
-        font-size: 25px;
-        font-weight: 100;
-        line-height: 30px;
-        color: #00aeef; }
-      #header #user-nav #coins a .text {
-        display: none;
+      #header #user-nav #coins .text {
+        margin-right: 10px;
         font-size: 10px;
         line-height: 10px;
-        padding: 3px 6px 0 0;
-        text-align: right; }
-        #header #user-nav #coins a .text span {
-          display: block; }
-    #header #user-nav #coins.active a {
-      background-color: #00aeef; }
-      #header #user-nav #coins.active a .amount {
-        color: white; }
-      #header #user-nav #coins.active a .text {
-        color: black; }
+        color: white;
+        width: 70px;
+        text-align: right;
+        padding-top: 3px; }
+      #header #user-nav #coins a {
+        background: none;
+        display: block;
+        height: 36px;
+        font-family: "ff-dagny-web-pro-1", "ff-dagny-web-pro-2", sans-serif;
+        font-size: 25px;
+        font-weight: 100;
+        line-height: 30px; }
     #header #user-nav #search {
       position: absolute;
       top: 7px;
@@ -6943,6 +6939,24 @@ a#load-more {
       font-size: 36px;
       font-weight: 200;
       text-align: right; }
+
+#coins-page #explanation {
+  width: 600px;
+  margin: 50px auto 0;
+  padding: 40px 40px 20px;
+  background: white;
+  border: 1px solid #cccccc;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2); }
+  #coins-page #explanation h3 {
+    font-size: 1.5em;
+    margin-bottom: 20px; }
+  #coins-page #explanation p {
+    margin: 0 0 20px; }
 
 a.tag {
   display: inline-block;
