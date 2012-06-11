@@ -2,12 +2,15 @@
   .cover
   .padder
     %a.close{:href => "#"}
-    .insides.clearfix
-      %h2 What do you think?
-      = form_tag feedback_users_path, :id => "feedback-form" do
-        %fieldset
-          %ul
-            %li.text
-              = text_area_tag :feedback_comment, "", :placeholder => "Your thoughts, opinions, ideas..."
-            %li.submit
-              = submit_tag "Give Feedback"
+    .insides
+      .before
+        %h2 What do you think?
+        = form_tag feedback_users_path, :id => "feedback-form" do
+          %fieldset
+            %ul
+              %li.text
+                = text_area_tag :feedback_comment, "", :placeholder => "Your thoughts, opinions, ideas..."
+              %li.submit
+                = submit_tag "Give Feedback"
+      .after
+        Thanks!

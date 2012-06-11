@@ -109,7 +109,14 @@ function handle_feedback_form() {
 		$.post(url, { comment:comment.val() });
 		
 		comment.val('');
-		$('#feedback-modal').fadeOut('fast');
+		$('#feedback-modal .before').fadeOut(200, function() {
+		  $('#feedback-modal .after').fadeIn(200);
+		  setTimeout(function() {
+		    $('#feedback-modal .after').fadeOut(200, function() {
+    		  $('#feedback-modal .before').fadeIn(200);
+  		  });
+		  }, 2000);
+		});
 	});
 }
 
