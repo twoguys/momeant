@@ -17,5 +17,5 @@
       = link_to @content.title, story_url(@content), :style => "font-size:18px;color:#00aeff;margin-bottom:3px;line-height:18px;"
       %p{:style => "margin:5px 0;font-size:13px;"}= @content.synopsis
       %div{:style => "font-size:12px;font-style:italic;color:#888;"}= @content.tag_list.join(', ')
-    %td{:style => "width: 150px;text-align:right;vertical-align:top;"}
+    %td{:style => "width: 150px;text-align:right;"}
       = link_to "View #{@content.media_type} &rarr;".html_safe, story_url(@content), :style => "background:#262626;color:#fff;font-size:14px;font-weight:700;text-transform:uppercase;padding:8px 12px;text-decoration:none;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;"
