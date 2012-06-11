@@ -302,7 +302,7 @@ class Story < ActiveRecord::Base
     when "music"
       "some new music"
     else
-      "some new content"
+      "some new work"
     end
   end
   

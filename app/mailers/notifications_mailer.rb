@@ -56,7 +56,7 @@ class NotificationsMailer < ActionMailer::Base
     @content = content
     @user_for_email_settings = @user
     
-    mail :to => user.email, :subject => "#{following.name} just shared some new work."
+    mail :to => user.email, :subject => "#{following.name} just shared #{@content.new_article_string}."
   end
   
   def broadcast_from_following(user, following, broadcast)

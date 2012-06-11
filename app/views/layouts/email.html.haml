@@ -8,7 +8,8 @@
         %a{:href => "http://momeant.com", :style => "display:block;width:243px;height:76px;margin:0 auto 40px;"}
           = image_tag "https://momeant-production.s3.amazonaws.com/emails/dark-on-white-header.png", :alt => "Momeant"
         #content{:style => "padding:50px;border-top:1px solid #eee;position:relative;"}
-          = image_tag("https://momeant-production.s3.amazonaws.com/emails/star.png", :style => "width:12px;height:12px;position:absolute;top:-7px;left:50%;margin-left:-6px;")
+          %div{:style => "width:12px;height:12px;position:absolute;top:-7px;left:50%;margin-left:-6px;"}
+            = image_tag("https://momeant-production.s3.amazonaws.com/emails/star.png", :style => "display:block;width:12px;height:12px;")
           = yield
         
       - if @user_for_email_settings
