@@ -26,7 +26,6 @@
               .media-type{:class => content.media_type}
               .text
                 - title = content.title.blank? ? "Untitled" : content.title
-                - title += " (unpublished)" if !content.published?
                 = link_to(title, story_url(content), :class => "title")
                 .synopsis= truncate(content.synopsis, :length => 140)
                 - if content.category
@@ -47,6 +46,9 @@
                 %ul.comment-list
                   = render :partial => "comments/comment", :collection => content.comments, :as => :comment
                 = render "comments/form", :commentable => content
+                
+            - if !content.published?
+              = link_to "Unpublished", edit_story_path(content), :class => "unpublished-ribbon"
             
           - index += 1
   
