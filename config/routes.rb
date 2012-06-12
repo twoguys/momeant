@@ -74,12 +74,15 @@ Repo::Application.routes.draw do
       get :activity
       get :more_activity #ajax
       get :settings
-      get 'become-a-creator', :action => :become_a_creator, :as => :become_a_creator
       post :submit_creator_request
       post :update_in_place
       post :update_avatar
       post :update_email_setting
       post :change_password
+    end
+    
+    collection do
+      get 'become-a-creator', :action => :become_a_creator, :as => :become_a_creator
     end
     
     # Feedback

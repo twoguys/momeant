@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!, :only => [:edit, :update, :update_in_place, :udpate_avatar, :analytics, :feedback, :settings, :change_password, :fund_pledged_rewards, :creator_info, :creator_payment]
-  before_filter :find_user, :except => [:community, :community_creators, :analytics, :billing_updates, :feedback, :fund_pledged_rewards, :creators]
+  before_filter :find_user, :except => [:community, :community_creators, :analytics, :billing_updates, :feedback, :fund_pledged_rewards, :creators, :become_a_creator]
   skip_before_filter :verify_authenticity_token, :only => [:billing_updates, :update_avatar]
   skip_before_filter :creator_finished_signing_up?, :only => [:creator_info, :update_avatar]
 
