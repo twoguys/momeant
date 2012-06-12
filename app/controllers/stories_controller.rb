@@ -69,17 +69,17 @@ class StoriesController < ApplicationController
     unless @story.published?
       @story.update_attribute(:published, true)
       Activity.create(:actor_id => @story.user.id, :action_type => "Story", :action_id => @story.id)
+      
+      # tell their followers (TODO: Background this later)
+      @story.user.subscribers.each do |user|
+        NotificationsMailer.content_from_following(user, @story.user, @story).deliver if user.send_following_update_emails?
+      end
     end
     
     sharing = params[:share]
     if sharing
       current_user.post_to_twitter(@story, story_url(@story)) unless sharing[:twitter].blank?
       current_user.post_to_facebook(@story, story_url(@story)) unless sharing[:facebook].blank?
-    end
-    
-    # tell their followers (TODO: Background this later)
-    @story.user.subscribers.each do |user|
-      NotificationsMailer.content_from_following(user, @story.user, @story).deliver if user.send_following_update_emails?
     end
     
     # track analytics across redirect
