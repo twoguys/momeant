@@ -276,6 +276,14 @@ class Story < ActiveRecord::Base
     end
   end
   
+  def media_are_or_is
+    if media_type == "photos"
+      "photos are"
+    else
+      "#{media_type} is"
+    end
+  end
+  
   def article_string
     case media_type
     when "photos"

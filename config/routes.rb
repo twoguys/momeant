@@ -19,6 +19,7 @@ Repo::Application.routes.draw do
     member do
       delete :remove_tag_from
       post :publish
+      get :share
       put :autosave
       post :update_thumbnail
       post :change_to_external

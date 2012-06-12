@@ -85,7 +85,11 @@ class StoriesController < ApplicationController
     # track analytics across redirect
     flash[:track_story_publish] = @story.id
     
-    redirect_to user_path(@story.user)#, :notice => "Your content has been shared!"
+    redirect_to share_story_path(@story)
+  end
+  
+  def share
+    
   end
   
   def update_thumbnail
