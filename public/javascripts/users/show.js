@@ -61,6 +61,7 @@ window.ProfileView = Backbone.View.extend({
     if ($link.text() == 'Follow') {
       $.post('/users/' + user_id + '/subscriptions');
       $link.text('Unfollow');
+      show_feed_plus_one();
     } else {
       $.post('/users/' + user_id + '/subscriptions/unsubscribe');
       $link.text('Follow');

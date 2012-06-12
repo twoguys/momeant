@@ -1,34 +1,55 @@
-#slides-wrapper
-  #slides
-    #message.slide
-      .slide-insides
-        %h1= link_to "Reward", about_path, :class => "tooltipped-e", :title => "Tell me more..."
-        %h2  what matters to you.
+#landing-page
   
-    = render :partial => "home/work", :collection => @people.map(&:discovery_content), :as => :content
-
-#sidebar
-  
-  #filter
-    %ul#featured
-      %li.selected= link_to "Featured", "#"
-      %li= link_to "Popular", "#"
+  #slogan
+    .line
+    %h1
+      %strong Reward
+      %em what matters to you.
+    %h3
+      %a{:href => "#about-modal"}
+        Momeant is a community for connecting with
+        %br
+        and supporting people doing great work online.
+    #learn-more
+      = link_to "Learn more", "#about-modal", :class => "button"
     
-    %ul#categories
-      %li.selected
-        = link_to "All", "#"
-        %span.comma ,
-      - Story::CATEGORIES.each do |category|
-        %li
-          = link_to category, "#"
-          %span.comma ,
-  
-  #people
-    %ul#list
-      = render :partial => "home/person", :collection => @people, :as => :person
-          
+  - if @featured_content
+    #featured-content
+      - first = true
+      - @featured_content.each do |type, contents|
+        .media-type{:id => "#{type}-type", :class => first ? "open" : "closed"}
+          .toggler
+          - contents.each do |content|
+            - if content.text_preview?
+              %a.content-preview.smaller{:href => story_path(content), :class => "#{content.media_type} #{content.template}"}
+                .inner
+                  .image
+                  .quote= truncate(content.template_text, :length => 140)
+            - else
+              %a.content-preview.smaller{:href => story_path(content), :class => content.media_type}
+                .inner{:style => "background-image: url(#{content.thumbnail.url(:large)})"}
+        - first = false
+    
+    
+  #categories-people
+    .inner
+
+      %ul#categories
+        - index = 0
+        - @content.each_pair do |category, content|
+          %li{:class => index == 0 ? "selected" : ""}
+            = link_to category, "#", :class => "top"
+            .people
+              - content.each do |story|
+                = link_to story.user.name, "#", :data => index, :class => index == 0 ? "selected" : ""
+                - index += 1
+       
+      #people
+        %ul
+          - @content.each_pair do |category, content|
+            = render :partial => "home/person", :collection => content, :as => :content
 
 :javascript
   mpq.track('Viewed Homepage');
-= javascript_include_tag "withinViewport"
+  var user_id = #{current_user ? current_user.id : 'undefined'};
 = javascript_include_tag "landing"

@@ -41,7 +41,7 @@ $typewriter: "museo-slab-1","museo-slab-2",serif
 $caps: "museo-slab-1","museo-slab-2",serif 
 $dropcaps: "ambroise-std-1","ambroise-std-2",serif
 $numerals: "ff-dagny-web-pro-1","ff-dagny-web-pro-2",sans-serif
-$handwritten: "handwritten", cursive
+$fatty: "jeanne-moderno-ultra-1", "jeanne-moderno-ultra-2", serif
 
 
 $border_type: 1px dotted #aaa
@@ -93,7 +93,7 @@ $border_solid: 1px solid #DEDEDE
 @mixin gradient($color1: #fdfdfd, $color2: #f0f0f0)
 	background-image: -moz-linear-gradient(center top, $color1 4%, $color2 52%)
 	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, $color1), color-stop(0.52, $color2))
-@mixin transition($property: all, $time: 0.2s, $timing: linear)
+@mixin transition($property: all, $time: 0.2s, $timing: ease-in-out)
 	-webkit-transition: $property $time $timing
 	-moz-transition: $property $time $timing
 	-ms-transition: $property $time $timing

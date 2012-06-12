@@ -14,18 +14,22 @@
     .info
       .media-type{:class => content.media_type}
       .text
-        = link_to(content.title, story_url(content), :class => "title")
+        = link_to(content.title, story_url(content, :impacted_by => reward.id), :class => "title")
         .synopsis= truncate(content.synopsis, :length => 140)
         - if content.category
           %span.category= content.category
-    %a.content-preview{:href => story_path(content), :class => "#{content.media_type} #{content.template}"}
-      - if content.text_media_type?
+    - if content.text_preview?
+      %a.content-preview{:href => story_path(content, :impacted_by => reward.id), :class => "#{content.media_type} #{content.template}"}
         .inner
           .image
           .quote= truncate(content.template_text, :length => 140)
-      - else
+        .curvy  
+        .tip View #{content.media_type} &rarr;
+    - else
+      %a.content-preview{:href => story_path(content), :class => content.media_type}
         .inner{:style => "background-image: url(#{content.thumbnail.url(:large)})"}
-      .curvy
+        .curvy
+        .tip View #{content.media_type} &rarr;
 
     .reward
       .text

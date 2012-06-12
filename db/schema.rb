@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120424153758) do
+ActiveRecord::Schema.define(:version => 20120607162323) do
 
   create_table "activities", :force => true do |t|
     t.integer  "actor_id"
@@ -104,20 +104,16 @@ ActiveRecord::Schema.define(:version => 20120424153758) do
     t.integer  "impact",                                             :default => 0
     t.decimal  "amount",               :precision => 8, :scale => 2
     t.boolean  "paid_for",                                           :default => false
+    t.integer  "amazon_payment_id"
   end
 
   create_table "editorials", :force => true do |t|
     t.integer  "user_id"
     t.text     "quote"
-    t.boolean  "published",               :default => false
-    t.string   "show_as",                 :default => "creator"
+    t.boolean  "published",  :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "background_file_name"
-    t.string   "background_content_type"
-    t.integer  "background_file_size"
-    t.datetime "background_updated_at"
-    t.string   "occupation"
+    t.integer  "story_id"
   end
 
   create_table "galleries", :force => true do |t|
@@ -205,15 +201,15 @@ ActiveRecord::Schema.define(:version => 20120424153758) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "purchased_count",                                    :default => 0
-    t.boolean  "published",                                          :default => false
+    t.integer  "purchased_count",                                     :default => 0
+    t.boolean  "published",                                           :default => false
     t.integer  "thumbnail_page"
     t.integer  "price"
-    t.integer  "likes_count",                                        :default => 0
+    t.integer  "likes_count",                                         :default => 0
     t.text     "synopsis"
-    t.integer  "reward_count_old",                                   :default => 0
-    t.integer  "view_count",                                         :default => 0
-    t.integer  "comment_count",                                      :default => 0
+    t.integer  "reward_count_old",                                    :default => 0
+    t.integer  "view_count",                                          :default => 0
+    t.integer  "comment_count",                                       :default => 0
     t.text     "thankyou"
     t.string   "thumbnail_file_name"
     t.string   "thumbnail_file_type"
@@ -221,13 +217,15 @@ ActiveRecord::Schema.define(:version => 20120424153758) do
     t.datetime "thumbnail_updated_at"
     t.string   "thumbnail_hex_color"
     t.integer  "gallery_id"
-    t.boolean  "is_external",                                        :default => false
-    t.boolean  "i_own_this",                                         :default => true
+    t.boolean  "is_external",                                         :default => false
+    t.boolean  "i_own_this",                                          :default => true
     t.string   "media_type"
     t.string   "category"
     t.text     "template"
     t.string   "template_text"
-    t.decimal  "reward_count",         :precision => 8, :scale => 2
+    t.decimal  "reward_count",          :precision => 8, :scale => 2
+    t.string   "preview_type",                                        :default => "image"
+    t.string   "preview_text_template",                               :default => "watchmen"
   end
 
   create_table "stories_topics", :id => false, :force => true do |t|
@@ -337,6 +335,8 @@ ActiveRecord::Schema.define(:version => 20120424153758) do
     t.string   "i_reward_because"
     t.decimal  "impact",                                          :precision => 8, :scale => 2
     t.decimal  "lifetime_rewards",                                :precision => 8, :scale => 2
+    t.boolean  "send_new_follower_emails",                                                      :default => true
+    t.boolean  "send_following_update_emails",                                                  :default => true
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

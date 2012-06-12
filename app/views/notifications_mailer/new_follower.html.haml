@@ -1,0 +1,7 @@
+%div{:style => "height:60px"}
+  %div{:style => "width: 60px; height: 60px; float: left; margin-right: 20px;"}
+    = image_tag @follower.avatar.url(:thumbnail)
+  %div
+    = link_to @follower.name, user_url(@follower), :style => "font-size: 1.5em; font-weight: bold; text-decoration: none; margin-bottom: 3px; display: block; padding-top: 3px;"
+  %div
+    is now following you on Momeant.

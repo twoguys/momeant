@@ -66,6 +66,28 @@ class Reward < Curation
     Activity.where(:action_id => self.id).where("action_type = 'Reward' OR action_type = 'Impact'")
   end
   
+  def handle_impact!(parent_reward)
+    # make the new reward a child of the impacter reward
+    self.move_to_child_of(parent_reward)
+    self.update_attribute(:depth, self.ancestors.count)
+
+    # update all ancestor rewards' impact
+    self.ancestors.update_all("impact = impact + #{self.amount}")
+    
+    # update all ancestors' user's impact, except for this reward's user (no double points!)
+    ancestor_ids = self.ancestors.map(&:user_id).uniq.reject{|user_id| user_id == self.user_id}
+    unless ancestor_ids.empty?
+      User.where("id in (#{ancestor_ids.join(",")})").update_all("impact = impact + #{self.amount}")
+    end
+    
+    # record an activity for each ancestor getting impact
+    self.ancestors.map(&:user_id).uniq.each do |user_id|
+      if user_id != self.user_id
+        Activity.create(:recipient_id => user_id, :action_type => "Impact", :action_id => self.id)
+      end
+    end
+  end
+  
   private
   
   def destroy_activities

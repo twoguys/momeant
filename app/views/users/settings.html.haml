@@ -11,6 +11,13 @@
         %li
           = check_box_tag "send_digest_emails", 1, current_user.send_digest_emails?
           %span.text Send me an email every two weeks about activity around me
+        %li
+          = check_box_tag "send_following_update_emails", 1, current_user.send_following_update_emails?
+          %span.text Send me an email when someone I follow posts new content or a broadcast message
+        - if current_user.is_a?(Creator)
+          %li
+            = check_box_tag "send_new_follower_emails", 1, current_user.send_new_follower_emails?
+            %span.text Send me an email when someone follows me
 
       %h2 Profile Information
 
@@ -22,7 +29,7 @@
             .file-input
               %input{:type => "file", :name => "user[avatar]", :id => "user_avatar"}
               .loader
-            .example For best results, upload a JPG or PNG at least 200px by 200px.
+            .example For best results, upload a JPG or PNG at least 300px by 300px.
 
       %section.first_name
         %h3
@@ -64,11 +71,12 @@
           %span.info (click to edit)
         .text{:update => "location"}= @user.location
       
-      %section.tagline
-        %h3
-          %span What will you be sharing at Momeant?
-          %span.info (click to edit)
-        .text{:update => "tagline"}= @user.tagline
+      - if @user.is_a?(Creator)
+        %section.tagline
+          %h3
+            %span What will you be sharing at Momeant?
+            %span.info (click to edit)
+          .text{:update => "tagline"}= @user.tagline
       
       %h2 Change Your Password
       = form_for :user, :url => change_password_user_path(current_user) do |form|

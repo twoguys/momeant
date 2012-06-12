@@ -3,174 +3,134 @@
 	top: 0
 	width: 100%
 	@include transition(top)
+	
+	#user-nav > li
+		float: left
+		height: 42px
+		position: relative
+		&:hover .subnav
+			display: block
+		.subnav
+			display: none
+			width: 120px
+			background: #222
+			position: absolute
+			top: 41px
+			left: 0
+			box-shadow: 0 1px 2px rgba(0,0,0,0.4)
+			z-index: 1
+			a
+				display: block
+				font-size: 11px
+				height: 15px
+				padding: 10px 15px
+				border-bottom: 1px solid #333
+				&:hover
+					background-color: #333
+	#user-nav > li > a
+		display: block
+		width: 25px
+		height: 25px
+		padding: 8px 4px
+		background: transparent url(../images/navigation-icons.png) no-repeat 4px 8px
+		text-indent: 42px
+		white-space: nowrap
+		overflow: hidden
+			
 	#user-nav
 		position: relative
 		z-index: 100
 		height: 42px
-		.bg
-			background: $black
-			height: 42px
-			width: 100%
-			position: absolute
-			top: 0
-			z-index: 1
-			box-shadow: 0 1px 2px rgba(0,0,0,0.2)
-		ul.links
-			position: relative
-			z-index: 2
-			padding: 0 10px
-			li
-				float: left
-				height: 42px
-		#feedback, #join, #signin, #signout
-			height: 42px
+		background: #000
+		box-shadow: 0 1px 2px rgba(0,0,0,0.2)
+		padding: 0 10px
+				
 		#logo
 			width: 164px
 			padding-left: 3px
-			a.top-link
+			a
 				display: block
 				width: 165px
 				height: 42px
+				padding: 0
 				text-indent: -9999px
 				background: transparent url(../images/logoWhiteSmall.png) no-repeat -9px 1px
-			.subnav
-				width: 158px
 		
-		.topnav
-			font-size: 13px
-			text-transform: uppercase
-			letter-spacing: 0.03em
-			position: relative
-			
-			.top-link
-				display: block
-				height: 14px
-				padding: 14px 15px
-				color: #fff
-				font-weight: 700
-				z-index: 2
-				&:hover
-					background-color: #333
-			
-			.double-wide
-				display: none
-				position: absolute
-				top: 42px
-				left: 0
-				width: 220px
-				box-shadow: 0 1px 2px rgba(0,0,0,0.4)
-				z-index: 1
-				.header
-					height: 15px
-					margin: 0 15px 5px
-					padding-bottom: 5px
-					font-weight: 700
-					color: #fff
-					border-bottom: 2px solid #555
-					font-size: 11px
-				.subnav
-					display: block
-					top: 0
-					width: 175px
-			
-			.subnav
-				display: none
-				background: #000
-				position: absolute
-				top: 42px
-				left: 0
-				box-shadow: 0 1px 2px rgba(0,0,0,0.4)
-				z-index: 1
-				padding: 5px 5px 15px
-				li
-					float: none
-					height: 15px
-					margin: 0 15px
-					padding: 10px 0 9px
-					border-bottom: 1px dotted #333
-					a
-						display: block
-						font-size: 11px
-						height: 15px
-						&:hover
-							color: #fff
-
-			.subnav.aside:last-child
-				left: 120px
-			
-			&:hover .subnav, &:hover .double-wide
-				display: block
-			&.active .top-link
-				background: $blue
-
-		#curation .top-link, #my-links .top-link
-			width: 42px
-			height: 42px
-			padding: 0
-			background-image: url(../images/navigation/following.png)
-			background-repeat: no-repeat
-			background-position: 50% 8px
-			@include notext
-
-		#my-links
-			margin-right: 10px
-			.top-link
-				position: relative
-				background-image: url(../images/navigation/profile.png)
-			.subnav
-				width: 150px
+		#feed > a
+			background-position: -29px 8px
+		#feed.disabled > a
+			background-position: -29px -32px
+		#create > a
+			background-position: -62px 8px
+		#create.disabled > a
+			background-position: -62px -32px
+		#profile > a
+			background-position: -95px 8px
+		#profile.disabled > a
+			background-position: -95px -32px
+		#info > a
+			background-position: -128px 8px
+		#profile, #info, #signin, #join
+			position: absolute
+			top: 0
+			right: 338px
+		#info
+			right: 306px
+		#signin
+			right: 378px
+		#join
+			right: 449px
+		#signin, #join
+			a
+				text-indent: 0
+				width: auto
+				background: none
+				font-size: 1.2em
+				font-weight: 600
+				text-transform: uppercase
+				padding-top: 12px
+		
+		#feed-plus-one
+			position: absolute
+			top: 35px
+			left: 3px
+			z-index: 999
+			width: 27px
+			height: 23px
+			background: transparent url(../images/navigation/feed-plus-one.png) no-repeat
+			display: none
 				
 		#coins
+			position: absolute
+			top: 0
+			right: 380px
+			padding-top: 6px
+			height: 36px
+			.text, .amount
+				float: left
+			.text
+				margin-right: 10px
+				font-size: 10px
+				line-height: 10px
+				color: #fff
+				width: 70px
+				text-align: right
+				padding-top: 3px
 			a
+				background: none
 				display: block
 				height: 36px
-				padding: 6px 10px 0
-				color: #fff
-				.amount, .text
-					float: left
-				.amount
-					font-family: $numerals
-					margin-right: 5px
-					font-size: 25px
-					font-weight: 100
-					line-height: 30px
-					color: $blue
-				.text
-					display: none
-					font-size: 10px
-					line-height: 10px
-					padding: 3px 6px 0 0
-					text-align: right
-					span
-						display: block
-		#coins.active a
-			background-color: $blue
-			.amount
-				color: #fff
-			.text
-				color: #000
-		#signin, #signout, #join, #feedback
-			position: absolute
-			right: 308px
-			padding-top: 6px
-			a
-				@include button
-				height: 26px
-				line-height: 26px
-				padding: 0 15px
-				font-size: 13px
-				display: block
-				@include rounded(0)
-				background: $blue
-		#signin a
-			background: $green
-		#join
-			right: 387px
+				font-family: $numerals
+				font-size: 25px
+				font-weight: 100
+				line-height: 30px
+
 		#search
 			position: absolute
-			top: 6px
+			top: 7px
 			right: 6px
 			width: 294px
+			height: 35px
 			input[type="text"], input[type="submit"]
 				background-color: #5c5c5c
 			input[type="text"]

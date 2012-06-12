@@ -113,4 +113,15 @@ namespace :momeant do
       end
     end
   end
+  
+  desc "Apply old logic of image/text template to new code"
+  task :assign_story_preview_types => :environment do
+    Story.all.each do |story|
+      if story.media_type == "photos" || story.media_type == "videos"
+        story.update_attribute(:preview_type, "image")
+      else
+        story.update_attribute(:preview_type, "text")
+      end
+    end
+  end
 end

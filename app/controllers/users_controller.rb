@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
-  before_filter :authenticate_user!, :only => [:edit, :update, :update_in_place, :udpate_avatar, :analytics, :feedback, :settings, :change_password, :fund_pledged_rewards]
-  before_filter :find_user, :except => [:community, :community_creators, :analytics, :billing_updates, :feedback, :fund_pledged_rewards]
+  before_filter :authenticate_user!, :only => [:edit, :update, :update_in_place, :udpate_avatar, :analytics, :feedback, :settings, :change_password, :fund_pledged_rewards, :creator_info, :creator_payment]
+  before_filter :find_user, :except => [:community, :community_creators, :analytics, :billing_updates, :feedback, :fund_pledged_rewards, :creators, :become_a_creator]
   skip_before_filter :verify_authenticity_token, :only => [:billing_updates, :update_avatar]
+  skip_before_filter :creator_finished_signing_up?, :only => [:creator_info, :update_avatar]
 
   def index
     redirect_to root_path
@@ -13,7 +14,7 @@ class UsersController < ApplicationController
     if @user.is_a?(Creator)
       @content = @user.created_stories.newest_first
       @content = @content.published unless @user == current_user
-      @supporters = @user.rewards.group_by(&:user).to_a.map {|x| [x.first,x.second.inject(0){|sum,r| sum+r.amount}]}.sort_by(&:second).reverse
+      @supporters = @user.top_supporters
     else
       @body_class = "patronage"
       prepare_patronage_data
@@ -107,7 +108,11 @@ class UsersController < ApplicationController
   end
   
   def update_email_setting
-    return unless ["send_reward_notification_emails", "send_digest_emails", "send_message_notification_emails"].include?(params[:attribute])
+    return unless ["send_reward_notification_emails",
+      "send_digest_emails",
+      "send_new_follower_emails",
+      "send_following_updates",
+      "send_message_notification_emails"].include?(params[:attribute])
     
     @user = current_user
     current_value = @user.send params[:attribute]
@@ -127,12 +132,42 @@ class UsersController < ApplicationController
   
   def fund_pledged_rewards
     @user = current_user
-    @rewards = @user.given_rewards.pledged
+    @rewards = @user.given_rewards.pledged.includes(:recipient, :story)
+    @amount = @rewards.sum(:amount)
+    @payment = AmazonPayment.new(:amount => @rewards.sum(:amount))
   end
   
   def submit_creator_request
     FeedbackMailer.creator_request(@user, params[:description], params[:examples]).deliver
     render :text => ""
+  end
+  
+  # creator signup step 1 - submits through a devise route
+  def creators
+    @creator = User.new
+    @login_creator = User.new
+  end
+  
+  # creator signup step 2
+  def creator_info
+    redirect_to root_path and return if @user != current_user
+    if request.post?
+      @user.update_attributes(params[:user])
+      @user.errors.add(:avatar, "is required") if @user.avatar_missing?
+      @user.errors.add(:tagline, "is required") if @user.tagline.blank?
+      redirect_to creator_payment_path(@user) unless @user.avatar_missing? || @user.tagline.blank?
+    end
+    @nav = "signup"
+  end
+  
+  # creator signup step 3
+  def creator_payment
+    redirect_to root_path and return if @user != current_user
+    if request.post?
+      @user.update_attributes(params[:user])
+      redirect_to user_path(@user)
+    end
+    @nav = "signup"
   end
   
   def feedback

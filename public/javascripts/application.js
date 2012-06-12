@@ -30,7 +30,7 @@ function tag_deletions() {
 }
 
 function setup_modals() {
-	_.each(['#join', '#login', '#feedback', '#about-diagram'], function(id) {
+	_.each(['#join', '#login', '#feedback', '#about-diagram', '#about'], function(id) {
 		$('a[href="' + id + '-modal"]').click(function() {
 			$(id + '-modal').fadeIn('fast');
 			return false;
@@ -46,6 +46,24 @@ function setup_modals() {
 			$('#join-modal, #login-modal, #feedback-modal, #about-diagram-modal').stop().fadeOut('fast');
 		}
 	});
+	
+	$('.modal .steps .buttons a').click(function() {
+	  var $link = $(this);
+	  var width = $link.parent().parent().width();
+	  var $steps = $link.parents('.steps');
+	  var current_margin = parseInt($steps.css('margin-left').replace('px',''));
+	  if ($link.hasClass('next-step')) {
+	    if ($link.attr('href') == '#join-modal') {
+	      $('#about-modal').hide();
+	    } else {
+	      $steps.css('margin-left', current_margin - width);
+	    }
+	  } else {
+	    $steps.css('margin-left', current_margin + width);
+	  }
+	  return false;
+	});
+	
 }
 
 function handle_signup_login_form_validation() {
@@ -91,7 +109,14 @@ function handle_feedback_form() {
 		$.post(url, { comment:comment.val() });
 		
 		comment.val('');
-		$('#feedback-modal').fadeOut('fast');
+		$('#feedback-modal .before').fadeOut(200, function() {
+		  $('#feedback-modal .after').fadeIn(200);
+		  setTimeout(function() {
+		    $('#feedback-modal .after').fadeOut(200, function() {
+    		  $('#feedback-modal .before').fadeIn(200);
+  		  });
+		  }, 2000);
+		});
 	});
 }
 
@@ -148,13 +173,22 @@ $(document).ready(function() {
 	// auto-launch the about diagram modal if it exists (after new signups)
 	$('a[href="#about-diagram-modal"]').click();
 	
-	$.fn.colorPicker.defaultColors = ['000', '666', '999', 'ccc', 'fff', 'f42652', 'f7d3db', 'ffa801', 'ffebc5', 'fff10f', 'fffcd2', '1ea337', 'c8f2d0', '00aeef', 'c0eeff', '985faf', 'f5deff', '7a5116', 'e1d5c3'];
+	$.fn.colorPicker.defaultColors = ['111', '666', '999', 'ccc', 'fff', 'f42652', 'f7d3db', 'ffa801', 'ffebc5', 'fff10f', 'fffcd2', '1ea337', 'c8f2d0', '00aeef', 'c0eeff', '985faf', 'f5deff', '7a5116', 'e1d5c3'];
+	
+	$('#header #search input[name="utf8"]').remove();
 });
 
 function log(message) {
 	if (console && console.log) {
 		console.log(message);
 	}
+}
+
+function show_feed_plus_one() {
+  $('#feed-plus-one').show();
+  setTimeout(function() {
+    $('#feed-plus-one').fadeOut(500);
+  }, 3000);
 }
 
 // http://github.com/splendeo/jquery.observe_field

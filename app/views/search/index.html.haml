@@ -10,13 +10,52 @@
         - else
           %ul.users
             - @users.each do |user|
-              %li= link_to(image_tag(user.avatar.url(:thumbnail)), user_path(user), :class => "tooltipped", :title => user.name)
+              %li= link_to(image_tag(user.avatar.url(:large)), user_path(user), :class => "tooltipped", :title => user.name)
 
     %section.content
       %h3 Content
       .data
-        - if @stories.empty?
-          No content found
-        - else
-          %ul.stories
-            = render @stories, :show_tags => true, :hover_title => true
+        #vertical-list
+          %ul#activity-list
+            - index = 0
+            - @content.each do |content|
+              %li.content{:id => "content-#{content.id}"}
+                - if content.text_preview?
+                  %a.content-preview{:href => story_path(content), :class => "#{content.media_type} #{content.template}"}
+                    .inner
+                      .image
+                      .quote= truncate(content.template_text, :length => 140)
+                - else
+                  %a.content-preview{:href => story_path(content), :class => content.media_type}
+                    .inner{:style => "background-image: url(#{content.thumbnail.url(:large)})"}
+
+                .info
+                  .media-type{:class => content.media_type}
+                  .text
+                    - title = content.title.blank? ? "Untitled" : content.title
+                    - title += " (unpublished)" if !content.published?
+                    = link_to(title, story_url(content), :class => "title")
+                    .synopsis= truncate(content.synopsis, :length => 140)
+                    - if content.category
+                      %span.category= content.category
+                    - if me?(@user)
+                      = link_to "Edit", edit_story_path(content), :class => "edit" if me?(@user)
+                      = link_to "Delete", story_path(content), :method => :delete, :confirm => "WHOA WAIT UP! If you delete this you will lose ALL REWARDS on this content. Are you SURE you want to delete it?"
+                  .support= content.users_who_rewarded.count
+
+                .comments
+                  - comment_text = pluralize(content.comments.size, "comment").split(" ")
+                  %a.toggle-comments{:href => "#"}
+                    %span.amount= comment_text[0]
+                    %span.text= comment_text[1]
+                  .insides
+                    %ul.comment-list
+                      = render :partial => "comments/comment", :collection => content.comments, :as => :comment
+                    = render "comments/form", :commentable => content
+
+              - index += 1
+
+- if current_user
+  :javascript
+    var user_id = #{current_user.id};
+= javascript_include_tag "comments"

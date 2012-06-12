@@ -26,7 +26,6 @@ var story_page_editor = function() {
 		$('#pane .expander-tab').click(pages_editor.open_or_close_pane);
 
 		setup_page_type_chooser();
-		setup_creation_or_external_choosing();
 		setup_title_mirroring();
 		setup_gallery_creation();
 		this.setup_preview_thumbnail_switching($('#page-previews li.page a.choose-thumbnail'));
@@ -49,39 +48,6 @@ var story_page_editor = function() {
 			pages_editor.choose_page_theme(page_type);
 		});
 		$('#page-type-chooser .dark, #page-type-chooser .close').click(pages_editor.hide_page_type_chooser);
-	};
-	
-	var setup_creation_or_external_choosing = function() {
-		var change_to_external = function() {
-			if ($('#creator').hasClass('selected')) {
-				$('#external').addClass('selected');
-				$('#creator').removeClass('selected');
-				$('#open-page-editor-button').addClass('launch');
-				$.post('/stories/' + pages_editor.story_id + '/change_to_external');
-				var link_value = $('#story_external_link').val();
-				if (link_value != "http://" && link_value != "") {
-					$.ajax({
-						type: 'PUT',
-						url: '/stories/' + pages_editor.story_id + '/autosave',
-						data: {'story[external_link]': link_value}
-					});
-				}
-			}
-		};
-		$('#external').click(change_to_external);
-		
-		var change_to_creator = function() {
-			if ($('#external').hasClass('selected')) {
-				$('#external').removeClass('selected');
-				$('#creator').addClass('selected');
-				$.post('/stories/' + pages_editor.story_id + '/change_to_creator');
-				$('ul#pages li.page, #page-editor ul.pages li.pane-insides').remove();
-				pages_editor.page_chooser_mode = 'add';
-				pages_editor.total_pages = 0;
-			}
-		}
-		$('#creator').click(change_to_creator);
-		$('#open-page-editor-button').click(change_to_creator);
 	};
 	
 	var setup_gallery_creation = function() {
@@ -480,12 +446,6 @@ var story_auto_saver = function() {
 				$loader.hide().siblings().show();
 			}
 		});
-		var $upload_button = $uploader.find('a.upload');
-		$upload_button.click(function() {
-			if ($file_input.val() != "")
-				uploader.trigger('html5_upload.start');
-			return false;
-		});
 	};
 
 	this.monitor_details_typing = function() {
@@ -507,7 +467,7 @@ var story_auto_saver = function() {
 						if (data.result == "success") {
 							log('successfully updated story with: ' + value);
 							if (attribute_to_update == 'external_link') {
-								pages_editor.update_metadata(data.metadata);
+								//pages_editor.update_metadata(data.metadata);
 							}
 						} else {
 							log('error when updating page with: ' + value);
@@ -860,7 +820,7 @@ var story_auto_saver = function() {
 			var page_number = number;
 			var uploader = $file_input.html5_upload({
 				url: url,
-				autostart: false,
+				autostart: true,
 				sendBoundary: window.FormData || $.browser.mozilla,
 				fieldName: 'image',
 				onStart: function() {
@@ -899,12 +859,6 @@ var story_auto_saver = function() {
 					
 					$loader.hide().siblings().show();
 				}
-			});
-			var $upload_button = $uploader.find('a.upload');
-			$upload_button.click(function() {
-				if ($file_input.val() != "")
-					uploader.trigger('html5_upload.start');
-				return false;
 			});
 		});
 	};
@@ -1087,8 +1041,7 @@ var story_auto_saver = function() {
 	
 	this.handle_text_style_chooser = function($page, page_id, type, number) {
 		var all_text_styles = 'blocky-title blocky-chunk blocky-paragraph deco-title deco-chunk deco-paragraph ' +
-			'typewriter-title typewriter-chunk typewriter-paragraph cursive-title cursive-chunk cursive-paragraph ' +
-			'big-word-sans-serif big-word-cursive';
+			'typewriter-title typewriter-chunk typewriter-paragraph cursive-title cursive-chunk cursive-paragraph';
 		$page.find('.styles-wrapper .styles li').click(function() {
 			var $style = $(this);
 			$style.addClass('selected').siblings().removeClass('selected');

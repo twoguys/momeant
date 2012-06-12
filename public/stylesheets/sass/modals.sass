@@ -1,4 +1,4 @@
-#join-modal, #login-modal, #feedback-modal, #about-diagram-modal
+#join-modal, #login-modal, #feedback-modal, #about-diagram-modal, #about-modal
 	display: none
 	position: fixed
 	top: 0
@@ -17,10 +17,11 @@
 		position: absolute
 		z-index: 1
 	.padder
-		width: 480px
+		width: 510px
 		margin: 0 auto
-		background-color: $background_color
-		padding: 15px 20px 10px
+		background: #333
+		background: rgba(255,255,255,0.2)
+		padding: 10px
 		position: relative
 		top: 170px
 		z-index: 2
@@ -34,6 +35,8 @@
 			height: 30px
 			display: block
 			background: transparent url(../images/modalClose.png) no-repeat 0 0
+	.insides
+		background: #f4f4f4
 	.placeholder
 		color: #aaa
 		font-style: italic
@@ -142,6 +145,77 @@
 			font-family:  $block
 			text-shadow:  none
 
+#about-modal
+	.padder
+		top: 50%
+		margin-top: -300px
+	.padder, .insides
+		width: 800px
+	.insides
+		overflow: hidden
+		position: relative
+	.steps
+		color: #000
+		width: 8000px
+		height: 600px
+		@include transition(margin)
+		.step
+			width: 800px
+			height: 600px
+			float: left
+			position: relative
+			h1
+				text-align: center
+				height: 130px
+				line-height: 130px
+				font-family: $fatty
+				font-size: 32px
+				font-style: italic
+				background: $blue
+				color: #fff
+			h1
+				margin-bottom: 40px
+			section
+				padding: 0 80px
+				margin-bottom: 30px
+				&.bulleted
+					background: transparent url(../images/modals/people.png) no-repeat 38px 0
+				&.flag
+					background-image: url(../images/modals/flag.png)
+				&.star
+					background-image: url(../images/modals/star.png)
+			h3
+				font-size: 17px
+				margin-bottom: 5px
+			p
+				margin: 0
+				line-height: 1.7em
+				font-size: 15px
+			.buttons
+				position: absolute
+				bottom: 30px
+				left: 80px
+				right: 80px
+				text-align: right
+				a
+					@include button
+					background: $blue
+					padding: 3px 20px
+				span
+					position: relative
+					top: 9px
+					padding-right: 10px
+			a.prev-step
+				float: left
+			a.next-step
+				float: right
+
+
+#join-modal, #login-modal
+	.insides
+		height: 280px
+		padding: 20px
+		
 #join-modal
 	.copy
 		width: 200px
@@ -151,26 +225,36 @@
 
 #login-modal
 	.padder
-		width: 210px
+		width: 250px
+	.insides
+		height: 250px
 	.login
 		padding: 0
+		margin-bottom: 15px
 	input[type="submit"]
-		@include gradient($greengradient1, $greengradient2)
-		margin-bottom: 5px
+		margin-bottom: 8px
 	a
 		font-size: 11px
 
 #feedback-modal
 	.insides
-		width: 480px
-		height: 200px
+		height: 196px
+		padding: 20px
 		li.text
 			height: 90px
 		textarea
-			width: 463px
+			width: 453px
 			height: 70px
 		input[type="submit"]
 			float: right
+	.after
+		display: none
+		padding-top: 80px
+		font-size: 36px
+		font-weight: 600
+		text-transform: uppercase
+		text-align: center
+		color: $text_color
 
 #about-diagram-modal
 	.padder

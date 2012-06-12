@@ -28,32 +28,49 @@
 		margin-bottom: 50px
 
 	#activity-list > li.content
+		position: relative
 		.content-preview
 			display: block
 			width: 630px
 			height: 420px
+			position: relative
 			&.bowling
-				background-image: url(../images/content/templates/bowling-small.png)
+				background-image: url(../images/content/templates/bowling.png)
 				.inner
 					width: 260px
 					height: 170px
-					margin: -105px 0 0 -160px
+					margin: -130px 0 0 -155px
 			&.watchmen
 				.image
 					width: 70px
 					height: 70px
-					background-image: url(../images/content/templates/watchmen-small.png)
+					background-image: url(../images/content/templates/watchmen.png)
 				.inner
 					font-size: 1.5em
 					width: 500px
 					height: 200px
 					margin: -100px 0 0 -250px
 			&.blob
-				background-image: url(../images/content/templates/blob-small.png)
+				background-image: url(../images/content/templates/blob.png)
 				.inner
 					width: 260px
 					height: 170px
-					margin: -85px 0 0 -130px
+					margin: -125px 0 0 -140px
+			.tip
+				position: absolute
+				top: 200px
+				left: 250px
+				background: #333
+				background: rgba(0,0,0,0.85)
+				color: #fff
+				font-size: 1.2em
+				text-transform: uppercase
+				padding: 8px 12px
+				@include rounded(3px)
+				opacity: 0
+				@include transition(opacity)
+			&:hover .tip
+				opacity: 1
 		.info
 			min-height: 35px
 			padding: 20px 20px 20px 60px
@@ -92,7 +109,7 @@
 				font-size: 45px
 				font-weight: 200
 				padding-right: 25px
-				background: transparent url(../images/discovery/supporters.png) 100% 10px no-repeat
+				background: transparent url(../images/profile/supporters.png) 100% 10px no-repeat
 		.rewards
 			height: 200px
 			padding: 20px 20px 0
@@ -132,6 +149,18 @@
 				.cover
 					z-index: 2
 					background: transparent url(../images/discovery/avatar-cover-40.png) no-repeat 0 0
+		
+		.unpublished-ribbon
+			display: block
+			position: absolute
+			top: -3px
+			right: -3px
+			width: 107px
+			height: 106px
+			background: transparent url(../images/content/unpublished-ribbon.png) no-repeat 0 0
+			overflow: hidden
+			text-indent: 107px
+			
 				
 // Going smaller
 @media all and (max-width: 1100px)

@@ -1,20 +1,21 @@
 #user-profile.no-right-column
   
   #profile-center.column
-    #statement
-      - if me?(@user)
-        %em.tooltipped-n{:title => "Tell others why you believe in rewarding (in 140 characters or less)."} I reward content
-        %span#edit-reward-reason
-          = truncate(@user.i_reward_because, :length => 140) || "..."
-      - else
-        %em I reward content
-        %span= truncate(@user.i_reward_because, :length => 140) || "..."
+    - if me?(@user) || @user.i_reward_because.present?
+      #statement
+        - if me?(@user)
+          %em.tooltipped-n{:title => "Tell others why you believe in rewarding (in 140 characters or less)."} I reward content
+          %span#edit-reward-reason
+            = truncate(@user.i_reward_because, :length => 140) || "..."
+        - else
+          %em I reward content
+          %span= truncate(@user.i_reward_because, :length => 140) || "..."
     
     #carousel
       .title I recently rewarded
       - first = true
       - @users.each do |user|
-        = link_to image_tag(user.avatar.url(:large)), "#", :class => "tooltipped #{first ? "selected" : ""}", :title => user.name, :data => user.id
+        = link_to image_tag(user.avatar.url(:large)), "#", :class => "tooltipped-n #{first ? "selected" : ""}", :title => user.name, :data => user.id
         - first = false
     
     #vertical-list
@@ -28,6 +29,6 @@
 
 :javascript
   var user_id = #{@user.id};
-  var my_page = #{me?(@user)};
+  var my_page = #{me?(@user) ? "true" : "false"};
 = javascript_include_tag "jquery.editinplace"
 = javascript_include_tag "users/patronage"

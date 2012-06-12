@@ -1,92 +1,54 @@
-#creator-info
-  = link_to image_tag(@story.user.avatar.url(:large)), user_path(@story.user), :class => "avatar"
-  .byline
-    = link_to @story.user.name, user_path(@story.user)
-    - if @story.user.occupation || @story.user.location
-      %span.weak
-        #{@story.user.occupation}
-        - if @story.user.location
-          from #{@story.user.location}
-  - unless @story.user.tagline.blank?
-    .tagline
-      %strong About #{@story.this_media}:
-      %span= @story.synopsis
+- if current_user == @story.user
+  .your-stuff
+    Nice work! This is where everyone else can reward you.
+- else
+  - if current_user && !current_user.is_under_pledged_rewards_stop_threshold?
+    .over-threshold
+      %h3 We need you to fund your previous rewards before giving out more.
+      %p You have #{number_to_currency(current_user.pledged_amount)} in rewards that need to be funded, first. You can do that here.
+      %p Once you've paid for those, you can continue rewarding.
+  - else
 
-#content-thumbnail
-  = image_tag @story.thumbnail.url(:small)
-
-- if current_user != @story.user
-  #reward-box.reward-step{:class => current_user.nil? ? "no_user" : ""}
-    .step-icon.reward
+    %ul#steps
+      %li.reward.active.tooltipped-n{:title => "1. Reward"}
+      %li.comment.tooltipped-n{:title => "2. Comment"}
+      %li.promote.tooltipped-n{:title => "3. Promote"}
     
-    - if current_user && !current_user.is_under_pledged_rewards_stop_threshold?
-      .over-threshold
-        %h3 We need you to fund your previous rewards before giving out more.
-        %p You have #{number_to_currency(current_user.pledged_amount)} in rewards that need to be funded, first. You can do that here.
-        %p Once you've paid for those, you can continue rewarding.
-    - else
-      .inner
-        = form_for :reward, :url => user_rewards_path(@story.user), :html => {:id => "reward-form"} do |form|
-          = form.hidden_field :story_id, :value => @story.id
-          - if @impacted_by
-            = form.hidden_field :impacted_by, :value => @impacted_by
+    #current-step
+      = form_for :reward, :url => user_rewards_path(@story.user), :html => {:id => "reward-form"} do |form|
+        = form.hidden_field :story_id, :value => @story.id
+        - if @impacted_by
+          = form.hidden_field :impacted_by, :value => @impacted_by
 
-          #amount.section
-            %h1 Reward #{@story.user.first_name} for #{@story.this_media}:
-            %ul#stars
-              %li= link_to "10&cent;".html_safe, "#", :id => "one-star", :amount => 0.1
-              %li= link_to "50&cent;".html_safe, "#", :id => "five-star", :amount => 0.5
-              %li= link_to "$1.00", "#", :id => "ten-star", :amount => 1.0
-              %li.custom
-                = text_field_tag :custom_amount
-                %span or any amount you want
-      
-            = form.hidden_field :amount, :value => 1
-          
+        #amounts
+          %header
+            %h1 Reward
+            #{@story.user.first_name} for their work:
+
           - if current_user
-            #amount-hints.section
-              - if @story.user.below_cashout_threshold? || current_user.badge_level >= 2
-                .weak Not sure how much to reward?
-                - if @story.user.below_cashout_threshold?
-                  .hint
-                    %span #{@story.user.first_name} needs
-                    %strong= number_to_currency @story.user.needed_to_cashout
-                    %span to meet the $10 cash out threshold.
-                - if current_user.badge_level >= 2
-                  .hint
-                    %span You need to reward
-                    %strong= number_to_currency current_user.rewards_until_next_badge
-                    %span more to earn the "#{current_user.next_badge_level_name}" badge.
+            %ul
+              %li= link_to "10&cent;".html_safe, "#", :amount => 0.1
+              %li= link_to "50&cent;".html_safe, "#", :amount => 0.5
+              %li= link_to "$1", "#", :amount => 1.0
+              %li.custom= text_field_tag :custom_amount, "$"
+            = form.hidden_field :amount
+            = link_to "Next &rarr;".html_safe, "#", :id => "goto-comment", :class => "button"
+            
+            #invalid-reward-amount
+            
           - else
-            #amounts-cover
-            = link_to "Join the Momeant community!", "#join-modal", :id => "reward-join-button", :class => "button"
+            = link_to "Join our community!", "#join-modal", :id => "reward-join-button", :class => "button"
             #reward-login-link= link_to "Already have an account? Log in.", "#login-modal"
-
-          #comment.section
-            .step-icon.comment
-            %h1 Tell #{@story.user.first_name} why you're rewarding this:
-            = form.text_area :comment, :placeholder => "Enter a great comment..."
-            = form.submit "Give Reward"
-
-
-#more
-  #rewarders.comments
-    %h3 Comments on #{@story.this_media} from #{@story.user.first_name}'s supporters:
-    %ul.comment-list
-      - if current_user
-        %li#new-comment
-          = link_to image_tag(current_user.avatar.url(:thumbnail), :class => "commenter-avatar"), user_path(current_user)
-          = link_to current_user.name, user_path(current_user), :class => "commenter-name"
-          %span.text
-          .metadata
-            %span.time just now
-            %span.reward
-      = render :partial => "comments/comment", :collection => @story.comments, :as => :comment
-  
-  #other-content
-    %h3 More content from #{@story.user.first_name}:
-    %ul
-      - @story.user.created_stories.published.where("id != #{@story.id}").each do |content|
-        %li
-          = link_to image_tag(content.thumbnail.url(:petite)), story_path(content), :class => "thumbnail"
-          = link_to content.title, story_path(content), :class => "title"
+          
+        #comment
+          %header
+            %h1 Comment
+            on why you're rewarding this:
+          = form.text_area :comment, :placeholder => "Tell the Momeant community why you stand behind this content..."
+          = form.submit "Give Reward"
+    
+#open-reward-stats.reward-stats
+  %em this content has been rewarded
+  %strong= number_to_currency(@story.reward_count)
+  %span from
+  %strong.people= @story.users_who_rewarded.count

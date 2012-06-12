@@ -4,9 +4,9 @@ body#subscriptions.index
 	#main
 		max-width: 100%
 		margin: 0
-	#feed
-		padding-left: 300px
-		overflow: hidden
+		#feed
+			padding-left: 300px
+			overflow: hidden
 	.column
 		position: relative
 		float: left
@@ -23,23 +23,29 @@ body#subscriptions.index
 		padding-right: 10px
 		right: 300px
 		margin-left: -100%
-		background: #000
+		background: #222
 		color: #fff
 	
 	
 	#feed-left
+		#user-profile
+			margin: -10px -10px 0 -10px
+			background: #000
+			.about
+				margin: 0
+			
 		h2
-			background: #444
+			background: #555
 			color: #000
-			margin-bottom: 5px
+			margin: 10px 0 5px
 			font-size: 14px
 		
 		ul
-			margin-bottom: 30px
+			margin-bottom: 20px
 		li
 			height: 70px
 			margin-bottom: 5px
-			background: #272727
+			background: #333
 			cursor: pointer
 			@include transition(background)
 			img, .name

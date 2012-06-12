@@ -1,7 +1,7 @@
 %h3
   #{link_to(@reward.user.name, user_url(@reward.user), :style => "color:#00aeff")}
   just rewarded your content #{link_to(@reward.story.title, story_url(@reward.story), :style => "color:#00aeff")}
-  for #{number_to_currency(@reward.amount)} #{image_tag "http://momeant.com/images/icons/starBlackSmall.png"}
+  for #{number_to_currency(@reward.amount)}
   - if @reward.comment.present?
     and said:
 
@@ -10,6 +10,3 @@
     "#{@reward.comment}"
 
 %p As of now, you've earned #{number_to_currency(@reward.recipient.rewards.sum(:amount))} on Momeant!
-
-%div{:style => "clear:both;font-size:11px;color:#888;text-align:center;padding:50px 0 0;"}
-  %div p.s. Thanks for being such an awesome user! #{link_to "Edit your email preferences", settings_user_url(@reward.recipient)}

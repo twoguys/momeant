@@ -12,13 +12,16 @@
         - if subscription
           .since following since #{subscription.since}
       
-  %a.content-preview{:href => story_path(content), :class => "#{content.media_type} #{content.template}"}
-    - if content.text_media_type?
+  - if content.text_preview?
+    %a.content-preview{:href => story_path(content), :class => "#{content.media_type} #{content.template}"}
       .inner
         .image
         .quote= truncate(content.template_text, :length => 140)
-    - else
+      .tip View #{content.media_type} &rarr;
+  - else
+    %a.content-preview{:href => story_path(content), :class => content.media_type}
       .inner{:style => "background-image: url(#{content.thumbnail.url(:large)})"}
+      .tip View #{content.media_type} &rarr;
 
   .info    
     .media-type{:class => content.media_type}

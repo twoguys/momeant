@@ -1,24 +1,27 @@
 class HomeController < ApplicationController
   
   def index
-    setup_landing
+    @content = ActiveSupport::OrderedHash.new
+    @content["Featured"] = Story.includes(:user).published.where("id IN (?)", Editorial.all.map(&:story_id)).order("created_at DESC")
+    Story::CATEGORIES.each do |category|
+      @content[category] = Story.includes(:user).
+        published.where(:category => category).order("reward_count DESC").limit(3).
+        uniq_by {|content| content.user_id}
+    end
+    
+    @featured_content = Story.featured_on_landing unless Rails.env.production?
   end
   
   def people # ajax
     content = Story.includes(:user)
-    if params[:filter] == "Popular"
-      content = content.published.order("reward_count DESC")
+    if params[:category] == "Featured"
+      content = content.published.where("user_id IN (?)", Editorial.all.map(&:user_id)).order("reward_count DESC")
     else
-      content = content.published.where("user_id IN (?)", Editorial.all.map(&:user_id))
-    end
-    if params[:category].present? && params[:category] != "All"
-      content = content.where(:category => params[:category])
+      content = content.published.where(:category => params[:category]).order("reward_count DESC")
     end
     @people = content.map(&:user).uniq.take(10)
     
-    people_html = render_to_string :partial => "home/person", :collection => @people, :as => :person
-    works_html = render_to_string :partial => "home/work", :collection => @people.map(&:discovery_content), :as => :content
-    render :json => { :people => people_html, :works => works_html }
+    render :partial => "home/person", :collection => @people, :as => :person
   end
   
   def projects # ajax

@@ -48,10 +48,10 @@ class PagesController < ApplicationController
   
   def destroy
     @page = Page.find_by_id(params[:id])
-    render :json => {:result => "failure"} and return if @page.blank?
+    render :json => {:result => "failure"} and return if @page.nil?
     
     @page.remove_from_list
-    @page.destroy if @page
+    @page.destroy
     render :json => {:result => "success"}
   end
   

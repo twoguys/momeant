@@ -6,12 +6,9 @@ class Admin::EditorialsController < Admin::BaseController
   end
   
   def create
-    @editorial = Editorial.new(params[:editorial])
-    if @editorial.save
-      redirect_to root_path
-    else
-      render "form"
-    end
+    content = Story.find(params[:id])
+    editorial = Editorial.create(:story_id => content.id, :user_id => content.user_id)
+    redirect_to root_path
   end
   
   def edit

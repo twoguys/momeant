@@ -1,5 +1,11 @@
 .admin.editorials
   = render "admin/tabs"
   
-  %ul.list
-    = render Editorial.order("created_at ASC")
+  %table
+    %thead
+      %tr
+        %th Content
+        %th Creator
+        %th Actions
+    %tbody
+      = render Editorial.order("created_at ASC")

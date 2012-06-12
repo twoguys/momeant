@@ -11,9 +11,9 @@
       - if current_user && current_user.is_subscribed_to?(@user)
         = link_to "Unfollow", "#", :id => "subscribe"
       - elsif current_user && !me?(@user)
-        = link_to "Follow", user_messages_path(@user), :id => "subscribe"
+        = link_to "Follow", user_messages_path(@user), :id => "subscribe", :class => "tooltipped-e", :title => "Receive updates in your Following Feed when #{@user.first_name} posts content and messages."
       - elsif current_user.nil?
-        = link_to "Follow", "#join-modal", :id => "subscribe"
+        = link_to "Follow", "#join-modal", :id => "subscribe", :class => "tooltipped-e", :title => "Receive updates in your Following Feed when #{@user.first_name} posts content and messages."
         
   .metadata
     %h1.name
@@ -30,11 +30,11 @@
     
     .subnav
       - if @user.is_a?(Creator)
-        = link_to_active "<span>Content Created</span>".html_safe, user_path(@user)
-      = link_to_active "<span>Rewards Given</span>".html_safe, patronage_user_path(@user), :class => @user.is_a?(Creator) ? "" : "active"
+        = link_to_active "<span>Content I Created</span>".html_safe, user_path(@user)
+      = link_to_active "<span>Rewards I've Given</span>".html_safe, patronage_user_path(@user), :class => @user.is_a?(Creator) ? "" : "active"
     
     .info
-      %em What will you be sharing at momeant?
+      %em What will I be sharing at Momeant?
       %p= @user.tagline
       = link_to "Edit", settings_user_path(@user) if me?(@user)
     
@@ -44,14 +44,15 @@
     #reward-total
       .amount
         %span= number_to_currency(@user.impact)
-      .text cash raised
+      .text impact made
     
     #broadcaster
       #updates-list
         - if me?(@user) && @user.broadcasts.empty?
-          You can use this area to provide updates to your followers.
+          You can use this area to broadcast messages to your followers.
         - elsif @user.broadcasts.empty?
-          #{@user.first_name}'s updates will show up here.
+          %p When I broadcast a message it will show up here.
+          %p It will also show up in your feed if you follow me.
         - else
           = @user.broadcasts.first.message
       - if me?(@user)
@@ -70,10 +71,5 @@
           %span.amount= number_to_currency(@user.rewards.not_cashed_out.sum(:amount))[1..-1]
           %span not cashed out
         %li= link_to "Cash Out", user_cashouts_path(@user), :id => "cashout", :class => "button"
-
-    - if current_user && !me?(@user)
-      #user-actions
-        - if current_user && current_user.is_admin?
-          = link_to "Editorialize", new_admin_editorial_path(:user => @user.id), :id => "editorialize", :class => "button"
-
+        
   .clear

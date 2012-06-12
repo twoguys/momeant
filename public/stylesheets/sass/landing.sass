@@ -1,240 +1,313 @@
-#home.index, #registrations.create
+body#home.index #main
+	max-width: 100%
 
-	#main
-		max-width: 100%
+#landing-page
+	background: #000
+	color: #fff
 	
-	#slides-wrapper
-		position: fixed
-		top: 42px
-		bottom: 0
-		left: 0
-		right: 300px
-		overflow: hidden
-		
-	#sidebar
-		width: 300px
-		position: relative
-		float: right
+	#slogan, #categories-people
+		width: 830px
+		margin: 0 auto
 	
-	#slides
-		background: #000
-		color: #fff
-		font-size: 24px
-		overflow: hidden
-		@include transition(margin, 0.3s, ease-out)
-		.slide
-			width: 100%
-			height: 100%
-			position: relative
-			.slide-insides
-				padding: 10%
-		#message
-			position: relative
-			.slide-insides
-				padding: 0
-				position: absolute
-				bottom: 10px
-				left: 20px
-			h1
+	#slogan
+		padding: 140px 0 100px
+		text-align: center
+		.line
+			width: 80px
+			height: 1px
+			background: #fff
+			margin: 0 auto 40px
+		h1
+			font-weight: 600
+			margin-bottom: 40px
+			strong
+				font-size: 80px
 				text-transform: uppercase
-				font-size: 4em
-				font-weight: 600
+				line-height: 70px
+				display: block
 				color: $blue
-				margin-bottom: -0.18em
-				line-height: 1em
-			h2
-				background: none
-				padding: 0
-				text-transform: none
-				color: #fff
-				font-weight: 700
-				font-size: 3em
-				font-style: italic
-				margin-bottom: 0
-						
-		.content-preview
+			em
+				font-family: $fatty
+				font-size: 60px
+				line-height: 60px
+		h3
+			font-size: 20px
+			font-weight: 200
+			line-height: 22px
+			color: $blue
+			margin-bottom: 66px
+		#learn-more
+			width: 280px
+			margin: 0 auto
+			border-top: 2px dashed #fff
+			a
+				display: inline-block
+				font-size: 16px
+				@include rounded(2px)
+				background: #000
+				padding: 12px 20px
+				border: 2px solid $blue
+				position: relative
+				top: -22px
+				@include transition(background, 0.1s)
+			a:hover
+				background: $blue
+	
+	#featured-content
+		height: 132px
+		width: 1050px
+		margin: 0 auto 100px
+		padding-top: 120px
+		background: transparent url(../images/landing/content-note.png) no-repeat 98% 0
+		.media-type
 			height: 100%
+			float: left
+			margin-right: 10px
+			width: 41px
+			overflow: hidden
+			@include transition(width)
+			&:last-child
+				margin-right: 0
+			.toggler
+				width: 41px
+				height: 100%
+				float: left
+				background: #333 url(../images/landing/media-types/photo.png) no-repeat 50% 50%
+				@include rounded(3px)
+				cursor: pointer
+				&:hover
+					background-color: #444
+			a
+				width: 200px
+				height: 100%
+				float: left
+		.media-type.open
+			width: 841px
+			.toggler
+				background-color: $blue
+				-webkit-border-top-right-radius: 0
+				-webkit-border-bottom-right-radius: 0
+				-moz-border-radius-topright: 0
+				-moz-border-radius-bottomright: 0
+				border-top-right-radius: 0
+				border-bottom-right-radius: 0
+			a
+				display: block
+		#art-type .toggler
+			background-image: url(../images/landing/media-types/art.png)
+		#video-type .toggler
+			background-image: url(../images/landing/media-types/video.png)
+		#sound-type .toggler
+			background-image: url(../images/landing/media-types/sound.png)
+		#writing-type .toggler
+			background-image: url(../images/landing/media-types/writing.png)
+	
+	#categories-people
+		padding: 150px 110px 100px
+		background: transparent url(../images/landing/creators-note.png) no-repeat 0 0
+	#categories-people > .inner
+		@include clearfix
+		width: 100%
+	
+	#categories
+		float: left
+		width: 150px
+		font-family: $typewriter
+		font-size: 17px
+		font-style: italic
+		font-weight: 300
+		border-right: 1px solid #333
+		li
+			padding-right: 30px
+			margin-bottom: 10px
+			border-right: 4px solid #000
+			@include transition(border-color)
+			.people
+				display: none
+				font-size: 14px
+				margin-left: 8px
+				font-family: $block
+				font-style: normal
+				a
+					display: block
+				a.selected
+					color: #fff
+			&.selected
+				a.top
+					color: #fff
+				.people
+					display: block
+			&:last-child
+				margin-bottom: 0
+	
+	#people
+		width: 645px
+		height: 550px
+		float: right
+		overflow: hidden
+	#people > ul
+		@include transition(margin, 0.2s, ease-in-out)
 		
-		.metadata
+		&.loading
+			background: transparent url(../images/spinner-white.gif) no-repeat 300px 240px
+			li
+				display: none
+		
+		li.person
+			width: 100%
+			height: 550px
+			float: left
+			position: relative
+
+		.name
+			display: block
+			font-size: 50px
+			font-weight: 600
+			line-height: 42px
+			margin-bottom: 10px
+			text-transform: uppercase
+			color: #fff
+			span
+				display: block
+				
+		.avatar
+			display: block
+			margin-bottom: 15px
+			border: 2px solid #fff
+		.avatar, .avatar img	
+			width: 276px
+			height: 276px
+		
+		.actions
+			height: 40px
+			margin-bottom: 13px
+		.actions a
+			display: block
+			float: left
+			width: 126px
+			height: 40px
+			padding: 0 0 0 11px
+			background: transparent url(../images/discovery/flags.png) no-repeat
+			color: #000
+			font-size: 15px
+			font-weight: 600
+			text-transform: uppercase
+			text-align: center
+			margin-right: 10px
+			line-height: 40px
+			&:hover
+				color: #fff
+		.actions .profile
+			background-position: -142px 0
+			margin: 0
+			padding: 0 13px 0 0
+		
+		.tagline
+			width: 260px
+			font-family: $typewriter
+			font-size: 1.1em
+			font-style: italic
+			font-weight: 300
+			line-height: 1.4em
+		
+		.supporters-and-content
+			position: absolute
+			top: 65px
+			left: 305px
+			width: 304px
+			height: 465px
+			overflow: hidden
+			strong
+				display: block
+				text-transform: uppercase
+				font-size: 1.1em
+				letter-spacing: 0.02em
+				margin-bottom: 10px
+			
+		.supporters
+			margin-bottom: 5px
+			ul
+				@include clearfix
+				width: 100%
+			li
+				float: left
+				margin: 0 10px 10px 0
+				&:nth-child(6n)
+					margin-right: 0
+				a, img
+					display: block
+					width: 42px
+					height: 42px
+					
+		.list
+			width: 8000px
+			height: 341px
+			@include transition(margin)
+			.content
+				float: left
+				width: 304px
+			.reward-stats
+				text-align: center
+				padding-bottom: 12px
+				background: transparent url(../images/discovery/small-arrow-down.png) no-repeat 50% 100%
+				margin-bottom: 20px
+				em
+					font-family: $typewriter
+					font-size: 13px
+					font-weight: 300
+					display: block
+				strong
+					font-family: $numerals
+					font-size: 40px
+					font-weight: 200
+					line-height: 48px
+					letter-spacing: -0.02em
+					display: inline
+				span
+					font-size: 24px
+					font-weight: 600
+					text-transform: uppercase
+					padding: 0 6px
+					position: relative
+					top: -4px
+				.people
+					padding-right: 20px
+					background: transparent url(../images/reward-modal/people.png) no-repeat 100% 16px
+			.preview
+				background: #fff
+				padding: 2px
+				margin-bottom: 10px
+			.content-preview
+				display: block
+				width: 300px
+				height: 203px
+			.title	
+				display: block
+				color: #000
+				text-transform: uppercase
+				padding: 10px
+
+		.more
+			font-size: 12px
+			text-transform: uppercase
+			clear: both
+			width: 300px
 			position: absolute
 			bottom: 0
-			display: block
-			width: 100%
-			height: 20px
-			padding: 15px 0
-			background: #f7f7f7
-			background: rgba(255,255,255,0.9)
-			color: #000
-			.media-type, .title
+			left: 0
+			a.all
+				float: right
+			a.next, a.prev, span
+				display: block
 				float: left
-			.media-type
-				width: 30px
-				height: 20px
-				background: transparent url(../images/content/media-types/photos-small-black.png) no-repeat 0 50%
-				position: absolute
-				top: 15px
-				left: 15px
-				&.video
-					background-image: url(../images/content/media-types/video-small-black.png)
-				&.writing
-					background-image: url(../images/content/media-types/writing-small-black.png)
-				&.music
-					background-image: url(../images/content/media-types/music-small-black.png)
-			.title 
-				margin-left: 60px
-				margin-right: 300px
-				height: 21px
+				margin-right: 4px
+			a.next, a.prev
+				width: 12px
+				height: 13px
+				background: transparent url(../images/discovery/content-browsing-arrows.png) no-repeat 0 1px
 				overflow: hidden
-				font-size: 0.75em
-				strong
-					text-transform: uppercase
-					color: #000
-				span
-					color: #aaa
-			.example
-				position: absolute
-				top: 17px
-				right: 15px
-				color: #999
-				font-size: 0.6em
-				font-style: italic
-			
-		
-	#sidebar
-		font-family: $typewriter
-	
-		#filter
-			padding: 20px 15px
-			li
-				float: left
-				color: #999
-				a
-					@include transition(color)
-					color: #999
-			li.selected, li:hover
-				a
-					color: $blue
-			li:last-child .comma
-				display: none
-			.comma
-				margin-left: -2px
-			#featured
-				@include clearfix
-				width: 100%
-				text-transform: uppercase
-				padding-bottom: 20px
-				border-bottom: 1px solid #ccc
-				margin-bottom: 20px
-				font-size: 13px
-				a
-					display: block
-					float: left
-					height: 1em
-					padding-right: 10px
-					margin-right: 10px
-					border-right: 1px solid #ccc
-				li:last-child a
-					border: none
-			#categories
-				@include clearfix
-				width: 100%
-				padding-bottom: 20px
-				border-bottom: 3px solid $blue
-				li
-					float: left
-					margin: 0 3px 5px 0
-	
-		#people
-			font-size: 1.3em
-			h3.title
-				color: #999
-				font-size: 1em
-				font-weight: 300
-				text-transform: uppercase
-				margin-right: 15px
-				background: transparent url(../images/discovery/keyboard-icon.png) no-repeat 100% 50%
-			h3.title, li .details
-				padding: 15px
-			#list.loading
-				background: transparent url(../images/spinner.gif) no-repeat 50% 50%
-				height: 100px
-				*
-					display: none
-			li
-				margin-bottom: 5px
-				a.name
-					display: block
-					color: #555
-					padding: 3px 15px
-					&:hover
-						color: $blue
-					span.featured
-						padding-right: 26px
-						background: transparent url(../images/profile/featured.png) no-repeat 97% 50%
-				a.name, .details h3
-					font-size: 1.2em
-					font-family: $typewriter
-					font-weight: 100
-					font-style: italic
-				.details	
-					display: none
-					background: #000
-					color: #fff
-					position: relative
-					img.avatar
-						position: absolute
-						top: 0
-						left: -60px
-					h3
-						padding-bottom: 3px
-						border-bottom: 2px solid #fff
-						margin-bottom: 8px
-						font-weight: 500
-					h4
-						color: $red
-						font-family: $typewriter
-						font-size: 0.9em
-						font-weight: 100
-						font-style: italic
-					p
-						font-size: 0.8em
-						line-height: 1.3em
-						margin: 10px 0
-					.supporters
-						font-weight: 300
-						font-size: 2.5em
-						.amount
-							padding-right: 24px
-							background: transparent url(../images/discovery/supporters.png) 100% 10px no-repeat
-					a.profile
-						display: block
-						background: $red
-						color: #fff
-						margin: 15px -15px -15px
-						padding: 10px
-						text-align: right
-						text-transform: uppercase
-				.details.watchmen
-					h4
-						color: #ffe344
-					a.profile
-						background-color: #ffe344
-						color: #000
-				.details.blob
-					h4
-						color: #ff6600
-					a.profile
-						background-color: #ff6600
-						color: #000
-				.details.bowling
-					h4
-						color: #99daa4
-					a.profile
-						background-color: #99daa4
-						color: #000
-					
-			li.current
-				a.name
-					display: none
-				.details
-					display: block
+				text-indent: 12px
+				&.off
+					opacity: 0.3
+			a.next
+				background-position: -12px 1px

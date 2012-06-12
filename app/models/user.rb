@@ -118,6 +118,10 @@ class User < ActiveRecord::Base
     self.created_stories.published.where(:media_type => type).count
   end
   
+  def top_supporters
+    self.rewards.group_by(&:user).to_a.map {|x| [x.first,x.second.inject(0){|sum,r| sum+r.amount}]}.sort_by(&:second).reverse
+  end
+  
   def is_new?
     self.created_at > 2.weeks.ago
   end
@@ -154,13 +158,14 @@ class User < ActiveRecord::Base
     # handle people who previously purchased coins
     coin_amount = reward.amount / Reward.dollar_exchange
     if self.coins > coin_amount
-      reward.update_attribute(:paid_for => true)
+      reward.update_attribute(:paid_for, true)
       self.decrement!(:coins, coin_amount)
     end
     
     # create the reward activity record
     Activity.create(:actor_id => self.id, :recipient_id => story.user_id, :action_type => "Reward", :action_id => reward.id)
 
+    # create a comment record if the user commented
     unless reward.comment.blank?
       story.comments << Comment.new(:comment => reward.comment, :user_id => reward.user_id, :reward_id => reward.id)
     end
@@ -171,30 +176,15 @@ class User < ActiveRecord::Base
       Activity.create(:actor_id => self.id, :action_type => "Badge", :action_id => new_badge_level)
     end
     
-    # if this was impacted by another reward
+    # handle impact if necessary
     if impacted_by
       parent_reward = Reward.find_by_id(impacted_by)
-      if parent_reward
-        # make the new reward a child of the impacter reward
-        reward.move_to_child_of(parent_reward)
-        reward.update_attribute(:depth, reward.ancestors.count)
-
-        # update all ancestor rewards' impact
-        reward.ancestors.update_all("impact = impact + #{reward.amount}")
-        
-        # update all ancestors' user's impact, except for this reward's user (no double points!)
-        ancestor_ids = reward.ancestors.map(&:user_id).uniq.reject{|user_id| user_id == reward.user_id}
-        unless ancestor_ids.empty?
-          User.where("id in (#{ancestor_ids.join(",")})").update_all("impact = impact + #{reward.amount}")
-        end
-        
-        # record an activity for each ancestor getting impact
-        reward.ancestors.map(&:user_id).uniq.each do |user_id|
-          if user_id != reward.user_id
-            Activity.create(:recipient_id => user_id, :action_type => "Impact", :action_id => reward.id)
-          end
-        end
-      end
+      reward.handle_impact!(parent_reward) if parent_reward
+    end
+    
+    # auto-follow this user
+    unless self.is_subscribed_to?(story.user)
+      Subscription.create(:subscriber_id => self.id, :user_id => story.user_id)
     end
     
     return reward
@@ -212,8 +202,8 @@ class User < ActiveRecord::Base
     self.pledged_amount < User::PLEDGED_REWARD_STOP_THRESHOLD
   end
   
-  def pay_for_pledged_rewards!
-    self.given_rewards.pledged.update_all(:paid_for => true)
+  def pay_for_pledged_rewards!(amazon_payment_id)
+    self.given_rewards.pledged.update_all(:paid_for => true, :amazon_payment_id => amazon_payment_id)
   end
   
   def rewards_given_to(user)
@@ -517,8 +507,12 @@ class User < ActiveRecord::Base
     end
   end
   
+  def avatar_missing?
+    self.avatar.url.include?("missing")
+  end
+  
   def reload_avatar
-    return false if self.avatar.url.include?("missing")
+    return false if avatar_missing?
     begin
       io = open(URI.parse(self.avatar.url))
       self.avatar = io

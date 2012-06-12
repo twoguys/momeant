@@ -46,6 +46,8 @@ class Story < ActiveRecord::Base
   has_many :users_who_viewed, :through => :views, :source => :user
   
   has_many :pages, :order => "number ASC", :dependent => :destroy
+  
+  has_one :editorial
     
   validates :media_type, :presence => true, :unless => :autosaving
   validates :title, :presence => true, :length => (2..256), :unless => :autosaving
@@ -61,6 +63,7 @@ class Story < ActiveRecord::Base
   scope :no_gallery, where(:gallery_id => nil)
   scope :in_the_past_two_weeks, where("created_at > '#{14.days.ago}'")
   scope :from_today, where("created_at > '#{1.day.ago}'")
+  scope :but_not, lambda { |id| where("id != ?", id) }
   
   paginates_per 12
   
@@ -73,13 +76,18 @@ class Story < ActiveRecord::Base
     "Arts",
     "Blogging",
     "Causes",
-    "Educational",
+    "Culture",
+    "Design",
+    "Education",
     "Entertainment",
+    "Fashion",
+    "Film & Video",
     "Gastronomy",
     "Humanities",
     "Journalism",
     "Music",
-    "Publishing"
+    "Photography",
+    "Writing"
   ].freeze
     
   def to_param
@@ -92,7 +100,7 @@ class Story < ActiveRecord::Base
   
   def at_least_one_page
     if self.pages.count == 0
-      self.errors.add(:base, "Your content must have at least one page")
+      self.errors.add(:base, "The content you create must have at least one page")
       return false
     end
     return true
@@ -101,7 +109,7 @@ class Story < ActiveRecord::Base
   def no_empty_pages
     self.pages.each do |page|
       if page.empty?
-        self.errors.add(:base, "Slide #{page.number} cannot be empty. Please fix this by using the fullscreen editor.")
+        self.errors.add(:base, "Slide #{page.number} cannot be empty. Please fix this by launching the Content Editor.")
         return false
       end
     end
@@ -268,6 +276,14 @@ class Story < ActiveRecord::Base
     end
   end
   
+  def media_are_or_is
+    if media_type == "photos"
+      "photos are"
+    else
+      "#{media_type} is"
+    end
+  end
+  
   def article_string
     case media_type
     when "photos"
@@ -283,8 +299,27 @@ class Story < ActiveRecord::Base
     end
   end
   
-  def text_media_type?
-    self.media_type == "writing" || self.media_type == "music"
+  def new_article_string
+    case media_type
+    when "photos"
+      "some new photos"
+    when "video"
+      "a new video"
+    when "writing"
+      "a new article"
+    when "music"
+      "some new music"
+    else
+      "some new work"
+    end
+  end
+  
+  def text_preview?
+    self.preview_type == "text"
+  end
+  
+  def text_template_image
+    "content/templates/#{self.template}"
   end
   
   def reload_thumbnail!
@@ -299,6 +334,17 @@ class Story < ActiveRecord::Base
   
   def activities
     Activity.where(:action_id => self.id).where("action_type = 'Story'")
+  end
+  
+  def self.featured_on_landing
+    content_hash = ActiveSupport::OrderedHash.new
+    stories = Story.published.newest_first
+    content_hash[:photo] = [stories[0]] * 4
+    content_hash[:art] = [stories[1]] * 4
+    content_hash[:video] = [stories[2]] * 4
+    content_hash[:sound] = [stories[3]] * 4
+    content_hash[:writing] = [stories[4]] * 4
+    content_hash
   end
   
   private

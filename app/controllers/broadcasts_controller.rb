@@ -8,6 +8,12 @@ class BroadcastsController < ApplicationController
     broadcast.save
     broadcast.reload
     Activity.create(:actor_id => @user.id, :action_type => "Broadcast", :action_id => broadcast.id)
+    
+    # tell their followers (TODO: Background this later)
+    current_user.subscribers.each do |user|
+      NotificationsMailer.broadcast_from_following(user, current_user, broadcast).deliver if user.send_following_update_emails?
+    end
+    
     render :json => { :success => true }
   end
   

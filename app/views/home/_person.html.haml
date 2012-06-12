@@ -1,11 +1,50 @@
-%li
+- person = content.user
+%li.person
+
   %a.name{:href => user_path(person), :data => person.id}
-    %span{:class => person.is_featured? ? "featured" : ""}= person.name
-  .details{:class => person.discovery_content.present? ? person.discovery_content.template : ""}
-    = image_tag(person.avatar.url(:thumbnail), :class => "avatar" )
-    %h3= person.name
-    %h4= person.occupation
-    %p= truncate(person.tagline, :length => 140)
+    %span= person.first_name
+    %span= person.last_name
+
+  = link_to image_tag(person.avatar.url(:editorial)), user_path(person), :class => "avatar"
+  .actions
+    - if user_signed_in?
+      - follow_text = current_user.is_subscribed_to?(person) ? "Unfollow" : "Follow"
+      = link_to follow_text, "#", :class => "follow", :data => person.id
+    - else
+      = link_to "Follow", "#join-modal", :class => "follow"
+    = link_to "View Work", user_path(person), :class => "profile"
+  .tagline= truncate person.tagline, :length => 140
+
+  .supporters-and-content
     .supporters
-      %span.amount= person.patrons.count
-    = link_to "View Profile &rarr;".html_safe, user_path(person), :class => "profile"
+      %strong #{person.first_name}'s Top Supporters
+      %ul.patrons
+        - person.top_supporters[0..11].each do |patron|
+          %li= link_to image_tag(patron[0].avatar.url(:thumbnail)), user_path(patron[0])
+
+    - all_content = [content] + person.created_stories.published.but_not(content.id).order("reward_count DESC")
+    .list{:current => 0, :total => all_content.size}
+      - all_content.each do |content|
+        .content
+          .reward-stats
+            %em this content has been rewarded
+            %strong= number_to_currency(content.reward_count)
+            %span from
+            %strong.people= content.users_who_rewarded.count
+          .preview
+            - if content.text_preview?
+              %a.content-preview.small{:href => story_path(content), :class => "#{content.media_type} #{content.template}"}
+                .inner
+                  .image
+                  .quote= truncate(content.template_text, :length => 140)
+            - else
+              %a.content-preview{:href => story_path(content), :class => content.media_type}
+                .inner{:style => "background-image: url(#{content.thumbnail.url(:large)})"}
+            = link_to truncate(content.title, :length => 32), story_path(content), :class => "title"
+
+    .more
+      = link_to "Previous", "#", :class => "prev off"
+      %span 1 of #{pluralize person.created_stories.published.count, "work"} by #{person.first_name}
+      = link_to "Next", "#", :class => "next #{all_content.size == 1 ? "off" : ""}"
+        
+      = link_to "See All", user_path(person), :class => "all"

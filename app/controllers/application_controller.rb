@@ -2,20 +2,22 @@ class ApplicationController < ActionController::Base
   include SslRequirement
   protect_from_forgery
   
-  before_filter :open_reward_modal?
+  before_filter :open_reward_modal?, :creator_finished_signing_up?
   
   @nav = "home"
   @sidenav = ""
   
-  def setup_landing
-    content = Story.where("user_id IN (?)", Editorial.all.map(&:user_id))
-    @people = content.map(&:user).uniq.take(10)
-    @nav = "home"
-  end
-  
   def open_reward_modal?
     if params[:open_reward_modal].present?
       session[:open_reward_modal] = true
+    end
+  end
+  
+  def creator_finished_signing_up?
+    return if current_user.nil?
+    return unless current_user.is_a?(Creator)
+    if current_user.avatar_missing? || current_user.tagline.blank?
+      redirect_to creator_info_path(current_user)
     end
   end
   

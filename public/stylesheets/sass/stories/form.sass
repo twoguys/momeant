@@ -1,6 +1,8 @@
 /* Story creation */
 
-body#stories.edit
+body#stories.edit.fullscreen
+	#header
+		display: none
 
 .new-story-copy
 	font-family: $typewriter
@@ -42,6 +44,9 @@ form.new_story, form.edit_story, .story-form
 		padding: 0
 	fieldset
 		padding-top: 20px
+	.example
+		border: none
+		padding-bottom: 0
 	#story-spinner
 		background: #000 url(../images/spinner-white.gif) no-repeat 17px 12px
 		color: #fff
@@ -79,6 +84,7 @@ form.new_story, form.edit_story, .story-form
 			color: $text_color
 			padding: 0 0 5px
 			border-bottom: 1px solid #ccc
+			margin-bottom: 30px
 		.info
 			margin: 15px 0
 			font-size: 12px
@@ -91,10 +97,53 @@ form.new_story, form.edit_story, .story-form
 		input[type="text"], textarea
 			width: 98%
 		label
-			font-size: 13px
+			font-weight: 400
 			color: $text_color
 			text-transform: none
-			font-weight: 700		
+
+		.choice
+			display: inline-block
+			background: #ccc
+			color: #000
+			@include rounded(3px)
+			-webkit-border-bottom-right-radius: 0
+			-webkit-border-bottom-left-radius: 0
+			-moz-border-radius-bottomright: 0
+			-moz-border-radius-bottomleft: 0
+			border-bottom-right-radius: 0
+			border-bottom-left-radius: 0
+			font-size: 15px
+			font-weight: 600
+			padding: 10px 20px
+			margin-right: 10px
+		.choice:hover
+			background: #bbb
+		.choice.selected
+			background-color: #fff
+			color: #333
+		.choice.selected
+		.details
+			display: none
+			@include rounded(3px)
+			-webkit-border-top-left-radius: 0
+			-moz-border-radius-topleft: 0
+			border-top-left-radius: 0
+			background: #fff
+			color: #333
+			padding: 20px
+			label
+				color: #333
+				text-shadow: none
+				font-size: 14px
+				font-weight: 400
+				margin: 0 0 5px
+			.button
+				display: inline-block
+				margin-top: 14px
+			.info
+				margin-bottom: 0
+		.details.selected
+			display: block
 	.step, .banner
 		max-width: 900px
 		margin-left: auto
@@ -117,51 +166,24 @@ form.new_story, form.edit_story, .story-form
 			margin-right: 0
 	.banner
 		max-width: 920px
+
 	.step#editor
 		margin-top: 30px
-		.choice
-			cursor: pointer
-			.choice-inner
-				input
-					width: 94%
-			.description
-				padding: 0 0 10px 22px
-				height: 20px
-				background: transparent url(../images/fakeCheckbox.png) no-repeat 0 -1px
-			.info
-				margin: 5px 0 0
-		.choice.selected .choice-inner .description
-			background-position: 0 -33px
-		.choice#external
+		h2
 			margin-bottom: 20px
-			.choice-inner
-				padding: 15px
-				background: #ccc
-				@include rounded(3px)
-			.description	
-				font-size: 13px
-				font-weight: 700
-				text-transform: uppercase
-		.choice#creator
-			float: right
-			.description
-				float: left
-				margin-right: 20px
-				padding-bottom: 0
-				em
-					color: #999
-			.info
-				display: none
+		#share-details input
+			background: #eee
+		#create-details
+			padding: 18px 20px 21px
 
 	.step#type
 		ul
-			@include clearfix
-			width: 100%
+			height: 150px
 			li
 				float: left
 				clear: none
 				width: 25%
-				height: 179px
+				height: 150px
 				text-align: center
 				margin: 0
 				background: transparent url(../images/creator/selected-media-type-bg.png) no-repeat 50% -500px
@@ -184,35 +206,42 @@ form.new_story, form.edit_story, .story-form
 					background-image: url(../images/creator/media-types/writing.png)
 				a#music-type
 					background-image: url(../images/creator/media-types/music.png)
-		#template
-			background: #ccc
-			&.loading
-				background: #ccc url(../images/spinnerLightGreyBg.gif) no-repeat 50% 50%
-				height: 100px
-				*
-					visibility: hidden
-			.inner
-				padding: 20px
-			label
-				text-shadow: none
-				font-size: 15px
-				font-weight: 500
-			.info
+		
+	.step#preview
+		#preview-image-details
+			height: 180px
+		.file-uploader
+			float: left
+		.loader
+			width: 220px
+			height: 19px
+			background: transparent url(../images/loading.gif) no-repeat 0 0
+			display: none
+		.thumbnail
+			width: 288px
+			height: 180px
+			background: #eee url(../thumbnails/medium/missing.png) no-repeat 50% 50%
+			float: left
+			margin-right: 20px
+		#preview-text-details
+			textarea
+				height: 30px
+				background: #eee
+			#characters-left
 				font-size: 13px
-				color: $text_color
-				font-style: italic
-				margin: 10px 0
-			.file-uploader
+				color: #777
 				margin-bottom: 20px
-				.loader
-					width: 220px
-					height: 19px
-					background: transparent url(../images/loading.gif) no-repeat 0 0
-					display: none
-			.thumbnail
-				width: 288px
-				height: 180px
-				background: #fff
+			#text-template
+				height: 185px
+				a
+					display: block
+					float: left
+					width: 225px
+					height: 150px
+					border: 3px solid #fff
+					margin-right: 2px
+				a:hover, a.selected
+					border-color: #333
 	
 	.step#categorize
 		#story_title
@@ -241,8 +270,6 @@ form.new_story, form.edit_story, .story-form
 						height: 19px
 						background: transparent url(../images/loading.gif) no-repeat 0 0
 						display: none
-					.example
-						border: none
 			.box
 				background: #fff
 				border: 1px solid #d7d7d7
@@ -871,7 +898,7 @@ form.new_story, form.edit_story, .story-form
 						height: 121px
 						width: 100%
 						ul.styles
-							width: 2184px
+							width: 1404px
 							padding: 0 2px
 							li
 								width: 150px
@@ -935,9 +962,9 @@ form.new_story, form.edit_story, .story-form
 				select
 					margin-top: 9px
 				label
-					font-size: 11px
-					font-weight: 300
-					color: #999
+					font-size: 12px
+					font-weight: 400
+					color: #777
 					margin-top: 8px
 					margin-bottom: 5px
 					text-shadow: none

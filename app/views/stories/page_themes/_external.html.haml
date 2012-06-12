@@ -2,7 +2,7 @@
   - url = @page && @page.text ? @page.text : ""
   - if url.include?("vimeo.com")
     - url.gsub!("http://vimeo.com/","").gsub!("http://www.vimeo.com/","")
-    %iframe{:src => "http://player.vimeo.com/video/#{url}"}
+    %iframe{:src => "http://player.vimeo.com/video/#{url}?title=0&byline=0&portrait=0"}
   - elsif url.starts_with?("http://youtube.com/embed/")
     %iframe{:src => "#{url}?wmode=opaque"}
   - elsif url.include?("youtube.com")

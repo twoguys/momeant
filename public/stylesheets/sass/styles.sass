@@ -50,18 +50,12 @@ h2
 	max-width: 1367px
 	margin: 0 auto
 
-#new-york
-	position: fixed
-	top: 42px
-	left: 0
-	width: 100%
-	height: 100%
-	background: #f0e3d2 url(../images/new-york.jpg) no-repeat 50% 0 fixed
-	@include bgcover
-	
-
 .fullscreen
-	.fullscreen-hidden, #header, #right-sidebar, #new-york
+	position: absolute
+	top: 0
+	bottom: 0
+	width: 100%
+	.fullscreen-hidden
 		display: none
 	#container
 		position: static
@@ -142,12 +136,11 @@ h2
 @import "about"
 @import "faq"
 @import "rewards"
-@import "transactions"
+@import "payments"
 @import "tags"
 @import "visualization"
 @import "messages"
 @import "activity"
-@import "discovery"
 
 
 .info-bar

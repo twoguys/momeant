@@ -1,24 +1,31 @@
 #user-profile
   
   #profile-center.column
+    - if me?(@user) && @content.empty?
+      #empty-creator-content
+        %p This is your profile page, where you’ll communicate with your audience, present yourself and your work, and where they’ll be able to follow you.
+        %p.strong Get started by clicking the "Share (+)" icon in the navigation bar above.
+  
     #vertical-list
       %ul#activity-list
         - index = 0
         - @content.each do |content|
           %li.content{:id => "content-#{content.id}"}
-            %a.content-preview{:href => story_path(content), :class => "#{content.media_type} #{content.template}"}
-              - if content.text_media_type?
+            - if content.text_preview?
+              %a.content-preview{:href => story_path(content), :class => "#{content.media_type} #{content.template}"}
                 .inner
                   .image
                   .quote= truncate(content.template_text, :length => 140)
-              - else
+                .tip View #{content.media_type} &rarr;
+            - else
+              %a.content-preview{:href => story_path(content), :class => content.media_type}
                 .inner{:style => "background-image: url(#{content.thumbnail.url(:large)})"}
+                .tip View #{content.media_type} &rarr;
       
             .info
               .media-type{:class => content.media_type}
               .text
                 - title = content.title.blank? ? "Untitled" : content.title
-                - title += " (unpublished)" if !content.published?
                 = link_to(title, story_url(content), :class => "title")
                 .synopsis= truncate(content.synopsis, :length => 140)
                 - if content.category
@@ -26,6 +33,8 @@
                 - if me?(@user)
                   = link_to "Edit", edit_story_path(content), :class => "edit" if me?(@user)
                   = link_to "Delete", story_path(content), :method => :delete, :confirm => "WHOA WAIT UP! If you delete this you will lose ALL REWARDS on this content. Are you SURE you want to delete it?"
+                - if current_user && current_user.is_admin? && content.editorial.nil?
+                  = link_to "Feature", admin_editorials_path(:id => content.id), :method => :post
               .support= content.users_who_rewarded.count
           
             .comments
@@ -37,6 +46,9 @@
                 %ul.comment-list
                   = render :partial => "comments/comment", :collection => content.comments, :as => :comment
                 = render "comments/form", :commentable => content
+                
+            - if !content.published?
+              = link_to "Unpublished", edit_story_path(content), :class => "unpublished-ribbon"
             
           - index += 1
   

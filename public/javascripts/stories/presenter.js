@@ -118,7 +118,7 @@ $(function() {
 		},
 		
 		close_reward_modal: function() {
-			RewardModal.hide_modal();
+			RewardModal.close_modal();
 		},
 		
 		goto_page_in_url_or_default: function() {
@@ -135,7 +135,6 @@ $(function() {
 			var presenter = this;
 			$(document).keyup(function(e) {
 				if (!RewardModal.modal_open) {
-				  console.log('here');
 				  if (e.keyCode == 39) { presenter.goto_next_page(); } 					// right arrow
 					if (e.keyCode == 37) { presenter.goto_previous_page(); }			// left arrow
 				}
@@ -147,11 +146,19 @@ $(function() {
 		el: $('#reward-modal'),
 		
 		events: {
-			'click #reward-modal-tab':        'toggle_modal',
-			'click #stars a': 								'choose_reward_amount',
+			'click #open-close':              'toggle_modal',
+			'click #content-cover':           'toggle_modal',
+			'click #toggle-synopsis':         'toggle_full_synopsis',
+			'click #steps li.reward':         'goto_reward',
+			'click #steps li.comment':        'goto_comment',
+			'click #amounts li a': 						'choose_reward_amount',
 			'focus #custom_amount': 					'choose_custom_amount',
+			'keydown #custom_amount':         'cleanse_reward_amount',
+			'keyup #custom_amount':           'cleanse_reward_amount',
   		'blur #custom_amount':            'stop_choosing_custom',
-			'submit #reward-form':            'submit_reward'
+  		'click #goto-comment':            'goto_comment',
+			'submit #reward-form':            'submit_reward',
+			'click #open-comments-tab':       'toggle_comments'
 		},
 		
 		initialize: function() {
@@ -159,58 +166,79 @@ $(function() {
 			this.setup_key_bindings();
 			this.setup_custom_reward_amount_monitoring();
 			this.editing_text = false;
+			this.reward_submitted = false;
 		},
 		
-		show_modal: function() {
-			$(this.el).animate({top: 0}, 300);
-			$('#reward-modal-tab').hide().css('bottom',0);
+		open_modal: function() {
+			$(this.el).addClass('open');
+			// show the extra stuff after the css transition effect finishes
+			setTimeout(function() {$('#reward-modal').addClass('opened');}, 200);
 			$('#content-cover').show();
 			this.modal_open = true;
-			mpq.track('Opened Reward Modal', {anonymous_id: '#{session[:analytics_anonymous_id]}'});
+			mpq.track('Opened Reward Modal');
 		},
 		
-		hide_modal: function() {
-			$(this.el).animate({top: '-100%'}, 300, function() {
-  			$('#reward-modal-tab').show().animate({bottom:'-39px'}, 300);
-			});
+		close_modal: function() {
+			$(this.el).removeClass('open opened');
 			$('#content-cover').hide();
 			this.modal_open = false;
-			$('#its-you-arrow').hide();
 		},
 		
 		toggle_modal: function() {
 			if (this.modal_open) {
-				this.hide_modal();
+				this.close_modal();
 			} else {
-				this.show_modal();
+				this.open_modal();
 			}
 			return false;
 		},
 		
-		advance_to_step: function(step) {
-		  $('#modal-steps li[step=' + step + ']').addClass('selected').siblings().removeClass('selected');
+		toggle_full_synopsis: function(event) {
+		  var $link = $(event.currentTarget);
+		  var $synopsis = $link.parent();
+		  if ($synopsis.hasClass('more')) {
+		    $link.siblings('.more').hide();
+		    $link.siblings('.less').show();
+		    $synopsis.removeClass('more');
+		    $link.text('more');
+		  } else {
+		    $link.siblings('.less').hide();
+		    $link.siblings('.more').show();
+		    $synopsis.addClass('more');
+		    $link.text('less');
+		  }
+		  return false;
 		},
 		
-		turn_off_stars: function() {
-			$('#stars a').removeClass('selected');
+		turn_off_amounts: function() {
+			$('#amounts a').removeClass('selected');
 			$('#custom_amount').removeClass('selected');
 		},
 		
 		choose_reward_amount: function(event) {
-			var $star_button = $(event.currentTarget);
+			var $button = $(event.currentTarget);
 
-			RewardModal.turn_off_stars();
-			$star_button.addClass('selected');
+			RewardModal.turn_off_amounts();
+			$button.addClass('selected');
 
-			$('#reward_amount').val($star_button.attr('amount'));
+			$('#reward_amount').val($button.attr('amount'));
 			$('#custom_amount').val('');
 			
-			this.show_reward_comment();
+			window.setTimeout(RewardModal.finished_reward_amount, 200);
 			return false;
 		},
 		
+		cleanse_reward_amount: function(event) {
+		  var $input = $('#custom_amount');
+		  var value = $input.val()
+		  var bad_values = !(/^[0-9\$\.]*$/i).test(value);
+		  if (bad_values) {
+		    $input.val(value.replace(/[^0-9\$\.]/ig, ''));
+		  }
+		},
+		
 		choose_custom_amount: function() {
-			RewardModal.turn_off_stars();
+			RewardModal.turn_off_amounts();
 			$('#reward_amount').val('');
   	  RewardModal.editing_text = true;
 		},
@@ -227,33 +255,40 @@ $(function() {
 			$amount.keyup(function() {
 				$('#reward_amount').val($amount.val());
 			});
-			$('#custom_amount').observe_field(1, this.show_reward_comment);
+			$('#custom_amount').observe_field(1, this.finished_reward_amount);
 		},
 		
-		show_reward_comment: function() {
+		goto_reward: function() {
+		  var $reward_step_button = $('#steps li.reward');
+		  if ($reward_step_button.hasClass('active')) { return false; }
+		  if (RewardModal.reward_submitted) { return false; }
+
+		  $reward_step_button.addClass('active').siblings().removeClass('active');
+		  $('#comment').fadeOut(200, function() {
+		    $('#amounts').fadeIn(200);
+		  });
+		},
+		
+		finished_reward_amount: function() {
+		  $('#goto-comment').css('opacity',1);
+		},
+		
+		goto_comment: function() {
+		  var $comment_step_button = $('#steps li.comment');
+		  if ($comment_step_button.hasClass('active')) { return false; }
+		  if (RewardModal.reward_submitted) { return false; }
+		  
+		  var $reward = $('#amounts');
 		  var $comment = $('#comment');
-			if (!$comment.is(':visible')) {
-			  window.setTimeout(function() {
-			    $('#amount-hints').fadeOut(200, function() {
-			      $comment.fadeIn(200);
-        		RewardModal.advance_to_step(2);
-			    });
-			  }, 300);
-			}
+	    $reward.fadeOut(200, function() {
+        $comment.fadeIn(200);
+      });
+      $('#steps li.comment').addClass('active').siblings().removeClass('active');
 		},
 		
-		advance_to_user_status: function() {
-		  $('#creator-info, #reward-box').hide();
-		  $('#your-status').show();
-		  
-			RewardModal.advance_to_step(4);
-		},
-		
-		back_to_sharing: function() {
-		  $('#your-status').hide();
-		  $('#creator-info, #reward-box').show();
-		  
-			RewardModal.advance_to_step(3);
+		goto_promote: function() {
+		  $('#steps li.reward, #steps li.comment').css('cursor','default'); // can't go back anymore
+		  $('#steps li.promote').addClass('active').siblings().removeClass('active');
 		},
 
 		submit_reward: function(e) {
@@ -262,6 +297,7 @@ $(function() {
 
 			if ($('#reward_amount').val() == '') {
 				alert('Please choose how much to reward.');
+				RewardModal.goto_reward();
 				return false;
 			}
 
@@ -271,17 +307,21 @@ $(function() {
 			var impacted_by = $form.find("#reward_impacted_by").val();
 			var url = $form.attr('action');
 
-			$('#reward-box').addClass('loading');
-			$('#reward-form').remove();
-			$.post(url,
-				{
+			$('#current-step').addClass('loading');
+			$.ajax({
+			  url: url,
+			  type: 'POST',
+				data: {
 					"reward[amount]":amount,
 					"reward[comment]":comment,
 					"reward[story_id]":story_id,
 					"reward[impacted_by]":impacted_by
 				},
-				function(data) {
-					$("#reward-box").html(data).removeClass('loading');
+				success: function(data) {
+    			$('#reward-form').remove();
+				  RewardModal.reward_submitted = true;
+				  RewardModal.goto_promote();
+					$("#current-step").html(data).removeClass('loading');
 					$('#what-is-impact').fancybox();
 					$('#url_to_share').click(function() { $(this).select(); });
 					
@@ -290,8 +330,14 @@ $(function() {
 					  $('#new-comment .reward').text('($' + parseInt(amount).toFixed(2) + ')');
 					  $('#new-comment').slideDown();
 					}
+				},
+				error: function(data) {
+				  $('#current-step').removeClass('loading');
+				  $('#invalid-reward-amount').show();
+				  RewardModal.goto_reward();
+				  $('#custom_amount').focus();
 				}
-			);
+			});
 		},
 		
 		monitor_sharing: function(reward_id) {
@@ -415,7 +461,10 @@ $(function() {
 			});
 		},
 		
-		
+		toggle_comments: function() {
+		  $('#comments-view').toggleClass('open');
+		  return false;
+		},
 
 		setup_key_bindings: function() {
 			var modal = this;

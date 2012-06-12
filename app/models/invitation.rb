@@ -4,11 +4,9 @@ class Invitation < ActiveRecord::Base
   
   before_create :set_token
   
-  TOKEN_LENGTH = 6
+  default_scope order("created_at DESC")
   
-  def for_creator?
-    self.invited_as == "Creator"
-  end
+  TOKEN_LENGTH = 6
   
   def used?
     self.invitee_id.present?

@@ -61,20 +61,6 @@ class StoriesController < ApplicationController
     render "form"
   end
   
-  def choose_media_type # ajax
-    @story = Story.find(params[:id])
-    @story.media_type = params[:media_type]
-    if @story.text_media_type? # if a text media type, choose a random template for now
-      text_templates = ["watchmen","blob","bowling"]
-      @story.template = text_templates[rand(text_templates.length)]
-    else
-      @story.template = "photo"
-    end
-    @story.autosaving = true
-    @story.save
-    render :partial => "stories/template_forms/#{params[:media_type]}"
-  end
-  
   def publish
     if !@story.valid?
       redirect_to edit_story_path(@story) and return
@@ -91,10 +77,19 @@ class StoriesController < ApplicationController
       current_user.post_to_facebook(@story, story_url(@story)) unless sharing[:facebook].blank?
     end
     
+    # tell their followers (TODO: Background this later)
+    @story.user.subscribers.each do |user|
+      NotificationsMailer.content_from_following(user, @story.user, @story).deliver if user.send_following_update_emails?
+    end
+    
     # track analytics across redirect
     flash[:track_story_publish] = @story.id
     
-    redirect_to user_path(@story.user)#, :notice => "Your content has been shared!"
+    redirect_to share_story_path(@story)
+  end
+  
+  def share
+    
   end
   
   def update_thumbnail
@@ -151,13 +146,14 @@ class StoriesController < ApplicationController
         external_page.medias << PageText.new
       end
       link = params[:story][:external_link]
-      metadata = @story.update_via_opengraph(link)
+      #metadata = @story.update_via_opengraph(link)
       external_page.text_media.update_attribute(:text, link)
-      render :json => {:result => "success", :metadata => metadata}
+      render :json => {:result => "success"}
       return
     end
     
     params[:story][:tag_list].downcase! if params[:story][:tag_list]
+    params[:story][:template_text].slice!(255..10000) if params[:story][:template_text]
 
     @story.autosaving = true
     if @story.update_attributes(params[:story])
@@ -224,17 +220,7 @@ class StoriesController < ApplicationController
     #@page = Page.where(:story_id => params[:story_id], :number => params[:number]).first
     render :partial => "stories/page_themes/#{params[:theme]}" if params[:theme]
   end
-  
-  def search
-    if params[:query]
-      @search = Story.search do
-        keywords params[:query]
-        with :published, true
-      end
-      @stories = @search.results
-    end
-  end
-  
+    
   private
     
   def get_topics
