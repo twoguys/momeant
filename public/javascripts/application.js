@@ -33,6 +33,9 @@ function setup_modals() {
 	_.each(['#join', '#login', '#feedback', '#about-diagram', '#about'], function(id) {
 		$('a[href="' + id + '-modal"]').click(function() {
 			$(id + '-modal').fadeIn('fast');
+			var modal_name = id.slice(1);
+			modal_name = modal_name.charAt(0).toUpperCase() + modal_name.slice(1);
+			mpq.track('Opened ' + modal_name + ' Modal');
 			return false;
 		})
 		$(id + '-modal .cover, ' + id + '-modal .close').click(function() {

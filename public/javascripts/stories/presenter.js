@@ -284,6 +284,10 @@ $(function() {
         $comment.fadeIn(200);
       });
       $('#steps li.comment').addClass('active').siblings().removeClass('active');
+      
+      var amount = parseInt($('#reward_amount').val());
+      mpq.track('Chose Reward Amount', { amount: amount });
+      return false;
 		},
 		
 		goto_promote: function() {
@@ -329,6 +333,8 @@ $(function() {
 					  $('#new-comment .text').text(comment);
 					  $('#new-comment .reward').text('($' + parseInt(amount).toFixed(2) + ')');
 					  $('#new-comment').slideDown();
+					  var comment_count = parseInt($('#open-comments-tab span').text());
+					  $('#open-comments-tab span').text(comment_count + 1);
 					}
 				},
 				error: function(data) {
