@@ -50,6 +50,8 @@
   .clear
 
 :javascript
+  mpq.track('Viewed Feed');
+
   var scrollables_selector = '#activity-list';
   var user_id = '#{current_user.id}';
 = javascript_include_tag "subscriptions" unless @followings.empty?
