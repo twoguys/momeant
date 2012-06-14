@@ -746,7 +746,6 @@ body#home.index #main {
     font-weight: 300;
     border-right: 1px solid #333333; }
     #landing-page #categories li {
-      padding-right: 30px;
       margin-bottom: 10px;
       border-right: 4px solid black;
       -webkit-transition: border-color 0.2s ease-in-out;
@@ -759,7 +758,8 @@ body#home.index #main {
         font-size: 14px;
         margin-left: 8px;
         font-family: "proxima-nova-1", "proxima-nova-2", helvetica, sans-serif;
-        font-style: normal; }
+        font-style: normal;
+        font-weight: 400; }
         #landing-page #categories li .people a {
           display: block; }
         #landing-page #categories li .people a.selected {
@@ -1354,10 +1354,10 @@ body#users, body#messages {
         display: block;
         margin-bottom: 5px; }
       #user-profile .profile-info .metadata .info p {
-        color: #bbbbbb;
+        color: #aaaaaa;
         margin: 0;
         line-height: 1.4em;
-        font-weight: 200; }
+        font-size: 14px; }
     #user-profile .profile-info .metadata .supporter-count span {
       font-size: 60px;
       font-weight: 200;
@@ -1525,7 +1525,9 @@ body#users, body#messages {
     width: 170px;
     margin-right: -210px; }
     body#users #profile-right #vertical-people, body#messages #profile-right #vertical-people {
-      width: 170px; } }
+      width: 170px; }
+      body#users #profile-right #vertical-people li.person.first .text, body#messages #profile-right #vertical-people li.person.first .text {
+        padding-top: 8px; } }
 body#users.patronage .profile-info .supporter-count, body#users.patronage .profile-info .follow, body#users.patronage .profile-info .info, body#users.patronage .profile-info #broadcaster {
   display: none; }
 body#users.patronage .profile-info #reward-total {
@@ -1830,7 +1832,7 @@ body#users.patronage #vertical-list .creator {
   #creator-signup #forms #join {
     display: none; }
 #creator-signup #what-it-means {
-  width: 300px;
+  width: 310px;
   float: right; }
   #creator-signup #what-it-means ul {
     text-align: left;
@@ -4768,6 +4770,8 @@ body#stories.show {
       padding-top: 10px;
       height: 60px;
       margin-bottom: 20px; }
+      #presenter #reward-modal #creator-name:hover {
+        text-decoration: underline; }
       #presenter #reward-modal #creator-name span {
         display: block; }
     #presenter #reward-modal .reward-stats {
