@@ -77,6 +77,7 @@ window.DiscoveryView = Backbone.View.extend({
     $list.css('margin-left', -1 * current * 304);
     $list.attr('current', current);
     $link.siblings('.prev').removeClass('off');
+    $link.siblings('.current-content-counter').text(current + 1);
     if (current + 1 == total) { $link.addClass('off'); }
     return false;
   },
@@ -89,6 +90,7 @@ window.DiscoveryView = Backbone.View.extend({
     $list.css('margin-left', -1 * current * 304);
     $list.attr('current', current);
     $link.siblings('.next').removeClass('off');
+    $link.siblings('.current-content-counter').text(current + 1);
     if (current == 0) { $link.addClass('off'); }
     return false;
   },

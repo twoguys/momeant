@@ -44,7 +44,8 @@
 
     .more
       = link_to "Previous", "#", :class => "prev off"
-      %span 1 of #{pluralize person.created_stories.published.count, "work"} by #{person.first_name}
+      %span.current-content-counter 1
+      %span of #{pluralize person.created_stories.published.count, "work"} by #{person.first_name}
       = link_to "Next", "#", :class => "next #{all_content.size == 1 ? "off" : ""}"
         
       = link_to "See All", user_path(person), :class => "all"
