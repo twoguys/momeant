@@ -47,7 +47,7 @@ class Story < ActiveRecord::Base
   
   has_many :pages, :order => "number ASC", :dependent => :destroy
   
-  has_one :editorial
+  has_one :editorial, :dependent => :destroy
     
   validates :media_type, :presence => true, :unless => :autosaving
   validates :title, :presence => true, :length => (2..256), :unless => :autosaving

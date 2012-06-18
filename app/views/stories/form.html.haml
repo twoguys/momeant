@@ -19,8 +19,8 @@
 
     %section.step#editor
       %h2 1. Which would you like to do?
-      = link_to "Share your existing web content", "#", :id => "share", :class => @story.is_external? ? "choice selected" : "choice"
-      = link_to "Create something new", "#", :id => "create", :class => @story.is_external? ? "choice" : "choice selected"
+      = link_to "Share your existing web content", "#", :id => "share-content", :class => @story.is_external? ? "choice selected" : "choice"
+      = link_to "Create something new", "#", :id => "create-content", :class => @story.is_external? ? "choice" : "choice selected"
       #share-details.details{:class => @story.is_external? ? "selected" : ""}
         = label_tag :story_external_link, "Enter the URL where your content is located:"
         = text_field_tag :story_external_link, @story.external_text_or_http, :class => "monitor-story-typing", :update => "external_link", :placeholder => "http://site.com"
