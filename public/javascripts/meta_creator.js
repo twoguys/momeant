@@ -4,8 +4,8 @@ window.MetaCreatorView = Backbone.View.extend({
 	
 	events: {
 		'click #type li a': 'choose_media_type',
-		'click #share': 'change_to_share',
-		'click #create': 'change_to_create',
+		'click #share-content': 'change_to_share',
+		'click #create-content': 'change_to_create',
 		'click #preview-image': 'change_preview_to_image',
 		'click #preview-text': 'change_preview_to_text',
 		'click #text-template a': 'choose_preview_text_template'
@@ -22,11 +22,11 @@ window.MetaCreatorView = Backbone.View.extend({
   },
   
   change_to_share: function() {
-		if ($('#share').hasClass('selected')) {
+		if ($('#share-content').hasClass('selected')) {
 		  return false;
 	  }
-		$('#share, #share-details').addClass('selected');
-		$('#create, #create-details').removeClass('selected');
+		$('#share-content, #share-details').addClass('selected');
+		$('#create-content, #create-details').removeClass('selected');
 		$('#open-page-editor-button').addClass('launch');
 		auto_saver.show_metadata_spinner();
 		$.post('/stories/' + pages_editor.story_id + '/change_to_external', function() {
@@ -44,11 +44,11 @@ window.MetaCreatorView = Backbone.View.extend({
 	},
 		
 	change_to_create: function() {
-		if ($('#create').hasClass('selected')) {
+		if ($('#create-content').hasClass('selected')) {
 		  return false;
 	  }
-		$('#share, #share-details').removeClass('selected');
-		$('#create, #create-details').addClass('selected');
+		$('#share-content, #share-details').removeClass('selected');
+		$('#create-content, #create-details').addClass('selected');
 		auto_saver.show_metadata_spinner();
 		$.post('/stories/' + pages_editor.story_id + '/change_to_creator', function() {
 		  auto_saver.hide_metadata_spinner();
