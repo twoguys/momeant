@@ -13,7 +13,7 @@
 
     #title= @story.title
     #synopsis
-      - if @story.synopsis.length > 110
+      - if @story.synopsis && @story.synopsis.length > 110
         %span.less= truncate(@story.synopsis, :length => 110)
         %span.more= @story.synopsis
         = link_to "more", "#", :id => "toggle-synopsis"
