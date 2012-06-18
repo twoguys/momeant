@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     @nav = "me" if @user == current_user
     
     if @user.is_a?(Creator)
-      @content = @user.created_stories.newest_first
+      @content = @user.created_stories.newest_first.includes(:users_who_rewarded, :comments => [:user, :reward])
       @content = @content.published unless @user == current_user
       @supporters = @user.top_supporters
     else
