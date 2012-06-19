@@ -18,14 +18,14 @@ class SessionsController < Devise::SessionsController
       render "users/creators" and return
     end
     
-    existing_user = User.find_by_email(params[:user][:email])
+    existing_user = User.find_by_email(params[:creator][:email])
     if existing_user.nil?
       flash[:alert] = "Invalid email address or password."
       clean_up_passwords(@login_creator)
       render "users/creators" and return
     end
     
-    unless existing_user.valid_password?(params[:user][:password])
+    unless existing_user.valid_password?(params[:creator][:password])
       flash[:alert] = "Invalid email address or password."
       clean_up_passwords(@login_creator)
       render "users/creators" and return
