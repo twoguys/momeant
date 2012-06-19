@@ -40,9 +40,9 @@ class RegistrationsController < Devise::RegistrationsController
     
     @creator.reload
     flash[:track_signup] = true # track signup analytics across the redirect
+    invitation.update_attribute(:invitee_id, @creator.id)
     NotificationsMailer.welcome_to_momeant(@creator).deliver
     sign_in(:user, @creator)
-    invitation.update_attribute(:invitee_id, @creator.id)
     redirect_to creator_info_path(@creator)
   end
   
