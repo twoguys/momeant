@@ -9,7 +9,7 @@ class SessionsController < Devise::SessionsController
   def creator
     @creator = User.new # for the adjacent signup form
     
-    @login_creator = User.new(params[:user])
+    @login_creator = User.new(params[:creator])
     invitation = Invitation.find_by_token(@login_creator.invitation_code)
 
     if invitation.nil? || invitation.used?

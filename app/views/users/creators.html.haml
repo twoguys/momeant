@@ -9,7 +9,7 @@
           %h2 You've been invited!
           %h1 Sign up
 
-          = form_for @creator, :url => creator_signup_path, :html => {:id => "creators-join-form"} do |form|
+          = form_for @creator, :as => :creator, :url => creator_signup_path, :html => {:id => "creators-join-form"} do |form|
 
             = render "shared/error_messages", :target => @creator
 
@@ -42,7 +42,7 @@
           %h2 You've been invited!
           %h1 Log in
 
-          = form_for @login_creator, :url => creator_login_path, :html => {:id => "creators-login-form"} do |form|
+          = form_for @login_creator, :as => :creator, :url => creator_login_path, :html => {:id => "creators-login-form"} do |form|
 
             = render "shared/error_messages", :target => @login_creator
 
