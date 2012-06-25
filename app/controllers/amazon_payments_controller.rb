@@ -21,7 +21,7 @@ class AmazonPaymentsController < ApplicationController
     # post to Amazon to charge it
     @payment.settle_with_amazon
     @payment.mark_as_paid!
-    flash[:track_coin_purchase] = @payment.amount
+    flash[:track_rewards_payment] = @payment.amount
     redirect_to fund_rewards_path, :notice => "Thank you for supporting creators! You're the best."
   end
   

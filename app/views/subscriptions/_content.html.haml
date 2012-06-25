@@ -27,7 +27,7 @@
     .media-type{:class => content.media_type}
     .text
       = link_to content.title, story_url(content), :class => "title"
-      .synopsis= truncate(content.synopsis, :length => 140)
+      .synopsis= content.synopsis 
       - if content.category
         %span.category= content.category
     .support= content.users_who_rewarded.count

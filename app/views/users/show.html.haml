@@ -27,7 +27,7 @@
               .text
                 - title = content.title.blank? ? "Untitled" : content.title
                 = link_to(title, story_url(content), :class => "title")
-                .synopsis= truncate(content.synopsis, :length => 140)
+                .synopsis= content.synopsis 
                 - if content.category
                   %span.category= content.category
                 - if me?(@user)
