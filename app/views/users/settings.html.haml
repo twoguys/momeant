@@ -54,10 +54,16 @@
           %h3
             %span Amazon Email
             %span.info (click to edit)
-            %span.freak-out PLEASE DOUBLE CHECK THIS as we will send your cashouts to this account.
+            %span.freak-out PLEASE DOUBLE CHECK THIS as we will send your payments to this account.
           .text{:update => "amazon_email"}= @user.amazon_email
-          %form
-            .example Not in the United States? Please #{mail_to "support@momeant.com", "contact us"} for a custom pay out method.
+      
+        %section.paypal_email
+          %h3
+            %span PayPal Email
+            %span.info (click to edit)
+            %span.freak-out PLEASE DOUBLE CHECK THIS as we will send your payments to this account.
+          .text{:update => "paypal_email"}= @user.paypal_email
+
 
       %section.occupation
         %h3

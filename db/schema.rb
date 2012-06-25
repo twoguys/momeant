@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120607162323) do
+ActiveRecord::Schema.define(:version => 20120625181539) do
 
   create_table "activities", :force => true do |t|
     t.integer  "actor_id"
@@ -337,6 +337,7 @@ ActiveRecord::Schema.define(:version => 20120607162323) do
     t.decimal  "lifetime_rewards",                                :precision => 8, :scale => 2
     t.boolean  "send_new_follower_emails",                                                      :default => true
     t.boolean  "send_following_update_emails",                                                  :default => true
+    t.string   "paypal_email"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
