@@ -62,7 +62,7 @@ window.MetaCreatorView = Backbone.View.extend({
   choose_media_type: function(event) {
     var $link = $(event.currentTarget);
     $link.parent().addClass('selected').siblings().removeClass('selected');
-    MetaCreator.autosave('media_type', $link.text());
+    MetaCreator.autosave('media_type', $link.text().replace(' ','-'));
     return false;
   },
 

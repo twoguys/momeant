@@ -35,13 +35,15 @@
       %h2 2. What type of content is this?
       %ul
         %li{:class => @story.media_type == "photos" ? "selected" : ""}
-          = link_to "photos", "#", :id => "photo-type"
+          = link_to "photos", "#", :id => "photos-type"
+        %li{:class => @story.media_type == "visual-art" ? "selected" : ""}
+          = link_to "visual art", "#", :id => "visual-art-type"
         %li{:class => @story.media_type == "video" ? "selected" : ""}
           = link_to "video", "#", :id => "video-type"
         %li{:class => @story.media_type == "writing" ? "selected" : ""}
           = link_to "writing", "#", :id => "writing-type"
-        %li{:class => @story.media_type == "music" ? "selected" : ""}
-          = link_to "music", "#", :id => "music-type"
+        %li{:class => @story.media_type == "sound" ? "selected" : ""}
+          = link_to "sound", "#", :id => "sound-type"
       = hidden_field_tag :story_media_type, :value => @story.media_type
       
     %section.step#preview

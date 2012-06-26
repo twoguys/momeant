@@ -1037,13 +1037,15 @@ body#home.index #main {
         left: 17px;
         width: 30px;
         height: 30px;
-        background: transparent url(../images/content/media-types/photos-small.png) no-repeat 0 8px; }
+        background: transparent url(../images/content/media-types/photos.png) no-repeat 0 8px; }
+        #vertical-list #activity-list > li.content .info .media-type.visual-art {
+          background-image: url(../images/content/media-types/art.png); }
         #vertical-list #activity-list > li.content .info .media-type.video {
-          background-image: url(../images/content/media-types/video-small.png); }
+          background-image: url(../images/content/media-types/video.png); }
         #vertical-list #activity-list > li.content .info .media-type.writing {
-          background-image: url(../images/content/media-types/writing-small.png); }
-        #vertical-list #activity-list > li.content .info .media-type.music {
-          background-image: url(../images/content/media-types/music-small.png); }
+          background-image: url(../images/content/media-types/writing.png); }
+        #vertical-list #activity-list > li.content .info .media-type.sound {
+          background-image: url(../images/content/media-types/sound.png); }
       #vertical-list #activity-list > li.content .info .text {
         margin-right: 120px; }
         #vertical-list #activity-list > li.content .info .text a.title {
@@ -2255,17 +2257,6 @@ body#subscriptions.index {
       text-transform: uppercase;
       padding-top: 15px;
       line-height: 15px; }
-    body#subscriptions.index #feed-center li.reward .card a.content-info .media-type {
-      display: none;
-      width: 20px;
-      height: 15px;
-      background: transparent url(../images/content/media-types/photos-small.png) no-repeat 0 0; }
-      body#subscriptions.index #feed-center li.reward .card a.content-info .media-type.video {
-        background-image: url(../images/content/media-types/video-small.png); }
-      body#subscriptions.index #feed-center li.reward .card a.content-info .media-type.writing {
-        background-image: url(../images/content/media-types/writing-small.png); }
-      body#subscriptions.index #feed-center li.reward .card a.content-info .media-type.music {
-        background-image: url(../images/content/media-types/music-small.png); }
     body#subscriptions.index #feed-center li.reward .card a.content-info .byline {
       display: block;
       clear: left;
@@ -2588,34 +2579,32 @@ form.new_story, form.edit_story, .story-form {
     form.new_story .step#editor #create-details, form.edit_story .step#editor #create-details, .story-form .step#editor #create-details {
       padding: 18px 20px 21px; }
   form.new_story .step#type ul, form.edit_story .step#type ul, .story-form .step#type ul {
-    height: 150px; }
+    height: 40px; }
     form.new_story .step#type ul li, form.edit_story .step#type ul li, .story-form .step#type ul li {
       float: left;
       clear: none;
-      width: 25%;
-      height: 150px;
-      text-align: center;
-      margin: 0;
-      background: transparent url(../images/creator/selected-media-type-bg.png) no-repeat 50% -500px; }
-      form.new_story .step#type ul li:hover, form.edit_story .step#type ul li:hover, .story-form .step#type ul li:hover {
-        background-position: 50% 0; }
-      form.new_story .step#type ul li.selected, form.edit_story .step#type ul li.selected, .story-form .step#type ul li.selected {
-        background-position: 50% -179px; }
+      margin: 0 20px 20px 0; }
+      form.new_story .step#type ul li:hover a, form.edit_story .step#type ul li:hover a, .story-form .step#type ul li:hover a {
+        background-color: #555555; }
+      form.new_story .step#type ul li.selected a, form.edit_story .step#type ul li.selected a, .story-form .step#type ul li.selected a {
+        background-color: #00aeef; }
       form.new_story .step#type ul li a, form.edit_story .step#type ul li a, .story-form .step#type ul li a {
-        display: block;
-        height: 40px;
-        padding-top: 110px;
-        background: transparent url(../images/creator/media-types/photos.png) no-repeat 50% 30px;
-        text-align: center;
+        display: inline-block;
+        padding: 12px 15px 9px 45px;
+        background: #393939 url(../images/content/media-types/photos.png) no-repeat 12px 50%;
         text-transform: uppercase;
-        color: black;
-        font-weight: 700; }
+        color: white;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px; }
       form.new_story .step#type ul li a#video-type, form.edit_story .step#type ul li a#video-type, .story-form .step#type ul li a#video-type {
-        background-image: url(../images/creator/media-types/video.png); }
+        background-image: url(../images/content/media-types/video.png); }
       form.new_story .step#type ul li a#writing-type, form.edit_story .step#type ul li a#writing-type, .story-form .step#type ul li a#writing-type {
-        background-image: url(../images/creator/media-types/writing.png); }
-      form.new_story .step#type ul li a#music-type, form.edit_story .step#type ul li a#music-type, .story-form .step#type ul li a#music-type {
-        background-image: url(../images/creator/media-types/music.png); }
+        background-image: url(../images/content/media-types/writing.png); }
+      form.new_story .step#type ul li a#sound-type, form.edit_story .step#type ul li a#sound-type, .story-form .step#type ul li a#sound-type {
+        background-image: url(../images/content/media-types/sound.png); }
+      form.new_story .step#type ul li a#visual-art-type, form.edit_story .step#type ul li a#visual-art-type, .story-form .step#type ul li a#visual-art-type {
+        background-image: url(../images/content/media-types/art.png); }
   form.new_story .step#preview #preview-image-details, form.edit_story .step#preview #preview-image-details, .story-form .step#preview #preview-image-details {
     height: 180px; }
   form.new_story .step#preview .file-uploader, form.edit_story .step#preview .file-uploader, .story-form .step#preview .file-uploader {

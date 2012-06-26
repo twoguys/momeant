@@ -178,34 +178,30 @@ form.new_story, form.edit_story, .story-form
 
 	.step#type
 		ul
-			height: 150px
+			height: 40px
 			li
 				float: left
 				clear: none
-				width: 25%
-				height: 150px
-				text-align: center
-				margin: 0
-				background: transparent url(../images/creator/selected-media-type-bg.png) no-repeat 50% -500px
-				&:hover
-					background-position: 50% 0
-				&.selected
-					background-position: 50% -179px
+				margin: 0 20px 20px 0
+				&:hover a
+					background-color: #555
+				&.selected a
+					background-color: $blue
 				a
-					display: block
-					height: 40px
-					padding-top: 110px
-					background: transparent url(../images/creator/media-types/photos.png) no-repeat 50% 30px
-					text-align: center
+					display: inline-block
+					padding: 12px 15px 9px 45px
+					background: #393939 url(../images/content/media-types/photos.png) no-repeat 12px 50%
 					text-transform: uppercase
-					color: #000
-					font-weight: 700
+					color: #fff
+					@include rounded
 				a#video-type
-					background-image: url(../images/creator/media-types/video.png)
+					background-image: url(../images/content/media-types/video.png)
 				a#writing-type
-					background-image: url(../images/creator/media-types/writing.png)
-				a#music-type
-					background-image: url(../images/creator/media-types/music.png)
+					background-image: url(../images/content/media-types/writing.png)
+				a#sound-type
+					background-image: url(../images/content/media-types/sound.png)
+				a#visual-art-type
+					background-image: url(../images/content/media-types/art.png)
 		
 	.step#preview
 		#preview-image-details
