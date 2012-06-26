@@ -8,7 +8,7 @@
 
   #copy-paste
     Share #{@story.user.first_name}'s content with others:
-    %form= text_area_tag :url_to_share, story_url(@story, :impacted_by => @reward.id), :readonly => true
+    %form= text_field_tag :url_to_share, story_url(@story, :impacted_by => @reward.id), :readonly => true
 
   #sharing-buttons
     = link_to "Share on Twitter", "#twitter-sharing", :id => "share-with-twitter"
