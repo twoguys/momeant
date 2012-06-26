@@ -4693,7 +4693,7 @@ body#stories.show {
   top: 0;
   left: 0;
   width: 100%;
-  min-height: 742px;
+  min-height: 807px;
   height: 100%; }
 
 #presenter {
@@ -4741,7 +4741,9 @@ body#stories.show {
         height: 70px;
         top: auto; }
         #presenter #reward-modal.open #open-close span {
-          background-position: 50% 20px; }
+          background-position: 50% 20px;
+          width: 300px;
+          position: absolute; }
       #presenter #reward-modal.open #closed-reward-stats {
         display: none; }
     #presenter #reward-modal.opened #creator-name, #presenter #reward-modal.opened #title, #presenter #reward-modal.opened #synopsis, #presenter #reward-modal.opened #tags, #presenter #reward-modal.opened #reward-actions, #presenter #reward-modal.opened #open-comments, #presenter #reward-modal.opened #comments-view {
@@ -4755,10 +4757,10 @@ body#stories.show {
       background: #222222;
       z-index: 1; }
       #presenter #reward-modal #open-close span {
-        position: absolute;
+        position: fixed;
         bottom: 0;
         display: block;
-        width: 100%;
+        width: 70px;
         height: 70px;
         background: transparent url(../images/reward-modal/open-close.png) no-repeat 50% -32px; }
     #presenter #reward-modal #avatar {
@@ -4895,6 +4897,8 @@ body#stories.show {
       font-size: 20px; }
     #presenter #reward-modal #reward-actions {
       background: #303030;
+      position: relative;
+      z-index: 2;
       padding: 45px; }
       #presenter #reward-modal #reward-actions #open-reward-stats {
         color: #cccccc; }
