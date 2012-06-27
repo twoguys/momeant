@@ -7,7 +7,7 @@
       %meta{ :name => "Description", "http-equiv" => "Description", :content => @story.synopsis }
       %meta{ :name => "og:image", :property => "og:image", :content => @story.thumbnail.url(:tiny)}
     - else
-      %meta{ :name => "Description", "http-equiv" => "Description", :content => "Real people create the content that we enjoy on the Web. They deserve to be rewarded." }
+      %meta{ :name => "Description", "http-equiv" => "Description", :content => "Momeant is a community for supporting and connecting with people doing great work online." }
     
     %meta{ :name => "Keywords", "http-equiv" => "Keywords", :content => "momeant, digital content, creators, reward, patron, art, community, sustainable" }
     %link{ :id => 'favicon', :href => '/images/favicon.png', :rel => 'icon', :type => 'image/x-icon' }
@@ -80,11 +80,11 @@
   :javascript
     mpq.name_tag('#{current_user.name}');
     
-  - if flash[:track_signup].present? && current_user && !current_user.is_a?(Creator)
+  - if flash[:track_signup].present? && current_user 
     = link_to "Launch about diagram", "#about-diagram-modal", :style => "display:none;"
     = render "shared/about_diagram_modal"
     :javascript
-      mpq.track('Signed up', {anonymous_id: '#{session[:analytics_anonymous_id]}', id: '#{current_user.id}'})
+      mpq.track('Signed up', { id: '#{current_user.id}' })
   - if flash[:track_story_publish]
     :javascript
       mpq.track('Published Story', {anonymous_id: '#{session[:analytics_anonymous_id]}', story_id: '#{flash[:track_story_publish]}'})

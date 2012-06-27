@@ -7,7 +7,6 @@
         = link_to image_tag(reward.story.thumbnail.url(:petite)), story_path(reward.story), :class => "content-thumb"
         %a.content-info{:href => story_path(reward.story)}
           %span.title= truncate(reward.story.title, :length => 18)
-          %span.media-type{:class => reward.story.media_type}
           %span.byline by #{reward.recipient.name}
           
 

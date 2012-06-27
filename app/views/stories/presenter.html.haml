@@ -31,11 +31,11 @@
 
   #content-cover
   = render "rewards/modal"
-              
+
+  - if params[:preview]
+    = link_to "Edit", edit_story_path(@story), :id => "back-to-edit-button"
+    = button_to @story.published? ? "Save" : "Publish", publish_story_path(@story), :id => "publish-button"
+
 - if @story.published?
-  - if current_user
-    :javascript
-      mpq.track('Viewed Content', {mp_note: '#{@story.title.gsub("'","")}', user: true});
-  - else
-    :javascript
-      mpq.track('Viewed Content', {mp_note: '#{@story.title.gsub("'","")}', user: false});
+  :javascript
+    mpq.track('Viewed Content', { user: #{user_signed_in? ? 'true' : 'false'} });

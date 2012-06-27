@@ -27,10 +27,14 @@
     .media-type{:class => content.media_type}
     .text
       = link_to content.title, story_url(content), :class => "title"
-      .synopsis= truncate(content.synopsis, :length => 140)
-      - if content.category
-        %span.category= content.category
-    .support= content.users_who_rewarded.count
+      .synopsis= content.synopsis 
+      - unless content.tags.empty?
+        .tags
+          - content.tags.each do |tag|
+            = link_to tag.name, search_path(:query => tag.name)
+            %span.comma ,
+
+      .support= content.users_who_rewarded.count
   
   .comments
     - comment_text = pluralize(content.comments.size, "comment").split(" ")

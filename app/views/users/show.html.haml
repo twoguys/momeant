@@ -27,9 +27,12 @@
               .text
                 - title = content.title.blank? ? "Untitled" : content.title
                 = link_to(title, story_url(content), :class => "title")
-                .synopsis= truncate(content.synopsis, :length => 140)
-                - if content.category
-                  %span.category= content.category
+                .synopsis= content.synopsis 
+                - unless content.tags.empty?
+                  .tags
+                    - content.tags.each do |tag|
+                      = link_to tag.name, search_path(:query => tag.name)
+                      %span.comma ,
                 - if me?(@user)
                   = link_to "Edit", edit_story_path(content), :class => "edit" if me?(@user)
                   = link_to "Delete", story_path(content), :method => :delete, :confirm => "WHOA WAIT UP! If you delete this you will lose ALL REWARDS on this content. Are you SURE you want to delete it?"

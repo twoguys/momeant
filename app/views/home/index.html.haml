@@ -50,6 +50,6 @@
             = render :partial => "home/person", :collection => content, :as => :content
 
 :javascript
-  mpq.track('Viewed Homepage');
+  mpq.track('Viewed Homepage', { signed_in: #{user_signed_in? ? 'true' : 'false' } });
   var user_id = #{current_user ? current_user.id : 'undefined'};
 = javascript_include_tag "landing"

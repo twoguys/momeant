@@ -88,7 +88,7 @@ class User < ActiveRecord::Base
   
   # Setup accessible (or protected) attributes for your model
   attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :remember_me, :tos_accepted,
-    :avatar, :credits, :stored_in_braintree, :invitation_code, :tagline, :occupation, :paypal_email, :interest_list,
+    :avatar, :credits, :stored_in_braintree, :invitation_code, :tagline, :occupation, :amazon_email, :paypal_email, :interest_list,
     :location, :thankyou, :twitter_friends, :facebook_friends, :friends_last_cached_at, :latitude, :longitude,
     :send_reward_notification_emails, :send_digest_emails, :send_message_notification_emails
   

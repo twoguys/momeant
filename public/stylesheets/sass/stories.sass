@@ -1,444 +1,455 @@
 .content-preview
-	position: relative
-	.inner
-		height: 100%
-		background-repeat: no-repeat
-		background-position: 50% 50%
-		@include bgcover
+  display: block
+  width: 630px
+  height: 420px
+  position: relative
+  .inner
+    height: 100%
+    background-repeat: no-repeat
+    background-position: 50% 50%
+    @include bgcover
+  .tip
+    position: absolute
+    top: 200px
+    left: 250px
+    background: #333
+    background: rgba(0,0,0,0.85)
+    color: #fff
+    font-size: 1.2em
+    text-transform: uppercase
+    padding: 8px 12px
+    @include rounded(3px)
+    opacity: 0
+    @include transition(opacity)
+  &:hover .tip
+    opacity: 1
+    
 .content-preview.watchmen
-	background: #ffe344
-	color: #000
-	.inner
-		width: 740px
-		height: 350px
-		position: absolute
-		top: 50%
-		left: 50%
-		margin: -195px 0 0 -370px
-		font-family: $fatty
-		font-style: italic
-		font-size: 34px
-		@include rotation(-2deg)
-		.image
-			width: 141px
-			height: 140px
-			background: transparent url(../images/content/templates/watchmen.png) no-repeat 0 0
-		.quote
-			margin: 10px 0 0 10px
-.content-preview.blob
-	background: #ff6600 url(../images/content/templates/blob.png) no-repeat 50% 50%
-	color: #000
-	.inner
-		width: 504px
-		height: 220px
-		position: absolute
-		top: 50%
-		left: 50%
-		margin: -120px 0 0 -252px
-		@include rotation(-3deg)
-		font-family: $fatty
-		font-size: 1.3em
-		font-weight: 700
-.content-preview.bowling
-	background: #99daa4 url(../images/content/templates/bowling.png) no-repeat 50% 50%
-	color: #fff
-	.inner
-		width: 490px
-		height: 300px
-		position: absolute
-		top: 50%
-		left: 50%
-		margin: -140px 0 0 -245px
-		font-size: 1.5em
-		font-weight: 700
-		text-transform: uppercase
-		text-align: center
-
+  background: #ffe344
+  color: #000
+  .image
+    width: 70px
+    height: 70px
+    background: transparent url(../images/content/templates/watchmen.png) no-repeat 0 0
+  .inner
+    font-family: $fatty
+    font-size: 1.5em
+    font-style: italic
+    width: 500px
+    height: 229px
+    padding: 90px 62px
+    @include rotation(-2deg)
+    .image
+      margin-bottom: 20px
 .content-preview.watchmen.small
-	.inner
-		width: 200px
-		height: 100px
-		margin: -60px 0 0 -100px
-		font-size: 13px
-		.image
-			width: 24px
-			height: 24px
-			background-image: url(../images/content/templates/watchmen-smaller.png)
-.content-preview.blob.small
-	background-image: url(../images/content/templates/blob-small.png)
-	.inner
-		width: 125px
-		height: 80px
-		margin: -50px 0 0 -64px
-		font-size: 11px
-.content-preview.bowling.small
-	background-image: url(../images/content/templates/bowling-small.png)
-	.inner
-		width: 125px
-		height: 118px
-		margin: -55px 0 0 -64px
-		font-size: 11px
-
+  .inner
+    width: 170px
+    height: 125px
+    padding: 40px 62px 32px
+    font-size: 11px
+    .image
+      width: 30px
+      height: 30px
+      background-image: url(../images/content/templates/watchmen-small.png)
+      margin-bottom: 10px
 .content-preview.watchmen.smaller
-	.inner
-		width: 170px
-		height: 80px
-		margin: -54px 0 0 -87px
-		font-size: 10px
-		.image
-			width: 30px
-			height: 30px
-			background-image: url(../images/content/templates/watchmen-small.png)
-.content-preview.blob.smaller
-	background-image: url(../images/content/templates/blob-smaller.png)
-	.inner
-		width: 97px
-		height: 80px
-		margin: -34px 0 0 -43px
-		font-size: 7px
+  .inner
+    width: 170px
+    height: 100px
+    padding: 15px 15px 10px
+    font-size: 10px
+    .image
+      width: 24px
+      height: 24px
+      background-image: url(../images/content/templates/watchmen-smaller.png)
+      margin-bottom: 10px
+   
+.content-preview.bowling
+  background: #99daa4 url(../images/content/templates/bowling.png) no-repeat 50% 50%
+  color: #fff
+  .inner
+    font-size: 1.5em
+    font-weight: 700
+    text-transform: uppercase
+    text-align: center
+    width: 260px
+    height: 245px
+    padding: 95px 177px 90px
+.content-preview.bowling.small
+  background-image: url(../images/content/templates/bowling-small.png)
+  .inner
+    width: 120px
+    height: 118px
+    font-size: 11px
+    padding: 44px 88px
 .content-preview.bowling.smaller
-	background-image: url(../images/content/templates/bowling-smaller.png)
-	.inner
-		width: 90px
-		height: 103px
-		margin: -36px 0 0 -47px
-		font-size: 7px
+  background-image: url(../images/content/templates/bowling-smaller.png)
+  .inner
+    width: 90px
+    height: 82px
+    padding: 25px 52px
+           
+.content-preview.blob
+  background: #ff6600 url(../images/content/templates/blob.png) no-repeat 50% 50%
+  color: #000
+  .inner
+    @include rotation(-3deg)
+    font-family: $fatty
+    font-size: 1.3em
+    font-weight: 700
+    width: 260px
+    height: 170px
+    padding: 100px 180px
+.content-preview.blob.small
+  background-image: url(../images/content/templates/blob-small.png)
+  .inner
+    width: 120px
+    height: 100px
+    font-size: 11px
+    padding: 44px 84px 44px 94px
+.content-preview.blob.smaller
+  background-image: url(../images/content/templates/blob-smaller.png)
+  .inner
+    width: 80px
+    height: 67px
+    padding: 30px 40px 30px 60px
+    font-size: 6px
 
 
 @mixin titleSlide($width:288px, $height:180px)
-	width: $width
-	height: $height
-	overflow: hidden
-	.inner
-		background-color: #000
-		color: #fff
-		text-shadow: none
-		text-align: center
-		padding: 0px
-		height: 100%
-		width: 100%
-		font-weight: bold
-		display: table
-		.title
-			display: table-cell
-			vertical-align: middle
-			padding: 20px 10px 10px
-			line-height: 3em
-			letter-spacing: .5px
-			font-size: 22px
-			hr
-				margin: 10px auto
-				width: 40%
-			span
-				height: auto
+  width: $width
+  height: $height
+  overflow: hidden
+  .inner
+    background-color: #000
+    color: #fff
+    text-shadow: none
+    text-align: center
+    padding: 0px
+    height: 100%
+    width: 100%
+    font-weight: bold
+    display: table
+    .title
+      display: table-cell
+      vertical-align: middle
+      padding: 20px 10px 10px
+      line-height: 3em
+      letter-spacing: .5px
+      font-size: 22px
+      hr
+        margin: 10px auto
+        width: 40%
+      span
+        height: auto
 @mixin titleSlideFullsize
-	@include titleSlide(100%, 100%)
-	.inner .title
-		letter-spacing: -2px
-		hr
-			margin: 30px auto
-			width: 30%
+  @include titleSlide(100%, 100%)
+  .inner .title
+    letter-spacing: -2px
+    hr
+      margin: 30px auto
+      width: 30%
 @mixin titleSlidePetite
-	@include titleSlide(95px, 60px)
-	.inner .title
-		line-height: 1em
-		font-size: 10px !important
-		padding: 10px 5px
-		span
-			font-size: 10px !important
-		p
-			margin: 2px 0
+  @include titleSlide(95px, 60px)
+  .inner .title
+    line-height: 1em
+    font-size: 10px !important
+    padding: 10px 5px
+    span
+      font-size: 10px !important
+    p
+      margin: 2px 0
 
 @mixin blockquoteSlide($width:288px, $height:180px)
-	width: $width
-	height: $height
-	overflow: hidden
-	.inner
-		width: 100%
-		height: 100%
-	.pullquote-inner
-		display: table
-		height: 100%
-		margin: 0 auto
-		div.quote
-			display: table-cell
-			vertical-align: middle
-			padding: 0 6%
-			width: 100%
+  width: $width
+  height: $height
+  overflow: hidden
+  .inner
+    width: 100%
+    height: 100%
+  .pullquote-inner
+    display: table
+    height: 100%
+    margin: 0 auto
+    div.quote
+      display: table-cell
+      vertical-align: middle
+      padding: 0 6%
+      width: 100%
 @mixin blockquoteSlideMedium
-	@include blockquoteSlide(288px, 180px)
-	.pullquote-inner div.quote p
-		height: 180px
-		font-size: 10px
-		line-height: 18px
+  @include blockquoteSlide(288px, 180px)
+  .pullquote-inner div.quote p
+    height: 180px
+    font-size: 10px
+    line-height: 18px
 @mixin blockquoteSlideLarge
-	@include blockquoteSlide(630px, 420px)
-	.pullquote-inner div.quote p
-		padding: 0% 7%
-		font-size: 15px
-		line-height: 22px
-		font-weight: 100
-		letter-spacing: -.4px
+  @include blockquoteSlide(630px, 420px)
+  .pullquote-inner div.quote p
+    padding: 0% 7%
+    font-size: 15px
+    line-height: 22px
+    font-weight: 100
+    letter-spacing: -.4px
 @mixin blockquoteSlideFullsize
-	@include blockquoteSlide(100%, 100%)
-	overflow-y: auto
+  @include blockquoteSlide(100%, 100%)
+  overflow-y: auto
 @mixin blockquoteSlidePetite
-	@include blockquoteSlide(95px, 60px)
-	.pullquote-inner div.quote p
-		margin: 1px 0
+  @include blockquoteSlide(95px, 60px)
+  .pullquote-inner div.quote p
+    margin: 1px 0
 
 @mixin fullimageSlide($width:288px, $height:180px)
-	width: $width
-	height: $height
-	.inner, .image
-		width: 100%
-		height: 100%
-	.inner .inner
-		position: relative
-	.image
-		background-repeat: no-repeat
-		background-position: center center
-	.inner.fill-screen .image
-		@include bgcover
-	.inner.fit-to-screen .image
-		@include bgcontain
-	.caption
-		top: 5px
-		right: 5px
-		position: absolute
-		font-size: 10px
-		padding: 3px
-		background-color: #fff
-		background-color: rgba(255,255,255,0.9)
-		text-shadow: none
-		text-align: left
-		font-family: $serif
-		border-bottom: 2px solid black
-		font-style: italic
-	
+  width: $width
+  height: $height
+  .inner, .image
+    width: 100%
+    height: 100%
+  .inner .inner
+    position: relative
+  .image
+    background-repeat: no-repeat
+    background-position: center center
+  .inner.fill-screen .image
+    @include bgcover
+  .inner.fit-to-screen .image
+    @include bgcontain
+  .caption
+    top: 5px
+    right: 5px
+    position: absolute
+    font-size: 10px
+    padding: 3px
+    background-color: #fff
+    background-color: rgba(255,255,255,0.9)
+    text-shadow: none
+    text-align: left
+    font-family: $serif
+    border-bottom: 2px solid black
+    font-style: italic
+  
 @mixin fullimageSlideFullsize
-	@include fullimageSlide(100%, 100%)
-	.caption
-		padding: 20px 20px 22px 25px
-		max-width: 400px
-		right: 50px
-		top: 50px
-		line-height: 24px
-		border-bottom: 5px solid black
-		font-size: 12px
-	.top-right, .top-left
-		top: 50px
-		bottom: auto
-	.bottom-right, .bottom-left
-		top: auto
-		bottom: 50px
-	.top-right, .bottom-right
-		right: 50px
-		left: auto
-	.top-left, .bottom-left
-		left: 50px
-		right: auto
+  @include fullimageSlide(100%, 100%)
+  .caption
+    padding: 20px 20px 22px 25px
+    max-width: 400px
+    right: 50px
+    top: 50px
+    line-height: 24px
+    border-bottom: 5px solid black
+    font-size: 12px
+  .top-right, .top-left
+    top: 50px
+    bottom: auto
+  .bottom-right, .bottom-left
+    top: auto
+    bottom: 50px
+  .top-right, .bottom-right
+    right: 50px
+    left: auto
+  .top-left, .bottom-left
+    left: 50px
+    right: auto
 
 @mixin videoSlide($width:288px, $height:180px)
-	width: $width
-	height: $height
-	text-align: center
-	.insides
-		margin: 0
-		width: 100%
-		height: 100%
-	
+  width: $width
+  height: $height
+  text-align: center
+  .insides
+    margin: 0
+    width: 100%
+    height: 100%
+  
 @mixin videoSlideFullsize
-	@include videoSlide(100%, 100%)
-	background-color: #000
-	iframe
-		position: relative
-		margin: 5% auto
-		z-index: 4
+  @include videoSlide(100%, 100%)
+  background-color: #000
+  iframe
+    position: relative
+    margin: 5% auto
+    z-index: 4
 
 @mixin splitSlide($width:288px, $height:180px)
-	width: $width
-	height: $height
-	div.split
-		height: 100%
-		color: #000
-		.image, .text
-			width: 50%
-			position: relative
-		.image1, .text1
-			float: left
-		.image2, .text2
-			float: right
-		.image
-			height: 100%
-			.inner
-				height: 100%
-				width: 100%
-				background-repeat: no-repeat
-				background-position: center center
-			.inner.fill-screen
-				@include bgcover
-			.inner.fit-to-screen
-				@include bgcontain
-		.text	
-			font-size: 1.6em
-			display: table
-			height: 100%
-			.inner
-				padding: 5% 9% 2% 11%
-				width: auto
-				vertical-align: middle
-				display: table-cell
-				font-family: $typewriter
-				font-weight: 100
-				text-align: justify
-		.hidden
-			display: none
+  width: $width
+  height: $height
+  div.split
+    height: 100%
+    color: #000
+    .image, .text
+      width: 50%
+      position: relative
+    .image1, .text1
+      float: left
+    .image2, .text2
+      float: right
+    .image
+      height: 100%
+      .inner
+        height: 100%
+        width: 100%
+        background-repeat: no-repeat
+        background-position: center center
+      .inner.fill-screen
+        @include bgcover
+      .inner.fit-to-screen
+        @include bgcontain
+    .text 
+      font-size: 1.6em
+      display: table
+      height: 100%
+      .inner
+        padding: 5% 9% 2% 11%
+        width: auto
+        vertical-align: middle
+        display: table-cell
+        font-family: $typewriter
+        font-weight: 100
+        text-align: justify
+    .hidden
+      display: none
 @mixin splitSlideMedium
-	@include splitSlide(288px, 180px)
-	div.split
-		height: 180px
-		.text
-			.inner
-				line-height: 9px
-				font-size: 3px !important
-				font-weight: 100
+  @include splitSlide(288px, 180px)
+  div.split
+    height: 180px
+    .text
+      .inner
+        line-height: 9px
+        font-size: 3px !important
+        font-weight: 100
 @mixin splitSlideLarge
-	@include splitSlide(630px, 420px)
-	div.split
-		height: 420px
-		.text
-			.inner
-				line-height: 27px
-				font-size: 12px !important
-				font-weight: 100
+  @include splitSlide(630px, 420px)
+  div.split
+    height: 420px
+    .text
+      .inner
+        line-height: 27px
+        font-size: 12px !important
+        font-weight: 100
 @mixin splitSlideFullsize
-	@include splitSlide(100%, 100%)
-	div.split
-		.text
-			.inner
-				line-height: 36px
-				font-size: 16px
-				font-weight: 100
+  @include splitSlide(100%, 100%)
+  div.split
+    .text
+      .inner
+        line-height: 36px
+        font-size: 16px
+        font-weight: 100
 @mixin splitSlidePetite
-	@include splitSlide(95px, 60px)
-	div.split
-		.text
-			.inner
-				line-height: 3px
-				font-size: 2px
-				font-weight: 100
+  @include splitSlide(95px, 60px)
+  div.split
+    .text
+      .inner
+        line-height: 3px
+        font-size: 2px
+        font-weight: 100
 
 @mixin gridSlide($width:288px, $height:180px)
-	width: $width
-	height: $height
-	ul.cells
-		height: 100%
-		li
-			width: 25%
-			height: 50%
-			float: left
-			position: relative
-			margin: 0
-			clear: none
-			.side
-				margin: 0
-			.front, .back
-				position: absolute
-				top: 0
-				left: 0
-				width: 100%
-				height: 100%
-			.front
-				z-index: 2
-			.back
-				z-index: 1
-			.side	
-				background-color: #fff
-				.text, .image
-					position: absolute
-					top: 0
-					left: 0
-					width: 100%
-					height: 100%
-				.image
-					display: block
-					background-repeat: no-repeat
-					background-position: center center
-				.text
-					display: table
-					font-size: 2em
-					text-align: center
-					.inner
-						padding: 0 10%
-						vertical-align: middle
-						display: table-cell
-						font-family: $typewriter
-						line-height: 26px
-						font-size: 14px
-						text-align: justify
-						letter-spacing: -.5px
-						font-weight: 100
-						&:first-letter
-							font-family: $caps
-							font-size: 50px
-							vertical-align: baseline
-							float: left
-							text-transform: uppercase
-							line-height: 50px
-							height: 50px
-							padding-top: 10px
-							padding-right: 4px
-				.hidden
-					display: none
-			.side.fill-screen .image
-				@include bgcover
-			.side.fit-to-screen .image
-				@include bgcontain
-		li:hover		
-			.front
-				z-index: 1
-			.back
-				z-index: 2
+  width: $width
+  height: $height
+  ul.cells
+    height: 100%
+    li
+      width: 25%
+      height: 50%
+      float: left
+      position: relative
+      margin: 0
+      clear: none
+      .side
+        margin: 0
+      .front, .back
+        position: absolute
+        top: 0
+        left: 0
+        width: 100%
+        height: 100%
+      .front
+        z-index: 2
+      .back
+        z-index: 1
+      .side 
+        background-color: #fff
+        .text, .image
+          position: absolute
+          top: 0
+          left: 0
+          width: 100%
+          height: 100%
+        .image
+          display: block
+          background-repeat: no-repeat
+          background-position: center center
+        .text
+          display: table
+          font-size: 2em
+          text-align: center
+          .inner
+            padding: 0 10%
+            vertical-align: middle
+            display: table-cell
+            font-family: $typewriter
+            line-height: 26px
+            font-size: 14px
+            text-align: justify
+            letter-spacing: -.5px
+            font-weight: 100
+            &:first-letter
+              font-family: $caps
+              font-size: 50px
+              vertical-align: baseline
+              float: left
+              text-transform: uppercase
+              line-height: 50px
+              height: 50px
+              padding-top: 10px
+              padding-right: 4px
+        .hidden
+          display: none
+      .side.fill-screen .image
+        @include bgcover
+      .side.fit-to-screen .image
+        @include bgcontain
+    li:hover    
+      .front
+        z-index: 1
+      .back
+        z-index: 2
 @mixin gridSlideFullsize
-	@include gridSlide(100%, 100%)
+  @include gridSlide(100%, 100%)
 @mixin gridSlideMedium
-	@include gridSlide(288px, 180px)
-	.inner
-		ul.cells
-			width: 288px
-			li
-				width: 70px
-				height: 90px
-				float: left
-				font-size: 0.7em
-				position: relative
-				img
-					width: 70px
-				.image
-					z-index: 2
-				.text
-					z-index: 1
-				.image, .text
-					position: absolute
+  @include gridSlide(288px, 180px)
+  .inner
+    ul.cells
+      width: 288px
+      li
+        width: 70px
+        height: 90px
+        float: left
+        font-size: 0.7em
+        position: relative
+        img
+          width: 70px
+        .image
+          z-index: 2
+        .text
+          z-index: 1
+        .image, .text
+          position: absolute
 
 @mixin externalSlide($width:288px, $height:180px)
-	.inner
-		height: 100%
-		iframe
-			width: $width
-			height: $height
+  .inner
+    height: 100%
+    iframe
+      width: $width
+      height: $height
 @mixin externalSlideMedium
-	@include externalSlide
-	.inner
-		iframe
-			width: 288px
-			height: 180px
-			overflow: hidden
+  @include externalSlide
+  .inner
+    iframe
+      width: 288px
+      height: 180px
+      overflow: hidden
 @mixin externalSlideFullsize
-	@include externalSlide(100%, 100%)
-	.inner
-		overflow-y: hidden
+  @include externalSlide(100%, 100%)
+  .inner
+    overflow-y: hidden
 
 @import "stories/form"
 @import "stories/gallery"
@@ -446,398 +457,398 @@
 @import "stories/share"
 
 .thumbnail.title
-	@include titleSlide
+  @include titleSlide
 .thumbnail.full_image
-	@include fullimageSlideFullsize
-	.inner
-		height: 420px
+  @include fullimageSlideFullsize
+  .inner
+    height: 420px
 .thumbnail.pullquote
-	@include blockquoteSlideLarge
+  @include blockquoteSlideLarge
 .thumbnail.split
-	@include splitSlideLarge
+  @include splitSlideLarge
 .thumbnail.grid
-	ul.cells
-		li
-			width: 157.5px
-			height: 210px
-			float: left
-		.image img
-			width: 157.5px
-			height: 210px
+  ul.cells
+    li
+      width: 157.5px
+      height: 210px
+      float: left
+    .image img
+      width: 157.5px
+      height: 210px
 .thumbnail.large
-	width: 630px
-	height: 420px
-	overflow: hidden
-	display: table
-	background-color: #fff
-	.inner
-		height: 420px
+  width: 630px
+  height: 420px
+  overflow: hidden
+  display: table
+  background-color: #fff
+  .inner
+    height: 420px
 
 .thumbnail.title.medium
-	.inner
-		display: table
+  .inner
+    display: table
 .thumbnail.full_image.medium
-	.inner
-		height: 180px
+  .inner
+    height: 180px
 .thumbnail.pullquote.medium
-	@include blockquoteSlideMedium
+  @include blockquoteSlideMedium
 .thumbnail.split.medium
-	@include splitSlideMedium
+  @include splitSlideMedium
 
 .thumbnail.title.petite
-	@include titleSlidePetite
+  @include titleSlidePetite
 .thumbnail.full_image.petite
-	@include fullimageSlide(95px,60px)
+  @include fullimageSlide(95px,60px)
 .thumbnail.pullquote.petite
-	@include blockquoteSlidePetite
+  @include blockquoteSlidePetite
 
 ul.stories
-	li.story
-		position: relative
-		float: left
-		background-color: white
-		border: 1px solid #ccc
-		padding: 3px
-		width: 230px
-		margin: 0 20px 20px 0
-		@include boxshadow(5px,0.2,2px,2px)
-		a.title-link
-			text-transform: uppercase
-			color: $text_color
-			font-weight: 700
-			margin: 8px 5px 9px
-			display: block
-			width: 170px
-			height: 13px
-			overflow: hidden
-		.title
-			display: none
-			position: absolute
-			top: 3px
-			left: 3px
-			padding: 10px
-			width: 210px
-			height: 124px
-			text-transform: uppercase
-			font-size: 13px
-			background: rgba(255,255,255,0.95)
-			color: $text_color
-			z-index: 2
-			font-weight: 500
-			span
-				display: block
-			span.title-text
-				width: 175px
-				font-weight: 700
-			span.synopsis
-				font-size: 11px
-				text-transform: none
-				border: none
-				padding: 5px 0 0 0
-				height: 75px
-				color: #555
-		.avatar
-			position: absolute
-			top: 11px
-			right: 11px
-			display: none
-			width: 28px
-			height: 28px
-			z-index: 3
-			img
-				width: 28px
-				height: 28px
-				border: 1px solid #ddd
-		.edit-links
-			position: absolute
-			top: 10px
-			right: 10px
-			a
-				text-indent: -9999px
-				display: block
-				width: 16px
-				height: 16px
-				background-position: 50% 50%
-				background-repeat: no-repeat
-				float: left
-			a.edit
-				background-image: url(../images/icons/pencilTiny.png)
-				margin-right: 5px
-			a.delete
-				background-image: url(../images/icons/trashTiny.png)
-		a.thumbnail
-			display: block
-			width: 230px
-			height: 144px
-			img
-				width: 230px
-				height: 144px
-		.tags
-			width: 185px
-			position: absolute
-			top: 125px
-			left: 8px
-			height: 17px
-			overflow: hidden
-			z-index: 3
-		.rewards
-			position: absolute
-			top: 125px
-			right: 8px
-			padding: 1px 4px 1px 14px
-			color: #fff
-			background: #000 url(../images/icons/starWhiteTiny.png) no-repeat 2px 3px
-			@include rounded(3px)
-			z-index: 3
-		.how-much
-			padding: 6px 5px 5px
-			font-size: 11px
-			.reward-count
-				padding-right: 12px
-				background: transparent url(../images/icons/starBlackTiny.png) no-repeat 100% 2px
-				margin-right: 3px
-			.people
-				margin-left: 3px
-				padding-right: 13px
-				background: transparent url(../images/icons/personTiny.png) no-repeat 100% 2px
-		.unpublished
-			position: absolute
-			bottom: 6px
-			right: 5px
-			background: $red
-			color: #fff
-			padding: 3px
-			font-size: 11px
-			@include rounded(3px)
-	li.story:hover .title, li.story:hover .avatar
-		display: block
-		
-	li.medium.story
-		margin-bottom: 25px
-		margin-right: 25px
-		width: 300px
-		height: 300px
-		a.thumbnail
-			display: block
-			width: 288px
-			height: 180px
-			margin: 6px
-			overflow: hidden
-		.back
-			display: none
-			background: #fff
-			width: 276px
-			height: 276px
-			margin: 6px 8px
-			padding: 6px
-			position: absolute
-			top: 0
-			left: 0
-			.title
-				padding-bottom: 5px
-				margin: 0 0 10px
-				border-bottom: 1px dotted #ccc
-				font-family: $typewriter
-				font-weight: 100
-				text-align: center
-				color: #999
-			.author-info
-				background-color: #fff
-				width: 256px
-				height: 160px
-				display: block
-				padding: 0 10px
-				position: relative
-				.avatar
-					width: 60px
-					height: 60px
-					overflow: none
-					position: absolute
-					top: 0
-					left: 0
-				.name
-					font-size: 1.5em
-					font-weight: 900
-					text-transform: uppercase
-					padding-top: 10px
-				.name, .occupation
-					margin-left: 70px
-					color: $text_color
+  li.story
+    position: relative
+    float: left
+    background-color: white
+    border: 1px solid #ccc
+    padding: 3px
+    width: 230px
+    margin: 0 20px 20px 0
+    @include boxshadow(5px,0.2,2px,2px)
+    a.title-link
+      text-transform: uppercase
+      color: $text_color
+      font-weight: 700
+      margin: 8px 5px 9px
+      display: block
+      width: 170px
+      height: 13px
+      overflow: hidden
+    .title
+      display: none
+      position: absolute
+      top: 3px
+      left: 3px
+      padding: 10px
+      width: 210px
+      height: 124px
+      text-transform: uppercase
+      font-size: 13px
+      background: rgba(255,255,255,0.95)
+      color: $text_color
+      z-index: 2
+      font-weight: 500
+      span
+        display: block
+      span.title-text
+        width: 175px
+        font-weight: 700
+      span.synopsis
+        font-size: 11px
+        text-transform: none
+        border: none
+        padding: 5px 0 0 0
+        height: 75px
+        color: #555
+    .avatar
+      position: absolute
+      top: 11px
+      right: 11px
+      display: none
+      width: 28px
+      height: 28px
+      z-index: 3
+      img
+        width: 28px
+        height: 28px
+        border: 1px solid #ddd
+    .edit-links
+      position: absolute
+      top: 10px
+      right: 10px
+      a
+        text-indent: -9999px
+        display: block
+        width: 16px
+        height: 16px
+        background-position: 50% 50%
+        background-repeat: no-repeat
+        float: left
+      a.edit
+        background-image: url(../images/icons/pencilTiny.png)
+        margin-right: 5px
+      a.delete
+        background-image: url(../images/icons/trashTiny.png)
+    a.thumbnail
+      display: block
+      width: 230px
+      height: 144px
+      img
+        width: 230px
+        height: 144px
+    .tags
+      width: 185px
+      position: absolute
+      top: 125px
+      left: 8px
+      height: 17px
+      overflow: hidden
+      z-index: 3
+    .rewards
+      position: absolute
+      top: 125px
+      right: 8px
+      padding: 1px 4px 1px 14px
+      color: #fff
+      background: #000 url(../images/icons/starWhiteTiny.png) no-repeat 2px 3px
+      @include rounded(3px)
+      z-index: 3
+    .how-much
+      padding: 6px 5px 5px
+      font-size: 11px
+      .reward-count
+        padding-right: 12px
+        background: transparent url(../images/icons/starBlackTiny.png) no-repeat 100% 2px
+        margin-right: 3px
+      .people
+        margin-left: 3px
+        padding-right: 13px
+        background: transparent url(../images/icons/personTiny.png) no-repeat 100% 2px
+    .unpublished
+      position: absolute
+      bottom: 6px
+      right: 5px
+      background: $red
+      color: #fff
+      padding: 3px
+      font-size: 11px
+      @include rounded(3px)
+  li.story:hover .title, li.story:hover .avatar
+    display: block
+    
+  li.medium.story
+    margin-bottom: 25px
+    margin-right: 25px
+    width: 300px
+    height: 300px
+    a.thumbnail
+      display: block
+      width: 288px
+      height: 180px
+      margin: 6px
+      overflow: hidden
+    .back
+      display: none
+      background: #fff
+      width: 276px
+      height: 276px
+      margin: 6px 8px
+      padding: 6px
+      position: absolute
+      top: 0
+      left: 0
+      .title
+        padding-bottom: 5px
+        margin: 0 0 10px
+        border-bottom: 1px dotted #ccc
+        font-family: $typewriter
+        font-weight: 100
+        text-align: center
+        color: #999
+      .author-info
+        background-color: #fff
+        width: 256px
+        height: 160px
+        display: block
+        padding: 0 10px
+        position: relative
+        .avatar
+          width: 60px
+          height: 60px
+          overflow: none
+          position: absolute
+          top: 0
+          left: 0
+        .name
+          font-size: 1.5em
+          font-weight: 900
+          text-transform: uppercase
+          padding-top: 10px
+        .name, .occupation
+          margin-left: 70px
+          color: $text_color
 
-	.title a
-		color: black
-		font-family: $block
-		font-size: 12px
-		font-weight: 700
-		letter-spacing: 0.2px
-		line-height: 15px
+  .title a
+    color: black
+    font-family: $block
+    font-size: 12px
+    font-weight: 700
+    letter-spacing: 0.2px
+    line-height: 15px
 
-	.author
-		color: black
-		font-family: $serif
-		font-style: italic
-		border-bottom: 1px dotted black
-		font-size: 11px
-		letter-spacing: .3px
-		line-height: 20px
-		padding-bottom: 4px
-		a
-			color: $blue
+  .author
+    color: black
+    font-family: $serif
+    font-style: italic
+    border-bottom: 1px dotted black
+    font-size: 11px
+    letter-spacing: .3px
+    line-height: 20px
+    padding-bottom: 4px
+    a
+      color: $blue
 
-	.views
-		position: absolute
-		top: 192px
-		right: 10px
-		padding-right: 18px
-		background: transparent url(../images/icons/views.png) no-repeat 100% 0
-	.rewards
-		position: absolute
-		top: 210px
-		right: 10px
-		padding-right: 18px
-		background: transparent url(../images/icons/recommendOff.png) no-repeat 100% 0
-	.rewarded
-		background: transparent url(../images/icons/recommendOn.png) no-repeat 100% 0
+  .views
+    position: absolute
+    top: 192px
+    right: 10px
+    padding-right: 18px
+    background: transparent url(../images/icons/views.png) no-repeat 100% 0
+  .rewards
+    position: absolute
+    top: 210px
+    right: 10px
+    padding-right: 18px
+    background: transparent url(../images/icons/recommendOff.png) no-repeat 100% 0
+  .rewarded
+    background: transparent url(../images/icons/recommendOn.png) no-repeat 100% 0
 
-	.excerpt
-		font-family: $block
-		font-weight: 100
-		font-size: 11px
-		margin-top: 10px
-		line-height: 15px
-		height: 45px
-		width: 220px
-		overflow: hidden
+  .excerpt
+    font-family: $block
+    font-weight: 100
+    font-size: 11px
+    margin-top: 10px
+    line-height: 15px
+    height: 45px
+    width: 220px
+    overflow: hidden
 
 .recommendation-stream
-	width: 290px
-	height: 364px
-	float: right
-	overflow: hidden
-	border: 5px solid #000
-	border-top: none
-	.heading
-		background-color: #000
-		color: #fff
-		font-size: 18px
-		font-weight: 900
-		text-transform: uppercase
-		text-align: center
-		height: 25px
-		line-height: 25px
-		vertical-align: middle
-		padding: 3px 0
-	.tabs
-		height: 33px
-		min-height: 33px
-		margin: 0
-		a
-			width: 144px
-			background-color: #000
-			color: #666
-			border: none
-			padding: 9px 0 6px
-			text-align: center
-		a.active
-			background-color: #000
-			color: #fff
-			-webkit-box-shadow: none
-			-moz-box-shadow: none
-			box-shadow: none
-			cursor: default
-		a:hover
-			background-color: #000
-		a:first-child
-			border: none
-		a.subscribed-to-recommendations
-			border-right: 1px solid $background_color
-		a.momeant-recommendations
-			border-left: 1px solid $background_color
-	ul
-		padding: 10px 10px 0 10px
-		li
-			display: block
-			width: 270px
-			height: 60px
-			background: transparent url(../images/simpleDotBG.png) repeat-x 50% 100%
-			padding: 10px 0
-			position: relative
-			a.thumbnail
-				width: 95px
-				height: 60px
-				display: block
-				float: left
-				margin: 0 8px 0 0
-				overflow: hidden
-			.info
-				width: 109px
-				float: left
-				margin-right: 8px
-				.title
-					font-family: $block
-					color: #000
-					font-weight: 700
-					margin: 0
-				.author
-					border: none
-					margin: 0
-					font-size: 10px
-			.price
-				width: 50px
-				float: left
-				right: 0
-				bottom: 20px
-		li:last-child
-			background: none
-			margin-bottom: 0
-		li.story
-			background-color: transparent
-			-webkit-box-shadow: none
-			-moz-box-shadow: none
-			box-shadow: none
-		li.reward
-			position: relative
-			height: auto
-			.avatar
-				width: 50px
-				position: absolute
-				top: 10px
-				left: 0
-				overflow: hidden
-				img
-					width: 50px
-			.info
-				margin-left: 60px
-				width: 100%
-				.who-recommended, .title
-					font-weight: 700
-					display: block
-					width: 100%
-				.who-recommended
-					text-transform: uppercase
-				.starred
-					background: transparent url(../images/icons/starBlue.png) no-repeat 0 1px
-					padding-left: 12px
-			.why
-				font-family: $typewriter
-				font-size: 13px
-				font-weight: 100
+  width: 290px
+  height: 364px
+  float: right
+  overflow: hidden
+  border: 5px solid #000
+  border-top: none
+  .heading
+    background-color: #000
+    color: #fff
+    font-size: 18px
+    font-weight: 900
+    text-transform: uppercase
+    text-align: center
+    height: 25px
+    line-height: 25px
+    vertical-align: middle
+    padding: 3px 0
+  .tabs
+    height: 33px
+    min-height: 33px
+    margin: 0
+    a
+      width: 144px
+      background-color: #000
+      color: #666
+      border: none
+      padding: 9px 0 6px
+      text-align: center
+    a.active
+      background-color: #000
+      color: #fff
+      -webkit-box-shadow: none
+      -moz-box-shadow: none
+      box-shadow: none
+      cursor: default
+    a:hover
+      background-color: #000
+    a:first-child
+      border: none
+    a.subscribed-to-recommendations
+      border-right: 1px solid $background_color
+    a.momeant-recommendations
+      border-left: 1px solid $background_color
+  ul
+    padding: 10px 10px 0 10px
+    li
+      display: block
+      width: 270px
+      height: 60px
+      background: transparent url(../images/simpleDotBG.png) repeat-x 50% 100%
+      padding: 10px 0
+      position: relative
+      a.thumbnail
+        width: 95px
+        height: 60px
+        display: block
+        float: left
+        margin: 0 8px 0 0
+        overflow: hidden
+      .info
+        width: 109px
+        float: left
+        margin-right: 8px
+        .title
+          font-family: $block
+          color: #000
+          font-weight: 700
+          margin: 0
+        .author
+          border: none
+          margin: 0
+          font-size: 10px
+      .price
+        width: 50px
+        float: left
+        right: 0
+        bottom: 20px
+    li:last-child
+      background: none
+      margin-bottom: 0
+    li.story
+      background-color: transparent
+      -webkit-box-shadow: none
+      -moz-box-shadow: none
+      box-shadow: none
+    li.reward
+      position: relative
+      height: auto
+      .avatar
+        width: 50px
+        position: absolute
+        top: 10px
+        left: 0
+        overflow: hidden
+        img
+          width: 50px
+      .info
+        margin-left: 60px
+        width: 100%
+        .who-recommended, .title
+          font-weight: 700
+          display: block
+          width: 100%
+        .who-recommended
+          text-transform: uppercase
+        .starred
+          background: transparent url(../images/icons/starBlue.png) no-repeat 0 1px
+          padding-left: 12px
+      .why
+        font-family: $typewriter
+        font-size: 13px
+        font-weight: 100
 
 .personal-library
-	clear: both
+  clear: both
 
 .addthis_button_compact
-	span
-		width: 0
-		height: 0
+  span
+    width: 0
+    height: 0
 
 .ignore
-	#at15s_inner
-		background-color: #000
-	#at_hover
-		background-color: #000
-		.at_item
-			background-color: #000 !important
-			span
-				color: #fff !important
-				text-shadow: none
+  #at15s_inner
+    background-color: #000
+  #at_hover
+    background-color: #000
+    .at_item
+      background-color: #000 !important
+      span
+        color: #fff !important
+        text-shadow: none

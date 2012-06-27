@@ -40,3 +40,7 @@
         %td.amount
           .inner
             = number_to_currency(reward.amount)
+
+- if flash[:track_rewards_payment].present?
+  :javascript
+    mpq.track('Funded Rewards', { amount: #{flash[:track_rewards_payment]} });

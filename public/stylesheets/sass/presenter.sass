@@ -1,566 +1,597 @@
 /* Story viewing */
 
 body#stories.show
-	position: absolute
-	top: 0
-	left: 0
-	width: 100%
-	min-height: 742px
-	height: 100%
+  position: absolute
+  top: 0
+  left: 0
+  width: 100%
+  min-height: 807px
+  height: 100%
 
 #presenter
-	width: 100%
-	height: 100%
-	overflow: hidden
-	
-	.content
-		position: absolute
-		top: 42px
-		bottom: 0
-		left: 70px
-		right: 0
-		z-index: 1
-	
-	#content-cover
-		position: absolute
-		top: 0
-		bottom: 0
-		width: 100%
-		z-index: 2
-	
-	#reward-modal
-		width: 70px
-		position: absolute
-		top: 42px
-		bottom: 0
-		left: 0
-		color: #fff
-		z-index: 3
-		@include transition(width, 0.2s, ease-in-out)
-		
-		#reward-view
-			position: relative
-			height: 100%
-			background: #222
-			//background: rgba(0,0,0,0.85)
-			z-index: 2
-		#comments-view
-			z-index: 1
-		
-		#creator-name, #title, #synopsis, #tags, #reward-actions, #open-comments, #comments-view
-			display: none
-		
-		&.open
-			width: 300px
-			#open-close
-				height: 70px
-				top: auto
-				span
-					background-position: 50% 20px
-			#closed-reward-stats
-				display: none
-		&.opened
-			#creator-name, #title, #synopsis, #tags, #reward-actions, #open-comments, #comments-view
-				display: block
-		
-		#open-close
-			width: 100%
-			position: absolute
-			top: 70px
-			bottom: 0
-			left: 0
-			background: #222
-			z-index: 1
-			span
-				position: absolute
-				bottom: 0
-				display: block
-				width: 100%
-				height: 70px
-				background: transparent url(../images/reward-modal/open-close.png) no-repeat 50% -32px
+  width: 100%
+  height: 100%
+  overflow: hidden
+  
+  .content
+    position: absolute
+    top: 42px
+    bottom: 0
+    left: 70px
+    right: 0
+    z-index: 1
+  
+  #content-cover
+    display: none
+    position: absolute
+    top: 0
+    bottom: 0
+    width: 100%
+    z-index: 2
+  
+  #reward-modal
+    width: 70px
+    position: absolute
+    top: 42px
+    bottom: 0
+    left: 0
+    color: #fff
+    z-index: 3
+    @include transition(width, 0.2s, ease-in-out)
+    
+    #reward-view
+      position: relative
+      height: 100%
+      background: #222
+      //background: rgba(0,0,0,0.85)
+      z-index: 2
+    #comments-view
+      z-index: 1
+    
+    #creator-name, #title, #synopsis, #tags, #reward-actions, #open-comments, #comments-view
+      display: none
+    
+    &.open
+      width: 300px
+      #open-close
+        height: 70px
+        top: auto
+        span
+          background-position: 50% 20px
+          width: 300px
+          position: absolute
+      #closed-reward-stats
+        display: none
+    &.opened
+      #creator-name, #title, #synopsis, #tags, #reward-actions, #open-comments, #comments-view
+        display: block
+    
+    #open-close
+      width: 100%
+      position: absolute
+      top: 70px
+      bottom: 0
+      left: 0
+      background: #222
+      z-index: 1
+      span
+        position: fixed
+        bottom: 0
+        display: block
+        width: 70px
+        height: 70px
+        background: transparent url(../images/reward-modal/open-close.png) no-repeat 50% -32px
 
-		#avatar
-			display: block
-			width: 70px
-			height: 70px
-			float: left
-			margin-right: 15px
-			img
-				width: 70px
-				height: 70px
-		
-		#creator-name
-			font-family: $typewriter
-			font-size: 24px
-			font-style: italic
-			line-height: 24px
-			padding-top: 10px
-			height: 60px
-			margin-bottom: 20px
-			&:hover
-				text-decoration: underline
-			span
-				display: block
-		
-		.reward-stats
-			text-align: center
-			strong
-				font-family: $numerals
-				font-size: 18px
-				font-weight: 200
-			span
-				font-size: 13px
-				font-weight: 600
-				text-transform: uppercase
-			.people
-				padding-right: 20px
-				background: transparent url(../images/reward-modal/people.png) no-repeat 100% 2px
-		#closed-reward-stats
-			position: absolute
-			top: 100px
-			width: 100%
-			z-index: 2
-			span
-				display: block
+    #avatar
+      display: block
+      width: 70px
+      height: 70px
+      float: left
+      margin-right: 15px
+      img
+        width: 70px
+        height: 70px
+    
+    #creator-name
+      font-family: $typewriter
+      font-size: 24px
+      font-style: italic
+      line-height: 24px
+      padding-top: 10px
+      height: 60px
+      margin-bottom: 20px
+      &:hover
+        text-decoration: underline
+      span
+        display: block
+    
+    .reward-stats
+      text-align: center
+      strong
+        font-family: $numerals
+        font-size: 18px
+        font-weight: 200
+      span
+        font-size: 13px
+        font-weight: 600
+        text-transform: uppercase
+      .people
+        padding-right: 20px
+        background: transparent url(../images/reward-modal/people.png) no-repeat 100% 2px
+    #closed-reward-stats
+      position: absolute
+      top: 100px
+      width: 100%
+      z-index: 2
+      span
+        display: block
 
-		#title, #synopsis, #tags
-			margin: 0 20px 5px
-		#title
-			text-transform: uppercase
-		#synopsis
-			color: #aaa
-			@include transition(height)
-			.more
-				display: none
-		#tags
-			font-size: 12px
-			margin-bottom: 30px
-			span
-				margin: 0 1px 0 -2px
-			span:last-child
-				display: none
-		
-		#comments-view
-			position: absolute
-			top: 0
-			right: 0
-			width: 300px
-			height: 100%
-			background: #111
-			background: rgba(15,15,15,0.85)
-			@include transition(right, 0.2s, ease-in-out)
-			
-			&.open
-				right: -300px
-			
-			#comments-list
-				overflow-y: auto
-				height: 100%
-				padding: 0 20px
-				h3
-					font-weight: 400
-					color: #aaa
-					padding: 20px 0
-			
-			#new-comment
-				display: none
-				
-			li
-				position: relative
-				min-height: 40px
-				padding-left: 50px
-				margin-bottom: 10px
-				font-size: 12px
-				a.commenter-avatar
-					display: block
-					width: 40px
-					height: 40px
-					position: absolute
-					top: 0
-					left: 0
-					img
-						width: 40px
-						height: 40px
-				.text
-					color: #fff
-				.metadata
-					color: #555
-			
-		#open-comments-tab
-			position: absolute
-			top: 20px
-			right: -35px
-			width: 35px
-			height: 27px
-			cursor: pointer
-			span
-				display: block
-				position: absolute
-				top: 0
-				left: 0
-				background: #111 url(../images/reward-modal/comments.png) no-repeat 84% 50%
-				background-color: rgba(0,0,0,0.85)
-				padding: 5px 20px 5px 5px
-				color: #fff
-				-webkit-border-top-right-radius: 3px
-				-webkit-border-bottom-right-radius: 3px
-				-moz-border-radius-topright: 3px
-				-moz-border-radius-bottomright: 3px
-				border-top-right-radius: 3px
-				border-bottom-right-radius: 3px
-		
-		.your-stuff
-			text-align: center
-			margin-bottom: 30px
-			font-size: 20px
-		
-		#reward-actions
-			background: #303030
-			//background: rgba(255,255,255,0.1)
-			padding: 45px
-			#open-reward-stats
-				color: #ccc
-				em
-					font-family: $typewriter
-					font-size: 12px
-				strong
-					font-size: 24px
-				.people
-					background-position: 100% 6px
-			
-		#steps
-			width: 220px
-			height: 32px
-			background: transparent url(../images/reward-modal/steps-bg.png) no-repeat 30px 9px
-			margin: 0 auto 40px
-			li
-				width: 31px
-				height: 31px
-				float: left
-				background: transparent url(../images/reward-modal/step-icons.png) no-repeat 0 -30px
-				margin-right: 63px
-				&:last-child
-					margin-right: 0
-				&.active
-					background-position: 0 0
-				&.reward, &.comment
-					cursor: pointer
-				&.comment
-					background-position: -31px -30px
-				&.comment.active
-					background-position: -31px 0
-				&.promote
-					background-position: -62px -30px
-				&.promote.active
-					background-position: -62px 0
-		
-		#current-step
-			height: 240px
-			&.loading
-				background: transparent url(../images/spinnerDarkGrey.gif) no-repeat 50% 80px
-				*
-					display: none
-			header
-				text-align: center
-				margin-bottom: 25px
-				font-size: 13px
-			h1
-				font-family: $numerals
-				font-size: 36px
-				font-weight: 100
-				color: $blue
-				line-height: 30px
-				text-transform: uppercase
-				margin: 0
-		
-		#amounts
-			position: relative
-			text-align: center
-			#reward-join-button
-				display: block
-				margin-bottom: 5px
-				padding: 10px 12px
-			#invalid-reward-amount
-				width: 71px
-				height: 56px
-				background: transparent url(../images/reward-modal/invalid-reward-amount.png) no-repeat 0 0
-				position: absolute
-				top: 142px
-				right: -28px
-				display: none
-			#goto-comment
-				display: inline-block
-				opacity: 0
-				@include transition(opacity)
-			ul
-				width: 122px
-				height: 122px
-				margin: 0 auto 5px
-				li
-					width: 56px
-					float: left
-					clear: none
-					margin-bottom: 10px
-				li:nth-child(odd)
-					margin-right: 10px
-				a, input
-					display: block
-					width: 46px
-					height: 18px
-					padding: 14px 0
-					font-size: 15px
-					text-align: center
-					color: #a4a4a4
-					background: #383838
-					border: 5px solid #4a4a4a
-					@include rounded
-					@include transition(all)
-					&:hover
-						background-color: #555
-						border-color: #666
-				input
-					background: #383838 url(../images/reward-modal/custom-amount-bg.png) no-repeat 50% 36px
-				a.selected, input.selected
-					background-color: $blue
-					border-color: #264d5b
-					color: #fff
-		
-		#comment
-			display: none
-			textarea
-				width: 92%
-				height: 70px
-				font-family: $block
-				@include rounded(3px)
-				margin-bottom: 20px
-			input[type="submit"]
-				display: block
-				margin-left: 48px
-		
-		#promote
-			#copy-paste
-				font-size: 13px
-				color: #aaa
-			textarea
-				width: 96%
-				height: 30px
-				padding: 3px
-				@include rounded(3px)
-				font-family: $block
-				font-size: 12px
-				overflow: hidden
-				margin-bottom: 10px
-			#sharing-buttons
-				a
-					display: block
-					width: 123px
-					height: 40px
-					background: transparent url(../images/reward-modal/share-buttons.png) no-repeat 0 0
-					margin: 0 auto 5px
-					text-indent: -9999px
-				#share-with-facebook
-					background-position: 0 -43px
-		
-		#more
-			display: none
-			border-top: 1px solid #fff
-			padding-top: 30px
-			.comments, #other-content
-				width: 330px
-				padding: 0 30px
-				float: left
-				h3
-					font-weight: 500
-					color: #777
-					margin-bottom: 10px
-	
-	#metadata
-		position: fixed
-		right: 35px
-		bottom: 0
-		z-index: 5
-		height: 25px
-		.pages
-			background: rgba(0,0,0,0.75)
-			float: right
-			padding: 5px 7.5px
-			-webkit-border-top-left-radius: 3px
-			-webkit-border-top-right-radius: 3px
-			-moz-border-radius-topleft: 3px
-			-moz-border-radius-topright: 3px
-			border-top-left-radius: 3px
-			border-top-right-radius: 3px
-			a
-				font-size: 10px
-				padding: 0 2.5px
-				color: #fff
-			a.selected
-				color: $link_color
+    #title, #synopsis, #tags
+      margin: 0 20px 5px
+    #title
+      text-transform: uppercase
+    #synopsis
+      color: #aaa
+      @include transition(height)
+      .more
+        display: none
+    #tags
+      font-size: 12px
+      margin-bottom: 30px
+      span
+        margin: 0 1px 0 -2px
+      span:last-child
+        display: none
+    
+    #comments-view
+      position: absolute
+      top: 0
+      right: 0
+      width: 300px
+      height: 100%
+      background: #111
+      background: rgba(15,15,15,0.85)
+      @include transition(right, 0.2s, ease-in-out)
+      
+      &.open
+        right: -300px
+      
+      #comments-list
+        overflow-y: auto
+        height: 100%
+        padding: 0 20px
+        h3
+          font-weight: 400
+          color: #aaa
+          padding: 20px 0
+      
+      #new-comment
+        display: none
+        
+      li
+        position: relative
+        min-height: 40px
+        padding-left: 50px
+        margin-bottom: 10px
+        font-size: 12px
+        a.commenter-avatar
+          display: block
+          width: 40px
+          height: 40px
+          position: absolute
+          top: 0
+          left: 0
+          img
+            width: 40px
+            height: 40px
+        .text
+          color: #fff
+        .metadata
+          color: #555
+      
+    #open-comments-tab
+      position: absolute
+      top: 20px
+      right: -35px
+      width: 35px
+      height: 27px
+      cursor: pointer
+      span
+        display: block
+        position: absolute
+        top: 0
+        left: 0
+        background: #111 url(../images/reward-modal/comments.png) no-repeat 84% 50%
+        background-color: rgba(0,0,0,0.85)
+        padding: 5px 20px 5px 5px
+        color: #fff
+        -webkit-border-top-right-radius: 3px
+        -webkit-border-bottom-right-radius: 3px
+        -moz-border-radius-topright: 3px
+        -moz-border-radius-bottomright: 3px
+        border-top-right-radius: 3px
+        border-bottom-right-radius: 3px
+    
+    .your-stuff
+      text-align: center
+      margin-bottom: 30px
+      font-size: 20px
+    
+    #reward-actions
+      background: #303030
+      position: relative
+      z-index: 2
+      padding: 45px
+      #open-reward-stats
+        color: #ccc
+        em
+          font-family: $typewriter
+          font-size: 12px
+        strong
+          font-size: 24px
+        .people
+          background-position: 100% 6px
+      
+    #steps
+      width: 220px
+      height: 32px
+      background: transparent url(../images/reward-modal/steps-bg.png) no-repeat 30px 9px
+      margin: 0 auto 40px
+      li
+        width: 31px
+        height: 31px
+        float: left
+        background: transparent url(../images/reward-modal/step-icons.png) no-repeat 0 -30px
+        margin-right: 63px
+        &:last-child
+          margin-right: 0
+        &.active
+          background-position: 0 0
+        &.reward, &.comment
+          cursor: pointer
+        &.comment
+          background-position: -31px -30px
+        &.comment.active
+          background-position: -31px 0
+        &.promote
+          background-position: -62px -30px
+        &.promote.active
+          background-position: -62px 0
+    
+    #current-step
+      height: 240px
+      &.loading
+        background: transparent url(../images/spinnerDarkGrey.gif) no-repeat 50% 80px
+        *
+          display: none
+      header
+        text-align: center
+        margin-bottom: 25px
+        font-size: 13px
+      h1
+        font-family: $numerals
+        font-size: 36px
+        font-weight: 100
+        color: $blue
+        line-height: 30px
+        text-transform: uppercase
+        margin: 0
+    
+    #amounts
+      position: relative
+      text-align: center
+      #reward-join-button
+        display: block
+        margin-bottom: 5px
+        padding: 10px 12px
+      #invalid-reward-amount
+        width: 71px
+        height: 56px
+        background: transparent url(../images/reward-modal/invalid-reward-amount.png) no-repeat 0 0
+        position: absolute
+        top: 142px
+        right: -28px
+        display: none
+      #goto-comment
+        display: inline-block
+        opacity: 0
+        @include transition(opacity)
+      ul
+        width: 122px
+        height: 122px
+        margin: 0 auto 5px
+        li
+          width: 56px
+          float: left
+          clear: none
+          margin-bottom: 10px
+        li:nth-child(odd)
+          margin-right: 10px
+        a, input
+          display: block
+          width: 46px
+          height: 18px
+          padding: 14px 0
+          font-size: 15px
+          text-align: center
+          color: #a4a4a4
+          background: #383838
+          border: 5px solid #4a4a4a
+          @include rounded
+          @include transition(all)
+          &:hover
+            background-color: #555
+            border-color: #666
+        input
+          background: #383838 url(../images/reward-modal/custom-amount-bg.png) no-repeat 50% 36px
+        a.selected, input.selected
+          background-color: $blue
+          border-color: #264d5b
+          color: #fff
+    
+    #comment
+      display: none
+      textarea
+        width: 92%
+        height: 70px
+        font-family: $block
+        @include rounded(3px)
+        margin-bottom: 20px
+      input[type="submit"]
+        display: block
+        margin-left: 48px
+    
+    #promote
+      #copy-paste
+        font-size: 13px
+        color: #aaa
+        text-align: center
+      input[type="text"]
+        width: 91%
+        height: 26px
+        padding: 0 8px 
+        @include rounded(3px)
+        font-family: $block
+        font-size: 12px
+        margin-bottom: 10px
+      #sharing-buttons
+        a
+          display: block
+          width: 123px
+          height: 40px
+          background: transparent url(../images/reward-modal/share-buttons.png) no-repeat 0 0
+          margin: 0 auto 5px
+          text-indent: -9999px
+        #share-with-facebook
+          background-position: 0 -43px
+    
+    #more
+      display: none
+      border-top: 1px solid #fff
+      padding-top: 30px
+      .comments, #other-content
+        width: 330px
+        padding: 0 30px
+        float: left
+        h3
+          font-weight: 500
+          color: #777
+          margin-bottom: 10px
+  
+  #metadata
+    position: fixed
+    right: 35px
+    bottom: 0
+    z-index: 5
+    height: 25px
+    .pages
+      background: rgba(0,0,0,0.75)
+      float: right
+      padding: 5px 7.5px
+      -webkit-border-top-left-radius: 3px
+      -webkit-border-top-right-radius: 3px
+      -moz-border-radius-topleft: 3px
+      -moz-border-radius-topright: 3px
+      border-top-left-radius: 3px
+      border-top-right-radius: 3px
+      a
+        font-size: 10px
+        padding: 0 2.5px
+        color: #fff
+      a.selected
+        color: $link_color
 
-	ul#pages
-		width: 100%
-		position: absolute
-		top: 0
-		bottom: 0
-		z-index: 1
-		li
-			position: absolute
-			top: 0
-			bottom: 0
-			width: 100%
-			overflow-y: auto
-			text-shadow: none
-			.number
-				display: none
-		li.title
-			@include titleSlideFullsize
-		li.full_image
-			@include fullimageSlideFullsize
-		li.pullquote
-			@include blockquoteSlideFullsize
-		li.video
-			@include videoSlideFullsize
-		li.split
-			@include splitSlideFullsize
-		li.grid
-			@include gridSlideFullsize
-		li.external
-			@include externalSlideFullsize
-	#previous-page, #next-page
-		display: none
-		width: 100px
-		height: 140px
-		position: absolute
-		top: 50%
-		margin-top: -70px
-		z-index: 3
-		opacity: 0.4
-		-webkit-transition: opacity linear 0.2s
-		-moz-transition: opacity linear 0.2s
-		.button
-			text-indent: -9999px
-			background: transparent url(../images/next-previous-arrows.png) no-repeat 0 0
-			cursor: pointer
-			width: 100px
-			height: 140px
-	#previous-page:hover, #next-page:hover
-		opacity: 1
-	#previous-page
-		left: 0
-	#next-page
-		right: 0
-		.button
-			background-position: -138px 0
-			
+  ul#pages
+    width: 100%
+    position: absolute
+    top: 0
+    bottom: 0
+    z-index: 1
+    li
+      position: absolute
+      top: 0
+      bottom: 0
+      width: 100%
+      overflow-y: auto
+      text-shadow: none
+      .number
+        display: none
+    li.title
+      @include titleSlideFullsize
+    li.full_image
+      @include fullimageSlideFullsize
+    li.pullquote
+      @include blockquoteSlideFullsize
+    li.video
+      @include videoSlideFullsize
+    li.split
+      @include splitSlideFullsize
+    li.grid
+      @include gridSlideFullsize
+    li.external
+      @include externalSlideFullsize
+  #previous-page, #next-page
+    display: none
+    width: 100px
+    height: 140px
+    position: absolute
+    top: 50%
+    margin-top: -70px
+    z-index: 3
+    opacity: 0.4
+    -webkit-transition: opacity linear 0.2s
+    -moz-transition: opacity linear 0.2s
+    .button
+      text-indent: -9999px
+      background: transparent url(../images/next-previous-arrows.png) no-repeat 0 0
+      cursor: pointer
+      width: 100px
+      height: 140px
+  #previous-page:hover, #next-page:hover
+    opacity: 1
+  #previous-page
+    left: 0
+  #next-page
+    right: 0
+    .button
+      background-position: -138px 0
+      
 #what-is-impact-modal
-	width: 831px
-	height: 258px
-	background: transparent url(../images/whatIsImpactModal.png) no-repeat 0 0
+  width: 831px
+  height: 258px
+  background: transparent url(../images/whatIsImpactModal.png) no-repeat 0 0
 
 
 #twitter-sharing, #facebook-sharing
-	width: 367px
-	padding: 20px
-	background: #ededed
-	
-	textarea
-		display: block
-		width: 347px
-		margin: 0 auto 10px
-	input[type="submit"]
-		float: right
-	input[type="text"], textarea
-		@include rounded(3px)
-		box-shadow: 0 1px 2px rgba(0,0,0,0.2) inset, 0 1px 0 #fff
+  width: 367px
+  padding: 20px
+  background: #ededed
+  
+  textarea
+    display: block
+    width: 347px
+    margin: 0 auto 10px
+  input[type="submit"]
+    float: right
+  input[type="text"], textarea
+    @include rounded(3px)
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2) inset, 0 1px 0 #fff
 
-	&.loading
-		background: #f5f2eb url(../images/spinner.gif) no-repeat 50% 50%
-		height: 100px
-		*
-			display: none
-	.padded
-		height: 50px
-	.not-configured
-		margin-top: 30px
-		padding-left: 40px
-		background: transparent url(../images/icons/twitterSmall.png) no-repeat 0 50%
-		span
-			display: block
-			margin-bottom: 5px
-		a
-			background: #66dfff
-			padding: 3px 6px
-			color: #0b2d39
-			@include rounded(3px)
-			text-transform: uppercase
-	.after
-		font-size: 11px
-		p
-			margin: 10px 0
-				
+  &.loading
+    background: #f5f2eb url(../images/spinner.gif) no-repeat 50% 50%
+    height: 100px
+    *
+      display: none
+  .padded
+    height: 50px
+  .not-configured
+    margin-top: 30px
+    padding-left: 40px
+    background: transparent url(../images/icons/twitterSmall.png) no-repeat 0 50%
+    span
+      display: block
+      margin-bottom: 5px
+    a
+      background: #66dfff
+      padding: 3px 6px
+      color: #0b2d39
+      @include rounded(3px)
+      text-transform: uppercase
+  .after
+    font-size: 11px
+    p
+      margin: 10px 0
+        
 #twitter-sharing
-	height: 98px
-	position: relative
-	.configured
-		height: 100px
-	#what-we-add
-		position: absolute
-		top: 55px
-		right: 31px
-		color: #777
-		font-size: 11px
-	#characters-left
-		float: left
-		color: #999
-		font-style: italic
-		padding-left: 5px
-		.count
-			font-weight: 700
-			font-style: normal
-	textarea
-		height: 40px
-	input[type="submit"]
-		@include gradient(#66dfff,#4ccaff)
-		color: #0b2d39
-		text-shadow: 0 1px 0 rgba(255,255,255,0.5)
+  height: 98px
+  position: relative
+  .configured
+    height: 100px
+  #what-we-add
+    position: absolute
+    top: 55px
+    right: 31px
+    color: #777
+    font-size: 11px
+  #characters-left
+    float: left
+    color: #999
+    font-style: italic
+    padding-left: 5px
+    .count
+      font-weight: 700
+      font-style: normal
+  textarea
+    height: 40px
+  input[type="submit"]
+    @include gradient(#66dfff,#4ccaff)
+    color: #0b2d39
+    text-shadow: 0 1px 0 rgba(255,255,255,0.5)
 
 #facebook-sharing
-	height: 217px
-	position: relative
-	textarea
-		height: 160px
-	#facebook-preview
-		position: absolute
-		top: 80px
-		left: 23px
-		width: 236px
-		border-top: 1px dashed #ccc
-		padding: 10px 10px 10px 115px
-		font-size: 11px
-		.thumbnail
-			position: absolute
-			top: 10px
-			left: 10px
-			width: 95px
-			height: 60px
-		h3
-			font-size: 13px
-			text-align: left
-			margin-bottom: 5px
-			width: 260px
-			height: 16px
-			overflow: hidden
-		.link
-			color: #999
-		p
-			margin: 5px 0 0
-			line-height: 13px
-	input[type="submit"]
-		@include gradient(#6481bd,#455d99)
+  height: 217px
+  position: relative
+  textarea
+    height: 160px
+  #facebook-preview
+    position: absolute
+    top: 80px
+    left: 23px
+    width: 236px
+    border-top: 1px dashed #ccc
+    padding: 10px 10px 10px 115px
+    font-size: 11px
+    .thumbnail
+      position: absolute
+      top: 10px
+      left: 10px
+      width: 95px
+      height: 60px
+    h3
+      font-size: 13px
+      text-align: left
+      margin-bottom: 5px
+      width: 260px
+      height: 16px
+      overflow: hidden
+    .link
+      color: #999
+    p
+      margin: 5px 0 0
+      line-height: 13px
+  input[type="submit"]
+    @include gradient(#6481bd,#455d99)
 
 #facebook-sharing .not-configured
-	background-image: url(../images/icons/facebookSmall.png)
-	margin-top: 80px
-	a
-		background: #6481bd
-		color: #fff
+  background-image: url(../images/icons/facebookSmall.png)
+  margin-top: 80px
+  a
+    background: #6481bd
+    color: #fff
+
+#back-to-edit-button, #publish-button
+  position: fixed
+  top: 42px
+  left: 50%
+  text-transform: uppercase
+  background: $blue
+  color: #fff
+  font-weight: 600
+  font-size: 16px
+  padding: 8px 16px
+  z-index: 99
+  @include rounded(0)
+  -webkit-border-bottom-right-radius: 3px
+  -webkit-border-bottom-left-radius: 3px
+  -moz-border-radius-bottomright: 3px
+  -moz-border-radius-bottomleft: 3px
+  border-bottom-right-radius: 3px
+  border-bottom-left-radius: 3px
+  @include boxshadow(5px,0.3)
+#back-to-edit-button
+  margin-left: -80px
+  display: inline-block
+  height: 22px
+  line-height: 22px
+#publish-button
+  background-color: $green
