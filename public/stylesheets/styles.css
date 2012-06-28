@@ -361,11 +361,11 @@ header.hide-nav {
 
 form .field_with_errors input[type="text"], form .field_with_errors input[type="password"], form .field_with_errors textarea {
   background-color: #f5d4d4;
-  border: 2px solid #db6666; }
+  border: 1px solid #db6666; }
 
 /* Form styles */
 form li, .form li {
-  margin-bottom: 2em;
+  margin-bottom: 1.5em;
   clear: both; }
   form li span.aside, .form li span.aside {
     display: inline-block;
@@ -382,13 +382,12 @@ form label, .form label {
   padding: 0 5px 0px 3px;
   font-weight: 900;
   line-height: 20px;
-  color: #777777;
   text-shadow: 0 1px 0 white;
-  float: left;
   font-size: 14px;
   text-transform: uppercase;
   width: 100%;
-  margin-top: 10px; }
+  margin-top: 10px;
+  margin-bottom: 3px; }
   form label .instructions, .form label .instructions {
     font-family: Georgia, serif;
     font-style: italic;
@@ -1639,41 +1638,62 @@ body#users.patronage #vertical-list .creator {
       left: 0; }
     body#users.patronage #vertical-list li:first-child .creator .metadata {
       height: 218px; } }
-#user-profile .user-settings #settings-list {
-  margin-bottom: 30px; }
-#user-profile .user-settings li {
-  margin-bottom: 10px; }
-  #user-profile .user-settings li .text.loading {
+#user-settings {
+  padding-top: 30px; }
+  #user-settings section {
+    width: 760px;
+    margin: 0 auto 30px;
+    background: #f4f4f4;
+    padding: 30px; }
+  #user-settings h1 {
+    margin-bottom: 30px; }
+  #user-settings textarea {
+    width: 96%;
+    height: 50px; }
+  #user-settings #settings-list {
+    margin-bottom: 30px; }
+    #user-settings #settings-list li {
+      margin-bottom: 10px; }
+      #user-settings #settings-list li .text.loading {
+        display: inline-block;
+        width: 30px;
+        height: 15px;
+        background: transparent url(../images/horizontal-spinner.gif) no-repeat 0 4px;
+        text-indent: -9999px; }
+  #user-settings li.submit {
+    margin-top: 20px; }
+  #user-settings #profile-info #upload {
+    width: 380px;
+    float: right; }
+  #user-settings #profile-info ul {
+    float: left; }
+  #user-settings #profile-info form {
     display: inline-block;
-    width: 30px;
-    height: 15px;
-    background: transparent url(../images/horizontal-spinner.gif) no-repeat 0 4px;
-    text-indent: -9999px; }
-#user-profile .user-settings section {
-  margin-bottom: 20px; }
-#user-profile .user-settings h3 {
-  text-transform: uppercase;
-  font-size: 1.1em;
-  margin-bottom: 5px; }
-  #user-profile .user-settings h3 .info {
-    font-weight: 500;
-    text-transform: none; }
-#user-profile .user-settings input[type="text"] {
-  width: 400px; }
-#user-profile .user-settings .info {
-  color: #777777;
-  font-size: 11px;
-  margin-bottom: 20px; }
-#user-profile .user-settings .example {
-  border: none;
-  padding-bottom: 0; }
-#user-profile .user-settings .file-uploader .file-input {
-  height: 25px; }
-#user-profile .user-settings .file-uploader .loader {
-  width: 220px;
-  height: 19px;
-  background: transparent url(../images/loading.gif) no-repeat 0 0;
-  display: none; }
+    width: 100%; }
+    #user-settings #profile-info form:after {
+      content: ".";
+      display: block;
+      height: 0;
+      clear: both;
+      visibility: hidden; }
+  #user-settings #upload {
+    height: 300px; }
+    #user-settings #upload #avatar-file {
+      width: 380px; }
+    #user-settings #upload #avatar-preview {
+      width: 300px;
+      background: white; }
+    #user-settings #upload #avatar-preview, #user-settings #upload #avatar-preview img {
+      width: 300px;
+      height: 300px; }
+    #user-settings #upload .file-uploader .loader {
+      height: 19px;
+      background: transparent url(../images/loading.gif) no-repeat 0 0;
+      display: none; }
+    #user-settings #upload .example {
+      border: none; }
+  #user-settings #creator-info .aside {
+    margin-right: 20px; }
 
 #user-profile #activity {
   -webkit-border-radius: 0;
@@ -1911,19 +1931,6 @@ body#users.become_a_creator #profile-center #show-after {
   background: #f7f7f7;
   padding: 20px;
   width: 520px; }
-
-form.user_edit {
-  margin-left: 200px; }
-  form.user_edit .example {
-    border: none; }
-  form.user_edit textarea {
-    height: 150px;
-    width: 95%;
-    line-height: 24px;
-    font-family: "proxima-nova-1", "proxima-nova-2", helvetica, sans-serif;
-    font-weight: 100; }
-  form.user_edit #user_interest_list {
-    width: 98%; }
 
 table.users {
   width: 100%; }

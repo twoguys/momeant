@@ -1,9 +1,10 @@
-#user-profile.no-right-column
+#user-settings
   
-  #profile-center.column
-    .inner.user-settings
-      %h2 Email preferences
-
+  %section
+    
+    %h1 Email preferences
+    
+    %form
       %ul#settings-list
         %li
           = check_box_tag "send_reward_notification_emails", 1, current_user.send_reward_notification_emails?
@@ -19,89 +20,98 @@
             = check_box_tag "send_new_follower_emails", 1, current_user.send_new_follower_emails?
             %span.text Send me an email when someone follows me
 
-      %h2 Profile Information
 
-      %section.profile-picture
-        %h3 Upload a profile picture
-        .file-uploader
-          %form
-            = token_tag
-            .file-input
-              %input{:type => "file", :name => "user[avatar]", :id => "user_avatar"}
-              .loader
-            .example For best results, upload a JPG or PNG at least 300px by 300px.
+  %section#profile-info
+    
+    %h1 Profile Information
 
-      %section.first_name
-        %h3
-          %span First Name
-          %span.info (click to edit)
-        .text{:update => "first_name"}= @user.first_name
+    = form_for @user, :as => :user, :url => user_path(current_user) do |form|
 
-      %section.last_name
-        %h3
-          %span Last Name
-          %span.info (click to edit)
-        .text{:update => "last_name"}= @user.last_name
+      %fieldset
 
-      %section.email
-        %h3
-          %span Email Address
-          %span.info (click to edit)
-        .text{:update => "email"}= @user.email
+        #upload
+          #avatar-file
+            %label{:for => "user_avatar"} Upload a picture of your pretty face
+            .file-uploader
+              %form
+                = token_tag
+                .file-input
+                  %input{:type => "file", :name => "user[avatar]", :id => "user_avatar"}
+                  .loader
+                .example For best results, upload a square JPG or PNG, 300x300 or larger.
+          #avatar-preview
+            = image_tag @user.avatar.url(:editorial)
 
-      - if @user.is_a?(Creator)
-        %section.amazon_email
-          %h3
-            %span Amazon Email
-            %span.info (click to edit)
-            %span.freak-out PLEASE DOUBLE CHECK THIS as we will send your payments to this account.
-          .text{:update => "amazon_email"}= @user.amazon_email
+        %ul
+
+          %li
+            = form.label :first_name
+            = form.text_field :first_name
+            
+          %li
+            = form.label :last_name
+            = form.text_field :last_name
+          
+          %li
+            = form.label :email
+            = form.text_field :email
+          
+          %li
+            = form.label :occupation
+            = form.text_field :occupation
+            
+          %li
+            = form.label :location
+            = form.text_field :location
+          
+          %li.submit
+            = form.submit "Save Profile Info"
+
+  - if @user.is_a?(Creator)
+    %section#creator-info
+  
+      %h1 Creator Information
       
-        %section.paypal_email
-          %h3
-            %span PayPal Email
-            %span.info (click to edit)
-            %span.freak-out PLEASE DOUBLE CHECK THIS as we will send your payments to this account.
-          .text{:update => "paypal_email"}= @user.paypal_email
-
-
-      %section.occupation
-        %h3
-          %span Occupation
-          %span.info (click to edit)
-        .text{:update => "occupation"}= @user.occupation
+      = form_for @user, :as => :user, :url => user_path(current_user) do |form|
         
-      %section.location
-        %h3
-          %span Location
-          %span.info (click to edit)
-        .text{:update => "location"}= @user.location
-      
-      - if @user.is_a?(Creator)
-        %section.tagline
-          %h3
-            %span What will you be sharing at Momeant?
-            %span.info (click to edit)
-          .text{:update => "tagline"}= @user.tagline
-      
-      %h2 Change Your Password
-      = form_for :user, :url => change_password_user_path(current_user) do |form|
         %fieldset
           %ul
             %li
-              = form.label :current_password
-              = form.password_field :current_password, :options => {:value => ""}
+              = form.label :tagline, "What will you be sharing at Momeant?"
+              = form.text_area :tagline
+            
             %li
-              = form.label :password, "New Password"
-              = form.password_field :password
+              = form.label :amazon_email, "Accepting Payments"
+              %span.aside
+                = form.label :amazon_email, "Amazon Account Email"
+                = form.text_field :amazon_email
+              %span.aside
+                %h3 OR
+              %span.aside
+                = form.label :paypal_email, "PayPal Account Email"
+                = form.text_field :paypal_email
+              
+              .freak-out PLEASE DOUBLE CHECK THIS as we will send your payments to this account.
+            
             %li
-              = form.submit "Save New Password"
+              = form.submit "Save Creator Info"
   
-  #profile-left.column
-    = render "users/user_info"
+  %section
+    
+    %h1 Change Your Password
+    
+    = form_for :user, :url => change_password_user_path(current_user) do |form|
+      %fieldset
+        %ul
+          %li
+            = form.label :current_password
+            = form.password_field :current_password, :options => {:value => ""}
+          %li
+            = form.label :password, "New Password"
+            = form.password_field :password
+          %li
+            = form.submit "Save New Password"
 
 :javascript
   var user_id = #{current_user.id};
-= javascript_include_tag "jquery.editinplace"
 = javascript_include_tag "users/edit"
-= javascript_include_tag "users/show"
