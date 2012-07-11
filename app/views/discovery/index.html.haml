@@ -1,17 +1,12 @@
 #discovery-page
 
   #filters
-    #sort.filter
-      %h3 Sort
-      %ul.links
-        %li= link_to "Popular", "#", :class => params[:sort] != "Newest" ? "active" : ""
-        %li= link_to "Newest", "#", :class => params[:sort] == "Newest" ? "active" : ""
-    #categories.filter
-      %h3 Categories
-      %ul.links
-        - active_categories = params[:category].present? ? params[:category].split("|") : []
-        - Story::CATEGORIES.each do |category|
-          %li= link_to category, "#", :class => active_categories.include?(category) ? "active" : ""
+    #current-filter= params[:filter] || "Popular"
+    %ul
+      %li= link_to "Popular", discovery_path(:filter => "Popular"), :class => params[:filter] == "Popular" ? "active" : ""
+      %li= link_to "Newest", discovery_path(:filter => "Newest"), :class => params[:filter] == "Newest" ? "active" : ""
+      - Story::CATEGORIES.each do |category|
+        %li= link_to category, discovery_path(:filter => category), :class => params[:filter] == category ? "active" : ""
 
   %section#creators
     %h1 Creators
@@ -28,7 +23,7 @@
     .list
       - @content.each do |content|
         - if content.text_preview?
-          %a.content-preview.small{:href => story_path(content), :class => "#{content.media_type} #{content.template}"}
+          %a.content-preview.medium{:href => story_path(content), :class => "#{content.media_type} #{content.template}"}
             .inner
               .image
               .quote= truncate(content.template_text, :length => 140)
@@ -36,7 +31,7 @@
               .title= truncate(content.title, :length => 140)
               .synopsis= truncate(content.synopsis, :length => 280)
         - else
-          %a.content-preview.small{:href => story_path(content), :class => content.media_type}
+          %a.content-preview.medium{:href => story_path(content), :class => content.media_type}
             .inner{:style => "background-image: url(#{content.thumbnail.url(:large)})"}
             .info
               .title= truncate(content.title, :length => 140)

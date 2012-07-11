@@ -1,9 +1,8 @@
 #discovery-page
 
-  width: 630px
+  width: 978px
   margin: 0 auto
   padding-top: 40px
-  padding-right: 140px
   position: relative
   
   section
@@ -13,6 +12,7 @@
       font-weight: 600
       text-transform: uppercase
       margin-bottom: 20px
+      color: #aaa
     .list
       @include clearfix
       width: 100%
@@ -22,59 +22,60 @@
       position: absolute
       top: 0
       left: 0
-      padding: 10px
+      padding: 20px
       background: $blue
       background: rgba(0, 173, 239, 0.9)
       color: #fff
       overflow: hidden
   
   #filters
+    font-size: 30px
+    font-weight: 600
+    text-transform: uppercase
+    position: relative
+    height: 60px
+    margin-bottom: 40px
+  #current-filter, #filters ul
+    background: #fff
+    @include rounded(10px)
+    width: 400px
+    padding: 10px 20px
+  #current-filter
+    background: #fff url(../images/discovery/drop-down-arrow.png) no-repeat 96% 50%
+    cursor: pointer
+  #filters ul
+    display: none
     position: absolute
-    top: 90px
-    right: 0
-    .filter
-      font-size: 1.3em
-      margin-bottom: 30px
-      h3
-        text-transform: uppercase
-        font-weight: 400
-        margin-bottom: 10px
-        padding-left: 4px
-      a
-        display: inline-block
-        padding: 1px 4px
-        @include rounded(3px)
-        margin-bottom: 3px
-      a:hover
-        background: #fff
-      a.active
-        background: $blue url(../images/tiny-x.png) no-repeat 100% 8px
-        color: #fff
-        padding-right: 15px
-    #sort a.active
-      background: $blue
-      padding-right: 4px
-  
+    top: 0
+    left: 0
+    z-index: 99
+    li
+      margin-bottom: 10px
+    a
+      display: block
+    a:hover, a.active
+      color: $text_color
+    
   #creators
     a
       display: block
-      width: 196px
-      height: 196px
+      width: 316px
+      height: 316px
       margin: 0 10px 10px 0
       position: relative
       float: left
       img
-        width: 196px
-        height: 196px
+        width: 316px
+        height: 316px
       &:hover .info
         display: block
       .info
-        width: 176px
-        height: 176px
+        width: 276px
+        height: 276px
         .name
-          font-size: 18px
+          font-size: 24px
           font-weight: 600
-          margin-bottom: 10px
+          margin-bottom: 20px
     a:nth-child(3)
       margin-right: 0
   
@@ -87,11 +88,11 @@
       &:hover .info
         display: block
       .info
-        width: 280px
-        height: 183px
+        width: 440px
+        height: 280px
         .title
-          font-size: 18px
+          font-size: 24px
           font-weight: 600
-          margin-bottom: 10px
+          margin-bottom: 20px
     a:nth-child(even)
       margin-right: 0
