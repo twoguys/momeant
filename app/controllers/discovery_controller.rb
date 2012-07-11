@@ -1,14 +1,32 @@
 class DiscoveryController < ApplicationController
 
   def index
-    @content = Story.published.most_rewarded.page(params[:page]).per(8)
-    @nav = "discover"
-    if params[:remote]
-      render :partial => "discovery/grid_item", :collection => @content, :as => :content
-      return
-    else
-      @activity = Activity.where("action_type = 'Reward' OR action_type = 'Story'").limit(8)
+    categories = params[:category].blank? ? [] : params[:category].split("|")
+
+    @creators = User.select("users.id, users.first_name, users.last_name, users.tagline, users.avatar_file_name, users.created_at, SUM(curations.amount)").
+      joins(:rewards => :story)
+    
+    @content = Story.select("id, preview_type, media_type, title, synopsis, template, template_text, thumbnail_file_name, created_at, SUM(reward_count)")
+
+    unless categories.empty?
+      @creators = @creators.where("stories.category" => categories)
+      @content = @content.where(:category => categories)
     end
+    
+    if params[:sort] == "Newest"
+      @creators = @creators.order("users.created_at DESC")
+      @content = @content.order("stories.created_at DESC")
+    else
+      @creators = @creators.order("SUM(curations.amount) DESC")
+      @content = @content.order("SUM(reward_count) DESC")
+    end
+
+    @creators = @creators.
+      group("users.id, users.first_name, users.last_name, users.tagline, users.avatar_file_name, users.created_at").
+      page(params[:page]).per(6)
+    @content = @content.
+      group("id, preview_type, title, synopsis, media_type, template, template_text, thumbnail_file_name, created_at").
+      page(params[:page]).per(6)
   end
   
   def content

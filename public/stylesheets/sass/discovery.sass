@@ -1,0 +1,94 @@
+#discovery-page
+
+  width: 990px
+  margin: 0 auto
+  padding-top: 40px
+  
+  section
+    padding-bottom: 40px
+    border-bottom: 2px solid #fff
+    margin-bottom: 40px
+    h1
+      font-size: 28px
+      font-weight: 600
+      color: #aaa
+      text-transform: uppercase
+      margin-bottom: 40px
+    .list
+      @include clearfix
+      width: 100%
+    
+    .info
+      display: none
+      position: absolute
+      top: 0
+      left: 0
+      padding: 20px
+      background: $blue
+      background: rgba(0, 173, 239, 0.9)
+      color: #fff
+  
+  #filters
+    height: 95px
+    padding-bottom: 30px
+    .filter
+      @include clearfix
+      width: 100%
+      clear: both
+      font-size: 1.2em
+      h3
+        float: left
+        width: 100px
+      .links
+        float: right
+        width: 890px
+      a
+        display: inline-block
+        padding: 1px 4px
+        @include rounded(3px)
+        margin-bottom: 1px
+      a:hover
+        background: #fff
+      a.active
+        background: $blue url(../images/tiny-x.png) no-repeat 100% 8px
+        color: #fff
+        padding-right: 15px
+  
+  #creators
+    a
+      display: block
+      width: 320px
+      height: 320px
+      margin: 0 10px 10px 0
+      position: relative
+      float: left
+      &:hover .info
+        display: block
+      .info
+        width: 280px
+        height: 280px
+        .name
+          font-size: 24px
+          font-weight: 600
+          margin-bottom: 20px
+    a:nth-child(3)
+      margin-right: 0
+  
+  #content
+    a
+      display: block
+      margin: 0 30px 30px 0
+      float: left
+      position: relative
+      &:hover .info
+        display: block
+      .info
+        width: 440px
+        height: 280px
+        padding: 20px
+        .title
+          font-size: 24px
+          font-weight: 600
+          margin-bottom: 20px
+    a:nth-child(even)
+      margin-right: 0

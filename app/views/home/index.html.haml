@@ -7,47 +7,16 @@
       %em what matters to you.
     %h3
       %a{:href => "#about-modal"}
-        Momeant is a community for connecting with
+        Momeant is a community for supporting
         %br
-        and supporting people doing great work online.
+        and connecting with people doing great work online.
     #learn-more
       = link_to "Learn more", "#about-modal", :class => "button"
     
-  - if @featured_content
-    #featured-content
-      - first = true
-      - @featured_content.each do |type, contents|
-        .media-type{:id => "#{type}-type", :class => first ? "open" : "closed"}
-          .toggler
-          - contents.each do |content|
-            - if content.text_preview?
-              %a.content-preview.smaller{:href => story_path(content), :class => "#{content.media_type} #{content.template}"}
-                .inner
-                  .image
-                  .quote= truncate(content.template_text, :length => 140)
-            - else
-              %a.content-preview.smaller{:href => story_path(content), :class => content.media_type}
-                .inner{:style => "background-image: url(#{content.thumbnail.url(:large)})"}
-        - first = false
-    
-    
-  #categories-people
-    .inner
-
-      %ul#categories
-        - index = 0
-        - @content.each_pair do |category, content|
-          %li{:class => index == 0 ? "selected" : ""}
-            = link_to category, "#", :class => "top"
-            .people
-              - content.each do |story|
-                = link_to story.user.name, "#", :data => index, :class => index == 0 ? "selected" : ""
-                - index += 1
-       
-      #people
-        %ul
-          - @content.each_pair do |category, content|
-            = render :partial => "home/person", :collection => content, :as => :content
+  
+  %section#featured-creators
+    #people
+      %ul= render :partial => "home/person", :collection => @creators, :as => :content
 
 :javascript
   mpq.track('Viewed Homepage', { signed_in: #{user_signed_in? ? 'true' : 'false' } });

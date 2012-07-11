@@ -1,30 +1,48 @@
-#discovery-banner
-  %span Real people create the content that we enjoy on the Web.
-  %strong They deserve to be rewarded.
+#discovery-page
 
-#discovery-summary
+  %section#filters
+    #sort.filter
+      %h3 Sort:
+      .links
+        = link_to "Popular", "#", :class => params[:sort] != "Newest" ? "active" : ""
+        = link_to "Newest", "#", :class => params[:sort] == "Newest" ? "active" : ""
+    #categories.filter
+      %h3 Category:
+      .links
+        - active_categories = params[:category].present? ? params[:category].split("|") : []
+        - Story::CATEGORIES.each do |category|
+          = link_to category, "#", :class => active_categories.include?(category) ? "active" : ""
 
-  #discovery-filters
-
-  %ul#discovery-grid
-    = render :partial => "discovery/grid_item", :collection => @content, :as => :content
+  %section#creators
+    %h1 Creators
+    .list
+      - @creators.each do |creator|
+        %a{:href => user_path(creator)}
+          = image_tag creator.avatar.url(:editorial)
+          .info
+            .name= creator.name
+            .bio= truncate(creator.tagline, :length => 400)
   
-  #discovery-loading Loading more...
-
-  %ul#discovery-activity
-    - @activity.each do |activity|
-      %li
-        = link_to image_tag(activity.actor.avatar.url(:thumbnail)), user_path(activity.actor), :class => "avatar"
-        = link_to activity.actor.name, user_path(activity.actor)
-        - if activity.action_type == "Reward"
-          %strong rewarded #{number_to_currency activity.action.amount}
-          %span to
-          = link_to activity.action.story.title, story_path(activity.action.story, :impacted_by => activity.action.id)
+  %section#content
+    %h1 Works
+    .list
+      - @content.each do |content|
+        - if content.text_preview?
+          %a.content-preview.medium{:href => story_path(content), :class => "#{content.media_type} #{content.template}"}
+            .inner
+              .image
+              .quote= truncate(content.template_text, :length => 140)
+            .info
+              .title= content.title
+              .synopsis= truncate(content.synopsis, :length => 500)
         - else
-          %strong shared #{activity.action.article_string}
-          = link_to activity.action.title, story_path(activity.action)
+          %a.content-preview.medium{:href => story_path(content), :class => content.media_type}
+            .inner{:style => "background-image: url(#{content.thumbnail.url(:large)})"}
+            .info
+              .title= content.title
+              .synopsis= truncate(content.synopsis, :length => 500)
+  
 
 :javascript
   mpq.track('Viewed Discovery');
-= javascript_include_tag "jquery.hover-intent"
 = javascript_include_tag "discovery"

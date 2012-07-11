@@ -1,98 +1,71 @@
-// Grid thumbnail interactions
-
-function setup_thumbnail_hovers() {
-  $('#discovery-grid li:not(.hover-handled)').hoverIntent(function() {
-    $(this).find('.hover').stop(true,true).fadeIn(200);
-  }, function() {
-    $(this).find('.hover').stop(true,true).fadeOut(200);
-  });
-  $('#discovery-grid li:not(.hover-handled)').addClass('hover-handled');
+Array.prototype.remove= function(){
+  var what, a= arguments, L= a.length, ax;
+  while(L && this.length){
+    what= a[--L];
+    while((ax= this.indexOf(what))!= -1){
+      this.splice(ax, 1);
+    }
+  }
+  return this;
 }
-setup_thumbnail_hovers();
 
-// Twitter/Facebook linking
+var Discovery = {};
 
-function discovery_configuration_complete(service, full) {
-  if (full) {
-    var $list = $('#activity-list');
-    $list.addClass('loading');
-    $.get('/auth/' + service + '/check', function(result) {
-  		if(result) {
-  		  $.get('/people/friends/reload_full', function(result) {
-  		    $list.removeClass('loading').html(result);
-  		    $('#link-' + service).replaceWith('<span>' + service.charAt(0).toUpperCase() + service.slice(1) + ' linked</span>');
-  		  });
-  		}
-  	});
+Discovery.get_parameter_by_name = function(name) {
+  name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+  var regexS = "[\\?&]" + name + "=([^&#]*)";
+  var regex = new RegExp(regexS);
+  var results = regex.exec(window.location.search);
+  if (results == null)
+    return "";
+  else
+    return decodeURIComponent(results[1].replace(/\+/g, " "));
+};
+
+Discovery.update_parameter = function(key, value) {
+  key = escape(key); value = escape(value);
+  var s = window.location.search;
+  var kvp = key + "=" + value;
+  var r = new RegExp("(&|\\?)" + key + "=[^\&]*");
+  s = s.replace(r, "$1" + kvp);
+  if (!RegExp.$1) { s += (s.length > 0 ? '&' : '?') + kvp; }
+  window.location.search = s;
+};
+
+Discovery.apply_category = function(category) {
+  var current_categories = Discovery.get_parameter_by_name('category');
+  if (current_categories != '') {
+    current_categories = current_categories.split('|');
   } else {
-    var $list = $('#friends-you-know ul.mini-activity');
-    $list.addClass('loading');
-    $.get('/auth/' + service + '/check', function(result) {
-  		if(result) {
-  		  $.get('/people/friends/reload', function(result) {
-  		    $list.removeClass('loading').html(result);
-  		    $('#link-' + service).replaceWith('<span>' + service.charAt(0).toUpperCase() + service.slice(1) + ' linked</span>');
-  		  });
-  		}
-  	});
+    current_categories = [];
+  }  
+  if ($.inArray(category, current_categories) >= 0) {
+    current_categories.remove(category);
+  } else {
+    current_categories.push(category);
   }
+  var new_categories = current_categories.join('|');
+  Discovery.update_parameter('category', new_categories);
+};
+
+Discovery.apply_sort = function(sort) {
+  var current_sort = Discovery.get_parameter_by_name('sort');
+  
 }
-$('#link-twitter').click(function() {
-  var url = $(this).attr('href');
-  var full = $(this).hasClass('full');
-  window.oauth_twitter_window = window.open(url,'Twitter Configuration','height=500,width=900');
-	window.oauth_twitter_interval = window.setInterval(function() {
-		if (window.oauth_twitter_window.closed) {
-			window.clearInterval(window.oauth_twitter_interval);
-			discovery_configuration_complete('twitter', full);
-		}
-	}, 1000);
-	return false;
+
+$('#categories a').click(function() {
+  var $link = $(this);
+  var category = $link.text();
+  Discovery.apply_category(category);
+  $link.toggleClass('active');
+  return false;
 });
-$('#link-facebook').click(function() {
-  var url = $(this).attr('href');
-  var full = $(this).hasClass('full');
-  window.oauth_facebook_window = window.open(url,'Facebook Configuration','height=500,width=900');
-	window.oauth_facebook_interval = window.setInterval(function() {
-		if (window.oauth_facebook_window.closed) {
-			window.clearInterval(window.oauth_facebook_interval);
-			discovery_configuration_complete('facebook', full);
-		}
-	}, 1000);
-	return false;
-});
-  
 
-// Infinite scrolling
-
-var total_height, current_scroll, visible_height, buffer, current_page, stop_scrolling;
-total_height = document.body.offsetHeight;
-visible_height = document.documentElement.clientHeight;
-buffer = -120;
-current_page = 1;
-stop_scrolling = false;
-function monitor_scrolling() {
-  if (stop_scrolling) { return; }
-
-  if (document.documentElement.scrollTop) { current_scroll = document.documentElement.scrollTop; }
-  else { current_scroll = document.body.scrollTop; }
-  
-  if (total_height <= current_scroll + visible_height) {
-    current_page += 1;
-    $.get('/discover', {page: current_page, remote: true}, function(result) {
-      $('#discovery-grid').append(result);
-      setup_thumbnail_hovers();
-      total_height = document.body.offsetHeight;
-      mpq.track('Scrolled Discovery Page', {page: current_page});
-      
-      if ($.trim(result) == '') {
-        $('#discovery-loading').addClass('done').html('No more content');
-        stop_scrolling = true;
-      }
-    });
-  }
-}  
-$(document).scroll(monitor_scrolling);
-$(window).resize(function() {
-  visible_height = document.documentElement.clientHeight;
+$('#sort a').click(function() {
+  var $link = $(this);
+  if ($link.hasClass('active')) { return false; }
+  var sort = $link.text();
+  Discovery.update_parameter('sort', sort);
+  $link.addClass('active').siblings().removeClass('active');
+  return false;
 });

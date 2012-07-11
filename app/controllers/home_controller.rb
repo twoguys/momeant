@@ -1,15 +1,9 @@
 class HomeController < ApplicationController
   
   def index
-    @content = ActiveSupport::OrderedHash.new
-    @content["Featured"] = Story.includes(:user).published.where("id IN (?)", Editorial.all.map(&:story_id)).order("created_at DESC")
-    Story::CATEGORIES.each do |category|
-      @content[category] = Story.includes(:user).
-        published.where(:category => category).order("reward_count DESC").limit(50).
-        uniq_by {|content| content.user_id}.take(3)
-    end
+    @creators = Editorial.limit(8).map(&:story)
     
-    @featured_content = Story.featured_on_landing unless Rails.env.production?
+    @content = Editorial.limit(9).map(&:story_id)
   end
   
   def people # ajax
