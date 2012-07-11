@@ -1,17 +1,17 @@
 #discovery-page
 
-  %section#filters
+  #filters
     #sort.filter
-      %h3 Sort:
-      .links
-        = link_to "Popular", "#", :class => params[:sort] != "Newest" ? "active" : ""
-        = link_to "Newest", "#", :class => params[:sort] == "Newest" ? "active" : ""
+      %h3 Sort
+      %ul.links
+        %li= link_to "Popular", "#", :class => params[:sort] != "Newest" ? "active" : ""
+        %li= link_to "Newest", "#", :class => params[:sort] == "Newest" ? "active" : ""
     #categories.filter
-      %h3 Category:
-      .links
+      %h3 Categories
+      %ul.links
         - active_categories = params[:category].present? ? params[:category].split("|") : []
         - Story::CATEGORIES.each do |category|
-          = link_to category, "#", :class => active_categories.include?(category) ? "active" : ""
+          %li= link_to category, "#", :class => active_categories.include?(category) ? "active" : ""
 
   %section#creators
     %h1 Creators
@@ -21,26 +21,26 @@
           = image_tag creator.avatar.url(:editorial)
           .info
             .name= creator.name
-            .bio= truncate(creator.tagline, :length => 400)
+            .bio= truncate(creator.tagline, :length => 180)
   
   %section#content
     %h1 Works
     .list
       - @content.each do |content|
         - if content.text_preview?
-          %a.content-preview.medium{:href => story_path(content), :class => "#{content.media_type} #{content.template}"}
+          %a.content-preview.small{:href => story_path(content), :class => "#{content.media_type} #{content.template}"}
             .inner
               .image
               .quote= truncate(content.template_text, :length => 140)
             .info
-              .title= content.title
-              .synopsis= truncate(content.synopsis, :length => 500)
+              .title= truncate(content.title, :length => 140)
+              .synopsis= truncate(content.synopsis, :length => 280)
         - else
-          %a.content-preview.medium{:href => story_path(content), :class => content.media_type}
+          %a.content-preview.small{:href => story_path(content), :class => content.media_type}
             .inner{:style => "background-image: url(#{content.thumbnail.url(:large)})"}
             .info
-              .title= content.title
-              .synopsis= truncate(content.synopsis, :length => 500)
+              .title= truncate(content.title, :length => 140)
+              .synopsis= truncate(content.synopsis, :length => 280)
   
 
 :javascript

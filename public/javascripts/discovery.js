@@ -66,6 +66,6 @@ $('#sort a').click(function() {
   if ($link.hasClass('active')) { return false; }
   var sort = $link.text();
   Discovery.update_parameter('sort', sort);
-  $link.addClass('active').siblings().removeClass('active');
+  $link.addClass('active').parent().siblings().find('a').removeClass('active');
   return false;
 });

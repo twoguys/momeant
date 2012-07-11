@@ -4,9 +4,11 @@ class DiscoveryController < ApplicationController
     categories = params[:category].blank? ? [] : params[:category].split("|")
 
     @creators = User.select("users.id, users.first_name, users.last_name, users.tagline, users.avatar_file_name, users.created_at, SUM(curations.amount)").
-      joins(:rewards => :story)
+      joins(:rewards => :story).
+      where("stories.published" => true)
     
-    @content = Story.select("id, preview_type, media_type, title, synopsis, template, template_text, thumbnail_file_name, created_at, SUM(reward_count)")
+    @content = Story.select("id, preview_type, media_type, title, synopsis, template, template_text, thumbnail_file_name, created_at, SUM(reward_count)").
+      where(:published => true)
 
     unless categories.empty?
       @creators = @creators.where("stories.category" => categories)
