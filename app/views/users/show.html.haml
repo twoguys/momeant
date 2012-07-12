@@ -41,12 +41,12 @@
             %li
               %a{:href => "#", :data => content.id, :class => first ? "selected" : "" }
                 - if content.text_preview?
-                  .content-preview.tiny{:href => story_path(content), :class => "#{content.media_type} #{content.template}"}
+                  .content-preview.tiny{:class => "#{content.media_type} #{content.template}"}
                     .inner
                       .image
                       .quote= truncate(content.template_text, :length => 140)
                 - else
-                  .content-preview.tiny{:href => story_path(content), :class => content.media_type}
+                  .content-preview.tiny{:class => content.media_type}
                     .inner{:style => "background-image: url(#{content.thumbnail.url(:large)})"}
             
                 .title= content.title.present? ? truncate(content.title, :length => 28) : "Untitled"
