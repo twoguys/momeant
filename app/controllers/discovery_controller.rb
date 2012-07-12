@@ -1,34 +1,40 @@
 class DiscoveryController < ApplicationController
 
   def index
-    categories = params[:category].blank? ? [] : params[:category].split("|")
+    if params[:filter].blank? || params[:filter] == "Popular"
 
-    @creators = User.select("users.id, users.first_name, users.last_name, users.tagline, users.avatar_file_name, users.created_at, SUM(curations.amount)").
-      joins(:rewards => :story).
-      where("stories.published" => true)
-    
-    @content = Story.select("id, preview_type, media_type, title, synopsis, template, template_text, thumbnail_file_name, created_at, SUM(reward_count)").
-      where(:published => true)
+      @creators = User.select("users.id, users.first_name, users.last_name, users.tagline, users.avatar_file_name, SUM(curations.amount)").
+        joins(:rewards => :story).
+        where("stories.published" => true).
+        order("SUM(curations.amount) DESC").
+        group("users.id, users.first_name, users.last_name, users.tagline, users.avatar_file_name")
+      @content = Story.
+        where(:published => true).
+        order("reward_count DESC")
+        
+    elsif params[:filter] == "Newest"
 
-    unless categories.empty?
-      @creators = @creators.where("stories.category" => categories)
-      @content = @content.where(:category => categories)
-    end
-    
-    if params[:sort] == "Newest"
-      @creators = @creators.order("users.created_at DESC")
-      @content = @content.order("stories.created_at DESC")
+      @creators = User.
+        order("created_at DESC")
+      @content = Story.
+        where(:published => true).
+        order("created_at DESC")
+
     else
-      @creators = @creators.order("SUM(curations.amount) DESC")
-      @content = @content.order("SUM(reward_count) DESC")
+      
+      @creators = User.select("users.id, users.first_name, users.last_name, users.tagline, users.avatar_file_name, SUM(curations.amount)").
+        joins(:rewards => :story).
+        where("stories.category" => params[:filter], "stories.published" => true).
+        order("SUM(curations.amount) DESC").
+        group("users.id, users.first_name, users.last_name, users.tagline, users.avatar_file_name")
+      @content = Story.
+        where(:category => params[:filter], :published => true).
+        order("reward_count DESC")
+      
     end
-
-    @creators = @creators.
-      group("users.id, users.first_name, users.last_name, users.tagline, users.avatar_file_name, users.created_at").
-      page(params[:page]).per(6)
-    @content = @content.
-      group("id, preview_type, title, synopsis, media_type, template, template_text, thumbnail_file_name, created_at").
-      page(params[:page]).per(6)
+    
+    @creators = @creators.page(params[:page]).per(6)
+    @content = @content.page(params[:page]).per(6)
   end
   
   def content

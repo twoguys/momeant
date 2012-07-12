@@ -1089,10 +1089,9 @@ body#home.index #main {
         background-position: -12px 1px; }
 
 #discovery-page {
-  width: 630px;
+  width: 978px;
   margin: 0 auto;
   padding-top: 40px;
-  padding-right: 140px;
   position: relative; }
   #discovery-page section {
     padding-bottom: 40px; }
@@ -1100,7 +1099,8 @@ body#home.index #main {
       font-size: 28px;
       font-weight: 600;
       text-transform: uppercase;
-      margin-bottom: 20px; }
+      margin-bottom: 20px;
+      color: #aaaaaa; }
     #discovery-page section .list {
       display: inline-block;
       width: 100%; }
@@ -1115,58 +1115,59 @@ body#home.index #main {
       position: absolute;
       top: 0;
       left: 0;
-      padding: 10px;
+      padding: 20px;
       background: #00aeef;
       background: rgba(0, 173, 239, 0.9);
       color: white;
       overflow: hidden; }
   #discovery-page #filters {
+    font-size: 30px;
+    font-weight: 600;
+    text-transform: uppercase;
+    position: relative;
+    height: 60px;
+    margin-bottom: 40px; }
+  #discovery-page #current-filter, #discovery-page #filters ul {
+    background: white;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    width: 400px;
+    padding: 10px 20px; }
+  #discovery-page #current-filter {
+    background: white url(../images/discovery/drop-down-arrow.png) no-repeat 96% 50%;
+    cursor: pointer; }
+  #discovery-page #filters ul {
+    display: none;
     position: absolute;
-    top: 90px;
-    right: 0; }
-    #discovery-page #filters .filter {
-      font-size: 1.3em;
-      margin-bottom: 30px; }
-      #discovery-page #filters .filter h3 {
-        text-transform: uppercase;
-        font-weight: 400;
-        margin-bottom: 10px;
-        padding-left: 4px; }
-      #discovery-page #filters .filter a {
-        display: inline-block;
-        padding: 1px 4px;
-        -webkit-border-radius: 3px;
-        -moz-border-radius: 3px;
-        border-radius: 3px;
-        margin-bottom: 3px; }
-      #discovery-page #filters .filter a:hover {
-        background: white; }
-      #discovery-page #filters .filter a.active {
-        background: #00aeef url(../images/tiny-x.png) no-repeat 100% 8px;
-        color: white;
-        padding-right: 15px; }
-    #discovery-page #filters #sort a.active {
-      background: #00aeef;
-      padding-right: 4px; }
+    top: 0;
+    left: 0;
+    z-index: 99; }
+    #discovery-page #filters ul li {
+      margin-bottom: 10px; }
+    #discovery-page #filters ul a {
+      display: block; }
+    #discovery-page #filters ul a:hover, #discovery-page #filters ul a.active {
+      color: #252525; }
   #discovery-page #creators a {
     display: block;
-    width: 196px;
-    height: 196px;
+    width: 316px;
+    height: 316px;
     margin: 0 10px 10px 0;
     position: relative;
     float: left; }
     #discovery-page #creators a img {
-      width: 196px;
-      height: 196px; }
+      width: 316px;
+      height: 316px; }
     #discovery-page #creators a:hover .info {
       display: block; }
     #discovery-page #creators a .info {
-      width: 176px;
-      height: 176px; }
+      width: 276px;
+      height: 276px; }
       #discovery-page #creators a .info .name {
-        font-size: 18px;
+        font-size: 24px;
         font-weight: 600;
-        margin-bottom: 10px; }
+        margin-bottom: 20px; }
   #discovery-page #creators a:nth-child(3) {
     margin-right: 0; }
   #discovery-page #content a {
@@ -1177,12 +1178,12 @@ body#home.index #main {
     #discovery-page #content a:hover .info {
       display: block; }
     #discovery-page #content a .info {
-      width: 280px;
-      height: 183px; }
+      width: 440px;
+      height: 280px; }
       #discovery-page #content a .info .title {
-        font-size: 18px;
+        font-size: 24px;
         font-weight: 600;
-        margin-bottom: 10px; }
+        margin-bottom: 20px; }
   #discovery-page #content a:nth-child(even) {
     margin-right: 0; }
 
