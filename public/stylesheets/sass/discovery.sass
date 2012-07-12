@@ -20,7 +20,7 @@ body#discovery.index
       font-weight: 600
       text-transform: uppercase
       margin-bottom: 20px
-      color: #aaa
+      color: #777
     .list
       @include clearfix
       width: 100%
@@ -38,7 +38,7 @@ body#discovery.index
       font-size: 18px
   
   #filters
-    font-size: 30px
+    font-size: 36px
     font-weight: 600
     text-transform: uppercase
     position: relative
@@ -46,18 +46,26 @@ body#discovery.index
     margin-bottom: 40px
   #current-filter, #filters ul
     background: #fff
-    @include rounded(10px)
-    width: 400px
     padding: 10px 20px
   #current-filter
     background: #fff url(../images/discovery/drop-down-arrow.png) no-repeat 96% 50%
     cursor: pointer
+    @include rounded(10px)
+    width: 937px
   #filters ul
     display: none
+    width: 907px
     position: absolute
-    top: 0
-    left: 0
+    top: 60px
+    left: 15px
     z-index: 99
+    -webkit-border-bottom-right-radius: 10px
+    -webkit-border-bottom-left-radius: 10px
+    -moz-border-radius-bottomright: 10px
+    -moz-border-radius-bottomleft: 10px
+    border-bottom-right-radius: 10px
+    border-bottom-left-radius: 10px
+    @include boxshadow(8px 0 8px)
     li
       margin-bottom: 10px
     a

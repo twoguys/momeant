@@ -4,7 +4,7 @@ $('html').click(function() {
 });
 
 $('#current-filter').click(function(event) {
-  $('#filters ul').show();
+  $('#filters ul').toggle();
   event.stopPropagation();
 });
 
