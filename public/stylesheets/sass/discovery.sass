@@ -45,32 +45,28 @@ body#discovery.index
     height: 60px
     margin-bottom: 40px
   #current-filter, #filters ul
-    background: #fff
+    width: 937px
     padding: 10px 20px
+    @include rounded(10px)
+    @include boxshadow
   #current-filter
     background: #fff url(../images/discovery/drop-down-arrow.png) no-repeat 96% 50%
     cursor: pointer
-    @include rounded(10px)
-    width: 937px
+    height: 41px
+    position: relative
+    z-index: 100
   #filters ul
     display: none
-    width: 907px
+    background: #fff
     position: absolute
-    top: 60px
-    left: 15px
+    top: 41px
+    padding-top: 30px
+    left: 0
     z-index: 99
-    -webkit-border-bottom-right-radius: 10px
-    -webkit-border-bottom-left-radius: 10px
-    -moz-border-radius-bottomright: 10px
-    -moz-border-radius-bottomleft: 10px
-    border-bottom-right-radius: 10px
-    border-bottom-left-radius: 10px
-    @include boxshadow(8px 0 8px)
-    li
-      margin-bottom: 10px
     a
       display: block
-    a:hover, a.active
+      padding-bottom: 10px
+    a:hover
       color: $text_color
     
   #creators
