@@ -3,17 +3,18 @@ window.ProfileView = Backbone.View.extend({
 	el: $('body'),
 	
 	events: {
-		'click #user-profile #tabs a': 'switch_info_tabs',
-		'click #vertical-people h1 a': 'switch_supporter_tabs',
-		'click #subscribe': 'subscribe'
+		'click #subscribe':             'subscribe',
+		'click #work-browser .list a':  'select_work'
 	},
 	
 	initialize: function() {
-	  this.scroll_to_content();
 	  this.set_width_for_ios();
 	  
-	  _.bindAll(this, 'on_keypress');
-	  $(document).bind('keydown', this.on_keypress);
+	  $('#and-more .icon').hover(function() {
+	    $(this).siblings().fadeIn(200);
+	  }, function() {
+	    $(this).siblings().fadeOut(200);
+	  });
   },
   
   set_width_for_ios: function() {
@@ -21,38 +22,6 @@ window.ProfileView = Backbone.View.extend({
     if ((user_agent.indexOf('ipad') > -1) || (user_agent.indexOf('iphone') > -1)) {
       $('body, #header').css('width', '1300px');
     }
-  },
-  
-  scroll_to_content: function() {
-    var content_id_index = window.location.href.indexOf('?content=');
-    if (content_id_index < 0) { return; }
-    
-    var content_id = window.location.href.substring(content_id_index + 9, window.location.href.length);
-    var y_position = $('#content-' + content_id).position().top - 42;
-    if (y_position < 0) { return; }
-    $.scrollTo(y_position);
-  },
-  
-  switch_info_tabs: function(event) {
-    var $link = $(event.currentTarget);
-    if ($link.hasClass('selected')) { return false; }
-    
-    $link.addClass('selected').siblings().removeClass('selected');
-    var $text = $('#tabs #text .' + $link.text().toLowerCase());
-    $text.removeClass('hidden').siblings().addClass('hidden');
-    
-    return false;
-  },
-  
-  switch_supporter_tabs: function(event) {
-    var $link = $(event.currentTarget);
-    if ($link.hasClass('selected')) { return false; }
-    
-    $link.addClass('selected').siblings().removeClass('selected');
-    var $text = $('#vertical-people #' + $link.text().toLowerCase());
-    $text.removeClass('hidden').siblings().addClass('hidden');
-    
-    return false;
   },
   
   subscribe: function(event) {
@@ -70,9 +39,15 @@ window.ProfileView = Backbone.View.extend({
     return false;
   },
   
-  on_keypress: function(event) {
-    if (Profile.editing_text) { return; }
-    var key = event.charCode ? event.charCode : event.keyCode ? event.keyCode : 0;
+  select_work: function(event) {
+    var $content = $(event.currentTarget);
+    var $preview = $('#activity-list');
+    $preview.addClass('loading');
+    $.get('/stories/' + $content.attr('data') + '/preview', function(result) {
+      $preview.html(result).removeClass('loading');
+    });
+    $content.addClass('selected').parent().siblings().find('a').removeClass('selected');
+    return false;
   }
   
 });

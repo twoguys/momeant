@@ -1,80 +1,66 @@
 #user-profile
   
-  #profile-center.column
-    - if me?(@user) && @content.empty?
-      #empty-creator-content
-        %p This is your profile page, where you’ll communicate with your audience, present yourself and your work, and where they’ll be able to follow you.
-        %p.strong Get started by clicking the "Share (+)" icon in the navigation bar above.
+  %section#user-info
   
-    #vertical-list
-      %ul#activity-list
-        - index = 0
-        - @content.each do |content|
-          %li.content{:id => "content-#{content.id}"}
-            - if content.text_preview?
-              %a.content-preview{:href => story_path(content), :class => "#{content.media_type} #{content.template}"}
-                .inner
-                  .image
-                  .quote= truncate(content.template_text, :length => 140)
-                .tip View #{content.media_type} &rarr;
-            - else
-              %a.content-preview{:href => story_path(content), :class => content.media_type}
-                .inner{:style => "background-image: url(#{content.thumbnail.url(:large)})"}
-                .tip View #{content.media_type} &rarr;
-      
-            .info
-              .media-type{:class => content.media_type}
-              .text
-                - title = content.title.blank? ? "Untitled" : content.title
-                = link_to(title, story_url(content), :class => "title")
-                .synopsis= content.synopsis 
-                - unless content.tags.empty?
-                  .tags
-                    - content.tags.each do |tag|
-                      = link_to tag.name, search_path(:query => tag.name)
-                      %span.comma ,
-                - if me?(@user)
-                  = link_to "Edit", edit_story_path(content), :class => "edit" if me?(@user)
-                  = link_to "Delete", story_path(content), :method => :delete, :confirm => "WHOA WAIT UP! If you delete this you will lose ALL REWARDS on this content. Are you SURE you want to delete it?"
-                - if current_user && current_user.is_admin? && content.editorial.nil?
-                  = link_to "Feature", admin_editorials_path(:id => content.id), :method => :post
-              .support= content.users_who_rewarded.size
-          
-            .comments
-              - comment_text = pluralize(content.comments.size, "comment").split(" ")
-              %a.toggle-comments{:href => "#"}
-                %span.amount= comment_text[0]
-                %span.text= comment_text[1]
-              .insides
-                %ul.comment-list
-                  = render :partial => "comments/comment", :collection => content.comments, :as => :comment
-                = render "comments/form", :commentable => content
-                
-            - if !content.published?
-              = link_to "Unpublished", edit_story_path(content), :class => "unpublished-ribbon"
+    #picture-and-more
+      #picture
+        - if @user.avatar.url.include?("missing")
+          = link_to(image_tag(@user.avatar.url(:editorial)), settings_user_path(@user), :class => "avatar")
+        - else
+          = link_to(image_tag(@user.avatar.url(:editorial)), user_path(@user), :class => "avatar")
+      #and-more
+        - if @user.location.present?
+          #location.hoverable
+            .icon
+            .show-on-hover= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@user.location}&zoom=6&size=300x300&maptype=roadmap&sensor=false&markers=color:blue%7C#{@user.latitude},#{@user.longitude}"
+          #occupation.hoverable
+            .icon
+            .show-on-hover.big-text= @user.occupation
             
-          - index += 1
+      - if current_user && current_user.is_subscribed_to?(@user)
+        = link_to "Unfollow", "#", :id => "subscribe"
+      - elsif current_user && !me?(@user)
+        = link_to "Follow", user_messages_path(@user), :id => "subscribe", :class => "tooltipped-n", :title => "Receive updates when #{@user.first_name} posts content and discussions."
+      - elsif current_user.nil?
+        = link_to "Follow", "#join-modal", :id => "subscribe", :class => "tooltipped-n", :title => "Receive updates when #{@user.first_name} posts content and discussions."
+    
+    %h1#name
+      %span= @user.first_name
+      %span= @user.last_name
+    
+    #bio= @user.tagline
   
-  #profile-left.column
-    = render "users/user_info"
-
-  #profile-right.column
-    #vertical-people
-      %ul#supporters
-        - first = true
-        - @supporters.each do |person|
-          %li.person{:class => first ? "first" : ""}
-            - if first
-              = link_to image_tag(person[0].avatar.url(:large)), user_path(person[0])
-              .text Top Supporter
-              %h3
-                %span= person[0].first_name
-                %span= person[0].last_name
-            - else
-              = link_to image_tag(person[0].avatar.url(:large)), user_path(person[0]), :class => "tooltipped", :title => person[0].name
-          - first = false
-
-  .clear
+  - if @user.is_a?(Creator)
+    %section#my-work
+      %h1 My Work
+    
+      #work-browser
+        %ul.list
+          - first = true
+          - @content.each do |content|
+            %li
+              %a{:href => "#", :data => content.id, :class => first ? "selected" : "" }
+                - if content.text_preview?
+                  .content-preview.tiny{:href => story_path(content), :class => "#{content.media_type} #{content.template}"}
+                    .inner
+                      .image
+                      .quote= truncate(content.template_text, :length => 140)
+                - else
+                  .content-preview.tiny{:href => story_path(content), :class => content.media_type}
+                    .inner{:style => "background-image: url(#{content.thumbnail.url(:large)})"}
+            
+                .title= content.title.present? ? truncate(content.title, :length => 28) : "Untitled"
+                .synopsis= truncate(content.synopsis, :length => 75)
+              
+                - first = false
+  
+        #vertical-list
+          %ul#activity-list
+            = render :partial => "stories/preview", :locals => { :content => @content.first }
+  
+  %section#my-rewards
+    %h1 My Rewards
+  
 - if me?(@user)
   :javascript
     mpq.track('Viewed My Profile');

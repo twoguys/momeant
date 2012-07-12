@@ -1,0 +1,42 @@
+%li.content{:id => "content-#{content.id}"}
+  - if content.text_preview?
+    %a.content-preview{:href => story_path(content), :class => "#{content.media_type} #{content.template}"}
+      .inner
+        .image
+        .quote= truncate(content.template_text, :length => 140)
+      .tip View #{content.media_type} &rarr;
+  - else
+    %a.content-preview{:href => story_path(content), :class => content.media_type}
+      .inner{:style => "background-image: url(#{content.thumbnail.url(:large)})"}
+      .tip View #{content.media_type} &rarr;
+
+  .info
+    .media-type{:class => content.media_type}
+    .text
+      - title = content.title.blank? ? "Untitled" : content.title
+      = link_to(title, story_url(content), :class => "title")
+      .synopsis= content.synopsis 
+      - unless content.tags.empty?
+        .tags
+          - content.tags.each do |tag|
+            = link_to tag.name, search_path(:query => tag.name)
+            %span.comma ,
+      - if me?(@user)
+        = link_to "Edit", edit_story_path(content), :class => "edit" if me?(@user)
+        = link_to "Delete", story_path(content), :method => :delete, :confirm => "WHOA WAIT UP! If you delete this you will lose ALL REWARDS on this content. Are you SURE you want to delete it?"
+      - if current_user && current_user.is_admin? && content.editorial.nil?
+        = link_to "Feature", admin_editorials_path(:id => content.id), :method => :post
+    .support= content.users_who_rewarded.size
+
+  .comments
+    - comment_text = pluralize(content.comments.size, "comment").split(" ")
+    %a.toggle-comments{:href => "#"}
+      %span.amount= comment_text[0]
+      %span.text= comment_text[1]
+    .insides
+      %ul.comment-list
+        = render :partial => "comments/comment", :collection => content.comments, :as => :comment
+      = render "comments/form", :commentable => content
+    
+  - if !content.published?
+    = link_to "Unpublished", edit_story_path(content), :class => "unpublished-ribbon"
