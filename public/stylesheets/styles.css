@@ -1,17 +1,17 @@
 @-webkit-keyframes bounce {
   0% {
     opacity: 0;
-    -webkit-transform: translateX(-2000px); }
+    -webkit-transform: translateY(-2000px); }
 
   60% {
     opacity: 1;
-    -webkit-transform: translateX(30px); }
+    -webkit-transform: translateY(30px); }
 
   80% {
-    -webkit-transform: translateX(-10px); }
+    -webkit-transform: translateY(-10px); }
 
   100% {
-    -webkit-transform: translateX(0); } }
+    -webkit-transform: translateY(0); } }
 
 @-moz-keyframes bounce {
   0% {
@@ -31,54 +31,54 @@
 @-ms-keyframes bounce {
   0% {
     opacity: 0;
-    -ms-transform: translateX(-2000px); }
+    -ms-transform: translateY(-2000px); }
 
   60% {
     opacity: 1;
-    -ms-transform: translateX(30px); }
+    -ms-transform: translateY(30px); }
 
   80% {
-    -ms-transform: translateX(-10px); }
+    -ms-transform: translateY(-10px); }
 
   100% {
-    -ms-transform: translateX(0); } }
+    -ms-transform: translateY(0); } }
 
 @-o-keyframes bounce {
   0% {
     opacity: 0;
-    -o-transform: translateX(-2000px); }
+    -o-transform: translateY(-2000px); }
 
   60% {
     opacity: 1;
-    -o-transform: translateX(30px); }
+    -o-transform: translateY(30px); }
 
   80% {
-    -o-transform: translateX(-10px); }
+    -o-transform: translateY(-10px); }
 
   100% {
-    -o-transform: translateX(0); } }
+    -o-transform: translateY(0); } }
 
 @keyframes bounce {
   0% {
     opacity: 0;
-    transform: translateX(-2000px); }
+    transform: translateY(-2000px); }
 
   60% {
     opacity: 1;
-    transform: translateX(30px); }
+    transform: translateY(30px); }
 
   80% {
-    transform: translateX(-10px); }
+    transform: translateY(-10px); }
 
   100% {
-    transform: translateX(0); } }
+    transform: translateY(0) ƒ; } }
 
 /* Element styles */
 html, body {
   font-family: "proxima-nova-1", "proxima-nova-2", helvetica, sans-serif;
   font-size: 14px;
   color: #252525;
-  background: #e0e0e0;
+  background: white;
   min-height: 100%;
   text-rendering: optimizelegibility;
   position: relative; }
@@ -372,7 +372,7 @@ header.hide-nav {
       font-weight: 700;
       font-size: 13px;
       padding: 8px 0 7px;
-      border-bottom: 1px solid #e0e0e0; }
+      border-bottom: 1px solid white; }
       #call-to-action .insides .message a {
         -webkit-border-radius: 3px;
         -moz-border-radius: 3px;
@@ -584,7 +584,7 @@ a.button.green {
   .horizontal-tabs li a {
     display: block;
     color: #252525;
-    background: #e0e0e0;
+    background: white;
     height: 25px;
     padding: 4px 18px 4px;
     position: relative;
@@ -1163,6 +1163,13 @@ body#home.index #main {
       #landing-page #people > ul .more a.next {
         background-position: -12px 1px; }
 
+body#discovery.index #bg {
+  background: black;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 100%; }
+
 #discovery-page {
   width: 978px;
   margin: 0 auto;
@@ -1367,51 +1374,55 @@ body#home.index #main {
       font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
       font-size: 11px; }
 
-#user-profile {
+body#users.show #user-profile {
   width: 1000px;
   margin: 30px auto; }
-  #user-profile section {
+  body#users.show #user-profile section {
     margin-bottom: 30px; }
-    #user-profile section h1 {
+    body#users.show #user-profile section h1 {
       font-size: 50px;
       font-weight: 600;
       text-transform: uppercase; }
-  #user-profile #user-info {
+  body#users.show #user-profile #user-info {
     position: relative;
     padding-left: 335px;
     min-height: 335px; }
-  #user-profile #picture-and-more {
+  body#users.show #user-profile #picture-and-more {
     width: 300px;
     padding: 5px 5px 25px;
-    background: white;
+    background: #eeeeee;
     position: absolute;
     top: 0;
     left: 0;
-    -moz-animation: bounce 1s; }
-    #user-profile #picture-and-more #picture img {
+    -webkit-animation: bounce 1s;
+    -moz-animation: bounce 1s;
+    -ms-animation: bounce 1s;
+    -o-animation: bounce 1s;
+    animation: bounce 1s; }
+    body#users.show #user-profile #picture-and-more #picture img {
       width: 300px;
       height: 300px; }
-    #user-profile #picture-and-more #and-more {
+    body#users.show #user-profile #picture-and-more #and-more {
       position: absolute;
       top: 5px;
       left: 5px;
       width: 300px;
       height: 322px; }
-      #user-profile #picture-and-more #and-more .hoverable .icon {
+      body#users.show #user-profile #picture-and-more #and-more .hoverable .icon {
         position: absolute;
         bottom: 0;
         left: 5px;
         width: 16px;
         height: 16px;
         cursor: help; }
-      #user-profile #picture-and-more #and-more .hoverable .show-on-hover {
+      body#users.show #user-profile #picture-and-more #and-more .hoverable .show-on-hover {
         display: none;
         position: absolute;
         top: 0;
         left: 0;
         width: 300px;
         height: 300px; }
-        #user-profile #picture-and-more #and-more .hoverable .show-on-hover.big-text {
+        body#users.show #user-profile #picture-and-more #and-more .hoverable .show-on-hover.big-text {
           background: #00aeef;
           background: rgba(0, 173, 239, 0.9);
           text-align: center;
@@ -1421,12 +1432,12 @@ body#home.index #main {
           font-weight: 600;
           text-transform: uppercase;
           color: white; }
-      #user-profile #picture-and-more #and-more #location .icon {
+      body#users.show #user-profile #picture-and-more #and-more #location .icon {
         background-image: url(../images/profile/icons/location.png); }
-      #user-profile #picture-and-more #and-more #occupation .icon {
+      body#users.show #user-profile #picture-and-more #and-more #occupation .icon {
         left: 26px;
         background-image: url(../images/profile/icons/occupation.png); }
-  #user-profile #subscribe {
+  body#users.show #user-profile #subscribe {
     display: inline-block;
     width: 145px;
     height: 20px;
@@ -1444,60 +1455,60 @@ body#home.index #main {
     -ms-transition: color 0.2s ease-in-out;
     -o-transition: color 0.2s ease-in-out;
     transition: color 0.2s ease-in-out; }
-    #user-profile #subscribe:hover {
+    body#users.show #user-profile #subscribe:hover {
       color: white; }
-  #user-profile #name {
+  body#users.show #user-profile #name {
     padding-top: 5px;
     font-size: 60px;
     font-weight: 600;
     text-transform: uppercase;
     line-height: 50px; }
-    #user-profile #name span {
+    body#users.show #user-profile #name span {
       display: block; }
-  #user-profile #bio {
+  body#users.show #user-profile #bio {
     font-family: "museo-slab-1", "museo-slab-2", serif;
     font-size: 16px;
     font-style: italic;
     line-height: 1.5em; }
-  #user-profile #work-browser {
+  body#users.show #user-profile #work-browser {
     position: relative;
     padding-left: 370px;
     min-height: 600px; }
-    #user-profile #work-browser .list {
+    body#users.show #user-profile #work-browser .list {
       width: 360px;
       position: absolute;
       top: 0;
       left: 0; }
-      #user-profile #work-browser .list li {
+      body#users.show #user-profile #work-browser .list li {
         margin-bottom: 5px; }
-        #user-profile #work-browser .list li a {
+        body#users.show #user-profile #work-browser .list li a {
           display: block;
           height: 60px;
           color: #252525;
           position: relative;
           padding: 5px 5px 5px 110px; }
-        #user-profile #work-browser .list li .content-preview {
+        body#users.show #user-profile #work-browser .list li .content-preview {
           position: absolute;
           top: 5px;
           left: 5px; }
-        #user-profile #work-browser .list li .title, #user-profile #work-browser .list li .synopsis {
+        body#users.show #user-profile #work-browser .list li .title, body#users.show #user-profile #work-browser .list li .synopsis {
           width: 215px; }
-        #user-profile #work-browser .list li .title {
+        body#users.show #user-profile #work-browser .list li .title {
           padding-top: 5px;
           font-size: 13px;
           text-transform: uppercase;
           margin-bottom: 3px;
           font-weight: 600; }
-        #user-profile #work-browser .list li .synopsis {
+        body#users.show #user-profile #work-browser .list li .synopsis {
           font-size: 12px; }
-        #user-profile #work-browser .list li a.selected, #user-profile #work-browser .list li a:hover {
+        body#users.show #user-profile #work-browser .list li a.selected, body#users.show #user-profile #work-browser .list li a:hover {
           background: transparent url(../images/profile/selected-content-row.png) no-repeat 100% 50%; }
-  #user-profile #vertical-list {
+  body#users.show #user-profile #vertical-list {
     padding: 0; }
-    #user-profile #vertical-list #activity-list.loading {
+    body#users.show #user-profile #vertical-list #activity-list.loading {
       background-position: 50% 200px;
       height: 230px; }
-    #user-profile #vertical-list #activity-list > li {
+    body#users.show #user-profile #vertical-list #activity-list > li {
       padding: 0; }
 
 body#users.patronage .profile-info .supporter-count, body#users.patronage .profile-info .follow, body#users.patronage .profile-info .info, body#users.patronage .profile-info #broadcaster {
@@ -2014,10 +2025,12 @@ body#subscriptions.index {
     background: #222222;
     color: white; }
   body#subscriptions.index #feed-left #user-profile {
-    margin: -10px -10px 0 -10px;
-    background: black; }
+    margin: -10px -10px 0 -10px; }
     body#subscriptions.index #feed-left #user-profile .about {
       margin: 0; }
+    body#subscriptions.index #feed-left #user-profile .avatar img {
+      width: 300px;
+      height: 300px; }
   body#subscriptions.index #feed-left h2 {
     background: #555555;
     color: black;
@@ -2172,7 +2185,7 @@ body#subscriptions.index {
         padding: 20px;
         line-height: 1.3em; }
   body#subscriptions.index #feed-center li.reward .comment {
-    background: white;
+    background: #eeeeee;
     padding: 30px;
     min-height: 45px;
     position: relative; }
@@ -6191,9 +6204,9 @@ ul.stories .excerpt {
     .recommendation-stream .tabs a:first-child {
       border: none; }
     .recommendation-stream .tabs a.subscribed-to-recommendations {
-      border-right: 1px solid #e0e0e0; }
+      border-right: 1px solid white; }
     .recommendation-stream .tabs a.momeant-recommendations {
-      border-left: 1px solid #e0e0e0; }
+      border-left: 1px solid white; }
   .recommendation-stream ul {
     padding: 10px 10px 0 10px; }
     .recommendation-stream ul li {
@@ -6788,7 +6801,7 @@ body#home.tos ol li {
     font-size: 33px;
     font-weight: 700;
     text-transform: uppercase;
-    text-shadow: #e0e0e0 -1px 1px 0, #985faf -2px 2px 0;
+    text-shadow: white -1px 1px 0, #985faf -2px 2px 0;
     margin-bottom: 5px; }
 #faq-pitch ul.questions {
   height: 440px;
@@ -6883,7 +6896,7 @@ ul.rewards {
         left: 20px;
         z-index: 3; }
     ul.rewards li .who {
-      background: #e0e0e0;
+      background: white;
       padding: 8px;
       width: 214px;
       min-height: 40px; }
@@ -7119,7 +7132,7 @@ a.tag:hover {
 #visualization {
   width: 780px;
   height: 600px;
-  background: #e0e0e0;
+  background: white;
   position: relative; }
   #visualization #context {
     padding: 10px;

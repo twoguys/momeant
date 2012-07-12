@@ -1,142 +1,143 @@
-#user-profile
-  width: 1000px
-  margin: 30px auto
+body#users.show
+  #user-profile
+    width: 1000px
+    margin: 30px auto
   
-  section
-    margin-bottom: 30px
-    h1
-      font-size: 50px
-      font-weight: 600
-      text-transform: uppercase
+    section
+      margin-bottom: 30px
+      h1
+        font-size: 50px
+        font-weight: 600
+        text-transform: uppercase
   
-  #user-info
-    position: relative
-    padding-left: 335px
-    min-height: 335px
+    #user-info
+      position: relative
+      padding-left: 335px
+      min-height: 335px
   
-  #picture-and-more
-    width: 300px
-    padding: 5px 5px 25px
-    background: #fff
-    position: absolute
-    top: 0
-    left: 0
-    -moz-animation: bounce 1s
-    
-    #picture img
+    #picture-and-more
       width: 300px
-      height: 300px
-    
-    #and-more
-      position: absolute
-      top: 5px
-      left: 5px
-      width: 300px
-      height: 322px
-      
-      .hoverable
-        .icon
-          position: absolute
-          bottom: 0
-          left: 5px
-          width: 16px
-          height: 16px
-          cursor: help
-        .show-on-hover
-          display: none
-          position: absolute
-          top: 0
-          left: 0
-          width: 300px
-          height: 300px
-          &.big-text
-            background: $blue
-            background: rgba(0, 173, 239, 0.9)
-            text-align: center
-            padding-top: 100px
-            height: 200px
-            font-size: 36px
-            font-weight: 600
-            text-transform: uppercase
-            color: #fff
-      
-      #location .icon
-        background-image: url(../images/profile/icons/location.png)
-      #occupation .icon
-        left: 26px
-        background-image: url(../images/profile/icons/occupation.png)
-        
-  #subscribe
-    display: inline-block
-    width: 145px
-    height: 20px
-    padding: 8px 0 21px
-    background: transparent url(../images/profile/follow-bg.png) no-repeat 100% 100%
-    color: #004666
-    font-size: 17px
-    text-transform: uppercase
-    text-align: center
-    position: absolute
-    top: 255px
-    left: -12px
-    @include transition(color)
-    &:hover
-      color: #fff
-    
-  #name
-    padding-top: 5px
-    font-size: 60px
-    font-weight: 600
-    text-transform: uppercase
-    line-height: 50px
-    span
-      display: block
-  
-  #bio
-    font-family: $typewriter
-    font-size: 16px
-    font-style: italic
-    line-height: 1.5em
-
-  #work-browser
-    position: relative
-    padding-left: 370px
-    min-height: 600px
-    
-    .list
-      width: 360px
+      padding: 5px 5px 25px
+      background: #eee
       position: absolute
       top: 0
       left: 0
-      li
-        margin-bottom: 5px
-        a
-          display: block
-          height: 60px
-          color: $text_color
-          position: relative
-          padding: 5px 5px 5px 110px
-        .content-preview
-          position: absolute
-          top: 5px
-          left: 5px
-        .title, .synopsis
-          width: 215px
-        .title
-          padding-top: 5px
-          font-size: 13px
-          text-transform: uppercase
-          margin-bottom: 3px
-          font-weight: 600
-        .synopsis
-          font-size: 12px
-        a.selected, a:hover
-          background: transparent url(../images/profile/selected-content-row.png) no-repeat 100% 50%
+      @include animation
+    
+      #picture img
+        width: 300px
+        height: 300px
+    
+      #and-more
+        position: absolute
+        top: 5px
+        left: 5px
+        width: 300px
+        height: 322px
       
-  #vertical-list
-    padding: 0
-    #activity-list.loading
-      background-position: 50% 200px
-      height: 230px
-    #activity-list > li
+        .hoverable
+          .icon
+            position: absolute
+            bottom: 0
+            left: 5px
+            width: 16px
+            height: 16px
+            cursor: help
+          .show-on-hover
+            display: none
+            position: absolute
+            top: 0
+            left: 0
+            width: 300px
+            height: 300px
+            &.big-text
+              background: $blue
+              background: rgba(0, 173, 239, 0.9)
+              text-align: center
+              padding-top: 100px
+              height: 200px
+              font-size: 36px
+              font-weight: 600
+              text-transform: uppercase
+              color: #fff
+      
+        #location .icon
+          background-image: url(../images/profile/icons/location.png)
+        #occupation .icon
+          left: 26px
+          background-image: url(../images/profile/icons/occupation.png)
+        
+    #subscribe
+      display: inline-block
+      width: 145px
+      height: 20px
+      padding: 8px 0 21px
+      background: transparent url(../images/profile/follow-bg.png) no-repeat 100% 100%
+      color: #004666
+      font-size: 17px
+      text-transform: uppercase
+      text-align: center
+      position: absolute
+      top: 255px
+      left: -12px
+      @include transition(color)
+      &:hover
+        color: #fff
+    
+    #name
+      padding-top: 5px
+      font-size: 60px
+      font-weight: 600
+      text-transform: uppercase
+      line-height: 50px
+      span
+        display: block
+  
+    #bio
+      font-family: $typewriter
+      font-size: 16px
+      font-style: italic
+      line-height: 1.5em
+
+    #work-browser
+      position: relative
+      padding-left: 370px
+      min-height: 600px
+    
+      .list
+        width: 360px
+        position: absolute
+        top: 0
+        left: 0
+        li
+          margin-bottom: 5px
+          a
+            display: block
+            height: 60px
+            color: $text_color
+            position: relative
+            padding: 5px 5px 5px 110px
+          .content-preview
+            position: absolute
+            top: 5px
+            left: 5px
+          .title, .synopsis
+            width: 215px
+          .title
+            padding-top: 5px
+            font-size: 13px
+            text-transform: uppercase
+            margin-bottom: 3px
+            font-weight: 600
+          .synopsis
+            font-size: 12px
+          a.selected, a:hover
+            background: transparent url(../images/profile/selected-content-row.png) no-repeat 100% 50%
+      
+    #vertical-list
       padding: 0
+      #activity-list.loading
+        background-position: 50% 200px
+        height: 230px
+      #activity-list > li
+        padding: 0

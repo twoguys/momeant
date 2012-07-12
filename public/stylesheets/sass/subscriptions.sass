@@ -1,257 +1,259 @@
 body#subscriptions.index
-	min-width: 900px
+  min-width: 900px
 
-	#main
-		max-width: 100%
-		margin: 0
-		#feed
-			padding-left: 300px
-			overflow: hidden
-	.column
-		position: relative
-		float: left
-		padding-bottom: 20010px
-		margin-bottom: -20000px
-	#feed-center
-		width: 100%
-	#feed-center > .inner
-		padding: 20px
-	#feed-left
-		width: 280px
-		padding-top: 10px
-		padding-left: 10px
-		padding-right: 10px
-		right: 300px
-		margin-left: -100%
-		background: #222
-		color: #fff
-	
-	
-	#feed-left
-		#user-profile
-			margin: -10px -10px 0 -10px
-			background: #000
-			.about
-				margin: 0
-			
-		h2
-			background: #555
-			color: #000
-			margin: 10px 0 5px
-			font-size: 14px
-		
-		ul
-			margin-bottom: 20px
-		li
-			height: 70px
-			margin-bottom: 5px
-			background: #333
-			cursor: pointer
-			@include transition(background)
-			img, .name
-				float: left
-			img
-				width: 70px
-				height: 70px
-				margin-right: 20px
-			.name, .amount
-				@include transition(color)
-			.name
-				font-family: $typewriter
-				font-style: italic
-				font-size: 16px
-				line-height: 16px
-				color: #ccc
-				padding-top: 17px
-				span
-					display: block
-			.amount
-				float: right
-				font-size: 20px
-				font-weight: 200
-				padding-top: 22px
-				margin-right: 10px
-				color: #aaa
-		
-		#following li
-			.name
-				span
-					margin-bottom: 3px
-				.since
-					font-size: 12px
-					font-weight: 300
-					color: #777
-			&:hover, &.selected
-				.name .since
-					color: #fff
-		
-		li:hover, li.selected
-			background: $blue
-			.name
-				color: #003750
-			.amount
-				color: #fff
-				
-	
-	#feed-center
-		#vertical-list
-			padding: 0
-			#activity-list > li
-				padding: 0
-				margin-bottom: 30px
+  #main
+    max-width: 100%
+    margin: 0
+    #feed
+      padding-left: 300px
+      overflow: hidden
+  .column
+    position: relative
+    float: left
+    padding-bottom: 20010px
+    margin-bottom: -20000px
+  #feed-center
+    width: 100%
+  #feed-center > .inner
+    padding: 20px
+  #feed-left
+    width: 280px
+    padding-top: 10px
+    padding-left: 10px
+    padding-right: 10px
+    right: 300px
+    margin-left: -100%
+    background: #222
+    color: #fff
+  
+  
+  #feed-left
+    #user-profile
+      margin: -10px -10px 0 -10px
+      .about
+        margin: 0
+      .avatar img
+        width: 300px
+        height: 300px
+      
+    h2
+      background: #555
+      color: #000
+      margin: 10px 0 5px
+      font-size: 14px
+    
+    ul
+      margin-bottom: 20px
+    li
+      height: 70px
+      margin-bottom: 5px
+      background: #333
+      cursor: pointer
+      @include transition(background)
+      img, .name
+        float: left
+      img
+        width: 70px
+        height: 70px
+        margin-right: 20px
+      .name, .amount
+        @include transition(color)
+      .name
+        font-family: $typewriter
+        font-style: italic
+        font-size: 16px
+        line-height: 16px
+        color: #ccc
+        padding-top: 17px
+        span
+          display: block
+      .amount
+        float: right
+        font-size: 20px
+        font-weight: 200
+        padding-top: 22px
+        margin-right: 10px
+        color: #aaa
+    
+    #following li
+      .name
+        span
+          margin-bottom: 3px
+        .since
+          font-size: 12px
+          font-weight: 300
+          color: #777
+      &:hover, &.selected
+        .name .since
+          color: #fff
+    
+    li:hover, li.selected
+      background: $blue
+      .name
+        color: #003750
+      .amount
+        color: #fff
+        
+  
+  #feed-center
+    #vertical-list
+      padding: 0
+      #activity-list > li
+        padding: 0
+        margin-bottom: 30px
 
-		li
-			.creator
-				width: 320px
-				position: absolute
-				right: -320px
-				top: 0
-				.rewarded, .previously-rewarded
-					margin-left: 30px
-				.rewarded
-					background: #fff
-					padding: 150px 0 80px
-					text-align: center
-					margin-bottom: 5px
-					.amount
-						display: inline-block
-						font-size: 50px
-						font-weight: 100
-						border-bottom: 1px solid #ddd
-						margin-bottom: 5px
-					.text
-						color: #aaa
-						display: block
-				.creator-info
-					position: absolute
-					top: 20px
-					left: -5px
-					z-index: 2
-					padding-left: 25px
-					background: transparent url(../images/curation/dot-line.png) no-repeat 0 50%
-					.card
-						width: 310px
-						height: 60px
-						background: #000
-						font-family: $typewriter
-						font-style: italic
-						img
-							float: left
-							width: 60px
-							height: 60px
-							margin-right: 20px
-						.name
-							display: block
-							color: #fff
-							font-size: 20px
-							padding-top: 10px
-						.since
-							color: #777
-							font-size: 12px
-							font-weight: 300
-				.previously-rewarded
-					li
-						margin-bottom: 5px
-						a
-							display: block
-							height: 17px
-							padding: 5px 10px 5px 28px
-							background: #f4f4f4 url(../images/curation/white-dot.png) no-repeat 10px 50%
-							text-transform: uppercase
-							color: #777
-							@include transition
-							.title
-								float: left
-							.amount
-								float: right
-							&:hover
-								background-color: $blue
-								background-position: -10px 50%
-								color: #fff
-								padding-left: 10px
-		
-		li.content
-			position: relative
-			.content-preview
-				z-index: 1
-		
-		li.broadcast .comment
-			padding-bottom: 41px
-			background: transparent url(../images/curation/broadcast-curve.png) no-repeat 550px 100%
-			.comment-inner
-				background: #202020
-				padding: 10px
-				p
-					background: #fff
-					font-family: $typewriter
-					font-size: 22px
-					font-style: italic
-					margin: 0
-					padding: 20px
-					line-height: 1.3em
-		
-		li.reward
-			.comment
-				background: #fff
-				padding: 30px
-				min-height: 45px
-				position: relative
-				p
-					width: 410px
-					font-family: $typewriter
-					font-size: 22px
-					font-style: italic
-					margin: 0
-					line-height: 1.3em
-				.rewarded
-					position: absolute
-					top: 10px
-					right: 20px
-					.amount
-						display: inline-block
-						font-size: 50px
-						font-weight: 100
-						border-bottom: 1px solid #ddd
-						margin-bottom: 5px
-					.text
-						color: #aaa
-						display: block
-						text-align: right
-				
-			.card
-				a
-					float: left
-					display: block
-				a.avatar
-					width: 60px
-					height: 60px
-					img
-						margin-right: 0
-				a.content-thumb
-					width: 90px
-					height: 60px
-					margin-right: 20px
-					overflow: hidden
-					img
-						width: 95px
-						height: 60px
-						margin: 0 0 0 -2.5px
-				a.content-info
-					width: 135px
-					height: 60px
-					.title, .media-type
-						float: left
-					.title
-						font-family: $block
-						font-size: 13px
-						font-style: normal
-						color: #fff
-						text-transform: uppercase
-						padding-top: 15px
-						line-height: 15px
-					.byline
-						display: block
-						clear: left
-						color: #777
-						font-size: 12px
-						font-weight: 300
+    li
+      .creator
+        width: 320px
+        position: absolute
+        right: -320px
+        top: 0
+        .rewarded, .previously-rewarded
+          margin-left: 30px
+        .rewarded
+          background: #fff
+          padding: 150px 0 80px
+          text-align: center
+          margin-bottom: 5px
+          .amount
+            display: inline-block
+            font-size: 50px
+            font-weight: 100
+            border-bottom: 1px solid #ddd
+            margin-bottom: 5px
+          .text
+            color: #aaa
+            display: block
+        .creator-info
+          position: absolute
+          top: 20px
+          left: -5px
+          z-index: 2
+          padding-left: 25px
+          background: transparent url(../images/curation/dot-line.png) no-repeat 0 50%
+          .card
+            width: 310px
+            height: 60px
+            background: #000
+            font-family: $typewriter
+            font-style: italic
+            img
+              float: left
+              width: 60px
+              height: 60px
+              margin-right: 20px
+            .name
+              display: block
+              color: #fff
+              font-size: 20px
+              padding-top: 10px
+            .since
+              color: #777
+              font-size: 12px
+              font-weight: 300
+        .previously-rewarded
+          li
+            margin-bottom: 5px
+            a
+              display: block
+              height: 17px
+              padding: 5px 10px 5px 28px
+              background: #f4f4f4 url(../images/curation/white-dot.png) no-repeat 10px 50%
+              text-transform: uppercase
+              color: #777
+              @include transition
+              .title
+                float: left
+              .amount
+                float: right
+              &:hover
+                background-color: $blue
+                background-position: -10px 50%
+                color: #fff
+                padding-left: 10px
+    
+    li.content
+      position: relative
+      .content-preview
+        z-index: 1
+    
+    li.broadcast .comment
+      padding-bottom: 41px
+      background: transparent url(../images/curation/broadcast-curve.png) no-repeat 550px 100%
+      .comment-inner
+        background: #202020
+        padding: 10px
+        p
+          background: #fff
+          font-family: $typewriter
+          font-size: 22px
+          font-style: italic
+          margin: 0
+          padding: 20px
+          line-height: 1.3em
+    
+    li.reward
+      .comment
+        background: #eee
+        padding: 30px
+        min-height: 45px
+        position: relative
+        p
+          width: 410px
+          font-family: $typewriter
+          font-size: 22px
+          font-style: italic
+          margin: 0
+          line-height: 1.3em
+        .rewarded
+          position: absolute
+          top: 10px
+          right: 20px
+          .amount
+            display: inline-block
+            font-size: 50px
+            font-weight: 100
+            border-bottom: 1px solid #ddd
+            margin-bottom: 5px
+          .text
+            color: #aaa
+            display: block
+            text-align: right
+        
+      .card
+        a
+          float: left
+          display: block
+        a.avatar
+          width: 60px
+          height: 60px
+          img
+            margin-right: 0
+        a.content-thumb
+          width: 90px
+          height: 60px
+          margin-right: 20px
+          overflow: hidden
+          img
+            width: 95px
+            height: 60px
+            margin: 0 0 0 -2.5px
+        a.content-info
+          width: 135px
+          height: 60px
+          .title, .media-type
+            float: left
+          .title
+            font-family: $block
+            font-size: 13px
+            font-style: normal
+            color: #fff
+            text-transform: uppercase
+            padding-top: 15px
+            line-height: 15px
+          .byline
+            display: block
+            clear: left
+            color: #777
+            font-size: 12px
+            font-weight: 300
