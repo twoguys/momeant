@@ -4,7 +4,7 @@ class SubscriptionsController < ApplicationController
   
   def index
     @nav = "following"
-    @rewarded = current_user.rewarded_creators_with_amounts
+    @rewarded = current_user.favorite_creators
     @followings = current_user.inverse_subscriptions
     get_all_activity
   end

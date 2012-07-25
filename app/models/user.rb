@@ -130,7 +130,7 @@ class User < ActiveRecord::Base
     !Reward.where(:recipient_id => self.id, :user_id => user.id).empty?
   end
   
-  def rewarded_creators_with_amounts
+  def favorite_creators
     self.given_rewards.group_by(&:recipient).to_a.map {|x| [x.first,x.second.inject(0){|sum,r| sum+r.amount}]}.sort_by(&:second).reverse
   end
   
