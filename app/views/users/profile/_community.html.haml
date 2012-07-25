@@ -20,7 +20,7 @@
                   .rewarded #{number_to_currency(patron[1])} rewarded
         - if @user.non_level_patrons
           .level.non-level
-            %h3= pluralize(@user.non_level_patrons.size, "more supporter")
+            %h3= pluralize(@user.non_level_patrons.size, "other supporter")
             %ul
               - @user.non_level_patrons.each do |patron|
                 %li= link_to image_tag(patron[0].avatar.url(:thumbnail)), user_path(patron[0]), :class => "avatar"

@@ -19,7 +19,7 @@
 
   .comment
     %p
-      = link_to "You said:", user_path(current_user)
+      = link_to "#{you_or_first_name(reward.user).capitalize} said:", user_path(reward.user)
       %span= reward.comment
     .rewarded
       %span.amount= number_to_currency(reward.amount)
