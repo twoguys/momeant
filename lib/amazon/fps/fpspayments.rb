@@ -1,5 +1,5 @@
 require 'uri'
-require 'lib/amazon/fps/signatureutils'
+require 'amazon/fps/signatureutils'
 
 module Amazon
 module FPS

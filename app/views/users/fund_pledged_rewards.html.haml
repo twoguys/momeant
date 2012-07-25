@@ -1,3 +1,5 @@
+#bg
+
 #pay-for-rewards
 
   #messaging
@@ -5,17 +7,17 @@
     .the-rest
       %h1= link_to "Hey #{@user.first_name}!", user_path(@user)
       - if @amount == 0
-        %p You do not currently have any un-paid rewards.
+        %p You do not have any pledged (unpaid) rewards.
       - else
-        %p Check out all of the great folks you've supported!
+        %p Check out all of the great folks you've pledged to support!
 
-      - if @amount >= 1.0
-        %p It's a breeze to pay for your #{number_to_currency @amount} pledged rewards using Amazon Payments.
-        = form_for @payment, :url => pay_for_rewards_path do |form|
-          = form.hidden_field :amount
-          = form.submit "Pay #{number_to_currency @amount} Now with"
-      - else
-        %p As soon as you have pledged $1.00 or more, we'll help you pay for your rewards.
+        - if @amount >= 1.0
+          %p It's a breeze to pay for your #{number_to_currency @amount} pledged rewards using Amazon Payments.
+          = form_for @payment, :url => pay_for_rewards_path do |form|
+            = form.hidden_field :amount
+            = form.submit "Pay #{number_to_currency @amount} Now with"
+        - else
+          %p As soon as you have pledged $1.00 or more, we'll help you pay for your rewards.
       
   %table#rewards
     - @rewards.each do |reward|

@@ -223,19 +223,19 @@ class User < ActiveRecord::Base
   end
   
   def gold_patrons
-    self.top_supporters[0..2]
+    self.top_supporters[0..2] || []
   end
   
   def silver_patrons
-    self.top_supporters[3..5]
+    self.top_supporters[3..5] || []
   end
   
   def bronze_patrons
-    self.top_supporters[6..8]
+    self.top_supporters[6..8] || []
   end
   
   def non_level_patrons
-    self.top_supporters[9..-1]
+    self.top_supporters[9..-1] || []
   end
   
   def influenced
