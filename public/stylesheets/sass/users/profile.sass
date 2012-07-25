@@ -1,4 +1,6 @@
 body#users.show
+  background: #f0f0f0
+  
   #user-profile
     width: 1000px
     margin: 30px auto
@@ -9,6 +11,11 @@ body#users.show
         font-size: 50px
         font-weight: 600
         text-transform: uppercase
+    
+    .module
+      background: #fff
+      @include boxshadow(5px, 0.3)
+      @include rounded(3px)
   
     #user-info
       position: relative
@@ -18,11 +25,9 @@ body#users.show
     #picture-and-more
       width: 300px
       padding: 5px 5px 25px
-      background: #eee
       position: absolute
       top: 0
       left: 0
-      @include animation
     
       #picture img
         width: 300px
@@ -92,35 +97,137 @@ body#users.show
       line-height: 50px
       span
         display: block
+    
+    #support-stats
+      position: absolute
+      top: 0
+      right: 0
+      div
+        display: inline-block
+        height: 70px
+        padding-top: 25px
+        text-align: right
+      strong
+        font-family: $numerals
+        font-size: 50px
+        font-weight: 400
+        line-height: 45px
+        display: block
+      .supporters
+        background: transparent url(../images/profile/slashie.png) no-repeat 100% 100%
+        padding-right: 45px
   
     #bio
       font-family: $typewriter
       font-size: 16px
       font-style: italic
       line-height: 1.5em
+    
+    #community
+      position: relative
+      &.creator .module
+        margin-left: 37px
+      .side-tabs
+        width: 37px
+        position: absolute
+        top: 80px
+        left: 0
+        z-index: 2
+        a
+          display: block
+          width: 37px
+          height: 117px
+          text-indent: 37px
+          overflow: hidden
+          background: transparent url(../images/profile/community-tabs.png) no-repeat 0 -116px
+        a.supporting
+          background-position: -50px -116px
+        a.supporters.active
+          background-position: 0 0
+        a.supporting.active
+          background-position: -50px 0
+      
+      #supporters-section, #supporting-section
+        height: 250px
+        display: none
+        &.active
+          display: block
+      #supporters-section
+        .level
+          width: 200px
+          padding: 20px
+          float: left
+          h3
+            font-size: 16px
+            text-transform: uppercase
+            margin-bottom: 10px
+          li
+            position: relative
+            padding-left: 60px
+            height: 50px
+            margin-bottom: 10px
+          .avatar
+            position: absolute
+            top: 0
+            left: 0
+          .avatar img
+            width: 50px
+            height: 50px
 
-    #work-browser
+    #work-browser, #rewards-browser
       position: relative
       padding-left: 370px
       min-height: 600px
-    
-      .list
-        width: 360px
+      
+      .paginator, .list
+        height: 415px
+      
+      .paginator
+        width: 365px
         position: absolute
         top: 0
         left: 0
+        padding: 35px 0
+        &.off
+          padding: 0
+          .up, .down
+            display: none
+        .up, .down
+          position: absolute
+          left: 0
+          background: #eee
+          height: 30px
+          width: 340px
+          background: transparent url(../images/profile/pagination-arrows.png) no-repeat 0 0
+          text-indent: 100%
+          overflow: hidden
+          opacity: 0.5
+          &:hover
+            opacity: 1
+          &.off
+            opacity: 0.15
+        .up
+          top: 0
+        .down
+          bottom: 0
+          background-position: 0 -30px
+      .list
+        overflow: hidden
+        ul
+          @include transition(margin)
         li
-          margin-bottom: 5px
-          a
+          margin-bottom: 10px
+          a.selector
             display: block
+            width: 230px
             height: 60px
             color: $text_color
             position: relative
-            padding: 5px 5px 5px 110px
+            padding-left: 105px
           .content-preview
             position: absolute
-            top: 5px
-            left: 5px
+            top: 0
+            left: 0
           .title, .synopsis
             width: 215px
           .title
@@ -131,8 +238,12 @@ body#users.show
             font-weight: 600
           .synopsis
             font-size: 12px
-          a.selected, a:hover
+          a.selector.selected, a.selector:hover
+            width: 260px
             background: transparent url(../images/profile/selected-content-row.png) no-repeat 100% 50%
+    
+    #rewards-browser .list li .title
+      padding-top: 15px
       
     #vertical-list
       padding: 0

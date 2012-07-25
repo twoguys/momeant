@@ -30,7 +30,7 @@
     - if current_user.coins > 0
       %li#coins
         .text reward money to give out
-        .amount= link_to number_to_currency(current_user.coins * Reward.dollar_exchange)
+        .amount= link_to number_to_currency(current_user.coins * Reward.dollar_exchange), coins_path
     %li#profile
       = link_to "Your Profile", user_path(current_user)
       %ul.subnav

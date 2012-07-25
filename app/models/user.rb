@@ -118,10 +118,6 @@ class User < ActiveRecord::Base
     self.created_stories.published.where(:media_type => type).count
   end
   
-  def top_supporters
-    self.rewards.group_by(&:user).to_a.map {|x| [x.first,x.second.inject(0){|sum,r| sum+r.amount}]}.sort_by(&:second).reverse
-  end
-  
   def is_new?
     self.created_at > 2.weeks.ago
   end
@@ -157,7 +153,7 @@ class User < ActiveRecord::Base
     
     # handle people who previously purchased coins
     coin_amount = reward.amount / Reward.dollar_exchange
-    if self.coins > coin_amount
+    if self.coins >= coin_amount
       reward.update_attribute(:paid_for, true)
       self.decrement!(:coins, coin_amount)
     end
@@ -218,6 +214,28 @@ class User < ActiveRecord::Base
   
   def impact_on(user)
     Reward.where(:user_id => self.id, :recipient_id => user.id).map {|reward| reward.impact}.inject(:+) || 0
+  end
+  
+  # Supporter Levels
+  
+  def top_supporters
+    self.rewards.group_by(&:user).to_a.map {|x| [x.first,x.second.inject(0){|sum,r| sum+r.amount}]}.sort_by(&:second).reverse
+  end
+  
+  def gold_patrons
+    self.top_supporters[0..2]
+  end
+  
+  def silver_patrons
+    self.top_supporters[3..5]
+  end
+  
+  def bronze_patrons
+    self.top_supporters[6..8]
+  end
+  
+  def non_level_patrons
+    self.top_supporters[9..-1]
   end
   
   def influenced

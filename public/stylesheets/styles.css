@@ -1381,142 +1381,250 @@ body#discovery.index #bg {
       font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
       font-size: 11px; }
 
-body#users.show #user-profile {
-  width: 1000px;
-  margin: 30px auto; }
-  body#users.show #user-profile section {
-    margin-bottom: 30px; }
-    body#users.show #user-profile section h1 {
-      font-size: 50px;
-      font-weight: 600;
-      text-transform: uppercase; }
-  body#users.show #user-profile #user-info {
-    position: relative;
-    padding-left: 335px;
-    min-height: 335px; }
-  body#users.show #user-profile #picture-and-more {
-    width: 300px;
-    padding: 5px 5px 25px;
-    background: #eeeeee;
-    position: absolute;
-    top: 0;
-    left: 0;
-    -webkit-animation: bounce 1s;
-    -moz-animation: bounce 1s;
-    -ms-animation: bounce 1s;
-    -o-animation: bounce 1s;
-    animation: bounce 1s; }
-    body#users.show #user-profile #picture-and-more #picture img {
+body#users.show {
+  background: #f0f0f0; }
+  body#users.show #user-profile {
+    width: 1000px;
+    margin: 30px auto; }
+    body#users.show #user-profile section {
+      margin-bottom: 30px; }
+      body#users.show #user-profile section h1 {
+        font-size: 50px;
+        font-weight: 600;
+        text-transform: uppercase; }
+    body#users.show #user-profile .module {
+      background: white;
+      -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+      -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      border-radius: 3px; }
+    body#users.show #user-profile #user-info {
+      position: relative;
+      padding-left: 335px;
+      min-height: 335px; }
+    body#users.show #user-profile #picture-and-more {
       width: 300px;
-      height: 300px; }
-    body#users.show #user-profile #picture-and-more #and-more {
-      position: absolute;
-      top: 5px;
-      left: 5px;
-      width: 300px;
-      height: 322px; }
-      body#users.show #user-profile #picture-and-more #and-more .hoverable .icon {
-        position: absolute;
-        bottom: 0;
-        left: 5px;
-        width: 16px;
-        height: 16px;
-        cursor: help; }
-      body#users.show #user-profile #picture-and-more #and-more .hoverable .show-on-hover {
-        display: none;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 300px;
-        height: 300px; }
-        body#users.show #user-profile #picture-and-more #and-more .hoverable .show-on-hover.big-text {
-          background: #00aeef;
-          background: rgba(0, 173, 239, 0.9);
-          text-align: center;
-          padding-top: 100px;
-          height: 200px;
-          font-size: 36px;
-          font-weight: 600;
-          text-transform: uppercase;
-          color: white; }
-      body#users.show #user-profile #picture-and-more #and-more #location .icon {
-        background-image: url(../images/profile/icons/location.png); }
-      body#users.show #user-profile #picture-and-more #and-more #occupation .icon {
-        left: 26px;
-        background-image: url(../images/profile/icons/occupation.png); }
-  body#users.show #user-profile #subscribe {
-    display: inline-block;
-    width: 145px;
-    height: 20px;
-    padding: 8px 0 21px;
-    background: transparent url(../images/profile/follow-bg.png) no-repeat 100% 100%;
-    color: #004666;
-    font-size: 17px;
-    text-transform: uppercase;
-    text-align: center;
-    position: absolute;
-    top: 255px;
-    left: -12px;
-    -webkit-transition: color 0.2s ease-in-out;
-    -moz-transition: color 0.2s ease-in-out;
-    -ms-transition: color 0.2s ease-in-out;
-    -o-transition: color 0.2s ease-in-out;
-    transition: color 0.2s ease-in-out; }
-    body#users.show #user-profile #subscribe:hover {
-      color: white; }
-  body#users.show #user-profile #name {
-    padding-top: 5px;
-    font-size: 60px;
-    font-weight: 600;
-    text-transform: uppercase;
-    line-height: 50px; }
-    body#users.show #user-profile #name span {
-      display: block; }
-  body#users.show #user-profile #bio {
-    font-family: "museo-slab-1", "museo-slab-2", serif;
-    font-size: 16px;
-    font-style: italic;
-    line-height: 1.5em; }
-  body#users.show #user-profile #work-browser {
-    position: relative;
-    padding-left: 370px;
-    min-height: 600px; }
-    body#users.show #user-profile #work-browser .list {
-      width: 360px;
+      padding: 5px 5px 25px;
       position: absolute;
       top: 0;
       left: 0; }
-      body#users.show #user-profile #work-browser .list li {
-        margin-bottom: 5px; }
-        body#users.show #user-profile #work-browser .list li a {
-          display: block;
-          height: 60px;
-          color: #252525;
-          position: relative;
-          padding: 5px 5px 5px 110px; }
-        body#users.show #user-profile #work-browser .list li .content-preview {
+      body#users.show #user-profile #picture-and-more #picture img {
+        width: 300px;
+        height: 300px; }
+      body#users.show #user-profile #picture-and-more #and-more {
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        width: 300px;
+        height: 322px; }
+        body#users.show #user-profile #picture-and-more #and-more .hoverable .icon {
           position: absolute;
-          top: 5px;
-          left: 5px; }
-        body#users.show #user-profile #work-browser .list li .title, body#users.show #user-profile #work-browser .list li .synopsis {
-          width: 215px; }
-        body#users.show #user-profile #work-browser .list li .title {
-          padding-top: 5px;
-          font-size: 13px;
+          bottom: 0;
+          left: 5px;
+          width: 16px;
+          height: 16px;
+          cursor: help; }
+        body#users.show #user-profile #picture-and-more #and-more .hoverable .show-on-hover {
+          display: none;
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 300px;
+          height: 300px; }
+          body#users.show #user-profile #picture-and-more #and-more .hoverable .show-on-hover.big-text {
+            background: #00aeef;
+            background: rgba(0, 173, 239, 0.9);
+            text-align: center;
+            padding-top: 100px;
+            height: 200px;
+            font-size: 36px;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: white; }
+        body#users.show #user-profile #picture-and-more #and-more #location .icon {
+          background-image: url(../images/profile/icons/location.png); }
+        body#users.show #user-profile #picture-and-more #and-more #occupation .icon {
+          left: 26px;
+          background-image: url(../images/profile/icons/occupation.png); }
+    body#users.show #user-profile #subscribe {
+      display: inline-block;
+      width: 145px;
+      height: 20px;
+      padding: 8px 0 21px;
+      background: transparent url(../images/profile/follow-bg.png) no-repeat 100% 100%;
+      color: #004666;
+      font-size: 17px;
+      text-transform: uppercase;
+      text-align: center;
+      position: absolute;
+      top: 255px;
+      left: -12px;
+      -webkit-transition: color 0.2s ease-in-out;
+      -moz-transition: color 0.2s ease-in-out;
+      -ms-transition: color 0.2s ease-in-out;
+      -o-transition: color 0.2s ease-in-out;
+      transition: color 0.2s ease-in-out; }
+      body#users.show #user-profile #subscribe:hover {
+        color: white; }
+    body#users.show #user-profile #name {
+      padding-top: 5px;
+      font-size: 60px;
+      font-weight: 600;
+      text-transform: uppercase;
+      line-height: 50px; }
+      body#users.show #user-profile #name span {
+        display: block; }
+    body#users.show #user-profile #support-stats {
+      position: absolute;
+      top: 0;
+      right: 0; }
+      body#users.show #user-profile #support-stats div {
+        display: inline-block;
+        height: 70px;
+        padding-top: 25px;
+        text-align: right; }
+      body#users.show #user-profile #support-stats strong {
+        font-family: "ff-dagny-web-pro-1", "ff-dagny-web-pro-2", sans-serif;
+        font-size: 50px;
+        font-weight: 400;
+        line-height: 45px;
+        display: block; }
+      body#users.show #user-profile #support-stats .supporters {
+        background: transparent url(../images/profile/slashie.png) no-repeat 100% 100%;
+        padding-right: 45px; }
+    body#users.show #user-profile #bio {
+      font-family: "museo-slab-1", "museo-slab-2", serif;
+      font-size: 16px;
+      font-style: italic;
+      line-height: 1.5em; }
+    body#users.show #user-profile #community {
+      position: relative; }
+      body#users.show #user-profile #community.creator .module {
+        margin-left: 37px; }
+      body#users.show #user-profile #community .side-tabs {
+        width: 37px;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        z-index: 2; }
+        body#users.show #user-profile #community .side-tabs a {
+          display: block;
+          width: 37px;
+          height: 117px;
+          text-indent: 37px;
+          overflow: hidden;
+          background: transparent url(../images/profile/community-tabs.png) no-repeat 0 -116px; }
+        body#users.show #user-profile #community .side-tabs a.supporting {
+          background-position: -50px -116px; }
+        body#users.show #user-profile #community .side-tabs a.supporters.active {
+          background-position: 0 0; }
+        body#users.show #user-profile #community .side-tabs a.supporting.active {
+          background-position: -50px 0; }
+      body#users.show #user-profile #community #supporters-section, body#users.show #user-profile #community #supporting-section {
+        height: 250px;
+        display: none; }
+        body#users.show #user-profile #community #supporters-section.active, body#users.show #user-profile #community #supporting-section.active {
+          display: block; }
+      body#users.show #user-profile #community #supporters-section .level {
+        width: 200px;
+        padding: 20px;
+        float: left; }
+        body#users.show #user-profile #community #supporters-section .level h3 {
+          font-size: 16px;
           text-transform: uppercase;
-          margin-bottom: 3px;
-          font-weight: 600; }
-        body#users.show #user-profile #work-browser .list li .synopsis {
-          font-size: 12px; }
-        body#users.show #user-profile #work-browser .list li a.selected, body#users.show #user-profile #work-browser .list li a:hover {
-          background: transparent url(../images/profile/selected-content-row.png) no-repeat 100% 50%; }
-  body#users.show #user-profile #vertical-list {
-    padding: 0; }
-    body#users.show #user-profile #vertical-list #activity-list.loading {
-      background-position: 50% 200px;
-      height: 230px; }
-    body#users.show #user-profile #vertical-list #activity-list > li {
+          margin-bottom: 10px; }
+        body#users.show #user-profile #community #supporters-section .level li {
+          position: relative;
+          padding-left: 60px;
+          height: 50px;
+          margin-bottom: 10px; }
+        body#users.show #user-profile #community #supporters-section .level .avatar {
+          position: absolute;
+          top: 0;
+          left: 0; }
+        body#users.show #user-profile #community #supporters-section .level .avatar img {
+          width: 50px;
+          height: 50px; }
+    body#users.show #user-profile #work-browser, body#users.show #user-profile #rewards-browser {
+      position: relative;
+      padding-left: 370px;
+      min-height: 600px; }
+      body#users.show #user-profile #work-browser .paginator, body#users.show #user-profile #work-browser .list, body#users.show #user-profile #rewards-browser .paginator, body#users.show #user-profile #rewards-browser .list {
+        height: 415px; }
+      body#users.show #user-profile #work-browser .paginator, body#users.show #user-profile #rewards-browser .paginator {
+        width: 365px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 35px 0; }
+        body#users.show #user-profile #work-browser .paginator.off, body#users.show #user-profile #rewards-browser .paginator.off {
+          padding: 0; }
+          body#users.show #user-profile #work-browser .paginator.off .up, body#users.show #user-profile #work-browser .paginator.off .down, body#users.show #user-profile #rewards-browser .paginator.off .up, body#users.show #user-profile #rewards-browser .paginator.off .down {
+            display: none; }
+        body#users.show #user-profile #work-browser .paginator .up, body#users.show #user-profile #work-browser .paginator .down, body#users.show #user-profile #rewards-browser .paginator .up, body#users.show #user-profile #rewards-browser .paginator .down {
+          position: absolute;
+          left: 0;
+          background: #eeeeee;
+          height: 30px;
+          width: 340px;
+          background: transparent url(../images/profile/pagination-arrows.png) no-repeat 0 0;
+          text-indent: 100%;
+          overflow: hidden;
+          opacity: 0.5; }
+          body#users.show #user-profile #work-browser .paginator .up:hover, body#users.show #user-profile #work-browser .paginator .down:hover, body#users.show #user-profile #rewards-browser .paginator .up:hover, body#users.show #user-profile #rewards-browser .paginator .down:hover {
+            opacity: 1; }
+          body#users.show #user-profile #work-browser .paginator .up.off, body#users.show #user-profile #work-browser .paginator .down.off, body#users.show #user-profile #rewards-browser .paginator .up.off, body#users.show #user-profile #rewards-browser .paginator .down.off {
+            opacity: 0.15; }
+        body#users.show #user-profile #work-browser .paginator .up, body#users.show #user-profile #rewards-browser .paginator .up {
+          top: 0; }
+        body#users.show #user-profile #work-browser .paginator .down, body#users.show #user-profile #rewards-browser .paginator .down {
+          bottom: 0;
+          background-position: 0 -30px; }
+      body#users.show #user-profile #work-browser .list, body#users.show #user-profile #rewards-browser .list {
+        overflow: hidden; }
+        body#users.show #user-profile #work-browser .list ul, body#users.show #user-profile #rewards-browser .list ul {
+          -webkit-transition: margin 0.2s ease-in-out;
+          -moz-transition: margin 0.2s ease-in-out;
+          -ms-transition: margin 0.2s ease-in-out;
+          -o-transition: margin 0.2s ease-in-out;
+          transition: margin 0.2s ease-in-out; }
+        body#users.show #user-profile #work-browser .list li, body#users.show #user-profile #rewards-browser .list li {
+          margin-bottom: 10px; }
+          body#users.show #user-profile #work-browser .list li a.selector, body#users.show #user-profile #rewards-browser .list li a.selector {
+            display: block;
+            width: 230px;
+            height: 60px;
+            color: #252525;
+            position: relative;
+            padding-left: 105px; }
+          body#users.show #user-profile #work-browser .list li .content-preview, body#users.show #user-profile #rewards-browser .list li .content-preview {
+            position: absolute;
+            top: 0;
+            left: 0; }
+          body#users.show #user-profile #work-browser .list li .title, body#users.show #user-profile #work-browser .list li .synopsis, body#users.show #user-profile #rewards-browser .list li .title, body#users.show #user-profile #rewards-browser .list li .synopsis {
+            width: 215px; }
+          body#users.show #user-profile #work-browser .list li .title, body#users.show #user-profile #rewards-browser .list li .title {
+            padding-top: 5px;
+            font-size: 13px;
+            text-transform: uppercase;
+            margin-bottom: 3px;
+            font-weight: 600; }
+          body#users.show #user-profile #work-browser .list li .synopsis, body#users.show #user-profile #rewards-browser .list li .synopsis {
+            font-size: 12px; }
+          body#users.show #user-profile #work-browser .list li a.selector.selected, body#users.show #user-profile #work-browser .list li a.selector:hover, body#users.show #user-profile #rewards-browser .list li a.selector.selected, body#users.show #user-profile #rewards-browser .list li a.selector:hover {
+            width: 260px;
+            background: transparent url(../images/profile/selected-content-row.png) no-repeat 100% 50%; }
+    body#users.show #user-profile #rewards-browser .list li .title {
+      padding-top: 15px; }
+    body#users.show #user-profile #vertical-list {
       padding: 0; }
+      body#users.show #user-profile #vertical-list #activity-list.loading {
+        background-position: 50% 200px;
+        height: 230px; }
+      body#users.show #user-profile #vertical-list #activity-list > li {
+        padding: 0; }
 
 body#users.patronage .profile-info .supporter-count, body#users.patronage .profile-info .follow, body#users.patronage .profile-info .info, body#users.patronage .profile-info #broadcaster {
   display: none; }
@@ -7101,7 +7209,7 @@ a#load-more {
   width: 600px;
   margin: 50px auto 0;
   padding: 40px 40px 20px;
-  background: white;
+  background: #f7f7f7;
   border: 1px solid #cccccc;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;

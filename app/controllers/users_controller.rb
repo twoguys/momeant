@@ -15,6 +15,8 @@ class UsersController < ApplicationController
       @content = @user.created_stories.newest_first.includes(:users_who_rewarded, :comments => [:user, :reward])
       @content = @content.published unless @user == current_user
     end
+    
+    @rewards = @user.given_rewards(:include => :story)
   end
   
   def patronage
