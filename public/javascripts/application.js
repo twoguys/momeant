@@ -1,3 +1,5 @@
+var currently_editing_text = false;
+
 function setup_tooltips() {
 	var opacity_setting = 1;
 	$('.tooltipped').tipsy({opacity:opacity_setting});
@@ -41,6 +43,12 @@ function setup_modals() {
 		$(id + '-modal .cover, ' + id + '-modal .close').click(function() {
 			$(id + '-modal').stop().fadeOut('fast');
 			return false;
+		});
+		$(id + '-modal input').focus(function() {
+		  currently_editing_text = true;
+		});
+		$(id + '-modal input').blur(function() {
+		  currently_editing_text = false;
 		});
 	});
 	

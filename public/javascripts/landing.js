@@ -14,6 +14,9 @@ window.LandingView = Backbone.View.extend({
 		_.bindAll(this, 'set_widths', 'previous_slide', 'next_slide', 'update_arrow_inactivity');
 	  $(window).resize(this.set_widths);
 	  
+	  _.bindAll(this, 'on_keypress');
+	  $(window).keypress(this.on_keypress);
+	  
 		this.set_widths();
 	},
 	
@@ -48,6 +51,22 @@ window.LandingView = Backbone.View.extend({
 	  } else if (this.current_slide == 6) {
 	    $('#next').addClass('inactive');
 	  }
+	},
+	
+	on_keypress: function(event) {
+    if (currently_editing_text) { return; }
+        
+    var key = event.charCode ? event.charCode : event.keyCode ? event.keyCode : 0;
+    switch (key) {
+      case 37: // left arrow
+        this.previous_slide();
+        event.preventDefault();
+        break;
+      case 39: // right arrow
+        this.next_slide();
+        event.preventDefault();
+        break;
+    }
 	}
 	
 });
