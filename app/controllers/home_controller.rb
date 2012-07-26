@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
   
   def index
-    @people = User.where("avatar_file_name IS NOT NULL").limit(200)
+    @people = User.where("avatar_file_name IS NOT NULL").order("lifetime_rewards DESC").limit(200)
     if @people.size < 200 # repeat if we don't have enough yet
       orig_people = @people
       ((200 / @people.size) + 1).times do
