@@ -1,7 +1,12 @@
 class DiscoveryController < ApplicationController
 
   def index
-    if params[:filter].blank? || params[:filter] == "Popular"
+    if params[:filter].blank? || params[:filter] == "Featured"
+      
+      @creators = User.joins(:editorial).order("editorials.created_at DESC")
+      @content = Story.joins(:editorial).order("editorials.created_at DESC")
+      
+    elsif params[:filter] == "Popular"
 
       @creators = User.select("users.id, users.first_name, users.last_name, users.tagline, users.avatar_file_name, SUM(curations.amount)").
         joins(:rewards => :story).

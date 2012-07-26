@@ -2,9 +2,10 @@
 #discovery-page
 
   #filters
-    #current-filter= params[:filter] || "Popular"
+    #current-filter= params[:filter] || "Featured"
     %ul
-      %li= link_to "Popular", discovery_path(:filter => "Popular"), :class => params[:filter] == "Popular" || params[:filter].blank? ? "active" : ""
+      %li= link_to "Featured", discovery_path(:filter => "Featured"), :class => params[:filter] == "Featured" || params[:filter].blank? ? "active" : ""
+      %li= link_to "Popular", discovery_path(:filter => "Popular"), :class => params[:filter] == "Popular" ? "active" : ""
       %li= link_to "Newest", discovery_path(:filter => "Newest"), :class => params[:filter] == "Newest" ? "active" : ""
       - Story::CATEGORIES.each do |category|
         %li= link_to category, discovery_path(:filter => category), :class => params[:filter] == category ? "active" : ""

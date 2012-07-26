@@ -63,6 +63,8 @@ class User < ActiveRecord::Base
   
   has_many :broadcasts, :order => "created_at DESC"
   
+  has_one :editorial, :dependent => :destroy
+  
   has_attached_file :avatar,
     :styles => { :thumbnail => "60x60#", :large => "200x200#", :editorial => "320x320#" },
     :path          => "avatars/:id/:style.:extension",
