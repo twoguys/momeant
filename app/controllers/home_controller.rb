@@ -1,9 +1,11 @@
 class HomeController < ApplicationController
   
   def index
-    @creators = Editorial.limit(8).map(&:story)
-    
-    @content = Editorial.limit(9).map(&:story_id)
+    @people = User.where("avatar_file_name IS NOT NULL").limit(200)
+    if @people.size < 200 # repeat if we don't have enough yet
+      @people = @people * ((200 / @people.size) + 1)
+      @people = @people.shuffle
+    end
   end
   
   def people # ajax
