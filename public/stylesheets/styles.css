@@ -1523,31 +1523,77 @@ body#users.show {
         body#users.show #user-profile #community .side-tabs a.supporting.active {
           background-position: -50px 0; }
       body#users.show #user-profile #community #supporters-section, body#users.show #user-profile #community #supporting-section {
-        height: 250px;
-        display: none; }
+        display: none;
+        padding: 30px; }
         body#users.show #user-profile #community #supporters-section.active, body#users.show #user-profile #community #supporting-section.active {
           display: block; }
+        body#users.show #user-profile #community #supporters-section .note, body#users.show #user-profile #community #supporting-section .note {
+          font-style: italic;
+          color: #777777; }
         body#users.show #user-profile #community #supporters-section .level, body#users.show #user-profile #community #supporting-section .level {
-          width: 200px;
-          padding: 20px;
+          width: 280px;
+          margin-right: 30px;
           float: left; }
+          body#users.show #user-profile #community #supporters-section .level.bronze, body#users.show #user-profile #community #supporters-section .level.third, body#users.show #user-profile #community #supporting-section .level.bronze, body#users.show #user-profile #community #supporting-section .level.third {
+            margin-right: 0; }
           body#users.show #user-profile #community #supporters-section .level h3, body#users.show #user-profile #community #supporting-section .level h3 {
-            font-size: 16px;
+            font-size: 18px;
             text-transform: uppercase;
-            height: 1.2em;
-            margin-bottom: 10px; }
+            height: 19px;
+            padding: 7px 0;
+            margin-bottom: 20px; }
           body#users.show #user-profile #community #supporters-section .level li, body#users.show #user-profile #community #supporting-section .level li {
             position: relative;
-            padding-left: 60px;
-            height: 50px;
+            padding: 6px 0 0 60px;
+            height: 42px;
             margin-bottom: 10px; }
           body#users.show #user-profile #community #supporters-section .level .avatar, body#users.show #user-profile #community #supporting-section .level .avatar {
             position: absolute;
             top: 0;
             left: 0; }
           body#users.show #user-profile #community #supporters-section .level .avatar img, body#users.show #user-profile #community #supporting-section .level .avatar img {
+            width: 42px;
+            height: 42px;
+            padding: 3px;
+            border: 1px solid #dddddd; }
+          body#users.show #user-profile #community #supporters-section .level .name, body#users.show #user-profile #community #supporting-section .level .name {
+            font-weight: 600; }
+          body#users.show #user-profile #community #supporters-section .level .rewarded, body#users.show #user-profile #community #supporting-section .level .rewarded {
+            font-family: "museo-slab-1", "museo-slab-2", serif;
+            font-style: italic; }
+        body#users.show #user-profile #community #supporters-section .level.gold h3, body#users.show #user-profile #community #supporters-section .level.silver h3, body#users.show #user-profile #community #supporters-section .level.bronze h3, body#users.show #user-profile #community #supporters-section .level.favorite h3, body#users.show #user-profile #community #supporting-section .level.gold h3, body#users.show #user-profile #community #supporting-section .level.silver h3, body#users.show #user-profile #community #supporting-section .level.bronze h3, body#users.show #user-profile #community #supporting-section .level.favorite h3 {
+          padding-left: 40px;
+          background: transparent url(../images/profile/gold-silver-bronze.png) no-repeat 0 0; }
+        body#users.show #user-profile #community #supporters-section .level.silver h3, body#users.show #user-profile #community #supporting-section .level.silver h3 {
+          background-position: 0 -50px; }
+        body#users.show #user-profile #community #supporters-section .level.bronze h3, body#users.show #user-profile #community #supporting-section .level.bronze h3 {
+          background-position: 0 -100px; }
+        body#users.show #user-profile #community #supporters-section .level.favorite h3, body#users.show #user-profile #community #supporting-section .level.favorite h3 {
+          background: transparent url(../images/profile/favorite-heart.png) no-repeat 3px 5px; }
+        body#users.show #user-profile #community #supporters-section .non-level, body#users.show #user-profile #community #supporting-section .non-level {
+          margin-top: 30px;
+          padding-top: 20px;
+          border-top: 1px solid #dddddd;
+          height: 50px; }
+          body#users.show #user-profile #community #supporters-section .non-level li, body#users.show #user-profile #community #supporting-section .non-level li {
+            float: left;
             width: 50px;
-            height: 50px; }
+            height: 50px;
+            margin-right: 2px; }
+            body#users.show #user-profile #community #supporters-section .non-level li a, body#users.show #user-profile #community #supporters-section .non-level li img, body#users.show #user-profile #community #supporting-section .non-level li a, body#users.show #user-profile #community #supporting-section .non-level li img {
+              display: block;
+              width: 50px;
+              height: 50px; }
+          body#users.show #user-profile #community #supporters-section .non-level li.more, body#users.show #user-profile #community #supporting-section .non-level li.more {
+            background: #00aeef;
+            color: white;
+            font-weight: 600;
+            text-transform: uppercase;
+            width: 45px;
+            height: 42px;
+            padding: 8px 0 0 5px; }
+            body#users.show #user-profile #community #supporters-section .non-level li.more span, body#users.show #user-profile #community #supporting-section .non-level li.more span {
+              display: block; }
     body#users.show #user-profile #work-browser, body#users.show #user-profile #rewards-browser {
       position: relative;
       padding-left: 370px;

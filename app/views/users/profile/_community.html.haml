@@ -18,27 +18,32 @@
                   = link_to image_tag(patron[0].avatar.url(:thumbnail)), user_path(patron[0]), :class => "avatar"
                   = link_to patron[0].name, user_path(patron[0]), :class => "name"
                   .rewarded #{number_to_currency(patron[1])} rewarded
-        - if @user.non_level_patrons
-          .level.non-level
-            %h3= pluralize(@user.non_level_patrons.size, "other supporter")
-            %ul
-              - @user.non_level_patrons.each do |patron|
-                %li= link_to image_tag(patron[0].avatar.url(:thumbnail)), user_path(patron[0]), :class => "avatar"
+        .clear
+        - if @user.non_level_patrons.size > 0
+          .separator
+          %ul.non-level
+            %li.more
+              %span= @user.non_level_patrons.size
+              %span more
+            - @user.non_level_patrons[0..16].each do |patron|
+              %li= link_to image_tag(patron[0].avatar.url(:thumbnail)), user_path(patron[0]), :class => "avatar"
           
         
     #supporting-section{:class => @user.is_a?(Creator) ? "" : "active"}
-      - if @user.favorite_creators.size > 0
-        .level
-          %h3 Favorite Creators
+      .level.favorite
+        %h3 Favorite Creators
+        - if @user.favorite_creators.size == 0
+          .note #{@user.first_name} is not supporting anyone yet.
+        - else
           %ul
             - @user.favorite_creators[0..2].each do |creator|
               %li
                 = link_to image_tag(creator[0].avatar.url(:thumbnail)), user_path(creator[0]), :class => "avatar"
                 = link_to creator[0].name, user_path(creator[0]), :class => "name"
                 .rewarded #{number_to_currency(creator[1])} rewarded
-      - [3..5, 6..8, 9..11].each do |range|
+      - [3..5, 6..8].each do |range|
         - if @user.favorite_creators[range]
-          .level
+          .level{:class => range.first == 6 ? "third" : ""}
             %h3
             %ul
               - @user.favorite_creators[range].each do |creator|
@@ -46,3 +51,12 @@
                   = link_to image_tag(creator[0].avatar.url(:thumbnail)), user_path(creator[0]), :class => "avatar"
                   = link_to creator[0].name, user_path(creator[0]), :class => "name"
                   .rewarded #{number_to_currency(creator[1])} rewarded
+      .clear
+      - if @user.favorite_creators.size > 9
+        .separator
+        %ul.non-level
+          %li.more
+            %span= @user.favorite_creators.size - 9
+            %span more
+          - @user.favorite_creators[9..25].each do |creator|
+            %li= link_to image_tag(creator[0].avatar.url(:thumbnail)), user_path(creator[0]), :class => "avatar"
