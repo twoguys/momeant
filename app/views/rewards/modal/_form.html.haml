@@ -27,9 +27,9 @@
 
           - if current_user
             %ul
-              %li= link_to "10&cent;".html_safe, "#", :amount => 0.1
-              %li= link_to "50&cent;".html_safe, "#", :amount => 0.5
               %li= link_to "$1", "#", :amount => 1.0
+              %li= link_to "$5", "#", :amount => 5.0
+              %li= link_to "$10", "#", :amount => 10.0
               %li.custom= text_field_tag :custom_amount, "$"
             = form.hidden_field :amount
             = link_to "Next &rarr;".html_safe, "#", :id => "goto-comment", :class => "button"
