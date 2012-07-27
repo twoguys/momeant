@@ -1,28 +1,5 @@
 $(function() {
   
-  $('.first_name, .last_name, .email, .amazon_email, .paypal_email, .occupation, .location').each(function() {
-    var $element = $(this).find('.text');
-    if ($element.length == 0) { return; }
-    $element.editInPlace({
-      url: '/users/' + user_id + '/update_in_place',
-      params: "attribute=" + $element.attr('update'),
-      field_type: "text",
-      show_buttons: true,
-      default_text: "(Click here to edit your " + $element.attr('update').replace('_',' ') + ")"
-    });
-  });
-  
-  $('.tagline .text').editInPlace({
-    url: '/users/' + user_id + '/update_in_place',
-    params: "attribute=tagline",
-    field_type: "textarea",
-    textarea_rows: "2",
-    textarea_cols: "50",
-    show_buttons: true,
-    default_text: "(Click here to edit - 150 characters or less)"
-  });
-  
-  
   var $uploader = $('.file-uploader');
   var $preview = $('.avatar-badge .avatar');
   var $loader = $uploader.find('.loader');

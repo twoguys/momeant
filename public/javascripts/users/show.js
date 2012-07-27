@@ -3,17 +3,22 @@ window.ProfileView = Backbone.View.extend({
 	el: $('body'),
 	
 	events: {
-		'click #user-profile #tabs a': 'switch_info_tabs',
-		'click #vertical-people h1 a': 'switch_supporter_tabs',
-		'click #subscribe': 'subscribe'
+		'click #subscribe':                 'subscribe',
+		'click #work-browser .list a':      'select_work',
+		'click #rewards-browser .list a':   'select_reward',
+		'click .paginator .up':             'paginate_up',
+		'click .paginator .down':           'paginate_down',
+		'click #community .side-tabs a':    'switch_community_tabs'
 	},
 	
 	initialize: function() {
-	  this.scroll_to_content();
 	  this.set_width_for_ios();
 	  
-	  _.bindAll(this, 'on_keypress');
-	  $(document).bind('keydown', this.on_keypress);
+	  $('#and-more .icon').hover(function() {
+	    $(this).siblings().fadeIn(200);
+	  }, function() {
+	    $(this).siblings().fadeOut(200);
+	  });
   },
   
   set_width_for_ios: function() {
@@ -21,38 +26,6 @@ window.ProfileView = Backbone.View.extend({
     if ((user_agent.indexOf('ipad') > -1) || (user_agent.indexOf('iphone') > -1)) {
       $('body, #header').css('width', '1300px');
     }
-  },
-  
-  scroll_to_content: function() {
-    var content_id_index = window.location.href.indexOf('?content=');
-    if (content_id_index < 0) { return; }
-    
-    var content_id = window.location.href.substring(content_id_index + 9, window.location.href.length);
-    var y_position = $('#content-' + content_id).position().top - 42;
-    if (y_position < 0) { return; }
-    $.scrollTo(y_position);
-  },
-  
-  switch_info_tabs: function(event) {
-    var $link = $(event.currentTarget);
-    if ($link.hasClass('selected')) { return false; }
-    
-    $link.addClass('selected').siblings().removeClass('selected');
-    var $text = $('#tabs #text .' + $link.text().toLowerCase());
-    $text.removeClass('hidden').siblings().addClass('hidden');
-    
-    return false;
-  },
-  
-  switch_supporter_tabs: function(event) {
-    var $link = $(event.currentTarget);
-    if ($link.hasClass('selected')) { return false; }
-    
-    $link.addClass('selected').siblings().removeClass('selected');
-    var $text = $('#vertical-people #' + $link.text().toLowerCase());
-    $text.removeClass('hidden').siblings().addClass('hidden');
-    
-    return false;
   },
   
   subscribe: function(event) {
@@ -70,11 +43,71 @@ window.ProfileView = Backbone.View.extend({
     return false;
   },
   
-  on_keypress: function(event) {
-    if (Profile.editing_text) { return; }
-    var key = event.charCode ? event.charCode : event.keyCode ? event.keyCode : 0;
-  }
+  select_work: function(event) {
+    var $content = $(event.currentTarget);
+    var $preview = $('#work-browser #activity-list');
+    $preview.addClass('loading');
+    $.get('/stories/' + $content.attr('data') + '/preview', function(result) {
+      $preview.html(result).removeClass('loading');
+    });
+    $content.addClass('selected').parent().siblings().find('a').removeClass('selected');
+    return false;
+  },
   
+  select_reward: function(event) {
+    var $content = $(event.currentTarget);
+    var $preview = $('#rewards-browser #activity-list');
+    $preview.addClass('loading');
+    $.get('/stories/' + $content.attr('data') + '/preview', function(result) {
+      $preview.html(result).removeClass('loading');
+    });
+    $content.addClass('selected').parent().siblings().find('a').removeClass('selected');
+    return false;
+  },
+  
+  paginate_up: function(event) {
+    var $button = $(event.currentTarget);
+    var $list = $button.siblings('.list');
+    var current = parseInt($list.attr('current'));
+    var total = parseInt($list.attr('total'));
+    if (current == 0) { return false; }
+    current--;
+    var height_of_list = $list.height() + 5;
+    $list.find('ul').css('margin-top', current * height_of_list * -1);
+    $list.attr('current', current);
+    if (current == 0) { $button.addClass('off') }
+    else { $button.removeClass('off'); }
+    if (current < total) { $button.siblings('.down').removeClass('off'); }
+    return false;
+  },
+  
+  paginate_down: function(event) {
+    var $button = $(event.currentTarget);
+    var $list = $button.siblings('.list');
+    var current = parseInt($list.attr('current'));
+    var total = parseInt($list.attr('total'));
+    if (current >= total) { return false; }
+    current++;
+    var height_of_list = $list.height() + 5;
+    $list.find('ul').css('margin-top', current * height_of_list * -1);
+    $list.attr('current', current);
+    if (current == total) { $button.addClass('off') }
+    else { $button.removeClass('off'); }
+    if (current != 0) { $button.siblings('.up').removeClass('off'); }
+    return false;
+  },
+  
+  switch_community_tabs: function(event) {
+    var $link = $(event.currentTarget);
+    if ($link.hasClass('active')) { return false; }
+    
+    var $section = $('#community .module #' + $link.attr('show'));
+    $section.siblings().hide();
+    $section.show();
+    $link.addClass('active').siblings().removeClass('active');
+    
+    return false;
+  }
 });
 
 window.BroadcasterView = Backbone.View.extend({

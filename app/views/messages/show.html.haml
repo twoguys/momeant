@@ -1,0 +1,25 @@
+#messages-page
+
+  = render "messages/sidebar"
+  
+  #main-bar
+    
+    %ul#full-messages
+      - @message_list.each do |message|
+        %li
+          = link_to(image_tag(message.sender.avatar.url(:thumbnail), class: "avatar"), user_path(message.sender))
+          .body= simple_format(message.body)
+          .when #{time_ago_in_words(message.created_at)} ago
+          
+    = form_for Message.new, :url => messages_path, html: { id: "message-reply" } do |form|
+      = image_tag current_user.avatar.url(:thumbnail), class: "avatar"
+      = form.hidden_field :parent_id, value: @message.id
+      = form.hidden_field :recipient_id, value: @message.not_me(current_user).id
+      %fieldset
+        %ul
+          %li
+            = form.text_area :body
+          %li.submit
+            = form.submit "Reply"
+
+= javascript_include_tag "messages"

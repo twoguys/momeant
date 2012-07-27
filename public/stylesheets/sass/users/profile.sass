@@ -1,310 +1,305 @@
-body#users, body#messages   
-  min-width: 900px
-
-  #main
-    max-width: 100%
-    margin: 0
-  #user-profile
-    padding-left: 300px
-    padding-right: 300px
-    overflow: hidden
-  .column
-    position: relative
-    float: left
-    padding-bottom: 20010px
-    margin-bottom: -20000px
-  #profile-center
-    width: 100%
-  #profile-center > .inner
-    padding: 20px
-  #profile-left
-    width: 300px
-    right: 300px
-    margin-left: -100%
-    background: #000
-    color: #fff
-  #profile-right
-    width: 260px
-    padding-top: 20px
-    padding-left: 20px
-    padding-right: 20px
-    margin-right: -300px
-    background: $blue
-    color: #fff
+body#users.show
+  background: #f0f0f0
   
-  #user-profile.no-right-column
-    padding-right: 0
-
-#user-profile
-  .profile-info
-    .avatar-badge
-      position: relative
-      .avatar
-        display: block
-        width: 300px
-        height: 300px
-        z-index: 1
-        img
-          width: 300px
-          height: 300px
-      .badge
-        display: none
-        position: absolute
-        bottom: -5px
-        right: -30px
-        z-index: 2
-      .follow
-        #subscribe
-          display: inline-block
-          height: 20px
-          padding: 7px 14px 22px
-          background: transparent url(../images/profile/follow-bg.png) no-repeat 100% 100%
-          color: #004666
-          font-size: 18px
-          text-transform: uppercase
-          position: absolute
-          bottom: -25px
-          right: -12px
-          @include transition(color)
-          &:hover
-            color: #fff
-        
-    .metadata
-      padding: 20px
-      
-      .name, .about
-        font-family: $typewriter
-        font-style: italic
-      
-      .name
-        padding-bottom: 8px
-        border-bottom: 3px solid #fff
-        margin-bottom: 10px
-        span.new, span.featured
-          display: inline-block
-          width: 16px
-          height: 18px
-          margin-left: 8px
-          background: transparent url(../images/profile/new.png) no-repeat -1px 0
-          cursor: help
-        span.featured
-          margin-left: 0
-          background-image: url(../images/profile/featured.png)
-
-      .about
-        margin-bottom: 20px
-        font-weight: 100
-        color: #999
-        span
-          display: block
-        .occupation
-          font-size: 1.3em
-      
-      .subnav
-        margin: 0 -20px 30px
-        a
-          span
-            display: block
-            padding: 10px 20px
-            background: #333
-            color: #999
-            text-transform: uppercase
-            @include transition
-            &:hover
-              background: #444
-              color: #fff
-        a.active
-          display: block
-          span
-            background: #e0e0e0
-            color: #000
-      
-      .info, .supporter-count
-        margin-bottom: 20px
-      
-      .info
-        font-size: 15px
-        em
-          display: block
-          margin-bottom: 5px
-        p
-          color: #aaa
-          margin: 0
-          line-height: 1.4em
-          font-size: 14px
-      
-      .supporter-count span
-        font-size: 60px
-        font-weight: 200
-        padding-right: 25px
-        background: transparent url(../images/profile/supporters.png) 100% 12px no-repeat
-      
-      #reward-total
-        display: none
-      
-      #broadcaster
-        position: relative
-        height: 245px
-        padding: 10px
-        background: transparent url(../images/profile/broadcast.jpg) no-repeat 0 0
-        #updates-list
-          width: 215px
-          height: 215px
-          padding: 5px
-          color: #000
-          p
-            margin: 0 0 15px
-            line-height: 1.3em
-        #post-update
-          display: block
-          width: 17px
-          height: 17px
-          background: transparent url(../images/profile/new-broadcast.png) no-repeat 0 0
-          position: absolute
-          bottom: 5px
-          right: 10px
-          @include notext
-        #new_broadcast
-          display: none
-          &.loading
-            height: 200px
-            background: transparent url(../images/spinner.gif) no-repeat 50% 50%
-            *
-              display: none
-          p
-            margin: 3px 0
-            font-size: 13px
-            font-style: italic
-            color: #999
-            line-height: 1.2em
-          textarea
-            width: 93%
-            height: 130px
-            margin-bottom: 5px
-
-      ul.stats
-        display: none
-        position: relative
-        margin-top: 5px
-        width: 200px
-        li
-          padding: 4px 0
-          font-size: 16px
-          font-weight: 700
-          #cashout
-            display: block
-            font-size: 11px
-            text-align: center
+  #user-profile
+    width: 1000px
+    margin: 30px auto 0
+  
+    section
+      margin-bottom: 30px
+      h1
+        font-size: 50px
+        font-weight: 600
+        text-transform: uppercase
     
-    #special-links
+    .module
+      background: #fff
+      @include boxshadow(5px, 0.3)
+      @include rounded(3px)
+  
+    #user-info
+      position: relative
+      padding-left: 335px
+      min-height: 335px
+  
+    #picture-and-more
+      width: 300px
+      padding: 5px 5px 25px
       position: absolute
       top: 0
-      right: 10px
-      width: 150px
+      left: 0
     
-    #user-actions
-      clear: both
-      padding-top: 15px
-      a
-        display: inline-block
-        height: 17px
-        margin-bottom: 10px
-        background: #333
-        text-shadow: none
-        line-height: 18px
-        color: #fff
-        @include transition(background)
-        &:hover
-          background: $blue
+      #picture img
+        width: 300px
+        height: 300px
     
-    #editorialize
-      @include gradient(#ffbb01, #ff9501)
-  
-  .the-rest
-    float: left
-    width: 70%
-    margin-left: 50px
-  
-  #vertical-list
-    padding: 30px
-    #activity-list > li
-      padding: 0
-      margin-bottom: 30px
-    #activity-list li .content-preview img.avatar
-      display: none
-  
-  #vertical-people
-    @include transition(right)
-    li, a, img
-      width: 80px
-      height: 80px
-    li.first
-      width: auto
-    #discussion
-      .hasnt
-        padding: 5px 10px
-        background: #eee
-        @include rounded(3px)
-        margin-bottom: 10px
-    
-      form
-        margin-bottom: 10px
-        &.loading
-          background: transparent url(../images/spinner.gif) no-repeat 50% 50%
-          *
-            display: none
-      textarea
-        width: 95%
-        height: 25px
-        box-shadow: 1px 1px 2px rgba(0,0,0,0.1) inset
-        margin-bottom: 5px
+      #and-more
+        position: absolute
+        top: 5px
+        left: 5px
+        width: 300px
+        height: 322px
       
-      li
-        border-top: 1px solid #eee
-        padding: 10px 0 10px 50px
-        position: relative
-        float: none
-        a.avatar, a.avatar img, a.avatar .cover
-          display: block
-          position: absolute
-          top: 0
-          left: 0
-          width: 40px
-          height: 40px
-        a.avatar
-          top: 10px
-        a.avatar img
-          z-index: 1
-        .cover
-          z-index: 2
-          background: transparent url(../images/profile/avatar-cover-40.png) no-repeat 0 0
-        p
-          margin: 3px 0
-          line-height: 1.5em
-          font-size: 13px
-        .when
-          font-size: 12px
-          color: #ccc
-  
-  #empty-creator-content
-    margin: 0 20px
-    .strong
+        .hoverable
+          .icon
+            position: absolute
+            bottom: 0
+            left: 5px
+            width: 16px
+            height: 16px
+            cursor: help
+          .show-on-hover
+            display: none
+            position: absolute
+            top: 0
+            left: 0
+            width: 300px
+            height: 300px
+            &.big-text
+              background: $blue
+              background: rgba(0, 173, 239, 0.9)
+              text-align: center
+              padding-top: 100px
+              height: 200px
+              font-size: 36px
+              font-weight: 600
+              text-transform: uppercase
+              color: #fff
+      
+        #location .icon
+          background-image: url(../images/profile/icons/location.png)
+        #occupation .icon
+          left: 26px
+          background-image: url(../images/profile/icons/occupation.png)
+        
+    #subscribe
+      display: inline-block
+      width: 145px
+      height: 20px
+      padding: 8px 0 21px
+      background: transparent url(../images/profile/follow-bg.png) no-repeat 100% 100%
+      color: #004666
+      font-size: 17px
+      text-transform: uppercase
+      text-align: center
+      position: absolute
+      top: 255px
+      left: -12px
+      @include transition(color)
+      &:hover
+        color: #fff
+    
+    #name
+      padding-top: 5px
+      font-size: 60px
       font-weight: 600
+      text-transform: uppercase
+      line-height: 50px
+      span
+        display: block
+    
+    #support-stats
+      position: absolute
+      top: 0
+      right: 0
+      div
+        display: inline-block
+        height: 70px
+        padding-top: 25px
+        text-align: right
+      strong
+        font-family: $numerals
+        font-size: 50px
+        font-weight: 400
+        line-height: 45px
+        display: block
+      .supporters
+        background: transparent url(../images/profile/slashie.png) no-repeat 100% 100%
+        padding-right: 45px
   
-  /* Cashouts */
-  #cashouts
-    table
-      margin-top: 1em
-            
-// Going smaller
-@media all and (max-width: 1298px)
-  body#users, body#messages
-    #user-profile
-      padding-right: 210px
-    #profile-right
-      width: 170px
-      margin-right: -210px
-      #vertical-people
-        width: 170px
-        li.person.first .text
-          padding-top: 8px
+    #bio
+      font-family: $typewriter
+      font-size: 16px
+      font-style: italic
+      line-height: 1.5em
+    
+    #community
+      position: relative
+      &.creator .module
+        margin-left: 37px
+      .side-tabs
+        width: 37px
+        position: absolute
+        top: 80px
+        left: 0
+        z-index: 2
+        a
+          display: block
+          width: 37px
+          height: 117px
+          text-indent: 37px
+          overflow: hidden
+          background: transparent url(../images/profile/community-tabs.png) no-repeat 0 -116px
+        a.supporting
+          background-position: -50px -116px
+        a.supporters.active
+          background-position: 0 0
+        a.supporting.active
+          background-position: -50px 0
+      
+      #supporters-section, #supporting-section
+        display: none
+        padding: 30px
+        min-height: 195px
+        &.active
+          display: block
+        .note
+          font-style: italic
+          color: #777
+        .level
+          width: 280px
+          margin-right: 30px
+          float: left
+          &.bronze, &.third
+            margin-right: 0
+          h3
+            font-size: 18px
+            text-transform: uppercase
+            height: 19px
+            padding: 7px 0
+            margin-bottom: 20px
+          li
+            position: relative
+            padding: 6px 0 0 60px
+            height: 42px
+            margin-bottom: 10px
+          .avatar
+            position: absolute
+            top: 0
+            left: 0
+          .avatar img
+            width: 42px
+            height: 42px
+            padding: 3px
+            border: 1px solid #ddd
+          .name
+            font-weight: 600
+          .rewarded
+            font-family: $typewriter
+            font-style: italic
+        .level.gold, .level.silver, .level.bronze, .level.favorite
+          h3
+            padding-left: 40px
+            background: transparent url(../images/profile/gold-silver-bronze.png) no-repeat 0 0
+        .level.silver h3
+          background-position: 0 -50px
+        .level.bronze h3
+          background-position: 0 -100px
+        .level.favorite h3
+          background: transparent url(../images/profile/favorite-heart.png) no-repeat 3px 5px
+        .non-level
+          margin-top: 30px
+          padding-top: 20px
+          border-top: 1px solid #ddd
+          height: 50px
+          li
+            float: left
+            width: 50px
+            height: 50px
+            margin-right: 2px
+            a, img
+              display: block
+              width: 50px
+              height: 50px
+          li.more
+            background: $blue
+            color: #fff
+            font-weight: 600
+            text-transform: uppercase
+            width: 45px
+            height: 42px
+            padding: 8px 0 0 5px
+            span
+              display: block
+
+    #work-browser, #rewards-browser
+      position: relative
+      padding-left: 370px
+      min-height: 600px
+      
+      .paginator, .list
+        height: 415px
+      
+      .paginator
+        width: 365px
+        position: absolute
+        top: 0
+        left: 0
+        padding: 35px 0
+        &.off
+          padding: 0
+          .up, .down
+            display: none
+        .up, .down
+          position: absolute
+          left: 0
+          background: #eee
+          height: 30px
+          width: 340px
+          background: transparent url(../images/profile/pagination-arrows.png) no-repeat 0 0
+          text-indent: 100%
+          overflow: hidden
+          opacity: 0.5
+          &:hover
+            opacity: 1
+          &.off
+            opacity: 0.15
+        .up
+          top: 0
+        .down
+          bottom: 0
+          background-position: 0 -30px
+      .list
+        overflow: hidden
+        ul
+          @include transition(margin)
+        li
+          margin-bottom: 10px
+          a.selector
+            display: block
+            width: 230px
+            height: 60px
+            color: $text_color
+            position: relative
+            padding-left: 105px
+          .content-preview
+            position: absolute
+            top: 0
+            left: 0
+          .title, .synopsis
+            width: 215px
+          .title
+            padding-top: 5px
+            font-size: 13px
+            text-transform: uppercase
+            margin-bottom: 3px
+            font-weight: 600
+          .synopsis
+            font-size: 12px
+          a.selector.selected, a.selector:hover
+            width: 260px
+            background: transparent url(../images/profile/selected-content-row.png) no-repeat 100% 50%
+    
+    #rewards-browser .list li .title
+      padding-top: 15px
+      
+    #vertical-list
+      padding: 0
+      #activity-list.loading
+        background-position: 50% 200px
+        height: 230px
+      #activity-list > li
+        padding: 0
+
+    #my-rewards
+      margin-bottom: 0

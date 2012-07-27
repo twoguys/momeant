@@ -2,9 +2,11 @@
   #{link_to(@message.sender.name, user_url(@message.sender), :style => "color:#00aeff")}
   just messaged you:
 
-= image_tag @message.sender.avatar.url(:thumbnail), :style => "background:#fff;padding:3px;border:1px solid #ccc;float:left;margin-right:20px;"
-%p{:style => "font-style:italic;color:#777;float:left;width:492px;"}
-  "#{@message.body}"
+%table
+  %tr
+    %td{:style => "vertical-align:top;"}= image_tag @message.sender.avatar.url(:thumbnail), :style => "background:#fff;padding:3px;border:1px solid #ccc;float:left;margin-right:20px;"
+    %td{:style => "font-style:italic;color:#777;float:left;width:492px;"}
+      "#{@message.body}"
 
 %p{:style => "clear:both;padding-top:20px;"}
   Want to reply? You can #{link_to("do that here", @messaging_url)}.

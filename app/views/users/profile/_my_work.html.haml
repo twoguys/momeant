@@ -1,0 +1,30 @@
+%section#my-work
+  %h1 My Work
+
+  #work-browser
+    .paginator{:class => @content.size > 6 ? "" : "off"}
+      = link_to "up", "#", :class => "up off"
+      = link_to "down", "#", :class => "down"
+      .list{:current => 0, :total => (@content.size.to_f / 6.0).floor}
+        %ul
+          - first = true
+          - @content.each do |content|
+            %li
+              %a.selector{:href => "#", :data => content.id, :class => first ? "selected" : "" }
+                - if content.text_preview?
+                  .content-preview.tiny{:class => "#{content.media_type} #{content.template}"}
+                    .inner
+                      .image
+                      .quote= truncate(content.template_text, :length => 140)
+                - else
+                  .content-preview.tiny{:class => content.media_type}
+                    .inner{:style => "background-image: url(#{content.thumbnail.url(:large)})"}
+        
+                .title= content.title.present? ? truncate(content.title, :length => 28) : "Untitled"
+                .synopsis= truncate(content.synopsis, :length => 75)
+          
+                - first = false
+
+    #vertical-list
+      %ul#activity-list
+        = render :partial => "stories/preview", :locals => { :content => @content.first } if @content.first

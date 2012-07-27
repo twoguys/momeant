@@ -1,14 +1,45 @@
 class DiscoveryController < ApplicationController
 
   def index
-    @content = Story.published.most_rewarded.page(params[:page]).per(8)
-    @nav = "discover"
-    if params[:remote]
-      render :partial => "discovery/grid_item", :collection => @content, :as => :content
-      return
+    if params[:filter].blank? || params[:filter] == "Featured"
+      
+      @creators = User.joins(:editorial).order("editorials.created_at DESC")
+      @content = Story.joins(:editorial).order("editorials.created_at DESC")
+      
+    elsif params[:filter] == "Popular"
+
+      @creators = User.select("users.id, users.first_name, users.last_name, users.tagline, users.avatar_file_name, SUM(curations.amount)").
+        joins(:rewards => :story).
+        where("stories.published" => true).
+        order("SUM(curations.amount) DESC").
+        group("users.id, users.first_name, users.last_name, users.tagline, users.avatar_file_name")
+      @content = Story.
+        where(:published => true).
+        order("reward_count DESC")
+        
+    elsif params[:filter] == "Newest"
+
+      @creators = User.
+        order("created_at DESC")
+      @content = Story.
+        where(:published => true).
+        order("created_at DESC")
+
     else
-      @activity = Activity.where("action_type = 'Reward' OR action_type = 'Story'").limit(8)
+      
+      @creators = User.select("users.id, users.first_name, users.last_name, users.tagline, users.avatar_file_name, SUM(curations.amount)").
+        joins(:rewards => :story).
+        where("stories.category" => params[:filter], "stories.published" => true).
+        order("SUM(curations.amount) DESC").
+        group("users.id, users.first_name, users.last_name, users.tagline, users.avatar_file_name")
+      @content = Story.
+        where(:category => params[:filter], :published => true).
+        order("reward_count DESC")
+      
     end
+    
+    @creators = @creators.page(params[:page]).per(6)
+    @content = @content.page(params[:page]).per(6)
   end
   
   def content

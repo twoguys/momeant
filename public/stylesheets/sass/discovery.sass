@@ -1,0 +1,111 @@
+body#discovery.index
+  #bg
+    background: #000
+    position: fixed
+    top: 0
+    bottom: 0
+    left: 0
+    width: 100%
+
+#discovery-page
+  width: 978px
+  margin: 0 auto
+  padding-top: 40px
+  position: relative
+  
+  section
+    padding-bottom: 40px
+    h1
+      font-size: 28px
+      font-weight: 600
+      text-transform: uppercase
+      margin-bottom: 20px
+      color: #777
+    .list
+      @include clearfix
+      width: 100%
+    
+    .info
+      display: none
+      position: absolute
+      top: 0
+      left: 0
+      padding: 20px
+      background: $blue
+      background: rgba(0, 173, 239, 0.9)
+      color: #fff
+      overflow: hidden
+      font-size: 18px
+  
+  #filters
+    font-size: 36px
+    font-weight: 600
+    text-transform: uppercase
+    position: relative
+    height: 60px
+    margin-bottom: 40px
+  #current-filter, #filters ul
+    width: 937px
+    padding: 10px 20px
+    @include rounded(10px)
+    @include boxshadow
+  #current-filter
+    background: #fff url(../images/discovery/drop-down-arrow.png) no-repeat 96% 50%
+    cursor: pointer
+    height: 41px
+    position: relative
+    z-index: 100
+  #filters ul
+    display: none
+    background: #fff
+    position: absolute
+    top: 41px
+    padding-top: 30px
+    left: 0
+    z-index: 99
+    a
+      display: block
+      padding-bottom: 10px
+    a:hover
+      color: $text_color
+    
+  #creators
+    a
+      display: block
+      width: 316px
+      height: 316px
+      margin: 0 10px 10px 0
+      position: relative
+      float: left
+      img
+        width: 316px
+        height: 316px
+      &:hover .info
+        display: block
+      .info
+        width: 276px
+        height: 276px
+        .name
+          font-size: 24px
+          font-weight: 600
+          margin-bottom: 20px
+    a:nth-child(3)
+      margin-right: 0
+  
+  #content
+    a
+      display: block
+      margin: 0 10px 10px 0
+      float: left
+      position: relative
+      &:hover .info
+        display: block
+      .info
+        width: 440px
+        height: 280px
+        .title
+          font-size: 24px
+          font-weight: 600
+          margin-bottom: 20px
+    a:nth-child(even)
+      margin-right: 0

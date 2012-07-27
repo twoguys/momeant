@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120625181539) do
+ActiveRecord::Schema.define(:version => 20120727150212) do
 
   create_table "activities", :force => true do |t|
     t.integer  "actor_id"
@@ -147,6 +147,9 @@ ActiveRecord::Schema.define(:version => 20120625181539) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "profile_id"
+    t.datetime "sender_read_at"
+    t.datetime "recipient_read_at"
+    t.string   "subject"
   end
 
   create_table "page_media", :force => true do |t|
@@ -334,7 +337,7 @@ ActiveRecord::Schema.define(:version => 20120625181539) do
     t.boolean  "send_message_notification_emails",                                              :default => true
     t.string   "i_reward_because"
     t.decimal  "impact",                                          :precision => 8, :scale => 2
-    t.decimal  "lifetime_rewards",                                :precision => 8, :scale => 2
+    t.decimal  "lifetime_rewards",                                :precision => 8, :scale => 2, :default => 0.0
     t.boolean  "send_new_follower_emails",                                                      :default => true
     t.boolean  "send_following_update_emails",                                                  :default => true
     t.string   "paypal_email"

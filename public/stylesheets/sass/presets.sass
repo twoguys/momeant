@@ -1,6 +1,6 @@
 // Basic colors for site
 
-$background_color: #e0e0e0
+$background_color: #fff
 $text_color: #252525
 $black: #000
 $blue: #00aeef
@@ -48,72 +48,140 @@ $border_type: 1px dotted #aaa
 $border_solid: 1px solid #DEDEDE
 
 @mixin rounded($radius: 5px)
-	-webkit-border-radius: $radius
-	-moz-border-radius: $radius
-	border-radius: $radius
+  -webkit-border-radius: $radius
+  -moz-border-radius: $radius
+  border-radius: $radius
 @mixin boxshadow($radius: 10px, $opacity: 0.7, $x: 0, $y: 0, $r: 0, $g: 0, $b: 0)
-	-webkit-box-shadow: $x $y $radius rgba($r,$g,$b,$opacity)
-	-moz-box-shadow: $x $y $radius rgba($r,$g,$b,$opacity)
-	box-shadow: $x $y $radius rgba($r,$g,$b,$opacity)
+  -webkit-box-shadow: $x $y $radius rgba($r,$g,$b,$opacity)
+  -moz-box-shadow: $x $y $radius rgba($r,$g,$b,$opacity)
+  box-shadow: $x $y $radius rgba($r,$g,$b,$opacity)
 @mixin bgcover
-	-webkit-background-size: cover
-	-moz-background-size: cover
-	-o-background-size: cover
-	background-size: cover
+  -webkit-background-size: cover
+  -moz-background-size: cover
+  -o-background-size: cover
+  background-size: cover
 @mixin bgcontain
-	-webkit-background-size: contain
-	-moz-background-size: contain
-	-o-background-size: contain
-	background-size: contain
+  -webkit-background-size: contain
+  -moz-background-size: contain
+  -o-background-size: contain
+  background-size: contain
 @mixin button
-	height: 28px
-	line-height: 30px
-	padding: 0 20px
-	vertical-align: middle
-	text-transform: uppercase
-	color: #fff
-	font-weight: 700
-	@include rounded(3px)
-	font-size: 12px
-	letter-spacing: .5px
-	font-family: $block
+  height: 28px
+  line-height: 30px
+  padding: 0 20px
+  vertical-align: middle
+  text-transform: uppercase
+  color: #fff
+  font-weight: 700
+  @include rounded(3px)
+  font-size: 12px
+  letter-spacing: .5px
+  font-family: $block
 @mixin orangebutton
-	@include button
-	padding: 10px
-	background: #ffa801
-	@include gradient(#ffbb01, #ff9501)
-	text-transform: none
-	border: 1px solid #ffa801
-	letter-spacing: 0
-	font-weight: 500
-	font-size: 12px
-	text-shadow: 0 -1px 0 rgba(0,0,0,0.2)
-	&:hover
-		@include gradient(#ffbb01,darken(#ff9501,3%))
+  @include button
+  padding: 10px
+  background: #ffa801
+  @include gradient(#ffbb01, #ff9501)
+  text-transform: none
+  border: 1px solid #ffa801
+  letter-spacing: 0
+  font-weight: 500
+  font-size: 12px
+  text-shadow: 0 -1px 0 rgba(0,0,0,0.2)
+  &:hover
+    @include gradient(#ffbb01,darken(#ff9501,3%))
 @mixin gradient($color1: #fdfdfd, $color2: #f0f0f0)
-	background-image: -moz-linear-gradient(center top, $color1 4%, $color2 52%)
-	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, $color1), color-stop(0.52, $color2))
+  background-image: -moz-linear-gradient(center top, $color1 4%, $color2 52%)
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, $color1), color-stop(0.52, $color2))
 @mixin transition($property: all, $time: 0.2s, $timing: ease-in-out)
-	-webkit-transition: $property $time $timing
-	-moz-transition: $property $time $timing
-	-ms-transition: $property $time $timing
-	-o-transition: $property $time $timing
-	transition: $property $time $timing
+  -webkit-transition: $property $time $timing
+  -moz-transition: $property $time $timing
+  -ms-transition: $property $time $timing
+  -o-transition: $property $time $timing
+  transition: $property $time $timing
 @mixin rotation($angle: 0deg)
-	-webkit-transform: rotate($angle)
-	-moz-transform: rotate($angle)
-	-o-transform: rotate($angle)
-	-ms-transform: rotate($angle)
-	rotation: $angle
+  -webkit-transform: rotate($angle)
+  -moz-transform: rotate($angle)
+  -o-transform: rotate($angle)
+  -ms-transform: rotate($angle)
+  rotation: $angle
+@mixin animation($name: bounce, $time: 1s)
+  -webkit-animation: $name $time
+  -moz-animation: $name $time
+  -ms-animation: $name $time
+  -o-animation: $name $time
+  animation: $name $time
 @mixin clearfix
-	display: inline-block
-	&:after
-		content: "."
-		display: block
-		height: 0
-		clear: both
-		visibility: hidden
+  display: inline-block
+  &:after
+    content: "."
+    display: block
+    height: 0
+    clear: both
+    visibility: hidden
 @mixin notext
-	text-indent: 100%
-	white-space: nowrap
-	overflow: hidden
+  text-indent: 100%
+  white-space: nowrap
+  overflow: hidden
+  
+// Custom CSS3 animations
+
+@-webkit-keyframes bounce
+  0%
+    opacity: 0
+    -webkit-transform: translateY(-2000px)
+  60%
+    opacity: 1
+    -webkit-transform: translateY(30px)
+  80%
+    -webkit-transform: translateY(-10px)
+  100%
+    -webkit-transform: translateY(0)
+
+@-moz-keyframes bounce
+  0%
+    opacity: 0
+    -moz-transform: translateY(-2000px)
+  60%
+    opacity: 1
+    -moz-transform: translateY(30px)
+  80%
+    -moz-transform: translateY(-10px)
+  100%
+    -moz-transform: translateY(0)
+
+@-ms-keyframes bounce
+  0%
+    opacity: 0
+    -ms-transform: translateY(-2000px)
+  60%
+    opacity: 1
+    -ms-transform: translateY(30px)
+  80%
+    -ms-transform: translateY(-10px)
+  100%
+    -ms-transform: translateY(0)
+
+@-o-keyframes bounce
+  0%
+    opacity: 0
+    -o-transform: translateY(-2000px)
+  60%
+    opacity: 1
+    -o-transform: translateY(30px)
+  80%
+    -o-transform: translateY(-10px)
+  100%
+    -o-transform: translateY(0)
+
+@keyframes bounce
+  0%
+    opacity: 0
+    transform: translateY(-2000px)
+  60%
+    opacity: 1
+    transform: translateY(30px)
+  80%
+    transform: translateY(-10px)
+  100%
+    transform: translateY(0)ƒ

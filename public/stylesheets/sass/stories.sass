@@ -23,6 +23,15 @@
     @include transition(opacity)
   &:hover .tip
     opacity: 1
+.content-preview.medium
+  width: 480px
+  height: 320px
+.content-preview.small
+  width: 300px
+  height: 203px
+.content-preview.tiny
+  width: 95px
+  height: 60px
     
 .content-preview.watchmen
   background: #ffe344
@@ -41,6 +50,12 @@
     @include rotation(-2deg)
     .image
       margin-bottom: 20px
+.content-preview.watchmen.medium
+  .inner
+    width: 280px
+    height: 180px
+    padding: 50px 95px
+    font-size: 16px
 .content-preview.watchmen.small
   .inner
     width: 170px
@@ -63,6 +78,17 @@
       height: 24px
       background-image: url(../images/content/templates/watchmen-smaller.png)
       margin-bottom: 10px
+.content-preview.watchmen.tiny
+  .inner
+    width: 79px
+    height: 39px
+    padding: 13px 8px 8px
+    font-size: 3px
+    .image
+      width: 10px
+      height: 10px
+      background-image: url(../images/content/templates/watchmen-tiny.png)
+      margin-bottom: 2px
    
 .content-preview.bowling
   background: #99daa4 url(../images/content/templates/bowling.png) no-repeat 50% 50%
@@ -75,6 +101,13 @@
     width: 260px
     height: 245px
     padding: 95px 177px 90px
+.content-preview.bowling.medium
+  background-image: url(../images/content/templates/bowling-medium.png)
+  .inner
+    width: 200px
+    height: 168px
+    padding: 80px 130px 70px
+    font-size: 16px
 .content-preview.bowling.small
   background-image: url(../images/content/templates/bowling-small.png)
   .inner
@@ -88,6 +121,13 @@
     width: 90px
     height: 82px
     padding: 25px 52px
+.content-preview.bowling.tiny
+  background-image: url(../images/content/templates/bowling-tiny.png)
+  .inner
+    width: 40px
+    height: 34px
+    padding: 17px 30px 9px 26px
+    font-size: 3px
            
 .content-preview.blob
   background: #ff6600 url(../images/content/templates/blob.png) no-repeat 50% 50%
@@ -100,6 +140,13 @@
     width: 260px
     height: 170px
     padding: 100px 180px
+.content-preview.blob.medium
+  background-image: url(../images/content/templates/blob-medium.png)
+  .inner
+    width: 220px
+    height: 100px
+    padding: 86px 126px
+    font-size: 16px
 .content-preview.blob.small
   background-image: url(../images/content/templates/blob-small.png)
   .inner
@@ -114,6 +161,13 @@
     height: 67px
     padding: 30px 40px 30px 60px
     font-size: 6px
+.content-preview.blob.tiny
+  background-image: url(../images/content/templates/blob-tiny.png)
+  .inner
+    width: 40px
+    height: 38px
+    padding: 13px 30px 9px 26px
+    font-size: 3px
 
 
 @mixin titleSlide($width:288px, $height:180px)

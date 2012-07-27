@@ -1,6 +1,6 @@
 class StoriesController < ApplicationController
-  before_filter :authenticate_user!, :except => [:index, :show]
-  load_and_authorize_resource :except => [:index, :show]
+  before_filter :authenticate_user!, :except => [:index, :show, :preview]
+  load_and_authorize_resource :except => [:index, :show, :preview]
   before_filter :get_topics, :only => [:new, :edit]
   before_filter :check_sharing_configured, :only => [:new, :edit]
   skip_before_filter :verify_authenticity_token, :only => [:update_thumbnail]
@@ -39,6 +39,11 @@ class StoriesController < ApplicationController
     end
     
     render "presenter"
+  end
+  
+  def preview
+    @story = Story.find(params[:id])
+    render :partial => "stories/preview", :locals => { :content => @story }
   end
   
   def new

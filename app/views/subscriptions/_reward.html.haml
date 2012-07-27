@@ -4,7 +4,14 @@
     .creator-info
       .card
         = link_to image_tag(reward.recipient.avatar.url(:thumbnail)), user_path(reward.recipient), :class => "avatar"
-        = link_to image_tag(reward.story.thumbnail.url(:petite)), story_path(reward.story), :class => "content-thumb"
+        - if reward.story.text_preview?
+          %a.content-preview.tiny{:href => story_path(reward.story), :class => "#{reward.story.media_type} #{reward.story.template}"}
+            .inner
+              .image
+              .quote= truncate(reward.story.template_text, :length => 140)
+        - else
+          %a.content-preview.tiny{:href => story_path(reward.story), :class => reward.story.media_type}
+            .inner{:style => "background-image: url(#{reward.story.thumbnail.url(:large)})"}
         %a.content-info{:href => story_path(reward.story)}
           %span.title= truncate(reward.story.title, :length => 18)
           %span.byline by #{reward.recipient.name}
@@ -12,7 +19,7 @@
 
   .comment
     %p
-      = link_to "You said:", user_path(current_user)
+      = link_to "#{you_or_first_name(reward.user).capitalize} said:", user_path(reward.user)
       %span= reward.comment
     .rewarded
       %span.amount= number_to_currency(reward.amount)

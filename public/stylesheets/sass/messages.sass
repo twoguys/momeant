@@ -1,81 +1,123 @@
-#messages-inner
-	position: relative
+body#messages
+  position: absolute
+  top: 0
+  bottom: 0
+  left: 0
+  width: 100%
+  
+  #container
+    position: static
+    padding: 0
+  
+  #main
+    max-width: 100%
+    margin: 0
 
-	.note
-		width: 249px
-		height: 171px
-		background: transparent url(../images/messagesNote.png) no-repeat 0 0
-		position: absolute
-		top: 30px
-		left: 500px
-	.note.empty
-		left: 100px
-		
-	#new-message-form
-		position: relative
-		padding-left: 50px
-		.avatar
-			position: absolute
-			top: 0
-			left: 0
-			width: 40px
-			height: 40px
-	form
-		width: 400px
-		textarea
-			width: 380px
-			height: 24px
-			display: block
-		textarea.loading
-			background: transparent url(../images/spinner.gif) no-repeat 5px 50%
-		input[type="submit"]
-			float: right
-			margin-top: 5px
-
-	ul#previous-messages
-		clear: both
-		padding-top: 15px
-		width: 450px
-		li.message
-			clear: both
-			position: relative
-			padding: 15px 0 15px 50px
-			border-top: 1px solid #ddd
-			.avatar
-				position: absolute
-				top: 15px
-				left: 0
-				width: 40px
-				height: 40px
-				img
-					width: 40px
-					height: 40px
-			.rest
-				width: 400px
-				padding-top: 7px
-				.text
-					min-height: 16px
-				.when
-					font-size: 10px
-					color: #999
-					margin-bottom: 10px
-				ul.children li.message
-					padding-top: 0
-					padding-bottom: 5px
-					border-bottom: none
-					border-top: 1px solid #ddd
-					.rest
-						width: 350px
-					.avatar
-						top: 5px
-				form
-					height: 40px
-					textarea
-						width: 383px
-						height: 14px
-						float: left
-						@include rounded(0)
-					input[type="submit"]
-						float: right
-						background: #bbb
-						margin: 0
+#messages-page
+  
+  #sidebar
+    position: absolute
+    top: 42px
+    bottom: 0
+    left: 0
+    width: 350px
+    background: #f0f0f0
+    border-right: 1px solid #ddd
+    overflow-y: auto
+    
+    #new-message
+      display: block
+      text-align: center
+      margin: 10px
+    
+    ul
+      border-top: 1px solid #ddd
+      border-bottom: 1px solid #fff
+    li
+      a
+        display: block
+        padding: 10px 10px 10px 65px
+        position: relative
+        min-height: 45px
+        border-top: 1px solid #fff
+        border-bottom: 1px solid #ddd
+        @include gradient(#f0f0f0,#e8e8e8)
+        color: $text_color
+      .avatar
+        display: block
+        position: absolute
+        top: 10px
+        left: 10px
+      .avatar, .avatar img
+        width: 45px
+        height: 45px
+      .unread
+        display: inline-block
+        width: 9px
+        height: 9px
+        background: transparent url(../images/messages/unread-dot.png) no-repeat 0 0
+        margin-right: 2px
+      .name
+        font-weight: 600
+      .last-said
+        font-size: 13px
+      .when
+        font-size: 12px
+        color: #999
+    li.current a
+      background: #e0e0e0
+      @include gradient(#e0e0e0,#d8d8d8)
+      border-top: 1px solid #bbb
+      border-bottom: 1px solid #bbb
+  
+  #main-bar
+    position: absolute
+    top: 42px
+    bottom: 0
+    left: 350px
+    right: 0
+    padding: 40px
+    overflow-y: auto
+    
+  #full-messages li, form#message-reply
+    position: relative
+    padding-left: 50px
+    min-height: 40px
+    margin-bottom: 20px
+    .avatar
+      display: block
+      position: absolute
+      top: 0
+      left: 0
+    .avatar, .avatar img
+      width: 40px
+      height: 40px
+    .body p
+      line-height: 1em
+      margin: 0 0 1em
+    .when
+      font-size: 12px
+      color: #999
+      
+  form#message-reply, form#new-message-form
+    width: 400px
+    li
+      margin-bottom: 5px
+    li.submit
+      text-align: right
+    input[type="text"]
+      @include rounded(0)
+    textarea
+      width: 400px
+      height: 22px
+      @include rounded(0)
+      &.loading
+        background: #fff url(../images/spinner.gif) no-repeat 5px 5px
+    .token-input-list-facebook
+      li.token-input-input-token-facebook
+        margin: 0
+      input[type="text"]:focus
+        border: none
+        @include rounded(0)
+  form#new-message-form li
+    margin-bottom: 1em

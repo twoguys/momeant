@@ -7,9 +7,6 @@ class User < ActiveRecord::Base
        
   searchable do
     text :name, :boost => 2.0
-    text :interests do
-      interests.map { |interest| interest.name }
-    end
   end
   
   acts_as_taggable_on :interests
@@ -56,12 +53,10 @@ class User < ActiveRecord::Base
     :foreign_key => "recipient_id",
     :order => "created_at DESC",
     :conditions => ["recipient_deleted = ?", false]
-  has_many :profile_messages,
-    :class_name => "Message",
-    :foreign_key => "profile_id",
-    :order => "created_at DESC"
   
   has_many :broadcasts, :order => "created_at DESC"
+  
+  has_one :editorial, :dependent => :destroy
   
   has_attached_file :avatar,
     :styles => { :thumbnail => "60x60#", :large => "200x200#", :editorial => "320x320#" },
@@ -118,10 +113,6 @@ class User < ActiveRecord::Base
     self.created_stories.published.where(:media_type => type).count
   end
   
-  def top_supporters
-    self.rewards.group_by(&:user).to_a.map {|x| [x.first,x.second.inject(0){|sum,r| sum+r.amount}]}.sort_by(&:second).reverse
-  end
-  
   def is_new?
     self.created_at > 2.weeks.ago
   end
@@ -134,7 +125,7 @@ class User < ActiveRecord::Base
     !Reward.where(:recipient_id => self.id, :user_id => user.id).empty?
   end
   
-  def rewarded_creators_with_amounts
+  def favorite_creators
     self.given_rewards.group_by(&:recipient).to_a.map {|x| [x.first,x.second.inject(0){|sum,r| sum+r.amount}]}.sort_by(&:second).reverse
   end
   
@@ -157,7 +148,7 @@ class User < ActiveRecord::Base
     
     # handle people who previously purchased coins
     coin_amount = reward.amount / Reward.dollar_exchange
-    if self.coins > coin_amount
+    if self.coins >= coin_amount
       reward.update_attribute(:paid_for, true)
       self.decrement!(:coins, coin_amount)
     end
@@ -218,6 +209,28 @@ class User < ActiveRecord::Base
   
   def impact_on(user)
     Reward.where(:user_id => self.id, :recipient_id => user.id).map {|reward| reward.impact}.inject(:+) || 0
+  end
+  
+  # Supporter Levels
+  
+  def top_supporters
+    self.rewards.group_by(&:user).to_a.map {|x| [x.first,x.second.inject(0){|sum,r| sum+r.amount}]}.sort_by(&:second).reverse
+  end
+  
+  def gold_patrons
+    self.top_supporters[0..2] || []
+  end
+  
+  def silver_patrons
+    self.top_supporters[3..5] || []
+  end
+  
+  def bronze_patrons
+    self.top_supporters[6..8] || []
+  end
+  
+  def non_level_patrons
+    self.top_supporters[9..-1] || []
   end
   
   def influenced
@@ -455,7 +468,11 @@ class User < ActiveRecord::Base
   end
   
   def unread_message_count
-    Message.where(:recipient_id => self.id).where("read_at IS NULL").count
+    count = 0
+    self.messages.each do |message|
+      count +=1 if message.unread_by(self.id)
+    end
+    count
   end
   
   # Recommendations ---------------------------------------------------------------------------

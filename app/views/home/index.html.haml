@@ -1,55 +1,70 @@
 #landing-page
   
-  #slogan
-    .line
-    %h1
-      %strong Reward
-      %em what matters to you.
-    %h3
-      %a{:href => "#about-modal"}
-        Momeant is a community for connecting with
-        %br
-        and supporting people doing great work online.
-    #learn-more
-      = link_to "Learn more", "#about-modal", :class => "button"
-    
-  - if @featured_content
-    #featured-content
-      - first = true
-      - @featured_content.each do |type, contents|
-        .media-type{:id => "#{type}-type", :class => first ? "open" : "closed"}
-          .toggler
-          - contents.each do |content|
-            - if content.text_preview?
-              %a.content-preview.smaller{:href => story_path(content), :class => "#{content.media_type} #{content.template}"}
-                .inner
-                  .image
-                  .quote= truncate(content.template_text, :length => 140)
-            - else
-              %a.content-preview.smaller{:href => story_path(content), :class => content.media_type}
-                .inner{:style => "background-image: url(#{content.thumbnail.url(:large)})"}
-        - first = false
-    
-    
-  #categories-people
-    .inner
-
-      %ul#categories
-        - index = 0
-        - @content.each_pair do |category, content|
-          %li{:class => index == 0 ? "selected" : ""}
-            = link_to category, "#", :class => "top"
-            .people
-              - content.each do |story|
-                = link_to story.user.name, "#", :data => index, :class => index == 0 ? "selected" : ""
-                - index += 1
-       
-      #people
-        %ul
-          - @content.each_pair do |category, content|
-            = render :partial => "home/person", :collection => content, :as => :content
+  #intro
+    #slides
+      = link_to "Previous", "#", :id => "previous", :class => "inactive"
+      = link_to "Next", "#", :id => "next"
+      %ul
+        %li We're people like you.
+        %li We use the Web. A lot.
+        %li.longer
+          We read articles, watch videos,
+          %br
+          look at photos, listen to music.
+        %li.longer
+          A lot of us create
+          %br
+          these things too.
+        %li.longer
+          It’s great that a lot
+          %br
+          of this content is free...
+        %li.longer
+          = "...But everyone has"
+          %br
+          to pay the rent.
+        %li.longer.last
+          Momeant supports a
+          %br
+          thriving and creative
+          %br
+          online economy.
+          %br
+          %br
+          Join the movement.
+  
+  %ul#people
+    - @people.each do |person|
+      %li= link_to image_tag(person.avatar.url(:thumbnail)), user_path(person)
+  
+  %p#explanation
+    The web is a virtual economy, brimming with creative minds sharing and consuming information
+    and content. With debt crises, automation and outsourcing causing upheavals in traditional
+    markets around the world, the fate of the web depends on choices we make as members of this
+    viral community. If we want to preserve a creative economy for the future, we must elevate
+    the value we place on web content and the people producing it.
+  
+  %ul#steps
+    %li#create
+      %h2 Create
+      %p
+        We have invited some creative forces from across the globe to join Momeant and share
+        their body of work with our growing community.
+    %li#discover
+      %h2 Discover
+      %p
+        Now we're inviting you to dive in and explore the diverse Momeant directory. From comics
+        to journalism to paper cuts, discover content that makes you say "wow".
+    %li#support
+      %h2 Support
+      %p
+        This is where we're different. Share your enthusiasm for these creative endeavors by following,
+        rewarding and participating. Become an active participant in the artist-to-patron relationship.
+  
+  #connect
+    %h1 Connect with real people and show them your support.
+    = link_to "View our Featured Creators &rarr;".html_safe, discovery_path
 
 :javascript
   mpq.track('Viewed Homepage', { signed_in: #{user_signed_in? ? 'true' : 'false' } });
-  var user_id = #{current_user ? current_user.id : 'undefined'};
 = javascript_include_tag "landing"

@@ -12,17 +12,6 @@
       .profile-info
         .avatar-badge
           = link_to(image_tag(current_user.avatar.url(:editorial)), user_path(current_user), :class => "avatar")
-        .metadata
-          %h1.name
-            %span= current_user.name
-            - if current_user.is_new?
-              %span.new.tooltipped-n{:title => "New User"}
-            - if current_user.is_featured?
-              %span.featured.tooltipped-n{:title => "Featured Creator"}
-          .about
-            %span.occupation= current_user.occupation
-            - if current_user.location
-              %span from #{current_user.location}
   
     %h2 People You Support
     - if @rewarded.empty?

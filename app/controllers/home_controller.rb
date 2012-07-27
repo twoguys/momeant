@@ -1,15 +1,13 @@
 class HomeController < ApplicationController
   
   def index
-    @content = ActiveSupport::OrderedHash.new
-    @content["Featured"] = Story.includes(:user).published.where("id IN (?)", Editorial.all.map(&:story_id)).order("created_at DESC")
-    Story::CATEGORIES.each do |category|
-      @content[category] = Story.includes(:user).
-        published.where(:category => category).order("reward_count DESC").limit(50).
-        uniq_by {|content| content.user_id}.take(3)
+    @people = User.where("avatar_file_name IS NOT NULL").order("lifetime_rewards DESC").limit(200)
+    if @people.size < 200 # repeat if we don't have enough yet
+      orig_people = @people
+      ((200 / @people.size) + 1).times do
+        @people += orig_people.shuffle
+      end
     end
-    
-    @featured_content = Story.featured_on_landing unless Rails.env.production?
   end
   
   def people # ajax

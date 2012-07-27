@@ -1,0 +1,14 @@
+#sidebar
+  
+  = link_to "+ New Message", new_message_path, id: "new-message", class: "button"
+  
+  %ul
+    - @messages.each do |message|
+      %li{:class => message == @message ? "current" : "" }
+        %a{:href => message_path(message)}
+          = image_tag(message.not_me(current_user).avatar.url(:thumbnail), class: "avatar")
+          - if message.unread_by(current_user.id)
+            %span.unread
+          %span.name= message.not_me(current_user).name
+          .subject= truncate(message.subject, length: 90)
+          .when #{time_ago_in_words(message.created_at)} ago

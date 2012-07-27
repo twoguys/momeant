@@ -3,7 +3,7 @@
   %li#logo= link_to "Momeant", root_path, :class => "top-link"
   
   %li#discover
-    = link_to "Discover", "#{root_path}#categories-people", :class => "tooltipped", :title => "Discover Creators"
+    = link_to "Discover", discovery_path, :class => "tooltipped", :title => "Discover"
     
   - if user_signed_in?
     %li#feed
@@ -30,7 +30,11 @@
     - if current_user.coins > 0
       %li#coins
         .text reward money to give out
-        .amount= link_to number_to_currency(current_user.coins * Reward.dollar_exchange)
+        .amount= link_to number_to_currency(current_user.coins * Reward.dollar_exchange), coins_path
+    - if current_user.pledged_amount > 0
+      %li#pledged
+        .text pledged rewards
+        .amount= link_to number_to_currency(current_user.pledged_amount), fund_rewards_path
     %li#profile
       = link_to "Your Profile", user_path(current_user)
       %ul.subnav
@@ -46,6 +50,15 @@
   - else
     %li#profile.disabled
       = link_to "Your Profile", "#join-modal", :class => "tooltipped", :title => "Your Profile"
+  
+  - if user_signed_in?
+    %li#messages
+      = link_to "Private Messages", messages_path, class: "tooltipped", title: "Private Messages"
+      - if current_user.unread_message_count > 0
+        .count= link_to current_user.unread_message_count, messages_path
+  - else
+    %li#messages.disabled
+      = link_to "Private Messages", "#join-modal", class: "tooltipped", title: "Private Messages"
   
   %li#info
     = link_to "About Momeant", "#about-modal"

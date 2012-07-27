@@ -1,8 +1,12 @@
 function setup_message_posting() {
-	$('#messages-inner form').submit(function(event) {
-		var $form = $(this);
-		event.preventDefault(); 
+  $('#message-reply textarea').autoResize({
+    extraSpace: 20
+  });
+  
+	$('#message-reply').submit(function(event) {
+		event.preventDefault();
 
+		var $form = $(this);
 		var body = $form.find('#message_body').val();
 		if (body.length == 0) { return false; }
 		var parent_id = $form.find('#message_parent_id').val();
@@ -15,18 +19,15 @@ function setup_message_posting() {
 			{
 				"message[body]":body,
 				"message[parent_id]":parent_id,
-				"message[recipient_id]":recipient_id
+				"message[recipient_id]":recipient_id,
+				"remote":true
 			},
 			function(data) {
 				$form.find('#message_body, input[type="submit"]').removeAttr('disabled').removeClass('loading');
 				if (data.success) {
-					var html = '<li class="message"><img src="' + data.avatar + '" class="avatar" alt="Thumbnail">';
-					html += '<div class="rest"><div class="text">' + body + '</div><div class="when">just now</div></div></li>';
-					if ($form.hasClass('reply')) {
-						$form.parent().find('ul.children').append(html);
-					} else {
-						$('ul#previous-messages').prepend(html);
-					}
+					var html = '<li><img src="' + data.avatar + '" class="avatar" alt="Thumbnail">';
+					html += '<div class="body">' + body + '</div><div class="when">just now</div></li>';
+					$('ul#full-messages').append(html);
 				} else {
 					log('error');
 				}

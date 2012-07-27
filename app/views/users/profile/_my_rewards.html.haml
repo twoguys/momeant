@@ -1,0 +1,30 @@
+%section#my-rewards
+  %h1 Work I Support
+  
+  #rewards-browser
+    .paginator{:class => @rewards.size > 8 ? "" : "off" }
+      = link_to "up", "#", :class => "up off"
+      = link_to "down", "#", :class => "down"
+      .list{:current => 0, :total => (@rewards.size.to_f / 8.0).floor}
+        %ul
+          - first = true
+          - @rewards.map(&:story).each do |content|
+            %li
+              %a.selector{:href => "#", :data => content.id, :class => first ? "selected" : "" }
+                - if content.text_preview?
+                  .content-preview.tiny{:class => "#{content.media_type} #{content.template}"}
+                    .inner
+                      .image
+                      .quote= truncate(content.template_text, :length => 140)
+                - else
+                  .content-preview.tiny{:class => content.media_type}
+                    .inner{:style => "background-image: url(#{content.thumbnail.url(:large)})"}
+        
+                .title= content.title.present? ? truncate(content.title, :length => 28) : "Untitled"
+                .synopsis by #{content.user.name}
+          
+                - first = false
+
+    #vertical-list
+      %ul#activity-list
+        = render :partial => "stories/preview", :locals => { :content => @rewards.first.story, :reward => @rewards.first } if @rewards.first

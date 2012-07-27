@@ -14,12 +14,9 @@ class UsersController < ApplicationController
     if @user.is_a?(Creator)
       @content = @user.created_stories.newest_first.includes(:users_who_rewarded, :comments => [:user, :reward])
       @content = @content.published unless @user == current_user
-      @supporters = @user.top_supporters
-    else
-      @body_class = "patronage"
-      prepare_patronage_data
-      render "patronage"
     end
+    
+    @rewards = @user.given_rewards(:include => :story)
   end
   
   def patronage
@@ -61,20 +58,18 @@ class UsersController < ApplicationController
     end
   end
   
-  def edit
-    redirect_to edit_user_path(current_user) and return if current_user != @user
-    @nav = "me"
-    @sidenav = "profile"
+  def settings
+    redirect_to settings_user_path(current_user) and return if current_user != @user
   end
   
   def update
     @user = current_user
     if @user.update_attributes(params[:user])
-      redirect_to user_path(@user), :notice => "Info updated!"
+      redirect_to settings_user_path(@user), :notice => "Your settings have been updated!"
     else
       @nav = "me"
       @sidenav = "profile"
-      render 'edit'
+      render 'settings'
     end
   end
   
@@ -103,10 +98,6 @@ class UsersController < ApplicationController
     end
   end
   
-  def settings
-    redirect_to settings_user_path(current_user) and return if current_user != @user
-  end
-  
   def update_email_setting
     return unless ["send_reward_notification_emails",
       "send_digest_emails",
@@ -121,11 +112,15 @@ class UsersController < ApplicationController
   end
   
   def change_password
+    if params[:user][:password].blank?
+      flash[:alert] = "Your new password cannot be blank."
+      render "settings" and return
+    end
     if @user.update_with_password(params[:user])
       sign_in :user, @user, :bypass => true
-      redirect_to settings_user_path(current_user)
+      redirect_to settings_user_path(@user), :notice => "Password updated!"
     else
-      flash[:alert] = @user.errors.full_messages
+      flash[:alert] = @user.errors.full_messages.join(", ")
       render "settings"
     end
   end
