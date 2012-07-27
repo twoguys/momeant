@@ -1,73 +1,76 @@
 .comments
-	position: relative
+  position: relative
 
-	.money
-		position: absolute
-		top: 13px
-		right: 20px
+  .money
+    position: absolute
+    top: 13px
+    right: 20px
 
-	a.toggle-comments, .insides
-		background: #303030
-		color: #777
-		padding: 13px 15px
+  a.toggle-comments, .insides
+    background: #303030
+    color: #777
+    padding: 13px 15px
 
-	.money, a.toggle-comments
-		color: #777
+  .money, a.toggle-comments
+    color: #777
 
-	a.toggle-comments
-		display: block
-		font-size: 13px
-		padding-left: 60px
-		background: #303030 url(../images/content/comments.png) no-repeat 23px 50%
-		@include transition(color)
-		&:hover
-			color: #aaa
-	
-	.insides
-		display: none
-		padding-top: 5px
-	
-	ul.comment-list > li, form
-		position: relative
-		padding-left: 42px
-		.commenter-avatar img
-			width: 30px
-			height: 30px
-			position: absolute
-			top: 0
-			left: 0
-	
-	ul.comment-list > li
-		margin: 0 0 5px 3px
-		.commenter-name
-			color: #ddd
-			@include transition(color)
-			&:hover
-				color: $blue
-		.text
-			color: #999
-		.metadata
-			font-size: 12px
-			color: #666
-			margin-top: 1px
-			.reward
-				margin-left: 5px
-	
-	.disabled
-		background: #444
-		color: #777
-		padding: 3px 6px
-	
-	form
-		padding: 3px 6px 3px 46px
-		min-height: 30px
-		img.commenter-avatar
-			top: 3px
-			left: 3px
-		textarea
-			width: 98%
-			height: 15px
-			padding: 4px
-			@include rounded(0)
-			font-family: "lucida grande",tahoma,verdana,arial,sans-serif
-			font-size: 11px
+  a.toggle-comments
+    display: block
+    font-size: 13px
+    padding-left: 60px
+    background: #303030 url(../images/content/comments.png) no-repeat 23px 50%
+    @include transition(color)
+    &:hover
+      color: #aaa
+  
+  .insides
+    display: none
+    padding-top: 5px
+  
+  ul.comment-list > li, form
+    position: relative
+    padding-left: 42px
+    .commenter-avatar img
+      width: 30px
+      height: 30px
+      position: absolute
+      top: 0
+      left: 0
+  
+  ul.comment-list > li
+    margin: 0 0 5px 3px
+    .commenter-name
+      color: #ddd
+      @include transition(color)
+      &:hover
+        color: $blue
+    .text
+      color: #999
+    .metadata
+      font-size: 12px
+      color: #666
+      margin-top: 1px
+      .reward
+        margin-left: 5px
+  
+  .disabled
+    background: #444
+    color: #777
+    padding: 3px 6px
+  
+  form
+    padding: 3px 6px 3px 46px
+    min-height: 30px
+    img.commenter-avatar
+      position: absolute
+      top: 3px
+      left: 3px
+      width: 30px
+      height: 30px
+    textarea
+      width: 98%
+      height: 15px
+      padding: 4px
+      @include rounded(0)
+      font-family: "lucida grande",tahoma,verdana,arial,sans-serif
+      font-size: 11px
