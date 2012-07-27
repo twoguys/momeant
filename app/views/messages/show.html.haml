@@ -7,7 +7,7 @@
     %ul#full-messages
       - @message_list.each do |message|
         %li
-          = image_tag(message.sender.avatar.url(:thumbnail), class: "avatar")
+          = link_to(image_tag(message.sender.avatar.url(:thumbnail), class: "avatar"), user_path(message.sender))
           .body= simple_format(message.body)
           .when #{time_ago_in_words(message.created_at)} ago
           

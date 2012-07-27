@@ -16,7 +16,7 @@ class NotificationsMailer < ActionMailer::Base
   
   def message_notice(message)
     @message = message
-    @messaging_url = messages_url(message.recipient)
+    @messaging_url = message_url(message)
     @user_for_email_settings = @message.recipient
     
     mail :to => @message.recipient.email, :subject => "#{message.sender.name} just messaged you on Momeant!"
