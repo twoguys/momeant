@@ -18,7 +18,7 @@
     - if current_user && current_user.is_subscribed_to?(@user)
       = link_to "Unfollow", "#", :id => "subscribe"
     - elsif current_user && !me?(@user)
-      = link_to "Follow", user_messages_path(@user), :id => "subscribe", :class => "tooltipped-n", :title => "Receive updates when #{@user.first_name} takes important actions."
+      = link_to "Follow", user_subscriptions_path(@user), :id => "subscribe", :class => "tooltipped-n", :title => "Receive updates when #{@user.first_name} takes important actions."
     - elsif current_user.nil?
       = link_to "Follow", "#join-modal", :id => "subscribe", :class => "tooltipped-n", :title => "Receive updates when #{@user.first_name} takes important actions."
   
