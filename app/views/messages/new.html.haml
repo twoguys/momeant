@@ -1,0 +1,43 @@
+#messages-page
+
+  = render "messages/sidebar"
+  
+  #main-bar
+    
+    = form_for Message.new, url: messages_path, html: { id: "new-message-form" } do |form|
+      %fieldset
+        %ul
+          %li
+            = form.label :recipient_id, "To"
+            = form.text_field :recipient_id
+          %li
+            = form.label :subject
+            = form.text_field :subject
+          %li
+            = form.label :body, "Message"
+            = form.text_area :body
+          %li.submit
+            = form.submit "Send"
+      
+:javascript
+  $(document).ready(function() {
+    $('#message_recipient_id').tokenInput('#{user_lookup_messages_path}', {
+      hintText: 'Search for a user by name',
+      tokenLimit: 1,
+      theme: 'facebook',
+      resultsFormatter: function(item) {
+        var html = '<li style="position:relative;padding-left:43px;height:35px;">';
+        html +=      '<img src="' + item.avatar + '" width="30px" height="30px" style="position:absolute;top:5px;left:5px"/>';
+        html +=      '<div style="font-size:14px;padding-top:8px;">' + item.name + '</div>';
+        html +=    '</li>';
+        return html;
+      },
+      onAdd: function() {
+        $('#message_subject').focus();
+      }
+    });
+    
+    $('#new-message-form textarea').autoResize({
+      extraSpace: 20
+    });
+  });

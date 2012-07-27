@@ -7,9 +7,6 @@ class User < ActiveRecord::Base
        
   searchable do
     text :name, :boost => 2.0
-    text :interests do
-      interests.map { |interest| interest.name }
-    end
   end
   
   acts_as_taggable_on :interests
@@ -56,10 +53,6 @@ class User < ActiveRecord::Base
     :foreign_key => "recipient_id",
     :order => "created_at DESC",
     :conditions => ["recipient_deleted = ?", false]
-  has_many :profile_messages,
-    :class_name => "Message",
-    :foreign_key => "profile_id",
-    :order => "created_at DESC"
   
   has_many :broadcasts, :order => "created_at DESC"
   
@@ -475,7 +468,11 @@ class User < ActiveRecord::Base
   end
   
   def unread_message_count
-    Message.where(:recipient_id => self.id).where("read_at IS NULL").count
+    count = 0
+    self.messages.each do |message|
+      count +=1 if message.unread_by(self.id)
+    end
+    count
   end
   
   # Recommendations ---------------------------------------------------------------------------

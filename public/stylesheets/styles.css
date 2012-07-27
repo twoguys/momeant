@@ -257,12 +257,33 @@ h2 {
       background-position: -62px 8px; }
     #header #user-nav #create.disabled > a {
       background-position: -62px -32px; }
+    #header #user-nav #messages > a {
+      background-position: -161px 8px; }
+    #header #user-nav #messages.disabled > a {
+      background-position: -161px -32px; }
     #header #user-nav #profile > a {
       background-position: -95px 8px; }
     #header #user-nav #profile.disabled > a {
       background-position: -95px -32px; }
     #header #user-nav #info > a {
       background-position: -128px 8px; }
+    #header #user-nav #messages {
+      position: relative; }
+      #header #user-nav #messages .count {
+        display: block;
+        position: absolute;
+        top: 6px;
+        left: 20px;
+        background: red;
+        font-size: 12px;
+        padding: 1px 3px;
+        min-width: 11px;
+        text-align: center;
+        -webkit-border-radius: 20px;
+        -moz-border-radius: 20px;
+        border-radius: 20px; }
+        #header #user-nav #messages .count a {
+          color: white; }
     #header #user-nav #profile, #header #user-nav #info, #header #user-nav #signin, #header #user-nav #join {
       position: absolute;
       top: 0;
@@ -468,7 +489,7 @@ form label, .form label {
     font-family: Georgia, serif;
     font-style: italic;
     font-size: 12px;
-    color: #cacaca;
+    color: #999999;
     text-transform: lowercase;
     font-weight: 100;
     height: auto;
@@ -6489,14 +6510,15 @@ ul.stories .excerpt {
 #login-modal .padder {
   width: 250px; }
 #login-modal .insides {
-  height: 250px; }
+  height: 230px; }
 #login-modal .login {
   padding: 0;
   margin-bottom: 15px; }
 #login-modal input[type="submit"] {
   margin-bottom: 8px; }
 #login-modal a {
-  font-size: 11px; }
+  display: inline-block;
+  margin-top: 5px; }
 
 #feedback-modal .insides {
   height: 196px;
@@ -7291,86 +7313,126 @@ a.tag:hover {
   #reward-chain .person.first:hover {
     margin-top: -60px; }
 
-#messages-inner {
-  position: relative; }
-  #messages-inner .note {
-    width: 249px;
-    height: 171px;
-    background: transparent url(../images/messagesNote.png) no-repeat 0 0;
-    position: absolute;
-    top: 30px;
-    left: 500px; }
-  #messages-inner .note.empty {
-    left: 100px; }
-  #messages-inner #new-message-form {
+body#messages {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%; }
+  body#messages #container {
+    position: static;
+    padding: 0; }
+  body#messages #main {
+    max-width: 100%;
+    margin: 0; }
+
+#messages-page #sidebar {
+  position: absolute;
+  top: 42px;
+  bottom: 0;
+  left: 0;
+  width: 350px;
+  background: #f0f0f0;
+  border-right: 1px solid #dddddd;
+  overflow-y: auto; }
+  #messages-page #sidebar #new-message {
+    display: block;
+    text-align: center;
+    margin: 10px; }
+  #messages-page #sidebar ul {
+    border-top: 1px solid #dddddd;
+    border-bottom: 1px solid white; }
+  #messages-page #sidebar li a {
+    display: block;
+    padding: 10px 10px 10px 65px;
     position: relative;
-    padding-left: 50px; }
-    #messages-inner #new-message-form .avatar {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 40px;
-      height: 40px; }
-  #messages-inner form {
-    width: 400px; }
-    #messages-inner form textarea {
-      width: 380px;
-      height: 24px;
-      display: block; }
-    #messages-inner form textarea.loading {
-      background: transparent url(../images/spinner.gif) no-repeat 5px 50%; }
-    #messages-inner form input[type="submit"] {
-      float: right;
-      margin-top: 5px; }
-  #messages-inner ul#previous-messages {
-    clear: both;
-    padding-top: 15px;
-    width: 450px; }
-    #messages-inner ul#previous-messages li.message {
-      clear: both;
-      position: relative;
-      padding: 15px 0 15px 50px;
-      border-top: 1px solid #dddddd; }
-      #messages-inner ul#previous-messages li.message .avatar {
-        position: absolute;
-        top: 15px;
-        left: 0;
-        width: 40px;
-        height: 40px; }
-        #messages-inner ul#previous-messages li.message .avatar img {
-          width: 40px;
-          height: 40px; }
-      #messages-inner ul#previous-messages li.message .rest {
-        width: 400px;
-        padding-top: 7px; }
-        #messages-inner ul#previous-messages li.message .rest .text {
-          min-height: 16px; }
-        #messages-inner ul#previous-messages li.message .rest .when {
-          font-size: 10px;
-          color: #999999;
-          margin-bottom: 10px; }
-        #messages-inner ul#previous-messages li.message .rest ul.children li.message {
-          padding-top: 0;
-          padding-bottom: 5px;
-          border-bottom: none;
-          border-top: 1px solid #dddddd; }
-          #messages-inner ul#previous-messages li.message .rest ul.children li.message .rest {
-            width: 350px; }
-          #messages-inner ul#previous-messages li.message .rest ul.children li.message .avatar {
-            top: 5px; }
-        #messages-inner ul#previous-messages li.message .rest form {
-          height: 40px; }
-          #messages-inner ul#previous-messages li.message .rest form textarea {
-            width: 383px;
-            height: 14px;
-            float: left;
-            -webkit-border-radius: 0;
-            -moz-border-radius: 0;
-            border-radius: 0; }
-          #messages-inner ul#previous-messages li.message .rest form input[type="submit"] {
-            float: right;
-            background: #bbbbbb;
-            margin: 0; }
+    min-height: 45px;
+    border-top: 1px solid white;
+    border-bottom: 1px solid #dddddd;
+    background-image: -moz-linear-gradient(center top, #f0f0f0 4%, #e8e8e8 52%);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #f0f0f0), color-stop(0.52, #e8e8e8));
+    color: #252525; }
+  #messages-page #sidebar li .avatar {
+    display: block;
+    position: absolute;
+    top: 10px;
+    left: 10px; }
+  #messages-page #sidebar li .avatar, #messages-page #sidebar li .avatar img {
+    width: 45px;
+    height: 45px; }
+  #messages-page #sidebar li .unread {
+    display: inline-block;
+    width: 9px;
+    height: 9px;
+    background: transparent url(../images/messages/unread-dot.png) no-repeat 0 0;
+    margin-right: 2px; }
+  #messages-page #sidebar li .name {
+    font-weight: 600; }
+  #messages-page #sidebar li .last-said {
+    font-size: 13px; }
+  #messages-page #sidebar li .when {
+    font-size: 12px;
+    color: #999999; }
+  #messages-page #sidebar li.current a {
+    background: #e0e0e0;
+    background-image: -moz-linear-gradient(center top, #e0e0e0 4%, #d8d8d8 52%);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #e0e0e0), color-stop(0.52, #d8d8d8));
+    border-top: 1px solid #bbbbbb;
+    border-bottom: 1px solid #bbbbbb; }
+#messages-page #main-bar {
+  position: absolute;
+  top: 42px;
+  bottom: 0;
+  left: 350px;
+  right: 0;
+  padding: 40px;
+  overflow-y: auto; }
+#messages-page #full-messages li, #messages-page form#message-reply {
+  position: relative;
+  padding-left: 50px;
+  min-height: 40px;
+  margin-bottom: 20px; }
+  #messages-page #full-messages li .avatar, #messages-page form#message-reply .avatar {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0; }
+  #messages-page #full-messages li .avatar, #messages-page #full-messages li .avatar img, #messages-page form#message-reply .avatar, #messages-page form#message-reply .avatar img {
+    width: 40px;
+    height: 40px; }
+  #messages-page #full-messages li .body p, #messages-page form#message-reply .body p {
+    line-height: 1em;
+    margin: 0 0 1em; }
+  #messages-page #full-messages li .when, #messages-page form#message-reply .when {
+    font-size: 12px;
+    color: #999999; }
+#messages-page form#message-reply, #messages-page form#new-message-form {
+  width: 400px; }
+  #messages-page form#message-reply li, #messages-page form#new-message-form li {
+    margin-bottom: 5px; }
+  #messages-page form#message-reply li.submit, #messages-page form#new-message-form li.submit {
+    text-align: right; }
+  #messages-page form#message-reply input[type="text"], #messages-page form#new-message-form input[type="text"] {
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0; }
+  #messages-page form#message-reply textarea, #messages-page form#new-message-form textarea {
+    width: 400px;
+    height: 22px;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0; }
+    #messages-page form#message-reply textarea.loading, #messages-page form#new-message-form textarea.loading {
+      background: white url(../images/spinner.gif) no-repeat 5px 50%; }
+  #messages-page form#message-reply .token-input-list-facebook li.token-input-input-token-facebook, #messages-page form#new-message-form .token-input-list-facebook li.token-input-input-token-facebook {
+    margin: 0; }
+  #messages-page form#message-reply .token-input-list-facebook input[type="text"]:focus, #messages-page form#new-message-form .token-input-list-facebook input[type="text"]:focus {
+    border: none;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0; }
+#messages-page form#new-message-form li {
+  margin-bottom: 1em; }
 
 #activity-surround {
   position: relative; }

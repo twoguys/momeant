@@ -1,286 +1,287 @@
 #join-modal, #login-modal, #feedback-modal, #about-diagram-modal, #about-modal
-	display: none
-	position: fixed
-	top: 0
-	left: 0
-	z-index: 9999
-	text-shadow: none
-	font-family: $block
-	color: #fff
-	width: 100%
-	height: 100%
-	.cover
-		width: 100%
-		height: 100%
-		background: transparent url(../images/modalCover.png) repeat
-		background: rgba(0,0,0,0.7)
-		position: absolute
-		z-index: 1
-	.padder
-		width: 510px
-		margin: 0 auto
-		background: #333
-		background: rgba(255,255,255,0.2)
-		padding: 10px
-		position: relative
-		top: 170px
-		z-index: 2
-		@include rounded(4px)
-		@include boxshadow
-		a.close
-			position: absolute
-			top: -15px
-			right: -15px
-			width: 30px
-			height: 30px
-			display: block
-			background: transparent url(../images/modalClose.png) no-repeat 0 0
-	.insides
-		background: #f4f4f4
-	.placeholder
-		color: #aaa
-		font-style: italic
-		font-family: $serif
-		font-size: 12px
-	h2
-		font-family: $typewriter
-		font-size: 30px
-		color: #000
-		border-bottom: 1px solid #ccc
-		padding-bottom: 10px
-		margin-bottom: 15px
-		text-align: center
-		background-color: transparent
-		font-weight: 100
-		padding-top: 0px
-	input[type="text"], input[type="email"], input[type="password"]
-		width: 194px
-	input[type="submit"]
-		width: 100%
-		font-size: 14px
-	li
-		margin-bottom: 10px
-		height: 31px
-	li.remember-me
-		margin-top: -5px
-		margin-bottom: 0px
-		label
-			color: $text_color
-	.spaced-a-bit
-		margin-bottom: 5px
-	li.copy
-		color: #999
-		font-size: 13px
-		font-family: $typewriter
-		margin-top: 16px
-		margin-bottom: 0
-		font-weight: 100
-		text-align: center
-	form
-		li
-			position: relative
-			label.placeholder
-				color: #999
-				font-style: italic
-				font-family: Georgia, serif
-				position: absolute
-				height: 31px
-				line-height: 31px
-				text-transform: none
-				font-weight: 100
-				margin: 0
-				padding: 0 0 0 10px
-			label.error
-				font-family: $serif
-				font-size: 11px
-				font-weight: 100
-				color: $link_color
-				text-transform: none
-				margin: 0 0 5px 0
-			span
-				width: 102px
-				float: left
-				margin-right: 5px
-				position: relative
-				input[type="text"]
-					width: 87px
-			span.last
-				margin-right: 0
-			input[type="submit"]:disabled
-				background-color: #dfdfdf
-				color: #787878
-				cursor: default
-			input[type="submit"]:disabled:active
-				top: 0
-		li.filled
-			label
-				display: none
-		li.checkbox
-			label.error
-				position: absolute
-				bottom: -10px
-				padding-left: 23px
+  display: none
+  position: fixed
+  top: 0
+  left: 0
+  z-index: 9999
+  text-shadow: none
+  font-family: $block
+  color: #fff
+  width: 100%
+  height: 100%
+  .cover
+    width: 100%
+    height: 100%
+    background: transparent url(../images/modalCover.png) repeat
+    background: rgba(0,0,0,0.7)
+    position: absolute
+    z-index: 1
+  .padder
+    width: 510px
+    margin: 0 auto
+    background: #333
+    background: rgba(255,255,255,0.2)
+    padding: 10px
+    position: relative
+    top: 170px
+    z-index: 2
+    @include rounded(4px)
+    @include boxshadow
+    a.close
+      position: absolute
+      top: -15px
+      right: -15px
+      width: 30px
+      height: 30px
+      display: block
+      background: transparent url(../images/modalClose.png) no-repeat 0 0
+  .insides
+    background: #f4f4f4
+  .placeholder
+    color: #aaa
+    font-style: italic
+    font-family: $serif
+    font-size: 12px
+  h2
+    font-family: $typewriter
+    font-size: 30px
+    color: #000
+    border-bottom: 1px solid #ccc
+    padding-bottom: 10px
+    margin-bottom: 15px
+    text-align: center
+    background-color: transparent
+    font-weight: 100
+    padding-top: 0px
+  input[type="text"], input[type="email"], input[type="password"]
+    width: 194px
+  input[type="submit"]
+    width: 100%
+    font-size: 14px
+  li
+    margin-bottom: 10px
+    height: 31px
+  li.remember-me
+    margin-top: -5px
+    margin-bottom: 0px
+    label
+      color: $text_color
+  .spaced-a-bit
+    margin-bottom: 5px
+  li.copy
+    color: #999
+    font-size: 13px
+    font-family: $typewriter
+    margin-top: 16px
+    margin-bottom: 0
+    font-weight: 100
+    text-align: center
+  form
+    li
+      position: relative
+      label.placeholder
+        color: #999
+        font-style: italic
+        font-family: Georgia, serif
+        position: absolute
+        height: 31px
+        line-height: 31px
+        text-transform: none
+        font-weight: 100
+        margin: 0
+        padding: 0 0 0 10px
+      label.error
+        font-family: $serif
+        font-size: 11px
+        font-weight: 100
+        color: $link_color
+        text-transform: none
+        margin: 0 0 5px 0
+      span
+        width: 102px
+        float: left
+        margin-right: 5px
+        position: relative
+        input[type="text"]
+          width: 87px
+      span.last
+        margin-right: 0
+      input[type="submit"]:disabled
+        background-color: #dfdfdf
+        color: #787878
+        cursor: default
+      input[type="submit"]:disabled:active
+        top: 0
+    li.filled
+      label
+        display: none
+    li.checkbox
+      label.error
+        position: absolute
+        bottom: -10px
+        padding-left: 23px
 
-	.join, .login
-		float: left
-		width: 210px
-		position: relative
-		img
-			margin: 15px 37%
-	.join
-		padding-right: 25px
-		border-right: 1px solid #ccc
-		padding-left: 5px
-	.login
-		float: right
-		padding-left: 25px
-		input[type="checkbox"]
-			float: left
-			height: 25px
-		label
-			font-weight: 600
-			color: #999
-			text-transform: uppercase
-			font-size: 12px
-			font-family:  $block
-			text-shadow:  none
+  .join, .login
+    float: left
+    width: 210px
+    position: relative
+    img
+      margin: 15px 37%
+  .join
+    padding-right: 25px
+    border-right: 1px solid #ccc
+    padding-left: 5px
+  .login
+    float: right
+    padding-left: 25px
+    input[type="checkbox"]
+      float: left
+      height: 25px
+    label
+      font-weight: 600
+      color: #999
+      text-transform: uppercase
+      font-size: 12px
+      font-family:  $block
+      text-shadow:  none
 
 #about-modal
-	.padder
-		top: 50%
-		margin-top: -300px
-	.padder, .insides
-		width: 800px
-	.insides
-		overflow: hidden
-		position: relative
-	.steps
-		color: #000
-		width: 8000px
-		height: 600px
-		@include transition(margin)
-		.step
-			width: 800px
-			height: 600px
-			float: left
-			position: relative
-			h1
-				text-align: center
-				height: 130px
-				line-height: 130px
-				font-family: $fatty
-				font-size: 32px
-				font-style: italic
-				background: $blue
-				color: #fff
-			h1
-				margin-bottom: 40px
-			section
-				padding: 0 80px
-				margin-bottom: 30px
-				&.bulleted
-					background: transparent url(../images/modals/people.png) no-repeat 38px 0
-				&.flag
-					background-image: url(../images/modals/flag.png)
-				&.star
-					background-image: url(../images/modals/star.png)
-			h3
-				font-size: 17px
-				margin-bottom: 5px
-			p
-				margin: 0
-				line-height: 1.7em
-				font-size: 15px
-			.buttons
-				position: absolute
-				bottom: 30px
-				left: 80px
-				right: 80px
-				text-align: right
-				a
-					@include button
-					background: $blue
-					padding: 3px 20px
-				span
-					position: relative
-					top: 9px
-					padding-right: 10px
-			a.prev-step
-				float: left
-			a.next-step
-				float: right
+  .padder
+    top: 50%
+    margin-top: -300px
+  .padder, .insides
+    width: 800px
+  .insides
+    overflow: hidden
+    position: relative
+  .steps
+    color: #000
+    width: 8000px
+    height: 600px
+    @include transition(margin)
+    .step
+      width: 800px
+      height: 600px
+      float: left
+      position: relative
+      h1
+        text-align: center
+        height: 130px
+        line-height: 130px
+        font-family: $fatty
+        font-size: 32px
+        font-style: italic
+        background: $blue
+        color: #fff
+      h1
+        margin-bottom: 40px
+      section
+        padding: 0 80px
+        margin-bottom: 30px
+        &.bulleted
+          background: transparent url(../images/modals/people.png) no-repeat 38px 0
+        &.flag
+          background-image: url(../images/modals/flag.png)
+        &.star
+          background-image: url(../images/modals/star.png)
+      h3
+        font-size: 17px
+        margin-bottom: 5px
+      p
+        margin: 0
+        line-height: 1.7em
+        font-size: 15px
+      .buttons
+        position: absolute
+        bottom: 30px
+        left: 80px
+        right: 80px
+        text-align: right
+        a
+          @include button
+          background: $blue
+          padding: 3px 20px
+        span
+          position: relative
+          top: 9px
+          padding-right: 10px
+      a.prev-step
+        float: left
+      a.next-step
+        float: right
 
 
 #join-modal, #login-modal
-	.insides
-		height: 280px
-		padding: 20px
-		
+  .insides
+    height: 280px
+    padding: 20px
+    
 #join-modal
-	.copy
-		width: 200px
-		float: right
-		padding-left: 25px
-		color: $text_color
+  .copy
+    width: 200px
+    float: right
+    padding-left: 25px
+    color: $text_color
 
 #login-modal
-	.padder
-		width: 250px
-	.insides
-		height: 250px
-	.login
-		padding: 0
-		margin-bottom: 15px
-	input[type="submit"]
-		margin-bottom: 8px
-	a
-		font-size: 11px
+  .padder
+    width: 250px
+  .insides
+    height: 230px
+  .login
+    padding: 0
+    margin-bottom: 15px
+  input[type="submit"]
+    margin-bottom: 8px
+  a
+    display: inline-block
+    margin-top: 5px
 
 #feedback-modal
-	.insides
-		height: 196px
-		padding: 20px
-		li.text
-			height: 90px
-		textarea
-			width: 453px
-			height: 70px
-		input[type="submit"]
-			float: right
-	.after
-		display: none
-		padding-top: 80px
-		font-size: 36px
-		font-weight: 600
-		text-transform: uppercase
-		text-align: center
-		color: $text_color
+  .insides
+    height: 196px
+    padding: 20px
+    li.text
+      height: 90px
+    textarea
+      width: 453px
+      height: 70px
+    input[type="submit"]
+      float: right
+  .after
+    display: none
+    padding-top: 80px
+    font-size: 36px
+    font-weight: 600
+    text-transform: uppercase
+    text-align: center
+    color: $text_color
 
 #about-diagram-modal
-	.padder
-		width: 722px
-		height: 414px
-		top: 50%
-		margin-top: -207px
-		padding: 10px
-		position: relative
-		background: rgba(0,0,0,0.4)
-		box-shadow: none
-		a.close
-			top: -5px
-			right: -5px
-		#hi-there
-			width: 103px
-			height: 103px
-			position: absolute
-			top: -3px
-			left: -3px
-			background: transparent url(../images/hiThereBanner.png) no-repeat 0 0
-		span
-			position: absolute
-			bottom: 17px
-			right: 17px
-			color: #777
-			width: 130px
-			font-size: 11px
-			text-align: right
+  .padder
+    width: 722px
+    height: 414px
+    top: 50%
+    margin-top: -207px
+    padding: 10px
+    position: relative
+    background: rgba(0,0,0,0.4)
+    box-shadow: none
+    a.close
+      top: -5px
+      right: -5px
+    #hi-there
+      width: 103px
+      height: 103px
+      position: absolute
+      top: -3px
+      left: -3px
+      background: transparent url(../images/hiThereBanner.png) no-repeat 0 0
+    span
+      position: absolute
+      bottom: 17px
+      right: 17px
+      color: #777
+      width: 130px
+      font-size: 11px
+      text-align: right

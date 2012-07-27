@@ -61,11 +61,6 @@ Repo::Application.routes.draw do
       get :move_down, :on => :member
       post :update_description, :on => :collection
     end
-    resources :messages do
-      collection do
-        post :public
-      end
-    end
     resources :broadcasts, :only => [:create]
     resources :comments, :only => [:create]
     
@@ -91,6 +86,10 @@ Repo::Application.routes.draw do
   end
   match '/users/:id/content_rewarded_by/:rewarder_id', :to => "users#content_rewarded_by", :as => :user_content_rewarded_by
   match '/rewards/:id/visualize', :to => "rewards#visualize",           :as => :visualize_reward
+  
+  resources :messages do
+    get :user_lookup, on: :collection
+  end
   
   match '/share/twitter_form',    :to => "sharing#twitter_form"
   match '/share/facebook_form',   :to => "sharing#facebook_form"

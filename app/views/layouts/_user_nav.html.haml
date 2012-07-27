@@ -51,6 +51,15 @@
     %li#profile.disabled
       = link_to "Your Profile", "#join-modal", :class => "tooltipped", :title => "Your Profile"
   
+  - if user_signed_in?
+    %li#messages
+      = link_to "Private Messages", messages_path, class: "tooltipped", title: "Private Messages"
+      - if current_user.unread_message_count > 0
+        .count= link_to current_user.unread_message_count, messages_path
+  - else
+    %li#messages.disabled
+      = link_to "Private Messages", "#join-modal", class: "tooltipped", title: "Private Messages"
+  
   %li#info
     = link_to "About Momeant", "#about-modal"
     %ul.subnav

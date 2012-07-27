@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120726163409) do
+ActiveRecord::Schema.define(:version => 20120727150212) do
 
   create_table "activities", :force => true do |t|
     t.integer  "actor_id"
@@ -147,6 +147,9 @@ ActiveRecord::Schema.define(:version => 20120726163409) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "profile_id"
+    t.datetime "sender_read_at"
+    t.datetime "recipient_read_at"
+    t.string   "subject"
   end
 
   create_table "page_media", :force => true do |t|

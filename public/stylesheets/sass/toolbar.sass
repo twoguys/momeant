@@ -1,201 +1,220 @@
 #header
-	position: fixed
-	top: 0
-	width: 100%
-	@include transition(top)
-	
-	#user-nav > li
-		float: left
-		height: 42px
-		position: relative
-		&:hover .subnav
-			display: block
-		.subnav
-			display: none
-			width: 120px
-			background: #222
-			position: absolute
-			top: 41px
-			left: 0
-			box-shadow: 0 1px 2px rgba(0,0,0,0.4)
-			z-index: 1
-			a
-				display: block
-				font-size: 11px
-				height: 15px
-				padding: 10px 15px
-				border-bottom: 1px solid #333
-				&:hover
-					background-color: #333
-	#user-nav > li > a
-		display: block
-		width: 25px
-		height: 25px
-		padding: 8px 4px
-		background: transparent url(../images/navigation-icons.png) no-repeat 4px 8px
-		text-indent: 42px
-		white-space: nowrap
-		overflow: hidden
-			
-	#user-nav
-		position: relative
-		z-index: 100
-		height: 42px
-		background: #000
-		box-shadow: 0 1px 2px rgba(0,0,0,0.2)
-		padding: 0 10px
-				
-		#logo
-			width: 164px
-			padding-left: 3px
-			a
-				display: block
-				width: 165px
-				height: 42px
-				padding: 0
-				text-indent: -9999px
-				background: transparent url(../images/logoWhiteSmall.png) no-repeat -9px 1px
-		
-		#feed > a
-			background-position: -29px 8px
-		#feed.disabled > a
-			background-position: -29px -32px
-		#create > a
-			background-position: -62px 8px
-		#create.disabled > a
-			background-position: -62px -32px
-		#profile > a
-			background-position: -95px 8px
-		#profile.disabled > a
-			background-position: -95px -32px
-		#info > a
-			background-position: -128px 8px
-		#profile, #info, #signin, #join
-			position: absolute
-			top: 0
-			right: 338px
-		#info
-			right: 306px
-		#signin
-			right: 378px
-		#join
-			right: 449px
-		#signin, #join
-			a
-				text-indent: 0
-				width: auto
-				background: none
-				font-size: 1.2em
-				font-weight: 600
-				text-transform: uppercase
-				padding-top: 12px
-		
-		#feed-plus-one
-			position: absolute
-			top: 35px
-			left: 3px
-			z-index: 999
-			width: 27px
-			height: 23px
-			background: transparent url(../images/navigation/feed-plus-one.png) no-repeat
-			display: none
-				
-		#coins, #pledged
-			position: absolute
-			top: 0
-			right: 380px
-			padding-top: 6px
-			height: 36px
-			.text, .amount
-				float: left
-			.text
-				margin-right: 10px
-				font-size: 10px
-				line-height: 10px
-				color: #fff
-				width: 70px
-				text-align: right
-				padding-top: 3px
-			a
-				background: none
-				display: block
-				height: 36px
-				font-family: $numerals
-				font-size: 25px
-				font-weight: 100
-				line-height: 30px
+  position: fixed
+  top: 0
+  width: 100%
+  @include transition(top)
+  
+  #user-nav > li
+    float: left
+    height: 42px
+    position: relative
+    &:hover .subnav
+      display: block
+    .subnav
+      display: none
+      width: 120px
+      background: #222
+      position: absolute
+      top: 41px
+      left: 0
+      box-shadow: 0 1px 2px rgba(0,0,0,0.4)
+      z-index: 1
+      a
+        display: block
+        font-size: 11px
+        height: 15px
+        padding: 10px 15px
+        border-bottom: 1px solid #333
+        &:hover
+          background-color: #333
+  #user-nav > li > a
+    display: block
+    width: 25px
+    height: 25px
+    padding: 8px 4px
+    background: transparent url(../images/navigation-icons.png) no-repeat 4px 8px
+    text-indent: 42px
+    white-space: nowrap
+    overflow: hidden
+      
+  #user-nav
+    position: relative
+    z-index: 100
+    height: 42px
+    background: #000
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2)
+    padding: 0 10px
+        
+    #logo
+      width: 164px
+      padding-left: 3px
+      a
+        display: block
+        width: 165px
+        height: 42px
+        padding: 0
+        text-indent: -9999px
+        background: transparent url(../images/logoWhiteSmall.png) no-repeat -9px 1px
+    
+    #feed > a
+      background-position: -29px 8px
+    #feed.disabled > a
+      background-position: -29px -32px
+    #create > a
+      background-position: -62px 8px
+    #create.disabled > a
+      background-position: -62px -32px
+    #messages > a
+      background-position: -161px 8px
+    #messages.disabled > a
+      background-position: -161px -32px
+    #profile > a
+      background-position: -95px 8px
+    #profile.disabled > a
+      background-position: -95px -32px
+    #info > a
+      background-position: -128px 8px
+    #messages
+      position: relative
+      .count
+        display: block
+        position: absolute
+        top: 6px
+        left: 20px
+        background: red
+        font-size: 12px
+        padding: 1px 3px
+        min-width: 11px
+        text-align: center
+        @include rounded(20px)
+        a
+          color: #fff
+    #profile, #info, #signin, #join
+      position: absolute
+      top: 0
+      right: 338px
+    #info
+      right: 306px
+    #signin
+      right: 378px
+    #join
+      right: 449px
+    #signin, #join
+      a
+        text-indent: 0
+        width: auto
+        background: none
+        font-size: 1.2em
+        font-weight: 600
+        text-transform: uppercase
+        padding-top: 12px
+    
+    #feed-plus-one
+      position: absolute
+      top: 35px
+      left: 3px
+      z-index: 999
+      width: 27px
+      height: 23px
+      background: transparent url(../images/navigation/feed-plus-one.png) no-repeat
+      display: none
+        
+    #coins, #pledged
+      position: absolute
+      top: 0
+      right: 380px
+      padding-top: 6px
+      height: 36px
+      .text, .amount
+        float: left
+      .text
+        margin-right: 10px
+        font-size: 10px
+        line-height: 10px
+        color: #fff
+        width: 70px
+        text-align: right
+        padding-top: 3px
+      a
+        background: none
+        display: block
+        height: 36px
+        font-family: $numerals
+        font-size: 25px
+        font-weight: 100
+        line-height: 30px
 
-		#search
-			position: absolute
-			top: 7px
-			right: 6px
-			width: 294px
-			height: 35px
-			input[type="text"], input[type="submit"]
-				background-color: #5c5c5c
-			input[type="text"]
-				height: 20px
-				width: 261px
-				padding: 3px 4px
-				font-size: 11px
-				color: #fff
-				position: absolute
-				top: 0
-				left: 0
-				border: none
-				@include rounded(0)
-			input[type="submit"]
-				height: 26px
-				width: 25px
-				position: absolute
-				top: 0
-				right: 0
-				padding: 0
-				text-indent: -9999px
-				background-image: url(../images/icons/search.png)
-				background-repeat: no-repeat
-				background-position: 50% 50%
-				@include rounded(0)
-			
+    #search
+      position: absolute
+      top: 7px
+      right: 6px
+      width: 294px
+      height: 35px
+      input[type="text"], input[type="submit"]
+        background-color: #5c5c5c
+      input[type="text"]
+        height: 20px
+        width: 261px
+        padding: 3px 4px
+        font-size: 11px
+        color: #fff
+        position: absolute
+        top: 0
+        left: 0
+        border: none
+        @include rounded(0)
+      input[type="submit"]
+        height: 26px
+        width: 25px
+        position: absolute
+        top: 0
+        right: 0
+        padding: 0
+        text-indent: -9999px
+        background-image: url(../images/icons/search.png)
+        background-repeat: no-repeat
+        background-position: 50% 50%
+        @include rounded(0)
+      
 
 #header.hide-nav
-	background: none
+  background: none
 .fullscreen .momeant-header
-	display: none
+  display: none
 
 header.hide-nav
-	background: none
-	#user-nav
-		display: none
+  background: none
+  #user-nav
+    display: none
 
 #call-to-action
-	z-index: 1
-	.insides
-		padding: 0
-		width: 100%
-		.message
-			text-align: center
-			font-family: $block
-			text-transform: uppercase
-			font-weight: 700
-			font-size: 13px
-			padding: 8px 0 7px
-			border-bottom: 1px solid $background_color
-			a
-				@include rounded(3px)
-				color: #fff
-				padding: 4px 8px 3px
-				margin-left: 10px
-				position: relative
-				top: -1px
-				font-size: 0.85em
-	.green
-		background-color: #b1e8ba
-		color: #26a13c
-		a
-			background-color: #26a13c
-	.red
-		background-color: #f6d4db
-		color: $red
-		a
-			background-color: $red
+  z-index: 1
+  .insides
+    padding: 0
+    width: 100%
+    .message
+      text-align: center
+      font-family: $block
+      text-transform: uppercase
+      font-weight: 700
+      font-size: 13px
+      padding: 8px 0 7px
+      border-bottom: 1px solid $background_color
+      a
+        @include rounded(3px)
+        color: #fff
+        padding: 4px 8px 3px
+        margin-left: 10px
+        position: relative
+        top: -1px
+        font-size: 0.85em
+  .green
+    background-color: #b1e8ba
+    color: #26a13c
+    a
+      background-color: #26a13c
+  .red
+    background-color: #f6d4db
+    color: $red
+    a
+      background-color: $red

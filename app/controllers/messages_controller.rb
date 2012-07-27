@@ -1,44 +1,61 @@
 class MessagesController < ApplicationController
-  before_filter :authenticate_user!, :find_user
+  before_filter :authenticate_user!
+  before_filter :lookup_messages, only: [:index, :show, :new]
   
-  def index
-    if @user == current_user
-      @messages = @user.received_messages.map {|m| m.parent_id.nil? ? m : Message.find(m.parent_id)}.uniq
-    else
-      @messages = @user.messages_from(current_user).where(:recipient_id => @user.id)
-    end
-    current_user.received_messages.unread.update_all(:read_at => Time.now) if @user == current_user
+  def new
+    @message = Message.new
   end
   
   def create
-    options = params[:message]
-    options.merge!({:sender_id => current_user.id})
-    options.merge!({:recipient_id => @user.id}) unless options[:recipient_id].present?
-    @message = Message.new(options)
+    @message = Message.new(params[:message])
+    @message.sender_id = current_user.id
+    @message.sender_read_at = Time.now
+    @message.recipient_read_at = Time.now if @message.parent
     if @message.save
-      if @user.send_message_notification_emails? && params[:public].empty?
+      if @message.recipient.send_message_notification_emails?
         NotificationsMailer.message_notice(@message).deliver
       end
-      render :json => {:success => true, :avatar => current_user.avatar.url(:thumbnail)}
+      if @message.parent
+        @message.parent.mark_as_unread_for(@message.recipient)
+      end
+      if params[:remote]
+        render json: {success: true, avatar: current_user.avatar.url(:thumbnail)}
+      else
+        redirect_to message_path(@message)
+      end
     else
-      render :json => {:success => true, :message => @message.errors.full_messages}
+      if params[:remote]
+        render json: {success: false, message: @message.errors.full_messages}
+      else
+        render "new"
+      end
     end
   end
   
-  def public
-    return if params[:message].nil? || params[:message][:body].blank?
-    @message = Message.create(
-      :body => params[:message][:body],
-      :sender_id => current_user.id,
-      :recipient_id => @user.id,
-      :profile_id => @user.id
-    )
-    render :partial => "users/profile_messages/message", :locals => {:message => @message}
+  def show
+    @message = Message.find(params[:id])
+    redirect_to messages_path unless @message.involves(current_user)
+    if current_user == @message.sender
+      @message.update_attribute(:sender_read_at, Time.now)
+    else
+      @message.update_attribute(:recipient_read_at, Time.now)
+    end
+    @message_list = [@message] + @message.children.order("created_at ASC")
+  end
+  
+  def user_lookup
+    @users = Sunspot.search(User) do
+      keywords params[:q]
+    end
+    @users = @users.results.map do |user|
+      { id: user.id, name: user.name, avatar: user.avatar.url(:thumbnail) }
+    end
+    render json: @users.to_json
   end
   
   private
   
-  def find_user
-    @user = User.where(:id => params[:user_id]).first
+  def lookup_messages
+    @messages = current_user.messages.order("created_at DESC")
   end
 end
