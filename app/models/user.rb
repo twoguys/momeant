@@ -54,7 +54,7 @@ class User < ActiveRecord::Base
     :order => "created_at DESC",
     :conditions => ["recipient_deleted = ?", false]
   
-  has_many :broadcasts, :order => "created_at DESC"
+  has_many :discussions, :order => "created_at DESC"
   
   has_one :editorial, :dependent => :destroy
   

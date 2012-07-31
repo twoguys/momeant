@@ -54,7 +54,9 @@ window.CommentsView = Backbone.View.extend({
       'comment[comment]': comment,
       'authenticity_token': token
     }, function(html) {
-      $form.siblings('ul.comment-list').append(html);
+      var $list = $form.siblings('ul.comment-list');
+      if ($list.hasClass('prepend')) { $list.prepend(html); }
+      else { $list.append(html); }
       Comments.increment_comment_count($form.parent().siblings('.toggle-comments'));
     });
   },

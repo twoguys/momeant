@@ -14,6 +14,8 @@ class UsersController < ApplicationController
     if @user.is_a?(Creator)
       @content = @user.created_stories.newest_first.includes(:users_who_rewarded, :comments => [:user, :reward])
       @content = @content.published unless @user == current_user
+      @discussions = @user.discussions(include: "comments")
+      @discussion = @discussions.first
     end
     
     @rewards = @user.given_rewards(:include => :story)

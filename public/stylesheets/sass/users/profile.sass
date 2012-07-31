@@ -222,6 +222,158 @@ body#users.show
             span
               display: block
 
+    #discussion-fader
+      position: fixed
+      top: 42px
+      bottom: 0
+      left: 0
+      right: 0
+      background: rgba(0,0,0,0.75)
+      z-index: 99
+    #discussion
+      &.off
+        #discussion-fader
+          display: none
+        #discussion-inner
+          height: 200px
+          overflow: hidden
+          cursor: pointer
+      &:hover
+        .add-your-reply
+          display: inline-block
+      &.on
+        .add-your-reply
+          display: none
+        #topic .comments form
+          display: block
+        #topic .show-all-topics:hover
+          opacity: 1.0
+      .module
+        overflow: hidden
+        padding: 20px
+        position: relative
+        z-index: 100
+      #discussion-inner
+        width: 1940px
+        min-height: 200px
+        margin-left: -980px
+        @include transition(margin)
+        &.empty
+          margin-left: 0
+      .when
+        font-size: 0.9em
+        color: #999
+      .action
+        display: inline-block
+        padding: 2px 6px 1px 6px
+        @include rounded(3px)
+        background: $blue
+        color: #fff
+        text-transform: uppercase
+        margin-left: 10px
+        font-size: 12px
+        position: relative
+        top: -2px
+      .add-your-reply
+        display: none
+      .fader
+        position: absolute
+        bottom: 0
+        left: 20px
+        right: 20px
+        height: 37px
+        background: transparent url(../images/profile/fade-to-white-vertical.png) repeat-x 0 0
+        z-index: 2
+      .header
+        font-size: 1.2em
+        font-weight: 600
+        margin-bottom: 0.8em
+      #topics
+        width: 960px
+        float: left
+        margin-right: 20px
+        li
+          margin-bottom: 10px
+          a
+            display: block
+            color: $text_color
+            background: #f0f0f0
+            padding: 4px 6px
+            @include rounded(3px)
+          a:hover
+            background: #444
+            color: #fff
+          span
+            display: inline-block
+          .body
+            width: 700px
+          .comments
+            margin: 0 30px 0 25px
+            padding-right: 20px
+            background: transparent url(../images/reward-modal/comments.png) no-repeat 100% 2px
+      form#new_discussion
+        display: none
+        margin-bottom: 15px
+        li
+          margin-bottom: 5px
+        label
+          font-weight: 400
+          text-transform: none
+          margin-top: 0
+        textarea
+          width: 900px
+          height: 25px
+        input[type="submit"]
+          padding: 3px 6px
+      #topic
+        width: 960px
+        float: left
+        .avatar
+          position: absolute
+          top: 0
+          left: 0
+        .show-all-topics
+          background: transparent url(../images/profile/back-arrow-bg.png) no-repeat 0 0
+          padding: 3px 6px 3px 11px
+          text-transform: uppercase
+          color: #fff
+          font-size: 13px
+          opacity: 0.7
+          position: absolute
+          top: 80px
+          left: 0
+        .summary
+          position: relative
+          padding-left: 80px
+          padding-bottom: 10px
+          width: 300px
+          float: left
+          margin-right: 30px
+        .comments
+          float: left
+          width: 550px
+          li, form
+            position: relative
+            padding-left: 50px
+            font-size: 13px
+            min-height: 40px
+            margin: 0 0 10px
+            .commenter-avatar img
+              width: 40px
+              height: 40px
+            .commenter-name
+              color: $blue
+            .text
+              color: #333
+            .metadata
+              color: #aaa
+          form
+            display: none
+          textarea
+            width: 400px
+            height: 15px
+            @include rounded(0)
+
     #work-browser, #rewards-browser
       position: relative
       padding-left: 370px

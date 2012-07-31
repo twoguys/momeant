@@ -1,0 +1,5 @@
+%li
+  %a{href: "#", topic: discussion.id}
+    %span.body= truncate(discussion.body, length: 100)
+    %span.comments= discussion.comments.size
+    %span.when #{time_ago_in_words(discussion.created_at)} ago

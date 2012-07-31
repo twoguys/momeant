@@ -1,0 +1,30 @@
+- if @user.is_a?(Creator)
+  %section#discussion.off
+    %h1 Discussion
+    #discussion-fader
+
+    .module
+      #discussion-inner{class: @discussion.nil? ? "empty" : ""}
+      
+        #topics
+          .header
+            #{@user.first_name}'s Discussion Topics
+            = link_to "+ Start a New Topic", "#", id: "new-topic-link", class: "action" if me?(@user)
+            
+          - if me?(@user)
+            = form_for Discussion.new, url: discussions_path do |form|
+              %fieldset
+                %ul
+                  %li
+                    = form.label :body, "Everyone can see it, but only your supporters can reply."
+                    = form.text_area :body
+                  %li.submit
+                    = form.submit "Post"
+            
+          %ul
+            - @discussions.each do |discussion|
+              = render partial: "discussions/discussion_summary", locals: { discussion: discussion }
+              
+    
+        #topic
+          = render partial: "discussions/discussion", locals: { discussion: @discussion } if @discussion

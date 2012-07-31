@@ -477,7 +477,7 @@ form li, .form li {
 form label, .form label {
   display: block;
   padding: 0 5px 0px 3px;
-  font-weight: 900;
+  font-weight: 600;
   line-height: 20px;
   text-shadow: 0 1px 0 white;
   font-size: 14px;
@@ -1413,6 +1413,163 @@ body#users.show {
             padding: 8px 0 0 5px; }
             body#users.show #user-profile #community #supporters-section .non-level li.more span, body#users.show #user-profile #community #supporting-section .non-level li.more span {
               display: block; }
+    body#users.show #user-profile #discussion-fader {
+      position: fixed;
+      top: 42px;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.75);
+      z-index: 99; }
+    body#users.show #user-profile #discussion.off #discussion-fader {
+      display: none; }
+    body#users.show #user-profile #discussion.off #discussion-inner {
+      height: 200px;
+      overflow: hidden;
+      cursor: pointer; }
+    body#users.show #user-profile #discussion:hover .add-your-reply {
+      display: inline-block; }
+    body#users.show #user-profile #discussion.on .add-your-reply {
+      display: none; }
+    body#users.show #user-profile #discussion.on #topic .comments form {
+      display: block; }
+    body#users.show #user-profile #discussion.on #topic .show-all-topics:hover {
+      opacity: 1; }
+    body#users.show #user-profile #discussion .module {
+      overflow: hidden;
+      padding: 20px;
+      position: relative;
+      z-index: 100; }
+    body#users.show #user-profile #discussion #discussion-inner {
+      width: 1940px;
+      min-height: 200px;
+      margin-left: -980px;
+      -webkit-transition: margin 0.2s ease-in-out;
+      -moz-transition: margin 0.2s ease-in-out;
+      -ms-transition: margin 0.2s ease-in-out;
+      -o-transition: margin 0.2s ease-in-out;
+      transition: margin 0.2s ease-in-out; }
+      body#users.show #user-profile #discussion #discussion-inner.empty {
+        margin-left: 0; }
+    body#users.show #user-profile #discussion .when {
+      font-size: 0.9em;
+      color: #999999; }
+    body#users.show #user-profile #discussion .action {
+      display: inline-block;
+      padding: 2px 6px 1px 6px;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      border-radius: 3px;
+      background: #00aeef;
+      color: white;
+      text-transform: uppercase;
+      margin-left: 10px;
+      font-size: 12px;
+      position: relative;
+      top: -2px; }
+    body#users.show #user-profile #discussion .add-your-reply {
+      display: none; }
+    body#users.show #user-profile #discussion .fader {
+      position: absolute;
+      bottom: 0;
+      left: 20px;
+      right: 20px;
+      height: 37px;
+      background: transparent url(../images/profile/fade-to-white-vertical.png) repeat-x 0 0;
+      z-index: 2; }
+    body#users.show #user-profile #discussion .header {
+      font-size: 1.2em;
+      font-weight: 600;
+      margin-bottom: 0.8em; }
+    body#users.show #user-profile #discussion #topics {
+      width: 960px;
+      float: left;
+      margin-right: 20px; }
+      body#users.show #user-profile #discussion #topics li {
+        margin-bottom: 10px; }
+        body#users.show #user-profile #discussion #topics li a {
+          display: block;
+          color: #252525;
+          background: #f0f0f0;
+          padding: 4px 6px;
+          -webkit-border-radius: 3px;
+          -moz-border-radius: 3px;
+          border-radius: 3px; }
+        body#users.show #user-profile #discussion #topics li a:hover {
+          background: #444444;
+          color: white; }
+        body#users.show #user-profile #discussion #topics li span {
+          display: inline-block; }
+        body#users.show #user-profile #discussion #topics li .body {
+          width: 700px; }
+        body#users.show #user-profile #discussion #topics li .comments {
+          margin: 0 30px 0 25px;
+          padding-right: 20px;
+          background: transparent url(../images/reward-modal/comments.png) no-repeat 100% 2px; }
+    body#users.show #user-profile #discussion form#new_discussion {
+      display: none;
+      margin-bottom: 15px; }
+      body#users.show #user-profile #discussion form#new_discussion li {
+        margin-bottom: 5px; }
+      body#users.show #user-profile #discussion form#new_discussion label {
+        font-weight: 400;
+        text-transform: none;
+        margin-top: 0; }
+      body#users.show #user-profile #discussion form#new_discussion textarea {
+        width: 900px;
+        height: 25px; }
+      body#users.show #user-profile #discussion form#new_discussion input[type="submit"] {
+        padding: 3px 6px; }
+    body#users.show #user-profile #discussion #topic {
+      width: 960px;
+      float: left; }
+      body#users.show #user-profile #discussion #topic .avatar {
+        position: absolute;
+        top: 0;
+        left: 0; }
+      body#users.show #user-profile #discussion #topic .show-all-topics {
+        background: transparent url(../images/profile/back-arrow-bg.png) no-repeat 0 0;
+        padding: 3px 6px 3px 11px;
+        text-transform: uppercase;
+        color: white;
+        font-size: 13px;
+        opacity: 0.7;
+        position: absolute;
+        top: 80px;
+        left: 0; }
+      body#users.show #user-profile #discussion #topic .summary {
+        position: relative;
+        padding-left: 80px;
+        padding-bottom: 10px;
+        width: 300px;
+        float: left;
+        margin-right: 30px; }
+      body#users.show #user-profile #discussion #topic .comments {
+        float: left;
+        width: 550px; }
+        body#users.show #user-profile #discussion #topic .comments li, body#users.show #user-profile #discussion #topic .comments form {
+          position: relative;
+          padding-left: 50px;
+          font-size: 13px;
+          min-height: 40px;
+          margin: 0 0 10px; }
+          body#users.show #user-profile #discussion #topic .comments li .commenter-avatar img, body#users.show #user-profile #discussion #topic .comments form .commenter-avatar img {
+            width: 40px;
+            height: 40px; }
+          body#users.show #user-profile #discussion #topic .comments li .commenter-name, body#users.show #user-profile #discussion #topic .comments form .commenter-name {
+            color: #00aeef; }
+          body#users.show #user-profile #discussion #topic .comments li .text, body#users.show #user-profile #discussion #topic .comments form .text {
+            color: #333333; }
+          body#users.show #user-profile #discussion #topic .comments li .metadata, body#users.show #user-profile #discussion #topic .comments form .metadata {
+            color: #aaaaaa; }
+        body#users.show #user-profile #discussion #topic .comments form {
+          display: none; }
+        body#users.show #user-profile #discussion #topic .comments textarea {
+          width: 400px;
+          height: 15px;
+          -webkit-border-radius: 0;
+          -moz-border-radius: 0;
+          border-radius: 0; }
     body#users.show #user-profile #work-browser, body#users.show #user-profile #rewards-browser {
       position: relative;
       padding-left: 370px;
