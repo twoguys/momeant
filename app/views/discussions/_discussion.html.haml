@@ -19,7 +19,7 @@
   = render partial: "discussions/comment_form", locals: { discussion: discussion }
 
   %ul.comment-list.prepend
-    = render :partial => "comments/comment", :collection => discussion.comments, :as => :comment
+    = render :partial => "comments/comment", collection: discussion.comments, as: :comment, locals: { highlight_user: discussion.user }
 
 .clear
 .fader

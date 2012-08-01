@@ -35,7 +35,7 @@
       %span.text= comment_text[1]
     .insides
       %ul.comment-list
-        = render :partial => "comments/comment", :collection => content.comments, :as => :comment
+        = render partial: "comments/comment", collection: content.comments, as: :comment, locals: { highlight_user: content.user }
       = render "comments/form", :commentable => content
     
   - if !content.published?
