@@ -4,12 +4,13 @@ body#users.show
   #user-profile
     width: 1000px
     margin: 30px auto 0
+    padding-bottom: 30px
   
     section
       margin-bottom: 30px
       h1
         font-size: 50px
-        font-weight: 600
+        font-weight: 900
         text-transform: uppercase
     
     .module
@@ -91,8 +92,8 @@ body#users.show
     
     #name
       padding-top: 5px
-      font-size: 60px
-      font-weight: 600
+      font-size: 50px
+      font-weight: 900
       text-transform: uppercase
       line-height: 50px
       span
@@ -113,9 +114,13 @@ body#users.show
         font-weight: 400
         line-height: 45px
         display: block
+        padding-right: 32px
+        background: transparent url(../images/profile/supporters-large.png) no-repeat 100% 6px
       .supporters
         background: transparent url(../images/profile/slashie.png) no-repeat 100% 100%
         padding-right: 45px
+      .supporting strong
+        background-position: 100% -55px
   
     #bio
       font-family: $typewriter
@@ -229,7 +234,7 @@ body#users.show
       left: 0
       right: 0
       background: rgba(0,0,0,0.75)
-      z-index: 99
+      z-index: 9
     #discussion
       &.off
         #discussion-fader
@@ -252,7 +257,7 @@ body#users.show
         overflow: hidden
         padding: 20px
         position: relative
-        z-index: 100
+        z-index: 10
       #discussion-inner
         width: 1940px
         min-height: 200px
@@ -462,6 +467,8 @@ body#users.show
         height: 230px
       #activity-list > li
         padding: 0
+        &:last-child
+          margin-bottom: 0
 
     #my-rewards
       margin-bottom: 0

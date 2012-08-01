@@ -872,7 +872,7 @@ body#home.index #main {
     background: #00aeef;
     color: white;
     font-size: 50px;
-    font-weight: 600;
+    font-weight: 900;
     text-transform: uppercase;
     text-align: center;
     height: 400px;
@@ -1203,12 +1203,13 @@ body#users.show {
   background: #f0f0f0; }
   body#users.show #user-profile {
     width: 1000px;
-    margin: 30px auto 0; }
+    margin: 30px auto 0;
+    padding-bottom: 30px; }
     body#users.show #user-profile section {
       margin-bottom: 30px; }
       body#users.show #user-profile section h1 {
         font-size: 50px;
-        font-weight: 600;
+        font-weight: 900;
         text-transform: uppercase; }
     body#users.show #user-profile .module {
       background: white;
@@ -1288,8 +1289,8 @@ body#users.show {
         color: white; }
     body#users.show #user-profile #name {
       padding-top: 5px;
-      font-size: 60px;
-      font-weight: 600;
+      font-size: 50px;
+      font-weight: 900;
       text-transform: uppercase;
       line-height: 50px; }
       body#users.show #user-profile #name span {
@@ -1308,10 +1309,14 @@ body#users.show {
         font-size: 50px;
         font-weight: 400;
         line-height: 45px;
-        display: block; }
+        display: block;
+        padding-right: 32px;
+        background: transparent url(../images/profile/supporters-large.png) no-repeat 100% 6px; }
       body#users.show #user-profile #support-stats .supporters {
         background: transparent url(../images/profile/slashie.png) no-repeat 100% 100%;
         padding-right: 45px; }
+      body#users.show #user-profile #support-stats .supporting strong {
+        background-position: 100% -55px; }
     body#users.show #user-profile #bio {
       font-family: "museo-slab-1", "museo-slab-2", serif;
       font-size: 16px;
@@ -1420,7 +1425,7 @@ body#users.show {
       left: 0;
       right: 0;
       background: rgba(0, 0, 0, 0.75);
-      z-index: 99; }
+      z-index: 9; }
     body#users.show #user-profile #discussion.off #discussion-fader {
       display: none; }
     body#users.show #user-profile #discussion.off #discussion-inner {
@@ -1439,7 +1444,7 @@ body#users.show {
       overflow: hidden;
       padding: 20px;
       position: relative;
-      z-index: 100; }
+      z-index: 10; }
     body#users.show #user-profile #discussion #discussion-inner {
       width: 1940px;
       min-height: 200px;
@@ -1658,6 +1663,8 @@ body#users.show {
         height: 230px; }
       body#users.show #user-profile #vertical-list #activity-list > li {
         padding: 0; }
+        body#users.show #user-profile #vertical-list #activity-list > li:last-child {
+          margin-bottom: 0; }
     body#users.show #user-profile #my-rewards {
       margin-bottom: 0; }
 
