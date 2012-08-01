@@ -2,7 +2,11 @@
   = link_to "Topics", "#", class: "show-all-topics"
 
   = image_tag discussion.user.avatar.url(:thumbnail), class: "avatar"
-  .header #{discussion.user.first_name} started the discussion with:
+  .header
+    - if discussion.topic.present?
+      = discussion.topic
+    - else
+      #{discussion.user.first_name} started the discussion with:
   .quote
     = simple_format discussion.body
     %span.when #{time_ago_in_words(discussion.created_at)} ago

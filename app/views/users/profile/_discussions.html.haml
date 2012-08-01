@@ -16,8 +16,12 @@
               %fieldset
                 %ul
                   %li
-                    = form.label :body, "Everyone can see it, but only your supporters can reply."
+                    = form.label :topic
+                    = form.text_field :topic
+                  %li
+                    = form.label :body
                     = form.text_area :body
+                    .instructions Everyone can see your discussions, but only your supporters can reply.
                   %li.submit
                     = form.submit "Post"
             

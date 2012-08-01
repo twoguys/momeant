@@ -172,12 +172,14 @@ window.DiscussionView = Backbone.View.extend({
     event.preventDefault();
     var $form = $('#new_discussion');
     
+    var topic = $form.find('#discussion_topic').val();
     var body = $form.find('#discussion_body').val();
     if ($.trim(body) == '') { return; }
     var token = $form.find('input[name="authenticity_token"]').val();
     
-    $form.find('#discussion_body').val('');
+    $form.find('#discussion_topic, #discussion_body').val('');
     $.post('/discussions', {
+      'discussion[topic]': topic,
       'discussion[body]': body,
       'authenticity_token': token
     }, function(html) {

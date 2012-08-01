@@ -1,117 +1,118 @@
 /* Form styles */
 
 form, .form
-	li
-		margin-bottom: 1.5em
-		clear: both
-		span.aside
-			display: inline-block
-			height: 3em
-			label
-				margin-left: 0.3em
-				font-size: 0.9em
-				font-weight: normal
-				padding-top: 2px
-				float: none
-				margin-top: 0
-	label
-		display: block
-		padding: 0 5px 0px 3px
-		font-weight: 600
-		line-height: 20px
-		text-shadow: 0 1px 0 #fff
-		font-size: 14px
-		text-transform: uppercase
-		width: 100%
-		margin-top: 10px
-		margin-bottom: 3px
-		.instructions
-			font-family: $serif
-			font-style: italic
-			font-size: 12px
-			color: #999
-			text-transform: lowercase
-			font-weight: 100
-			height: auto
-			padding-left: 5px
-			vertical-align: 1px
-	li.checkbox
-		input
-			float: left
-		label
-			font-weight: 600
-			font-size: 10px
-			float: left
-			width: auto
-			margin: 0
-			color: $text_color
-	input[type="text"], input[type="email"], input[type="password"], textarea
-		padding: 7px
-		font-size: 12px
-		border: 1px solid #ccc
-		background-color: #fff
-		-webkit-border-radius: 4px
-		-moz-border-radius: 4px
-		-o-border-radius: 4px
-		border-radius: 4px
-		&.error
-			background: #f7d3db
-	input[type="file"]
-		padding: 5px
-		font-size: 1.2em
-		border: 1px solid #ccc
-		background-color: #fff
-		-webkit-border-radius: 4px
-		-moz-border-radius: 4px
-		-o-border-radius: 4px
-		border-radius: 4px
-	input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus
-		outline: none
-		border: 1px solid $blue
-		&.error
-			border-color: $red
-	textarea
-		resize: none
-	.example
-		font-size: 0.9em
-		color: #888
-		padding-left: 3px
-		padding-bottom: 16px
-		margin-top: 10px
-		border-bottom: 1px solid #dedede
-	.side
-		float: left
-		margin: 0 20px 20px 0
-	.button_to
-		margin: 0 0 10px
-	.skinny
-		width: 80px
-	.sidenote
-		display: inline-block
+  li
+    margin-bottom: 1.5em
+    clear: both
+    span.aside
+      display: inline-block
+      height: 3em
+      label
+        margin-left: 0.3em
+        font-size: 0.9em
+        font-weight: normal
+        padding-top: 2px
+        float: none
+        margin-top: 0
+  label
+    display: block
+    padding: 0 5px 0px 3px
+    font-weight: 600
+    line-height: 20px
+    text-shadow: 0 1px 0 #fff
+    font-size: 14px
+    text-transform: uppercase
+    width: 100%
+    margin-top: 10px
+    margin-bottom: 3px
+  .instructions
+    font-family: $serif
+    font-style: italic
+    font-size: 12px
+    color: #999
+    font-weight: 300
+  label .instructions
+    text-transform: lowercase
+    height: auto
+    padding-left: 5px
+    vertical-align: 1px
+  li.checkbox
+    input
+      float: left
+    label
+      font-weight: 600
+      font-size: 10px
+      float: left
+      width: auto
+      margin: 0
+      color: $text_color
+  input[type="text"], input[type="email"], input[type="password"], textarea
+    padding: 7px
+    font-size: 12px
+    border: 1px solid #ccc
+    background-color: #fff
+    -webkit-border-radius: 4px
+    -moz-border-radius: 4px
+    -o-border-radius: 4px
+    border-radius: 4px
+    &.error
+      background: #f7d3db
+  input[type="file"]
+    padding: 5px
+    font-size: 1.2em
+    border: 1px solid #ccc
+    background-color: #fff
+    -webkit-border-radius: 4px
+    -moz-border-radius: 4px
+    -o-border-radius: 4px
+    border-radius: 4px
+  input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus
+    outline: none
+    border: 1px solid $blue
+    &.error
+      border-color: $red
+  textarea
+    resize: none
+  .example
+    font-size: 0.9em
+    color: #888
+    padding-left: 3px
+    padding-bottom: 16px
+    margin-top: 10px
+    border-bottom: 1px solid #dedede
+  .side
+    float: left
+    margin: 0 20px 20px 0
+  .button_to
+    margin: 0 0 10px
+  .skinny
+    width: 80px
+  .sidenote
+    display: inline-block
 
 input[type="submit"], a.button
-	position: relative
-	padding: 7px 12px
-	line-height: 1
-	border: none
-	cursor: pointer
-	background: $blue
-	@include rounded(3px)
-	color: #fff
-	font-weight: 700
-	text-transform: uppercase
-	font-family: $block
-	font-size: 13px
+  position: relative
+  padding: 7px 12px
+  line-height: 1
+  border: none
+  cursor: pointer
+  background: $blue
+  @include rounded(3px)
+  color: #fff
+  font-weight: 700
+  text-transform: uppercase
+  font-family: $block
+  font-size: 13px
 input[type="submit"]:active, a.button:active
-	top: 1px
-	box-shadow: 0 1px 2px rgba(0,0,0,0.2) inset
+  top: 1px
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2) inset
 label[for="user_remember_me"]
-	display: inline-block
-	line-height: 12px
-	width: auto
+  display: inline-block
+  line-height: 12px
+  width: auto
 a.button.green
-	background-color: $greengradient1
+  background-color: $greengradient1
 
 .freak-out
-	color: red
-	font-weight: 700
+  color: red
+  font-weight: 700
