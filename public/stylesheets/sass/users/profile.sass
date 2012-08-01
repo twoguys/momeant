@@ -328,6 +328,11 @@ body#users.show
       #topic
         width: 960px
         float: left
+        &.loading
+          min-height: 180px
+          background: transparent url(../images/spinner.gif) no-repeat 50% 50%
+          *
+            visibility: hidden
         .avatar
           position: absolute
           top: 0
@@ -349,12 +354,15 @@ body#users.show
           width: 300px
           float: left
           margin-right: 30px
+          p
+            margin: 0 0 10px
+            line-height: 1.2em
         .comments
           float: left
           width: 550px
           li, form
             position: relative
-            padding-left: 50px
+            padding: 0 0 0 50px
             font-size: 13px
             min-height: 40px
             margin: 0 0 10px

@@ -1523,6 +1523,11 @@ body#users.show {
     body#users.show #user-profile #discussion #topic {
       width: 960px;
       float: left; }
+      body#users.show #user-profile #discussion #topic.loading {
+        min-height: 180px;
+        background: transparent url(../images/spinner.gif) no-repeat 50% 50%; }
+        body#users.show #user-profile #discussion #topic.loading * {
+          visibility: hidden; }
       body#users.show #user-profile #discussion #topic .avatar {
         position: absolute;
         top: 0;
@@ -1544,12 +1549,15 @@ body#users.show {
         width: 300px;
         float: left;
         margin-right: 30px; }
+        body#users.show #user-profile #discussion #topic .summary p {
+          margin: 0 0 10px;
+          line-height: 1.2em; }
       body#users.show #user-profile #discussion #topic .comments {
         float: left;
         width: 550px; }
         body#users.show #user-profile #discussion #topic .comments li, body#users.show #user-profile #discussion #topic .comments form {
           position: relative;
-          padding-left: 50px;
+          padding: 0 0 0 50px;
           font-size: 13px;
           min-height: 40px;
           margin: 0 0 10px; }

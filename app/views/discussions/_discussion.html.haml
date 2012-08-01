@@ -4,7 +4,7 @@
   = image_tag discussion.user.avatar.url(:thumbnail), class: "avatar"
   .header #{discussion.user.first_name} started the discussion with:
   .quote
-    = discussion.body
+    = simple_format discussion.body
     %span.when #{time_ago_in_words(discussion.created_at)} ago
 
 .comments

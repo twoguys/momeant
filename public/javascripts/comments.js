@@ -3,8 +3,8 @@ window.CommentsView = Backbone.View.extend({
   el: $('body'),
 	
 	events: {
-  	'click a.toggle-comments': 'toggle_comments',
-		'keypress .comment-box': 'monitor_comment_keypress'
+  	'click a.toggle-comments':  'toggle_comments',
+		'keypress .comment-box':    'monitor_comment_keypress'
 	},
 	
 	initialize: function() {

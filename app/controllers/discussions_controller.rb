@@ -10,7 +10,7 @@ class DiscussionsController < ApplicationController
   
   def show
     discussion = Discussion.find(params[:id])
-    render partial: "discussions/discussion_summary", locals: { discussion: discussion }
+    render partial: "discussions/discussion", locals: { discussion: discussion }
   end
   
 end

@@ -148,8 +148,16 @@ window.DiscussionView = Backbone.View.extend({
     return false;
   },
   
-  goto_topic: function() {
+  goto_topic: function(event) {
+    if (!this.on) { this.enter_discussion_experience(); }
+    var $topic = $(event.currentTarget);
+    var topic_id = $topic.attr('topic');
+    var $details = $('#topic');
+    $details.addClass('loading');
     $('#discussion-inner').css('margin-left', -980);
+    $.get('/discussions/' + topic_id, function(results) {
+      $details.html(results).removeClass('loading');
+    });
     return false;
   },
   
