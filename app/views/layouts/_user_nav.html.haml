@@ -31,7 +31,7 @@
       %li#coins
         .text reward money to give out
         .amount= link_to number_to_currency(current_user.coins * Reward.dollar_exchange), coins_path
-    - if current_user.pledged_amount > 0
+    - elsif current_user.pledged_amount > 0
       %li#pledged
         .text pledged rewards
         .amount= link_to number_to_currency(current_user.pledged_amount), fund_rewards_path
