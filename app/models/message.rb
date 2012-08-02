@@ -52,4 +52,8 @@ class Message < ActiveRecord::Base
   def involves(user)
     self.recipient_id == user.id || self.sender_id == user.id
   end
+  
+  def parent_or_self
+    self.parent_id.nil? ? self : self.parent
+  end
 end
