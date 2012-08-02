@@ -982,7 +982,7 @@ body#home.index #main {
       border-radius: 5px; }
 
 body#discovery.index #bg {
-  background: black;
+  background: #f0f0f0;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -997,11 +997,11 @@ body#discovery.index #bg {
   #discovery-page section {
     padding-bottom: 40px; }
     #discovery-page section h1 {
-      font-size: 28px;
+      font-size: 32px;
       font-weight: 600;
       text-transform: uppercase;
       margin-bottom: 20px;
-      color: #777777; }
+      color: #bbbbbb; }
     #discovery-page section .list {
       display: inline-block;
       width: 100%; }
@@ -1035,9 +1035,9 @@ body#discovery.index #bg {
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
-    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
-    -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7); }
+    -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); }
   #discovery-page #current-filter {
     background: white url(../images/discovery/drop-down-arrow.png) no-repeat 96% 50%;
     cursor: pointer;
@@ -1071,11 +1071,29 @@ body#discovery.index #bg {
       display: block; }
     #discovery-page #creators a .info {
       width: 276px;
-      height: 276px; }
+      height: 276px;
+      text-align: center; }
       #discovery-page #creators a .info .name {
-        font-size: 24px;
+        font-size: 36px;
         font-weight: 600;
-        margin-bottom: 20px; }
+        line-height: 36px;
+        text-transform: uppercase; }
+        #discovery-page #creators a .info .name span {
+          display: block; }
+      #discovery-page #creators a .info .supporters {
+        display: inline-block;
+        margin: 20px 0;
+        background: black url(../images/discovery/supporters.png) no-repeat 75% 50%;
+        color: white;
+        padding: 3px 23px 3px 10px;
+        font-size: 13px;
+        -webkit-border-radius: 20px;
+        -moz-border-radius: 20px;
+        border-radius: 20px; }
+      #discovery-page #creators a .info .bio {
+        font-family: "museo-slab-1", "museo-slab-2", serif;
+        font-style: italic;
+        font-size: 15px; }
   #discovery-page #creators a:nth-child(3) {
     margin-right: 0; }
   #discovery-page #content a {
@@ -1087,11 +1105,23 @@ body#discovery.index #bg {
       display: block; }
     #discovery-page #content a .info {
       width: 440px;
-      height: 280px; }
+      height: 280px;
+      font-weight: 600; }
       #discovery-page #content a .info .title {
         font-size: 24px;
-        font-weight: 600;
-        margin-bottom: 20px; }
+        text-transform: uppercase;
+        padding-bottom: 10px;
+        border-bottom: 1px solid white;
+        margin-bottom: 10px; }
+      #discovery-page #content a .info .tags {
+        color: black;
+        font-family: "museo-slab-1", "museo-slab-2", serif;
+        font-size: 14px;
+        font-weight: 500;
+        font-style: italic;
+        position: absolute;
+        bottom: 20px;
+        left: 20px; }
   #discovery-page #content a:nth-child(even) {
     margin-right: 0; }
 
@@ -1322,8 +1352,6 @@ body#users.show {
       body#users.show #user-profile #support-stats .supporters {
         background: transparent url(../images/profile/slashie.png) no-repeat 100% 100%;
         padding-right: 45px; }
-      body#users.show #user-profile #support-stats .supporting strong {
-        background-position: 100% -55px; }
     body#users.show #user-profile #bio {
       font-family: "museo-slab-1", "museo-slab-2", serif;
       font-size: 16px;
@@ -2581,7 +2609,7 @@ body#subscriptions.index {
   .content-preview.blob.medium .inner {
     width: 220px;
     height: 100px;
-    padding: 86px 126px;
+    padding: 70px 115px 96px 140px;
     font-size: 16px; }
 
 .content-preview.blob.small {
