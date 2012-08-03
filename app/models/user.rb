@@ -122,7 +122,7 @@ class User < ActiveRecord::Base
   end
   
   def has_rewarded?(user)
-    !Reward.where(:recipient_id => self.id, :user_id => user.id).empty?
+    !Reward.where(:recipient_id => user.id, :user_id => self.id).empty?
   end
   
   def favorite_creators

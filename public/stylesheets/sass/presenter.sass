@@ -5,8 +5,8 @@ body#stories.show
   top: 0
   left: 0
   width: 100%
-  min-height: 807px
   height: 100%
+  min-height: 680px
 
 #presenter
   width: 100%
@@ -43,7 +43,6 @@ body#stories.show
       position: relative
       height: 100%
       background: #222
-      //background: rgba(0,0,0,0.85)
       z-index: 2
     #comments-view
       z-index: 1
@@ -56,6 +55,7 @@ body#stories.show
       #open-close
         height: 70px
         top: auto
+        background-position: -400px -400px
         span
           background-position: 50% 20px
           width: 300px
@@ -72,8 +72,10 @@ body#stories.show
       top: 70px
       bottom: 0
       left: 0
-      background: #222
+      background: #222 url(../images/reward-modal/vertical-reward.png) no-repeat 50% 20px
       z-index: 1
+      &:hover
+        background-color: #303030
       span
         position: fixed
         bottom: 0
@@ -150,7 +152,6 @@ body#stories.show
       width: 300px
       height: 100%
       background: #111
-      background: rgba(15,15,15,0.85)
       @include transition(right, 0.2s, ease-in-out)
       
       &.open
@@ -164,30 +165,10 @@ body#stories.show
           font-weight: 400
           color: #aaa
           padding: 20px 0
-      
-      #new-comment
-        display: none
-        
-      li
-        position: relative
-        min-height: 40px
-        padding-left: 50px
-        margin-bottom: 10px
-        font-size: 12px
-        a.commenter-avatar
-          display: block
-          width: 40px
-          height: 40px
-          position: absolute
-          top: 0
-          left: 0
-          img
-            width: 40px
-            height: 40px
-        .text
-          color: #fff
-        .metadata
-          color: #555
+        ul
+          font-size: 13px
+        form
+          margin-bottom: 10px
       
     #open-comments-tab
       position: absolute
@@ -212,56 +193,39 @@ body#stories.show
         border-top-right-radius: 3px
         border-bottom-right-radius: 3px
     
-    .your-stuff
+    #your-work
       text-align: center
       margin-bottom: 30px
       font-size: 20px
     
+    #your-work, #over-threshold
+      padding: 45px
+      
     #reward-actions
       background: #303030
       position: relative
       z-index: 2
-      padding: 45px
-      #open-reward-stats
+      height: 395px
+      #why-you-reward
         color: #ccc
-        em
-          font-family: $typewriter
-          font-size: 12px
-        strong
-          font-size: 24px
-        .people
-          background-position: 100% 6px
-      
-    #steps
-      width: 220px
-      height: 32px
-      background: transparent url(../images/reward-modal/steps-bg.png) no-repeat 30px 9px
-      margin: 0 auto 40px
-      li
-        width: 31px
-        height: 31px
-        float: left
-        background: transparent url(../images/reward-modal/step-icons.png) no-repeat 0 -30px
-        margin-right: 63px
-        &:last-child
-          margin-right: 0
-        &.active
-          background-position: 0 0
-        &.reward, &.comment
-          cursor: pointer
-        &.comment
-          background-position: -31px -30px
-        &.comment.active
-          background-position: -31px 0
-        &.promote
-          background-position: -62px -30px
-        &.promote.active
-          background-position: -62px 0
+        font-family: $typewriter
+        font-size: 12px
+        p
+          margin: 0 0 10px
+          line-height: 1.3em
+        abbr
+          color: $blue
+          border-bottom: 1px dotted $blue
+          cursor: help
     
     #current-step
-      height: 240px
+      height: 305px
+      padding: 45px
+      position: relative
+      background: #303030
+      z-index: 2
       &.loading
-        background: transparent url(../images/spinnerDarkGrey.gif) no-repeat 50% 80px
+        background: #303030 url(../images/spinnerDarkGrey.gif) no-repeat 50% 80px
         *
           display: none
       header
@@ -276,8 +240,11 @@ body#stories.show
         line-height: 30px
         text-transform: uppercase
         margin: 0
+      form
+        margin-bottom: 20px
     
     #amounts
+      z-index: 2
       position: relative
       text-align: center
       #reward-join-button
@@ -299,7 +266,7 @@ body#stories.show
       ul
         width: 122px
         height: 122px
-        margin: 0 auto 5px
+        margin: 0 auto 15px
         li
           width: 56px
           float: left
@@ -328,6 +295,69 @@ body#stories.show
           background-color: $blue
           border-color: #264d5b
           color: #fff
+      #give-reward
+        display: inline-block
+        opacity: 0
+    
+    #amounts-helper
+      z-index: 1
+      width: 220px
+      height: 355px
+      padding: 20px
+      background: #303030
+      color: #fff
+      border-left: 1px solid #222
+      position: absolute
+      top: 0
+      right: -261px
+      -webkit-border-top-right-radius: 3px
+      -webkit-border-bottom-right-radius: 3px
+      -moz-border-radius-topright: 3px
+      -moz-border-radius-bottomright: 3px
+      border-top-right-radius: 3px
+      border-bottom-right-radius: 3px
+      @include transition(right)
+      &.closed
+        right: 0
+      h3
+        font-weight: 400
+        text-transform: uppercase
+        color: #777
+        margin-bottom: 10px
+      li
+        float: left
+        clear: none
+        width: 60px
+        margin: 0 10px 10px 0
+        position: relative
+        &:nth-child(3n)
+          margin-right: 0
+        img
+          width: 40px
+          height: 40px
+        .badge
+          width: 16px
+          height: 16px
+          background: transparent url(../images/reward-modal/gold-silver-bronze.png) no-repeat 0 0
+          position: absolute
+          top: -5px
+          left: 30px
+          &.silver
+            background-position: -27px 0
+          &.bronze
+            background-position: -53px 0
+        .rewarded
+          display: inline-block
+          font-size: 13px
+      #recent-reward-amounts
+        clear: both
+        li
+          float: none
+          width: 100%
+          margin: 0 0 2px
+        .rewarded
+          display: inline-block
+          width: 50px
     
     #comment
       display: none
@@ -341,6 +371,26 @@ body#stories.show
         display: block
         margin-left: 48px
     
+    #after-reward
+      width: 256px
+      margin: -23px -23px 0
+    
+    #creator-thank-you
+      font-size: 15px
+      margin-bottom: 20px
+      p
+        background: #444
+        padding: 5px 10px
+        @include rounded
+        font-family: $typewriter
+        line-height: 1.5em
+        margin: 0 0 10px
+        .quote
+          display: inline-block
+      .from
+        text-align: right
+          
+    
     #promote
       #copy-paste
         font-size: 13px
@@ -353,17 +403,17 @@ body#stories.show
         @include rounded(3px)
         font-family: $block
         font-size: 12px
-        margin-bottom: 10px
+        margin-top: 5px
       #sharing-buttons
         a
-          display: block
+          display: inline-block
           width: 123px
           height: 40px
           background: transparent url(../images/reward-modal/share-buttons.png) no-repeat 0 0
-          margin: 0 auto 5px
           text-indent: -9999px
         #share-with-facebook
           background-position: 0 -43px
+          margin-left: 5px
     
     #more
       display: none

@@ -1,18 +1,13 @@
 - if current_user == @story.user
-  .your-stuff
+  #your-work
     Nice work! This is where everyone else can reward you.
 - else
   - if current_user && !current_user.is_under_pledged_rewards_stop_threshold?
-    .over-threshold
-      %h3 We need you to fund your previous rewards before giving out more.
-      %p You have #{number_to_currency(current_user.pledged_amount)} in rewards that need to be funded, first. You can do that here.
-      %p Once you've paid for those, you can continue rewarding.
+    #over-threshold
+      %p You have pledged #{number_to_currency(current_user.pledged_amount)} in rewards. That's awesome!
+      %p But we need you to pay for those rewards before rewarding more. You can do that #{link_to "here", fund_rewards_path}.
+      %p Thank you for your support!
   - else
-
-    %ul#steps
-      %li.reward.active.tooltipped-n{:title => "1. Reward"}
-      %li.comment.tooltipped-n{:title => "2. Comment"}
-      %li.promote.tooltipped-n{:title => "3. Promote"}
     
     #current-step
       = form_for :reward, :url => user_rewards_path(@story.user), :html => {:id => "reward-form"} do |form|
@@ -23,7 +18,7 @@
         #amounts
           %header
             %h1 Reward
-            #{@story.user.first_name} for their work:
+            #{@story.user.first_name} for this work:
 
           - if current_user
             %ul
@@ -32,23 +27,24 @@
               %li= link_to "$10", "#", :amount => 10.0
               %li.custom= text_field_tag :custom_amount, "$"
             = form.hidden_field :amount
-            = link_to "Next &rarr;".html_safe, "#", :id => "goto-comment", :class => "button"
+            = link_to "Give Reward", "#", :id => "give-reward", :class => "button"
             
             #invalid-reward-amount
             
           - else
             = link_to "Join our community!", "#join-modal", :id => "reward-join-button", :class => "button"
             #reward-login-link= link_to "Already have an account? Log in.", "#login-modal"
-          
-        #comment
-          %header
-            %h1 Comment
-            on why you're rewarding this:
-          = form.text_area :comment, :placeholder => "Tell the Momeant community why you stand behind this content..."
-          = form.submit "Give Reward"
     
-#open-reward-stats.reward-stats
-  %em this content has been rewarded
-  %strong= number_to_currency(@story.reward_count)
-  %span from
-  %strong.people= @story.users_who_rewarded.count
+      #why-you-reward
+        %p
+          - if current_user
+            %span Rewarding this work will allow you to comment on it and share it with others to gain
+            %abbr.tooltipped-n{title: "Impact = rewards you give + the rewards others give after you share it."} impact.
+          - else
+            %span Momeant is all about supporting and connecting with people who do great work online.
+            %br
+            %br
+            %span By supporting #{@story.user.first_name}, you build a valuable relationship and help them to create more great work.
+            %br
+            %br
+            = link_to "Read what we're about.", "#about-modal"

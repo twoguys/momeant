@@ -1,35 +1,41 @@
-#promote
-  %header
-    %h1 Promote
-    %span &amp; have a greater
-    %abbr#what-is-impact impact!
-    .hidden
-      #what-is-impact-modal
-
-  #copy-paste
-    Share #{@story.user.first_name}'s content with others:
-    %form= text_field_tag :url_to_share, story_url(@story, :impacted_by => @reward.id), :readonly => true
-
-  #sharing-buttons
-    = link_to "Share on Twitter", "#twitter-sharing", :id => "share-with-twitter"
-    = link_to "Share on Facebook", "#facebook-sharing", :id => "share-with-facebook"
+#after-reward
+  #creator-thank-you
+    %p
+      %span.quote
+      %span
+        - if @story.thankyou.present?
+          = @story.thankyou
+        - elsif @story.user.thankyou.present?
+          = @story.user.thankyou
+        - else
+          Thank you so much for your support! You allow me to continue doing what I love.
+    .from= "- #{@story.user.first_name}"
     
-  .hidden
-    #twitter-sharing
-      - if @twitter_configured
-        = render "rewards/modal/twitter_sharing"
-      - else
-        .not-configured
-          %span Want to share this with your Twitter followers?
-          = link_to("Launch Twitter Configuration", "#{root_url}auth/twitter", :id => "configure-twitter")
+  #promote
+    #copy-paste
+      Share #{@story.user.first_name}'s work with others:
+      %form= text_field_tag :url_to_share, story_url(@story, :impacted_by => @reward.id), :readonly => true
 
-    #facebook-sharing
-      - if @facebook_configured
-        = render "rewards/modal/facebook_sharing"
-      - else
-        .not-configured
-          %span Want to share this with your Facebook friends?
-          = link_to("Launch Facebook Configuration", "#{root_url}auth/facebook", :id => "configure-facebook")
+    #sharing-buttons
+      = link_to "Share on Twitter", "#twitter-sharing", :id => "share-with-twitter"
+      = link_to "Share on Facebook", "#facebook-sharing", :id => "share-with-facebook"
+    
+    .hidden
+      #twitter-sharing
+        - if @twitter_configured
+          = render "rewards/modal/twitter_sharing"
+        - else
+          .not-configured
+            %span Want to share this with your Twitter followers?
+            = link_to("Launch Twitter Configuration", "#{root_url}auth/twitter", :id => "configure-twitter")
+
+      #facebook-sharing
+        - if @facebook_configured
+          = render "rewards/modal/facebook_sharing"
+        - else
+          .not-configured
+            %span Want to share this with your Facebook friends?
+            = link_to("Launch Facebook Configuration", "#{root_url}auth/facebook", :id => "configure-facebook")
 
 :javascript
   mpq.track('Rewarded Content', {story_id: '#{@story.id}', mp_note: '#{@reward.amount}', amount: #{@reward.amount}});

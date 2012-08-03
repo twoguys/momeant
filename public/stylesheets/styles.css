@@ -2100,7 +2100,7 @@ body#users.patronage #vertical-list .creator {
     display: none; }
   #creator-signup #creator-info #upload .example, #creator-signup #creator-payment #upload .example {
     border: none; }
-#creator-signup #creator-info #work textarea, #creator-signup #creator-payment #work textarea {
+#creator-signup #creator-info .longtext textarea, #creator-signup #creator-payment .longtext textarea {
   width: 97%;
   height: 50px; }
 
@@ -4932,8 +4932,8 @@ body#stories.show {
   top: 0;
   left: 0;
   width: 100%;
-  min-height: 807px;
-  height: 100%; }
+  height: 100%;
+  min-height: 680px; }
 
 #presenter {
   width: 100%;
@@ -4979,7 +4979,8 @@ body#stories.show {
       width: 300px; }
       #presenter #reward-modal.open #open-close {
         height: 70px;
-        top: auto; }
+        top: auto;
+        background-position: -400px -400px; }
         #presenter #reward-modal.open #open-close span {
           background-position: 50% 20px;
           width: 300px;
@@ -4994,8 +4995,10 @@ body#stories.show {
       top: 70px;
       bottom: 0;
       left: 0;
-      background: #222222;
+      background: #222222 url(../images/reward-modal/vertical-reward.png) no-repeat 50% 20px;
       z-index: 1; }
+      #presenter #reward-modal #open-close:hover {
+        background-color: #303030; }
       #presenter #reward-modal #open-close span {
         position: fixed;
         bottom: 0;
@@ -5071,7 +5074,6 @@ body#stories.show {
       width: 300px;
       height: 100%;
       background: #111111;
-      background: rgba(15, 15, 15, 0.85);
       -webkit-transition: right 0.2s ease-in-out;
       -moz-transition: right 0.2s ease-in-out;
       -ms-transition: right 0.2s ease-in-out;
@@ -5087,28 +5089,10 @@ body#stories.show {
           font-weight: 400;
           color: #aaaaaa;
           padding: 20px 0; }
-      #presenter #reward-modal #comments-view #new-comment {
-        display: none; }
-      #presenter #reward-modal #comments-view li {
-        position: relative;
-        min-height: 40px;
-        padding-left: 50px;
-        margin-bottom: 10px;
-        font-size: 12px; }
-        #presenter #reward-modal #comments-view li a.commenter-avatar {
-          display: block;
-          width: 40px;
-          height: 40px;
-          position: absolute;
-          top: 0;
-          left: 0; }
-          #presenter #reward-modal #comments-view li a.commenter-avatar img {
-            width: 40px;
-            height: 40px; }
-        #presenter #reward-modal #comments-view li .text {
-          color: white; }
-        #presenter #reward-modal #comments-view li .metadata {
-          color: #555555; }
+        #presenter #reward-modal #comments-view #comments-list ul {
+          font-size: 13px; }
+        #presenter #reward-modal #comments-view #comments-list form {
+          margin-bottom: 10px; }
     #presenter #reward-modal #open-comments-tab {
       position: absolute;
       top: 20px;
@@ -5131,53 +5115,36 @@ body#stories.show {
         -moz-border-radius-bottomright: 3px;
         border-top-right-radius: 3px;
         border-bottom-right-radius: 3px; }
-    #presenter #reward-modal .your-stuff {
+    #presenter #reward-modal #your-work {
       text-align: center;
       margin-bottom: 30px;
       font-size: 20px; }
+    #presenter #reward-modal #your-work, #presenter #reward-modal #over-threshold {
+      padding: 45px; }
     #presenter #reward-modal #reward-actions {
       background: #303030;
       position: relative;
       z-index: 2;
-      padding: 45px; }
-      #presenter #reward-modal #reward-actions #open-reward-stats {
-        color: #cccccc; }
-        #presenter #reward-modal #reward-actions #open-reward-stats em {
-          font-family: "museo-slab-1", "museo-slab-2", serif;
-          font-size: 12px; }
-        #presenter #reward-modal #reward-actions #open-reward-stats strong {
-          font-size: 24px; }
-        #presenter #reward-modal #reward-actions #open-reward-stats .people {
-          background-position: 100% 6px; }
-    #presenter #reward-modal #steps {
-      width: 220px;
-      height: 32px;
-      background: transparent url(../images/reward-modal/steps-bg.png) no-repeat 30px 9px;
-      margin: 0 auto 40px; }
-      #presenter #reward-modal #steps li {
-        width: 31px;
-        height: 31px;
-        float: left;
-        background: transparent url(../images/reward-modal/step-icons.png) no-repeat 0 -30px;
-        margin-right: 63px; }
-        #presenter #reward-modal #steps li:last-child {
-          margin-right: 0; }
-        #presenter #reward-modal #steps li.active {
-          background-position: 0 0; }
-        #presenter #reward-modal #steps li.reward, #presenter #reward-modal #steps li.comment {
-          cursor: pointer; }
-        #presenter #reward-modal #steps li.comment {
-          background-position: -31px -30px; }
-        #presenter #reward-modal #steps li.comment.active {
-          background-position: -31px 0; }
-        #presenter #reward-modal #steps li.promote {
-          background-position: -62px -30px; }
-        #presenter #reward-modal #steps li.promote.active {
-          background-position: -62px 0; }
+      height: 395px; }
+      #presenter #reward-modal #reward-actions #why-you-reward {
+        color: #cccccc;
+        font-family: "museo-slab-1", "museo-slab-2", serif;
+        font-size: 12px; }
+        #presenter #reward-modal #reward-actions #why-you-reward p {
+          margin: 0 0 10px;
+          line-height: 1.3em; }
+        #presenter #reward-modal #reward-actions #why-you-reward abbr {
+          color: #00aeef;
+          border-bottom: 1px dotted #00aeef;
+          cursor: help; }
     #presenter #reward-modal #current-step {
-      height: 240px; }
+      height: 305px;
+      padding: 45px;
+      position: relative;
+      background: #303030;
+      z-index: 2; }
       #presenter #reward-modal #current-step.loading {
-        background: transparent url(../images/spinnerDarkGrey.gif) no-repeat 50% 80px; }
+        background: #303030 url(../images/spinnerDarkGrey.gif) no-repeat 50% 80px; }
         #presenter #reward-modal #current-step.loading * {
           display: none; }
       #presenter #reward-modal #current-step header {
@@ -5192,7 +5159,10 @@ body#stories.show {
         line-height: 30px;
         text-transform: uppercase;
         margin: 0; }
+      #presenter #reward-modal #current-step form {
+        margin-bottom: 20px; }
     #presenter #reward-modal #amounts {
+      z-index: 2;
       position: relative;
       text-align: center; }
       #presenter #reward-modal #amounts #reward-join-button {
@@ -5218,7 +5188,7 @@ body#stories.show {
       #presenter #reward-modal #amounts ul {
         width: 122px;
         height: 122px;
-        margin: 0 auto 5px; }
+        margin: 0 auto 15px; }
         #presenter #reward-modal #amounts ul li {
           width: 56px;
           float: left;
@@ -5253,6 +5223,72 @@ body#stories.show {
           background-color: #00aeef;
           border-color: #264d5b;
           color: white; }
+      #presenter #reward-modal #amounts #give-reward {
+        display: inline-block;
+        opacity: 0; }
+    #presenter #reward-modal #amounts-helper {
+      z-index: 1;
+      width: 220px;
+      height: 355px;
+      padding: 20px;
+      background: #303030;
+      color: white;
+      border-left: 1px solid #222222;
+      position: absolute;
+      top: 0;
+      right: -261px;
+      -webkit-border-top-right-radius: 3px;
+      -webkit-border-bottom-right-radius: 3px;
+      -moz-border-radius-topright: 3px;
+      -moz-border-radius-bottomright: 3px;
+      border-top-right-radius: 3px;
+      border-bottom-right-radius: 3px;
+      -webkit-transition: right 0.2s ease-in-out;
+      -moz-transition: right 0.2s ease-in-out;
+      -ms-transition: right 0.2s ease-in-out;
+      -o-transition: right 0.2s ease-in-out;
+      transition: right 0.2s ease-in-out; }
+      #presenter #reward-modal #amounts-helper.closed {
+        right: 0; }
+      #presenter #reward-modal #amounts-helper h3 {
+        font-weight: 400;
+        text-transform: uppercase;
+        color: #777777;
+        margin-bottom: 10px; }
+      #presenter #reward-modal #amounts-helper li {
+        float: left;
+        clear: none;
+        width: 60px;
+        margin: 0 10px 10px 0;
+        position: relative; }
+        #presenter #reward-modal #amounts-helper li:nth-child(3n) {
+          margin-right: 0; }
+        #presenter #reward-modal #amounts-helper li img {
+          width: 40px;
+          height: 40px; }
+        #presenter #reward-modal #amounts-helper li .badge {
+          width: 16px;
+          height: 16px;
+          background: transparent url(../images/reward-modal/gold-silver-bronze.png) no-repeat 0 0;
+          position: absolute;
+          top: -5px;
+          left: 30px; }
+          #presenter #reward-modal #amounts-helper li .badge.silver {
+            background-position: -27px 0; }
+          #presenter #reward-modal #amounts-helper li .badge.bronze {
+            background-position: -53px 0; }
+        #presenter #reward-modal #amounts-helper li .rewarded {
+          display: inline-block;
+          font-size: 13px; }
+      #presenter #reward-modal #amounts-helper #recent-reward-amounts {
+        clear: both; }
+        #presenter #reward-modal #amounts-helper #recent-reward-amounts li {
+          float: none;
+          width: 100%;
+          margin: 0 0 2px; }
+        #presenter #reward-modal #amounts-helper #recent-reward-amounts .rewarded {
+          display: inline-block;
+          width: 50px; }
     #presenter #reward-modal #comment {
       display: none; }
       #presenter #reward-modal #comment textarea {
@@ -5266,6 +5302,25 @@ body#stories.show {
       #presenter #reward-modal #comment input[type="submit"] {
         display: block;
         margin-left: 48px; }
+    #presenter #reward-modal #after-reward {
+      width: 256px;
+      margin: -23px -23px 0; }
+    #presenter #reward-modal #creator-thank-you {
+      font-size: 15px;
+      margin-bottom: 20px; }
+      #presenter #reward-modal #creator-thank-you p {
+        background: #444444;
+        padding: 5px 10px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        font-family: "museo-slab-1", "museo-slab-2", serif;
+        line-height: 1.5em;
+        margin: 0 0 10px; }
+        #presenter #reward-modal #creator-thank-you p .quote {
+          display: inline-block; }
+      #presenter #reward-modal #creator-thank-you .from {
+        text-align: right; }
     #presenter #reward-modal #promote #copy-paste {
       font-size: 13px;
       color: #aaaaaa;
@@ -5279,16 +5334,16 @@ body#stories.show {
       border-radius: 3px;
       font-family: "proxima-nova-1", "proxima-nova-2", helvetica, sans-serif;
       font-size: 12px;
-      margin-bottom: 10px; }
+      margin-top: 5px; }
     #presenter #reward-modal #promote #sharing-buttons a {
-      display: block;
+      display: inline-block;
       width: 123px;
       height: 40px;
       background: transparent url(../images/reward-modal/share-buttons.png) no-repeat 0 0;
-      margin: 0 auto 5px;
       text-indent: -9999px; }
     #presenter #reward-modal #promote #sharing-buttons #share-with-facebook {
-      background-position: 0 -43px; }
+      background-position: 0 -43px;
+      margin-left: 5px; }
     #presenter #reward-modal #more {
       display: none;
       border-top: 1px solid white;
