@@ -118,7 +118,7 @@ $(function() {
 		},
 		
 		close_reward_modal: function() {
-			RewardModal.close_modal();
+			RewardModal.toggle_modal();
 		},
 		
 		goto_page_in_url_or_default: function() {
@@ -160,11 +160,12 @@ $(function() {
 		
 		initialize: function() {
 			this.modal_open = false;
-			this.setup_key_bindings();
-			this.setup_custom_reward_amount_monitoring();
 			this.editing_text = false;
 			this.reward_submitted = false;
 			this.comments_open = false;
+			
+			this.setup_key_bindings();
+			this.setup_custom_reward_amount_monitoring();
 		},
 		
 		open_modal: function() {
@@ -183,10 +184,14 @@ $(function() {
 		},
 		
 		toggle_modal: function() {
-			if (this.modal_open) {
-				this.close_modal();
+		  if (RewardModal.modal_open) {
+		    if (RewardModal.comments_open) {
+		      RewardModal.toggle_comments();
+		    } else {
+		      RewardModal.close_modal();
+		    }
 			} else {
-				this.open_modal();
+				RewardModal.open_modal();
 			}
 			return false;
 		},
@@ -430,6 +435,7 @@ $(function() {
 		  $comments.toggleClass('open');
 		  RewardModal.toggle_reward_hints();
 		  RewardModal.comments_open = !RewardModal.comments_open;
+		  console.log(RewardModal.comments_open);
 		  return false;
 		},
 		
