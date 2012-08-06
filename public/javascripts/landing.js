@@ -3,8 +3,9 @@ window.LandingView = Backbone.View.extend({
 	el: $('body'),
 	
 	events: {
-	  'click #previous':    'previous_slide',
-	  'click #next':        'next_slide'
+	  'click #previous':          'previous_slide',
+	  'click #next':              'next_slide',
+	  'click #continue-downward': 'continue_downward'
 	},
 	
 	initialize: function() {
@@ -51,6 +52,11 @@ window.LandingView = Backbone.View.extend({
 	  } else if (this.current_slide == 6) {
 	    $('#next').addClass('inactive');
 	  }
+	},
+	
+	continue_downward: function() {
+	  $.scrollTo(660,300);
+	  return false;
 	},
 	
 	on_keypress: function(event) {
