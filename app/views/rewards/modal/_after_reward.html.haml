@@ -4,21 +4,24 @@
       %span.quote
       %span
         - if @story.thankyou.present?
-          = @story.thankyou
+          = truncate(@story.thankyou, length: 200)
         - elsif @story.user.thankyou.present?
-          = @story.user.thankyou
+          = truncate(@story.user.thankyou, length: 200)
         - else
           Thank you so much for your support! You allow me to continue doing what I love.
     .from= "- #{@story.user.first_name}"
     
   #promote
     #copy-paste
-      Share #{@story.user.first_name}'s work with others:
+      Share #{@story.user.first_name}'s work with others.
       %form= text_field_tag :url_to_share, story_url(@story, :impacted_by => @reward.id), :readonly => true
 
     #sharing-buttons
       = link_to "Share on Twitter", "#twitter-sharing", :id => "share-with-twitter"
       = link_to "Share on Facebook", "#facebook-sharing", :id => "share-with-facebook"
+    
+    #why-share
+      You gain impact for each reward you help promote, which increases your status in #{@story.user.first_name}'s community.
     
     .hidden
       #twitter-sharing

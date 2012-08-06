@@ -490,12 +490,14 @@ form .instructions, .form .instructions {
   font-style: italic;
   font-size: 12px;
   color: #999999;
-  font-weight: 300; }
+  font-weight: 300;
+  margin-bottom: 0.3em; }
 form label .instructions, .form label .instructions {
   text-transform: lowercase;
   height: auto;
   padding-left: 5px;
-  vertical-align: 1px; }
+  vertical-align: 1px;
+  margin-bottom: 0; }
 form li.checkbox input, .form li.checkbox input {
   float: left; }
 form li.checkbox label, .form li.checkbox label {
@@ -5139,6 +5141,11 @@ body#stories.show {
       font-size: 20px; }
     #presenter #reward-modal #your-work, #presenter #reward-modal #over-threshold {
       padding: 45px; }
+    #presenter #reward-modal #over-threshold {
+      font-size: 1.2em; }
+      #presenter #reward-modal #over-threshold p {
+        margin-top: 0;
+        line-height: 1.5em; }
     #presenter #reward-modal #reward-actions {
       background: #303030;
       position: relative;
@@ -5268,6 +5275,17 @@ body#stories.show {
       transition: right 0.2s ease-in-out; }
       #presenter #reward-modal #amounts-helper.closed {
         right: 0; }
+      #presenter #reward-modal #amounts-helper #amounts-explanation {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: #555555;
+        padding: 1px 6px;
+        font-size: 13px;
+        -webkit-border-radius: 20px;
+        -moz-border-radius: 20px;
+        border-radius: 20px;
+        cursor: help; }
       #presenter #reward-modal #amounts-helper h3 {
         font-weight: 400;
         text-transform: uppercase;
@@ -5358,10 +5376,17 @@ body#stories.show {
       width: 123px;
       height: 40px;
       background: transparent url(../images/reward-modal/share-buttons.png) no-repeat 0 0;
-      text-indent: -9999px; }
+      text-indent: -9999px;
+      opacity: 0.9; }
+      #presenter #reward-modal #promote #sharing-buttons a:hover {
+        opacity: 1; }
     #presenter #reward-modal #promote #sharing-buttons #share-with-facebook {
       background-position: 0 -43px;
       margin-left: 5px; }
+    #presenter #reward-modal #promote #why-share {
+      font-size: 13px;
+      color: #aaaaaa;
+      margin-top: 10px; }
     #presenter #reward-modal #more {
       display: none;
       border-top: 1px solid white;

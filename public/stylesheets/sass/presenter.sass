@@ -200,6 +200,12 @@ body#stories.show
     
     #your-work, #over-threshold
       padding: 45px
+    
+    #over-threshold
+      font-size: 1.2em
+      p
+        margin-top: 0
+        line-height: 1.5em
       
     #reward-actions
       background: #303030
@@ -319,6 +325,15 @@ body#stories.show
       @include transition(right)
       &.closed
         right: 0
+      #amounts-explanation
+        position: absolute
+        top: 20px
+        right: 20px
+        background: #555
+        padding: 1px 6px
+        font-size: 13px
+        @include rounded(20px)
+        cursor: help
       h3
         font-weight: 400
         text-transform: uppercase
@@ -414,6 +429,10 @@ body#stories.show
         #share-with-facebook
           background-position: 0 -43px
           margin-left: 5px
+      #why-share
+        font-size: 13px
+        color: #aaa
+        margin-top: 10px
     
     #more
       display: none

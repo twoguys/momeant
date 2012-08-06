@@ -5,7 +5,7 @@
   - if current_user && !current_user.is_under_pledged_rewards_stop_threshold?
     #over-threshold
       %p You have pledged #{number_to_currency(current_user.pledged_amount)} in rewards. That's awesome!
-      %p But we need you to pay for those rewards before rewarding more. You can do that #{link_to "here", fund_rewards_path}.
+      %p But we need you to pay for those rewards before rewarding more. That way we can pay the creators you've supported. You can do that #{link_to "here", fund_rewards_path}.
       %p Thank you for your support!
   - else
     
@@ -39,12 +39,9 @@
         %p
           - if current_user
             %span Rewarding this work will allow you to comment on it and share it with others to gain
-            %abbr.tooltipped-n{title: "Impact = rewards you give + the rewards others give after you share it."} impact.
+            %abbr.tooltipped-n{title: "Impact = the rewards you give + the rewards others give when you share someone's work."} impact.
           - else
-            %span Momeant is all about supporting and connecting with people who do great work online.
+            %span You've stumbled onto Momeant, welcome! Momeant's mission is to build a creative economy on the Web, where creators of content can make a living like everyone else.
             %br
             %br
-            %span By supporting #{@story.user.first_name}, you build a valuable relationship and help them to create more great work.
-            %br
-            %br
-            = link_to "Read what we're about.", "#about-modal"
+            %span We have a vision of voluntary support in exchange for connection, recognition, and free content. Learn more by clicking the Momeant logo up top.

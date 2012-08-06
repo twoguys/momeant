@@ -29,8 +29,14 @@
               
             %section.longtext
               %h2 Write a custom thank you
-              %div We show this to someone after they reward you
+              .instructions We show this to someone after they reward you.
               = form.text_area :thankyou
+              .limit
+                %span You have
+                %span#thankyou-limit 200
+                %span characters left.
+              :javascript
+                $('#user_thankyou').limit('200','#thankyou-limit');
 
             %section
               %h2 What is your Occupation (optional)?
