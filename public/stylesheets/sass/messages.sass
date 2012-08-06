@@ -12,6 +12,13 @@ body#messages
   #main
     max-width: 100%
     margin: 0
+  
+  #flash
+    position: absolute
+    top: 42px
+    left: 351px
+    right: 0
+    width: auto
 
 #messages-page
   
@@ -114,8 +121,9 @@ body#messages
       &.loading
         background: #fff url(../images/spinner.gif) no-repeat 5px 5px
     .token-input-list-facebook
-      li.token-input-input-token-facebook
-        margin: 0
+      height: 30px !important
+      li.token-input-token-facebook
+        margin: 3px
       input[type="text"]:focus
         border: none
         @include rounded(0)

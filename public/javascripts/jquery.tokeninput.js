@@ -107,7 +107,7 @@ var methods = {
         return this;
     },
     add: function(item) {
-        this.data("tokenInputObject").add(item);
+        $(this).data("tokenInputObject").add(item);
         return this;
     },
     remove: function(item) {

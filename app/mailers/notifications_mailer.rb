@@ -8,7 +8,7 @@ class NotificationsMailer < ActionMailer::Base
   
   def reward_notice(reward)
     @reward = reward
-    @messaging_url = messages_url
+    @messaging_url = new_message_url(user: @reward.user_id)
     @user_for_email_settings = @reward.recipient
     
     mail :to => @reward.recipient.email, :subject => "You were just rewarded on Momeant!"
