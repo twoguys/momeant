@@ -155,6 +155,7 @@ $(function() {
 			'keyup #custom_amount':           'cleanse_reward_amount',
   		'blur #custom_amount':            'stop_choosing_custom',
   		'click #give-reward':             'submit_reward',
+  		'submit #reward-form':            'submit_reward',
 			'click #open-comments-tab':       'toggle_comments'
 		},
 		
@@ -265,8 +266,9 @@ $(function() {
 		  $('#give-reward').css('opacity',1);
 		},
 
-		submit_reward: function() {
+		submit_reward: function(event) {
 			var $form = $('#reward-form');
+			event.preventDefault();
 
 			if ($('#reward_amount').val() == '') {
 				alert('Please choose how much to reward.');

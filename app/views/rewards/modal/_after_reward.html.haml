@@ -21,7 +21,9 @@
       = link_to "Share on Facebook", "#facebook-sharing", :id => "share-with-facebook"
     
     #why-share
-      You gain impact for each reward you help promote, which increases your status in #{@story.user.first_name}'s community.
+      %span You gain
+      %abbr.tooltipped-n{title: "Impact = the rewards you give + the rewards others give when you share someone's work."} impact
+      %span for each reward you help promote, which increases your status in #{@story.user.first_name}'s community.
     
     .hidden
       #twitter-sharing
@@ -43,3 +45,4 @@
 :javascript
   mpq.track('Rewarded Content', {story_id: '#{@story.id}', mp_note: '#{@reward.amount}', amount: #{@reward.amount}});
   RewardModal.monitor_sharing(#{@reward.id});
+  $('.tooltipped-n').tipsy({opacity:1,gravity:'s'});
