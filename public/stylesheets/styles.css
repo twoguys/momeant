@@ -7638,6 +7638,12 @@ body#messages {
   body#messages #main {
     max-width: 100%;
     margin: 0; }
+  body#messages #flash {
+    position: absolute;
+    top: 42px;
+    left: 351px;
+    right: 0;
+    width: auto; }
 
 #messages-page #sidebar {
   position: absolute;
@@ -7737,13 +7743,15 @@ body#messages {
     border-radius: 0; }
     #messages-page form#message-reply textarea.loading, #messages-page form#new-message-form textarea.loading {
       background: white url(../images/spinner.gif) no-repeat 5px 5px; }
-  #messages-page form#message-reply .token-input-list-facebook li.token-input-input-token-facebook, #messages-page form#new-message-form .token-input-list-facebook li.token-input-input-token-facebook {
-    margin: 0; }
-  #messages-page form#message-reply .token-input-list-facebook input[type="text"]:focus, #messages-page form#new-message-form .token-input-list-facebook input[type="text"]:focus {
-    border: none;
-    -webkit-border-radius: 0;
-    -moz-border-radius: 0;
-    border-radius: 0; }
+  #messages-page form#message-reply .token-input-list-facebook, #messages-page form#new-message-form .token-input-list-facebook {
+    height: 30px !important; }
+    #messages-page form#message-reply .token-input-list-facebook li.token-input-token-facebook, #messages-page form#new-message-form .token-input-list-facebook li.token-input-token-facebook {
+      margin: 3px; }
+    #messages-page form#message-reply .token-input-list-facebook input[type="text"]:focus, #messages-page form#new-message-form .token-input-list-facebook input[type="text"]:focus {
+      border: none;
+      -webkit-border-radius: 0;
+      -moz-border-radius: 0;
+      border-radius: 0; }
 #messages-page form#new-message-form li {
   margin-bottom: 1em; }
 

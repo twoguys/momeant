@@ -4,11 +4,17 @@ class MessagesController < ApplicationController
   
   def new
     @message = Message.new
+    @message_user = User.find_by_id(params[:user]) if params[:user]
   end
   
   def create
     @message = Message.new(params[:message])
     @message.sender_id = current_user.id
+    if @message.recipient_id == current_user.id
+      flash[:alert] = "You can't message yourself, silly."
+      lookup_messages
+      render "new" and return
+    end
     @message.sender_read_at = Time.now
     @message.recipient_read_at = Time.now if @message.parent
     if @message.save

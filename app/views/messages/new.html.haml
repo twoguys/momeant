@@ -18,7 +18,19 @@
             = form.text_area :body
           %li.submit
             = form.submit "Send"
-      
+
+
+:javascript
+  var prepopulated_users = [];
+
+- if @message_user
+  :javascript
+    prepopulated_users.push({
+      id: '#{@message_user.id}',
+      name: '#{@message_user.name}',
+      avatar: '#{@message_user.avatar.url(:thumbnail)}'
+    });
+    
 :javascript
   $(document).ready(function() {
     $('#message_recipient_id').tokenInput('#{user_lookup_messages_path}', {
@@ -32,6 +44,7 @@
         html +=    '</li>';
         return html;
       },
+      prePopulate: prepopulated_users,
       onAdd: function() {
         $('#message_subject').focus();
       }
@@ -41,3 +54,4 @@
       extraSpace: 20
     });
   });
+
