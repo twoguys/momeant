@@ -1,0 +1,17 @@
+#amounts-helper
+  #amounts-explanation.tooltipped-e{title: "Rewarding makes you a supporter of #{@story.user.first_name}, and part of their inner circle, their community of supporters. Top supporters earn Gold, Silver, or Bronze status, where creators can give them special thanks, access, and gifts. Check out #{@story.user.first_name}'s profile page to see what he/she is doing with their community."} ?
+  #top-supporters
+    %h3 #{@story.user.first_name}'s Top Supporters
+    %ul
+      - @story.user.top_supporters[0..8].each_with_index do |patron, index|
+        %li
+          = link_to image_tag(patron[0].avatar.url(:thumbnail)), user_path(patron[0]), class: "avatar"
+          .badge{class: index < 3 ? "gold" : index < 6 ? "silver" : "bronze"}
+          .rewarded= number_to_currency(patron[1])
+  #recent-reward-amounts
+    %h3 Recent rewards of this work
+    %ul
+      - @story.rewards[0..4].each do |reward|
+        %li
+          .rewarded= number_to_currency(reward.amount)
+          = link_to reward.user.name, user_path(reward.user)

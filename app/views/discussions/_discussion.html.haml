@@ -1,0 +1,25 @@
+.summary
+  = link_to "Topics", "#", class: "show-all-topics"
+
+  = image_tag discussion.user.avatar.url(:thumbnail), class: "avatar"
+  .header
+    - if discussion.topic.present?
+      = discussion.topic
+    - else
+      #{discussion.user.first_name} started the discussion with:
+  .quote
+    = simple_format discussion.body
+    %span.when #{time_ago_in_words(discussion.created_at)} ago
+
+.comments
+  .header
+    Recent Replies
+    %span.add-your-reply.action View All + Reply
+
+  = render partial: "discussions/comment_form", locals: { discussion: discussion }
+
+  %ul.comment-list.prepend
+    = render :partial => "comments/comment", collection: discussion.comments, as: :comment, locals: { highlight_user: discussion.user }
+
+.clear
+.fader

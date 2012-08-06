@@ -81,6 +81,17 @@
               = form.text_area :tagline
             
             %li
+              = form.label :thankyou, "A custom thank you"
+              .instructions We show this message after someone rewards you.
+              = form.text_area :thankyou
+              .limit
+                %span You have
+                %span#thankyou-limit 200
+                %span characters left.
+              :javascript
+                $('#user_thankyou').limit('200','#thankyou-limit');
+            
+            %li
               = form.label :amazon_email, "Accepting Payments"
               %span.aside
                 = form.label :amazon_email, "Amazon Account Email (U.S. only)"

@@ -1,6 +1,6 @@
 body#discovery.index
   #bg
-    background: #000
+    background: #f0f0f0
     position: fixed
     top: 0
     bottom: 0
@@ -16,11 +16,11 @@ body#discovery.index
   section
     padding-bottom: 40px
     h1
-      font-size: 28px
+      font-size: 32px
       font-weight: 600
       text-transform: uppercase
       margin-bottom: 20px
-      color: #777
+      color: #bbb
     .list
       @include clearfix
       width: 100%
@@ -48,7 +48,7 @@ body#discovery.index
     width: 937px
     padding: 10px 20px
     @include rounded(10px)
-    @include boxshadow
+    @include boxshadow(5px, 0.2)
   #current-filter
     background: #fff url(../images/discovery/drop-down-arrow.png) no-repeat 96% 50%
     cursor: pointer
@@ -85,10 +85,26 @@ body#discovery.index
       .info
         width: 276px
         height: 276px
+        text-align: center
         .name
-          font-size: 24px
+          font-size: 36px
           font-weight: 600
-          margin-bottom: 20px
+          line-height: 36px
+          text-transform: uppercase
+          span
+            display: block
+        .supporters
+          display: inline-block
+          margin: 20px 0
+          background: #000 url(../images/discovery/supporters.png) no-repeat 75% 50%
+          color: #fff
+          padding: 3px 23px 3px 10px
+          font-size: 13px
+          @include rounded(20px)
+        .bio
+          font-family: $typewriter
+          font-style: italic
+          font-size: 15px
     a:nth-child(3)
       margin-right: 0
   
@@ -103,9 +119,21 @@ body#discovery.index
       .info
         width: 440px
         height: 280px
+        font-weight: 600
         .title
           font-size: 24px
-          font-weight: 600
-          margin-bottom: 20px
+          text-transform: uppercase
+          padding-bottom: 10px
+          border-bottom: 1px solid #fff
+          margin-bottom: 10px
+        .tags
+          color: #000
+          font-family: $typewriter
+          font-size: 14px
+          font-weight: 500
+          font-style: italic
+          position: absolute
+          bottom: 20px
+          left: 20px
     a:nth-child(even)
       margin-right: 0

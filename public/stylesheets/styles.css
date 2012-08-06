@@ -477,7 +477,7 @@ form li, .form li {
 form label, .form label {
   display: block;
   padding: 0 5px 0px 3px;
-  font-weight: 900;
+  font-weight: 600;
   line-height: 20px;
   text-shadow: 0 1px 0 white;
   font-size: 14px;
@@ -485,16 +485,19 @@ form label, .form label {
   width: 100%;
   margin-top: 10px;
   margin-bottom: 3px; }
-  form label .instructions, .form label .instructions {
-    font-family: Georgia, serif;
-    font-style: italic;
-    font-size: 12px;
-    color: #999999;
-    text-transform: lowercase;
-    font-weight: 100;
-    height: auto;
-    padding-left: 5px;
-    vertical-align: 1px; }
+form .instructions, .form .instructions {
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-size: 12px;
+  color: #999999;
+  font-weight: 300;
+  margin-bottom: 0.3em; }
+form label .instructions, .form label .instructions {
+  text-transform: lowercase;
+  height: auto;
+  padding-left: 5px;
+  vertical-align: 1px;
+  margin-bottom: 0; }
 form li.checkbox input, .form li.checkbox input {
   float: left; }
 form li.checkbox label, .form li.checkbox label {
@@ -872,7 +875,7 @@ body#home.index #main {
     background: #00aeef;
     color: white;
     font-size: 50px;
-    font-weight: 600;
+    font-weight: 900;
     text-transform: uppercase;
     text-align: center;
     height: 400px;
@@ -912,7 +915,19 @@ body#home.index #main {
           font-size: 40px;
           padding-top: 160px; }
         #landing-page #intro #slides ul li.last {
-          padding-top: 85px; }
+          padding-top: 45px;
+          height: 330px;
+          background: transparent url(../images/landing/down-arrow.png) no-repeat 50% 100%;
+          position: relative; }
+      #landing-page #intro #slides a#continue-downward {
+        position: absolute;
+        top: 305px;
+        left: 50%;
+        margin-left: -38px;
+        width: 76px;
+        height: 70px;
+        text-indent: 76px;
+        overflow: hidden; }
   #landing-page #people {
     height: 215px;
     padding: 2px;
@@ -927,7 +942,7 @@ body#home.index #main {
       display: block; }
   #landing-page #explanation {
     width: 610px;
-    margin: 150px auto;
+    margin: 100px auto;
     padding: 60px;
     background: white;
     font-family: "museo-slab-1", "museo-slab-2", serif;
@@ -976,10 +991,18 @@ body#home.index #main {
       padding: 10px 20px;
       -webkit-border-radius: 5px;
       -moz-border-radius: 5px;
-      border-radius: 5px; }
+      border-radius: 5px;
+      border: 4px solid #008ccd;
+      -webkit-transition: background 0.2s ease-in-out;
+      -moz-transition: background 0.2s ease-in-out;
+      -ms-transition: background 0.2s ease-in-out;
+      -o-transition: background 0.2s ease-in-out;
+      transition: background 0.2s ease-in-out; }
+      #landing-page #connect a:hover {
+        background: #008ccd; }
 
 body#discovery.index #bg {
-  background: black;
+  background: #f0f0f0;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -994,11 +1017,11 @@ body#discovery.index #bg {
   #discovery-page section {
     padding-bottom: 40px; }
     #discovery-page section h1 {
-      font-size: 28px;
+      font-size: 32px;
       font-weight: 600;
       text-transform: uppercase;
       margin-bottom: 20px;
-      color: #777777; }
+      color: #bbbbbb; }
     #discovery-page section .list {
       display: inline-block;
       width: 100%; }
@@ -1032,9 +1055,9 @@ body#discovery.index #bg {
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
-    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
-    -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7); }
+    -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); }
   #discovery-page #current-filter {
     background: white url(../images/discovery/drop-down-arrow.png) no-repeat 96% 50%;
     cursor: pointer;
@@ -1068,11 +1091,29 @@ body#discovery.index #bg {
       display: block; }
     #discovery-page #creators a .info {
       width: 276px;
-      height: 276px; }
+      height: 276px;
+      text-align: center; }
       #discovery-page #creators a .info .name {
-        font-size: 24px;
+        font-size: 36px;
         font-weight: 600;
-        margin-bottom: 20px; }
+        line-height: 36px;
+        text-transform: uppercase; }
+        #discovery-page #creators a .info .name span {
+          display: block; }
+      #discovery-page #creators a .info .supporters {
+        display: inline-block;
+        margin: 20px 0;
+        background: black url(../images/discovery/supporters.png) no-repeat 75% 50%;
+        color: white;
+        padding: 3px 23px 3px 10px;
+        font-size: 13px;
+        -webkit-border-radius: 20px;
+        -moz-border-radius: 20px;
+        border-radius: 20px; }
+      #discovery-page #creators a .info .bio {
+        font-family: "museo-slab-1", "museo-slab-2", serif;
+        font-style: italic;
+        font-size: 15px; }
   #discovery-page #creators a:nth-child(3) {
     margin-right: 0; }
   #discovery-page #content a {
@@ -1084,11 +1125,23 @@ body#discovery.index #bg {
       display: block; }
     #discovery-page #content a .info {
       width: 440px;
-      height: 280px; }
+      height: 280px;
+      font-weight: 600; }
       #discovery-page #content a .info .title {
         font-size: 24px;
-        font-weight: 600;
-        margin-bottom: 20px; }
+        text-transform: uppercase;
+        padding-bottom: 10px;
+        border-bottom: 1px solid white;
+        margin-bottom: 10px; }
+      #discovery-page #content a .info .tags {
+        color: black;
+        font-family: "museo-slab-1", "museo-slab-2", serif;
+        font-size: 14px;
+        font-weight: 500;
+        font-style: italic;
+        position: absolute;
+        bottom: 20px;
+        left: 20px; }
   #discovery-page #content a:nth-child(even) {
     margin-right: 0; }
 
@@ -1166,6 +1219,10 @@ body#discovery.index #bg {
       -ms-transition: color 0.2s ease-in-out;
       -o-transition: color 0.2s ease-in-out;
       transition: color 0.2s ease-in-out; }
+      .comments ul.comment-list > li .commenter-name .highlighted {
+        font-weight: 600;
+        color: #dbd051;
+        padding-left: 3px; }
       .comments ul.comment-list > li .commenter-name:hover {
         color: #00aeef; }
     .comments ul.comment-list > li .text {
@@ -1203,12 +1260,13 @@ body#users.show {
   background: #f0f0f0; }
   body#users.show #user-profile {
     width: 1000px;
-    margin: 30px auto 0; }
+    margin: 30px auto 0;
+    padding-bottom: 30px; }
     body#users.show #user-profile section {
       margin-bottom: 30px; }
       body#users.show #user-profile section h1 {
         font-size: 50px;
-        font-weight: 600;
+        font-weight: 900;
         text-transform: uppercase; }
     body#users.show #user-profile .module {
       background: white;
@@ -1288,8 +1346,8 @@ body#users.show {
         color: white; }
     body#users.show #user-profile #name {
       padding-top: 5px;
-      font-size: 60px;
-      font-weight: 600;
+      font-size: 50px;
+      font-weight: 900;
       text-transform: uppercase;
       line-height: 50px; }
       body#users.show #user-profile #name span {
@@ -1308,7 +1366,9 @@ body#users.show {
         font-size: 50px;
         font-weight: 400;
         line-height: 45px;
-        display: block; }
+        display: block;
+        padding-right: 32px;
+        background: transparent url(../images/profile/supporters-large.png) no-repeat 100% 6px; }
       body#users.show #user-profile #support-stats .supporters {
         background: transparent url(../images/profile/slashie.png) no-repeat 100% 100%;
         padding-right: 45px; }
@@ -1413,6 +1473,173 @@ body#users.show {
             padding: 8px 0 0 5px; }
             body#users.show #user-profile #community #supporters-section .non-level li.more span, body#users.show #user-profile #community #supporting-section .non-level li.more span {
               display: block; }
+    body#users.show #user-profile #discussion-fader {
+      position: fixed;
+      top: 42px;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.75);
+      z-index: 9; }
+    body#users.show #user-profile #discussion.off #discussion-fader {
+      display: none; }
+    body#users.show #user-profile #discussion.off #discussion-inner {
+      height: 200px;
+      overflow: hidden;
+      cursor: pointer; }
+    body#users.show #user-profile #discussion:hover .add-your-reply {
+      display: inline-block; }
+    body#users.show #user-profile #discussion.on .add-your-reply {
+      display: none; }
+    body#users.show #user-profile #discussion.on #topic .comments form {
+      display: block; }
+    body#users.show #user-profile #discussion.on #topic .show-all-topics:hover {
+      opacity: 1; }
+    body#users.show #user-profile #discussion .module {
+      overflow: hidden;
+      padding: 20px;
+      position: relative;
+      z-index: 10; }
+    body#users.show #user-profile #discussion #discussion-inner {
+      width: 1940px;
+      min-height: 200px;
+      margin-left: -980px;
+      -webkit-transition: margin 0.2s ease-in-out;
+      -moz-transition: margin 0.2s ease-in-out;
+      -ms-transition: margin 0.2s ease-in-out;
+      -o-transition: margin 0.2s ease-in-out;
+      transition: margin 0.2s ease-in-out; }
+      body#users.show #user-profile #discussion #discussion-inner.empty {
+        margin-left: 0; }
+    body#users.show #user-profile #discussion .when {
+      font-size: 0.9em;
+      color: #999999; }
+    body#users.show #user-profile #discussion .action {
+      display: inline-block;
+      padding: 2px 6px 1px 6px;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      border-radius: 3px;
+      background: #00aeef;
+      color: white;
+      text-transform: uppercase;
+      margin-left: 10px;
+      font-size: 12px;
+      position: relative;
+      top: -2px; }
+    body#users.show #user-profile #discussion .add-your-reply {
+      display: none; }
+    body#users.show #user-profile #discussion .fader {
+      position: absolute;
+      bottom: 0;
+      left: 20px;
+      right: 20px;
+      height: 37px;
+      background: transparent url(../images/profile/fade-to-white-vertical.png) repeat-x 0 0;
+      z-index: 2; }
+    body#users.show #user-profile #discussion .header {
+      font-size: 1.2em;
+      font-weight: 600;
+      margin-bottom: 0.8em; }
+    body#users.show #user-profile #discussion #topics {
+      width: 960px;
+      float: left;
+      margin-right: 20px; }
+      body#users.show #user-profile #discussion #topics li {
+        margin-bottom: 12px; }
+        body#users.show #user-profile #discussion #topics li a {
+          display: block;
+          color: #252525;
+          background: #f0f0f0;
+          padding: 4px 6px;
+          -webkit-border-radius: 3px;
+          -moz-border-radius: 3px;
+          border-radius: 3px; }
+        body#users.show #user-profile #discussion #topics li a:hover {
+          background: #444444;
+          color: white; }
+        body#users.show #user-profile #discussion #topics li span {
+          display: inline-block; }
+        body#users.show #user-profile #discussion #topics li .body {
+          width: 700px; }
+        body#users.show #user-profile #discussion #topics li .comments {
+          margin: 0 30px 0 20px;
+          padding-right: 20px;
+          background: transparent url(../images/reward-modal/comments.png) no-repeat 100% 2px;
+          width: 26px;
+          text-align: right; }
+    body#users.show #user-profile #discussion form#new_discussion {
+      display: none;
+      margin-bottom: 15px; }
+      body#users.show #user-profile #discussion form#new_discussion li {
+        margin-bottom: 5px; }
+      body#users.show #user-profile #discussion form#new_discussion label {
+        font-weight: 400;
+        text-transform: none;
+        margin-top: 0; }
+      body#users.show #user-profile #discussion form#new_discussion textarea {
+        width: 900px;
+        height: 25px; }
+      body#users.show #user-profile #discussion form#new_discussion input[type="submit"] {
+        padding: 3px 6px; }
+    body#users.show #user-profile #discussion #topic {
+      width: 960px;
+      float: left; }
+      body#users.show #user-profile #discussion #topic.loading {
+        min-height: 180px;
+        background: transparent url(../images/spinner.gif) no-repeat 50% 50%; }
+        body#users.show #user-profile #discussion #topic.loading * {
+          visibility: hidden; }
+      body#users.show #user-profile #discussion #topic .avatar {
+        position: absolute;
+        top: 0;
+        left: 0; }
+      body#users.show #user-profile #discussion #topic .show-all-topics {
+        background: transparent url(../images/profile/back-arrow-bg.png) no-repeat 0 0;
+        padding: 3px 6px 3px 11px;
+        text-transform: uppercase;
+        color: white;
+        font-size: 13px;
+        opacity: 0.7;
+        position: absolute;
+        top: 80px;
+        left: 0; }
+      body#users.show #user-profile #discussion #topic .summary {
+        position: relative;
+        padding-left: 80px;
+        padding-bottom: 10px;
+        width: 300px;
+        float: left;
+        margin-right: 30px; }
+        body#users.show #user-profile #discussion #topic .summary p {
+          margin: 0 0 10px;
+          line-height: 1.2em; }
+      body#users.show #user-profile #discussion #topic .comments {
+        float: left;
+        width: 550px; }
+        body#users.show #user-profile #discussion #topic .comments li, body#users.show #user-profile #discussion #topic .comments form {
+          position: relative;
+          padding: 0 0 0 50px;
+          font-size: 13px;
+          min-height: 40px;
+          margin: 0 0 10px; }
+          body#users.show #user-profile #discussion #topic .comments li .commenter-avatar img, body#users.show #user-profile #discussion #topic .comments form .commenter-avatar img {
+            width: 40px;
+            height: 40px; }
+          body#users.show #user-profile #discussion #topic .comments li .commenter-name, body#users.show #user-profile #discussion #topic .comments form .commenter-name {
+            color: #00aeef; }
+          body#users.show #user-profile #discussion #topic .comments li .text, body#users.show #user-profile #discussion #topic .comments form .text {
+            color: #333333; }
+          body#users.show #user-profile #discussion #topic .comments li .metadata, body#users.show #user-profile #discussion #topic .comments form .metadata {
+            color: #aaaaaa; }
+        body#users.show #user-profile #discussion #topic .comments form {
+          display: none; }
+        body#users.show #user-profile #discussion #topic .comments textarea {
+          width: 400px;
+          height: 15px;
+          -webkit-border-radius: 0;
+          -moz-border-radius: 0;
+          border-radius: 0; }
     body#users.show #user-profile #work-browser, body#users.show #user-profile #rewards-browser {
       position: relative;
       padding-left: 370px;
@@ -1491,6 +1718,8 @@ body#users.show {
         height: 230px; }
       body#users.show #user-profile #vertical-list #activity-list > li {
         padding: 0; }
+        body#users.show #user-profile #vertical-list #activity-list > li:last-child {
+          margin-bottom: 0; }
     body#users.show #user-profile #my-rewards {
       margin-bottom: 0; }
 
@@ -1891,7 +2120,7 @@ body#users.patronage #vertical-list .creator {
     display: none; }
   #creator-signup #creator-info #upload .example, #creator-signup #creator-payment #upload .example {
     border: none; }
-#creator-signup #creator-info #work textarea, #creator-signup #creator-payment #work textarea {
+#creator-signup #creator-info .longtext textarea, #creator-signup #creator-payment .longtext textarea {
   width: 97%;
   height: 50px; }
 
@@ -2400,7 +2629,7 @@ body#subscriptions.index {
   .content-preview.blob.medium .inner {
     width: 220px;
     height: 100px;
-    padding: 86px 126px;
+    padding: 70px 115px 96px 140px;
     font-size: 16px; }
 
 .content-preview.blob.small {
@@ -4723,8 +4952,8 @@ body#stories.show {
   top: 0;
   left: 0;
   width: 100%;
-  min-height: 807px;
-  height: 100%; }
+  height: 100%;
+  min-height: 680px; }
 
 #presenter {
   width: 100%;
@@ -4770,7 +4999,8 @@ body#stories.show {
       width: 300px; }
       #presenter #reward-modal.open #open-close {
         height: 70px;
-        top: auto; }
+        top: auto;
+        background-position: -400px -400px; }
         #presenter #reward-modal.open #open-close span {
           background-position: 50% 20px;
           width: 300px;
@@ -4785,8 +5015,10 @@ body#stories.show {
       top: 70px;
       bottom: 0;
       left: 0;
-      background: #222222;
+      background: #222222 url(../images/reward-modal/vertical-reward.png) no-repeat 50% 20px;
       z-index: 1; }
+      #presenter #reward-modal #open-close:hover {
+        background-color: #303030; }
       #presenter #reward-modal #open-close span {
         position: fixed;
         bottom: 0;
@@ -4862,7 +5094,6 @@ body#stories.show {
       width: 300px;
       height: 100%;
       background: #111111;
-      background: rgba(15, 15, 15, 0.85);
       -webkit-transition: right 0.2s ease-in-out;
       -moz-transition: right 0.2s ease-in-out;
       -ms-transition: right 0.2s ease-in-out;
@@ -4878,28 +5109,10 @@ body#stories.show {
           font-weight: 400;
           color: #aaaaaa;
           padding: 20px 0; }
-      #presenter #reward-modal #comments-view #new-comment {
-        display: none; }
-      #presenter #reward-modal #comments-view li {
-        position: relative;
-        min-height: 40px;
-        padding-left: 50px;
-        margin-bottom: 10px;
-        font-size: 12px; }
-        #presenter #reward-modal #comments-view li a.commenter-avatar {
-          display: block;
-          width: 40px;
-          height: 40px;
-          position: absolute;
-          top: 0;
-          left: 0; }
-          #presenter #reward-modal #comments-view li a.commenter-avatar img {
-            width: 40px;
-            height: 40px; }
-        #presenter #reward-modal #comments-view li .text {
-          color: white; }
-        #presenter #reward-modal #comments-view li .metadata {
-          color: #555555; }
+        #presenter #reward-modal #comments-view #comments-list ul {
+          font-size: 13px; }
+        #presenter #reward-modal #comments-view #comments-list form {
+          margin-bottom: 10px; }
     #presenter #reward-modal #open-comments-tab {
       position: absolute;
       top: 20px;
@@ -4922,53 +5135,41 @@ body#stories.show {
         -moz-border-radius-bottomright: 3px;
         border-top-right-radius: 3px;
         border-bottom-right-radius: 3px; }
-    #presenter #reward-modal .your-stuff {
+    #presenter #reward-modal #your-work {
       text-align: center;
       margin-bottom: 30px;
       font-size: 20px; }
+    #presenter #reward-modal #your-work, #presenter #reward-modal #over-threshold {
+      padding: 45px; }
+    #presenter #reward-modal #over-threshold {
+      font-size: 1.2em; }
+      #presenter #reward-modal #over-threshold p {
+        margin-top: 0;
+        line-height: 1.5em; }
     #presenter #reward-modal #reward-actions {
       background: #303030;
       position: relative;
       z-index: 2;
-      padding: 45px; }
-      #presenter #reward-modal #reward-actions #open-reward-stats {
-        color: #cccccc; }
-        #presenter #reward-modal #reward-actions #open-reward-stats em {
-          font-family: "museo-slab-1", "museo-slab-2", serif;
-          font-size: 12px; }
-        #presenter #reward-modal #reward-actions #open-reward-stats strong {
-          font-size: 24px; }
-        #presenter #reward-modal #reward-actions #open-reward-stats .people {
-          background-position: 100% 6px; }
-    #presenter #reward-modal #steps {
-      width: 220px;
-      height: 32px;
-      background: transparent url(../images/reward-modal/steps-bg.png) no-repeat 30px 9px;
-      margin: 0 auto 40px; }
-      #presenter #reward-modal #steps li {
-        width: 31px;
-        height: 31px;
-        float: left;
-        background: transparent url(../images/reward-modal/step-icons.png) no-repeat 0 -30px;
-        margin-right: 63px; }
-        #presenter #reward-modal #steps li:last-child {
-          margin-right: 0; }
-        #presenter #reward-modal #steps li.active {
-          background-position: 0 0; }
-        #presenter #reward-modal #steps li.reward, #presenter #reward-modal #steps li.comment {
-          cursor: pointer; }
-        #presenter #reward-modal #steps li.comment {
-          background-position: -31px -30px; }
-        #presenter #reward-modal #steps li.comment.active {
-          background-position: -31px 0; }
-        #presenter #reward-modal #steps li.promote {
-          background-position: -62px -30px; }
-        #presenter #reward-modal #steps li.promote.active {
-          background-position: -62px 0; }
+      height: 395px; }
+      #presenter #reward-modal #reward-actions #why-you-reward {
+        color: #cccccc;
+        font-family: "museo-slab-1", "museo-slab-2", serif;
+        font-size: 12px; }
+        #presenter #reward-modal #reward-actions #why-you-reward p {
+          margin: 0 0 10px;
+          line-height: 1.3em; }
+        #presenter #reward-modal #reward-actions #why-you-reward abbr {
+          color: #00aeef;
+          border-bottom: 1px dotted #00aeef;
+          cursor: help; }
     #presenter #reward-modal #current-step {
-      height: 240px; }
+      height: 305px;
+      padding: 45px;
+      position: relative;
+      background: #303030;
+      z-index: 2; }
       #presenter #reward-modal #current-step.loading {
-        background: transparent url(../images/spinnerDarkGrey.gif) no-repeat 50% 80px; }
+        background: #303030 url(../images/spinnerDarkGrey.gif) no-repeat 50% 80px; }
         #presenter #reward-modal #current-step.loading * {
           display: none; }
       #presenter #reward-modal #current-step header {
@@ -4983,7 +5184,10 @@ body#stories.show {
         line-height: 30px;
         text-transform: uppercase;
         margin: 0; }
+      #presenter #reward-modal #current-step form {
+        margin-bottom: 20px; }
     #presenter #reward-modal #amounts {
+      z-index: 2;
       position: relative;
       text-align: center; }
       #presenter #reward-modal #amounts #reward-join-button {
@@ -5009,7 +5213,7 @@ body#stories.show {
       #presenter #reward-modal #amounts ul {
         width: 122px;
         height: 122px;
-        margin: 0 auto 5px; }
+        margin: 0 auto 15px; }
         #presenter #reward-modal #amounts ul li {
           width: 56px;
           float: left;
@@ -5044,6 +5248,83 @@ body#stories.show {
           background-color: #00aeef;
           border-color: #264d5b;
           color: white; }
+      #presenter #reward-modal #amounts #give-reward {
+        display: inline-block;
+        opacity: 0; }
+    #presenter #reward-modal #amounts-helper {
+      z-index: 1;
+      width: 220px;
+      height: 355px;
+      padding: 20px;
+      background: #303030;
+      color: white;
+      border-left: 1px solid #222222;
+      position: absolute;
+      top: 0;
+      right: -261px;
+      -webkit-border-top-right-radius: 3px;
+      -webkit-border-bottom-right-radius: 3px;
+      -moz-border-radius-topright: 3px;
+      -moz-border-radius-bottomright: 3px;
+      border-top-right-radius: 3px;
+      border-bottom-right-radius: 3px;
+      -webkit-transition: right 0.2s ease-in-out;
+      -moz-transition: right 0.2s ease-in-out;
+      -ms-transition: right 0.2s ease-in-out;
+      -o-transition: right 0.2s ease-in-out;
+      transition: right 0.2s ease-in-out; }
+      #presenter #reward-modal #amounts-helper.closed {
+        right: 0; }
+      #presenter #reward-modal #amounts-helper #amounts-explanation {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: #555555;
+        padding: 1px 6px;
+        font-size: 13px;
+        -webkit-border-radius: 20px;
+        -moz-border-radius: 20px;
+        border-radius: 20px;
+        cursor: help; }
+      #presenter #reward-modal #amounts-helper h3 {
+        font-weight: 400;
+        text-transform: uppercase;
+        color: #777777;
+        margin-bottom: 10px; }
+      #presenter #reward-modal #amounts-helper li {
+        float: left;
+        clear: none;
+        width: 60px;
+        margin: 0 10px 10px 0;
+        position: relative; }
+        #presenter #reward-modal #amounts-helper li:nth-child(3n) {
+          margin-right: 0; }
+        #presenter #reward-modal #amounts-helper li img {
+          width: 40px;
+          height: 40px; }
+        #presenter #reward-modal #amounts-helper li .badge {
+          width: 16px;
+          height: 16px;
+          background: transparent url(../images/reward-modal/gold-silver-bronze.png) no-repeat 0 0;
+          position: absolute;
+          top: -5px;
+          left: 30px; }
+          #presenter #reward-modal #amounts-helper li .badge.silver {
+            background-position: -27px 0; }
+          #presenter #reward-modal #amounts-helper li .badge.bronze {
+            background-position: -53px 0; }
+        #presenter #reward-modal #amounts-helper li .rewarded {
+          display: inline-block;
+          font-size: 13px; }
+      #presenter #reward-modal #amounts-helper #recent-reward-amounts {
+        clear: both; }
+        #presenter #reward-modal #amounts-helper #recent-reward-amounts li {
+          float: none;
+          width: 100%;
+          margin: 0 0 2px; }
+        #presenter #reward-modal #amounts-helper #recent-reward-amounts .rewarded {
+          display: inline-block;
+          width: 50px; }
     #presenter #reward-modal #comment {
       display: none; }
       #presenter #reward-modal #comment textarea {
@@ -5057,6 +5338,25 @@ body#stories.show {
       #presenter #reward-modal #comment input[type="submit"] {
         display: block;
         margin-left: 48px; }
+    #presenter #reward-modal #after-reward {
+      width: 256px;
+      margin: -23px -23px 0; }
+    #presenter #reward-modal #creator-thank-you {
+      font-size: 15px;
+      margin-bottom: 20px; }
+      #presenter #reward-modal #creator-thank-you p {
+        background: #444444;
+        padding: 5px 10px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        font-family: "museo-slab-1", "museo-slab-2", serif;
+        line-height: 1.5em;
+        margin: 0 0 10px; }
+        #presenter #reward-modal #creator-thank-you p .quote {
+          display: inline-block; }
+      #presenter #reward-modal #creator-thank-you .from {
+        text-align: right; }
     #presenter #reward-modal #promote #copy-paste {
       font-size: 13px;
       color: #aaaaaa;
@@ -5070,16 +5370,24 @@ body#stories.show {
       border-radius: 3px;
       font-family: "proxima-nova-1", "proxima-nova-2", helvetica, sans-serif;
       font-size: 12px;
-      margin-bottom: 10px; }
+      margin-top: 5px; }
     #presenter #reward-modal #promote #sharing-buttons a {
-      display: block;
+      display: inline-block;
       width: 123px;
       height: 40px;
       background: transparent url(../images/reward-modal/share-buttons.png) no-repeat 0 0;
-      margin: 0 auto 5px;
       text-indent: -9999px; }
     #presenter #reward-modal #promote #sharing-buttons #share-with-facebook {
-      background-position: 0 -43px; }
+      background-position: 0 -43px;
+      margin-left: 5px; }
+    #presenter #reward-modal #promote #why-share {
+      font-size: 13px;
+      color: #aaaaaa;
+      margin-top: 10px; }
+      #presenter #reward-modal #promote #why-share abbr {
+        color: #00aeef;
+        border-bottom: 1px dotted #00aeef;
+        cursor: help; }
     #presenter #reward-modal #more {
       display: none;
       border-top: 1px solid white;

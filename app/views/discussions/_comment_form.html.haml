@@ -1,0 +1,8 @@
+- if current_user && (current_user.has_rewarded?(discussion.user) || me?(discussion.user))
+  = form_for Comment.new, :url => user_comments_path(current_user) do |form|
+    .commenter-avatar= image_tag current_user.avatar.url(:thumbnail)
+    = form.hidden_field :commentable_type, :value => "Discussion"
+    = form.hidden_field :commentable_id, :value => discussion.id
+    = form.text_area :comment, class: "comment-box"
+- else
+  .disabled #{@user.first_name}'s supporters can participate in this discussion.

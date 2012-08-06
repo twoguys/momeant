@@ -6,10 +6,7 @@
       %span= @story.user.first_name
       %span= @story.user.last_name
 
-    #closed-reward-stats.reward-stats
-      %strong= number_to_currency(@story.reward_count)
-      %span from
-      %strong.people= @story.users_who_rewarded.count
+    #reward-hint
 
     #title= @story.title
     #synopsis
@@ -26,25 +23,24 @@
   
     #reward-actions
       = render "rewards/modal/form"
+      = render "rewards/modal/amounts_helper" if current_user
 
     %a#open-close{:href => "#"}
       %span
   
-  #comments-view
+  #comments-view.comments
     %a#open-comments-tab.tooltipped-e{:title => "Toggle comments"}
       %span= @story.comments.size
     
     #comments-list
       %h3 Comments from #{@story.user.first_name}'s supporters:
-      %ul
-        - if current_user
-          %li#new-comment
-            = link_to image_tag(current_user.avatar.url(:thumbnail)), user_path(current_user), :class => "commenter-avatar"
-            = link_to current_user.name, user_path(current_user), :class => "commenter-name"
-            .text
-            .metadata
-              %span.time just now
-              %span.reward
+      - if current_user
+        = form_for Comment.new, :url => user_comments_path(current_user), html: { style: current_user.has_rewarded?(@story.user) ? "" : "display:none;" } do |form|
+          = image_tag current_user.avatar.url(:thumbnail), :class => "commenter-avatar"
+          = form.hidden_field :commentable_type, :value => "Story"
+          = form.hidden_field :commentable_id, :value => @story.id
+          = form.text_area :comment, :class => "comment-box"
+      %ul.comment-list.prepend
         = render :partial => "comments/comment", :collection => @story.comments.reverse, :as => :comment
 
 - if session[:open_reward_modal].present?

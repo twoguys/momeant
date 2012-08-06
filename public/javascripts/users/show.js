@@ -110,52 +110,88 @@ window.ProfileView = Backbone.View.extend({
   }
 });
 
-window.BroadcasterView = Backbone.View.extend({
+window.DiscussionView = Backbone.View.extend({
 	
-	el: $('#broadcaster'),
+	el: $('#discussion'),
 	
 	events: {
-		'click #post-update': 'show_update_form',
-		'click #cancel-update': 'hide_update_form',
-		'submit #new_broadcast': 'submit_broadcast'
+		'click #discussion-inner':  'enter_discussion_experience',
+		'click #discussion-fader':  'exit_discussion_experience',
+		'click .show-all-topics':   'list_topics',
+		'click #topics ul a':       'goto_topic',
+		'click #new-topic-link':    'show_topic_form',
+		'submit #new_discussion':   'post_new_discussion'
 	},
 	
 	initialize: function() {
+	  this.on = false;
+	  
+	  _.bindAll(this, 'list_topics', 'enter_discussion_experience', 'exit_discussion_experience');
+	  
+	  $('#discussion .discussion-reply-field').autoResize({minHeight:15, extraSpace:6});
+	  $('#discussion #new_discussion #discussion_body').autoResize({ minHeight: 25, extraSpace: 6 });
   },
   
-  show_update_form: function() {
-    $('#new_broadcast').show();
-    $('#updates-list').hide();
+  enter_discussion_experience: function() {
+    $('#discussion').removeClass('off').addClass('on');
+    this.on = true;
+  },
+  
+  exit_discussion_experience: function() {
+    $('#discussion').removeClass('on').addClass('off');
+    this.on = false;
+  },
+  
+  list_topics: function() {
+    if (!this.on) { this.enter_discussion_experience(); }
+    $('#discussion-inner').css('margin-left', 0);
     return false;
   },
   
-  hide_update_form: function() {
-    $('#new_broadcast').hide();
-    $('#updates-list').show();
-    return false;
-  },
-  
-  submit_broadcast: function(event) {
-    var $form = $(event.currentTarget);
-    event.preventDefault();
-    
-    var message = $form.find('#broadcast_message').val();
-    var token = $form.find('input[name="authenticity_token"]').val();
-    if (message == '') { return; }
-    
-    $form.find('#broadcast_message').val('');
-    $form.addClass('loading');
-    $.post('/users/' + user_id + '/broadcasts', {
-      'broadcast[message]': message,
-      authenticity_token: token
-    }, function() {
-      $form.removeClass('loading');
-      $('#updates-list').text(message);
-      Broadcaster.hide_update_form();
+  goto_topic: function(event) {
+    if (!this.on) { this.enter_discussion_experience(); }
+    var $topic = $(event.currentTarget);
+    var topic_id = $topic.attr('topic');
+    var $details = $('#topic');
+    $details.addClass('loading');
+    $('#discussion-inner').css('margin-left', -980);
+    $.get('/discussions/' + topic_id, function(results) {
+      $details.html(results).removeClass('loading');
     });
+    return false;
+  },
+  
+  show_topic_form: function() {
+    if ($('#new_discussion').is(':visible')) { return false; }
+    if (!this.on) { this.enter_discussion_experience(); }
+    $('#new_discussion').show();
+    return false;
+  },
+  
+  post_new_discussion: function(event) {
+    event.preventDefault();
+    var $form = $('#new_discussion');
+    
+    var topic = $form.find('#discussion_topic').val();
+    var body = $form.find('#discussion_body').val();
+    if ($.trim(body) == '') { return; }
+    var token = $form.find('input[name="authenticity_token"]').val();
+    
+    $form.find('#discussion_topic, #discussion_body').val('');
+    $.post('/discussions', {
+      'discussion[topic]': topic,
+      'discussion[body]': body,
+      'authenticity_token': token
+    }, function(html) {
+      $form.hide();
+      $form.siblings('ul').prepend(html);
+      Comments.increment_comment_count($form.parent().siblings('.toggle-comments'));
+    });
+    
+    return false;
   }
   
 });
 
 window.Profile = new ProfileView;
-window.Broadcaster = new BroadcasterView;
+window.Discussion = new DiscussionView;

@@ -87,6 +87,8 @@ Repo::Application.routes.draw do
   match '/users/:id/content_rewarded_by/:rewarder_id', :to => "users#content_rewarded_by", :as => :user_content_rewarded_by
   match '/rewards/:id/visualize', :to => "rewards#visualize",           :as => :visualize_reward
   
+  resources :discussions
+  
   resources :messages do
     get :user_lookup, on: :collection
   end

@@ -1,5 +1,4 @@
 - content_for :head do
-  = javascript_include_tag "stories/presenter"
   %meta{:property => "og:title", :content => @story.title}
   %meta{:property => "og:type", :content => "image"}
   %meta{:property => "og:image", :content => @story.thumbnail.url(:small)}
@@ -39,3 +38,9 @@
 - if @story.published?
   :javascript
     mpq.track('Viewed Content', { user: #{user_signed_in? ? 'true' : 'false'} });
+
+= javascript_include_tag "stories/presenter"
+- if current_user
+  :javascript
+    var user_id = #{current_user.id};
+  = javascript_include_tag "comments"
