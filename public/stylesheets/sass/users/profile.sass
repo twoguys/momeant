@@ -247,7 +247,7 @@ body#users.show
       &.on
         .add-your-reply
           display: none
-        #topic .comments form
+        #topic .comments form, #topic .comments .disabled
           display: block
         #topic .show-all-topics:hover
           opacity: 1.0
@@ -380,8 +380,11 @@ body#users.show
               color: #333
             .metadata
               color: #aaa
-          form
+          form, .disabled
             display: none
+          .disabled
+            background: #ddd
+            color: $text_color
           textarea
             width: 400px
             height: 15px
