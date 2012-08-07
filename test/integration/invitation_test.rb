@@ -1,26 +1,19 @@
 require 'test_helper'
 
-Feature "An admin should be able to generate invitations to give out" do
+Feature "An admin should be able to generate invitations" do
 
-  in_order_to "give invitations to users for them to hand out"
+  in_order_to "give invitations to potential creators for them to signup"
   as_a "admin"
   i_want_to "be able to generate new invitations and see which have been used"
 
   Scenario "Viewing current invitations" do
     given_a :admin
-    Given "An invitation that's already been generated" do
-      Factory :invitation, :inviter => @admin
-    end
+    given_a :invitation
     given_im_signed_in_as :admin
     
-    When "I visit my profile page and click on the invitations link" do
-      visit user_path(@admin)
-      click_link "Invitations"
-    end
+    when_i_visit_page :admin_invitations
     
-    then_i_should_be_on_page :admin_invitations
-    
-    And "I should see information for the existing invitation" do
+    Then "I should see information for the existing invitation" do
       assert page.has_content? Invitation.last.token
     end
   end
