@@ -344,7 +344,7 @@ ActiveRecord::Schema.define(:version => 20120801141528) do
     t.boolean  "send_digest_emails",                                                            :default => true
     t.boolean  "send_message_notification_emails",                                              :default => true
     t.string   "i_reward_because"
-    t.decimal  "impact",                                          :precision => 8, :scale => 2
+    t.decimal  "impact",                                          :precision => 8, :scale => 2, :default => 0.0
     t.decimal  "lifetime_rewards",                                :precision => 8, :scale => 2, :default => 0.0
     t.boolean  "send_new_follower_emails",                                                      :default => true
     t.boolean  "send_following_update_emails",                                                  :default => true

@@ -129,13 +129,13 @@ class User < ActiveRecord::Base
     self.given_rewards.group_by(&:recipient).to_a.map {|x| [x.first,x.second.inject(0){|sum,r| sum+r.amount}]}.sort_by(&:second).reverse
   end
   
-  def reward(story, amount, comment, impacted_by = nil)
+  def reward(story, amount, impacted_by = nil)
     return if amount.nil?
     amount = amount.to_f
     return if amount == 0.0
     return unless self.is_under_pledged_rewards_stop_threshold?
     
-    options = {:story_id => story.id, :amount => amount, :user_id => self.id, :recipient_id => story.user_id, :comment => comment, :impact => amount}
+    options = {:story_id => story.id, :amount => amount, :user_id => self.id, :recipient_id => story.user_id, :impact => amount}
     
     # track previous badge level to compare in a second
     old_badge_level = self.badge_level
@@ -155,11 +155,6 @@ class User < ActiveRecord::Base
     
     # create the reward activity record
     Activity.create(:actor_id => self.id, :recipient_id => story.user_id, :action_type => "Reward", :action_id => reward.id)
-
-    # create a comment record if the user commented
-    unless reward.comment.blank?
-      story.comments << Comment.new(:comment => reward.comment, :user_id => reward.user_id, :reward_id => reward.id)
-    end
 
     # if the user's badge level changed, record a badge activity record
     new_badge_level = self.reload.badge_level
