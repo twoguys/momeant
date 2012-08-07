@@ -1491,7 +1491,7 @@ body#users.show {
       display: inline-block; }
     body#users.show #user-profile #discussion.on .add-your-reply {
       display: none; }
-    body#users.show #user-profile #discussion.on #topic .comments form {
+    body#users.show #user-profile #discussion.on #topic .comments form, body#users.show #user-profile #discussion.on #topic .comments .disabled {
       display: block; }
     body#users.show #user-profile #discussion.on #topic .show-all-topics:hover {
       opacity: 1; }
@@ -1632,8 +1632,11 @@ body#users.show {
             color: #333333; }
           body#users.show #user-profile #discussion #topic .comments li .metadata, body#users.show #user-profile #discussion #topic .comments form .metadata {
             color: #aaaaaa; }
-        body#users.show #user-profile #discussion #topic .comments form {
+        body#users.show #user-profile #discussion #topic .comments form, body#users.show #user-profile #discussion #topic .comments .disabled {
           display: none; }
+        body#users.show #user-profile #discussion #topic .comments .disabled {
+          background: #dddddd;
+          color: #252525; }
         body#users.show #user-profile #discussion #topic .comments textarea {
           width: 400px;
           height: 15px;
