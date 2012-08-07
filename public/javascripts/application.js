@@ -184,7 +184,7 @@ $(document).ready(function() {
 	// auto-launch the about diagram modal if it exists (after new signups)
 	$('a[href="#about-diagram-modal"]').click();
 	
-	$.fn.colorPicker.defaultColors = ['111', '666', '999', 'ccc', 'fff', 'f42652', 'f7d3db', 'ffa801', 'ffebc5', 'fff10f', 'fffcd2', '1ea337', 'c8f2d0', '00aeef', 'c0eeff', '985faf', 'f5deff', '7a5116', 'e1d5c3'];
+	$.fn.colorPicker.defaultColors = ['000', '666', '999', 'ccc', 'fff', 'f42652', 'f7d3db', 'ffa801', 'ffebc5', 'fff10f', 'fffcd2', '1ea337', 'c8f2d0', '00aeef', 'c0eeff', '985faf', 'f5deff', '7a5116', 'e1d5c3'];
 	
 	$('#header #search input[name="utf8"]').remove();
 });
