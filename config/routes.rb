@@ -65,10 +65,6 @@ Repo::Application.routes.draw do
     resources :comments, :only => [:create]
     
     member do
-      get :patronage
-      get :patronage_filter
-      get :activity
-      get :more_activity #ajax
       get :settings
       post :submit_creator_request
       post :update_in_place
@@ -86,6 +82,9 @@ Repo::Application.routes.draw do
   end
   match '/users/:id/content_rewarded_by/:rewarder_id', :to => "users#content_rewarded_by", :as => :user_content_rewarded_by
   match '/rewards/:id/visualize', :to => "rewards#visualize",           :as => :visualize_reward
+  
+  # OLD user routes
+  match "/users/:id/patronage" => redirect("/users/%{id}")
   
   resources :discussions
   
