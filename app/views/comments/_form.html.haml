@@ -1,8 +1,9 @@
-- if current_user && (current_user.has_rewarded?(commentable.user) || me?(commentable.user))
+- if current_user && current_user.can_comment_on?(commentable)
   = form_for Comment.new, :url => user_comments_path(current_user) do |form|
     = image_tag current_user.avatar.url(:thumbnail), :class => "commenter-avatar"
     = form.hidden_field :commentable_type, :value => commentable.class
     = form.hidden_field :commentable_id, :value => commentable.id
-    = form.text_area :comment, :class => "comment-box"
+    = form.text_area :comment, :class => "comment-box", placeholder: "Type your comment and press enter..."
+    = form.submit "Post"
 - else
   .disabled #{commentable.user.first_name}'s supporters can participate in this discussion.

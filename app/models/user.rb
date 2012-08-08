@@ -206,6 +206,16 @@ class User < ActiveRecord::Base
     Reward.where(:user_id => self.id, :recipient_id => user.id).map {|reward| reward.impact}.inject(:+) || 0
   end
   
+  def can_comment_on?(object)
+    if object.is_a?(Story)
+      return true if self.has_rewarded?(object.user) || self == object.user
+    end
+    if object.is_a?(Discussion)
+      return true if self.has_rewarded?(object.user) || self == object.user
+    end
+    return false
+  end
+  
   # Supporter Levels
   
   def top_supporters
