@@ -130,14 +130,10 @@ class User < ActiveRecord::Base
   end
   
   def reward(story, amount, impacted_by = nil)
-    Rails.logger.info "AAAAA"
     return if amount.nil?
-    Rails.logger.info "BBBB"
     amount = amount.to_f
     return if amount == 0.0
-    Rails.logger.info "CCCCC"
     return unless self.is_under_pledged_rewards_stop_threshold?
-    Rails.logger.info "DDDDD"
     
     options = {:story_id => story.id, :amount => amount, :user_id => self.id, :recipient_id => story.user_id, :impact => amount}
     
