@@ -22,7 +22,8 @@ module WebSteps
   
   def then_i_should_see_flash(level, message)
     And "I should see the flash #{level} '#{message}'" do
-      assert find("#flash").find(".#{level}").has_content? message
+      assert find("#flash").find(".#{level}").visible?
+      assert_equal message, find("#flash").find(".#{level}").text.strip
     end
   end
   
@@ -46,6 +47,15 @@ module WebSteps
   def given_a(model_type)
     Given "A #{model_type.to_s.gsub("_"," ")}" do
       instance_variable_set("@#{model_type}", Factory(model_type))
+    end
+  end
+  
+  def when_i_search_for(query)
+    When "I search for #{query}" do
+      within("li#search") do
+        fill_in "query", with: query
+        click_button "search-submit"
+      end
     end
   end
 end

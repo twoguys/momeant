@@ -26,6 +26,7 @@ class StoriesController < ApplicationController
     end
     @impacted_by = params[:impacted_by] if params[:impacted_by]
     @fullscreen = true
+    @story.increment!(:view_count)
     
     if params[:return_to]
       @exit_presenter_url = params[:return_to]
