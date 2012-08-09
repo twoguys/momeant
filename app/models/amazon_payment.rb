@@ -3,8 +3,6 @@ require 'amazon/fps/fpspayments'
 class AmazonPayment < Transaction
   include ActionView::Helpers::NumberHelper
   
-  belongs_to :payee, :class_name => "User"
-  
   validates :amount, :presence => true
   
   def fees

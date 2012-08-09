@@ -55,4 +55,24 @@ class RewardTest < ActiveSupport::TestCase
     assert !Subscription.where(subscriber_id: user.id, user_id: story.user_id).empty?
   end
   
+  test "A reward is pledged until paid for" do
+    user  = Factory(:user)
+    story = Factory(:story)
+    
+    reward = user.reward(story, 1)
+    assert !reward.paid_for
+  end
+  
+  test "A user can pay for their rewards" do
+    user  = Factory(:user)
+    story = Factory(:story)
+    
+    user.reward(story, 1)
+    # Amazon stuff happens in between here
+    fake_amazon_payment_id = 1
+    user.pay_for_pledged_rewards!(fake_amazon_payment_id)
+    
+    assert user.given_rewards.pledged.empty?
+  end
+  
 end
