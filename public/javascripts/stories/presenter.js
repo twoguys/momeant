@@ -154,7 +154,6 @@ $(function() {
 			'keydown #custom_amount':         'cleanse_reward_amount',
 			'keyup #custom_amount':           'cleanse_reward_amount',
   		'blur #custom_amount':            'stop_choosing_custom',
-  		'click #give-reward':             'submit_reward',
   		'submit #reward-form':            'submit_reward',
 			'click #open-comments-tab':       'toggle_comments'
 		},
@@ -263,7 +262,7 @@ $(function() {
 		},
 		
 		finished_reward_amount: function() {
-		  $('#give-reward').css('opacity',1);
+		  $('form#reward-form input[type="submit"]').css('opacity',1);
 		},
 
 		submit_reward: function(event) {
@@ -437,7 +436,6 @@ $(function() {
 		  $comments.toggleClass('open');
 		  RewardModal.toggle_reward_hints();
 		  RewardModal.comments_open = !RewardModal.comments_open;
-		  console.log(RewardModal.comments_open);
 		  return false;
 		},
 		

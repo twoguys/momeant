@@ -15,10 +15,12 @@ class SearchController < ApplicationController
     end
     @content = @content.results
     
-    @users = Sunspot.search(User) do
+    @creators = Sunspot.search(User) do
       keywords params[:query]
     end
-    @users = @users.results
+    @creators = @creators.results
+    
+    render "discovery/index"
   end
   
 end

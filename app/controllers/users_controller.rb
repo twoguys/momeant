@@ -18,7 +18,7 @@ class UsersController < ApplicationController
       @discussion = @discussions.first
     end
     
-    @rewards = @user.given_rewards(:include => :story)
+    @rewards = @user.given_rewards(include: "story")
   end
   
   def patronage
@@ -152,7 +152,7 @@ class UsersController < ApplicationController
       @user.update_attributes(params[:user])
       @user.errors.add(:avatar, "is required") if @user.avatar_missing?
       @user.errors.add(:tagline, "is required") if @user.tagline.blank?
-      redirect_to creator_payment_path(@user) unless @user.avatar_missing? || @user.tagline.blank?
+      redirect_to creator_payment_path(@user) and return unless @user.avatar_missing? || @user.tagline.blank?
     end
     @nav = "signup"
   end

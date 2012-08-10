@@ -38,12 +38,12 @@ gem 'acts_as_commentable'
 gem 'sanitize'
 
 group :test do
+  gem 'test-unit'
   gem 'shoulda'
   gem 'coulda'
   gem 'factory_girl'
   gem 'capybara'
   gem 'launchy'
   gem 'database_cleaner'
-  gem 'redgreen'
   gem 'rr'
 end

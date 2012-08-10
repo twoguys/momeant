@@ -12,24 +12,19 @@ Factory.define :user do |user|
   user.tos_accepted           true
 end
 
-Factory.define :email_confirmed_user, :parent => :user do |user|
-  #user.confirmation_token     nil
-  #user.confirmed_at           Time.now - 1.day
-end
-
-Factory.define :creator, :parent => :email_confirmed_user, :class => "Creator" do |creator|
+Factory.define :creator, :parent => :user, :class => "Creator" do |creator|
   creator.amazon_email        "amazon@example.com"
 end
 
-Factory.define :admin, :parent => :email_confirmed_user do |admin|
+Factory.define :admin, :parent => :user do |admin|
   admin.is_admin              'true'
 end
 
-Factory.define :user_with_money, :parent => :email_confirmed_user do |user|
+Factory.define :user_with_money, :parent => :user do |user|
   user.credits                500
 end
 
-Factory.define :momeant_user, :parent => :email_confirmed_user do |user|
+Factory.define :momeant_user, :parent => :user do |user|
   user.first_name             "Momeant"
   user.last_name              ""
   user.email                  "invitations@momeant.com"
@@ -40,7 +35,7 @@ Factory.define :subscription do |subscription|
   subscription.subscriber     { Factory :user }
 end
 
-Factory.define :user_with_coins, :parent => :email_confirmed_user do |user|
+Factory.define :user_with_coins, :parent => :user do |user|
   user.coins                  10
 end
 

@@ -4,7 +4,8 @@ window.CommentsView = Backbone.View.extend({
 	
 	events: {
   	'click a.toggle-comments':  'toggle_comments',
-		'keypress .comment-box':    'monitor_comment_keypress'
+		'keypress .comment-box':    'monitor_comment_keypress',
+		'submit form.new_comment':  'submit_comment'
 	},
 	
 	initialize: function() {
@@ -39,7 +40,13 @@ window.CommentsView = Backbone.View.extend({
   },
   
   submit_comment: function(event) {
-    var $form = $(event.currentTarget).parent();
+    event.preventDefault();
+    
+    var node_type = event.currentTarget.nodeName.toLowerCase();
+    var $form = $(event.currentTarget);
+    if (node_type == 'textarea') {
+      $form = $form.parent();
+    }
     
     var commentable_type = $form.find('#comment_commentable_type').val();
     var commentable_id = $form.find('#comment_commentable_id').val();
@@ -58,6 +65,7 @@ window.CommentsView = Backbone.View.extend({
       if ($list.hasClass('prepend')) { $list.prepend(html); }
       else { $list.append(html); }
       Comments.increment_comment_count($form.parent().siblings('.toggle-comments'));
+      $form.find('#comment_comment');
     });
   },
   

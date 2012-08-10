@@ -3,7 +3,7 @@
   #creator-info.inner
     %h1 Tell your future supporters about yourself!
     
-    = form_for :user, @user, :url => creator_info_path(@user) do |form|
+    = form_for @user, :as => :user, :url => creator_info_path(@user) do |form|
     
       = render "shared/error_messages", :target => @user
     

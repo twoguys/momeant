@@ -129,13 +129,13 @@ class User < ActiveRecord::Base
     self.given_rewards.group_by(&:recipient).to_a.map {|x| [x.first,x.second.inject(0){|sum,r| sum+r.amount}]}.sort_by(&:second).reverse
   end
   
-  def reward(story, amount, comment, impacted_by = nil)
+  def reward(story, amount, impacted_by = nil)
     return if amount.nil?
     amount = amount.to_f
     return if amount == 0.0
     return unless self.is_under_pledged_rewards_stop_threshold?
     
-    options = {:story_id => story.id, :amount => amount, :user_id => self.id, :recipient_id => story.user_id, :comment => comment, :impact => amount}
+    options = {:story_id => story.id, :amount => amount, :user_id => self.id, :recipient_id => story.user_id, :impact => amount}
     
     # track previous badge level to compare in a second
     old_badge_level = self.badge_level
@@ -144,6 +144,7 @@ class User < ActiveRecord::Base
     reward = Reward.create!(options)
     story.increment!(:reward_count, amount)
     self.increment!(:impact, amount)
+    reward.cache_impact!
     story.user.increment!(:lifetime_rewards, amount)
     
     # handle people who previously purchased coins
@@ -156,11 +157,6 @@ class User < ActiveRecord::Base
     # create the reward activity record
     Activity.create(:actor_id => self.id, :recipient_id => story.user_id, :action_type => "Reward", :action_id => reward.id)
 
-    # create a comment record if the user commented
-    unless reward.comment.blank?
-      story.comments << Comment.new(:comment => reward.comment, :user_id => reward.user_id, :reward_id => reward.id)
-    end
-
     # if the user's badge level changed, record a badge activity record
     new_badge_level = self.reload.badge_level
     if new_badge_level != old_badge_level
@@ -170,7 +166,7 @@ class User < ActiveRecord::Base
     # handle impact if necessary
     if impacted_by
       parent_reward = Reward.find_by_id(impacted_by)
-      reward.handle_impact!(parent_reward) if parent_reward
+      reward.give_impact_to_parents!(parent_reward) if parent_reward
     end
     
     # auto-follow this user
@@ -208,13 +204,30 @@ class User < ActiveRecord::Base
   end
   
   def impact_on(user)
-    Reward.where(:user_id => self.id, :recipient_id => user.id).map {|reward| reward.impact}.inject(:+) || 0
+    impact = ImpactCache.where(user_id: self.id, recipient_id: user.id).first
+    impact.nil? ? 0.0 : impact.amount
+  end
+  
+  def impact_from(user)
+    impact = ImpactCache.where(recipient_id: self.id, user_id: user.id).first
+    impact.nil? ? 0.0 : impact.amount
+  end
+  
+  def can_comment_on?(object)
+    if object.is_a?(Story)
+      return true if self.has_rewarded?(object.user) || self == object.user
+    end
+    if object.is_a?(Discussion)
+      return true if self.has_rewarded?(object.user) || self == object.user
+    end
+    return false
   end
   
   # Supporter Levels
   
   def top_supporters
-    self.rewards.group_by(&:user).to_a.map {|x| [x.first,x.second.inject(0){|sum,r| sum+r.amount}]}.sort_by(&:second).reverse
+    impacters = ImpactCache.order("amount DESC").where(recipient_id: self.id).includes(:user)
+    impacters.map { |x| [x.user, x.amount] }
   end
   
   def gold_patrons

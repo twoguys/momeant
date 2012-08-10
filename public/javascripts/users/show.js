@@ -58,7 +58,9 @@ window.ProfileView = Backbone.View.extend({
     var $content = $(event.currentTarget);
     var $preview = $('#rewards-browser #activity-list');
     $preview.addClass('loading');
-    $.get('/stories/' + $content.attr('data') + '/preview', function(result) {
+    var content_id = $content.attr('content');
+    var reward_id = $content.attr('reward');
+    $.get('/stories/' + content_id + '/preview?reward=' + reward_id, function(result) {
       $preview.html(result).removeClass('loading');
     });
     $content.addClass('selected').parent().siblings().find('a').removeClass('selected');

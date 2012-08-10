@@ -26,6 +26,7 @@ class StoriesController < ApplicationController
     end
     @impacted_by = params[:impacted_by] if params[:impacted_by]
     @fullscreen = true
+    @story.increment!(:view_count)
     
     if params[:return_to]
       @exit_presenter_url = params[:return_to]
@@ -43,7 +44,11 @@ class StoriesController < ApplicationController
   
   def preview
     @story = Story.find(params[:id])
-    render :partial => "stories/preview", :locals => { :content => @story }
+    if params[:reward]
+      render :partial => "stories/preview", :locals => { :content => @story, reward: params[:reward] }
+    else
+      render :partial => "stories/preview", :locals => { :content => @story }
+    end
   end
   
   def new

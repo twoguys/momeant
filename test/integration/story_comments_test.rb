@@ -7,51 +7,51 @@ Feature "A user should be able to comment on a story" do
   as_a "user"
   i_want_to "be able to comment on a story"
 
-  Scenario "Commenting on a story from the preview page" do
-    given_a(:email_confirmed_user)
-    given_a(:story)
-    given_im_signed_in_as(:email_confirmed_user)
+  Scenario "Commenting on a story from the profile page" do
+    given_a(:user)
+    Given "the user has rewarded a story" do
+      @reward = Factory(:reward, user: @user)
+    end
+    given_im_signed_in_as(:user)
     
-    When "I visit the story's preview path" do
-      visit preview_story_path(@story)
-      @old_comment_count = @story.comment_count
+    When "I visit the story's creator's profile page" do
+      visit user_path(@reward.recipient)
+      @old_comment_count = @reward.story.comment_count
+      assert @reward.recipient.patrons.include?(@user)
     end
     
     And "I type a comment and hit post" do
-      fill_in "curation_comment", :with => "Here is a sweet comment about your awesome story!"
+      click_link "0 comments"
+      wait_until { page.find("#comment_comment").visible? }
+      fill_in "comment_comment", :with => "Here is a sweet comment about your awesome story!"
       click_button "Post"
     end
     
     Then "there should be a new comment assigned to the story" do
-      assert_equal "Here is a sweet comment about your awesome story!", @story.comments.last.comment
+      assert_equal "Here is a sweet comment about your awesome story!", @reward.story.comments.last.comment
     end
     
-    And "the story's comment count should be one higher" do
-      @story.reload
-      assert_equal @old_comment_count + 1, @story.comment_count
+    When "I re-visit the story's creator's profile page" do
+      visit user_path(@reward.recipient)
     end
     
-    And "I should be back on the preview page and see the new total comments and my comment" do
-      assert_equal preview_story_path(@story), current_path
-      #assert page.has_content? pluralize(@story.comment_count, "comments")
+    Then "I should see my comment" do
       assert page.has_content? "Here is a sweet comment about your awesome story!"
     end
   end
   
-  Scenario "Trying to comment while not logged in" do
+  Scenario "Trying to comment on a story I have not rewarded" do
+    given_a(:user)
     given_a(:story)
+    given_im_signed_in_as(:user)
     
-    When "I visit the story's preview path" do
-      visit preview_story_path(@story)
+    When "I visit the story's creator's profile page" do
+      visit user_path(@story.user)
       @old_comment_count = @story.comment_count
     end
     
-    And "I try to click on the comment textarea or button" do
-      click_link "non-logged-user-tries-to-comment"
-    end
-    
-    Then "I should see the signin modal" do
-      assert page.find("#join-form").visible?
+    Then "I should see a message saying I can't comment" do
+      assert page.has_content?("#{@story.user.first_name}'s supporters can participate in this discussion.")
     end
   end
 end

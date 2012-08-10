@@ -10,7 +10,6 @@ class RewardsController < ApplicationController
     @reward = current_user.reward(
       @story,
       amount,
-      params[:reward][:comment],
       params[:reward][:impacted_by]
     )
     
