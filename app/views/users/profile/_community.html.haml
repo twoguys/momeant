@@ -17,7 +17,7 @@
                 %li
                   = link_to image_tag(patron[0].avatar.url(:thumbnail)), user_path(patron[0]), :class => "avatar"
                   = link_to patron[0].name, user_path(patron[0]), :class => "name"
-                  .rewarded #{number_to_currency(patron[1])} rewarded
+                  .rewarded #{number_to_currency(patron[1])} impact
         .clear
         - if @user.non_level_patrons.size > 0
           .separator
