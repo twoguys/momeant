@@ -82,4 +82,14 @@ class ImpactTest < ActiveSupport::TestCase
     assert_equal 2, ImpactCache.count
   end
   
+  test "A user's impact cache is NOT updated when they reward because of their own reward" do
+    user  = Factory(:user)
+    story = Factory(:story)
+    
+    reward  = user.reward(story, 1)
+    reward2 = user.reward(story, 2, reward.id)
+    
+    assert_equal 3, user.impact_on(story.user) # not 5, which would happen if we added impact on top
+  end
+  
 end

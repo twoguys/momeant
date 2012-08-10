@@ -97,7 +97,7 @@ class Reward < Curation
     end
     
     self.ancestors.each do |reward|
-      reward.cache_impact!(self.amount)
+      reward.cache_impact!(self.amount) unless reward.user_id == self.user_id
     end
   end
   
