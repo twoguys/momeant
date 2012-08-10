@@ -75,4 +75,12 @@ class RewardTest < ActiveSupport::TestCase
     assert user.given_rewards.pledged.empty?
   end
   
+  test "An activity record is created when a user rewards" do
+    user  = Factory(:user)
+    story = Factory(:story)
+    
+    reward = user.reward(story, 1)
+    assert Activity.where(actor_id: user.id, recipient_id: story.user.id, action_id: reward.id, action_type: "Reward").first.present?
+  end
+  
 end

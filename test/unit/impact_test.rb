@@ -54,4 +54,32 @@ class ImpactTest < ActiveSupport::TestCase
     assert_equal reward.amount + child_reward.amount + grandchild_reward.amount, impacter.impact
   end
   
+  test "A user's impact cache record is created and updated when they reward" do
+    story = Factory(:story)
+    user = Factory(:user)
+    
+    user.reward(story, 1)
+    assert_equal 1, user.impact_on(story.user)
+    assert_equal 1, story.user.impact_from(user)
+
+    assert_equal 1, ImpactCache.count
+  end
+  
+  test "A user's impact cache record is updated when someone rewards becuause of their promotion" do
+    user  = Factory(:user)
+    user2 = Factory(:user)
+    story = Factory(:story)
+    
+    reward  = user.reward(story, 1)
+    reward2 = user2.reward(story, 2, reward.id)
+    
+    assert_equal 3, user.impact_on(story.user)
+    assert_equal 3, story.user.impact_from(user)
+    
+    assert_equal 2, user2.impact_on(story.user)
+    assert_equal 2, story.user.impact_from(user2)
+    
+    assert_equal 2, ImpactCache.count
+  end
+  
 end

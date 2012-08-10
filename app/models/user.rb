@@ -144,6 +144,7 @@ class User < ActiveRecord::Base
     reward = Reward.create!(options)
     story.increment!(:reward_count, amount)
     self.increment!(:impact, amount)
+    reward.cache_impact!
     story.user.increment!(:lifetime_rewards, amount)
     
     # handle people who previously purchased coins
@@ -165,7 +166,7 @@ class User < ActiveRecord::Base
     # handle impact if necessary
     if impacted_by
       parent_reward = Reward.find_by_id(impacted_by)
-      reward.handle_impact!(parent_reward) if parent_reward
+      reward.give_impact_to_parents!(parent_reward) if parent_reward
     end
     
     # auto-follow this user
@@ -203,7 +204,13 @@ class User < ActiveRecord::Base
   end
   
   def impact_on(user)
-    Reward.where(:user_id => self.id, :recipient_id => user.id).map {|reward| reward.impact}.inject(:+) || 0
+    impact = ImpactCache.where(user_id: self.id, recipient_id: user.id).first
+    impact.nil? ? 0.0 : impact.amount
+  end
+  
+  def impact_from(user)
+    impact = ImpactCache.where(recipient_id: self.id, user_id: user.id).first
+    impact.nil? ? 0.0 : impact.amount
   end
   
   def can_comment_on?(object)
@@ -219,7 +226,8 @@ class User < ActiveRecord::Base
   # Supporter Levels
   
   def top_supporters
-    self.rewards.group_by(&:user).to_a.map {|x| [x.first,x.second.inject(0){|sum,r| sum+r.amount}]}.sort_by(&:second).reverse
+    impacters = ImpactCache.order("amount DESC").where(recipient_id: self.id).includes(:user)
+    impacters.map { |x| [x.user, x.amount] }
   end
   
   def gold_patrons

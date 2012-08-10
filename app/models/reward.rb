@@ -66,7 +66,16 @@ class Reward < Curation
     Activity.where(:action_id => self.id).where("action_type = 'Reward' OR action_type = 'Impact'")
   end
   
-  def handle_impact!(parent_reward)
+  def cache_impact!(amount = self.amount)
+    impact_cache = ImpactCache.where(user_id: self.user_id, recipient_id: self.recipient_id).first
+    if impact_cache
+      impact_cache.increment!(:amount, amount)
+    else
+      ImpactCache.create(user_id: self.user_id, recipient_id: self.recipient_id, amount: self.amount)
+    end
+  end
+  
+  def give_impact_to_parents!(parent_reward)
     # make the new reward a child of the impacter reward
     self.move_to_child_of(parent_reward)
     self.update_attribute(:depth, self.ancestors.count)
@@ -85,6 +94,10 @@ class Reward < Curation
       if user_id != self.user_id
         Activity.create(:recipient_id => user_id, :action_type => "Impact", :action_id => self.id)
       end
+    end
+    
+    self.ancestors.each do |reward|
+      reward.cache_impact!(self.amount)
     end
   end
   

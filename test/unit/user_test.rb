@@ -8,15 +8,18 @@ class UserTest < ActiveSupport::TestCase
     reward.recipient.patrons.include?(reward.user)
   end
     
-  test "A creator's top supporters are the users who have rewarded them most" do
-    creator = Factory(:creator)
-    reward  = Factory(:reward, amount: 2, recipient: creator)
-    reward2 = Factory(:reward, amount: 1, recipient: creator)
+  test "A creator's top supporters are the users who have impacted them most" do
+    story = Factory(:story)
+    user  = Factory(:user)
+    user2 = Factory(:user)
     
-    assert_equal reward.user,   creator.top_supporters.first[0]
-    assert_equal reward2.user,  creator.top_supporters.last[0]
-    assert_equal 2,             creator.top_supporters.first[1]
-    assert_equal 1,             creator.top_supporters.last[1]
+    user.reward(story, 2)
+    user2.reward(story, 1)
+    
+    assert_equal user,  story.user.top_supporters.first[0]
+    assert_equal user2, story.user.top_supporters.last[0]
+    assert_equal 2,     story.user.top_supporters.first[1]
+    assert_equal 1,     story.user.top_supporters.last[1]
   end
   
   test "A user's favorite creators are the creators they've rewarded the most" do

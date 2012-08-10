@@ -48,6 +48,12 @@ namespace :momeant do
       User.all.each {|u| u.reload_avatar }
     end
     
+    desc "Store impact cache counts for all impact previously given from a user to another"
+    task :backdate_impact_caches => :environment do
+      Reward.order("created_at ASC").each do |reward|
+        reward.cache_impact!
+      end
+    end
   end
   
   namespace :activity do
