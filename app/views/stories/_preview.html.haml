@@ -1,12 +1,14 @@
+- reward ||= nil
+- story_impact_path = reward.present? ? story_path(content, impacted_by: reward) : story_path(content)
 %li.content.module{:id => "content-#{content.id}"}
   - if content.text_preview?
-    %a.content-preview{:href => story_path(content), :class => "#{content.media_type} #{content.template}"}
+    %a.content-preview{:href => story_impact_path, :class => "#{content.media_type} #{content.template}"}
       .inner
         .image
         .quote= truncate(content.template_text, :length => 140)
       .tip View #{content.media_type} &rarr;
   - else
-    %a.content-preview{:href => story_path(content), :class => content.media_type}
+    %a.content-preview{:href => story_impact_path, :class => content.media_type}
       .inner{:style => "background-image: url(#{content.thumbnail.url(:large)})"}
       .tip View #{content.media_type} &rarr;
 

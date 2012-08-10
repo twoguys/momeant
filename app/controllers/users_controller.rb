@@ -18,7 +18,7 @@ class UsersController < ApplicationController
       @discussion = @discussions.first
     end
     
-    @rewards = @user.given_rewards(:include => :story)
+    @rewards = @user.given_rewards(include: "story")
   end
   
   def patronage

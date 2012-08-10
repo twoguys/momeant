@@ -44,7 +44,11 @@ class StoriesController < ApplicationController
   
   def preview
     @story = Story.find(params[:id])
-    render :partial => "stories/preview", :locals => { :content => @story }
+    if params[:reward]
+      render :partial => "stories/preview", :locals => { :content => @story, reward: params[:reward] }
+    else
+      render :partial => "stories/preview", :locals => { :content => @story }
+    end
   end
   
   def new

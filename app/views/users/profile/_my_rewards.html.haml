@@ -8,9 +8,10 @@
       .list{:current => 0, :total => (@rewards.size.to_f / 8.0).floor}
         %ul
           - first = true
-          - @rewards.map(&:story).each do |content|
+          - @rewards.each do |reward|
+            - content = reward.story
             %li
-              %a.selector{:href => "#", :data => content.id, :class => first ? "selected" : "" }
+              %a.selector{:href => "#", :content => content.id, :reward => reward.id, :class => first ? "selected" : "" }
                 - if content.text_preview?
                   .content-preview.tiny{:class => "#{content.media_type} #{content.template}"}
                     .inner
@@ -27,4 +28,4 @@
 
     #vertical-list
       %ul#activity-list
-        = render :partial => "stories/preview", :locals => { :content => @rewards.first.story, :reward => @rewards.first } if @rewards.first
+        = render :partial => "stories/preview", :locals => { :content => @rewards.first.story, :reward => @rewards.first.id } if @rewards.first
