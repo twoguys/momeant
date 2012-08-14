@@ -59,7 +59,7 @@ class SubscriptionsController < ApplicationController
     end
     
     def get_recent_activity
-      since = current_user.current_sign_in_at
+      since = current_user.last_sign_in_at || Time.now
       
       works = Story.published.includes(:user).where(user_id: @followings.map(&:id)).newest_first
       @works_count = works.count
