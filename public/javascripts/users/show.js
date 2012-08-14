@@ -176,7 +176,7 @@ window.DiscussionView = Backbone.View.extend({
     
     var topic = $form.find('#discussion_topic').val();
     var body = $form.find('#discussion_body').val();
-    if ($.trim(body) == '') { return; }
+    if ($.trim(topic) == '' || $.trim(body) == '') { return; }
     var token = $form.find('input[name="authenticity_token"]').val();
     
     $form.find('#discussion_topic, #discussion_body').val('');

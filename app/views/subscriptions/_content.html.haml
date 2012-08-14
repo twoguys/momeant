@@ -1,47 +1,5 @@
 %li.content
-
-  .creator
-    .rewarded
-      %span.amount= number_to_currency(current_user.amount_rewarded_for(content))
-      %span.text you've rewarded
-    .creator-info
-      .card
-        = link_to image_tag(content.user.avatar.url(:thumbnail)), user_path(content.user), :class => "avatar"
-        = link_to content.user.name, user_path(content.user), :class => "name"
-        - subscription = current_user.inverse_subscriptions.where(:user_id => content.user.id).first
-        - if subscription
-          .since following since #{subscription.since}
-      
-  - if content.text_preview?
-    %a.content-preview{:href => story_path(content), :class => "#{content.media_type} #{content.template}"}
-      .inner
-        .image
-        .quote= truncate(content.template_text, :length => 140)
-      .tip View #{content.media_type} &rarr;
-  - else
-    %a.content-preview{:href => story_path(content), :class => content.media_type}
-      .inner{:style => "background-image: url(#{content.thumbnail.url(:large)})"}
-      .tip View #{content.media_type} &rarr;
-
-  .info    
-    .media-type{:class => content.media_type}
-    .text
-      = link_to content.title, story_url(content), :class => "title"
-      .synopsis= content.synopsis 
-      - unless content.tags.empty?
-        .tags
-          - content.tags.each do |tag|
-            = link_to tag.name, search_path(:query => tag.name)
-            %span.comma ,
-
-      .support= content.users_who_rewarded.count
-  
-  .comments
-    - comment_text = pluralize(content.comments.size, "comment").split(" ")
-    %a.toggle-comments{:href => "#"}
-      %span.amount= comment_text[0]
-      %span.text= comment_text[1]
-    .insides
-      %ul.comment-list
-        = render :partial => "comments/comment", :collection => content.comments, :as => :comment
-      = render "comments/form", :commentable => content
+  = link_to image_tag(content.user.avatar.url(:thumbnail)), user_path(content.user), class: "avatar"
+  .headline #{content.user.name} shared some new work
+  = link_to content.title, story_path(content), class: "title"
+  %p= truncate(content.synopsis, length: 200)

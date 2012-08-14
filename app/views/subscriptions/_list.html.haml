@@ -1,4 +1,0 @@
-- @activity.each do |activity|
-  = render :partial => "subscriptions/content", :locals => { :content => activity.action } if activity.action_type == "Story"
-  = render :partial => "subscriptions/broadcast", :locals => { :broadcast => activity.action } if activity.action_type == "Broadcast"
-  = render :partial => "subscriptions/reward", :locals => { :reward => activity.action } if activity.action_type == "Reward"

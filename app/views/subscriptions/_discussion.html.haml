@@ -1,0 +1,5 @@
+%li.discussion
+  = link_to image_tag(discussion.user.avatar.url(:thumbnail)), user_path(discussion.user), class: "avatar"
+  .headline #{discussion.user.name} posted a new topic
+  = link_to discussion.topic, "#{user_path(discussion.user)}#discussion", class: "title"
+  %p= truncate(discussion.body, length: 200)

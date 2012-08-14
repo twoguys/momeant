@@ -1,0 +1,6 @@
+%section
+  %h1 Recent Work
+  = link_to "< Back", "#", class: "back-to-feed"
+  %ul
+    - @works.each do |content|
+      = render partial: "subscriptions/content", locals: { content: content }

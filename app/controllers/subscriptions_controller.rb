@@ -1,23 +1,7 @@
 class SubscriptionsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :find_user, :only => [:create, :unsubscribe]
-  
-  def index
-    @nav = "following"
-    @rewarded = current_user.favorite_creators
-    @followings = current_user.inverse_subscriptions
-    get_all_activity
-  end
-
-  def filter #ajax
-    if params[:id].present?
-      @activity = Activity.by_users([User.find(params[:id])]).only_types(['Story','Broadcast']).order("created_at DESC")
-    else
-      @followings = current_user.inverse_subscriptions
-      get_all_activity
-    end
-    render :partial => "subscriptions/list"
-  end
+  before_filter :find_followings, :only => [:index, :work, :rewards, :discussions]
   
   def create
     existing_subscription = Subscription.where(:subscriber_id => current_user.id, :user_id => @user.id).first
@@ -31,18 +15,62 @@ class SubscriptionsController < ApplicationController
     render :json => {:success => true}
   end
   
+  # Methods to support the Feed
+  
+  def index
+    get_recent_activity
+    if params[:remote]
+      render partial: "subscriptions/summary"
+    else
+      #current_user.update_attribute(:feed_last_visited_at, Time.now)
+      render "index"
+    end
+  end
+
+  def user_activity #ajax
+    @user = User.find(params[:user_id])
+    @activity = Activity.where(actor_id: params[:user_id], action_type: ['Story','Reward','Discussion']).order("created_at DESC")
+    render partial: "subscriptions/user"
+  end
+  
+  def work
+    @works = Story.published.includes(:user).where(user_id: @followings.map(&:id)).newest_first
+    render partial: "subscriptions/all_content"
+  end
+  
+  def rewards
+    @rewards = Reward.includes(:user, :story).where(user_id: @followings.map(&:id)).order("created_at DESC")
+    render partial: "subscriptions/all_rewards"
+  end
+  
+  def discussions
+    @discussions = Discussion.includes(:user).where(user_id: @followings.map(&:id)).order("created_at DESC")
+    render partial: "subscriptions/all_discussions"
+  end
+  
   private
   
     def find_user
       @user = User.find(params[:user_id])
     end
     
-    def get_all_activity
-      @activity = Activity.where(
-        "(actor_id IN (?) AND action_type IN (?)) OR (actor_id IN (?) AND action_type = 'Reward')",
-        @followings.map(&:user_id),
-        ['Story','Broadcast'],
-        @followings.map(&:user_id) + [current_user.id]
-      ).order("created_at DESC")
+    def find_followings
+      @followings = current_user.followings
+    end
+    
+    def get_recent_activity
+      since = current_user.current_sign_in_at
+      
+      works = Story.published.includes(:user).where(user_id: @followings.map(&:id)).newest_first
+      @works_count = works.count
+      @new_works = works.where("stories.created_at > ?", since).limit(3)
+
+      rewards = Reward.includes(:user, :story).where(user_id: @followings.map(&:id)).order("created_at DESC")
+      @rewards_count = rewards.count
+      @new_rewards = rewards.where("curations.created_at > ?", since).limit(3)
+      
+      discussions = Discussion.includes(:user).where(user_id: @followings.map(&:id)).order("created_at DESC")
+      @discussions_count = discussions.count
+      @new_discussions = discussions.where("discussions.created_at > ?", since).limit(3)
     end
 end

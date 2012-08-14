@@ -51,7 +51,6 @@ Repo::Application.routes.draw do
         post :unsubscribe
       end
     end
-    match '/subscriptions/filter', :to => "subscriptions#filter"
     resources :rewards
     resources :cashouts do
       put :update_amazon_email, :on => :collection
@@ -110,6 +109,10 @@ Repo::Application.routes.draw do
   match '/people/patrons',        :to => "discovery#patrons_people",       :as => :patrons_people
   
   match '/feed',                  :to => "subscriptions#index",            :as => :subscriptions
+  match '/feed/work',             to: "subscriptions#work",                as: "subscriptions_work"
+  match '/feed/rewards',          to: "subscriptions#rewards",             as: "subscriptions_rewards"
+  match '/feed/discussions',      to: "subscriptions#discussions",         as: "subscriptions_discussions"
+  match '/feed/:user_id',         to: "subscriptions#user_activity"
   
   namespace :admin do
     match '/', :to =>"dashboard#index", :as => :dashboard

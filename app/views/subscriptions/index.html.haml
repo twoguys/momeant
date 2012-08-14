@@ -1,47 +1,20 @@
-#feed.no-right-column
-  
-  #feed-center.column
-    .inner
-      - unless @followings.empty? 
-        #vertical-list
-          %ul#activity-list
-            = render "subscriptions/list"
-          
-  #feed-left.column
-    #user-profile
-      .profile-info
-        .avatar-badge
-          = link_to(image_tag(current_user.avatar.url(:editorial)), user_path(current_user), :class => "avatar")
-  
-    %h2 People You Support
-    - if @rewarded.empty?
-      You have not rewarded anyone, yet.
-    %ul
-      - @rewarded.each do |creator|
-        %li{:data => creator[0].id}
-          = image_tag creator[0].avatar.url(:large), :class => "avatar", :alt => ""
-          .name
-            %span= creator[0].first_name
-            %span= creator[0].last_name
-          .amount= number_to_currency(creator[1])
-    
-    %h2 People You Follow
-    - if @followings.empty?
-      .empty You are not currently following anyone. #{link_to "Check out some of our awesome creators!", root_path, :id => "find-creators"}
-    %ul#following
-      - @followings.each do |subscription|
-        %li{:data => subscription.user.id}
-          = image_tag subscription.user.avatar.url(:large), :alt => ""
-          .name
-            %span= subscription.user.name
-            %span.since since #{subscription.since}
-
-  .clear
+#recent-activity
+  = render "subscriptions/summary"
+        
+#sidebar
+  %h3 People you Follow
+  - if @followings.empty?
+    %p You are not currently following anyone. #{link_to "Discover people to follow!", discovery_path, :id => "find-creators"}
+  - else
+    %p Click to view their recent activity
+    - @followings.each do |user|
+      %a.following{href: "#", data: user.id}
+        = image_tag user.avatar.url(:thumbnail), class: "avatar"
+        .name
+          %span= user.first_name
+          %span= user.last_name
 
 :javascript
   mpq.track('Viewed Feed');
 
-  var scrollables_selector = '#activity-list';
-  var user_id = '#{current_user.id}';
 = javascript_include_tag "subscriptions" unless @followings.empty?
-= javascript_include_tag "comments"

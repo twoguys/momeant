@@ -2221,251 +2221,137 @@ table.users {
         font-size: 11px; }
 
 body#subscriptions.index {
-  min-width: 900px; }
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%; }
+  body#subscriptions.index #container {
+    position: static;
+    padding: 0; }
   body#subscriptions.index #main {
     max-width: 100%;
     margin: 0; }
-    body#subscriptions.index #main #feed {
-      padding-left: 300px;
-      overflow: hidden; }
-  body#subscriptions.index .column {
-    position: relative;
-    float: left;
-    padding-bottom: 20010px;
-    margin-bottom: -20000px; }
-  body#subscriptions.index #feed-center {
-    width: 100%; }
-  body#subscriptions.index #feed-center > .inner {
-    padding: 20px; }
-  body#subscriptions.index #feed-left {
-    width: 280px;
-    padding-top: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
-    right: 300px;
-    margin-left: -100%;
-    background: #222222;
-    color: white; }
-  body#subscriptions.index #feed-left #user-profile {
-    margin: -10px -10px 0 -10px; }
-    body#subscriptions.index #feed-left #user-profile .about {
-      margin: 0; }
-    body#subscriptions.index #feed-left #user-profile .avatar img {
-      width: 300px;
-      height: 300px; }
-  body#subscriptions.index #feed-left h2 {
-    background: #555555;
-    color: black;
-    margin: 10px 0 5px;
-    font-size: 14px; }
-  body#subscriptions.index #feed-left ul {
-    margin-bottom: 20px; }
-  body#subscriptions.index #feed-left li {
-    height: 70px;
-    margin-bottom: 5px;
-    background: #333333;
-    cursor: pointer;
-    -webkit-transition: background 0.2s ease-in-out;
-    -moz-transition: background 0.2s ease-in-out;
-    -ms-transition: background 0.2s ease-in-out;
-    -o-transition: background 0.2s ease-in-out;
-    transition: background 0.2s ease-in-out; }
-    body#subscriptions.index #feed-left li img, body#subscriptions.index #feed-left li .name {
-      float: left; }
-    body#subscriptions.index #feed-left li img {
-      width: 70px;
-      height: 70px;
-      margin-right: 20px; }
-    body#subscriptions.index #feed-left li .name, body#subscriptions.index #feed-left li .amount {
-      -webkit-transition: color 0.2s ease-in-out;
-      -moz-transition: color 0.2s ease-in-out;
-      -ms-transition: color 0.2s ease-in-out;
-      -o-transition: color 0.2s ease-in-out;
-      transition: color 0.2s ease-in-out; }
-    body#subscriptions.index #feed-left li .name {
-      font-family: "museo-slab-1", "museo-slab-2", serif;
-      font-style: italic;
-      font-size: 16px;
-      line-height: 16px;
-      color: #cccccc;
-      padding-top: 17px; }
-      body#subscriptions.index #feed-left li .name span {
-        display: block; }
-    body#subscriptions.index #feed-left li .amount {
-      float: right;
-      font-size: 20px;
-      font-weight: 200;
-      padding-top: 22px;
-      margin-right: 10px;
-      color: #aaaaaa; }
-  body#subscriptions.index #feed-left #following li .name span {
-    margin-bottom: 3px; }
-  body#subscriptions.index #feed-left #following li .name .since {
-    font-size: 12px;
-    font-weight: 300;
-    color: #777777; }
-  body#subscriptions.index #feed-left #following li:hover .name .since, body#subscriptions.index #feed-left #following li.selected .name .since {
-    color: white; }
-  body#subscriptions.index #feed-left li:hover, body#subscriptions.index #feed-left li.selected {
-    background: #00aeef; }
-    body#subscriptions.index #feed-left li:hover .name, body#subscriptions.index #feed-left li.selected .name {
-      color: #003750; }
-    body#subscriptions.index #feed-left li:hover .amount, body#subscriptions.index #feed-left li.selected .amount {
-      color: white; }
-  body#subscriptions.index #feed-center #vertical-list {
-    padding: 0; }
-    body#subscriptions.index #feed-center #vertical-list #activity-list > li {
-      padding: 0;
-      margin-bottom: 30px; }
-  body#subscriptions.index #feed-center li .creator {
-    width: 320px;
+  body#subscriptions.index #recent-activity {
     position: absolute;
-    right: -320px;
-    top: 0; }
-    body#subscriptions.index #feed-center li .creator .rewarded, body#subscriptions.index #feed-center li .creator .previously-rewarded {
-      margin-left: 30px; }
-    body#subscriptions.index #feed-center li .creator .rewarded {
-      background: #eeeeee;
-      padding: 150px 0 80px;
-      text-align: center;
-      margin-bottom: 5px; }
-      body#subscriptions.index #feed-center li .creator .rewarded .amount {
-        display: inline-block;
-        font-size: 50px;
-        font-weight: 100;
-        border-bottom: 1px solid #dddddd;
-        margin-bottom: 5px; }
-      body#subscriptions.index #feed-center li .creator .rewarded .text {
-        color: #aaaaaa;
+    top: 42px;
+    bottom: 0;
+    left: 0;
+    right: 200px;
+    padding: 30px 40px;
+    overflow-y: auto; }
+    body#subscriptions.index #recent-activity.loading {
+      background: transparent url(../images/spinner.gif) no-repeat 50px 40px; }
+      body#subscriptions.index #recent-activity.loading * {
+        visibility: hidden; }
+    body#subscriptions.index #recent-activity section {
+      width: 40%;
+      float: left;
+      margin-bottom: 40px;
+      margin-right: 10%; }
+      body#subscriptions.index #recent-activity section:nth-child(even) {
+        margin-right: 0; }
+      body#subscriptions.index #recent-activity section:nth-child(odd) {
+        clear: left; }
+    body#subscriptions.index #recent-activity h1 {
+      font-weight: 600;
+      margin-bottom: 15px; }
+      body#subscriptions.index #recent-activity h1 img {
+        float: left;
+        margin-right: 10px; }
+      body#subscriptions.index #recent-activity h1 span {
         display: block; }
-    body#subscriptions.index #feed-center li .creator .creator-info {
-      position: absolute;
-      top: 20px;
-      left: -5px;
-      z-index: 2;
-      padding-left: 25px;
-      background: transparent url(../images/curation/dot-line.png) no-repeat 0 50%; }
-      body#subscriptions.index #feed-center li .creator .creator-info .card {
-        width: 310px;
-        height: 60px;
-        background: black;
-        font-family: "museo-slab-1", "museo-slab-2", serif;
-        font-style: italic; }
-        body#subscriptions.index #feed-center li .creator .creator-info .card img {
-          float: left;
-          width: 60px;
-          height: 60px;
-          margin-right: 20px; }
-        body#subscriptions.index #feed-center li .creator .creator-info .card a.content-preview {
-          float: left; }
-        body#subscriptions.index #feed-center li .creator .creator-info .card .name {
-          display: block;
-          color: white;
-          font-size: 20px;
-          padding-top: 10px; }
-        body#subscriptions.index #feed-center li .creator .creator-info .card .since {
-          color: #777777;
-          font-size: 12px;
-          font-weight: 300; }
-    body#subscriptions.index #feed-center li .creator .previously-rewarded li {
-      margin-bottom: 5px; }
-      body#subscriptions.index #feed-center li .creator .previously-rewarded li a {
-        display: block;
-        height: 17px;
-        padding: 5px 10px 5px 28px;
-        background: #f4f4f4 url(../images/curation/white-dot.png) no-repeat 10px 50%;
-        text-transform: uppercase;
-        color: #777777;
-        -webkit-transition: all 0.2s ease-in-out;
-        -moz-transition: all 0.2s ease-in-out;
-        -ms-transition: all 0.2s ease-in-out;
-        -o-transition: all 0.2s ease-in-out;
-        transition: all 0.2s ease-in-out; }
-        body#subscriptions.index #feed-center li .creator .previously-rewarded li a .title {
-          float: left; }
-        body#subscriptions.index #feed-center li .creator .previously-rewarded li a .amount {
-          float: right; }
-        body#subscriptions.index #feed-center li .creator .previously-rewarded li a:hover {
-          background-color: #00aeef;
-          background-position: -10px 50%;
-          color: white;
-          padding-left: 10px; }
-  body#subscriptions.index #feed-center li.content {
-    position: relative; }
-    body#subscriptions.index #feed-center li.content .content-preview {
-      z-index: 1; }
-  body#subscriptions.index #feed-center li.broadcast .comment {
-    padding-bottom: 41px;
-    background: transparent url(../images/curation/broadcast-curve.png) no-repeat 550px 100%; }
-    body#subscriptions.index #feed-center li.broadcast .comment .comment-inner {
-      background: #202020;
-      padding: 10px; }
-      body#subscriptions.index #feed-center li.broadcast .comment .comment-inner p {
-        background: white;
-        font-family: "museo-slab-1", "museo-slab-2", serif;
-        font-size: 22px;
-        font-style: italic;
-        margin: 0;
-        padding: 20px;
-        line-height: 1.3em; }
-  body#subscriptions.index #feed-center li.reward .comment {
-    background: #eeeeee;
-    padding: 30px;
-    min-height: 45px;
-    position: relative; }
-    body#subscriptions.index #feed-center li.reward .comment p {
-      width: 410px;
-      font-family: "museo-slab-1", "museo-slab-2", serif;
-      font-size: 22px;
-      font-style: italic;
-      margin: 0;
-      line-height: 1.3em; }
-    body#subscriptions.index #feed-center li.reward .comment .rewarded {
+    body#subscriptions.index #recent-activity .empty {
+      border-top: 1px solid #eeeeee;
+      padding: 10px 0; }
+    body#subscriptions.index #recent-activity li {
+      position: relative;
+      padding: 10px 0 10px 70px;
+      min-height: 60px;
+      border-top: 1px solid #eeeeee; }
+    body#subscriptions.index #recent-activity .avatar {
       position: absolute;
       top: 10px;
-      right: 20px; }
-      body#subscriptions.index #feed-center li.reward .comment .rewarded .amount {
-        display: inline-block;
-        font-size: 50px;
-        font-weight: 100;
-        border-bottom: 1px solid #dddddd;
-        margin-bottom: 5px; }
-      body#subscriptions.index #feed-center li.reward .comment .rewarded .text {
-        color: #aaaaaa;
-        display: block;
-        text-align: right; }
-  body#subscriptions.index #feed-center li.reward .card a {
-    float: left;
-    display: block; }
-  body#subscriptions.index #feed-center li.reward .card a.avatar {
-    width: 60px;
-    height: 60px; }
-    body#subscriptions.index #feed-center li.reward .card a.avatar img {
-      margin-right: 0; }
-  body#subscriptions.index #feed-center li.reward .card a.content-preview {
-    width: 95px;
-    height: 60px;
-    margin-right: 15px;
-    overflow: hidden; }
-  body#subscriptions.index #feed-center li.reward .card a.content-info {
-    width: 135px;
-    height: 60px; }
-    body#subscriptions.index #feed-center li.reward .card a.content-info .title, body#subscriptions.index #feed-center li.reward .card a.content-info .media-type {
-      float: left; }
-    body#subscriptions.index #feed-center li.reward .card a.content-info .title {
-      font-family: "proxima-nova-1", "proxima-nova-2", helvetica, sans-serif;
-      font-size: 13px;
-      font-style: normal;
-      color: white;
+      left: 0; }
+    body#subscriptions.index #recent-activity .headline {
+      margin-bottom: 5px;
+      font-weight: 600; }
+    body#subscriptions.index #recent-activity p {
+      margin: 5px 0 0;
+      line-height: 1.3em; }
+  body#subscriptions.index #recent-activity.drilled-in section {
+    width: 100%;
+    float: none;
+    margin-right: 0; }
+  body#subscriptions.index #recent-activity.drilled-in a.back-to-feed {
+    display: inline-block;
+    font-size: 1.1em;
+    margin-bottom: 10px; }
+  body#subscriptions.index #recent-activity.drilled-in ul {
+    border-left: 3px solid #cccccc;
+    padding-top: 10px;
+    margin-left: 80px; }
+  body#subscriptions.index #recent-activity.drilled-in li {
+    padding: 0 0 0 125px;
+    margin-left: -108px;
+    margin-bottom: 30px;
+    border: none;
+    background: transparent url(../images/feed/reward.png) no-repeat 99px 0; }
+    body#subscriptions.index #recent-activity.drilled-in li.content {
+      background-image: url(../images/feed/content.png); }
+    body#subscriptions.index #recent-activity.drilled-in li.discussion {
+      background-image: url(../images/feed/discussion.png); }
+    body#subscriptions.index #recent-activity.drilled-in li .avatar {
+      top: 3px;
+      left: 25px; }
+  body#subscriptions.index #sidebar {
+    position: absolute;
+    top: 42px;
+    bottom: 0;
+    right: 0;
+    width: 200px;
+    background: #333333;
+    color: white;
+    border-right: 1px solid #dddddd;
+    overflow-y: auto; }
+    body#subscriptions.index #sidebar h3, body#subscriptions.index #sidebar p {
+      font-size: 0.9em; }
+    body#subscriptions.index #sidebar h3 {
+      padding: 7px 7px 0;
       text-transform: uppercase;
-      padding-top: 15px;
-      line-height: 15px; }
-    body#subscriptions.index #feed-center li.reward .card a.content-info .byline {
+      font-weight: 400; }
+    body#subscriptions.index #sidebar p {
+      padding: 0 7px;
+      margin: 0;
+      color: #777777; }
+    body#subscriptions.index #sidebar p, body#subscriptions.index #sidebar a.following {
+      border-bottom: 1px solid #222222; }
+    body#subscriptions.index #sidebar a.following {
       display: block;
-      clear: left;
-      color: #777777;
-      font-size: 12px;
-      font-weight: 300; }
+      position: relative;
+      height: 37px;
+      padding: 7px 7px 7px 54px;
+      color: #cccccc;
+      border-top: 1px solid #444444;
+      -webkit-transition: all 0.2s ease-in-out;
+      -moz-transition: all 0.2s ease-in-out;
+      -ms-transition: all 0.2s ease-in-out;
+      -o-transition: all 0.2s ease-in-out;
+      transition: all 0.2s ease-in-out; }
+      body#subscriptions.index #sidebar a.following:hover, body#subscriptions.index #sidebar a.following.selected {
+        background: #444444;
+        color: white;
+        padding-left: 57px; }
+    body#subscriptions.index #sidebar .avatar {
+      position: absolute;
+      top: 7px;
+      left: 9px;
+      width: 37px;
+      height: 37px; }
+    body#subscriptions.index #sidebar .name {
+      padding-top: 2px; }
+    body#subscriptions.index #sidebar span {
+      display: block; }
 
 .content-preview {
   display: block;

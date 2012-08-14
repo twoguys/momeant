@@ -29,8 +29,8 @@ class Activity < ActiveRecord::Base
       Story.find(self.action_id, :include => :user)
     when "AmazonPayment"
       AmazonPayment.find(self.action_id)
-    when "Broadcast"
-      Broadcast.find(self.action_id, :include => :user)
+    when "Discussion"
+      Discussion.find(self.action_id, :include => :user)
     end
   end
 end

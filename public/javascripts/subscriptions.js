@@ -3,7 +3,10 @@ window.SubscriptionsView = Backbone.View.extend({
   el: $('body'),
 	
 	events: {
-		'click #feed-left li': 'filter_person'
+		'click #sidebar a.following': 'filter_person',
+		'click #user-nav #feed a':    'show_all_people',
+		'click .back-to-feed':        'show_all_people',
+		'click a.drill-in':           'drill_in'
 	},
 	
 	initialize: function() {
@@ -20,27 +23,37 @@ window.SubscriptionsView = Backbone.View.extend({
   filter_person: function(event) {
     var $person = $(event.currentTarget);
     if ($person.hasClass('selected')) {
-      $('#feed-left li').removeClass('selected');
-      Subscriptions.show_all_people($person);
+      $person.removeClass('selected');
+      Subscriptions.show_all_people();
       return false;
     }
     
     var id = $person.attr('data');
-    $('#feed-left li').removeClass('selected');
-    $person.addClass('selected');
-    $('#activity-list').addClass('loading');
-    $.get('/users/' + user_id + '/subscriptions/filter?id=' + id, function(html) {
-      $('#activity-list').html(html).removeClass('loading');
+    $person.addClass('selected').siblings().removeClass('selected');
+    $('#recent-activity').addClass('loading drilled-in');
+    $.get('/feed/' + id, function(html) {
+      $('#recent-activity').html(html).removeClass('loading');
     });
     
     return false;
   },
   
-  show_all_people: function($link) {
-    $('#activity-list').addClass('loading');
-    $.get('/users/' + user_id + '/subscriptions/filter', function(html) {
-      $('#activity-list').html(html).removeClass('loading');
+  show_all_people: function() {
+    $('#sidebar a.following').removeClass('selected');
+    $('#recent-activity').addClass('loading').removeClass('drilled-in');
+    $.get('/feed?remote=true', function(html) {
+      $('#recent-activity').html(html).removeClass('loading');
     });
+    return false;
+  },
+  
+  drill_in: function(event) {
+    var $link = $(event.currentTarget);
+    $('#recent-activity').addClass('loading drilled-in');
+    $.get($link.attr('href'), function(html) {
+      $('#recent-activity').html(html).removeClass('loading');
+    });
+    return false;
   }
   
 });
