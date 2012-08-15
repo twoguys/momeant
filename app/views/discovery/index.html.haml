@@ -12,40 +12,15 @@
           %li= link_to category, discovery_path(:filter => category), :class => params[:filter] == category ? "active" : ""
 
   %section#creators
-    %h1 Creators
-    .list
-      - @creators.each do |creator|
-        %a{:href => user_path(creator)}
-          = image_tag creator.avatar.url(:editorial)
-          .info
-            .name
-              %span= creator.first_name
-              %span= creator.last_name
-            .supporters= creator.patrons.count
-            .bio= truncate(creator.tagline, :length => 180)
+    = render "discovery/creators"
   
   %section#content
-    %h1 Works
-    .list
-      - @content.each do |content|
-        - if content.text_preview?
-          %a.content-preview.medium{:href => story_path(content), :class => "#{content.media_type} #{content.template}"}
-            .inner
-              .image
-              .quote= truncate(content.template_text, :length => 140)
-            .info
-              .title= truncate(content.title, :length => 140)
-              .synopsis= truncate(content.synopsis, :length => 350)
-              .tags= truncate(content.tag_list.join(','), length: 70)
-        - else
-          %a.content-preview.medium{:href => story_path(content), :class => content.media_type}
-            .inner{:style => "background-image: url(#{content.thumbnail.url(:large)})"}
-            .info
-              .title= truncate(content.title, :length => 140)
-              .synopsis= truncate(content.synopsis, :length => 350)
-              .tags= truncate(content.tag_list.join(', '), length: 70)
+    = render "discovery/content"
   
 
-:javascript
-  mpq.track('Viewed Discovery');
 = javascript_include_tag "discovery"
+:javascript
+  mpq.track('Viewed Discovery', { filter: '#{escape_javascript(params[:filter] || 'Featured')}', creators_page: '#{escape_javascript(params[:creators_page] || '0')}', content_page: '#{escape_javascript(params[:content_page] || '0')}' });
+  Discovery.filter = '#{params[:filter] || 'Featured'}';
+  Discovery.creator_page = #{params[:creators_page] || 0};
+  Discovery.content_page = #{params[:content_page] || 0};

@@ -97,17 +97,9 @@ Repo::Application.routes.draw do
   match '/share/twitter',         :to => "sharing#twitter",             :as => :share_twitter
   match '/share/facebook',        :to => "sharing#facebook",            :as => :share_facebook
   
-  match '/discover',              :to => "discovery#index",                :as => :discovery
-  match '/content/recommended',   :to => "discovery#recommended_content",  :as => :recommended_content
-  match '/content/popular',       :to => "discovery#popular_content",      :as => :popular_content
-  match '/content/nearby',        :to => "discovery#nearby_content",       :as => :nearby_content
-  match '/content/newest',        :to => "discovery#newest_content",       :as => :newest_content
-  match '/people/notable',        :to => "discovery#notable_people",       :as => :notable_people
-  match '/people/friends',        :to => "discovery#friends_people",       :as => :friends_people
-  match '/people/friends/reload', :to => "discovery#reload_friends_people",:as => :reload_friends_people
-  match '/people/friends/reload_full', :to => "discovery#reload_friends_activity",:as => :reload_friends_activity
-  match '/people/creators',       :to => "discovery#creators_people",      :as => :creators_people
-  match '/people/patrons',        :to => "discovery#patrons_people",       :as => :patrons_people
+  match '/discover',              to: "discovery#index",                as: "discovery"
+  match '/discover/creators',     to: "discovery#creators"
+  match '/discover/content',      to: "discovery#content"
   
   match '/feed',                  :to => "subscriptions#index",            :as => :subscriptions
   
