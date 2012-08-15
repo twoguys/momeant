@@ -2744,6 +2744,12 @@ form.new_story, form.edit_story, .story-form {
       background: #eeeeee; }
     form.new_story .step#editor #create-details, form.edit_story .step#editor #create-details, .story-form .step#editor #create-details {
       padding: 18px 20px 21px; }
+    form.new_story .step#editor p, form.edit_story .step#editor p, .story-form .step#editor p {
+      margin-bottom: 0; }
+      form.new_story .step#editor p span, form.edit_story .step#editor p span, .story-form .step#editor p span {
+        margin-right: 5px; }
+    form.new_story .step#editor a.preview, form.edit_story .step#editor a.preview, .story-form .step#editor a.preview {
+      background-color: #34b44c; }
   form.new_story .step#type ul, form.edit_story .step#type ul, .story-form .step#type ul {
     height: 40px; }
     form.new_story .step#type ul li, form.edit_story .step#type ul li, .story-form .step#type ul li {
@@ -2884,11 +2890,12 @@ form.new_story, form.edit_story, .story-form {
       clear: both;
       padding-top: 10px;
       height: 45px; }
+      form.new_story #last .rest p, form.edit_story #last .rest p, .story-form #last .rest p {
+        margin: 0 0 5px;
+        text-align: right; }
     form.new_story #last input[type="submit"], form.new_story #last a, form.edit_story #last input[type="submit"], form.edit_story #last a, .story-form #last input[type="submit"], .story-form #last a {
       float: right;
-      display: block;
-      width: 100px;
-      padding: 10px 0;
+      padding: 10px;
       font-size: 16px;
       color: white;
       font-weight: 700;
@@ -5746,7 +5753,7 @@ body#stories.show {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); }
 
 #back-to-edit-button {
-  margin-left: -80px;
+  margin-left: -160px;
   display: inline-block;
   height: 22px;
   line-height: 22px; }

@@ -32,7 +32,7 @@
   = render "rewards/modal"
 
   - if params[:preview]
-    = link_to "Edit", edit_story_path(@story), :id => "back-to-edit-button"
+    = link_to "< Back to Edit", edit_story_path(@story), :id => "back-to-edit-button"
     = button_to @story.published? ? "Save" : "Publish", publish_story_path(@story), :id => "publish-button"
 
 - if @story.published?

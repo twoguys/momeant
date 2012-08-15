@@ -1,1314 +1,1321 @@
 /* Story creation */
 
 body#stories.edit.fullscreen, body#stories.new.fullscreen
-	#header
-		display: none
+  #header
+    display: none
 
 .new-story-copy
-	font-family: $typewriter
-	font-size: 14px
-	line-height: 20px
-	margin-bottom: 20px
-	font-weight: 100
+  font-family: $typewriter
+  font-size: 14px
+  line-height: 20px
+  margin-bottom: 20px
+  font-weight: 100
 .fullscreen .story-form
-	padding-top: 0
+  padding-top: 0
 form.new_story, form.edit_story, .story-form
-	width: 100%
-	.finished-links
-		position: absolute
-		top: 0
-		right: 0
-		a, input[type="submit"]
-			@include button
-			float: left
-			margin-left: 10px
-		#preview-link
-			@include gradient($bluegradient1, $bluegradient2)
-		#publish-link
-			@include gradient($greengradient1, $greengradient2)
-		#delete-link
-			@include gradient($redgradient1, $redgradient2)
-	.banner
-		padding: 20px
-		margin: 30px 0
-		background-color: $lightred
-		.before
-			font-weight: bold
-			margin-bottom: 10px
-			text-transform: uppercase
-			font-size: 1.2em
-		li
-			margin-bottom: 0.5em
-	label
-		float: none
-		padding: 0
-	fieldset
-		padding-top: 20px
-	.example
-		border: none
-		padding-bottom: 0
-	#story-spinner
-		background: #000 url(../images/spinner-white.gif) no-repeat 17px 12px
-		color: #fff
-		position: fixed
-		top: 0
-		left: 50%
-		padding: 10px 20px 10px 45px
-		margin-left: -75px
-		font-size: 16px
-		text-transform: uppercase
-		-webkit-border-bottom-right-radius: 3px
-		-webkit-border-bottom-left-radius: 3px
-		-moz-border-radius-bottomright: 3px
-		-moz-border-radius-bottomleft: 3px
-		border-bottom-right-radius: 3px
-		border-bottom-left-radius: 3px
-		z-index: 99
-	#story-saved
-		height: 16px
-		font-family: $typewriter
-		position: absolute
-		top: 10px
-		left: 0
-		color: #999
-		font-style: italic
-		font-weight: 100
-	section.step
-		position: relative
-		background: #e8e8e8
-		padding: 30px
-		margin-bottom: 30px
-		h2
-			background: none
-			text-transform: none
-			color: $text_color
-			padding: 0 0 5px
-			border-bottom: 1px solid #ccc
-			margin-bottom: 30px
-		.info
-			margin: 15px 0
-			font-size: 12px
-			color: #777
-			em.strong
-				color: #000
-			strong
-				font-weight: 500
-				color: $text_color
-		input[type="text"], textarea
-			width: 98%
-		label
-			font-weight: 400
-			color: $text_color
-			text-transform: none
+  width: 100%
+  .finished-links
+    position: absolute
+    top: 0
+    right: 0
+    a, input[type="submit"]
+      @include button
+      float: left
+      margin-left: 10px
+    #preview-link
+      @include gradient($bluegradient1, $bluegradient2)
+    #publish-link
+      @include gradient($greengradient1, $greengradient2)
+    #delete-link
+      @include gradient($redgradient1, $redgradient2)
+  .banner
+    padding: 20px
+    margin: 30px 0
+    background-color: $lightred
+    .before
+      font-weight: bold
+      margin-bottom: 10px
+      text-transform: uppercase
+      font-size: 1.2em
+    li
+      margin-bottom: 0.5em
+  label
+    float: none
+    padding: 0
+  fieldset
+    padding-top: 20px
+  .example
+    border: none
+    padding-bottom: 0
+  #story-spinner
+    background: #000 url(../images/spinner-white.gif) no-repeat 17px 12px
+    color: #fff
+    position: fixed
+    top: 0
+    left: 50%
+    padding: 10px 20px 10px 45px
+    margin-left: -75px
+    font-size: 16px
+    text-transform: uppercase
+    -webkit-border-bottom-right-radius: 3px
+    -webkit-border-bottom-left-radius: 3px
+    -moz-border-radius-bottomright: 3px
+    -moz-border-radius-bottomleft: 3px
+    border-bottom-right-radius: 3px
+    border-bottom-left-radius: 3px
+    z-index: 99
+  #story-saved
+    height: 16px
+    font-family: $typewriter
+    position: absolute
+    top: 10px
+    left: 0
+    color: #999
+    font-style: italic
+    font-weight: 100
+  section.step
+    position: relative
+    background: #e8e8e8
+    padding: 30px
+    margin-bottom: 30px
+    h2
+      background: none
+      text-transform: none
+      color: $text_color
+      padding: 0 0 5px
+      border-bottom: 1px solid #ccc
+      margin-bottom: 30px
+    .info
+      margin: 15px 0
+      font-size: 12px
+      color: #777
+      em.strong
+        color: #000
+      strong
+        font-weight: 500
+        color: $text_color
+    input[type="text"], textarea
+      width: 98%
+    label
+      font-weight: 400
+      color: $text_color
+      text-transform: none
 
-		.choice
-			display: inline-block
-			background: #ccc
-			color: #000
-			@include rounded(3px)
-			-webkit-border-bottom-right-radius: 0
-			-webkit-border-bottom-left-radius: 0
-			-moz-border-radius-bottomright: 0
-			-moz-border-radius-bottomleft: 0
-			border-bottom-right-radius: 0
-			border-bottom-left-radius: 0
-			font-size: 15px
-			font-weight: 600
-			padding: 10px 20px
-			margin-right: 10px
-		.choice:hover
-			background: #bbb
-		.choice.selected
-			background-color: #fff
-			color: #333
-		.choice.selected
-		.details
-			display: none
-			@include rounded(3px)
-			-webkit-border-top-left-radius: 0
-			-moz-border-radius-topleft: 0
-			border-top-left-radius: 0
-			background: #fff
-			color: #333
-			padding: 20px
-			label
-				color: #333
-				text-shadow: none
-				font-size: 14px
-				font-weight: 400
-				margin: 0 0 5px
-			.button
-				display: inline-block
-				margin-top: 14px
-			.info
-				margin-bottom: 0
-		.details.selected
-			display: block
-	.step, .banner
-		max-width: 900px
-		margin-left: auto
-		margin-right: auto
-	#describe
-		max-width: 530px
-	#share
-		.service
-			padding: 8px 0 8px 34px
-			background-position: 0 0
-			background-repeat: no-repeat
-			position: relative
-			a
-				padding: 2px 0 0 4px
-				font-weight: 500
-		#facebook
-			background-image: url(../images/icons/facebookSmall.png)
-		#twitter
-			background-image: url(../images/icons/twitterSmall.png)
-			margin-right: 0
-	.banner
-		max-width: 920px
+    .choice
+      display: inline-block
+      background: #ccc
+      color: #000
+      @include rounded(3px)
+      -webkit-border-bottom-right-radius: 0
+      -webkit-border-bottom-left-radius: 0
+      -moz-border-radius-bottomright: 0
+      -moz-border-radius-bottomleft: 0
+      border-bottom-right-radius: 0
+      border-bottom-left-radius: 0
+      font-size: 15px
+      font-weight: 600
+      padding: 10px 20px
+      margin-right: 10px
+    .choice:hover
+      background: #bbb
+    .choice.selected
+      background-color: #fff
+      color: #333
+    .choice.selected
+    .details
+      display: none
+      @include rounded(3px)
+      -webkit-border-top-left-radius: 0
+      -moz-border-radius-topleft: 0
+      border-top-left-radius: 0
+      background: #fff
+      color: #333
+      padding: 20px
+      label
+        color: #333
+        text-shadow: none
+        font-size: 14px
+        font-weight: 400
+        margin: 0 0 5px
+      .button
+        display: inline-block
+        margin-top: 14px
+      .info
+        margin-bottom: 0
+    .details.selected
+      display: block
+  .step, .banner
+    max-width: 900px
+    margin-left: auto
+    margin-right: auto
+  #describe
+    max-width: 530px
+  #share
+    .service
+      padding: 8px 0 8px 34px
+      background-position: 0 0
+      background-repeat: no-repeat
+      position: relative
+      a
+        padding: 2px 0 0 4px
+        font-weight: 500
+    #facebook
+      background-image: url(../images/icons/facebookSmall.png)
+    #twitter
+      background-image: url(../images/icons/twitterSmall.png)
+      margin-right: 0
+  .banner
+    max-width: 920px
 
-	.step#editor
-		margin-top: 30px
-		h2
-			margin-bottom: 20px
-		#share-details input
-			background: #eee
-		#create-details
-			padding: 18px 20px 21px
+  .step#editor
+    margin-top: 30px
+    h2
+      margin-bottom: 20px
+    #share-details input
+      background: #eee
+    #create-details
+      padding: 18px 20px 21px
+    p
+      margin-bottom: 0
+      span
+        margin-right: 5px
+    a.preview
+      background-color: $green
 
-	.step#type
-		ul
-			height: 40px
-			li
-				float: left
-				clear: none
-				margin: 0 20px 20px 0
-				&:hover a
-					background-color: #555
-				&.selected a
-					background-color: $blue
-				a
-					display: inline-block
-					padding: 12px 15px 9px 45px
-					background: #393939 url(../images/content/media-types/photos.png) no-repeat 12px 50%
-					text-transform: uppercase
-					color: #fff
-					@include rounded
-				a#video-type
-					background-image: url(../images/content/media-types/video.png)
-				a#writing-type
-					background-image: url(../images/content/media-types/writing.png)
-				a#sound-type
-					background-image: url(../images/content/media-types/sound.png)
-				a#visual-art-type
-					background-image: url(../images/content/media-types/art.png)
-		
-	.step#preview
-		#preview-image-details
-			height: 180px
-		.file-uploader
-			float: left
-		.loader
-			width: 220px
-			height: 19px
-			background: transparent url(../images/loading.gif) no-repeat 0 0
-			display: none
-		.thumbnail
-			width: 288px
-			height: 180px
-			background: #eee url(../thumbnails/medium/missing.png) no-repeat 50% 50%
-			float: left
-			margin-right: 20px
-		#preview-text-details
-			textarea
-				height: 30px
-				background: #eee
-			#characters-left
-				font-size: 13px
-				color: #777
-				margin-bottom: 20px
-			#text-template
-				height: 185px
-				a
-					display: block
-					float: left
-					width: 225px
-					height: 150px
-					border: 3px solid #fff
-					margin-right: 2px
-				a:hover, a.selected
-					border-color: #333
-	
-	.step#categorize
-		#story_title
-			width: 50%
-	
-	.step#share, .step#describe, .step#thankyou
-		display: none
-	.step#describe
-		padding-left: 400px
-		h2
-			margin-left: -370px
-			margin-bottom: 20px
-		#thumbnail-preview
-			position: absolute
-			top: 69px
-			left: 30px
-			width: 388px
-			#thumbnail
-				margin-bottom: 10px
-				.file-uploader
-					padding-top: 5px
-					.file-input
-						height: 25px
-					.loader
-						width: 220px
-						height: 19px
-						background: transparent url(../images/loading.gif) no-repeat 0 0
-						display: none
-			.box
-				background: #fff
-				border: 1px solid #d7d7d7
-				@include boxshadow(2px,0.1,1px,1px)
-				width: 288px
-				.title, .author
-					padding: 0 10px
-				.title
-					font-weight: 700
-					text-transform: uppercase
-				.author
-					font-size: 11px
-				.thumbnail
-					background-color: $lightblue
-					background-image: url(../images/creatorThumbnailDefaultBG.png)
-					background-repeat: no-repeat
-					background-position: 50% 50%
-					@include bgcover
-					height: 180px
-			.note
-				width: 288px
-				text-align: center
-				margin-top: 10px
-		ul.fields
-			li.image
-				.file-input
-					height: 30px
-				.loader
-					width: 100%
-					background: transparent url(../images/loading.gif) no-repeat 0 0
-					height: 19px
-					display: none
-				.info strong
-					display: block
-			li label em
-				font-size: 11px
-				font-weight: 500
-			li.tags .info, li.gallery .info
-				margin-top: 3px
-	#last
-		background: none
-		padding: 0
-		max-width: 960px
-		.owner
-			float: right
-			span
-				font-size: 13px
-				font-weight: 700
-		.rest
-			clear: both
-			padding-top: 10px
-			height: 45px
-		input[type="submit"], a
-			float: right
-			display: block
-			width: 100px
-			padding: 10px 0
-			font-size: 16px
-			color: #fff
-			font-weight: 700
-			text-transform: uppercase
-			background-color: $green
-			text-align: center
-			@include rounded(3px)
-		a.preview
-			background-color: #777
-			margin-right: 20px
-			height: 22px
-			line-height: 23px
-			
-	.title-input, .excerpt-input
-		height: auto
-		position: relative
-		margin-bottom: 10px
-	.title-input
-		margin-top: 10px
-		margin-bottom: 15px
-		height: auto
-		input
-			width: 99%
-	.excerpt-input
-		textarea
-			width: 99%
-			height: 100px
-			vertical-align: top
-	#page-previews
-		position: relative
-		border-bottom: $border_solid
-		border-top: $border_solid
-		margin-bottom: 25px
-		padding-bottom: 15px
-		padding-top: 15px
-		text-align: center
-		a#open-page-editor-button
-			@include gradient($bluegradient1, $bluegradient2)
-			display: inline-block
-			height: 44px
-			line-height: 45px
-			padding: 0 15px
-			vertical-align: middle
-			text-transform: uppercase
-			color: white
-			font-weight: 700
-			-webkit-border-radius: 3px
-			-moz-border-radius: 3px
-			border-radius: 3px
-			font-size: 17px
-			font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif
-			text-shadow: none
-			width: 350px
-			text-align: center
-			margin: 0 auto
-		a#open-page-editor-button:hover
-			-moz-box-shadow: 0px 0px 7px rgba(0,175,239,0.5)
-			-webkit-box-shadow: 0px 0px 7px rgba(0,175,239,0.5)
-		h3
-			padding: 3px 0
-			color: $blue
-			font-size: 26px
-			font-weight: 900
-			text-transform: uppercase
-		#story-instructions
-			width: 298px
-			height: 385px
-			float: left
-			margin-right: 25px
-			p
-				font-family: $typewriter
-				color: #999
-				font-size: 16px
-				line-height: 24px
-				font-weight: 100
-				&:first-letter
-					font-size: 47px
-					font-weight: 100
-					padding-bottom: 5px
-					float: left
-					display: inline-block
-					vertical-align: baseline
-					padding-right: 3px
-					padding-top: 13px
-					color: #000
-		li.page
-			width: 288px
-			font-family: $typewriter
-			font-weight: 100
-			height: 180px
-			background-color: #eaeaea
-			float: left
-			clear: none
-			margin: 3px 25px 25px 0
-			text-align: center
-			font-size: 130px
-			color: #ffffff
-			cursor: pointer
-			position: relative
-			border: 5px solid #ffffff
-			@include boxshadow(5px, 0.25, 3px, 3px)
-			.inner, .image
-				width: 100%
-				height: 100%
-			a.choose-thumbnail
-				font-size: 12px
-				position: absolute
-				bottom: 0
-				left: 0
-				padding: 8px 6px 3px 20px
-				background: #ffffff url(../images/blue-checkbox.png) 7px -17px no-repeat
-				color: black
-				text-indent: 10px
-				font-family: $block
-				width: 100px
-				text-align: left
-				z-index: 3
-			a.choose-thumbnail.chosen
-				background-position: 7px 6px
-		li#preview_2, li#preview_4, li:nth-child(3n+7)
-			margin-right: 0px
-		li.chosen-thumbnail
-			border: 5px solid $blue
-		.actions
-			a
-				font-weight: bold
-				background-color: $link_color
-				color: #fff
-				padding: 3px 6px
-				text-shadow: 0 -1px 1px #000
-				@include rounded(3px)
-	.metadata
-		.price
-			label
-				width: 100%
-			input
-				width: 98%
-		.price strong
-			font-size: 1.5em
-		.tags
-			margin-top: 20px
-			label
-				width: 100%
-			input
-				width: 98%
-		.thank-you
-			textarea
-				width: 98%
-				height: 160px
-			.example
-				border-bottom: none
-	.topics
-		width: 47%
-		clear: none
-		float: left
-		padding: 10px 0 0 2%
-		border-left: $border_solid
-		h3
-			padding-bottom: 5px
-			color: #dedede
-			font-size: 26px
-			font-weight: 900
-			text-transform: uppercase
-		li
-			margin: 0
-			width: 50%
-			float: left
-			clear: none
-			input
-				float: left
-				height: 24px
-			label
-				display: inline-block
-				color: #333333
-				font-size: 15px
-				width: auto
-				font-weight: 900
-				line-height: 12px
-				font-weight: 900
-				cursor: pointer
-			.children
-				padding-left: 10px
-				label
-					color: #999
-		
-	#page-type-chooser
-		display: none
-		width: 100%
-		height: 100%
-		position: fixed
-		top: 0
-		z-index: 5
-		.dark
-			width: 100%
-			height: 100%
-			position: absolute
-			top: 0
-			left: 0
-			background-color: rgba(0,0,0,0.6)
-		.insides
-			width: 690px
-			min-width: 690px
-			height: auto
-			position: fixed
-			top: 50%
-			left: 50%
-			margin: -250px 0 0 -355px
-			background-color: rgba(249, 249, 249, 0.9)
-			@include boxshadow
-			.header
-				font-family: $block
-				font-weight: 700
-				font-size: 15px
-				vertical-align: middle
-				text-transform: uppercase
-				background-color: #000
-				color: #fff
-				margin-bottom: 5px
-				padding: 10px 0 8px 15px
-				.close
-					position: absolute
-					top: 10px
-					right: 0px
-					width: 32px
-					height: 32px
-					display: block
-					background: transparent url(../images/white-close-xSm.png) no-repeat 0 0
-					text-indent: -9999px
-			.copy
-				margin: 20px 5px 5px
-				font-size: 15px
-				line-height: 24px
-				font-family: $typewriter
-				font-weight: 100
-				padding-bottom: 15px
-				color: #777
-				h2
-					font-family: $block
-					color: $blue
-					font-weight: 700
-					font-size: 12px
-					text-align: center
-					background: none
-					text-decoration: underline
-					margin-bottom: 0px
-					padding-bottom: 0px
-				span
-					font-family: $block
-					font-weight: 100
-					clear: both
-					display: block
-					font-size: 10px
-					font-style: italic
-					text-align: center
-					line-height: 13px
-				
-			.body
-				.clear
-					height: 20px
-				ul
-					margin: 0 auto
-					li
-						display: block
-						width: 200px
-						height: 95px
-						float: left
-						background-position: 0 0px
-						background-repeat: no-repeat
-						background-color: white
-						cursor: pointer
-						margin: 8px 0 8px 15px
-						padding: 105px 0 0 0
-						clear: none
-						border: 5px solid #fff
-						@include boxshadow(4px, 0.1, 2px, 2px)
-					li.loading
-						background: transparent url(../images/spinner.gif) no-repeat 50% 70px
-					li:hover
-						border: 5px solid #00aeef
-				.title
-					background-image: url(../images/page-themes/title-page-thumbnail.jpg)
-				.full_image
-					background-image: url(../images/page-themes/full-image-thumbnail.jpg)
-				.pullquote
-					background-image: url(../images/page-themes/pullquote-thumbnail.jpg)
-				.video
-					background-image: url(../images/page-themes/video-thumbnail.jpg)
-				.split
-					background-image: url(../images/page-themes/split-thumbnail.jpg)
-				.grid
-					background-image: url(../images/page-themes/grid-thumbnail.jpg)
+  .step#type
+    ul
+      height: 40px
+      li
+        float: left
+        clear: none
+        margin: 0 20px 20px 0
+        &:hover a
+          background-color: #555
+        &.selected a
+          background-color: $blue
+        a
+          display: inline-block
+          padding: 12px 15px 9px 45px
+          background: #393939 url(../images/content/media-types/photos.png) no-repeat 12px 50%
+          text-transform: uppercase
+          color: #fff
+          @include rounded
+        a#video-type
+          background-image: url(../images/content/media-types/video.png)
+        a#writing-type
+          background-image: url(../images/content/media-types/writing.png)
+        a#sound-type
+          background-image: url(../images/content/media-types/sound.png)
+        a#visual-art-type
+          background-image: url(../images/content/media-types/art.png)
+    
+  .step#preview
+    #preview-image-details
+      height: 180px
+    .file-uploader
+      float: left
+    .loader
+      width: 220px
+      height: 19px
+      background: transparent url(../images/loading.gif) no-repeat 0 0
+      display: none
+    .thumbnail
+      width: 288px
+      height: 180px
+      background: #eee url(../thumbnails/medium/missing.png) no-repeat 50% 50%
+      float: left
+      margin-right: 20px
+    #preview-text-details
+      textarea
+        height: 30px
+        background: #eee
+      #characters-left
+        font-size: 13px
+        color: #777
+        margin-bottom: 20px
+      #text-template
+        height: 185px
+        a
+          display: block
+          float: left
+          width: 225px
+          height: 150px
+          border: 3px solid #fff
+          margin-right: 2px
+        a:hover, a.selected
+          border-color: #333
+  
+  .step#categorize
+    #story_title
+      width: 50%
+  
+  .step#share, .step#describe, .step#thankyou
+    display: none
+  .step#describe
+    padding-left: 400px
+    h2
+      margin-left: -370px
+      margin-bottom: 20px
+    #thumbnail-preview
+      position: absolute
+      top: 69px
+      left: 30px
+      width: 388px
+      #thumbnail
+        margin-bottom: 10px
+        .file-uploader
+          padding-top: 5px
+          .file-input
+            height: 25px
+          .loader
+            width: 220px
+            height: 19px
+            background: transparent url(../images/loading.gif) no-repeat 0 0
+            display: none
+      .box
+        background: #fff
+        border: 1px solid #d7d7d7
+        @include boxshadow(2px,0.1,1px,1px)
+        width: 288px
+        .title, .author
+          padding: 0 10px
+        .title
+          font-weight: 700
+          text-transform: uppercase
+        .author
+          font-size: 11px
+        .thumbnail
+          background-color: $lightblue
+          background-image: url(../images/creatorThumbnailDefaultBG.png)
+          background-repeat: no-repeat
+          background-position: 50% 50%
+          @include bgcover
+          height: 180px
+      .note
+        width: 288px
+        text-align: center
+        margin-top: 10px
+    ul.fields
+      li.image
+        .file-input
+          height: 30px
+        .loader
+          width: 100%
+          background: transparent url(../images/loading.gif) no-repeat 0 0
+          height: 19px
+          display: none
+        .info strong
+          display: block
+      li label em
+        font-size: 11px
+        font-weight: 500
+      li.tags .info, li.gallery .info
+        margin-top: 3px
+  #last
+    background: none
+    padding: 0
+    max-width: 960px
+    .owner
+      float: right
+      span
+        font-size: 13px
+        font-weight: 700
+    .rest
+      clear: both
+      padding-top: 10px
+      height: 45px
+      p
+        margin: 0 0 5px
+        text-align: right
+    input[type="submit"], a
+      float: right
+      padding: 10px
+      font-size: 16px
+      color: #fff
+      font-weight: 700
+      text-transform: uppercase
+      background-color: $green
+      text-align: center
+      @include rounded(3px)
+    a.preview
+      background-color: #777
+      margin-right: 20px
+      height: 22px
+      line-height: 23px
+      
+  .title-input, .excerpt-input
+    height: auto
+    position: relative
+    margin-bottom: 10px
+  .title-input
+    margin-top: 10px
+    margin-bottom: 15px
+    height: auto
+    input
+      width: 99%
+  .excerpt-input
+    textarea
+      width: 99%
+      height: 100px
+      vertical-align: top
+  #page-previews
+    position: relative
+    border-bottom: $border_solid
+    border-top: $border_solid
+    margin-bottom: 25px
+    padding-bottom: 15px
+    padding-top: 15px
+    text-align: center
+    a#open-page-editor-button
+      @include gradient($bluegradient1, $bluegradient2)
+      display: inline-block
+      height: 44px
+      line-height: 45px
+      padding: 0 15px
+      vertical-align: middle
+      text-transform: uppercase
+      color: white
+      font-weight: 700
+      -webkit-border-radius: 3px
+      -moz-border-radius: 3px
+      border-radius: 3px
+      font-size: 17px
+      font-family: "facitweb-1", "facitweb-2", helvetica, sans-serif
+      text-shadow: none
+      width: 350px
+      text-align: center
+      margin: 0 auto
+    a#open-page-editor-button:hover
+      -moz-box-shadow: 0px 0px 7px rgba(0,175,239,0.5)
+      -webkit-box-shadow: 0px 0px 7px rgba(0,175,239,0.5)
+    h3
+      padding: 3px 0
+      color: $blue
+      font-size: 26px
+      font-weight: 900
+      text-transform: uppercase
+    #story-instructions
+      width: 298px
+      height: 385px
+      float: left
+      margin-right: 25px
+      p
+        font-family: $typewriter
+        color: #999
+        font-size: 16px
+        line-height: 24px
+        font-weight: 100
+        &:first-letter
+          font-size: 47px
+          font-weight: 100
+          padding-bottom: 5px
+          float: left
+          display: inline-block
+          vertical-align: baseline
+          padding-right: 3px
+          padding-top: 13px
+          color: #000
+    li.page
+      width: 288px
+      font-family: $typewriter
+      font-weight: 100
+      height: 180px
+      background-color: #eaeaea
+      float: left
+      clear: none
+      margin: 3px 25px 25px 0
+      text-align: center
+      font-size: 130px
+      color: #ffffff
+      cursor: pointer
+      position: relative
+      border: 5px solid #ffffff
+      @include boxshadow(5px, 0.25, 3px, 3px)
+      .inner, .image
+        width: 100%
+        height: 100%
+      a.choose-thumbnail
+        font-size: 12px
+        position: absolute
+        bottom: 0
+        left: 0
+        padding: 8px 6px 3px 20px
+        background: #ffffff url(../images/blue-checkbox.png) 7px -17px no-repeat
+        color: black
+        text-indent: 10px
+        font-family: $block
+        width: 100px
+        text-align: left
+        z-index: 3
+      a.choose-thumbnail.chosen
+        background-position: 7px 6px
+    li#preview_2, li#preview_4, li:nth-child(3n+7)
+      margin-right: 0px
+    li.chosen-thumbnail
+      border: 5px solid $blue
+    .actions
+      a
+        font-weight: bold
+        background-color: $link_color
+        color: #fff
+        padding: 3px 6px
+        text-shadow: 0 -1px 1px #000
+        @include rounded(3px)
+  .metadata
+    .price
+      label
+        width: 100%
+      input
+        width: 98%
+    .price strong
+      font-size: 1.5em
+    .tags
+      margin-top: 20px
+      label
+        width: 100%
+      input
+        width: 98%
+    .thank-you
+      textarea
+        width: 98%
+        height: 160px
+      .example
+        border-bottom: none
+  .topics
+    width: 47%
+    clear: none
+    float: left
+    padding: 10px 0 0 2%
+    border-left: $border_solid
+    h3
+      padding-bottom: 5px
+      color: #dedede
+      font-size: 26px
+      font-weight: 900
+      text-transform: uppercase
+    li
+      margin: 0
+      width: 50%
+      float: left
+      clear: none
+      input
+        float: left
+        height: 24px
+      label
+        display: inline-block
+        color: #333333
+        font-size: 15px
+        width: auto
+        font-weight: 900
+        line-height: 12px
+        font-weight: 900
+        cursor: pointer
+      .children
+        padding-left: 10px
+        label
+          color: #999
+    
+  #page-type-chooser
+    display: none
+    width: 100%
+    height: 100%
+    position: fixed
+    top: 0
+    z-index: 5
+    .dark
+      width: 100%
+      height: 100%
+      position: absolute
+      top: 0
+      left: 0
+      background-color: rgba(0,0,0,0.6)
+    .insides
+      width: 690px
+      min-width: 690px
+      height: auto
+      position: fixed
+      top: 50%
+      left: 50%
+      margin: -250px 0 0 -355px
+      background-color: rgba(249, 249, 249, 0.9)
+      @include boxshadow
+      .header
+        font-family: $block
+        font-weight: 700
+        font-size: 15px
+        vertical-align: middle
+        text-transform: uppercase
+        background-color: #000
+        color: #fff
+        margin-bottom: 5px
+        padding: 10px 0 8px 15px
+        .close
+          position: absolute
+          top: 10px
+          right: 0px
+          width: 32px
+          height: 32px
+          display: block
+          background: transparent url(../images/white-close-xSm.png) no-repeat 0 0
+          text-indent: -9999px
+      .copy
+        margin: 20px 5px 5px
+        font-size: 15px
+        line-height: 24px
+        font-family: $typewriter
+        font-weight: 100
+        padding-bottom: 15px
+        color: #777
+        h2
+          font-family: $block
+          color: $blue
+          font-weight: 700
+          font-size: 12px
+          text-align: center
+          background: none
+          text-decoration: underline
+          margin-bottom: 0px
+          padding-bottom: 0px
+        span
+          font-family: $block
+          font-weight: 100
+          clear: both
+          display: block
+          font-size: 10px
+          font-style: italic
+          text-align: center
+          line-height: 13px
+        
+      .body
+        .clear
+          height: 20px
+        ul
+          margin: 0 auto
+          li
+            display: block
+            width: 200px
+            height: 95px
+            float: left
+            background-position: 0 0px
+            background-repeat: no-repeat
+            background-color: white
+            cursor: pointer
+            margin: 8px 0 8px 15px
+            padding: 105px 0 0 0
+            clear: none
+            border: 5px solid #fff
+            @include boxshadow(4px, 0.1, 2px, 2px)
+          li.loading
+            background: transparent url(../images/spinner.gif) no-repeat 50% 70px
+          li:hover
+            border: 5px solid #00aeef
+        .title
+          background-image: url(../images/page-themes/title-page-thumbnail.jpg)
+        .full_image
+          background-image: url(../images/page-themes/full-image-thumbnail.jpg)
+        .pullquote
+          background-image: url(../images/page-themes/pullquote-thumbnail.jpg)
+        .video
+          background-image: url(../images/page-themes/video-thumbnail.jpg)
+        .split
+          background-image: url(../images/page-themes/split-thumbnail.jpg)
+        .grid
+          background-image: url(../images/page-themes/grid-thumbnail.jpg)
 
 #gallery-creator
-	display: none
-	z-index: 99
-	.overlay
-		position: fixed
-		top: 0
-		left: 0
-		width: 100%
-		height: 100%
-		background: transparent url(../images/transparentGrey.png) repeat
-	.inner
-		width: 500px
-		height: 270px
-		padding: 20px
-		background: #fff
-		@include rounded
-		position: fixed
-		top: 50%
-		left: 50%
-		margin: -155px 0 0 -270px
-		h1
-			text-transform: uppercase
-			font-weight: 900
-			margin-bottom: 10px
-		form
-			li
-				margin-bottom: 10px
-		input[type="text"], textarea
-			width: 96%
-		textarea
-			height: 50px
-			margin-bottom: 10px
-	#cancel-gallery-creation
-		background-color: $red
-		@include gradient($redgradient1, $redgradient2)
+  display: none
+  z-index: 99
+  .overlay
+    position: fixed
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    background: transparent url(../images/transparentGrey.png) repeat
+  .inner
+    width: 500px
+    height: 270px
+    padding: 20px
+    background: #fff
+    @include rounded
+    position: fixed
+    top: 50%
+    left: 50%
+    margin: -155px 0 0 -270px
+    h1
+      text-transform: uppercase
+      font-weight: 900
+      margin-bottom: 10px
+    form
+      li
+        margin-bottom: 10px
+    input[type="text"], textarea
+      width: 96%
+    textarea
+      height: 50px
+      margin-bottom: 10px
+  #cancel-gallery-creation
+    background-color: $red
+    @include gradient($redgradient1, $redgradient2)
 #gallery-creator.loading
-	.inner
-		background: #fff url(../images/spinner.gif) no-repeat 50% 50%
-		h1, form
-			display: none
-		
+  .inner
+    background: #fff url(../images/spinner.gif) no-repeat 50% 50%
+    h1, form
+      display: none
+    
 #page-previews
-	li.title .inner
-		display: table
-	li.title
-		@include titleSlide
-		p, span
-			font-size: 12px !important
-	li.full_image
-		@include fullimageSlide
-		.caption
-			display: none
-	li.pullquote
-		@include blockquoteSlide
-	li.video
-		@include videoSlide
-	li.split
-		@include splitSlideMedium
-	li.grid
-		@include gridSlideMedium
-	li.page.launch
-		color: #333
-		font-size: 20px
-		display: table
-		.inner
-			display: table-cell
-			vertical-align: middle
-			
-			
+  li.title .inner
+    display: table
+  li.title
+    @include titleSlide
+    p, span
+      font-size: 12px !important
+  li.full_image
+    @include fullimageSlide
+    .caption
+      display: none
+  li.pullquote
+    @include blockquoteSlide
+  li.video
+    @include videoSlide
+  li.split
+    @include splitSlideMedium
+  li.grid
+    @include gridSlideMedium
+  li.page.launch
+    color: #333
+    font-size: 20px
+    display: table
+    .inner
+      display: table-cell
+      vertical-align: middle
+      
+      
 #page-editor
-	width: 100%
-	position: absolute
-	top: 0
-	bottom: 0
-	padding: 0
-	margin: 0
-	overflow: hidden
-	text-shadow: none
-	#editor-header
-		height: 42px
-		position: relative
-		z-index: 2
-		font-family: $block
-		font-weight: 700
-		text-transform: uppercase
-		background-color: #fff
-		background-color: rgba(255,255,255,0.9)
-		@include boxshadow(5px, 0.15, 0, 5px)
-		.title
-			font-size: 26px
-			color: #b0b0b0
-			padding: 6px 0px 5px
-			vertical-align: middle
-			margin-left: 10px
-			float: left
-		.slide-nav
-			position: absolute
-			left: 50%
-			top: 13px
-			width: 130px
-			height: 42px
-			margin-left: -65px
-			font-size: 14px
-			text-align: center
-			color: #aaaaaa
-			letter-spacing: 1px
-			font-weight: 900
-			#previous-page, #next-page
-				width: 16px
-				height: 18px
-				text-indent: -9999px
-				background: transparent url(../images/story-creator-next-prev-arrows.png) no-repeat 0 0
-				cursor: pointer
-				position: absolute
-				top: 2px
-				display: none
-			#previous-page
-				left: 0
-			#next-page
-				right: 0
-				background-position: -18px 0
-		.actions
-			float: right
-			margin-top: 7px
-			a
-				float: left
-				margin-right: 8px
-				display: block
-				font-size: 12px
-				height: 15px
-				padding: 5px 10px
-				background-color: #c0eefe
-				@include rounded(3px)
-			a.delete
-				background-color: #f7d4db
-				color: #f52654
-			a.save
-				background-color: #c9f3cf
-				color: #1ca436
-			a.add
-				display: none
-	#pane
-		width: 50%
-		background-color: #e0e0e0
-		background-color: rgba(224,224,224,0.95)
-		z-index: 2
-		position: absolute
-		top: 42px
-		bottom: 0
-		left: 0
-		margin-bottom: -42px
-		-webkit-transition: left 0.5s ease-in-out
-		-moz-transition-property: left
-		-moz-transition-duration: 0.5s
-		@include boxshadow(5px, 0.15, 5px, 0)
-		.expander-tab
-			position: absolute
-			right: -31px
-			top: 46%
-			width: 34px
-			height: 57px
-			background: transparent url(../images/verticalDrawerTab.png) no-repeat -34px 0
-		.pane-insides
-			position: absolute
-			top: 0
-			bottom: 0
-			left: 0
-			width: 100%
-			overflow-y: auto
-			.mceEditor iframe *
-				font-size: 11px !important
-				font-family: verdana !important
-			.header
-				height: 35px
-				background-color: #000
-				color: #fff
-				text-transform: uppercase
-				position: relative
-				border-right: 1px solid #444
-				.title
-					font-family: $block
-					font-weight: 700
-					font-size: 14px
-					vertical-align: middle
-					padding: 9px 5px 10px 12px
-					display: inline-block
-					letter-spacing: 1px
-				.change
-					display: inline-block
-					line-height: 35px
-					vertical-align: middle
-					margin-left: 10px
-				.spinner
-					position: absolute
-					right: 5px
-					top: 9px
-					width: 60px
-					height: 16px
-					background: transparent url(../images/spinner-white.gif) no-repeat 0 0
-					font-size: 12px
-					font-weight: 300
-					font-style: italic
-					padding: 1px 0 0 20px
-					display: none
-				.spinner.off
-					background-position: -16px 0
-				a
-					font-size: 11px
-			.copy
-				margin: 17px 23px 0
-				font-size: 15px
-				line-height: 24px
-				font-family: $typewriter
-				font-weight: 100
-				border-bottom: 1px dotted #aaa
-				padding-bottom: 15px
-				color: #777
-				strong
-					font-weight: normal
-					color: #000
-				span
-					display: inline
-			.body
-				padding: 20px 45px 30px
-				li.text-editor, li.text-style-chooser
-					position: relative
-					iframe
-						z-index: 1
-					label.heading
-						background: #f0f0ee
-						position: absolute
-						top: 0
-						left: 0
-						z-index: 2
-						margin: 5px 0 0 10px
-						border: none
-				li.simple-heading
-					background: #f0f0ee
-					border: 1px solid #ccc
-					height: 20px
-					padding: 5px 0
-					label
-						margin: 0 10px
-					.color_picker
-						margin: 0
-				li.text-style-chooser
-					background-color: #fff
-					border: 1px solid #ccc
-					width: 100%
-					height: 151px
-					label.heading
-						margin: 0
-						height: 20px
-						width: 100%
-						border-bottom: 1px solid #ccc
-						padding: 5px 0
-						text-indent: 10px
-						.drop-capper
-							float: right
-							label
-								float: left
-								margin: 0
-							.switch
-								float: right
-								width: 55px
-								height: 18px
-								background: transparent url(../images/toggle.png) no-repeat 0 0
-								margin: 1px 10px 0 0
-								cursor: pointer
-							.switch.on
-								background-position: 0 -18px
-					.styles-wrapper
-						overflow-x: auto
-						position: absolute
-						top: 30px
-						left: 0
-						height: 121px
-						width: 100%
-						ul.styles
-							width: 1404px
-							padding: 0 2px
-							li
-								width: 150px
-								height: 94px
-								float: left
-								clear: none
-								padding: 3px
-								margin: 3px 0
-								background-color: transparent
-								background-repeat: no-repeat
-								background-position: 3px 3px
-								cursor: pointer
-							li.selected
-								background-color: $blue
-							li.blocky-title
-								background-image: url(../images/textStyles/BlockyTitleSm.gif)
-							li.blocky-chunk
-								background-image: url(../images/textStyles/BlockyChunkSm.gif)
-							li.blocky-paragraph
-								background-image: url(../images/textStyles/BlockyParagraphSm.gif)
-							li.deco-title
-								background-image: url(../images/textStyles/DecoTitleSm.gif)
-							li.deco-chunk
-								background-image: url(../images/textStyles/DecoChunkSm.gif)
-							li.deco-paragraph
-								background-image: url(../images/textStyles/DecoParagraphSm.gif)
-							li.typewriter-title
-								background-image: url(../images/textStyles/TypewriterTitleSm.gif)
-							li.typewriter-chunk
-								background-image: url(../images/textStyles/TypewriterChunkSm.gif)
-							li.typewriter-paragraph
-								background-image: url(../images/textStyles/TypewriterParagraphSm.gif)
-							li.cursive-title
-								background-image: url(../images/textStyles/CursiveTitleSm.gif)
-							li.cursive-chunk
-								background-image: url(../images/textStyles/CursiveChunkSm.gif)
-							li.cursive-paragraph
-								background-image: url(../images/textStyles/CursiveParagraphSm.gif)
-							li.big-word-sans-serif
-								background-image: url(../images/textStyles/TallBigWordSm.gif)
-							li.big-word-cursive
-								background-image: url(../images/textStyles/CursiveBigWordSm.gif)
-		a.save
-			font-size: 12px
-			height: 15px
-			padding: 5px 10px
-			background-color: #c9f3cf
-			font-weight: 700
-			text-transform: uppercase
-			color: #1ca436
-			@include rounded(3px)
-			display: inline-block
-			margin-top: 10px
-		ul.pages
-			li.break
-				border-top: 1px solid #ccc
-				padding-top: 10px
-				margin-top: 20px
-			li
-				margin-bottom: 20px
-				select
-					margin-top: 9px
-				label
-					font-size: 12px
-					font-weight: 400
-					color: #777
-					margin-top: 8px
-					margin-bottom: 5px
-					text-shadow: none
-					float: left
-					width: auto
-					span
-						height: auto
-					span.sidenote
-						text-transform: none
-						font-style: italic
-				.tip-icon
-					width: 19px
-					height: 19px
-					background: transparent url(../images/tipIcon.png) no-repeat
-					cursor: pointer
-				.tips
-					display: none
-					color: #777
-					width: 100%
-					padding-top: 5px
-					li
-						margin-bottom: 5px
-						padding-left: 5px
-						background-color: $link_color
-						color: #fff
-				.file-uploader
-					clear: both
-				.hints
-					clear: both
-					p
-						margin: 3px 0
-						font-size: 10px
-						text-transform: uppercase
-				span
-					display: block
-				.title
-					textarea
-						width: 95%
-						height: 160px
-				.full_image
-					padding-bottom: 20px
-					fieldset
-						width: 50%
-						margin: 0 auto
-					textarea
-						width: 95%
-						height: 150px
-					.picker
-						background-color: #fff
-						border: 1px solid #ccc
-						width: 94px
-						height: 70px
-						padding: 5px 0 0 5px
-						clear: both
-						li
-							background-color: #eee
-							width: 42px
-							height: 30px
-							float: left
-							margin: 0 5px 5px 0
-							clear: none
-							cursor: pointer
-						li.chosen
-							background-color: #b7ebff
-				.pullquote
-					textarea
-						display: none
-						width: 95%
-						height: 300px
-					input.bgcolor
-						display: none
-				.split
-					li.chooser
-						margin-bottom: 25px
-						ul
-							height: 72px
-							margin-bottom: 15px
-							clear: both
-						li
-							float: left
-							clear: none
-							width: 103px
-							height: 75px
-							background: #fff
-							border: 1px solid #ccc
-							margin-right: 15px
-							cursor: pointer
-						li.image-text
-							background: transparent url(../images/page-themes/twoColumnImageText.png) repeat-x scroll 0 0
-						li.text-image
-							background: transparent url(../images/page-themes/twoColumnTextImage.png) repeat-x scroll 0 0
-						li.image-image
-							background: transparent url(../images/page-themes/twoColumnImageImage.png) repeat-x scroll 0 0
-						li.text-text
-							background: transparent url(../images/page-themes/twoColumnTextText.png) repeat-x scroll 0 0
-						li.selected
-							background-color: $lightblue
-						li:last-child
-							margin-right: 0
-					li.inputs
-						h3
-							background-color: #aaa
-							color: #fff
-							text-transform: uppercase
-							padding: 5px
-							margin-bottom: 5px
-						ul
-							li.image1, li.text1
-								margin-bottom: 20px
-						textarea
-							width: 97%
-							height: 150px
-				.video
-					.url
-						span
-							display: inline
-				.external
-					.url
-						clear: both
-						span
-							display: inline
-						input[type="text"]
-							width: 300px
-				.grid
-					li.chooser
-						width: 280px
-						margin: 0 auto 25px
-						ul
-							width: 268px
-							height: 164px
-							padding: 5px
-							background-color: #fff
-							border: 1px solid #ccc
-							clear: both
-						li
-							float: left
-							clear: none
-							width: 55px
-							height: 70px
-							background: #eee
-							color: #fff
-							border: 1px solid #ccc
-							margin: 5px
-							cursor: pointer
-							font-size: 36px
-							font-family: $typewriter
-							text-align: center
-							line-height: 70px
-							vertical-align: middle
-						li.selected
-							background-color: $lightblue
-							color: $link_color
-					li.inputs
-						height: 250px
-						ul.cells li
-							position: absolute
-							width: 95%
-						.side
-							float: left
-							width: 46%
-							margin: 0
-							.inner
-								h3
-									background-color: #eee
-									color: #8d8d8d
-									text-transform: uppercase
-									padding: 6px 10px 5px
-									margin-bottom: 15px
-									span
-										height: auto
-										display: inline-block
-									.dark
-										color: #333
-									.types
-										float: right
-										a
-											padding-left: 5px
-								.image
-									.file-uploader
-										padding-bottom: 10px
-								.text
-									margin-top: 5px
-								.file-uploader .file-input-faker
-									display: table
-									width: auto
-									.text, a.upload
-										display: table-cell
-										position: relative
-									.text
-										min-width: 100px
-									a.upload
-										width: 80px
-								textarea
-									width: 95%
-									margin-top: 5px
-						.front
-							.inner
-								padding-right: 15px
-								border-right: 1px solid #ccc
-						.back
-							.inner
-								padding-left: 15px
-				
-				.image-placement-picker
-					clear: both
-				.color-picker
-					clear: both
-		.file-uploader
-			position: relative
-			height: 27px
-			float: left
-			.file-input-faker
-				position: absolute
-				width: 300px
-				height: 30px
-				overflow: hidden
-				input[type="file"]
-					position: absolute
-					top: 0
-					left: 0
-					opacity: 0
-					z-index: 2
-					height: 25px
-					width: 200px
-				.text
-					position: absolute
-					left: 0
-					line-height: 25px
-					vertical-align: middle
-					background-color: #fff
-					border: 1px solid #ccc
-					height: 25px
-					width: 190px
-					padding: 0 5px
-			a
-				position: absolute
-				left: 210px
-				display: block
-				width: auto
-				text-align: center
-				vertical-align: middle
-				font-family: $block
-				font-weight: 700
-				text-transform: uppercase
-				background-color: #c0eefe
-				z-index: 2
-				border-radius: 3px
-				-moz-border-radius: 3px
-				padding: 5px 10px
-				height: 15px
-			.loader
-				display: none
-	#pane.closed
-		left: -49%
-		.expander-tab
-			background-position: 0 0
+  width: 100%
+  position: absolute
+  top: 0
+  bottom: 0
+  padding: 0
+  margin: 0
+  overflow: hidden
+  text-shadow: none
+  #editor-header
+    height: 42px
+    position: relative
+    z-index: 2
+    font-family: $block
+    font-weight: 700
+    text-transform: uppercase
+    background-color: #fff
+    background-color: rgba(255,255,255,0.9)
+    @include boxshadow(5px, 0.15, 0, 5px)
+    .title
+      font-size: 26px
+      color: #b0b0b0
+      padding: 6px 0px 5px
+      vertical-align: middle
+      margin-left: 10px
+      float: left
+    .slide-nav
+      position: absolute
+      left: 50%
+      top: 13px
+      width: 130px
+      height: 42px
+      margin-left: -65px
+      font-size: 14px
+      text-align: center
+      color: #aaaaaa
+      letter-spacing: 1px
+      font-weight: 900
+      #previous-page, #next-page
+        width: 16px
+        height: 18px
+        text-indent: -9999px
+        background: transparent url(../images/story-creator-next-prev-arrows.png) no-repeat 0 0
+        cursor: pointer
+        position: absolute
+        top: 2px
+        display: none
+      #previous-page
+        left: 0
+      #next-page
+        right: 0
+        background-position: -18px 0
+    .actions
+      float: right
+      margin-top: 7px
+      a
+        float: left
+        margin-right: 8px
+        display: block
+        font-size: 12px
+        height: 15px
+        padding: 5px 10px
+        background-color: #c0eefe
+        @include rounded(3px)
+      a.delete
+        background-color: #f7d4db
+        color: #f52654
+      a.save
+        background-color: #c9f3cf
+        color: #1ca436
+      a.add
+        display: none
+  #pane
+    width: 50%
+    background-color: #e0e0e0
+    background-color: rgba(224,224,224,0.95)
+    z-index: 2
+    position: absolute
+    top: 42px
+    bottom: 0
+    left: 0
+    margin-bottom: -42px
+    -webkit-transition: left 0.5s ease-in-out
+    -moz-transition-property: left
+    -moz-transition-duration: 0.5s
+    @include boxshadow(5px, 0.15, 5px, 0)
+    .expander-tab
+      position: absolute
+      right: -31px
+      top: 46%
+      width: 34px
+      height: 57px
+      background: transparent url(../images/verticalDrawerTab.png) no-repeat -34px 0
+    .pane-insides
+      position: absolute
+      top: 0
+      bottom: 0
+      left: 0
+      width: 100%
+      overflow-y: auto
+      .mceEditor iframe *
+        font-size: 11px !important
+        font-family: verdana !important
+      .header
+        height: 35px
+        background-color: #000
+        color: #fff
+        text-transform: uppercase
+        position: relative
+        border-right: 1px solid #444
+        .title
+          font-family: $block
+          font-weight: 700
+          font-size: 14px
+          vertical-align: middle
+          padding: 9px 5px 10px 12px
+          display: inline-block
+          letter-spacing: 1px
+        .change
+          display: inline-block
+          line-height: 35px
+          vertical-align: middle
+          margin-left: 10px
+        .spinner
+          position: absolute
+          right: 5px
+          top: 9px
+          width: 60px
+          height: 16px
+          background: transparent url(../images/spinner-white.gif) no-repeat 0 0
+          font-size: 12px
+          font-weight: 300
+          font-style: italic
+          padding: 1px 0 0 20px
+          display: none
+        .spinner.off
+          background-position: -16px 0
+        a
+          font-size: 11px
+      .copy
+        margin: 17px 23px 0
+        font-size: 15px
+        line-height: 24px
+        font-family: $typewriter
+        font-weight: 100
+        border-bottom: 1px dotted #aaa
+        padding-bottom: 15px
+        color: #777
+        strong
+          font-weight: normal
+          color: #000
+        span
+          display: inline
+      .body
+        padding: 20px 45px 30px
+        li.text-editor, li.text-style-chooser
+          position: relative
+          iframe
+            z-index: 1
+          label.heading
+            background: #f0f0ee
+            position: absolute
+            top: 0
+            left: 0
+            z-index: 2
+            margin: 5px 0 0 10px
+            border: none
+        li.simple-heading
+          background: #f0f0ee
+          border: 1px solid #ccc
+          height: 20px
+          padding: 5px 0
+          label
+            margin: 0 10px
+          .color_picker
+            margin: 0
+        li.text-style-chooser
+          background-color: #fff
+          border: 1px solid #ccc
+          width: 100%
+          height: 151px
+          label.heading
+            margin: 0
+            height: 20px
+            width: 100%
+            border-bottom: 1px solid #ccc
+            padding: 5px 0
+            text-indent: 10px
+            .drop-capper
+              float: right
+              label
+                float: left
+                margin: 0
+              .switch
+                float: right
+                width: 55px
+                height: 18px
+                background: transparent url(../images/toggle.png) no-repeat 0 0
+                margin: 1px 10px 0 0
+                cursor: pointer
+              .switch.on
+                background-position: 0 -18px
+          .styles-wrapper
+            overflow-x: auto
+            position: absolute
+            top: 30px
+            left: 0
+            height: 121px
+            width: 100%
+            ul.styles
+              width: 1404px
+              padding: 0 2px
+              li
+                width: 150px
+                height: 94px
+                float: left
+                clear: none
+                padding: 3px
+                margin: 3px 0
+                background-color: transparent
+                background-repeat: no-repeat
+                background-position: 3px 3px
+                cursor: pointer
+              li.selected
+                background-color: $blue
+              li.blocky-title
+                background-image: url(../images/textStyles/BlockyTitleSm.gif)
+              li.blocky-chunk
+                background-image: url(../images/textStyles/BlockyChunkSm.gif)
+              li.blocky-paragraph
+                background-image: url(../images/textStyles/BlockyParagraphSm.gif)
+              li.deco-title
+                background-image: url(../images/textStyles/DecoTitleSm.gif)
+              li.deco-chunk
+                background-image: url(../images/textStyles/DecoChunkSm.gif)
+              li.deco-paragraph
+                background-image: url(../images/textStyles/DecoParagraphSm.gif)
+              li.typewriter-title
+                background-image: url(../images/textStyles/TypewriterTitleSm.gif)
+              li.typewriter-chunk
+                background-image: url(../images/textStyles/TypewriterChunkSm.gif)
+              li.typewriter-paragraph
+                background-image: url(../images/textStyles/TypewriterParagraphSm.gif)
+              li.cursive-title
+                background-image: url(../images/textStyles/CursiveTitleSm.gif)
+              li.cursive-chunk
+                background-image: url(../images/textStyles/CursiveChunkSm.gif)
+              li.cursive-paragraph
+                background-image: url(../images/textStyles/CursiveParagraphSm.gif)
+              li.big-word-sans-serif
+                background-image: url(../images/textStyles/TallBigWordSm.gif)
+              li.big-word-cursive
+                background-image: url(../images/textStyles/CursiveBigWordSm.gif)
+    a.save
+      font-size: 12px
+      height: 15px
+      padding: 5px 10px
+      background-color: #c9f3cf
+      font-weight: 700
+      text-transform: uppercase
+      color: #1ca436
+      @include rounded(3px)
+      display: inline-block
+      margin-top: 10px
+    ul.pages
+      li.break
+        border-top: 1px solid #ccc
+        padding-top: 10px
+        margin-top: 20px
+      li
+        margin-bottom: 20px
+        select
+          margin-top: 9px
+        label
+          font-size: 12px
+          font-weight: 400
+          color: #777
+          margin-top: 8px
+          margin-bottom: 5px
+          text-shadow: none
+          float: left
+          width: auto
+          span
+            height: auto
+          span.sidenote
+            text-transform: none
+            font-style: italic
+        .tip-icon
+          width: 19px
+          height: 19px
+          background: transparent url(../images/tipIcon.png) no-repeat
+          cursor: pointer
+        .tips
+          display: none
+          color: #777
+          width: 100%
+          padding-top: 5px
+          li
+            margin-bottom: 5px
+            padding-left: 5px
+            background-color: $link_color
+            color: #fff
+        .file-uploader
+          clear: both
+        .hints
+          clear: both
+          p
+            margin: 3px 0
+            font-size: 10px
+            text-transform: uppercase
+        span
+          display: block
+        .title
+          textarea
+            width: 95%
+            height: 160px
+        .full_image
+          padding-bottom: 20px
+          fieldset
+            width: 50%
+            margin: 0 auto
+          textarea
+            width: 95%
+            height: 150px
+          .picker
+            background-color: #fff
+            border: 1px solid #ccc
+            width: 94px
+            height: 70px
+            padding: 5px 0 0 5px
+            clear: both
+            li
+              background-color: #eee
+              width: 42px
+              height: 30px
+              float: left
+              margin: 0 5px 5px 0
+              clear: none
+              cursor: pointer
+            li.chosen
+              background-color: #b7ebff
+        .pullquote
+          textarea
+            display: none
+            width: 95%
+            height: 300px
+          input.bgcolor
+            display: none
+        .split
+          li.chooser
+            margin-bottom: 25px
+            ul
+              height: 72px
+              margin-bottom: 15px
+              clear: both
+            li
+              float: left
+              clear: none
+              width: 103px
+              height: 75px
+              background: #fff
+              border: 1px solid #ccc
+              margin-right: 15px
+              cursor: pointer
+            li.image-text
+              background: transparent url(../images/page-themes/twoColumnImageText.png) repeat-x scroll 0 0
+            li.text-image
+              background: transparent url(../images/page-themes/twoColumnTextImage.png) repeat-x scroll 0 0
+            li.image-image
+              background: transparent url(../images/page-themes/twoColumnImageImage.png) repeat-x scroll 0 0
+            li.text-text
+              background: transparent url(../images/page-themes/twoColumnTextText.png) repeat-x scroll 0 0
+            li.selected
+              background-color: $lightblue
+            li:last-child
+              margin-right: 0
+          li.inputs
+            h3
+              background-color: #aaa
+              color: #fff
+              text-transform: uppercase
+              padding: 5px
+              margin-bottom: 5px
+            ul
+              li.image1, li.text1
+                margin-bottom: 20px
+            textarea
+              width: 97%
+              height: 150px
+        .video
+          .url
+            span
+              display: inline
+        .external
+          .url
+            clear: both
+            span
+              display: inline
+            input[type="text"]
+              width: 300px
+        .grid
+          li.chooser
+            width: 280px
+            margin: 0 auto 25px
+            ul
+              width: 268px
+              height: 164px
+              padding: 5px
+              background-color: #fff
+              border: 1px solid #ccc
+              clear: both
+            li
+              float: left
+              clear: none
+              width: 55px
+              height: 70px
+              background: #eee
+              color: #fff
+              border: 1px solid #ccc
+              margin: 5px
+              cursor: pointer
+              font-size: 36px
+              font-family: $typewriter
+              text-align: center
+              line-height: 70px
+              vertical-align: middle
+            li.selected
+              background-color: $lightblue
+              color: $link_color
+          li.inputs
+            height: 250px
+            ul.cells li
+              position: absolute
+              width: 95%
+            .side
+              float: left
+              width: 46%
+              margin: 0
+              .inner
+                h3
+                  background-color: #eee
+                  color: #8d8d8d
+                  text-transform: uppercase
+                  padding: 6px 10px 5px
+                  margin-bottom: 15px
+                  span
+                    height: auto
+                    display: inline-block
+                  .dark
+                    color: #333
+                  .types
+                    float: right
+                    a
+                      padding-left: 5px
+                .image
+                  .file-uploader
+                    padding-bottom: 10px
+                .text
+                  margin-top: 5px
+                .file-uploader .file-input-faker
+                  display: table
+                  width: auto
+                  .text, a.upload
+                    display: table-cell
+                    position: relative
+                  .text
+                    min-width: 100px
+                  a.upload
+                    width: 80px
+                textarea
+                  width: 95%
+                  margin-top: 5px
+            .front
+              .inner
+                padding-right: 15px
+                border-right: 1px solid #ccc
+            .back
+              .inner
+                padding-left: 15px
+        
+        .image-placement-picker
+          clear: both
+        .color-picker
+          clear: both
+    .file-uploader
+      position: relative
+      height: 27px
+      float: left
+      .file-input-faker
+        position: absolute
+        width: 300px
+        height: 30px
+        overflow: hidden
+        input[type="file"]
+          position: absolute
+          top: 0
+          left: 0
+          opacity: 0
+          z-index: 2
+          height: 25px
+          width: 200px
+        .text
+          position: absolute
+          left: 0
+          line-height: 25px
+          vertical-align: middle
+          background-color: #fff
+          border: 1px solid #ccc
+          height: 25px
+          width: 190px
+          padding: 0 5px
+      a
+        position: absolute
+        left: 210px
+        display: block
+        width: auto
+        text-align: center
+        vertical-align: middle
+        font-family: $block
+        font-weight: 700
+        text-transform: uppercase
+        background-color: #c0eefe
+        z-index: 2
+        border-radius: 3px
+        -moz-border-radius: 3px
+        padding: 5px 10px
+        height: 15px
+      .loader
+        display: none
+  #pane.closed
+    left: -49%
+    .expander-tab
+      background-position: 0 0
 
-	ul#pages
-		overflow: hidden
-		position: absolute
-		top: 42px
-		bottom: 0
-		width: 100%
-		z-index: 1
-		background-color: #f2f2f2
-		li.page
-			width: 100%
-			height: 100%
-			position: absolute
-			top: 0
-			bottom: 0
-			display: none
-			margin-bottom: 0
-			.inner
-				position: absolute
-				top: 0
-				bottom: 0
-				width: 100%
-							
-		.title
-			@include titleSlideFullsize
-		.full_image
-			@include fullimageSlideFullsize
-		.pullquote
-			@include blockquoteSlideFullsize
-		.video
-			@include videoSlideFullsize
-		.split
-			@include splitSlideFullsize
-		.grid
-			@include gridSlideFullsize
-		.external
-			@include externalSlideFullsize
+  ul#pages
+    overflow: hidden
+    position: absolute
+    top: 42px
+    bottom: 0
+    width: 100%
+    z-index: 1
+    background-color: #f2f2f2
+    li.page
+      width: 100%
+      height: 100%
+      position: absolute
+      top: 0
+      bottom: 0
+      display: none
+      margin-bottom: 0
+      .inner
+        position: absolute
+        top: 0
+        bottom: 0
+        width: 100%
+              
+    .title
+      @include titleSlideFullsize
+    .full_image
+      @include fullimageSlideFullsize
+    .pullquote
+      @include blockquoteSlideFullsize
+    .video
+      @include videoSlideFullsize
+    .split
+      @include splitSlideFullsize
+    .grid
+      @include gridSlideFullsize
+    .external
+      @include externalSlideFullsize
 
-	#story-details
-		position: absolute
-		bottom: -51px
-		right: 0
-		padding: 10px 10px 0 10px
-		font-size: 26px
-		font-style: italic
-		text-transform: uppercase
-		border-top: $border_type
-		border-left: $border_type
-		background: #efff74
-		height: 40px
-		z-index: 2
-		.label
-			float: left
-			border-right: $border_type
-			padding-right: 15px
-			margin-right: 10px
-		.value
-			float: left
-	.loader
-		width: 220px
-		height: 19px
-		z-index: 999
-		background: transparent url(../images/loading.gif) no-repeat 0 0
+  #story-details
+    position: absolute
+    bottom: -51px
+    right: 0
+    padding: 10px 10px 0 10px
+    font-size: 26px
+    font-style: italic
+    text-transform: uppercase
+    border-top: $border_type
+    border-left: $border_type
+    background: #efff74
+    height: 40px
+    z-index: 2
+    .label
+      float: left
+      border-right: $border_type
+      padding-right: 15px
+      margin-right: 10px
+    .value
+      float: left
+  .loader
+    width: 220px
+    height: 19px
+    z-index: 999
+    background: transparent url(../images/loading.gif) no-repeat 0 0
 
 .defaultSkin table.mceToolbar
-	float: right
+  float: right
 
 #content-rights
-	width: 600px
-	padding: 20px
-	background: #fff
-	h3
-		font-size: 18px
-		margin-bottom: 20px
-		text-transform: uppercase
-	div
-		margin-bottom: 30px
-		strong
-			display: block
-		ul
-			margin-left: 20px
-			li
-				margin-top: 10px
-				
+  width: 600px
+  padding: 20px
+  background: #fff
+  h3
+    font-size: 18px
+    margin-bottom: 20px
+    text-transform: uppercase
+  div
+    margin-bottom: 30px
+    strong
+      display: block
+    ul
+      margin-left: 20px
+      li
+        margin-top: 10px
+        
 #cropper
-	text-align: center
-	.info
-		margin: 20px 0
+  text-align: center
+  .info
+    margin: 20px 0
 #cropper-form
-	height: 30px
-	margin-top: 10px
-	input
-		padding: 10px 15px
+  height: 30px
+  margin-top: 10px
+  input
+    padding: 10px 15px
 #thumbnail-to-be-cropped
-	cursor: crosshair
+  cursor: crosshair
