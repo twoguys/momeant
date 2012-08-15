@@ -30,6 +30,9 @@
         Use our Content Editor (currently in beta) to share images and text with basic layout and formatting options:
         = link_to "Launch the Content Editor", "#", :id => "open-page-editor-button", :class => @story.is_external? || @story.pages.empty? ? "launch button" : "button"
       .clear
+      %p
+        %span Once you've chosen your external content or created something new, you can
+        = link_to("Preview It", story_path(@story, :preview => true), :class => "preview button")
 
     %section.step#type
       %h2 2. What type of content is this?
@@ -47,7 +50,7 @@
       = hidden_field_tag :story_media_type, :value => @story.media_type
       
     %section.step#preview
-      %h2 3. What would you like to show as a preview of your content?
+      %h2 3. What would you like to show as a thumbnail?
       = link_to "Show an image", "#", :id => "preview-image", :class => @story.preview_type == "image" ? "choice selected" : "choice"
       = link_to "Show a snippet of text", "#", :id => "preview-text", :class => @story.preview_type == "text" ? "choice selected" : "choice"
       #preview-image-details.details{:class => @story.preview_type == "image" ? "selected" : ""}
@@ -90,15 +93,19 @@
           .example Separate tags by commas (e.g. art, oil painting, fresco)
   
     %section.step#last
-      .owner
-        = check_box_tag :i_own_this, '1', @story.i_own_this
-        %span I promise I am the author or creator of this content.
+      - unless @story.published?
+        .owner
+          = check_box_tag :i_own_this, '1', @story.i_own_this
+          %span I promise I am the author or creator of this content.
       .rest
-        = form_tag publish_story_path(@story) do
-          = hidden_field_tag :share_twitter, "", :name => "share[twitter]"
-          = hidden_field_tag :share_facebook, "", :name => "share[facebook]"
-          = submit_tag @story.published? ? "Save" : "Publish"
-        = link_to("Preview", story_path(@story, :preview => true), :class => "preview")
+        - if @story.published?
+          %p Your edits are auto-saved.
+          = link_to "View this Content", story_path(@story)
+        - else
+          = form_tag publish_story_path(@story) do
+            = hidden_field_tag :share_twitter, "", :name => "share[twitter]"
+            = hidden_field_tag :share_facebook, "", :name => "share[facebook]"
+            = submit_tag "Publish"
   
   %fieldset
     %ul

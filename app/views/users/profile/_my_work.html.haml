@@ -18,7 +18,7 @@
                       .quote= truncate(content.template_text, :length => 140)
                 - else
                   .content-preview.tiny{:class => content.media_type}
-                    .inner{:style => "background-image: url(#{content.thumbnail.url(:large)})"}
+                    .inner{:style => "background-image: url(#{content.thumbnail.url(:petite)})"}
         
                 .title= content.title.present? ? truncate(content.title, :length => 28) : "Untitled"
                 .synopsis= truncate(content.synopsis, :length => 75)
