@@ -38,81 +38,31 @@ class DiscoveryController < ApplicationController
       
     end
     
-    @creators = @creators.page(params[:page]).per(6)
-    @content = @content.page(params[:page]).per(6)
+    @creators = @creators.page(params[:creators_page]).per(6)
+    @content = @content.page(params[:content_page]).per(6)
   end
   
   def content
-    range = 0..2
-    @popular_content = Story.most_rewarded_recently[range]
-    @newest_content = Story.published.newest_first[range]
+    if params[:filter].blank? || params[:filter] == "Featured"
+      @content = Story.joins(:editorial).order("editorials.created_at DESC")
+    elsif params[:filter] == "Popular"
+      @content = Story.
+        where(:published => true).
+        order("reward_count DESC")  
+    elsif params[:filter] == "Newest"
+      @content = Story.
+        where(:published => true).
+        order("created_at DESC")
+    else
+      @content = Story.
+        where(:category => params[:filter], :published => true).
+        order("reward_count DESC")
+    end
+    @content = @content.page(params[:content_page]).per(6)
+    render partial: "discovery/content"
+  end
+  
+  def creators
     
-    @recommended_content = []
-    @nearby_content = []
-    @recommended_content = current_user.stories_tagged_similarly_to_what_ive_rewarded[range] if current_user
-    @nearby_content = current_user.nearby_content[range] if current_user
-    @nav = "content"
-  end
-  
-  def recommended_content
-    @recommended_content = []
-    @recommended_content = current_user.stories_tagged_similarly_to_what_ive_rewarded if current_user
-    @nav = "content"
-  end
-  
-  def popular_content
-    @popular_content = Story.most_rewarded_recently[0..19]
-    @nav = "content"
-  end
-  
-  def nearby_content
-    @nearby_content = []
-    @nearby_content = current_user.nearby_content if current_user
-    @nav = "content"
-  end
-  
-  def newest_content
-    @newest_content = Story.published.newest_first.limit(20)
-    @nav = "content"
-  end
-  
-  def people
-    range = 0..2
-    @notable_people = Editorial.limit(3)
-    @top_creators = Creator.order("lifetime_rewards DESC").limit(3)
-    @top_patrons = User.order("impact DESC").limit(3)
-    @nav = "people"
-  end
-  
-  def notable_people
-    @notable_people = Editorial.all
-    @nav = "people"
-  end
-  
-  def friends_people
-    @friends_activity = []
-    @friends_activity = current_user.activity_from_twitter_and_facebook_friends if current_user
-  end
-  
-  def reload_friends_people
-    @friends_activity = []
-    @friends_activity = current_user.activity_from_twitter_and_facebook_friends[0..4] if current_user
-    render :partial => "friends_people"
-  end
-  
-  def reload_friends_activity
-    @friends_activity = []
-    @friends_activity = current_user.activity_from_twitter_and_facebook_friends if current_user
-    render @friends_activity
-  end
-  
-  def creators_people
-    @top_creators = Creator.order("lifetime_rewards DESC").where("lifetime_rewards > 0").limit(10)
-    @nav = "people"
-  end
-  
-  def patrons_people
-    @top_patrons = User.order("impact DESC").where("impact > 0").limit(10)
-    @nav = "people"
   end
 end

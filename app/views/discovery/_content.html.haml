@@ -1,0 +1,20 @@
+%h1 Works
+.list
+  - @content.each do |content|
+    - if content.text_preview?
+      %a.content-preview.medium{:href => story_path(content), :class => "#{content.media_type} #{content.template}"}
+        .inner
+          .image
+          .quote= truncate(content.template_text, :length => 140)
+        .info
+          .title= truncate(content.title, :length => 140)
+          .synopsis= truncate(content.synopsis, :length => 350)
+          .tags= truncate(content.tag_list.join(','), length: 70)
+    - else
+      %a.content-preview.medium{:href => story_path(content), :class => content.media_type}
+        .inner{:style => "background-image: url(#{content.thumbnail.url(:large)})"}
+        .info
+          .title= truncate(content.title, :length => 140)
+          .synopsis= truncate(content.synopsis, :length => 350)
+          .tags= truncate(content.tag_list.join(', '), length: 70)
+= paginate @content, outer_window: 2, param_name: "content_page"

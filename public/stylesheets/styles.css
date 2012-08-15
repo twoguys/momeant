@@ -718,6 +718,45 @@ table {
       font-size: 30px;
       font-weight: 300; }
 
+nav.pagination {
+  text-align: center; }
+  nav.pagination span {
+    display: inline-block;
+    margin-right: 1px; }
+  nav.pagination a {
+    padding: 4px 8px;
+    background: #f7f7f7;
+    color: #666666;
+    border: 1px solid #dddddd;
+    text-shadow: 0 1px 0 white;
+    background-image: -moz-linear-gradient(center top, white 4%, #f5f5f5 52%);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, white), color-stop(0.52, #f5f5f5));
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15) ;
+    -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15) ;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15) ;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-transition: color 0.2s ease-in-out;
+    -moz-transition: color 0.2s ease-in-out;
+    -ms-transition: color 0.2s ease-in-out;
+    -o-transition: color 0.2s ease-in-out;
+    transition: color 0.2s ease-in-out; }
+  nav.pagination a:hover {
+    color: #00aeef; }
+  nav.pagination .current, nav.pagination a:active {
+    padding: 4px 8px;
+    background: #eeeeee;
+    border: 1px solid #dddddd;
+    -webkit-box-shadow: 0 0 2px white ;
+    -moz-box-shadow: 0 0 2px white ;
+    box-shadow: 0 0 2px white ;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px; }
+  nav.pagination .first, nav.pagination .last {
+    display: none; }
+
 #vertical-list {
   width: 630px;
   padding-left: 80px;
@@ -1015,6 +1054,7 @@ body#discovery.index #bg {
   padding-top: 40px;
   position: relative; }
   #discovery-page section {
+    clear: both;
     padding-bottom: 40px; }
     #discovery-page section h1 {
       font-size: 32px;
@@ -1055,9 +1095,9 @@ body#discovery.index #bg {
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
-    -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); }
+    -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.2) ;
+    -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.2) ;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2) ; }
   #discovery-page #current-filter {
     background: white url(../images/discovery/drop-down-arrow.png) no-repeat 96% 50%;
     cursor: pointer;
@@ -1077,30 +1117,30 @@ body#discovery.index #bg {
       padding-bottom: 10px; }
     #discovery-page #filters ul a:hover {
       color: #252525; }
-  #discovery-page #creators a {
+  #discovery-page #creators .list a {
     display: block;
     width: 316px;
     height: 316px;
     margin: 0 10px 10px 0;
     position: relative;
     float: left; }
-    #discovery-page #creators a img {
+    #discovery-page #creators .list a img {
       width: 316px;
       height: 316px; }
-    #discovery-page #creators a:hover .info {
+    #discovery-page #creators .list a:hover .info {
       display: block; }
-    #discovery-page #creators a .info {
+    #discovery-page #creators .list a .info {
       width: 276px;
       height: 276px;
       text-align: center; }
-      #discovery-page #creators a .info .name {
+      #discovery-page #creators .list a .info .name {
         font-size: 36px;
         font-weight: 600;
         line-height: 36px;
         text-transform: uppercase; }
-        #discovery-page #creators a .info .name span {
+        #discovery-page #creators .list a .info .name span {
           display: block; }
-      #discovery-page #creators a .info .supporters {
+      #discovery-page #creators .list a .info .supporters {
         display: inline-block;
         margin: 20px 0;
         background: black url(../images/discovery/supporters.png) no-repeat 75% 50%;
@@ -1110,30 +1150,30 @@ body#discovery.index #bg {
         -webkit-border-radius: 20px;
         -moz-border-radius: 20px;
         border-radius: 20px; }
-      #discovery-page #creators a .info .bio {
+      #discovery-page #creators .list a .info .bio {
         font-family: "museo-slab-1", "museo-slab-2", serif;
         font-style: italic;
         font-size: 15px; }
   #discovery-page #creators a:nth-child(3) {
     margin-right: 0; }
-  #discovery-page #content a {
+  #discovery-page #content .list a {
     display: block;
     margin: 0 10px 10px 0;
     float: left;
     position: relative; }
-    #discovery-page #content a:hover .info {
+    #discovery-page #content .list a:hover .info {
       display: block; }
-    #discovery-page #content a .info {
+    #discovery-page #content .list a .info {
       width: 440px;
       height: 280px;
       font-weight: 600; }
-      #discovery-page #content a .info .title {
+      #discovery-page #content .list a .info .title {
         font-size: 24px;
         text-transform: uppercase;
         padding-bottom: 10px;
         border-bottom: 1px solid white;
         margin-bottom: 10px; }
-      #discovery-page #content a .info .tags {
+      #discovery-page #content .list a .info .tags {
         color: black;
         font-family: "museo-slab-1", "museo-slab-2", serif;
         font-size: 14px;
@@ -1274,9 +1314,9 @@ body#users.show {
         text-transform: uppercase; }
     body#users.show #user-profile .module {
       background: white;
-      -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-      -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-      box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+      -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3) ;
+      -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3) ;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.3) ;
       -webkit-border-radius: 3px;
       -moz-border-radius: 3px;
       border-radius: 3px; }
@@ -1939,9 +1979,9 @@ body#users.patronage #vertical-list .creator {
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   border-radius: 0;
-  -webkit-box-shadow: 0 0 0 rgba(0, 0, 0, 0);
-  -moz-box-shadow: 0 0 0 rgba(0, 0, 0, 0);
-  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  -webkit-box-shadow: 0 0 0 rgba(0, 0, 0, 0) ;
+  -moz-box-shadow: 0 0 0 rgba(0, 0, 0, 0) ;
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0) ;
   margin: 0; }
   #user-profile #activity #activity-body {
     border: none; }
@@ -2205,9 +2245,9 @@ table.users {
         -webkit-border-radius: 10px;
         -moz-border-radius: 10px;
         border-radius: 10px;
-        -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
-        -moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
-        box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4); }
+        -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4) ;
+        -moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4) ;
+        box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4) ; }
       table.users td .user-info .name {
         font-size: 18px;
         font-weight: 700;
@@ -2838,9 +2878,9 @@ form.new_story, form.edit_story, .story-form {
       form.new_story .step#describe #thumbnail-preview .box, form.edit_story .step#describe #thumbnail-preview .box, .story-form .step#describe #thumbnail-preview .box {
         background: white;
         border: 1px solid #d7d7d7;
-        -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-        -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-        box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1) ;
+        -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1) ;
+        box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1) ;
         width: 288px; }
         form.new_story .step#describe #thumbnail-preview .box .title, form.new_story .step#describe #thumbnail-preview .box .author, form.edit_story .step#describe #thumbnail-preview .box .title, form.edit_story .step#describe #thumbnail-preview .box .author, .story-form .step#describe #thumbnail-preview .box .title, .story-form .step#describe #thumbnail-preview .box .author {
           padding: 0 10px; }
@@ -2997,9 +3037,9 @@ form.new_story, form.edit_story, .story-form {
       cursor: pointer;
       position: relative;
       border: 5px solid white;
-      -webkit-box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.25);
-      -moz-box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.25);
-      box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.25); }
+      -webkit-box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.25) ;
+      -moz-box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.25) ;
+      box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.25) ; }
       form.new_story #page-previews li.page .inner, form.new_story #page-previews li.page .image, form.edit_story #page-previews li.page .inner, form.edit_story #page-previews li.page .image, .story-form #page-previews li.page .inner, .story-form #page-previews li.page .image {
         width: 100%;
         height: 100%; }
@@ -3104,9 +3144,9 @@ form.new_story, form.edit_story, .story-form {
       left: 50%;
       margin: -250px 0 0 -355px;
       background-color: rgba(249, 249, 249, 0.9);
-      -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
-      -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.7); }
+      -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.7) ;
+      -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.7) ;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.7) ; }
       form.new_story #page-type-chooser .insides .header, form.edit_story #page-type-chooser .insides .header, .story-form #page-type-chooser .insides .header {
         font-family: "proxima-nova-1", "proxima-nova-2", helvetica, sans-serif;
         font-weight: 700;
@@ -3170,9 +3210,9 @@ form.new_story, form.edit_story, .story-form {
           padding: 105px 0 0 0;
           clear: none;
           border: 5px solid white;
-          -webkit-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-          -moz-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-          box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); }
+          -webkit-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1) ;
+          -moz-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1) ;
+          box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1) ; }
         form.new_story #page-type-chooser .insides .body ul li.loading, form.edit_story #page-type-chooser .insides .body ul li.loading, .story-form #page-type-chooser .insides .body ul li.loading {
           background: transparent url(../images/spinner.gif) no-repeat 50% 70px; }
         form.new_story #page-type-chooser .insides .body ul li:hover, form.edit_story #page-type-chooser .insides .body ul li:hover, .story-form #page-type-chooser .insides .body ul li:hover {
@@ -3491,9 +3531,9 @@ form.new_story, form.edit_story, .story-form {
     text-transform: uppercase;
     background-color: white;
     background-color: rgba(255, 255, 255, 0.9);
-    -webkit-box-shadow: 0 5px 5px rgba(0, 0, 0, 0.15);
-    -moz-box-shadow: 0 5px 5px rgba(0, 0, 0, 0.15);
-    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.15); }
+    -webkit-box-shadow: 0 5px 5px rgba(0, 0, 0, 0.15) ;
+    -moz-box-shadow: 0 5px 5px rgba(0, 0, 0, 0.15) ;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.15) ; }
     #page-editor #editor-header .title {
       font-size: 26px;
       color: #b0b0b0;
@@ -3562,9 +3602,9 @@ form.new_story, form.edit_story, .story-form {
     -webkit-transition: left 0.5s ease-in-out;
     -moz-transition-property: left;
     -moz-transition-duration: 0.5s;
-    -webkit-box-shadow: 5px 0 5px rgba(0, 0, 0, 0.15);
-    -moz-box-shadow: 5px 0 5px rgba(0, 0, 0, 0.15);
-    box-shadow: 5px 0 5px rgba(0, 0, 0, 0.15); }
+    -webkit-box-shadow: 5px 0 5px rgba(0, 0, 0, 0.15) ;
+    -moz-box-shadow: 5px 0 5px rgba(0, 0, 0, 0.15) ;
+    box-shadow: 5px 0 5px rgba(0, 0, 0, 0.15) ; }
     #page-editor #pane .expander-tab {
       position: absolute;
       right: -31px;
@@ -5748,9 +5788,9 @@ body#stories.show {
   -moz-border-radius-bottomleft: 3px;
   border-bottom-right-radius: 3px;
   border-bottom-left-radius: 3px;
-  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); }
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3) ;
+  -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3) ;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3) ; }
 
 #back-to-edit-button {
   margin-left: -160px;
@@ -6145,9 +6185,9 @@ ul.stories li.story {
   padding: 3px;
   width: 230px;
   margin: 0 20px 20px 0;
-  -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-  -moz-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); }
+  -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2) ;
+  -moz-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2) ;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2) ; }
   ul.stories li.story a.title-link {
     text-transform: uppercase;
     color: #252525;
@@ -6516,9 +6556,9 @@ ul.stories .excerpt {
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     border-radius: 4px;
-    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
-    -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7); }
+    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.7) ;
+    -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.7) ;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7) ; }
     #join-modal .padder a.close, #login-modal .padder a.close, #feedback-modal .padder a.close, #about-diagram-modal .padder a.close, #about-modal .padder a.close {
       position: absolute;
       top: -15px;
@@ -7043,9 +7083,9 @@ ul.rewards {
     margin: 0 20px 20px 0;
     position: relative;
     background: white;
-    -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-    -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); }
+    -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2) ;
+    -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2) ;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2) ; }
     ul.rewards li .what {
       position: relative; }
       ul.rewards li .what .thumbnail {
@@ -7305,9 +7345,9 @@ body#users.fund_pledged_rewards #bg {
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
-  -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
-  -moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2); }
+  -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.2) ;
+  -moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.2) ;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2) ; }
   #coins-page #explanation h3 {
     font-size: 1.5em;
     margin-bottom: 20px; }
@@ -7662,9 +7702,9 @@ body#messages {
   position: relative; }
 
 #activity {
-  -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
-  -moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
-  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2) ;
+  -moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2) ;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2) ;
   margin-right: 400px;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
@@ -7813,9 +7853,9 @@ ul#activity-list > li.reward .left-side .faces {
       height: 32px;
       padding: 2px;
       border: 1px solid #dddddd;
-      -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
-      -moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
-      box-shadow: 0 0 1px rgba(0, 0, 0, 0.2); }
+      -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.2) ;
+      -moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.2) ;
+      box-shadow: 0 0 1px rgba(0, 0, 0, 0.2) ; }
   ul#activity-list > li.reward .left-side .faces a.to {
     top: 20px;
     left: 20px;
