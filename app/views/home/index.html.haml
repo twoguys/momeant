@@ -67,5 +67,5 @@
     = link_to "View our Featured Creators &rarr;".html_safe, discovery_path
 
 :javascript
-  mpq.track('Viewed Homepage', { signed_in: #{user_signed_in? ? 'true' : 'false' } });
+  mixpanel.track('Viewed Homepage', { signed_in: #{user_signed_in? ? 'true' : 'false' } });
 = javascript_include_tag "landing"

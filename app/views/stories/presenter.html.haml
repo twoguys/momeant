@@ -37,7 +37,7 @@
 
 - if @story.published?
   :javascript
-    mpq.track('Viewed Content', { user: #{user_signed_in? ? 'true' : 'false'} });
+    mixpanel.track('Viewed Content', { user: #{user_signed_in? ? 'true' : 'false'} });
 
 = javascript_include_tag "stories/presenter"
 - if current_user
