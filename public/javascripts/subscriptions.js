@@ -3,9 +3,9 @@ window.SubscriptionsView = Backbone.View.extend({
   el: $('body'),
 	
 	events: {
-		'click #sidebar a.following': 'filter_person',
+		'click #feed-sidebar a.following': 'filter_person',
 		'click #user-nav #feed a':    'show_all_people',
-		'click .back-to-feed':        'show_all_people',
+    'click .back-to-feed':        'show_all_people',
 		'click a.drill-in':           'drill_in'
 	},
 	
@@ -27,19 +27,12 @@ window.SubscriptionsView = Backbone.View.extend({
       Subscriptions.show_all_people();
       return false;
     }
-    
-    var id = $person.attr('data');
-    $person.addClass('selected').siblings().removeClass('selected');
-    $('#recent-activity').addClass('loading drilled-in');
-    $.get('/feed/' + id, function(html) {
-      $('#recent-activity').html(html).removeClass('loading');
-    });
-    
+    Subscriptions.drill_in(event);
     return false;
   },
   
   show_all_people: function() {
-    $('#sidebar a.following').removeClass('selected');
+    $('#feed-sidebar a.following').removeClass('selected');
     $('#recent-activity').addClass('loading').removeClass('drilled-in');
     $.get('/feed?remote=true', function(html) {
       $('#recent-activity').html(html).removeClass('loading');
@@ -50,8 +43,11 @@ window.SubscriptionsView = Backbone.View.extend({
   drill_in: function(event) {
     var $link = $(event.currentTarget);
     $('#recent-activity').addClass('loading drilled-in');
-    $.get($link.attr('href'), function(html) {
-      $('#recent-activity').html(html).removeClass('loading');
+    $.ajax({
+      url: $link.attr('href'),
+      type: 'GET',
+      dataType: 'text',
+      success: function(html) { $('#recent-activity').html(html).removeClass('loading'); }
     });
     return false;
   }

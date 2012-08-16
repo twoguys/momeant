@@ -27,25 +27,37 @@ class SubscriptionsController < ApplicationController
     end
   end
 
-  def user_activity #ajax
+  def user
     @user = User.find(params[:user_id])
     @activity = Activity.where(actor_id: params[:user_id], action_type: ['Story','Reward','Discussion']).order("created_at DESC")
-    render partial: "subscriptions/user"
+    respond_to do |format|
+      format.html { find_followings }
+      format.text { render partial: "subscriptions/user.html" }
+    end
   end
   
   def work
     @works = Story.published.includes(:user).where(user_id: @followings.map(&:id)).newest_first
-    render partial: "subscriptions/all_content"
+    respond_to do |format|
+      format.html
+      format.text { render partial: "subscriptions/all_content.html" }
+    end
   end
   
   def rewards
     @rewards = Reward.includes(:user, :story).where(user_id: @followings.map(&:id)).order("created_at DESC")
-    render partial: "subscriptions/all_rewards"
+    respond_to do |format|
+      format.html
+      format.text { render partial: "subscriptions/all_rewards.html" }
+    end
   end
   
   def discussions
     @discussions = Discussion.includes(:user).where(user_id: @followings.map(&:id)).order("created_at DESC")
-    render partial: "subscriptions/all_discussions"
+    respond_to do |format|
+      format.html
+      format.text { render partial: "subscriptions/all_discussions.html" }
+    end
   end
   
   private

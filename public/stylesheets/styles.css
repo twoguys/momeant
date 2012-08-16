@@ -2260,138 +2260,141 @@ table.users {
         font-style: italic;
         font-size: 11px; }
 
-body#subscriptions.index {
+body#subscriptions.index, body#subscriptions.work, body#subscriptions.rewards, body#subscriptions.discussions, body#subscriptions.user {
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   width: 100%; }
-  body#subscriptions.index #container {
+  body#subscriptions.index #container, body#subscriptions.work #container, body#subscriptions.rewards #container, body#subscriptions.discussions #container, body#subscriptions.user #container {
     position: static;
     padding: 0; }
-  body#subscriptions.index #main {
+  body#subscriptions.index #main, body#subscriptions.work #main, body#subscriptions.rewards #main, body#subscriptions.discussions #main, body#subscriptions.user #main {
     max-width: 100%;
     margin: 0; }
-  body#subscriptions.index #recent-activity {
-    position: absolute;
-    top: 42px;
-    bottom: 0;
-    left: 0;
-    right: 200px;
-    padding: 30px 40px;
-    overflow-y: auto; }
-    body#subscriptions.index #recent-activity.loading {
-      background: transparent url(../images/spinner.gif) no-repeat 50px 40px; }
-      body#subscriptions.index #recent-activity.loading * {
-        visibility: hidden; }
-    body#subscriptions.index #recent-activity section {
-      width: 40%;
+
+#recent-activity {
+  position: absolute;
+  top: 42px;
+  bottom: 0;
+  left: 0;
+  right: 200px;
+  padding: 30px 40px;
+  overflow-y: auto; }
+  #recent-activity.loading {
+    background: transparent url(../images/spinner.gif) no-repeat 50px 40px; }
+    #recent-activity.loading * {
+      visibility: hidden; }
+  #recent-activity section {
+    width: 40%;
+    float: left;
+    margin-bottom: 40px;
+    margin-right: 10%; }
+    #recent-activity section:nth-child(even) {
+      margin-right: 0; }
+    #recent-activity section:nth-child(odd) {
+      clear: left; }
+  #recent-activity h1 {
+    font-weight: 600;
+    margin-bottom: 15px; }
+    #recent-activity h1 img {
       float: left;
-      margin-bottom: 40px;
-      margin-right: 10%; }
-      body#subscriptions.index #recent-activity section:nth-child(even) {
-        margin-right: 0; }
-      body#subscriptions.index #recent-activity section:nth-child(odd) {
-        clear: left; }
-    body#subscriptions.index #recent-activity h1 {
-      font-weight: 600;
-      margin-bottom: 15px; }
-      body#subscriptions.index #recent-activity h1 img {
-        float: left;
-        margin-right: 10px; }
-      body#subscriptions.index #recent-activity h1 span {
-        display: block; }
-    body#subscriptions.index #recent-activity .empty {
-      border-top: 1px solid #eeeeee;
-      padding: 10px 0; }
-    body#subscriptions.index #recent-activity li {
-      position: relative;
-      padding: 10px 0 10px 70px;
-      min-height: 60px;
-      border-top: 1px solid #eeeeee; }
-    body#subscriptions.index #recent-activity .avatar {
-      position: absolute;
-      top: 10px;
-      left: 0; }
-    body#subscriptions.index #recent-activity .headline {
-      margin-bottom: 5px;
-      font-weight: 600; }
-    body#subscriptions.index #recent-activity p {
-      margin: 5px 0 0;
-      line-height: 1.3em; }
-  body#subscriptions.index #recent-activity.drilled-in section {
-    width: 100%;
-    float: none;
-    margin-right: 0; }
-  body#subscriptions.index #recent-activity.drilled-in a.back-to-feed {
-    display: inline-block;
-    font-size: 1.1em;
-    margin-bottom: 10px; }
-  body#subscriptions.index #recent-activity.drilled-in ul {
-    border-left: 3px solid #cccccc;
-    padding-top: 10px;
-    margin-left: 80px; }
-  body#subscriptions.index #recent-activity.drilled-in li {
-    padding: 0 0 0 125px;
-    margin-left: -108px;
-    margin-bottom: 30px;
-    border: none;
-    background: transparent url(../images/feed/reward.png) no-repeat 99px 0; }
-    body#subscriptions.index #recent-activity.drilled-in li.content {
-      background-image: url(../images/feed/content.png); }
-    body#subscriptions.index #recent-activity.drilled-in li.discussion {
-      background-image: url(../images/feed/discussion.png); }
-    body#subscriptions.index #recent-activity.drilled-in li .avatar {
-      top: 3px;
-      left: 25px; }
-  body#subscriptions.index #sidebar {
-    position: absolute;
-    top: 42px;
-    bottom: 0;
-    right: 0;
-    width: 200px;
-    background: #333333;
-    color: white;
-    border-right: 1px solid #dddddd;
-    overflow-y: auto; }
-    body#subscriptions.index #sidebar h3, body#subscriptions.index #sidebar p {
-      font-size: 0.9em; }
-    body#subscriptions.index #sidebar h3 {
-      padding: 7px 7px 0;
-      text-transform: uppercase;
-      font-weight: 400; }
-    body#subscriptions.index #sidebar p {
-      padding: 0 7px;
-      margin: 0;
-      color: #777777; }
-    body#subscriptions.index #sidebar p, body#subscriptions.index #sidebar a.following {
-      border-bottom: 1px solid #222222; }
-    body#subscriptions.index #sidebar a.following {
-      display: block;
-      position: relative;
-      height: 37px;
-      padding: 7px 7px 7px 54px;
-      color: #cccccc;
-      border-top: 1px solid #444444;
-      -webkit-transition: all 0.2s ease-in-out;
-      -moz-transition: all 0.2s ease-in-out;
-      -ms-transition: all 0.2s ease-in-out;
-      -o-transition: all 0.2s ease-in-out;
-      transition: all 0.2s ease-in-out; }
-      body#subscriptions.index #sidebar a.following:hover, body#subscriptions.index #sidebar a.following.selected {
-        background: #444444;
-        color: white;
-        padding-left: 57px; }
-    body#subscriptions.index #sidebar .avatar {
-      position: absolute;
-      top: 7px;
-      left: 9px;
-      width: 37px;
-      height: 37px; }
-    body#subscriptions.index #sidebar .name {
-      padding-top: 2px; }
-    body#subscriptions.index #sidebar span {
+      margin-right: 10px; }
+    #recent-activity h1 span {
       display: block; }
+  #recent-activity .empty {
+    border-top: 1px solid #eeeeee;
+    padding: 10px 0; }
+  #recent-activity li {
+    position: relative;
+    padding: 10px 0 10px 70px;
+    min-height: 60px;
+    border-top: 1px solid #eeeeee; }
+  #recent-activity .avatar {
+    position: absolute;
+    top: 10px;
+    left: 0; }
+  #recent-activity .headline {
+    margin-bottom: 5px;
+    font-weight: 600; }
+  #recent-activity p {
+    margin: 5px 0 0;
+    line-height: 1.3em; }
+
+#recent-activity.drilled-in section {
+  width: 100%;
+  float: none;
+  margin-right: 0; }
+#recent-activity.drilled-in a.back-to-feed {
+  display: inline-block;
+  font-size: 1.1em;
+  margin-bottom: 10px; }
+#recent-activity.drilled-in ul {
+  border-left: 3px solid #cccccc;
+  padding-top: 10px;
+  margin-left: 80px; }
+#recent-activity.drilled-in li {
+  padding: 0 0 0 125px;
+  margin-left: -108px;
+  margin-bottom: 30px;
+  border: none;
+  background: transparent url(../images/feed/reward.png) no-repeat 99px 0; }
+  #recent-activity.drilled-in li.content {
+    background-image: url(../images/feed/content.png); }
+  #recent-activity.drilled-in li.discussion {
+    background-image: url(../images/feed/discussion.png); }
+  #recent-activity.drilled-in li .avatar {
+    top: 3px;
+    left: 25px; }
+
+#feed-sidebar {
+  position: absolute;
+  top: 42px;
+  bottom: 0;
+  right: 0;
+  width: 200px;
+  background: #333333;
+  color: white;
+  border-right: 1px solid #dddddd;
+  overflow-y: auto; }
+  #feed-sidebar h3, #feed-sidebar p {
+    font-size: 0.9em; }
+  #feed-sidebar h3 {
+    padding: 7px 7px 0;
+    text-transform: uppercase;
+    font-weight: 400; }
+  #feed-sidebar p {
+    padding: 0 7px;
+    margin: 0;
+    color: #777777; }
+  #feed-sidebar p, #feed-sidebar a.following {
+    border-bottom: 1px solid #222222; }
+  #feed-sidebar a.following {
+    display: block;
+    position: relative;
+    height: 37px;
+    padding: 7px 7px 7px 54px;
+    color: #cccccc;
+    border-top: 1px solid #444444;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -ms-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out; }
+    #feed-sidebar a.following:hover, #feed-sidebar a.following.selected {
+      background: #444444;
+      color: white;
+      padding-left: 57px; }
+  #feed-sidebar .avatar {
+    position: absolute;
+    top: 7px;
+    left: 9px;
+    width: 37px;
+    height: 37px; }
+  #feed-sidebar .name {
+    padding-top: 2px; }
+  #feed-sidebar span {
+    display: block; }
 
 .content-preview {
   display: block;

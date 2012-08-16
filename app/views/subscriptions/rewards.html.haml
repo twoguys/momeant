@@ -1,0 +1,10 @@
+#recent-activity.drilled-in
+  = render "subscriptions/all_rewards"
+        
+#feed-sidebar
+  = render "subscriptions/sidebar"
+
+:javascript
+  mpq.track('Viewed Feed', { subpage: 'rewards' });
+
+= javascript_include_tag "subscriptions"

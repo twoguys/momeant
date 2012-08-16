@@ -1,8 +1,8 @@
 %section
   %h1 #{@user.name}'s Recent Activity
-  = link_to "< Back", "#", class: "back-to-feed"
+  = link_to "< Back to Feed", subscriptions_path, class: "back-to-feed"
   %ul
     - @activity.each do |activity|
-      = render :partial => "subscriptions/content", :locals => { :content => activity.action } if activity.action_type == "Story"
-      = render :partial => "subscriptions/discussion", :locals => { :discussion => activity.action } if activity.action_type == "Discussion"
-      = render :partial => "subscriptions/reward", :locals => { :reward => activity.action } if activity.action_type == "Reward"
+      = render :partial => "subscriptions/content.html", :locals => { :content => activity.action } if activity.action_type == "Story"
+      = render :partial => "subscriptions/discussion.html", :locals => { :discussion => activity.action } if activity.action_type == "Discussion"
+      = render :partial => "subscriptions/reward.html", :locals => { :reward => activity.action } if activity.action_type == "Reward"

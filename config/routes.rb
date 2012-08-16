@@ -104,7 +104,7 @@ Repo::Application.routes.draw do
   match '/feed/work',             to: "subscriptions#work",                as: "subscriptions_work"
   match '/feed/rewards',          to: "subscriptions#rewards",             as: "subscriptions_rewards"
   match '/feed/discussions',      to: "subscriptions#discussions",         as: "subscriptions_discussions"
-  match '/feed/:user_id',         to: "subscriptions#user_activity"
+  match '/feed/user/:user_id',    to: "subscriptions#user",                as: "subscriptions_user"
   
   namespace :admin do
     match '/', :to =>"dashboard#index", :as => :dashboard

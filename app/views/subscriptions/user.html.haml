@@ -1,10 +1,10 @@
-#recent-activity
-  = render "subscriptions/summary"
+#recent-activity.drilled-in
+  = render "subscriptions/user"
         
 #feed-sidebar
   = render "subscriptions/sidebar"
 
 :javascript
-  mpq.track('Viewed Feed');
+  mpq.track('Viewed Feed', { subpage: 'user' });
 
 = javascript_include_tag "subscriptions"

@@ -1,4 +1,4 @@
-body#subscriptions.index
+body#subscriptions.index, body#subscriptions.work, body#subscriptions.rewards, body#subscriptions.discussions, body#subscriptions.user
   position: absolute
   top: 0
   bottom: 0
@@ -13,127 +13,127 @@ body#subscriptions.index
     max-width: 100%
     margin: 0
   
-  #recent-activity
-    position: absolute
-    top: 42px
-    bottom: 0
-    left: 0
-    right: 200px
-    padding: 30px 40px
-    overflow-y: auto
-    &.loading
-      background: transparent url(../images/spinner.gif) no-repeat 50px 40px
-      *
-        visibility: hidden
-    
-    section
-      width: 40%
-      float: left
-      margin-bottom: 40px
-      margin-right: 10%
-      &:nth-child(even)
-        margin-right: 0
-      &:nth-child(odd)
-        clear: left
-    
-    h1
-      font-weight: 600
-      margin-bottom: 15px
-      img
-        float: left
-        margin-right: 10px
-      span
-        display: block
-    
-    .empty
-      border-top: 1px solid #eee
-      padding: 10px 0
-    
-    li
-      position: relative
-      padding: 10px 0 10px 70px
-      min-height: 60px
-      border-top: 1px solid #eee
-    .avatar
-      position: absolute
-      top: 10px
-      left: 0
-    .headline
-      margin-bottom: 5px
-      font-weight: 600
-    p
-      margin: 5px 0 0
-      line-height: 1.3em
+#recent-activity
+  position: absolute
+  top: 42px
+  bottom: 0
+  left: 0
+  right: 200px
+  padding: 30px 40px
+  overflow-y: auto
+  &.loading
+    background: transparent url(../images/spinner.gif) no-repeat 50px 40px
+    *
+      visibility: hidden
   
-  #recent-activity.drilled-in
-    section
-      width: 100%
-      float: none
+  section
+    width: 40%
+    float: left
+    margin-bottom: 40px
+    margin-right: 10%
+    &:nth-child(even)
       margin-right: 0
-    a.back-to-feed
-      display: inline-block
-      font-size: 1.1em
-      margin-bottom: 10px
-    ul
-      border-left: 3px solid #ccc
-      padding-top: 10px
-      margin-left: 80px
-    li
-      padding: 0 0 0 125px
-      margin-left: -108px
-      margin-bottom: 30px
-      border: none
-      background: transparent url(../images/feed/reward.png) no-repeat 99px 0
-      &.content
-        background-image: url(../images/feed/content.png)
-      &.discussion
-        background-image: url(../images/feed/discussion.png)
-      .avatar
-        top: 3px
-        left: 25px
+    &:nth-child(odd)
+      clear: left
   
-  #sidebar
-    position: absolute
-    top: 42px
-    bottom: 0
-    right: 0
-    width: 200px
-    background: #333
-    color: #fff
-    border-right: 1px solid #ddd
-    overflow-y: auto
-    
-    h3, p
-      font-size: 0.9em
-    h3
-      padding: 7px 7px 0
-      text-transform: uppercase
-      font-weight: 400
-    p
-      padding: 0 7px
-      margin: 0
-      color: #777
-    p, a.following
-      border-bottom: 1px solid #222
-    a.following
-      display: block
-      position: relative
-      height: 37px
-      padding: 7px 7px 7px 54px
-      color: #ccc
-      border-top: 1px solid #444
-      @include transition(all)
-      &:hover, &.selected
-        background: #444
-        color: #fff
-        padding-left: 57px
-    .avatar
-      position: absolute
-      top: 7px
-      left: 9px
-      width: 37px
-      height: 37px
-    .name
-      padding-top: 2px
+  h1
+    font-weight: 600
+    margin-bottom: 15px
+    img
+      float: left
+      margin-right: 10px
     span
       display: block
+  
+  .empty
+    border-top: 1px solid #eee
+    padding: 10px 0
+  
+  li
+    position: relative
+    padding: 10px 0 10px 70px
+    min-height: 60px
+    border-top: 1px solid #eee
+  .avatar
+    position: absolute
+    top: 10px
+    left: 0
+  .headline
+    margin-bottom: 5px
+    font-weight: 600
+  p
+    margin: 5px 0 0
+    line-height: 1.3em
+
+#recent-activity.drilled-in
+  section
+    width: 100%
+    float: none
+    margin-right: 0
+  a.back-to-feed
+    display: inline-block
+    font-size: 1.1em
+    margin-bottom: 10px
+  ul
+    border-left: 3px solid #ccc
+    padding-top: 10px
+    margin-left: 80px
+  li
+    padding: 0 0 0 125px
+    margin-left: -108px
+    margin-bottom: 30px
+    border: none
+    background: transparent url(../images/feed/reward.png) no-repeat 99px 0
+    &.content
+      background-image: url(../images/feed/content.png)
+    &.discussion
+      background-image: url(../images/feed/discussion.png)
+    .avatar
+      top: 3px
+      left: 25px
+
+#feed-sidebar
+  position: absolute
+  top: 42px
+  bottom: 0
+  right: 0
+  width: 200px
+  background: #333
+  color: #fff
+  border-right: 1px solid #ddd
+  overflow-y: auto
+  
+  h3, p
+    font-size: 0.9em
+  h3
+    padding: 7px 7px 0
+    text-transform: uppercase
+    font-weight: 400
+  p
+    padding: 0 7px
+    margin: 0
+    color: #777
+  p, a.following
+    border-bottom: 1px solid #222
+  a.following
+    display: block
+    position: relative
+    height: 37px
+    padding: 7px 7px 7px 54px
+    color: #ccc
+    border-top: 1px solid #444
+    @include transition(all)
+    &:hover, &.selected
+      background: #444
+      color: #fff
+      padding-left: 57px
+  .avatar
+    position: absolute
+    top: 7px
+    left: 9px
+    width: 37px
+    height: 37px
+  .name
+    padding-top: 2px
+  span
+    display: block

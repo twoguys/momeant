@@ -1,6 +1,6 @@
 %section
   %h1 Recent Rewards
-  = link_to "< Back", "#", class: "back-to-feed"
+  = link_to "< Back to Feed", subscriptions_path, class: "back-to-feed"
   %ul
     - @rewards.each do |reward|
-      = render partial: "subscriptions/reward", locals: { reward: reward }
+      = render partial: "subscriptions/reward.html", locals: { reward: reward }
