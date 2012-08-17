@@ -361,6 +361,7 @@ $(function() {
 				$.post(url, { comment: comment, reward_id: reward_id }, function(html) {
 					$('#twitter-sharing .configured').html(html);
 					$('#twitter-sharing').removeClass('loading');
+					mixpanel.track('Promoted Content', { service: 'twitter' });
 				});
 			});
 		},
@@ -381,6 +382,7 @@ $(function() {
 				$('#facebook-sharing').addClass('loading');
 				$.post(url, { comment: comment, reward_id: reward_id }, function(html) {
 					$('#facebook-sharing').html(html).removeClass('loading');
+					mixpanel.track('Promoted Content', { service: 'facebook' });
 				});
 			});
 		},

@@ -20,6 +20,7 @@ $(function() {
       $preview.find('img').remove();
       $preview.append('<img src="' + json.url + '">');
       $loader.hide().siblings().show();
+      mixpanel.track('Uploaded Avatar');
     }
   });
   

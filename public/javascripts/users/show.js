@@ -38,6 +38,7 @@ window.ProfileView = Backbone.View.extend({
     } else {
       $.post('/users/' + user_id + '/subscriptions/unsubscribe');
       $link.text('Follow');
+      mixpanel.track('Followed User', { followed_id: user_id });
     }
     
     return false;
@@ -137,6 +138,7 @@ window.DiscussionView = Backbone.View.extend({
   enter_discussion_experience: function() {
     $('#discussion').removeClass('off').addClass('on');
     this.on = true;
+    mixpanel.track('Viewed Discussion');
   },
   
   exit_discussion_experience: function() {
@@ -147,6 +149,7 @@ window.DiscussionView = Backbone.View.extend({
   list_topics: function() {
     if (!this.on) { this.enter_discussion_experience(); }
     $('#discussion-inner').css('margin-left', 0);
+    mixpanel.track('Viewed Discussion List');
     return false;
   },
   
@@ -160,6 +163,7 @@ window.DiscussionView = Backbone.View.extend({
     $.get('/discussions/' + topic_id, function(results) {
       $details.html(results).removeClass('loading');
     });
+    mixpanel.track('Viewed Discussion');
     return false;
   },
   

@@ -37,7 +37,11 @@
 
 - if @story.published?
   :javascript
-    mixpanel.track('Viewed Content', { user: #{user_signed_in? ? 'true' : 'false'} });
+    mixpanel.track('Viewed Content', { user: #{user_signed_in? ? 'true' : 'false'}, self_promotion: '#{params[:creator].present?}' });
+
+- if params[:impacted_by].present?
+  :javascript
+    mixpanel.track('Impact Given', { reward_id: '#{params[:impacted_by]}' });
 
 = javascript_include_tag "stories/presenter"
 - if current_user
