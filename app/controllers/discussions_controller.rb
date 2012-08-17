@@ -1,5 +1,5 @@
 class DiscussionsController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, except: :show
   
   def create
     discussion = Discussion.new(params[:discussion])

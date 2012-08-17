@@ -1,4 +1,4 @@
-- if current_user && (current_user.has_rewarded?(discussion.user) || me?(discussion.user))
+- if current_user && current_user.can_comment_on?(discussion)
   = form_for Comment.new, :url => user_comments_path(current_user) do |form|
     .commenter-avatar= image_tag current_user.avatar.url(:thumbnail)
     = form.hidden_field :commentable_type, :value => "Discussion"
@@ -6,4 +6,4 @@
     = form.text_area :comment, class: "comment-box", placeholder: "Type your comment and press enter..."
     = form.submit "Post"
 - else
-  .disabled #{@user.first_name}'s supporters can participate in this discussion.
+  .disabled #{discussion.user.first_name}'s supporters can participate in this discussion.
