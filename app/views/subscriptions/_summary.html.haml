@@ -30,7 +30,3 @@
       - @new_discussions.each do |discussion|
         = render partial: "subscriptions/discussion", locals: { discussion: discussion }
     = link_to "View #{pluralize (@discussions_count - @new_discussions.size), "previous discussion"}", subscriptions_discussions_path, class: "drill-in" unless @discussions_count - @new_discussions.size == 0
-
-%section
-  %h1 New Thank Yous
-  %p Coming soon...
