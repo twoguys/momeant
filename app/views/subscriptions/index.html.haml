@@ -1,5 +1,13 @@
-#recent-activity
-  = render "subscriptions/summary"
+- if @followings.empty?
+  #recent-activity.no-followings-yet
+    %h1 You aren't following anyone yet. That's sad!
+    %p
+      Following users on Momeant is a great way to find out about new creators and the work they're doing.
+      When you follow people, this page will show you what they create, reward, discuss, and more.
+    = link_to "Discover people to follow", discovery_path, class: "button"
+- else
+  #recent-activity
+    = render "subscriptions/summary"
         
 #feed-sidebar
   = render "subscriptions/sidebar"

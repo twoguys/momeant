@@ -26,6 +26,11 @@ body#subscriptions.index, body#subscriptions.work, body#subscriptions.rewards, b
     *
       visibility: hidden
   
+  &.no-followings-yet
+    p
+      font-size: 1.3em
+      line-height: 1.5em
+  
   section
     width: 40%
     float: left
@@ -62,31 +67,31 @@ body#subscriptions.index, body#subscriptions.work, body#subscriptions.rewards, b
     &:last-child
       border-bottom: 1px solid #eee
       margin-bottom: 10px
-  .avatar
-    position: absolute
-    top: 10px
-    left: 0
-  .headline
-    font-size: 16px
-    margin: 4px 0 12px
-    a
-      color: $text_color
-      font-weight: 600
-  a.content-preview
-    float: left
-    margin-right: 10px
-  .title
-    display: block
-    margin-top: 10px
-  p
-    clear: left
-    font-family: $typewriter
-    font-size: 12px
-    font-style: italic
-    color: #777
-    margin: 0
-    padding-top: 10px
-    line-height: 1.3em
+    .avatar
+      position: absolute
+      top: 10px
+      left: 0
+    .headline
+      font-size: 16px
+      margin: 4px 0 12px
+      a
+        color: $text_color
+        font-weight: 600
+    a.content-preview
+      float: left
+      margin-right: 10px
+    .title
+      display: block
+      margin-top: 10px
+    p
+      clear: left
+      font-family: $typewriter
+      font-size: 12px
+      font-style: italic
+      color: #777
+      margin: 0
+      padding-top: 10px
+      line-height: 1.3em
 
 #recent-activity.drilled-in
   section
@@ -169,3 +174,13 @@ body#subscriptions.index, body#subscriptions.work, body#subscriptions.rewards, b
     text-align: center
     min-width: 10px
     @include rounded(20px)
+
+@media all and (min-width: 1600px)
+  #recent-activity section
+    width: 30%
+    margin-right: 5%
+    clear: none !important
+  #recent-activity section:nth-child(2n)
+    margin-right: 5%
+  #recent-activity section:nth-child(3n+3)
+    margin-right: 0

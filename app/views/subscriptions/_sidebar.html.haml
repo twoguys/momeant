@@ -1,7 +1,5 @@
 %h2 People you Follow
-- if @followings.empty?
-  %p You are not currently following anyone. #{link_to "Discover people to follow!", discovery_path, :id => "find-creators"}
-- else
+- unless @followings.empty?
   - @followings.each do |user|
     %a.following{href: subscriptions_user_path(user.id), class: @user == user ? "selected" : ""}
       = image_tag user.avatar.url(:thumbnail), class: "avatar"

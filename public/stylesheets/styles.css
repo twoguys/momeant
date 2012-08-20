@@ -2287,6 +2287,9 @@ body#subscriptions.index, body#subscriptions.work, body#subscriptions.rewards, b
     background: transparent url(../images/spinner.gif) no-repeat 50px 40px; }
     #recent-activity.loading * {
       visibility: hidden; }
+  #recent-activity.no-followings-yet p {
+    font-size: 1.3em;
+    line-height: 1.5em; }
   #recent-activity section {
     width: 40%;
     float: left;
@@ -2319,31 +2322,31 @@ body#subscriptions.index, body#subscriptions.work, body#subscriptions.rewards, b
     #recent-activity li:last-child {
       border-bottom: 1px solid #eeeeee;
       margin-bottom: 10px; }
-  #recent-activity .avatar {
-    position: absolute;
-    top: 10px;
-    left: 0; }
-  #recent-activity .headline {
-    font-size: 16px;
-    margin: 4px 0 12px; }
-    #recent-activity .headline a {
-      color: #252525;
-      font-weight: 600; }
-  #recent-activity a.content-preview {
-    float: left;
-    margin-right: 10px; }
-  #recent-activity .title {
-    display: block;
-    margin-top: 10px; }
-  #recent-activity p {
-    clear: left;
-    font-family: "museo-slab-1", "museo-slab-2", serif;
-    font-size: 12px;
-    font-style: italic;
-    color: #777777;
-    margin: 0;
-    padding-top: 10px;
-    line-height: 1.3em; }
+    #recent-activity li .avatar {
+      position: absolute;
+      top: 10px;
+      left: 0; }
+    #recent-activity li .headline {
+      font-size: 16px;
+      margin: 4px 0 12px; }
+      #recent-activity li .headline a {
+        color: #252525;
+        font-weight: 600; }
+    #recent-activity li a.content-preview {
+      float: left;
+      margin-right: 10px; }
+    #recent-activity li .title {
+      display: block;
+      margin-top: 10px; }
+    #recent-activity li p {
+      clear: left;
+      font-family: "museo-slab-1", "museo-slab-2", serif;
+      font-size: 12px;
+      font-style: italic;
+      color: #777777;
+      margin: 0;
+      padding-top: 10px;
+      line-height: 1.3em; }
 
 #recent-activity.drilled-in section {
   width: 100%;
@@ -2431,6 +2434,17 @@ body#subscriptions.index, body#subscriptions.work, body#subscriptions.rewards, b
     -moz-border-radius: 20px;
     border-radius: 20px; }
 
+@media all and (min-width: 1600px) {
+  #recent-activity section {
+    width: 30%;
+    margin-right: 5%;
+    clear: none !important; }
+
+  #recent-activity section:nth-child(2n) {
+    margin-right: 5%; }
+
+  #recent-activity section:nth-child(3n+3) {
+    margin-right: 0; } }
 .content-preview {
   display: block;
   width: 630px;

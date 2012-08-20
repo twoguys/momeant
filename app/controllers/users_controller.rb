@@ -139,7 +139,7 @@ class UsersController < ApplicationController
   # creator signup step 2
   def creator_info
     redirect_to root_path and return if @user != current_user
-    if request.post?
+    if request.put?
       @user.update_attributes(params[:user])
       @user.errors.add(:avatar, "is required") if @user.avatar_missing?
       @user.errors.add(:tagline, "is required") if @user.tagline.blank?
@@ -151,7 +151,7 @@ class UsersController < ApplicationController
   # creator signup step 3
   def creator_payment
     redirect_to root_path and return if @user != current_user
-    if request.post?
+    if request.put?
       @user.update_attributes(params[:user])
       redirect_to user_path(@user)
     end
