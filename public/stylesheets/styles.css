@@ -2279,8 +2279,8 @@ body#subscriptions.index, body#subscriptions.work, body#subscriptions.rewards, b
   position: absolute;
   top: 42px;
   bottom: 0;
-  left: 0;
-  right: 200px;
+  left: 300px;
+  right: 0;
   padding: 30px 40px;
   overflow-y: auto; }
   #recent-activity.loading {
@@ -2296,8 +2296,12 @@ body#subscriptions.index, body#subscriptions.work, body#subscriptions.rewards, b
       margin-right: 0; }
     #recent-activity section:nth-child(odd) {
       clear: left; }
+    #recent-activity section a.drill-in {
+      float: right; }
   #recent-activity h1 {
-    font-weight: 600;
+    font-size: 2.5em;
+    font-weight: 900;
+    text-transform: uppercase;
     margin-bottom: 15px; }
     #recent-activity h1 img {
       float: left;
@@ -2312,15 +2316,33 @@ body#subscriptions.index, body#subscriptions.work, body#subscriptions.rewards, b
     padding: 10px 0 10px 70px;
     min-height: 60px;
     border-top: 1px solid #eeeeee; }
+    #recent-activity li:last-child {
+      border-bottom: 1px solid #eeeeee;
+      margin-bottom: 10px; }
   #recent-activity .avatar {
     position: absolute;
     top: 10px;
     left: 0; }
   #recent-activity .headline {
-    margin-bottom: 5px;
-    font-weight: 600; }
+    font-size: 16px;
+    margin: 4px 0 12px; }
+    #recent-activity .headline a {
+      color: #252525;
+      font-weight: 600; }
+  #recent-activity a.content-preview {
+    float: left;
+    margin-right: 10px; }
+  #recent-activity .title {
+    display: block;
+    margin-top: 10px; }
   #recent-activity p {
-    margin: 5px 0 0;
+    clear: left;
+    font-family: "museo-slab-1", "museo-slab-2", serif;
+    font-size: 12px;
+    font-style: italic;
+    color: #777777;
+    margin: 0;
+    padding-top: 10px;
     line-height: 1.3em; }
 
 #recent-activity.drilled-in section {
@@ -2353,50 +2375,61 @@ body#subscriptions.index, body#subscriptions.work, body#subscriptions.rewards, b
   position: absolute;
   top: 42px;
   bottom: 0;
-  right: 0;
-  width: 200px;
-  background: #333333;
+  right: left;
+  width: 300px;
+  background: #222222;
   color: white;
   border-right: 1px solid #dddddd;
   overflow-y: auto; }
-  #feed-sidebar h3, #feed-sidebar p {
-    font-size: 0.9em; }
-  #feed-sidebar h3 {
-    padding: 7px 7px 0;
-    text-transform: uppercase;
-    font-weight: 400; }
+  #feed-sidebar h2 {
+    background: #555555;
+    color: black;
+    margin: 5px; }
   #feed-sidebar p {
-    padding: 0 7px;
-    margin: 0;
-    color: #777777; }
-  #feed-sidebar p, #feed-sidebar a.following {
-    border-bottom: 1px solid #222222; }
+    padding: 5px;
+    margin: 0; }
   #feed-sidebar a.following {
     display: block;
     position: relative;
-    height: 37px;
-    padding: 7px 7px 7px 54px;
+    height: 40px;
+    padding: 10px 10px 10px 70px;
+    margin: 5px 5px 0;
+    background: #333333;
     color: #cccccc;
-    border-top: 1px solid #444444;
     -webkit-transition: all 0.2s ease-in-out;
     -moz-transition: all 0.2s ease-in-out;
     -ms-transition: all 0.2s ease-in-out;
     -o-transition: all 0.2s ease-in-out;
     transition: all 0.2s ease-in-out; }
     #feed-sidebar a.following:hover, #feed-sidebar a.following.selected {
-      background: #444444;
-      color: white;
-      padding-left: 57px; }
+      background: #00aeef;
+      color: #003750; }
+      #feed-sidebar a.following:hover .count, #feed-sidebar a.following.selected .count {
+        background: #003750; }
   #feed-sidebar .avatar {
     position: absolute;
-    top: 7px;
-    left: 9px;
-    width: 37px;
-    height: 37px; }
+    top: 0;
+    left: 0;
+    width: 60px;
+    height: 60px; }
   #feed-sidebar .name {
-    padding-top: 2px; }
-  #feed-sidebar span {
-    display: block; }
+    font-family: "museo-slab-1", "museo-slab-2", serif;
+    font-size: 15px;
+    font-style: italic; }
+    #feed-sidebar .name span {
+      display: block; }
+  #feed-sidebar .count {
+    position: absolute;
+    top: 20px;
+    right: 10px;
+    background: #f42652;
+    color: white;
+    padding: 1px 5px;
+    text-align: center;
+    min-width: 10px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px; }
 
 .content-preview {
   display: block;

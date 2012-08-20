@@ -1,5 +1,5 @@
 %section
-  %h1 #{@user.name}'s Recent Activity
+  %h1 #{@user.first_name}'s Recent Activity
   = link_to "< Back to Feed", subscriptions_path, class: "back-to-feed"
   %ul
     - @activity.each do |activity|

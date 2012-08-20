@@ -23,10 +23,10 @@ window.SubscriptionsView = Backbone.View.extend({
   filter_person: function(event) {
     var $person = $(event.currentTarget);
     if ($person.hasClass('selected')) {
-      $person.removeClass('selected');
       Subscriptions.show_all_people();
       return false;
     }
+    $person.addClass('selected').siblings().removeClass('selected');
     Subscriptions.drill_in(event);
     return false;
   },

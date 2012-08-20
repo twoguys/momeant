@@ -84,5 +84,8 @@ class SubscriptionsController < ApplicationController
       discussions = Discussion.includes(:user).where(user_id: @followings.map(&:id)).order("created_at DESC")
       @discussions_count = discussions.count
       @new_discussions = discussions.where("discussions.created_at > ?", since).limit(3)
+      
+      @new_per_following = Activity.only_types(["Story","Reward"]).by_users(@followings).where("created_at > ?", since).group_by(&:actor_id)
+      Rails.logger.info @new_per_following.inspect
     end
 end
