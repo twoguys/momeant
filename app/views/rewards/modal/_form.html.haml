@@ -9,7 +9,7 @@
       %p Thank you for your support!
   - else
     
-    #current-step
+    #current-step{class: current_user.nil? ? "no-user" : ""}
       = form_for :reward, :url => user_rewards_path(@story.user), :html => {:id => "reward-form"} do |form|
         = form.hidden_field :story_id, :value => @story.id
         - if @impacted_by
@@ -30,18 +30,19 @@
             = form.submit "Give Reward"
             
             #invalid-reward-amount
-            
-          - else
-            = link_to "Join our community!", "#join-modal", :id => "reward-join-button", :class => "button"
-            #reward-login-link= link_to "Already have an account? Log in.", "#login-modal"
     
       #why-you-reward
-        %p
-          - if current_user
+        - if current_user
+          %p
             %span Rewarding this work will allow you to comment on it and share it with others to gain
             %abbr.tooltipped-n{title: "Impact = the rewards you give + the rewards others give when you share someone's work."} impact.
-          - else
-            %span You've stumbled onto Momeant, welcome! Momeant's mission is to build a creative economy on the Web, where creators of content can make a living like everyone else.
+        - else
+          %p
+            %span You've stumbled onto Momeant, welcome! Momeant's mission is to build a place where creators of online content can make a living like everyone else.
             %br
             %br
-            %span We have a vision of voluntary support in exchange for connection, recognition, and free content. Learn more by clicking the Momeant logo up top.
+            %span By voluntarily rewarding creators like #{@story.user.first_name}, you become a part of their private community, creating an ongoing, meaningful connection with them and their supporters.
+            
+          = link_to "Learn more", root_path, :id => "reward-more-button", :class => "button"
+          %div Want to join us? #{link_to "Sign up.", "#join-modal"}
+          %div Already have an account? #{link_to "Log in.", "#login-modal"}

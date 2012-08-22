@@ -174,7 +174,7 @@ $(function() {
 			setTimeout(function() {$('#reward-modal').addClass('opened');}, 200);
 			$('#content-cover').show();
 			this.modal_open = true;
-			mpq.track('Opened Reward Modal');
+			mixpanel.track('Opened Reward Modal');
 		},
 		
 		close_modal: function() {
