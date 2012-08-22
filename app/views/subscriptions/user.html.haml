@@ -1,0 +1,10 @@
+#recent-activity.drilled-in
+  = render "subscriptions/user"
+        
+#feed-sidebar
+  = render "subscriptions/sidebar"
+
+:javascript
+  mixpanel.track('Viewed Feed', { subpage: 'user' });
+
+= javascript_include_tag "subscriptions"

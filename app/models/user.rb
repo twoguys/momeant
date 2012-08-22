@@ -32,8 +32,8 @@ class User < ActiveRecord::Base
 
   has_many :subscriptions, :dependent => :destroy
   has_many :inverse_subscriptions, :class_name => "Subscription", :foreign_key => :subscriber_id, :dependent => :destroy
-  has_many :subscribers, :through => :subscriptions
-  has_many :subscribed_to, :through => :inverse_subscriptions, :source => :user
+  has_many :followers, :through => :subscriptions, :source => :subscriber
+  has_many :followings, :through => :inverse_subscriptions, :source => :user
   
   has_many :galleries, :order => :position, :dependent => :destroy
   
@@ -450,7 +450,7 @@ class User < ActiveRecord::Base
   end
   
   def is_subscribed_to?(user)
-    self.subscribed_to.include?(user)
+    self.followings.include?(user)
   end
   
   def nearby_content

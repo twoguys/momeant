@@ -1,0 +1,6 @@
+%section
+  %h1 Discussions
+  = link_to "< Back to Feed", subscriptions_path, class: "back-to-feed"
+  %ul
+    - @discussions.each do |discussion|
+      = render partial: "subscriptions/discussion.html", locals: { discussion: discussion }

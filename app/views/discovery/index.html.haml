@@ -20,7 +20,7 @@
 
 = javascript_include_tag "discovery"
 :javascript
-  mpq.track('Viewed Discovery', { filter: '#{escape_javascript(params[:filter] || 'Featured')}', creators_page: '#{escape_javascript(params[:creators_page] || '0')}', content_page: '#{escape_javascript(params[:content_page] || '0')}' });
+  mixpanel.track('Viewed Discovery', { filter: '#{escape_javascript(params[:filter] || 'Featured')}', creators_page: '#{escape_javascript(params[:creators_page] || '0')}', content_page: '#{escape_javascript(params[:content_page] || '0')}' });
   Discovery.filter = '#{params[:filter] || 'Featured'}';
   Discovery.creator_page = #{params[:creators_page] || 0};
   Discovery.content_page = #{params[:content_page] || 0};

@@ -5,33 +5,46 @@
       = link_to "Previous", "#", :id => "previous", :class => "inactive"
       = link_to "Next", "#", :id => "next"
       %ul
-        %li We're people like you.
-        %li We use the Web. A lot.
-        %li.longer
-          We read articles, watch videos,
+        %li.a
+          %p
+            We have an opportunity to build
+            %br
+            a Web that supports all of us.
+          %p
+            But this depends on the
+            %br
+            choices we make.
+        %li.b
+          %p
+            We all read articles, watch videos,
+            %br
+            look at photos, listen to music.
+          %p
+            A lot of us create
+            %br
+            these things too.
+        %li.e
+          %p
+            Most of this content is free,
+            %br
+            and we want it to stay that way.
+          %p
+            But we also want to give creators
+            %br
+            a chance to make a living.
+        %li.f
+          %p
+            Momeant provides that chance.
+          %p
+            Reward creators who make the work
+            %br
+            you find valuable, and discover all
+            %br
+            of the ways they can reward you back.
+        %li.g
+          Join Momeant and help us build
           %br
-          look at photos, listen to music.
-        %li.longer
-          A lot of us create
-          %br
-          these things too.
-        %li.longer
-          It’s great that a lot
-          %br
-          of this content is free...
-        %li.longer
-          = "...But everyone has"
-          %br
-          to pay the rent.
-        %li.longer.last
-          Momeant supports a
-          %br
-          thriving and creative
-          %br
-          online economy.
-          %br
-          %br
-          Find out how.
+          a new creative economy on the Web.
           = link_to "Continue", "#", id: "continue-downward"
   
   %ul#people
@@ -39,33 +52,37 @@
       %li= link_to image_tag(person.avatar.url(:thumbnail)), user_path(person)
   
   %p#explanation
-    The web is a virtual economy, brimming with creative minds sharing and consuming information
-    and content. With debt crises, automation and outsourcing causing upheavals in traditional
-    markets around the world, the fate of the web depends on choices we make as members of this
-    viral community. If we want to preserve a creative economy for the future, we must elevate
-    the value we place on web content and the people producing it.
+    The Web provides an extraordinary opportunity to change the way we think about work and prosperity.
+    It is brimming with creative minds sharing and consuming valuable information and content, largely for free.
+    But  our economy is in a state of radical shift. It threatens to overturn our traditional views of work and
+    the availability of jobs, and we're left wondering where the new engine of sustainable productivity will come from.
+    By placing content creators at the center of a new creative economy on the Web, we hope to provide a way for
+    anyone to make a living, and to create lasting, meaningful connections between creators and their supporters.
   
   %ul#steps
-    %li#create
-      %h2 Create
-      %p
-        We have invited some creative forces from across the globe to join Momeant and share
-        their body of work with our growing community.
-    %li#discover
-      %h2 Discover
-      %p
-        Now we're inviting you to dive in and explore the diverse Momeant directory. From comics
-        to journalism to paper cuts, discover content that makes you say "wow".
     %li#support
       %h2 Support
       %p
-        This is where we're different. Share your enthusiasm for these creative endeavors by following,
-        rewarding and participating. Become an active participant in the artist-to-patron relationship.
+        The first step in building a new creative economy on the web is to become a supporter by rewarding creators
+        that produce the content that you find most valuable.
+    %li#exchange
+      %h2 Exchange
+      %p
+        Being a supporter establishes an ongoing meaningful connection with a creator and their community,
+        an opportunity for discussion, collaboration, recognition, digital and physical gifts, and most of all,
+        free content.
+    %li#recognition
+      %h2 Recognition
+      %p
+        What you support says something powerful about what matters to you. When you share your rewards,
+        they tell people what you care about, who you stand behind, and what you want to see more of.
+        Momeant tracks the impact of your shared rewards, letting creators and other supporters recognize
+        you for your influence.
   
   #connect
     %h1 Connect with real people and show them your support.
     = link_to "View our Featured Creators &rarr;".html_safe, discovery_path
 
 :javascript
-  mpq.track('Viewed Homepage', { signed_in: #{user_signed_in? ? 'true' : 'false' } });
+  mixpanel.track('Viewed Homepage', { signed_in: #{user_signed_in? ? 'true' : 'false' } });
 = javascript_include_tag "landing"

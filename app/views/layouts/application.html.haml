@@ -78,16 +78,30 @@
 
 - if current_user
   :javascript
-    mpq.name_tag('#{current_user.name}');
+    mixpanel.register_once({ signed_up: true });
+    mixpanel.people.set({
+      '$email': '#{escape_javascript(current_user.email)}',
+      '$created': '#{current_user.created_at}',
+      '$last_login': '#{current_user.current_sign_in_at}',
+      '$first_name': '#{escape_javascript(current_user.first_name)}',
+      '$last_name': '#{escape_javascript(current_user.last_name)}',
+      'type': '#{current_user.type}',
+      'latitude': '#{current_user.latitude}',
+      'longitude': '#{current_user.longitude}',
+      'impact': '#{current_user.impact}',
+      'rewards_received': '#{current_user.lifetime_rewards}'
+    });
     
   - if flash[:track_signup].present? && current_user 
     = link_to "Launch about diagram", "#about-diagram-modal", :style => "display:none;"
     = render "shared/about_diagram_modal"
     :javascript
-      mpq.track('Signed up', { id: '#{current_user.id}' })
+      mixpanel.track('Signed up', { id: '#{current_user.id}' });
+      mixpanel.identify('#{current_user.id}');
+      mixpanel.name_tag('#{current_user.name}');
   - if flash[:track_story_publish]
     :javascript
-      mpq.track('Published Story', {anonymous_id: '#{session[:analytics_anonymous_id]}', story_id: '#{flash[:track_story_publish]}'})
+      mixpanel.track('Published Story', {anonymous_id: '#{session[:analytics_anonymous_id]}', story_id: '#{flash[:track_story_publish]}'})
   - if flash[:track_coin_purchase]
     :javascript
-      mpq.track('Purchased Coin Package', {anonymous_id: '#{session[:analytics_anonymous_id]}', amount: '$#{flash[:track_coin_purchase]}', mp_note: '$#{flash[:track_coin_purchase]}'})
+      mixpanel.track('Purchased Coin Package', {anonymous_id: '#{session[:analytics_anonymous_id]}', amount: '$#{flash[:track_coin_purchase]}', mp_note: '$#{flash[:track_coin_purchase]}'})

@@ -913,9 +913,8 @@ body#home.index #main {
   #landing-page #intro {
     background: #00aeef;
     color: white;
-    font-size: 50px;
-    font-weight: 900;
-    text-transform: uppercase;
+    font-size: 34px;
+    font-weight: 600;
     text-align: center;
     height: 400px;
     overflow: hidden; }
@@ -949,19 +948,20 @@ body#home.index #main {
         transition: margin 0.3s ease-in-out; }
         #landing-page #intro #slides ul li {
           float: left;
+          font-size: 36px;
           width: 1000px;
-          padding-top: 175px; }
-        #landing-page #intro #slides ul li.longer {
-          font-size: 40px;
-          padding-top: 160px; }
-        #landing-page #intro #slides ul li.last {
-          padding-top: 45px;
-          height: 330px;
+          padding-top: 95px; }
+        #landing-page #intro #slides ul li.g {
+          padding-top: 115px;
+          height: 210px;
           background: transparent url(../images/landing/down-arrow.png) no-repeat 50% 100%;
           position: relative; }
+        #landing-page #intro #slides ul p {
+          margin: 0 0 1em;
+          line-height: 1.3em; }
       #landing-page #intro #slides a#continue-downward {
         position: absolute;
-        top: 305px;
+        top: 255px;
         left: 50%;
         margin-left: -38px;
         width: 76px;
@@ -992,24 +992,30 @@ body#home.index #main {
   #landing-page #steps {
     width: 910px;
     height: 250px;
-    margin: 0 auto 200px; }
+    margin: 0 auto 250px; }
     #landing-page #steps li {
       width: 250px;
       margin-right: 80px;
       float: left; }
       #landing-page #steps li:last-child {
         margin-right: 0; }
+        #landing-page #steps li:last-child p {
+          background: none; }
+    #landing-page #steps p {
+      margin-bottom: 0;
+      padding-bottom: 70px;
+      background: transparent url(../images/landing/hand-drawn-arrow.png) no-repeat 50% 100%; }
     #landing-page #steps h2 {
       background: none;
       padding: 80px 0 0;
       border-bottom: 1px solid #00aeef;
       margin-bottom: 15px;
       font-family: "ff-dagny-web-pro-1", "ff-dagny-web-pro-2", sans-serif;
-      font-size: 50px;
+      font-size: 40px;
       font-weight: 200;
       text-align: center;
       background: transparent url(../images/landing/step-icons.png) no-repeat 50% 0; }
-    #landing-page #steps li#discover h2 {
+    #landing-page #steps li#exchange h2 {
       background-position: 50% -165px; }
     #landing-page #steps li#support h2 {
       background-position: 50% -347px; }
@@ -2262,253 +2268,189 @@ table.users {
         font-style: italic;
         font-size: 11px; }
 
-body#subscriptions.index {
-  min-width: 900px; }
-  body#subscriptions.index #main {
+body#subscriptions.index, body#subscriptions.work, body#subscriptions.rewards, body#subscriptions.discussions, body#subscriptions.user {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%; }
+  body#subscriptions.index #container, body#subscriptions.work #container, body#subscriptions.rewards #container, body#subscriptions.discussions #container, body#subscriptions.user #container {
+    position: static;
+    padding: 0; }
+  body#subscriptions.index #main, body#subscriptions.work #main, body#subscriptions.rewards #main, body#subscriptions.discussions #main, body#subscriptions.user #main {
     max-width: 100%;
     margin: 0; }
-    body#subscriptions.index #main #feed {
-      padding-left: 300px;
-      overflow: hidden; }
-  body#subscriptions.index .column {
-    position: relative;
+
+#recent-activity {
+  position: absolute;
+  top: 42px;
+  bottom: 0;
+  left: 300px;
+  right: 0;
+  padding: 30px 40px;
+  overflow-y: auto; }
+  #recent-activity.loading {
+    background: transparent url(../images/spinner.gif) no-repeat 50px 40px; }
+    #recent-activity.loading * {
+      visibility: hidden; }
+  #recent-activity.no-followings-yet p {
+    font-size: 1.3em;
+    line-height: 1.5em; }
+  #recent-activity section {
+    width: 40%;
     float: left;
-    padding-bottom: 20010px;
-    margin-bottom: -20000px; }
-  body#subscriptions.index #feed-center {
-    width: 100%; }
-  body#subscriptions.index #feed-center > .inner {
-    padding: 20px; }
-  body#subscriptions.index #feed-left {
-    width: 280px;
-    padding-top: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
-    right: 300px;
-    margin-left: -100%;
-    background: #222222;
-    color: white; }
-  body#subscriptions.index #feed-left #user-profile {
-    margin: -10px -10px 0 -10px; }
-    body#subscriptions.index #feed-left #user-profile .about {
-      margin: 0; }
-    body#subscriptions.index #feed-left #user-profile .avatar img {
-      width: 300px;
-      height: 300px; }
-  body#subscriptions.index #feed-left h2 {
-    background: #555555;
-    color: black;
-    margin: 10px 0 5px;
-    font-size: 14px; }
-  body#subscriptions.index #feed-left ul {
-    margin-bottom: 20px; }
-  body#subscriptions.index #feed-left li {
-    height: 70px;
-    margin-bottom: 5px;
-    background: #333333;
-    cursor: pointer;
-    -webkit-transition: background 0.2s ease-in-out;
-    -moz-transition: background 0.2s ease-in-out;
-    -ms-transition: background 0.2s ease-in-out;
-    -o-transition: background 0.2s ease-in-out;
-    transition: background 0.2s ease-in-out; }
-    body#subscriptions.index #feed-left li img, body#subscriptions.index #feed-left li .name {
-      float: left; }
-    body#subscriptions.index #feed-left li img {
-      width: 70px;
-      height: 70px;
-      margin-right: 20px; }
-    body#subscriptions.index #feed-left li .name, body#subscriptions.index #feed-left li .amount {
-      -webkit-transition: color 0.2s ease-in-out;
-      -moz-transition: color 0.2s ease-in-out;
-      -ms-transition: color 0.2s ease-in-out;
-      -o-transition: color 0.2s ease-in-out;
-      transition: color 0.2s ease-in-out; }
-    body#subscriptions.index #feed-left li .name {
-      font-family: "museo-slab-1", "museo-slab-2", serif;
-      font-style: italic;
-      font-size: 16px;
-      line-height: 16px;
-      color: #cccccc;
-      padding-top: 17px; }
-      body#subscriptions.index #feed-left li .name span {
-        display: block; }
-    body#subscriptions.index #feed-left li .amount {
-      float: right;
-      font-size: 20px;
-      font-weight: 200;
-      padding-top: 22px;
-      margin-right: 10px;
-      color: #aaaaaa; }
-  body#subscriptions.index #feed-left #following li .name span {
-    margin-bottom: 3px; }
-  body#subscriptions.index #feed-left #following li .name .since {
-    font-size: 12px;
-    font-weight: 300;
-    color: #777777; }
-  body#subscriptions.index #feed-left #following li:hover .name .since, body#subscriptions.index #feed-left #following li.selected .name .since {
-    color: white; }
-  body#subscriptions.index #feed-left li:hover, body#subscriptions.index #feed-left li.selected {
-    background: #00aeef; }
-    body#subscriptions.index #feed-left li:hover .name, body#subscriptions.index #feed-left li.selected .name {
-      color: #003750; }
-    body#subscriptions.index #feed-left li:hover .amount, body#subscriptions.index #feed-left li.selected .amount {
-      color: white; }
-  body#subscriptions.index #feed-center #vertical-list {
-    padding: 0; }
-    body#subscriptions.index #feed-center #vertical-list #activity-list > li {
-      padding: 0;
-      margin-bottom: 30px; }
-  body#subscriptions.index #feed-center li .creator {
-    width: 320px;
-    position: absolute;
-    right: -320px;
-    top: 0; }
-    body#subscriptions.index #feed-center li .creator .rewarded, body#subscriptions.index #feed-center li .creator .previously-rewarded {
-      margin-left: 30px; }
-    body#subscriptions.index #feed-center li .creator .rewarded {
-      background: #eeeeee;
-      padding: 150px 0 80px;
-      text-align: center;
-      margin-bottom: 5px; }
-      body#subscriptions.index #feed-center li .creator .rewarded .amount {
-        display: inline-block;
-        font-size: 50px;
-        font-weight: 100;
-        border-bottom: 1px solid #dddddd;
-        margin-bottom: 5px; }
-      body#subscriptions.index #feed-center li .creator .rewarded .text {
-        color: #aaaaaa;
-        display: block; }
-    body#subscriptions.index #feed-center li .creator .creator-info {
-      position: absolute;
-      top: 20px;
-      left: -5px;
-      z-index: 2;
-      padding-left: 25px;
-      background: transparent url(../images/curation/dot-line.png) no-repeat 0 50%; }
-      body#subscriptions.index #feed-center li .creator .creator-info .card {
-        width: 310px;
-        height: 60px;
-        background: black;
-        font-family: "museo-slab-1", "museo-slab-2", serif;
-        font-style: italic; }
-        body#subscriptions.index #feed-center li .creator .creator-info .card img {
-          float: left;
-          width: 60px;
-          height: 60px;
-          margin-right: 20px; }
-        body#subscriptions.index #feed-center li .creator .creator-info .card a.content-preview {
-          float: left; }
-        body#subscriptions.index #feed-center li .creator .creator-info .card .name {
-          display: block;
-          color: white;
-          font-size: 20px;
-          padding-top: 10px; }
-        body#subscriptions.index #feed-center li .creator .creator-info .card .since {
-          color: #777777;
-          font-size: 12px;
-          font-weight: 300; }
-    body#subscriptions.index #feed-center li .creator .previously-rewarded li {
-      margin-bottom: 5px; }
-      body#subscriptions.index #feed-center li .creator .previously-rewarded li a {
-        display: block;
-        height: 17px;
-        padding: 5px 10px 5px 28px;
-        background: #f4f4f4 url(../images/curation/white-dot.png) no-repeat 10px 50%;
-        text-transform: uppercase;
-        color: #777777;
-        -webkit-transition: all 0.2s ease-in-out;
-        -moz-transition: all 0.2s ease-in-out;
-        -ms-transition: all 0.2s ease-in-out;
-        -o-transition: all 0.2s ease-in-out;
-        transition: all 0.2s ease-in-out; }
-        body#subscriptions.index #feed-center li .creator .previously-rewarded li a .title {
-          float: left; }
-        body#subscriptions.index #feed-center li .creator .previously-rewarded li a .amount {
-          float: right; }
-        body#subscriptions.index #feed-center li .creator .previously-rewarded li a:hover {
-          background-color: #00aeef;
-          background-position: -10px 50%;
-          color: white;
-          padding-left: 10px; }
-  body#subscriptions.index #feed-center li.content {
-    position: relative; }
-    body#subscriptions.index #feed-center li.content .content-preview {
-      z-index: 1; }
-  body#subscriptions.index #feed-center li.broadcast .comment {
-    padding-bottom: 41px;
-    background: transparent url(../images/curation/broadcast-curve.png) no-repeat 550px 100%; }
-    body#subscriptions.index #feed-center li.broadcast .comment .comment-inner {
-      background: #202020;
-      padding: 10px; }
-      body#subscriptions.index #feed-center li.broadcast .comment .comment-inner p {
-        background: white;
-        font-family: "museo-slab-1", "museo-slab-2", serif;
-        font-size: 22px;
-        font-style: italic;
-        margin: 0;
-        padding: 20px;
-        line-height: 1.3em; }
-  body#subscriptions.index #feed-center li.reward .comment {
-    background: #eeeeee;
-    padding: 30px;
-    min-height: 45px;
-    position: relative; }
-    body#subscriptions.index #feed-center li.reward .comment p {
-      width: 410px;
-      font-family: "museo-slab-1", "museo-slab-2", serif;
-      font-size: 22px;
-      font-style: italic;
-      margin: 0;
-      line-height: 1.3em; }
-    body#subscriptions.index #feed-center li.reward .comment .rewarded {
+    margin-bottom: 40px;
+    margin-right: 10%; }
+    #recent-activity section:nth-child(even) {
+      margin-right: 0; }
+    #recent-activity section:nth-child(odd) {
+      clear: left; }
+    #recent-activity section a.drill-in {
+      float: right; }
+  #recent-activity h1 {
+    font-size: 2.5em;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin-bottom: 15px; }
+    #recent-activity h1 img {
+      float: left;
+      margin-right: 10px; }
+    #recent-activity h1 span {
+      display: block; }
+  #recent-activity .empty {
+    border-top: 1px solid #eeeeee;
+    padding: 10px 0; }
+  #recent-activity li {
+    position: relative;
+    padding: 10px 0 10px 70px;
+    min-height: 60px;
+    border-top: 1px solid #eeeeee; }
+    #recent-activity li:last-child {
+      border-bottom: 1px solid #eeeeee;
+      margin-bottom: 10px; }
+    #recent-activity li .avatar {
       position: absolute;
       top: 10px;
-      right: 20px; }
-      body#subscriptions.index #feed-center li.reward .comment .rewarded .amount {
-        display: inline-block;
-        font-size: 50px;
-        font-weight: 100;
-        border-bottom: 1px solid #dddddd;
-        margin-bottom: 5px; }
-      body#subscriptions.index #feed-center li.reward .comment .rewarded .text {
-        color: #aaaaaa;
-        display: block;
-        text-align: right; }
-  body#subscriptions.index #feed-center li.reward .card a {
-    float: left;
-    display: block; }
-  body#subscriptions.index #feed-center li.reward .card a.avatar {
+      left: 0; }
+    #recent-activity li .headline {
+      font-size: 16px;
+      margin: 4px 0 12px; }
+      #recent-activity li .headline a {
+        color: #252525;
+        font-weight: 600; }
+    #recent-activity li a.content-preview {
+      float: left;
+      margin-right: 10px; }
+    #recent-activity li .title {
+      display: block;
+      margin-top: 10px; }
+    #recent-activity li p {
+      clear: left;
+      font-family: "museo-slab-1", "museo-slab-2", serif;
+      font-size: 12px;
+      font-style: italic;
+      color: #777777;
+      margin: 0;
+      padding-top: 10px;
+      line-height: 1.3em; }
+
+#recent-activity.drilled-in section {
+  width: 100%;
+  float: none;
+  margin-right: 0; }
+#recent-activity.drilled-in a.back-to-feed {
+  display: inline-block;
+  font-size: 1.1em;
+  margin-bottom: 10px; }
+#recent-activity.drilled-in ul {
+  border-left: 3px solid #cccccc;
+  padding-top: 10px;
+  margin-left: 80px; }
+#recent-activity.drilled-in li {
+  padding: 0 0 0 125px;
+  margin-left: -108px;
+  margin-bottom: 60px;
+  border: none;
+  background: transparent url(../images/feed/reward.png) no-repeat 99px 0; }
+  #recent-activity.drilled-in li.content {
+    background-image: url(../images/feed/content.png); }
+  #recent-activity.drilled-in li.discussion {
+    background-image: url(../images/feed/discussion.png); }
+  #recent-activity.drilled-in li .avatar {
+    top: 3px;
+    left: 25px; }
+
+#feed-sidebar {
+  position: absolute;
+  top: 42px;
+  bottom: 0;
+  right: left;
+  width: 300px;
+  background: #222222;
+  color: white;
+  border-right: 1px solid #dddddd;
+  overflow-y: auto; }
+  #feed-sidebar h2 {
+    background: #555555;
+    color: black;
+    margin: 5px; }
+  #feed-sidebar p {
+    padding: 5px;
+    margin: 0; }
+  #feed-sidebar a.following {
+    display: block;
+    position: relative;
+    height: 40px;
+    padding: 10px 10px 10px 70px;
+    margin: 5px 5px 0;
+    background: #333333;
+    color: #cccccc;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -ms-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out; }
+    #feed-sidebar a.following:hover, #feed-sidebar a.following.selected {
+      background: #00aeef;
+      color: #003750; }
+      #feed-sidebar a.following:hover .count, #feed-sidebar a.following.selected .count {
+        background: #003750; }
+  #feed-sidebar .avatar {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 60px;
     height: 60px; }
-    body#subscriptions.index #feed-center li.reward .card a.avatar img {
-      margin-right: 0; }
-  body#subscriptions.index #feed-center li.reward .card a.content-preview {
-    width: 95px;
-    height: 60px;
-    margin-right: 15px;
-    overflow: hidden; }
-  body#subscriptions.index #feed-center li.reward .card a.content-info {
-    width: 135px;
-    height: 60px; }
-    body#subscriptions.index #feed-center li.reward .card a.content-info .title, body#subscriptions.index #feed-center li.reward .card a.content-info .media-type {
-      float: left; }
-    body#subscriptions.index #feed-center li.reward .card a.content-info .title {
-      font-family: "proxima-nova-1", "proxima-nova-2", helvetica, sans-serif;
-      font-size: 13px;
-      font-style: normal;
-      color: white;
-      text-transform: uppercase;
-      padding-top: 15px;
-      line-height: 15px; }
-    body#subscriptions.index #feed-center li.reward .card a.content-info .byline {
-      display: block;
-      clear: left;
-      color: #777777;
-      font-size: 12px;
-      font-weight: 300; }
+  #feed-sidebar .name {
+    font-family: "museo-slab-1", "museo-slab-2", serif;
+    font-size: 15px;
+    font-style: italic; }
+    #feed-sidebar .name span {
+      display: block; }
+  #feed-sidebar .count {
+    position: absolute;
+    top: 20px;
+    right: 10px;
+    background: #f42652;
+    color: white;
+    padding: 1px 5px;
+    text-align: center;
+    min-width: 10px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px; }
 
+@media all and (min-width: 1600px) {
+  #recent-activity section {
+    width: 30%;
+    margin-right: 5%;
+    clear: none !important; }
+
+  #recent-activity section:nth-child(2n) {
+    margin-right: 5%; }
+
+  #recent-activity section:nth-child(3n+3) {
+    margin-right: 0; } }
 .content-preview {
   display: block;
   width: 630px;
@@ -5013,6 +4955,8 @@ body#stories.show {
   width: 100%;
   height: 100%;
   min-height: 680px; }
+  body#stories.show #header {
+    display: none; }
 
 #presenter {
   width: 100%;
@@ -5020,7 +4964,7 @@ body#stories.show {
   overflow: hidden; }
   #presenter .content {
     position: absolute;
-    top: 42px;
+    top: 0;
     bottom: 0;
     left: 70px;
     right: 0;
@@ -5035,7 +4979,7 @@ body#stories.show {
   #presenter #reward-modal {
     width: 70px;
     position: absolute;
-    top: 42px;
+    top: 0;
     bottom: 0;
     left: 0;
     color: white;
@@ -5221,12 +5165,19 @@ body#stories.show {
           color: #00aeef;
           border-bottom: 1px dotted #00aeef;
           cursor: help; }
+        #presenter #reward-modal #reward-actions #why-you-reward #reward-more-button {
+          display: block;
+          text-align: center;
+          padding: 8px 0;
+          margin-bottom: 10px; }
     #presenter #reward-modal #current-step {
       height: 305px;
       padding: 45px;
       position: relative;
       background: #303030;
       z-index: 2; }
+      #presenter #reward-modal #current-step.no-user {
+        height: 340px; }
       #presenter #reward-modal #current-step.loading {
         background: #303030 url(../images/spinnerDarkGrey.gif) no-repeat 50% 80px; }
         #presenter #reward-modal #current-step.loading * {
@@ -5249,10 +5200,6 @@ body#stories.show {
       z-index: 2;
       position: relative;
       text-align: center; }
-      #presenter #reward-modal #amounts #reward-join-button {
-        display: block;
-        margin-bottom: 5px;
-        padding: 10px 12px; }
       #presenter #reward-modal #amounts #invalid-reward-amount {
         width: 71px;
         height: 56px;
@@ -7107,27 +7054,34 @@ body.index#search #new-york {
       #search-results section .data #vertical-list {
         padding-left: 0; }
 
+body#home.about #main, body#home.tos #main {
+  width: 800px; }
 body#home.about #inner, body#home.tos #inner {
   padding: 50px; }
 body#home.about #header-image, body#home.tos #header-image {
   background: transparent url(../images/aboutPageHeader.png) no-repeat 50% 0;
-  height: 183px;
+  height: 183px; }
+body#home.about .pronounced, body#home.tos .pronounced {
+  text-align: center;
+  margin-bottom: 40px;
+  color: #999999; }
+body#home.about section, body#home.tos section {
   margin-bottom: 40px; }
 body#home.about h1, body#home.tos h1 {
   text-transform: uppercase;
   font-size: 30px;
   border-bottom: 1px solid #cccccc;
-  margin-bottom: 5px;
+  margin-bottom: 1em;
   padding-bottom: 5px; }
 body#home.about p.subheading, body#home.tos p.subheading {
   margin: 0 0 20px; }
 body#home.about h3, body#home.tos h3 {
   font-size: 16px; }
 body#home.about ol, body#home.tos ol {
-  margin-left: 3em;
-  margin-bottom: 20px; }
+  margin-left: 2em; }
   body#home.about ol li, body#home.tos ol li {
-    list-style-type: lower-alpha; }
+    list-style-type: decimal;
+    margin-bottom: 1em; }
 
 body#home.tos h1 {
   border: none; }

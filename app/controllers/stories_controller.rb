@@ -81,7 +81,7 @@ class StoriesController < ApplicationController
       Activity.create(:actor_id => @story.user.id, :action_type => "Story", :action_id => @story.id)
       
       # tell their followers (TODO: Background this later)
-      @story.user.subscribers.each do |user|
+      @story.user.followers.each do |user|
         NotificationsMailer.content_from_following(user, @story.user, @story).deliver if user.send_following_update_emails?
       end
     end

@@ -21,15 +21,6 @@ class UsersController < ApplicationController
     @rewards = @user.given_rewards(include: "story")
   end
   
-  def patronage
-    prepare_patronage_data
-  end
-  
-  def patronage_filter # ajax
-    @rewards = @user.given_rewards.where(:recipient_id => params[:creator_id]).includes(:story)
-    render :partial => "patronage_list"
-  end
-  
   def activity
     @activity = Activity.by_users([@user]).only_types("'Reward','Impact'").page(params[:page])
   end
@@ -148,7 +139,7 @@ class UsersController < ApplicationController
   # creator signup step 2
   def creator_info
     redirect_to root_path and return if @user != current_user
-    if request.post?
+    if request.put?
       @user.update_attributes(params[:user])
       @user.errors.add(:avatar, "is required") if @user.avatar_missing?
       @user.errors.add(:tagline, "is required") if @user.tagline.blank?
@@ -160,7 +151,7 @@ class UsersController < ApplicationController
   # creator signup step 3
   def creator_payment
     redirect_to root_path and return if @user != current_user
-    if request.post?
+    if request.put?
       @user.update_attributes(params[:user])
       redirect_to user_path(@user)
     end
@@ -182,10 +173,5 @@ class UsersController < ApplicationController
       @nav = "me" if current_user == @user
       @sidenav = "profile" if current_user.present? && @user == current_user
     end
-    
-    def prepare_patronage_data
-      @users = @user.given_rewards.includes(:recipient).map(&:recipient).uniq
-      @rewards = []
-      @rewards = @user.given_rewards.where(:recipient_id => @users.first.id).includes(:story) if @users.first
-    end
+
 end

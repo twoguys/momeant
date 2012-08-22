@@ -1,26 +1,13 @@
 %li.reward
-
-  .creator
-    .creator-info
-      .card
-        = link_to image_tag(reward.recipient.avatar.url(:thumbnail)), user_path(reward.recipient), :class => "avatar"
-        - if reward.story.text_preview?
-          %a.content-preview.tiny{:href => story_path(reward.story), :class => "#{reward.story.media_type} #{reward.story.template}"}
-            .inner
-              .image
-              .quote= truncate(reward.story.template_text, :length => 140)
-        - else
-          %a.content-preview.tiny{:href => story_path(reward.story), :class => reward.story.media_type}
-            .inner{:style => "background-image: url(#{reward.story.thumbnail.url(:large)})"}
-        %a.content-info{:href => story_path(reward.story)}
-          %span.title= truncate(reward.story.title, :length => 18)
-          %span.byline by #{reward.recipient.name}
-          
-
-  .comment
-    %p
-      = link_to "#{you_or_first_name(reward.user).capitalize} said:", user_path(reward.user)
-      %span= reward.comment
-    .rewarded
-      %span.amount= number_to_currency(reward.amount)
-      %span.text rewarded
+  = link_to image_tag(reward.user.avatar.url(:thumbnail)), user_path(reward.user), class: "avatar"
+  .headline #{link_to reward.user.name, user_path(reward.user)} rewarded #{number_to_currency(reward.amount)} to
+  - if reward.story.text_preview?
+    %a.content-preview.tiny{:href => story_path(reward.story, impacted_by: reward.id), :class => "#{reward.story.media_type} #{reward.story.template}"}
+      .inner
+        .image
+        .quote= truncate(reward.story.template_text, :length => 140)
+  - else
+    %a.content-preview.tiny{:href => story_path(reward.story, impacted_by: reward.id), :class => reward.story.media_type}
+      .inner{:style => "background-image: url(#{reward.story.thumbnail.url(:large)})"}
+  = link_to reward.story.title, story_path(reward.story, impacted_by: reward.id), class: "title"
+  %p= truncate(reward.story.synopsis, length: 200)

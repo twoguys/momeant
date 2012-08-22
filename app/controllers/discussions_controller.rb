@@ -5,6 +5,7 @@ class DiscussionsController < ApplicationController
     discussion = Discussion.new(params[:discussion])
     discussion.user = current_user
     discussion.save
+    Activity.create(:actor_id => current_user.id, :action_type => "Discussion", :action_id => discussion.id)
     render partial: "discussions/discussion_summary", locals: { discussion: discussion }
   end
   

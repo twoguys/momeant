@@ -48,6 +48,7 @@
       $.post(url, {description: description, examples: examples, authenticity_token: token}, function() {
         $form.hide();
         $('#show-after').show();
+        mixpanel.track('Requested to Become a Creator');
       });
     
       return false;

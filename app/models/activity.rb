@@ -5,7 +5,7 @@ class Activity < ActiveRecord::Base
   default_scope order("created_at DESC")
   
   scope :involving, lambda { |user| where("actor_id = ? OR recipient_id = ?", user.id, user.id) }
-  scope :by_users, lambda { |users| where("actor_id IN (#{users.map(&:id).join(",")})") }
+  scope :by_users, lambda { |users| where(actor_id: users.map(&:id)) }
   scope :on_impact, where(:action_type => "Impact")
   scope :on_rewards, where(:action_type => "Reward")
   scope :on_content, where(:action_type => "Story")
@@ -29,8 +29,8 @@ class Activity < ActiveRecord::Base
       Story.find(self.action_id, :include => :user)
     when "AmazonPayment"
       AmazonPayment.find(self.action_id)
-    when "Broadcast"
-      Broadcast.find(self.action_id, :include => :user)
+    when "Discussion"
+      Discussion.find(self.action_id, :include => :user)
     end
   end
 end

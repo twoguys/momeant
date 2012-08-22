@@ -1,0 +1,32 @@
+%section
+  %h1 New Work
+  - if @new_works.empty?
+    .empty No new work since you last logged in
+    = link_to "View #{pluralize @works_count, "previous work"}", subscriptions_work_path, class: "drill-in"
+  - else
+    %ul
+      - @new_works.each do |content|
+        = render partial: "subscriptions/content", locals: { content: content }
+    = link_to "View #{pluralize (@works_count - @new_works.size), "previous work"}", subscriptions_work_path, class: "drill-in" unless @works_count - @new_works.size == 0
+
+%section
+  %h1 New Rewards
+  - if @new_rewards.empty?
+    .empty No new rewards since you last logged in
+    = link_to "View #{pluralize @rewards_count, "previous reward"}", subscriptions_rewards_path, class: "drill-in"
+  - else
+    %ul
+      - @new_rewards.each do |reward|
+        = render partial: "subscriptions/reward", locals: { reward: reward }
+    = link_to "View #{pluralize (@rewards_count - @new_rewards.size), "previous reward"}", subscriptions_rewards_path, class: "drill-in" unless @rewards_count - @new_rewards.size == 0
+        
+%section
+  %h1 New Discussions
+  - if @new_discussions.empty?
+    .empty No new discussions since you last logged in
+    = link_to "View #{pluralize @discussions_count, "previous discussion"}", subscriptions_discussions_path, class: "drill-in"
+  - else
+    %ul
+      - @new_discussions.each do |discussion|
+        = render partial: "subscriptions/discussion", locals: { discussion: discussion }
+    = link_to "View #{pluralize (@discussions_count - @new_discussions.size), "previous discussion"}", subscriptions_discussions_path, class: "drill-in" unless @discussions_count - @new_discussions.size == 0

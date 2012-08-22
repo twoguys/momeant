@@ -10,9 +10,8 @@ body#home.index #main
   #intro
     background: $blue
     color: #fff
-    font-size: 50px
-    font-weight: 900
-    text-transform: uppercase
+    font-size: 34px
+    font-weight: 600
     text-align: center
     height: 400px
     overflow: hidden
@@ -43,19 +42,20 @@ body#home.index #main
         @include transition(margin, 0.3s)
         li
           float: left
+          font-size: 36px
           width: 1000px
-          padding-top: 175px
-        li.longer
-          font-size: 40px
-          padding-top: 160px
-        li.last
-          padding-top: 45px
-          height: 330px
+          padding-top: 95px
+        li.g
+          padding-top: 115px
+          height: 210px
           background: transparent url(../images/landing/down-arrow.png) no-repeat 50% 100%
           position: relative
+        p
+          margin: 0 0 1em
+          line-height: 1.3em
       a#continue-downward
         position: absolute
-        top: 305px
+        top: 255px
         left: 50%
         margin-left: -38px
         width: 76px
@@ -90,24 +90,30 @@ body#home.index #main
   #steps
     width: 910px
     height: 250px
-    margin: 0 auto 200px
+    margin: 0 auto 250px
     li
       width: 250px
       margin-right: 80px
       float: left
       &:last-child
         margin-right: 0
+        p
+          background: none
+    p
+      margin-bottom: 0
+      padding-bottom: 70px
+      background: transparent url(../images/landing/hand-drawn-arrow.png) no-repeat 50% 100%
     h2
       background: none
       padding: 80px 0 0
       border-bottom: 1px solid $blue
       margin-bottom: 15px
       font-family: $numerals
-      font-size: 50px
+      font-size: 40px
       font-weight: 200
       text-align: center
       background: transparent url(../images/landing/step-icons.png) no-repeat 50% 0
-    li#discover h2
+    li#exchange h2
       background-position: 50% -165px
     li#support h2
       background-position: 50% -347px

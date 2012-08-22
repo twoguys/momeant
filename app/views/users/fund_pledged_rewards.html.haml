@@ -45,4 +45,4 @@
 
 - if flash[:track_rewards_payment].present?
   :javascript
-    mpq.track('Funded Rewards', { amount: #{flash[:track_rewards_payment]} });
+    mixpanel.track('Funded Rewards', { amount: #{flash[:track_rewards_payment]} });

@@ -38,6 +38,7 @@ window.ProfileView = Backbone.View.extend({
     } else {
       $.post('/users/' + user_id + '/subscriptions/unsubscribe');
       $link.text('Follow');
+      mixpanel.track('Followed User', { followed_id: user_id });
     }
     
     return false;
@@ -132,11 +133,22 @@ window.DiscussionView = Backbone.View.extend({
 	  
 	  $('#discussion .discussion-reply-field').autoResize({minHeight:15, extraSpace:6});
 	  $('#discussion #new_discussion #discussion_body').autoResize({ minHeight: 25, extraSpace: 6 });
+	  
+	  this.conditionally_zoom_to_discussion();
+  },
+  
+  conditionally_zoom_to_discussion: function() {
+    var topic_id = get_query_param('discussion');
+    if (topic_id != '') {
+      $.scrollTo('#discussion');
+      $('#topics a[topic="' + topic_id + '"]').click();
+    }
   },
   
   enter_discussion_experience: function() {
     $('#discussion').removeClass('off').addClass('on');
     this.on = true;
+    mixpanel.track('Viewed Discussion');
   },
   
   exit_discussion_experience: function() {
@@ -147,6 +159,7 @@ window.DiscussionView = Backbone.View.extend({
   list_topics: function() {
     if (!this.on) { this.enter_discussion_experience(); }
     $('#discussion-inner').css('margin-left', 0);
+    mixpanel.track('Viewed Discussion List');
     return false;
   },
   
@@ -160,6 +173,7 @@ window.DiscussionView = Backbone.View.extend({
     $.get('/discussions/' + topic_id, function(results) {
       $details.html(results).removeClass('loading');
     });
+    mixpanel.track('Viewed Discussion');
     return false;
   },
   
@@ -176,7 +190,7 @@ window.DiscussionView = Backbone.View.extend({
     
     var topic = $form.find('#discussion_topic').val();
     var body = $form.find('#discussion_body').val();
-    if ($.trim(body) == '') { return; }
+    if ($.trim(topic) == '' || $.trim(body) == '') { return; }
     var token = $form.find('input[name="authenticity_token"]').val();
     
     $form.find('#discussion_topic, #discussion_body').val('');

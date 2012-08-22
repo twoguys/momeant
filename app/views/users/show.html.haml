@@ -8,10 +8,10 @@
   
 - if me?(@user)
   :javascript
-    mpq.track('Viewed My Profile');
+    mixpanel.track('Viewed My Profile');
 - else
   :javascript
-    mpq.track('Viewed A Profile', {mp_note: '#{@user.name}'});
+    mixpanel.track('Viewed A Profile', {mp_note: '#{@user.name}'});
 
 :javascript
   var user_id = '#{@user.id}';

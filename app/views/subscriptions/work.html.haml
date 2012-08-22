@@ -1,0 +1,10 @@
+#recent-activity.drilled-in
+  = render "subscriptions/all_content"
+        
+#feed-sidebar
+  = render "subscriptions/sidebar"
+
+:javascript
+  mixpanel.track('Viewed Feed', { subpage: 'work' });
+
+= javascript_include_tag "subscriptions"
