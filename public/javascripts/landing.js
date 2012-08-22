@@ -25,7 +25,7 @@ window.LandingView = Backbone.View.extend({
 	  var page_width = $('#main').width();
 	  this.current_width = page_width;
 	  $('#slides li').css('width', page_width);
-	  $('#slides ul').css('width', page_width * 7);
+	  $('#slides ul').css('width', page_width * 5);
 	  $('#people').css('width', page_width + 50);
 	},
 	
@@ -38,7 +38,7 @@ window.LandingView = Backbone.View.extend({
 	},
 	
 	next_slide: function() {
-	  if (this.current_slide == 6) { return false; }
+	  if (this.current_slide == 4) { return false; }
 	  this.current_slide += 1;
 	  $('#slides ul').css('margin-left', this.current_width * this.current_slide * -1);
 	  this.update_arrow_inactivity();
@@ -49,7 +49,7 @@ window.LandingView = Backbone.View.extend({
 	  $('#previous, #next').removeClass('inactive');
 	  if (this.current_slide == 0) {
 	    $('#previous').addClass('inactive');
-	  } else if (this.current_slide == 6) {
+	  } else if (this.current_slide == 4) {
 	    $('#next').addClass('inactive');
 	  }
 	},
