@@ -133,6 +133,16 @@ window.DiscussionView = Backbone.View.extend({
 	  
 	  $('#discussion .discussion-reply-field').autoResize({minHeight:15, extraSpace:6});
 	  $('#discussion #new_discussion #discussion_body').autoResize({ minHeight: 25, extraSpace: 6 });
+	  
+	  this.conditionally_zoom_to_discussion();
+  },
+  
+  conditionally_zoom_to_discussion: function() {
+    var topic_id = get_query_param('discussion');
+    if (topic_id != '') {
+      $.scrollTo('#discussion');
+      $('#topics a[topic="' + topic_id + '"]').click();
+    }
   },
   
   enter_discussion_experience: function() {
