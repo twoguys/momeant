@@ -19,6 +19,7 @@ window.LandingView = Backbone.View.extend({
 	  $(window).keypress(this.on_keypress);
 	  
 		this.set_widths();
+	  mixpanel.track('Viewed Landing Slide', { slide: 1 });
 	},
 	
 	set_widths: function() {
@@ -42,6 +43,7 @@ window.LandingView = Backbone.View.extend({
 	  this.current_slide += 1;
 	  $('#slides ul').css('margin-left', this.current_width * this.current_slide * -1);
 	  this.update_arrow_inactivity();
+	  mixpanel.track('Viewed Landing Slide', { slide: this.current_slide + 1 });
 	  return false;
 	},
 	
