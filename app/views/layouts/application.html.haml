@@ -77,7 +77,6 @@
 
 - if current_user
   :javascript
-    mixpanel.identify('#{current_user.id}');
     mixpanel.name_tag('#{current_user.name}');
     mixpanel.register_once({ signed_up: 'yes' });
     mixpanel.people.set({
