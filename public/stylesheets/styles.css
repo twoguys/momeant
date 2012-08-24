@@ -199,7 +199,8 @@ h2 {
   -moz-transition: top 0.2s ease-in-out;
   -ms-transition: top 0.2s ease-in-out;
   -o-transition: top 0.2s ease-in-out;
-  transition: top 0.2s ease-in-out; }
+  transition: top 0.2s ease-in-out;
+  z-index: 999; }
   #header #user-nav > li {
     float: left;
     height: 42px;
@@ -913,13 +914,17 @@ body#home.index #main {
   #landing-page #intro {
     background: #00aeef;
     color: white;
+    text-shadow: 1px 1px 0 #00aeef, 2px 2px 0 #0089ca;
     font-size: 34px;
     font-weight: 600;
     text-align: center;
     height: 400px;
     overflow: hidden; }
     #landing-page #intro #slides {
-      position: relative; }
+      position: relative;
+      font-size: 27px;
+      font-weight: 400;
+      letter-spacing: 0.05em; }
       #landing-page #intro #slides #next, #landing-page #intro #slides #previous {
         display: block;
         width: 33px;
@@ -931,7 +936,7 @@ body#home.index #main {
         overflow: hidden;
         z-index: 2; }
         #landing-page #intro #slides #next.inactive, #landing-page #intro #slides #previous.inactive {
-          opacity: 0.3; }
+          opacity: 0.2; }
       #landing-page #intro #slides #previous {
         left: 50%;
         margin-left: -470px; }
@@ -941,33 +946,49 @@ body#home.index #main {
         margin-right: -470px; }
       #landing-page #intro #slides ul {
         width: 7000px;
-        -webkit-transition: margin 0.3s ease-in-out;
-        -moz-transition: margin 0.3s ease-in-out;
-        -ms-transition: margin 0.3s ease-in-out;
-        -o-transition: margin 0.3s ease-in-out;
-        transition: margin 0.3s ease-in-out; }
+        -webkit-transition: margin 0.25s ease-out;
+        -moz-transition: margin 0.25s ease-out;
+        -ms-transition: margin 0.25s ease-out;
+        -o-transition: margin 0.25s ease-out;
+        transition: margin 0.25s ease-out; }
         #landing-page #intro #slides ul li {
           float: left;
-          font-size: 36px;
           width: 1000px;
-          padding-top: 95px; }
-        #landing-page #intro #slides ul li.g {
           padding-top: 115px;
-          height: 210px;
-          background: transparent url(../images/landing/down-arrow.png) no-repeat 50% 100%;
+          height: 285px;
           position: relative; }
+        #landing-page #intro #slides ul li.g {
+          padding-top: 140px; }
         #landing-page #intro #slides ul p {
-          margin: 0 0 1em;
+          margin: 0 0 1.3em;
           line-height: 1.3em; }
+      #landing-page #intro #slides .count {
+        position: absolute;
+        bottom: 40px;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        color: #0096dd;
+        font-size: 20px;
+        text-shadow: none; }
       #landing-page #intro #slides a#continue-downward {
         position: absolute;
-        top: 255px;
+        top: 248px;
         left: 50%;
         margin-left: -38px;
         width: 76px;
         height: 70px;
         text-indent: 76px;
-        overflow: hidden; }
+        overflow: hidden;
+        background: transparent url(../images/landing/down-arrow.png) no-repeat 50% 70%;
+        opacity: 0.2;
+        -webkit-transition: opacity 0.2s ease-in-out;
+        -moz-transition: opacity 0.2s ease-in-out;
+        -ms-transition: opacity 0.2s ease-in-out;
+        -o-transition: opacity 0.2s ease-in-out;
+        transition: opacity 0.2s ease-in-out; }
+        #landing-page #intro #slides a#continue-downward:hover {
+          opacity: 1; }
   #landing-page #people {
     height: 215px;
     padding: 2px;

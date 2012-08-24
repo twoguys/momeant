@@ -62,7 +62,6 @@
     - else
       = render "shared/feedback_modal"
     = yield :modals
-    = render "shared/about_modal"
 
     = render "shared/analytics" if Rails.env.production?
     = yield :javascript
@@ -78,6 +77,8 @@
 
 - if current_user
   :javascript
+    mixpanel.identify('#{current_user.id}');
+    mixpanel.name_tag('#{current_user.name}');
     mixpanel.register_once({ signed_up: true });
     mixpanel.people.set({
       '$email': '#{escape_javascript(current_user.email)}',
@@ -97,8 +98,6 @@
     = render "shared/about_diagram_modal"
     :javascript
       mixpanel.track('Signed up', { id: '#{current_user.id}' });
-      mixpanel.identify('#{current_user.id}');
-      mixpanel.name_tag('#{current_user.name}');
   - if flash[:track_story_publish]
     :javascript
       mixpanel.track('Published Story', {anonymous_id: '#{session[:analytics_anonymous_id]}', story_id: '#{flash[:track_story_publish]}'})
