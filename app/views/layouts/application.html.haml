@@ -79,7 +79,7 @@
   :javascript
     mixpanel.identify('#{current_user.id}');
     mixpanel.name_tag('#{current_user.name}');
-    mixpanel.register_once({ signed_up: true });
+    mixpanel.register_once({ signed_up: 'yes' });
     mixpanel.people.set({
       '$email': '#{escape_javascript(current_user.email)}',
       '$created': '#{current_user.created_at}',
