@@ -1,142 +1,135 @@
 body#dashboard
-	#container
-		position: relative
+  #container
+    position: relative
 
 .admin
-	padding: 0 20px
-	
-	ul.nav
-		padding: 30px 0 10px
-		height: 20px
-		margin-bottom: 20px
-		li
-			float: left
-			margin-right: 20px
-			a
-				font-size: 13px
-				font-weight: 700
-				text-transform: uppercase
-				padding: 5px 10px 15px
-			a:hover
-				text-decoration: underline
-			a.active
-				background: transparent url(../images/blueLinkPointer.png) no-repeat 50% 100%
-				color: #fff
-			a.active:hover
-				text-decoration: none
+  padding: 0 20px
+  
+  ul.nav
+    padding: 30px 0 10px
+    height: 20px
+    margin-bottom: 20px
+    li
+      float: left
+      margin-right: 20px
+      a
+        font-size: 13px
+        font-weight: 700
+        text-transform: uppercase
+        padding: 5px 10px 15px
+      a:hover
+        text-decoration: underline
+      a.active
+        background: transparent url(../images/blueLinkPointer.png) no-repeat 50% 100%
+        color: #fff
+      a.active:hover
+        text-decoration: none
 
-	#live-updates
-		li
-			padding: 3px 6px
-			font-size: 11px
-			text-shadow: 0 1px 1px #fff
-			height: 15px
-			margin-bottom: 3px
-			.url
-				font-weight: bold
-				float: left
-				width: 70%
-			.user
-				float: left
-				width: 15%
-			.time
-				color: #999
-				float: left
-				width: 15%
-				text-align: right
-		li:first-child
-			background: rgba(0, 102, 204, 0.05)
+  #live-updates
+    li
+      padding: 3px 6px
+      font-size: 11px
+      text-shadow: 0 1px 1px #fff
+      height: 15px
+      margin-bottom: 3px
+      .url
+        font-weight: bold
+        float: left
+        width: 70%
+      .user
+        float: left
+        width: 15%
+      .time
+        color: #999
+        float: left
+        width: 15%
+        text-align: right
+    li:first-child
+      background: rgba(0, 102, 204, 0.05)
 
 .admin.dashboard
-	section
-		float: left
-		margin: 0 30px 30px 0
-		h3
-			text-transform: uppercase
-			text-align: center
-		p
-			margin: 10px 0 0
-			padding: 10px 20px
-			background: #ddd
-			font-size: 30px
-			font-family: $numerals
-			@include rounded(10px)
-	section.plus p
-		background: #c7e79a
-	section.minus p
-		background: #ffb9b9
-		
-	.date-rangeable
-		padding: 20px 0 0
-		border-top: 1px solid #ccc
-		border-bottom: 1px solid #ccc
-		margin-bottom: 30px
-		form
-			padding-left: 20px
-			margin-bottom: 20px
-			input[type="text"]
-				width: 75px
+  section
+    @include clearfix
+    width: 100%
+    border-top: 1px solid #eee
+    padding-top: 20px
+    margin-bottom: 20px
+    
+  .stat
+    float: left
+    width: 300px
+    margin-right: 50px
+    span
+      color: #999
+    .amount
+      display: block
+      font-size: 50px
+      height: 50px
+      line-height: 50px
+      color: #000
+    .chart
+      margin-top: 10px
 
 .admin.live
-	h3
-		margin-bottom: 20px
+  h3
+    margin-bottom: 20px
 
 .admin.invitations
-	table
-		margin-top: 10px
-		th, td
-			min-width: 100px
+  table
+    margin-top: 10px
+    th, td
+      min-width: 100px
 
 .admin.adverts
-	background: none
-	padding-top: 0
-	form
-		width: 928px
-		padding: 10px
-		background-color: #eee
-		li span
-			margin-right: 50px
-	div
-		height: auto
-	.advert-list
-		margin-top: 10px
-		li
-			border-bottom: 1px solid #ccc
-			padding-bottom: 5px
-			margin-bottom: 5px
-			height: 200px
-		.title
-			font-weight: 700
-			font-family: $block
-			font-size: 2em
-			text-transform: uppercase
-		.title, .enabled, .delete
-			float: left
-			line-height: 30px
-			vertical-align: middle
-			margin-right: 20px
-			padding: 5px 0
-		.enabled
-			.disabled
-				color: #777
-				font-style: italic
-		.image
-			clear: both
+  background: none
+  padding-top: 0
+  form
+    width: 928px
+    padding: 10px
+    background-color: #eee
+    li span
+      margin-right: 50px
+  div
+    height: auto
+  .advert-list
+    margin-top: 10px
+    li
+      border-bottom: 1px solid #ccc
+      padding-bottom: 5px
+      margin-bottom: 5px
+      height: 200px
+    .title
+      font-weight: 700
+      font-family: $block
+      font-size: 2em
+      text-transform: uppercase
+    .title, .enabled, .delete
+      float: left
+      line-height: 30px
+      vertical-align: middle
+      margin-right: 20px
+      padding: 5px 0
+    .enabled
+      .disabled
+        color: #777
+        font-style: italic
+    .image
+      clear: both
 
 .admin.payperiods
-	.current
-		margin-bottom: 20px
+  .current
+    margin-bottom: 20px
 
 .admin.editorials
-	ul.list li
-		padding-bottom: 10px
-		border-bottom: 1px solid #ddd
-		margin-bottom: 10px
-		.quote
-			margin-top: 5px
-			font-size: 11px
-			color: #777
+  ul.list li
+    padding-bottom: 10px
+    border-bottom: 1px solid #ddd
+    margin-bottom: 10px
+    .quote
+      margin-top: 5px
+      font-size: 11px
+      color: #777
 
 #user-list
-	.spinner
-		opacity: 0
+  .spinner
+    opacity: 0

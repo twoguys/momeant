@@ -1,47 +1,73 @@
 .admin.dashboard
   = render "admin/tabs"
   
-  .date-rangeable
+  %h1 Totals and Trends
   
-    = form_tag admin_dashboard_path, :method => :get do
-      Between
-      = text_field_tag :after, params[:after], :class => "date"
-      and
-      = text_field_tag :before, params[:before], :class => "date"
-      = submit_tag "Filter"
-  
-    %section.plus
-      %h3 Money In
-      %p= number_to_currency @payments.sum(:amount)
-  
-    %section.minus
-      %h3 Fees
-      %p= number_to_currency(@payments.map(&:fees).inject(:+) || 0)
-  
-    %section.minus
-      %h3 Money Out
-      %p= number_to_currency(@cashouts_paid.map(&:amount).inject(:+) || 0)
+  %section
     
-    %section.plus
-      %h3 Momeant Revenue
-      %p= number_to_currency(@payments.map(&:momeant_revenue).inject(:+) || 0)
+    .stat
+      %span.amount #{@users} (#{(@creators.to_f/@users.to_f*100.0).round}%)
+      %span users (creators)
 
-    .clear
-
-  %section
-    %h3 Money remaining
-    %p= number_to_currency(@payments.sum(:amount) - (@cashouts_paid.map(&:amount).inject(:+) || 0))
+    .stat
+      .chart.signups-per-day
+      %span signups per day in the past month
   
   %section
-    %h3 Unpaid cashouts
-    %p= number_to_currency(@cashouts_requested.map(&:amount).inject(:+) || 0)
+    
+    .stat
+      %span.amount= @content
+      %span published content
+    
+    .stat
+      .chart.content-per-day
+      %span publishes per day in the past month
   
   %section
-    %h3 Non-cashed-out rewards
-    %p= number_to_currency(Reward.not_cashed_out.sum(:amount))
+    
+    .stat
+      %span.amount= @follows
+      %span follows
+    
+    .stat
+      .chart.follows-per-day
+      %span follows per day in the past month
+  
+  %section
+  
+    .stat
+      %span.amount= number_to_currency(@rewards)
+      %span rewards
+    
+    .stat
+      .chart.rewards-per-day
+      %span amount rewarded per day in the past month
+  
+  %section
+    
+    .stat
+      %span.amount= number_to_currency(@revenue)
+      %span revenue (20% of funded rewards)
+    
+    .stat
+      .chart.funds-per-day
+      %span amount funded per day in the past month
 
 
 :javascript
-  $(function() {
-    $('.date').datepicker();
-  });
+  var chart_options = {type: 'bar', barColor: '#00aeff', height: '36px' };
+
+  var signups_per_day = #{@signups_per_day};
+  $('.signups-per-day').sparkline(signups_per_day, chart_options);
+  
+  var content_per_day = #{@content_per_day};
+  $('.content-per-day').sparkline(content_per_day, chart_options);
+  
+  var follows_per_day = #{@follows_per_day};
+  $('.follows-per-day').sparkline(follows_per_day, chart_options);
+  
+  var rewards_per_day = #{@rewards_per_day};
+  $('.rewards-per-day').sparkline(rewards_per_day, chart_options);
+  
+  var funds_per_day = #{@revenue_per_day};
+  $('.funds-per-day').sparkline(funds_per_day, chart_options);

@@ -6953,34 +6953,31 @@ body#dashboard #container {
     background: rgba(0, 102, 204, 0.05); }
 
 .admin.dashboard section {
+  display: inline-block;
+  width: 100%;
+  border-top: 1px solid #eeeeee;
+  padding-top: 20px;
+  margin-bottom: 20px; }
+  .admin.dashboard section:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden; }
+.admin.dashboard .stat {
   float: left;
-  margin: 0 30px 30px 0; }
-  .admin.dashboard section h3 {
-    text-transform: uppercase;
-    text-align: center; }
-  .admin.dashboard section p {
-    margin: 10px 0 0;
-    padding: 10px 20px;
-    background: #dddddd;
-    font-size: 30px;
-    font-family: "ff-dagny-web-pro-1", "ff-dagny-web-pro-2", sans-serif;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px; }
-.admin.dashboard section.plus p {
-  background: #c7e79a; }
-.admin.dashboard section.minus p {
-  background: #ffb9b9; }
-.admin.dashboard .date-rangeable {
-  padding: 20px 0 0;
-  border-top: 1px solid #cccccc;
-  border-bottom: 1px solid #cccccc;
-  margin-bottom: 30px; }
-  .admin.dashboard .date-rangeable form {
-    padding-left: 20px;
-    margin-bottom: 20px; }
-    .admin.dashboard .date-rangeable form input[type="text"] {
-      width: 75px; }
+  width: 300px;
+  margin-right: 50px; }
+  .admin.dashboard .stat span {
+    color: #999999; }
+  .admin.dashboard .stat .amount {
+    display: block;
+    font-size: 50px;
+    height: 50px;
+    line-height: 50px;
+    color: black; }
+  .admin.dashboard .stat .chart {
+    margin-top: 10px; }
 
 .admin.live h3 {
   margin-bottom: 20px; }
