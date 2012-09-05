@@ -101,6 +101,15 @@ class Reward < Curation
     end
   end
   
+  # Reports -------------------------------------------------------------------------
+  
+  def self.per_day(time)
+    by_day = self.where(created_at: (time.ago..Time.now)).group("date_trunc('day',created_at)").reorder("").sum(:amount)
+    (time.ago.to_date..Date.today).to_a.map do |date|
+      by_day[date.beginning_of_day.to_s(:db)].to_i
+    end
+  end
+  
   private
   
   def destroy_activities
