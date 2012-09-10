@@ -1,11 +1,17 @@
 #share-your-content
-  %h1 Nice work! Your #{@story.media_are_or_is} now published.
+  - if @story.created_at > 1.minute.ago
+    %h1 Lovely work! Your #{@story.media_are_or_is} now published.
+  - else
+    %h1 Share your lovely work with others.
   
   %h3
     Would you like to share a link to your content
     %br
     so that others can view and reward it?
   
+  #share-link
+    .note Copy &amp; Paste this link to your content:
+    = text_field_tag :link, story_url(@story), readonly: true
   #share-buttons
     = link_to "Tweet it!", "https://twitter.com/share?url=#{story_url(@story, creator: true)}", :id => "twitter-button"
     = link_to "Post to FB", "http://www.facebook.com/sharer.php?u=#{story_url(@story, creator: true)}", :id => "facebook-button"
@@ -15,6 +21,10 @@
 
 :javascript
   mixpanel.track('Published Content');
+  
+  $('#share-link input').click(function() {
+    $(this).select();
+  });
   
   $('#twitter-button').click(function() {
     var $link = $(this);
