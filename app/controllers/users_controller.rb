@@ -96,7 +96,8 @@ class UsersController < ApplicationController
       "send_digest_emails",
       "send_new_follower_emails",
       "send_following_update_emails",
-      "send_message_notification_emails"].include?(params[:attribute])
+      "send_message_notification_emails",
+      "send_impact_notification_emails"].include?(params[:attribute])
     
     @user = current_user
     current_value = @user.send params[:attribute]

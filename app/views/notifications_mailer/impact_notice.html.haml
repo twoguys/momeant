@@ -1,0 +1,9 @@
+%div{style: "margin-bottom:20px;text-align:center;"}
+  %h3{style: "margin-bottom:20px;"} You just helped #{link_to @reward.recipient.name, @creator_url} get rewarded!
+  = image_tag(@reward.recipient.avatar.url(:large), style: "padding:3px;border:1px solid #ccc;")
+
+%p
+  A little while back, you rewarded #{@reward.recipient.first_name}'s content #{link_to @reward.story.title, @content_url}.
+  Just now, someone else rewarded it after seeing you had done so. Way to make a difference!
+
+%p This boosted your impact on #{@reward.recipient.first_name}, helping you rise on their #{link_to "supporter leaderboard", @creator_url}.

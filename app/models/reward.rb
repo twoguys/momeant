@@ -89,10 +89,12 @@ class Reward < Curation
       User.where("id in (#{ancestor_ids.join(",")})").update_all("impact = impact + #{self.amount}")
     end
     
-    # record an activity for each ancestor getting impact
+    # record an activity for each ancestor getting impact and email them
     self.ancestors.map(&:user_id).uniq.each do |user_id|
       if user_id != self.user_id
         Activity.create(:recipient_id => user_id, :action_type => "Impact", :action_id => self.id)
+        user = User.find(user_id)
+        NotificationsMailer.impact_notice(user, self).deliver if user.send_impact_notification_emails?
       end
     end
     

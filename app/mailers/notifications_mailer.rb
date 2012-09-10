@@ -22,6 +22,15 @@ class NotificationsMailer < ActionMailer::Base
     mail :to => @message.recipient.email, :subject => "#{message.sender.name} just messaged you on Momeant!"
   end
   
+  def impact_notice(user, reward)
+    @user = user
+    @reward = reward
+    @creator_url = user_url(@reward.recipient)
+    @content_url = story_url(@reward.story)
+    
+    mail to: @user.email, subject: "You just made an impact!"
+  end
+  
   def site_updated(user)
     mail :to => user.email, :subject => "Momeant has a new face!"
   end
