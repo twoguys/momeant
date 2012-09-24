@@ -27,6 +27,7 @@ Repo::Application.routes.draw do
       get :cropper
       post :crop
       get :preview
+      get :reward
     end
     collection do
       get :render_page_form

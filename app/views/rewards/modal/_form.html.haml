@@ -1,6 +1,7 @@
+%h1 Reward #{@story.user.first_name} for #{@story.this_media}
+
 - if current_user == @story.user
-  #your-work
-    Nice work! This is where everyone else can reward you.
+  This is where everyone else can reward you.
 - else
   - if current_user && !current_user.is_under_pledged_rewards_stop_threshold?
     #over-threshold
@@ -16,20 +17,16 @@
           = form.hidden_field :impacted_by, :value => @impacted_by
 
         #amounts
-          %header
-            %h1 Reward
-            #{@story.user.first_name} for this work:
-
-          - if current_user
-            %ul
-              %li= link_to "$1", "#", :amount => 1.0, id: "one-dollar-reward"
-              %li= link_to "$5", "#", :amount => 5.0
-              %li= link_to "$10", "#", :amount => 10.0
-              %li.custom= text_field_tag :custom_amount, "$"
-            = form.hidden_field :amount, value: 1
-            = form.submit "Give Reward"
-            
-            #invalid-reward-amount
+          %p Choose an amount:
+          %ul
+            %li= link_to "1", "#", :amount => 1.0, id: "one-dollar-reward"
+            %li= link_to "5", "#", :amount => 5.0
+            %li= link_to "10", "#", :amount => 10.0
+            %li.custom= text_field_tag :custom_amount, "", placeholder: "___"
+          = form.hidden_field :amount, value: 1
+          = form.submit "Give Reward &rarr;".html_safe
+          
+          #invalid-reward-amount
     
       #why-you-reward
         - if current_user

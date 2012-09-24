@@ -74,7 +74,6 @@
   100% {
     transform: translateY(0) ƒ; } }
 
-/* Element styles */
 html, body {
   font-family: "proxima-nova-1", "proxima-nova-2", helvetica, sans-serif;
   font-size: 14px;
@@ -116,7 +115,6 @@ h2 {
 .weak {
   color: #9c9c9c; }
 
-/* Layout */
 #container {
   position: relative;
   padding-top: 42px; }
@@ -180,16 +178,6 @@ h2 {
         border-radius: 4px;
         color: #00aeef;
         background-color: #c0eeff; }
-
-#loader {
-  background: white url(../images/spinner.gif) no-repeat 50% 50%;
-  display: none;
-  position: fixed;
-  top: 42px;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  z-index: 9999; }
 
 #header {
   position: fixed;
@@ -3427,6 +3415,7 @@ form.new_story, form.edit_story, .story-form {
     height: 100%; }
   #page-previews li.pullquote .pullquote-inner {
     display: table;
+    width: 100%;
     height: 100%;
     margin: 0 auto; }
     #page-previews li.pullquote .pullquote-inner div.quote {
@@ -4234,6 +4223,7 @@ form.new_story, form.edit_story, .story-form {
         height: 100%; }
       #page-editor ul#pages .pullquote .pullquote-inner {
         display: table;
+        width: 100%;
         height: 100%;
         margin: 0 auto; }
         #page-editor ul#pages .pullquote .pullquote-inner div.quote {
@@ -4539,6 +4529,7 @@ form.new_story, form.edit_story, .story-form {
           height: 100%; }
         .story-gallery .large-preview .pages a.pullquote .pullquote-inner {
           display: table;
+          width: 100%;
           height: 100%;
           margin: 0 auto; }
           .story-gallery .large-preview .pages a.pullquote .pullquote-inner div.quote {
@@ -4788,6 +4779,7 @@ form.new_story, form.edit_story, .story-form {
           height: 100%; }
         .story-gallery .slider .viewport .preview.pullquote .pullquote-inner {
           display: table;
+          width: 100%;
           height: 100%;
           margin: 0 auto; }
           .story-gallery .slider .viewport .preview.pullquote .pullquote-inner div.quote {
@@ -4971,13 +4963,10 @@ form.new_story, form.edit_story, .story-form {
 /* Story viewing */
 body#stories.show {
   position: absolute;
-  top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   min-height: 680px; }
-  body#stories.show #header {
-    display: none; }
 
 #presenter {
   width: 100%;
@@ -4985,9 +4974,9 @@ body#stories.show {
   overflow: hidden; }
   #presenter .content {
     position: absolute;
-    top: 0;
+    top: 42px;
     bottom: 0;
-    left: 70px;
+    left: 0;
     right: 0;
     z-index: 1; }
   #presenter #content-cover {
@@ -4997,436 +4986,6 @@ body#stories.show {
     bottom: 0;
     width: 100%;
     z-index: 2; }
-  #presenter #reward-modal {
-    width: 70px;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    color: white;
-    z-index: 3;
-    -webkit-transition: width 0.2s ease-in-out;
-    -moz-transition: width 0.2s ease-in-out;
-    -ms-transition: width 0.2s ease-in-out;
-    -o-transition: width 0.2s ease-in-out;
-    transition: width 0.2s ease-in-out; }
-    #presenter #reward-modal #reward-view {
-      position: relative;
-      height: 100%;
-      background: #222222;
-      z-index: 2; }
-    #presenter #reward-modal #comments-view {
-      z-index: 1; }
-    #presenter #reward-modal #creator-name, #presenter #reward-modal #title, #presenter #reward-modal #synopsis, #presenter #reward-modal #tags, #presenter #reward-modal #reward-actions, #presenter #reward-modal #open-comments, #presenter #reward-modal #comments-view {
-      display: none; }
-    #presenter #reward-modal.open {
-      width: 300px; }
-      #presenter #reward-modal.open #open-close {
-        height: 70px;
-        top: auto;
-        background-position: -400px -400px; }
-        #presenter #reward-modal.open #open-close span {
-          background-position: 50% 20px;
-          width: 300px;
-          position: absolute; }
-      #presenter #reward-modal.open #closed-reward-stats {
-        display: none; }
-    #presenter #reward-modal.opened #creator-name, #presenter #reward-modal.opened #title, #presenter #reward-modal.opened #synopsis, #presenter #reward-modal.opened #tags, #presenter #reward-modal.opened #reward-actions, #presenter #reward-modal.opened #open-comments, #presenter #reward-modal.opened #comments-view {
-      display: block; }
-    #presenter #reward-modal #open-close {
-      width: 100%;
-      position: absolute;
-      top: 70px;
-      bottom: 0;
-      left: 0;
-      background: #222222 url(../images/reward-modal/vertical-reward.png) no-repeat 50% 20px;
-      z-index: 1; }
-      #presenter #reward-modal #open-close:hover {
-        background-color: #303030; }
-      #presenter #reward-modal #open-close span {
-        position: fixed;
-        bottom: 0;
-        display: block;
-        width: 70px;
-        height: 70px;
-        background: transparent url(../images/reward-modal/open-close.png) no-repeat 50% -32px; }
-    #presenter #reward-modal #avatar {
-      display: block;
-      width: 70px;
-      height: 70px;
-      float: left;
-      margin-right: 15px; }
-      #presenter #reward-modal #avatar img {
-        width: 70px;
-        height: 70px; }
-    #presenter #reward-modal #creator-name {
-      font-family: "museo-slab-1", "museo-slab-2", serif;
-      font-size: 24px;
-      font-style: italic;
-      line-height: 24px;
-      padding-top: 10px;
-      height: 60px;
-      margin-bottom: 20px; }
-      #presenter #reward-modal #creator-name:hover {
-        text-decoration: underline; }
-      #presenter #reward-modal #creator-name span {
-        display: block; }
-    #presenter #reward-modal .reward-stats {
-      text-align: center; }
-      #presenter #reward-modal .reward-stats strong {
-        font-family: "ff-dagny-web-pro-1", "ff-dagny-web-pro-2", sans-serif;
-        font-size: 18px;
-        font-weight: 200; }
-      #presenter #reward-modal .reward-stats span {
-        font-size: 13px;
-        font-weight: 600;
-        text-transform: uppercase; }
-      #presenter #reward-modal .reward-stats .people {
-        padding-right: 20px;
-        background: transparent url(../images/reward-modal/people.png) no-repeat 100% 2px; }
-    #presenter #reward-modal #closed-reward-stats {
-      position: absolute;
-      top: 100px;
-      width: 100%;
-      z-index: 2; }
-      #presenter #reward-modal #closed-reward-stats span {
-        display: block; }
-    #presenter #reward-modal #title, #presenter #reward-modal #synopsis, #presenter #reward-modal #tags {
-      margin: 0 20px 5px; }
-    #presenter #reward-modal #title {
-      text-transform: uppercase; }
-    #presenter #reward-modal #synopsis {
-      color: #aaaaaa;
-      -webkit-transition: height 0.2s ease-in-out;
-      -moz-transition: height 0.2s ease-in-out;
-      -ms-transition: height 0.2s ease-in-out;
-      -o-transition: height 0.2s ease-in-out;
-      transition: height 0.2s ease-in-out; }
-      #presenter #reward-modal #synopsis .more {
-        display: none; }
-    #presenter #reward-modal #tags {
-      font-size: 12px;
-      margin-bottom: 30px; }
-      #presenter #reward-modal #tags span {
-        margin: 0 1px 0 -2px; }
-      #presenter #reward-modal #tags span:last-child {
-        display: none; }
-    #presenter #reward-modal #comments-view {
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 300px;
-      height: 100%;
-      background: #111111;
-      -webkit-transition: right 0.2s ease-in-out;
-      -moz-transition: right 0.2s ease-in-out;
-      -ms-transition: right 0.2s ease-in-out;
-      -o-transition: right 0.2s ease-in-out;
-      transition: right 0.2s ease-in-out; }
-      #presenter #reward-modal #comments-view.open {
-        right: -300px; }
-      #presenter #reward-modal #comments-view #comments-list {
-        overflow-y: auto;
-        height: 100%;
-        padding: 0 20px; }
-        #presenter #reward-modal #comments-view #comments-list h3 {
-          font-weight: 400;
-          color: #aaaaaa;
-          padding: 20px 0; }
-        #presenter #reward-modal #comments-view #comments-list ul {
-          font-size: 13px; }
-        #presenter #reward-modal #comments-view #comments-list form {
-          margin-bottom: 10px; }
-    #presenter #reward-modal #open-comments-tab {
-      position: absolute;
-      top: 20px;
-      right: -35px;
-      width: 35px;
-      height: 27px;
-      cursor: pointer; }
-      #presenter #reward-modal #open-comments-tab span {
-        display: block;
-        position: absolute;
-        top: 0;
-        left: 0;
-        background: #111111 url(../images/reward-modal/comments.png) no-repeat 84% 50%;
-        background-color: rgba(0, 0, 0, 0.85);
-        padding: 5px 20px 5px 5px;
-        color: white;
-        -webkit-border-top-right-radius: 3px;
-        -webkit-border-bottom-right-radius: 3px;
-        -moz-border-radius-topright: 3px;
-        -moz-border-radius-bottomright: 3px;
-        border-top-right-radius: 3px;
-        border-bottom-right-radius: 3px; }
-    #presenter #reward-modal #your-work {
-      text-align: center;
-      margin-bottom: 30px;
-      font-size: 20px; }
-    #presenter #reward-modal #your-work, #presenter #reward-modal #over-threshold {
-      padding: 45px; }
-    #presenter #reward-modal #over-threshold {
-      font-size: 1.2em; }
-      #presenter #reward-modal #over-threshold p {
-        margin-top: 0;
-        line-height: 1.5em; }
-    #presenter #reward-modal #reward-actions {
-      background: #303030;
-      position: relative;
-      z-index: 2;
-      height: 395px; }
-      #presenter #reward-modal #reward-actions #why-you-reward {
-        color: #cccccc;
-        font-family: "museo-slab-1", "museo-slab-2", serif;
-        font-size: 12px; }
-        #presenter #reward-modal #reward-actions #why-you-reward p {
-          margin: 0 0 10px;
-          line-height: 1.3em; }
-        #presenter #reward-modal #reward-actions #why-you-reward abbr {
-          color: #00aeef;
-          border-bottom: 1px dotted #00aeef;
-          cursor: help; }
-        #presenter #reward-modal #reward-actions #why-you-reward #reward-more-button {
-          display: block;
-          text-align: center;
-          padding: 8px 0;
-          margin-bottom: 10px; }
-    #presenter #reward-modal #current-step {
-      height: 305px;
-      padding: 45px;
-      position: relative;
-      background: #303030;
-      z-index: 2; }
-      #presenter #reward-modal #current-step.no-user {
-        height: 340px; }
-      #presenter #reward-modal #current-step.loading {
-        background: #303030 url(../images/spinnerDarkGrey.gif) no-repeat 50% 80px; }
-        #presenter #reward-modal #current-step.loading * {
-          display: none; }
-      #presenter #reward-modal #current-step header {
-        text-align: center;
-        margin-bottom: 25px;
-        font-size: 13px; }
-      #presenter #reward-modal #current-step h1 {
-        font-family: "ff-dagny-web-pro-1", "ff-dagny-web-pro-2", sans-serif;
-        font-size: 36px;
-        font-weight: 100;
-        color: #00aeef;
-        line-height: 30px;
-        text-transform: uppercase;
-        margin: 0; }
-      #presenter #reward-modal #current-step form {
-        margin-bottom: 20px; }
-    #presenter #reward-modal #amounts {
-      z-index: 2;
-      position: relative;
-      text-align: center; }
-      #presenter #reward-modal #amounts #invalid-reward-amount {
-        width: 71px;
-        height: 56px;
-        background: transparent url(../images/reward-modal/invalid-reward-amount.png) no-repeat 0 0;
-        position: absolute;
-        top: 142px;
-        right: -28px;
-        display: none; }
-      #presenter #reward-modal #amounts #goto-comment {
-        display: inline-block;
-        opacity: 0;
-        -webkit-transition: opacity 0.2s ease-in-out;
-        -moz-transition: opacity 0.2s ease-in-out;
-        -ms-transition: opacity 0.2s ease-in-out;
-        -o-transition: opacity 0.2s ease-in-out;
-        transition: opacity 0.2s ease-in-out; }
-      #presenter #reward-modal #amounts ul {
-        width: 122px;
-        height: 122px;
-        margin: 0 auto 15px; }
-        #presenter #reward-modal #amounts ul li {
-          width: 56px;
-          float: left;
-          clear: none;
-          margin-bottom: 10px; }
-        #presenter #reward-modal #amounts ul li:nth-child(odd) {
-          margin-right: 10px; }
-        #presenter #reward-modal #amounts ul a, #presenter #reward-modal #amounts ul input {
-          display: block;
-          width: 46px;
-          height: 18px;
-          padding: 14px 0;
-          font-size: 15px;
-          text-align: center;
-          color: #a4a4a4;
-          background: #383838;
-          border: 5px solid #4a4a4a;
-          -webkit-border-radius: 5px;
-          -moz-border-radius: 5px;
-          border-radius: 5px;
-          -webkit-transition: all 0.2s ease-in-out;
-          -moz-transition: all 0.2s ease-in-out;
-          -ms-transition: all 0.2s ease-in-out;
-          -o-transition: all 0.2s ease-in-out;
-          transition: all 0.2s ease-in-out; }
-          #presenter #reward-modal #amounts ul a:hover, #presenter #reward-modal #amounts ul input:hover {
-            background-color: #555555;
-            border-color: #666666; }
-        #presenter #reward-modal #amounts ul input {
-          background: #383838 url(../images/reward-modal/custom-amount-bg.png) no-repeat 50% 36px; }
-        #presenter #reward-modal #amounts ul a.selected, #presenter #reward-modal #amounts ul input.selected {
-          background-color: #00aeef;
-          border-color: #264d5b;
-          color: white; }
-      #presenter #reward-modal #amounts input[type="submit"] {
-        display: inline-block;
-        opacity: 0; }
-    #presenter #reward-modal #amounts-helper {
-      z-index: 1;
-      width: 220px;
-      height: 355px;
-      padding: 20px;
-      background: #303030;
-      color: white;
-      border-left: 1px solid #222222;
-      position: absolute;
-      top: 0;
-      right: -261px;
-      -webkit-border-top-right-radius: 3px;
-      -webkit-border-bottom-right-radius: 3px;
-      -moz-border-radius-topright: 3px;
-      -moz-border-radius-bottomright: 3px;
-      border-top-right-radius: 3px;
-      border-bottom-right-radius: 3px;
-      -webkit-transition: right 0.2s ease-in-out;
-      -moz-transition: right 0.2s ease-in-out;
-      -ms-transition: right 0.2s ease-in-out;
-      -o-transition: right 0.2s ease-in-out;
-      transition: right 0.2s ease-in-out; }
-      #presenter #reward-modal #amounts-helper.closed {
-        right: 0; }
-      #presenter #reward-modal #amounts-helper #amounts-explanation {
-        position: absolute;
-        top: 20px;
-        right: 20px;
-        background: #555555;
-        padding: 1px 6px;
-        font-size: 13px;
-        -webkit-border-radius: 20px;
-        -moz-border-radius: 20px;
-        border-radius: 20px;
-        cursor: help; }
-      #presenter #reward-modal #amounts-helper h3 {
-        font-weight: 400;
-        text-transform: uppercase;
-        color: #777777;
-        margin-bottom: 10px; }
-      #presenter #reward-modal #amounts-helper li {
-        float: left;
-        clear: none;
-        width: 60px;
-        margin: 0 10px 10px 0;
-        position: relative; }
-        #presenter #reward-modal #amounts-helper li:nth-child(3n) {
-          margin-right: 0; }
-        #presenter #reward-modal #amounts-helper li img {
-          width: 40px;
-          height: 40px; }
-        #presenter #reward-modal #amounts-helper li .badge {
-          width: 16px;
-          height: 16px;
-          background: transparent url(../images/reward-modal/gold-silver-bronze.png) no-repeat 0 0;
-          position: absolute;
-          top: -5px;
-          left: 30px; }
-          #presenter #reward-modal #amounts-helper li .badge.silver {
-            background-position: -27px 0; }
-          #presenter #reward-modal #amounts-helper li .badge.bronze {
-            background-position: -53px 0; }
-        #presenter #reward-modal #amounts-helper li .rewarded {
-          display: inline-block;
-          font-size: 13px; }
-      #presenter #reward-modal #amounts-helper #recent-reward-amounts {
-        clear: both; }
-        #presenter #reward-modal #amounts-helper #recent-reward-amounts li {
-          float: none;
-          width: 100%;
-          margin: 0 0 2px; }
-        #presenter #reward-modal #amounts-helper #recent-reward-amounts .rewarded {
-          display: inline-block;
-          width: 50px; }
-    #presenter #reward-modal #comment {
-      display: none; }
-      #presenter #reward-modal #comment textarea {
-        width: 92%;
-        height: 70px;
-        font-family: "proxima-nova-1", "proxima-nova-2", helvetica, sans-serif;
-        -webkit-border-radius: 3px;
-        -moz-border-radius: 3px;
-        border-radius: 3px;
-        margin-bottom: 20px; }
-      #presenter #reward-modal #comment input[type="submit"] {
-        display: block;
-        margin-left: 48px; }
-    #presenter #reward-modal #after-reward {
-      width: 256px;
-      margin: -23px -23px 0; }
-    #presenter #reward-modal #creator-thank-you {
-      font-size: 15px;
-      margin-bottom: 20px; }
-      #presenter #reward-modal #creator-thank-you p {
-        background: #444444;
-        padding: 5px 10px;
-        -webkit-border-radius: 5px;
-        -moz-border-radius: 5px;
-        border-radius: 5px;
-        font-family: "museo-slab-1", "museo-slab-2", serif;
-        line-height: 1.5em;
-        margin: 0 0 10px; }
-        #presenter #reward-modal #creator-thank-you p .quote {
-          display: inline-block; }
-      #presenter #reward-modal #creator-thank-you .from {
-        text-align: right; }
-    #presenter #reward-modal #promote #copy-paste {
-      font-size: 13px;
-      color: #aaaaaa;
-      text-align: center; }
-    #presenter #reward-modal #promote input[type="text"] {
-      width: 91%;
-      height: 26px;
-      padding: 0 8px;
-      -webkit-border-radius: 3px;
-      -moz-border-radius: 3px;
-      border-radius: 3px;
-      font-family: "proxima-nova-1", "proxima-nova-2", helvetica, sans-serif;
-      font-size: 12px;
-      margin-top: 5px; }
-    #presenter #reward-modal #promote #sharing-buttons a {
-      display: inline-block;
-      width: 123px;
-      height: 40px;
-      background: transparent url(../images/reward-modal/share-buttons.png) no-repeat 0 0;
-      text-indent: -9999px; }
-    #presenter #reward-modal #promote #sharing-buttons #share-with-facebook {
-      background-position: 0 -43px;
-      margin-left: 5px; }
-    #presenter #reward-modal #promote #why-share {
-      font-size: 13px;
-      color: #aaaaaa;
-      margin-top: 10px; }
-      #presenter #reward-modal #promote #why-share abbr {
-        color: #00aeef;
-        border-bottom: 1px dotted #00aeef;
-        cursor: help; }
-    #presenter #reward-modal #more {
-      display: none;
-      border-top: 1px solid white;
-      padding-top: 30px; }
-      #presenter #reward-modal #more .comments, #presenter #reward-modal #more #other-content {
-        width: 330px;
-        padding: 0 30px;
-        float: left; }
-        #presenter #reward-modal #more .comments h3, #presenter #reward-modal #more #other-content h3 {
-          font-weight: 500;
-          color: #777777;
-          margin-bottom: 10px; }
   #presenter #metadata {
     position: fixed;
     right: 35px;
@@ -5559,6 +5118,7 @@ body#stories.show {
         height: 100%; }
       #presenter ul#pages li.pullquote .pullquote-inner {
         display: table;
+        width: 100%;
         height: 100%;
         margin: 0 auto; }
         #presenter ul#pages li.pullquote .pullquote-inner div.quote {
@@ -5854,7 +5414,7 @@ body#stories.show {
 
 #back-to-edit-button, #publish-button {
   position: fixed;
-  top: 0;
+  top: 42px;
   left: 50%;
   text-transform: uppercase;
   background: #00aeef;
@@ -5877,13 +5437,14 @@ body#stories.show {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3) ; }
 
 #back-to-edit-button {
-  margin-left: -160px;
+  margin-left: -120px;
   display: inline-block;
   height: 22px;
   line-height: 22px; }
 
 #publish-button {
-  background-color: #34b44c; }
+  background-color: #34b44c;
+  margin-left: 40px; }
 
 #share-your-content {
   width: 530px;
@@ -6021,6 +5582,7 @@ body#stories.show {
     height: 100%; }
   .thumbnail.pullquote .pullquote-inner {
     display: table;
+    width: 100%;
     height: 100%;
     margin: 0 auto; }
     .thumbnail.pullquote .pullquote-inner div.quote {
@@ -6118,6 +5680,7 @@ body#stories.show {
     height: 100%; }
   .thumbnail.pullquote.medium .pullquote-inner {
     display: table;
+    width: 100%;
     height: 100%;
     margin: 0 auto; }
     .thumbnail.pullquote.medium .pullquote-inner div.quote {
@@ -6260,6 +5823,7 @@ body#stories.show {
     height: 100%; }
   .thumbnail.pullquote.petite .pullquote-inner {
     display: table;
+    width: 100%;
     height: 100%;
     margin: 0 auto; }
     .thumbnail.pullquote.petite .pullquote-inner div.quote {
@@ -8106,6 +7670,16 @@ a#load-more-activity {
 .dk_options a {
   color: #555555; }
 
+#loader {
+  background: white url(../images/spinner.gif) no-repeat 50% 50%;
+  display: none;
+  position: fixed;
+  top: 42px;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 9999; }
+
 .info-bar {
   background-color: #00aeef;
   color: white;
@@ -8144,14 +7718,3 @@ a#load-more-activity {
 
 .colorpicker {
   z-index: 100; }
-
-.tipsy {
-  z-index: 1000; }
-
-.reward-count {
-  padding-right: 12px;
-  background: transparent url(../images/icons/starBlackTiny.png) no-repeat 100% 2px; }
-
-.impact-count {
-  padding-right: 15px;
-  background: transparent url(../images/icons/impactTiny.png) no-repeat 100% 0; }

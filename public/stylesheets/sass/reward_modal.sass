@@ -1,0 +1,171 @@
+@import "presets"
+@import "typography"
+@import "forms"
+@import "comments"
+
+body#reward-modal
+  background: #000
+  position: absolute
+  top: 0
+  bottom: 0
+  width: 100%
+  min-height: 500px
+
+  #inner
+    width: 800px
+    height: 500px
+    position: absolute
+    top: 50%
+    left: 50%
+    margin: -250px 0 0 -400px
+    overflow: hidden
+  
+  #sidebar
+    background: #252525
+    color: #888
+    position: absolute
+    top: 0
+    bottom: 0
+    left: 0
+    width: 150px
+    padding: 15px
+    
+  #avatar
+    background: #444
+    display: block
+    width: 148px
+    height: 148px
+    border: 1px solid #111
+    margin-bottom: 10px
+    img
+      width: 146px
+      height: 146px
+      border: 1px solid #333
+  
+  a#creator-name
+    color: #fff
+    font-size: 22px
+    font-weight: 600
+    display: block
+    @include transition(color)
+    &:hover
+      color: $blue
+    span
+      display: block
+  
+  .occupation
+    margin-top: 10px
+  .occupation, .location
+    font-family: $typewriter
+    font-style: italic
+    font-weight: 300
+  
+  #bio
+    margin-top: 15px
+    border-top: 1px solid #444
+    padding-top: 15px
+    font-size: 13px
+  
+  #more-work
+    position: absolute
+    left: 15px
+    bottom: 15px
+    width: 150px
+    color: #888
+    text-decoration: underline
+    @include transition(color)
+    &:hover
+      color: $blue
+  
+  #main
+    background: #fff
+    width: 620px
+    position: absolute
+    top: 0
+    bottom: 0
+    left: 180px
+    right: 0
+    
+    h1
+      font-size: 25px
+      font-weight: 100
+      line-height: 25px
+    
+  #content-metadata, #reward-actions, #supporter-info
+    padding: 25px 30px
+  
+  #content-metadata
+    #synopsis, #tags
+      font-family: $typewriter
+      font-style: italic
+      font-weight: 300
+    #synopsis
+      font-size: 15px
+      margin-bottom: 8px
+      .more
+        display: none
+    #tags
+      font-size: 13px
+      a:hover
+        text-decoration: underline
+    #tags span
+      margin-left: -2px
+      color: $blue
+      &:last-child
+        display: none
+  
+  #reward-actions
+    background: #0399df
+    padding-bottom: 30px
+    color: #fff
+    position: relative
+    h1
+      margin-bottom: 10px
+    input[type="submit"], a.button
+      background: #003750
+    #nib
+      width: 8px
+      height: 16px
+      position: absolute
+      top: 50%
+      left: -8px
+      margin-top: -8px
+      background: transparent url(../images/reward-modal/blue-nib.png) no-repeat 0 0
+  
+  #amounts
+    height: 66px
+    p
+      font-family: $typewriter
+      font-style: italic
+      font-weight: 300
+      color: #003750
+      margin: 0 0 15px
+      line-height: 1em
+    ul
+      float: left
+      margin-right: 30px
+    li
+      float: left
+      clear: none
+      height: 30px
+      margin: 0 15px 0 0
+    a, input[type="text"]
+      display: inline-block
+      background: #fff url(../images/reward-modal/dollar-sign.png) no-repeat 9px 9px
+      color: #003750
+      padding: 7px 14px 7px 22px
+      font-size: 18px
+      border: none
+      border-bottom: 1px solid #006ea2
+      @include rounded(3px)
+      &.selected
+        background: #003750
+        color: #fff
+        border-bottom: 1px solid #fff
+    input[type="text"]
+      width: 30px
+    input[type="submit"]
+      height: 36px
+  
+  #why-you-reward
+    display: none

@@ -1,0 +1,15 @@
+#sidebar
+  = link_to image_tag(@story.user.avatar.url(:large)), user_url(@story.user), id: "avatar", target: "new"
+  
+  %a#creator-name{href: user_url(@story.user), target: "new"}
+    %span= @story.user.first_name
+    %span= @story.user.last_name
+  
+  - if @story.user.occupation.present?
+    .occupation= @story.user.occupation
+  - if @story.user.location.present?
+    .location= @story.user.location
+  
+  #bio= truncate(@story.user.tagline, length: 160)
+  
+  = link_to "View more of #{@story.user.first_name}'s work", user_url(@story.user), id: "more-work", target: "new"

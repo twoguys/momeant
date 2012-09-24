@@ -1,0 +1,39 @@
+= render "rewards/modal/sidebar"
+
+#main
+
+  #content-metadata
+    %h1= @story.title
+    #synopsis
+      - if @story.synopsis && @story.synopsis.length > 70
+        %span.less= truncate(@story.synopsis, :length => 70)
+        %span.more= @story.synopsis
+        = link_to "more", "#", :id => "toggle-synopsis"
+      - else
+        = @story.synopsis
+    #tags
+      - @story.tags.each do |tag|
+        = link_to tag.name, search_path(:query => tag.name)
+        %span ,
+
+  #reward-actions
+    #nib
+    = render "rewards/modal/form"
+  
+  #supporter-info
+    = render "rewards/modal/amounts_helper"
+
+  #comments-view.comments
+    %a#open-comments-tab.tooltipped-e{:title => "Toggle comments"}
+      %span= @story.comments.size
+  
+    #comments-list
+      %h3 Comments from #{@story.user.first_name}'s supporters:
+      - if current_user
+        = form_for Comment.new, :url => user_comments_path(current_user), html: { style: current_user.has_rewarded?(@story.user) ? "" : "display:none;" } do |form|
+          = image_tag current_user.avatar.url(:thumbnail), :class => "commenter-avatar"
+          = form.hidden_field :commentable_type, :value => "Story"
+          = form.hidden_field :commentable_id, :value => @story.id
+          = form.text_area :comment, :class => "comment-box"
+      %ul.comment-list.prepend
+        = render :partial => "comments/comment", :collection => @story.comments.reverse, :as => :comment
