@@ -10,7 +10,10 @@ $(function() {
 		el: $('#reward-modal'),
 		
 		events: {
-			'click #toggle-synopsis':         'toggle_full_synopsis',
+		  'click a[href="#about"]':         'goto_about',
+		  'click a[href="#reward"]':        'goto_reward',
+		  'click #login-button':            'goto_login',
+		  'submit #login-form':             'login',
 			'click #amounts li a': 						'choose_reward_amount',
 			'focus #custom_amount': 					'choose_custom_amount',
 			'keydown #custom_amount':         'cleanse_reward_amount',
@@ -30,50 +33,52 @@ $(function() {
 			this.setup_custom_reward_amount_monitoring();
 		},
 		
-		open_modal: function() {
-			$(this.el).addClass('open');
-			// show the extra stuff after the css transition effect finishes
-			setTimeout(function() {$('#reward-modal').addClass('opened');}, 200);
-			$('#content-cover').show();
-			this.modal_open = true;
-			mixpanel.track('Opened Reward Modal');
-		},
+		// ACTIONS IF NOT LOGGED IN -------------------------------------
 		
-		close_modal: function() {
-			$(this.el).removeClass('open opened');
-			$('#content-cover').hide();
-			this.modal_open = false;
-		},
-		
-		toggle_modal: function() {
-		  if (RewardModal.modal_open) {
-		    if (RewardModal.comments_open) {
-		      RewardModal.toggle_comments();
-		    } else {
-		      RewardModal.close_modal();
-		    }
-			} else {
-				RewardModal.open_modal();
-			}
-			return false;
-		},
-		
-		toggle_full_synopsis: function(event) {
-		  var $link = $(event.currentTarget);
-		  var $synopsis = $link.parent();
-		  if ($synopsis.hasClass('more')) {
-		    $link.siblings('.more').hide();
-		    $link.siblings('.less').show();
-		    $synopsis.removeClass('more');
-		    $link.text('more');
-		  } else {
-		    $link.siblings('.less').hide();
-		    $link.siblings('.more').show();
-		    $synopsis.addClass('more');
-		    $link.text('less');
-		  }
+		goto_about: function() {
+		  $('#reward-actions').css('margin-left',-620);
 		  return false;
 		},
+		
+		goto_reward: function() {
+		  $('#reward-actions').css('margin-left',0);
+		  return false;
+		},
+		
+		goto_login: function() {
+		  $('#reward-actions').css('margin-left',-1210);
+		  return false;
+		},
+		
+		login: function(event) {
+		  var $form = $(event.target);
+		  event.preventDefault();
+		  
+		  var email = $('#login_email').val();
+		  var password = $('#login_password').val();
+		  var token = $form.find('input[name="authenticity_token"]').val();
+		  var data = {remote: true, commit: "Sign in", utf8: "✓",
+        user: {remember_me: 1, password: password, email: email}};
+		  
+		  $form.addClass('loading');
+		  $('#signup-section .alert').text('');
+		  $.post('/users/sign_in_remote.json', data, function(response) {
+  		  $form.removeClass('loading');
+		    if (response.success) {
+		      $('#reward_submit').show();
+		      $('#what-is-momeant-link, #login-button').remove();
+		      $('#current-user').show().find('.name').text(response.name);
+		      current_user = true;
+		      RewardModal.goto_reward();
+		    } else {
+		      $('#signup-section .alert').text('Invalid email/password.');
+		    }
+		  });
+		  
+		  return false;
+		},
+		
+		// REWARD ACTIONS (LOGGED IN) -------------------------------------
 		
 		turn_off_amounts: function() {
 			$('#amounts a').removeClass('selected');
@@ -81,6 +86,8 @@ $(function() {
 		},
 		
 		choose_reward_amount: function(event) {
+		  if (!current_user) { RewardModal.goto_about(); return false; }
+		  
 			var $button = $(event.currentTarget);
 
 			RewardModal.turn_off_amounts();
@@ -124,24 +131,23 @@ $(function() {
 		},
 		
 		finished_reward_amount: function() {
-		  $('form#reward-form input[type="submit"]').css('opacity',1);
+		  $('form#reward-form input[type="submit"]').removeAttr('disabled');
 		},
 
 		submit_reward: function(event) {
 			var $form = $('#reward-form');
 			event.preventDefault();
 
-			if ($('#reward_amount').val() == '') {
+			var amount = $form.find('#reward_amount').val();
+			if (amount == '') {
 				alert('Please choose how much to reward.');
 				return false;
 			}
-
-			var amount = $form.find('#reward_amount').val();
 			var story_id = $form.find("#reward_story_id").val();
 			var impacted_by = $form.find("#reward_impacted_by").val();
 			var url = $form.attr('action');
 
-			$('#current-step').addClass('loading');
+			$('#reward-actions').addClass('loading');
 			$.ajax({
 			  url: url,
 			  type: 'POST',
@@ -150,16 +156,12 @@ $(function() {
 					"reward[story_id]":story_id,
 					"reward[impacted_by]":impacted_by
 				},
-				success: function(data) {
-    			$('#reward-form').remove();
-				  RewardModal.reward_submitted = true;
-					$("#current-step").html(data).removeClass('loading');
-					$('#amounts-helper').remove();
-					$('#url_to_share').click(function() { $(this).select(); });
-					RewardModal.allow_commenting();
+				success: function(response) {
+    			RewardModal.reward_submitted = true;
+					$('#main').html(response);
 				},
-				error: function(data) {
-				  $('#current-step').removeClass('loading');
+				error: function() {
+				  $('#reward-actions').removeClass('loading');
 				  $('#invalid-reward-amount').show();
 				  $('#custom_amount').focus();
 				}
@@ -167,6 +169,8 @@ $(function() {
 			
 			return false;
 		},
+		
+		// ACTIONS AFTER REWARDING -------------------------------------
 		
 		monitor_sharing: function(reward_id) {
 		  $('#share-with-twitter').fancybox({padding:0,width:400,height:130});

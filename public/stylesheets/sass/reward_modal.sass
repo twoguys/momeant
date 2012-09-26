@@ -85,23 +85,30 @@ body#reward-modal
     bottom: 0
     left: 180px
     right: 0
+    overflow: hidden
     
     h1
       font-size: 25px
-      font-weight: 100
       line-height: 25px
     
-  #content-metadata, #reward-actions, #supporter-info
+  #content-metadata, #reward-them, #what-is-momeant, #login, #supporter-info
     padding: 25px 30px
   
   #content-metadata
+    h1
+      margin-bottom: 9px
     #synopsis, #tags
       font-family: $typewriter
       font-style: italic
       font-weight: 300
     #synopsis
-      font-size: 15px
       margin-bottom: 8px
+      color: #555
+      &:hover
+        .less, a
+          display: none
+        .more
+          display: block
       .more
         display: none
     #tags
@@ -116,13 +123,20 @@ body#reward-modal
   
   #reward-actions
     background: #0399df
-    padding-bottom: 30px
     color: #fff
+    width: 1860px
+    height: 140px
+    padding-bottom: 30px
     position: relative
+    @include transition(margin)
+    &.loading
+      background: #0399df url(../images/spinner-blue.gif) no-repeat 280px 50%
+      *
+        visibility: hidden
     h1
-      margin-bottom: 10px
+      margin-bottom: 18px
     input[type="submit"], a.button
-      background: #003750
+      background: $dark_blue
     #nib
       width: 8px
       height: 16px
@@ -131,6 +145,71 @@ body#reward-modal
       left: -8px
       margin-top: -8px
       background: transparent url(../images/reward-modal/blue-nib.png) no-repeat 0 0
+    #over-threshold
+      color: $dark_blue
+      a
+        color: #fff
+        text-decoration: underline
+    #reward-them, #what-is-momeant, #login
+      width: 560px
+      height: 140px
+      float: left
+      position: relative
+    #current-user
+      position: absolute
+      top: 100px
+      right: 45px
+      color: $dark_blue
+      font-size: 13px
+      span
+        display: block
+    #what-is-momeant
+      background: transparent url(../images/logoWhiteSmall.png) no-repeat 414px 44px
+      width: 360px
+      padding-right: 200px
+      p
+        margin-top: 0
+        line-height: 1.2em
+        a
+          color: $dark_blue
+      a.button
+        position: absolute
+      #back-to-reward, #learn-more
+        top: 96px
+      #back-to-reward, #login-button
+        left: 421px
+      #learn-more
+        left: 465px
+      #login-button, #sign-up
+        top: 117px
+      #sign-up
+        left: 495px
+    #login
+      form
+        width: 275px
+        height: 120px
+        &.loading
+          background: transparent url(../images/spinner-blue.gif) no-repeat 50% 50%
+          *
+            visibility: hidden
+      li
+        margin-bottom: 10px
+      input[type="email"], input[type="password"]
+        border: 1px solid #005f8b
+      li.submit a.forgot
+        color: $dark_blue
+        margin-left: 20px
+        text-decoration: underline
+      #signup-section
+        position: absolute
+        top: 34px
+        left: 365px
+        a
+          color: $dark_blue
+          text-decoration: underline
+        .alert
+          margin-top: 10px
+          font-size: 1.3em
   
   #amounts
     height: 66px
@@ -138,7 +217,7 @@ body#reward-modal
       font-family: $typewriter
       font-style: italic
       font-weight: 300
-      color: #003750
+      color: $dark_blue
       margin: 0 0 15px
       line-height: 1em
     ul
@@ -149,23 +228,94 @@ body#reward-modal
       clear: none
       height: 30px
       margin: 0 15px 0 0
-    a, input[type="text"]
-      display: inline-block
-      background: #fff url(../images/reward-modal/dollar-sign.png) no-repeat 9px 9px
-      color: #003750
-      padding: 7px 14px 7px 22px
-      font-size: 18px
-      border: none
-      border-bottom: 1px solid #006ea2
-      @include rounded(3px)
-      &.selected
-        background: #003750
-        color: #fff
-        border-bottom: 1px solid #fff
-    input[type="text"]
-      width: 30px
+      a, input[type="text"]
+        display: inline-block
+        background: #fff url(../images/reward-modal/dollar-sign.png) no-repeat 9px 9px
+        color: #005b84
+        padding: 7px 14px 7px 22px
+        font-size: 18px
+        border: none
+        border-bottom: 1px solid #006ea2
+        border-right: 1px solid #006ea2
+        @include rounded(3px)
+        &:hover
+          border-color: $dark_blue
+        &.selected
+          background-color: $dark_blue
+          background-position: 9px -36px
+          color: #fff
+          border-bottom: 1px solid #5bc2f1
+          border-right: 1px solid #5bc2f1
+      input[type="text"]
+        width: 36px
+        font-size: 16px
+        padding-top: 8px
+        padding-bottom: 8px
     input[type="submit"]
       height: 36px
+    input[disabled="disabled"]
+      opacity: 0.4
+      cursor: default
+      &:active
+        top: 0
+    a.button
+      color: #fff
+      display: inline-block
+      padding: 11px 15px
   
-  #why-you-reward
-    display: none
+  #supporter-info
+    color: #777
+    font-size: 13px
+    h3
+      font-size: 14px
+      font-weight: 400
+      margin-bottom: 15px
+    #explanation
+      width: 300px
+      float: left
+      margin-right: 50px
+      ul, p
+        font-family: $typewriter
+        font-style: italic
+        font-weight: 300
+      li
+        list-style-type: disc
+        margin: 0 0 0.5em 1.2em
+      abbr
+        border-bottom: 1px dotted $blue
+        cursor: help
+    #top-supporters
+      width: 210px
+      float: right
+      li
+        float: left
+        clear: none
+        width: 45px
+        margin: 0 10px 10px 0
+        position: relative
+        &:nth-child(4n)
+          margin-right: 0
+        img
+          width: 40px
+          height: 40px
+        .badge
+          width: 16px
+          height: 16px
+          background: transparent url(../images/reward-modal/gold-silver-bronze.png) no-repeat 0 0
+          position: absolute
+          top: -5px
+          left: 30px
+          &.silver
+            background-position: -27px 0
+          &.bronze
+            background-position: -53px 0
+        .rewarded
+          display: inline-block
+          font-size: 13px
+  
+  #after-reward
+    padding: 30px
+    #thank-you-note
+      margin: -15px -15px 30px -15px
+      background: transparent url(../images/reward-modal/thank-you-note.jpg) no-repeat 0 0
+      

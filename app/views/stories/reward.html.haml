@@ -19,21 +19,11 @@
   #reward-actions
     #nib
     = render "rewards/modal/form"
+    = render "rewards/modal/description"
+          
   
   #supporter-info
-    = render "rewards/modal/amounts_helper"
+    = render "rewards/modal/supporter_info"
 
-  #comments-view.comments
-    %a#open-comments-tab.tooltipped-e{:title => "Toggle comments"}
-      %span= @story.comments.size
-  
-    #comments-list
-      %h3 Comments from #{@story.user.first_name}'s supporters:
-      - if current_user
-        = form_for Comment.new, :url => user_comments_path(current_user), html: { style: current_user.has_rewarded?(@story.user) ? "" : "display:none;" } do |form|
-          = image_tag current_user.avatar.url(:thumbnail), :class => "commenter-avatar"
-          = form.hidden_field :commentable_type, :value => "Story"
-          = form.hidden_field :commentable_id, :value => @story.id
-          = form.text_area :comment, :class => "comment-box"
-      %ul.comment-list.prepend
-        = render :partial => "comments/comment", :collection => @story.comments.reverse, :as => :comment
+:javascript
+  var current_user = #{current_user.present? ? 'true' : 'false'};

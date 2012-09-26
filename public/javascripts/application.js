@@ -75,6 +75,9 @@ function setup_modals() {
 	  return false;
 	});
 	
+	if (window.location.href.indexOf('#signup') >= 0) {
+	  $('#join-modal').fadeIn(200);
+	}
 }
 
 function handle_signup_login_form_validation() {

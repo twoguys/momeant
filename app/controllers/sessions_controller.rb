@@ -6,6 +6,13 @@ class SessionsController < Devise::SessionsController
     redirect_to session[:return_to] || root_path, :alert => flash.alert || ""
   end
   
+  def remote
+    user = warden.authenticate(scope: resource_name)
+    render json: { success: false } and return if user.nil?
+    sign_in(:user, user)
+    render json: { success: true, name: user.name }
+  end
+  
   def creator
     @creator = User.new # for the adjacent signup form
     

@@ -405,20 +405,26 @@ body#reward-modal {
     top: 0;
     bottom: 0;
     left: 180px;
-    right: 0; }
+    right: 0;
+    overflow: hidden; }
     body#reward-modal #main h1 {
       font-size: 25px;
-      font-weight: 100;
       line-height: 25px; }
-  body#reward-modal #content-metadata, body#reward-modal #reward-actions, body#reward-modal #supporter-info {
+  body#reward-modal #content-metadata, body#reward-modal #reward-them, body#reward-modal #what-is-momeant, body#reward-modal #login, body#reward-modal #supporter-info {
     padding: 25px 30px; }
+  body#reward-modal #content-metadata h1 {
+    margin-bottom: 9px; }
   body#reward-modal #content-metadata #synopsis, body#reward-modal #content-metadata #tags {
     font-family: "museo-slab-1", "museo-slab-2", serif;
     font-style: italic;
     font-weight: 300; }
   body#reward-modal #content-metadata #synopsis {
-    font-size: 15px;
-    margin-bottom: 8px; }
+    margin-bottom: 8px;
+    color: #555555; }
+    body#reward-modal #content-metadata #synopsis:hover .less, body#reward-modal #content-metadata #synopsis:hover a {
+      display: none; }
+    body#reward-modal #content-metadata #synopsis:hover .more {
+      display: block; }
     body#reward-modal #content-metadata #synopsis .more {
       display: none; }
   body#reward-modal #content-metadata #tags {
@@ -432,11 +438,22 @@ body#reward-modal {
       display: none; }
   body#reward-modal #reward-actions {
     background: #0399df;
-    padding-bottom: 30px;
     color: white;
-    position: relative; }
+    width: 1860px;
+    height: 140px;
+    padding-bottom: 30px;
+    position: relative;
+    -webkit-transition: margin 0.2s ease-in-out;
+    -moz-transition: margin 0.2s ease-in-out;
+    -ms-transition: margin 0.2s ease-in-out;
+    -o-transition: margin 0.2s ease-in-out;
+    transition: margin 0.2s ease-in-out; }
+    body#reward-modal #reward-actions.loading {
+      background: #0399df url(../images/spinner-blue.gif) no-repeat 280px 50%; }
+      body#reward-modal #reward-actions.loading * {
+        visibility: hidden; }
     body#reward-modal #reward-actions h1 {
-      margin-bottom: 10px; }
+      margin-bottom: 18px; }
     body#reward-modal #reward-actions input[type="submit"], body#reward-modal #reward-actions a.button {
       background: #003750; }
     body#reward-modal #reward-actions #nib {
@@ -447,6 +464,70 @@ body#reward-modal {
       left: -8px;
       margin-top: -8px;
       background: transparent url(../images/reward-modal/blue-nib.png) no-repeat 0 0; }
+    body#reward-modal #reward-actions #over-threshold {
+      color: #003750; }
+      body#reward-modal #reward-actions #over-threshold a {
+        color: white;
+        text-decoration: underline; }
+    body#reward-modal #reward-actions #reward-them, body#reward-modal #reward-actions #what-is-momeant, body#reward-modal #reward-actions #login {
+      width: 560px;
+      height: 140px;
+      float: left;
+      position: relative; }
+    body#reward-modal #reward-actions #current-user {
+      position: absolute;
+      top: 100px;
+      right: 45px;
+      color: #003750;
+      font-size: 13px; }
+      body#reward-modal #reward-actions #current-user span {
+        display: block; }
+    body#reward-modal #reward-actions #what-is-momeant {
+      background: transparent url(../images/logoWhiteSmall.png) no-repeat 414px 44px;
+      width: 360px;
+      padding-right: 200px; }
+      body#reward-modal #reward-actions #what-is-momeant p {
+        margin-top: 0;
+        line-height: 1.2em; }
+        body#reward-modal #reward-actions #what-is-momeant p a {
+          color: #003750; }
+      body#reward-modal #reward-actions #what-is-momeant a.button {
+        position: absolute; }
+      body#reward-modal #reward-actions #what-is-momeant #back-to-reward, body#reward-modal #reward-actions #what-is-momeant #learn-more {
+        top: 96px; }
+      body#reward-modal #reward-actions #what-is-momeant #back-to-reward, body#reward-modal #reward-actions #what-is-momeant #login-button {
+        left: 421px; }
+      body#reward-modal #reward-actions #what-is-momeant #learn-more {
+        left: 465px; }
+      body#reward-modal #reward-actions #what-is-momeant #login-button, body#reward-modal #reward-actions #what-is-momeant #sign-up {
+        top: 117px; }
+      body#reward-modal #reward-actions #what-is-momeant #sign-up {
+        left: 495px; }
+    body#reward-modal #reward-actions #login form {
+      width: 275px;
+      height: 120px; }
+      body#reward-modal #reward-actions #login form.loading {
+        background: transparent url(../images/spinner-blue.gif) no-repeat 50% 50%; }
+        body#reward-modal #reward-actions #login form.loading * {
+          visibility: hidden; }
+    body#reward-modal #reward-actions #login li {
+      margin-bottom: 10px; }
+    body#reward-modal #reward-actions #login input[type="email"], body#reward-modal #reward-actions #login input[type="password"] {
+      border: 1px solid #005f8b; }
+    body#reward-modal #reward-actions #login li.submit a.forgot {
+      color: #003750;
+      margin-left: 20px;
+      text-decoration: underline; }
+    body#reward-modal #reward-actions #login #signup-section {
+      position: absolute;
+      top: 34px;
+      left: 365px; }
+      body#reward-modal #reward-actions #login #signup-section a {
+        color: #003750;
+        text-decoration: underline; }
+      body#reward-modal #reward-actions #login #signup-section .alert {
+        margin-top: 10px;
+        font-size: 1.3em; }
   body#reward-modal #amounts {
     height: 66px; }
     body#reward-modal #amounts p {
@@ -464,24 +545,93 @@ body#reward-modal {
       clear: none;
       height: 30px;
       margin: 0 15px 0 0; }
-    body#reward-modal #amounts a, body#reward-modal #amounts input[type="text"] {
-      display: inline-block;
-      background: white url(../images/reward-modal/dollar-sign.png) no-repeat 9px 9px;
-      color: #003750;
-      padding: 7px 14px 7px 22px;
-      font-size: 18px;
-      border: none;
-      border-bottom: 1px solid #006ea2;
-      -webkit-border-radius: 3px;
-      -moz-border-radius: 3px;
-      border-radius: 3px; }
-      body#reward-modal #amounts a.selected, body#reward-modal #amounts input[type="text"].selected {
-        background: #003750;
-        color: white;
-        border-bottom: 1px solid white; }
-    body#reward-modal #amounts input[type="text"] {
-      width: 30px; }
+      body#reward-modal #amounts li a, body#reward-modal #amounts li input[type="text"] {
+        display: inline-block;
+        background: white url(../images/reward-modal/dollar-sign.png) no-repeat 9px 9px;
+        color: #005b84;
+        padding: 7px 14px 7px 22px;
+        font-size: 18px;
+        border: none;
+        border-bottom: 1px solid #006ea2;
+        border-right: 1px solid #006ea2;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px; }
+        body#reward-modal #amounts li a:hover, body#reward-modal #amounts li input[type="text"]:hover {
+          border-color: #003750; }
+        body#reward-modal #amounts li a.selected, body#reward-modal #amounts li input[type="text"].selected {
+          background-color: #003750;
+          background-position: 9px -36px;
+          color: white;
+          border-bottom: 1px solid #5bc2f1;
+          border-right: 1px solid #5bc2f1; }
+      body#reward-modal #amounts li input[type="text"] {
+        width: 36px;
+        font-size: 16px;
+        padding-top: 8px;
+        padding-bottom: 8px; }
     body#reward-modal #amounts input[type="submit"] {
       height: 36px; }
-  body#reward-modal #why-you-reward {
-    display: none; }
+    body#reward-modal #amounts input[disabled="disabled"] {
+      opacity: 0.4;
+      cursor: default; }
+      body#reward-modal #amounts input[disabled="disabled"]:active {
+        top: 0; }
+    body#reward-modal #amounts a.button {
+      color: white;
+      display: inline-block;
+      padding: 11px 15px; }
+  body#reward-modal #supporter-info {
+    color: #777777;
+    font-size: 13px; }
+    body#reward-modal #supporter-info h3 {
+      font-size: 14px;
+      font-weight: 400;
+      margin-bottom: 15px; }
+    body#reward-modal #supporter-info #explanation {
+      width: 300px;
+      float: left;
+      margin-right: 50px; }
+      body#reward-modal #supporter-info #explanation ul, body#reward-modal #supporter-info #explanation p {
+        font-family: "museo-slab-1", "museo-slab-2", serif;
+        font-style: italic;
+        font-weight: 300; }
+      body#reward-modal #supporter-info #explanation li {
+        list-style-type: disc;
+        margin: 0 0 0.5em 1.2em; }
+      body#reward-modal #supporter-info #explanation abbr {
+        border-bottom: 1px dotted #00aeef;
+        cursor: help; }
+    body#reward-modal #supporter-info #top-supporters {
+      width: 210px;
+      float: right; }
+      body#reward-modal #supporter-info #top-supporters li {
+        float: left;
+        clear: none;
+        width: 45px;
+        margin: 0 10px 10px 0;
+        position: relative; }
+        body#reward-modal #supporter-info #top-supporters li:nth-child(4n) {
+          margin-right: 0; }
+        body#reward-modal #supporter-info #top-supporters li img {
+          width: 40px;
+          height: 40px; }
+        body#reward-modal #supporter-info #top-supporters li .badge {
+          width: 16px;
+          height: 16px;
+          background: transparent url(../images/reward-modal/gold-silver-bronze.png) no-repeat 0 0;
+          position: absolute;
+          top: -5px;
+          left: 30px; }
+          body#reward-modal #supporter-info #top-supporters li .badge.silver {
+            background-position: -27px 0; }
+          body#reward-modal #supporter-info #top-supporters li .badge.bronze {
+            background-position: -53px 0; }
+        body#reward-modal #supporter-info #top-supporters li .rewarded {
+          display: inline-block;
+          font-size: 13px; }
+  body#reward-modal #after-reward {
+    padding: 30px; }
+    body#reward-modal #after-reward #thank-you-note {
+      margin: -15px -15px 30px -15px;
+      background: transparent url(../images/reward-modal/thank-you-note.jpg) no-repeat 0 0; }

@@ -30,7 +30,7 @@ class RewardsController < ApplicationController
     
     @twitter_configured = current_user.authentications.find_by_provider("twitter")
     @facebook_configured = current_user.authentications.find_by_provider("facebook")
-    render :partial => "rewards/modal/after_reward"
+    render partial: "rewards/modal/after_reward"
   end
   
   def visualize

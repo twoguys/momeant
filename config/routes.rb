@@ -7,6 +7,7 @@ Repo::Application.routes.draw do
   } do
     post '/creators/signup' => "registrations#creator", :as => :creator_signup # creator signup 1 submit
     post '/creators/login'  => "sessions#creator",      :as => :creator_login
+    post '/users/sign_in_remote' => "sessions#remote"
   end
   # creator signup 1
   match '/creators', :to => "users#creators", :as => :creators
