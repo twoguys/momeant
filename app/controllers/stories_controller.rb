@@ -53,6 +53,7 @@ class StoriesController < ApplicationController
   
   def reward
     @story = Story.find(params[:id])
+    @reward = Reward.last
     render layout: "reward"
   end
   

@@ -1,65 +1,66 @@
 #after-reward
-  #thank-you-note
-    %p
-      - if @story.thankyou.present?
-        = auto_link(@story.thankyou, :all, target: "_blank")
-      - elsif @story.user.thankyou.present?
-        = auto_link(@story.user.thankyou, :all, target: "_blank")
-      - else
-        Thank you so much for your support! You allow me to continue doing what I love.
-    .from= "- #{@story.user.first_name}"
+  #thanks.after-view
+    #thank-you-note
+      %p
+        - if @story.thankyou.present?
+          = auto_link(@story.thankyou, :all, target: "_blank")
+        - elsif @story.user.thankyou.present?
+          = auto_link(@story.user.thankyou, :all, target: "_blank")
+        - else
+          Thank you so much for your support! You allow me to continue doing what I love.
+      .from= "- #{@story.user.first_name}"
   
     %p.as-one As one of my supporters, you can:
     
   #after-nav
+    = link_to "", "#impact", id: "impact-button", class: "after-link"
+    = link_to "", "#comments", id: "comment-button", class: "after-link"
+    = link_to "", "#discussions", id: "discussions-button", class: "after-link"
     
-    #promote
-      #copy-paste
-        Share #{@story.user.first_name}'s work with others.
-        %form= text_field_tag :url_to_share, story_url(@story, :impacted_by => @reward.id), :readonly => true
+  #impact-view.after-view
+    #copy-paste
+      Share #{@story.user.first_name}'s work with others.
+      %form= text_field_tag :url_to_share, story_url(@story, :impacted_by => @reward.id), :readonly => true
 
-      #sharing-buttons
-        = link_to "Share on Twitter", "#twitter-sharing", :id => "share-with-twitter"
-        = link_to "Share on Facebook", "#facebook-sharing", :id => "share-with-facebook"
-    
-      #why-share
-        %span You gain
-        %abbr.tooltipped-n{title: "Impact = the rewards you give + the rewards others give when you share someone's work."} impact
-        %span for each reward you help promote, which increases your status in #{@story.user.first_name}'s community.
-    
-      .hidden
-        #twitter-sharing
-          - if @twitter_configured
-            = render "rewards/modal/twitter_sharing"
-          - else
-            .not-configured
-              %span Want to share this with your Twitter followers?
-              = link_to("Launch Twitter Configuration", "#{root_url}auth/twitter", :id => "configure-twitter")
-
-        #facebook-sharing
-          - if @facebook_configured
-            = render "rewards/modal/facebook_sharing"
-          - else
-            .not-configured
-              %span Want to share this with your Facebook friends?
-              = link_to("Launch Facebook Configuration", "#{root_url}auth/facebook", :id => "configure-facebook")
-
-    #comments-view.comments
-      %a#open-comments-tab.tooltipped-e{:title => "Toggle comments"}
-        %span= @story.comments.size
+    #sharing-buttons
+      = link_to "Share on Twitter", "#twitter-sharing", :id => "share-with-twitter"
+      = link_to "Share on Facebook", "#facebook-sharing", :id => "share-with-facebook"
   
-      #comments-list
-        %h3 Comments from #{@story.user.first_name}'s supporters:
-        - if current_user
-          = form_for Comment.new, :url => user_comments_path(current_user), html: { style: current_user.has_rewarded?(@story.user) ? "" : "display:none;" } do |form|
-            = image_tag current_user.avatar.url(:thumbnail), :class => "commenter-avatar"
-            = form.hidden_field :commentable_type, :value => "Story"
-            = form.hidden_field :commentable_id, :value => @story.id
-            = form.text_area :comment, :class => "comment-box"
-        %ul.comment-list.prepend
-          = render :partial => "comments/comment", :collection => @story.comments.reverse, :as => :comment
+    #why-share
+      %span You gain
+      %abbr.tooltipped-n{title: "Impact = the rewards you give + the rewards others give when you share someone's work."} impact
+      %span for each reward you help promote, which increases your status in #{@story.user.first_name}'s community.
+  
+    .hidden
+      #twitter-sharing
+        - if @twitter_configured
+          = render "rewards/modal/twitter_sharing"
+        - else
+          .not-configured
+            %span Want to share this with your Twitter followers?
+            = link_to("Launch Twitter Configuration", "#{root_url}auth/twitter", :id => "configure-twitter")
 
-:javascript
-  mixpanel.track('Rewarded Content', {story_id: '#{@story.id}', mp_note: '#{@reward.amount}', amount: #{@reward.amount}, rewarded_user_id: #{@reward.recipient_id}});
-  RewardModal.monitor_sharing(#{@reward.id});
-  $('.tooltipped-n').tipsy({opacity:1,gravity:'s'});
+      #facebook-sharing
+        - if @facebook_configured
+          = render "rewards/modal/facebook_sharing"
+        - else
+          .not-configured
+            %span Want to share this with your Facebook friends?
+            = link_to("Launch Facebook Configuration", "#{root_url}auth/facebook", :id => "configure-facebook")
+
+  #comments-view.comments.after-view
+    %a#open-comments-tab.tooltipped-e{:title => "Toggle comments"}
+      %span= @story.comments.size
+
+    #comments-list
+      %h3 Comments from #{@story.user.first_name}'s supporters:
+      - if current_user
+        = form_for Comment.new, :url => user_comments_path(current_user), html: { style: current_user.has_rewarded?(@story.user) ? "" : "display:none;" } do |form|
+          = image_tag current_user.avatar.url(:thumbnail), :class => "commenter-avatar"
+          = form.hidden_field :commentable_type, :value => "Story"
+          = form.hidden_field :commentable_id, :value => @story.id
+          = form.text_area :comment, :class => "comment-box"
+      %ul.comment-list.prepend
+        = render :partial => "comments/comment", :collection => @story.comments.reverse, :as => :comment
+  
+  #discussions-view.after-view

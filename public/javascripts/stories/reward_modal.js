@@ -20,7 +20,7 @@ $(function() {
 			'keyup #custom_amount':           'cleanse_reward_amount',
   		'blur #custom_amount':            'stop_choosing_custom',
   		'submit #reward-form':            'submit_reward',
-			'click #open-comments-tab':       'toggle_comments'
+  		'click a.after-link':             'goto_after_view'
 		},
 		
 		initialize: function() {
@@ -156,14 +156,20 @@ $(function() {
 					"reward[story_id]":story_id,
 					"reward[impacted_by]":impacted_by
 				},
-				success: function(response) {
-    			RewardModal.reward_submitted = true;
-					$('#main').html(response);
-				},
-				error: function() {
-				  $('#reward-actions').removeClass('loading');
-				  $('#invalid-reward-amount').show();
-				  $('#custom_amount').focus();
+				complete: function(xhr) {
+				  var response = xhr.response;
+				  var json = $.parseJSON(response);
+				  if (json.success) {
+      			RewardModal.reward_submitted = true;
+      			mixpanel.track('Rewarded Content', {story_id: story_id, mp_note: amount, amount: amount});
+            RewardModal.monitor_sharing(json.reward_id);
+  					$('#main').html(json.html);
+				  } else {
+  				  $('#reward-actions').removeClass('loading');
+  				  $('#invalid-reward-amount').show();
+  				  $('#custom_amount').focus();
+  				  alert(json.error);
+				  }
 				}
 			});
 			
@@ -171,6 +177,13 @@ $(function() {
 		},
 		
 		// ACTIONS AFTER REWARDING -------------------------------------
+		
+		goto_after_view: function(event) {
+		  var $link = $(event.target);
+		  $('#after-reward .after-view').hide();
+		  $('#after-reward ' + $link.attr('href') + '-view').show();
+		  return false;
+		},
 		
 		monitor_sharing: function(reward_id) {
 		  $('#share-with-twitter').fancybox({padding:0,width:400,height:130});

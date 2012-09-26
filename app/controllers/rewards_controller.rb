@@ -19,7 +19,7 @@ class RewardsController < ApplicationController
       else
         @error = "Sorry! That was an invalid reward amount."
       end
-      render :bad_request and return
+      render json: { success: false, error: @error } and return
     end
         
     NotificationsMailer.reward_notice(@reward).deliver if @user.send_reward_notification_emails?
@@ -30,7 +30,7 @@ class RewardsController < ApplicationController
     
     @twitter_configured = current_user.authentications.find_by_provider("twitter")
     @facebook_configured = current_user.authentications.find_by_provider("facebook")
-    render partial: "rewards/modal/after_reward"
+    render json: { success: true, html: render_to_string("rewards/modal/_after_reward", layout: false) }
   end
   
   def visualize

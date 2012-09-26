@@ -314,8 +314,72 @@ body#reward-modal
           font-size: 13px
   
   #after-reward
-    padding: 30px
+    height: 460px
+    padding: 20px
+    position: relative
+    
+    #after-nav
+      width: 578px
+      height: 52px
+      background: transparent url(../images/reward-modal/nav-bg.png) no-repeat 0 0
+      position: absolute
+      left: 20px
+      bottom: 20px
+      a
+        display: block
+        width: 182px
+        height: 51px
+        background: transparent url(../images/reward-modal/nav-buttons.png) no-repeat 0 0
+        float: left
+        margin-right: 5px
+        &:last-child
+          margin-right: 0
+      #impact-button
+        background-position: 0 0
+        &:hover
+          background-position: 0 -57px
+        &:active, &.selected
+          background-position: 0 -113px
+      #comment-button
+        width: 191px
+        background-position: -187px 0
+        margin-right: 6px
+        &:hover
+          background-position: -187px -57px
+        &:active, &.selected
+          background-position: -187px -113px
+      #discussions-button
+        width: 192px
+        background-position: -386px 0
+        &:hover
+          background-position: -386px -57px
+        &:active, &.selected
+          background-position: -386px -113px
+    
     #thank-you-note
-      margin: -15px -15px 30px -15px
+      height: 267px
       background: transparent url(../images/reward-modal/thank-you-note.jpg) no-repeat 0 0
-      
+      padding: 34px 55px
+      margin: -2px -2px 15px -2px
+      font-family: "Courier New"
+      font-size: 15px
+      text-shadow: 0 1px 0 #fff
+      p
+        margin: 0
+        line-height: 21px
+      .from
+        text-align: right
+        margin-top: 2px
+    #thanks .as-one
+      font-family: $typewriter
+      font-size: 18px
+      font-style: italic
+      font-weight: 300
+      margin: 0 0 20px
+      text-align: center
+    
+    .after-view
+      height: 370px
+      overflow: auto
+    #impact-view, #comments-view, #discussions-view
+      display: none
