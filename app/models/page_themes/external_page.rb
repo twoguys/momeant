@@ -14,8 +14,8 @@ class ExternalPage < Page
     url = self.text
     query = URI.parse(url).query
     return "" if query.nil?
-    query_params = CGI.parse(query)
-    query_params["v"].present? ? query_params["v"] : ""
+    query_params = CGI.parse(URI.parse(url).query)
+    query_params["v"].present? ? query_params["v"].first : ""
   end
   
   def empty?
