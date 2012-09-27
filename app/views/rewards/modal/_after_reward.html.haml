@@ -12,25 +12,31 @@
   
     %p.as-one As one of my supporters, you can:
     
+  = link_to "&larr; Back to Thank You".html_safe, "#thank-you", id: "back-to-thank-you"
   #after-nav
     = link_to "", "#impact", id: "impact-button", class: "after-link"
     = link_to "", "#comments", id: "comment-button", class: "after-link"
     = link_to "", "#discussions", id: "discussions-button", class: "after-link"
     
   #impact-view.after-view
+    %p
+      Here is a special link to my work.
+      %br
+      If others click this link and reward me,
+      %br
+      you gain impact, which moves you up
+      %br
+      my supporter leaderboard!
+    
     #copy-paste
-      Share #{@story.user.first_name}'s work with others.
-      %form= text_field_tag :url_to_share, story_url(@story, :impacted_by => @reward.id), :readonly => true
+      .weak copy &amp; paste
+      = text_field_tag :url_to_share, story_url(@story, :impacted_by => @reward.id), :readonly => true
 
     #sharing-buttons
+      .weak OR
       = link_to "Share on Twitter", "#twitter-sharing", :id => "share-with-twitter"
       = link_to "Share on Facebook", "#facebook-sharing", :id => "share-with-facebook"
-  
-    #why-share
-      %span You gain
-      %abbr.tooltipped-n{title: "Impact = the rewards you give + the rewards others give when you share someone's work."} impact
-      %span for each reward you help promote, which increases your status in #{@story.user.first_name}'s community.
-  
+    
     .hidden
       #twitter-sharing
         - if @twitter_configured
@@ -49,18 +55,20 @@
             = link_to("Launch Facebook Configuration", "#{root_url}auth/facebook", :id => "configure-facebook")
 
   #comments-view.comments.after-view
-    %a#open-comments-tab.tooltipped-e{:title => "Toggle comments"}
-      %span= @story.comments.size
-
     #comments-list
-      %h3 Comments from #{@story.user.first_name}'s supporters:
-      - if current_user
-        = form_for Comment.new, :url => user_comments_path(current_user), html: { style: current_user.has_rewarded?(@story.user) ? "" : "display:none;" } do |form|
-          = image_tag current_user.avatar.url(:thumbnail), :class => "commenter-avatar"
-          = form.hidden_field :commentable_type, :value => "Story"
-          = form.hidden_field :commentable_id, :value => @story.id
-          = form.text_area :comment, :class => "comment-box"
+      = form_for Comment.new, :url => user_comments_path(current_user), html: { style: current_user.has_rewarded?(@story.user) ? "" : "display:none;" } do |form|
+        = image_tag current_user.avatar.url(:thumbnail), :class => "commenter-avatar"
+        = form.hidden_field :commentable_type, :value => "Story"
+        = form.hidden_field :commentable_id, :value => @story.id
+        = form.text_area :comment, :class => "comment-box"
       %ul.comment-list.prepend
         = render :partial => "comments/comment", :collection => @story.comments.reverse, :as => :comment
   
   #discussions-view.after-view
+    - if @story.user.discussions.empty?
+      %h3 I haven't posted any discussion topics just yet.
+    - else
+      %h3 Click any of my topics to jump over to my profile and participate:
+      %ul
+        - @story.user.discussions.each do |discussion|
+          = render partial: "discussions/discussion_summary", locals: { discussion: discussion }

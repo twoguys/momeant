@@ -20,7 +20,8 @@ $(function() {
 			'keyup #custom_amount':           'cleanse_reward_amount',
   		'blur #custom_amount':            'stop_choosing_custom',
   		'submit #reward-form':            'submit_reward',
-  		'click a.after-link':             'goto_after_view'
+  		'click a.after-link':             'goto_after_view',
+  		'click #back-to-thank-you':       'goto_thank_you'
 		},
 		
 		initialize: function() {
@@ -28,8 +29,6 @@ $(function() {
 			this.editing_text = false;
 			this.reward_submitted = false;
 			this.comments_open = false;
-			
-			this.setup_key_bindings();
 			this.setup_custom_reward_amount_monitoring();
 		},
 		
@@ -68,6 +67,7 @@ $(function() {
 		      $('#reward_submit').show();
 		      $('#what-is-momeant-link, #login-button').remove();
 		      $('#current-user').show().find('.name').text(response.name);
+		      user_id = response.id;
 		      current_user = true;
 		      RewardModal.goto_reward();
 		    } else {
@@ -162,8 +162,12 @@ $(function() {
 				  if (json.success) {
       			RewardModal.reward_submitted = true;
       			mixpanel.track('Rewarded Content', {story_id: story_id, mp_note: amount, amount: amount});
-            RewardModal.monitor_sharing(json.reward_id);
   					$('#main').html(json.html);
+  					$('#url_to_share').click(function() {
+  					  $(this).select();
+  					});
+            RewardModal.monitor_sharing(json.reward_id);
+            Comments.auto_resize_comment_boxes();
 				  } else {
   				  $('#reward-actions').removeClass('loading');
   				  $('#invalid-reward-amount').show();
@@ -182,6 +186,15 @@ $(function() {
 		  var $link = $(event.target);
 		  $('#after-reward .after-view').hide();
 		  $('#after-reward ' + $link.attr('href') + '-view').show();
+		  $link.addClass('selected').siblings().removeClass('selected');
+		  $('#back-to-thank-you').show();
+		  return false;
+		},
+		
+		goto_thank_you: function() {
+		  $('#after-reward .after-view, #back-to-thank-you').hide();
+		  $('#thanks').show();
+		  $('.after-link').removeClass('selected');
 		  return false;
 		},
 		
@@ -323,13 +336,6 @@ $(function() {
 		allow_commenting: function() {
 		  if (!RewardModal.comments_open) { RewardModal.toggle_comments(); }
 		  $('#comments-view form').slideDown();
-		},
-
-		setup_key_bindings: function() {
-			var modal = this;
-			$(document).keyup(function(e) {
-			  if (e.keyCode == 27) { modal.toggle_modal(); } 			// escape
-			});
 		}
 	});
 	

@@ -10,7 +10,7 @@ class SessionsController < Devise::SessionsController
     user = warden.authenticate(scope: resource_name)
     render json: { success: false } and return if user.nil?
     sign_in(:user, user)
-    render json: { success: true, name: user.name }
+    render json: { success: true, id: user.id, name: user.name }
   end
   
   def creator
