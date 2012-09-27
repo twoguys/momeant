@@ -13,7 +13,9 @@ class ExternalPage < Page
   def parse_youtube_embed
     url = self.text
     query_params = CGI.parse(URI.parse(url).query)
-    query_params["v"].present? ? query_params["v"] : ""
+    Rails.logger.info "------------------"
+    Rails.logger.info query_params
+    query_params["v"].present? ? query_params["v"].first : ""
   end
   
   def empty?
