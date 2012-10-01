@@ -8,6 +8,10 @@
 
 #presenter
 
+  #reward-button
+    %a{href: reward_story_path(@story, impacted_by: params[:impacted_by])}
+      = image_tag @story.user.avatar.url(:thumbnail)
+
   .content
   
     %ul#pages
@@ -43,7 +47,3 @@
     mixpanel.track('Impact Given', { reward_id: '#{params[:impacted_by]}' });
 
 = javascript_include_tag "stories/presenter"
-- if current_user
-  :javascript
-    var user_id = #{current_user.id};
-  = javascript_include_tag "comments"

@@ -54,7 +54,8 @@ $(function() {
 		events: {
 			'click #previous-page': 'goto_previous_page',
 			'click #next-page':     'goto_next_page',
-			'click .pages a':       'jump_to_page'
+			'click .pages a':       'jump_to_page',
+			'click #reward-button a': 'open_reward_window'
 		},
 		
 		initialize: function() {
@@ -73,6 +74,8 @@ $(function() {
 			this.$('ul#pages li').swipe({swipe:this.swipe,threshold:0});
 			this.goto_page_in_url_or_default();
 			this.setup_key_bindings();
+			
+			this.check_for_existing_reward_button();
 		},
 		
 		goto_previous_page: function() {
@@ -132,6 +135,16 @@ $(function() {
 			  if (e.keyCode == 39) { presenter.goto_next_page(); } 					// right arrow
 				if (e.keyCode == 37) { presenter.goto_previous_page(); }			// left arrow
 			});
+		},
+		
+		open_reward_window: function(event) {
+		  var $button = $(event.target);
+		  window.open($button.attr('href'), 'Reward', 'menubar=no,location=no,scrollbars=no,status=no,resizable=no,width=800,height=500');
+		  return false;
+		},
+		
+		check_for_existing_reward_button: function() {
+		  
 		}
 	});
 	
