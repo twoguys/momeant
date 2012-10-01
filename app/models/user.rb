@@ -373,7 +373,7 @@ class User < ActiveRecord::Base
     message = ""
     if object.is_a?(Story)
       title = object.title[0..55]
-      message = "I just posted content on @mo_meant. Reward me if you like it: #{title} #{url} #momeant"
+      message = "I just posted some work on @momeant: #{url} #momeant"
     elsif object.is_a?(Reward)
       message = "#{comment[0..109]} #{url} #momeant"
     end

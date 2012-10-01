@@ -60,6 +60,7 @@
         = image_tag current_user.avatar.url(:thumbnail), :class => "commenter-avatar"
         = form.hidden_field :commentable_type, :value => "Story"
         = form.hidden_field :commentable_id, :value => @story.id
+        .helper Type your own comment and press enter:
         = form.text_area :comment, :class => "comment-box"
       %ul.comment-list.prepend
         = render :partial => "comments/comment", :collection => @story.comments.reverse, :as => :comment
@@ -68,7 +69,13 @@
     - if @story.user.discussions.empty?
       %h3 I haven't posted any discussion topics just yet.
     - else
-      %h3 Click any of my topics to jump over to my profile and participate:
+      %h3 Here is a list of my discussion topics.
+      %h4 Click a topic to jump over to my profile and participate:
       %ul
         - @story.user.discussions.each do |discussion|
-          = render partial: "discussions/discussion_summary", locals: { discussion: discussion }
+          %li
+            %a{href: user_path(@story.user, discussion: discussion.id), topic: discussion.id, target: "_blank"}
+              %span.body
+                = truncate(discussion.topic, length: 100)
+              %span.comments= discussion.comments.size
+              %span.when #{time_ago_in_words(discussion.created_at)} ago

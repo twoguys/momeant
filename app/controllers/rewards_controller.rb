@@ -30,7 +30,7 @@ class RewardsController < ApplicationController
     
     @twitter_configured = current_user.authentications.find_by_provider("twitter")
     @facebook_configured = current_user.authentications.find_by_provider("facebook")
-    render json: { success: true, html: render_to_string("rewards/modal/_after_reward", layout: false) }
+    render json: { success: true, reward_id: @reward.id, html: render_to_string("rewards/modal/_after_reward", layout: false) }
   end
   
   def visualize

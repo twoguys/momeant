@@ -223,7 +223,7 @@ body#reward-modal
       line-height: 1em
     ul
       float: left
-      margin-right: 30px
+      margin-right: 20px
     li
       float: left
       clear: none
@@ -368,7 +368,7 @@ body#reward-modal
           background-position: -386px -113px
     
     .after-view
-      height: 360px
+      height: 350px
       overflow: auto
     #impact-view, #comments-view, #discussions-view
       display: none
@@ -431,24 +431,41 @@ body#reward-modal
     
     #comments-list
       form
-        padding: 0 0 0 43px
-        margin-bottom: 10px
+        min-height: 52px
+        padding: 0 0 0 56px
+        margin-bottom: 15px
         img.commenter-avatar
           top: 0
           left: 0
+        .helper
+          font-size: 13px
+          color: #777
+          margin-bottom: 4px
+      form img.commenter-avatar, ul.comment-list > li .commenter-avatar img
+        width: 42px
+        height: 42px
+        padding: 1px
+        border: 1px solid #ddd
     ul.comment-list > li
-      margin: 0 0 10px
+      margin: 0 0 15px
+      padding-left: 56px
       .commenter-name
         color: $blue
       .text
         color: $text_color
       .metadata
-        color: #999
+        color: #ccc
     
     #discussions-view
       h3
+        font-family: $typewriter
         font-size: 16px
-        margin-bottom: 10px
+        font-style: italic
+        margin-bottom: 5px
+      h3, h4
+        font-weight: 500
+      h4
+        margin-bottom: 20px
       li
         margin-bottom: 12px
         a

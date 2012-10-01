@@ -185,9 +185,11 @@ $(function() {
 		goto_after_view: function(event) {
 		  var $link = $(event.target);
 		  $('#after-reward .after-view').hide();
-		  $('#after-reward ' + $link.attr('href') + '-view').show();
+		  var section = $link.attr('href')
+		  $('#after-reward ' + section + '-view').show();
 		  $link.addClass('selected').siblings().removeClass('selected');
 		  $('#back-to-thank-you').show();
+		  mixpanel.track('After Reward Click: ' + section.substring(1));
 		  return false;
 		},
 		
