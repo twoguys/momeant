@@ -16,8 +16,6 @@ $(function() {
 			
 			_.bindAll(this, 'update_visibility');
 			this.model.bind('change:visible', this.update_visibility);
-			
-			
 		},
 		
 		update_visibility: function() {
@@ -54,8 +52,7 @@ $(function() {
 		events: {
 			'click #previous-page': 'goto_previous_page',
 			'click #next-page':     'goto_next_page',
-			'click .pages a':       'jump_to_page',
-			'click #reward-button a': 'open_reward_window'
+			'click .pages a':       'jump_to_page'
 		},
 		
 		initialize: function() {
@@ -75,6 +72,7 @@ $(function() {
 			this.goto_page_in_url_or_default();
 			this.setup_key_bindings();
 			
+			$('#reward-button a').fancybox({type: 'iframe', width: 800, height: 500, padding: 0});
 			this.check_for_existing_reward_button();
 		},
 		
@@ -135,12 +133,6 @@ $(function() {
 			  if (e.keyCode == 39) { presenter.goto_next_page(); } 					// right arrow
 				if (e.keyCode == 37) { presenter.goto_previous_page(); }			// left arrow
 			});
-		},
-		
-		open_reward_window: function(event) {
-		  var $button = $(event.target);
-		  window.open($button.attr('href'), 'Reward', 'menubar=no,location=no,scrollbars=no,status=no,resizable=no,width=800,height=500');
-		  return false;
 		},
 		
 		check_for_existing_reward_button: function() {

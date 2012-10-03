@@ -813,9 +813,18 @@ nav.pagination {
           text-transform: uppercase; }
         #vertical-list #activity-list > li.content .info .text .synopsis {
           color: #999999;
-          margin-right: 10px; }
-        #vertical-list #activity-list > li.content .info .text .edit {
-          margin-right: 5px; }
+          margin-right: 10px;
+          margin-bottom: 5px; }
+        #vertical-list #activity-list > li.content .info .text a.action {
+          background: #00aeef;
+          color: white;
+          padding: 2px 5px;
+          text-transform: uppercase;
+          font-size: 12px;
+          -webkit-border-radius: 2px;
+          -moz-border-radius: 2px;
+          border-radius: 2px;
+          margin-right: 3px; }
         #vertical-list #activity-list > li.content .info .text .tags {
           font-size: 12px;
           margin: 2px 0; }
@@ -5475,34 +5484,77 @@ body#stories.show {
   background-color: #34b44c;
   margin-left: 40px; }
 
-#share-your-content {
-  width: 530px;
-  margin: 50px auto 0;
-  padding: 60px;
-  text-align: center;
-  background: #e8e8e8; }
-  #share-your-content h1 {
+body#stories.share #main {
+  width: 800px;
+  margin: 40px auto 0; }
+body#stories.share h1 {
+  font-size: 30px;
+  margin-bottom: 30px; }
+body#stories.share section {
+  border-top: 1px solid #cccccc;
+  padding-top: 30px;
+  margin-bottom: 40px; }
+  body#stories.share section h3 {
     font-size: 24px;
-    font-weight: 600;
-    margin-bottom: 50px; }
-  #share-your-content h3 {
-    font-size: 20px;
-    font-weight: 400;
-    margin-bottom: 50px; }
-  #share-your-content #share-link {
     margin-bottom: 20px; }
-    #share-your-content #share-link .note {
-      color: #777777;
-      margin-bottom: 3px; }
-    #share-your-content #share-link input {
+body#stories.share #use-a-button p {
+  margin: 10px 0; }
+body#stories.share #use-a-button ul {
+  margin-top: 20px; }
+body#stories.share #use-a-button li {
+  background: #f0f0f0;
+  border: 1px solid #f0f0f0;
+  padding: 12px 9px;
+  cursor: pointer;
+  margin-bottom: 5px;
+  height: 34px; }
+  body#stories.share #use-a-button li:hover {
+    border-color: #cccccc; }
+  body#stories.share #use-a-button li.selected {
+    background: #daecf6;
+    border-color: #c4ddef; }
+    body#stories.share #use-a-button li.selected input {
+      display: block; }
+  body#stories.share #use-a-button li#light-avatar, body#stories.share #use-a-button li#dark-avatar {
+    height: 52px; }
+    body#stories.share #use-a-button li#light-avatar input, body#stories.share #use-a-button li#dark-avatar input {
+      margin-top: 10px; }
+  body#stories.share #use-a-button li .button {
+    float: left; }
+  body#stories.share #use-a-button li input {
+    display: none;
+    padding: 4px 3px;
+    float: right;
+    width: 530px;
+    border: 1px solid #cccccc;
+    font-size: 14px;
+    color: #777777;
+    margin-top: 4px; }
+body#stories.share #use-a-button .with-avatar {
+  position: relative; }
+  body#stories.share #use-a-button .with-avatar img.avatar {
+    width: 42px;
+    height: 42px;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    border: 1px solid #cccccc; }
+body#stories.share #use-a-button #dark-avatar img.avatar {
+  border-color: #333333; }
+body#stories.share #share-a-link {
+  border-bottom: 1px solid #cccccc; }
+  body#stories.share #share-a-link p {
+    margin: 20px 0 5px; }
+  body#stories.share #share-a-link #share-link {
+    margin-bottom: 20px; }
+    body#stories.share #share-a-link #share-link input {
       width: 48%;
       padding: 4px;
       font-size: 1.1em; }
-  #share-your-content #share-buttons {
-    width: 270px;
-    height: 40px;
-    margin: 0 auto 50px; }
-    #share-your-content #share-buttons a {
+  body#stories.share #share-a-link #share-buttons {
+    height: 60px;
+    margin-bottom: 20px; }
+    body#stories.share #share-a-link #share-buttons a {
       display: block;
       width: 123px;
       height: 40px;
@@ -5511,12 +5563,15 @@ body#stories.show {
       text-indent: -9999px;
       float: left;
       margin-right: 20px; }
-    #share-your-content #share-buttons #facebook-button {
+    body#stories.share #share-a-link #share-buttons #facebook-button {
       background-position: 0 -43px;
       margin: 0; }
-  #share-your-content #view-content-button {
-    background-color: #bdbdbd;
-    color: #252525; }
+body#stories.share #view-content-button {
+  display: inline-block;
+  background-color: #e5e5e5;
+  color: #252525;
+  font-size: 20px;
+  margin-bottom: 60px; }
 
 .thumbnail.title {
   width: 288px;

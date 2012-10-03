@@ -40,7 +40,7 @@
 
 - if @story.published?
   :javascript
-    mixpanel.track('Viewed Content', { user: #{user_signed_in? ? 'true' : 'false'}, self_promotion: '#{params[:creator].present?}' });
+    mixpanel.track('Viewed Content', { user: #{user_signed_in? ? 'true' : 'false'}, self_promotion: #{params[:creator].present?}, impact: #{params[:impacted_by].present?} });
 
 - if params[:impacted_by].present?
   :javascript

@@ -1,26 +1,58 @@
-#share-your-content
+%h1
   - if @story.created_at > 1.minute.ago
-    %h1 Lovely work! Your #{@story.media_are_or_is} now published.
+    Your #{@story.media_are_or_is} now published. Share your work with others:
   - else
-    %h1 Share your lovely work with others.
+    Share your #{@story.media_type} with others:
+
+%section#use-a-button
+  %h3 "Reward Button" for Websites
+  %p Do you have a website with this work displayed on it? Would you like to put a Reward Button on that site so that others can reward this specific piece of work right there?
+  %p Click the button of your choosing below to select the HTML code to embed. Then, copy and paste the code onto your site where you'd like it to appear.
   
-  %h3
-    Would you like to share a link to your content
-    %br
-    so that others can view and reward it?
+  %ul#button-list
+    %li#light.selected
+      .button
+        = image_tag "reward-modal/buttons/light-219x34.png"
+      %input{type: "text", readonly: "readonly", value: reward_button_html(@story, "light")}
+    %li#light-avatar
+      .button.with-avatar
+        = image_tag "reward-modal/buttons/light-avatar-168x52.png"
+        = image_tag @story.user.avatar.url(:thumbnail), class: "avatar"
+      %input{type: "text", readonly: "readonly", value: reward_button_html(@story, "light-avatar")}
+    %li#dark
+      .button
+        = image_tag "reward-modal/buttons/dark-219x34.png"
+      %input{type: "text", readonly: "readonly", value: reward_button_html(@story, "dark")}
+    %li#dark-avatar
+      .button.with-avatar
+        = image_tag "reward-modal/buttons/dark-avatar-168x52.png"
+        = image_tag @story.user.avatar.url(:thumbnail), class: "avatar"
+      %input{type: "text", readonly: "readonly", value: reward_button_html(@story, "dark-avatar")}
+
+%section#share-a-link
+  %h3 Share a link to your content
   
+  %p Copy &amp; Paste this link:
   #share-link
-    .note Copy &amp; Paste this link to your content:
     = text_field_tag :link, story_url(@story), readonly: true
+
+  %p Or share it with your Twitter &amp; Facebook networks:
   #share-buttons
     = link_to "Tweet it!", "https://twitter.com/share?url=#{story_url(@story, creator: true)}", :id => "twitter-button"
     = link_to "Post to FB", "http://www.facebook.com/sharer.php?u=#{story_url(@story, creator: true)}", :id => "facebook-button"
   
-  = link_to "View your #{@story.media_type} &rarr;".html_safe, story_path(@story), :id => "view-content-button", :class => "button"
+= link_to "View your #{@story.media_type} &rarr;".html_safe, story_path(@story), :id => "view-content-button", :class => "button"
 
 
 :javascript
   mixpanel.track('Published Content');
+  
+  $('#light input').select();
+  
+  $('#button-list li').click(function() {
+    $(this).addClass('selected').siblings().removeClass('selected');
+    $(this).find('input').select();
+  });
   
   $('#share-link input').click(function() {
     $(this).select();
