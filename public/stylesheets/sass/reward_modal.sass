@@ -2,6 +2,7 @@
 @import "typography"
 @import "forms"
 @import "comments"
+@import "discussions"
 
 body#reward-modal
   background: #000
@@ -459,35 +460,16 @@ body#reward-modal
     #discussions-view
       h3
         font-family: $typewriter
-        font-size: 16px
+        font-size: 18px
         font-style: italic
-        margin-bottom: 5px
+        margin-bottom: 2px
       h3, h4
         font-weight: 500
       h4
-        margin-bottom: 20px
-      li
-        margin-bottom: 12px
-        a
-          display: block
-          color: $text_color
-          background: #f0f0f0
-          padding: 4px 6px
-          @include rounded(3px)
-        a:hover
-          background: #444
-          color: #fff
-        span
-          display: inline-block
-        .body
-          width: 330px
-          overflow: hidden
-        .comments
-          margin: 0 30px 0 20px
-          padding-right: 20px
-          background: transparent url(../images/reward-modal/comments.png) no-repeat 100% 2px
-          width: 26px
-          text-align: right
+        color: #999
+        margin-bottom: 10px
+      #discussion-list .text
+        width: 360px
       
 
 #twitter-sharing, #facebook-sharing

@@ -71,11 +71,15 @@
     - else
       %h3 Here is a list of my discussion topics.
       %h4 Click a topic to jump over to my profile and participate:
-      %ul
+      %ul#discussion-list
         - @story.user.discussions.each do |discussion|
           %li
             %a{href: user_path(@story.user, discussion: discussion.id), topic: discussion.id, target: "_blank"}
-              %span.body
-                = truncate(discussion.topic, length: 100)
-              %span.comments= discussion.comments.size
-              %span.when #{time_ago_in_words(discussion.created_at)} ago
+              .date
+                .month= discussion.created_at.strftime("%b")
+                .day= discussion.created_at.strftime("%d")
+                .year= discussion.created_at.strftime("%Y")
+              .text
+                .title= discussion.topic
+                .body= truncate(discussion.body, length: 120)
+              .comment-count{class: discussion.comments.size == 0 ? "empty" : ""}= discussion.comments.size

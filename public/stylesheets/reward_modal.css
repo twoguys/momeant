@@ -324,6 +324,52 @@ a.button.green {
       padding: 4px 8px;
       top: -5px; }
 
+ul#discussion-list li {
+  height: 55px;
+  padding: 10px 0;
+  border-bottom: 1px solid #eeeeee; }
+  ul#discussion-list li a {
+    display: block;
+    color: #252525;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px; }
+  ul#discussion-list li a:hover .text .title, ul#discussion-list li a:hover .text .body {
+    color: #00aeef; }
+  ul#discussion-list li a:hover .date {
+    border-color: #00aeef;
+    color: #252525; }
+  ul#discussion-list li .date, ul#discussion-list li .text, ul#discussion-list li .comment-count {
+    float: left;
+    padding-right: 25px;
+    height: 55px; }
+  ul#discussion-list li .date {
+    font-size: 12px;
+    text-transform: uppercase;
+    border-left: 3px solid #eeeeee;
+    padding-left: 15px;
+    color: #999999; }
+    ul#discussion-list li .date .day {
+      font-size: 29px;
+      line-height: 24px; }
+  ul#discussion-list li .text {
+    width: 760px; }
+    ul#discussion-list li .text .title {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 2px; }
+    ul#discussion-list li .text .body {
+      font-size: 13px;
+      color: #777777; }
+  ul#discussion-list li .comment-count {
+    background: transparent url(../images/reward-modal/comments.png) no-repeat 100% 12px;
+    width: 60px;
+    text-align: right;
+    font-size: 30px;
+    font-weight: 200; }
+    ul#discussion-list li .comment-count.empty {
+      opacity: 0.2; }
+
 body#reward-modal {
   background: black;
   position: absolute;
@@ -773,37 +819,16 @@ body#reward-modal {
         color: #cccccc; }
     body#reward-modal #after-reward #discussions-view h3 {
       font-family: "museo-slab-1", "museo-slab-2", serif;
-      font-size: 16px;
+      font-size: 18px;
       font-style: italic;
-      margin-bottom: 5px; }
+      margin-bottom: 2px; }
     body#reward-modal #after-reward #discussions-view h3, body#reward-modal #after-reward #discussions-view h4 {
       font-weight: 500; }
     body#reward-modal #after-reward #discussions-view h4 {
-      margin-bottom: 20px; }
-    body#reward-modal #after-reward #discussions-view li {
-      margin-bottom: 12px; }
-      body#reward-modal #after-reward #discussions-view li a {
-        display: block;
-        color: #252525;
-        background: #f0f0f0;
-        padding: 4px 6px;
-        -webkit-border-radius: 3px;
-        -moz-border-radius: 3px;
-        border-radius: 3px; }
-      body#reward-modal #after-reward #discussions-view li a:hover {
-        background: #444444;
-        color: white; }
-      body#reward-modal #after-reward #discussions-view li span {
-        display: inline-block; }
-      body#reward-modal #after-reward #discussions-view li .body {
-        width: 330px;
-        overflow: hidden; }
-      body#reward-modal #after-reward #discussions-view li .comments {
-        margin: 0 30px 0 20px;
-        padding-right: 20px;
-        background: transparent url(../images/reward-modal/comments.png) no-repeat 100% 2px;
-        width: 26px;
-        text-align: right; }
+      color: #999999;
+      margin-bottom: 10px; }
+    body#reward-modal #after-reward #discussions-view #discussion-list .text {
+      width: 360px; }
 
 #twitter-sharing, #facebook-sharing {
   width: 367px;

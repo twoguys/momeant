@@ -25,7 +25,7 @@
                   %li.submit
                     = form.submit "Post"
             
-          %ul
+          %ul#discussion-list
             - @discussions.each do |discussion|
               = render partial: "discussions/discussion_summary", locals: { discussion: discussion }
               
