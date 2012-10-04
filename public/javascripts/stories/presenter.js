@@ -72,8 +72,7 @@ $(function() {
 			this.goto_page_in_url_or_default();
 			this.setup_key_bindings();
 			
-			$('#reward-button a').fancybox({type: 'iframe', width: 800, height: 500, padding: 0});
-			this.check_for_existing_reward_button();
+			$('#reward-button').fancybox({type: 'iframe', width: 800, height: 500, padding: 0});
 		},
 		
 		goto_previous_page: function() {
@@ -133,10 +132,6 @@ $(function() {
 			  if (e.keyCode == 39) { presenter.goto_next_page(); } 					// right arrow
 				if (e.keyCode == 37) { presenter.goto_previous_page(); }			// left arrow
 			});
-		},
-		
-		check_for_existing_reward_button: function() {
-		  
 		}
 	});
 	

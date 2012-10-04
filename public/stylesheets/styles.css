@@ -678,7 +678,8 @@ table {
     text-transform: none;
     background: #f7f7f7;
     background-image: -moz-linear-gradient(center top, #fdfdfd 4%, #f0f0f0 52%);
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #fdfdfd), color-stop(0.52, #f0f0f0)); }
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #fdfdfd), color-stop(0.52, #f0f0f0));
+    background: linear-gradient(to bottom, #fdfdfd 0%, #f0f0f0 100%); }
   table td.numerals {
     text-align: center;
     font-family: "ff-dagny-web-pro-1", "ff-dagny-web-pro-2", sans-serif;
@@ -720,6 +721,7 @@ nav.pagination {
     text-shadow: 0 1px 0 white;
     background-image: -moz-linear-gradient(center top, white 4%, #f5f5f5 52%);
     background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, white), color-stop(0.52, #f5f5f5));
+    background: linear-gradient(to bottom, white 0%, #f5f5f5 100%);
     -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15) ;
     -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15) ;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15) ;
@@ -2729,13 +2731,16 @@ form.new_story, form.edit_story, .story-form {
       margin-left: 10px; }
     form.new_story .finished-links #preview-link, form.edit_story .finished-links #preview-link, .story-form .finished-links #preview-link {
       background-image: -moz-linear-gradient(center top, #43baf0 4%, #3a94e6 52%);
-      background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #43baf0), color-stop(0.52, #3a94e6)); }
+      background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #43baf0), color-stop(0.52, #3a94e6));
+      background: linear-gradient(to bottom, #43baf0 0%, #3a94e6 100%); }
     form.new_story .finished-links #publish-link, form.edit_story .finished-links #publish-link, .story-form .finished-links #publish-link {
       background-image: -moz-linear-gradient(center top, #62e079 4%, #12b32f 52%);
-      background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #62e079), color-stop(0.52, #12b32f)); }
+      background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #62e079), color-stop(0.52, #12b32f));
+      background: linear-gradient(to bottom, #62e079 0%, #12b32f 100%); }
     form.new_story .finished-links #delete-link, form.edit_story .finished-links #delete-link, .story-form .finished-links #delete-link {
       background-image: -moz-linear-gradient(center top, #ff7593 4%, #f42653 52%);
-      background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #ff7593), color-stop(0.52, #f42653)); }
+      background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #ff7593), color-stop(0.52, #f42653));
+      background: linear-gradient(to bottom, #ff7593 0%, #f42653 100%); }
   form.new_story .banner, form.edit_story .banner, .story-form .banner {
     padding: 20px;
     margin: 30px 0;
@@ -3074,6 +3079,7 @@ form.new_story, form.edit_story, .story-form {
     form.new_story #page-previews a#open-page-editor-button, form.edit_story #page-previews a#open-page-editor-button, .story-form #page-previews a#open-page-editor-button {
       background-image: -moz-linear-gradient(center top, #43baf0 4%, #3a94e6 52%);
       background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #43baf0), color-stop(0.52, #3a94e6));
+      background: linear-gradient(to bottom, #43baf0 0%, #3a94e6 100%);
       display: inline-block;
       height: 44px;
       line-height: 45px;
@@ -3365,7 +3371,8 @@ form.new_story, form.edit_story, .story-form {
   #gallery-creator #cancel-gallery-creation {
     background-color: #f42652;
     background-image: -moz-linear-gradient(center top, #ff7593 4%, #f42653 52%);
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #ff7593), color-stop(0.52, #f42653)); }
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #ff7593), color-stop(0.52, #f42653));
+    background: linear-gradient(to bottom, #ff7593 0%, #f42653 100%); }
 
 #gallery-creator.loading .inner {
   background: white url(../images/spinner.gif) no-repeat 50% 50%; }
@@ -5005,34 +5012,29 @@ body#stories.show {
   height: 100%;
   overflow: hidden; }
   #presenter #reward-button {
+    display: block;
     position: fixed;
-    top: 42px;
-    left: 50%;
-    margin-left: -89px;
-    width: 168px;
-    height: 52px;
-    padding: 5px;
-    background: black;
-    -webkit-border-bottom-right-radius: 5px;
-    -webkit-border-bottom-left-radius: 5px;
-    -moz-border-radius-bottomright: 5px;
-    -moz-border-radius-bottomleft: 5px;
-    border-bottom-right-radius: 5px;
-    border-bottom-left-radius: 5px;
+    top: 7px;
+    left: 320px;
+    padding: 5px 10px;
+    background: #00aeef;
+    background-image: -moz-linear-gradient(center top, #14b4ff 4%, #009ce5 52%);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #14b4ff), color-stop(0.52, #009ce5));
+    background: linear-gradient(to bottom, #14b4ff 0%, #009ce5 100%);
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+    text-transform: uppercase;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.5);
     z-index: 999; }
-    #presenter #reward-button a {
-      display: block;
-      width: 168px;
-      height: 52px;
-      background: transparent url(../images/reward-modal/buttons/light-avatar-168x52.png) no-repeat 0 0;
-      position: relative; }
-      #presenter #reward-button a img {
-        width: 42px;
-        height: 42px;
-        position: absolute;
-        top: 5px;
-        left: 5px;
-        border: 1px solid #cccccc; }
+    #presenter #reward-button:hover {
+      background: #14b4ff;
+      background-image: -moz-linear-gradient(center top, #2dbcff 4%, #00aeff 52%);
+      background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #2dbcff), color-stop(0.52, #00aeff));
+      background: linear-gradient(to bottom, #2dbcff 0%, #00aeff 100%); }
   #presenter .content {
     position: absolute;
     top: 42px;
@@ -5428,6 +5430,7 @@ body#stories.show {
   #twitter-sharing input[type="submit"] {
     background-image: -moz-linear-gradient(center top, #66dfff 4%, #4ccaff 52%);
     background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #66dfff), color-stop(0.52, #4ccaff));
+    background: linear-gradient(to bottom, #66dfff 0%, #4ccaff 100%);
     color: #0b2d39;
     text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5); }
 
@@ -5464,7 +5467,8 @@ body#stories.show {
       line-height: 13px; }
   #facebook-sharing input[type="submit"] {
     background-image: -moz-linear-gradient(center top, #6481bd 4%, #455d99 52%);
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #6481bd), color-stop(0.52, #455d99)); }
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #6481bd), color-stop(0.52, #455d99));
+    background: linear-gradient(to bottom, #6481bd 0%, #455d99 100%); }
 
 #facebook-sharing .not-configured {
   background-image: url(../images/icons/facebookSmall.png);
@@ -6993,6 +6997,7 @@ a#load-more {
   border-radius: 5px;
   background-image: -moz-linear-gradient(center top, #fdfdfd 4%, #f0f0f0 52%);
   background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #fdfdfd), color-stop(0.52, #f0f0f0));
+  background: linear-gradient(to bottom, #fdfdfd 0%, #f0f0f0 100%);
   text-align: center; }
 
 #hidden-reward-appender {
@@ -7381,6 +7386,7 @@ body#messages {
     border-bottom: 1px solid #dddddd;
     background-image: -moz-linear-gradient(center top, #f0f0f0 4%, #e8e8e8 52%);
     background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #f0f0f0), color-stop(0.52, #e8e8e8));
+    background: linear-gradient(to bottom, #f0f0f0 0%, #e8e8e8 100%);
     color: #252525; }
   #messages-page #sidebar li .avatar {
     display: block;
@@ -7407,6 +7413,7 @@ body#messages {
     background: #e0e0e0;
     background-image: -moz-linear-gradient(center top, #e0e0e0 4%, #d8d8d8 52%);
     background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #e0e0e0), color-stop(0.52, #d8d8d8));
+    background: linear-gradient(to bottom, #e0e0e0 0%, #d8d8d8 100%);
     border-top: 1px solid #bbbbbb;
     border-bottom: 1px solid #bbbbbb; }
 #messages-page #main-bar {
@@ -7755,6 +7762,7 @@ a#load-more-activity {
   background: #dddddd;
   background-image: -moz-linear-gradient(center top, #f7f7f7 4%, #eeeeee 52%);
   background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, #f7f7f7), color-stop(0.52, #eeeeee));
+  background: linear-gradient(to bottom, #f7f7f7 0%, #eeeeee 100%);
   color: #999999;
   text-shadow: 0 1px 0 white;
   text-transform: uppercase;

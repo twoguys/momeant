@@ -13,34 +13,23 @@ body#stories.show
   overflow: hidden
   
   #reward-button
+    display: block
     position: fixed
-    top: 42px
-    left: 50%
-    margin-left: -89px
-    width: 168px
-    height: 52px
-    padding: 5px
-    background: #000
-    -webkit-border-bottom-right-radius: 5px
-    -webkit-border-bottom-left-radius: 5px
-    -moz-border-radius-bottomright: 5px
-    -moz-border-radius-bottomleft: 5px
-    border-bottom-right-radius: 5px
-    border-bottom-left-radius: 5px
+    top: 7px
+    left: 320px
+    padding: 5px 10px
+    background: $blue
+    @include gradient(#14B4FF, #009CE5)
+    @include rounded(3px)
+    font-size: 14px
+    font-weight: 600
+    color: #fff
+    text-transform: uppercase
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.5)
     z-index: 999
-    a
-      display: block
-      width: 168px
-      height: 52px
-      background: transparent url(../images/reward-modal/buttons/light-avatar-168x52.png) no-repeat 0 0
-      position: relative
-      img
-        width: 42px
-        height: 42px
-        position: absolute
-        top: 5px
-        left: 5px
-        border: 1px solid #ccc
+    &:hover
+      background: #14B4FF
+      @include gradient(#2DBCFF, #00AEFF)
   
   .content
     position: absolute
