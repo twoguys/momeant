@@ -1,0 +1,13 @@
+.admin.landing-issues
+  = render "admin/tabs"
+
+  = button_to "Create new issue", admin_landing_issues_path
+  
+  %table
+    %thead
+      %tr
+        %th Issue
+        %th Title
+        %th Actions
+    %tbody
+      = render @landing_issues

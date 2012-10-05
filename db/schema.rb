@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120910140245) do
+ActiveRecord::Schema.define(:version => 20121005130628) do
 
   create_table "activities", :force => true do |t|
     t.integer  "actor_id"
@@ -150,6 +150,24 @@ ActiveRecord::Schema.define(:version => 20120910140245) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "invitee_id"
+  end
+
+  create_table "landing_issues", :force => true do |t|
+    t.string   "title"
+    t.integer  "position"
+    t.string   "header_background_file_name"
+    t.string   "header_background_content_type"
+    t.integer  "header_background_file_size"
+    t.datetime "header_background_updated_at"
+    t.string   "header_title_file_name"
+    t.string   "header_title_content_type"
+    t.integer  "header_title_file_size"
+    t.datetime "header_title_updated_at"
+    t.integer  "curator_id"
+    t.string   "creator_ids"
+    t.string   "content_ids"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "messages", :force => true do |t|

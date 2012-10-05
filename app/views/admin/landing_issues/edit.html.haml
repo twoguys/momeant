@@ -1,0 +1,28 @@
+.admin.landing-issues
+  = render "admin/tabs"
+  
+  %h1 Landing Issue #{@landing_issue.position}
+  
+  = form_for @landing_issue, :url => admin_landing_issue_path(@landing_issue), :html => {:multipart => true} do |form|
+    %fieldset
+      %ul
+        %li
+          = form.label :title
+          = form.text_field :title
+        %li
+          = form.label :header_background, "Header background image"
+          = form.file_field :header_background
+        %li
+          = form.label :header_title, "Header title image (text)"
+          = form.file_field :header_title
+        %li
+          = form.label :curator_id, "User ID of the curator"
+          = form.text_field :curator_id
+        %li
+          = form.label :creator_ids, "User IDs of the creators, comma separated (e.g. 10, 34, 56)"
+          = form.text_field :creator_ids
+        %li
+          = form.label :content_ids, "IDs of the content, comma separated (e.g. 10, 34, 56)"
+          = form.text_field :content_ids
+        %li  
+          = form.submit "Save"

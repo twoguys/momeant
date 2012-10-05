@@ -1,0 +1,32 @@
+#landing-issue-1.landing-issue
+  %header#intro
+    = image_tag @issue.header_background.url, id: "header-background"
+    = image_tag @issue.header_title.url, id: "header-title"
+    #curated-by
+      %h3 Curated By
+      = image_tag @issue.curator.avatar.url(:large)
+      %h2= @issue.curator.name
+      %p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
+
+  %section#what-is-this
+    %p.first Momeant is dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    %p.last This space issue is dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    .clear
+  
+  %section#creators
+    %ul
+      - @issue.creators.each do |creator|
+        %li
+          = image_tag creator.avatar.url(:editorial)
+          %h1
+            %span= creator.first_name
+            %span= creator.last_name
+          .occupation= creator.occupation
+          .supporter-count= creator.patrons.count
+          %p.tagline= creator.tagline
+    .clear
+  
+  %section#quote
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  
+  %section#content
