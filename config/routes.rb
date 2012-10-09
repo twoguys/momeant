@@ -121,7 +121,9 @@ Repo::Application.routes.draw do
       post :toggle_enabled, :on => :member
     end
     resources :editorials
-    resources :landing_issues
+    resources :landing_issues do
+      get :preview, on: :member
+    end
   end
   
   match '/auth/:provider/configure' => 'authentications#configure'
