@@ -8,9 +8,7 @@
 
 #presenter
 
-  #reward-button
-    %a{href: reward_story_path(@story, impacted_by: params[:impacted_by])}
-      = image_tag @story.user.avatar.url(:thumbnail)
+  = link_to "Reward #{@story.user.first_name}'s work", reward_story_path(@story, impacted_by: params[:impacted_by]), id: "reward-button"
 
   .content
   

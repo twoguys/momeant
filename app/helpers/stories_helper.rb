@@ -25,7 +25,7 @@ module StoriesHelper
       height = 52
       avatar = "<img src=\"#{story.user.avatar.url(:thumbnail)}\" width=\"42\" height=\"42\" style=\"position:absolute;top:4px;left:5px;border:1px solid #333;\">"
     end
-    "<a href=\"#{url}\" onclick=\"#{javascript}\" style=\"display:block;width:#{width}px;height:#{height}px;position:relative;\"><img src=\"#{image_url}\" width=\"#{width}\" height=\"#{height}\" alt=\"Reward Me on Momeant\">#{avatar}</a>"
+    "<a id=\"momeant-reward-button\" href=\"#{url}\" onclick=\"#{javascript}\" style=\"display:block;width:#{width}px;height:#{height}px;position:relative;\"><img src=\"#{image_url}\" width=\"#{width}\" height=\"#{height}\" alt=\"Reward Me on Momeant\">#{avatar}</a>"
   end
   
   def bookmark_button(story)
