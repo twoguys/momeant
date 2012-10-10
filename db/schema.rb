@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121009142006) do
+ActiveRecord::Schema.define(:version => 20121010123635) do
 
   create_table "activities", :force => true do |t|
     t.integer  "actor_id"
@@ -168,8 +168,8 @@ ActiveRecord::Schema.define(:version => 20121009142006) do
     t.string   "content_ids"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "creator_comments"
-    t.text     "content_comments"
+    t.text     "creator_comments",               :default => ""
+    t.text     "content_comments",               :default => ""
     t.boolean  "published"
   end
 
