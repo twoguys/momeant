@@ -2,14 +2,16 @@ class Admin::PayPeriodsController < Admin::BaseController
   
   def index
     @pay_periods = PayPeriod.all
-    @requested_cashouts = Cashout.requested
+  end
+  
+  def unpaid
+    @creators = Reward.momeant_needs_to_pay.group_by(&:recipient)
+    @creators.reject! { |creator, rewards| rewards.map(&:amount).inject(:+) < PayPeriod::PAYOUT_THRESHOLD }
   end
   
   def create
-    @pay_period = PayPeriod.create(:user_id => current_user.id, :end => Time.now)
-    @pay_period.reload
-    Cashout.requested.update_all(:pay_period_id => @pay_period.id, :state => "paid")
-    redirect_to admin_pay_periods_path, :notice => "Payments have been sent to the necessary creators."
+    pay_period = PayPeriod.end_now(current_user)
+    redirect_to admin_pay_period_path(pay_period)
   end
   
   def show

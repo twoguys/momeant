@@ -1,0 +1,15 @@
+%h3
+  Nice work! You've earned #{@amount}.
+
+%p We're going the process of paying the creators who have earned money this pay period, so you should receive your payment shortly.
+
+- if @user.pay_email == "none"
+  %p{style: "padding: 2px 6px; background: #fcc"}
+    You have not told us how we can pay you.
+    %br
+    %br
+    Please visit your #{link_to "Settings page", settings_user_url(@user)} and provide us with your Amazon or PayPal email so that we can pay you.
+- elsif @user.paypal_email.present?
+  %p{style: "padding: 2px 6px; background:#fffcd3"} We will send #{@amount} to your PayPal account (#{@user.paypal_email}).
+- elsif @user.amazon_email.present?
+  %p{style: "padding: 2px 6px; background:#fffcd3"} We will send #{@amount} to your Amazon account (#{@user.amazon_email}).

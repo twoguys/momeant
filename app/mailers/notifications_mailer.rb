@@ -1,4 +1,6 @@
 class NotificationsMailer < ActionMailer::Base
+  include ActionView::Helpers::NumberHelper
+  
   default :from => "Momeant <team@momeant.com>"
   layout "email"
   
@@ -77,5 +79,12 @@ class NotificationsMailer < ActionMailer::Base
     @dont_pad_email = true
     
     mail :to => user.email, :subject => "#{following.name} just posted a new broadcast message."
+  end
+  
+  def payment_notice(user, amount)
+    @user = user
+    @amount = number_to_currency(amount)
+    
+    mail to: user.email, subject: "Momeant is paying you #{@amount}!"
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120910140245) do
+ActiveRecord::Schema.define(:version => 20121011133356) do
 
   create_table "activities", :force => true do |t|
     t.integer  "actor_id"
@@ -90,21 +90,22 @@ ActiveRecord::Schema.define(:version => 20120910140245) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "comment"
-    t.integer  "amount_old",                                         :default => 0
+    t.integer  "amount_old",                                            :default => 0
     t.integer  "recipient_id"
-    t.boolean  "given_during_trial",                                 :default => false
+    t.boolean  "given_during_trial",                                    :default => false
     t.integer  "parent_id"
     t.integer  "lft"
     t.integer  "rgt"
-    t.integer  "depth",                                              :default => 0
-    t.boolean  "show_on_landing_page",                               :default => false
+    t.integer  "depth",                                                 :default => 0
+    t.boolean  "show_on_landing_page",                                  :default => false
     t.integer  "cashout_id"
-    t.boolean  "shared_to_twitter",                                  :default => false
-    t.boolean  "shared_to_facebook",                                 :default => false
-    t.integer  "impact",                                             :default => 0
-    t.decimal  "amount",               :precision => 8, :scale => 2
-    t.boolean  "paid_for",                                           :default => false
+    t.boolean  "shared_to_twitter",                                     :default => false
+    t.boolean  "shared_to_facebook",                                    :default => false
+    t.integer  "impact",                                                :default => 0
+    t.decimal  "amount",                  :precision => 8, :scale => 2
+    t.boolean  "paid_for",                                              :default => false
     t.integer  "amazon_payment_id"
+    t.integer  "pay_period_line_item_id"
   end
 
   create_table "discussions", :force => true do |t|
@@ -150,6 +151,27 @@ ActiveRecord::Schema.define(:version => 20120910140245) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "invitee_id"
+  end
+
+  create_table "landing_issues", :force => true do |t|
+    t.string   "title"
+    t.integer  "position"
+    t.string   "header_background_file_name"
+    t.string   "header_background_content_type"
+    t.integer  "header_background_file_size"
+    t.datetime "header_background_updated_at"
+    t.string   "header_title_file_name"
+    t.string   "header_title_content_type"
+    t.integer  "header_title_file_size"
+    t.datetime "header_title_updated_at"
+    t.integer  "curator_id"
+    t.string   "creator_ids"
+    t.string   "content_ids"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "creator_comments",               :default => ""
+    t.text     "content_comments",               :default => ""
+    t.boolean  "published"
   end
 
   create_table "messages", :force => true do |t|

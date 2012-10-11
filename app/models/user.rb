@@ -41,8 +41,6 @@ class User < ActiveRecord::Base
   
   has_many :authentications
   
-  has_many :cashouts, :foreign_key => :user_id
-  
   has_many :sent_messages,
     :class_name => "Message",
     :foreign_key => "sender_id",
@@ -93,6 +91,12 @@ class User < ActiveRecord::Base
   
   def name
     "#{self.first_name} #{self.last_name}"
+  end
+  
+  def pay_email
+    return "#{self.paypal_email} (PayPal)" if self.paypal_email.present?
+    return "#{self.amazon_email} (Amazon)" if self.amazon_email.present?
+    "none"
   end
   
   def geocode_if_location_provided
@@ -265,18 +269,6 @@ class User < ActiveRecord::Base
   
   def last_reward_for(story)
     Reward.where(:user_id => self.id, :story_id => story.id).first
-  end
-  
-  def below_cashout_threshold?
-    self.rewards.not_cashed_out.sum(:amount) < Reward.cashout_threshold
-  end
-  
-  def needed_to_cashout
-    Reward.cashout_threshold - self.rewards.not_cashed_out.sum(:amount)
-  end
-  
-  def amount_not_cashed_out
-    self.rewards.not_cashed_out.sum(:amount)
   end
   
   def has_viewed?(story)
