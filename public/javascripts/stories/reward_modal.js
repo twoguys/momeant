@@ -14,6 +14,7 @@ $(function() {
 		  'click a[href="#reward"]':        'goto_reward',
 		  'click #login-button':            'goto_login',
 		  'submit #login-form':             'login',
+		  'click #toggle-synopsis':         'toggle_synopsis',
 			'click #amounts li a': 						'choose_reward_amount',
 			'focus #custom_amount': 					'choose_custom_amount',
 			'keydown #custom_amount':         'cleanse_reward_amount',
@@ -30,6 +31,23 @@ $(function() {
 			this.reward_submitted = false;
 			this.comments_open = false;
 			this.setup_custom_reward_amount_monitoring();
+		},
+		
+		toggle_synopsis: function(event) {
+		  var $synopsis = $('#synopsis');
+		  var $link = $('#toggle-synopsis');
+		  if ($synopsis.hasClass('open')) {
+		    $synopsis.find('.more').hide();
+		    $synopsis.find('.less').show();
+		    $synopsis.removeClass('open');
+		    $link.text('more');
+		  } else {
+		    $synopsis.find('.less').hide();
+		    $synopsis.find('.more').show();
+		    $synopsis.addClass('open');
+		    $link.text('less');
+		  }
+		  return false;
 		},
 		
 		// ACTIONS IF NOT LOGGED IN -------------------------------------
@@ -60,7 +78,7 @@ $(function() {
         user: {remember_me: 1, password: password, email: email}};
 		  
 		  $form.addClass('loading');
-		  $('#signup-section .alert').text('');
+		  $('#login-error').text('');
 		  $.post('/users/sign_in_remote.json', data, function(response) {
   		  $form.removeClass('loading');
 		    if (response.success) {
@@ -71,7 +89,7 @@ $(function() {
 		      current_user = true;
 		      RewardModal.goto_reward();
 		    } else {
-		      $('#signup-section .alert').text('Invalid email/password.');
+		      $('#login-error').text('Invalid email/password.');
 		    }
 		  });
 		  
