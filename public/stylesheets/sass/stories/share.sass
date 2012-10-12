@@ -1,36 +1,99 @@
-#share-your-content
-	width: 530px
-	margin: 50px auto 0
-	padding: 60px
-	text-align: center
-	background: #e8e8e8
-	
-	h1
-		font-size: 24px
-		font-weight: 600
-		margin-bottom: 50px
-	h3
-		font-size: 20px
-		font-weight: 400
-		margin-bottom: 50px
-	
-	#share-buttons
-		width: 270px
-		height: 40px
-		margin: 0 auto 50px
-		a
-			display: block
-			width: 123px
-			height: 40px
-			background: transparent url(../images/reward-modal/share-buttons.png) no-repeat 0 0
-			margin: 0 auto 5px
-			text-indent: -9999px
-			float: left
-			margin-right: 20px
-		#facebook-button
-			background-position: 0 -43px
-			margin: 0
-	
-	#view-content-button
-		background-color: #bdbdbd
-		color: $text-color
+body#stories.share
+  #main
+    width: 800px
+    margin: 40px auto 0
+
+  h1
+    font-size: 30px
+    margin-bottom: 30px
+
+  section
+    border-top: 1px solid #ccc
+    padding-top: 30px
+    margin-bottom: 40px
+  
+    h3
+      font-size: 24px
+      margin-bottom: 20px
+
+  #use-a-button
+    p
+      margin: 10px 0
+    ul
+      margin-top: 20px
+    li
+      background: #f0f0f0
+      border: 1px solid #f0f0f0
+      padding: 12px 9px
+      cursor: pointer
+      margin-bottom: 5px
+      height: 34px
+      &:hover
+        border-color: #ccc
+      &.selected
+        background: #daecf6
+        border-color: #c4ddef
+        input
+          display: block
+      &#light-avatar, &#dark-avatar
+        height: 52px
+        input
+          margin-top: 10px
+      .button
+        float: left
+      input
+        display: none
+        padding: 4px 3px
+        float: right
+        width: 530px
+        border: 1px solid #ccc
+        font-size: 14px
+        color: #777
+        margin-top: 4px
+    .with-avatar
+      position: relative
+      img.avatar
+        width: 42px
+        height: 42px
+        position: absolute
+        top: 5px
+        left: 5px
+        border: 1px solid #ccc
+    #dark-avatar img.avatar
+      border-color: #333
+
+  #share-a-link
+    border-bottom: 1px solid #ccc
+
+    p
+      margin: 20px 0 5px
+
+    #share-link
+      margin-bottom: 20px
+      input
+        width: 48%
+        padding: 4px
+        font-size: 1.1em
+  
+    #share-buttons
+      height: 60px
+      margin-bottom: 20px
+      a
+        display: block
+        width: 123px
+        height: 40px
+        background: transparent url(../images/reward-modal/share-buttons.png) no-repeat 0 0
+        margin: 0 auto 5px
+        text-indent: -9999px
+        float: left
+        margin-right: 20px
+      #facebook-button
+        background-position: 0 -43px
+        margin: 0
+  
+  #view-content-button
+    display: inline-block
+    background-color: #e5e5e5
+    color: $text-color
+    font-size: 20px
+    margin-bottom: 60px

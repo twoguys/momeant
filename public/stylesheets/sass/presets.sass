@@ -4,6 +4,7 @@ $background_color: #fff
 $text_color: #252525
 $black: #000
 $blue: #00aeef
+$dark_blue: #003750
 $red: #f42652
 $lightred: #f7d3db
 $orange: #ffa801
@@ -93,6 +94,7 @@ $border_solid: 1px solid #DEDEDE
 @mixin gradient($color1: #fdfdfd, $color2: #f0f0f0)
   background-image: -moz-linear-gradient(center top, $color1 4%, $color2 52%)
   background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.04, $color1), color-stop(0.52, $color2))
+  background: linear-gradient(to bottom, $color1 0%, $color2 100%)
 @mixin transition($property: all, $time: 0.2s, $timing: ease-in-out)
   -webkit-transition: $property $time $timing
   -moz-transition: $property $time $timing

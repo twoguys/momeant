@@ -1,4 +1,6 @@
 class NotificationsMailer < ActionMailer::Base
+  include ActionView::Helpers::NumberHelper
+  
   default :from => "Momeant <team@momeant.com>"
   layout "email"
   
@@ -20,6 +22,15 @@ class NotificationsMailer < ActionMailer::Base
     @user_for_email_settings = @message.recipient
     
     mail :to => @message.recipient.email, :subject => "#{message.sender.name} just messaged you on Momeant!"
+  end
+  
+  def impact_notice(user, reward)
+    @user = user
+    @reward = reward
+    @creator_url = user_url(@reward.recipient)
+    @content_url = story_url(@reward.story)
+    
+    mail to: @user.email, subject: "You just made an impact!"
   end
   
   def site_updated(user)
@@ -68,5 +79,12 @@ class NotificationsMailer < ActionMailer::Base
     @dont_pad_email = true
     
     mail :to => user.email, :subject => "#{following.name} just posted a new broadcast message."
+  end
+  
+  def payment_notice(user, amount)
+    @user = user
+    @amount = number_to_currency(amount)
+    
+    mail to: user.email, subject: "Momeant just paid you #{@amount}!"
   end
 end

@@ -7,6 +7,7 @@ Repo::Application.routes.draw do
   } do
     post '/creators/signup' => "registrations#creator", :as => :creator_signup # creator signup 1 submit
     post '/creators/login'  => "sessions#creator",      :as => :creator_login
+    post '/users/sign_in_remote' => "sessions#remote"
   end
   # creator signup 1
   match '/creators', :to => "users#creators", :as => :creators
@@ -27,6 +28,7 @@ Repo::Application.routes.draw do
       get :cropper
       post :crop
       get :preview
+      get :reward
     end
     collection do
       get :render_page_form
@@ -112,7 +114,8 @@ Repo::Application.routes.draw do
     match '/users', :to => "dashboard#users", :as => :users
     match '/users/:id/change_to', :to => "dashboard#change_user_to"
     resources :pay_periods do
-      post :mark_paid, :on => :member
+      get :unpaid, on: :collection
+      post :mark_line_item_as_paid, :on => :collection
     end
     resources :invitations
     resources :adverts do

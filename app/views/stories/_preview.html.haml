@@ -24,10 +24,11 @@
             = link_to tag.name, search_path(:query => tag.name)
             %span.comma ,
       - if me?(content.user)
-        = link_to "Edit", edit_story_path(content), :class => "edit"
-        = link_to "Delete", story_path(content), :method => :delete, :confirm => "Are you SURE you want to delete it?" if content.reward_count == 0.0
+        = link_to "Edit", edit_story_path(content), class: "edit action"
+        = link_to "Delete", story_path(content), class: "action", :method => :delete, :confirm => "Are you SURE you want to delete it?" if content.reward_count == 0.0
+        = link_to "Share", share_story_path(content), class: "action"
       - if current_user && current_user.is_admin? && content.editorial.nil?
-        = link_to "Feature", admin_editorials_path(:id => content.id), :method => :post
+        = link_to "Feature", admin_editorials_path(:id => content.id), class: "action", :method => :post
     .support= content.users_who_rewarded.size
 
   .comments

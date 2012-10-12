@@ -13,7 +13,7 @@ Factory.define :user do |user|
 end
 
 Factory.define :creator, :parent => :user, :class => "Creator" do |creator|
-  creator.amazon_email        "amazon@example.com"
+  creator.amazon_email        ""
 end
 
 Factory.define :admin, :parent => :user do |admin|

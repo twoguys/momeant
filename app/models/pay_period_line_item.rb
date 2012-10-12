@@ -1,8 +1,9 @@
 class PayPeriodLineItem < ActiveRecord::Base
-  belongs_to :payee, :class_name => "User"
   belongs_to :pay_period
-  has_many :purchases
-  belongs_to :payment, :dependent => :destroy
+  belongs_to :payee, :class_name => "User"
+  has_many :rewards
   
   validates_presence_of :payee, :amount
+  
+  default_scope order("created_at ASC")
 end

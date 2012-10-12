@@ -1,0 +1,45 @@
+ul#discussion-list
+  li
+    height: 55px
+    padding: 10px 0
+    background: #f4f4f4
+    border-left: 3px solid #ddd
+    margin-bottom: 10px
+    &:hover
+      border-color: $blue
+    a
+      display: block
+      color: $text_color
+      @include rounded(3px)
+    a:hover
+      .text .title, .text .body, .date
+        color: $text_color
+    .date, .text, .comment-count
+      float: left
+      padding-right: 25px
+      height: 55px
+    .date
+      font-size: 12px
+      text-transform: uppercase
+      padding-left: 15px
+      color: #888
+      .day
+        font-size: 29px
+        line-height: 24px
+    .text
+      width: 760px
+      .title
+        font-size: 15px
+        font-weight: 600
+        margin-bottom: 2px
+      .body
+        font-size: 13px
+        color: #777
+    .comment-count
+      background: transparent url(../images/reward-modal/comments.png) no-repeat 100% 12px
+      width: 60px
+      text-align: right
+      font-size: 30px
+      font-weight: 200
+      &.empty
+        opacity: 0.2

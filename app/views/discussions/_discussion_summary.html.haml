@@ -1,6 +1,10 @@
 %li
   %a{href: "#", topic: discussion.id}
-    %span.body
-      = truncate(discussion.topic, length: 100)
-    %span.comments= discussion.comments.size
-    %span.when #{time_ago_in_words(discussion.created_at)} ago
+    .date
+      .month= discussion.created_at.strftime("%b")
+      .day= discussion.created_at.strftime("%d")
+      .year= discussion.created_at.strftime("%Y")
+    .text
+      .title= discussion.topic
+      .body= truncate(discussion.body, length: 120)
+    .comment-count{class: discussion.comments.size == 0 ? "empty" : ""}= discussion.comments.size

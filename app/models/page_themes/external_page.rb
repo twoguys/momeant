@@ -12,6 +12,8 @@ class ExternalPage < Page
   
   def parse_youtube_embed
     url = self.text
+    query = URI.parse(url).query
+    return "" if query.nil?
     query_params = CGI.parse(URI.parse(url).query)
     query_params["v"].present? ? query_params["v"].first : ""
   end

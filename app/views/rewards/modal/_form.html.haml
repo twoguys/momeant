@@ -1,48 +1,37 @@
-- if current_user == @story.user
-  #your-work
-    Nice work! This is where everyone else can reward you.
-- else
-  - if current_user && !current_user.is_under_pledged_rewards_stop_threshold?
+#reward-them
+  %h1 Reward #{@story.user.first_name} for #{@story.this_media}
+
+  - if current_user == @story.user
+    This is where everyone else can reward you.
+
+  - elsif current_user && !current_user.is_under_pledged_rewards_stop_threshold?
     #over-threshold
-      %p You have pledged #{number_to_currency(current_user.pledged_amount)} in rewards. That's awesome!
-      %p But we need you to pay for those rewards before rewarding more. That way we can pay the creators you've supported. You can do that #{link_to "here", fund_rewards_path}.
-      %p Thank you for your support!
+      %p
+        You have pledged #{number_to_currency(current_user.pledged_amount)} in rewards. That's awesome!
+        %br
+        But we need you to pay for those rewards before rewarding more; that way we can pay the creators you've supported.
+        You can do that #{link_to "here", fund_rewards_path, target: "_blank"}.
+
   - else
-    
-    #current-step{class: current_user.nil? ? "no-user" : ""}
-      = form_for :reward, :url => user_rewards_path(@story.user), :html => {:id => "reward-form"} do |form|
-        = form.hidden_field :story_id, :value => @story.id
-        - if @impacted_by
-          = form.hidden_field :impacted_by, :value => @impacted_by
+    #current-user{style: current_user.nil? ? "display:none" : ""}
+      %span Logged in as
+      %span.name= current_user.name if current_user
+      
+    = form_for :reward, :url => user_rewards_path(@story.user), :html => {:id => "reward-form"} do |form|
+      = form.hidden_field :story_id, :value => @story.id
+      = form.hidden_field :impacted_by, :value => params[:impacted_by] if params[:impacted_by]
 
-        #amounts
-          %header
-            %h1 Reward
-            #{@story.user.first_name} for this work:
-
-          - if current_user
-            %ul
-              %li= link_to "$1", "#", :amount => 1.0, id: "one-dollar-reward"
-              %li= link_to "$5", "#", :amount => 5.0
-              %li= link_to "$10", "#", :amount => 10.0
-              %li.custom= text_field_tag :custom_amount, "$"
-            = form.hidden_field :amount, value: 1
-            = form.submit "Give Reward"
-            
-            #invalid-reward-amount
+      #amounts
+        %p Choose an amount:
+        %ul
+          %li= link_to "1", "#", :amount => 1.0, id: "one-dollar-reward"
+          %li= link_to "5", "#", :amount => 5.0
+          %li= link_to "10", "#", :amount => 10.0
+          %li.custom= text_field_tag :custom_amount, "", placeholder: "___"
+        = form.hidden_field :amount, value: 1
+        = form.submit "Give Reward &rarr;".html_safe, disabled: "disabled", style: current_user.nil? ? "display:none" : ""
+        - unless current_user
+          = link_to "What is this?", "#about", id: "what-is-momeant-link", class: "button"
+          = link_to "Log In", "#login", id: "login-button", class: "button"
     
-      #why-you-reward
-        - if current_user
-          %p
-            %span Rewarding this work will allow you to comment on it and share it with others to gain
-            %abbr.tooltipped-n{title: "Impact = the rewards you give + the rewards others give when you share someone's work."} impact.
-        - else
-          %p
-            %span You've stumbled onto Momeant, welcome! Momeant's mission is to build a place where creators of online content can make a living like everyone else.
-            %br
-            %br
-            %span By voluntarily rewarding creators like #{@story.user.first_name}, you become a part of their private community, creating an ongoing, meaningful connection with them and their supporters.
-            
-          = link_to "Learn more", root_path, :id => "reward-more-button", :class => "button"
-          %div Want to join us? #{link_to "Sign up.", "#join-modal"}
-          %div Already have an account? #{link_to "Log in.", "#login-modal"}
+        #invalid-reward-amount

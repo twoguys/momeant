@@ -1,0 +1,19 @@
+.admin.payperiods
+  = render "admin/tabs"
+  
+  %table
+    %thead
+      %tr
+        %th Creator
+        %th Unpaid rewards
+        %th Their cut
+        %th Our cut
+    %tbody
+      - @creators.each do |creator, rewards|
+        %tr
+          %td= link_to creator.name, user_path(creator)
+          %td= number_to_currency(rewards.map(&:amount).inject(:+))
+          %td= number_to_currency(rewards.map(&:amount).inject(:+) * 0.8)
+          %td= number_to_currency(rewards.map(&:amount).inject(:+) * 0.2)
+  
+  %p= button_to "End Pay Period", admin_pay_periods_path

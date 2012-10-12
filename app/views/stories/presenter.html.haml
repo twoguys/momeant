@@ -8,6 +8,8 @@
 
 #presenter
 
+  = link_to "Reward #{@story.user.first_name}'s work", reward_story_path(@story, impacted_by: params[:impacted_by]), id: "reward-button"
+
   .content
   
     %ul#pages
@@ -27,9 +29,8 @@
         .pages
           - 1.upto @story.pages.count do |page|
             = link_to(page, "#", :class => page == 1 ? "selected" : "", :page => page)
-
+  
   #content-cover
-  = render "rewards/modal"
 
   - if params[:preview]
     = link_to "< Back to Edit", edit_story_path(@story), :id => "back-to-edit-button"
@@ -37,14 +38,10 @@
 
 - if @story.published?
   :javascript
-    mixpanel.track('Viewed Content', { user: #{user_signed_in? ? 'true' : 'false'}, self_promotion: '#{params[:creator].present?}' });
+    mixpanel.track('Viewed Content', { user: #{user_signed_in? ? 'true' : 'false'}, self_promotion: #{params[:creator].present?}, impact: #{params[:impacted_by].present?} });
 
 - if params[:impacted_by].present?
   :javascript
     mixpanel.track('Impact Given', { reward_id: '#{params[:impacted_by]}' });
 
 = javascript_include_tag "stories/presenter"
-- if current_user
-  :javascript
-    var user_id = #{current_user.id};
-  = javascript_include_tag "comments"
