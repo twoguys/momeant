@@ -5,19 +5,38 @@
   
   %p= link_to("Download CSV", admin_pay_period_path(@pay_period, :format => :csv))
   
-  %table
+  %table#line-items
     %thead
       %tr
         %th Creator
         %th Their cut
         %th Pay via
+        %th
     %tbody
       - @pay_period.line_items.each do |line_item|
         %tr
           %td= link_to line_item.payee.name, user_path(line_item.payee)
           %td= number_to_currency(line_item.amount)
           %td= line_item.payee.pay_email
+          %td
+            - if line_item.is_paid?
+              paid
+            - else
+              = button_to "Mark as Paid", mark_line_item_as_paid_admin_pay_periods_path(id: line_item.id), class: "mark-as-paid"
       %tr{style: "font-weight:bold"}
         %td Total
         %td= number_to_currency(@pay_period.amount)
         %td
+        %td
+
+:javascript
+  $(function() {
+    $('input.mark-as-paid').parents('form:eq(0)').submit(function(event) {
+      event.preventDefault();
+      var $form = $(this);
+      $.post($form.attr('action'), function() {
+        $form.parent().html('paid');
+      });
+      return false;
+    });
+  });

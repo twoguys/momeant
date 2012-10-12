@@ -115,7 +115,7 @@ Repo::Application.routes.draw do
     match '/users/:id/change_to', :to => "dashboard#change_user_to"
     resources :pay_periods do
       get :unpaid, on: :collection
-      post :mark_paid, :on => :member
+      post :mark_line_item_as_paid, :on => :collection
     end
     resources :invitations
     resources :adverts do

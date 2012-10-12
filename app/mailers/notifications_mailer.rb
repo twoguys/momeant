@@ -85,6 +85,6 @@ class NotificationsMailer < ActionMailer::Base
     @user = user
     @amount = number_to_currency(amount)
     
-    mail to: user.email, subject: "Momeant is paying you #{@amount}!"
+    mail to: user.email, subject: "Momeant just paid you #{@amount}!"
   end
 end

@@ -39,7 +39,6 @@ class PayPeriod < ActiveRecord::Base
         amount: rewards.map(&:amount).inject(:+) * PayPeriod::CREATOR_CUT
       )
       Reward.where(id: rewards.map(&:id)).update_all(pay_period_line_item_id: line_item.id)
-      NotificationsMailer.payment_notice(creator, line_item.amount).deliver
     end
     
     pay_period

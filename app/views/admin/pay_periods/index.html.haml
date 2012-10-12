@@ -10,7 +10,7 @@
       %tr
         %th Ended
         %th Amount
-        %th By Who
+        %th Ended by
         %th Actions
         %th CSV
     %tbody
@@ -18,6 +18,6 @@
         %tr
           %td= pay_period.print_date
           %td= number_to_currency(pay_period.rewards.sum(:amount))
-          %td ended by #{pay_period.user.name}
+          %td= pay_period.user.name
           %td= link_to "View", admin_pay_period_path(pay_period)
           %td= link_to("Download CSV", admin_pay_period_path(pay_period, :format => :csv))
