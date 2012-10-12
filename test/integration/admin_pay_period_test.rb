@@ -13,7 +13,7 @@ Feature "Admins can create a pay period to pay requested creator cashouts" do
     
     Given "ten dollars in funded rewards for that creator, and some unfunded" do
       @reward = Factory(:reward, amount: 10, recipient: @creator)
-      reward2 = Factory(:unfunded_reward, recipient: @creator)\
+      reward2 = Factory(:unfunded_reward, recipient: @creator)
     end
     
     given_a :admin
