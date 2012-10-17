@@ -22,8 +22,11 @@ class AmazonPayment < Transaction
   end
   
   def amazon_cbui_url(return_url)
-    #Amazon::FPS::Payments.get_cobranded_url(self.amount, "#{number_to_currency self.amount} in pledged rewards", self.id, return_url)
-    Amazon::FPS::Payments.get_postpaid_cobranded_url(self.payer.id, self.id, return_url)
+    Amazon::FPS::Payments.get_cobranded_url(self.amount, "#{number_to_currency self.amount} in pledged rewards", self.id, return_url)
+  end
+  
+  def self.amazon_postpaid_cbui_url(user_id, return_url)
+    Amazon::FPS::Payments.get_postpaid_cobranded_url(user_id, return_url)
   end
   
   def settle_with_amazon

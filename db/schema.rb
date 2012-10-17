@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121012131928) do
+ActiveRecord::Schema.define(:version => 20121017160903) do
 
   create_table "activities", :force => true do |t|
     t.integer  "actor_id"
@@ -320,6 +320,10 @@ ActiveRecord::Schema.define(:version => 20121012131928) do
     t.string   "state"
     t.string   "amazon_token"
     t.string   "amazon_transaction_id"
+    t.string   "status_code"
+    t.string   "credit_instrument_id"
+    t.string   "credit_sender_token_id"
+    t.string   "settlement_token_id"
   end
 
   create_table "users", :force => true do |t|

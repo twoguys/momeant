@@ -46,9 +46,9 @@ module FPS
 #
 class SignatureUtils 
 
-  SIGNATURE_KEYNAME = "Signature"
-  SIGNATURE_METHOD_KEYNAME = "SignatureMethod"
-  SIGNATURE_VERSION_KEYNAME = "SignatureVersion"
+  SIGNATURE_KEYNAME = "signature"
+  SIGNATURE_METHOD_KEYNAME = "signatureMethod"
+  SIGNATURE_VERSION_KEYNAME = "signatureVersion"
 
   HMAC_SHA256_ALGORITHM = "HmacSHA256"
   HMAC_SHA1_ALGORITHM = "HmacSHA1"

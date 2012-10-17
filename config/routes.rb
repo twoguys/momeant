@@ -44,6 +44,8 @@ Repo::Application.routes.draw do
   
   match '/coins', :to => "amazon_payments#index", :as => :coins
   match '/fund', :to => "users#fund_pledged_rewards", :as => :fund_rewards
+  match '/fund/start-postpaid', to: "amazon_payments#start_postpaid", as: :start_amazon_postpaid
+  match '/fund/accept-postpaid', to: "amazon_payments#accept_postpaid", as: :accept_amazon_postpaid
   match '/fund/pay', :to => "amazon_payments#create", :as => :pay_for_rewards
   match '/fund/accept', :to => "amazon_payments#accept", :as => :accept_payment
   

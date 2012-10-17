@@ -5,7 +5,6 @@ class AmazonPaymentsController < ApplicationController
     @payment = AmazonPayment.new(:amount => 10)
     @past_payments = current_user.amazon_payments
     @nav = "coins"
-    @nosidebar = true
   end
   
   def create
@@ -23,6 +22,20 @@ class AmazonPaymentsController < ApplicationController
     @payment.mark_as_paid!
     flash[:track_rewards_payment] = @payment.amount
     redirect_to fund_rewards_path, :notice => "Thank you for supporting creators! You're the best."
+  end
+  
+  def start_postpaid
+    redirect_to Amazon::FPS::Payments.get_postpaid_cobranded_url(current_user.id, accept_amazon_postpaid_url)
+  end
+  
+  def accept_postpaid
+    @payment = AmazonPayment.find(params[:id])
+    @payment.update_attributes(
+      status_code: params[:status],
+      credit_instrument_id: params[:creditInstrumentID],
+      credit_sender_token_id: params[:creditSenderTokenID],
+      settlement_token_id: params[:settlementTokenID]
+    )
   end
   
 end
