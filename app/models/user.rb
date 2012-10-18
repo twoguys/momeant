@@ -83,7 +83,8 @@ class User < ActiveRecord::Base
   attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :remember_me, :tos_accepted,
     :avatar, :credits, :stored_in_braintree, :invitation_code, :tagline, :occupation, :amazon_email, :paypal_email, :interest_list,
     :location, :thankyou, :twitter_friends, :facebook_friends, :friends_last_cached_at, :latitude, :longitude,
-    :send_reward_notification_emails, :send_digest_emails, :send_message_notification_emails
+    :send_reward_notification_emails, :send_digest_emails, :send_message_notification_emails, :amazon_status_code,
+    :amazon_credit_instrument_id, :amazon_credit_sender_token_id, :amazon_settlement_token_id
   
   def to_param
     "#{self.id}-#{self.name.gsub(/[^a-zA-Z]/,"-")}"

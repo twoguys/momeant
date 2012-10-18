@@ -1,3 +1,5 @@
+require 'amazon/fps/fpspayments'
+
 class AmazonPaymentsController < ApplicationController
   before_filter :authenticate_user!
   
@@ -29,13 +31,35 @@ class AmazonPaymentsController < ApplicationController
   end
   
   def accept_postpaid
-    @payment = AmazonPayment.find(params[:id])
-    @payment.update_attributes(
-      status_code: params[:status],
-      credit_instrument_id: params[:creditInstrumentID],
-      credit_sender_token_id: params[:creditSenderTokenID],
-      settlement_token_id: params[:settlementTokenID]
+    render text: params[:errorMessage] and return if params[:errorMessage].present?
+    #render text: "Invalid Signature" and return unless valid_signature?(request, rebuild_query_string(params))
+    current_user.update_attributes(
+      amazon_status_code: params[:status],
+      amazon_credit_instrument_id: params[:creditInstrumentID],
+      amazon_credit_sender_token_id: params[:creditSenderTokenID],
+      amazon_settlement_token_id: params[:settlementTokenID]
     )
+    redirect_to fund_rewards_path
+  end
+  
+  private
+  
+  def valid_signature?(request, parameter_string)
+    url = "#{request.protocol}#{request.host_with_port}#{request.path}"
+    endpoint = Amazon::FPS::Payments.validate_signature_url(url, parameter_string)
+    response = RestClient.get(endpoint)
+    # check for VerificationStatus in response to be "Success"
+    # TODO: figure out why the RestClient request is getting an HTTP 400
+  end
+  
+  def rebuild_query_string(parameters)
+    query = ""
+    query_string = parameters.select {|k,v| not %w[action controller source].include?(k)}
+    unless query_string.empty?
+      query_params = query_string.collect {|k,v| "#{k}=#{v}"}
+      query << query_params.join("&")
+    end
+    return query
   end
   
 end

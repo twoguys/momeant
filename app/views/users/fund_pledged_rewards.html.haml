@@ -2,25 +2,33 @@
 
 #pay-for-rewards
 
-  = link_to "Authorize Now", start_amazon_postpaid
-
   #messaging
     = image_tag @user.avatar.url(:large), :class => "avatar"
     .the-rest
       %h1= link_to "Hey #{@user.first_name}!", user_path(@user)
-      - if @amount == 0
-        %p You do not have any pledged (unpaid) rewards.
-      - else
-        %p Check out all of the great folks you've pledged to support!
-
-        - if @amount >= 1.0
-          %p It's a breeze to pay for your #{number_to_currency @amount} pledged rewards using Amazon Payments.
-          = form_for @payment, :url => pay_for_rewards_path do |form|
-            = form.hidden_field :amount
-            = form.submit "Pay #{number_to_currency @amount} Now with"
-        - else
-          %p As soon as you have pledged $1.00 or more, we'll help you pay for your rewards.
       
+      %p We're really excited that you're ready to support creators!
+      %p
+        Instead of bugging you every time you want to reward, you only have to choose your payment method once.
+        We use Amazon Payments because they're trusted, secure, and they provide all sorts of payment options.
+      %p
+        - if current_user.amazon_credit_instrument_id.blank?
+          Click the button below to goto Amazon's site and choose a payment method. It's super easy.
+          Once you've chosen, they'll send you right back here, and you won't get bugged again.
+        - else
+          Thanks! You have already configured your Amazon Payment method. If you'd like to change it at any time,
+          you can click the button below to update your payment settings.
+      
+      #amazon-button
+      - if current_user.amazon_credit_instrument_id.blank?
+        = link_to "Authorize Now with", start_amazon_postpaid_path
+      - else
+        = link_to "Re-Authorize with", start_amazon_postpaid_path
+      
+  - if current_user.amazon_credit_instrument_id.blank? && @rewards.present?
+    %h1
+      Here is a list of the creators you've chosen to reward. As soon as you configure your
+      Amazon Payment method, we'll go ahead and charge these rewards in order to pay the creators.
   %table#rewards
     - @rewards.each do |reward|
       %tr

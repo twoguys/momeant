@@ -3,7 +3,6 @@ require 'amazon/fps/signatureutils'
 
 module Amazon
   module FPS
-
     class Payments
 
       def self.create_url(url, params)
@@ -79,22 +78,17 @@ module Amazon
         parameters = {}
         parameters["callerKey"] = ENV["S3_KEY"]
         parameters["pipelineName"] = "SetupPostpaid"
-        parameters["callerReferenceSettlement"] = user_id
-        parameters["callerReferenceSender"] = user_id
-        parameters["globalAmountLimit"] = 1000
+        parameters["callerReferenceSettlement"] = "settlement-#{user_id}"
+        parameters["callerReferenceSender"] = "sender-#{user_id}"
+        parameters["globalAmountLimit"] = 50
         parameters["creditLimit"] = 1
+        parameters["paymentReason"] = "Used to pay for your Momeant rewards"
         parameters["returnURL"] = return_url
         parameters["version"] = "2009-01-09"
         parameters["cobrandingStyle"] = "logo"
         parameters["cobrandingUrl"] = "https://momeant-production.s3.amazonaws.com/assets/logoBlackSmall.png"
-        parameters[Amazon::FPS::SignatureUtils::SIGNATURE_VERSION_KEYNAME] = "2"
-        parameters[Amazon::FPS::SignatureUtils::SIGNATURE_METHOD_KEYNAME] = Amazon::FPS::SignatureUtils::HMAC_SHA256_ALGORITHM
-        signature = Amazon::FPS::SignatureUtils.sign_parameters({:parameters => parameters, 
-                                                :aws_secret_key => ENV["S3_SECRET"],
-                                                :host => uri.host,
-                                                :verb => "GET",
-                                                :uri  => uri.path })
-        parameters[Amazon::FPS::SignatureUtils::SIGNATURE_KEYNAME] = signature
+        parameters["Timestamp"] = Time.now.iso8601.to_s
+        sign_parameters(parameters, uri)
         
         return create_url(ENV["AMAZON_CBUI_ENDPOINT"], parameters)
       end
@@ -112,19 +106,38 @@ module Amazon
         parameters["SettlementAmount.CurrencyCode"] = "USD"
         parameters["Version"] = "2008-09-17"
         parameters["Timestamp"] = Time.now.iso8601.to_s
+        sign_parameters(parameters, uri)
+
+        return create_url(ENV["AMAZON_FPS_ENDPOINT"], parameters)
+      end
+      
+      def self.sign_parameters(parameters, uri)
         parameters[Amazon::FPS::SignatureUtils::SIGNATURE_VERSION_KEYNAME] = "2"
         parameters[Amazon::FPS::SignatureUtils::SIGNATURE_METHOD_KEYNAME] = Amazon::FPS::SignatureUtils::HMAC_SHA256_ALGORITHM
-        signature = Amazon::FPS::SignatureUtils.sign_parameters({:parameters => parameters, 
-                                                :aws_secret_key => ENV["S3_SECRET"],
-                                                :host => uri.host,
-                                                :verb => "GET",
-                                                :uri  => uri.path })
+        signature = Amazon::FPS::SignatureUtils.sign_parameters({
+          parameters: parameters, 
+          aws_secret_key: ENV["S3_SECRET"],
+          host: uri.host,
+          verb: "GET",
+          uri: uri.path
+        })
         parameters[Amazon::FPS::SignatureUtils::SIGNATURE_KEYNAME] = signature
-
+      end
+      
+      def self.validate_signature_url(url, parameter_string)
+        uri = URI.parse(ENV["AMAZON_FPS_ENDPOINT"])
+        parameters = {}
+        parameters["AWSAccessKeyId"] = ENV["S3_KEY"]
+        parameters["Action"] = "VerifySignature"
+        parameters["UrlEndPoint"] = url
+        parameters["HttpParameters"] = parameter_string
+        parameters["Version"] = "2009-01-09"
+        parameters["Timestamp"] = Time.now.iso8601.to_s
+        sign_parameters(parameters, uri)
+        
         return create_url(ENV["AMAZON_FPS_ENDPOINT"], parameters)
       end
   
     end
-
   end
 end

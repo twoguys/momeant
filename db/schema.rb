@@ -320,10 +320,6 @@ ActiveRecord::Schema.define(:version => 20121017160903) do
     t.string   "state"
     t.string   "amazon_token"
     t.string   "amazon_transaction_id"
-    t.string   "status_code"
-    t.string   "credit_instrument_id"
-    t.string   "credit_sender_token_id"
-    t.string   "settlement_token_id"
   end
 
   create_table "users", :force => true do |t|
@@ -385,6 +381,10 @@ ActiveRecord::Schema.define(:version => 20121017160903) do
     t.boolean  "send_following_update_emails",                                                  :default => true
     t.string   "paypal_email"
     t.boolean  "send_impact_notification_emails",                                               :default => true
+    t.string   "amazon_status_code"
+    t.string   "amazon_credit_instrument_id"
+    t.string   "amazon_credit_sender_token_id"
+    t.string   "amazon_settlement_token_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
