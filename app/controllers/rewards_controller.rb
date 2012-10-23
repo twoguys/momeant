@@ -7,18 +7,21 @@ class RewardsController < ApplicationController
     @story = Story.find_by_id(params[:reward][:story_id])
     amount = params[:reward][:amount].gsub('$','').to_f
     
-    @reward = current_user.reward(
-      @story,
-      amount,
-      params[:reward][:impacted_by]
-    )
+    if amount < 0.1
+      render json: { success: false, error: "Sorry! $0.10 is the minimum reward allowed." } and return
+    elsif amount > 99
+      render json: { success: false, error: "Sorry! $99.00 is the maximum reward allowed, for now." } and return
+    end
+    
+    begin
+      @reward = current_user.reward(@story, amount, params[:reward][:impacted_by])
+    rescue Exceptions::AmazonPayments::InsufficientBalanceException
+      render json: { success: false, error: render_to_string(partial: "rewards/modal/errors/need_to_reauthorize") }
+      return
+    end
     
     if !@reward
-      if !current_user.is_under_pledged_rewards_stop_threshold?
-        @error = "Oops! We need you to pay for your past rewards before continuing to reward."
-      else
-        @error = "Sorry! That was an invalid reward amount."
-      end
+      @error = "Oh, shoot! There was an error in processing your reward."
       render json: { success: false, error: @error } and return
     end
         

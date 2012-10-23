@@ -222,6 +222,9 @@ input[type="submit"], a.button {
   font-family: "proxima-nova-1", "proxima-nova-2", helvetica, sans-serif;
   font-size: 13px; }
 
+a.button {
+  display: inline-block; }
+
 input[type="submit"]:active, a.button:active {
   top: 1px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2) inset; }
@@ -506,7 +509,7 @@ body#reward-modal {
     -o-transition: margin 0.2s ease-in-out;
     transition: margin 0.2s ease-in-out; }
     body#reward-modal #reward-actions.loading {
-      background: #0399df url(../images/spinner-blue.gif) no-repeat 280px 50%; }
+      background: #0399df url(../images/spinner-blue.gif) no-repeat 290px 50%; }
       body#reward-modal #reward-actions.loading * {
         visibility: hidden; }
     body#reward-modal #reward-actions h1 {
@@ -566,7 +569,7 @@ body#reward-modal {
         width: 275px;
         height: 120px; }
         body#reward-modal #reward-actions #login form.loading {
-          background: transparent url(../images/spinnerDarkGrey.gif) no-repeat 50% 50%; }
+          background: transparent url(../images/spinnerDarkGrey.gif) no-repeat 90% 50%; }
           body#reward-modal #reward-actions #login form.loading * {
             visibility: hidden; }
       body#reward-modal #reward-actions #login li {
@@ -857,6 +860,42 @@ body#reward-modal {
       margin-bottom: 10px; }
     body#reward-modal #after-reward #discussions-view #discussion-list .text {
       width: 350px; }
+  body#reward-modal #error {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 800px;
+    height: 500px;
+    z-index: 9999; }
+    body#reward-modal #error #error-cover {
+      width: 100%;
+      height: 100%;
+      background: transparent url(../images/modalCover.png) repeat;
+      background: rgba(0, 0, 0, 0.7);
+      position: absolute;
+      z-index: 1; }
+    body#reward-modal #error #error-inner {
+      width: 480px;
+      height: 300px;
+      padding: 20px;
+      margin: 80px 140px;
+      background: white;
+      position: relative;
+      z-index: 2; }
+      body#reward-modal #error #error-inner a.button {
+        display: inline-block; }
+    body#reward-modal #error #close-error {
+      position: absolute;
+      top: 65px;
+      right: 125px;
+      width: 30px;
+      height: 30px;
+      display: block;
+      background: transparent url(../images/modalClose.png) no-repeat 0 0;
+      text-indent: 30px;
+      overflow: hidden;
+      z-index: 3; }
 
 #twitter-sharing, #facebook-sharing {
   width: 367px;

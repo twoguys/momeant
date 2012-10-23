@@ -25,6 +25,11 @@
   
   #supporter-info
     = render "rewards/modal/supporter_info"
+  
+#error
+  = link_to "Close", "#close-error", id: "close-error"
+  #error-cover
+  #error-inner
 
 :javascript
   var current_user = #{current_user.present? ? 'true' : 'false'};

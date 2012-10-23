@@ -22,7 +22,9 @@ $(function() {
   		'blur #custom_amount':            'stop_choosing_custom',
   		'submit #reward-form':            'submit_reward',
   		'click a.after-link':             'goto_after_view',
-  		'click #back-to-thank-you':       'goto_thank_you'
+  		'click #back-to-thank-you':       'goto_thank_you',
+  		'click #close-error':             'hide_error',
+  		'click #error-cover':             'hide_error'
 		},
 		
 		initialize: function() {
@@ -188,14 +190,21 @@ $(function() {
             Comments.auto_resize_comment_boxes();
 				  } else {
   				  $('#reward-actions').removeClass('loading');
-  				  $('#invalid-reward-amount').show();
-  				  $('#custom_amount').focus();
-  				  alert(json.error);
+  				  RewardModal.show_error(json.error);
 				  }
 				}
 			});
 			
 			return false;
+		},
+		
+		show_error: function(html) {
+		  $('#error-inner').html(html);
+		  $('#error').fadeIn(200);
+		},
+		
+		hide_error: function() {
+		  $('#error').fadeOut(200);
 		},
 		
 		// ACTIONS AFTER REWARDING -------------------------------------

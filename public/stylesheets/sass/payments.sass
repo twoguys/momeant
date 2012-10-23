@@ -1,52 +1,45 @@
-body#users.fund_pledged_rewards #bg
-  background: #e0e0e0
-  position: fixed
-  top: 0
-  bottom: 0
-  left: 0
-  width: 100%
-  z-index: 1
-
-#pay-for-rewards
+#fund-rewards
   padding: 20px
+  width: 900px
+  margin: 30px auto 0
   position: relative
   z-index: 2
+
+  p
+    font-size: 1.3em
+    line-height: 1.3em
   
   #messaging
-    @include clearfix
-    width: 100%
-    .avatar
-      width: 142px
-      height: 142px
-      float: left
-      margin-right: 20px
-    .the-rest
-      float: left
-      h1
-        text-transform: uppercase
-        font-weight: 600
-        margin-bottom: 5px
-      p
-        margin: 0
-        font-size: 1.4em
-        font-weight: 600
-        line-height: 1.3em
+    h1
+      padding-bottom: 20px
+      border-bottom: 1px solid #eee
+      margin-bottom: 20px
   
-  form
-    margin-top: 10px
-    background: transparent url(../images/payments/cc-icons.png) no-repeat 100% 0
-    width: 470px
-    input[type="submit"]
-      width: 240px
+  #amazon-button
+    a
+      display: inline-block
       background: #fff url(../images/payments/amazonLogo.png) no-repeat 94% 11px
-      padding: 10px 76px 13px 12px
-      text-transform: none
+      padding: 10px 78px 13px 12px
       font-weight: 700
       font-size: 16px
       box-shadow: 0 -1px 5px rgba(0,0,0,0.2) inset
+      @include rounded(3px)
       color: #000
       text-shadow: none
       border: 1px solid #ccc
+      float: left
+    #cards
+      width: 240px
+      height: 45px
+      background: transparent url(../images/payments/cc-icons.png) no-repeat 0 0
+      float: left
+    p
+      display: inline-block
+      font-family: $typewriter
+      font-size: 1em
+      color: #555
+      padding: 5px
+      background: #ffc
   
   table#rewards
     clear: both
@@ -59,12 +52,11 @@ body#users.fund_pledged_rewards #bg
       .inner
         width: 100%
         height: 65px
-        background: #fff
+        background: #f4f4f4
     td.name .inner
       width: 145px
       height: 35px
       padding: 15px 0 15px 20px
-      background: #fff url(../images/payments/user-dot.png) no-repeat 100% 50%
       font-family: $typewriter
       font-size: 16px
       font-style: italic
@@ -96,7 +88,7 @@ body#users.fund_pledged_rewards #bg
         cursor: help
     td.amount
       .inner
-        background: #d6d6d6 url(../images/payments/amount-bg.png) no-repeat 0 0
+        background: #d6d6d6
         width: auto
         height: 54px
         padding: 11px 20px 0 50px

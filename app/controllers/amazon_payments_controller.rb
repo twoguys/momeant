@@ -27,7 +27,7 @@ class AmazonPaymentsController < ApplicationController
   end
   
   def start_postpaid
-    redirect_to Amazon::FPS::Payments.get_postpaid_cobranded_url(current_user.id, accept_amazon_postpaid_url)
+    redirect_to AmazonPayment.amazon_postpaid_cbui_url(current_user.id, accept_amazon_postpaid_url)
   end
   
   def accept_postpaid
@@ -37,8 +37,10 @@ class AmazonPaymentsController < ApplicationController
       amazon_status_code: params[:status],
       amazon_credit_instrument_id: params[:creditInstrumentID],
       amazon_credit_sender_token_id: params[:creditSenderTokenID],
-      amazon_settlement_token_id: params[:settlementTokenID]
+      amazon_settlement_token_id: params[:settlementTokenID],
+      needs_to_reauthorize_amazon_postpaid: false
     )
+    # TODO: check the status code for bad stuff
     redirect_to fund_rewards_path
   end
   

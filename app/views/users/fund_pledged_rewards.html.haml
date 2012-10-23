@@ -1,57 +1,61 @@
-#bg
-
-#pay-for-rewards
+#fund-rewards
 
   #messaging
-    = image_tag @user.avatar.url(:large), :class => "avatar"
-    .the-rest
-      %h1= link_to "Hey #{@user.first_name}!", user_path(@user)
-      
-      %p We're really excited that you're ready to support creators!
-      %p
-        Instead of bugging you every time you want to reward, you only have to choose your payment method once.
-        We use Amazon Payments because they're trusted, secure, and they provide all sorts of payment options.
-      %p
-        - if current_user.amazon_credit_instrument_id.blank?
-          Click the button below to goto Amazon's site and choose a payment method. It's super easy.
-          Once you've chosen, they'll send you right back here, and you won't get bugged again.
+    %h1 Hey #{@user.first_name}, thank you so much for supporting creators!
+    %p
+      In order to make your experience as smooth and enjoyable as we can, we don't want to bug you about
+      a payment method every time you reward someone. We also want to provide you with flexible payment
+      options. In order to meet both of those goals, we use the simple &amp; secure Amazon Payments.
+    %p
+      %strong
+        - if current_user.needs_to_reauthorize_amazon_postpaid?
+          We need you to re-authorize your Amazon Payment method. Please click the button below.
+        - elsif current_user.has_configured_postpaid?
+          You have already configured your Amazon Payment method. If you'd like to change it
+          at any time, you can click the button below to update your payment settings.
         - else
-          Thanks! You have already configured your Amazon Payment method. If you'd like to change it at any time,
-          you can click the button below to update your payment settings.
-      
-      #amazon-button
-      - if current_user.amazon_credit_instrument_id.blank?
-        = link_to "Authorize Now with", start_amazon_postpaid_path
+          Click the button below to goto Amazon's site and choose a payment method. It's super easy.
+          Once you're done, Amazon will send you right back here, and you'll be all set!
+    
+    #amazon-button
+      - if current_user.needs_to_reauthorize_amazon_postpaid?
+        = link_to "Re-Authorize Now with", start_amazon_postpaid_path, id: "authorize-amazon"
+      - elsif current_user.has_configured_postpaid?
+        = link_to "Update Payment Method with", start_amazon_postpaid_path, id: "authorize-amazon"
       - else
-        = link_to "Re-Authorize with", start_amazon_postpaid_path
+        = link_to "Authorize Now with", start_amazon_postpaid_path, id: "authorize-amazon"
+      #cards
+      %p
+        By configuring your Amazon Payment method, you are authorizing Momeant to make a charge
+        when you reward someone.
       
-  - if current_user.amazon_credit_instrument_id.blank? && @rewards.present?
-    %h1
-      Here is a list of the creators you've chosen to reward. As soon as you configure your
-      Amazon Payment method, we'll go ahead and charge these rewards in order to pay the creators.
-  %table#rewards
-    - @rewards.each do |reward|
-      %tr
-        %td.name
-          .inner
-            %span= reward.recipient.first_name
-            %span= reward.recipient.last_name
-        %td.avatar
-          = link_to image_tag(reward.recipient.avatar.url(:large)), user_path(reward.recipient)
-        %td.content
-          .inner
-            = link_to image_tag(reward.story.thumbnail.url(:small)), story_path(reward.story)
-        %td.title
-          .inner
-            = link_to "#{reward.story.title}:", story_path(reward.story)
-            %span= truncate reward.story.synopsis, :length => 100
-        %td.comment
-          .inner
-            - if reward.comment.present?
-              = image_tag "payments/comment.png", :class => "tooltipped-n", :title => "You said: #{reward.comment}"
-        %td.amount
-          .inner
-            = number_to_currency(reward.amount)
+  - if !current_user.has_configured_postpaid? && @rewards.present?
+    %p
+      Here is a list of the creators you've already chosen to reward. As soon as you configure your
+      Amazon Payment method, we'll go ahead and charge these rewards in order to pay these creators.
+    %table#rewards
+      - @rewards.each do |reward|
+        %tr
+          %td.name
+            .inner
+              %span= reward.recipient.first_name
+              %span= reward.recipient.last_name
+          %td.avatar
+            = link_to image_tag(reward.recipient.avatar.url(:large)), user_path(reward.recipient)
+          %td.content
+            .inner
+              = link_to image_tag(reward.story.thumbnail.url(:small)), story_path(reward.story)
+          %td.title
+            .inner
+              = link_to "#{reward.story.title}:", story_path(reward.story)
+              %span= truncate reward.story.synopsis, :length => 100
+          %td.comment
+            .inner
+              - if reward.comment.present?
+                = image_tag "payments/comment.png", :class => "tooltipped-n", :title => "You said: #{reward.comment}"
+          %td.amount
+            .inner
+              = number_to_currency(reward.amount)
 
 - if flash[:track_rewards_payment].present?
   :javascript

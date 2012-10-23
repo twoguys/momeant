@@ -46,4 +46,5 @@ group :test do
   gem 'launchy'
   gem 'database_cleaner'
   gem 'rr'
+  gem 'fakeweb'
 end

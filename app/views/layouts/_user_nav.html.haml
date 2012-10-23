@@ -27,7 +27,7 @@
       = link_to "Log In", "#login-modal"
   
   - if user_signed_in?
-    - if current_user.pledged_amount > 0
+    - if !current_user.has_configured_postpaid? && current_user.pledged_amount > 0
       %li#pledged
         .text pledged rewards
         .amount= link_to number_to_currency(current_user.pledged_amount), fund_rewards_path

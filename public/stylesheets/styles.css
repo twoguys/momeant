@@ -556,6 +556,9 @@ input[type="submit"], a.button {
   font-family: "proxima-nova-1", "proxima-nova-2", helvetica, sans-serif;
   font-size: 13px; }
 
+a.button {
+  display: inline-block; }
+
 input[type="submit"]:active, a.button:active {
   top: 1px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2) inset; }
@@ -7007,105 +7010,90 @@ a#load-more {
 #hidden-reward-appender {
   display: none; }
 
-body#users.fund_pledged_rewards #bg {
-  background: #e0e0e0;
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1; }
-
-#pay-for-rewards {
+#fund-rewards {
   padding: 20px;
+  width: 900px;
+  margin: 30px auto 0;
   position: relative;
   z-index: 2; }
-  #pay-for-rewards #messaging {
+  #fund-rewards p {
+    font-size: 1.3em;
+    line-height: 1.3em; }
+  #fund-rewards #messaging h1 {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eeeeee;
+    margin-bottom: 20px; }
+  #fund-rewards #amazon-button a {
     display: inline-block;
-    width: 100%; }
-    #pay-for-rewards #messaging:after {
-      content: ".";
-      display: block;
-      height: 0;
-      clear: both;
-      visibility: hidden; }
-    #pay-for-rewards #messaging .avatar {
-      width: 142px;
-      height: 142px;
-      float: left;
-      margin-right: 20px; }
-    #pay-for-rewards #messaging .the-rest {
-      float: left; }
-      #pay-for-rewards #messaging .the-rest h1 {
-        text-transform: uppercase;
-        font-weight: 600;
-        margin-bottom: 5px; }
-      #pay-for-rewards #messaging .the-rest p {
-        margin: 0;
-        font-size: 1.4em;
-        font-weight: 600;
-        line-height: 1.3em; }
-  #pay-for-rewards form {
-    margin-top: 10px;
-    background: transparent url(../images/payments/cc-icons.png) no-repeat 100% 0;
-    width: 470px; }
-    #pay-for-rewards form input[type="submit"] {
-      width: 240px;
-      background: white url(../images/payments/amazonLogo.png) no-repeat 94% 11px;
-      padding: 10px 76px 13px 12px;
-      text-transform: none;
-      font-weight: 700;
-      font-size: 16px;
-      box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.2) inset;
-      color: black;
-      text-shadow: none;
-      border: 1px solid #cccccc; }
-  #pay-for-rewards table#rewards {
+    background: white url(../images/payments/amazonLogo.png) no-repeat 94% 11px;
+    padding: 10px 78px 13px 12px;
+    font-weight: 700;
+    font-size: 16px;
+    box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.2) inset;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    color: black;
+    text-shadow: none;
+    border: 1px solid #cccccc;
+    float: left; }
+  #fund-rewards #amazon-button #cards {
+    width: 240px;
+    height: 45px;
+    background: transparent url(../images/payments/cc-icons.png) no-repeat 0 0;
+    float: left; }
+  #fund-rewards #amazon-button p {
+    display: inline-block;
+    font-family: "museo-slab-1", "museo-slab-2", serif;
+    font-size: 1em;
+    color: #555555;
+    padding: 5px;
+    background: #ffffcc; }
+  #fund-rewards table#rewards {
     clear: both;
     padding: 30px 0 20px; }
-    #pay-for-rewards table#rewards td {
+    #fund-rewards table#rewards td {
       height: 65px;
       background: none;
       padding: 0 0 20px;
       border: 0; }
-      #pay-for-rewards table#rewards td .inner {
+      #fund-rewards table#rewards td .inner {
         width: 100%;
         height: 65px;
-        background: white; }
-    #pay-for-rewards table#rewards td.name .inner {
+        background: #f4f4f4; }
+    #fund-rewards table#rewards td.name .inner {
       width: 145px;
       height: 35px;
       padding: 15px 0 15px 20px;
-      background: white url(../images/payments/user-dot.png) no-repeat 100% 50%;
       font-family: "museo-slab-1", "museo-slab-2", serif;
       font-size: 16px;
       font-style: italic;
       line-height: 16px; }
-      #pay-for-rewards table#rewards td.name .inner span {
+      #fund-rewards table#rewards td.name .inner span {
         display: block; }
-    #pay-for-rewards table#rewards td.avatar a, #pay-for-rewards table#rewards td.avatar img {
+    #fund-rewards table#rewards td.avatar a, #fund-rewards table#rewards td.avatar img {
       display: block;
       width: 65px;
       height: 65px; }
-    #pay-for-rewards table#rewards td.content a, #pay-for-rewards table#rewards td.content img {
+    #fund-rewards table#rewards td.content a, #fund-rewards table#rewards td.content img {
       display: block;
       width: 103px;
       height: 65px; }
-    #pay-for-rewards table#rewards td.title .inner {
+    #fund-rewards table#rewards td.title .inner {
       width: auto;
       padding: 14px 20px;
       height: 37px;
       overflow: hidden; }
-      #pay-for-rewards table#rewards td.title .inner a {
+      #fund-rewards table#rewards td.title .inner a {
         text-transform: uppercase; }
-    #pay-for-rewards table#rewards td.comment {
+    #fund-rewards table#rewards td.comment {
       width: 60px;
       text-align: center; }
-      #pay-for-rewards table#rewards td.comment img {
+      #fund-rewards table#rewards td.comment img {
         margin-top: 25px;
         cursor: help; }
-    #pay-for-rewards table#rewards td.amount .inner {
-      background: #d6d6d6 url(../images/payments/amount-bg.png) no-repeat 0 0;
+    #fund-rewards table#rewards td.amount .inner {
+      background: #d6d6d6;
       width: auto;
       height: 54px;
       padding: 11px 20px 0 50px;
