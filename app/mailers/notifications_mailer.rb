@@ -87,4 +87,10 @@ class NotificationsMailer < ActionMailer::Base
     
     mail to: user.email, subject: "Momeant just paid you #{@amount}!"
   end
+  
+  def payment_error(user)
+    @user = user
+    
+    mail to: user.email, subject: "Action Needed! Your Amazon Payment method was declined."
+  end
 end

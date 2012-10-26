@@ -1,7 +1,7 @@
 require 'amazon/fps/fpspayments'
 
 class AmazonPaymentsController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, except: [:update_status]
   
   def index
     @payment = AmazonPayment.new(:amount => 10)
@@ -41,7 +41,15 @@ class AmazonPaymentsController < ApplicationController
       needs_to_reauthorize_amazon_postpaid: false
     )
     # TODO: check the status code for bad stuff
+    # TODO: look for failed Pay or SettleDebt transactions and run those again
     redirect_to fund_rewards_path
+  end
+  
+  def update_status
+    Rails.logger.info "IPN NOTIFICATION"
+    payment = AmazonPayment.where(amazon_transaction_id: params[:transactionId]).first
+    payment.update_status(params) 
+    head :ok
   end
   
   private

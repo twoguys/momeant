@@ -48,6 +48,7 @@ Repo::Application.routes.draw do
   match '/fund/accept-postpaid', to: "amazon_payments#accept_postpaid", as: :accept_amazon_postpaid
   match '/fund/pay', :to => "amazon_payments#create", :as => :pay_for_rewards
   match '/fund/accept', :to => "amazon_payments#accept", :as => :accept_payment
+  match '/amazon/update_status', to: "amazon_payments#update_status"
   
   resources :users do
     resources :subscriptions, :only => [:create] do

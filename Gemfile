@@ -47,4 +47,5 @@ group :test do
   gem 'database_cleaner'
   gem 'rr'
   gem 'fakeweb'
+  gem 'rack-test'
 end

@@ -205,7 +205,6 @@ class User < ActiveRecord::Base
   end
   
   def surpassed_credit_limit?
-    Rails.logger.info "PLEDGED AMOUNT: #{pledged_amount}"
     pledged_amount >= PLEDGED_REWARD_CREDIT_LIMIT
   end
   
@@ -215,11 +214,18 @@ class User < ActiveRecord::Base
   end
   
   def settle_debt
-    Rails.logger.info "PAYING FOR PLEDGED REWARDS"
     amazon_payment = AmazonPayment.create(payer_id: self.id, amount: pledged_amount, used_for: "SettleDebt", state: "initiated")
-    success = amazon_payment.settle_postpaid_debt!
-    Rails.logger.info "SETTLE DEBT SUCCESS? #{success}"
-    self.given_rewards.pledged.update_all(paid_for: true, amazon_payment_id: amazon_payment.id) if success
+    given_rewards.pledged.update_all(amazon_payment_id: amazon_payment.id)
+    amazon_payment.settle_postpaid_debt!
+  end
+  
+  def cancel_amazon_authorization
+    self.update_attributes(
+      amazon_credit_instrument_id: nil,
+      amazon_credit_sender_token_id: nil,
+      amazon_settlement_token_id: nil,
+      needs_to_reauthorize_amazon_postpaid: true
+    )
   end
   
   def rewards_given_to(user)

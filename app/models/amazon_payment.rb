@@ -4,6 +4,7 @@ class AmazonPayment < Transaction
   include ActionView::Helpers::NumberHelper
   
   validates :amount, :presence => true
+  has_many :rewards
   
   POSTPAID_CREDIT_LIMIT = 100
   
@@ -46,11 +47,12 @@ class AmazonPayment < Transaction
     doc = Nokogiri::XML(response)
     transaction_id = doc.search("TransactionId").first.content
     transaction_status = doc.search("TransactionStatus").first.content
+    
     self.update_attributes(amazon_transaction_id: transaction_id, state: transaction_status.downcase)
+    handle_postpaid_settlement_errors(state) unless ["pending", "success"].include?(state)
   end
   
   def settle_postpaid_debt!
-    Rails.logger.info "SETTLING DEBT WITH AMAZON #{self.amount}"
     url = Amazon::FPS::Payments.get_postpaid_settle_url(
       self.amount,
       self.id,
@@ -61,16 +63,56 @@ class AmazonPayment < Transaction
     doc = Nokogiri::XML(response)
     
     transaction_id = doc.search("TransactionId").first.content
-    transaction_status = doc.search("TransactionStatus").first.content
+    transaction_status = doc.search("TransactionStatus").first.content.downcase
     self.update_attributes(amazon_transaction_id: transaction_id, state: transaction_status.downcase)
     
-    handle_postpaid_settlement_errors(self.state) unless ["pending", "success"].include?(self.state)
-
-    return ["pending", "success"].include?(self.state)
+    handle_postpaid_settlement_errors(state) unless ["pending", "success"].include?(state)
+    mark_rewards_as_funded if state == "success"
   end
   
   def handle_postpaid_settlement_errors(state)
     Rails.logger.error "ERROR SETTLING DEBT: #{state}"
-    # TODO: send an email to the user?
+    payer.update_attribute(:needs_to_reauthorize_amazon_postpaid, true)
+    NotificationsMailer.payment_error(payer).deliver
+  end
+  
+  def update_status(params) # via Amazon IPN notifications
+    
+    # TODO: validate the signature so people can't spoof it
+    
+    previous_state = state
+    new_state = translate_amazon_ipn_status(params[:status])
+
+    self.update_attribute(:state, new_state)
+
+    if new_state == "success" && used_for == "SettleDebt"
+      mark_rewards_as_funded
+    end
+      
+    if new_state == "failure" && previous_state != "failure"
+      payer.update_attribute(:needs_to_reauthorize_amazon_postpaid, true)
+      NotificationsMailer.payment_error(payer).deliver
+    end
+  end
+  
+  private
+  
+  def mark_rewards_as_funded
+    rewards.update_all(paid_for: true)
+  end
+  
+  def translate_amazon_ipn_status(status)
+    case status
+    when "PS"
+      "success"
+    when "PF"
+      "failure"
+    when "PI"
+      "pending"
+    when "PR"
+      "success"
+    else
+      status
+    end
   end
 end
