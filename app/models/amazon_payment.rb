@@ -4,7 +4,6 @@ class AmazonPayment < Transaction
   include ActionView::Helpers::NumberHelper
   
   validates :amount, :presence => true
-  has_many :rewards
   
   POSTPAID_CREDIT_LIMIT = 100
   
@@ -35,15 +34,19 @@ class AmazonPayment < Transaction
   def send_debt_to_amazon!
     url = Amazon::FPS::Payments.get_pay_url(self.amount, self.id, self.payer.amazon_credit_sender_token_id)
     
+    Rails.logger.info "AMAZON PAY RESPONSE:"
     begin
       response = RestClient.get url
     rescue Exception => e
+      Rails.logger.info e.inspect
       if e.inspect.to_s.include?("InsufficientBalance")
+        Rails.logger.info "INSUFFICIENT BALANCE"
         self.payer.update_attribute(:needs_to_reauthorize_amazon_postpaid, true)
         raise Exceptions::AmazonPayments::InsufficientBalanceException
       end
     end
-      
+    Rails.logger.info response
+    
     doc = Nokogiri::XML(response)
     transaction_id = doc.search("TransactionId").first.content
     transaction_status = doc.search("TransactionStatus").first.content
@@ -59,13 +62,21 @@ class AmazonPayment < Transaction
       self.payer.amazon_credit_instrument_id,
       self.payer.amazon_settlement_token_id
     )
-    response = RestClient.get url
-    doc = Nokogiri::XML(response)
     
+    Rails.logger.info "AMAZON SETTLEDEBT RESPONSE:"
+    begin
+      response = RestClient.get url
+    rescue Exception => e
+      Rails.logger.info e.inspect
+      raise
+    end
+    Rails.logger.info response
+    
+    doc = Nokogiri::XML(response)
     transaction_id = doc.search("TransactionId").first.content
     transaction_status = doc.search("TransactionStatus").first.content.downcase
+
     self.update_attributes(amazon_transaction_id: transaction_id, state: transaction_status.downcase)
-    
     handle_postpaid_settlement_errors(state) unless ["pending", "success"].include?(state)
     mark_rewards_as_funded if state == "success"
   end
@@ -98,7 +109,7 @@ class AmazonPayment < Transaction
   private
   
   def mark_rewards_as_funded
-    rewards.update_all(paid_for: true)
+    Reward.where(amazon_settlement_id: self.id).update_all(paid_for: true)
   end
   
   def translate_amazon_ipn_status(status)

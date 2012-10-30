@@ -153,13 +153,13 @@ class User < ActiveRecord::Base
     # otherwise, use the normal Amazon Postpaid route
     elsif has_configured_postpaid?
       begin
-        attribute_debt(reward.amount)
-        settle_debt if surpassed_credit_limit?
+        attribute_debt(reward)
       rescue Exception => e
         reward.destroy
         raise e
       end
       
+      settle_debt if surpassed_credit_limit?
     else
       # TODO: send an email to users who haven't configured Postpaid
     end
@@ -208,14 +208,16 @@ class User < ActiveRecord::Base
     pledged_amount >= PLEDGED_REWARD_CREDIT_LIMIT
   end
   
-  def attribute_debt(amount)
-    amazon_payment = AmazonPayment.create(payer_id: self.id, amount: amount, used_for: "Pay", state: "initiated")
+  def attribute_debt(reward)
+    Rails.logger.info "ATTRIBUTING DEBT"
+    amazon_payment = AmazonPayment.create(payer_id: self.id, amount: reward.amount, used_for: "Pay", state: "initiated")
+    reward.update_attribute(:amazon_payment_id, amazon_payment.id)
     amazon_payment.send_debt_to_amazon!
   end
   
   def settle_debt
     amazon_payment = AmazonPayment.create(payer_id: self.id, amount: pledged_amount, used_for: "SettleDebt", state: "initiated")
-    given_rewards.pledged.update_all(amazon_payment_id: amazon_payment.id)
+    given_rewards.pledged.update_all(amazon_settlement_id: amazon_payment.id)
     amazon_payment.settle_postpaid_debt!
   end
   

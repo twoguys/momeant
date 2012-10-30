@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121023160158) do
+ActiveRecord::Schema.define(:version => 20121026164119) do
 
   create_table "activities", :force => true do |t|
     t.integer  "actor_id"
@@ -106,6 +106,7 @@ ActiveRecord::Schema.define(:version => 20121023160158) do
     t.boolean  "paid_for",                                              :default => false
     t.integer  "amazon_payment_id"
     t.integer  "pay_period_line_item_id"
+    t.integer  "amazon_settlement_id"
   end
 
   create_table "discussions", :force => true do |t|

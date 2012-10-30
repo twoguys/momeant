@@ -55,6 +55,5 @@ Factory.define :postpaid_user, parent: :user do |user|
   user.amazon_credit_instrument_id          "I3GI53H2Q9EL2ZN9EBAJ4AFJ8YJDBUG1F82FG8H6DC7VU3TB6HT5FQ9FBZZQDBDB"
   user.amazon_credit_sender_token_id        "I1GIR3M2Q9EU2ZR9RBA237FJKYIDBSGTF8FFM8HMDZ7V13EB6TTPFQRFGZZKDPDV"
   user.amazon_settlement_token_id           "I1GII3G2QUE82ZI9DBA434FJNYZDB7G8F8JFS8HHDC7VL36B6BT3FQ9FJZZFDKD6"
-  user.amazon_remaining_credit_balance      100.0
   user.needs_to_reauthorize_amazon_postpaid false
 end

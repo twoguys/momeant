@@ -40,13 +40,20 @@ class AmazonPaymentsController < ApplicationController
       amazon_settlement_token_id: params[:settlementTokenID],
       needs_to_reauthorize_amazon_postpaid: false
     )
+    
     # TODO: check the status code for bad stuff
-    # TODO: look for failed Pay or SettleDebt transactions and run those again
+    
+    current_user.given_rewards.pledged.each do |reward|
+      current_user.attribute_debt(reward)
+    end
+    current_user.settle_debt if current_user.surpassed_credit_limit?
+    
     redirect_to fund_rewards_path
   end
   
   def update_status
     Rails.logger.info "IPN NOTIFICATION"
+    Rails.logger.info params.inspect
     payment = AmazonPayment.where(amazon_transaction_id: params[:transactionId]).first
     payment.update_status(params) 
     head :ok

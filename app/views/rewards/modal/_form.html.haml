@@ -11,6 +11,11 @@
         %br
         But we need you to pay for those rewards before rewarding more; that way we can pay the creators you've supported.
         You can do that #{link_to "here", fund_rewards_path, target: "_blank"}.
+        
+  - elsif current_user && current_user.needs_to_reauthorize_amazon_postpaid?
+    #reauthorize
+      %p We need you to re-authorize your Amazon Payment method before rewarding again. Please visit the link below for more info.
+      = link_to "Manage your payment method", fund_rewards_path, target: "_blank"
 
   - else
     #current-user{style: current_user.nil? ? "display:none" : ""}

@@ -57,7 +57,7 @@ module Amazon
         parameters["callerReferenceSettlement"] = "#{user_id}-#{SecureRandom.hex(10)}"
         parameters["callerReferenceSender"] = "#{user_id}-#{SecureRandom.hex(10)}"
         parameters["globalAmountLimit"] = global_limit
-        parameters["creditLimit"] = 1
+        parameters["creditLimit"] = global_limit
         parameters["paymentReason"] = "Used to pay for your Momeant rewards"
         parameters["returnURL"] = return_url
         parameters["version"] = "2009-01-09"

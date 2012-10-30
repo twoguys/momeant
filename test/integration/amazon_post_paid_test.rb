@@ -87,6 +87,8 @@ Feature "A user should be able to pay for rewards using Amazon Payments" do
       assert_equal "Pay", payment.used_for
       assert_equal 0.5, payment.amount
       assert_equal "pending", payment.state
+      
+      assert_equal payment.id, @postpaid_user.given_rewards.first.amazon_payment_id
     end
   end
   
@@ -94,27 +96,41 @@ Feature "A user should be able to pay for rewards using Amazon Payments" do
     Given "a postpaid user and story" do
       @postpaid_user = Factory(:postpaid_user)
       @story = Factory(:story)
-      FakeWeb.register_uri(:get, %r|https://fps\.sandbox\.amazonaws\.com/|, body: SUCCESSFUL_SETTLE_DEBT_RESPONSE)
+      FakeWeb.register_uri(:get, %r|https://fps\.sandbox\.amazonaws\.com/|, [{ body: SUCCESSFUL_PAY_RESPONSE }, { body: SUCCESSFUL_SETTLE_DEBT_RESPONSE }])
     end
     
     given_im_signed_in_as(:postpaid_user)
     
     when_i_reward(:story, 1.0)
     
-    Then "there should be two Amazon Payments marking the debt sent and the debt settled" do
+    Then "there should be two Amazon Payments marking the debt attributed and the debt settled" do
       FakeWeb.clean_registry
       
       assert_equal 2, @postpaid_user.amazon_payments.count
       
-      payment = @postpaid_user.amazon_payments.first
-      assert_equal "SettleDebt", payment.used_for
+      payment = @postpaid_user.amazon_payments.last
+      assert_equal payment.id, @postpaid_user.given_rewards.first.amazon_payment_id
       assert_equal "pending", payment.state
+      assert_equal "Pay", payment.used_for
+      
+      @settle_payment = @postpaid_user.amazon_payments.first
+      assert_equal "SettleDebt", @settle_payment.used_for
+      assert_equal "pending", @settle_payment.state
+      assert_equal @settle_payment.id, @postpaid_user.given_rewards.first.amazon_settlement_id
+    end
+    
+    When "the IPN notification tells us the SettleDebt properly succeeded" do
+      post "#{root_path}amazon/update_status?transactionId=#{@settle_payment.amazon_transaction_id}&status=PS&paymentMethod=CC"
+    end
+    
+    Then "the reward should be marked as funded" do
+      assert_equal 0, @postpaid_user.given_rewards.pledged.count
     end
   end
   
   Scenario "Rewarding above my remaining credit instrument balance" do
     Given "a postpaid user with a small remaining amazon credit balance" do
-      @postpaid_user = Factory(:postpaid_user, amazon_remaining_credit_balance: 0.5)
+      @postpaid_user = Factory(:postpaid_user)
       FakeWeb.register_uri(
         :get,
         %r|https://fps\.sandbox\.amazonaws\.com/|,
@@ -167,6 +183,71 @@ Feature "A user should be able to pay for rewards using Amazon Payments" do
     end
   end
   
+  Scenario "Authorizing my Amazon Payment with existing pledged rewards under the one dollar settle debt limit" do
+    given_a :postpaid_user
+    Given "this user has a fifty cent pledged reward" do
+      @reward = Factory(:unfunded_reward, user: @postpaid_user, amount: 0.5)
+    end
+    
+    given_im_signed_in_as(:postpaid_user)
+    
+    When "I authorize my Amazon Payment" do
+      FakeWeb.register_uri(:get, %r|https://fps\.sandbox\.amazonaws\.com/|, body: SUCCESSFUL_PAY_RESPONSE)
+      visit "#{root_path}#{SUCCESSFUL_AUTHORIZATION}"
+    end
+    
+    Then "my reward should have an associated Amazon Payment object with it" do
+      FakeWeb.clean_registry
+  
+      assert_equal 1, @postpaid_user.amazon_payments.count
+      
+      @reward.reload
+      payment = @postpaid_user.amazon_payments.first
+      assert_equal payment.id, @reward.amazon_payment_id
+      assert_equal "Pay", payment.used_for
+      assert_equal "pending", payment.state
+    end
+  end
+  
+  Scenario "Authorizing my Amazon Payment with existing pledged rewards at the one dollar settle debt limit" do
+    given_a :postpaid_user
+    Given "this user has a one dollar pledged reward" do
+      @reward = Factory(:unfunded_reward, user: @postpaid_user, amount: 1)
+    end
+    
+    given_im_signed_in_as(:postpaid_user)
+    
+    When "I authorize my Amazon Payment" do
+      FakeWeb.register_uri(:get, %r|https://fps\.sandbox\.amazonaws\.com/|, [{ body: SUCCESSFUL_PAY_RESPONSE }, { body: SUCCESSFUL_SETTLE_DEBT_RESPONSE }])
+      visit "#{root_path}#{SUCCESSFUL_AUTHORIZATION}"
+    end
+    
+    Then "I have the necessary Amazon Pay and SettleDebt transactions" do
+      FakeWeb.clean_registry
+  
+      assert_equal 2, @postpaid_user.amazon_payments.count
+      
+      @reward.reload
+      payment = @postpaid_user.amazon_payments.last
+      assert_equal payment.id, @reward.amazon_payment_id
+      assert_equal "Pay", payment.used_for
+      assert_equal "pending", payment.state
+      
+      @settle_payment = @postpaid_user.amazon_payments.first
+      assert_equal @settle_payment.id, @reward.amazon_settlement_id
+      assert_equal "SettleDebt", @settle_payment.used_for
+      assert_equal "pending", @settle_payment.state
+    end
+    
+    When "the IPN notification tells us the SettleDebt properly succeeded" do
+      post "#{root_path}amazon/update_status?transactionId=#{@settle_payment.amazon_transaction_id}&status=PS&paymentMethod=CC"
+    end
+    
+    Then "the reward should be marked as funded" do
+      assert_equal 0, @postpaid_user.given_rewards.pledged.count
+    end
+  end
+  
   Scenario "Receiving a success IPN from Amazon for a Pay transaction" do
     given_a :amazon_payment
     
@@ -197,10 +278,11 @@ Feature "A user should be able to pay for rewards using Amazon Payments" do
       assert_equal "success", @amazon_settle_payment.state
     end
     
-    And "its rewards should be marked as funded" do
-      @amazon_settle_payment.rewards.each do |reward|
-        assert reward.paid_for, "The reward is marked as paid for"
-      end
+    And "the rewards should be marked as funded" do
+      @reward.reload
+      @reward2.reload
+      assert @reward.paid_for, "The reward is marked as paid for"
+      assert @reward2.paid_for, "The reward is marked as paid for"
     end
   end
   
