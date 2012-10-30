@@ -152,6 +152,10 @@ Feature "A user should be able to pay for rewards using Amazon Payments" do
       assert @postpaid_user.needs_to_reauthorize_amazon_postpaid?, "The user is marked as needing to reauthorize Amazon Payments"
     end
     
+    And "the reward should have been deleted" do
+      assert_equal 0, @postpaid_user.given_rewards.count
+    end
+    
   end
   
   Scenario "Re-authorizing my Amazon Payment" do

@@ -221,6 +221,12 @@ class User < ActiveRecord::Base
     amazon_payment.settle_postpaid_debt!
   end
   
+  def attribute_debt_for_previous_rewards
+    given_rewards.pledged.where(amazon_payment_id: nil).each do |reward|
+      attribute_debt(reward)
+    end
+  end
+  
   def cancel_amazon_authorization
     self.update_attributes(
       amazon_credit_instrument_id: nil,

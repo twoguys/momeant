@@ -32,7 +32,9 @@ class AmazonPaymentsController < ApplicationController
   
   def accept_postpaid
     render text: params[:errorMessage] and return if params[:errorMessage].present?
-    #render text: "Invalid Signature" and return unless valid_signature?(request, rebuild_query_string(params))
+    
+    # TODO: render text: "Invalid Signature" and return unless valid_signature?(request, rebuild_query_string(params))
+    
     current_user.update_attributes(
       amazon_status_code: params[:status],
       amazon_credit_instrument_id: params[:creditInstrumentID],
@@ -43,9 +45,7 @@ class AmazonPaymentsController < ApplicationController
     
     # TODO: check the status code for bad stuff
     
-    current_user.given_rewards.pledged.each do |reward|
-      current_user.attribute_debt(reward)
-    end
+    current_user.attribute_debt_for_previous_rewards
     current_user.settle_debt if current_user.surpassed_credit_limit?
     
     redirect_to fund_rewards_path
