@@ -185,7 +185,7 @@ Feature "A user should be able to pay for rewards using Amazon Payments" do
   
   Scenario "Authorizing my Amazon Payment with existing pledged rewards under the one dollar settle debt limit" do
     given_a :postpaid_user
-    Given "this user has a fifty cent pledged reward" do
+    Given "this user has a 0.5 dollars pledged reward" do
       @reward = Factory(:unfunded_reward, user: @postpaid_user, amount: 0.5)
     end
     
@@ -222,7 +222,7 @@ Feature "A user should be able to pay for rewards using Amazon Payments" do
       visit "#{root_path}#{SUCCESSFUL_AUTHORIZATION}"
     end
     
-    Then "I have the necessary Amazon Pay and SettleDebt transactions" do
+    Then "I should have the necessary Amazon Pay and SettleDebt transactions" do
       FakeWeb.clean_registry
   
       assert_equal 2, @postpaid_user.amazon_payments.count

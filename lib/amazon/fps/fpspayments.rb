@@ -68,13 +68,13 @@ module Amazon
         return create_url(ENV["AMAZON_CBUI_ENDPOINT"], signed_parameters)
       end
     
-      def self.get_pay_url(amount, payment_id, sender_token_id)
+      def self.get_pay_url(amount, payment_token, sender_token_id)
         uri = URI.parse(ENV["AMAZON_FPS_ENDPOINT"])
         parameters = {}
         parameters["AWSAccessKeyId"] = ENV["S3_KEY"]
         parameters["Action"] = "Pay"
         parameters["CallerDescription"] = "Attributing debt for a reward given"
-        parameters["CallerReference"] = payment_id
+        parameters["CallerReference"] = payment_token
         parameters["SenderTokenId"] = sender_token_id
         parameters["TransactionAmount.Value"] = amount
         parameters["TransactionAmount.CurrencyCode"] = "USD"
@@ -85,13 +85,13 @@ module Amazon
         return create_url(ENV["AMAZON_FPS_ENDPOINT"], signed_parameters)
       end
       
-      def self.get_postpaid_settle_url(amount, payment_id, credit_instrument_id, settlement_token_id)
+      def self.get_postpaid_settle_url(amount, payment_token, credit_instrument_id, settlement_token_id)
         uri = URI.parse(ENV["AMAZON_FPS_ENDPOINT"])
         parameters = {}
         parameters["AWSAccessKeyId"] = ENV["S3_KEY"]
         parameters["Action"] = "SettleDebt"
         parameters["CallerDescription"] = "Settling debt for previous rewards given"
-        parameters["CallerReference"] = payment_id
+        parameters["CallerReference"] = payment_token
         parameters["CreditInstrumentId"] = credit_instrument_id
         parameters["SenderTokenId"] = settlement_token_id
         parameters["SettlementAmount.Value"] = amount

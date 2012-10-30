@@ -5,6 +5,8 @@ class AmazonPayment < Transaction
   
   validates :amount, :presence => true
   
+  before_create :assign_token
+  
   POSTPAID_CREDIT_LIMIT = 100
   
   def fees
@@ -32,7 +34,7 @@ class AmazonPayment < Transaction
   end
   
   def send_debt_to_amazon!
-    url = Amazon::FPS::Payments.get_pay_url(self.amount, self.id, self.payer.amazon_credit_sender_token_id)
+    url = Amazon::FPS::Payments.get_pay_url(self.amount, self.token, self.payer.amazon_credit_sender_token_id)
     
     Rails.logger.info "AMAZON PAY RESPONSE:"
     begin
@@ -58,7 +60,7 @@ class AmazonPayment < Transaction
   def settle_postpaid_debt!
     url = Amazon::FPS::Payments.get_postpaid_settle_url(
       self.amount,
-      self.id,
+      self.token,
       self.payer.amazon_credit_instrument_id,
       self.payer.amazon_settlement_token_id
     )
@@ -125,5 +127,9 @@ class AmazonPayment < Transaction
     else
       status
     end
+  end
+  
+  def assign_token
+    self.token = SecureRandom.hex(30)
   end
 end
