@@ -124,6 +124,8 @@ class AmazonPayment < Transaction
       "pending"
     when "PR"
       "success"
+    when ""
+      "empty"
     else
       status
     end
