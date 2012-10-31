@@ -55,7 +55,7 @@ class AmazonPaymentsController < ApplicationController
     Rails.logger.info "IPN NOTIFICATION"
     Rails.logger.info params.inspect
     payment = AmazonPayment.where(amazon_transaction_id: params[:transactionId]).first
-    payment.update_status(params) 
+    payment.update_status(params) if payment
     head :ok
   end
   

@@ -111,6 +111,7 @@ class AmazonPayment < Transaction
   private
   
   def mark_rewards_as_funded
+    Rails.logger.info "MARKING REWARDS AS FUNDED"
     Reward.where(amazon_settlement_id: self.id).update_all(paid_for: true)
   end
   
