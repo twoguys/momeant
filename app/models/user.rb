@@ -209,13 +209,14 @@ class User < ActiveRecord::Base
   end
   
   def attribute_debt(reward)
-    Rails.logger.info "ATTRIBUTING DEBT"
+    Rails.logger.info "ATTRIBUTING DEBT #{reward.amount}"
     amazon_payment = AmazonPayment.create(payer_id: self.id, amount: reward.amount, used_for: "Pay", state: "initiated")
     reward.update_attribute(:amazon_payment_id, amazon_payment.id)
     amazon_payment.send_debt_to_amazon!
   end
   
   def settle_debt
+    Rails.logger.info "SETTLING DEBT #{pledged_amount}"
     amazon_payment = AmazonPayment.create(payer_id: self.id, amount: pledged_amount, used_for: "SettleDebt", state: "initiated")
     given_rewards.pledged.update_all(amazon_settlement_id: amazon_payment.id)
     amazon_payment.settle_postpaid_debt!
