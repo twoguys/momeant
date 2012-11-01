@@ -90,11 +90,19 @@ class AmazonPayment < Transaction
   end
   
   def update_status(params) # via Amazon IPN notifications
+    Rails.logger.info "UPDATING STATUS for AmazonPayment #{self.id}"
     
     # TODO: validate the signature so people can't spoof it
     
     previous_state = state
-    new_state = translate_amazon_ipn_status(params[:status])
+    new_state = params[:transactionStatus].downcase
+    
+    if previous_state != "pending"
+      Rails.logger.info "IGNORING BECAUSE I'M NOT PENDING"
+      return
+    else
+      Rails.logger.info "CHANGING FROM #{previous_state} -> #{new_state}"
+    end
 
     self.update_attribute(:state, new_state)
 
