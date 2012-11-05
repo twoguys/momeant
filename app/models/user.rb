@@ -603,7 +603,7 @@ class User < ActiveRecord::Base
     Reward.pledged.includes(:user).group_by(&:user).each do |user_rewards|
       user = user_rewards[0]
       rewards = user_rewards[1]
-      unless user.is_under_pledged_rewards_reminder_threshold?
+      if !user.has_configured_postpaid? && !user.is_under_pledged_rewards_reminder_threshold?
         NotificationsMailer.pledged_reminder(user, rewards).deliver
       end
     end

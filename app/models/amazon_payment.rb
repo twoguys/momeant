@@ -36,13 +36,13 @@ class AmazonPayment < Transaction
   def send_debt_to_amazon!
     url = Amazon::FPS::Payments.get_pay_url(self.amount, self.token, self.payer.amazon_credit_sender_token_id)
     
-    Rails.logger.info "AMAZON PAY RESPONSE:"
+    Rails.logger.info "[#{self.id} #{self.used_for}] AMAZON PAY RESPONSE:"
     begin
       response = RestClient.get url
     rescue Exception => e
       Rails.logger.info e.inspect
       if e.inspect.to_s.include?("InsufficientBalance")
-        Rails.logger.info "INSUFFICIENT BALANCE"
+        Rails.logger.info "[#{self.id} #{self.used_for}] INSUFFICIENT BALANCE"
         self.payer.update_attribute(:needs_to_reauthorize_amazon_postpaid, true)
         raise Exceptions::AmazonPayments::InsufficientBalanceException
       end
@@ -65,7 +65,7 @@ class AmazonPayment < Transaction
       self.payer.amazon_settlement_token_id
     )
     
-    Rails.logger.info "AMAZON SETTLEDEBT RESPONSE:"
+    Rails.logger.info "[#{self.id} #{self.used_for}] AMAZON SETTLEDEBT RESPONSE:"
     begin
       response = RestClient.get url
     rescue Exception => e
@@ -80,17 +80,17 @@ class AmazonPayment < Transaction
 
     self.update_attributes(amazon_transaction_id: transaction_id, state: transaction_status.downcase)
     handle_postpaid_settlement_errors(state) unless ["pending", "success"].include?(state)
-    mark_rewards_as_funded if state == "success"
+    mark_rewards_as_funded if state == "success" || Rails.env.development?
   end
   
   def handle_postpaid_settlement_errors(state)
-    Rails.logger.error "ERROR SETTLING DEBT: #{state}"
+    Rails.logger.error "[#{self.id} #{self.used_for}] ERROR SETTLING DEBT: #{state}"
     payer.update_attribute(:needs_to_reauthorize_amazon_postpaid, true)
     NotificationsMailer.payment_error(payer).deliver
   end
   
   def update_status(params) # via Amazon IPN notifications
-    Rails.logger.info "UPDATING STATUS for AmazonPayment #{self.id}"
+    Rails.logger.info "[#{self.id} #{self.used_for}] UPDATING STATUS for AmazonPayment #{self.id}"
     
     # TODO: validate the signature so people can't spoof it
     
@@ -98,10 +98,10 @@ class AmazonPayment < Transaction
     new_state = params[:transactionStatus].downcase
     
     if previous_state != "pending"
-      Rails.logger.info "IGNORING BECAUSE I'M NOT PENDING"
+      Rails.logger.info "[#{self.id} #{self.used_for}] IGNORING BECAUSE I'M NOT PENDING"
       return
     else
-      Rails.logger.info "CHANGING FROM #{previous_state} -> #{new_state}"
+      Rails.logger.info "[#{self.id} #{self.used_for}] CHANGING FROM #{previous_state} -> #{new_state}"
     end
 
     self.update_attribute(:state, new_state)
@@ -119,7 +119,7 @@ class AmazonPayment < Transaction
   private
   
   def mark_rewards_as_funded
-    Rails.logger.info "MARKING REWARDS AS FUNDED"
+    Rails.logger.info "[#{self.id} #{self.used_for}] MARKING REWARDS AS FUNDED"
     Reward.where(amazon_settlement_id: self.id).update_all(paid_for: true)
   end
   
