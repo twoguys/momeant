@@ -41,6 +41,7 @@ Repo::Application.routes.draw do
       post :add_or_update_image, :on => :member
     end
   end
+  match '/before-creation', to: "stories#before", as: :before_creation
   
   match '/coins', :to => "amazon_payments#index", :as => :coins
   match '/fund', :to => "users#fund_pledged_rewards", :as => :fund_rewards
