@@ -8,6 +8,16 @@ class NotificationsMailer < ActionMailer::Base
     mail :to => user.email, :subject => "Welcome to Momeant!"
   end
   
+  def first_reward_given(reward)
+    @rewarder = reward.user
+    @creator = reward.recipient
+    mail to: @rewarder.email, subject: "Configuring your payment method"
+  end
+  
+  def payment_configured(user)
+    mail to: user.email, subject: "Payment method configured"
+  end
+  
   def reward_notice(reward)
     @reward = reward
     @messaging_url = new_message_url(user: @reward.user_id)
@@ -50,7 +60,7 @@ class NotificationsMailer < ActionMailer::Base
     @rewards = rewards
     @amount = @rewards.map(&:amount).inject(:+)
     
-    mail :to => user.email, :subject => "You've reached your pledged reward limit."
+    mail :to => user.email, :subject => "Please configure your payment method."
   end
   
   def new_follower(user, follower)

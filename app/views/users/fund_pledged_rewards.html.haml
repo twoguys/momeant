@@ -1,21 +1,26 @@
 #fund-rewards
 
   #messaging
-    %h1 Hey #{@user.first_name}, thank you so much for supporting creators!
+    %h1 Thank you so much for supporting creators, #{@user.first_name}.
     %p
       In order to make your experience as smooth and enjoyable as we can, we don't want to bug you about
       a payment method every time you reward someone. We also want to provide you with flexible payment
       options. In order to meet both of those goals, we use the simple &amp; secure Amazon Payments.
-    %p
-      %strong
-        - if current_user.needs_to_reauthorize_amazon_postpaid?
-          We need you to re-authorize your Amazon Payment method. Please click the button below.
-        - elsif current_user.has_configured_postpaid?
-          You have already configured your Amazon Payment method. If you'd like to change it
-          at any time, you can click the button below to update your payment settings.
-        - else
-          Click the button below to goto Amazon's site and choose a payment method. It's super easy.
-          Once you're done, Amazon will send you right back here, and you'll be all set!
+
+    - if current_user.needs_to_reauthorize_amazon_postpaid?
+      %p
+        %strong We need you to re-authorize your Amazon Payment method. Please click the button below.
+    - elsif current_user.has_configured_postpaid?
+      %p
+        %strong You have already configured your Amazon Payment method.
+      %p If you'd like to change it at any time, you can click the button below to update your payment settings.
+    - else
+      %p
+        %strong Click the button below to go to Amazon's site and choose a payment method.
+      %p
+        It's super easy to setup. If you ever need to change your payment method, you can get back here by
+        clicking the 'Payment Settings' options in your profile drop-down in the top navigation.
+      %p Once you're done, Amazon will send you right back here, and you'll be all set!
     
     #amazon-button
       - if current_user.needs_to_reauthorize_amazon_postpaid?
@@ -28,6 +33,8 @@
       %p
         By configuring your Amazon Payment method, you are authorizing Momeant to make a charge
         when you reward someone.
+  
+  %p If you have any questions at all, don't hesitate to contact us by #{link_to "Giving Feedback", "#feedback-modal"} or emailing us at #{mail_to "team@momeant.com"}.
       
   - if !current_user.has_configured_postpaid? && @rewards.present?
     %p

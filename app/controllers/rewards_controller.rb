@@ -26,7 +26,9 @@ class RewardsController < ApplicationController
     end
         
     NotificationsMailer.reward_notice(@reward).deliver if @user.send_reward_notification_emails?
-    if !current_user.has_configured_postpaid? && !current_user.is_under_pledged_rewards_stop_threshold?
+    if current_user.given_rewards.count == 1
+      NotificationsMailer.first_reward_given(@reward).deliver
+    elsif !current_user.has_configured_postpaid? && !current_user.is_under_pledged_rewards_stop_threshold?
       previous_rewards = current_user.given_rewards.pledged.includes(:recipient)
       NotificationsMailer.pledged_limit_reached(current_user, previous_rewards).deliver
     end

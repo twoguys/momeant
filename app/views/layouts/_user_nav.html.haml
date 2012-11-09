@@ -36,14 +36,11 @@
         .text reward money to give out
         .amount= link_to number_to_currency(current_user.coins * Reward.dollar_exchange), coins_path
     %li#profile
-      = link_to "Your Profile", user_path(current_user)
+      = link_to "View Your Profile", user_path(current_user)
       %ul.subnav
-        %li= link_to "Your Profile", user_path(current_user)
-        - if current_user.is_a?(Creator)
-          %li= link_to "Share Your Work", new_story_path
-        - else
-          %li= link_to "Become A Creator", become_a_creator_users_path
-        = link_to "Settings", settings_user_path(current_user)
+        %li= link_to "View Your Profile", user_path(current_user)
+        = link_to "Edit Your Profile", settings_user_path(current_user)
+        = link_to "Payment Settings", fund_rewards_path
         - if current_user.is_admin?
           %li= link_to "Admin", admin_dashboard_path
         %li= link_to "Log out", destroy_user_session_path

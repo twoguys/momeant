@@ -35,6 +35,8 @@ class AmazonPaymentsController < ApplicationController
     
     # TODO: render text: "Invalid Signature" and return unless valid_signature?(request, rebuild_query_string(params))
     
+    configured_for_the_first_time = current_user.amazon_credit_instrument_id.nil?
+    
     current_user.update_attributes(
       amazon_status_code: params[:status],
       amazon_credit_instrument_id: params[:creditInstrumentID],
@@ -44,6 +46,8 @@ class AmazonPaymentsController < ApplicationController
     )
     
     # TODO: check the status code for bad stuff
+    
+    NotificationsMailer.payment_configured(current_user).deliver if configured_for_the_first_time
     
     current_user.attribute_debt_for_previous_rewards
     current_user.settle_debt if current_user.surpassed_credit_limit?

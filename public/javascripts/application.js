@@ -37,7 +37,7 @@ function setup_modals() {
 			$(id + '-modal').fadeIn('fast');
 			var modal_name = id.slice(1);
 			modal_name = modal_name.charAt(0).toUpperCase() + modal_name.slice(1);
-			mpq.track('Opened ' + modal_name + ' Modal');
+			mixpanel.track('Opened ' + modal_name + ' Modal');
 			return false;
 		})
 		$(id + '-modal .cover, ' + id + '-modal .close').click(function() {

@@ -120,7 +120,7 @@ Feature "A user should be able to pay for rewards using Amazon Payments" do
     end
     
     When "the IPN notification tells us the SettleDebt properly succeeded" do
-      post "#{root_path}amazon/update_status?transactionId=#{@settle_payment.amazon_transaction_id}&status=PS&paymentMethod=CC"
+      post "#{root_path}amazon/update_status?transactionId=#{@settle_payment.amazon_transaction_id}&transactionStatus=SUCCESS"
     end
     
     Then "the reward should be marked as funded" do
@@ -244,7 +244,7 @@ Feature "A user should be able to pay for rewards using Amazon Payments" do
     end
     
     When "the IPN notification tells us the SettleDebt properly succeeded" do
-      post "#{root_path}amazon/update_status?transactionId=#{@settle_payment.amazon_transaction_id}&status=PS&paymentMethod=CC"
+      post "#{root_path}amazon/update_status?transactionId=#{@settle_payment.amazon_transaction_id}&transactionStatus=SUCCESS"
     end
     
     Then "the reward should be marked as funded" do
@@ -256,7 +256,7 @@ Feature "A user should be able to pay for rewards using Amazon Payments" do
     given_a :amazon_payment
     
     When "Amazon sends us an IPN about the previous Pay transaction" do
-      post "#{root_path}amazon/update_status?transactionId=#{@amazon_payment.amazon_transaction_id}&status=PS&paymentMethod=CC"
+      post "#{root_path}amazon/update_status?transactionId=#{@amazon_payment.amazon_transaction_id}&transactionStatus=SUCCESS"
     end
     
     Then "the amazon payment status should be updated" do
@@ -274,7 +274,7 @@ Feature "A user should be able to pay for rewards using Amazon Payments" do
     end
     
     When "Amazon sends us a success IPN about the previous SettleDebt transaction" do
-      post "#{root_path}amazon/update_status?transactionId=#{@amazon_settle_payment.amazon_transaction_id}&status=PS&paymentMethod=CC"
+      post "#{root_path}amazon/update_status?transactionId=#{@amazon_settle_payment.amazon_transaction_id}&transactionStatus=SUCCESS"
     end
     
     Then "the settle debt payment should be marked as successful" do
@@ -294,7 +294,7 @@ Feature "A user should be able to pay for rewards using Amazon Payments" do
     given_a :amazon_payment
     
     When "Amazon sends us an IPN about the previous Pay transaction" do
-      post "#{root_path}amazon/update_status?transactionId=#{@amazon_payment.amazon_transaction_id}&status=PF&paymentMethod=CC"
+      post "#{root_path}amazon/update_status?transactionId=#{@amazon_payment.amazon_transaction_id}&transactionStatus=FAILURE"
     end
     
     Then "the amazon payment status should be updated" do
