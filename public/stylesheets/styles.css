@@ -83,14 +83,11 @@ html, body {
   text-rendering: optimizelegibility;
   position: relative; }
 
-h1, h2 {
-  font-weight: normal; }
-
 h2 {
-  background: none repeat scroll 0 0 #eaeaea;
+  background: none repeat scroll 0 0 #f3f3f3;
   font-family: "proxima-nova-1", "proxima-nova-2", helvetica, sans-serif;
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 400;
   padding: 11px 13px 9px;
   text-transform: uppercase;
   clear: both; }
@@ -7018,12 +7015,25 @@ a#load-more {
   position: relative;
   z-index: 2; }
   #fund-rewards p {
-    font-size: 1.3em;
+    font-size: 1.15em;
     line-height: 1.3em; }
   #fund-rewards #messaging h1 {
     padding-bottom: 20px;
     border-bottom: 1px solid #eeeeee;
     margin-bottom: 20px; }
+    #fund-rewards #messaging h1.redo, #fund-rewards #messaging h1.success, #fund-rewards #messaging h1.empty {
+      padding-left: 35px;
+      background: transparent url(../images/payments/check.png) no-repeat 0 0; }
+    #fund-rewards #messaging h1.redo {
+      background-image: url(../images/payments/redo.png); }
+    #fund-rewards #messaging h1.empty {
+      background-image: url(../images/payments/arrow.png); }
+  #fund-rewards #messaging section {
+    margin-bottom: 40px; }
+  #fund-rewards #credit-limit p {
+    padding: 8px 0 0 270px;
+    background: transparent url(../images/payments/amazon-warning.png) no-repeat 0 0;
+    height: 80px; }
   #fund-rewards #amazon-button a {
     display: inline-block;
     background: white url(../images/payments/amazonLogo.png) no-repeat 96% 11px;

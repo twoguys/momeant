@@ -6,7 +6,7 @@
   z-index: 2
 
   p
-    font-size: 1.3em
+    font-size: 1.15em
     line-height: 1.3em
   
   #messaging
@@ -14,6 +14,21 @@
       padding-bottom: 20px
       border-bottom: 1px solid #eee
       margin-bottom: 20px
+      &.redo, &.success, &.empty
+        padding-left: 35px
+        background: transparent url(../images/payments/check.png) no-repeat 0 0
+      &.redo
+        background-image: url(../images/payments/redo.png)
+      &.empty
+        background-image: url(../images/payments/arrow.png)
+    section
+      margin-bottom: 40px
+  
+  #credit-limit
+    p
+      padding: 8px 0 0 270px
+      background: transparent url(../images/payments/amazon-warning.png) no-repeat 0 0
+      height: 80px
   
   #amazon-button
     a

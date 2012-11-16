@@ -1,38 +1,44 @@
 #fund-rewards
 
   #messaging
-    %h1 Thank you so much for supporting creators, #{@user.first_name}.
-    %p
-      In order to make your experience as smooth and enjoyable as we can, we don't want to bug you about
-      a payment method every time you reward someone. We also want to provide you with flexible payment
-      options. In order to meet both of those goals, we use the simple &amp; secure Amazon Payments.
+    %section
+      %h1 How do I pay for my rewards?
+      %p
+        In order to make your experience as smooth and enjoyable as we can, we don't want to bug you about
+        a payment method every time you reward someone. We also want to provide you with flexible payment
+        options. In order to meet both of those goals, we use the simple &amp; secure Amazon Payments.
 
-    - if current_user.needs_to_reauthorize_amazon_postpaid?
-      %p
-        %strong We need you to re-authorize your Amazon Payment method. Please click the button below.
-    - elsif current_user.has_configured_postpaid?
-      %p
-        %strong You have already configured your Amazon Payment method.
-      %p If you'd like to change it at any time, you can click the button below to update your payment settings.
-    - else
-      %p
-        %strong Click the button below to go to Amazon's site and choose a payment method.
-      %p
-        It's super easy to setup. If you ever need to change your payment method, you can get back here by
-        clicking the 'Payment Settings' options in your profile drop-down in the top navigation.
-      %p Once you're done, Amazon will send you right back here, and you'll be all set!
-    
-    #amazon-button
+    %section
       - if current_user.needs_to_reauthorize_amazon_postpaid?
-        = link_to "Re-Authorize Now with", start_amazon_postpaid_path, id: "authorize-amazon"
+        %h1.redo We need you to re-authorize your Amazon Payment method.
+        %p
+          For your security, we ask you to confirm your Amazon Payment method every so often.
+          Please click the button below to go to Amazon and confirm your payment method.
       - elsif current_user.has_configured_postpaid?
-        = link_to "Update Payment Method with", start_amazon_postpaid_path, id: "authorize-amazon"
+        %h1.success You successfully configured your Amazon Payment method.
+        %p If you'd like to change it at any time, you can click the button below to update your payment settings.
       - else
-        = link_to "Authorize Now with", start_amazon_postpaid_path, id: "authorize-amazon"
-      #cards
-      %p
-        By configuring your Amazon Payment method, you are authorizing Momeant to make a charge
-        when you reward someone.
+        %h1.empty Please choose an Amazon Payment method.
+        %p
+          It's super easy to setup. The button below will take you to Amazon where you can login or create an account
+          and choose a payment method. Once you're done, Amazon will send you right back here, and you'll be all set!
+
+      #credit-limit
+        %p
+          Amazon will show an amount of $100 during this process. It *does not* mean we are charging you $100. It
+          just means that you are allowed to spend $100 in rewards before having to re-authorize this payment method.
+    
+      #amazon-button
+        - if current_user.needs_to_reauthorize_amazon_postpaid?
+          = link_to "Re-Authorize Now with", start_amazon_postpaid_path, id: "authorize-amazon"
+        - elsif current_user.has_configured_postpaid?
+          = link_to "Update Payment Method with", start_amazon_postpaid_path, id: "authorize-amazon"
+        - else
+          = link_to "Authorize Now with", start_amazon_postpaid_path, id: "authorize-amazon"
+        #cards
+        %p
+          By configuring your Amazon Payment method, you are authorizing Momeant to make a charge
+          when you reward someone.
   
   %p If you have any questions at all, don't hesitate to contact us by #{link_to "Giving Feedback", "#feedback-modal"} or emailing us at #{mail_to "team@momeant.com"}.
       
