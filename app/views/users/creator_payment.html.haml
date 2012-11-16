@@ -1,11 +1,11 @@
 #creator-signup
 
   #creator-payment.inner
-    %h1 Tell us how we can pay you!
+    %h1 How can we pay you?
 
-    %p We currently use Amazon Payments OR PayPal to send money to Creators. All you need is an Amazon or PayPal account to accept payments from us.
+    %p We currently use Amazon Payments OR PayPal to send you money you earn. All you need is an Amazon or PayPal account to accept payments from us.
     
-    = form_for :user, @user, :url => creator_payment_path(@user) do |form|
+    = form_for @user, :url => creator_payment_path(@user) do |form|
       %fieldset
         %section
           %ul               

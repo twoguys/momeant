@@ -2,7 +2,7 @@
 
   #picture-and-more.module
     #picture
-      - if @user.avatar.url.include?("missing")
+      - if me?(@user)
         = link_to(image_tag(@user.avatar.url(:editorial)), settings_user_path(@user), :class => "avatar")
       - else
         = link_to(image_tag(@user.avatar.url(:editorial)), user_path(@user), :class => "avatar")
