@@ -11,7 +11,7 @@ class NotificationsMailer < ActionMailer::Base
   def first_reward_given(reward)
     @rewarder = reward.user
     @creator = reward.recipient
-    mail to: @rewarder.email, subject: "Configuring your payment method"
+    mail to: @rewarder.email, subject: "Paying for your reward to #{@creator.name}"
   end
   
   def payment_configured(user)
