@@ -36,6 +36,8 @@ function setup_modals() {
 		$('a[href="' + id + '-modal"]').click(function() {
 			$(id + '-modal').fadeIn('fast');
 			var modal_name = id.slice(1);
+			if (modal_name == 'login') { $('#login_email').focus(); }
+			else if (modal_name == 'join') { $('#user_first_name').focus(); }
 			modal_name = modal_name.charAt(0).toUpperCase() + modal_name.slice(1);
 			mixpanel.track('Opened ' + modal_name + ' Modal');
 			return false;

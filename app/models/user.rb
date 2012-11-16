@@ -71,14 +71,14 @@ class User < ActiveRecord::Base
   
   # VALIDATIONS
   
-  validates :first_name, :presence => true, :length => (1...128)
-  validates :last_name, :presence => true, :length => (1...128)
+  validates :first_name, :presence => true, :length => (1...128), unless: Proc.new {|u| u.creator_signup == true}
+  validates :last_name, :presence => true, :length => (1...128), unless: Proc.new {|u| u.creator_signup == true}
   validates :email, :presence => true, :format => /^([^\s]+)((?:[-a-z0-9]\.)[a-z]{2,})$/i
   validates :tos_accepted, :presence => true, :inclusion => {:in => [true]} # :acceptance => true won't work...
   
   RECOMMENDATIONS_LIMIT = 10
   
-  attr_accessor :invitation_code
+  attr_accessor :invitation_code, :creator_signup
   
   # Setup accessible (or protected) attributes for your model
   attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :remember_me, :tos_accepted,

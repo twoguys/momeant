@@ -1,7 +1,7 @@
 #creator-signup
 
   #creator-info.inner
-    %h1 Tell your future supporters about yourself
+    %h1 We need a little bit of information from you.
     
     = form_for @user, :as => :user, :url => creator_info_path(@user), html: { multipart: true } do |form|
     
@@ -10,16 +10,22 @@
       %fieldset
         %ul
           %li
+            %section#names
+              %h2 Tell us your beautiful name.
+              = form.text_field :first_name, placeholder: "First name"
+              = form.text_field :last_name, placeholder: "Last name"
+          
             %section
-              %h2 Choose a picture of your pretty face
+              %h2 Choose a picture of your pretty face.
               = form.file_field :avatar
+              = image_tag(@user.avatar.url(:editorial)) unless @user.avatar_missing?
 
             %section.longtext
-              %h2 Tell us about yourself
+              %h2 Tell everyone about yourself and the awesome work you do that deserves support.
               = form.text_area :tagline
               
             %section.longtext
-              %h2 Thank people when they reward you
+              %h2 Thank people when they reward you.
               .instructions When someone rewards you, we show them a thank you message. You can write a custom one if you prefer.
               = form.text_area :thankyou
               .limit

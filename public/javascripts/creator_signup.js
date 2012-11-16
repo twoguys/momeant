@@ -1,50 +1,20 @@
 $(function() {
   
-  // Swapping between signup/login
-  $('#show-join').click(function() {
-    $('#forms #login').fadeOut();
-    $('#forms #join').fadeIn();
-    $('#forms').animate({height:'475px'}, 200);
-    return false;
-  });
-  $('#show-login').click(function() {
-    $('#forms #join').fadeOut();
-    $('#forms #login').fadeIn();
-    $('#forms').animate({height:'400px'}, 200);
-    return false;
-  });
-  
   // Form validations
 	// we have to remove the extra checkbox Rails inserts for the 0 value
-	$('#creators-join-form input[name="user[tos_accepted]"][value="0"]').remove();
-	$('#creators-join-form').validate({
-		rules: {
-		  'user[invitation_code]': 'required',
-			'user[first_name]': 'required',
-			'user[last_name]': 'required',
-			'user[email]': {required:true,email:true},
-			'user[password]': {required:true,minlength:6},
-			'user[tos_accepted]': {required:true}
-		},
-		messages: {
-		  'user[invitation_code]': 'Required',
-			'user[first_name]':'Required',
-			'user[last_name]':'Required',
-			'user[email]':{required:'Required'},
-			'user[password]':{required:'Required'},
-			'user[tos_accepted]': {required:'Must be accepted'}
-		}
-	});
+	$('#creators-login-form input[name="creator[tos_accepted]"][value="0"]').remove();
 	$('#creators-login-form').validate({
 		rules: {
-		  'user[invitation_code]': 'required',
-			'user[email]': {required:true,email:true},
-			'user[password]': 'required'
+		  'creator[invitation_code]': 'required',
+			'creator[email]': {required:true,email:true},
+			'creator[password]': {required:true,minlength:6},
+			'creator[tos_accepted]': {required:true}
 		},
 		messages: {
-		  'user[invitation_code]': 'Required',
-			'user[email]':{required:'Required'},
-			'user[password]':'Required'
+		  'creator[invitation_code]': 'Required',
+			'creator[email]':{required:'Required'},
+			'creator[password]':{required:'Required'},
+			'creator[tos_accepted]': {required:'Must be accepted'}
 		}
 	});
   

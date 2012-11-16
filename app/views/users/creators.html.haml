@@ -3,46 +3,13 @@
   #top
     .inner
       #forms
-      
-        #join
-
-          %h2 You've been invited!
-          %h1 Sign up
-
-          = form_for @creator, :as => :creator, :url => creator_signup_path, :html => {:id => "creators-join-form"} do |form|
-
-            = render "shared/error_messages", :target => @creator
-
-            %fieldset
-              %ul
-                %li
-                  = form.label :invitation_code
-                  = form.text_field :invitation_code, :value => @creator.invitation_code || params[:code]
-                %li  
-                  = form.label :first_name, "name"
-                  %span.aside
-                    = form.text_field :first_name, :placeholder => "first"
-                  %span.aside
-                    = form.text_field :last_name, :placeholder => "last"
-                %li
-                  = form.label :email, "Email address"
-                  = form.email_field :email, :autocapitalize => "off", :autocomplete => "off"
-                %li  
-                  = form.label :password, "Password"
-                  = form.password_field :password, :autocomplete => "off", :placeholder => "6+ characters"
-                %li.checkbox
-                  = form.check_box :tos_accepted
-                  = form.label :tos_accepted, "I agree to the #{link_to("Terms of Service", tos_path, :target => "new")}".html_safe
-                %li.submit
-                  = form.submit "Sign Up"
-                  = link_to "Have an account?", "#", :id => "show-login", :class => "button"
 
         #login
 
           %h2 You've been invited!
           %h1 Log in
 
-          = form_for @login_creator, :as => :creator, :url => creator_login_path, :html => {:id => "creators-login-form"} do |form|
+          = form_for @login_creator, :as => :creator, :url => creator_signup_path, :html => {:id => "creators-login-form"} do |form|
 
             = render "shared/error_messages", :target => @login_creator
 
@@ -57,9 +24,11 @@
                 %li
                   = form.label :password
                   = form.password_field :password
+                %li.checkbox
+                  = form.check_box :tos_accepted
+                  = form.label :tos_accepted, "I agree to the #{link_to("Terms of Service", tos_path, :target => "new")}".html_safe
                 %li.submit
-                  = form.submit "Log In"
-                  = link_to "Need an account?", "#", :id => "show-join", :class => "button"
+                  = form.submit "Get Started"
           
       #what-it-means
       
