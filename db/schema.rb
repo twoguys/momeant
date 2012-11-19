@@ -10,11 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(:version => 20121010123635) do
-=======
 ActiveRecord::Schema.define(:version => 20121030143457) do
->>>>>>> master
 
   create_table "activities", :force => true do |t|
     t.integer  "actor_id"
