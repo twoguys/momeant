@@ -17,9 +17,9 @@
     %ul
       - @issue.creators.each do |creator|
         %li.padded
-          = image_tag creator.avatar.url(:editorial)
+          = link_to image_tag(creator.avatar.url(:editorial)), user_path(creator)
           .text
-            %h1
+            %a.name{href: user_path(creator)}
               %span= creator.first_name
               %span= creator.last_name
             .occupation= creator.occupation

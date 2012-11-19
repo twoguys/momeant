@@ -1004,14 +1004,17 @@ body#home.index #main {
     .landing-issue #creators li .text {
       padding: 10px 10px 110px;
       position: relative; }
-    .landing-issue #creators li h1 {
+    .landing-issue #creators li a.name {
       font-size: 26px;
       font-weight: 600;
       line-height: 26px;
       text-transform: uppercase;
       letter-spacing: -0.02em;
-      margin-bottom: 0; }
-      .landing-issue #creators li h1 span {
+      margin-bottom: 0;
+      color: #252525; }
+      .landing-issue #creators li a.name:hover {
+        color: #00aeef; }
+      .landing-issue #creators li a.name span {
         display: block; }
     .landing-issue #creators li .supporter-count {
       position: absolute;
@@ -1492,6 +1495,9 @@ body#discovery.index #bg {
         color: #00aeef; }
     .comments ul.comment-list > li .text {
       color: #999999; }
+      .comments ul.comment-list > li .text p {
+        margin: 0 0 0.75em;
+        line-height: 1.3em; }
     .comments ul.comment-list > li .metadata {
       font-size: 12px;
       color: #666666;
@@ -1504,7 +1510,7 @@ body#discovery.index #bg {
     padding: 3px 6px; }
   .comments form {
     padding: 3px 6px 3px 46px;
-    min-height: 30px; }
+    min-height: 45px; }
     .comments form img.commenter-avatar {
       position: absolute;
       top: 3px;
@@ -1513,7 +1519,7 @@ body#discovery.index #bg {
       height: 30px; }
     .comments form textarea {
       width: 87%;
-      height: 15px;
+      height: 30px;
       padding: 4px;
       -webkit-border-radius: 0;
       -moz-border-radius: 0;
@@ -1927,13 +1933,16 @@ body#users.show {
             color: #aaaaaa; }
         body#users.show #user-profile #discussion #topic .comments form, body#users.show #user-profile #discussion #topic .comments .disabled {
           display: none; }
-        body#users.show #user-profile #discussion #topic .comments .disabled {
-          background: #dddddd;
+        body#users.show #user-profile #discussion #topic .comments .not-a-supporter .commenter-avatar, body#users.show #user-profile #discussion #topic .comments .not-a-supporter textarea {
+          opacity: 0.3; }
+        body#users.show #user-profile #discussion #topic .comments .not-a-supporter .note {
+          margin-top: 10px;
+          display: inline-block;
+          background: #ffffdd;
           color: #252525;
-          margin-bottom: 10px; }
+          padding: 3px 6px; }
         body#users.show #user-profile #discussion #topic .comments textarea {
           width: 400px;
-          height: 15px;
           -webkit-border-radius: 0;
           -moz-border-radius: 0;
           border-radius: 0; }

@@ -363,13 +363,17 @@ body#users.show
               color: #aaa
           form, .disabled
             display: none
-          .disabled
-            background: #ddd
-            color: $text_color
-            margin-bottom: 10px
+          .not-a-supporter
+            .commenter-avatar, textarea
+              opacity: 0.3
+            .note
+              margin-top: 10px
+              display: inline-block
+              background: #ffd
+              color: $text_color
+              padding: 3px 6px
           textarea
             width: 400px
-            height: 15px
             @include rounded(0)
 
     #work-browser, #rewards-browser
