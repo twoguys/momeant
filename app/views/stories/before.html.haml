@@ -1,0 +1,16 @@
+%h1 "Share on Momeant" Button
+
+#button
+  = link_to "Share on Momeant", story_creation_bookmarklet, class: "button", onclick: "alert('Drag me to the bookmarks bar'); return false;"
+  %span (Add this link to your Bookmarks Bar)
+
+%h3 Do you have content that exists elsewhere on the web? On your own site? On Vimeo, YouTube, etc.?
+
+%ol
+  %li Drag the "Share on Momeant" button to your Bookmarks bar.
+  %li Browse to the URL of the content you want to share on Momeant.
+  %li Click the "Share on Momeant" bookmark button and fill out the information.
+
+#got-it
+  %span Got it!
+  = link_to "Share Content Now &rarr;".html_safe, new_story_path

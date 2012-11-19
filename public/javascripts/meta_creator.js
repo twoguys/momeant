@@ -19,6 +19,23 @@ window.MetaCreatorView = Backbone.View.extend({
 	  this.monitor_uploading($('#preview-image-details .file-uploader'));
 	  this.monitor_typing($('#story_template_text'));
 	  this.monitor_select($('#story_category'));
+	  
+	  this.check_for_passed_in_url();
+  },
+  
+  check_for_passed_in_url: function() {
+    if (window.location.search) {
+      var params = window.location.search.slice(1).split("&");
+      for (var i = 0; i < params.length; i++) {
+        var key_value = params[i].split("=");
+        if (key_value[0] == 'url') {
+          $('#story_external_link').val(unescape(key_value[1]));
+          $('#create-content').hide();
+          $('#editor h2').text('1. Where is your content located?');
+          $('#preview-it').hide();
+        }
+      }
+    }
   },
   
   change_to_share: function() {

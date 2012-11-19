@@ -23,8 +23,7 @@ class RewardThresholdTest < ActiveSupport::TestCase
     story = Factory(:story)
     user.reward(story, 10.20)
     assert !user.is_under_pledged_rewards_stop_threshold?
-    fake_amazon_payment_id = 1
-    user.pay_for_pledged_rewards!(fake_amazon_payment_id)
+    user.given_rewards.pledged.update_all(paid_for: true)
     assert user.is_under_pledged_rewards_stop_threshold?
     assert user.reward(story, 0.20)
   end

@@ -1,9 +1,21 @@
 class NotificationsMailer < ActionMailer::Base
+  include ActionView::Helpers::NumberHelper
+  
   default :from => "Momeant <team@momeant.com>"
   layout "email"
   
   def welcome_to_momeant(user)
     mail :to => user.email, :subject => "Welcome to Momeant!"
+  end
+  
+  def first_reward_given(reward)
+    @rewarder = reward.user
+    @creator = reward.recipient
+    mail to: @rewarder.email, subject: "Paying for your reward to #{@creator.name}"
+  end
+  
+  def payment_configured(user)
+    mail to: user.email, subject: "Payment method configured"
   end
   
   def reward_notice(reward)
@@ -48,7 +60,7 @@ class NotificationsMailer < ActionMailer::Base
     @rewards = rewards
     @amount = @rewards.map(&:amount).inject(:+)
     
-    mail :to => user.email, :subject => "You've reached your pledged reward limit."
+    mail :to => user.email, :subject => "Please configure your payment method."
   end
   
   def new_follower(user, follower)
@@ -77,5 +89,18 @@ class NotificationsMailer < ActionMailer::Base
     @dont_pad_email = true
     
     mail :to => user.email, :subject => "#{following.name} just posted a new broadcast message."
+  end
+  
+  def payment_notice(user, amount)
+    @user = user
+    @amount = number_to_currency(amount)
+    
+    mail to: user.email, subject: "Momeant just paid you #{@amount}!"
+  end
+  
+  def payment_error(user)
+    @user = user
+    
+    mail to: user.email, subject: "Action Needed! Your Amazon Payment method was declined."
   end
 end

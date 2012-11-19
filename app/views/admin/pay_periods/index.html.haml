@@ -1,24 +1,7 @@
 .admin.payperiods
   = render "admin/tabs"
   
-  .current
-    Total requested cashouts: #{number_to_currency(@requested_cashouts.sum(:amount))}
-    = link_to "Show/Hide Details", "#", :id => "show-cashouts"
-    %table#cashout-list{:style => "display:none"}
-      %thead
-        %tr
-          %th Name
-          %th Amazon Email
-          %th Amount
-          %th Requested
-      %tbody
-        - @requested_cashouts.each do |cashout|
-          %tr
-            %td= link_to(cashout.user.name, user_path(cashout.user))
-            %td= cashout.user.amazon_email
-            %td= number_to_currency(cashout.amount)
-            %td requested #{time_ago_in_words(cashout.created_at)} ago
-    %p= button_to("End Pay Period", admin_pay_periods_path)
+  %p= link_to "View Unpaid Creators", unpaid_admin_pay_periods_path, class: "button"
 
   %h3 Previous Pay Periods
 
@@ -27,20 +10,14 @@
       %tr
         %th Ended
         %th Amount
-        %th By Who
+        %th Ended by
+        %th Actions
         %th CSV
     %tbody
       - @pay_periods.each do |pay_period|
         %tr
           %td= pay_period.print_date
-          %td= number_to_currency(pay_period.cashouts.sum(:amount))
-          %td ended by #{pay_period.user.name}
+          %td= number_to_currency(pay_period.rewards.sum(:amount))
+          %td= pay_period.user.name
+          %td= link_to "View", admin_pay_period_path(pay_period)
           %td= link_to("Download CSV", admin_pay_period_path(pay_period, :format => :csv))
-
-
-:javascript
-  $(function() {
-    $('#show-cashouts').click(function() {
-      $('#cashout-list').toggle();
-    });
-  });

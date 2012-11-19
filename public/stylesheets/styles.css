@@ -83,14 +83,11 @@ html, body {
   text-rendering: optimizelegibility;
   position: relative; }
 
-h1, h2 {
-  font-weight: normal; }
-
 h2 {
-  background: none repeat scroll 0 0 #eaeaea;
+  background: none repeat scroll 0 0 #f3f3f3;
   font-family: "proxima-nova-1", "proxima-nova-2", helvetica, sans-serif;
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 400;
   padding: 11px 13px 9px;
   text-transform: uppercase;
   clear: both; }
@@ -555,6 +552,9 @@ input[type="submit"], a.button {
   text-transform: uppercase;
   font-family: "proxima-nova-1", "proxima-nova-2", helvetica, sans-serif;
   font-size: 13px; }
+
+a.button {
+  display: inline-block; }
 
 input[type="submit"]:active, a.button:active {
   top: 1px;
@@ -1528,17 +1528,18 @@ body#discovery.index #bg {
 ul#discussion-list li {
   height: 55px;
   padding: 10px 0;
-  border-bottom: 1px solid #eeeeee; }
+  background: #f4f4f4;
+  border-left: 3px solid #dddddd;
+  margin-bottom: 10px; }
+  ul#discussion-list li:hover {
+    border-color: #00aeef; }
   ul#discussion-list li a {
     display: block;
     color: #252525;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px; }
-  ul#discussion-list li a:hover .text .title, ul#discussion-list li a:hover .text .body {
-    color: #00aeef; }
-  ul#discussion-list li a:hover .date {
-    border-color: #00aeef;
+  ul#discussion-list li a:hover .text .title, ul#discussion-list li a:hover .text .body, ul#discussion-list li a:hover .date {
     color: #252525; }
   ul#discussion-list li .date, ul#discussion-list li .text, ul#discussion-list li .comment-count {
     float: left;
@@ -1547,9 +1548,8 @@ ul#discussion-list li {
   ul#discussion-list li .date {
     font-size: 12px;
     text-transform: uppercase;
-    border-left: 3px solid #eeeeee;
     padding-left: 15px;
-    color: #999999; }
+    color: #888888; }
     ul#discussion-list li .date .day {
       font-size: 29px;
       line-height: 24px; }
@@ -1601,7 +1601,8 @@ body#users.show {
       position: absolute;
       top: 0;
       left: 0; }
-      body#users.show #user-profile #picture-and-more #picture img {
+      body#users.show #user-profile #picture-and-more #picture a, body#users.show #user-profile #picture-and-more #picture img {
+        display: block;
         width: 300px;
         height: 300px; }
       body#users.show #user-profile #picture-and-more #and-more {
@@ -2890,6 +2891,28 @@ body#subscriptions.index, body#subscriptions.work, body#subscriptions.rewards, b
     height: 38px;
     padding: 13px 30px 9px 26px;
     font-size: 3px; }
+
+body#stories.before #main {
+  max-width: 800px;
+  margin: 30px auto 0; }
+body#stories.before #button {
+  background: #f7f7f7;
+  padding: 20px;
+  margin-bottom: 2em; }
+  body#stories.before #button a {
+    margin-right: 10px; }
+body#stories.before h3 {
+  margin-bottom: 1em;
+  font-size: 1.2em; }
+body#stories.before ol {
+  margin: 0 3em; }
+  body#stories.before ol li {
+    margin-bottom: 0.5em; }
+body#stories.before #got-it {
+  margin-top: 2em;
+  font-size: 1.5em; }
+  body#stories.before #got-it a {
+    margin-left: 10px; }
 
 /* Story creation */
 body#stories.edit.fullscreen #header, body#stories.new.fullscreen #header {
@@ -6907,6 +6930,10 @@ body#dashboard #container {
 .admin.payperiods .current {
   margin-bottom: 20px; }
 
+body#pay_periods.show input.mark-as-paid {
+  font-size: 11px;
+  padding: 4px 6px; }
+
 .admin.editorials ul.list li {
   padding-bottom: 10px;
   border-bottom: 1px solid #dddddd;
@@ -7230,105 +7257,103 @@ a#load-more {
 #hidden-reward-appender {
   display: none; }
 
-body#users.fund_pledged_rewards #bg {
-  background: #e0e0e0;
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1; }
-
-#pay-for-rewards {
+#fund-rewards {
   padding: 20px;
+  width: 900px;
+  margin: 30px auto 0;
   position: relative;
   z-index: 2; }
-  #pay-for-rewards #messaging {
+  #fund-rewards p {
+    font-size: 1.15em;
+    line-height: 1.3em; }
+  #fund-rewards #messaging h1 {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eeeeee;
+    margin-bottom: 20px; }
+    #fund-rewards #messaging h1.redo, #fund-rewards #messaging h1.success, #fund-rewards #messaging h1.empty {
+      padding-left: 35px;
+      background: transparent url(../images/payments/check.png) no-repeat 0 0; }
+    #fund-rewards #messaging h1.redo {
+      background-image: url(../images/payments/redo.png); }
+    #fund-rewards #messaging h1.empty {
+      background-image: url(../images/payments/arrow.png); }
+  #fund-rewards #messaging section {
+    margin-bottom: 40px; }
+  #fund-rewards #credit-limit p {
+    padding: 8px 0 0 270px;
+    background: transparent url(../images/payments/amazon-warning.png) no-repeat 0 0;
+    height: 80px; }
+  #fund-rewards #amazon-button a {
     display: inline-block;
-    width: 100%; }
-    #pay-for-rewards #messaging:after {
-      content: ".";
-      display: block;
-      height: 0;
-      clear: both;
-      visibility: hidden; }
-    #pay-for-rewards #messaging .avatar {
-      width: 142px;
-      height: 142px;
-      float: left;
-      margin-right: 20px; }
-    #pay-for-rewards #messaging .the-rest {
-      float: left; }
-      #pay-for-rewards #messaging .the-rest h1 {
-        text-transform: uppercase;
-        font-weight: 600;
-        margin-bottom: 5px; }
-      #pay-for-rewards #messaging .the-rest p {
-        margin: 0;
-        font-size: 1.4em;
-        font-weight: 600;
-        line-height: 1.3em; }
-  #pay-for-rewards form {
-    margin-top: 10px;
-    background: transparent url(../images/payments/cc-icons.png) no-repeat 100% 0;
-    width: 470px; }
-    #pay-for-rewards form input[type="submit"] {
-      width: 240px;
-      background: white url(../images/payments/amazonLogo.png) no-repeat 94% 11px;
-      padding: 10px 76px 13px 12px;
-      text-transform: none;
-      font-weight: 700;
-      font-size: 16px;
-      box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.2) inset;
-      color: black;
-      text-shadow: none;
-      border: 1px solid #cccccc; }
-  #pay-for-rewards table#rewards {
+    background: #ddffc7 url(../images/payments/amazonLogo.png) no-repeat 96% 11px;
+    padding: 10px 78px 13px 12px;
+    font-weight: 700;
+    font-size: 16px;
+    box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.2) inset;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    color: black;
+    text-shadow: none;
+    border: 1px solid #9cd07a;
+    float: left; }
+  #fund-rewards #amazon-button #cards {
+    width: 240px;
+    height: 45px;
+    background: transparent url(../images/payments/cc-icons.png) no-repeat 0 0;
+    float: left; }
+  #fund-rewards #amazon-button p {
+    display: inline-block;
+    font-family: "museo-slab-1", "museo-slab-2", serif;
+    font-size: 1em;
+    color: #555555;
+    padding: 5px;
+    background: #ffffcc; }
+  #fund-rewards table#rewards {
     clear: both;
     padding: 30px 0 20px; }
-    #pay-for-rewards table#rewards td {
+    #fund-rewards table#rewards td {
       height: 65px;
       background: none;
       padding: 0 0 20px;
       border: 0; }
-      #pay-for-rewards table#rewards td .inner {
+      #fund-rewards table#rewards td .inner {
         width: 100%;
         height: 65px;
-        background: white; }
-    #pay-for-rewards table#rewards td.name .inner {
+        background: #f4f4f4; }
+    #fund-rewards table#rewards td.name .inner {
       width: 145px;
       height: 35px;
       padding: 15px 0 15px 20px;
-      background: white url(../images/payments/user-dot.png) no-repeat 100% 50%;
       font-family: "museo-slab-1", "museo-slab-2", serif;
       font-size: 16px;
       font-style: italic;
       line-height: 16px; }
-      #pay-for-rewards table#rewards td.name .inner span {
+      #fund-rewards table#rewards td.name .inner span {
         display: block; }
-    #pay-for-rewards table#rewards td.avatar a, #pay-for-rewards table#rewards td.avatar img {
+    #fund-rewards table#rewards td.avatar a, #fund-rewards table#rewards td.avatar img {
       display: block;
       width: 65px;
       height: 65px; }
-    #pay-for-rewards table#rewards td.content a, #pay-for-rewards table#rewards td.content img {
+    #fund-rewards table#rewards td.content a, #fund-rewards table#rewards td.content img {
       display: block;
       width: 103px;
       height: 65px; }
-    #pay-for-rewards table#rewards td.title .inner {
+    #fund-rewards table#rewards td.title .inner {
       width: auto;
       padding: 14px 20px;
       height: 37px;
       overflow: hidden; }
-      #pay-for-rewards table#rewards td.title .inner a {
+      #fund-rewards table#rewards td.title .inner a {
         text-transform: uppercase; }
-    #pay-for-rewards table#rewards td.comment {
+    #fund-rewards table#rewards td.comment {
       width: 60px;
       text-align: center; }
-      #pay-for-rewards table#rewards td.comment img {
+      #fund-rewards table#rewards td.comment img {
         margin-top: 25px;
         cursor: help; }
-    #pay-for-rewards table#rewards td.amount .inner {
-      background: #d6d6d6 url(../images/payments/amount-bg.png) no-repeat 0 0;
+    #fund-rewards table#rewards td.amount .inner {
+      background: #d6d6d6;
       width: auto;
       height: 54px;
       padding: 11px 20px 0 50px;

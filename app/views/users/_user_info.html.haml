@@ -65,11 +65,5 @@
 
     %ul.stats
       %li #{number_to_currency(@user.rewards.sum(:amount))} earned
-      - if me?(@user)
-        %li.current-money
-          %span.dollar $
-          %span.amount= number_to_currency(@user.rewards.not_cashed_out.sum(:amount))[1..-1]
-          %span not cashed out
-        %li= link_to "Cash Out", user_cashouts_path(@user), :id => "cashout", :class => "button"
         
   .clear

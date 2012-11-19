@@ -2,16 +2,17 @@ ul#discussion-list
   li
     height: 55px
     padding: 10px 0
-    border-bottom: 1px solid #eee
+    background: #f4f4f4
+    border-left: 3px solid #ddd
+    margin-bottom: 10px
+    &:hover
+      border-color: $blue
     a
       display: block
       color: $text_color
       @include rounded(3px)
     a:hover
-      .text .title, .text .body
-        color: $blue
-      .date
-        border-color: $blue
+      .text .title, .text .body, .date
         color: $text_color
     .date, .text, .comment-count
       float: left
@@ -20,9 +21,8 @@ ul#discussion-list
     .date
       font-size: 12px
       text-transform: uppercase
-      border-left: 3px solid #eee
       padding-left: 15px
-      color: #999
+      color: #888
       .day
         font-size: 29px
         line-height: 24px

@@ -6,9 +6,9 @@
   #content-metadata
     %h1= @story.title
     #synopsis
-      - if @story.synopsis && @story.synopsis.length > 70
-        %span.less= truncate(@story.synopsis, :length => 70)
-        %span.more= @story.synopsis
+      - if @story.synopsis && @story.synopsis.length > 90
+        %span.less= truncate(@story.synopsis, length: 90)
+        %span.more= truncate(@story.synopsis, length: 500)
         = link_to "more", "#", :id => "toggle-synopsis"
       - else
         = @story.synopsis
@@ -25,6 +25,11 @@
   
   #supporter-info
     = render "rewards/modal/supporter_info"
+  
+#error
+  = link_to "Close", "#close-error", id: "close-error"
+  #error-cover
+  #error-inner
 
 :javascript
   var current_user = #{current_user.present? ? 'true' : 'false'};

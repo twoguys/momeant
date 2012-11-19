@@ -18,15 +18,14 @@ Feature "A user should be able to reward a creator for a story" do
     end
     
     And "I open up the reward sidebar" do
-      click_link("open-close")
-      assert page.find("#reward-form").visible?
+      click_link("reward-button")
     end
     
-    And "I choose the one dollar reward" do
+    And "I choose the one dollar reward and submit" do
+      # Since the reward modal loads in a lightbox iframe and I want to avoid having to
+      # make this a Selenium test (eww), I'm just visiting the reward modal path directly
+      visit reward_story_path(@story)
       page.find("#one-dollar-reward").click
-    end
-    
-    And "I give the reward" do
       click_button "Give Reward"
     end
     

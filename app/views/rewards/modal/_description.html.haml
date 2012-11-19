@@ -16,8 +16,7 @@
           = form.password_field :password, :id => "login_password", :placeholder => "password"
         %li.submit
           = form.submit "login"
-          = link_to "&larr;".html_safe, "#reward", class: "button"
-          = link_to "Reset my password", new_password_path(:user), target: "blank", class: "forgot"
-  #signup-section
-    = link_to "Need an account? Sign up", "#{root_url}#signup", target: "blank"
-    .alert
+          = link_to "&larr; Back".html_safe, "#reward", class: "button", id: "login-back-to-reward"
+          = link_to "Reset my password", new_password_path(:user), target: "blank", id: "forgot-password"
+          = link_to "Need an account? Sign up", "#{root_url}#signup", target: "blank", id: "need-an-account"
+  #login-error

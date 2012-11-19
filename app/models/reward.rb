@@ -2,7 +2,7 @@ class Reward < Curation
   default_scope :order => 'amount DESC'
   belongs_to :story
   belongs_to :recipient, :class_name => "User"
-  belongs_to :cashout
+  belongs_to :pay_period_line_item
   has_one :comment_object, :class_name => "Comment" # I know this is funky, but we already had a column named comment, and I can't lose that data on production
   
   scope :for_content, where("story_id IS NOT NULL")
@@ -10,8 +10,6 @@ class Reward < Curation
   scope :this_week, where("created_at > '#{7.days.ago}'")
   scope :in_the_past_two_weeks, where("created_at > '#{14.days.ago}'")
   scope :this_month, where("created_at > '#{1.month.ago}'")
-  scope :cashed_out, where("cashout_id IS NOT NULL")
-  scope :not_cashed_out, where("cashout_id IS NULL")
   scope :for_user, lambda { |user| where(:recipient_id => user.id) }
   scope :but_not_for, lambda { |content| where("story_id != ?", content.id) }
   
@@ -33,12 +31,13 @@ class Reward < Curation
   
   paginates_per 9
   
-  def self.cashout_threshold
-    10
-  end
-  
   def self.dollar_exchange
     0.1
+  end
+  
+  def self.momeant_needs_to_pay
+    since = PayPeriod.last.present? ? PayPeriod.last.created_at : Date.parse("10/01/2010")
+    self.where(paid_for: true, pay_period_line_item_id: nil, cashout_id: nil).where("created_at > ?", since)
   end
   
   def descendants_tree

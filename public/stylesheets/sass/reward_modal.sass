@@ -47,6 +47,7 @@ body#reward-modal
     color: #fff
     font-size: 22px
     font-weight: 600
+    line-height: 22px
     display: block
     @include transition(color)
     &:hover
@@ -105,9 +106,10 @@ body#reward-modal
       font-weight: 300
     #synopsis
       margin-bottom: 8px
+      margin-right: 170px
       color: #555
-      &:hover
-        .less, a
+      &.open
+        .less
           display: none
         .more
           display: block
@@ -115,6 +117,10 @@ body#reward-modal
         display: none
     #tags
       font-size: 13px
+      padding-left: 18px
+      height: 18px
+      overflow: hidden
+      background: transparent url(../images/icons/tag.png) no-repeat 0 3px
       a:hover
         text-decoration: underline
     #tags span
@@ -132,7 +138,7 @@ body#reward-modal
     position: relative
     @include transition(margin)
     &.loading
-      background: #0399df url(../images/spinner-blue.gif) no-repeat 280px 50%
+      background: #0399df url(../images/spinner-blue.gif) no-repeat 290px 50%
       *
         visibility: hidden
     h1
@@ -147,14 +153,16 @@ body#reward-modal
       left: -8px
       margin-top: -8px
       background: transparent url(../images/reward-modal/blue-nib.png) no-repeat 0 0
-    #over-threshold
+    #over-threshold, #reauthorize
       color: $dark_blue
       a
         color: #fff
         text-decoration: underline
+    #reauthorize p
+      margin: 5px 0
     #reward-them, #what-is-momeant, #login
       width: 560px
-      height: 140px
+      height: 120px
       float: left
       position: relative
     #current-user
@@ -187,31 +195,43 @@ body#reward-modal
       #sign-up
         left: 495px
     #login
+      background: #333
       form
         width: 275px
         height: 120px
         &.loading
-          background: transparent url(../images/spinner-blue.gif) no-repeat 50% 50%
+          background: transparent url(../images/spinnerDarkGrey.gif) no-repeat 90% 50%
           *
             visibility: hidden
       li
         margin-bottom: 10px
       input[type="email"], input[type="password"]
-        border: 1px solid #005f8b
+        border: 1px solid #000
+      li.submit input, #login-back-to-reward
+        background: $blue
       li.submit a.forgot
         color: $dark_blue
         margin-left: 20px
         text-decoration: underline
-      #signup-section
+      #login-back-to-reward, #login-error, #forgot-password, #need-an-account
         position: absolute
-        top: 34px
-        left: 365px
-        a
-          color: $dark_blue
-          text-decoration: underline
-        .alert
-          margin-top: 10px
-          font-size: 1.3em
+      #login-back-to-reward
+        bottom: 30px
+        right: 31px
+        height: 15px
+        padding-top: 9px
+        &:active
+          top: auto
+      #login-error
+        top: 112px
+        left: 115px
+        font-size: 1.3em
+      #need-an-account, #forgot-password
+        left: 300px
+      #need-an-account
+        top: 35px
+      #forgot-password
+        top: 70px
   
   #amounts
     height: 66px
@@ -297,9 +317,11 @@ body#reward-modal
         position: relative
         &:nth-child(4n)
           margin-right: 0
-        img
-          width: 40px
-          height: 40px
+        a.avatar
+          display: block
+        a.avatar, img
+          width: 35px
+          height: 35px
         .badge
           width: 16px
           height: 16px
@@ -373,13 +395,15 @@ body#reward-modal
       overflow: auto
     #impact-view, #comments-view, #discussions-view
       display: none
+    #comments-view, #discussions-view
+      padding: 7px 20px 10px 10px
 
     #thanks
       height: 400px
     #thank-you-note
-      height: 267px
+      height: 246px
       background: transparent url(../images/reward-modal/thank-you-note.jpg) no-repeat 0 0
-      padding: 34px 55px
+      padding: 55px 35px 34px 75px
       margin-bottom: 15px
       font-family: "Courier New"
       font-size: 15px
@@ -387,9 +411,11 @@ body#reward-modal
       p
         margin: 0
         line-height: 21px
+        padding-right: 40px
+        max-height: 189px
+        overflow-y: auto
       .from
-        text-align: right
-        margin-top: 2px
+        margin-top: 22px
     #thanks .as-one
       font-family: $typewriter
       font-size: 18px
@@ -404,7 +430,7 @@ body#reward-modal
         font-family: $typewriter
         font-style: italic
       p
-        margin: 20px 0 30px
+        margin: 25px 0 30px
         line-height: 1.5em
         font-size: 18px
       .weak
@@ -432,12 +458,15 @@ body#reward-modal
     
     #comments-list
       form
-        min-height: 52px
-        padding: 0 0 0 56px
+        min-height: 47px
+        padding: 5px 5px 5px 56px
         margin-bottom: 15px
+        background: #eee
+        textarea
+          width: 97%
         img.commenter-avatar
-          top: 0
-          left: 0
+          top: 5px
+          left: 5px
         .helper
           font-size: 13px
           color: #777
@@ -469,7 +498,44 @@ body#reward-modal
         color: #999
         margin-bottom: 10px
       #discussion-list .text
-        width: 360px
+        width: 350px
+  
+  #error
+    display: none
+    position: absolute
+    top: 0
+    left: 0
+    width: 800px
+    height: 500px
+    z-index: 9999
+    #error-cover
+      width: 100%
+      height: 100%
+      background: transparent url(../images/modalCover.png) repeat
+      background: rgba(0,0,0,0.7)
+      position: absolute
+      z-index: 1
+    #error-inner
+      width: 480px
+      height: 300px
+      padding: 20px
+      margin: 80px 140px
+      background: #fff
+      position: relative
+      z-index: 2
+      a.button
+        display: inline-block
+    #close-error
+      position: absolute
+      top: 65px
+      right: 125px
+      width: 30px
+      height: 30px
+      display: block
+      background: transparent url(../images/modalClose.png) no-repeat 0 0
+      text-indent: 30px
+      overflow: hidden
+      z-index: 3
       
 
 #twitter-sharing, #facebook-sharing

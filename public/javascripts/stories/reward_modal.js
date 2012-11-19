@@ -14,6 +14,7 @@ $(function() {
 		  'click a[href="#reward"]':        'goto_reward',
 		  'click #login-button':            'goto_login',
 		  'submit #login-form':             'login',
+		  'click #toggle-synopsis':         'toggle_synopsis',
 			'click #amounts li a': 						'choose_reward_amount',
 			'focus #custom_amount': 					'choose_custom_amount',
 			'keydown #custom_amount':         'cleanse_reward_amount',
@@ -21,7 +22,9 @@ $(function() {
   		'blur #custom_amount':            'stop_choosing_custom',
   		'submit #reward-form':            'submit_reward',
   		'click a.after-link':             'goto_after_view',
-  		'click #back-to-thank-you':       'goto_thank_you'
+  		'click #back-to-thank-you':       'goto_thank_you',
+  		'click #close-error':             'hide_error',
+  		'click #error-cover':             'hide_error'
 		},
 		
 		initialize: function() {
@@ -30,6 +33,23 @@ $(function() {
 			this.reward_submitted = false;
 			this.comments_open = false;
 			this.setup_custom_reward_amount_monitoring();
+		},
+		
+		toggle_synopsis: function(event) {
+		  var $synopsis = $('#synopsis');
+		  var $link = $('#toggle-synopsis');
+		  if ($synopsis.hasClass('open')) {
+		    $synopsis.find('.more').hide();
+		    $synopsis.find('.less').show();
+		    $synopsis.removeClass('open');
+		    $link.text('more');
+		  } else {
+		    $synopsis.find('.less').hide();
+		    $synopsis.find('.more').show();
+		    $synopsis.addClass('open');
+		    $link.text('less');
+		  }
+		  return false;
 		},
 		
 		// ACTIONS IF NOT LOGGED IN -------------------------------------
@@ -60,7 +80,7 @@ $(function() {
         user: {remember_me: 1, password: password, email: email}};
 		  
 		  $form.addClass('loading');
-		  $('#signup-section .alert').text('');
+		  $('#login-error').text('');
 		  $.post('/users/sign_in_remote.json', data, function(response) {
   		  $form.removeClass('loading');
 		    if (response.success) {
@@ -71,7 +91,7 @@ $(function() {
 		      current_user = true;
 		      RewardModal.goto_reward();
 		    } else {
-		      $('#signup-section .alert').text('Invalid email/password.');
+		      $('#login-error').text('Invalid email/password.');
 		    }
 		  });
 		  
@@ -158,7 +178,14 @@ $(function() {
 				},
 				complete: function(xhr) {
 				  var response = xhr.response;
-				  var json = $.parseJSON(response);
+				  var json = null;
+				  try {
+				    json = $.parseJSON(response);
+				  } catch (e) {
+  				  $('#reward-actions').removeClass('loading');
+				    RewardModal.show_error("<h1>We're sorry, we had an error on our side.</h1><p>We've been notified and will look into it immediately.</p>");
+				    return;
+				  }
 				  if (json.success) {
       			RewardModal.reward_submitted = true;
       			mixpanel.track('Rewarded Content', {story_id: story_id, mp_note: amount, amount: amount});
@@ -170,14 +197,21 @@ $(function() {
             Comments.auto_resize_comment_boxes();
 				  } else {
   				  $('#reward-actions').removeClass('loading');
-  				  $('#invalid-reward-amount').show();
-  				  $('#custom_amount').focus();
-  				  alert(json.error);
+  				  RewardModal.show_error(json.error);
 				  }
 				}
 			});
 			
 			return false;
+		},
+		
+		show_error: function(html) {
+		  $('#error-inner').html(html);
+		  $('#error').fadeIn(200);
+		},
+		
+		hide_error: function() {
+		  $('#error').fadeOut(200);
 		},
 		
 		// ACTIONS AFTER REWARDING -------------------------------------

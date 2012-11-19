@@ -1,7 +1,9 @@
-%h1{:style => "margin-top: 0;"} Hey #{@user.first_name}!
-%p You've supported a lot of great creators! But in order to continue rewarding, we need you to pay for those pledged rewards.
-%p It's a breeze to pay for your #{number_to_currency @amount} pledged rewards using Amazon Payments.
-= link_to "Pay for the #{number_to_currency @amount} you pledged", fund_rewards_url, :style => "display: inline-block; background: #00aeef; color: #fff; padding: 10px; font-size: 16px; text-decoration: none; border-radius: 3px;"
+%h1{:style => "margin-top: 0;"} Hi, #{@user.first_name}!
+%p You've supported a lot of great creators. But in order to continue rewarding, we need you to pay for those rewards.
+%p It's a breeze to setup your payment method using Amazon Payments.
+= link_to "Configure your payment method", fund_rewards_url, :style => "display: inline-block; background: #00aeef; color: #fff; padding: 10px; font-size: 16px; text-decoration: none; border-radius: 3px; text-transform:uppercase; font-weight: bold;"
+
+%p{style: "margin:20px 0;"} Once you've chosen a payment method, we'll charge you for the following rewards so that we can pay out the creators you supported:
     
 %table{:style => "clear: both; width: 100%; padding: 30px 0 20px; border-spacing: 0;"}
   - @rewards.each do |reward|

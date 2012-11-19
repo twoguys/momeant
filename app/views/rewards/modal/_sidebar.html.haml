@@ -12,4 +12,7 @@
   
   #bio= truncate(@story.user.tagline, length: 160)
   
-  = link_to "View more of #{@story.user.first_name}'s work", user_url(@story.user), id: "more-work", target: "_blank"
+  %a#more-work{href: user_url(@story.user), target: "_blank"}
+    View more of
+    %br
+    #{@story.user.first_name}'s work

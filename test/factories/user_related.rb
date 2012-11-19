@@ -13,7 +13,7 @@ Factory.define :user do |user|
 end
 
 Factory.define :creator, :parent => :user, :class => "Creator" do |creator|
-  creator.amazon_email        "amazon@example.com"
+  creator.amazon_email        ""
 end
 
 Factory.define :admin, :parent => :user do |admin|
@@ -49,4 +49,11 @@ end
 
 Factory.define :disabled_user, :parent => :user_with_coins do |user|
   user.paid_state             "disabled_subscription"
+end
+
+Factory.define :postpaid_user, parent: :user do |user|
+  user.amazon_credit_instrument_id          "I3GI53H2Q9EL2ZN9EBAJ4AFJ8YJDBUG1F82FG8H6DC7VU3TB6HT5FQ9FBZZQDBDB"
+  user.amazon_credit_sender_token_id        "I1GIR3M2Q9EU2ZR9RBA237FJKYIDBSGTF8FFM8HMDZ7V13EB6TTPFQRFGZZKDPDV"
+  user.amazon_settlement_token_id           "I1GII3G2QUE82ZI9DBA434FJNYZDB7G8F8JFS8HHDC7VL36B6BT3FQ9FJZZFDKD6"
+  user.needs_to_reauthorize_amazon_postpaid false
 end
