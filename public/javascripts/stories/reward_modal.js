@@ -23,8 +23,8 @@ $(function() {
   		'submit #reward-form':            'submit_reward',
   		'click a.after-link':             'goto_after_view',
   		'click #back-to-thank-you':       'goto_thank_you',
-  		'click #close-error':             'hide_error',
-  		'click #error-cover':             'hide_error'
+  		'click a[href="#close-notice"]':  'hide_notice',
+  		'click #notice-cover':            'hide_notice'
 		},
 		
 		initialize: function() {
@@ -197,7 +197,9 @@ $(function() {
             Comments.auto_resize_comment_boxes();
 				  } else {
   				  $('#reward-actions').removeClass('loading');
-  				  RewardModal.show_error(json.error);
+				  }
+				  if (json.modal) {
+				    RewardModal.show_modal(json.modal);
 				  }
 				}
 			});
@@ -205,13 +207,13 @@ $(function() {
 			return false;
 		},
 		
-		show_error: function(html) {
-		  $('#error-inner').html(html);
-		  $('#error').fadeIn(200);
+		show_modal: function(html) {
+		  $('#notice-inner').html(html);
+		  $('#notice').fadeIn(200);
 		},
 		
-		hide_error: function() {
-		  $('#error').fadeOut(200);
+		hide_notice: function() {
+		  $('#notice').fadeOut(200);
 		},
 		
 		// ACTIONS AFTER REWARDING -------------------------------------

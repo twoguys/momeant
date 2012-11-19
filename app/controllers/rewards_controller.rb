@@ -8,21 +8,21 @@ class RewardsController < ApplicationController
     amount = params[:reward][:amount].gsub('$','').to_f
     
     if amount < 0.1
-      render json: { success: false, error: "Sorry! $0.10 is the minimum reward allowed." } and return
+      render json: { success: false, modal: "Sorry! $0.10 is the minimum reward allowed." } and return
     elsif amount > 99
-      render json: { success: false, error: "Sorry! $99.00 is the maximum reward allowed, for now." } and return
+      render json: { success: false, modal: "Sorry! $99.00 is the maximum reward allowed, for now." } and return
     end
     
     begin
       @reward = current_user.reward(@story, amount, params[:reward][:impacted_by])
     rescue Exceptions::AmazonPayments::InsufficientBalanceException
-      render json: { success: false, error: render_to_string(partial: "rewards/modal/errors/need_to_reauthorize") }
+      render json: { success: false, modal: render_to_string(partial: "rewards/modal/errors/need_to_reauthorize") }
       return
     end
     
     if !@reward
       @error = "Oh, shoot! There was an error in processing your reward."
-      render json: { success: false, error: @error } and return
+      render json: { success: false, modal: @error } and return
     end
         
     NotificationsMailer.reward_notice(@reward).deliver if @user.send_reward_notification_emails?
@@ -35,7 +35,13 @@ class RewardsController < ApplicationController
     
     @twitter_configured = current_user.authentications.find_by_provider("twitter")
     @facebook_configured = current_user.authentications.find_by_provider("facebook")
-    render json: { success: true, reward_id: @reward.id, html: render_to_string("rewards/modal/_after_reward", layout: false) }
+    json = {
+      success: true,
+      reward_id: @reward.id,
+      html: render_to_string(partial: "rewards/modal/after_reward")
+    }
+    json[:modal] = render_to_string(partial: "rewards/modal/first_reward") if true #current_user.given_rewards.count == 1
+    render json: json
   end
   
   def visualize

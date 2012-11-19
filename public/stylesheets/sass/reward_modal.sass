@@ -500,7 +500,7 @@ body#reward-modal
       #discussion-list .text
         width: 350px
   
-  #error
+  #notice
     display: none
     position: absolute
     top: 0
@@ -508,24 +508,40 @@ body#reward-modal
     width: 800px
     height: 500px
     z-index: 9999
-    #error-cover
+    #notice-cover
       width: 100%
       height: 100%
       background: transparent url(../images/modalCover.png) repeat
       background: rgba(0,0,0,0.7)
       position: absolute
       z-index: 1
-    #error-inner
+    #notice-inner
       width: 480px
       height: 300px
       padding: 20px
       margin: 80px 140px
       background: #fff
       position: relative
+      @include rounded
       z-index: 2
+      h1
+        padding: 20px
+        margin: -20px -20px 20px
+        background: #f7f7f7
+        @include gradient
+        text-align: center
+        border-bottom: 1px solid #ccc
+        font-size: 1.4em
+        text-shadow: 0 1px 0 #fff
+        -webkit-border-top-left-radius: 5px
+        -webkit-border-top-right-radius: 5px
+        -moz-border-radius-topleft: 5px
+        -moz-border-radius-topright: 5px
+        border-top-left-radius: 5px
+        border-top-right-radius: 5px
       a.button
         display: inline-block
-    #close-error
+    #close-notice
       position: absolute
       top: 65px
       right: 125px
