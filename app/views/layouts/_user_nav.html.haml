@@ -15,7 +15,7 @@
       
   - if user_signed_in? && current_user.is_a?(Creator)
     %li#create
-      = link_to "Share Your Work", new_story_path, :class => "tooltipped", :title => "Share Your Work"
+      = link_to "Share Your Work", before_creation_path, :class => "tooltipped", :title => "Share Your Work"
   - else
     %li#create.disabled
       = link_to "Become a Creator", become_a_creator_users_path, :class => "tooltipped", :title => "Become a Creator"

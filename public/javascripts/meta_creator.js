@@ -30,6 +30,9 @@ window.MetaCreatorView = Backbone.View.extend({
         var key_value = params[i].split("=");
         if (key_value[0] == 'url') {
           $('#story_external_link').val(unescape(key_value[1]));
+          $('#create-content').hide();
+          $('#editor h2').text('1. Where is your content located?');
+          $('#preview-it').hide();
         }
       }
     }
