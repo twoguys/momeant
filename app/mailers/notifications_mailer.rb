@@ -103,4 +103,11 @@ class NotificationsMailer < ActionMailer::Base
     
     mail to: user.email, subject: "Action Needed! Your Amazon Payment method was declined."
   end
+  
+  def flexible_email(to, from, subject, body)
+    @contents = body
+    Rails.logger.info @contents
+    
+    mail to: to, from: from, subject: subject
+  end
 end

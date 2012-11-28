@@ -129,6 +129,7 @@ Repo::Application.routes.draw do
     resources :landing_issues do
       get :preview, on: :member
     end
+    resources :emails, only: [:new, :create]
   end
   
   match '/auth/:provider/configure' => 'authentications#configure'

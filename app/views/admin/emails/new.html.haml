@@ -1,0 +1,25 @@
+.admin.emails
+  = render "admin/tabs"
+  
+  %h1 Send an email to anyone using the Momeant design wrapper
+  
+  = form_tag admin_emails_path do
+    %fieldset
+      %ul
+        %li
+          = label_tag :to
+          .instructions Comma separated email addresses
+          = text_field_tag :to
+        %li
+          = label_tag :from
+          .instructions One email address
+          = text_field_tag :from
+        %li
+          = label_tag :subject
+          = text_field_tag :subject
+        %li
+          = label_tag :body
+          .instructions HTML content of the email
+          = text_area_tag :body
+        %li
+          = submit_tag "Send Emails"
