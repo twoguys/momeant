@@ -147,36 +147,35 @@
 
 #about-modal
   .padder
-    top: 50%
-    margin-top: -300px
+    top: 20%
   .padder, .insides
-    width: 800px
+    width: 600px
   .insides
     overflow: hidden
     position: relative
   .steps
     color: #000
-    width: 8000px
-    height: 600px
+    width: 6000px
+    height: 400px
     @include transition(margin)
     .step
-      width: 800px
-      height: 600px
+      width: 600px
+      height: 400px
       float: left
       position: relative
       h1
         text-align: center
-        height: 130px
-        line-height: 130px
-        font-family: $fatty
-        font-size: 32px
-        font-style: italic
+        height: 80px
+        line-height: 80px
+        font-size: 24px
         background: $blue
         color: #fff
-      h1
-        margin-bottom: 40px
+        text-transform: uppercase
+        letter-spacing: 0.15em
+        font-weight: 400
+        margin-bottom: 30px
       section
-        padding: 0 80px
+        padding: 0 40px
         margin-bottom: 30px
         &.bulleted
           background: transparent url(../images/modals/people.png) no-repeat 38px 0
@@ -185,17 +184,32 @@
         &.star
           background-image: url(../images/modals/star.png)
       h3
-        font-size: 17px
+        font-size: 16px
         margin-bottom: 5px
       p
-        margin: 0
         line-height: 1.7em
-        font-size: 15px
+        margin: 0 0 1em
+        font-size: 17px
+      .grid
+        li
+          float: left
+          width: 30%
+          margin-right: 5%
+          &:last-child
+            margin-right: 0
+          p
+            font-size: 13px
+          a, img
+            display: block
+            width: 100%
+            height: 90px
+          img
+            background: #aaa
       .buttons
         position: absolute
         bottom: 30px
-        left: 80px
-        right: 80px
+        left: 35px
+        right: 35px
         text-align: right
         a
           @include button
