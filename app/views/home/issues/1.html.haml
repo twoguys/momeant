@@ -5,7 +5,9 @@
     #curated-by
       %h3 Curated By
       = image_tag @issue.curator.avatar.url(:large)
-      %h2= @issue.curator.name
+      %h2
+        %span= @issue.curator.first_name
+        %span= @issue.curator.last_name
       %p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
 
   %section#what-is-this
