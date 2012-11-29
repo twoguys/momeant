@@ -34,7 +34,7 @@ module WebSteps
   end
   
   def given_im_signed_in_as(var_name)
-    Given "I'm signed in as a #{var_name}" do
+    Given "I'm signed in as a #{var_name.to_s.gsub("_"," ")}" do
       visit root_path
       user = instance_variable_get("@#{var_name}")
       find("#signin a").click
@@ -45,7 +45,7 @@ module WebSteps
   end
   
   def given_a(model_type)
-    Given "A #{model_type.to_s.gsub("_"," ")}" do
+    Given "a #{model_type.to_s.gsub("_"," ")}" do
       instance_variable_set("@#{model_type}", Factory(model_type))
     end
   end

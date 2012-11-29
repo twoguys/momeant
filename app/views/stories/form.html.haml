@@ -30,7 +30,7 @@
         Use our Content Editor (currently in beta) to share images and text with basic layout and formatting options:
         = link_to "Launch the Content Editor", "#", :id => "open-page-editor-button", :class => @story.is_external? || @story.pages.empty? ? "launch button" : "button"
       .clear
-      %p
+      %p#preview-it
         %span Once you've chosen your external content or created something new, you can
         = link_to("Preview It", story_path(@story, :preview => true), :class => "preview button")
 

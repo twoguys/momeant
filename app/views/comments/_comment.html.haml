@@ -5,7 +5,7 @@
     %span= comment.user.name
     - if comment.user == highlight_user
       %span.highlighted Creator
-  .text= comment.comment
+  .text= simple_format comment.comment
   .metadata
     %span.time #{time_ago_in_words(comment.created_at)} ago
     - if comment.reward

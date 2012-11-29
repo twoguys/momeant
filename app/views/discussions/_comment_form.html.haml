@@ -3,7 +3,10 @@
     .commenter-avatar= image_tag current_user.avatar.url(:thumbnail)
     = form.hidden_field :commentable_type, :value => "Discussion"
     = form.hidden_field :commentable_id, :value => discussion.id
-    = form.text_area :comment, class: "comment-box", placeholder: "Type your comment and press enter..."
+    = form.text_area :comment, class: "comment-box", placeholder: "Type your comment..."
     = form.submit "Post"
 - else
-  .disabled #{discussion.user.first_name}'s supporters can participate in this discussion.
+  %form.not-a-supporter
+    .commenter-avatar= image_tag current_user.avatar.url(:thumbnail)
+    %textarea.comment-box
+    .note Once you've rewarded #{discussion.user.first_name} you can participate in this discussion.

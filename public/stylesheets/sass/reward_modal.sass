@@ -138,7 +138,7 @@ body#reward-modal
     position: relative
     @include transition(margin)
     &.loading
-      background: #0399df url(../images/spinner-blue.gif) no-repeat 280px 50%
+      background: #0399df url(../images/spinner-blue.gif) no-repeat 290px 50%
       *
         visibility: hidden
     h1
@@ -153,11 +153,13 @@ body#reward-modal
       left: -8px
       margin-top: -8px
       background: transparent url(../images/reward-modal/blue-nib.png) no-repeat 0 0
-    #over-threshold
+    #over-threshold, #reauthorize
       color: $dark_blue
       a
         color: #fff
         text-decoration: underline
+    #reauthorize p
+      margin: 5px 0
     #reward-them, #what-is-momeant, #login
       width: 560px
       height: 120px
@@ -198,7 +200,7 @@ body#reward-modal
         width: 275px
         height: 120px
         &.loading
-          background: transparent url(../images/spinnerDarkGrey.gif) no-repeat 50% 50%
+          background: transparent url(../images/spinnerDarkGrey.gif) no-repeat 90% 50%
           *
             visibility: hidden
       li
@@ -497,6 +499,59 @@ body#reward-modal
         margin-bottom: 10px
       #discussion-list .text
         width: 350px
+  
+  #notice
+    display: none
+    position: absolute
+    top: 0
+    left: 0
+    width: 800px
+    height: 500px
+    z-index: 9999
+    #notice-cover
+      width: 100%
+      height: 100%
+      background: transparent url(../images/modalCover.png) repeat
+      background: rgba(0,0,0,0.7)
+      position: absolute
+      z-index: 1
+    #notice-inner
+      width: 480px
+      height: 300px
+      padding: 20px
+      margin: 80px 140px
+      background: #fff
+      position: relative
+      @include rounded
+      z-index: 2
+      h1
+        padding: 20px
+        margin: -20px -20px 20px
+        background: #f7f7f7
+        @include gradient
+        text-align: center
+        border-bottom: 1px solid #ccc
+        font-size: 1.4em
+        text-shadow: 0 1px 0 #fff
+        -webkit-border-top-left-radius: 5px
+        -webkit-border-top-right-radius: 5px
+        -moz-border-radius-topleft: 5px
+        -moz-border-radius-topright: 5px
+        border-top-left-radius: 5px
+        border-top-right-radius: 5px
+      a.button
+        display: inline-block
+    #close-notice
+      position: absolute
+      top: 65px
+      right: 125px
+      width: 30px
+      height: 30px
+      display: block
+      background: transparent url(../images/modalClose.png) no-repeat 0 0
+      text-indent: 30px
+      overflow: hidden
+      z-index: 3
       
 
 #twitter-sharing, #facebook-sharing

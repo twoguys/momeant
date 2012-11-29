@@ -1,7 +1,226 @@
 body#home.index #main
   max-width: 100%
-  min-width: 1000px
+  background: #f0f0f0
 
+.landing-issue
+
+  & > section
+    width: 900px
+    margin: 0 auto
+    clear: both
+    padding-top: 50px
+    
+  .padded
+    padding: 3px
+    background: #fff
+    @include rounded(3px)
+    @include boxshadow(2px,0.3,1px,1px)
+  
+  .comments
+    width: 100%
+    height: 83px
+    position: absolute
+    bottom: 3px
+    left: 3px
+    background: transparent url(../images/landing/creator-comments-bg.png) no-repeat 50% 0
+    padding-top: 17px
+    text-align: center
+    h3
+      font-size: 10px
+      text-transform: uppercase
+      line-height: 10px
+      margin-bottom: 5px
+      span
+        display: block
+    p
+      font-family: $typewriter
+      font-size: 11px
+      font-style: italic
+      line-height: 1.1em
+      padding: 0 10px
+      margin: 0
+
+  #intro
+    position: relative
+    #header-background
+      width: 100%
+    #header-title
+      position: absolute
+      top: 150px
+      left: 50%
+    #curated-by
+      width: 130px
+      background: #fff
+      position: absolute
+      top: 0
+      left: 50%
+      h3
+        background: yellow
+        color: black
+        font-size: 11px
+        font-weight: 800
+        text-transform: uppercase
+        padding: 6px 8px
+      img
+        width: 124px
+        height: 124px
+        padding: 3px
+      h2, p
+        padding: 0 8px
+        margin: 0 0 5px
+      h2
+        font-size: 18px
+        text-transform: uppercase
+        background: none
+        margin-top: 4px
+        font-weight: 600
+        span
+          display: block
+      p
+        font-size: 12px
+        line-height: 1.3em
+  
+  #what-is-this
+    padding: 50px 0
+    section
+      width: 900px
+      margin: 0 auto
+    p
+      float: left
+      margin: 0
+    p.first
+      width: 30%
+      margin-right: 10%
+      font-size: 17px
+      font-weight: 600
+      line-height: 1.5em
+    p.last
+      width: 60%
+  
+  #creators, #quote, #content > ul > li
+    border-top: 2px solid #fff
+  
+  #creators
+    margin-bottom: 50px
+    li
+      width: 230px
+      float: left
+      margin: 0 30px
+      position: relative
+      img
+        width: 230px
+        height: 230px
+      .text
+        padding: 10px 10px 110px
+        position: relative
+      a.name
+        font-size: 26px
+        font-weight: 600
+        line-height: 26px
+        text-transform: uppercase
+        letter-spacing: -0.02em
+        margin-bottom: 0
+        color: $text_color
+        &:hover
+          color: $blue
+        span
+          display: block
+      .supporter-count
+        position: absolute
+        top: 18px
+        right: 10px
+        padding-right: 32px
+        background: transparent url(../images/profile/supporters-large.png) no-repeat 100% 0
+        font-family: $numerals
+        font-size: 30px
+        text-align: right
+        line-height: 32px
+      .occupation
+        color: $blue
+        font-size: 12px
+        font-style: italic
+        margin-bottom: 10px
+      .tagline
+        font-size: 12px
+        line-height: 1.5em
+        margin: 0
+  
+  #quote
+    text-align: center
+    p, .from
+      font-family: $typewriter
+      font-style: italic
+    p
+      font-size: 34px
+      font-weight: 300
+      line-height: 1.3em
+      margin: 0 0 30px
+    .from
+      font-size: 14px
+      .underlined
+        text-decoration: underline
+    .author
+      font-size: 16px
+      font-weight: 600
+  
+  #content
+    padding-bottom: 30px
+    margin-bottom: 0
+  #content > ul > li
+    padding-top: 50px
+    margin-bottom: 50px
+    height: 328px
+    .thumbnail
+      width: 480px
+      height: 320px
+      padding: 3px
+      background: #fff
+      float: left
+      margin-right: 20px
+    .text
+      float: right
+      width: 390px
+      height: 160px
+      padding-bottom: 170px
+      position: relative
+      .avatar
+        float: left
+        margin: 0 10px 2px 0
+        img
+          width: 75px
+          height: 75px
+      .title, .byline, .synopsis
+        display: block
+      .title
+        font-size: 16px
+        font-weight: 600
+        text-transform: uppercase
+      .byline
+        font-size: 12px
+        font-style: italic
+      .synopsis
+        margin-top: 10px
+        font-size: 13px
+      .comments
+        height: 125px
+        background-image: url(../images/landing/content-comments-bg.png)
+        padding-top: 25px
+        h3
+          margin-bottom: 10px
+        p
+          font-size: 13px
+
+#landing-issue-1
+  #intro
+    min-width: 880px
+    #header-title
+      margin-left: -400px
+    #curated-by
+      margin-top: 78px
+      h3
+        background: #fa2c2a
+        color: #fff
+      
 #landing-page
   overflow: hidden
   background: #f0f0f0

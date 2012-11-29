@@ -36,8 +36,10 @@ function setup_modals() {
 		$('a[href="' + id + '-modal"]').click(function() {
 			$(id + '-modal').fadeIn('fast');
 			var modal_name = id.slice(1);
+			if (modal_name == 'login') { $('#login_email').focus(); }
+			else if (modal_name == 'join') { $('#user_first_name').focus(); }
 			modal_name = modal_name.charAt(0).toUpperCase() + modal_name.slice(1);
-			mpq.track('Opened ' + modal_name + ' Modal');
+			mixpanel.track('Opened ' + modal_name + ' Modal');
 			return false;
 		})
 		$(id + '-modal .cover, ' + id + '-modal .close').click(function() {
@@ -77,6 +79,11 @@ function setup_modals() {
 	
 	if (window.location.href.indexOf('#signup') >= 0) {
 	  $('#join-modal').fadeIn(200);
+	}
+	var need_to_login_alert = $('#flash .alert:contains("You need to log in")').length > 0;
+	var invalid_login_alert = $('#flash .alert:contains("Invalid email or password")').length > 0;
+	if (need_to_login_alert || invalid_login_alert) {
+	  $('#login-modal').fadeIn(200);
 	}
 }
 

@@ -1,0 +1,71 @@
+#landing-issue-1.landing-issue
+  %header#intro
+    = image_tag @issue.header_background.url, id: "header-background"
+    = image_tag @issue.header_title.url, id: "header-title"
+    #curated-by
+      %h3 Curated By
+      = image_tag @issue.curator.avatar.url(:large)
+      %h2
+        %span= @issue.curator.first_name
+        %span= @issue.curator.last_name
+      %p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
+
+  #what-is-this
+    %section
+      %p.first Momeant lets your audience subscribe to your online content and reward you for your work. #{link_to "Learn more", "#about-modal"}
+      %p.last Periodically, we showcase editorial issues on our homepage in order to promote creators sharing great work at Momeant. New Beijing was born out of the underground scene that Miao Wang discovered when she was filming her feature-length film, Beijing Taxi, in pre-Olympics Beijing.
+      .clear
+  
+  = render "home/modal"
+  
+  %section#creators
+    %ul
+      - @issue.creators.each do |creator|
+        %li.padded
+          = link_to image_tag(creator.avatar.url(:editorial)), user_path(creator)
+          .text
+            %a.name{href: user_path(creator)}
+              %span= creator.first_name
+              %span= creator.last_name
+            .occupation= creator.occupation
+            .supporter-count= creator.patrons.count
+            %p.tagline= creator.tagline
+            .comments
+              %h3
+                %span Curator's
+                %span Comments
+              %p= @issue.creator_comments_for(creator.id)
+    .clear
+  
+  %section#quote
+    %p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
+    .byline
+      .from
+        %span from the novel
+        %span.underlined West With The Night
+        %span by
+      .author= link_to "Beryl Markham", "#"
+  
+  %section#content
+    %ul
+      - @issue.content.each do |content|
+        %li
+          .thumbnail.padded
+            - if content.text_preview?
+              %a.content-preview.medium{:href => story_path(content), :class => "#{content.media_type} #{content.template}"}
+                .inner
+                  .image
+                  .quote= truncate(content.template_text, :length => 140)
+            - else
+              %a.content-preview.medium{:href => story_path(content), :class => content.media_type}
+                .inner{:style => "background-image: url(#{content.thumbnail.url(:large)})"}
+          .text
+            = link_to image_tag(content.user.avatar.url(:large), class: "padded"), user_path(content.user), class: "avatar"
+            %span.title= content.title
+            = link_to "by #{content.user.name}", user_path(content.user), class: "byline"
+            %span.synopsis= truncate(content.synopsis, length: 380)
+            .comments
+              %h3
+                %span Curator's
+                %span Comments
+              %p= @issue.content_comments_for(content.id)

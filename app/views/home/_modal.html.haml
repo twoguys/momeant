@@ -1,0 +1,40 @@
+#about-modal.modal
+  .cover
+  .padder
+    %a.close{:href => "#"}
+    .insides
+      .steps
+        .step
+          %h1 What is Momeant?
+          
+          %section
+            %p Many of us make and share valuable content on the Web, but very few of us are able to make money doing so. We'd like to change that.
+            %p
+              %strong Momeant makes it easy for your audience to subscribe to your content and reward you when they appreciate it.
+        
+          .buttons
+            %span I'm interested!
+            = link_to "Tell me more &rarr;".html_safe, "#", class: "next-step"
+    
+        .step
+          %h1 How does Momeant work?
+          
+          %section
+            %ul.grid
+              %li
+                %h3 1. Publish your work
+                %p It's incredibly easy to share work and have your audience subscribe to it.
+                = image_tag "home/about/publish.png"
+              %li
+                %h3 2. Get rewarded for it
+                %p Be seen on Momeant and let people reward you right on your site.
+                = image_tag "home/about/reward.png"
+              %li
+                %h3 3. Build a community
+                %p Have discussions, send thank yous, and create ongoing relationships.
+                = image_tag "home/about/community"
+        
+          .buttons
+            = link_to "&larr; Back".html_safe, "#", class: "prev-step"
+            %span Awesome!
+            = link_to "Sign Me Up".html_safe, "#join-modal", class: "next-step button"

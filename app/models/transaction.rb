@@ -8,20 +8,11 @@ class Transaction < ActiveRecord::Base
   
   aasm_column :state
 
-  aasm_initial_state :started
+  aasm_initial_state :pending
 
-  aasm_state :started
-  aasm_state :accepted
-  aasm_state :paid
-  aasm_state :failed
-  
-  aasm_event :accept do
-    transitions :to => :accepted, :from => :started
-  end
-  
-  aasm_event :mark_as_paid do
-    transitions :to => :paid, :from => :accepted
-  end
+  aasm_state :pending
+  aasm_state :success
+  aasm_state :failure
   
   # Reports -------------------------------------------------------------------------
   

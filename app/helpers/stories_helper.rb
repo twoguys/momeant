@@ -1,6 +1,10 @@
 module StoriesHelper
   include ActsAsTaggableOn::TagsHelper
   
+  def story_creation_bookmarklet
+    "javascript:(function(){ window.open('#{root_url}stories/new?url=' + encodeURIComponent(location.href), 'Share on Momeant', 'menubar=no,location=no,scrollbars=yes,status=no,resizable=yes,width=800,height=500'); })();"
+  end
+  
   def reward_button_html(story, style)
     url = reward_story_url(story)
     javascript = "window.open('#{reward_story_url(story)}', 'Reward', 'menubar=no,location=no,scrollbars=no,status=no,resizable=no,width=800,height=500'); return false;"

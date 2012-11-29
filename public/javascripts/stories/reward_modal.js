@@ -22,7 +22,9 @@ $(function() {
   		'blur #custom_amount':            'stop_choosing_custom',
   		'submit #reward-form':            'submit_reward',
   		'click a.after-link':             'goto_after_view',
-  		'click #back-to-thank-you':       'goto_thank_you'
+  		'click #back-to-thank-you':       'goto_thank_you',
+  		'click a[href="#close-notice"]':  'hide_notice',
+  		'click #notice-cover':            'hide_notice'
 		},
 		
 		initialize: function() {
@@ -176,7 +178,14 @@ $(function() {
 				},
 				complete: function(xhr) {
 				  var response = xhr.response;
-				  var json = $.parseJSON(response);
+				  var json = null;
+				  try {
+				    json = $.parseJSON(response);
+				  } catch (e) {
+  				  $('#reward-actions').removeClass('loading');
+				    RewardModal.show_error("<h1>We're sorry, we had an error on our side.</h1><p>We've been notified and will look into it immediately.</p>");
+				    return;
+				  }
 				  if (json.success) {
       			RewardModal.reward_submitted = true;
       			mixpanel.track('Rewarded Content', {story_id: story_id, mp_note: amount, amount: amount});
@@ -188,14 +197,23 @@ $(function() {
             Comments.auto_resize_comment_boxes();
 				  } else {
   				  $('#reward-actions').removeClass('loading');
-  				  $('#invalid-reward-amount').show();
-  				  $('#custom_amount').focus();
-  				  alert(json.error);
+				  }
+				  if (json.modal) {
+				    RewardModal.show_modal(json.modal);
 				  }
 				}
 			});
 			
 			return false;
+		},
+		
+		show_modal: function(html) {
+		  $('#notice-inner').html(html);
+		  $('#notice').fadeIn(200);
+		},
+		
+		hide_notice: function() {
+		  $('#notice').fadeOut(200);
 		},
 		
 		// ACTIONS AFTER REWARDING -------------------------------------

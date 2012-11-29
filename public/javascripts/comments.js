@@ -4,7 +4,6 @@ window.CommentsView = Backbone.View.extend({
 	
 	events: {
   	'click a.toggle-comments':  'toggle_comments',
-		'keypress .comment-box':    'monitor_comment_keypress',
 		'submit form.new_comment':  'submit_comment'
 	},
 	
@@ -26,7 +25,7 @@ window.CommentsView = Backbone.View.extend({
   },
   
   auto_resize_comment_boxes: function() {
-    $('.comment-box').autoResize({minHeight:15, extraSpace:6});
+    $('.comment-box').autoResize({minHeight:30, extraSpace:6});
   },
   
   monitor_comment_keypress: function(event) {

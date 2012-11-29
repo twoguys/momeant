@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
        
   PLEDGED_REWARD_REMINDER_THRESHOLD = 1.0
   PLEDGED_REWARD_STOP_THRESHOLD = 10.0
+  PLEDGED_REWARD_CREDIT_LIMIT = 1.0
 
   has_many :created_stories, :foreign_key => :user_id, :class_name => "Story", :order => "created_at DESC"
   
@@ -70,20 +71,21 @@ class User < ActiveRecord::Base
   
   # VALIDATIONS
   
-  validates :first_name, :presence => true, :length => (1...128)
-  validates :last_name, :presence => true, :length => (1...128)
+  validates :first_name, :presence => true, :length => (1...128), unless: Proc.new {|u| u.creator_signup == true}
+  validates :last_name, :presence => true, :length => (1...128), unless: Proc.new {|u| u.creator_signup == true}
   validates :email, :presence => true, :format => /^([^\s]+)((?:[-a-z0-9]\.)[a-z]{2,})$/i
   validates :tos_accepted, :presence => true, :inclusion => {:in => [true]} # :acceptance => true won't work...
   
   RECOMMENDATIONS_LIMIT = 10
   
-  attr_accessor :invitation_code
+  attr_accessor :invitation_code, :creator_signup
   
   # Setup accessible (or protected) attributes for your model
   attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :remember_me, :tos_accepted,
     :avatar, :credits, :stored_in_braintree, :invitation_code, :tagline, :occupation, :amazon_email, :paypal_email, :interest_list,
     :location, :thankyou, :twitter_friends, :facebook_friends, :friends_last_cached_at, :latitude, :longitude,
-    :send_reward_notification_emails, :send_digest_emails, :send_message_notification_emails
+    :send_reward_notification_emails, :send_digest_emails, :send_message_notification_emails, :amazon_status_code,
+    :amazon_credit_instrument_id, :amazon_credit_sender_token_id, :amazon_settlement_token_id, :needs_to_reauthorize_amazon_postpaid
   
   def to_param
     "#{self.id}-#{self.name.gsub(/[^a-zA-Z]/,"-")}"
@@ -135,45 +137,50 @@ class User < ActiveRecord::Base
   
   def reward(story, amount, impacted_by = nil)
     return if amount.nil?
-    amount = amount.to_f
-    return if amount == 0.0
     return unless self.is_under_pledged_rewards_stop_threshold?
     
-    options = {:story_id => story.id, :amount => amount, :user_id => self.id, :recipient_id => story.user_id, :impact => amount}
-    
-    # track previous badge level to compare in a second
     old_badge_level = self.badge_level
 
-    # create the reward and increment the necessary cache counters
+    options = {:story_id => story.id, :amount => amount, :user_id => self.id, :recipient_id => story.user_id, :impact => amount}
     reward = Reward.create!(options)
-    story.increment!(:reward_count, amount)
-    self.increment!(:impact, amount)
-    reward.cache_impact!
-    story.user.increment!(:lifetime_rewards, amount)
     
     # handle people who previously purchased coins
     coin_amount = reward.amount / Reward.dollar_exchange
     if self.coins >= coin_amount
       reward.update_attribute(:paid_for, true)
       self.decrement!(:coins, coin_amount)
+    
+    # otherwise, use the normal Amazon Postpaid route
+    elsif has_configured_postpaid?
+      begin
+        attribute_debt(reward)
+      rescue Exception => e
+        reward.destroy
+        raise e
+      end
+      
+      settle_debt if surpassed_credit_limit?
+    else
+      # TODO: send an email to users who haven't configured Postpaid
     end
     
-    # create the reward activity record
+    story.increment!(:reward_count, amount)
+    self.increment!(:impact, amount)
+    reward.cache_impact!
+    story.user.increment!(:lifetime_rewards, amount)
+    
     Activity.create(:actor_id => self.id, :recipient_id => story.user_id, :action_type => "Reward", :action_id => reward.id)
 
-    # if the user's badge level changed, record a badge activity record
     new_badge_level = self.reload.badge_level
     if new_badge_level != old_badge_level
       Activity.create(:actor_id => self.id, :action_type => "Badge", :action_id => new_badge_level)
     end
     
-    # handle impact if necessary
     if impacted_by
       parent_reward = Reward.find_by_id(impacted_by)
       reward.give_impact_to_parents!(parent_reward) if parent_reward
     end
     
-    # auto-follow this user
     unless self.is_subscribed_to?(story.user)
       Subscription.create(:subscriber_id => self.id, :user_id => story.user_id)
     end
@@ -186,15 +193,48 @@ class User < ActiveRecord::Base
   end
   
   def is_under_pledged_rewards_reminder_threshold?
-    self.pledged_amount < User::PLEDGED_REWARD_REMINDER_THRESHOLD
+    self.pledged_amount < PLEDGED_REWARD_REMINDER_THRESHOLD
   end
   
   def is_under_pledged_rewards_stop_threshold?
-    self.pledged_amount < User::PLEDGED_REWARD_STOP_THRESHOLD
+    self.pledged_amount < PLEDGED_REWARD_STOP_THRESHOLD
   end
   
-  def pay_for_pledged_rewards!(amazon_payment_id)
-    self.given_rewards.pledged.update_all(:paid_for => true, :amazon_payment_id => amazon_payment_id)
+  def has_configured_postpaid?
+    self.amazon_credit_instrument_id.present?
+  end
+  
+  def surpassed_credit_limit?
+    pledged_amount >= PLEDGED_REWARD_CREDIT_LIMIT
+  end
+  
+  def attribute_debt(reward)
+    Rails.logger.info "------- ATTRIBUTING DEBT #{reward.amount} -------"
+    amazon_payment = AmazonPayment.create(payer_id: self.id, amount: reward.amount, used_for: "Pay", state: "initiated")
+    reward.update_attribute(:amazon_payment_id, amazon_payment.id)
+    amazon_payment.send_debt_to_amazon!
+  end
+  
+  def settle_debt
+    Rails.logger.info "------ SETTLING DEBT #{pledged_amount} ------"
+    amazon_payment = AmazonPayment.create(payer_id: self.id, amount: pledged_amount, used_for: "SettleDebt", state: "initiated")
+    given_rewards.pledged.update_all(amazon_settlement_id: amazon_payment.id)
+    amazon_payment.settle_postpaid_debt!
+  end
+  
+  def attribute_debt_for_previous_rewards
+    given_rewards.pledged.each do |reward|
+      attribute_debt(reward)
+    end
+  end
+  
+  def cancel_amazon_authorization
+    self.update_attributes(
+      amazon_credit_instrument_id: nil,
+      amazon_credit_sender_token_id: nil,
+      amazon_settlement_token_id: nil,
+      needs_to_reauthorize_amazon_postpaid: true
+    )
   end
   
   def rewards_given_to(user)
@@ -563,7 +603,7 @@ class User < ActiveRecord::Base
     Reward.pledged.includes(:user).group_by(&:user).each do |user_rewards|
       user = user_rewards[0]
       rewards = user_rewards[1]
-      unless user.is_under_pledged_rewards_reminder_threshold?
+      if !user.has_configured_postpaid? && !user.is_under_pledged_rewards_reminder_threshold?
         NotificationsMailer.pledged_reminder(user, rewards).deliver
       end
     end

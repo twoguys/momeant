@@ -122,8 +122,6 @@ class UsersController < ApplicationController
   def fund_pledged_rewards
     @user = current_user
     @rewards = @user.given_rewards.pledged.includes(:recipient, :story)
-    @amount = @rewards.sum(:amount)
-    @payment = AmazonPayment.new(:amount => @rewards.sum(:amount))
   end
   
   def submit_creator_request

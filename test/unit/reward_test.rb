@@ -63,18 +63,6 @@ class RewardTest < ActiveSupport::TestCase
     assert !reward.paid_for
   end
   
-  test "A user can pay for their rewards" do
-    user  = Factory(:user)
-    story = Factory(:story)
-    
-    user.reward(story, 1)
-    # Amazon stuff happens in between here
-    fake_amazon_payment_id = 1
-    user.pay_for_pledged_rewards!(fake_amazon_payment_id)
-    
-    assert user.given_rewards.pledged.empty?
-  end
-  
   test "An activity record is created when a user rewards" do
     user  = Factory(:user)
     story = Factory(:story)

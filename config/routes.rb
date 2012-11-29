@@ -41,11 +41,15 @@ Repo::Application.routes.draw do
       post :add_or_update_image, :on => :member
     end
   end
+  match '/before-creation', to: "stories#before", as: :before_creation
   
   match '/coins', :to => "amazon_payments#index", :as => :coins
-  match '/fund', :to => "users#fund_pledged_rewards", :as => :fund_rewards
-  match '/fund/pay', :to => "amazon_payments#create", :as => :pay_for_rewards
-  match '/fund/accept', :to => "amazon_payments#accept", :as => :accept_payment
+  match '/payments', :to => "users#fund_pledged_rewards", :as => :fund_rewards
+  match '/payments/start-postpaid', to: "amazon_payments#start_postpaid", as: :start_amazon_postpaid
+  match '/payments/accept-postpaid', to: "amazon_payments#accept_postpaid", as: :accept_amazon_postpaid
+  match '/payments/pay', :to => "amazon_payments#create", :as => :pay_for_rewards
+  match '/payments/accept', :to => "amazon_payments#accept", :as => :accept_payment
+  match '/amazon/update_status', to: "amazon_payments#update_status"
   
   resources :users do
     resources :subscriptions, :only => [:create] do
@@ -122,6 +126,10 @@ Repo::Application.routes.draw do
       post :toggle_enabled, :on => :member
     end
     resources :editorials
+    resources :landing_issues do
+      get :preview, on: :member
+    end
+    resources :emails, only: [:new, :create]
   end
   
   match '/auth/:provider/configure' => 'authentications#configure'

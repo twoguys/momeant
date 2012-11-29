@@ -83,14 +83,11 @@ html, body {
   text-rendering: optimizelegibility;
   position: relative; }
 
-h1, h2 {
-  font-weight: normal; }
-
 h2 {
-  background: none repeat scroll 0 0 #eaeaea;
+  background: none repeat scroll 0 0 #f3f3f3;
   font-family: "proxima-nova-1", "proxima-nova-2", helvetica, sans-serif;
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 400;
   padding: 11px 13px 9px;
   text-transform: uppercase;
   clear: both; }
@@ -556,6 +553,9 @@ input[type="submit"], a.button {
   font-family: "proxima-nova-1", "proxima-nova-2", helvetica, sans-serif;
   font-size: 13px; }
 
+a.button {
+  display: inline-block; }
+
 input[type="submit"]:active, a.button:active {
   top: 1px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2) inset; }
@@ -904,7 +904,219 @@ nav.pagination {
     float: none; } }
 body#home.index #main {
   max-width: 100%;
-  min-width: 1000px; }
+  background: #f0f0f0; }
+
+.landing-issue > section {
+  width: 900px;
+  margin: 0 auto;
+  clear: both;
+  padding-top: 50px; }
+.landing-issue .padded {
+  padding: 3px;
+  background: white;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3) ;
+  -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3) ;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3) ; }
+.landing-issue .comments {
+  width: 100%;
+  height: 83px;
+  position: absolute;
+  bottom: 3px;
+  left: 3px;
+  background: transparent url(../images/landing/creator-comments-bg.png) no-repeat 50% 0;
+  padding-top: 17px;
+  text-align: center; }
+  .landing-issue .comments h3 {
+    font-size: 10px;
+    text-transform: uppercase;
+    line-height: 10px;
+    margin-bottom: 5px; }
+    .landing-issue .comments h3 span {
+      display: block; }
+  .landing-issue .comments p {
+    font-family: "museo-slab-1", "museo-slab-2", serif;
+    font-size: 11px;
+    font-style: italic;
+    line-height: 1.1em;
+    padding: 0 10px;
+    margin: 0; }
+.landing-issue #intro {
+  position: relative; }
+  .landing-issue #intro #header-background {
+    width: 100%; }
+  .landing-issue #intro #header-title {
+    position: absolute;
+    top: 150px;
+    left: 50%; }
+  .landing-issue #intro #curated-by {
+    width: 130px;
+    background: white;
+    position: absolute;
+    top: 0;
+    left: 50%; }
+    .landing-issue #intro #curated-by h3 {
+      background: yellow;
+      color: black;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 6px 8px; }
+    .landing-issue #intro #curated-by img {
+      width: 124px;
+      height: 124px;
+      padding: 3px; }
+    .landing-issue #intro #curated-by h2, .landing-issue #intro #curated-by p {
+      padding: 0 8px;
+      margin: 0 0 5px; }
+    .landing-issue #intro #curated-by h2 {
+      font-size: 18px;
+      text-transform: uppercase;
+      background: none;
+      margin-top: 4px;
+      font-weight: 600; }
+      .landing-issue #intro #curated-by h2 span {
+        display: block; }
+    .landing-issue #intro #curated-by p {
+      font-size: 12px;
+      line-height: 1.3em; }
+.landing-issue #what-is-this {
+  padding: 50px 0; }
+  .landing-issue #what-is-this section {
+    width: 900px;
+    margin: 0 auto; }
+  .landing-issue #what-is-this p {
+    float: left;
+    margin: 0; }
+  .landing-issue #what-is-this p.first {
+    width: 30%;
+    margin-right: 10%;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.5em; }
+  .landing-issue #what-is-this p.last {
+    width: 60%; }
+.landing-issue #creators, .landing-issue #quote, .landing-issue #content > ul > li {
+  border-top: 2px solid white; }
+.landing-issue #creators {
+  margin-bottom: 50px; }
+  .landing-issue #creators li {
+    width: 230px;
+    float: left;
+    margin: 0 30px;
+    position: relative; }
+    .landing-issue #creators li img {
+      width: 230px;
+      height: 230px; }
+    .landing-issue #creators li .text {
+      padding: 10px 10px 110px;
+      position: relative; }
+    .landing-issue #creators li a.name {
+      font-size: 26px;
+      font-weight: 600;
+      line-height: 26px;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      margin-bottom: 0;
+      color: #252525; }
+      .landing-issue #creators li a.name:hover {
+        color: #00aeef; }
+      .landing-issue #creators li a.name span {
+        display: block; }
+    .landing-issue #creators li .supporter-count {
+      position: absolute;
+      top: 18px;
+      right: 10px;
+      padding-right: 32px;
+      background: transparent url(../images/profile/supporters-large.png) no-repeat 100% 0;
+      font-family: "ff-dagny-web-pro-1", "ff-dagny-web-pro-2", sans-serif;
+      font-size: 30px;
+      text-align: right;
+      line-height: 32px; }
+    .landing-issue #creators li .occupation {
+      color: #00aeef;
+      font-size: 12px;
+      font-style: italic;
+      margin-bottom: 10px; }
+    .landing-issue #creators li .tagline {
+      font-size: 12px;
+      line-height: 1.5em;
+      margin: 0; }
+.landing-issue #quote {
+  text-align: center; }
+  .landing-issue #quote p, .landing-issue #quote .from {
+    font-family: "museo-slab-1", "museo-slab-2", serif;
+    font-style: italic; }
+  .landing-issue #quote p {
+    font-size: 34px;
+    font-weight: 300;
+    line-height: 1.3em;
+    margin: 0 0 30px; }
+  .landing-issue #quote .from {
+    font-size: 14px; }
+    .landing-issue #quote .from .underlined {
+      text-decoration: underline; }
+  .landing-issue #quote .author {
+    font-size: 16px;
+    font-weight: 600; }
+.landing-issue #content {
+  padding-bottom: 30px;
+  margin-bottom: 0; }
+.landing-issue #content > ul > li {
+  padding-top: 50px;
+  margin-bottom: 50px;
+  height: 328px; }
+  .landing-issue #content > ul > li .thumbnail {
+    width: 480px;
+    height: 320px;
+    padding: 3px;
+    background: white;
+    float: left;
+    margin-right: 20px; }
+  .landing-issue #content > ul > li .text {
+    float: right;
+    width: 390px;
+    height: 160px;
+    padding-bottom: 170px;
+    position: relative; }
+    .landing-issue #content > ul > li .text .avatar {
+      float: left;
+      margin: 0 10px 2px 0; }
+      .landing-issue #content > ul > li .text .avatar img {
+        width: 75px;
+        height: 75px; }
+    .landing-issue #content > ul > li .text .title, .landing-issue #content > ul > li .text .byline, .landing-issue #content > ul > li .text .synopsis {
+      display: block; }
+    .landing-issue #content > ul > li .text .title {
+      font-size: 16px;
+      font-weight: 600;
+      text-transform: uppercase; }
+    .landing-issue #content > ul > li .text .byline {
+      font-size: 12px;
+      font-style: italic; }
+    .landing-issue #content > ul > li .text .synopsis {
+      margin-top: 10px;
+      font-size: 13px; }
+    .landing-issue #content > ul > li .text .comments {
+      height: 125px;
+      background-image: url(../images/landing/content-comments-bg.png);
+      padding-top: 25px; }
+      .landing-issue #content > ul > li .text .comments h3 {
+        margin-bottom: 10px; }
+      .landing-issue #content > ul > li .text .comments p {
+        font-size: 13px; }
+
+#landing-issue-1 #intro {
+  min-width: 880px; }
+  #landing-issue-1 #intro #header-title {
+    margin-left: -400px; }
+  #landing-issue-1 #intro #curated-by {
+    margin-top: 78px; }
+    #landing-issue-1 #intro #curated-by h3 {
+      background: #fa2c2a;
+      color: white; }
 
 #landing-page {
   overflow: hidden;
@@ -1294,6 +1506,9 @@ body#discovery.index #bg {
         color: #00aeef; }
     .comments ul.comment-list > li .text {
       color: #999999; }
+      .comments ul.comment-list > li .text p {
+        margin: 0 0 0.75em;
+        line-height: 1.3em; }
     .comments ul.comment-list > li .metadata {
       font-size: 12px;
       color: #666666;
@@ -1306,7 +1521,7 @@ body#discovery.index #bg {
     padding: 3px 6px; }
   .comments form {
     padding: 3px 6px 3px 46px;
-    min-height: 30px; }
+    min-height: 45px; }
     .comments form img.commenter-avatar {
       position: absolute;
       top: 3px;
@@ -1315,7 +1530,7 @@ body#discovery.index #bg {
       height: 30px; }
     .comments form textarea {
       width: 87%;
-      height: 15px;
+      height: 30px;
       padding: 4px;
       -webkit-border-radius: 0;
       -moz-border-radius: 0;
@@ -1403,7 +1618,8 @@ body#users.show {
       position: absolute;
       top: 0;
       left: 0; }
-      body#users.show #user-profile #picture-and-more #picture img {
+      body#users.show #user-profile #picture-and-more #picture a, body#users.show #user-profile #picture-and-more #picture img {
+        display: block;
         width: 300px;
         height: 300px; }
       body#users.show #user-profile #picture-and-more #and-more {
@@ -1728,13 +1944,16 @@ body#users.show {
             color: #aaaaaa; }
         body#users.show #user-profile #discussion #topic .comments form, body#users.show #user-profile #discussion #topic .comments .disabled {
           display: none; }
-        body#users.show #user-profile #discussion #topic .comments .disabled {
-          background: #dddddd;
+        body#users.show #user-profile #discussion #topic .comments .not-a-supporter .commenter-avatar, body#users.show #user-profile #discussion #topic .comments .not-a-supporter textarea {
+          opacity: 0.3; }
+        body#users.show #user-profile #discussion #topic .comments .not-a-supporter .note {
+          margin-top: 10px;
+          display: inline-block;
+          background: #ffffdd;
           color: #252525;
-          margin-bottom: 10px; }
+          padding: 3px 6px; }
         body#users.show #user-profile #discussion #topic .comments textarea {
           width: 400px;
-          height: 15px;
           -webkit-border-radius: 0;
           -moz-border-radius: 0;
           border-radius: 0; }
@@ -2692,6 +2911,28 @@ body#subscriptions.index, body#subscriptions.work, body#subscriptions.rewards, b
     height: 38px;
     padding: 13px 30px 9px 26px;
     font-size: 3px; }
+
+body#stories.before #main {
+  max-width: 800px;
+  margin: 30px auto 0; }
+body#stories.before #button {
+  background: #f7f7f7;
+  padding: 20px;
+  margin-bottom: 2em; }
+  body#stories.before #button a {
+    margin-right: 10px; }
+body#stories.before h3 {
+  margin-bottom: 1em;
+  font-size: 1.2em; }
+body#stories.before ol {
+  margin: 0 3em; }
+  body#stories.before ol li {
+    margin-bottom: 0.5em; }
+body#stories.before #got-it {
+  margin-top: 2em;
+  font-size: 1.5em; }
+  body#stories.before #got-it a {
+    margin-left: 10px; }
 
 /* Story creation */
 body#stories.edit.fullscreen #header, body#stories.new.fullscreen #header {
@@ -6442,40 +6683,39 @@ ul.stories .excerpt {
       text-shadow: none; }
 
 #about-modal .padder {
-  top: 50%;
-  margin-top: -300px; }
+  top: 20%; }
 #about-modal .padder, #about-modal .insides {
-  width: 800px; }
+  width: 600px; }
 #about-modal .insides {
   overflow: hidden;
   position: relative; }
 #about-modal .steps {
   color: black;
-  width: 8000px;
-  height: 600px;
+  width: 6000px;
+  height: 400px;
   -webkit-transition: margin 0.2s ease-in-out;
   -moz-transition: margin 0.2s ease-in-out;
   -ms-transition: margin 0.2s ease-in-out;
   -o-transition: margin 0.2s ease-in-out;
   transition: margin 0.2s ease-in-out; }
   #about-modal .steps .step {
-    width: 800px;
-    height: 600px;
+    width: 600px;
+    height: 400px;
     float: left;
     position: relative; }
     #about-modal .steps .step h1 {
       text-align: center;
-      height: 130px;
-      line-height: 130px;
-      font-family: "jeanne-moderno-ultra-1", "jeanne-moderno-ultra-2", serif;
-      font-size: 32px;
-      font-style: italic;
+      height: 80px;
+      line-height: 80px;
+      font-size: 24px;
       background: #00aeef;
-      color: white; }
-    #about-modal .steps .step h1 {
-      margin-bottom: 40px; }
+      color: white;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-weight: 400;
+      margin-bottom: 30px; }
     #about-modal .steps .step section {
-      padding: 0 80px;
+      padding: 0 40px;
       margin-bottom: 30px; }
       #about-modal .steps .step section.bulleted {
         background: transparent url(../images/modals/people.png) no-repeat 38px 0; }
@@ -6484,17 +6724,31 @@ ul.stories .excerpt {
       #about-modal .steps .step section.star {
         background-image: url(../images/modals/star.png); }
     #about-modal .steps .step h3 {
-      font-size: 17px;
+      font-size: 16px;
       margin-bottom: 5px; }
     #about-modal .steps .step p {
-      margin: 0;
       line-height: 1.7em;
-      font-size: 15px; }
+      margin: 0 0 1em;
+      font-size: 17px; }
+    #about-modal .steps .step .grid li {
+      float: left;
+      width: 30%;
+      margin-right: 5%; }
+      #about-modal .steps .step .grid li:last-child {
+        margin-right: 0; }
+      #about-modal .steps .step .grid li p {
+        font-size: 13px; }
+      #about-modal .steps .step .grid li a, #about-modal .steps .step .grid li img {
+        display: block;
+        width: 100%;
+        height: 90px; }
+      #about-modal .steps .step .grid li img {
+        background: #aaaaaa; }
     #about-modal .steps .step .buttons {
       position: absolute;
       bottom: 30px;
-      left: 80px;
-      right: 80px;
+      left: 35px;
+      right: 35px;
       text-align: right; }
       #about-modal .steps .step .buttons a {
         height: 28px;
@@ -6579,17 +6833,18 @@ ul.stories .excerpt {
     width: 103px;
     height: 103px;
     position: absolute;
-    top: -3px;
-    left: -3px;
+    top: 7px;
+    left: 7px;
     background: transparent url(../images/hiThereBanner.png) no-repeat 0 0; }
-  #about-diagram-modal .padder span {
-    position: absolute;
-    bottom: 17px;
-    right: 17px;
-    color: #777777;
-    width: 130px;
-    font-size: 11px;
-    text-align: right; }
+  #about-diagram-modal .padder .insides {
+    background: transparent url(../images/aboutModalDiagram.png) no-repeat 0 0;
+    height: 281px;
+    color: #252525;
+    padding: 160px 46px 0; }
+  #about-diagram-modal .padder h3 {
+    font-size: 1.5em; }
+  #about-diagram-modal .padder p {
+    margin: 0.75em 0 2em; }
 
 body#dashboard #container {
   position: relative; }
@@ -6721,6 +6976,41 @@ body#pay_periods.show input.mark-as-paid {
     margin-top: 5px;
     font-size: 11px;
     color: #777777; }
+
+.admin.landing-issues fieldset {
+  margin-top: 20px;
+  border-top: 1px solid #cccccc;
+  padding-top: 10px; }
+  .admin.landing-issues fieldset legend {
+    font-size: 24px;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding-right: 10px; }
+.admin.landing-issues .example {
+  border: none;
+  margin: 0;
+  padding-bottom: 5px; }
+.admin.landing-issues th.id, .admin.landing-issues td.id {
+  width: 85px;
+  vertical-align: top; }
+  .admin.landing-issues th.id input, .admin.landing-issues td.id input {
+    width: 30px; }
+.admin.landing-issues th.text, .admin.landing-issues td.text {
+  width: 400px; }
+  .admin.landing-issues th.text textarea, .admin.landing-issues td.text textarea {
+    width: 380px;
+    height: 50px; }
+.admin.landing-issues li.checkbox {
+  height: 20px;
+  margin-bottom: 1em; }
+  .admin.landing-issues li.checkbox label {
+    font-size: 14px; }
+
+.admin.emails input[type="text"] {
+  width: 300px; }
+.admin.emails textarea {
+  width: 600px;
+  height: 300px; }
 
 #user-list .spinner {
   opacity: 0; }
@@ -7007,105 +7297,103 @@ a#load-more {
 #hidden-reward-appender {
   display: none; }
 
-body#users.fund_pledged_rewards #bg {
-  background: #e0e0e0;
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1; }
-
-#pay-for-rewards {
+#fund-rewards {
   padding: 20px;
+  width: 900px;
+  margin: 30px auto 0;
   position: relative;
   z-index: 2; }
-  #pay-for-rewards #messaging {
+  #fund-rewards p {
+    font-size: 1.15em;
+    line-height: 1.3em; }
+  #fund-rewards #messaging h1 {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eeeeee;
+    margin-bottom: 20px; }
+    #fund-rewards #messaging h1.redo, #fund-rewards #messaging h1.success, #fund-rewards #messaging h1.empty {
+      padding-left: 35px;
+      background: transparent url(../images/payments/check.png) no-repeat 0 0; }
+    #fund-rewards #messaging h1.redo {
+      background-image: url(../images/payments/redo.png); }
+    #fund-rewards #messaging h1.empty {
+      background-image: url(../images/payments/arrow.png); }
+  #fund-rewards #messaging section {
+    margin-bottom: 40px; }
+  #fund-rewards #credit-limit p {
+    padding: 8px 0 0 270px;
+    background: transparent url(../images/payments/amazon-warning.png) no-repeat 0 0;
+    height: 80px; }
+  #fund-rewards #amazon-button a {
     display: inline-block;
-    width: 100%; }
-    #pay-for-rewards #messaging:after {
-      content: ".";
-      display: block;
-      height: 0;
-      clear: both;
-      visibility: hidden; }
-    #pay-for-rewards #messaging .avatar {
-      width: 142px;
-      height: 142px;
-      float: left;
-      margin-right: 20px; }
-    #pay-for-rewards #messaging .the-rest {
-      float: left; }
-      #pay-for-rewards #messaging .the-rest h1 {
-        text-transform: uppercase;
-        font-weight: 600;
-        margin-bottom: 5px; }
-      #pay-for-rewards #messaging .the-rest p {
-        margin: 0;
-        font-size: 1.4em;
-        font-weight: 600;
-        line-height: 1.3em; }
-  #pay-for-rewards form {
-    margin-top: 10px;
-    background: transparent url(../images/payments/cc-icons.png) no-repeat 100% 0;
-    width: 470px; }
-    #pay-for-rewards form input[type="submit"] {
-      width: 240px;
-      background: white url(../images/payments/amazonLogo.png) no-repeat 94% 11px;
-      padding: 10px 76px 13px 12px;
-      text-transform: none;
-      font-weight: 700;
-      font-size: 16px;
-      box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.2) inset;
-      color: black;
-      text-shadow: none;
-      border: 1px solid #cccccc; }
-  #pay-for-rewards table#rewards {
+    background: #ddffc7 url(../images/payments/amazonLogo.png) no-repeat 96% 11px;
+    padding: 10px 78px 13px 12px;
+    font-weight: 700;
+    font-size: 16px;
+    box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.2) inset;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    color: black;
+    text-shadow: none;
+    border: 1px solid #9cd07a;
+    float: left; }
+  #fund-rewards #amazon-button #cards {
+    width: 240px;
+    height: 45px;
+    background: transparent url(../images/payments/cc-icons.png) no-repeat 0 0;
+    float: left; }
+  #fund-rewards #amazon-button p {
+    display: inline-block;
+    font-family: "museo-slab-1", "museo-slab-2", serif;
+    font-size: 1em;
+    color: #555555;
+    padding: 5px;
+    background: #ffffcc; }
+  #fund-rewards table#rewards {
     clear: both;
     padding: 30px 0 20px; }
-    #pay-for-rewards table#rewards td {
+    #fund-rewards table#rewards td {
       height: 65px;
       background: none;
       padding: 0 0 20px;
       border: 0; }
-      #pay-for-rewards table#rewards td .inner {
+      #fund-rewards table#rewards td .inner {
         width: 100%;
         height: 65px;
-        background: white; }
-    #pay-for-rewards table#rewards td.name .inner {
+        background: #f4f4f4; }
+    #fund-rewards table#rewards td.name .inner {
       width: 145px;
       height: 35px;
       padding: 15px 0 15px 20px;
-      background: white url(../images/payments/user-dot.png) no-repeat 100% 50%;
       font-family: "museo-slab-1", "museo-slab-2", serif;
       font-size: 16px;
       font-style: italic;
       line-height: 16px; }
-      #pay-for-rewards table#rewards td.name .inner span {
+      #fund-rewards table#rewards td.name .inner span {
         display: block; }
-    #pay-for-rewards table#rewards td.avatar a, #pay-for-rewards table#rewards td.avatar img {
+    #fund-rewards table#rewards td.avatar a, #fund-rewards table#rewards td.avatar img {
       display: block;
       width: 65px;
       height: 65px; }
-    #pay-for-rewards table#rewards td.content a, #pay-for-rewards table#rewards td.content img {
+    #fund-rewards table#rewards td.content a, #fund-rewards table#rewards td.content img {
       display: block;
       width: 103px;
       height: 65px; }
-    #pay-for-rewards table#rewards td.title .inner {
+    #fund-rewards table#rewards td.title .inner {
       width: auto;
       padding: 14px 20px;
       height: 37px;
       overflow: hidden; }
-      #pay-for-rewards table#rewards td.title .inner a {
+      #fund-rewards table#rewards td.title .inner a {
         text-transform: uppercase; }
-    #pay-for-rewards table#rewards td.comment {
+    #fund-rewards table#rewards td.comment {
       width: 60px;
       text-align: center; }
-      #pay-for-rewards table#rewards td.comment img {
+      #fund-rewards table#rewards td.comment img {
         margin-top: 25px;
         cursor: help; }
-    #pay-for-rewards table#rewards td.amount .inner {
-      background: #d6d6d6 url(../images/payments/amount-bg.png) no-repeat 0 0;
+    #fund-rewards table#rewards td.amount .inner {
+      background: #d6d6d6;
       width: auto;
       height: 54px;
       padding: 11px 20px 0 50px;
