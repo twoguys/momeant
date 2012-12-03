@@ -40,7 +40,7 @@ class RewardsController < ApplicationController
       reward_id: @reward.id,
       html: render_to_string(partial: "rewards/modal/after_reward")
     }
-    json[:modal] = render_to_string(partial: "rewards/modal/first_reward") if true #current_user.given_rewards.count == 1
+    json[:modal] = render_to_string(partial: "rewards/modal/first_reward") if current_user.given_rewards.count == 1
     render json: json
   end
   
