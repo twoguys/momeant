@@ -87,6 +87,7 @@ class Story < ActiveRecord::Base
     "Journalism",
     "Music",
     "Photography",
+    "Travel",
     "Writing"
   ].freeze
     

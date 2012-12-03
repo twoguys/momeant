@@ -906,7 +906,7 @@ body#home.index #main {
   max-width: 100%;
   background: #f0f0f0; }
 
-.landing-issue section {
+.landing-issue > section {
   width: 900px;
   margin: 0 auto;
   clear: both;
@@ -949,21 +949,21 @@ body#home.index #main {
     width: 100%; }
   .landing-issue #intro #header-title {
     position: absolute;
-    top: 50%;
+    top: 150px;
     left: 50%; }
   .landing-issue #intro #curated-by {
     width: 130px;
     background: white;
     position: absolute;
-    top: 50%;
+    top: 0;
     left: 50%; }
     .landing-issue #intro #curated-by h3 {
       background: yellow;
       color: black;
       font-size: 11px;
-      font-weight: 600;
+      font-weight: 800;
       text-transform: uppercase;
-      padding: 5px; }
+      padding: 6px 8px; }
     .landing-issue #intro #curated-by img {
       width: 124px;
       height: 124px;
@@ -975,18 +975,27 @@ body#home.index #main {
       font-size: 18px;
       text-transform: uppercase;
       background: none;
-      margin-top: 4px; }
+      margin-top: 4px;
+      font-weight: 600; }
+      .landing-issue #intro #curated-by h2 span {
+        display: block; }
     .landing-issue #intro #curated-by p {
       font-size: 12px;
       line-height: 1.3em; }
 .landing-issue #what-is-this {
-  padding-bottom: 50px; }
+  padding: 50px 0; }
+  .landing-issue #what-is-this section {
+    width: 900px;
+    margin: 0 auto; }
   .landing-issue #what-is-this p {
     float: left;
     margin: 0; }
   .landing-issue #what-is-this p.first {
     width: 30%;
-    margin-right: 10%; }
+    margin-right: 10%;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.5em; }
   .landing-issue #what-is-this p.last {
     width: 60%; }
 .landing-issue #creators, .landing-issue #quote, .landing-issue #content > ul > li {
@@ -1102,10 +1111,12 @@ body#home.index #main {
 #landing-issue-1 #intro {
   min-width: 880px; }
   #landing-issue-1 #intro #header-title {
-    margin-top: -203px;
     margin-left: -400px; }
   #landing-issue-1 #intro #curated-by {
-    margin-top: -160px; }
+    margin-top: 78px; }
+    #landing-issue-1 #intro #curated-by h3 {
+      background: #fa2c2a;
+      color: white; }
 
 #landing-page {
   overflow: hidden;
@@ -2921,7 +2932,8 @@ body#stories.before #got-it {
   margin-top: 2em;
   font-size: 1.5em; }
   body#stories.before #got-it a {
-    margin-left: 10px; }
+    font-size: 1em;
+    padding: 8px 12px; }
 
 /* Story creation */
 body#stories.edit.fullscreen #header, body#stories.new.fullscreen #header {
@@ -6672,40 +6684,39 @@ ul.stories .excerpt {
       text-shadow: none; }
 
 #about-modal .padder {
-  top: 50%;
-  margin-top: -300px; }
+  top: 20%; }
 #about-modal .padder, #about-modal .insides {
-  width: 800px; }
+  width: 600px; }
 #about-modal .insides {
   overflow: hidden;
   position: relative; }
 #about-modal .steps {
   color: black;
-  width: 8000px;
-  height: 600px;
+  width: 6000px;
+  height: 400px;
   -webkit-transition: margin 0.2s ease-in-out;
   -moz-transition: margin 0.2s ease-in-out;
   -ms-transition: margin 0.2s ease-in-out;
   -o-transition: margin 0.2s ease-in-out;
   transition: margin 0.2s ease-in-out; }
   #about-modal .steps .step {
-    width: 800px;
-    height: 600px;
+    width: 600px;
+    height: 400px;
     float: left;
     position: relative; }
     #about-modal .steps .step h1 {
       text-align: center;
-      height: 130px;
-      line-height: 130px;
-      font-family: "jeanne-moderno-ultra-1", "jeanne-moderno-ultra-2", serif;
-      font-size: 32px;
-      font-style: italic;
+      height: 80px;
+      line-height: 80px;
+      font-size: 24px;
       background: #00aeef;
-      color: white; }
-    #about-modal .steps .step h1 {
-      margin-bottom: 40px; }
+      color: white;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-weight: 400;
+      margin-bottom: 30px; }
     #about-modal .steps .step section {
-      padding: 0 80px;
+      padding: 0 40px;
       margin-bottom: 30px; }
       #about-modal .steps .step section.bulleted {
         background: transparent url(../images/modals/people.png) no-repeat 38px 0; }
@@ -6714,17 +6725,31 @@ ul.stories .excerpt {
       #about-modal .steps .step section.star {
         background-image: url(../images/modals/star.png); }
     #about-modal .steps .step h3 {
-      font-size: 17px;
+      font-size: 16px;
       margin-bottom: 5px; }
     #about-modal .steps .step p {
-      margin: 0;
       line-height: 1.7em;
-      font-size: 15px; }
+      margin: 0 0 1em;
+      font-size: 17px; }
+    #about-modal .steps .step .grid li {
+      float: left;
+      width: 30%;
+      margin-right: 5%; }
+      #about-modal .steps .step .grid li:last-child {
+        margin-right: 0; }
+      #about-modal .steps .step .grid li p {
+        font-size: 13px; }
+      #about-modal .steps .step .grid li a, #about-modal .steps .step .grid li img {
+        display: block;
+        width: 100%;
+        height: 90px; }
+      #about-modal .steps .step .grid li img {
+        background: #aaaaaa; }
     #about-modal .steps .step .buttons {
       position: absolute;
       bottom: 30px;
-      left: 80px;
-      right: 80px;
+      left: 35px;
+      right: 35px;
       text-align: right; }
       #about-modal .steps .step .buttons a {
         height: 28px;
@@ -6981,6 +7006,12 @@ body#pay_periods.show input.mark-as-paid {
   margin-bottom: 1em; }
   .admin.landing-issues li.checkbox label {
     font-size: 14px; }
+
+.admin.emails input[type="text"] {
+  width: 300px; }
+.admin.emails textarea {
+  width: 600px;
+  height: 300px; }
 
 #user-list .spinner {
   opacity: 0; }
