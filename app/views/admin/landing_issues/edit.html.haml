@@ -6,61 +6,10 @@
   = form_for @landing_issue, :url => admin_landing_issue_path(@landing_issue), :html => {:multipart => true} do |form|
 
     %fieldset
-      %legend Header
       %ul
         %li
           = form.label :title
           = form.text_field :title
-        %li
-          = form.label :header_background, "Header background image"
-          = form.file_field :header_background
-        %li
-          = form.label :header_title, "Header title image (text)"
-          = form.file_field :header_title
-        %li
-          = form.label :curator_id, "User ID of the curator"
-          = form.text_field :curator_id
-
-    %fieldset
-      %legend Creators
-      %ul
-        %li
-          = form.label :creator_ids, "User IDs of the creators, comma separated"
-          .example e.g. 10, 34, 56
-          = form.text_field :creator_ids
-        %li
-          = form.label :creator_comments, "Curator's comments about the creators"
-          .example The IDs in this list should match the creator IDs specified above.
-          %table
-            %thead
-              %tr
-                %th.id Creator ID
-                %th.text Curator's Comments
-            %tbody
-              - [0,1,2].each do |num|
-                %tr
-                  %td.id= text_field_tag "creator_comments[#{num}][id]", @landing_issue.parse_creator_comments[num].present? ? @landing_issue.parse_creator_comments[num][:creator_id] : ""
-                  %td.text= text_area_tag "creator_comments[#{num}][text]", @landing_issue.parse_creator_comments[num].present? ? @landing_issue.parse_creator_comments[num][:comment] : ""
-
-    %fieldset
-      %legend Content
-      %ul
-        %li
-          = form.label :content_ids, "IDs of the content, comma separated (e.g. 10, 34, 56)"
-          = form.text_field :content_ids
-        %li
-          = form.label :content_comments, "Curator's comments about the content"
-          .example The IDs in this list should match the content IDs specified above.
-          %table
-            %thead
-              %tr
-                %th.id Content ID
-                %th.text Curator's Comments
-            %tbody
-              - [0,1,2].each do |num|
-                %tr
-                  %td.id= text_field_tag "content_comments[#{num}][id]", @landing_issue.parse_content_comments[num].present? ? @landing_issue.parse_content_comments[num][:content_id] : ""
-                  %td.text= text_area_tag "content_comments[#{num}][text]", @landing_issue.parse_content_comments[num].present? ? @landing_issue.parse_content_comments[num][:comment] : ""
         %li.checkbox
           = form.check_box :published
           = form.label :published
