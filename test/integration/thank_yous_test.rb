@@ -1,7 +1,8 @@
 require 'test_helper'
 
 Feature "A creator should be able to offer thank yous to patrons" do
-
+  extend RewardSteps
+  
   in_order_to "say thank you to my patrons"
   as_a "creator"
   i_want_to "be able to offer things in return for certain levels of support"
@@ -43,7 +44,7 @@ Feature "A creator should be able to offer thank yous to patrons" do
       @thank_you_level = Factory(:thank_you_level, user: @story.user)
     end
     
-    when_i_reward(@story, 50)
+    when_i_reward(:story, 50)
     
     Then "there should be a record of the patron reaching the thank you level" do
       assert_equal 1, @thank_you_level.achievements.count
@@ -54,3 +55,5 @@ Feature "A creator should be able to offer thank yous to patrons" do
       
     end
   end
+  
+end

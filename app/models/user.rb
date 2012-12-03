@@ -57,6 +57,8 @@ class User < ActiveRecord::Base
   
   has_one :editorial, :dependent => :destroy
   
+  has_many :thank_you_levels
+  
   has_attached_file :avatar,
     :styles => { :thumbnail => "60x60#", :large => "200x200#", :editorial => "320x320#" },
     :path          => "avatars/:id/:style.:extension",
