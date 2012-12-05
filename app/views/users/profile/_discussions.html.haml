@@ -1,34 +1,33 @@
-- if @user.is_a?(Creator)
-  %section#discussion.off
-    %h1 Discussion
-    #discussion-fader
+%section#discussion.off
+  %h1 Discussion
+  #discussion-fader
 
-    .module
-      #discussion-inner{class: @discussion.nil? ? "empty" : ""}
+  .module
+    #discussion-inner{class: @discussion.nil? ? "empty" : ""}
       
-        #topics
-          .header
-            #{@user.first_name}'s Discussion Topics
-            = link_to "+ Start a New Topic", "#", id: "new-topic-link", class: "action" if me?(@user)
+      #topics
+        .header
+          #{@user.first_name}'s Discussion Topics
+          = link_to "+ Start a New Topic", "#", id: "new-topic-link", class: "action" if me?(@user)
             
-          - if me?(@user)
-            = form_for Discussion.new, url: discussions_path do |form|
-              %fieldset
-                %ul
-                  %li
-                    = form.label :topic
-                    = form.text_field :topic
-                  %li
-                    = form.label :body
-                    = form.text_area :body
-                    .instructions Everyone can see your discussions, but only your supporters can reply.
-                  %li.submit
-                    = form.submit "Post"
+        - if me?(@user)
+          = form_for Discussion.new, url: discussions_path do |form|
+            %fieldset
+              %ul
+                %li
+                  = form.label :topic
+                  = form.text_field :topic
+                %li
+                  = form.label :body
+                  = form.text_area :body
+                  .instructions Everyone can see your discussions, but only your supporters can reply.
+                %li.submit
+                  = form.submit "Post"
             
-          %ul#discussion-list
-            - @discussions.each do |discussion|
-              = render partial: "discussions/discussion_summary", locals: { discussion: discussion }
+        %ul#discussion-list
+          - @discussions.each do |discussion|
+            = render partial: "discussions/discussion_summary", locals: { discussion: discussion }
               
     
-        #topic
-          = render partial: "discussions/discussion", locals: { discussion: @discussion } if @discussion
+      #topic
+        = render partial: "discussions/discussion", locals: { discussion: @discussion } if @discussion

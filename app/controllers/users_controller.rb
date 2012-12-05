@@ -124,6 +124,10 @@ class UsersController < ApplicationController
     @rewards = @user.given_rewards.pledged.includes(:recipient, :story)
   end
   
+  def thankyous
+    @thank_you_level = ThankYouLevel.new
+  end
+  
   def submit_creator_request
     FeedbackMailer.creator_request(@user, params[:description], params[:examples]).deliver
     render :text => ""

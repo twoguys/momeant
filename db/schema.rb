@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121203155354) do
+ActiveRecord::Schema.define(:version => 20121205150449) do
 
   create_table "activities", :force => true do |t|
     t.integer  "actor_id"
@@ -300,6 +300,15 @@ ActiveRecord::Schema.define(:version => 20121203155354) do
     t.string "name"
   end
 
+  create_table "thank_you_achievements", :force => true do |t|
+    t.integer  "thank_you_level_id"
+    t.integer  "user_id"
+    t.integer  "creator_id"
+    t.boolean  "fulfilled"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "thank_you_levels", :force => true do |t|
     t.decimal  "amount",      :precision => 8, :scale => 2
     t.string   "item"
@@ -387,7 +396,7 @@ ActiveRecord::Schema.define(:version => 20121203155354) do
     t.boolean  "send_digest_emails",                                                                :default => true
     t.boolean  "send_message_notification_emails",                                                  :default => true
     t.string   "i_reward_because"
-    t.decimal  "impact",                                              :precision => 8, :scale => 2, :default => 0.0
+    t.decimal  "impact",                                              :precision => 8, :scale => 2
     t.decimal  "lifetime_rewards",                                    :precision => 8, :scale => 2, :default => 0.0
     t.boolean  "send_new_follower_emails",                                                          :default => true
     t.boolean  "send_following_update_emails",                                                      :default => true

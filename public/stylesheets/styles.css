@@ -504,6 +504,10 @@ form input[type="text"], form input[type="email"], form input[type="password"], 
   border-radius: 4px; }
   form input[type="text"].error, form input[type="email"].error, form input[type="password"].error, form textarea.error, .form input[type="text"].error, .form input[type="email"].error, .form input[type="password"].error, .form textarea.error {
     background: #f7d3db; }
+  form input[type="text"].money, form input[type="email"].money, form input[type="password"].money, form textarea.money, .form input[type="text"].money, .form input[type="email"].money, .form input[type="password"].money, .form textarea.money {
+    background: white url(../images/icons/dollar.png) no-repeat 5px 50%;
+    width: 50px;
+    padding-left: 20px; }
 form input[type="file"], .form input[type="file"] {
   padding: 5px;
   font-size: 1.2em;
@@ -1829,6 +1833,45 @@ body#users.show {
             padding: 8px 0 0 5px; }
             body#users.show #user-profile #community #supporters-section .non-level li.more span, body#users.show #user-profile #community #supporting-section .non-level li.more span {
               display: block; }
+    body#users.show #user-profile #thank-yous {
+      position: relative; }
+      body#users.show #user-profile #thank-yous .module {
+        background: white;
+        padding: 20px; }
+      body#users.show #user-profile #thank-yous a#manage-thank-yous {
+        position: absolute;
+        top: 25px;
+        right: 0;
+        font-size: 1.2em;
+        font-weight: 700; }
+      body#users.show #user-profile #thank-yous h3 {
+        font-weight: 400;
+        font-size: 15px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #eeeeee;
+        margin-bottom: 20px; }
+      body#users.show #user-profile #thank-yous ul {
+        display: inline-block; }
+        body#users.show #user-profile #thank-yous ul:after {
+          content: ".";
+          display: block;
+          height: 0;
+          clear: both;
+          visibility: hidden; }
+      body#users.show #user-profile #thank-yous li {
+        float: left;
+        width: 200px;
+        margin: 0 30px 20px 0; }
+        body#users.show #user-profile #thank-yous li .price {
+          padding: 2px 4px;
+          background: #999999;
+          color: white;
+          font-weight: 400;
+          margin-right: 3px; }
+        body#users.show #user-profile #thank-yous li p {
+          margin: 10px 0 0;
+          line-height: 1.5em;
+          font-size: 0.9em; }
     body#users.show #user-profile #discussion-fader {
       position: fixed;
       top: 42px;
@@ -2062,6 +2105,35 @@ body#users.show {
           margin-bottom: 0; }
     body#users.show #user-profile #my-rewards {
       margin-bottom: 0; }
+
+body#users.thankyous #main {
+  width: 800px;
+  margin: 0 auto;
+  padding: 30px; }
+body#users.thankyous section {
+  background: #eeeeee;
+  padding: 20px;
+  margin-top: 20px;
+  position: relative; }
+  body#users.thankyous section h3 {
+    font-size: 1.1em; }
+    body#users.thankyous section h3 .price {
+      background: #cccccc;
+      padding: 2px 4px;
+      margin-right: 3px; }
+  body#users.thankyous section a.edit {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    text-transform: uppercase; }
+body#users.thankyous form {
+  margin-top: 20px; }
+  body#users.thankyous form h3 {
+    font-size: 1.4em; }
+  body#users.thankyous form textarea {
+    height: 50px; }
+  body#users.thankyous form #thank_you_level_item, body#users.thankyous form #thank_you_level_description {
+    width: 300px; }
 
 body#users.patronage .profile-info .supporter-count, body#users.patronage .profile-info .follow, body#users.patronage .profile-info .info, body#users.patronage .profile-info #broadcaster {
   display: none; }

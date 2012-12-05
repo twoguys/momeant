@@ -1,0 +1,48 @@
+%h1 Manage your Thank You Levels
+%p
+  Creator Thank You Levels are a way for you to say thanks when someone has shown you tremendous support.
+  They're not required, but they are a good way to incentivize your followers to reward you more.
+  After a supporter has rewarded you a certain amount (say, $50), you can give them something to say thanks.
+  It can be as simple as access to a private blog article or as fancy as a custom painting. You choose the level of
+  support that has to be reached and what you offer as thanks. We'll show this to others on your profile page and
+  when they go to reward you.
+
+= link_to "&larr; Back to Your Profile".html_safe, user_path(@user)
+
+- @user.thank_you_levels.each do |level|
+  %section
+    %h3
+      %span.price= number_to_currency(level.amount)
+      %span= level.item
+    %p= level.description
+    = link_to "Edit", edit_user_thank_you_level_path(@user, level), class: "edit"
+    
+    %h4 Supporters who've Reached this level
+    %ul
+      - level.achievers.each do |patron|
+        %span.name= patron.name
+        %span
+          Did they receive their Thank You?
+          = check_box_tag :fulfilled
+      - if level.achievers.empty?
+        %li None yet
+
+= form_for @thank_you_level, url: user_thank_you_levels_path(@user) do |form|
+  %h3 Add a Thank You Level
+  %fieldset
+    %ul
+      %li
+        = form.label :amount
+        .instructions The amount of money a supporter has given you to reach this level
+        = form.text_field :amount, class: "money"
+      %li
+        = form.label :item
+        .instructions The item you're offering as a way to say thank you for reaching this level
+        .instructions e.g. a hand-written thank you note, a screen-printed poster, a CD, etc.
+        = form.text_field :item
+      %li
+        = form.label :description
+        .instructions Tell supporters more about the item you're offering at this level
+        = form.text_area :description
+      %li
+        = form.submit "Create Level"

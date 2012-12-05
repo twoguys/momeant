@@ -2,8 +2,10 @@
   
   = render "users/profile/info"
   = render "users/profile/community"
-  = render "users/profile/discussions"
-  = render "users/profile/my_work" if @user.is_a?(Creator)
+  - if @user.is_a?(Creator)
+    = render "users/profile/my_work"
+    = render "users/profile/thank_yous" if me?(@user) || @user.thank_you_levels.present?
+    = render "users/profile/discussions"
   = render "users/profile/my_rewards"
   
 - if me?(@user)

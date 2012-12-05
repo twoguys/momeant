@@ -68,6 +68,7 @@ Repo::Application.routes.draw do
     end
     resources :broadcasts, :only => [:create]
     resources :comments, :only => [:create]
+    resources :thank_you_levels
     
     member do
       get :settings
@@ -76,6 +77,7 @@ Repo::Application.routes.draw do
       post :update_avatar
       post :update_email_setting
       post :change_password
+      get :thankyous
     end
     
     collection do

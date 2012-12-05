@@ -1,0 +1,14 @@
+%section#thank-yous
+  %h1 Thank You
+  = link_to "Manage Thank You Levels", thankyous_user_path(@user), id: "manage-thank-yous" if me?(@user)
+
+  .module
+    %h3 When #{@user.first_name}'s supporters reach a certain level of support, here is how #{@user.first_name} says thanks:
+    
+    %ul
+      - @user.thank_you_levels.each do |level|
+        %li
+          %h4
+            %span.price= number_to_currency(level.amount)
+            %span= level.item
+          %p= level.description
