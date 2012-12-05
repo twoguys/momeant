@@ -6,42 +6,25 @@ body#home.index #main
 
   & > section
     width: 900px
-    margin: 0 auto
+    padding-bottom: 50px
+    border-bottom: 2px solid #fff
+    margin: 0 auto 50px
     clear: both
-    padding-top: 50px
+    &:last-child
+      margin-bottom: 0 !important
+      border-bottom: 0
     
   .padded
     padding: 3px
     background: #fff
     @include rounded(3px)
     @include boxshadow(2px,0.3,1px,1px)
-  
-  .comments
-    width: 100%
-    height: 83px
-    position: absolute
-    bottom: 3px
-    left: 3px
-    background: transparent url(../images/landing/creator-comments-bg.png) no-repeat 50% 0
-    padding-top: 17px
-    text-align: center
-    h3
-      font-size: 10px
-      text-transform: uppercase
-      line-height: 10px
-      margin-bottom: 5px
-      span
-        display: block
-    p
-      font-family: $typewriter
-      font-size: 11px
-      font-style: italic
-      line-height: 1.1em
-      padding: 0 10px
-      margin: 0
 
   #intro
     position: relative
+    max-height: 600px
+    overflow: hidden
+    margin-bottom: 50px
     #header-background
       width: 100%
     #header-title
@@ -81,7 +64,6 @@ body#home.index #main
         line-height: 1.3em
   
   #what-is-this
-    padding: 50px 0
     section
       width: 900px
       margin: 0 auto
@@ -97,9 +79,6 @@ body#home.index #main
     p.last
       width: 60%
   
-  #creators, #quote, #content > ul > li
-    border-top: 2px solid #fff
-  
   #creators
     margin-bottom: 50px
     li
@@ -108,6 +87,7 @@ body#home.index #main
       margin: 0 30px
       position: relative
       img
+        display: block
         width: 230px
         height: 230px
       .text
@@ -144,9 +124,34 @@ body#home.index #main
         font-size: 12px
         line-height: 1.5em
         margin: 0
+        height: 220px
+        overflow: hidden
+    .comments
+      width: 100%
+      position: absolute
+      bottom: 0
+      left: 0
+      text-align: center
+      h3
+        font-size: 10px
+        text-transform: uppercase
+        line-height: 10px
+        padding: 17px 0 10px
+        background: transparent url(../images/landing/creator-comments-bg.png) no-repeat 50% 0
+        span
+          display: block
+      p
+        font-family: Georgia
+        font-size: 11px
+        font-style: italic
+        line-height: 1.1em
+        padding: 0 10px 10px
+        margin: 0
+        background: #fdff4b
   
   #quote
     text-align: center
+    margin-bottom: 50px
     p, .from
       font-family: $typewriter
       font-style: italic
@@ -163,13 +168,11 @@ body#home.index #main
       font-size: 16px
       font-weight: 600
   
-  #content
-    padding-bottom: 30px
-    margin-bottom: 0
   #content > ul > li
-    padding-top: 50px
     margin-bottom: 50px
     height: 328px
+    &:last-child
+      margin-bottom: 0
     .thumbnail
       width: 480px
       height: 320px
@@ -187,6 +190,7 @@ body#home.index #main
         float: left
         margin: 0 10px 2px 0
         img
+          display: inline-block
           width: 75px
           height: 75px
       .title, .byline, .synopsis
@@ -202,19 +206,37 @@ body#home.index #main
         margin-top: 10px
         font-size: 13px
       .comments
+        width: 100%
+        position: absolute
+        bottom: 3px
+        left: 0
         height: 125px
-        background-image: url(../images/landing/content-comments-bg.png)
+        background: transparent url(../images/landing/content-comments-bg.png) no-repeat 50% 0
         padding-top: 25px
+        text-align: center
         h3
           margin-bottom: 10px
+          font-size: 10px
+          text-transform: uppercase
+          line-height: 10px
+          span
+            display: block
         p
+          font-family: Georgia
           font-size: 13px
+          font-style: italic
+          line-height: 1.1em
+          padding: 0 10px
+          margin: 0
+  #last
+    color: #F0F0F0
 
 #landing-issue-1
   #intro
     min-width: 880px
+    max-height: 500px
     #header-title
-      margin-left: -400px
+      margin-left: -450px
     #curated-by
       margin-top: 78px
       h3

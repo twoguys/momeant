@@ -1,54 +1,26 @@
 #landing-issue-1.landing-issue
   %header#intro
-    = image_tag @issue.header_background.url, id: "header-background"
-    = image_tag @issue.header_title.url, id: "header-title"
+    = image_tag "http://momeant-production.s3.amazonaws.com/landing_issues/1/header.jpg", id: "header-background"
+    = image_tag "http://momeant-production.s3.amazonaws.com/landing_issues/1/title.png", id: "header-title"
     #curated-by
       %h3 Curated By
-      = image_tag @issue.curator.avatar.url(:large)
+      = image_tag "http://momeant-production.s3.amazonaws.com/landing_issues/1/curator.jpg"
       %h2
         %span= @issue.curator.first_name
         %span= @issue.curator.last_name
-      %p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
+      %p Instagram provides it’s community with a wonderfully simple tool to document our daily lives. I'm a year deep into Instagram and it's still a favorite moment of my day.
 
-  #what-is-this
-    %section
-      %p.first Momeant lets your audience subscribe to your online content and reward you for your work. #{link_to "Learn more", "#about-modal"}
-      %p.last Periodically, we showcase editorial issues on our homepage in order to promote creators sharing great work at Momeant. New Beijing was born out of the underground scene that Miao Wang discovered when she was filming her feature-length film, Beijing Taxi, in pre-Olympics Beijing.
-      .clear
-  
-  = render "home/modal"
-  
-  %section#creators
-    %ul
-      - @issue.creators.each do |creator|
-        %li.padded
-          = link_to image_tag(creator.avatar.url(:editorial)), user_path(creator)
-          .text
-            %a.name{href: user_path(creator)}
-              %span= creator.first_name
-              %span= creator.last_name
-            .occupation= creator.occupation
-            .supporter-count= creator.patrons.count
-            %p.tagline= creator.tagline
-            .comments
-              %h3
-                %span Curator's
-                %span Comments
-              %p= @issue.creator_comments_for(creator.id)
+  %section#what-is-this
+    %p.first Momeant lets your audience subscribe to your online content and reward you for your work. #{link_to "Learn more", "#about-modal"}
+    %p.last Periodically, we showcase editorial issues on our homepage to promote creators sharing great work through Momeant. POCKET PICTURES is a tip of the hat from our Art Director to one of her favorite creative tools: Instagram. With a community of 60m+, it’s no wonder that this photo-sharing app is a treasure trove of creativity. Enjoy!
     .clear
   
-  %section#quote
-    %p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
-    .byline
-      .from
-        %span from the novel
-        %span.underlined West With The Night
-        %span by
-      .author= link_to "Beryl Markham", "#"
-  
+  = render "home/modal"
+    
   %section#content
     %ul
-      - @issue.content.each do |content|
+      - content = Story.find_by_id(264)
+      - if content
         %li
           .thumbnail.padded
             - if content.text_preview?
@@ -68,4 +40,217 @@
               %h3
                 %span Curator's
                 %span Comments
-              %p= @issue.content_comments_for(content.id)
+              %p
+                Instagram has given me a wonderful reason to stop and notice the small stuff as I scurry across town (and the planet) and scamper after my kid. The result is an even mix of NYC, Provence, Tel Aviv, SoCal, and a little fellow called #henrimartinziegler. I am #{link_to "@lolopetitpot", "http://instagram.com/lolopetitpot"}.
+    .clear
+  
+  %section#quote
+    %p Instagrammers live for the little moments. Images are shot spontaneously and quickly — sometimes captured for art & sometimes pleasure.
+    .byline
+      .from - Mark Fallone
+      
+  %section#creators
+    %ul
+      - creator = User.find_by_id(155)
+      - if creator
+        %li.padded
+          = link_to image_tag(creator.avatar.url(:editorial)), user_path(creator)
+          .text
+            %a.name{href: user_path(creator)}
+              %span= creator.first_name
+              %span= creator.last_name
+            .occupation= creator.occupation
+            .supporter-count= creator.patrons.count
+            %p.tagline= truncate(creator.tagline, length: 400)
+            .comments
+              %h3
+                %span Curator's
+                %span Comments
+              %p
+                Stan’s creative work is a humorous hodgepodge of business life on the go. His snarky commentary on east-meets-west and lost-in-translation moments is light-hearted, tech-centric, and an accurate reflection of this good old friend.
+      - creator = User.find_by_id(14)
+      - if creator
+        %li.padded
+          = link_to image_tag(creator.avatar.url(:editorial)), user_path(creator)
+          .text
+            %a.name{href: user_path(creator)}
+              %span= creator.first_name
+              %span= creator.last_name
+            .occupation= creator.occupation
+            .supporter-count= creator.patrons.count
+            %p.tagline= truncate(creator.tagline, length: 400)
+            .comments
+              %h3
+                %span Curator's
+                %span Comments
+              %p
+                This "Life Enthusiast" shares a visual train of thought that doesn't sweat the small stuff. I think its just that light-hearted, feel good vibe that has earned her a following of over 20,000 members of the Instagramisphere.
+      - creator = User.find_by_id(16)
+      - if creator
+        %li.padded
+          = link_to image_tag(creator.avatar.url(:editorial)), user_path(creator)
+          .text
+            %a.name{href: user_path(creator)}
+              %span= creator.first_name
+              %span= creator.last_name
+            .occupation= creator.occupation
+            .supporter-count= creator.patrons.count
+            %p.tagline= truncate(creator.tagline, length: 400)
+            .comments
+              %h3
+                %span Curator's
+                %span Comments
+              %p
+                Oz’s subtle and unassuming photography is all about the sociology of the city. New York City that is. From people watching on the subway to street style to architecture and art, Oz gives us a peek into his busy, cultured day to day.
+    .clear
+  
+  %section#content
+    %ul
+      - content = Story.find_by_id(395)
+      - if content
+        %li
+          .thumbnail.padded
+            - if content.text_preview?
+              %a.content-preview.medium{:href => story_path(content), :class => "#{content.media_type} #{content.template}"}
+                .inner
+                  .image
+                  .quote= truncate(content.template_text, :length => 140)
+            - else
+              %a.content-preview.medium{:href => story_path(content), :class => content.media_type}
+                .inner{:style => "background-image: url(#{content.thumbnail.url(:large)})"}
+          .text
+            = link_to image_tag(content.user.avatar.url(:large), class: "padded"), user_path(content.user), class: "avatar"
+            %span.title= content.title
+            = link_to "by #{content.user.name}", user_path(content.user), class: "byline"
+            %span.synopsis= truncate(content.synopsis, length: 380)
+            .comments
+              %h3
+                %span Curator's
+                %span Comments
+              %p @StanYee’s Instagrams are full of the little treasures one encounters when starting a new life in a foreign land. From translations gone awry, to new forms of beauty, Stan's pics share that unique perspective one has when everything is new and nothing can be taken for granted.
+      - content = Story.find_by_id(340)
+      - if content
+        %li
+          .thumbnail.padded
+            - if content.text_preview?
+              %a.content-preview.medium{:href => story_path(content), :class => "#{content.media_type} #{content.template}"}
+                .inner
+                  .image
+                  .quote= truncate(content.template_text, :length => 140)
+            - else
+              %a.content-preview.medium{:href => story_path(content), :class => content.media_type}
+                .inner{:style => "background-image: url(#{content.thumbnail.url(:large)})"}
+          .text
+            = link_to image_tag(content.user.avatar.url(:large), class: "padded"), user_path(content.user), class: "avatar"
+            %span.title= content.title
+            = link_to "by #{content.user.name}", user_path(content.user), class: "byline"
+            %span.synopsis= truncate(content.synopsis, length: 380)
+            .comments
+              %h3
+                %span Curator's
+                %span Comments
+              %p @RebeccaPrus leads a life full of beauty, travel, and good eats. Her content on Instagram is not only a visual delight but is always accompanied by a lovely micro-editorial in her captions. If you want to know what’s what and where, follow this lifestyle aficionado.
+      - content = Story.find_by_id(398)
+      - if content
+        %li
+          .thumbnail.padded
+            - if content.text_preview?
+              %a.content-preview.medium{:href => story_path(content), :class => "#{content.media_type} #{content.template}"}
+                .inner
+                  .image
+                  .quote= truncate(content.template_text, :length => 140)
+            - else
+              %a.content-preview.medium{:href => story_path(content), :class => content.media_type}
+                .inner{:style => "background-image: url(#{content.thumbnail.url(:large)})"}
+          .text
+            = link_to image_tag(content.user.avatar.url(:large), class: "padded"), user_path(content.user), class: "avatar"
+            %span.title= content.title
+            = link_to "by #{content.user.name}", user_path(content.user), class: "byline"
+            %span.synopsis= truncate(content.synopsis, length: 380)
+            .comments
+              %h3
+                %span Curator's
+                %span Comments
+              %p If you’re a tried and true New Yorker, this is for you. @ozlubling’s subtle commentary on this city is peppered with humor, grace, and that working frenzy that only a New York minute can contain. Oh, and there’s plenty of #foodstagrams in there too.
+      - content = Story.find_by_id(400)
+      - if content
+        %li
+          .thumbnail.padded
+            - if content.text_preview?
+              %a.content-preview.medium{:href => story_path(content), :class => "#{content.media_type} #{content.template}"}
+                .inner
+                  .image
+                  .quote= truncate(content.template_text, :length => 140)
+            - else
+              %a.content-preview.medium{:href => story_path(content), :class => content.media_type}
+                .inner{:style => "background-image: url(#{content.thumbnail.url(:large)})"}
+          .text
+            = link_to image_tag(content.user.avatar.url(:large), class: "padded"), user_path(content.user), class: "avatar"
+            %span.title= content.title
+            = link_to "by #{content.user.name}", user_path(content.user), class: "byline"
+            %span.synopsis= truncate(content.synopsis, length: 380)
+            .comments
+              %h3
+                %span Curator's
+                %span Comments
+              %p @evie_adair’s countryside shots of Virginia celebrate a landscape of majestic barns, misty fields, rolling blue mountains, and pretty much everything else you could imagine someone like John Denver would write a song about.
+      - content = Story.find_by_id(399)
+      - if content
+        %li
+          .thumbnail.padded
+            - if content.text_preview?
+              %a.content-preview.medium{:href => story_path(content), :class => "#{content.media_type} #{content.template}"}
+                .inner
+                  .image
+                  .quote= truncate(content.template_text, :length => 140)
+            - else
+              %a.content-preview.medium{:href => story_path(content), :class => content.media_type}
+                .inner{:style => "background-image: url(#{content.thumbnail.url(:large)})"}
+          .text
+            = link_to image_tag(content.user.avatar.url(:large), class: "padded"), user_path(content.user), class: "avatar"
+            %span.title= content.title
+            = link_to "by #{content.user.name}", user_path(content.user), class: "byline"
+            %span.synopsis= truncate(content.synopsis, length: 380)
+            .comments
+              %h3
+                %span Curator's
+                %span Comments
+              %p There is a select group of Instagram memes that generate endless buzz within the community: #instapets fall under this revered category and characters like Mr. Merlin are one of the many reasons why. Meet #mrmerlin.
+      - content = Story.find_by_id(109)
+      - if content
+        %li
+          .thumbnail.padded
+            - if content.text_preview?
+              %a.content-preview.medium{:href => story_path(content), :class => "#{content.media_type} #{content.template}"}
+                .inner
+                  .image
+                  .quote= truncate(content.template_text, :length => 140)
+            - else
+              %a.content-preview.medium{:href => story_path(content), :class => content.media_type}
+                .inner{:style => "background-image: url(#{content.thumbnail.url(:large)})"}
+          .text
+            = link_to image_tag(content.user.avatar.url(:large), class: "padded"), user_path(content.user), class: "avatar"
+            %span.title= content.title
+            = link_to "by #{content.user.name}", user_path(content.user), class: "byline"
+            %span.synopsis= truncate(content.synopsis, length: 380)
+            .comments
+              %h3
+                %span Curator's
+                %span Comments
+              %p From a first frost to fresh cut flowers, @djbrowning’s collection of the natural world around him feels lost in time and sadly fleeting. That I know Dave on a much geekier, tech level, makes this window into his world all the more special to me.
+      
+  %section#quote
+    %p
+      Gather moments while you may.
+      %br
+      Collect the dreams you dream today
+      %br
+      Remember, will you remember
+      %br
+      The times of your life?
+    .byline
+      .from
+        %span from the novel
+        %span.underlined The Time of Your Life
+        %span by
+      .author= link_to "Paul Anka", "#"
