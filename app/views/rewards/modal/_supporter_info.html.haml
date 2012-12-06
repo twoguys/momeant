@@ -4,7 +4,7 @@
       %span #{@story.user.first_name}'s Thank You Levels
       %span.tip.tooltipped-n{title: "As your support for a creator reaches certain levels, they can offer ways to say 'Thanks'"} ?
     %ul
-      - @story.user.thank_you_levels.each do |level|
+      - @story.user.thank_you_levels[0..2].each do |level|
         %li
           .item
             %span.price= number_to_currency(level.amount)
