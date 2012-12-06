@@ -1,0 +1,30 @@
+= form_for @thank_you_level, url: user_thank_you_level_path(current_user, @thank_you_level) do |form|
+  %h1 Edit your Thank You Level
+  %p.important
+    IMPORTANT
+    %br
+    You might have supporters working towards this goal, and changing the amount or item could cause frustration.
+    %br
+    Just be sure to communicate with your community.
+  %fieldset
+    %ul
+      %li
+        = form.label :amount
+        .instructions The amount of money a supporter has given you to reach this level
+        = form.text_field :amount, class: "money"
+      %li
+        = form.label :item
+        .instructions The item you're offering as a way to say thank you for reaching this level
+        .instructions e.g. a hand-written thank you note, a screen-printed poster, a CD, etc.
+        = form.text_field :item
+      %li
+        = form.label :description
+        .instructions Tell supporters more about the item you're offering at this level
+        = form.text_area :description
+      %li
+        = form.submit "Update Level"
+        %span or
+        = link_to "Cancel", user_thank_you_levels_path(current_user)
+      %li
+        %p You can also delete this level, but please consider any supporters working towards it.
+        = link_to "Delete Level", user_thank_you_level_path(@thank_you_level), method: "delete", confirm: "Are you SURE you want to delete it?"

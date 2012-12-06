@@ -112,6 +112,9 @@ h2 {
 .weak {
   color: #9c9c9c; }
 
+.important {
+  color: #f42652; }
+
 /* Form styles */
 form li, .form li {
   margin-bottom: 1.5em;
@@ -171,9 +174,14 @@ form input[type="text"], form input[type="email"], form input[type="password"], 
   form input[type="text"].error, form input[type="email"].error, form input[type="password"].error, form textarea.error, .form input[type="text"].error, .form input[type="email"].error, .form input[type="password"].error, .form textarea.error {
     background: #f7d3db; }
   form input[type="text"].money, form input[type="email"].money, form input[type="password"].money, form textarea.money, .form input[type="text"].money, .form input[type="email"].money, .form input[type="password"].money, .form textarea.money {
-    background: white url(../images/icons/dollar.png) no-repeat 5px 50%;
+    background-image: url(../images/icons/dollar.png);
+    background-position: 5px 50%;
+    background-repeat: no-repeat;
     width: 50px;
     padding-left: 20px; }
+  form input[type="text"].disabled, form input[type="email"].disabled, form input[type="password"].disabled, form textarea.disabled, .form input[type="text"].disabled, .form input[type="email"].disabled, .form input[type="password"].disabled, .form textarea.disabled {
+    background-color: #eeeeee;
+    color: #999999; }
 form input[type="file"], .form input[type="file"] {
   padding: 5px;
   font-size: 1.2em;
@@ -667,20 +675,43 @@ body#reward-modal {
       font-size: 14px;
       font-weight: 400;
       margin-bottom: 15px; }
-    body#reward-modal #supporter-info #explanation {
+    body#reward-modal #supporter-info #thank-you-levels, body#reward-modal #supporter-info #explanation {
       width: 300px;
       float: left;
       margin-right: 50px; }
-      body#reward-modal #supporter-info #explanation ul, body#reward-modal #supporter-info #explanation p {
-        font-family: "museo-slab-1", "museo-slab-2", serif;
-        font-style: italic;
-        font-weight: 300; }
-      body#reward-modal #supporter-info #explanation li {
-        list-style-type: disc;
-        margin: 0 0 0.5em 1.2em; }
-      body#reward-modal #supporter-info #explanation abbr {
-        border-bottom: 1px dotted #00aeef;
-        cursor: help; }
+    body#reward-modal #supporter-info #thank-you-levels .tip {
+      font-size: 12px;
+      padding: 1px 5px;
+      background: #dddddd;
+      -webkit-border-radius: 20px;
+      -moz-border-radius: 20px;
+      border-radius: 20px;
+      cursor: help; }
+    body#reward-modal #supporter-info #thank-you-levels li {
+      margin-bottom: 8px; }
+    body#reward-modal #supporter-info #thank-you-levels .item a {
+      color: #252525; }
+      body#reward-modal #supporter-info #thank-you-levels .item a:hover {
+        color: #00aeef; }
+    body#reward-modal #supporter-info #thank-you-levels .price {
+      padding: 2px 4px;
+      background: #c8f2d0;
+      color: #12922a;
+      margin-right: 3px; }
+    body#reward-modal #supporter-info #thank-you-levels p {
+      font-size: 12px;
+      margin: 3px 0 0;
+      line-height: 1.5em; }
+    body#reward-modal #supporter-info #explanation ul, body#reward-modal #supporter-info #explanation p {
+      font-family: "museo-slab-1", "museo-slab-2", serif;
+      font-style: italic;
+      font-weight: 300; }
+    body#reward-modal #supporter-info #explanation li {
+      list-style-type: disc;
+      margin: 0 0 0.5em 1.2em; }
+    body#reward-modal #supporter-info #explanation abbr {
+      border-bottom: 1px dotted #00aeef;
+      cursor: help; }
     body#reward-modal #supporter-info #top-supporters {
       width: 210px;
       float: right; }

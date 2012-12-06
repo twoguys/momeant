@@ -112,6 +112,9 @@ h2 {
 .weak {
   color: #9c9c9c; }
 
+.important {
+  color: #f42652; }
+
 #container {
   position: relative;
   padding-top: 42px; }
@@ -505,9 +508,14 @@ form input[type="text"], form input[type="email"], form input[type="password"], 
   form input[type="text"].error, form input[type="email"].error, form input[type="password"].error, form textarea.error, .form input[type="text"].error, .form input[type="email"].error, .form input[type="password"].error, .form textarea.error {
     background: #f7d3db; }
   form input[type="text"].money, form input[type="email"].money, form input[type="password"].money, form textarea.money, .form input[type="text"].money, .form input[type="email"].money, .form input[type="password"].money, .form textarea.money {
-    background: white url(../images/icons/dollar.png) no-repeat 5px 50%;
+    background-image: url(../images/icons/dollar.png);
+    background-position: 5px 50%;
+    background-repeat: no-repeat;
     width: 50px;
     padding-left: 20px; }
+  form input[type="text"].disabled, form input[type="email"].disabled, form input[type="password"].disabled, form textarea.disabled, .form input[type="text"].disabled, .form input[type="email"].disabled, .form input[type="password"].disabled, .form textarea.disabled {
+    background-color: #eeeeee;
+    color: #999999; }
 form input[type="file"], .form input[type="file"] {
   padding: 5px;
   font-size: 1.2em;
@@ -1864,8 +1872,8 @@ body#users.show {
         margin: 0 30px 20px 0; }
         body#users.show #user-profile #thank-yous li .price {
           padding: 2px 4px;
-          background: #999999;
-          color: white;
+          background: #c8f2d0;
+          color: #12922a;
           font-weight: 400;
           margin-right: 3px; }
         body#users.show #user-profile #thank-yous li p {
@@ -2106,33 +2114,40 @@ body#users.show {
     body#users.show #user-profile #my-rewards {
       margin-bottom: 0; }
 
-body#users.thankyous #main {
+body#thank_you_levels #main {
   width: 800px;
   margin: 0 auto;
   padding: 30px; }
-body#users.thankyous section {
+body#thank_you_levels section {
   background: #eeeeee;
   padding: 20px;
   margin-top: 20px;
   position: relative; }
-  body#users.thankyous section h3 {
+  body#thank_you_levels section h3 {
     font-size: 1.1em; }
-    body#users.thankyous section h3 .price {
-      background: #cccccc;
+    body#thank_you_levels section h3 .price {
+      background: #c8f2d0;
+      color: #12922a;
       padding: 2px 4px;
       margin-right: 3px; }
-  body#users.thankyous section a.edit {
+  body#thank_you_levels section a.edit {
     position: absolute;
     top: 20px;
     right: 20px;
     text-transform: uppercase; }
-body#users.thankyous form {
-  margin-top: 20px; }
-  body#users.thankyous form h3 {
-    font-size: 1.4em; }
-  body#users.thankyous form textarea {
+body#thank_you_levels form {
+  margin-top: 30px; }
+  body#thank_you_levels form h3 {
+    font-size: 1.4em;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #eeeeee;
+    margin-bottom: 10px; }
+  body#thank_you_levels form p {
+    margin: 5px 0;
+    line-height: 1.5em; }
+  body#thank_you_levels form textarea {
     height: 50px; }
-  body#users.thankyous form #thank_you_level_item, body#users.thankyous form #thank_you_level_description {
+  body#thank_you_levels form #thank_you_level_item, body#thank_you_levels form #thank_you_level_description {
     width: 300px; }
 
 body#users.patronage .profile-info .supporter-count, body#users.patronage .profile-info .follow, body#users.patronage .profile-info .info, body#users.patronage .profile-info #broadcaster {

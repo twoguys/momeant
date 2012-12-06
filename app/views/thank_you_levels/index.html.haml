@@ -7,15 +7,15 @@
   support that has to be reached and what you offer as thanks. We'll show this to others on your profile page and
   when they go to reward you.
 
-= link_to "&larr; Back to Your Profile".html_safe, user_path(@user)
+= link_to "&larr; Back to Your Profile".html_safe, user_path(current_user)
 
-- @user.thank_you_levels.each do |level|
+- current_user.thank_you_levels.where("created_at IS NOT NULL").each do |level|
   %section
     %h3
       %span.price= number_to_currency(level.amount)
       %span= level.item
     %p= level.description
-    = link_to "Edit", edit_user_thank_you_level_path(@user, level), class: "edit"
+    = link_to "Edit", edit_user_thank_you_level_path(current_user, level), class: "edit"
     
     %h4 Supporters who've Reached this level
     %ul
@@ -27,8 +27,10 @@
       - if level.achievers.empty?
         %li None yet
 
-= form_for @thank_you_level, url: user_thank_you_levels_path(@user) do |form|
+= form_for @thank_you_level, url: user_thank_you_levels_path(current_user) do |form|
   %h3 Add a Thank You Level
+  %p Your thank you levels will be shown on your profile and when someone goes to reward you.
+  = render "shared/error_messages", target: @thank_you_level
   %fieldset
     %ul
       %li

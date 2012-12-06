@@ -10,6 +10,8 @@ Feature "A creator should be able to offer thank yous to patrons" do
   Scenario "Creating a new thank you level" do
     given_a :creator
     
+    given_im_signed_in_as :creator
+    
     When "I visit my profile page" do
       visit user_path(@creator)
     end
@@ -36,24 +38,54 @@ Feature "A creator should be able to offer thank yous to patrons" do
     
   end
   
-  Scenario "A patron reaches a thank you level" do
-    given_a :user
-    given_a :story
-    
-    Given "the story's creator has a thank you level for 50 dollars" do
-      @thank_you_level = Factory(:thank_you_level, user: @story.user)
-    end
-    
-    when_i_reward(:story, 50)
-    
-    Then "there should be a record of the patron reaching the thank you level" do
-      assert_equal 1, @thank_you_level.achievements.count
-      assert_equal @user, @thank_you_level.achievers.first
-    end
-    
-    And "the creator should have received an email notifying them of the patron achievement" do
-      
-    end
-  end
+  # Scenario "A patron reaches a thank you level" do
+  #   given_a :user
+  #   given_a :story
+  #   
+  #   Given "the story's creator has a thank you level for 50 dollars" do
+  #     @thank_you_level = Factory(:thank_you_level, user: @story.user)
+  #   end
+  #   
+  #   when_i_reward(:story, 50)
+  #   
+  #   Then "there should be a record of the patron reaching the thank you level" do
+  #     assert_equal 1, @thank_you_level.achievements.count
+  #     assert_equal @user, @thank_you_level.achievers.first
+  #   end
+  #   
+  #   And "the creator should have received an email notifying them of the patron achievement" do
+  #     
+  #   end
+  # end
+  # 
+  #   Scenario "Creating a new thank you level when existing supporters will already meet it" do
+  #   given_a :creator
+  #   
+  #   given_im_signed_in_as :creator
+  #   
+  #   Given "I have a supporter who has already given me 50 dollars" do
+  #     @reward = Factory(:reward, amount: 50, recipient: @creator)
+  #   end
+  #   
+  #   When "I visit my profile page" do
+  #     visit user_path(@creator)
+  #   end
+  #   
+  #   And "I click the link to manage my thank you levels" do
+  #     click_link "Manage Thank You Levels"
+  #   end
+  #   
+  #   And "I fill out the form for a new thank you level at 50 dollars" do
+  #     fill_in :thank_you_level_amount, with: "50"
+  #     fill_in :thank_you_level_item, with: "Screen printed poster"
+  #     fill_in :thank_you_level_description, with: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut."
+  #     click_button "Create Level"
+  #   end
+  #   
+  #   Then "my thank you level should have my existing supporter as an achiever" do
+  #     assert_equal 1, @thank_you_level.achievements.count
+  #     assert_equal @reward.user, @thank_you_level.achievers.first
+  #   end
+  # end
   
 end

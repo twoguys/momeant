@@ -1,13 +1,26 @@
-#explanation
-  %h3 After rewarding #{@story.user.first_name}, you'll be able to:
-  %ul
-    %li
-      %span Share this work to gain
-      %abbr.tooltipped-n{title: "When someone else rewards #{@story.user.first_name}'s work because you shared it, we track that back to you."}
-        impact
-    %li Comment on this content
-    %li Join in #{@story.user.first_name}'s public discussions
-    %li Have the chance to receive special thanks, access, and gifts as a top supporter.
+- if @story.user.thank_you_levels.present?
+  #thank-you-levels
+    %h3
+      %span #{@story.user.first_name}'s Thank You Levels
+      %span.tip.tooltipped-n{title: "As your support for a creator reaches certain levels, they can offer ways to say 'Thanks'"} ?
+    %ul
+      - @story.user.thank_you_levels.each do |level|
+        %li
+          .item
+            %span.price= number_to_currency(level.amount)
+            = link_to level.item, "#{user_path(@story.user)}#thank-yous", target: "_blank"
+          %p= truncate(level.description, length: 60)
+- else
+  #explanation
+    %h3 After rewarding #{@story.user.first_name}, you'll be able to:
+    %ul
+      %li
+        %span Share this work to gain
+        %abbr.tooltipped-n{title: "When someone else rewards #{@story.user.first_name}'s work because you shared it, we track that back to you."}
+          impact
+      %li Comment on this content
+      %li Join in #{@story.user.first_name}'s public discussions
+      %li Have the chance to receive special thanks, access, and gifts as a top supporter.
 #top-supporters
   %h3 #{@story.user.first_name}'s Top Supporters
   %ul

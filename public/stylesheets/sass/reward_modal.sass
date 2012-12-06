@@ -292,10 +292,33 @@ body#reward-modal
       font-size: 14px
       font-weight: 400
       margin-bottom: 15px
-    #explanation
+    #thank-you-levels, #explanation
       width: 300px
       float: left
       margin-right: 50px
+    #thank-you-levels
+      .tip
+        font-size: 12px
+        padding: 1px 5px
+        background: #ddd
+        @include rounded(20px)
+        cursor: help
+      li
+        margin-bottom: 8px
+      .item a
+        color: $text_color
+        &:hover
+          color: $blue
+      .price
+        padding: 2px 4px
+        background: $lightgreen
+        color: $green - #222
+        margin-right: 3px
+      p
+        font-size: 12px
+        margin: 3px 0 0
+        line-height: 1.5em
+    #explanation
       ul, p
         font-family: $typewriter
         font-style: italic
