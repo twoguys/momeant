@@ -5,6 +5,8 @@ Factory.define :reward do |reward|
   reward.impact     1
   reward.story      { |r| Factory :story, :user => r.recipient }
   reward.paid_for   true
+  
+  reward.after_create { |reward| reward.cache_impact! }
 end
 
 Factory.define :unfunded_reward, :parent => :reward do |reward|

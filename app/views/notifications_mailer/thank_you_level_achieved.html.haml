@@ -1,0 +1,11 @@
+%h3 One of your supporters rewarded you enough to reach a Thank You Level!
+
+%p
+  %strong Level:
+  %span #{number_to_currency(@level.amount)} - #{@level.item}
+  %br
+  %strong Supporter:
+  %span= @user.name
+
+%p
+  If you need to private message #{@user.first_name}, you can do that #{link_to "here", @messaging_url}

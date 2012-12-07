@@ -171,6 +171,8 @@ class User < ActiveRecord::Base
     reward.cache_impact!
     story.user.increment!(:lifetime_rewards, amount)
     
+    ThankYouLevel.check_for_achievement(self, story.user)
+    
     Activity.create(:actor_id => self.id, :recipient_id => story.user_id, :action_type => "Reward", :action_id => reward.id)
 
     new_badge_level = self.reload.badge_level

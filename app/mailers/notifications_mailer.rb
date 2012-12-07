@@ -104,6 +104,15 @@ class NotificationsMailer < ActionMailer::Base
     mail to: user.email, subject: "Action Needed! Your Amazon Payment method was declined."
   end
   
+  def thank_you_level_achieved(creator, user, level)
+    @creator = creator
+    @user = user
+    @level = level
+    @messaging_url = new_message_url(user: @user.id)
+    
+    mail to: @creator.email, subject: "A supporter achieved your Thank You Level"
+  end
+  
   def flexible_email(to, from, subject, body)
     @contents = body
     Rails.logger.info @contents

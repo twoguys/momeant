@@ -9,6 +9,7 @@ class ThankYouLevelsController < ApplicationController
   def create
     @thank_you_level = ThankYouLevel.new(params[:thank_you_level])
     if current_user.thank_you_levels << @thank_you_level
+      @thank_you_level.check_for_existing_achievers
       redirect_to user_thank_you_levels_path(current_user)
     else
       @user = current_user
