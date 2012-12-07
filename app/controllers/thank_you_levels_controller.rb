@@ -18,7 +18,10 @@ class ThankYouLevelsController < ApplicationController
   end
   
   def update
-    
+    old_amount = @thank_you_level.amount
+    @thank_you_level.update_attributes(params[:thank_you_level])
+    @thank_you_level.check_for_existing_achievers if @thank_you_level.amount != old_amount
+    redirect_to user_thank_you_levels_path(current_user)
   end
   
   def destroy

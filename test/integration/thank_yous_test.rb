@@ -63,7 +63,7 @@ Feature "A creator should be able to offer thank yous to patrons" do
       assert_equal "A supporter achieved your Thank You Level", mail["subject"].to_s
     end
   end
-
+  
   Scenario "Creating a new thank you level when existing supporters will already meet it" do
     given_a :creator
     
@@ -95,6 +95,38 @@ Feature "A creator should be able to offer thank yous to patrons" do
     end
     
     And "I should have received an email notifying me of the patron achievement" do
+      mail = ActionMailer::Base.deliveries.last
+      assert mail.present?, "An email was sent"
+      assert_equal @creator.email, mail["to"].to_s
+      assert_equal "A supporter achieved your Thank You Level", mail["subject"].to_s
+    end
+  end
+  
+  Scenario "Updating a thank you level amount which causes another patron to reach it" do
+    given_a :creator
+    
+    given_im_signed_in_as :creator
+    
+    Given "I already have a thank you level at 50 dollars" do
+      @thank_you_level = Factory(:thank_you_level, amount: 50, user: @creator)
+    end
+    
+    Given "I have a supporter who has rewarded me 35 dollars" do
+      @reward = Factory(:reward, amount: 35, recipient: @creator)
+    end
+    
+    When "I change my thank you level amount to be 35 dollars" do
+      visit edit_user_thank_you_level_path(@creator, @thank_you_level)
+      fill_in "thank_you_level_amount", with: 35
+      click_button "Update Level"
+    end
+    
+    Then "my supporter should be marked as achieveing it" do
+      assert_equal 1, @thank_you_level.achievements.count
+      assert_equal @reward.user, @thank_you_level.achievers.first
+    end
+    
+    And "I should have received an email notifying me so" do
       mail = ActionMailer::Base.deliveries.last
       assert mail.present?, "An email was sent"
       assert_equal @creator.email, mail["to"].to_s
