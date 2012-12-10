@@ -17,7 +17,7 @@ Feature "A user should be able to comment on a story" do
     When "I visit the story's creator's profile page" do
       visit user_path(@reward.recipient)
       @old_comment_count = @reward.story.comment_count
-      assert @reward.recipient.patrons.include?(@user)
+      assert @reward.recipient.patrons.reorder("").include?(@user)
     end
     
     And "I type a comment and hit post" do

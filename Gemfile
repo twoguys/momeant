@@ -1,12 +1,12 @@
 source 'http://rubygems.org'
 
-gem 'arel', :path => "vendor/private_gems/arel-2.0.10"
-gem 'rails', '3.0.9'
+#gem 'arel', :path => "vendor/private_gems/arel-2.0.10"
+gem 'rails', '3.1'
 
 # Postgres for our database
 gem 'pg', '0.14.0'
 
-gem 'devise', "~> 1.4.2"
+gem 'devise', "~> 2.1.2"
 gem 'haml'
 gem 'sass'
 gem 'aws-s3'
@@ -17,7 +17,7 @@ gem 'fastercsv'
 gem 'acts-as-taggable-on'
 gem 'braintree'
 gem 'silent-postgres'
-gem 'sunspot_rails'
+gem 'sunspot_rails', '~> 1.3.3'
 gem 'bluecloth'
 gem 'acts_as_list'
 gem 'aasm'

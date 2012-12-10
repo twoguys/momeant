@@ -9,8 +9,6 @@ class User < ActiveRecord::Base
     text :name, :boost => 2.0
   end
   
-  acts_as_taggable_on :interests
-  
   geocoded_by :location
        
   PLEDGED_REWARD_REMINDER_THRESHOLD = 1.0
