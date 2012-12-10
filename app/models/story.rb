@@ -4,19 +4,19 @@ class Story < ActiveRecord::Base
   acts_as_taggable
   acts_as_commentable
   
-  searchable do
-    text :title, :boost => 2.0
-    text(:author_name) { user.name }
-    text :synopsis
-    text :tags do
-      tags.map { |tag| tag.name }
-    end
-    text :pages do
-      pages.inject("") { |x,n| x << "#{n.text} " }
-    end
-    boolean :published
-    integer :reward_count
-  end
+  # searchable do
+  #   text :title, :boost => 2.0
+  #   text(:author_name) { user.name }
+  #   text :synopsis
+  #   text :tags do
+  #     tags.map { |tag| tag.name }
+  #   end
+  #   text :pages do
+  #     pages.inject("") { |x,n| x << "#{n.text} " }
+  #   end
+  #   boolean :published
+  #   integer :reward_count
+  # end
   
   has_attached_file :thumbnail,
     :styles => { :huge => "1440x1200", :large => "630x420#", :medium => "288x180#", :small => "150x100#", :petite => "95x60#" },
