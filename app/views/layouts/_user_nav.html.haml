@@ -40,7 +40,7 @@
         = link_to "Payment Settings", fund_rewards_path
         - if current_user.is_admin?
           %li= link_to "Admin", admin_dashboard_path
-        %li= link_to "Log out", destroy_user_session_path
+        %li= link_to "Log out", destroy_user_session_path, method: "delete"
   - else
     %li#profile.disabled
       = link_to "Your Profile", "#join-modal", :class => "tooltipped", :title => "Your Profile"

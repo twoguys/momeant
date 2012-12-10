@@ -5,9 +5,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, #:confirmable,
     :recoverable, :rememberable, :trackable, :validatable
        
-  # searchable do
-  #   text :name, :boost => 2.0
-  # end
+  searchable do
+    text :name, :boost => 2.0
+  end
   
   acts_as_taggable_on :interests
   

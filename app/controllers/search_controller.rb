@@ -3,7 +3,6 @@ class SearchController < ApplicationController
   def index
     @content = []
     @users = []
-    return
     return if params[:query].blank?
     
     @content = Sunspot.search(Story) do
@@ -13,10 +12,10 @@ class SearchController < ApplicationController
     end
     @content = Kaminari.paginate_array(@content.results).page(params[:content_page]).per(6)
     
-    @creators = Sunspot.search(User) do
+    @users = Sunspot.search(User) do
       keywords params[:query]
     end
-    @creators = Kaminari.paginate_array(@creators.results).page(params[:creators_page]).per(6)
+    @users = Kaminari.paginate_array(@users.results).page(params[:users_page]).per(6)
     
     render "discovery/index"
   end
