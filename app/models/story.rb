@@ -153,50 +153,6 @@ class Story < ActiveRecord::Base
     end
   end
   
-  def update_via_opengraph(link)
-    metadata = {:title => "", :description => "", :image => ""}
-    return metadata if link.blank?
-    
-    begin
-      # lookup OG data to help the user pre-populate metadata
-      site = OpenGraph.fetch(link)
-      if site
-        metadata[:title] = site.title if site.title.present?
-        metadata[:description] = site.description if site.description.present?
-        metadata[:image] = site.image if site.image.present?
-      else
-        site = Nokogiri::HTML(open(link))
-        title = site.css('title').first
-        metadata[:title] = title.content if title
-        description = site.css('meta[name="description"]').first
-        metadata[:description] = description.content if description
-      
-        # check for <link rel="image_src">
-        image = site.css('link[rel="image_src"]').first
-        image = image.attribute("href").to_s if image
-      
-        # still no image? grab the first <img> tag on the page
-        if image.nil?
-          image = site.css('img').first
-          image = image.attribute("src").to_s if image
-        end
-        
-        # fix relative paths
-        if image && !image.match(/^http/)
-          image = link + image
-        end
-
-        metadata[:image] = image if image
-      end
-      self.update_with_opengraph_data(metadata)
-      self.reload
-      metadata[:image] = self.thumbnail.url(:medium)
-    rescue
-    end
-    
-    return metadata
-  end
-  
   def update_with_opengraph_data(metadata)
     # download image and set as thumbnail
     if metadata[:image].present?
