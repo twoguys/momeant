@@ -1,5 +1,5 @@
 class Reward < Curation
-  default_scope :order => 'amount DESC'
+  default_scope :order => 'curations.amount DESC'
   belongs_to :story
   belongs_to :recipient, :class_name => "User"
   belongs_to :pay_period_line_item

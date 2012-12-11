@@ -22,7 +22,7 @@ Feature "A user should be able to comment on a story" do
     
     And "I type a comment and hit post" do
       click_link "0 comments"
-      wait_until { page.find("#comment_comment").visible? }
+      assert page.find("#comment_comment").visible?
       fill_in "comment_comment", :with => "Here is a sweet comment about your awesome story!"
       click_button "Post"
     end
@@ -36,7 +36,7 @@ Feature "A user should be able to comment on a story" do
     end
     
     Then "I should see my comment" do
-      assert page.has_content? "Here is a sweet comment about your awesome story!"
+      assert page.find(".comment-list").has_content?("Here is a sweet comment about your awesome story!")
     end
   end
   
@@ -51,7 +51,7 @@ Feature "A user should be able to comment on a story" do
     end
     
     Then "I should see a message saying I can't comment" do
-      assert page.has_content?("#{@story.user.first_name}'s supporters can participate in this discussion.")
+      assert page.find(".comments").has_content?("#{@story.user.first_name}'s supporters can participate in this discussion.")
     end
   end
 end

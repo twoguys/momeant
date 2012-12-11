@@ -15,14 +15,14 @@ class User < ActiveRecord::Base
   PLEDGED_REWARD_STOP_THRESHOLD = 10.0
   PLEDGED_REWARD_CREDIT_LIMIT = 1.0
 
-  has_many :created_stories, :foreign_key => :user_id, :class_name => "Story", :order => "created_at DESC"
+  has_many :created_stories, :foreign_key => :user_id, :class_name => "Story", :order => "stories.created_at DESC"
   
   has_many :bookmarks, :dependent => :destroy
   has_many :bookmarked_stories, :through => :bookmarks, :source => :story
   
   has_many :rewards, :foreign_key => :recipient_id
   has_many :patrons, :through => :rewards, :source => :user, :uniq => true
-  has_many :given_rewards, :class_name => "Reward", :dependent => :destroy, :order => "created_at DESC"
+  has_many :given_rewards, :class_name => "Reward", :dependent => :destroy, :order => "curations.created_at DESC"
   has_many :rewarded_creators, :through => :given_rewards, :source => :recipient, :uniq => true
   has_many :rewarded_stories, :through => :given_rewards, :source => :story
   
@@ -36,7 +36,7 @@ class User < ActiveRecord::Base
   
   has_many :galleries, :order => :position, :dependent => :destroy
   
-  has_many :amazon_payments, :foreign_key => :payer_id, :order => "created_at DESC"
+  has_many :amazon_payments, :foreign_key => :payer_id, :order => "transactions.created_at DESC"
   
   has_many :authentications
   
