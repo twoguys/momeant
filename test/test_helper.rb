@@ -23,7 +23,7 @@ DatabaseCleaner.strategy = :truncation
 # Capybara.default_wait_time = 5
 
 class ActionController::IntegrationTest
-  include Capybara
+  include Capybara::DSL
   extend WebSteps
 end
 

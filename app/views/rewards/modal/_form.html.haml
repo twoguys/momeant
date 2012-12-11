@@ -34,7 +34,7 @@
           %li= link_to "10", "#", :amount => 10.0
           %li.custom= text_field_tag :custom_amount, "", placeholder: "___"
         = form.hidden_field :amount, value: 1
-        = form.submit "Give Reward &rarr;".html_safe, disabled: "disabled", style: current_user.nil? ? "display:none" : ""
+        = form.submit "Give Reward", style: current_user.nil? ? "display:none" : ""
         - unless current_user
           = link_to "What is this?", "#about", id: "what-is-momeant-link", class: "button"
           = link_to "Log In", "#login", id: "login-button", class: "button"

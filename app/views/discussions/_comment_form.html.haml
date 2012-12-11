@@ -7,6 +7,8 @@
     = form.submit "Post"
 - else
   %form.not-a-supporter
-    .commenter-avatar= image_tag current_user.avatar.url(:thumbnail)
+    .commenter-avatar
+      = image_tag current_user.avatar.url(:thumbnail) if current_user
+      = image_tag "/avatars/thumbnail/missing.png" if current_user.nil?
     %textarea.comment-box
     .note Once you've rewarded #{discussion.user.first_name} you can participate in this discussion.

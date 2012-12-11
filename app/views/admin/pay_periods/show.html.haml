@@ -22,7 +22,7 @@
             - if line_item.is_paid?
               paid
             - else
-              = button_to "Mark as Paid", mark_line_item_as_paid_admin_pay_periods_path(id: line_item.id), class: "mark-as-paid"
+              = button_to "Mark #{line_item.payee.name} as Paid", mark_line_item_as_paid_admin_pay_periods_path(id: line_item.id), class: "mark-as-paid"
       %tr{style: "font-weight:bold"}
         %td Total
         %td= number_to_currency(@pay_period.amount)

@@ -1,10 +1,7 @@
 Repo::Application.routes.draw do
   
-  devise_for :users, :controllers => {
-    :registrations => "registrations",
-    :sessions => "sessions",
-    :passwords => "passwords"
-  } do
+  devise_for :users
+  devise_scope :user do
     post '/creators/signup' => "registrations#creator", :as => :creator_signup # creator signup 1 submit
     post '/creators/login'  => "sessions#creator",      :as => :creator_login
     post '/users/sign_in_remote' => "sessions#remote"

@@ -162,7 +162,6 @@ class StoriesController < ApplicationController
         external_page.medias << PageText.new
       end
       link = params[:story][:external_link]
-      #metadata = @story.update_via_opengraph(link)
       external_page.text_media.update_attribute(:text, link)
       render :json => {:result => "success"}
       return

@@ -34,7 +34,7 @@ Feature "A creator should be able to offer thank yous to patrons" do
     And "I should see my new level listed" do
       assert_equal 1, ThankYouLevel.count
       @level = ThankYouLevel.last
-      assert page.has_content?(@level.item)
+      assert page.find("#main").has_content?(@level.item)
     end
   end
   
