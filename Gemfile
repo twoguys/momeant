@@ -37,6 +37,7 @@ gem 'airbrake'
 gem 'acts_as_commentable'
 gem 'sanitize'
 gem 'rails_autolink'
+gem 'rack-ssl-enforcer'
 
 group :test do
   gem 'test-unit'
