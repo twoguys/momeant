@@ -11,7 +11,7 @@ Feature "A new story is in draft by default but can be published by the creator"
       visit story_path(@draft_story)
     end
   
-    then_i_should_be_on_page(:home)
+    then_i_should_be_on_page(:root)
     then_i_should_see_flash(:alert, "Sorry, that story is not published yet.")
   end
   

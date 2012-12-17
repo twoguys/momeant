@@ -145,7 +145,6 @@ Repo::Application.routes.draw do
   match '/tos',                 :to => 'home#tos',                  :as => :tos
   match '/privacy',             :to => 'home#privacy',              :as => :privacy
 
-  match '/',                    :to => 'home#index',                :as => :home
   root :to => "home#index"
   
 end

@@ -8,7 +8,7 @@ Feature "A user should be able to sign up, sign in and sign out." do
   
   Scenario "Filling out the signup form" do
     
-    when_i_visit_page(:home)
+    when_i_visit_page(:root)
     
     And "I click the Join link" do
       click_link "Sign Up"
@@ -23,7 +23,7 @@ Feature "A user should be able to sign up, sign in and sign out." do
       click_button "sign up"
     end
     
-    then_i_should_be_on_page(:home)
+    then_i_should_be_on_page(:root)
     
     And "a user should exist in the database" do
       assert User.where(email: "a@a.com").first.present?
@@ -34,7 +34,7 @@ Feature "A user should be able to sign up, sign in and sign out." do
     given_a :user
     given_im_signed_in_as :user
     
-    then_i_should_be_on_page :home
+    then_i_should_be_on_page :root
   end
   
   Scenario "Signing out" do
