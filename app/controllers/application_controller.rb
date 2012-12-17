@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-  include SslRequirement
   protect_from_forgery
   
   before_filter :open_reward_modal?, :creator_finished_signing_up?
