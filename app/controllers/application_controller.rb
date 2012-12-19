@@ -13,6 +13,7 @@ class ApplicationController < ActionController::Base
   end
   
   def creator_finished_signing_up?
+    return if request.path == destroy_user_session_path
     return if current_user.nil?
     return unless current_user.is_a?(Creator)
     if current_user.avatar_missing? || current_user.tagline.blank?
