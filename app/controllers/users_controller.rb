@@ -133,12 +133,6 @@ class UsersController < ApplicationController
     render :text => ""
   end
   
-  # creator signup step 1 - submits through a devise route
-  def creators
-    @creator = User.new
-    @login_creator = User.new
-  end
-  
   # creator signup step 2
   def creator_info
     redirect_to root_path and return if @user != current_user

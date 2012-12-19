@@ -2,16 +2,18 @@ $(function() {
   
   // Form validations
 	// we have to remove the extra checkbox Rails inserts for the 0 value
-	$('#creators-login-form input[name="creator[tos_accepted]"][value="0"]').remove();
-	$('#creators-login-form').validate({
+	$('#creator_new input[name="creator[tos_accepted]"][value="0"]').remove();
+	$('#creator_new').validate({
 		rules: {
-		  'creator[invitation_code]': 'required',
+		  'creator[first_name]': 'required',
+		  'creator[last_name]': 'required',
 			'creator[email]': {required:true,email:true},
 			'creator[password]': {required:true,minlength:6},
 			'creator[tos_accepted]': {required:true}
 		},
 		messages: {
-		  'creator[invitation_code]': 'Required',
+		  'creator[first_name]': 'Required',
+		  'creator[last_name]': 'Required',
 			'creator[email]':{required:'Required'},
 			'creator[password]':{required:'Required'},
 			'creator[tos_accepted]': {required:'Must be accepted'}

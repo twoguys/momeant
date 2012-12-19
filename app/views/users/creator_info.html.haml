@@ -1,7 +1,7 @@
 #creator-signup
 
   #creator-info.inner
-    %h1 We need a little bit of information from you.
+    %h1 We need a little more information from you.
     
     = form_for @user, :as => :user, :url => creator_info_path(@user), html: { multipart: true } do |form|
     
@@ -10,10 +10,6 @@
       %fieldset
         %ul
           %li
-            %section#names
-              %h2 Tell us your beautiful name.
-              = form.text_field :first_name, placeholder: "First name"
-              = form.text_field :last_name, placeholder: "Last name"
           
             %section
               %h2 Choose a picture of your pretty face.
@@ -21,13 +17,14 @@
               = image_tag(@user.avatar.url(:editorial)) unless @user.avatar_missing?
 
             %section.longtext
-              %h2 Tell everyone about yourself and the awesome work you do that deserves support.
+              %h2 Describe the hard work you put into your content.
+              .instructions This is critical in having your audience understand why you deserve to be rewarded.
               = form.text_area :tagline
               
             %section.longtext
               %h2 Thank people when they reward you.
-              .instructions When someone rewards you, we show them a thank you message. You can write a custom one if you prefer.
-              = form.text_area :thankyou
+              .instructions When someone rewards you, we show them this thank you message. You can customize it if you prefer.
+              = form.text_area :thankyou, value: @user.thankyou || "Thank you so much for your support! You allow me to continue doing what I love."
               .limit
                 %span You have
                 %span#thankyou-limit 200
@@ -42,8 +39,8 @@
               %h2 Where are you Located (optional)?
               = form.text_field :location
         
-          %li.submit
-            = form.submit "Final Step >"
+        .submit
+          = form.submit "Final Step >"
 
 :javascript
   var user_id = #{@user.id};
