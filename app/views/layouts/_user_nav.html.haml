@@ -40,6 +40,8 @@
         = link_to "Payment Settings", fund_rewards_path
         - if current_user.is_admin?
           %li= link_to "Admin", admin_dashboard_path
+        - if current_user.is_a?(Creator)
+          %li= link_to "Reward Button Code", button_user_path(current_user)
         %li= link_to "Log out", destroy_user_session_path, method: "delete"
   - else
     %li#profile.disabled

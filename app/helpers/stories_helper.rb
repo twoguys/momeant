@@ -32,6 +32,15 @@ module StoriesHelper
     "<a id=\"momeant-reward-button\" href=\"#{url}\" onclick=\"#{javascript}\" style=\"display:block;width:#{width}px;height:#{height}px;position:relative;\"><img src=\"#{image_url}\" width=\"#{width}\" height=\"#{height}\" alt=\"Reward Me on Momeant\">#{avatar}</a>"
   end
   
+  def reward_user_button_html(user)
+    url = reward_user_url(user)
+    javascript = "window.open('#{url}', 'Reward', 'menubar=no,location=no,status=no,width=800,height=500'); return false;"
+    image_url = "http://momeant-production.s3.amazonaws.com/reward_buttons/light-plain-141x34.png"
+    width = 141
+    height = 34
+    "<a id=\"momeant-reward-button\" href=\"#{url}\" onclick=\"#{javascript}\" style=\"display:block;width:#{width}px;height:#{height}px;\"><img src=\"#{image_url}\" width=\"#{width}\" height=\"#{height}\" alt=\"Reward my work\"></a>"
+  end
+  
   def bookmark_button(story)
     if current_user
       if current_user.has_bookmarked?(story)

@@ -84,13 +84,13 @@ html, body {
   position: relative; }
 
 h2 {
-  background: none repeat scroll 0 0 #f3f3f3;
   font-family: "proxima-nova-1", "proxima-nova-2", helvetica, sans-serif;
-  font-size: 13px;
+  font-size: 1.4em;
   font-weight: 400;
-  padding: 11px 13px 9px;
+  line-height: 1.5em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  clear: both; }
+  letter-spacing: 0.1em; }
 
 p {
   line-height: 1.8em;
@@ -197,7 +197,7 @@ h2 {
       display: block; }
     #header #user-nav > li .subnav {
       display: none;
-      width: 120px;
+      width: 140px;
       background: #222222;
       position: absolute;
       top: 41px;
@@ -2406,15 +2406,11 @@ body#users.patronage #vertical-list .creator {
 
 body#users.creators #main {
   max-width: 100%; }
-body#users.creators h2 {
+body#users.creators #middle h2, body#users.creators #bottom h2 {
   width: 600px;
   margin: 0 auto 70px;
-  background: none;
-  padding: 0;
   text-align: center;
-  font-size: 1.8em;
-  line-height: 1.5em;
-  letter-spacing: 0.1em; }
+  font-size: 1.8em; }
 body#users.creators #top {
   background: #00aeff url(../images/creators/blue-office.jpg) no-repeat 50% 50%;
   -webkit-background-size: cover;
@@ -2574,16 +2570,15 @@ body#users.creators #bottom {
 #creator-signup #creator-info h1, #creator-signup #creator-payment h1 {
   padding-top: 30px;
   margin-bottom: 0; }
+#creator-signup #creator-info form, #creator-signup #creator-payment form {
+  margin-bottom: 50px; }
 #creator-signup #creator-info form > fieldset > ul, #creator-signup #creator-payment form > fieldset > ul {
-  background: #e8e8e8;
-  padding: 30px;
   margin: 30px 0; }
 #creator-signup #creator-info section, #creator-signup #creator-payment section {
-  margin-bottom: 30px; }
+  margin-bottom: 40px; }
   #creator-signup #creator-info section h2, #creator-signup #creator-payment section h2 {
     background: none;
-    padding: 0;
-    text-transform: none; }
+    padding: 0; }
 #creator-signup #creator-info li.submit, #creator-signup #creator-payment li.submit {
   text-align: right; }
 #creator-signup #creator-info .instructions, #creator-signup #creator-payment .instructions {
@@ -2591,7 +2586,11 @@ body#users.creators #bottom {
   margin-bottom: 10px;
   font-size: 13px; }
 #creator-signup #creator-info .limit, #creator-signup #creator-payment .limit {
-  margin-top: 5px; }
+  margin-top: 5px;
+  color: #777777; }
+#creator-signup #creator-info #avatar, #creator-signup #creator-payment #avatar {
+  display: block;
+  margin-top: 10px; }
 #creator-signup #creator-info #upload, #creator-signup #creator-payment #upload {
   height: 300px; }
   #creator-signup #creator-info #upload #avatar-file, #creator-signup #creator-payment #upload #avatar-file {
@@ -2614,6 +2613,14 @@ body#users.creators #bottom {
 #creator-signup #creator-info .longtext textarea, #creator-signup #creator-payment .longtext textarea {
   width: 97%;
   height: 50px; }
+
+body#users.creator_payment #main {
+  width: 800px;
+  margin: 50px auto; }
+body#users.creator_payment h2 {
+  margin-bottom: 20px; }
+body#users.creator_payment #we-provide {
+  margin-bottom: 50px; }
 
 /* Become a Creator */
 body#users.become_a_creator #profile-center form {
@@ -5901,44 +5908,39 @@ body#stories.show {
   background-color: #34b44c;
   margin-left: 40px; }
 
-body#stories.share #main {
+body#stories.share #main, body#users.button #main {
   width: 800px;
   margin: 40px auto 0; }
-body#stories.share h1 {
+body#stories.share h1, body#users.button h1 {
   font-size: 30px;
   margin-bottom: 30px; }
-body#stories.share section {
-  border-top: 1px solid #cccccc;
-  padding-top: 30px;
-  margin-bottom: 40px; }
-  body#stories.share section h3 {
-    font-size: 24px;
-    margin-bottom: 20px; }
-body#stories.share #use-a-button p {
+body#stories.share section, body#users.button section {
+  margin-top: 40px; }
+body#stories.share #use-a-button p, body#users.button #use-a-button p {
   margin: 10px 0; }
-body#stories.share #use-a-button ul {
+body#stories.share #use-a-button ul, body#users.button #use-a-button ul {
   margin-top: 20px; }
-body#stories.share #use-a-button li {
+body#stories.share #use-a-button li, body#users.button #use-a-button li {
   background: #f0f0f0;
   border: 1px solid #f0f0f0;
   padding: 12px 9px;
   cursor: pointer;
   margin-bottom: 5px;
   height: 34px; }
-  body#stories.share #use-a-button li:hover {
+  body#stories.share #use-a-button li:hover, body#users.button #use-a-button li:hover {
     border-color: #cccccc; }
-  body#stories.share #use-a-button li.selected {
+  body#stories.share #use-a-button li.selected, body#users.button #use-a-button li.selected {
     background: #daecf6;
     border-color: #c4ddef; }
-    body#stories.share #use-a-button li.selected input {
+    body#stories.share #use-a-button li.selected input, body#users.button #use-a-button li.selected input {
       display: block; }
-  body#stories.share #use-a-button li#light-avatar, body#stories.share #use-a-button li#dark-avatar {
+  body#stories.share #use-a-button li#light-avatar, body#stories.share #use-a-button li#dark-avatar, body#users.button #use-a-button li#light-avatar, body#users.button #use-a-button li#dark-avatar {
     height: 52px; }
-    body#stories.share #use-a-button li#light-avatar input, body#stories.share #use-a-button li#dark-avatar input {
+    body#stories.share #use-a-button li#light-avatar input, body#stories.share #use-a-button li#dark-avatar input, body#users.button #use-a-button li#light-avatar input, body#users.button #use-a-button li#dark-avatar input {
       margin-top: 10px; }
-  body#stories.share #use-a-button li .button {
+  body#stories.share #use-a-button li .button, body#users.button #use-a-button li .button {
     float: left; }
-  body#stories.share #use-a-button li input {
+  body#stories.share #use-a-button li input, body#users.button #use-a-button li input {
     display: none;
     padding: 4px 3px;
     float: right;
@@ -5947,31 +5949,31 @@ body#stories.share #use-a-button li {
     font-size: 14px;
     color: #777777;
     margin-top: 4px; }
-body#stories.share #use-a-button .with-avatar {
+body#stories.share #use-a-button .with-avatar, body#users.button #use-a-button .with-avatar {
   position: relative; }
-  body#stories.share #use-a-button .with-avatar img.avatar {
+  body#stories.share #use-a-button .with-avatar img.avatar, body#users.button #use-a-button .with-avatar img.avatar {
     width: 42px;
     height: 42px;
     position: absolute;
     top: 5px;
     left: 5px;
     border: 1px solid #cccccc; }
-body#stories.share #use-a-button #dark-avatar img.avatar {
+body#stories.share #use-a-button #dark-avatar img.avatar, body#users.button #use-a-button #dark-avatar img.avatar {
   border-color: #333333; }
-body#stories.share #share-a-link {
+body#stories.share #share-a-link, body#users.button #share-a-link {
   border-bottom: 1px solid #cccccc; }
-  body#stories.share #share-a-link p {
+  body#stories.share #share-a-link p, body#users.button #share-a-link p {
     margin: 20px 0 5px; }
-  body#stories.share #share-a-link #share-link {
+  body#stories.share #share-a-link #share-link, body#users.button #share-a-link #share-link {
     margin-bottom: 20px; }
-    body#stories.share #share-a-link #share-link input {
+    body#stories.share #share-a-link #share-link input, body#users.button #share-a-link #share-link input {
       width: 48%;
       padding: 4px;
       font-size: 1.1em; }
-  body#stories.share #share-a-link #share-buttons {
+  body#stories.share #share-a-link #share-buttons, body#users.button #share-a-link #share-buttons {
     height: 60px;
     margin-bottom: 20px; }
-    body#stories.share #share-a-link #share-buttons a {
+    body#stories.share #share-a-link #share-buttons a, body#users.button #share-a-link #share-buttons a {
       display: block;
       width: 123px;
       height: 40px;
@@ -5980,15 +5982,30 @@ body#stories.share #share-a-link {
       text-indent: -9999px;
       float: left;
       margin-right: 20px; }
-    body#stories.share #share-a-link #share-buttons #facebook-button {
+    body#stories.share #share-a-link #share-buttons #facebook-button, body#users.button #share-a-link #share-buttons #facebook-button {
       background-position: 0 -43px;
       margin: 0; }
-body#stories.share #view-content-button {
+body#stories.share #view-content-button, body#users.button #view-content-button {
   display: inline-block;
   background-color: #e5e5e5;
   color: #252525;
   font-size: 20px;
   margin-bottom: 60px; }
+
+body#users.button #button-code input[type="text"] {
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  font-size: 14px;
+  padding: 3px 6px; }
+body#users.button a#onward {
+  display: inline-block;
+  margin-top: 40px;
+  padding: 10px 15px; }
+body#users.button span.note {
+  font-size: 0.9em;
+  color: #999999;
+  margin-left: 5px; }
 
 .thumbnail.title {
   width: 288px;

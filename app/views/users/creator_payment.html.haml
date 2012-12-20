@@ -1,20 +1,18 @@
-#creator-signup
+#we-provide
+  %h1 We make it super easy for your audience to reward you via:
+  = image_tag "creators/payments.png"
 
-  #creator-payment.inner
-    %h1 How can we pay you?
+#creator-payment
+  %h2 As you receive rewards, we'll pay you out in once simple place. Where would you like that to be?
+  = form_for @user, as: "user", :url => creator_payment_path(@user) do |form|
+    %fieldset
+      %section
+        %ul
+          %li
+            = form.label :paypal_email, "Provide either your PayPal account email address"
+            = form.text_field :paypal_email, placeholder: "PayPal email address"
+          %li
+            = form.label :amazon_email, "OR your Amazon account email address"
+            = form.text_field :amazon_email, placeholder: "Amazon email address"
 
-    %p We currently use Amazon Payments OR PayPal to send you money you earn. All you need is an Amazon or PayPal account to accept payments from us.
-    
-    = form_for @user, :url => creator_payment_path(@user) do |form|
-      %fieldset
-        %section
-          %ul               
-            %li
-              = form.label :amazon_email, "Provide either your Amazon account email address"
-              = form.text_field :amazon_email
-
-            %li
-              = form.label :paypal_email, "OR your PayPal account email address"
-              = form.text_field :paypal_email
-
-            = form.submit "Finish"
+          = form.submit "Finish"

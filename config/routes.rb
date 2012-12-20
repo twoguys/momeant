@@ -75,6 +75,8 @@ Repo::Application.routes.draw do
       post :update_email_setting
       post :change_password
       get :thankyous
+      get :button
+      get :reward
     end
     
     collection do

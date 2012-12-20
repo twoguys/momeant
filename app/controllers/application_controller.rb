@@ -17,7 +17,10 @@ class ApplicationController < ActionController::Base
     return if current_user.nil?
     return unless current_user.is_a?(Creator)
     if current_user.avatar_missing? || current_user.tagline.blank?
-      redirect_to creator_info_path(current_user)
+      redirect_to creator_info_path(current_user) and return unless request.path == creator_info_path(current_user)
+    end
+    if current_user.amazon_email.blank? && current_user.paypal_email.blank?
+      redirect_to creator_payment_path(current_user) and return unless request.path == creator_payment_path(current_user)
     end
   end
   

@@ -14,7 +14,7 @@
             %section
               %h2 Choose a picture of your pretty face.
               = form.file_field :avatar
-              = image_tag(@user.avatar.url(:editorial)) unless @user.avatar_missing?
+              = image_tag(@user.avatar.url(:editorial), id: "avatar") unless @user.avatar_missing?
 
             %section.longtext
               %h2 Describe the hard work you put into your content.
@@ -33,10 +33,12 @@
                 $('#user_thankyou').limit('200','#thankyou-limit');
 
             %section
-              %h2 What is your Occupation (optional)?
+              %h2 What is your Occupation?
+              .instructions Optional, but reminding folks what you do every day helps personalize your work.
               = form.text_field :occupation
             %section
-              %h2 Where are you Located (optional)?
+              %h2 Where are you Located?
+              .instructions Also optional, but reminding them that you live in a real city makes you look like a real person.
               = form.text_field :location
         
         .submit

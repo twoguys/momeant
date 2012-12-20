@@ -150,7 +150,7 @@ class UsersController < ApplicationController
     redirect_to root_path and return if @user != current_user
     if request.put?
       @user.update_attributes(params[:user])
-      redirect_to user_path(@user)
+      redirect_to button_user_path(@user)
     end
     @nav = "signup"
   end
