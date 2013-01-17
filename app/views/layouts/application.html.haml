@@ -8,8 +8,10 @@
       %meta{ :name => "og:image", :property => "og:image", :content => @story.thumbnail.url(:tiny)}
     - else
       %meta{ :name => "Description", "http-equiv" => "Description", :content => "Momeant is a community for supporting and connecting with people doing great work online." }
-    
     %meta{ :name => "Keywords", "http-equiv" => "Keywords", :content => "momeant, digital content, creators, reward, patron, art, community, sustainable" }
+    
+    %meta{ name: "viewport", content: "width=device-width, initial-scale=1.0, maximum-scale=1" }
+    
     %link{ :id => 'favicon', :href => '/images/favicon.png', :rel => 'icon', :type => 'image/x-icon' }
     %title
       - if @story && @nav != "home"

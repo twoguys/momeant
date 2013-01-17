@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   
-  def index
+  def editorials
     @issue = LandingIssue.published.first
     if ENV["LANDING_ISSUES_ON"] == "yes" && @issue
       render "home/issues/#{@issue.position}" and return

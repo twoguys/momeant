@@ -406,6 +406,9 @@ header.hide-nav {
     #call-to-action .red a {
       background-color: #f42652; }
 
+@media all and (max-device-width: 480px) {
+  #header #user-nav #logo a {
+    width: 27px; } }
 /* Flash notices */
 #flash {
   width: 100%;
@@ -916,9 +919,143 @@ nav.pagination {
   #vertical-list #activity-list > li.content .content-preview {
     float: none; } }
 body#home.index #main {
-  max-width: 100%;
-  background: #f0f0f0; }
+  max-width: 100%; }
+body#home.index section {
+  padding: 7em 5%; }
+body#home.index .insides {
+  max-width: 1000px;
+  margin: 0 auto; }
+body#home.index h1 {
+  font-size: 3em;
+  text-align: center; }
+body#home.index #intro {
+  background: #131313;
+  color: white; }
+  body#home.index #intro h1 > span {
+    display: block;
+    font-weight: 200;
+    width: 620px;
+    margin: 0 auto 1em; }
+  body#home.index #intro h1 strong {
+    font-weight: 600; }
+    body#home.index #intro h1 strong img {
+      margin-left: -1em; }
+    body#home.index #intro h1 strong span {
+      position: relative;
+      top: -0.5em; }
+body#home.index #explanation ul {
+  display: inline-block; }
+  body#home.index #explanation ul:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden; }
+body#home.index #explanation li {
+  width: 45%;
+  float: left;
+  padding-top: 170px; }
+body#home.index #explanation li:first-child {
+  margin-right: 10%;
+  background: transparent url(../images/home/skyline.png) no-repeat 50% 0; }
+body#home.index #explanation li:last-child {
+  background: transparent url(../images/home/network.png) no-repeat 50% 33px; }
+body#home.index #explanation h3 {
+  font-size: 1.6em;
+  width: 80%;
+  text-align: center;
+  margin: 0 auto 1em; }
+body#home.index #explanation p {
+  margin-bottom: 0; }
+body#home.index #reward-button {
+  background: #00aeef;
+  color: #0b4f68; }
+  body#home.index #reward-button h1 {
+    margin-bottom: 0;
+    color: white; }
+  body#home.index #reward-button h3 {
+    width: 400px;
+    margin: 1em auto 2em;
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: 400; }
+  body#home.index #reward-button img {
+    display: block;
+    margin: 0 auto 2em; }
+  body#home.index #reward-button ol, body#home.index #reward-button p {
+    margin: 2em auto;
+    font-size: 1.2em; }
+  body#home.index #reward-button ol {
+    width: 630px; }
+    body#home.index #reward-button ol li {
+      color: #007ab3;
+      margin-bottom: 1em; }
+      body#home.index #reward-button ol li span {
+        color: #0b4f68; }
+  body#home.index #reward-button p {
+    width: 700px;
+    text-align: center; }
+body#home.index #qa ul {
+  display: inline-block; }
+  body#home.index #qa ul:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden; }
+body#home.index #qa li {
+  width: 30%;
+  float: left;
+  margin-right: 5%; }
+body#home.index #qa li:last-child {
+  margin-right: 0; }
+body#home.index #qa h3 {
+  font-size: 1.4em; }
+body#home.index #final {
+  background: #131313;
+  color: white;
+  text-align: center; }
+  body#home.index #final p {
+    font-size: 1.7em;
+    margin-bottom: 1.3em; }
+  body#home.index #final a {
+    font-size: 1.5em;
+    text-transform: uppercase;
+    padding: 20px;
+    background: #34b44c; }
 
+@media all and (max-width: 750px) {
+  body#home.index #intro h1 > span {
+    width: 100%; } }
+@media all and (max-width: 650px) {
+  body#home.index section {
+    padding: 4em 5%; }
+  body#home.index #intro h1 {
+    font-size: 2.5em; }
+  body#home.index #explanation li {
+    float: none;
+    width: 100%;
+    margin: 0 0 2em; }
+  body#home.index #reward-button h3 {
+    width: 100%; }
+  body#home.index #reward-button img {
+    width: 100%; }
+  body#home.index #reward-button ol {
+    width: 90%;
+    margin-left: 1.5em; }
+  body#home.index #qa li {
+    float: none;
+    width: 100%;
+    margin: 0 0 2em; }
+  body#home.index #final h1 {
+    font-size: 2.5em; }
+  body#home.index #final h3 {
+    font-size: 1.4em; } }
+@media all and (max-width: 500px) {
+  body#home.index #intro h1 {
+    font-size: 2em; }
+    body#home.index #intro h1 > span {
+      width: 80%; } }
 .landing-issue > section {
   width: 900px;
   padding-bottom: 50px;
@@ -7026,6 +7163,16 @@ ul.stories .excerpt {
   #about-diagram-modal .padder p {
     margin: 0.75em 0 2em; }
 
+@media all and (max-device-width: 480px) {
+  #join-modal .padder, #login-modal .padder, #feedback-modal .padder, #about-diagram-modal .padder, #about-modal .padder {
+    top: 20px;
+    width: 260px; }
+
+  #join-modal .join {
+    border: none;
+    padding-right: 0; }
+  #join-modal .copy {
+    display: none; } }
 body#dashboard #container {
   position: relative; }
 
