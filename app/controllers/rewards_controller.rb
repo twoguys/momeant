@@ -4,7 +4,6 @@ class RewardsController < ApplicationController
   def create
     @user = User.find_by_id(params[:user_id])
     return if @user.nil?
-    @story = Story.find_by_id(params[:reward][:story_id])
     amount = params[:reward][:amount].gsub('$','').to_f
     
     if amount < 0.1
@@ -14,7 +13,7 @@ class RewardsController < ApplicationController
     end
     
     begin
-      @reward = current_user.reward(@story, amount, params[:reward][:impacted_by])
+      @reward = current_user.reward(@user, amount, params[:reward][:impacted_by])
     rescue Exceptions::AmazonPayments::InsufficientBalanceException
       render json: { success: false, modal: render_to_string(partial: "rewards/modal/errors/need_to_reauthorize") }
       return

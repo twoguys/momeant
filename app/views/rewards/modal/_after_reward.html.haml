@@ -2,13 +2,11 @@
   #thanks.after-view
     #thank-you-note
       %p
-        - if @story.thankyou.present?
-          = auto_link(@story.thankyou, :all, target: "_blank")
-        - elsif @story.user.thankyou.present?
-          = auto_link(@story.user.thankyou, :all, target: "_blank")
+        - if @user.thankyou.present?
+          = auto_link(@user.thankyou, :all, target: "_blank")
         - else
           Thank you so much for your support! You allow me to continue doing what I love.
-      .from= "- #{@story.user.first_name}"
+      .from= "- #{@user.first_name}"
   
     %p.as-one As one of my supporters, you can:
     
@@ -30,7 +28,7 @@
     
     #copy-paste
       .weak copy &amp; paste
-      = text_field_tag :url_to_share, story_url(@story, :impacted_by => @reward.id), :readonly => true
+      = text_field_tag :url_to_share, reward_user_url(@user, :impacted_by => @reward.id), :readonly => true
 
     #sharing-buttons
       .weak OR
@@ -56,20 +54,20 @@
 
   #comments-view.comments.after-view
     #comments-list
-      = render "comments/form", :commentable => @story
+      = render "comments/form", :commentable => @user
       %ul.comment-list.prepend
-        = render :partial => "comments/comment", :collection => @story.comments.reverse, :as => :comment
+        = render :partial => "comments/comment", :collection => @user.comments.reverse, :as => :comment
   
   #discussions-view.after-view
-    - if @story.user.discussions.empty?
+    - if @user.discussions.empty?
       %h3 I haven't posted any discussion topics just yet.
     - else
       %h3 Here is a list of my discussion topics.
       %h4 Click a topic to jump over to my profile and participate:
       %ul#discussion-list
-        - @story.user.discussions.each do |discussion|
+        - @user.discussions.each do |discussion|
           %li
-            %a{href: user_path(@story.user, discussion: discussion.id), topic: discussion.id, target: "_blank"}
+            %a{href: user_path(@user, discussion: discussion.id), topic: discussion.id, target: "_blank"}
               .date
                 .month= discussion.created_at.strftime("%b")
                 .day= discussion.created_at.strftime("%d")

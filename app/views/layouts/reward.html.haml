@@ -2,13 +2,13 @@
 %html{html_attrs('en')}
   %head
     %meta{ :content => "text/html; charset=utf-8", "http-equiv" => "Content-Type" }
-    %meta{ :name => "Description", "http-equiv" => "Description", :content => @story.synopsis }
-    %meta{ :name => "og:image", :property => "og:image", :content => @story.thumbnail.url(:tiny)}
+    %meta{ :name => "Description", "http-equiv" => "Description", :content => "Reward #{@user.name} for their work." }
+    %meta{ :name => "og:image", :property => "og:image", :content => @user.avatar.url(:large)}
     %meta{ :name => "Keywords", "http-equiv" => "Keywords", :content => "momeant, digital content, creators, reward, patron, art, community, sustainable" }
     %link{ :id => 'favicon', :href => '/images/favicon.png', :rel => 'icon', :type => 'image/x-icon' }
     %title
-      - if @story && @nav != "home"
-        = @story.title
+      - if @user
+        = "Momeant - Reward #{@user.name}"
       - elsif @page_title
         = "Momeant - #{@page_title}"
       - else
@@ -32,7 +32,7 @@
   %body#reward-modal
     #inner= yield
   
-    = javascript_include_tag "stories/reward_modal"
+    = javascript_include_tag "reward_modal"
     = javascript_include_tag "comments"
     :javascript
       var user_id = #{current_user.present? ? current_user.id : 'null'};

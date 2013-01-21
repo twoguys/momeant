@@ -1,31 +1,10 @@
 %section#my-rewards
-  %h1 Work I Support
+  %h1 People I Support
   
-  #rewards-browser
-    .paginator{:class => @rewards.size > 8 ? "" : "off" }
-      = link_to "up", "#", :class => "up off"
-      = link_to "down", "#", :class => "down"
-      .list{:current => 0, :total => (@rewards.size.to_f / 8.0).floor}
-        %ul
-          - first = true
-          - @rewards.each do |reward|
-            - content = reward.story
-            %li
-              %a.selector{:href => "#", :content => content.id, :reward => reward.id, :class => first ? "selected" : "" }
-                - if content.text_preview?
-                  .content-preview.tiny{:class => "#{content.media_type} #{content.template}"}
-                    .inner
-                      .image
-                      .quote= truncate(content.template_text, :length => 140)
-                - else
-                  .content-preview.tiny{:class => content.media_type}
-                    .inner{:style => "background-image: url(#{content.thumbnail.url(:large)})"}
-        
-                .title= content.title.present? ? truncate(content.title, :length => 28) : "Untitled"
-                .synopsis by #{content.user.name}
-          
-                - first = false
-
-    #vertical-list
-      %ul#activity-list
-        = render :partial => "stories/preview", :locals => { :content => @rewards.first.story, :reward => @rewards.first.id } if @rewards.first
+  #rewarded-users
+    %ul
+      - @user.rewarded_creators.reorder("").each do |user|
+        %li
+          %a{href: user_path(user)}
+            = image_tag user.avatar(:large)
+            .title= user.name

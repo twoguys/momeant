@@ -1,7 +1,7 @@
 #reward-them
-  %h1 Reward #{@story.user.first_name} for #{@story.this_media}
+  %h1 Reward me for my work
 
-  - if current_user == @story.user
+  - if current_user == @user
     This is where everyone else can reward you.
 
   - elsif current_user && !current_user.is_under_pledged_rewards_stop_threshold?
@@ -22,8 +22,7 @@
       %span Logged in as
       %span.name= current_user.name if current_user
       
-    = form_for :reward, :url => user_rewards_path(@story.user), :html => {:id => "reward-form"} do |form|
-      = form.hidden_field :story_id, :value => @story.id
+    = form_for :reward, :url => user_rewards_path(@user), :html => {:id => "reward-form"} do |form|
       = form.hidden_field :impacted_by, :value => params[:impacted_by] if params[:impacted_by]
 
       #amounts

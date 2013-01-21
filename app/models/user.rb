@@ -1,6 +1,7 @@
 require "open-uri"
 
 class User < ActiveRecord::Base
+  acts_as_commentable
   
   devise :database_authenticatable, :registerable, #:confirmable,
     :recoverable, :rememberable, :trackable, :validatable
@@ -135,13 +136,13 @@ class User < ActiveRecord::Base
     self.given_rewards.group_by(&:recipient).to_a.map {|x| [x.first,x.second.inject(0){|sum,r| sum+r.amount}]}.sort_by(&:second).reverse
   end
   
-  def reward(story, amount, impacted_by = nil)
+  def reward(user, amount, impacted_by = nil)
     return if amount.nil?
     return unless self.is_under_pledged_rewards_stop_threshold?
     
     old_badge_level = self.badge_level
 
-    options = {:story_id => story.id, :amount => amount, :user_id => self.id, :recipient_id => story.user_id, :impact => amount}
+    options = {amount: amount, user_id: self.id, recipient_id: user.id, impact: amount}
     reward = Reward.create!(options)
     
     # handle people who previously purchased coins
@@ -164,14 +165,13 @@ class User < ActiveRecord::Base
       # TODO: send an email to users who haven't configured Postpaid
     end
     
-    story.increment!(:reward_count, amount)
     self.increment!(:impact, amount)
     reward.cache_impact!
-    story.user.increment!(:lifetime_rewards, amount)
+    user.increment!(:lifetime_rewards, amount)
     
-    ThankYouLevel.check_for_achievement(self, story.user)
+    ThankYouLevel.check_for_achievement(self, user)
     
-    Activity.create(:actor_id => self.id, :recipient_id => story.user_id, :action_type => "Reward", :action_id => reward.id)
+    Activity.create(:actor_id => self.id, :recipient_id => user.id, :action_type => "Reward", :action_id => reward.id)
 
     new_badge_level = self.reload.badge_level
     if new_badge_level != old_badge_level
@@ -183,8 +183,8 @@ class User < ActiveRecord::Base
       reward.give_impact_to_parents!(parent_reward) if parent_reward
     end
     
-    unless self.is_subscribed_to?(story.user)
-      Subscription.create(:subscriber_id => self.id, :user_id => story.user_id)
+    unless self.is_subscribed_to?(user)
+      Subscription.create(:subscriber_id => self.id, :user_id => user.id)
     end
     
     return reward
@@ -262,11 +262,13 @@ class User < ActiveRecord::Base
   def can_comment_on?(object)
     if object.is_a?(Story)
       return true if self.has_rewarded?(object.user) || self == object.user
-    end
-    if object.is_a?(Discussion)
+    elsif object.is_a?(Discussion)
       return true if self.has_rewarded?(object.user) || self == object.user
+    elsif object.is_a?(User)
+      return true if self.has_rewarded?(object) || self == user
+    else
+      return false
     end
-    return false
   end
   
   # Supporter Levels

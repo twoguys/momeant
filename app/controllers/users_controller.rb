@@ -21,6 +21,10 @@ class UsersController < ApplicationController
     @rewards = @user.given_rewards(include: "story")
   end
   
+  def reward
+    render "rewards/modal", layout: "reward"
+  end
+  
   def activity
     @activity = Activity.by_users([@user]).only_types("'Reward','Impact'").page(params[:page])
   end

@@ -163,7 +163,6 @@ $(function() {
 				alert('Please choose how much to reward.');
 				return false;
 			}
-			var story_id = $form.find("#reward_story_id").val();
 			var impacted_by = $form.find("#reward_impacted_by").val();
 			var url = $form.attr('action');
 
@@ -173,7 +172,6 @@ $(function() {
 			  type: 'POST',
 				data: {
 					"reward[amount]":amount,
-					"reward[story_id]":story_id,
 					"reward[impacted_by]":impacted_by
 				},
 				complete: function(xhr) {
@@ -188,7 +186,7 @@ $(function() {
 				  }
 				  if (json.success) {
       			RewardModal.reward_submitted = true;
-      			mixpanel.track('Rewarded Content', {story_id: story_id, mp_note: amount, amount: amount});
+      			mixpanel.track('Rewarded a User', {mp_note: amount, amount: amount});
   					$('#main').html(json.html);
   					$('#url_to_share').click(function() {
   					  $(this).select();

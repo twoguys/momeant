@@ -1,0 +1,20 @@
+= render "rewards/modal/sidebar"
+
+#main
+
+  #reward-actions
+    #nib
+    = render "rewards/modal/form"
+    = render "rewards/modal/description"
+          
+  
+  #supporter-info
+    = render "rewards/modal/supporter_info"
+  
+#notice
+  = link_to "Close", "#close-notice", id: "close-notice"
+  #notice-cover
+  #notice-inner
+
+:javascript
+  var current_user = #{current_user.present? ? 'true' : 'false'};

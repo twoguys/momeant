@@ -1,7 +1,6 @@
 %h3
   #{link_to(@reward.user.name, user_url(@reward.user), :style => "color:#00aeff")}
-  just rewarded your content #{link_to(@reward.story.title, story_url(@reward.story), :style => "color:#00aeff")}
-  for #{number_to_currency(@reward.amount)}
+  just rewarded you #{number_to_currency(@reward.amount)}.
 
 %p
   If you'd like to send #{@reward.user.first_name} a private message, you can do that #{link_to "here", @messaging_url}.

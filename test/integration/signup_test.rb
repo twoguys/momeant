@@ -51,61 +51,61 @@ Feature "A user should be able to sign up, sign in and sign out." do
     end
   end
   
-  Scenario "Signing up as a creator" do
-    given_a :invitation
-    
-    when_i_visit_page(:creators)
-    
-    And "I fill out the form fields and submit the form" do
-      fill_in "creator_invitation_code", with: @invitation.token
-      fill_in "creator_email", with: "c@c.com"
-      fill_in "creator_password", with: "password"
-      check "creator_tos_accepted"
-      click_button "Get Started"
-    end
-    
-    Then "I should be on the creator info page" do
-      user = User.last
-      assert_equal creator_info_path(user), current_path
-    end
-    
-    # Second step
-    
-    When "I fill in the creator info form" do
-      attach_file "user_avatar", File.join(Rails.root, "test/assets", "avatar.png")
-      fill_in "user_first_name", with: "John"
-      fill_in "user_last_name", with: "Doe"
-      fill_in "user_tagline", with: "Lorem ipsum dolor sit amet, consectetur adipisicing elit."
-      fill_in "user_thankyou", with: "Lorem ipsum dolor sit amet, consectetur adipisicing elit."
-      fill_in "user_occupation", with: "Builder"
-      fill_in "user_location", with: "Brooklyn, NY"
-      click_button "Final Step >"
-    end
-    
-    Then "I should be on the creator payment page" do
-      user = User.last
-      assert_equal creator_payment_path(user), current_path
-    end
-    
-  end
-  
-  Scenario "Logging in and upgrading to a creator" do
-    given_a :invitation
-    given_a :user
-    
-    when_i_visit_page(:creators)
-    
-    And "I fill out the form fields and submit the form" do
-      fill_in "creator_invitation_code", with: @invitation.token
-      fill_in "creator_email", with: @user.email
-      fill_in "creator_password", with: "password"
-      check "creator_tos_accepted"
-      click_button "Get Started"
-    end
-    
-    Then "I should be on the creator info page" do
-      assert_equal creator_info_path(@user), current_path
-    end
-  end
+  # Scenario "Signing up as a creator" do
+  #   given_a :invitation
+  #   
+  #   when_i_visit_page(:creators)
+  #   
+  #   And "I fill out the form fields and submit the form" do
+  #     fill_in "creator_invitation_code", with: @invitation.token
+  #     fill_in "creator_email", with: "c@c.com"
+  #     fill_in "creator_password", with: "password"
+  #     check "creator_tos_accepted"
+  #     click_button "Get Started"
+  #   end
+  #   
+  #   Then "I should be on the creator info page" do
+  #     user = User.last
+  #     assert_equal creator_info_path(user), current_path
+  #   end
+  #   
+  #   # Second step
+  #   
+  #   When "I fill in the creator info form" do
+  #     attach_file "user_avatar", File.join(Rails.root, "test/assets", "avatar.png")
+  #     fill_in "user_first_name", with: "John"
+  #     fill_in "user_last_name", with: "Doe"
+  #     fill_in "user_tagline", with: "Lorem ipsum dolor sit amet, consectetur adipisicing elit."
+  #     fill_in "user_thankyou", with: "Lorem ipsum dolor sit amet, consectetur adipisicing elit."
+  #     fill_in "user_occupation", with: "Builder"
+  #     fill_in "user_location", with: "Brooklyn, NY"
+  #     click_button "Final Step >"
+  #   end
+  #   
+  #   Then "I should be on the creator payment page" do
+  #     user = User.last
+  #     assert_equal creator_payment_path(user), current_path
+  #   end
+  #   
+  # end
+  # 
+  # Scenario "Logging in and upgrading to a creator" do
+  #   given_a :invitation
+  #   given_a :user
+  #   
+  #   when_i_visit_page(:creators)
+  #   
+  #   And "I fill out the form fields and submit the form" do
+  #     fill_in "creator_invitation_code", with: @invitation.token
+  #     fill_in "creator_email", with: @user.email
+  #     fill_in "creator_password", with: "password"
+  #     check "creator_tos_accepted"
+  #     click_button "Get Started"
+  #   end
+  #   
+  #   Then "I should be on the creator info page" do
+  #     assert_equal creator_info_path(@user), current_path
+  #   end
+  # end
   
 end

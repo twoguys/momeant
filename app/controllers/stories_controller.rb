@@ -52,9 +52,8 @@ class StoriesController < ApplicationController
   end
   
   def reward
-    @story = Story.find(params[:id])
-    @reward = Reward.last
-    render layout: "reward"
+    story = Story.find(params[:id])
+    redirect_to reward_user_path(story.user)
   end
   
   def new

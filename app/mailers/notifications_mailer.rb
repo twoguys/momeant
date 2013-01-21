@@ -38,7 +38,6 @@ class NotificationsMailer < ActionMailer::Base
     @user = user
     @reward = reward
     @creator_url = user_url(@reward.recipient)
-    @content_url = story_url(@reward.story)
     
     mail to: @user.email, subject: "You just made an impact!"
   end
