@@ -28,7 +28,7 @@
     
     #copy-paste
       .weak copy &amp; paste
-      = text_field_tag :url_to_share, reward_user_url(@user, :impacted_by => @reward.id), :readonly => true
+      = text_field_tag :url_to_share, @reward.content_url_with_impacted_by, :readonly => true
 
     #sharing-buttons
       .weak OR

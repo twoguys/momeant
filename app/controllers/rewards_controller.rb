@@ -13,7 +13,7 @@ class RewardsController < ApplicationController
     end
     
     begin
-      @reward = current_user.reward(@user, amount, params[:reward][:impacted_by])
+      @reward = current_user.reward(@user, amount, params[:reward][:impacted_by], params[:reward][:content_url])
     rescue Exceptions::AmazonPayments::InsufficientBalanceException
       render json: { success: false, modal: render_to_string(partial: "rewards/modal/errors/need_to_reauthorize") }
       return

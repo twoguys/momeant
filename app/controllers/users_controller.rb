@@ -22,6 +22,7 @@ class UsersController < ApplicationController
   end
   
   def reward
+    @content_url = request.env["HTTP_REFERER"]
     render "rewards/modal", layout: "reward"
   end
   

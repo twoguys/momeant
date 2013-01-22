@@ -136,13 +136,13 @@ class User < ActiveRecord::Base
     self.given_rewards.group_by(&:recipient).to_a.map {|x| [x.first,x.second.inject(0){|sum,r| sum+r.amount}]}.sort_by(&:second).reverse
   end
   
-  def reward(user, amount, impacted_by = nil)
+  def reward(user, amount, impacted_by = nil, content_url = nil)
     return if amount.nil?
     return unless self.is_under_pledged_rewards_stop_threshold?
     
     old_badge_level = self.badge_level
 
-    options = {amount: amount, user_id: self.id, recipient_id: user.id, impact: amount}
+    options = {amount: amount, content_url: content_url, user_id: self.id, recipient_id: user.id, impact: amount}
     reward = Reward.create!(options)
     
     # handle people who previously purchased coins
@@ -390,11 +390,10 @@ class User < ActiveRecord::Base
       picture = object.thumbnail.url(:small)
     elsif object.is_a?(Reward)
       message = comment
-      picture = object.story.thumbnail.url(:small)
     end
     
     access_token = self.authentications.find_by_provider("facebook").token
-    RestClient.post 'https://graph.facebook.com/me/feed', { :access_token => access_token, :link => url, :picture => picture, :message => message }
+    RestClient.post 'https://graph.facebook.com/me/feed', { :access_token => access_token, :link => url, :message => message }
     
     object.update_attribute(:shared_to_facebook, true) if object.is_a?(Reward)
   end
@@ -411,7 +410,7 @@ class User < ActiveRecord::Base
       title = object.title[0..55]
       message = "I just posted some work on @momeant: #{url} #momeant"
     elsif object.is_a?(Reward)
-      message = "#{comment[0..109]} #{url} #momeant"
+      message = "#{comment[0..106]} #{url} #momeant"
     end
     
     Twitter.update(message, :wrap_links => true)

@@ -1,3 +1,5 @@
+require 'uri'
+
 class Reward < Curation
   default_scope :order => 'curations.amount DESC'
   belongs_to :story
@@ -37,6 +39,17 @@ class Reward < Curation
   def self.momeant_needs_to_pay
     since = PayPeriod.last.present? ? PayPeriod.last.created_at : Date.parse("10/01/2010")
     self.where(paid_for: true, pay_period_line_item_id: nil, cashout_id: nil).where("created_at > ?", since)
+  end
+  
+  def content_url_with_impacted_by
+    return if content_url.blank?
+    uri = URI(content_url)
+    if uri.query
+      uri.query = (uri.query.split("&") << "impacted_by=#{id}").join("&")
+    else
+      uri.query = "impacted_by=#{id}"
+    end
+    return uri.to_s
   end
   
   def descendants_tree

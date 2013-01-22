@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121205150449) do
+ActiveRecord::Schema.define(:version => 20130122151409) do
 
   create_table "activities", :force => true do |t|
     t.integer  "actor_id"
@@ -108,6 +108,7 @@ ActiveRecord::Schema.define(:version => 20121205150449) do
     t.integer  "amazon_payment_id"
     t.integer  "pay_period_line_item_id"
     t.integer  "amazon_settlement_id"
+    t.string   "content_url"
   end
 
   create_table "discussions", :force => true do |t|
@@ -346,16 +347,16 @@ ActiveRecord::Schema.define(:version => 20121205150449) do
 
   create_table "users", :force => true do |t|
     t.string   "email"
-    t.string   "encrypted_password",                                                 :default => "",    :null => false
+    t.string   "encrypted_password",                   :limit => 128,                               :default => "",    :null => false
+    t.string   "password_salt",                                                                     :default => "",    :null => false
     t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
+    t.string   "remember_token"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                                                      :default => 0
+    t.integer  "sign_in_count",                                                                     :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.string   "password_salt"
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
@@ -367,25 +368,25 @@ ActiveRecord::Schema.define(:version => 20121205150449) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_udpated_at"
     t.string   "type"
-    t.boolean  "is_admin",                                                           :default => false
-    t.float    "credits",                                                            :default => 0.0
+    t.boolean  "is_admin",                                                                          :default => false
+    t.float    "credits",                                                                           :default => 0.0
     t.string   "first_name"
     t.string   "last_name"
-    t.boolean  "stored_in_braintree",                                                :default => false
+    t.boolean  "stored_in_braintree",                                                               :default => false
     t.text     "tagline"
     t.string   "occupation"
     t.string   "paid_state"
-    t.integer  "coins",                                                              :default => 0
+    t.integer  "coins",                                                                             :default => 0
     t.datetime "subscription_last_updated_at"
     t.string   "spreedly_plan"
     t.string   "spreedly_token"
-    t.integer  "subscriptions_count",                                                :default => 0
-    t.boolean  "tos_accepted",                                                       :default => false
-    t.integer  "lifetime_rewards_old",                                               :default => 0
+    t.integer  "subscriptions_count",                                                               :default => 0
+    t.boolean  "tos_accepted",                                                                      :default => false
+    t.integer  "lifetime_rewards_old",                                                              :default => 0
     t.text     "thankyou"
     t.string   "location"
     t.string   "amazon_email"
-    t.integer  "impact_old",                                                         :default => 0
+    t.integer  "impact_old",                                                                        :default => 0
     t.string   "twitter_id"
     t.string   "facebook_id"
     t.text     "twitter_friends"
@@ -393,21 +394,21 @@ ActiveRecord::Schema.define(:version => 20121205150449) do
     t.datetime "friends_last_cached_at"
     t.float    "latitude"
     t.float    "longitude"
-    t.boolean  "send_reward_notification_emails",                                    :default => true
-    t.boolean  "send_digest_emails",                                                 :default => true
-    t.boolean  "send_message_notification_emails",                                   :default => true
+    t.boolean  "send_reward_notification_emails",                                                   :default => true
+    t.boolean  "send_digest_emails",                                                                :default => true
+    t.boolean  "send_message_notification_emails",                                                  :default => true
     t.string   "i_reward_because"
-    t.decimal  "impact",                               :precision => 8, :scale => 2
-    t.decimal  "lifetime_rewards",                     :precision => 8, :scale => 2, :default => 0.0
-    t.boolean  "send_new_follower_emails",                                           :default => true
-    t.boolean  "send_following_update_emails",                                       :default => true
+    t.decimal  "impact",                                              :precision => 8, :scale => 2
+    t.decimal  "lifetime_rewards",                                    :precision => 8, :scale => 2, :default => 0.0
+    t.boolean  "send_new_follower_emails",                                                          :default => true
+    t.boolean  "send_following_update_emails",                                                      :default => true
     t.string   "paypal_email"
-    t.boolean  "send_impact_notification_emails",                                    :default => true
+    t.boolean  "send_impact_notification_emails",                                                   :default => true
     t.string   "amazon_status_code"
     t.string   "amazon_credit_instrument_id"
     t.string   "amazon_credit_sender_token_id"
     t.string   "amazon_settlement_token_id"
-    t.boolean  "needs_to_reauthorize_amazon_postpaid",                               :default => false
+    t.boolean  "needs_to_reauthorize_amazon_postpaid",                                              :default => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

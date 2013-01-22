@@ -6,8 +6,8 @@ class SessionsController < Devise::SessionsController
   end
   
   def remote
-    user = warden.authenticate(scope: resource_name)
-    render json: { success: false } and return if user.nil?
+    user = User.find_by_email(params[:user][:email])
+    render json: { success: false } and return if user.nil? || !user.valid_password?(params[:user][:password])
     sign_in(:user, user)
     render json: { success: true, id: user.id, name: user.name }
   end

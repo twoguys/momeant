@@ -24,6 +24,7 @@
       
     = form_for :reward, :url => user_rewards_path(@user), :html => {:id => "reward-form"} do |form|
       = form.hidden_field :impacted_by, :value => params[:impacted_by] if params[:impacted_by]
+      = form.hidden_field :content_url, :value => @content_url
 
       #amounts
         %p Choose an amount:
@@ -33,7 +34,7 @@
           %li= link_to "10", "#", :amount => 10.0
           %li.custom= text_field_tag :custom_amount, "", placeholder: "___"
         = form.hidden_field :amount, value: 1
-        = form.submit "Give Reward", style: current_user.nil? ? "display:none" : ""
+        = form.submit "Give Reward", id: "reward_submit", style: current_user.nil? ? "display:none" : ""
         - unless current_user
           = link_to "What is this?", "#about", id: "what-is-momeant-link", class: "button"
           = link_to "Log In", "#login", id: "login-button", class: "button"
