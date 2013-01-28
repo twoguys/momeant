@@ -928,27 +928,35 @@ body#home.index .insides {
 body#home.index h1 {
   font-size: 3em;
   text-align: center; }
-body#home.index #intro {
+body#home.index #intro, body#home.index #right-now {
   background: #131313;
   color: white; }
-  body#home.index #intro h1 > span {
+  body#home.index #intro h1 > span, body#home.index #right-now h1 > span {
     display: block;
     font-weight: 200;
     width: 620px;
     margin: 0 auto 1em; }
-  body#home.index #intro h1 strong {
+  body#home.index #intro h1 strong, body#home.index #right-now h1 strong {
     font-weight: 600; }
-    body#home.index #intro h1 strong img {
+    body#home.index #intro h1 strong img, body#home.index #right-now h1 strong img {
       margin-left: -1em; }
-    body#home.index #intro h1 strong span {
+    body#home.index #intro h1 strong span, body#home.index #right-now h1 strong span {
       position: relative;
       top: -0.5em; }
-  body#home.index #intro p {
+body#home.index #right-now {
+  background: #34b44c; }
+  body#home.index #right-now p {
+    font-size: 2.2em;
     max-width: 700px;
-    margin: 2em auto 0;
+    margin: 0 auto 1.5em;
     font-size: 1.9em;
     text-align: center;
     font-weight: 200; }
+  body#home.index #right-now h1 img {
+    margin-left: -1em; }
+  body#home.index #right-now h1 strong {
+    position: relative;
+    top: -0.3em; }
 body#home.index #explanation h1 {
   margin-bottom: 1.5em; }
 body#home.index #explanation ul {
@@ -962,8 +970,14 @@ body#home.index #explanation ul {
 body#home.index #explanation li {
   width: 30%;
   float: left;
-  margin-right: 5%; }
-body#home.index #explanation li:last-child {
+  padding-top: 170px;
+  margin-right: 5%;
+  background: transparent url(../images/home/skyline.png) no-repeat 50% 0; }
+body#home.index #explanation li.free {
+  background-image: url(../images/home/computer.png); }
+body#home.index #explanation li.potential {
+  background-image: url(../images/home/network.png);
+  background-position: 50% 33px;
   margin-right: 0; }
 body#home.index #explanation h3 {
   font-size: 1.6em;
@@ -972,9 +986,10 @@ body#home.index #explanation h3 {
 body#home.index #explanation p {
   margin: 0; }
 body#home.index #explanation h2 {
-  font-size: 1.7em;
+  font-size: 2.3em;
   text-align: center;
-  margin-top: 2em; }
+  max-width: 650px;
+  margin: 3em auto 0; }
 body#home.index #reward-button {
   background: #00aeef;
   color: #0b4f68; }

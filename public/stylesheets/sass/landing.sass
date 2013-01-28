@@ -14,7 +14,7 @@ body#home.index
     font-size: 3em
     text-align: center
     
-  #intro
+  #intro, #right-now
     background: #131313
     color: #fff
     h1
@@ -30,12 +30,22 @@ body#home.index
         span
           position: relative
           top: -0.5em
+  
+  #right-now
+    background: $green
     p
+      font-size: 2.2em
       max-width: 700px
-      margin: 2em auto 0
+      margin: 0 auto 1.5em
       font-size: 1.9em
       text-align: center
       font-weight: 200
+    h1
+      img
+        margin-left: -1em
+      strong
+        position: relative
+        top: -0.3em
       
   #explanation
     h1
@@ -45,8 +55,14 @@ body#home.index
     li
       width: 30%
       float: left
+      padding-top: 170px
       margin-right: 5%
-    li:last-child
+      background: transparent url(../images/home/skyline.png) no-repeat 50% 0
+    li.free
+      background-image: url(../images/home/computer.png)
+    li.potential
+      background-image: url(../images/home/network.png)
+      background-position: 50% 33px
       margin-right: 0
     h3
       font-size: 1.6em
@@ -55,9 +71,10 @@ body#home.index
     p
       margin: 0
     h2
-      font-size: 1.7em
+      font-size: 2.3em
       text-align: center
-      margin-top: 2em
+      max-width: 650px
+      margin: 3em auto 0
   
   #reward-button
     background: $blue
