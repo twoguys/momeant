@@ -8,7 +8,7 @@
 
 #presenter
 
-  = link_to "Reward #{@story.user.first_name}'s work", reward_story_path(@story, impacted_by: params[:impacted_by]), id: "reward-button"
+  = link_to "Reward #{@story.user.first_name}", reward_user_path(@story.user, impacted_by: params[:impacted_by]), id: "reward-button"
 
   .content
   

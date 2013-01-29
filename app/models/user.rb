@@ -1,6 +1,7 @@
 require "open-uri"
 
 class User < ActiveRecord::Base
+  acts_as_commentable
   
   devise :database_authenticatable, :registerable, #:confirmable,
     :recoverable, :rememberable, :trackable, :validatable
@@ -9,22 +10,20 @@ class User < ActiveRecord::Base
     text :name, :boost => 2.0
   end
   
-  acts_as_taggable_on :interests
-  
   geocoded_by :location
        
   PLEDGED_REWARD_REMINDER_THRESHOLD = 1.0
   PLEDGED_REWARD_STOP_THRESHOLD = 10.0
   PLEDGED_REWARD_CREDIT_LIMIT = 1.0
 
-  has_many :created_stories, :foreign_key => :user_id, :class_name => "Story", :order => "created_at DESC"
+  has_many :created_stories, :foreign_key => :user_id, :class_name => "Story", :order => "stories.created_at DESC"
   
   has_many :bookmarks, :dependent => :destroy
   has_many :bookmarked_stories, :through => :bookmarks, :source => :story
   
   has_many :rewards, :foreign_key => :recipient_id
   has_many :patrons, :through => :rewards, :source => :user, :uniq => true
-  has_many :given_rewards, :class_name => "Reward", :dependent => :destroy, :order => "created_at DESC"
+  has_many :given_rewards, :class_name => "Reward", :dependent => :destroy, :order => "curations.created_at DESC"
   has_many :rewarded_creators, :through => :given_rewards, :source => :recipient, :uniq => true
   has_many :rewarded_stories, :through => :given_rewards, :source => :story
   
@@ -38,7 +37,7 @@ class User < ActiveRecord::Base
   
   has_many :galleries, :order => :position, :dependent => :destroy
   
-  has_many :amazon_payments, :foreign_key => :payer_id, :order => "created_at DESC"
+  has_many :amazon_payments, :foreign_key => :payer_id, :order => "transactions.created_at DESC"
   
   has_many :authentications
   
@@ -56,6 +55,8 @@ class User < ActiveRecord::Base
   has_many :discussions, :order => "created_at DESC"
   
   has_one :editorial, :dependent => :destroy
+  
+  has_many :thank_you_levels
   
   has_attached_file :avatar,
     :styles => { :thumbnail => "60x60#", :large => "200x200#", :editorial => "320x320#" },
@@ -135,13 +136,13 @@ class User < ActiveRecord::Base
     self.given_rewards.group_by(&:recipient).to_a.map {|x| [x.first,x.second.inject(0){|sum,r| sum+r.amount}]}.sort_by(&:second).reverse
   end
   
-  def reward(story, amount, impacted_by = nil)
+  def reward(user, amount, impacted_by = nil, content_url = nil)
     return if amount.nil?
     return unless self.is_under_pledged_rewards_stop_threshold?
     
     old_badge_level = self.badge_level
 
-    options = {:story_id => story.id, :amount => amount, :user_id => self.id, :recipient_id => story.user_id, :impact => amount}
+    options = {amount: amount, content_url: content_url, user_id: self.id, recipient_id: user.id, impact: amount}
     reward = Reward.create!(options)
     
     # handle people who previously purchased coins
@@ -164,12 +165,13 @@ class User < ActiveRecord::Base
       # TODO: send an email to users who haven't configured Postpaid
     end
     
-    story.increment!(:reward_count, amount)
     self.increment!(:impact, amount)
     reward.cache_impact!
-    story.user.increment!(:lifetime_rewards, amount)
+    user.increment!(:lifetime_rewards, amount)
     
-    Activity.create(:actor_id => self.id, :recipient_id => story.user_id, :action_type => "Reward", :action_id => reward.id)
+    ThankYouLevel.check_for_achievement(self, user)
+    
+    Activity.create(:actor_id => self.id, :recipient_id => user.id, :action_type => "Reward", :action_id => reward.id)
 
     new_badge_level = self.reload.badge_level
     if new_badge_level != old_badge_level
@@ -181,8 +183,8 @@ class User < ActiveRecord::Base
       reward.give_impact_to_parents!(parent_reward) if parent_reward
     end
     
-    unless self.is_subscribed_to?(story.user)
-      Subscription.create(:subscriber_id => self.id, :user_id => story.user_id)
+    unless self.is_subscribed_to?(user)
+      Subscription.create(:subscriber_id => self.id, :user_id => user.id)
     end
     
     return reward
@@ -260,11 +262,13 @@ class User < ActiveRecord::Base
   def can_comment_on?(object)
     if object.is_a?(Story)
       return true if self.has_rewarded?(object.user) || self == object.user
-    end
-    if object.is_a?(Discussion)
+    elsif object.is_a?(Discussion)
       return true if self.has_rewarded?(object.user) || self == object.user
+    elsif object.is_a?(User)
+      return true if self.has_rewarded?(object) || self == user
+    else
+      return false
     end
-    return false
   end
   
   # Supporter Levels
@@ -386,11 +390,10 @@ class User < ActiveRecord::Base
       picture = object.thumbnail.url(:small)
     elsif object.is_a?(Reward)
       message = comment
-      picture = object.story.thumbnail.url(:small)
     end
     
     access_token = self.authentications.find_by_provider("facebook").token
-    RestClient.post 'https://graph.facebook.com/me/feed', { :access_token => access_token, :link => url, :picture => picture, :message => message }
+    RestClient.post 'https://graph.facebook.com/me/feed', { :access_token => access_token, :link => url, :message => message }
     
     object.update_attribute(:shared_to_facebook, true) if object.is_a?(Reward)
   end
@@ -407,7 +410,7 @@ class User < ActiveRecord::Base
       title = object.title[0..55]
       message = "I just posted some work on @momeant: #{url} #momeant"
     elsif object.is_a?(Reward)
-      message = "#{comment[0..109]} #{url} #momeant"
+      message = "#{comment[0..106]} #{url} #momeant"
     end
     
     Twitter.update(message, :wrap_links => true)

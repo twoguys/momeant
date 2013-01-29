@@ -13,9 +13,7 @@
                   = f.email_field :email, :id => "login_email", :placeholder => "email address", :autocorrect => "off", :autocapitalize => "off"
                 %li
                   = f.password_field :password, :id => "login_password", :placeholder => "password"
-                %li.remember-me
-                  = f.check_box :remember_me
-                  = f.label :remember_me
+                  = f.hidden_field :remember_me, value: 1
                 %li.submit
                   = f.submit "login"
                   = link_to "Reset my password", new_password_path(:user)

@@ -1,92 +1,81 @@
-#landing-page
-  
-  #intro
-    #slides
-      = link_to "Previous", "#", :id => "previous", :class => "inactive"
-      = link_to "Next", "#", :id => "next"
-      %ul
-        %li.a
-          %p
-            We have an opportunity to build
-            %br
-            a Web that supports all of us.
-          %p
-            But this depends on the
-            %br
-            choices we make.
-          .count 1 / 5
-        %li.b
-          %p
-            We all read articles, watch videos,
-            %br
-            look at photos, listen to music.
-          %p
-            A lot of us create
-            %br
-            these things too.
-          .count 2 / 5
-        %li.e
-          %p
-            Most of this content is free,
-            %br
-            and we want it to stay that way.
-          %p
-            But we also want to give creators
-            %br
-            a chance to make a living.
-          .count 3 / 5
-        %li.f
-          %p
-            Momeant provides that chance.
-          %p
-            Reward creators who make the work
-            %br
-            you find valuable, and discover all
-            %br
-            of the ways they can reward you back.
-          .count 4 / 5
-        %li.g
-          Join Momeant and help us build
-          %br
-          a new creative economy on the Web!
-          = link_to "Continue", "#", id: "continue-downward"
-  
-  %ul#people
-    - @people.each do |person|
-      %li= link_to image_tag(person.avatar.url(:thumbnail)), user_path(person)
-  
-  %p#explanation
-    The Web provides an extraordinary opportunity to change the way we think about work and prosperity.
-    It is brimming with creative minds sharing and consuming valuable information and content, largely for free.
-    But  our economy is in a state of radical shift. It threatens to overturn our traditional views of work and
-    the availability of jobs, and we're left wondering where the new engine of sustainable productivity will come from.
-    By placing content creators at the center of a new creative economy on the Web, we hope to provide a way for
-    anyone to make a living, and to create lasting, meaningful connections between creators and their supporters.
-  
-  %ul#steps
-    %li#support
-      %h2 Support
-      %p
-        The first step in building a new creative economy on the web is to become a supporter by rewarding creators
-        that produce the content that you find most valuable.
-    %li#exchange
-      %h2 Exchange
-      %p
-        Being a supporter establishes an ongoing meaningful connection with a creator and their community,
-        an opportunity for discussion, collaboration, recognition, digital and physical gifts, and most of all,
-        free content.
-    %li#recognition
-      %h2 Recognition
-      %p
-        What you support says something powerful about what matters to you. When you share your rewards,
-        they tell people what you care about, who you stand behind, and what you want to see more of.
-        Momeant tracks the impact of your shared rewards, letting creators and other supporters recognize
-        you for your influence.
-  
-  #connect
-    %h1 Connect with real people and show them your support.
-    = link_to "View our Featured Creators &rarr;".html_safe, discovery_path
+%section#intro
+  .insides
 
-:javascript
-  mixpanel.track('Viewed Homepage', { signed_in: #{user_signed_in? ? 'true' : 'false' } });
-= javascript_include_tag "landing"
+    %h1
+      %span
+        Do you think the future of the Web is in paywalls and advertising?
+      %strong
+        = image_tag "home/red-x.png"
+        %span Neither do we.
+
+%section#right-now
+  .insides
+    %p Right now, the future is being decided. Publishers, bloggers, and media companies are pushing pay walls and advertising. They've decided to go back in time and resurrect old media models that haven't worked in the Web era. We're here to propose a different future, one where:
+    %h1
+      = image_tag "home/black-check.png"
+      %strong Information is free & pay is voluntary.
+
+%section#explanation
+  .insides
+  
+    %h1 Why does this matter?
+
+    %ul
+      %li.corporations
+        %h3
+          Content is no longer
+          %br
+          made by a few massive
+          %br
+          corporations.
+        %p Paywalls and advertising only work for the biggest players with the widest reach, and cut everyone else out. We want to preserve equality on the Web for ALL content creators.
+      %li.free
+        %h3 Information and content should be free and accessible to all.
+        %p Pay walls require us to pay up front for something whose value we have yet to determine, while advertising intrudes on our user experience and turns us into the thing being bought and sold.
+      %li.potential
+        %h3
+          The Web has the potential
+          %br
+          to unleash a new Creative Economy online.
+        %p Turning content creation into a form of economic activity is a HUGE opportunity for jobs and growth. This can only happen if we abandon pay walls and ads, and choose to reward each other for what we do online.
+    
+    %h2 We need a way to support the creativity of everyone.
+
+%section#reward-button
+  .insides
+
+    %h1 Introducing the Reward Button.
+    %h3 A simple copy & paste button, allowing anyone to support your work.
+    
+    = image_tag "home/reward-example.png"
+    
+    %ol
+      %li
+        %span It's incredibly lightweight and doesn't require a computer science degree.
+      %li
+        %span Get followers, push updates, and create a community that is invested in you.
+      %li
+        %span Offer your audience more incentives to reward.
+    
+%section#qa
+  .insides
+
+    %ul
+      %li
+        %h3 How is this different from a PayPal donate button?
+        %p Building community is more powerful than any single transaction. Our goal is to go beyond the individual transaction, to aggregate all rewards from all users, and leverage those to build a community, an engaging experience, and stronger incentives that motivate people to reward.
+
+      %li
+        %h3 Why do we believe that content must be free?
+        %p By allowing everyone to CHOOSE what to reward after viewing it, we have the power to decide what matters to us while only paying for the content (and creators) we care about.
+    
+      %li
+        %h3 Why is this so important to the future of the Web?
+        %p Paywalls and advertising only work for the biggest players with the widest reach, and cut everyone else out. By keeping pay voluntary and after the fact, we have a chance to build a new Creative Economy on the Web, where anyone can get paid for creating content. That's HUGE!
+
+%section#final
+  .insides
+
+    %h1 Are you with us? Awesome.
+    %p Get a Reward Button on your site in minutes!
+    = link_to "Get Started &rarr;".html_safe, "#join-modal", class: "button"

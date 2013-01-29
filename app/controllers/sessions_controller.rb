@@ -1,14 +1,13 @@
 class SessionsController < Devise::SessionsController
   before_filter :store_return_to, :only => :create
-  skip_before_filter :creator_finished_signing_up?, :only => :destroy
   
   def new
     redirect_to session[:return_to] || root_path, :alert => flash.alert || ""
   end
   
   def remote
-    user = warden.authenticate(scope: resource_name)
-    render json: { success: false } and return if user.nil?
+    user = User.find_by_email(params[:user][:email])
+    render json: { success: false } and return if user.nil? || !user.valid_password?(params[:user][:password])
     sign_in(:user, user)
     render json: { success: true, id: user.id, name: user.name }
   end

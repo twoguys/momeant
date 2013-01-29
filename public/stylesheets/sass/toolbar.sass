@@ -13,7 +13,7 @@
       display: block
     .subnav
       display: none
-      width: 120px
+      width: 140px
       background: #222
       position: absolute
       top: 41px
@@ -90,16 +90,18 @@
         @include rounded(20px)
         a
           color: #fff
-    #profile, #info, #signin, #join
+    #info, #signin, #join
       position: absolute
       top: 0
-      right: 338px
+      right: 10px
     #info
-      right: 306px
+      .subnav
+        left: auto
+        right: -10px
     #signin
-      right: 378px
+      right: 52px
     #join
-      right: 449px
+      right: 123px
     #signin, #join
       a
         text-indent: 0
@@ -108,7 +110,7 @@
         font-size: 1.2em
         font-weight: 600
         text-transform: uppercase
-        padding-top: 12px
+        padding-top: 10px
     
     #feed-plus-one
       position: absolute
@@ -219,3 +221,8 @@ header.hide-nav
     color: $red
     a
       background-color: $red
+
+@media all and (max-device-width:480px)
+  #header #user-nav
+    #logo a
+      width: 27px

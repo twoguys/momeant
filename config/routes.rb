@@ -1,10 +1,7 @@
 Repo::Application.routes.draw do
   
-  devise_for :users, :controllers => {
-    :registrations => "registrations",
-    :sessions => "sessions",
-    :passwords => "passwords"
-  } do
+  devise_for :users
+  devise_scope :user do
     post '/creators/signup' => "registrations#creator", :as => :creator_signup # creator signup 1 submit
     post '/creators/login'  => "sessions#creator",      :as => :creator_login
     post '/users/sign_in_remote' => "sessions#remote"
@@ -68,6 +65,7 @@ Repo::Application.routes.draw do
     end
     resources :broadcasts, :only => [:create]
     resources :comments, :only => [:create]
+    resources :thank_you_levels
     
     member do
       get :settings
@@ -76,6 +74,9 @@ Repo::Application.routes.draw do
       post :update_avatar
       post :update_email_setting
       post :change_password
+      get :thankyous
+      get :button
+      get :reward
     end
     
     collection do
@@ -146,7 +147,9 @@ Repo::Application.routes.draw do
   match '/tos',                 :to => 'home#tos',                  :as => :tos
   match '/privacy',             :to => 'home#privacy',              :as => :privacy
 
-  match '/',                    :to => 'home#index',                :as => :home
+  match '/david',               to: 'home#david'
+
   root :to => "home#index"
+  
   
 end

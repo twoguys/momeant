@@ -55,17 +55,6 @@
               %span= reward.recipient.last_name
           %td.avatar
             = link_to image_tag(reward.recipient.avatar.url(:large)), user_path(reward.recipient)
-          %td.content
-            .inner
-              = link_to image_tag(reward.story.thumbnail.url(:small)), story_path(reward.story)
-          %td.title
-            .inner
-              = link_to "#{reward.story.title}:", story_path(reward.story)
-              %span= truncate reward.story.synopsis, :length => 100
-          %td.comment
-            .inner
-              - if reward.comment.present?
-                = image_tag "payments/comment.png", :class => "tooltipped-n", :title => "You said: #{reward.comment}"
           %td.amount
             .inner
               = number_to_currency(reward.amount)

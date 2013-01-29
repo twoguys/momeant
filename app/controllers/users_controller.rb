@@ -21,6 +21,12 @@ class UsersController < ApplicationController
     @rewards = @user.given_rewards(include: "story")
   end
   
+  def reward
+    @content_url = request.env["HTTP_REFERER"]
+    @content_url = "http://google.com" if Rails.env.test? # hack to prevent from switching to a slow test driver
+    render "rewards/modal", layout: "reward"
+  end
+  
   def activity
     @activity = Activity.by_users([@user]).only_types("'Reward','Impact'").page(params[:page])
   end
@@ -124,15 +130,13 @@ class UsersController < ApplicationController
     @rewards = @user.given_rewards.pledged.includes(:recipient, :story)
   end
   
+  def thankyous
+    @thank_you_level = ThankYouLevel.new
+  end
+  
   def submit_creator_request
     FeedbackMailer.creator_request(@user, params[:description], params[:examples]).deliver
     render :text => ""
-  end
-  
-  # creator signup step 1 - submits through a devise route
-  def creators
-    @creator = User.new
-    @login_creator = User.new
   end
   
   # creator signup step 2
@@ -152,7 +156,7 @@ class UsersController < ApplicationController
     redirect_to root_path and return if @user != current_user
     if request.put?
       @user.update_attributes(params[:user])
-      redirect_to user_path(@user)
+      redirect_to button_user_path(@user)
     end
     @nav = "signup"
   end

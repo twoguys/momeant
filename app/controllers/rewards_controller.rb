@@ -1,10 +1,12 @@
+require 'uri'
+require 'cgi'
+
 class RewardsController < ApplicationController
   before_filter :authenticate_user!, :except => [:visualize]
   
   def create
     @user = User.find_by_id(params[:user_id])
     return if @user.nil?
-    @story = Story.find_by_id(params[:reward][:story_id])
     amount = params[:reward][:amount].gsub('$','').to_f
     
     if amount < 0.1
@@ -13,8 +15,12 @@ class RewardsController < ApplicationController
       render json: { success: false, modal: "Sorry! $99.00 is the maximum reward allowed, for now." } and return
     end
     
+    impacted_by = nil
+    query = URI.parse(params[:reward][:content_url]).query
+    impacted_by = CGI.parse(query)["impacted_by"] if query
+    
     begin
-      @reward = current_user.reward(@story, amount, params[:reward][:impacted_by])
+      @reward = current_user.reward(@user, amount, impacted_by, params[:reward][:content_url])
     rescue Exceptions::AmazonPayments::InsufficientBalanceException
       render json: { success: false, modal: render_to_string(partial: "rewards/modal/errors/need_to_reauthorize") }
       return

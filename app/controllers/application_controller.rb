@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-  include SslRequirement
   protect_from_forgery
   
   before_filter :open_reward_modal?, :creator_finished_signing_up?
@@ -14,10 +13,14 @@ class ApplicationController < ActionController::Base
   end
   
   def creator_finished_signing_up?
+    return if request.path == destroy_user_session_path
     return if current_user.nil?
     return unless current_user.is_a?(Creator)
     if current_user.avatar_missing? || current_user.tagline.blank?
-      redirect_to creator_info_path(current_user)
+      redirect_to creator_info_path(current_user) and return unless request.path == creator_info_path(current_user)
+    end
+    if current_user.amazon_email.blank? && current_user.paypal_email.blank?
+      redirect_to creator_payment_path(current_user) and return unless request.path == creator_payment_path(current_user)
     end
   end
   

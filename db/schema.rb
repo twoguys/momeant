@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121030143457) do
+ActiveRecord::Schema.define(:version => 20130122151409) do
 
   create_table "activities", :force => true do |t|
     t.integer  "actor_id"
@@ -107,6 +108,7 @@ ActiveRecord::Schema.define(:version => 20121030143457) do
     t.integer  "amazon_payment_id"
     t.integer  "pay_period_line_item_id"
     t.integer  "amazon_settlement_id"
+    t.string   "content_url"
   end
 
   create_table "discussions", :force => true do |t|
@@ -300,6 +302,24 @@ ActiveRecord::Schema.define(:version => 20121030143457) do
     t.string "name"
   end
 
+  create_table "thank_you_achievements", :force => true do |t|
+    t.integer  "thank_you_level_id"
+    t.integer  "user_id"
+    t.integer  "creator_id"
+    t.boolean  "fulfilled"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "thank_you_levels", :force => true do |t|
+    t.decimal  "amount",      :precision => 8, :scale => 2
+    t.string   "item"
+    t.string   "description"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "topics", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -378,7 +398,7 @@ ActiveRecord::Schema.define(:version => 20121030143457) do
     t.boolean  "send_digest_emails",                                                                :default => true
     t.boolean  "send_message_notification_emails",                                                  :default => true
     t.string   "i_reward_because"
-    t.decimal  "impact",                                              :precision => 8, :scale => 2, :default => 0.0
+    t.decimal  "impact",                                              :precision => 8, :scale => 2
     t.decimal  "lifetime_rewards",                                    :precision => 8, :scale => 2, :default => 0.0
     t.boolean  "send_new_follower_emails",                                                          :default => true
     t.boolean  "send_following_update_emails",                                                      :default => true

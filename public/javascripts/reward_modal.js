@@ -76,7 +76,7 @@ $(function() {
 		  var email = $('#login_email').val();
 		  var password = $('#login_password').val();
 		  var token = $form.find('input[name="authenticity_token"]').val();
-		  var data = {remote: true, commit: "Sign in", utf8: "✓",
+		  var data = {remote: true, commit: "Sign in", utf8: "✓", authenticity_token: token,
         user: {remember_me: 1, password: password, email: email}};
 		  
 		  $form.addClass('loading');
@@ -163,8 +163,8 @@ $(function() {
 				alert('Please choose how much to reward.');
 				return false;
 			}
-			var story_id = $form.find("#reward_story_id").val();
 			var impacted_by = $form.find("#reward_impacted_by").val();
+			var content_url = $form.find("#reward_content_url").val();
 			var url = $form.attr('action');
 
 			$('#reward-actions').addClass('loading');
@@ -173,7 +173,7 @@ $(function() {
 			  type: 'POST',
 				data: {
 					"reward[amount]":amount,
-					"reward[story_id]":story_id,
+					"reward[content_url]":content_url,
 					"reward[impacted_by]":impacted_by
 				},
 				complete: function(xhr) {
@@ -188,7 +188,7 @@ $(function() {
 				  }
 				  if (json.success) {
       			RewardModal.reward_submitted = true;
-      			mixpanel.track('Rewarded Content', {story_id: story_id, mp_note: amount, amount: amount});
+      			mixpanel.track('Rewarded a User', {mp_note: amount, amount: amount});
   					$('#main').html(json.html);
   					$('#url_to_share').click(function() {
   					  $(this).select();
@@ -266,14 +266,12 @@ $(function() {
 		},
 
 		monitor_twitter_sharing: function() {
-			$('#twitter_comment').keydown(function(event) {
-				var text = $(this).val()
-				$('#characters-left .count').text(110 - text.length);
-			});
-			$('#twitter_comment').keyup(function(event) {
-				var text = $(this).val()
-				$('#characters-left .count').text(110 - text.length);
-			});
+		  var length_monitor = function(event) {
+		    var text = $(this).val()
+				$('#characters-left .count').text(106 - text.length);
+		  }
+			$('#twitter_comment').keydown(length_monitor);
+			$('#twitter_comment').keyup(length_monitor);
 			
 			$('#twitter-sharing form').submit(function(event) {
 				event.preventDefault();

@@ -1,34 +1,16 @@
 %ul#user-nav
 
   %li#logo= link_to "Momeant", root_path, :class => "top-link"
-    
+        
   - if user_signed_in?
-    %li#feed
-      = link_to "Feed", subscriptions_path, :class => "tooltipped", :title => "Following Feed"
-      #feed-plus-one
-  - else
-    %li#feed.disabled
-      = link_to "Feed", "#join-modal", :class => "tooltipped", :title => "Following Feed"
-      
-  - if user_signed_in? && current_user.is_a?(Creator)
-    %li#create
-      = link_to "Share Your Work", before_creation_path, :class => "tooltipped", :title => "Share Your Work"
-  - else
-    %li#create.disabled
-      = link_to "Become a Creator", become_a_creator_users_path, :class => "tooltipped", :title => "Become a Creator"
-    
-  - if !user_signed_in?
-    %li#join
-      = link_to "Sign Up", "#join-modal"
-    %li#signin
-      = link_to "Log In", "#login-modal"
-  
-  - if user_signed_in?
-    - if !current_user.has_configured_postpaid? && current_user.pledged_amount > 0
-      %li#pledged
-        .text pledged rewards
-        .amount= link_to number_to_currency(current_user.pledged_amount), fund_rewards_path
-    - elsif current_user.coins > 0
+    - if current_user.is_a?(Creator)
+      %li#create
+        = link_to "Share Your Work", before_creation_path, :class => "tooltipped", :title => "Share Your Work"
+    %li#messages
+      = link_to "Private Messages", messages_path, class: "tooltipped", title: "Private Messages"
+      - if current_user.unread_message_count > 0
+        .count= link_to current_user.unread_message_count, messages_path
+    - if current_user.coins > 0
       %li#coins
         .text reward money to give out
         .amount= link_to number_to_currency(current_user.coins * Reward.dollar_exchange), coins_path
@@ -40,19 +22,15 @@
         = link_to "Payment Settings", fund_rewards_path
         - if current_user.is_admin?
           %li= link_to "Admin", admin_dashboard_path
+        - if current_user.is_a?(Creator)
+          %li= link_to "Reward Button Code", button_user_path(current_user)
         %li= link_to "Log out", destroy_user_session_path, method: "delete"
-  - else
-    %li#profile.disabled
-      = link_to "Your Profile", "#join-modal", :class => "tooltipped", :title => "Your Profile"
   
-  - if user_signed_in?
-    %li#messages
-      = link_to "Private Messages", messages_path, class: "tooltipped", title: "Private Messages"
-      - if current_user.unread_message_count > 0
-        .count= link_to current_user.unread_message_count, messages_path
   - else
-    %li#messages.disabled
-      = link_to "Private Messages", "#join-modal", class: "tooltipped", title: "Private Messages"
+    %li#join
+      = link_to "Sign Up", "#join-modal"
+    %li#signin
+      = link_to "Log In", "#login-modal"
   
   %li#info
     = link_to "About Momeant", about_path
@@ -62,8 +40,3 @@
       - if user_signed_in?
         %li= link_to "Give Feedback", "#feedback-modal"
       %li= link_to "Terms of Service", tos_path
-
-  %li#search
-    = form_tag search_path, :method => :get do
-      = text_field_tag :query, params[:query]
-      = submit_tag "Search", :id => "search-submit", :name => ""

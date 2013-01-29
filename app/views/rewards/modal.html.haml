@@ -1,0 +1,26 @@
+- if @content_url.blank?
+  #main.no-content-url
+    It appears you visited this URL directly. Please close this window and click the Reward Button again.
+
+- else
+
+  = render "rewards/modal/sidebar"
+
+  #main
+
+    #reward-actions
+      #nib
+      = render "rewards/modal/form"
+      = render "rewards/modal/description"
+          
+  
+    #supporter-info
+      = render "rewards/modal/supporter_info"
+  
+  #notice
+    = link_to "Close", "#close-notice", id: "close-notice"
+    #notice-cover
+    #notice-inner
+
+  :javascript
+    var current_user = #{current_user.present? ? 'true' : 'false'};

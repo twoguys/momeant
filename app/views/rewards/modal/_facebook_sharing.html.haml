@@ -2,8 +2,5 @@
   = hidden_field_tag :facebook_reward_id, @reward.id
   = text_area_tag :facebook_comment
   #facebook-preview
-    = image_tag(@reward.story.thumbnail.url(:petite), :class => "thumbnail")
-    %h3= @reward.story.title
-    .link= truncate story_url(@reward.story), :length => 40
-    %p= truncate @reward.story.synopsis, :length => 150
+    .link= truncate @reward.content_url_with_impacted_by, :length => 40
   = submit_tag "Share on Facebook"

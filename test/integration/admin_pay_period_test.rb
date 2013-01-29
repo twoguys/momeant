@@ -27,8 +27,8 @@ Feature "Admins can create a pay period to pay requested creator cashouts" do
     end
     
     Then "I should see the creator's name and amount of funded rewards we need to pay" do
-      assert page.has_content?(@creator.name)
-      assert page.has_content?(number_to_currency(@reward.amount))
+      assert page.find('.payperiods').has_content?(@creator.name)
+      assert page.find('.payperiods').has_content?(number_to_currency(@reward.amount))
     end
     
     When "I click the End Payout button" do
@@ -63,12 +63,12 @@ Feature "Admins can create a pay period to pay requested creator cashouts" do
     end
     
     And "I click the Mark as Paid button on the creator's line item" do
-      click_button "Mark as Paid"
+      @pay_period_line_item = @pay_period.line_items.first
+      click_on "Mark #{@pay_period_line_item.payee.name} as Paid"
     end
     
     Then "the line item should be marked as paid" do
-      @pay_period.reload
-      @pay_period_line_item = @pay_period.line_items.first
+      @pay_period_line_item.reload
       assert @pay_period_line_item.is_paid?, "the line item is paid"
     end
     

@@ -1,0 +1,18 @@
+%section#use-a-button
+  %h1 Put the "Reward Button" on your Website
+  %p Copy and paste the button code below onto your site where you'd like it to appear.
+  %p When your viewers click it, they'll see a window where they can reward you.
+  
+  #button-code
+    = image_tag "http://momeant-production.s3.amazonaws.com/reward_buttons/light-plain-141x34.png"
+    %input{type: "text", readonly: "readonly", value: reward_user_button_html(@user)}
+  
+  = link_to "Got it. Onto my Profile &rarr;".html_safe, user_path(@user), id: "onward", class: "button"
+  %span.note You can always get back here by clicking the 'Reward Button Code' in your profile drop-down up top.
+  
+%section#example
+  %h2 How the Reward Button works:
+  = image_tag "creators/how-it-works.jpg"
+
+:javascript
+  $('#button-code input').select();

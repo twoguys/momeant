@@ -38,7 +38,6 @@ class NotificationsMailer < ActionMailer::Base
     @user = user
     @reward = reward
     @creator_url = user_url(@reward.recipient)
-    @content_url = story_url(@reward.story)
     
     mail to: @user.email, subject: "You just made an impact!"
   end
@@ -102,6 +101,15 @@ class NotificationsMailer < ActionMailer::Base
     @user = user
     
     mail to: user.email, subject: "Action Needed! Your Amazon Payment method was declined."
+  end
+  
+  def thank_you_level_achieved(creator, user, level)
+    @creator = creator
+    @user = user
+    @level = level
+    @messaging_url = new_message_url(user: @user.id)
+    
+    mail to: @creator.email, subject: "A supporter achieved your Thank You Level"
   end
   
   def flexible_email(to, from, subject, body)

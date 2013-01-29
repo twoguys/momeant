@@ -9,17 +9,17 @@ class UserTest < ActiveSupport::TestCase
   end
     
   test "A creator's top supporters are the users who have impacted them most" do
-    story = Factory(:story)
+    creator = Factory(:creator)
     user  = Factory(:user)
     user2 = Factory(:user)
     
-    user.reward(story, 2)
-    user2.reward(story, 1)
+    user.reward(creator, 2)
+    user2.reward(creator, 1)
     
-    assert_equal user,  story.user.top_supporters.first[0]
-    assert_equal user2, story.user.top_supporters.last[0]
-    assert_equal 2,     story.user.top_supporters.first[1]
-    assert_equal 1,     story.user.top_supporters.last[1]
+    assert_equal user,  creator.top_supporters.first[0]
+    assert_equal user2, creator.top_supporters.last[0]
+    assert_equal 2,     creator.top_supporters.first[1]
+    assert_equal 1,     creator.top_supporters.last[1]
   end
   
   test "A user's favorite creators are the creators they've rewarded the most" do

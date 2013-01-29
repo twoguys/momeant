@@ -94,6 +94,14 @@ body#reward-modal
       font-size: 25px
       line-height: 25px
     
+    &.no-content-url
+      left: 0
+      width: 360px
+      padding: 180px 220px
+      text-align: center
+      font-size: 1.5em
+      line-height: 1.5em
+    
   #content-metadata, #reward-them, #what-is-momeant, #login, #supporter-info
     padding: 25px 30px
   
@@ -292,10 +300,33 @@ body#reward-modal
       font-size: 14px
       font-weight: 400
       margin-bottom: 15px
-    #explanation
+    #thank-you-levels, #explanation
       width: 300px
       float: left
       margin-right: 50px
+    #thank-you-levels
+      .tip
+        font-size: 12px
+        padding: 1px 5px
+        background: #ddd
+        @include rounded(20px)
+        cursor: help
+      li
+        margin-bottom: 8px
+      .item a
+        color: $text_color
+        &:hover
+          color: $blue
+      .price
+        padding: 2px 4px
+        background: $lightgreen
+        color: $green - #222
+        margin-right: 3px
+      p
+        font-size: 12px
+        margin: 3px 0 0
+        line-height: 1.5em
+    #explanation
       ul, p
         font-family: $typewriter
         font-style: italic
@@ -621,10 +652,10 @@ body#reward-modal
     text-shadow: 0 1px 0 rgba(255,255,255,0.5)
 
 #facebook-sharing
-  height: 217px
+  height: 137px
   position: relative
   textarea
-    height: 160px
+    height: 80px
   #facebook-preview
     position: absolute
     top: 80px
@@ -633,19 +664,7 @@ body#reward-modal
     border-top: 1px dashed #ccc
     padding: 10px 10px 10px 115px
     font-size: 11px
-    .thumbnail
-      position: absolute
-      top: 10px
-      left: 10px
-      width: 95px
-      height: 60px
-    h3
-      font-size: 13px
-      text-align: left
-      margin-bottom: 5px
-      width: 260px
-      height: 16px
-      overflow: hidden
+    text-align: right
     .link
       color: #999
     p

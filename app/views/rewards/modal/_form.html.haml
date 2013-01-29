@@ -1,7 +1,7 @@
 #reward-them
-  %h1 Reward #{@story.user.first_name} for #{@story.this_media}
+  %h1 Reward me for my work
 
-  - if current_user == @story.user
+  - if current_user == @user
     This is where everyone else can reward you.
 
   - elsif current_user && !current_user.is_under_pledged_rewards_stop_threshold?
@@ -22,9 +22,9 @@
       %span Logged in as
       %span.name= current_user.name if current_user
       
-    = form_for :reward, :url => user_rewards_path(@story.user), :html => {:id => "reward-form"} do |form|
-      = form.hidden_field :story_id, :value => @story.id
+    = form_for :reward, :url => user_rewards_path(@user), :html => {:id => "reward-form"} do |form|
       = form.hidden_field :impacted_by, :value => params[:impacted_by] if params[:impacted_by]
+      = form.hidden_field :content_url, :value => @content_url
 
       #amounts
         %p Choose an amount:
@@ -34,7 +34,7 @@
           %li= link_to "10", "#", :amount => 10.0
           %li.custom= text_field_tag :custom_amount, "", placeholder: "___"
         = form.hidden_field :amount, value: 1
-        = form.submit "Give Reward &rarr;".html_safe, disabled: "disabled", style: current_user.nil? ? "display:none" : ""
+        = form.submit "Give Reward", id: "reward_submit", style: current_user.nil? ? "display:none" : ""
         - unless current_user
           = link_to "What is this?", "#about", id: "what-is-momeant-link", class: "button"
           = link_to "Log In", "#login", id: "login-button", class: "button"

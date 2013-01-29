@@ -84,13 +84,13 @@ html, body {
   position: relative; }
 
 h2 {
-  background: none repeat scroll 0 0 #f3f3f3;
   font-family: "proxima-nova-1", "proxima-nova-2", helvetica, sans-serif;
-  font-size: 13px;
+  font-size: 1.4em;
   font-weight: 400;
-  padding: 11px 13px 9px;
+  line-height: 1.5em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  clear: both; }
+  letter-spacing: 0.1em; }
 
 p {
   line-height: 1.8em;
@@ -111,6 +111,9 @@ h2 {
 
 .weak {
   color: #9c9c9c; }
+
+.important {
+  color: #f42652; }
 
 /* Form styles */
 form li, .form li {
@@ -170,6 +173,15 @@ form input[type="text"], form input[type="email"], form input[type="password"], 
   border-radius: 4px; }
   form input[type="text"].error, form input[type="email"].error, form input[type="password"].error, form textarea.error, .form input[type="text"].error, .form input[type="email"].error, .form input[type="password"].error, .form textarea.error {
     background: #f7d3db; }
+  form input[type="text"].money, form input[type="email"].money, form input[type="password"].money, form textarea.money, .form input[type="text"].money, .form input[type="email"].money, .form input[type="password"].money, .form textarea.money {
+    background-image: url(../images/icons/dollar.png);
+    background-position: 5px 50%;
+    background-repeat: no-repeat;
+    width: 50px;
+    padding-left: 20px; }
+  form input[type="text"].disabled, form input[type="email"].disabled, form input[type="password"].disabled, form textarea.disabled, .form input[type="text"].disabled, .form input[type="email"].disabled, .form input[type="password"].disabled, .form textarea.disabled {
+    background-color: #eeeeee;
+    color: #999999; }
 form input[type="file"], .form input[type="file"] {
   padding: 5px;
   font-size: 1.2em;
@@ -465,6 +477,13 @@ body#reward-modal {
     body#reward-modal #main h1 {
       font-size: 25px;
       line-height: 25px; }
+    body#reward-modal #main.no-content-url {
+      left: 0;
+      width: 360px;
+      padding: 180px 220px;
+      text-align: center;
+      font-size: 1.5em;
+      line-height: 1.5em; }
   body#reward-modal #content-metadata, body#reward-modal #reward-them, body#reward-modal #what-is-momeant, body#reward-modal #login, body#reward-modal #supporter-info {
     padding: 25px 30px; }
   body#reward-modal #content-metadata h1 {
@@ -663,20 +682,43 @@ body#reward-modal {
       font-size: 14px;
       font-weight: 400;
       margin-bottom: 15px; }
-    body#reward-modal #supporter-info #explanation {
+    body#reward-modal #supporter-info #thank-you-levels, body#reward-modal #supporter-info #explanation {
       width: 300px;
       float: left;
       margin-right: 50px; }
-      body#reward-modal #supporter-info #explanation ul, body#reward-modal #supporter-info #explanation p {
-        font-family: "museo-slab-1", "museo-slab-2", serif;
-        font-style: italic;
-        font-weight: 300; }
-      body#reward-modal #supporter-info #explanation li {
-        list-style-type: disc;
-        margin: 0 0 0.5em 1.2em; }
-      body#reward-modal #supporter-info #explanation abbr {
-        border-bottom: 1px dotted #00aeef;
-        cursor: help; }
+    body#reward-modal #supporter-info #thank-you-levels .tip {
+      font-size: 12px;
+      padding: 1px 5px;
+      background: #dddddd;
+      -webkit-border-radius: 20px;
+      -moz-border-radius: 20px;
+      border-radius: 20px;
+      cursor: help; }
+    body#reward-modal #supporter-info #thank-you-levels li {
+      margin-bottom: 8px; }
+    body#reward-modal #supporter-info #thank-you-levels .item a {
+      color: #252525; }
+      body#reward-modal #supporter-info #thank-you-levels .item a:hover {
+        color: #00aeef; }
+    body#reward-modal #supporter-info #thank-you-levels .price {
+      padding: 2px 4px;
+      background: #c8f2d0;
+      color: #12922a;
+      margin-right: 3px; }
+    body#reward-modal #supporter-info #thank-you-levels p {
+      font-size: 12px;
+      margin: 3px 0 0;
+      line-height: 1.5em; }
+    body#reward-modal #supporter-info #explanation ul, body#reward-modal #supporter-info #explanation p {
+      font-family: "museo-slab-1", "museo-slab-2", serif;
+      font-style: italic;
+      font-weight: 300; }
+    body#reward-modal #supporter-info #explanation li {
+      list-style-type: disc;
+      margin: 0 0 0.5em 1.2em; }
+    body#reward-modal #supporter-info #explanation abbr {
+      border-bottom: 1px dotted #00aeef;
+      cursor: help; }
     body#reward-modal #supporter-info #top-supporters {
       width: 210px;
       float: right; }
@@ -808,7 +850,7 @@ body#reward-modal {
         font-size: 14px;
         font-weight: 300;
         padding: 7px;
-        background: #f5f5f5;
+        background: whitesmoke;
         border: 1px solid #cccccc;
         -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) inset;
         -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) inset;
@@ -990,10 +1032,10 @@ body#reward-modal {
     text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5); }
 
 #facebook-sharing {
-  height: 217px;
+  height: 137px;
   position: relative; }
   #facebook-sharing textarea {
-    height: 160px; }
+    height: 80px; }
   #facebook-sharing #facebook-preview {
     position: absolute;
     top: 80px;
@@ -1001,20 +1043,8 @@ body#reward-modal {
     width: 236px;
     border-top: 1px dashed #cccccc;
     padding: 10px 10px 10px 115px;
-    font-size: 11px; }
-    #facebook-sharing #facebook-preview .thumbnail {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      width: 95px;
-      height: 60px; }
-    #facebook-sharing #facebook-preview h3 {
-      font-size: 13px;
-      text-align: left;
-      margin-bottom: 5px;
-      width: 260px;
-      height: 16px;
-      overflow: hidden; }
+    font-size: 11px;
+    text-align: right; }
     #facebook-sharing #facebook-preview .link {
       color: #999999; }
     #facebook-sharing #facebook-preview p {

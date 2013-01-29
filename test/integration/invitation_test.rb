@@ -14,7 +14,7 @@ Feature "An admin should be able to generate invitations" do
     when_i_visit_page :admin_invitations
     
     Then "I should see information for the existing invitation" do
-      assert page.has_content? Invitation.last.token
+      assert page.find('.invitations').has_content?(Invitation.last.token)
     end
   end
   
@@ -38,7 +38,7 @@ Feature "An admin should be able to generate invitations" do
     end
     
     And "I should see the recently-created invitation" do
-      assert page.has_content? @invitation.token
+      assert page.find('.invitations').has_content?(@invitation.token)
     end
   end
   
