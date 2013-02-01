@@ -89,7 +89,7 @@ class Reward < Curation
   def give_impact_to_parents!(parent_reward)
     # make the new reward a child of the impacter reward
     self.move_to_child_of(parent_reward)
-    self.update_attribute(:depth, self.ancestors.count)
+    #self.update_attribute(:depth, self.ancestors.count)
 
     # update all ancestor rewards' impact
     self.ancestors.update_all("impact = impact + #{self.amount}")

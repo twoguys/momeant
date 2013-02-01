@@ -1,7 +1,6 @@
 source 'http://rubygems.org'
 
-#gem 'arel', :path => "vendor/private_gems/arel-2.0.10"
-gem 'rails', '3.1'
+gem 'rails', '3.2.11'
 
 # Postgres for our database
 gem 'pg', '0.14.0'
@@ -16,7 +15,6 @@ gem 'cancan'
 gem 'fastercsv'
 gem 'acts-as-taggable-on'
 gem 'braintree'
-gem 'silent-postgres'
 gem 'sunspot_rails', '~> 1.3.3'
 gem 'bluecloth'
 gem 'acts_as_list'
@@ -24,7 +22,7 @@ gem 'aasm'
 gem 'spreedly', :require => false
 gem 'kaminari'
 gem 'pusher'
-gem 'awesome_nested_set', :path => 'vendor/private_gems/awesome_nested_set-2.0.1'
+gem 'awesome_nested_set'
 gem 'rest-client'
 gem 'nokogiri'
 gem 'omniauth-twitter'
