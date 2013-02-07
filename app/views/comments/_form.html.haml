@@ -6,4 +6,8 @@
     = form.text_area :comment, :class => "comment-box", placeholder: "Type your comment and press enter..."
     = form.submit "Post"
 - else
-  .disabled #{commentable.first_name}'s supporters can participate in this discussion.
+  .disabled
+    - if commentable.is_a?(User)
+      #{commentable.first_name}'s supporters can participate in this discussion.
+    - elsif commentable.is_a?(Story)
+      #{commentable.user.first_name}'s supporters can participate in this discussion.
