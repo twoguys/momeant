@@ -2277,7 +2277,23 @@ body#users.show {
         body#users.show #user-profile #vertical-list #activity-list > li:last-child {
           margin-bottom: 0; }
     body#users.show #user-profile #my-rewards {
-      margin-bottom: 0; }
+      margin-bottom: 0;
+      display: inline-block; }
+      body#users.show #user-profile #my-rewards:after {
+        content: ".";
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden; }
+      body#users.show #user-profile #my-rewards li, body#users.show #user-profile #my-rewards li img {
+        width: 100px; }
+      body#users.show #user-profile #my-rewards li {
+        float: left;
+        margin: 0 1em 1em;
+        text-align: center;
+        text-transform: uppercase; }
+        body#users.show #user-profile #my-rewards li img {
+          margin-bottom: 0.5em; }
 
 body#thank_you_levels #main {
   width: 800px;
