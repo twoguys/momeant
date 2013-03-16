@@ -9,13 +9,25 @@
   #main
 
     #reward-actions
-      #nib
       = render "rewards/modal/form"
-      = render "rewards/modal/description"
-          
+      = render "rewards/modal/login"
+    
+    = render "rewards/modal/description" unless cookies[:has_seen_reward_modal_explanation].present?
   
-    #supporter-info
-      = render "rewards/modal/supporter_info"
+  #footer
+    .branding
+      = link_to image_tag("logoWhiteSmall.png"), root_url, target: "_blank"
+      %p
+        %span rewarding content
+        %span creators for their work
+    .login-link
+      #current-user{style: current_user.present? ? "" : "display:none;"}
+        %span logged in as
+        %span.name= current_user.name if current_user
+      - if current_user.nil?
+        #no-current-user
+          %span have a momeant account?
+          = link_to "login", "#login"
   
   #notice
     = link_to "Close", "#close-notice", id: "close-notice"

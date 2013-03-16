@@ -1,22 +1,21 @@
-#what-is-momeant
-  %p
-    %span What you see in this window is all part of
-    = link_to "Momeant", root_url, target: "blank"
-    %span , a place where online creators can share their work and allow others to support them.
-  %p By voluntarily rewarding creators, you become a part of their private community, creating an ongoing and meaningful connection with them and their supporters.
-  = link_to "&larr;".html_safe, "#reward", id: "back-to-reward", class: "button"
-  = link_to "Learn more", root_url, target: "blank", id: "learn-more", class: "button"
-#login
-  = form_for User.new, as: :user, url: session_path(:user), html: {id: "login-form"} do |form|
-    %fieldset
-      %ul
-        %li
-          = form.email_field :email, :id => "login_email", :placeholder => "email address", :autocorrect => "off", :autocapitalize => "off"
-        %li
-          = form.password_field :password, :id => "login_password", :placeholder => "password"
-        %li.submit
-          = form.submit "login"
-          = link_to "&larr; Back".html_safe, "#reward", class: "button", id: "login-back-to-reward"
-          = link_to "Reset my password", new_password_path(:user), target: "blank", id: "forgot-password"
-          = link_to "Need an account? Sign up", "#{root_url}#signup", target: "blank", id: "need-an-account"
-  #login-error
+#what-is-this
+  %h1 Reward My Work
+  = image_tag @user.avatar.url(:large), class: "creator"
+  #after-copy.copy
+    %span After rewarding me,
+    %span my supporters can...
+  #iconography
+    #interact-copy.copy
+      %strong Interact
+      %span with me & my
+      %span community
+    #follow-copy.copy
+      %strong Follow me
+      %span for content
+      %span updates
+    #receive-copy.copy
+      %strong Receive gifts
+      %span for excellent
+      %span support
+  
+  = link_to "Ok, got it!", "#", id: "close-what-is-this", class: "button"
