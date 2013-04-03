@@ -5,14 +5,4 @@
     %span= @user.first_name
     %span= @user.last_name
   
-  - if @user.occupation.present?
-    .occupation= @user.occupation
-  - if @user.location.present?
-    .location= @user.location
-  
-  #bio= truncate(@user.tagline, length: 160)
-  
-  %a#more-work{href: user_url(@user), target: "_blank"}
-    View more of
-    %br
-    #{@user.first_name}'s work
+  #bio= truncate(@user.tagline, length: 240)

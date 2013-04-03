@@ -10,9 +10,8 @@ $(function() {
 		el: $('#reward-modal'),
 		
 		events: {
-		  'click a[href="#about"]':         'goto_about',
 		  'click a[href="#reward"]':        'goto_reward',
-		  'click #login-button':            'goto_login',
+		  'click a[href="#login"]':         'goto_login',
 		  'submit #login-form':             'login',
 		  'click #toggle-synopsis':         'toggle_synopsis',
 			'click #amounts li a': 						'choose_reward_amount',
@@ -24,7 +23,9 @@ $(function() {
   		'click a.after-link':             'goto_after_view',
   		'click #back-to-thank-you':       'goto_thank_you',
   		'click a[href="#close-notice"]':  'hide_notice',
-  		'click #notice-cover':            'hide_notice'
+  		'click #notice-cover':            'hide_notice',
+  		'click #close-what-is-this':      'close_description',
+  		'click #fake-reward-submit':      'tell_creator_about_fake_button'
 		},
 		
 		initialize: function() {
@@ -33,6 +34,7 @@ $(function() {
 			this.reward_submitted = false;
 			this.comments_open = false;
 			this.setup_custom_reward_amount_monitoring();
+			$.cookie('has_seen_reward_modal_explanation', 'true', { expires: 7 });
 		},
 		
 		toggle_synopsis: function(event) {
@@ -52,12 +54,12 @@ $(function() {
 		  return false;
 		},
 		
-		// ACTIONS IF NOT LOGGED IN -------------------------------------
-		
-		goto_about: function() {
-		  $('#reward-actions').css('margin-left',-620);
+		close_description: function() {
+		  $('#what-is-this').animate({top:-500});
 		  return false;
 		},
+		
+		// ACTIONS IF NOT LOGGED IN -------------------------------------
 		
 		goto_reward: function() {
 		  $('#reward-actions').css('margin-left',0);
@@ -65,7 +67,7 @@ $(function() {
 		},
 		
 		goto_login: function() {
-		  $('#reward-actions').css('margin-left',-1210);
+		  $('#reward-actions').css('margin-left',-620);
 		  return false;
 		},
 		
@@ -87,6 +89,7 @@ $(function() {
 		      $('#reward_submit').show();
 		      $('#what-is-momeant-link, #login-button').remove();
 		      $('#current-user').show().find('.name').text(response.name);
+		      $('#no-current-user').hide();
 		      user_id = response.id;
 		      current_user = true;
 		      RewardModal.goto_reward();
@@ -106,7 +109,7 @@ $(function() {
 		},
 		
 		choose_reward_amount: function(event) {
-		  if (!current_user) { RewardModal.goto_about(); return false; }
+		  if (!current_user) { RewardModal.goto_login(); return false; }
 		  
 			var $button = $(event.currentTarget);
 
@@ -160,7 +163,7 @@ $(function() {
 
 			var amount = $form.find('#reward_amount').val();
 			if (amount == '') {
-				alert('Please choose how much to reward.');
+				RewardModal.show_modal('<h1>Oops!</h1><p>Please choose how much to reward.</p>');
 				return false;
 			}
 			var impacted_by = $form.find("#reward_impacted_by").val();
@@ -214,6 +217,7 @@ $(function() {
 		
 		hide_notice: function() {
 		  $('#notice').fadeOut(200);
+		  return false;
 		},
 		
 		// ACTIONS AFTER REWARDING -------------------------------------
@@ -372,6 +376,11 @@ $(function() {
 		allow_commenting: function() {
 		  if (!RewardModal.comments_open) { RewardModal.toggle_comments(); }
 		  $('#comments-view form').slideDown();
+		},
+		
+		tell_creator_about_fake_button: function() {
+		  RewardModal.show_modal("<h1>Sorry, you can't reward yourself.</h1><p>We just wanted to show you how it works for others. Don't worry, they won't see this message.</p>");
+		  return false;
 		}
 	});
 	

@@ -15,85 +15,94 @@ body#reward-modal
   #inner
     width: 800px
     height: 500px
+    background: #fff
     position: absolute
     top: 50%
     left: 50%
     margin: -250px 0 0 -400px
     overflow: hidden
   
-  #sidebar
-    background: #252525
-    color: #888
+  #footer
+    background: #000
+    width: 100%
+    height: 55px
     position: absolute
-    top: 0
     bottom: 0
     left: 0
-    width: 150px
-    padding: 15px
+    .branding
+      float: left
+      margin: 7px 0 0 5px
+      a
+        display: block
+        width: 166px
+        height: 37px
+        float: left
+        margin-right: 5px
+      p
+        margin: 6px 0 0
+        font-size: 13px
+        color: #666
+        line-height: 13px
+        float: left
+        span
+          display: block
+    .login-link
+      float: right
+      font-size: 17px
+      color: #666
+      margin: 16px 18px 0 0
+  
+  #sidebar, #main
+    position: absolute
+    top: 0
+    bottom: 55px
+    left: 0
+
+  #sidebar
+    width: 138px
+    border-right: 2px solid #eee
+    margin: 30px 0
+    padding: 0 20px
     
   #avatar
-    background: #444
     display: block
-    width: 148px
-    height: 148px
-    border: 1px solid #111
-    margin-bottom: 10px
+    width: 110px
+    height: 110px
+    margin: 0 auto 20px
     img
-      width: 146px
-      height: 146px
-      border: 1px solid #333
+      width: 100px
+      height: 100px
+      border: 2px solid #ebebeb
+      padding: 3px
+      @include rounded(100px)
   
   a#creator-name
-    color: #fff
-    font-size: 22px
+    font-size: 18px
     font-weight: 600
     line-height: 22px
+    text-transform: uppercase
+    text-align: center
+    color: #000
     display: block
+    margin-bottom: 20px
     @include transition(color)
     &:hover
       color: $blue
     span
       display: block
   
-  .occupation
-    margin-top: 10px
-  .occupation, .location
-    font-family: $typewriter
-    font-style: italic
-    font-weight: 300
-  
   #bio
-    margin-top: 15px
-    border-top: 1px solid #444
-    padding-top: 15px
     font-size: 13px
-  
-  #more-work
-    position: absolute
-    left: 15px
-    bottom: 15px
-    width: 150px
-    color: #888
-    text-decoration: underline
-    @include transition(color)
-    &:hover
-      color: $blue
+    color: #666
   
   #main
-    background: #fff
     width: 620px
-    position: absolute
-    top: 0
-    bottom: 0
     left: 180px
     right: 0
     overflow: hidden
     @include transition(margin)
-    
     h1
-      font-size: 25px
-      line-height: 25px
-    
+      text-transform: uppercase
     &.no-content-url
       left: 0
       width: 360px
@@ -101,6 +110,51 @@ body#reward-modal
       text-align: center
       font-size: 1.5em
       line-height: 1.5em
+  
+  #what-is-this
+    background: #fff
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 415px
+    z-index: 99
+    text-align: center
+    padding-top: 30px
+    h1
+      text-transform: uppercase
+    img.creator
+      width: 65px
+      height: 65px
+      border: 2px solid #ebebeb
+      padding: 3px
+      @include rounded(65px)
+      margin-bottom: -10px
+    .copy
+      position: absolute
+      top: 276px
+      font-size: 1.1em
+      strong, span
+        display: block
+    #after-copy
+      top: 90px
+      left: 365px
+      text-align: left
+    #iconography
+      width: 100%
+      height: 200px
+      background: transparent url(../images/reward-modal/explanation-icons.png) no-repeat 50% 0
+      background-size: 306px 122px
+      margin-bottom: 20px
+    #interact-copy
+      left: 142px
+    #follow-copy
+      left: 274px
+    #receive-copy
+      left: 386px
+    #close-what-is-this
+      font-size: 1.1em
+      padding: 12px 14px
     
   #content-metadata, #reward-them, #what-is-momeant, #login, #supporter-info
     padding: 25px 30px
@@ -138,21 +192,21 @@ body#reward-modal
         display: none
   
   #reward-actions
-    background: #0399df
-    color: #fff
     width: 1860px
     height: 140px
     padding-bottom: 30px
     position: relative
     @include transition(margin)
     &.loading
-      background: #0399df url(../images/spinner-blue.gif) no-repeat 290px 50%
-      *
-        visibility: hidden
+      background: #fff url(../images/spinner.gif) no-repeat 280px 50%
+      height: 415px
+      & > *
+        opacity: 0.2
     h1
       margin-bottom: 18px
     input[type="submit"], a.button
-      background: $dark_blue
+      background: $blue
+      padding: 10px 12px
     #nib
       width: 8px
       height: 16px
@@ -162,15 +216,13 @@ body#reward-modal
       margin-top: -8px
       background: transparent url(../images/reward-modal/blue-nib.png) no-repeat 0 0
     #over-threshold, #reauthorize
-      color: $dark_blue
       a
-        color: #fff
         text-decoration: underline
     #reauthorize p
       margin: 5px 0
     #reward-them, #what-is-momeant, #login
       width: 560px
-      height: 120px
+      height: 395px
       float: left
       position: relative
     #current-user
@@ -181,117 +233,80 @@ body#reward-modal
       font-size: 13px
       span
         display: block
-    #what-is-momeant
-      background: transparent url(../images/logoWhiteSmall.png) no-repeat 414px 44px
-      width: 360px
-      padding-right: 200px
-      p
-        margin-top: 0
-        line-height: 1.2em
-        a
-          color: $dark_blue
-      a.button
-        position: absolute
-      #back-to-reward, #learn-more
-        top: 96px
-      #back-to-reward, #login-button
-        left: 421px
-      #learn-more
-        left: 465px
-      #login-button, #sign-up
-        top: 117px
-      #sign-up
-        left: 495px
     #login
-      background: #333
+      height: 200px
+      padding-top: 140px
       form
         width: 275px
         height: 120px
+        margin-left: 40px
         &.loading
-          background: transparent url(../images/spinnerDarkGrey.gif) no-repeat 90% 50%
-          *
-            visibility: hidden
+          background: transparent url(../images/spinner.gif) no-repeat 70% 90%
+          & > *
+            opacity: 0.8
       li
         margin-bottom: 10px
-      input[type="email"], input[type="password"]
-        border: 1px solid #000
       li.submit input, #login-back-to-reward
         background: $blue
       li.submit a.forgot
         color: $dark_blue
         margin-left: 20px
         text-decoration: underline
-      #login-back-to-reward, #login-error, #forgot-password, #need-an-account
+      #login-error, #forgot-password, #need-an-account
         position: absolute
       #login-back-to-reward
-        bottom: 30px
-        right: 31px
-        height: 15px
-        padding-top: 9px
-        &:active
-          top: auto
+        padding: 12px
+        margin-left: 10px
       #login-error
-        top: 112px
-        left: 115px
+        top: 105px
+        left: 70px
         font-size: 1.3em
       #need-an-account, #forgot-password
-        left: 300px
+        left: 340px
       #need-an-account
-        top: 35px
+        top: 145px
       #forgot-password
-        top: 70px
+        top: 187px
   
-  #amounts
-    height: 66px
-    p
-      font-family: $typewriter
-      font-style: italic
-      font-weight: 300
-      color: $dark_blue
-      margin: 0 0 15px
-      line-height: 1em
-    ul
-      float: left
-      margin-right: 20px
-    li
-      float: left
-      clear: none
-      height: 30px
-      margin: 0 15px 0 0
-      a, input[type="text"]
-        display: inline-block
-        background: #fff url(../images/reward-modal/dollar-sign.png) no-repeat 9px 9px
-        color: #005b84
-        padding: 7px 14px 7px 22px
-        font-size: 18px
-        border: none
-        border-bottom: 1px solid #006ea2
-        border-right: 1px solid #006ea2
-        @include rounded(3px)
-        &:hover
-          border-color: $dark_blue
-        &.selected
-          background-color: $dark_blue
-          background-position: 9px -36px
-          color: #fff
-          border-bottom: 1px solid #5bc2f1
-          border-right: 1px solid #5bc2f1
-      input[type="text"]
-        width: 36px
-        font-size: 16px
-        padding-top: 8px
-        padding-bottom: 8px
-    input[type="submit"]
-      height: 36px
-    input[disabled="disabled"]
-      opacity: 0.4
-      cursor: default
-      &:active
-        top: 0
-    a.button
-      color: #fff
-      display: inline-block
-      padding: 11px 15px
+  #reward-them
+    text-align: center
+  #reward-form
+    #amounts
+      font-size: 1.2em
+      margin-bottom: 1em
+      p
+        margin-bottom: 10px
+      #reward_amount
+        font-size: 1.2em
+        width: 60px
+        padding-left: 40px
+        background: #fff url(../images/reward-modal/amount-input-dollar-bg.png) no-repeat -5px 50%
+    table
+      background: #ededed
+      width: 500px
+      height: 140px
+      padding: 10px
+      margin: 0 auto 30px
+      @include rounded(3px)
+      overflow: hidden
+      th
+        font-weight: 400
+        color: #666
+        padding-bottom: 10px
+      td
+        padding-bottom: 5px
+      .give
+        width: 80px
+        text-align: right
+        padding-right: 20px
+      .get
+        text-align: left
+      td.give
+        font-size: 14px
+      td.get
+        font-family: Georgia, serif
+        font-size: 11px
+        font-style: italic
   
   #supporter-info
     color: #777
@@ -369,7 +384,7 @@ body#reward-modal
           font-size: 13px
   
   #after-reward
-    height: 460px
+    height: 409px
     padding: 18px
     position: relative
     
@@ -422,7 +437,7 @@ body#reward-modal
           background-position: -386px -113px
     
     .after-view
-      height: 350px
+      height: 337px
       overflow: auto
     #impact-view, #comments-view, #discussions-view
       display: none

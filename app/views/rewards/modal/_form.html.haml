@@ -1,10 +1,7 @@
 #reward-them
-  %h1 Reward me for my work
+  %h1 Reward my work
 
-  - if current_user == @user
-    This is where everyone else can reward you.
-
-  - elsif current_user && !current_user.is_under_pledged_rewards_stop_threshold?
+  - if current_user && !current_user.is_under_pledged_rewards_stop_threshold?
     #over-threshold
       %p
         You have pledged #{number_to_currency(current_user.pledged_amount)} in rewards. That's awesome!
@@ -18,25 +15,31 @@
       = link_to "Manage your payment method", fund_rewards_path, target: "_blank"
 
   - else
-    #current-user{style: current_user.nil? ? "display:none" : ""}
-      %span Logged in as
-      %span.name= current_user.name if current_user
-      
     = form_for :reward, :url => user_rewards_path(@user), :html => {:id => "reward-form"} do |form|
       = form.hidden_field :impacted_by, :value => params[:impacted_by] if params[:impacted_by]
       = form.hidden_field :content_url, :value => @content_url
 
       #amounts
-        %p Choose an amount:
-        %ul
-          %li= link_to "1", "#", :amount => 1.0, id: "one-dollar-reward"
-          %li= link_to "5", "#", :amount => 5.0
-          %li= link_to "10", "#", :amount => 10.0
-          %li.custom= text_field_tag :custom_amount, "", placeholder: "___"
-        = form.hidden_field :amount, value: 1
+        %p 1. Choose a fair amount
+        = form.text_field :amount, placeholder: "1+"
+        
+      - if @user.thank_you_levels.any?
+        %table
+          %thead
+            %tr
+              %th.give If you give...
+              %th.get You get...
+          %tbody
+            - @user.thank_you_levels.each do |level|
+              %tr
+                %td.give #{number_to_currency(level.amount, precision: 0)} +
+                %td.get= level.description
+      
+      - if me?(@user)
+        = link_to "Give Reward", "#", id: "fake-reward-submit", class: "button"
+      - else
         = form.submit "Give Reward", id: "reward_submit", style: current_user.nil? ? "display:none" : ""
-        - unless current_user
-          = link_to "What is this?", "#about", id: "what-is-momeant-link", class: "button"
-          = link_to "Log In", "#login", id: "login-button", class: "button"
-    
-        #invalid-reward-amount
+      - unless current_user
+        = link_to "Log In to Reward", "#login", id: "login-button", class: "button"
+  
+      #invalid-reward-amount

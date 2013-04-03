@@ -9,8 +9,8 @@ class RewardsController < ApplicationController
     return if @user.nil?
     amount = params[:reward][:amount].gsub('$','').to_f
     
-    if amount < 0.1
-      render json: { success: false, modal: "Sorry! $0.10 is the minimum reward allowed." } and return
+    if amount < 1
+      render json: { success: false, modal: "Sorry! $1.00 is the minimum reward allowed." } and return
     elsif amount > 99
       render json: { success: false, modal: "Sorry! $99.00 is the maximum reward allowed, for now." } and return
     end

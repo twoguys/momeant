@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
       render text: "<p>Sorry, only supporters of this work can comment on it.</p>".html_safe and return
     end
     comment.save
-    render :partial => "comments/comment", :locals => { :user => current_user, :comment => comment, highlight_user: comment.commentable.user }
+    render :partial => "comments/comment", :locals => { :user => current_user, :comment => comment, highlight_user: comment.commentable }
   end
   
 end
