@@ -25,22 +25,15 @@
     
     %h1 Profile Information
 
-    = form_for @user, :as => :user, :url => user_path(current_user) do |form|
+    = form_for @user, :as => :user, :url => user_path(current_user), html: { multipart: true } do |form|
 
       %fieldset
 
         #upload
-          #avatar-file
-            %label{:for => "user_avatar"} Upload a picture of your pretty face
-            .file-uploader
-              %form
-                = token_tag
-                .file-input
-                  %input{:type => "file", :name => "user[avatar]", :id => "user_avatar"}
-                  .loader
-                .example For best results, upload a square JPG or PNG, 300x300 or larger.
-          #avatar-preview
-            = image_tag @user.avatar.url(:editorial)
+          = form.label :avatar, "Upload a picture of your pretty face"
+          = form.file_field :avatar
+          .example For best results, upload a square JPG or PNG, 300x300 or larger.
+          = image_tag @user.avatar.url(:editorial)
 
         %ul
 
