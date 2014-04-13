@@ -14,6 +14,7 @@ Repo::Application.configure do
   
   # Force all access to the app over SSL
   config.middleware.use Rack::SslEnforcer
+ # config.middleware.use Rack::SslEnforcer
 
   # For nginx:
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect'
